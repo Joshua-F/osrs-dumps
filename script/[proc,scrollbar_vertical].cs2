@@ -1,0 +1,45 @@
+// 31
+[proc,scrollbar_vertical](component $component0, component $component1, graphic $graphic2, graphic $graphic3, graphic $graphic4, graphic $graphic5, graphic $graphic6, graphic $graphic7)
+cc_create($component0, ^iftype_graphic, 0);
+cc_setposition(0, 16);
+cc_setsize(16, calc(if_getheight($component0) - 32));
+cc_setgraphic($graphic2);
+cc_settiling(false);
+cc_setonclick("scrollbar_vertical_jump($component0, $component1, event_mousey)");
+.cc_create($component0, ^iftype_graphic, 1);
+.cc_setposition(0, 16);
+def_int $int8 = calc((if_getheight($component0) - 32) * if_getheight($component0) / if_getscrollheight($component1));
+if ($int8 < 10) {
+    $int8 = 10;
+}
+.cc_setsize(16, $int8);
+.cc_setgraphic($graphic4);
+.cc_settiling(false);
+.cc_setdraggable($component0, 0);
+.cc_setondrag("scrollbar_vertical_drag($component0, $component1, event_mousey, false)");
+.cc_setondragcomplete("scrollbar_vertical_drag($component0, $component1, event_mousey, true)");
+.cc_setdraggablebehavior(1);
+cc_create($component0, ^iftype_graphic, 2);
+cc_setposition(0, .cc_gety);
+cc_setsize(16, 5);
+cc_setgraphic($graphic3);
+cc_settiling(false);
+cc_create($component0, ^iftype_graphic, 3);
+cc_setposition(0, calc(.cc_gety + .cc_getheight - 5));
+cc_setsize(16, 5);
+cc_setgraphic($graphic5);
+cc_settiling(false);
+cc_create($component0, ^iftype_graphic, 4);
+cc_setposition(0, 0);
+cc_setsize(16, 16);
+cc_setgraphic($graphic6);
+cc_settiling(false);
+cc_setonhold("scrollbar_vertical_up($component0, $component1)");
+cc_create($component0, ^iftype_graphic, 5);
+cc_setposition(0, calc(if_getheight($component0) - 16));
+cc_setsize(16, 16);
+cc_setgraphic($graphic7);
+cc_settiling(false);
+cc_setonhold("scrollbar_vertical_down($component0, $component1)");
+if_setonscrollwheel("scrollbar_vertical_wheel($component0, $component1, event_mousey)", $component0);
+if_setonscrollwheel("scrollbar_vertical_wheel($component0, $component1, event_mousey)", $component1);
