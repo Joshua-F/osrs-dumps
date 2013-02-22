@@ -1,0 +1,28 @@
+// 193
+[proc,panetest](int $int0)(boolean)
+if (%varclient_41 = 0) {
+    return(true);
+}
+def_int $chattype1 = chat_gethistorytype($int0);
+if ($chattype1 = null) {
+    return(false);
+}
+if (%varclient_41 = 1 & $chattype1 = ^chattype_gamemessage) {
+    return(true);
+}
+if (%varclient_41 = 2 & ($chattype1 = ^chattype_modchat | $chattype1 = ^chattype_publicchat)) {
+    return(true);
+}
+if (%varclient_41 = 3 & ($chattype1 = ^chattype_privatechat | $chattype1 = ^chattype_loginlogoutnotification | $chattype1 = ^chattype_privatechatout | $chattype1 = ^chattype_modprivatechat)) {
+    return(true);
+}
+if (%varclient_41 = 4 & ($chattype1 = ^chattype_friendschat | $chattype1 = ^chattype_friendschatnotification)) {
+    return(true);
+}
+if (%varclient_41 = 5 & ($chattype1 = ^chattype_engine | $chattype1 = ^chattype_8 | $chattype1 = ^chattype_12)) {
+    return(true);
+}
+if (%varclient_41 = 6 & ($chattype1 = ^chattype_10 | $chattype1 = ^chattype_13)) {
+    return(true);
+}
+return(false);
