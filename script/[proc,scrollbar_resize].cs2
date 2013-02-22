@@ -1,0 +1,10 @@
+// 72
+[proc,scrollbar_resize](component $component0, component $component1, int $int2)
+def_int $int3 = calc((if_getheight($component0) - 32) * if_getheight($component0) / if_getscrollheight($component1));
+if ($int3 < 10) {
+    $int3 = 10;
+}
+if (cc_find($component0, 1) = ^true) {
+    cc_setsize(16, $int3);
+    ~scrollbar_vertical_doscroll($component0, $component1, $int2, true);
+}
