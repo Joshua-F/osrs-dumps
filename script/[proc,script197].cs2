@@ -1,0 +1,104 @@
+// 197
+[proc,script197](component $component0)
+cc_deleteall($component0);
+def_int $int1 = clan_getchatcount;
+def_int $int2 = 0;
+def_int $int3 = clan_getchatminkick;
+def_int $int4 = clan_getchatrank;
+def_int $int5 = 0;
+while ($int2 < $int1) {
+    $int5 = calc($int2 + $int2 + $int2);
+    cc_create($component0, ^iftype_text, $int5);
+    cc_settextfont(p11_full);
+    cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+    cc_settext(clan_getchatusername($int2));
+    cc_setposition(15, calc($int2 * 15));
+    cc_setsize(85, 15);
+    cc_setcolour(^white);
+    cc_settextshadow(false);
+    cc_setonop("script199(clan_getchatusername($int2), event_op)");
+    if (clan_isself($int2) = false) {
+        if (friend_test(clan_getchatusername($int2)) = true) {
+            cc_setop(9, "Remove friend <clan_getchatusername($int2)>");
+        } else if (ignore_test(clan_getchatusername($int2)) = true) {
+            cc_setop(10, "Remove ignore <clan_getchatusername($int2)>");
+        } else {
+            cc_setop(7, "Add friend <clan_getchatusername($int2)>");
+            cc_setop(8, "Add ignore <clan_getchatusername($int2)>");
+        }
+    }
+    if ($int4 >= $int3 & $int4 > clan_getchatuserrank($int2)) {
+        cc_setop(6, "Kick user <clan_getchatusername($int2)>");
+    }
+    cc_create($component0, ^iftype_text, calc($int5 + 1));
+    cc_settextfont(p11_full);
+    cc_settextalign(^settextalign_right, ^settextalign_centre, 0);
+    cc_settext("World <tostring(clan_getchatuserworld($int2))>");
+    cc_setposition(98, calc($int2 * 15));
+    cc_setsize(50, 15);
+    cc_setcolour(0xffff64);
+    cc_settextshadow(false);
+    cc_setonop("script199(clan_getchatusername($int2), event_op)");
+    if (clan_isself($int2) = false) {
+        if (friend_test(clan_getchatusername($int2)) = true) {
+            cc_setop(9, "Remove friend <clan_getchatusername($int2)>");
+        } else if (ignore_test(clan_getchatusername($int2)) = true) {
+            cc_setop(10, "Remove ignore <clan_getchatusername($int2)>");
+        } else {
+            cc_setop(7, "Add friend <clan_getchatusername($int2)>");
+            cc_setop(8, "Add ignore <clan_getchatusername($int2)>");
+        }
+    }
+    if ($int4 >= $int3 & $int4 > clan_getchatuserrank($int2)) {
+        cc_setop(6, "Kick user <clan_getchatusername($int2)>");
+    }
+    cc_create($component0, ^iftype_graphic, calc($int5 + 2));
+    cc_setposition(3, calc($int2 * 15 + 2));
+    cc_setsize(9, 9);
+    cc_setgraphic(~script198(clan_getchatuserrank($int2)));
+    cc_setonop("script199(clan_getchatusername($int2), event_op)");
+    if (clan_isself($int2) = false) {
+        if (friend_test(clan_getchatusername($int2)) = true) {
+            cc_setop(9, "Remove friend <clan_getchatusername($int2)>");
+        } else if (ignore_test(clan_getchatusername($int2)) = true) {
+            cc_setop(10, "Remove ignore <clan_getchatusername($int2)>");
+        } else {
+            cc_setop(7, "Add friend <clan_getchatusername($int2)>");
+            cc_setop(8, "Add ignore <clan_getchatusername($int2)>");
+        }
+    }
+    if ($int4 >= $int3 & $int4 > clan_getchatuserrank($int2)) {
+        cc_setop(6, "Kick user <clan_getchatusername($int2)>");
+    }
+    $int2 = calc($int2 + 1);
+}
+if ($int1 > 0) {
+    if_settext("<col=ff9b00>Talking in: <col=ffff64><clan_getchatdisplayname>", interface_589:com0);
+    if_settext("<col=ff9b00>Owner: <col=ffffff><clan_getchatownername>", interface_589:com1);
+    if_settext("Leave Chat", interface_589:com8);
+    if_setop(1, "Leave Chat", interface_589:com8);
+} else {
+    if_settext("<col=ff9b00>Talking in: Not in chat", interface_589:com0);
+    if_settext("<col=ff9b00>Owner: None", interface_589:com1);
+    if_settext("Join Chat", interface_589:com8);
+    if_setop(1, "Join Chat", interface_589:com8);
+}
+def_int $int6 = calc(15 * $int1);
+def_int $int7 = if_getheight(interface_589:com5);
+if ($int6 < 15) {
+    $int6 = 15;
+}
+def_int $int8 = calc($int6 - $int7);
+if ($int8 < 0) {
+    $int8 = 0;
+}
+def_int $int9 = if_getscrolly(interface_589:com5);
+if ($int9 > $int8) {
+    $int9 = $int8;
+}
+if ($int1 > 0) {
+    if_setscrollsize(0, $int6, interface_589:com5);
+} else {
+    if_setscrollsize(0, 15, interface_589:com5);
+}
+~scrollbar_resize(interface_589:com6, interface_589:com5, $int9);
