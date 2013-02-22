@@ -1,0 +1,21 @@
+// 73
+[clientscript,chatdefault_onkey](int $key, char $char)
+if (staffmodlevel > 0 & string_indexof_char("`", $char) ! -1 & string_length(%varclientstring_1) = 0) {
+    return;
+}
+if ($key = ^key_return & string_length(%varclientstring_1) > 0) {
+    chat_sendpublic(%varclientstring_1);
+    ~chatout_add(%varclientstring_1);
+    %varclientstring_1 = "";
+} else if ($key = ^key_page_up) {
+    if (staffmodlevel > 0) {
+        ~chatout_scrollup;
+    }
+} else if ($key = ^key_page_down) {
+    if (staffmodlevel > 0) {
+        ~chatout_scrolldown;
+    }
+} else {
+    %varclientstring_1 = ~add_to_inputstring(%varclientstring_1, 0, $key, $char);
+}
+if_settext("<chat_playername>: <col=0000ff><escape(%varclientstring_1)>*", interface_137:com_1);

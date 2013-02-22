@@ -1,0 +1,61 @@
+// 61
+[clientscript,dream_chest_init]
+def_int $int = 0;
+while ($int < 5) {
+    cc_create(interface_260:com_45, ^iftype_graphic, $int);
+    cc_setsize(36, 32);
+    if ($int = 0) {
+        cc_setposition(0, 43);
+    }
+    if ($int = 1) {
+        cc_setposition(50, 2);
+    }
+    if ($int = 2) {
+        cc_setposition(50, 43);
+    }
+    if ($int = 3) {
+        cc_setposition(50, 85);
+    }
+    if ($int = 4) {
+        cc_setposition(50, 125);
+    }
+    if (inv_getobj(inv_515, $int) ! null) {
+        cc_setobject(inv_getobj(inv_515, $int), inv_getnum(inv_515, $int));
+        cc_setopbase(oc_name(inv_getobj(inv_515, $int)));
+        cc_setop(1, "Deposit");
+        cc_setgraphicshadow(0x111111);
+        cc_setoutline(1);
+        if ($int = 0) {
+            if_setgraphic(null, interface_260:com_40);
+        }
+        if ($int = 1) {
+            if_setgraphic(null, interface_260:com_36);
+        }
+        if ($int = 2) {
+            if_setgraphic(null, interface_260:com_37);
+        }
+        if ($int = 3) {
+            if_setgraphic(null, interface_260:com_38);
+        }
+        if ($int = 4) {
+            if_setgraphic(null, interface_260:com_39);
+        }
+    } else {
+        if ($int = 0) {
+            if_setgraphic("wornicons,3", interface_260:com_40);
+        }
+        if ($int = 1) {
+            if_setgraphic("wornicons,0", interface_260:com_36);
+        }
+        if ($int = 2) {
+            if_setgraphic("wornicons,5", interface_260:com_37);
+        }
+        if ($int = 3) {
+            if_setgraphic("wornicons,7", interface_260:com_38);
+        }
+        if ($int = 4) {
+            if_setgraphic("wornicons,9", interface_260:com_39);
+        }
+    }
+    $int = calc($int + 1);
+}

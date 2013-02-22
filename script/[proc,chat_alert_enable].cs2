@@ -1,0 +1,13 @@
+// 180
+[proc,chat_alert_enable](int $int)
+if ($int = %varclient_41) {
+    return;
+}
+if ($int = 3 & %varplayer_287 = 1) {
+    return;
+}
+if (~chat_alert_get($int) > 24) {
+    return;
+}
+~chat_alert_set($int, 249);
+if_setontimer("chat_alert_flash($int)", enum(int, component, enum_683, $int));

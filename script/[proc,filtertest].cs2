@@ -1,0 +1,91 @@
+// 90
+[proc,filtertest](int $int0, int $int1)(boolean)
+def_int $chattype = chat_gethistorytype($int0);
+if ($chattype = null) {
+    return(false);
+}
+if ($chattype = ^chattype_gamemessage | $chattype = ^chattype_modchat) {
+    return(true);
+}
+if ($chattype = ^chattype_publicchat) {
+    if (chat_getfilter_public = ^chatfilter_on) {
+        return(true);
+    }
+    if (chat_getfilter_public = ^chatfilter_friends & friend_test(chat_gethistoryname($int0)) = true) {
+        return(true);
+    }
+    return(false);
+}
+if ($chattype = ^chattype_privatechat) {
+    if (%varplayer_287 = 1 & $int1 = 0) {
+        return(false);
+    }
+    if (chat_getfilter_private = ^chatfilter_on) {
+        return(true);
+    }
+    if (chat_getfilter_private = ^chatfilter_friends & friend_test(chat_gethistoryname($int0)) = true) {
+        return(true);
+    }
+    return(false);
+}
+if ($chattype = ^chattype_engine | $chattype = 8) {
+    if (chat_getfilter_trade = ^chatfilter_on) {
+        return(true);
+    }
+    if (chat_getfilter_trade = ^chatfilter_friends & friend_test(chat_gethistoryname($int0)) = true) {
+        return(true);
+    }
+    return(false);
+}
+if ($chattype = ^chattype_loginlogoutnotification | $chattype = ^chattype_privatechatout) {
+    if (%varplayer_287 = 1 & $int1 = 0) {
+        return(false);
+    }
+    if (chat_getfilter_private < 2) {
+        return(true);
+    }
+    return(false);
+}
+if ($chattype = ^chattype_modprivatechat) {
+    if (%varplayer_287 = 1 & $int1 = 0) {
+        return(false);
+    }
+    return(true);
+}
+if ($chattype = ^chattype_friendschat) {
+    if (%varplayer_1054 = 0) {
+        return(true);
+    }
+    if (%varplayer_1054 = 1 & friend_test(chat_gethistoryname($int0)) = true) {
+        return(true);
+    }
+    return(false);
+}
+if ($chattype = 10) {
+    if (%varplayer_1055 = 0) {
+        return(true);
+    }
+    if (%varplayer_1055 = 1 & friend_test(chat_gethistoryname($int0)) = true) {
+        return(true);
+    }
+    return(false);
+}
+if ($chattype = ^chattype_friendschatnotification) {
+    if (%varplayer_1054 < 2) {
+        return(true);
+    }
+    return(false);
+}
+if ($chattype = 12) {
+    if (chat_getfilter_trade < 2) {
+        return(true);
+    }
+    return(false);
+}
+if ($chattype = 13) {
+    if (%varplayer_1055 < 2) {
+        return(true);
+    }
+    return(false);
+}
+return(true);
