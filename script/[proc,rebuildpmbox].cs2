@@ -23,29 +23,25 @@ if (%varplayer_287 = 1) {
             $chattype = chat_gethistorytype($int4);
             if ($chattype = ^chattype_privatechat) {
                 if_settext("From <chat_gethistoryname($int4)>: <chat_gethistorymessage($int4)>", $component);
-            }
-            if ($chattype = ^chattype_loginlogoutnotification) {
+            } else if ($chattype = ^chattype_loginlogoutnotification) {
                 if_settext(chat_gethistorymessage($int4), $component);
-            }
-            if ($chattype = ^chattype_privatechatout) {
+            } else if ($chattype = ^chattype_privatechatout) {
                 if_settext("To <chat_gethistoryname($int4)>: <chat_gethistorymessage($int4)>", $component);
-            }
-            if ($chattype = ^chattype_modprivatechat) {
+            } else if ($chattype = ^chattype_modprivatechat) {
                 if_settext("From <chat_gethistoryname($int4)>: <chat_gethistorymessage($int4)>", $component);
             }
-            if ($chattype = ^chattype_privatechat | $chattype = ^chattype_modprivatechat) {
+            if_clearops($component);
+            if ($chattype = ^chattype_privatechat | $chattype = ^chattype_privatechatout | $chattype = ^chattype_modprivatechat) {
                 if_setopbase("<col=ffffff><chat_gethistoryname($int4)>", $component);
-                if_setop(8, "Add friend", $component);
-                if_setop(9, "Add ignore", $component);
+                if (friend_test(chat_gethistoryname($int4)) = true) {
+                    if_setop(8, "Message", $component);
+                } else {
+                    if_setop(8, "Add friend", $component);
+                    if_setop(9, "Add ignore", $component);
+                }
                 if (staffmodlevel > 0 | playermod > 0) {
                     if_setop(10, "Report abuse", $component);
-                } else {
-                    if_setop(10, "", $component);
                 }
-            } else {
-                if_setop(8, "", $component);
-                if_setop(9, "", $component);
-                if_setop(10, "", $component);
             }
             $int0 = calc($int0 + 1);
         }
@@ -55,8 +51,6 @@ if (%varplayer_287 = 1) {
 while ($int0 < 5) {
     $component = enum(int, component, enum_580, $int0);
     if_settext("", $component);
-    if_setop(8, "", $component);
-    if_setop(9, "", $component);
-    if_setop(10, "", $component);
+    if_clearops($component);
     $int0 = calc($int0 + 1);
 }

@@ -5,6 +5,7 @@ def_int $int1 = 0;
 def_int $chattype = ^chattype_gamemessage;
 def_component $component = null;
 def_int $int4 = 0;
+def_int $int5 = 1;
 if (%varclient_41 = 3) {
     $int4 = 1;
 }
@@ -34,50 +35,46 @@ if ($int0 < 100) {
 }
 $int1 = 0;
 while ($int1 < 100) {
+    $chattype = chat_gethistorytype($int1);
     if (~panetest($int1) = true & ~filtertest($int1, $int4) = true) {
         $int0 = calc($int0 - 1);
         $component = enum(int, component, enum_579, $int0);
-        $chattype = chat_gethistorytype($int1);
-        if ($chattype = ^chattype_gamemessage | $chattype = ^chattype_friendschatnotification | $chattype = 12 | $chattype = 13) {
-            if_settext(chat_gethistorymessage($int1), $component);
-        }
         if ($chattype = ^chattype_modchat) {
             if_settext("<chat_gethistoryname($int1)>: <col=0000ff><chat_gethistorymessage($int1)>", $component);
-        }
-        if ($chattype = ^chattype_publicchat) {
+        } else if ($chattype = ^chattype_publicchat) {
             if_settext("<chat_gethistoryname($int1)>: <col=0000ff><chat_gethistorymessage($int1)>", $component);
-        }
-        if ($chattype = ^chattype_privatechat) {
+        } else if ($chattype = ^chattype_privatechat) {
             if_settext("From <chat_gethistoryname($int1)>: <col=800000><chat_gethistorymessage($int1)>", $component);
-        }
-        if ($chattype = ^chattype_engine) {
+        } else if ($chattype = ^chattype_engine) {
             if_settext("<col=800080><chat_gethistoryname($int1)> <chat_gethistorymessage($int1)>", $component);
-        }
-        if ($chattype = ^chattype_loginlogoutnotification) {
+        } else if ($chattype = ^chattype_loginlogoutnotification) {
             if_settext("<col=800000><chat_gethistorymessage($int1)>", $component);
-        }
-        if ($chattype = ^chattype_privatechatout) {
+        } else if ($chattype = ^chattype_privatechatout) {
             if_settext("To <chat_gethistoryname($int1)>: <col=800000><chat_gethistorymessage($int1)>", $component);
-        }
-        if ($chattype = ^chattype_modprivatechat) {
+        } else if ($chattype = ^chattype_modprivatechat) {
             if_settext("From <chat_gethistoryname($int1)>: <col=800000><chat_gethistorymessage($int1)>", $component);
-        }
-        if ($chattype = 8) {
+        } else if ($chattype = 8) {
             if_settext("<col=7e3200><chat_gethistoryname($int1)> <chat_gethistorymessage($int1)>", $component);
-        }
-        if ($chattype = ^chattype_friendschat) {
+        } else if ($chattype = ^chattype_friendschat) {
             if_settext("[<col=0000ff><chat_gethistoryclan($int1)><col=000000>] <chat_gethistoryname($int1)>: <col=800000><chat_gethistorymessage($int1)>", $component);
-        }
-        if ($chattype = 10) {
+        } else if ($chattype = 10) {
             if_settext("<col=800080><chat_gethistoryname($int1)> is asking for assistance.", $component);
+        } else {
+            if_settext(chat_gethistorymessage($int1), $component);
         }
         if_clearops($component);
-        if ($chattype = ^chattype_modchat | $chattype = ^chattype_publicchat | $chattype = ^chattype_privatechat | $chattype = ^chattype_modprivatechat | $chattype = ^chattype_friendschat) {
+        if ($chattype = ^chattype_modchat | $chattype = ^chattype_publicchat | $chattype = ^chattype_privatechat | $chattype = ^chattype_privatechatout | $chattype = ^chattype_modprivatechat | $chattype = ^chattype_friendschat) {
             if_setopbase("<col=ffffff><chat_gethistoryname($int1)>", $component);
-            if_setop(6, "Add friend", $component);
-            if_setop(7, "Add ignore", $component);
-            if (staffmodlevel > 0 | playermod > 0) {
-                if_setop(8, "Report abuse", $component);
+            if (compare(removetags(chat_playername), removetags(chat_gethistoryname($int1))) ! 0) {
+                if (friend_test(chat_gethistoryname($int1)) = true) {
+                    if_setop(6, "Message", $component);
+                } else {
+                    if_setop(6, "Add friend", $component);
+                    if_setop(7, "Add ignore", $component);
+                }
+                if (staffmodlevel > 0 | playermod > 0) {
+                    if_setop(8, "Report abuse", $component);
+                }
             }
         } else if ($chattype = ^chattype_engine) {
             if_setopbase("<col=ffffff><chat_gethistoryname($int1)>", $component);
@@ -89,6 +86,10 @@ while ($int1 < 100) {
             if_setopbase("<col=ffffff><chat_gethistoryname($int1)>", $component);
             if_setop(3, "Give assistance", $component);
         }
+    }
+    if ($int5 = 1 & ($chattype = ^chattype_privatechat | $chattype = ^chattype_privatechatout | $chattype = ^chattype_modprivatechat)) {
+        %varclientstring_0 = removetags(chat_gethistoryname($int1));
+        $int5 = 0;
     }
     $int1 = calc($int1 + 1);
 }
