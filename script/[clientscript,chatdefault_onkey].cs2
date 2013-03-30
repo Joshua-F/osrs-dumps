@@ -15,6 +15,25 @@ if ($key0 = ^key_return & string_length(%varclientstring_1) > 0) {
     if (staffmodlevel > 0) {
         ~chatout_scrolldown;
     }
+} else if ($key0 = ^key_tab) {
+    if (string_length(%varclientstring_0) > 0) {
+        if (friend_test(%varclientstring_0) = true) {
+            ~meslayer_mode6(%varclientstring_0);
+            return;
+        }
+        if (%varclient_49 > clientclock) {
+            return;
+        }
+        %varclient_49 = calc(clientclock + 50);
+        mes("That player was not found on your Friends list.");
+        return;
+    }
+    if (%varclient_49 > clientclock) {
+        return;
+    }
+    %varclient_49 = calc(clientclock + 50);
+    mes("You haven't received any messages to which you can reply.");
+    return;
 } else {
     %varclientstring_1 = ~add_to_inputstring(%varclientstring_1, 0, $key0, $char1);
 }
