@@ -1,32 +1,33 @@
 // 192
 [proc,chatalerts]
 def_int $int0 = chat_gethistorylength;
-def_int $chattype1 = ^chattype_gamemessage;
-if ($int0 > %varclient_43) {
-    if (%varclient_41 = 0) {
-        %varclient_43 = $int0;
-        return;
-    }
-    $int0 = calc($int0 - %varclient_43 - 1);
-    if ($int0 >= 100) {
-        $int0 = 99;
-    }
-    while ($int0 >= 0) {
-        if (~filtertest($int0, 0) = true) {
-            $chattype1 = chat_gethistorytype($int0);
-            if ($chattype1 = ^chattype_gamemessage) {
-                ~chat_alert_enable(1);
-            } else if ($chattype1 = ^chattype_modchat | $chattype1 = ^chattype_publicchat) {
-                ~chat_alert_enable(2);
-            } else if ($chattype1 = ^chattype_privatechat | $chattype1 = ^chattype_loginlogoutnotification | $chattype1 = ^chattype_privatechatout | $chattype1 = ^chattype_modprivatechat) {
-                ~chat_alert_enable(3);
-            } else if ($chattype1 = ^chattype_engine | $chattype1 = ^chattype_8 | $chattype1 = ^chattype_12) {
-                ~chat_alert_enable(5);
-            } else if ($chattype1 = ^chattype_friendschat | $chattype1 = ^chattype_friendschatnotification) {
-                ~chat_alert_enable(4);
-            }
-        }
-        $int0 = calc($int0 - 1);
-    }
-    %varclient_43 = chat_gethistorylength;
+if ($int0 <= %varclient_43) {
+    return;
 }
+if (%varclient_41 = 0) {
+    %varclient_43 = $int0;
+    return;
+}
+$int0 = calc($int0 - %varclient_43 - 1);
+if ($int0 >= 100) {
+    $int0 = 99;
+}
+def_int $chattype1 = ^chattype_gamemessage;
+while ($int0 >= 0) {
+    if (~filtertest($int0, 0) = true & ~trade_partner_check($int0) = false) {
+        $chattype1 = chat_gethistorytype($int0);
+        if ($chattype1 = ^chattype_gamemessage) {
+            ~chat_alert_enable(1);
+        } else if ($chattype1 = ^chattype_modchat | $chattype1 = ^chattype_publicchat) {
+            ~chat_alert_enable(2);
+        } else if ($chattype1 = ^chattype_privatechat | $chattype1 = ^chattype_loginlogoutnotification | $chattype1 = ^chattype_privatechatout | $chattype1 = ^chattype_modprivatechat) {
+            ~chat_alert_enable(3);
+        } else if ($chattype1 = ^chattype_engine | $chattype1 = ^chattype_8 | $chattype1 = ^chattype_12) {
+            ~chat_alert_enable(5);
+        } else if ($chattype1 = ^chattype_friendschat | $chattype1 = ^chattype_friendschatnotification) {
+            ~chat_alert_enable(4);
+        }
+    }
+    $int0 = calc($int0 - 1);
+}
+%varclient_43 = chat_gethistorylength;
