@@ -17,7 +17,7 @@ if ($chattype2 = ^chattype_publicchat) {
     return(false);
 }
 if ($chattype2 = ^chattype_privatechat) {
-    if (%varplayer_287 = 1 & $int1 = 0) {
+    if (%varplayer_287 = 1 & $int1 = 0 & ~trade_partner_check($int0) = false) {
         return(false);
     }
     if (chat_getfilter_private = ^chatfilter_on) {
@@ -38,7 +38,7 @@ if ($chattype2 = ^chattype_engine | $chattype2 = 8) {
     return(false);
 }
 if ($chattype2 = ^chattype_loginlogoutnotification | $chattype2 = ^chattype_privatechatout) {
-    if (%varplayer_287 = 1 & $int1 = 0) {
+    if (%varplayer_287 = 1 & $int1 = 0 & ~trade_partner_check($int0) = false) {
         return(false);
     }
     if (chat_getfilter_private < 2) {
@@ -47,7 +47,7 @@ if ($chattype2 = ^chattype_loginlogoutnotification | $chattype2 = ^chattype_priv
     return(false);
 }
 if ($chattype2 = ^chattype_modprivatechat) {
-    if (%varplayer_287 = 1 & $int1 = 0) {
+    if (%varplayer_287 = 1 & $int1 = 0 & ~trade_partner_check($int0) = false) {
         return(false);
     }
     return(true);
@@ -57,15 +57,6 @@ if ($chattype2 = ^chattype_friendschat) {
         return(true);
     }
     if (%varplayer_1054 = 1 & friend_test(chat_gethistoryname($int0)) = true) {
-        return(true);
-    }
-    return(false);
-}
-if ($chattype2 = 10) {
-    if (%varplayerbit_699 = 0) {
-        return(true);
-    }
-    if (%varplayerbit_699 = 1 & friend_test(chat_gethistoryname($int0)) = true) {
         return(true);
     }
     return(false);
@@ -82,10 +73,7 @@ if ($chattype2 = 12) {
     }
     return(false);
 }
-if ($chattype2 = 13) {
-    if (%varplayerbit_699 < 2) {
-        return(true);
-    }
+if ($chattype2 = 10 | $chattype2 = 13) {
     return(false);
 }
 return(true);
