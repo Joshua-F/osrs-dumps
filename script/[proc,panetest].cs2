@@ -19,10 +19,12 @@ if (%varclient_41 = 3 & ($chattype = ^chattype_privatechat | $chattype = ^chatty
 if (%varclient_41 = 4 & ($chattype = ^chattype_friendschat | $chattype = ^chattype_friendschatnotification)) {
     return(true);
 }
-if (%varclient_41 = 5 & ($chattype = ^chattype_engine | $chattype = 8 | $chattype = 12)) {
-    return(true);
-}
-if (%varclient_41 = 6 & ($chattype = 10 | $chattype = 13)) {
-    return(true);
+if (%varclient_41 = 5) {
+    if ($chattype = ^chattype_engine | $chattype = 8 | $chattype = 12) {
+        return(true);
+    }
+    if (~trade_partner_check($int) = true) {
+        return(true);
+    }
 }
 return(false);
