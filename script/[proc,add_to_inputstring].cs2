@@ -1,21 +1,42 @@
 // 74
-[proc,add_to_inputstring](string $string, int $int0, int $key, char $char)(string)
-def_int $int3 = string_length($string);
+[proc,add_to_inputstring](string $string0, int $int0, int $key, char $char)(string)
+def_int $int3 = string_length($string0);
 if ($key = ^key_backspace) {
     if ($int3 > 0) {
-        $string = substring($string, 0, calc($int3 - 1));
+        return(substring($string0, 0, calc($int3 - 1)));
     }
-} else if (char_isprintable($char) = true) {
-    if ($int0 = 0) {
-        if ($int3 < 80) {
-            $string = append_char($string, $char);
-        }
-    } else if ($int0 = 1) {
-        if (char_isnumeric($char) = true & $int3 < 10) {
-            $string = append_char($string, $char);
-        }
-    } else if ($int0 = 2 & (char_isalphanumeric($char) = true | string_indexof_char(" _", $char) ! -1) & $int3 < 12) {
-        $string = append_char($string, $char);
-    }
+    return($string0);
 }
-return($string);
+if (char_isprintable($char) = false) {
+    return($string0);
+}
+if ($int0 = 2) {
+    if ((char_isalphanumeric($char) = true | string_indexof_char(" _", $char) ! -1) & $int3 < 12) {
+        return(append_char($string0, $char));
+    }
+    return($string0);
+}
+def_int $int4 = 0;
+def_string $string1 = "";
+if ($int0 = 1) {
+    if (string_indexof_char("kKmM", $char) ! -1) {
+        $int4 = 1;
+    }
+    if (($int4 = 1 | char_isnumeric($char) = true) & $int3 < 10) {
+        if ($int4 = 1 & $int3 <= 0) {
+            return($string0);
+        }
+        if ($int3 > 0 & $int4 = 0) {
+            $string1 = lowercase(substring($string0, calc($int3 - 1), $int3));
+            if (compare($string1, "k") = 0 | compare($string1, "m") = 0) {
+                return($string0);
+            }
+        }
+        return(append_char($string0, $char));
+    }
+    return($string0);
+}
+if ($int3 < 80) {
+    return(append_char($string0, $char));
+}
+return($string0);
