@@ -34,6 +34,7 @@ if ($int0 < 100) {
     ~script85(enum(int, component, enum_579, $int0));
 }
 $int1 = 0;
+def_string $string = removetags(chat_playername);
 while ($int1 < 100) {
     $chattype = chat_gethistorytype($int1);
     if (~panetest($int1) = true & ~filtertest($int1, $int4) = true) {
@@ -65,7 +66,7 @@ while ($int1 < 100) {
         if_clearops($component);
         if ($chattype = ^chattype_modchat | $chattype = ^chattype_publicchat | $chattype = ^chattype_privatechat | $chattype = ^chattype_privatechatout | $chattype = ^chattype_modprivatechat | $chattype = ^chattype_friendschat) {
             if_setopbase("<col=ffffff><chat_gethistoryname($int1)>", $component);
-            if (compare(removetags(chat_playername), removetags(chat_gethistoryname($int1))) ! 0) {
+            if (compare($string, removetags(chat_gethistoryname($int1))) ! 0) {
                 if (friend_test(chat_gethistoryname($int1)) = true) {
                     if_setop(6, "Message", $component);
                 } else {
@@ -74,6 +75,9 @@ while ($int1 < 100) {
                 }
                 if (staffmodlevel > 0 | playermod > 0) {
                     if_setop(8, "Report abuse", $component);
+                }
+                if ($chattype = ^chattype_friendschat & clan_getchatcount > 0 & clan_getchatrank >= clan_getchatminkick) {
+                    if_setop(9, "Kick", $component);
                 }
             }
         } else if ($chattype = ^chattype_engine) {
