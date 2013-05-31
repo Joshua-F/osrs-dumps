@@ -1,0 +1,25 @@
+// 203
+[proc,script203](string $string0, string $string1, int $int0, component $component1, component $component2, int $int3, int $int4, int $int5, int $int6, int $int7)(int)
+def_int $int8 = calc($int3 - $int4);
+def_int $int9 = calc(parawidth(removetags($string0), ^max_32bit_int, p12_full) + 3);
+if (~script198($string0, "img=") ! -1) {
+    $int9 = calc($int9 + 13);
+}
+def_int $int10 = calc($int8 - $int9);
+def_int $int11 = calc(paraheight($string1, $int10, p12_full) * $int5);
+if ($int7 = 1) {
+    $int6 = calc($int6 - $int11);
+}
+if (cc_find($component2, calc($int0 * 2)) = ^true & .cc_find($component2, calc($int0 * 2 + 1)) = ^true) {
+    if_setsize($int8, $int11, $component1);
+    if_setposition($int4, $int6, $component1);
+    cc_sethide(false);
+    cc_setsize($int9, $int11);
+    cc_setposition($int4, $int6);
+    cc_settext($string0);
+    .cc_sethide(false);
+    .cc_setsize($int10, $int11);
+    .cc_setposition(calc($int4 + $int9), $int6);
+    .cc_settext($string1);
+}
+return($int11);
