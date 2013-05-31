@@ -1,73 +1,52 @@
 // 84
 [proc,rebuildchatbox]
 def_int $int0 = 0;
-def_int $int1 = 0;
-def_int $chattype2 = ^chattype_gamemessage;
+def_int $chattype1 = ^chattype_gamemessage;
+def_int $int2 = 0;
 def_component $component3 = null;
 def_int $int4 = 0;
-def_int $int5 = 1;
 if (%varclient_41 = 3) {
     $int4 = 1;
 }
-while ($int1 < 100) {
-    if (~panetest($int1) = true & ~filtertest($int1, $int4) = true) {
-        $int0 = calc($int0 + 1);
-    }
-    $int1 = calc($int1 + 1);
-}
-if ($int0 < 8) {
-    $int0 = 8;
-    ~script85(interface_137:com_4);
-    ~script85(interface_137:com_5);
-    ~script85(interface_137:com_6);
-    ~script85(interface_137:com_7);
-    ~script85(interface_137:com_8);
-    ~script85(interface_137:com_9);
-    ~script85(interface_137:com_10);
-    ~script85(interface_137:com_11);
-}
-if_setscrollsize(463, calc($int0 * 14 + 2), interface_137:com_2);
-~scrollbar_resize(interface_137:com_3, interface_137:com_2, calc(%varclient_7 + (if_getscrollheight(interface_137:com_2) - %varclient_8)));
-%varclient_7 = if_getscrolly(interface_137:com_2);
-%varclient_8 = if_getscrollheight(interface_137:com_2);
-if ($int0 < 100) {
-    ~script85(enum(int, component, enum_579, $int0));
-}
-$int1 = 0;
+def_int $int5 = if_getwidth(interface_137:com_2);
 def_string $string0 = removetags(chat_playername);
-while ($int1 < 100) {
-    $chattype2 = chat_gethistorytype($int1);
-    if (~panetest($int1) = true & ~filtertest($int1, $int4) = true) {
-        $int0 = calc($int0 - 1);
+def_int $int6 = 100;
+while ($int6 > 0) {
+    $int6 = calc($int6 - 1);
+    $chattype1 = chat_gethistorytype($int6);
+    if ($chattype1 = ^chattype_privatechat | $chattype1 = ^chattype_privatechatout | $chattype1 = ^chattype_modprivatechat) {
+        %varclientstring_0 = removetags(chat_gethistoryname($int6));
+    }
+    if (~panetest($int6) = true & ~filtertest($int6, $int4) = true) {
         $component3 = enum(int, component, enum_579, $int0);
-        if ($chattype2 = ^chattype_modchat) {
-            if_settext("<chat_gethistoryname($int1)>: <col=0000ff><chat_gethistorymessage($int1)>", $component3);
-        } else if ($chattype2 = ^chattype_publicchat) {
-            if_settext("<chat_gethistoryname($int1)>: <col=0000ff><chat_gethistorymessage($int1)>", $component3);
-        } else if ($chattype2 = ^chattype_privatechat) {
-            if_settext("From <chat_gethistoryname($int1)>: <col=800000><chat_gethistorymessage($int1)>", $component3);
-        } else if ($chattype2 = ^chattype_engine) {
-            if_settext("<col=800080><chat_gethistoryname($int1)> <chat_gethistorymessage($int1)>", $component3);
-        } else if ($chattype2 = ^chattype_loginlogoutnotification) {
-            if_settext("<col=800000><chat_gethistorymessage($int1)>", $component3);
-        } else if ($chattype2 = ^chattype_privatechatout) {
-            if_settext("To <chat_gethistoryname($int1)>: <col=800000><chat_gethistorymessage($int1)>", $component3);
-        } else if ($chattype2 = ^chattype_modprivatechat) {
-            if_settext("From <chat_gethistoryname($int1)>: <col=800000><chat_gethistorymessage($int1)>", $component3);
-        } else if ($chattype2 = 8) {
-            if_settext("<col=7e3200><chat_gethistoryname($int1)> <chat_gethistorymessage($int1)>", $component3);
-        } else if ($chattype2 = ^chattype_friendschat) {
-            if_settext("[<col=0000ff><chat_gethistoryclan($int1)><col=000000>] <chat_gethistoryname($int1)>: <col=800000><chat_gethistorymessage($int1)>", $component3);
-        } else if ($chattype2 = 10) {
-            if_settext("<col=800080><chat_gethistoryname($int1)> is asking for assistance.", $component3);
+        if ($chattype1 = ^chattype_modchat) {
+            $int2 = calc($int2 + ~script203("<chat_gethistoryname($int6)>:", "<col=0000ff><chat_gethistorymessage($int6)>", $int0, $component3, interface_137:com_2, $int5, 3, 14, $int2, 0));
+        } else if ($chattype1 = ^chattype_publicchat) {
+            $int2 = calc($int2 + ~script203("<chat_gethistoryname($int6)>:", "<col=0000ff><chat_gethistorymessage($int6)>", $int0, $component3, interface_137:com_2, $int5, 3, 14, $int2, 0));
+        } else if ($chattype1 = ^chattype_privatechat) {
+            $int2 = calc($int2 + ~script203("From <chat_gethistoryname($int6)>:", "<col=800000><chat_gethistorymessage($int6)>", $int0, $component3, interface_137:com_2, $int5, 3, 14, $int2, 0));
+        } else if ($chattype1 = ^chattype_engine) {
+            $int2 = calc($int2 + ~script199("<col=800080><chat_gethistoryname($int6)> <chat_gethistorymessage($int6)>", $int0, $component3, interface_137:com_2, $int5, 3, 14, $int2, 0));
+        } else if ($chattype1 = ^chattype_loginlogoutnotification) {
+            $int2 = calc($int2 + ~script199("<col=800000><chat_gethistorymessage($int6)>", $int0, $component3, interface_137:com_2, $int5, 3, 14, $int2, 0));
+        } else if ($chattype1 = ^chattype_privatechatout) {
+            $int2 = calc($int2 + ~script203("To <chat_gethistoryname($int6)>:", "<col=800000><chat_gethistorymessage($int6)>", $int0, $component3, interface_137:com_2, $int5, 3, 14, $int2, 0));
+        } else if ($chattype1 = ^chattype_modprivatechat) {
+            $int2 = calc($int2 + ~script203("From <chat_gethistoryname($int6)>:", "<col=800000><chat_gethistorymessage($int6)>", $int0, $component3, interface_137:com_2, $int5, 3, 14, $int2, 0));
+        } else if ($chattype1 = 8) {
+            $int2 = calc($int2 + ~script199("<col=7e3200><chat_gethistoryname($int6)> <chat_gethistorymessage($int6)>", $int0, $component3, interface_137:com_2, $int5, 3, 14, $int2, 0));
+        } else if ($chattype1 = ^chattype_friendschat) {
+            $int2 = calc($int2 + ~script203("[<col=0000ff><chat_gethistoryclan($int6)><col=000000>] <chat_gethistoryname($int6)>:", "<col=800000><chat_gethistorymessage($int6)>", $int0, $component3, interface_137:com_2, $int5, 3, 14, $int2, 0));
+        } else if ($chattype1 = 10) {
+            $int2 = calc($int2 + ~script199("<col=800080><chat_gethistoryname($int6)> is asking for assistance.", $int0, $component3, interface_137:com_2, $int5, 3, 14, $int2, 0));
         } else {
-            if_settext(chat_gethistorymessage($int1), $component3);
+            $int2 = calc($int2 + ~script199(chat_gethistorymessage($int6), $int0, $component3, interface_137:com_2, $int5, 3, 14, $int2, 0));
         }
         if_clearops($component3);
-        if ($chattype2 = ^chattype_modchat | $chattype2 = ^chattype_publicchat | $chattype2 = ^chattype_privatechat | $chattype2 = ^chattype_privatechatout | $chattype2 = ^chattype_modprivatechat | $chattype2 = ^chattype_friendschat) {
-            if_setopbase("<col=ffffff><chat_gethistoryname($int1)>", $component3);
-            if (compare($string0, removetags(chat_gethistoryname($int1))) ! 0) {
-                if (friend_test(chat_gethistoryname($int1)) = true) {
+        if ($chattype1 = ^chattype_modchat | $chattype1 = ^chattype_publicchat | $chattype1 = ^chattype_privatechat | $chattype1 = ^chattype_privatechatout | $chattype1 = ^chattype_modprivatechat | $chattype1 = ^chattype_friendschat) {
+            if_setopbase("<col=ffffff><chat_gethistoryname($int6)>", $component3);
+            if (compare($string0, removetags(chat_gethistoryname($int6))) ! 0) {
+                if (friend_test(chat_gethistoryname($int6)) = true) {
                     if_setop(6, "Message", $component3);
                 } else {
                     if_setop(6, "Add friend", $component3);
@@ -76,24 +55,59 @@ while ($int1 < 100) {
                 if (staffmodlevel > 0 | playermod > 0) {
                     if_setop(8, "Report abuse", $component3);
                 }
-                if ($chattype2 = ^chattype_friendschat & clan_getchatcount > 0 & clan_getchatrank >= clan_getchatminkick) {
+                if ($chattype1 = ^chattype_friendschat & clan_getchatcount > 0 & clan_getchatrank >= clan_getchatminkick) {
                     if_setop(9, "Kick", $component3);
                 }
             }
-        } else if ($chattype2 = ^chattype_engine) {
-            if_setopbase("<col=ffffff><chat_gethistoryname($int1)>", $component3);
+        } else if ($chattype1 = ^chattype_engine) {
+            if_setopbase("<col=ffffff><chat_gethistoryname($int6)>", $component3);
             if_setop(1, "Accept trade", $component3);
-        } else if ($chattype2 = 8) {
-            if_setopbase("<col=ffffff><chat_gethistoryname($int1)>", $component3);
+        } else if ($chattype1 = 8) {
+            if_setopbase("<col=ffffff><chat_gethistoryname($int6)>", $component3);
             if_setop(2, "Accept challenge", $component3);
-        } else if ($chattype2 = 10) {
-            if_setopbase("<col=ffffff><chat_gethistoryname($int1)>", $component3);
+        } else if ($chattype1 = 10) {
+            if_setopbase("<col=ffffff><chat_gethistoryname($int6)>", $component3);
             if_setop(3, "Give assistance", $component3);
         }
+        $int0 = calc($int0 + 1);
     }
-    if ($int5 = 1 & ($chattype2 = ^chattype_privatechat | $chattype2 = ^chattype_privatechatout | $chattype2 = ^chattype_modprivatechat)) {
-        %varclientstring_0 = removetags(chat_gethistoryname($int1));
-        $int5 = 0;
-    }
-    $int1 = calc($int1 + 1);
 }
+def_int $int7 = $int0;
+while ($int0 < 100) {
+    $component3 = enum(int, component, enum_579, $int0);
+    if_clearops($component3);
+    if_setsize(0, 0, $component3);
+    if (cc_find(interface_137:com_2, calc($int0 * 2)) = ^true) {
+        cc_settext("");
+        cc_sethide(true);
+    }
+    if (cc_find(interface_137:com_2, calc($int0 * 2 + 1)) = ^true) {
+        cc_settext("");
+        cc_sethide(true);
+    }
+    $int0 = calc($int0 + 1);
+}
+$int2 = calc($int2 + 2);
+def_int $int8 = if_getheight(interface_137:com_2);
+def_int $int9 = calc($int8 - $int2);
+if ($int9 > 0) {
+    $int0 = $int7;
+    while ($int0 > 0) {
+        $int0 = calc($int0 - 1);
+        $component3 = enum(int, component, enum_579, $int0);
+        $int2 = calc(if_gety($component3) + $int9);
+        if_setposition(if_getx($component3), $int2, $component3);
+        if (cc_find(interface_137:com_2, calc($int0 * 2)) = ^true) {
+            cc_setposition(cc_getx, $int2);
+        }
+        if (cc_find(interface_137:com_2, calc($int0 * 2 + 1)) = ^true) {
+            cc_setposition(cc_getx, $int2);
+        }
+    }
+} else {
+    $int8 = $int2;
+}
+if_setscrollsize(0, $int8, interface_137:com_2);
+~scrollbar_resize(interface_137:com_3, interface_137:com_2, calc(%varclient_7 + ($int8 - %varclient_8)));
+%varclient_7 = if_getscrolly(interface_137:com_2);
+%varclient_8 = $int8;
