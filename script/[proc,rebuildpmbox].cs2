@@ -1,68 +1,69 @@
 // 89
 [proc,rebuildpmbox]
 def_int $int0 = 330;
-def_int $int1 = 0;
-def_component $component2 = enum(int, component, enum_580, $int1);
-def_int $int3 = 0;
+def_int $int1 = if_getwidth(interface_548:com_77);
+def_int $int2 = 0;
+def_component $component3 = enum(int, component, enum_580, $int2);
 def_int $int4 = 0;
+def_string $string0 = "";
 if (reboottimer > 0) {
-    $int3 = calc(reboottimer / 50 % 60);
-    $int4 = calc(reboottimer / 3000);
-    if ($int3 < 10) {
-        if_settext("<col=ffff00>System update in: <tostring($int4)>:0<tostring($int3)>", $component2);
+    $int4 = calc(reboottimer / 50 % 60);
+    if ($int4 < 10) {
+        $string0 = "<col=ffff00>System update in: <tostring(calc(reboottimer / 3000))>:0<tostring($int4)>";
     } else {
-        if_settext("<col=ffff00>System update in: <tostring($int4)>:<tostring($int3)>", $component2);
+        $string0 = "<col=ffff00>System update in: <tostring(calc(reboottimer / 3000))>:<tostring($int4)>";
     }
-    $int1 = calc($int1 + 1);
-    $component2 = enum(int, component, enum_580, $int1);
+    $int0 = calc($int0 - ~script199($string0, $int2, $component3, interface_548:com_77, $int1, 0, 13, $int0, 1));
+    $int2 = calc($int2 + 1);
+    if_clearops($component3);
+    if_setsize(0, 0, $component3);
+    $component3 = enum(int, component, enum_580, $int2);
 }
 def_int $int5 = 0;
 def_int $chattype6 = ^chattype_gamemessage;
-def_int $int7 = 0;
 if (%varplayer_287 = 1) {
-    $int7 = if_getwidth(interface_548:com_75);
-    while ($int5 < 100 & $component2 ! null & $int0 >= 278) {
+    while ($int5 < 100 & $component3 ! null & $int0 >= 278) {
         if (~pm_filtertest($int5) = true) {
             $chattype6 = chat_gethistorytype($int5);
             if ($chattype6 = ^chattype_privatechat) {
-                $int0 = calc($int0 - ~script203("From <chat_gethistoryname($int5)>:", chat_gethistorymessage($int5), $int1, $component2, interface_548:com_75, $int7, 0, 13, $int0, 1));
+                $int0 = calc($int0 - ~script203("From <chat_gethistoryname($int5)>:", chat_gethistorymessage($int5), $int2, $component3, interface_548:com_77, $int1, 0, 13, $int0, 1));
             } else if ($chattype6 = ^chattype_privatechatout) {
-                $int0 = calc($int0 - ~script203("To <chat_gethistoryname($int5)>:", chat_gethistorymessage($int5), $int1, $component2, interface_548:com_75, $int7, 0, 13, $int0, 1));
+                $int0 = calc($int0 - ~script203("To <chat_gethistoryname($int5)>:", chat_gethistorymessage($int5), $int2, $component3, interface_548:com_77, $int1, 0, 13, $int0, 1));
             } else if ($chattype6 = ^chattype_modprivatechat) {
-                $int0 = calc($int0 - ~script203("From <chat_gethistoryname($int5)>:", chat_gethistorymessage($int5), $int1, $component2, interface_548:com_75, $int7, 0, 13, $int0, 1));
+                $int0 = calc($int0 - ~script203("From <chat_gethistoryname($int5)>:", chat_gethistorymessage($int5), $int2, $component3, interface_548:com_77, $int1, 0, 13, $int0, 1));
             } else {
-                $int0 = calc($int0 - ~script199(chat_gethistorymessage($int5), $int1, $component2, interface_548:com_75, $int7, 0, 13, $int0, 1));
+                $int0 = calc($int0 - ~script199(chat_gethistorymessage($int5), $int2, $component3, interface_548:com_77, $int1, 0, 13, $int0, 1));
             }
-            if_clearops($component2);
+            if_clearops($component3);
             if ($chattype6 = ^chattype_privatechat | $chattype6 = ^chattype_privatechatout | $chattype6 = ^chattype_modprivatechat) {
-                if_setopbase("<col=ffffff><chat_gethistoryname($int5)>", $component2);
+                if_setopbase("<col=ffffff><chat_gethistoryname($int5)>", $component3);
                 if (friend_test(chat_gethistoryname($int5)) = true) {
-                    if_setop(8, "Message", $component2);
+                    if_setop(8, "Message", $component3);
                 } else {
-                    if_setop(8, "Add friend", $component2);
-                    if_setop(9, "Add ignore", $component2);
+                    if_setop(8, "Add friend", $component3);
+                    if_setop(9, "Add ignore", $component3);
                 }
                 if (staffmodlevel > 0 | playermod > 0) {
-                    if_setop(10, "Report abuse", $component2);
+                    if_setop(10, "Report abuse", $component3);
                 }
             }
-            $int1 = calc($int1 + 1);
-            $component2 = enum(int, component, enum_580, $int1);
+            $int2 = calc($int2 + 1);
+            $component3 = enum(int, component, enum_580, $int2);
         }
         $int5 = calc($int5 + 1);
     }
 }
-while ($component2 ! null) {
-    if_clearops($component2);
-    if_setsize(0, 0, $component2);
-    if (cc_find(interface_548:com_75, calc($int1 * 2)) = ^true) {
+while ($component3 ! null) {
+    if_clearops($component3);
+    if_setsize(0, 0, $component3);
+    if (cc_find(interface_548:com_77, calc($int2 * 2)) = ^true) {
         cc_settext("");
         cc_sethide(true);
     }
-    if (cc_find(interface_548:com_75, calc($int1 * 2 + 1)) = ^true) {
+    if (cc_find(interface_548:com_77, calc($int2 * 2 + 1)) = ^true) {
         cc_settext("");
         cc_sethide(true);
     }
-    $int1 = calc($int1 + 1);
-    $component2 = enum(int, component, enum_580, $int1);
+    $int2 = calc($int2 + 1);
+    $component3 = enum(int, component, enum_580, $int2);
 }
