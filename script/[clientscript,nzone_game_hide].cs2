@@ -1,0 +1,12 @@
+// 256
+[clientscript,nzone_game_hide](component $component, coord $coord)
+def_int $int2 = coordx(coord);
+def_int $int3 = coordx($coord);
+if ($int2 >= $int3 & $int2 < calc($int3 + 128)) {
+    $int2, $int3 = coordz(coord), coordz($coord);
+    if ($int2 >= $int3 & $int2 < calc($int3 + 128)) {
+        if_sethide(false, $component);
+        return;
+    }
+}
+if_sethide(true, $component);

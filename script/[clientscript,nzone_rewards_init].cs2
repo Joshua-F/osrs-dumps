@@ -1,0 +1,169 @@
+// 248
+[clientscript,nzone_rewards_init](int $int0, int $int1, int $int2, int $int3, int $int4, int $int5, int $int6, int $int7, int $int8, int $int9, int $int10, int $int11, int $int12, int $int13, int $int14, int $int15, int $int16, int $int17, int $int18, int $int19, int $int20)
+def_component $com_1 = interface_206:com_1;
+def_component $com_3 = interface_206:com_3;
+def_component $com_2 = interface_206:com_2;
+~script219($com_1, $com_3, $com_2, "Dom Onion's Reward Shop", 50);
+def_int $int24 = if_getwidth($com_3);
+cc_create($com_1, ^iftype_text, 3);
+cc_setposition(0, 70);
+cc_setsize(if_getwidth($com_1), 17);
+cc_settextfont(p12_full);
+cc_setcolour(0x46320a);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+~script250(0);
+cc_setonvartransmit("script249(event_com, event_comsubid){varplayer_1060}");
+def_int $intarray(20);
+$intarray(0) = $int0;
+$intarray(1) = $int1;
+$intarray(2) = $int2;
+$intarray(3) = $int3;
+$intarray(4) = $int4;
+$intarray(5) = $int5;
+$intarray(6) = $int6;
+$intarray(7) = $int7;
+$intarray(8) = $int8;
+$intarray(9) = $int9;
+$intarray(10) = $int10;
+$intarray(11) = $int11;
+$intarray(12) = $int12;
+$intarray(13) = $int13;
+$intarray(14) = $int14;
+$intarray(15) = $int15;
+$intarray(16) = $int16;
+$intarray(17) = $int17;
+$intarray(18) = $int18;
+$intarray(19) = $int19;
+def_int $int25 = calc(($int24 - 7 * 36) / (7 - 1));
+def_int $int26 = calc(32 + 20);
+def_int $int27 = 0;
+def_int $int28 = 0;
+def_int $int29 = -1;
+def_int $int30 = -1;
+def_int $int31 = -1;
+def_int $int32 = -1;
+def_obj $obj = null;
+while ($int27 < 20) {
+    $obj = enum(int, namedobj, enum_811, $int27);
+    cc_create($com_3, ^iftype_graphic, calc($int27 * 2));
+    .cc_create($com_3, ^iftype_text, calc($int27 * 2 + 1));
+    if ($obj ! null) {
+        cc_setsize(36, 32);
+        .cc_setsize(36, 20);
+        cc_setobject(oc_uncert($obj), 1);
+        cc_setgraphicshadow(0x333333);
+        cc_setoutline(1);
+        cc_setop(1, "Buy-1");
+        cc_setop(2, "Buy-5");
+        cc_setop(3, "Buy-10");
+        cc_setop(4, "Buy-X");
+        cc_setop(10, "Examine");
+        cc_setopbase("<col=ff9040><oc_name($obj)>");
+        cc_setonmouseover("cc_settrans(event_com, event_comsubid, 50)");
+        cc_setonmouseleave("cc_settrans(event_com, event_comsubid, 0)");
+        .cc_settextfont(p11_full);
+        .cc_setcolour(0x46320a);
+        .cc_settextalign(^settextalign_centre, ^settextalign_top, 0);
+        .cc_settext(~tostring_spacer($intarray($int27), ","));
+        if (testbit($int20, $int27) = ^true) {
+            if ($obj = obj_11725) {
+                $int29 = cc_getid;
+            } else if ($obj = obj_11729) {
+                $int30 = cc_getid;
+            } else if ($obj = obj_11733) {
+                $int31 = cc_getid;
+            } else if ($obj = obj_11737) {
+                $int32 = cc_getid;
+            } else {
+                cc_sethide(true);
+                .cc_sethide(true);
+            }
+        } else {
+            cc_setposition(calc($int28 % 7 * (36 + $int25)), calc($int28 / 7 * $int26));
+            .cc_setposition(cc_getx, calc(cc_gety + 32));
+            $int28 = calc($int28 + 1);
+        }
+    } else {
+        cc_sethide(true);
+        .cc_sethide(true);
+    }
+    $int27 = calc($int27 + 1);
+}
+def_int $int34 = calc($int28 / 7);
+if (calc($int28 % 7) > 0) {
+    $int34 = calc($int34 + 1);
+}
+def_int $int35 = calc($int34 * $int26);
+def_string $string = "Dominic's potions are sold by the dose. When you purchase a dose, it is automatically stored in Dominic's barrels until you collect it.";
+def_int $int36 = calc(paraheight($string, $int24, p12_full) * 12 + 3);
+cc_create($com_3, ^iftype_text, calc($int27 * 2));
+cc_setposition(0, $int35);
+cc_settextfont(p12_full);
+cc_setcolour(0x46320a);
+cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+cc_setsize($int24, $int36);
+cc_settext($string);
+$int35 = calc($int35 + $int36);
+$int28 = 0;
+if (cc_find($com_3, $int29) = true & .cc_find($com_3, calc($int29 + 1)) = true) {
+    cc_setposition(calc($int28 % 7 * (36 + $int25)), calc($int35 + $int28 / 7 * $int26));
+    .cc_setposition(cc_getx, calc(cc_gety + 32));
+    $int28 = calc($int28 + 1);
+    cc_create($com_3, ^iftype_text, calc($int27 * 2 + $int28));
+    cc_setposition(.cc_getx, calc(.cc_gety + 12));
+    cc_setsize(.cc_getwidth, .cc_getheight);
+    cc_settextfont(p12_full);
+    cc_setcolour(0x46320a);
+    cc_settextalign(^settextalign_centre, ^settextalign_top, 0);
+    ~script252(%varplayerbit_3951);
+    cc_setonvartransmit("nzone_rewards_updatepotion(event_com, event_comsubid, 1){varplayer_1066}");
+}
+if (cc_find($com_3, $int30) = true & .cc_find($com_3, calc($int30 + 1)) = true) {
+    cc_setposition(calc($int28 % 7 * (36 + $int25)), calc($int35 + $int28 / 7 * $int26));
+    .cc_setposition(cc_getx, calc(cc_gety + 32));
+    $int28 = calc($int28 + 1);
+    cc_create($com_3, ^iftype_text, calc($int27 * 2 + $int28));
+    cc_setposition(.cc_getx, calc(.cc_gety + 12));
+    cc_setsize(.cc_getwidth, .cc_getheight);
+    cc_settextfont(p12_full);
+    cc_setcolour(0x46320a);
+    cc_settextalign(^settextalign_centre, ^settextalign_top, 0);
+    ~script252(%varplayerbit_3952);
+    cc_setonvartransmit("nzone_rewards_updatepotion(event_com, event_comsubid, 2){varplayer_1066}");
+}
+if (cc_find($com_3, $int31) = true & .cc_find($com_3, calc($int31 + 1)) = true) {
+    cc_setposition(calc($int28 % 7 * (36 + $int25)), calc($int35 + $int28 / 7 * $int26));
+    .cc_setposition(cc_getx, calc(cc_gety + 32));
+    $int28 = calc($int28 + 1);
+    cc_create($com_3, ^iftype_text, calc($int27 * 2 + $int28));
+    cc_setposition(.cc_getx, calc(.cc_gety + 12));
+    cc_setsize(.cc_getwidth, .cc_getheight);
+    cc_settextfont(p12_full);
+    cc_setcolour(0x46320a);
+    cc_settextalign(^settextalign_centre, ^settextalign_top, 0);
+    ~script252(%varplayerbit_3953);
+    cc_setonvartransmit("nzone_rewards_updatepotion(event_com, event_comsubid, 3){varplayer_1066}");
+}
+if (cc_find($com_3, $int32) = true & .cc_find($com_3, calc($int32 + 1)) = true) {
+    cc_setposition(calc($int28 % 7 * (36 + $int25)), calc($int35 + $int28 / 7 * $int26));
+    .cc_setposition(cc_getx, calc(cc_gety + 32));
+    $int28 = calc($int28 + 1);
+    cc_create($com_3, ^iftype_text, calc($int27 * 2 + $int28));
+    cc_setposition(.cc_getx, calc(.cc_gety + 12));
+    cc_setsize(.cc_getwidth, .cc_getheight);
+    cc_settextfont(p12_full);
+    cc_setcolour(0x46320a);
+    cc_settextalign(^settextalign_centre, ^settextalign_top, 0);
+    ~script252(%varplayerbit_3954);
+    cc_setonvartransmit("nzone_rewards_updatepotion(event_com, event_comsubid, 4){varplayer_1066}");
+}
+$int34 = calc($int28 / 7);
+if (calc($int28 % 7) > 0) {
+    $int34 = calc($int34 + 1);
+}
+$int35 = calc($int35 + $int34 * $int26);
+if_setscrollsize(0, $int35, $com_3);
+if_setscrollpos(0, 0, $com_3);
+if ($int35 > if_getheight($com_3)) {
+    ~scrollbar_vertical($com_2, $com_3, "scrollbar_parchment_dragger_v2,3", "scrollbar_parchment_dragger_v2,0", "scrollbar_parchment_dragger_v2,1", "scrollbar_parchment_dragger_v2,2", "scrollbar_parchment_v2,0", "scrollbar_parchment_v2,1");
+}
