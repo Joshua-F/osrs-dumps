@@ -1,0 +1,44 @@
+// 254
+[clientscript,nzone_listquests](int $int0, int $int1, string $string0)
+def_component $component2 = interface_187:com_1;
+def_component $component3 = interface_187:com_3;
+def_component $component4 = interface_187:com_2;
+def_int $int5 = 386;
+def_int $int6 = calc(paraheight($string0, $int5, p12_full) * 12 + 3);
+~script219($component2, $component3, $component4, "Quest list", calc(33 + $int6));
+cc_create($component2, ^iftype_text, 3);
+cc_setposition(calc((512 - $int5) / 2), 70);
+cc_setsize($int5, $int6);
+cc_settextfont(p12_full);
+cc_setcolour(0x46320a);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+cc_settext($string0);
+def_int $int7 = if_getwidth($component3);
+def_int $int8 = 0;
+def_int $int9 = 0;
+def_int $int10 = 0;
+while ($int10 < 32) {
+    if (testbit($int0, $int10) = ^true) {
+        cc_create($component3, ^iftype_text, $int8);
+        cc_setposition(0, $int9);
+        cc_setsize($int7, 14);
+        cc_settextfont(p12_full);
+        cc_setcolour(0x46320a);
+        cc_settextalign(^settextalign_centre, ^settextalign_top, 14);
+        if (testbit($int1, $int10) = ^true) {
+            cc_settext(enum(int, string, enum_804, $int10));
+        } else {
+            cc_settext("<str><enum(int, string, enum_804, $int10)></str>");
+        }
+        $int8, $int9 = calc($int8 + 1), calc($int9 + 14);
+    }
+    $int10 = calc($int10 + 1);
+}
+if ($int9 > 0) {
+    $int9 = calc($int9 + 1);
+}
+if_setscrollsize(0, $int9, $component3);
+if_setscrollpos(0, 0, $component3);
+if ($int9 > if_getheight($component3)) {
+    ~scrollbar_vertical($component4, $component3, "scrollbar_parchment_dragger_v2,3", "scrollbar_parchment_dragger_v2,0", "scrollbar_parchment_dragger_v2,1", "scrollbar_parchment_dragger_v2,2", "scrollbar_parchment_v2,0", "scrollbar_parchment_v2,1");
+}
