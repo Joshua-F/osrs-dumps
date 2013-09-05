@@ -1,0 +1,141 @@
+// 267
+[proc,nzone_lobby_partystatus](int $int0, component $component1)
+def_boolean $boolean2 = false;
+if ($int0 = 0 & %varplayer_1065 = -1) {
+    $boolean2 = true;
+    if_setontimer(null, $component1);
+} else {
+    if_setontimer("nzone_lobby_partynames(event_com)", $component1);
+}
+cc_create($component1, ^iftype_rectangle, 0);
+cc_sethide($boolean2);
+cc_setposition(5, 30);
+cc_setsize(125, 96);
+cc_setcolour(0x7f460f);
+cc_setfill(true);
+cc_settrans(50);
+cc_create($component1, ^iftype_rectangle, 1);
+cc_sethide($boolean2);
+cc_setposition(5, 30);
+cc_setsize(125, 96);
+cc_setcolour(0x7f460f);
+cc_setfill(false);
+~create_graphic($component1, 2, tradebacking_light, 7, 32, 121, 17);
+cc_sethide($boolean2);
+cc_settrans(100);
+cc_create($component1, ^iftype_text, 3);
+cc_sethide($boolean2);
+cc_setposition(7, 32);
+cc_setsize(121, 17);
+cc_settextfont(p12_full);
+cc_setcolour(0xff981f);
+cc_settextshadow(true);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+cc_settext("Rumble Party");
+~create_graphic($component1, 4, tradebacking_dark, 7, 50, 121, 14);
+cc_sethide($boolean2);
+cc_settrans(150);
+~create_graphic($component1, 5, tradebacking, 7, 65, 121, 14);
+cc_sethide($boolean2);
+cc_settrans(150);
+if ($int0 = 1) {
+    cc_setop(1, "Kick player");
+    cc_setonmouseover("cc_settrans(event_com, event_comsubid, 75)");
+    cc_setonmouseleave("cc_settrans(event_com, event_comsubid, 150)");
+}
+~create_graphic($component1, 6, tradebacking, 7, 80, 121, 14);
+cc_sethide($boolean2);
+cc_settrans(150);
+if ($int0 = 1) {
+    cc_setop(1, "Kick player");
+    cc_setonmouseover("cc_settrans(event_com, event_comsubid, 75)");
+    cc_setonmouseleave("cc_settrans(event_com, event_comsubid, 150)");
+}
+~create_graphic($component1, 7, tradebacking, 7, 95, 121, 14);
+cc_sethide($boolean2);
+cc_settrans(150);
+if ($int0 = 1) {
+    cc_setop(1, "Kick player");
+    cc_setonmouseover("cc_settrans(event_com, event_comsubid, 75)");
+    cc_setonmouseleave("cc_settrans(event_com, event_comsubid, 150)");
+}
+~create_graphic($component1, 8, tradebacking, 7, 110, 121, 14);
+cc_sethide($boolean2);
+cc_settrans(150);
+if ($int0 = 1) {
+    cc_setop(1, "Kick player");
+    cc_setonmouseover("cc_settrans(event_com, event_comsubid, 75)");
+    cc_setonmouseleave("cc_settrans(event_com, event_comsubid, 150)");
+}
+cc_create($component1, ^iftype_text, 9);
+cc_sethide($boolean2);
+cc_setposition(7, 50);
+cc_setsize(121, 14);
+cc_settextfont(p11_full);
+cc_setcolour(0xff981f);
+cc_settextshadow(true);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+cc_create($component1, ^iftype_text, 10);
+cc_sethide($boolean2);
+cc_setposition(7, 65);
+cc_setsize(121, 14);
+cc_settextfont(p11_full);
+cc_setcolour(0xff981f);
+cc_settextshadow(true);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+cc_create($component1, ^iftype_text, 11);
+cc_sethide($boolean2);
+cc_setposition(7, 80);
+cc_setsize(121, 14);
+cc_settextfont(p11_full);
+cc_setcolour(0xff981f);
+cc_settextshadow(true);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+cc_create($component1, ^iftype_text, 12);
+cc_sethide($boolean2);
+cc_setposition(7, 95);
+cc_setsize(121, 14);
+cc_settextfont(p11_full);
+cc_setcolour(0xff981f);
+cc_settextshadow(true);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+cc_create($component1, ^iftype_text, 13);
+cc_sethide($boolean2);
+cc_setposition(7, 110);
+cc_setsize(121, 14);
+cc_settextfont(p11_full);
+cc_setcolour(0xff981f);
+cc_settextshadow(true);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+if ($boolean2 = false) {
+    ~nzone_lobby_partynames($component1);
+}
+def_string $string0 = "You may invite people to share your Rumble dream. All of you must have funds in the coffer to pay for it.<br>Drink from the vial when you're all ready.";
+if ($int0 = 0) {
+    if (%varplayer_1065 ! -1) {
+        $string0 = "When your party leader drinks from the vial,<br>you will be invited into their Rumble dream.";
+    } else if (%varplayerbit_3946 ! 0) {
+        $string0 = "Drink from the vial when you're ready to start your dream.";
+    } else {
+        $string0 = "You may be invited to join someone's Rumble dream.<br>Alternatively, choose a dream of your own from Dominic.";
+    }
+}
+def_int $int3 = calc(512 - 280);
+def_int $int4 = calc(parawidth($string0, $int3, p11_full) + 8);
+def_int $int5 = calc(paraheight($string0, $int3, p11_full) * 10 + 3 + 8);
+def_int $int6 = calc((512 - $int4) / 2);
+~create_graphic($component1, 14, tradebacking, $int6, 20, $int4, $int5);
+cc_settrans(50);
+cc_create($component1, ^iftype_rectangle, 15);
+cc_setposition($int6, 20);
+cc_setsize($int4, $int5);
+cc_setcolour(^black);
+cc_setfill(false);
+cc_create($component1, ^iftype_text, 16);
+cc_setposition($int6, 20);
+cc_setsize($int4, $int5);
+cc_settextfont(p11_full);
+cc_setcolour(0xff981f);
+cc_settextshadow(true);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 10);
+cc_settext($string0);
