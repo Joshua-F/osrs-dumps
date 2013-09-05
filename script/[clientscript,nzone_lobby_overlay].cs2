@@ -1,0 +1,57 @@
+// 264
+[clientscript,nzone_lobby_overlay](int $int0)
+def_component $component1 = interface_207:com_2;
+def_component $component2 = interface_207:com_1;
+if_sethide(false, interface_207:com_0);
+if_sethide(false, $component1);
+if_sethide(true, $component2);
+if_setonvartransmit(null, $component2);
+if_setposition(0, 0, interface_207:com_0);
+if_setsize(1, 1, interface_207:com_0);
+if_settextalign(^settextalign_right, ^settextalign_bottom, 0, interface_207:com_0);
+if_setontimer("nzone_lobby_hide($component1)", interface_207:com_0);
+if_setposition(0, 0, $component1);
+if_setsize(512, 334, $component1);
+~nzone_lobby_partystatus($int0, $component1);
+if ($int0 = 1) {
+    if_setonvartransmit(null, interface_207:com_0);
+} else {
+    if_setonvartransmit("nzone_lobby_partystatus($component1){varplayer_1065, varplayer_1058}", interface_207:com_0);
+}
+def_int $int3 = calc(512 - 51);
+cc_create($component1, ^iftype_rectangle, 17);
+cc_setsize(46, 55);
+cc_setposition($int3, 30);
+cc_setcolour(0x7f460f);
+cc_setfill(true);
+cc_settrans(100);
+cc_setonmouseover("cc_settrans(event_com, event_comsubid, 0)");
+cc_setonmouseleave("cc_settrans(event_com, event_comsubid, 100)");
+cc_setop(1, "Examine");
+cc_setopbase("<col=ff9040>Coffer");
+.cc_create($component1, ^iftype_rectangle, 18);
+.cc_setsize(46, 55);
+.cc_setposition($int3, 30);
+.cc_setcolour(0x7f460f);
+.cc_setfill(false);
+.cc_create($component1, ^iftype_graphic, 19);
+.cc_setsize(44, 53);
+.cc_setposition(calc($int3 + 1), 31);
+.cc_setgraphic(tradebacking_light);
+.cc_settiling(true);
+.cc_settrans(100);
+.cc_create($component1, ^iftype_text, 20);
+.cc_setsize(46, 51);
+.cc_setposition($int3, 32);
+.cc_setcolour(0xff981f);
+.cc_settextfont(p12_full);
+.cc_settextalign(^settextalign_centre, ^settextalign_top, 0);
+.cc_settextshadow(true);
+.cc_settext("Coffer");
+.cc_create($component1, ^iftype_graphic, 21);
+.cc_setsize(36, 32);
+.cc_setposition(calc($int3 + 6), 49);
+.cc_setgraphicshadow(0x333333);
+.cc_setoutline(1);
+.cc_setonvartransmit("nzone_lobby_coffer(event_com, cc_getid, event_comsubid){varplayer_1058, varplayer_638}");
+~nzone_lobby_coffer;
