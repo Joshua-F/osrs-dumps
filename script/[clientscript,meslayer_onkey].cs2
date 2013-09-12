@@ -2,6 +2,9 @@
 [clientscript,meslayer_onkey](int $key0, char $char1)
 if ($key0 = ^key_return) {
     if (string_length(%varclientstring_22) > 0) {
+        if (%varclient_5 = 1) {
+            return;
+        }
         if (%varclient_5 = 4 | %varclient_5 = 5) {
             if (ignore_count < 0) {
                 mes("Unable to update ignore list - system busy");
@@ -10,7 +13,7 @@ if ($key0 = ^key_return) {
             } else if (%varclient_5 = 5) {
                 ignore_del(%varclientstring_22);
             }
-        } else if (%varclient_5 < 7) {
+        } else if (%varclient_5 = 2 | %varclient_5 = 3 | %varclient_5 = 6) {
             if (friend_count < 0) {
                 mes("Unable to complete action - system busy");
             } else if (%varclient_5 = 2) {
@@ -34,16 +37,17 @@ if ($key0 = ^key_return) {
             resume_stringdialog(%varclientstring_22);
         } else if (%varclient_5 = 10) {
             clan_joinchat(%varclientstring_22);
+        } else if (%varclient_5 = 11) {
+            ~meslayer_close(0);
+            return;
         }
     } else if (%varclient_5 = 7 | %varclient_5 = 8 | %varclient_5 = 9) {
         return;
     }
-    if_sethide(true, interface_548:com_88);
-    if_sethide(false, interface_548:com_89);
-    %varclient_5 = 0;
+    ~meslayer_close(1);
     return;
 }
-if (%varclient_5 = 6 | %varclient_5 = 9) {
+if (%varclient_5 = 6 | %varclient_5 = 9 | %varclient_5 = 11) {
     %varclientstring_22 = ~add_to_inputstring(%varclientstring_22, 0, $key0, $char1);
 } else if (%varclient_5 = 7) {
     %varclientstring_22 = ~add_to_inputstring(%varclientstring_22, 1, $key0, $char1);
