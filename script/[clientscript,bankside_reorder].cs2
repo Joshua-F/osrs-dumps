@@ -1,0 +1,19 @@
+// 298
+[clientscript,bankside_reorder](component $component, int $int1, int $int2)
+def_int $int3 = inv_size(inv_93);
+if ($int1 < 0 | $int1 >= $int3) {
+    return;
+}
+if ($int2 < 0 | $int2 >= $int3) {
+    return;
+}
+def_obj $obj = inv_getobj(inv_93, $int1);
+if ($obj = null) {
+    return;
+}
+if (cc_find($component, $int2) = true) {
+    ~bankside_drawitem($obj, inv_getnum(inv_93, $int1), $component);
+}
+if (cc_find($component, $int1) = true) {
+    ~bankside_drawitem(inv_getobj(inv_93, $int2), inv_getnum(inv_93, $int2), $component);
+}
