@@ -8,11 +8,20 @@ cc_settiling(false);
 cc_setonclick("scrollbar_vertical_jump($component0, $component1, event_mousey)");
 .cc_create($component0, ^iftype_graphic, 1);
 .cc_setposition(0, 16);
-def_int $int8 = calc((if_getheight($component0) - 32) * if_getheight($component0) / if_getscrollheight($component1));
-if ($int8 < 10) {
-    $int8 = 10;
+def_int $int8 = if_getscrollheight($component1);
+if ($int8 <= 0) {
+    $int8 = if_getheight($component1);
 }
-.cc_setsize(16, $int8);
+def_int $int9 = 0;
+if ($int8 > 0) {
+    $int9 = calc((if_getheight($component0) - 32) * if_getheight($component1) / $int8);
+} else {
+    $int9 = calc(if_getheight($component0) - 32);
+}
+if ($int9 < 10) {
+    $int9 = 10;
+}
+.cc_setsize(16, $int9);
 .cc_setgraphic($graphic4);
 .cc_settiling(false);
 .cc_setdraggable($component0, 0);
