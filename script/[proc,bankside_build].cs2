@@ -1,0 +1,12 @@
+// 296
+[proc,bankside_build](component $component0)
+def_int $int1 = calc((42 - 36) * 3 - 2);
+def_int $int2 = calc((36 - 32) * 2);
+def_int $int3 = inv_size(inv_93);
+while ($int3 > 0) {
+    $int3 = calc($int3 - 1);
+    if (cc_find($component0, $int3) = ^true) {
+        ~bankside_drawitem(inv_getobj(inv_93, $int3), inv_getnum(inv_93, $int3), $component0);
+        cc_setposition(calc($int1 + $int3 % 4 * 42), calc($int2 + $int3 / 4 * 36));
+    }
+}
