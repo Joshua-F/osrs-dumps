@@ -1,0 +1,18 @@
+// 294
+[clientscript,bankside_init](component $component0)
+cc_deleteall($component0);
+def_int $int1 = 0;
+def_int $int2 = inv_size(inv_93);
+while ($int1 < $int2) {
+    cc_create($component0, ^iftype_graphic, $int1);
+    cc_setsize(36, 32);
+    cc_setgraphicshadow(0x333333);
+    cc_setoutline(1);
+    cc_setdragdeadzone(5);
+    cc_setdragdeadtime(5);
+    cc_sethide(false);
+    $int1 = calc($int1 + 1);
+}
+~bankside_build($component0);
+if_setoninvtransmit("bankside_build(event_com){inv_93}", $component0);
+if_setonvartransmit("bankside_build(event_com){varplayer_304}", $component0);
