@@ -1,16 +1,23 @@
 // 329
-[clientscript,combat_interface_autocast](component $component0, int $int1, int $int2)
-def_int $int3 = 32;
-def_int $int4 = 36;
-def_graphic $graphic5 = "sideicons_interface,6";
+[clientscript,combat_interface_autocast](component $component0, int $int1, int $int2, component $component3, int $int4)
+def_int $int5 = 32;
+def_int $int6 = 36;
+def_graphic $graphic7 = "sideicons_interface,6";
 if (%varplayerbit_276 ! 0) {
-    $graphic5 = enum(int, graphic, enum_796, %varplayerbit_276);
-    if ($graphic5 ! null) {
-        $int3, $int4 = 24, 24;
+    $graphic7 = enum(int, graphic, enum_796, %varplayerbit_276);
+    if ($graphic7 ! null) {
+        $int5, $int6 = 24, 24;
     } else {
-        $graphic5 = "sideicons_interface,6";
+        $graphic7 = "sideicons_interface,6";
     }
+    if (%varplayerbit_2668 = $int4) {
+        if_setgraphic("combatboxes_large,1", $component3);
+    } else {
+        if_setgraphic("combatboxes_large,0", $component3);
+    }
+} else {
+    if_setgraphic("combatboxes_large,0", $component3);
 }
-if_setsize($int3, $int4, $component0);
-if_setgraphic($graphic5, $component0);
-if_setposition(calc($int1 - $int3 / 2), calc($int2 - $int4 / 2), $component0);
+if_setsize($int5, $int6, $component0);
+if_setgraphic($graphic7, $component0);
+if_setposition(calc($int1 - $int5 / 2), calc($int2 - $int6 / 2), $component0);
