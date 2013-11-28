@@ -1,0 +1,9 @@
+// 395
+[proc,stats_setlevels](stat $stat, component $component, string $string0)
+cc_settext(tostring(stat($stat)));
+def_int $int = stat_base($stat);
+.cc_settext(tostring($int));
+def_string $string1 = ",";
+def_string $string2 = "<$string0> XP: <~tostring_spacer(stat_visible_xp($stat), $string1)><br>Next level at: <~tostring_spacer(enum(int, int, enum_256, calc($int + 1)), $string1)>";
+if_setonmouserepeat("addtooltip(event_com, interface_320:com_28, $string2, calc(25 / 5), 190)", $component);
+%varclient_2 = 0;
