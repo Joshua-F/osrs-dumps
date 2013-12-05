@@ -11,6 +11,9 @@ if ($int0 = 1) {
     return;
 }
 def_int $int7 = if_getmodelangle_z($component1);
+if ($int7 < 0 | $int7 >= 2048) {
+    $int7 = 0;
+}
 def_int $int8 = 0;
 if ($int7 ! $int6) {
     if ($int6 < $int7) {
@@ -30,6 +33,13 @@ if ($int7 ! $int6) {
     }
 }
 $int7 = calc($int7 % 2048);
+if ($int7 < 0) {
+    if ($int7 < -2048) {
+        $int7 = 0;
+    } else {
+        $int7 = calc($int7 + 2048);
+    }
+}
 if_setmodelangle(0, 0, 0, 0, $int7, 1000, $component1);
 if_setmodelangle(0, 0, 0, 0, $int7, 1000, $component2);
 if_setmodelangle(0, 0, 0, 0, $int7, 1000, $component3);
