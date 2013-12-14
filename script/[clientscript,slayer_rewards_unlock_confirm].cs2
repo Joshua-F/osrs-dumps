@@ -1,0 +1,32 @@
+// 414
+[clientscript,slayer_rewards_unlock_confirm](boolean $boolean0, int $int1, component $component2, component $component3, component $component4, component $component5, component $component6)
+sound_synth(synth_2266, 1, 0);
+if_sethide(true, $component2);
+if_sethide(false, $component3);
+def_string $string0 = enum(int, string, enum_834, $int1);
+def_string $string1 = "Disable";
+def_string $string2 = "";
+if ($boolean0 = true) {
+    $string1 = "Unlock";
+    $string2 = "<col=ff0000><$string0></col><br><br>Pay <tostring(enum(int, int, enum_836, $int1))> points?";
+} else {
+    $string2 = "<col=ff0000><$string0></col><br><br>Really disable it?<br><br>You will not get your points back.";
+}
+if_settext($string2, $component4);
+cc_deleteall($component5);
+def_int $int7 = 0;
+while ($int7 < $int1) {
+    cc_create($component5, ^iftype_rectangle, $int7);
+    cc_sethide(true);
+    $int7 = calc($int7 + 1);
+}
+cc_create($component5, ^iftype_rectangle, $int1);
+cc_setsize(if_getwidth($component5), if_getheight($component5));
+cc_setposition(0, 0);
+cc_setfill(true);
+cc_settrans(255);
+cc_setop(1, $string1);
+cc_setopbase("<col=ff9040><$string0>");
+cc_setonop("script415(true, event_op, $component2, $component3, $component4, $component5, $component6)");
+if_setop(1, "Back", $component6);
+if_setonop("script415(false, event_op, $component2, $component3, $component4, $component5, $component6)", $component6);
