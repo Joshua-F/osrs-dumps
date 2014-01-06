@@ -1,0 +1,57 @@
+// 422
+[proc,slayer_rewards_tasks_currenttask](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6)
+cc_deleteall($component0);
+def_int $int7 = 0;
+def_int $int8 = 0;
+def_string $string0 = "Creature";
+if (%varplayer_261 > 0 & %varplayer_262 ! 0) {
+    $int8 = 1;
+    $string0 = enum(int, string, enum_693, %varplayer_262);
+    if_settext("<tostring(%varplayer_261)> x <$string0>", $component1);
+} else {
+    if_settext("None", $component1);
+}
+cc_create($component0, ^iftype_graphic, $int7);
+$int7 = calc($int7 + 1);
+.cc_create($component0, ^iftype_text, $int7);
+$int7 = calc($int7 + 1);
+cc_setsize(85, 22);
+.cc_setsize(85, 22);
+cc_setposition(275, 69);
+.cc_setposition(275, 69);
+cc_setgraphic("combatboxesmed,0");
+.cc_settextfont(p11_full);
+.cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+.cc_settextshadow(true);
+.cc_settext("Cancel task");
+if ($int8 = 1) {
+    .cc_setcolour(0xff981f);
+    cc_setonmouseover("cc_colour_swapper(event_com, .cc_getid, ^white)");
+    cc_setonmouseleave("cc_colour_swapper(event_com, .cc_getid, 0xff981f)");
+    cc_setop(1, "Cancel");
+    cc_setonop("slayer_rewards_tasks_canceltask($string0, false, $component2, $component3, $component4, $component5, $component6)");
+} else {
+    .cc_setcolour(0x7f4c0f);
+}
+cc_create($component0, ^iftype_graphic, $int7);
+$int7 = calc($int7 + 1);
+.cc_create($component0, ^iftype_text, $int7);
+$int7 = calc($int7 + 1);
+cc_setsize(85, 22);
+.cc_setsize(85, 22);
+cc_setposition(375, 69);
+.cc_setposition(375, 69);
+cc_setgraphic("combatboxesmed,0");
+.cc_settextfont(p11_full);
+.cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+.cc_settextshadow(true);
+.cc_settext("Block task");
+if ($int8 = 1) {
+    .cc_setcolour(0xff981f);
+    cc_setonmouseover("cc_colour_swapper(event_com, .cc_getid, ^white)");
+    cc_setonmouseleave("cc_colour_swapper(event_com, .cc_getid, 0xff981f)");
+    cc_setop(1, "Block");
+    cc_setonop("slayer_rewards_tasks_canceltask($string0, true, $component2, $component3, $component4, $component5, $component6)");
+} else {
+    .cc_setcolour(0x7f4c0f);
+}
