@@ -1,0 +1,43 @@
+// 322
+[clientscript,slayer_rewards_buy_op](int $int0, component $component1, int $int2, component $component3, component $component4, component $component5, component $component6, component $component7)
+def_obj $obj = null;
+def_string $string = "Choose an item from the shop.";
+def_int $int9 = 0;
+def_int $int10 = 0;
+if ($int0 <= 1) {
+    sound_synth(synth_2266, 1, 0);
+    if_sethide(true, $component3);
+    if_sethide(false, $component4);
+    cc_deleteall($component6);
+    if_setposition(92, 165, $component7);
+    if_sethide(true, $component6);
+    $obj = enum(int, namedobj, enum_840, $int2);
+    if ($obj ! null) {
+        $string = "<u=ff981f><oc_name($obj)></u><br><br><enum(obj, string, enum_843, $obj)><br><br>";
+        $int9 = enum(obj, int, enum_842, $obj);
+        $int10 = enum(obj, int, enum_841, $obj);
+        if ($int9 ! 1) {
+            if ($int10 > 1) {
+                $string = append($string, "Cost: <tostring($int9)> points for <tostring($int10)>");
+            } else {
+                $string = append($string, "Cost: <tostring($int9)> points each");
+            }
+        } else if ($int10 > 1) {
+            $string = append($string, "Cost: 1 point for <tostring($int10)>");
+        } else {
+            $string = append($string, "Cost: 1 point each");
+        }
+    }
+    if_settext($string, $component5);
+    if_setop(1, "Back", $component7);
+    if_setonop("slayer_rewards_confirm_back(false, event_op, $component3, $component4, $component5, $component6, $component7)", $component7);
+    return;
+}
+if ($int0 >= 10) {
+    return;
+}
+if (cc_find($component1, $int2) = true) {
+    cc_settrans(75);
+    sound_synth(synth_2266, 1, 0);
+    cc_setontimer("slayer_rewards_buy_release($component1, $int2, calc(clientclock + 10))");
+}
