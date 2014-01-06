@@ -1,23 +1,27 @@
 // 407
-[proc,slayer_rewards_tabs](component $component0, component $component1, component $component2, component $component3)
+[proc,slayer_rewards_tabs](component $component0, component $component1, component $component2, component $component3, component $component4)
 cc_deleteall($component0);
-def_int $int4 = 0;
 def_int $int5 = 0;
-$int4, $int5 = ~slayer_rewards_tab($component0, $component1, "Unlock", $int4, $int5, $component1, $component2, $component3);
-$int4, $int5 = ~slayer_rewards_tab($component0, $component2, "Buy", $int4, $int5, $component1, $component2, $component3);
-cc_create($component0, ^iftype_text, $int4);
-cc_setposition($int5, 0);
-cc_setsize(calc(if_getwidth($component0) - $int5), if_getheight($component0));
+def_int $int6 = 0;
+$int5, $int6 = ~slayer_rewards_tab($component0, $component1, "Unlock", $int5, $int6, $component1, $component2, $component3, $component4);
+$int5, $int6 = ~slayer_rewards_tab($component0, $component2, "Buy", $int5, $int6, $component1, $component2, $component3, $component4);
+$int5, $int6 = ~slayer_rewards_tab($component0, $component3, "Tasks", $int5, $int6, $component1, $component2, $component3, $component4);
+cc_create($component0, ^iftype_text, $int5);
+cc_setposition($int6, 0);
+cc_setsize(calc(if_getwidth($component0) - $int6), if_getheight($component0));
 cc_settextfont(p12_full);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
 cc_setcolour(0xff981f);
 cc_settextshadow(true);
 ~slayer_rewards_setpoints;
 cc_setonvartransmit("slayer_rewards_setpoints(event_com, event_comsubid){varplayer_661}");
-if_sethide(false, $component3);
-if ($component3 ! $component1) {
+if_sethide(false, $component4);
+if ($component4 ! $component1) {
     if_sethide(true, $component1);
 }
-if ($component3 ! $component2) {
+if ($component4 ! $component2) {
     if_sethide(true, $component2);
+}
+if ($component4 ! $component3) {
+    if_sethide(true, $component3);
 }
