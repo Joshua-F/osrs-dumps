@@ -1,61 +1,105 @@
 // 411
-[clientscript,slayer_rewards_unlock_init](component $component0, int $int1, component $component2, component $component3, component $component4, component $component5, component $component6)
+[clientscript,slayer_rewards_unlock_init](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6)
 cc_deleteall($component0);
-def_int $int7 = 0;
-def_string $string0 = enum(int, string, enum_834, $int1);
-if_setopbase("<col=ff9040><$string0>", $component0);
-def_int $int8 = if_getwidth($component0);
-def_int $int9 = if_getheight($component0);
-cc_create($component0, ^iftype_rectangle, $int7);
-$int7 = calc($int7 + 1);
-cc_setposition(1, 1);
-cc_setsize(calc($int8 - 2), calc($int9 - 2));
-cc_setcolour(^white);
-cc_setfill(true);
-cc_settrans(250);
-if_setonmouseover("cc_settrans(event_com, cc_getid, 230)", $component0);
-if_setonmouseleave("cc_settrans(event_com, cc_getid, 250)", $component0);
-cc_create($component0, ^iftype_rectangle, $int7);
-$int7 = calc($int7 + 1);
-cc_setposition(0, 0);
-cc_setsize($int8, $int9);
-cc_setfill(false);
-cc_setcolour(0x0e0e0c);
-cc_create($component0, ^iftype_rectangle, $int7);
-$int7 = calc($int7 + 1);
-cc_setposition(1, 1);
-cc_setsize(calc($int8 - 2), calc($int9 - 2));
-cc_setfill(false);
-cc_setcolour(0x474745);
-cc_create($component0, ^iftype_graphic, $int7);
-$int7 = calc($int7 + 1);
-cc_setposition(5, 5);
-cc_setsize(36, 32);
-cc_setgraphicshadow(0x333333);
-cc_setoutline(1);
-cc_setobject(enum(int, obj, enum_837, $int1), 1);
-cc_create($component0, ^iftype_graphic, $int7);
-$int7 = calc($int7 + 1);
-cc_setsize(16, 16);
-cc_settiling(true);
-cc_setposition(calc(5 + 36), 14);
-~script413($component0, $int1, $component2, $component3, $component4, $component5, $component6);
-if_setonvartransmit("script412($component0, cc_getid, $int1, $component2, $component3, $component4, $component5, $component6){varplayer_1076}", $component0);
-cc_create($component0, ^iftype_text, $int7);
-$int7 = calc($int7 + 1);
-cc_setposition(calc(21 + 36), 6);
-cc_setsize(calc($int8 - (26 + 36)), 32);
-cc_setcolour(0xff981f);
-cc_settextfont(p12_full);
-cc_settextshadow(true);
-cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-cc_settext($string0);
-cc_create($component0, ^iftype_text, $int7);
-$int7 = calc($int7 + 1);
-cc_setposition(5, calc(5 + 32));
-cc_setsize(calc($int8 - 10), calc($int9 - (10 + 32)));
-cc_setcolour(0xff981f);
-cc_settextfont(p11_full);
-cc_settextshadow(true);
-cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
-cc_settext("<enum(int, string, enum_835, $int1)> <col=ff0000>(<tostring(enum(int, int, enum_836, $int1))> points)</col>");
+def_int $int7 = if_getwidth($component0);
+def_int $int8 = calc(($int7 - 4) / 2);
+def_int $int9 = calc($int7 - ($int8 + 1));
+def_int $int10 = calc($int8 - 10);
+def_int $int11 = 0;
+def_int $int12 = 0;
+def_int $int13 = 0;
+def_string $string0 = "";
+def_int $int14 = 0;
+def_int $int15 = -1;
+def_int $int16 = 0;
+def_int $int17 = 0;
+def_string $string1 = "";
+def_int $int18 = 0;
+def_int $int19 = enum(int, int, enum_839, $int18);
+while ($int19 ! -1 & $int19 <= 7) {
+    $string1 = enum(int, string, enum_834, $int19);
+    $string0 = "<enum(int, string, enum_835, $int19)> <col=ff0000>(<tostring(enum(int, int, enum_836, $int19))> points)</col>";
+    $int14 = calc(paraheight($string0, $int10, p11_full) * 10 + 2);
+    if (calc($int18 % 2) = 1) {
+        $int15 = enum(int, int, enum_839, calc($int18 - 1));
+        $int13 = $int9;
+    } else {
+        $int15 = enum(int, int, enum_839, calc($int18 + 1));
+        $int13 = 0;
+    }
+    if ($int15 ! -1) {
+        $int16 = calc(paraheight("<enum(int, string, enum_835, $int15)> <col=ff0000>(<tostring(enum(int, int, enum_836, $int15))> points)</col>", $int10, p11_full) * 10 + 2);
+        if ($int16 > $int14) {
+            $int14 = $int16;
+        }
+    }
+    $int17 = calc($int14 + 10 + 32);
+    .cc_create($component0, ^iftype_rectangle, $int11);
+    $int11 = calc($int11 + 1);
+    .cc_setposition($int13, $int12);
+    .cc_setsize($int8, $int17);
+    .cc_setcolour(^white);
+    .cc_setfill(true);
+    .cc_settrans(250);
+    .cc_setonmouseover("cc_settrans(event_com, .cc_getid, 230)");
+    .cc_setonmouseleave("cc_settrans(event_com, .cc_getid, 250)");
+    .cc_setopbase("<col=ff9040><$string1>");
+    cc_create($component0, ^iftype_rectangle, $int11);
+    $int11 = calc($int11 + 1);
+    cc_setposition($int13, $int12);
+    cc_setsize($int8, $int17);
+    cc_setfill(false);
+    cc_setcolour(0x0e0e0c);
+    cc_create($component0, ^iftype_rectangle, $int11);
+    $int11 = calc($int11 + 1);
+    cc_setposition(calc($int13 + 1), calc($int12 + 1));
+    cc_setsize(calc($int8 - 2), calc($int17 - 2));
+    cc_setfill(false);
+    cc_setcolour(0x474745);
+    cc_create($component0, ^iftype_graphic, $int11);
+    $int11 = calc($int11 + 1);
+    cc_setposition(calc($int13 + 5), calc($int12 + 5));
+    cc_setsize(36, 32);
+    cc_setgraphicshadow(0x333333);
+    cc_setoutline(1);
+    cc_setobject(enum(int, obj, enum_837, $int19), 1);
+    cc_create($component0, ^iftype_graphic, $int11);
+    $int11 = calc($int11 + 1);
+    cc_setsize(16, 16);
+    cc_settiling(true);
+    cc_setposition(calc($int13 + 5 + 36), calc($int12 + 14));
+    ~script413($int19, $component2, $component3, $component4, $component5, $component6);
+    .cc_setonvartransmit("script412(event_com, .cc_getid, cc_getid, $int19, $component2, $component3, $component4, $component5, $component6){varplayer_1076}");
+    cc_create($component0, ^iftype_text, $int11);
+    $int11 = calc($int11 + 1);
+    cc_setposition(calc($int13 + 21 + 36), calc($int12 + 6));
+    cc_setsize(calc($int8 - (26 + 36)), 32);
+    cc_setcolour(0xff981f);
+    cc_settextfont(p12_full);
+    cc_settextshadow(true);
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    cc_settext($string1);
+    cc_create($component0, ^iftype_text, $int11);
+    $int11 = calc($int11 + 1);
+    cc_setposition(calc($int13 + 5), calc($int12 + 5 + 32));
+    cc_setsize($int10, $int14);
+    cc_setcolour(0xff981f);
+    cc_settextfont(p11_full);
+    cc_settextshadow(true);
+    cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+    cc_settext($string0);
+    $int18 = calc($int18 + 1);
+    $int19 = enum(int, int, enum_839, $int18);
+    if ($int19 = -1) {
+        $int12 = calc($int12 + $int17);
+    } else if (calc($int18 % 2) = 0) {
+        $int12 = calc($int12 + $int17 + 3);
+    }
+}
+if_setscrollpos(0, 0, $component0);
+if ($int12 > if_getheight($component0)) {
+    if_setscrollsize(0, $int12, $component0);
+} else {
+    if_setscrollsize(0, 0, $component0);
+}
+~scrollbar_vertical($component1, $component0, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
