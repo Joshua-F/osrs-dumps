@@ -1,0 +1,19 @@
+// 446
+[clientscript,orbs_update_health](component $component0, component $component1, component $component2, component $component3, component $component4)
+if ($component0 ! null) {
+    if_setonstattransmit("orbs_update_health(null, $component1, $component2, $component3, $component4){hitpoints}", $component0);
+    if_setonvartransmit("orbs_update_health(null, $component1, $component2, $component3, $component4){varplayer_102, varplayer_456}", $component0);
+}
+~orbs_update($component1, $component2, stat(hitpoints), stat_base(hitpoints));
+if (%varplayer_456 > 0) {
+    if_setgraphic("orb_filler,3", $component3);
+} else if (%varplayer_102 > 0) {
+    if_setgraphic("orb_filler,2", $component3);
+} else {
+    if_setgraphic("orb_filler,1", $component3);
+}
+if (%varplayer_102 > 0) {
+    if_sethide(false, $component4);
+} else {
+    if_sethide(true, $component4);
+}
