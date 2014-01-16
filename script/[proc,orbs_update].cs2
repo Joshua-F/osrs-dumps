@@ -1,0 +1,27 @@
+// 449
+[proc,orbs_update](component $component0, component $component1, int $int2, int $int3)
+if ($int3 <= 0) {
+    $int3 = 1;
+}
+if ($int2 <= 0) {
+    $int2 = 0;
+}
+if_settext(tostring($int2), $component0);
+if ($int2 > $int3) {
+    $int2 = $int3;
+}
+if_setsize(26, calc(26 * ($int3 - $int2) / $int3), $component1);
+def_int $int4 = 0;
+def_int $int5 = calc($int3 / 2);
+if ($int5 <= 0) {
+    if ($int2 >= $int3) {
+        $int4 = 65280;
+    } else {
+        $int4 = 16711680;
+    }
+} else if ($int2 > $int5) {
+    $int4 = ~rgb_to_hex(calc(255 - 255 * ($int2 - $int5) / $int5), 255, 0);
+} else {
+    $int4 = ~rgb_to_hex(255, calc($int2 * 255 / $int5), 0);
+}
+if_setcolour($int4, $component0);
