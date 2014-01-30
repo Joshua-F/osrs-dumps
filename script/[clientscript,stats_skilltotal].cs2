@@ -1,3 +1,37 @@
 // 396
 [clientscript,stats_skilltotal](component $component0)
-if_settext("Total level:<br><tostring(calc(stat_base(attack) + stat_base(strength) + stat_base(ranged) + stat_base(magic) + stat_base(defence) + stat_base(hitpoints) + stat_base(prayer) + stat_base(agility) + stat_base(herblore) + stat_base(thieving) + stat_base(crafting) + stat_base(runecraft) + stat_base(mining) + stat_base(smithing) + stat_base(fishing) + stat_base(cooking) + stat_base(firemaking) + stat_base(woodcutting) + stat_base(fletching) + stat_base(slayer) + stat_base(farming) + stat_base(construction) + stat_base(hunter)))>", $component0);
+def_int $int1 = 0;
+def_int $int2 = 0;
+def_int $int3 = 0;
+def_int $int4 = pow(10, 9);
+def_int $int5 = 1;
+def_stat $stat6 = enum(int, stat, enum_681, $int5);
+while ($stat6 ! null) {
+    $int1 = calc($int1 + stat_base($stat6));
+    $int2 = calc($int2 + stat_visible_xp($stat6));
+    while ($int2 >= $int4) {
+        $int2 = calc($int2 - $int4);
+        $int3 = calc($int3 + 1);
+    }
+    $int5 = calc($int5 + 1);
+    $stat6 = enum(int, stat, enum_681, $int5);
+}
+if_settext("Total level:<br><tostring($int1)>", $component0);
+def_string $string0 = ",";
+def_string $string1 = "Total XP: ";
+def_int $int7 = 0;
+def_int $int8 = 0;
+def_int $int9 = 0;
+if ($int3 > 0) {
+    $string1 = append(append($string1, ~tostring_spacer($int3, $string0)), $string0);
+    $int7 = calc($int2 / 1000000);
+    $int8 = calc($int2 % 1000000 / 1000);
+    $int9 = calc($int2 % 1000);
+    $string1 = append(append($string1, ~script47($int7)), $string0);
+    $string1 = append(append($string1, ~script47($int8)), $string0);
+    $string1 = append($string1, ~script47($int9));
+} else {
+    $string1 = append($string1, ~tostring_spacer($int2, $string0));
+}
+if_setonmouserepeat("addtooltip(event_com, interface_320:com_28, $string1, calc(25 / 5), 190)", $component0);
+%varclient_2 = 0;
