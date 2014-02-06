@@ -1,0 +1,21 @@
+// 464
+[proc,prayer_isavailable](int $int0)(boolean)
+if (stat_base(prayer) < enum(int, int, enum_861, $int0)) {
+    return(false);
+}
+if ($int0 = 25) {
+    if (map_members = false | stat_base(defence) < 65 | %varplayerbit_3909 < 8) {
+        return(false);
+    }
+} else if ($int0 = 26) {
+    if (map_members = false | stat_base(defence) < 70 | %varplayerbit_3909 < 8) {
+        return(false);
+    }
+} else if ($int0 = 15 | $int0 = 16 | $int0 = 17) {
+    if (map_members = false) {
+        return(false);
+    }
+} else if ($int0 = 8 & ~high_risk_world = true) {
+    return(false);
+}
+return(true);
