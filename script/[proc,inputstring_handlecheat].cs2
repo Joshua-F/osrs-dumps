@@ -2,8 +2,22 @@
 [proc,inputstring_handlecheat](string $string0)(string)
 def_string $string1 = lowercase($string0);
 def_int $int0 = string_length($string1);
-def_string $string2 = "::tele n ";
+def_string $string2 = "::cheat on";
 def_int $int1 = string_length($string2);
+if ($int0 >= $int1 & compare(substring($string1, 0, $int1), $string2) = 0) {
+    setmousecam(true);
+    mes("Mouse-cam enabled. Use '<col=7f0000>::cheat off</col>' to disable.");
+    return("::");
+}
+$string2 = "::cheat off";
+$int1 = string_length($string2);
+if ($int0 >= $int1 & compare(substring($string1, 0, $int1), $string2) = 0) {
+    setmousecam(false);
+    mes("Mouse-cam disabled. Use '<col=7f0000>::cheat on</col>' to enable.");
+    return("::");
+}
+$string2 = "::tele n ";
+$int1 = string_length($string2);
 if ($int0 >= $int1 & compare(substring($string1, 0, $int1), $string2) = 0) {
     if ($int0 <= $int1) {
         return(~inputstring_teledirection("", 0, 1));
