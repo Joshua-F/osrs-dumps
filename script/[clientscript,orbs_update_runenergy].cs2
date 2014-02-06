@@ -1,9 +1,13 @@
 // 447
 [clientscript,orbs_update_runenergy](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6)
-def_int $int7 = 1072;
+def_graphic $graphic7 = "orb_frame,1";
 if ($component0 ! null) {
     if_setonmisctransmit("orbs_update_runenergy(null, $component1, $component2, $component3, $component4, $component5, $component6)", $component0);
     if_setonvartransmit("orbs_update_runenergy(null, $component1, $component2, $component3, $component4, $component5, $component6){varplayer_173}", $component0);
+    if_setonop("orbs_toggle_runmode(event_op, $component3, $component4)", $component6);
+    if_setonmouseover("graphic_swapper($component5, $graphic7)", $component6);
+    $graphic7 = "orb_frame,0";
+    if_setonmouseleave("graphic_swapper($component5, $graphic7)", $component6);
 }
 ~orbs_update($component1, $component2, runenergy_visible, 100);
 ~orbs_update_runmode($component3, $component4);
