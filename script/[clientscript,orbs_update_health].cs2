@@ -3,6 +3,7 @@
 if ($component0 ! null) {
     if_setonstattransmit("orbs_update_health(null, $component1, $component2, $component3, $component4, $component5, $component6){hitpoints}", $component0);
     if_setonvartransmit("orbs_update_health(null, $component1, $component2, $component3, $component4, $component5, $component6){varplayer_102, varplayer_456}", $component0);
+    if_setonsubchange("orbs_update_health(null, $component1, $component2, $component3, $component4, $component5, $component6)", $component0);
 }
 ~orbs_update($component1, $component2, stat(hitpoints), stat_base(hitpoints));
 if (%varplayer_456 > 0) {
@@ -17,14 +18,14 @@ if (%varplayer_102 > 0) {
 } else {
     if_sethide(true, $component4);
 }
-if_setgraphic("orb_frame,0", $component5);
 def_graphic $graphic7 = "orb_frame,1";
-if (%varplayer_102 > 0 | %varplayer_456 > 0) {
+if (if_hassub(enum(int, component, enum_870, 3)) = true & (%varplayer_102 > 0 | %varplayer_456 > 0)) {
     if_setonmouserepeat("graphic_swapper($component5, $graphic7)", $component6);
     $graphic7 = "orb_frame,0";
     if_setonmouseleave("graphic_swapper($component5, $graphic7)", $component6);
     if_sethide(false, $component6);
 } else {
+    if_setgraphic("orb_frame,0", $component5);
     if_setonmouserepeat(null, $component6);
     if_setonmouseleave(null, $component6);
     if_sethide(true, $component6);
