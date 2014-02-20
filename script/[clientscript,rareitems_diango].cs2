@@ -1,0 +1,70 @@
+// 450
+[clientscript,rareitems_diango](int $int0, int $int1, string $string0)
+if_settext($string0, interface_78:com_2);
+cc_deleteall(interface_78:com_4);
+cc_deleteall(interface_78:com_5);
+def_int $int2 = calc((if_getwidth(interface_78:com_4) - 10 * 36) / 9 + 36);
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_int $int5 = 0;
+def_obj $obj6 = null;
+def_int $int7 = 0;
+while ($int7 <= 33) {
+    if ($int7 < 32) {
+        if (testbit($int0, $int7) = ^true) {
+            $int5 = 1;
+        } else {
+            $int5 = 0;
+        }
+    } else if ($int7 < 64) {
+        if (testbit($int1, calc($int7 - 32)) = ^true) {
+            $int5 = 1;
+        } else {
+            $int5 = 0;
+        }
+    } else {
+        $int5 = 0;
+    }
+    cc_create(interface_78:com_4, ^iftype_graphic, $int7);
+    if ($int5 = 1) {
+        $obj6 = enum(int, namedobj, enum_708, $int7);
+        if ($obj6 ! null) {
+            if (inv_total(inv_93, $obj6) = 0) {
+                cc_sethide(false);
+            } else {
+                cc_sethide(true);
+            }
+            cc_setsize(36, 32);
+            cc_setposition(calc($int4 * $int2), $int3);
+            cc_setgraphicshadow(0x333333);
+            cc_setoutline(1);
+            cc_setobject($obj6, 1);
+            cc_setop(1, "Take");
+            cc_setop(10, "Examine");
+            cc_setopbase("<col=ff9040><oc_name($obj6)>");
+            if ($int4 < 9) {
+                $int4 = calc($int4 + 1);
+            } else {
+                $int4, $int3 = 0, calc($int3 + 32 + 15);
+            }
+        } else {
+            cc_sethide(true);
+        }
+    } else {
+        cc_sethide(true);
+    }
+    $int7 = calc($int7 + 1);
+}
+if ($int4 > 0) {
+    $int3 = calc($int3 + 32);
+} else if ($int3 > 0) {
+    $int3 = calc($int3 - 15);
+}
+if ($int3 <= if_getheight(interface_78:com_4)) {
+    if_setscrollsize(0, 0, interface_78:com_4);
+} else {
+    if_setscrollsize(0, $int3, interface_78:com_4);
+}
+if_setscrollpos(0, 0, interface_78:com_4);
+~scrollbar_vertical(interface_78:com_5, interface_78:com_4, "scrollbar_parchment_dragger_v2,3", "scrollbar_parchment_dragger_v2,0", "scrollbar_parchment_dragger_v2,1", "scrollbar_parchment_dragger_v2,2", "scrollbar_parchment_v2,0", "scrollbar_parchment_v2,1");
+if_setoninvtransmit("rareitems_diango_update($int0, $int1){inv_93}", interface_78:com_4);
