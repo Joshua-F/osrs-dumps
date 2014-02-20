@@ -1,0 +1,39 @@
+// 474
+[clientscript,rareitems_diango_update](int $int0, int $int1)
+def_int $int2 = 0;
+def_obj $obj3 = null;
+def_int $int4 = 0;
+while ($int4 <= 33) {
+    if (cc_find(interface_78:com4, $int4) = ^true) {
+        if ($int4 < 32) {
+            if (testbit($int0, $int4) = ^true) {
+                $int2 = 1;
+            } else {
+                $int2 = 0;
+            }
+        } else if ($int4 < 64) {
+            if (testbit($int1, calc($int4 - 32)) = ^true) {
+                $int2 = 1;
+            } else {
+                $int2 = 0;
+            }
+        } else {
+            $int2 = 0;
+        }
+        if ($int2 = 1) {
+            $obj3 = enum(int, namedobj, enum_708, $int4);
+            if ($obj3 ! null) {
+                if (inv_total(inv_93, $obj3) = 0) {
+                    cc_sethide(false);
+                } else {
+                    cc_sethide(true);
+                }
+            } else {
+                cc_sethide(true);
+            }
+        } else {
+            cc_sethide(true);
+        }
+    }
+    $int4 = calc($int4 + 1);
+}
