@@ -1,10 +1,15 @@
 // 241
-[proc,autocast_tooltip_runecount](obj $obj, int $int1)
+[proc,autocast_tooltip_runecount](boolean $boolean, obj $obj, int $int2)
 cc_setobject($obj, 1);
-def_int $int2 = ~magic_runecount($obj);
-.cc_settext("<~magic_tostring($int2)>/<tostring($int1)>");
-if ($int2 >= $int1) {
+def_int $int3 = ~magic_runecount($obj);
+if ($int3 >= $int2) {
     .cc_setcolour(^green);
+    if ($boolean = true) {
+        .cc_settext("<tostring($int2)>/<tostring($int2)>");
+    } else {
+        .cc_settext("<~magic_tostring($int3)>/<tostring($int2)>");
+    }
 } else {
     .cc_setcolour(^red);
+    .cc_settext("<~magic_tostring($int3)>/<tostring($int2)>");
 }
