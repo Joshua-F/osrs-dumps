@@ -1,0 +1,45 @@
+// 502
+[clientscript,makeover_hair_setup](component $component0, component $component1, component $component2)
+cc_deleteall($component0);
+cc_deleteall($component2);
+if (%varplayerbit_4146 = 1) {
+    if_settext("Select hairstyle", $component1);
+    ~makeover_drawmodels($component0, enum_881, enum_882, null, null, 1200, 0, 180, 1, 1);
+} else if (%varplayerbit_4146 = 2) {
+    if_settext("Select facial hair", $component1);
+    ~makeover_drawmodels($component0, enum_884, enum_885, enum_886, null, 1200, 0, 180, 1, 1);
+} else if (%varplayerbit_4146 = 3) {
+    if_settext("Select hairstyle", $component1);
+    ~makeover_drawmodels($component0, enum_888, enum_889, null, null, 1350, 0, 150, 1, 1);
+} else {
+    if_settext("Please try again later.", $component1);
+    return;
+}
+def_int $int3 = 0;
+while ($int3 < 25) {
+    cc_create($component2, ^iftype_rectangle, $int3);
+    cc_setsize(25, 25);
+    if ($int3 < 13) {
+        cc_setposition(calc($int3 * 25), 0);
+    } else {
+        cc_setposition(calc(($int3 - 13) * 25 + 12), 26);
+    }
+    cc_setfill(true);
+    cc_setcolour(enum(int, int, enum_890, $int3));
+    cc_setop(1, enum(int, string, enum_891, $int3));
+    $int3 = calc($int3 + 1);
+}
+$int3 = 0;
+while ($int3 < 25) {
+    cc_create($component2, ^iftype_graphic, calc($int3 + 25));
+    cc_setsize(25, 25);
+    if ($int3 < 13) {
+        cc_setposition(calc($int3 * 25), 0);
+    } else {
+        cc_setposition(calc(($int3 - 13) * 25 + 12), 26);
+    }
+    cc_setgraphic(overlay_multiway);
+    ~makeover_indicator($int3, 3);
+    cc_setonvartransmit("makeover_indicator(event_com, event_comsubid, $int3, 3){varplayer_263}");
+    $int3 = calc($int3 + 1);
+}
