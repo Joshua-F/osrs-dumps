@@ -2,16 +2,12 @@
 [proc,script223]
 def_int $int0 = string_length(%varclientstring_1);
 def_string $string0 = escape(%varclientstring_1);
-def_int $int1 = calc(string_length($string0) - $int0);
 def_string $string1 = "<chat_playername>: <col=0000ff><$string0>";
 if ($int0 < 80) {
     $string1 = append($string1, "*");
 }
-def_int $int2 = parawidth($string1, ^max_32bit_int, p12_full);
-if ($int1 > 0) {
-    $int2 = calc($int2 - $int1 * 3);
-}
-if ($int2 > if_getwidth(interface_137:com1)) {
+def_int $int1 = parawidth($string1, ^max_32bit_int, p12_full);
+if ($int1 > if_getwidth(interface_137:com1)) {
     if_settextalign(^settextalign_right, ^settextalign_bottom, 0, interface_137:com1);
 } else {
     if_settextalign(^settextalign_left, ^settextalign_top, 0, interface_137:com1);
