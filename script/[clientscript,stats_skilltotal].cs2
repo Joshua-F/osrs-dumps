@@ -16,7 +16,17 @@ while ($stat6 ! null) {
     $int5 = calc($int5 + 1);
     $stat6 = enum(int, stat, enum_681, $int5);
 }
-if_settext("Total level:<br><tostring($int1)>", $component0);
+if (%varplayerbit_4148 = 1) {
+    $int1 = calc($int1 + ~script232);
+    $int2 = calc($int2 + %varplayerbit_4149 * 10);
+    while ($int2 >= $int4) {
+        $int2 = calc($int2 - $int4);
+        $int3 = calc($int3 + 1);
+    }
+    if_settext("Total level: <tostring($int1)>", $component0);
+} else {
+    if_settext("Total level:<br><tostring($int1)>", $component0);
+}
 def_string $string0 = ",";
 def_string $string1 = "Total XP: ";
 def_int $int7 = 0;
@@ -33,5 +43,5 @@ if ($int3 > 0) {
 } else {
     $string1 = append($string1, ~tostring_spacer($int2, $string0));
 }
-if_setonmouserepeat("addtooltip(event_com, interface_320:com_28, $string1, calc(25 / 5), 190)", $component0);
+if_setonmouserepeat("addtooltip(event_com, interface_320:com_29, $string1, calc(25 / 5), 190)", $component0);
 %varclient_2 = 0;
