@@ -7,7 +7,7 @@ def_int $chattype1 = chat_gethistorytype($int0);
 if ($chattype1 = null) {
     return(false);
 }
-if (%varclient_41 = 1 & $chattype1 = ^chattype_gamemessage) {
+if (%varclient_41 = 1 & enum(int, boolean, enum_892, $chattype1) = true) {
     return(true);
 }
 if (%varclient_41 = 2 & ($chattype1 = ^chattype_modchat | $chattype1 = ^chattype_publicchat)) {
@@ -20,7 +20,7 @@ if (%varclient_41 = 4 & ($chattype1 = ^chattype_friendschat | $chattype1 = ^chat
     return(true);
 }
 if (%varclient_41 = 5) {
-    if ($chattype1 = ^chattype_engine | $chattype1 = ^chattype_8 | $chattype1 = ^chattype_12) {
+    if ($chattype1 = ^chattype_tradereq | $chattype1 = ^chattype_chalreq_trade | $chattype1 = ^chattype_trade) {
         return(true);
     }
     if (~trade_partner_check($int0) = true) {
