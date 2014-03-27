@@ -4,7 +4,7 @@ def_int $chattype = chat_gethistorytype($int0);
 if ($chattype = null) {
     return(false);
 }
-if ($chattype = ^chattype_gamemessage | $chattype = ^chattype_modchat) {
+if (enum(int, boolean, enum_892, $chattype) = true | $chattype = ^chattype_modchat) {
     return(true);
 }
 if ($chattype = ^chattype_publicchat) {
@@ -28,7 +28,7 @@ if ($chattype = ^chattype_privatechat) {
     }
     return(false);
 }
-if ($chattype = ^chattype_engine | $chattype = 8) {
+if ($chattype = ^chattype_tradereq | $chattype = ^chattype_chalreq_trade) {
     if (chat_getfilter_trade = ^chatfilter_on) {
         return(true);
     }
@@ -67,13 +67,10 @@ if ($chattype = ^chattype_friendschatnotification) {
     }
     return(false);
 }
-if ($chattype = 12) {
+if ($chattype = ^chattype_trade) {
     if (chat_getfilter_trade < 2) {
         return(true);
     }
-    return(false);
-}
-if ($chattype = 10 | $chattype = 13) {
     return(false);
 }
 return(true);
