@@ -22,26 +22,20 @@ while ($int7 > 0) {
     }
     if (~panetest($int7) = true & ~filtertest($int7, $int4) = true) {
         $component3 = enum(int, component, enum_579, $int0);
-        if ($chattype1 = ^chattype_modchat) {
+        if ($chattype1 = ^chattype_publicchat | $chattype1 = ^chattype_modchat) {
             $int2 = calc($int2 + ~script203("<chat_gethistoryname($int7)>:", "<col=0000ff><chat_gethistorymessage($int7)>", $int0, $component3, interface_137:com_2, $int5, 3, 14, $int2, 0));
-        } else if ($chattype1 = ^chattype_publicchat) {
-            $int2 = calc($int2 + ~script203("<chat_gethistoryname($int7)>:", "<col=0000ff><chat_gethistorymessage($int7)>", $int0, $component3, interface_137:com_2, $int5, 3, 14, $int2, 0));
-        } else if ($chattype1 = ^chattype_privatechat) {
+        } else if ($chattype1 = ^chattype_privatechat | $chattype1 = ^chattype_modprivatechat) {
             $int2 = calc($int2 + ~script203("From <chat_gethistoryname($int7)>:", "<col=800000><chat_gethistorymessage($int7)>", $int0, $component3, interface_137:com_2, $int5, 3, 14, $int2, 0));
-        } else if ($chattype1 = ^chattype_engine) {
-            $int2 = calc($int2 + ~script199("<col=800080><chat_gethistoryname($int7)> <chat_gethistorymessage($int7)>", $int0, $component3, interface_137:com_2, $int5, 3, 14, $int2, 0));
+        } else if ($chattype1 = ^chattype_tradereq) {
+            $int2 = calc($int2 + ~script199("<col=800080><chat_gethistorymessage($int7)>", $int0, $component3, interface_137:com_2, $int5, 3, 14, $int2, 0));
         } else if ($chattype1 = ^chattype_loginlogoutnotification) {
             $int2 = calc($int2 + ~script199("<col=800000><chat_gethistorymessage($int7)>", $int0, $component3, interface_137:com_2, $int5, 3, 14, $int2, 0));
         } else if ($chattype1 = ^chattype_privatechatout) {
             $int2 = calc($int2 + ~script203("To <chat_gethistoryname($int7)>:", "<col=800000><chat_gethistorymessage($int7)>", $int0, $component3, interface_137:com_2, $int5, 3, 14, $int2, 0));
-        } else if ($chattype1 = ^chattype_modprivatechat) {
-            $int2 = calc($int2 + ~script203("From <chat_gethistoryname($int7)>:", "<col=800000><chat_gethistorymessage($int7)>", $int0, $component3, interface_137:com_2, $int5, 3, 14, $int2, 0));
-        } else if ($chattype1 = 8) {
-            $int2 = calc($int2 + ~script199("<col=7e3200><chat_gethistoryname($int7)> <chat_gethistorymessage($int7)>", $int0, $component3, interface_137:com_2, $int5, 3, 14, $int2, 0));
+        } else if ($chattype1 = ^chattype_chalreq_trade) {
+            $int2 = calc($int2 + ~script199("<col=7e3200><chat_gethistorymessage($int7)>", $int0, $component3, interface_137:com_2, $int5, 3, 14, $int2, 0));
         } else if ($chattype1 = ^chattype_friendschat) {
             $int2 = calc($int2 + ~script203("[<col=0000ff><chat_gethistoryclan($int7)><col=000000>] <chat_gethistoryname($int7)>:", "<col=800000><chat_gethistorymessage($int7)>", $int0, $component3, interface_137:com_2, $int5, 3, 14, $int2, 0));
-        } else if ($chattype1 = 10) {
-            $int2 = calc($int2 + ~script199("<col=800080><chat_gethistoryname($int7)> is asking for assistance.", $int0, $component3, interface_137:com_2, $int5, 3, 14, $int2, 0));
         } else if ($chattype1 = ^chattype_broadcast) {
             $int2 = calc($int2 + ~script203("<col=004f00>Broadcast:</col>", chat_gethistorymessage($int7), $int0, $component3, interface_137:com_2, $int5, 3, 14, $int2, 0));
         } else {
@@ -62,15 +56,12 @@ while ($int7 > 0) {
                     if_setop(9, "Kick", $component3);
                 }
             }
-        } else if ($chattype1 = ^chattype_engine) {
+        } else if ($chattype1 = ^chattype_tradereq) {
             if_setopbase("<col=ffffff><chat_gethistoryname($int7)>", $component3);
             if_setop(1, "Accept trade", $component3);
-        } else if ($chattype1 = 8) {
+        } else if ($chattype1 = ^chattype_chalreq_trade) {
             if_setopbase("<col=ffffff><chat_gethistoryname($int7)>", $component3);
             if_setop(2, "Accept challenge", $component3);
-        } else if ($chattype1 = 10) {
-            if_setopbase("<col=ffffff><chat_gethistoryname($int7)>", $component3);
-            if_setop(3, "Give assistance", $component3);
         }
         $int0 = calc($int0 + 1);
     }
