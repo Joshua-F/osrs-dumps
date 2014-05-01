@@ -1,7 +1,9 @@
 // 275
 [proc,nzone_rewards_price](obj $obj0)(string)
-def_int $int1 = inv_total(inv_464, oc_uncert($obj0));
-if (enum(obj, namedobj, enum_815, $obj0) ! null) {
-    $int1 = calc($int1 * 1000);
+def_obj $obj1 = oc_uncert($obj0);
+def_int $int2 = inv_total(inv_464, $obj1);
+if ($int2 <= 0) {
+    $int2 = inv_total(inv_108, $obj1);
+    $int2 = calc($int2 * 1000);
 }
-return(~tostring_spacer($int1, ","));
+return(~tostring_spacer($int2, ","));
