@@ -1,0 +1,40 @@
+// 231
+[proc,scrollbar_vertical_rebuild](component $component0, component $component1)
+if (cc_find($component0, 0) = ^true) {
+    cc_setposition(0, 16);
+    cc_setsize(16, calc(if_getheight($component0) - 32));
+}
+def_int $int2 = 0;
+def_int $int3 = 0;
+if (.cc_find($component0, 1) = ^true) {
+    .cc_setposition(0, 16);
+    $int2 = if_getscrollheight($component1);
+    if ($int2 <= 0) {
+        $int2 = if_getheight($component1);
+    }
+    if ($int2 > 0) {
+        $int3 = calc((if_getheight($component0) - 32) * if_getheight($component1) / $int2);
+    } else {
+        $int3 = calc(if_getheight($component0) - 32);
+    }
+    if ($int3 < 10) {
+        $int3 = 10;
+    }
+    .cc_setsize(16, $int3);
+    if (cc_find($component0, 2) = ^true) {
+        cc_setposition(0, .cc_gety);
+        cc_setsize(16, 5);
+    }
+    if (cc_find($component0, 3) = ^true) {
+        cc_setposition(0, calc(.cc_gety + .cc_getheight - 5));
+        cc_setsize(16, 5);
+    }
+}
+if (cc_find($component0, 4) = ^true) {
+    cc_setposition(0, 0);
+    cc_setsize(16, 16);
+}
+if (cc_find($component0, 5) = ^true) {
+    cc_setposition(0, calc(if_getheight($component0) - 16));
+    cc_setsize(16, 16);
+}
