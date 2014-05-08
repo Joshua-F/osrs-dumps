@@ -1,0 +1,46 @@
+// 509
+[proc,script509](int $int0, int $int1, int $int2, component $component3, component $component4, int $int5, int $int6, int $int7, int $int8)(int)
+def_int $int9 = 0;
+if ($int8 = 0 & $int2 > 0 & ~bankmain_searching = true) {
+    $int9 = calc($int5 + 15);
+} else {
+    $int9 = $int5;
+}
+def_obj $obj10 = null;
+def_int $int11 = 0;
+def_int $int12 = 0;
+def_int $int13 = 0;
+while ($int0 < $int1) {
+    if (cc_find($component3, $int0) = ^true) {
+        $obj10 = inv_getobj(inv_95, $int0);
+        if (~bankmain_filteritem($obj10) = true) {
+            cc_sethide(false);
+            ~bankmain_drawitem($obj10, inv_getnum(inv_95, $int0), $component3, $component4);
+            $int11 = calc($int9 + $int13 * 36);
+            cc_setposition(calc($int12 * (36 + $int6)), $int11);
+            $int11 = calc($int11 + 32);
+            if ($int12 < $int7) {
+                $int12 = calc($int12 + 1);
+            } else {
+                $int12, $int13 = 0, calc($int13 + 1);
+            }
+        }
+    }
+    $int0 = calc($int0 + 1);
+}
+if ($int11 <= 0) {
+    return($int5);
+}
+if ($int8 = 0) {
+    if ($int12 > 0 & cc_find($component3, calc(448 + 9 * 2 + $int2)) = ^true) {
+        cc_sethide(false);
+        cc_setposition(calc($int12 * (36 + $int6)), calc($int11 - 32));
+        $int12 = calc(8 - $int12);
+        cc_setsize(calc($int12 * 36 + ($int12 - 1) * $int6), 32);
+    }
+    if ($int9 > $int5 & cc_find($component3, calc(448 + 9 + $int2 - 1)) = ^true) {
+        cc_setposition(0, $int5);
+        cc_sethide(false);
+    }
+}
+return($int11);
