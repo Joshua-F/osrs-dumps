@@ -1,48 +1,56 @@
 // 285
-[clientscript,bankmain_reorder](component $component0, int $int1, int $int2, component $component3)
+[clientscript,bankmain_reorder](component $component0, int $int1, component $component2, int $int3, component $component4)
 if ($int1 < 0 | $int1 >= 448) {
     return;
 }
-if ($int2 < 0 | $int2 >= 448) {
+if ($component2 ! $component0 | $int3 < 0 | $int3 >= 448 | ~bank_tabforslot($int1) ! ~bank_tabforslot($int3)) {
+    if (cc_find($component0, $int1) = ^true) {
+        cc_settrans(200);
+        cc_setontimer("cc_settrans_temporarily_end(event_com, event_comsubid, 0, calc(clientclock + 10))");
+    }
     return;
 }
-def_obj $obj4 = inv_getobj(inv_95, $int1);
-if ($obj4 = null) {
+def_obj $obj5 = inv_getobj(inv_95, $int1);
+if ($obj5 = null) {
     return;
 }
-if (%varplayerbit_3959 = 0 | $int2 = calc($int1 + 1) | $int2 = calc($int1 - 1)) {
-    if (cc_find($component0, $int2) = ^true) {
-        ~bankmain_drawitem($obj4, inv_getnum(inv_95, $int1), $component0, $component3);
+if (%varplayerbit_3959 = 0 | $int3 = calc($int1 + 1) | $int3 = calc($int1 - 1)) {
+    if (cc_find($component0, $int3) = ^true) {
+        ~bankmain_drawitem($obj5, inv_getnum(inv_95, $int1), $component0, $component4);
     }
     if (cc_find($component0, $int1) = ^true) {
-        ~bankmain_drawitem(inv_getobj(inv_95, $int2), inv_getnum(inv_95, $int2), $component0, $component3);
+        ~bankmain_drawitem(inv_getobj(inv_95, $int3), inv_getnum(inv_95, $int3), $component0, $component4);
     }
     return;
 }
-if ((%varclient_5 = 11 | %varclient_5 <= 0) & string_length(%varclientstring_22) > 0) {
+if (~bankmain_searching = true) {
+    if (cc_find($component0, $int1) = ^true) {
+        cc_settrans(200);
+        cc_setontimer("cc_settrans_temporarily_end(event_com, event_comsubid, 0, calc(clientclock + 10))");
+    }
     return;
 }
-def_int $int5 = -1;
 def_int $int6 = -1;
-if ($int2 < $int1) {
-    $int5 = $int1;
-    while ($int5 > $int2) {
-        if (cc_find($component0, $int5) = ^true) {
-            $int6 = calc($int5 - 1);
-            ~bankmain_drawitem(inv_getobj(inv_95, $int6), inv_getnum(inv_95, $int6), $component0, $component3);
+def_int $int7 = -1;
+if ($int3 < $int1) {
+    $int6 = $int1;
+    while ($int6 > $int3) {
+        if (cc_find($component0, $int6) = ^true) {
+            $int7 = calc($int6 - 1);
+            ~bankmain_drawitem(inv_getobj(inv_95, $int7), inv_getnum(inv_95, $int7), $component0, $component4);
         }
-        $int5 = calc($int5 - 1);
+        $int6 = calc($int6 - 1);
     }
 } else {
-    $int5 = $int1;
-    while ($int5 < $int2) {
-        if (cc_find($component0, $int5) = ^true) {
-            $int6 = calc($int5 + 1);
-            ~bankmain_drawitem(inv_getobj(inv_95, $int6), inv_getnum(inv_95, $int6), $component0, $component3);
+    $int6 = $int1;
+    while ($int6 < $int3) {
+        if (cc_find($component0, $int6) = ^true) {
+            $int7 = calc($int6 + 1);
+            ~bankmain_drawitem(inv_getobj(inv_95, $int7), inv_getnum(inv_95, $int7), $component0, $component4);
         }
-        $int5 = calc($int5 + 1);
+        $int6 = calc($int6 + 1);
     }
 }
-if (cc_find($component0, $int2) = ^true) {
-    ~bankmain_drawitem($obj4, inv_getnum(inv_95, $int1), $component0, $component3);
+if (cc_find($component0, $int3) = ^true) {
+    ~bankmain_drawitem($obj5, inv_getnum(inv_95, $int1), $component0, $component4);
 }
