@@ -1,0 +1,92 @@
+// 506
+[proc,bankmain_tabicon](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, int $int10, int $int11, int $int12, boolean $boolean13, int $int14, int $int15, int $int16, int $int17)(int, boolean)
+def_obj $obj18 = null;
+def_string $string0 = "";
+def_int $int19 = 0;
+if (.cc_find($component9, $int10) = ^true) {
+    if ($int10 = 0) {
+        cc_create($component9, ^iftype_graphic, calc($int10 + 9 + 1));
+        cc_setsize(36, 32);
+        cc_setposition(calc($int10 * 40 + $int14 + $int15), $int16);
+        cc_setgraphic("banktab_icons,0");
+        cc_settrans(20);
+        cc_setop(1, "View all items");
+        cc_setonop("bankmain_switchtab($component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, event_op, $int10)");
+        ~bankmain_tabicon_highlight($int10);
+    } else if ($int11 > 0) {
+        if (%varplayerbit_4170 = 1) {
+            $string0 = tostring($int10);
+            cc_create($component9, ^iftype_text, calc($int10 + 9 + 1));
+            cc_setsize(41, 40);
+            cc_setposition(calc($int10 * 40 + $int14), 0);
+            cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+            cc_settextfont(quill_oblique_large);
+            cc_settextshadow(true);
+            cc_setcolour(0xe4d8a2);
+            cc_settext($string0);
+            cc_setondragcomplete("bankmain_dragtab_text(event_com, event_comsubid, event_com2, event_comsubid2, $int17)");
+            ~script507($component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $int10);
+            ~bankmain_tabicon_highlight($int10);
+        } else if (%varplayerbit_4170 = 2) {
+            $string0 = enum(int, string, enum_207, $int10);
+            cc_create($component9, ^iftype_text, calc($int10 + 9 + 1));
+            cc_setsize(41, 35);
+            cc_setposition(calc($int10 * 40 + $int14), 0);
+            cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+            cc_settextfont(barbassault_font);
+            cc_settextshadow(true);
+            cc_setcolour(0xe4d8a2);
+            cc_settext($string0);
+            cc_setondragcomplete("bankmain_dragtab_text(event_com, event_comsubid, event_com2, event_comsubid2, $int17)");
+            ~script507($component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $int10);
+            ~bankmain_tabicon_highlight($int10);
+        } else {
+            $obj18 = inv_getobj(inv_95, $int12);
+            if ($obj18 ! null & oc_stackable($obj18) = true) {
+                cc_create($component9, ^iftype_model, calc($int10 + 9 + 1));
+                cc_setsize(32, 32);
+                cc_setposition(calc($int10 * 40 + $int14 + $int15 + 1 + (36 - 32) / 2), $int16);
+                $int19 = inv_getnum(inv_95, $int12);
+                if ($obj18 = obj_995 & $int19 >= 1000) {
+                    cc_setobject(obj_995, 999);
+                } else {
+                    cc_setobject($obj18, $int19);
+                }
+                ~script507($component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $int10);
+                ~bankmain_tabicon_highlight($int10);
+            } else {
+                cc_create($component9, ^iftype_graphic, calc($int10 + 9 + 1));
+                cc_setsize(36, 32);
+                cc_setposition(calc($int10 * 40 + $int14 + $int15 + 1), $int16);
+                cc_setgraphicshadow(0x333333);
+                cc_setoutline(1);
+                $obj18 = inv_getobj(inv_95, $int12);
+                if ($obj18 ! null) {
+                    cc_setobject($obj18, 1);
+                } else {
+                    cc_setobject(obj_6512, 1);
+                }
+                cc_setondragcomplete("bankmain_dragtab_graphic(event_com, event_comsubid, event_com2, event_comsubid2, $int17)");
+                ~script507($component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $int10);
+                ~bankmain_tabicon_highlight($int10);
+            }
+        }
+    } else if ($boolean13 = false) {
+        cc_create($component9, ^iftype_graphic, calc($int10 + 9 + 1));
+        cc_setsize(36, 32);
+        cc_setposition(calc($int10 * 40 + $int14 + $int15), $int16);
+        cc_setgraphic("banktab_icons,1");
+        cc_settrans(20);
+        cc_setop(1, "New tab");
+        cc_setonop("opsound(event_op, 1)");
+        cc_setdragdeadzone(512);
+        cc_setdragdeadtime(^max_32bit_int);
+        .cc_setgraphic("banktabs,3");
+        $boolean13 = true;
+    } else {
+        cc_create($component9, ^iftype_graphic, calc($int10 + 9 + 1));
+        cc_sethide(true);
+        .cc_sethide(true);
+    }
+}
+return(calc($int12 + $int11), $boolean13);
