@@ -1,30 +1,68 @@
 // 274
-[clientscript,bankmain_init](component $com_6, component $com_7, component $com_10, component $com_12, component $com_15, component $com_17, component $com_19, component $com_2, component $com_3)
-if (%varclient_5 = 11) {
+[clientscript,bankmain_init](component $com_0, component $com_1, component $com_6, component $com_7, component $com_29, component $com_10, component $com_11, component $com_12, component $com_14, component $com_16, component $com_19, component $com_21, component $com_23, component $com_2, component $com_3, component $com_8)
+if (~bankmain_searching = true) {
     ~meslayer_close(1);
 } else if (%varclient_5 <= 0) {
     %varclientstring_22 = "";
 }
-~bankmain_search_setbutton($com_19, $com_6, $com_7, $com_2, $com_3);
-if_setop(1, "Search", $com_19);
-if_setonop("bankmain_search_toggle(event_com, $com_6, $com_7, $com_2, $com_3)", $com_19);
-~bankmain_swapinsert($com_10, $com_12);
-if_setonvartransmit("bankmain_swapinsert($com_10, $com_12){varplayer_304}", $com_10);
-~bankmain_itemnote($com_15, $com_17);
-if_setonvartransmit("bankmain_itemnote($com_15, $com_17){varplayer_115}", $com_15);
-cc_deleteall($com_7);
-~scrollbar_vertical($com_7, $com_6, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-cc_deleteall($com_6);
-def_int $int = 0;
-while ($int < 448) {
-    cc_create($com_6, ^iftype_graphic, $int);
+~bankmain_menubutton(false, $com_0, $com_1, $com_6, $com_10, $com_11, $com_12, $com_2, $com_3, $com_23, $com_8, $com_7, $com_29);
+~bankmain_search_setbutton($com_0, $com_1, $com_6, $com_10, $com_11, $com_12, $com_2, $com_3, $com_23, $com_8);
+if_setonop("bankmain_search_toggle(event_op, $com_0, $com_1, $com_6, $com_10, $com_11, $com_12, $com_2, $com_3, $com_23, $com_8)", $com_23);
+cc_deleteall($com_11);
+~scrollbar_vertical($com_11, $com_10, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~bankmain_swapinsert($com_14, $com_16);
+if_setonvartransmit("bankmain_swapinsert($com_14, $com_16){varplayer_304}", $com_14);
+~bankmain_itemnote($com_19, $com_21);
+if_setonvartransmit("bankmain_itemnote($com_19, $com_21){varplayer_115}", $com_19);
+cc_deleteall($com_10);
+def_int $int16 = 0;
+def_int $int17 = 0;
+while ($int17 < 448) {
+    cc_create($com_10, ^iftype_graphic, $int16);
+    $int16 = calc($int16 + 1);
     cc_setsize(36, 32);
     cc_setgraphicshadow(0x333333);
     cc_setoutline(1);
     cc_setdragdeadzone(5);
     cc_setdragdeadtime(5);
-    $int = calc($int + 1);
+    $int17 = calc($int17 + 1);
 }
-~bankmain_build($com_6, $com_7, $com_2, $com_3);
-if_setoninvtransmit("bankmain_build($com_6, $com_7, $com_2, $com_3){inv_95}", $com_6);
-if_setonvartransmit("bankmain_build($com_6, $com_7, $com_2, $com_3){varplayer_304}", $com_6);
+def_int $int18 = if_getwidth($com_10);
+$int17 = 1;
+while ($int17 <= 9) {
+    cc_create($com_10, ^iftype_graphic, $int16);
+    $int16 = calc($int16 + 1);
+    cc_setsize($int18, 2);
+    cc_setgraphic(tradebacking_dark);
+    cc_settiling(true);
+    $int17 = calc($int17 + 1);
+}
+$int17 = 1;
+while ($int17 <= 9) {
+    cc_create($com_10, ^iftype_text, $int16);
+    $int16 = calc($int16 + 1);
+    cc_setsize($int18, 15);
+    cc_settextalign(^settextalign_left, ^settextalign_top, 0);
+    cc_settextfont(p11_full);
+    cc_setcolour(0xe4d8a2);
+    cc_setonmouserepeat("cc_colour_swapper(event_com, event_comsubid, ^white)");
+    cc_setonmouseleave("cc_colour_swapper(event_com, event_comsubid, 0xe4d8a2)");
+    cc_settextshadow(true);
+    cc_settext("Tab <tostring($int17)>");
+    cc_setop(1, "View tab");
+    cc_setopbase("<col=ff9040><tostring($int17)></col>");
+    cc_setonop("bankmain_switchtab($com_0, $com_1, $com_6, $com_10, $com_11, $com_12, $com_2, $com_3, $com_23, $com_8, event_op, $int17)");
+    $int17 = calc($int17 + 1);
+}
+$int17 = 0;
+while ($int17 <= 9) {
+    cc_create($com_10, ^iftype_rectangle, $int16);
+    $int16 = calc($int16 + 1);
+    cc_setsize(0, 32);
+    cc_setfill(true);
+    cc_settrans(255);
+    $int17 = calc($int17 + 1);
+}
+~bankmain_build($com_0, $com_1, $com_6, $com_10, $com_11, $com_12, $com_2, $com_3, $com_23, $com_8);
+if_setoninvtransmit("bankmain_build($com_0, $com_1, $com_6, $com_10, $com_11, $com_12, $com_2, $com_3, $com_23, $com_8){inv_95}", $com_10);
+if_setonvartransmit("bankmain_build($com_0, $com_1, $com_6, $com_10, $com_11, $com_12, $com_2, $com_3, $com_23, $com_8){varplayer_304, varplayer_115, varplayer_867, varplayer_1052, varplayer_1053}", $com_10);
