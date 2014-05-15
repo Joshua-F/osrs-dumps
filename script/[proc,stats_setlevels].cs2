@@ -3,7 +3,17 @@
 cc_settext(tostring(stat($stat0)));
 def_int $int2 = stat_base($stat0);
 .cc_settext(tostring($int2));
+def_int $int3 = stat_xp($stat0);
 def_string $string1 = ",";
-def_string $string2 = "<$string0> XP: <~tostring_spacer(stat_xp($stat0), $string1)><br>Next level at: <~tostring_spacer(enum(int, int, enum_256, calc($int2 + 1)), $string1)>";
-if_setonmouserepeat("addtooltip(event_com, interface_320:com29, $string2, calc(25 / 5), 190)", $component1);
+def_string $string2 = "<$string0> XP: <~tostring_spacer($int3, $string1)>";
+def_int $int4 = 0;
+if (%varplayerbit_4181 = 0) {
+    if ($int2 < 99) {
+        $int4 = enum(int, int, enum_256, calc($int2 + 1));
+        $string2 = append($string2, "<br>Next level at: <~tostring_spacer($int4, $string1)><br>Remaining XP: <~tostring_spacer(calc($int4 - $int3), $string1)>");
+    }
+} else {
+    $string2 = append($string2, "<br>Next level at: <~tostring_spacer(enum(int, int, enum_256, calc($int2 + 1)), $string1)>");
+}
+if_setonmouserepeat("addtooltip(event_com, interface_320:com28, $string2, calc(25 / 5), 190)", $component1);
 %varclient_2 = 0;
