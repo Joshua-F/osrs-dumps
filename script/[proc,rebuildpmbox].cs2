@@ -1,72 +1,79 @@
 // 89
-[proc,rebuildpmbox]
-def_int $int0 = 330;
-def_int $int1 = if_getwidth(interface_548:com_106);
-def_int $int2 = 0;
-def_component $component3 = enum(int, component, enum_580, $int2);
-def_int $int4 = 0;
+[proc,rebuildpmbox](int $int0)
+def_int $int1 = 330;
+def_int $int2 = if_getwidth(interface_548:com_106);
+def_int $int3 = 0;
+def_component $component4 = enum(int, component, enum_580, $int3);
+def_int $int5 = 0;
 def_string $string0 = "";
 if (reboottimer > 0) {
-    $int4 = calc(reboottimer / 50 % 60);
-    if ($int4 < 10) {
-        $string0 = "<col=ffff00>System update in: <tostring(calc(reboottimer / 3000))>:0<tostring($int4)>";
+    $int5 = calc(reboottimer / 50 % 60);
+    if ($int5 < 10) {
+        $string0 = "<col=ffff00>System update in: <tostring(calc(reboottimer / 3000))>:0<tostring($int5)>";
     } else {
-        $string0 = "<col=ffff00>System update in: <tostring(calc(reboottimer / 3000))>:<tostring($int4)>";
+        $string0 = "<col=ffff00>System update in: <tostring(calc(reboottimer / 3000))>:<tostring($int5)>";
     }
-    $int0 = calc($int0 - ~script199($string0, $int2, $component3, interface_548:com_106, $int1, 0, 13, $int0, 1));
-    $int2 = calc($int2 + 1);
-    if_clearops($component3);
-    if_setsize(0, 0, $component3);
-    $component3 = enum(int, component, enum_580, $int2);
+    $int1 = calc($int1 - ~script199($string0, $int3, $component4, interface_548:com_106, $int2, 0, 13, $int1, 1));
+    if_clearops($component4);
+    if_setsize(0, 0, $component4);
+    $int3 = calc($int3 + 1);
+    $component4 = enum(int, component, enum_580, $int3);
 }
-if (%varclient_55 > calc(clientclock - 3000) & string_length(%varclientstring_26) > 0) {
-    $int0 = calc($int0 - ~script199("<col=ffff00><%varclientstring_26></col>", $int2, $component3, interface_548:com_106, $int1, 0, 13, $int0, 1));
-    $int2 = calc($int2 + 1);
-    if_clearops($component3);
-    if_setsize(0, 0, $component3);
-    $component3 = enum(int, component, enum_580, $int2);
+def_int $int6 = -1;
+def_int $int7 = -1;
+def_string $string1 = "";
+def_string $string2 = "";
+if (%varclient_55 > calc(clientclock - 3000) & chat_gethistorylength(^chattype_broadcast) > 0) {
+    $int6, $int7, $string1, $string2, $string0 = chat_gethistory_bytypeandline(^chattype_broadcast, 0);
+    if ($int6 ! -1) {
+        $int1 = calc($int1 - ~script199("<col=ffff00><$string0></col>", $int3, $component4, interface_548:com_106, $int2, 0, 13, $int1, 1));
+        if_clearops($component4);
+        if_setsize(0, 0, $component4);
+        $int3 = calc($int3 + 1);
+        $component4 = enum(int, component, enum_580, $int3);
+    }
 }
-def_int $int5 = 0;
-def_int $chattype6 = ^chattype_gamemessage;
+$int6 = $int0;
+def_int $chattype8 = ^chattype_gamemessage;
 if (%varplayer_287 = 1) {
-    while ($int5 < 100 & $component3 ! null & $int0 >= 278) {
-        if (~pm_filtertest($int5) = true) {
-            $chattype6 = chat_gethistorytype($int5);
-            if ($chattype6 = ^chattype_privatechat | $chattype6 = ^chattype_modprivatechat) {
-                $int0 = calc($int0 - ~script203("From <chat_gethistoryname($int5)>:", chat_gethistorymessage($int5), $int2, $component3, interface_548:com_106, $int1, 0, 13, $int0, 1));
-            } else if ($chattype6 = ^chattype_privatechatout) {
-                $int0 = calc($int0 - ~script203("To <chat_gethistoryname($int5)>:", chat_gethistorymessage($int5), $int2, $component3, interface_548:com_106, $int1, 0, 13, $int0, 1));
+    while ($int6 ! -1 & $component4 ! null & $int1 >= 278) {
+        $chattype8, $int7, $string1, $string2, $string0 = chat_gethistory_byuid($int6);
+        if (~pm_filtertest($chattype8, $string1) = true) {
+            if ($chattype8 = ^chattype_privatechat | $chattype8 = ^chattype_modprivatechat) {
+                $int1 = calc($int1 - ~script203("From <$string1>:", $string0, $int3, $component4, interface_548:com_106, $int2, 0, 13, $int1, 1));
+            } else if ($chattype8 = ^chattype_privatechatout) {
+                $int1 = calc($int1 - ~script203("To <$string1>:", $string0, $int3, $component4, interface_548:com_106, $int2, 0, 13, $int1, 1));
             } else {
-                $int0 = calc($int0 - ~script199(chat_gethistorymessage($int5), $int2, $component3, interface_548:com_106, $int1, 0, 13, $int0, 1));
+                $int1 = calc($int1 - ~script199($string0, $int3, $component4, interface_548:com_106, $int2, 0, 13, $int1, 1));
             }
-            if_clearops($component3);
-            if ($chattype6 = ^chattype_privatechat | $chattype6 = ^chattype_privatechatout | $chattype6 = ^chattype_modprivatechat) {
-                if_setopbase("<col=ffffff><chat_gethistoryname($int5)>", $component3);
-                if (friend_test(chat_gethistoryname($int5)) = true) {
-                    if_setop(8, "Message", $component3);
+            if_clearops($component4);
+            if ($chattype8 = ^chattype_privatechat | $chattype8 = ^chattype_privatechatout | $chattype8 = ^chattype_modprivatechat) {
+                if_setopbase("<col=ffffff><$string1>", $component4);
+                if (friend_test($string1) = true) {
+                    if_setop(8, "Message", $component4);
                 } else {
-                    if_setop(8, "Add friend", $component3);
-                    if_setop(9, "Add ignore", $component3);
+                    if_setop(8, "Add friend", $component4);
+                    if_setop(9, "Add ignore", $component4);
                 }
-                if_setop(10, "Report", $component3);
+                if_setop(10, "Report", $component4);
             }
-            $int2 = calc($int2 + 1);
-            $component3 = enum(int, component, enum_580, $int2);
+            $int3 = calc($int3 + 1);
+            $component4 = enum(int, component, enum_580, $int3);
         }
-        $int5 = calc($int5 + 1);
+        $int6 = chat_getprevuid($int6);
     }
 }
-while ($component3 ! null) {
-    if_clearops($component3);
-    if_setsize(0, 0, $component3);
-    if (cc_find(interface_548:com_106, calc($int2 * 2)) = ^true) {
+while ($component4 ! null) {
+    if_clearops($component4);
+    if_setsize(0, 0, $component4);
+    if (cc_find(interface_548:com_106, calc($int3 * 2)) = ^true) {
         cc_settext("");
         cc_sethide(true);
     }
-    if (cc_find(interface_548:com_106, calc($int2 * 2 + 1)) = ^true) {
+    if (cc_find(interface_548:com_106, calc($int3 * 2 + 1)) = ^true) {
         cc_settext("");
         cc_sethide(true);
     }
-    $int2 = calc($int2 + 1);
-    $component3 = enum(int, component, enum_580, $int2);
+    $int3 = calc($int3 + 1);
+    $component4 = enum(int, component, enum_580, $int3);
 }
