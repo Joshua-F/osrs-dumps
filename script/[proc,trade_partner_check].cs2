@@ -1,22 +1,19 @@
 // 210
-[proc,trade_partner_check](int $int0)(boolean)
+[proc,trade_partner_check](int $chattype0, string $string0)(boolean)
 if (%varclient_41 ! 5) {
     return(false);
 }
 if (string_length(%varclientstring_25) <= 0) {
     return(false);
 }
-def_int $chattype1 = chat_gethistorytype($int0);
-def_string $string0 = "";
 def_string $string1 = "";
-if ($chattype1 = ^chattype_publicchat | $chattype1 = ^chattype_modchat | $chattype1 = ^chattype_privatechat | $chattype1 = ^chattype_privatechatout | $chattype1 = ^chattype_modprivatechat | $chattype1 = ^chattype_friendschat) {
-    $string0 = chat_gethistoryname($int0);
+if ($chattype0 = ^chattype_publicchat | $chattype0 = ^chattype_modchat | $chattype0 = ^chattype_privatechat | $chattype0 = ^chattype_privatechatout | $chattype0 = ^chattype_modprivatechat | $chattype0 = ^chattype_friendschat) {
     $string1 = removetags($string0);
     if (compare($string1, removetags(chat_playername)) = 0) {
         return(true);
     }
     if (compare($string1, removetags(%varclientstring_25)) = 0) {
-        if ($chattype1 = ^chattype_modchat | $chattype1 = ^chattype_modprivatechat) {
+        if ($chattype0 = ^chattype_modchat | $chattype0 = ^chattype_modprivatechat) {
             return(true);
         }
         if (chat_getfilter_trade = ^chatfilter_on) {
