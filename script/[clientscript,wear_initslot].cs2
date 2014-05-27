@@ -1,0 +1,18 @@
+// 544
+[clientscript,wear_initslot](component $component0, int $int1)
+cc_deleteall($component0);
+cc_create($component0, ^iftype_graphic, 0);
+cc_setposition(0, 0);
+cc_setsize(36, 36);
+cc_setgraphic("miscgraphics,0");
+cc_create($component0, ^iftype_graphic, 1);
+cc_setsize(36, 32);
+cc_setposition(2, 2);
+cc_setgraphicshadow(0x333333);
+cc_setoutline(1);
+.cc_create($component0, ^iftype_graphic, 2);
+.cc_setsize(32, 32);
+.cc_setposition(2, 2);
+.cc_setgraphic(enum(int, graphic, enum_904, $int1));
+~wear_updateslot($component0, $int1);
+if_setoninvtransmit("wear_updateslot($component0, $int1, cc_getid, .cc_getid){inv_94}", $component0);
