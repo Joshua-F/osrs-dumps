@@ -1,6 +1,5 @@
 // 91
-[proc,pm_filtertest](int $int)(boolean)
-def_int $chattype = chat_gethistorytype($int);
+[proc,pm_filtertest](int $chattype, string $string)(boolean)
 if ($chattype = ^chattype_modprivatechat) {
     return(true);
 }
@@ -8,13 +7,13 @@ if ($chattype = ^chattype_privatechat) {
     if (chat_getfilter_private = ^chatfilter_on) {
         return(true);
     }
-    if (chat_getfilter_private = ^chatfilter_friends & friend_test(chat_gethistoryname($int)) = true) {
+    if (chat_getfilter_private = ^chatfilter_friends & friend_test($string) = true) {
         return(true);
     }
     return(false);
 }
 if ($chattype = ^chattype_loginlogoutnotification | $chattype = ^chattype_privatechatout) {
-    if (chat_getfilter_private < 2) {
+    if (chat_getfilter_private ! ^chatfilter_off) {
         return(true);
     }
     return(false);

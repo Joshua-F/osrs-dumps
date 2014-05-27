@@ -1,16 +1,13 @@
 // 210
-[proc,trade_partner_check](int $int)(boolean)
+[proc,trade_partner_check](int $chattype, string $string0)(boolean)
 if (%varclient_41 ! 5) {
     return(false);
 }
 if (string_length(%varclientstring_25) <= 0) {
     return(false);
 }
-def_int $chattype = chat_gethistorytype($int);
-def_string $string0 = "";
 def_string $string1 = "";
 if ($chattype = ^chattype_publicchat | $chattype = ^chattype_modchat | $chattype = ^chattype_privatechat | $chattype = ^chattype_privatechatout | $chattype = ^chattype_modprivatechat | $chattype = ^chattype_friendschat) {
-    $string0 = chat_gethistoryname($int);
     $string1 = removetags($string0);
     if (compare($string1, removetags(chat_playername)) = 0) {
         return(true);

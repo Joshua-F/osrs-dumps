@@ -1,16 +1,15 @@
 // 193
-[proc,panetest](int $int)(boolean)
+[proc,panetest](int $chattype, string $string)(boolean)
 if (%varclient_41 = 0) {
     return(true);
 }
-def_int $chattype = chat_gethistorytype($int);
 if ($chattype = null) {
     return(false);
 }
 if (%varclient_41 = 1 & enum(int, boolean, enum_892, $chattype) = true) {
     return(true);
 }
-if (%varclient_41 = 2 & ($chattype = ^chattype_modchat | $chattype = ^chattype_publicchat)) {
+if (%varclient_41 = 2 & ($chattype = ^chattype_modchat | $chattype = ^chattype_publicchat | $chattype = ^chattype_autotyper | $chattype = ^chattype_modautotyper)) {
     return(true);
 }
 if (%varclient_41 = 3 & ($chattype = ^chattype_privatechat | $chattype = ^chattype_loginlogoutnotification | $chattype = ^chattype_privatechatout | $chattype = ^chattype_modprivatechat)) {
@@ -23,7 +22,7 @@ if (%varclient_41 = 5) {
     if ($chattype = ^chattype_tradereq | $chattype = ^chattype_chalreq_trade | $chattype = ^chattype_trade) {
         return(true);
     }
-    if (~trade_partner_check($int) = true) {
+    if (~trade_partner_check($chattype, $string) = true) {
         return(true);
     }
 }
