@@ -1,0 +1,21 @@
+// 565
+[proc,clanwars_view_setbutton](component $component, int $int1, int $int2, model $model)
+if (cc_find($component, 0) = true & .cc_find($component, 1) = true) {
+    ~clanwars_view_updatebutton($component, $int1, $int2, $model);
+    return;
+}
+def_int $int4 = if_getwidth($component);
+def_int $int5 = if_getheight($component);
+cc_deleteall($component);
+cc_create($component, ^iftype_rectangle, 0);
+cc_setsize($int4, $int5);
+cc_setposition(0, 0);
+cc_setfill(true);
+cc_setcolour(^white);
+cc_settrans(255);
+.cc_create($component, ^iftype_model, 1);
+.cc_setsize($int4, $int5);
+.cc_setposition(0, 0);
+.cc_setmodelangle(0, 150, 80, 0, 0, 1500);
+.cc_setmodelanim(seq_2657);
+~clanwars_view_updatebutton($component, $int1, $int2, $model);
