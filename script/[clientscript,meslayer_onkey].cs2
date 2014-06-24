@@ -30,6 +30,7 @@ if ($key0 = ^key_return) {
                     ~rebuildpmbox($int2);
                 }
                 chat_sendprivate(%varclientstring_23, %varclientstring_22);
+                %varclient_61 = clientclock;
             }
         } else if (%varclient_5 = 7) {
             resume_countdialog(~script212(%varclientstring_22));
@@ -48,10 +49,9 @@ if ($key0 = ^key_return) {
             %varclientstring_27 = lowercase(%varclientstring_27);
             ~rebuildchatbox(~script553);
         } else if (%varclient_5 = 13) {
-            %varclientstring_28 = %varclientstring_22;
-            if (string_length(%varclientstring_28) > 0) {
-                if_setontimer("chat_autotyper(event_com, clientclock)", interface_548:com8);
-            }
+            %varclientstring_28, %varclient_62 = %varclientstring_22, 0;
+            ~chat_autotyper_updateop;
+            if_setontimer("chat_autotyper(event_com, true)", interface_548:com8);
         } else if (%varclient_5 = 11) {
             ~meslayer_close(0);
             return;
