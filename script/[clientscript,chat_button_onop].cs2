@@ -7,6 +7,22 @@ if ($int0 = 1) {
     ~redraw_chat_buttons;
     ~rebuildchatbox($int2);
     ~rebuildpmbox($int2);
+} else if ($int0 = 2) {
+    if ($int1 = 2) {
+        ~chat_set_filter($int1, ^chatfilter_autochat);
+        ~redraw_chat_buttons;
+        ~rebuildchatbox($int2);
+        ~rebuildpmbox($int2);
+    } else {
+        if (%varplayerbit_26 = 0) {
+            %varplayerbit_26 = 1;
+        } else {
+            %varplayerbit_26 = 0;
+        }
+        ~redraw_chat_buttons;
+        ~rebuildchatbox($int2);
+        ~rebuildpmbox($int2);
+    }
 } else if ($int0 = 3) {
     ~chat_set_filter($int1, ^chatfilter_on);
     ~redraw_chat_buttons;
@@ -23,12 +39,7 @@ if ($int0 = 1) {
     ~rebuildchatbox($int2);
     ~rebuildpmbox($int2);
 } else if ($int1 = 2) {
-    if ($int0 = 2) {
-        ~chat_set_filter($int1, ^chatfilter_autochat);
-        ~redraw_chat_buttons;
-        ~rebuildchatbox($int2);
-        ~rebuildpmbox($int2);
-    } else if ($int0 = 6) {
+    if ($int0 = 6) {
         ~chat_set_filter($int1, ^chatfilter_hide);
         ~redraw_chat_buttons;
         ~rebuildchatbox($int2);
