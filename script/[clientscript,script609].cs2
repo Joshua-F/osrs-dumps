@@ -1,0 +1,28 @@
+// 609
+[clientscript,script609](int $rgb0, int $settextalignh1, graphic $graphic2, fontmetrics $fontmetrics3, int $int4, int $int5, component $component6, string $string0)
+if (if_hassub(interface_548:com115) = false) {
+    return;
+}
+def_int $int7 = if_getwidth($component6);
+def_int $int8 = 0;
+def_int $int9 = 0;
+def_string $string1 = "";
+$string1, $string0 = ~script632($string0);
+while (string_length($string1) > 0) {
+    $int8 = calc(paraheight($string1, $int7, $fontmetrics3) * $int4 + $int5);
+    cc_create($component6, ^iftype_text, %varclient_43);
+    %varclient_43 = calc(%varclient_43 + 1);
+    cc_setposition(0, %varclient_49);
+    cc_setsize($int7, $int8);
+    cc_setcolour($rgb0);
+    cc_settextfont($graphic2);
+    cc_settextalign($settextalignh1, ^settextalign_top, 0);
+    cc_settextshadow(true);
+    cc_settext($string1);
+    %varclient_49 = calc(%varclient_49 + $int8 + 3);
+    $int9 = 1;
+    $string1, $string0 = ~script632($string0);
+}
+if ($int9 = 1) {
+    %varclient_49 = calc(%varclient_49 + 3);
+}
