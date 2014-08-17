@@ -1,4 +1,7 @@
 // 123
-[clientscript,friend_init]
-if_setonfriendtransmit("friend_transmit", interface_550:com_1);
-~friend_update;
+[clientscript,friend_init](component $com_1, component $com_3, component $com_4, component $com_9, component $com_10)
+if_settext("Friends List - World <tostring(map_world)>", $com_1);
+cc_deleteall($com_4);
+~scrollbar_vertical($com_4, $com_3, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~friend_update($com_3, $com_4, $com_9, $com_10);
+if_setonfriendtransmit("friend_update($com_3, $com_4, $com_9, $com_10)", $com_3);
