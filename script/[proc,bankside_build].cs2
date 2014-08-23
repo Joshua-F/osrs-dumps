@@ -1,12 +1,32 @@
 // 296
-[proc,bankside_build](component $component0)
-def_int $int1 = calc((42 - 36) * 3 - 2);
-def_int $int2 = calc((36 - 32) * 2);
-def_int $int3 = inv_size(inv_93);
-while ($int3 > 0) {
-    $int3 = calc($int3 - 1);
-    if (cc_find($component0, $int3) = ^true) {
-        ~bankside_drawitem(inv_getobj(inv_93, $int3), inv_getnum(inv_93, $int3), $component0);
-        cc_setposition(calc($int1 + $int3 % 4 * 42), calc($int2 + $int3 / 4 * 36));
+[proc,bankside_build](component $component0, component $component1, component $component2, component $component3)
+def_int $int4 = 0;
+def_int $int5 = inv_size(inv_516);
+while ($int5 > 0 & $int4 = 0) {
+    $int5 = calc($int5 - 1);
+    if (inv_getobj(inv_516, $int5) ! null) {
+        $int4 = 1;
+    }
+}
+cc_deleteall($component2);
+def_int $int6 = 0;
+def_int $int7 = calc((42 - 36) * 3 - 2);
+def_int $int8 = calc((36 - 32) * 2);
+def_obj $obj9 = null;
+$int5 = inv_size(inv_93);
+while ($int5 > 0) {
+    $int5 = calc($int5 - 1);
+    if (cc_find($component1, $int5) = ^true) {
+        $obj9 = inv_getobj(inv_93, $int5);
+        ~bankside_drawitem($obj9, inv_getnum(inv_93, $int5), $component1, $component2, $int4, $component0, $component3);
+        cc_setposition(calc($int7 + $int5 % 4 * 42), calc($int8 + $int5 / 4 * 36));
+        if ($obj9 = obj_11941 & $int4 = 1) {
+            .cc_create($component2, ^iftype_graphic, $int6);
+            $int6 = calc($int6 + 1);
+            .cc_setsize(34, 34);
+            .cc_setposition(cc_getx, cc_gety);
+            .cc_setgraphic(prayerglow);
+            .cc_settrans(180);
+        }
     }
 }
