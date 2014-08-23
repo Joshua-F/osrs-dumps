@@ -1,0 +1,19 @@
+// 494
+[clientscript,pvp_icons_killdeathratio]
+def_int $int0 = 0;
+def_int $int1 = 0;
+def_int $int2 = 0;
+if (%varplayerbit_4143 = 0) {
+    if_sethide(true, interface_90:com6);
+    return;
+} else {
+    if (%varplayer_1102 = 0) {
+        if_settext("Kills:<tostring(%varplayer_1103)><br>Deaths:<tostring(0)><br>K/D Ratio:<tostring(0)>", interface_90:com5);
+        return;
+    }
+    $int0 = calc(%varplayer_1103 * 10 / %varplayer_1102);
+    $int1 = calc($int0 / 10);
+    $int2 = calc($int0 % 10);
+    if_settext("Kills: <tostring(%varplayer_1103)><br>Deaths: <tostring(%varplayer_1102)><br>K/D Ratio: <tostring($int1)>.<tostring($int2)>", interface_90:com5);
+    return;
+}
