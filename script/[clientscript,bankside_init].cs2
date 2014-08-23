@@ -1,18 +1,23 @@
 // 294
-[clientscript,bankside_init](component $com_0)
-cc_deleteall($com_0);
-def_int $int1 = 0;
-def_int $int2 = inv_size(inv_93);
-while ($int1 < $int2) {
-    cc_create($com_0, ^iftype_graphic, $int1);
+[clientscript,bankside_init](component $com_0, component $com_1, component $com_2, component $com_3, component $com_4, component $com_12, component $com_7)
+cc_deleteall($com_3);
+def_int $int7 = 0;
+def_int $int8 = inv_size(inv_93);
+while ($int7 < $int8) {
+    cc_create($com_3, ^iftype_graphic, $int7);
     cc_setsize(36, 32);
     cc_setgraphicshadow(0x333333);
     cc_setoutline(1);
     cc_setdragdeadzone(5);
     cc_setdragdeadtime(5);
     cc_sethide(false);
-    $int1 = calc($int1 + 1);
+    $int7 = calc($int7 + 1);
 }
-~bankside_build($com_0);
-if_setoninvtransmit("bankside_build(event_com){inv_93}", $com_0);
-if_setonvartransmit("bankside_build(event_com){varplayer_304}", $com_0);
+~bankside_build($com_1, $com_3, $com_2, $com_4);
+if_setoninvtransmit("bankside_build($com_1, $com_3, $com_2, $com_4){inv_93, inv_516}", $com_1);
+if_setonvartransmit("bankside_build($com_1, $com_3, $com_2, $com_4){varplayer_304}", $com_1);
+~bankside_lootingbag_draw($com_12);
+if_setoninvtransmit("bankside_lootingbag_draw($com_12){inv_516}", $com_4);
+~bankside_switchview($com_1, $com_4);
+if_setonvartransmit("bankside_switchview(-1, $com_1, $com_4, -1){varplayer_115}", $com_0);
+if_setonop("bankside_switchview(event_op, $com_1, $com_4, 0)", $com_7);
