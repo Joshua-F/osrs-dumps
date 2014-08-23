@@ -1,0 +1,50 @@
+// 497
+[proc,wilderness_lootingbag_draw](inv $inv0)
+cc_deleteall(interface_81:com7);
+def_int $int1 = inv_size($inv0);
+def_obj $obj2 = null;
+def_int $int3 = 0;
+def_int $int4 = 0;
+while ($int4 < $int1) {
+    cc_create(interface_81:com7, ^iftype_graphic, $int4);
+    $obj2 = inv_getobj($inv0, $int4);
+    if ($obj2 ! null) {
+        $int3 = calc($int3 + 1);
+        cc_sethide(false);
+        cc_setsize(36, 32);
+        cc_setposition(calc($int4 % 4 * (36 + 8)), calc($int4 / 4 * (32 + 1)));
+        cc_setoutline(1);
+        cc_setgraphicshadow(0x333333);
+        cc_setobject($obj2, inv_getnum($inv0, $int4));
+        if ($inv0 = inv_93) {
+            if ($obj2 = obj_11941) {
+                cc_settrans(150);
+            } else {
+                cc_settrans(0);
+                cc_setonop("cc_settrans_temporarily(event_com, event_comsubid, 150, 0)");
+            }
+            cc_setop(1, "Store-1");
+            cc_setop(2, "Store-5");
+            cc_setop(3, "Store-All");
+            cc_setop(4, "Store-X");
+            cc_setop(9, "Examine");
+        } else {
+            cc_settrans(0);
+            cc_setop(10, "Examine");
+        }
+        cc_setopbase("<col=ff9040><oc_name($obj2)>");
+    } else {
+        cc_sethide(true);
+    }
+    $int4 = calc($int4 + 1);
+}
+if ($inv0 = inv_516 & $int3 <= 0) {
+    cc_create(interface_81:com7, ^iftype_text, $int4);
+    cc_setposition(0, 0);
+    cc_setsize(if_getwidth(interface_81:com7), if_getheight(interface_81:com7));
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    cc_settextfont(p12_full);
+    cc_settextshadow(true);
+    cc_setcolour(0xff981f);
+    cc_settext("The bag is empty.");
+}
