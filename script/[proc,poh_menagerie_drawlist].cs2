@@ -1,0 +1,45 @@
+// 641
+[proc,poh_menagerie_drawlist](component $component0, component $component1, int $int2)
+cc_deleteall($component0);
+def_int $int3 = if_getwidth($component0);
+def_int $int4 = if_getheight($component0);
+def_int $int5 = calc(($int3 - 36 * 6) / 5 + 36);
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_int $int8 = 0;
+while ($int8 <= 13) {
+    cc_create($component0, ^iftype_graphic, $int8);
+    if (testbit(%varplayerbit_4353, $int8) = ^true) {
+        $int7 = ~poh_menagerie_drawpet(enum(int, namedobj, enum_985, $int8), $int5, $int6);
+        $int6 = calc($int6 + 1);
+    } else {
+        cc_sethide(true);
+    }
+    $int8 = calc($int8 + 1);
+}
+def_obj $obj9 = null;
+def_int $int10 = 0;
+def_int $int11 = inv_size(inv_517);
+while ($int10 < $int11) {
+    cc_create($component0, ^iftype_graphic, $int8);
+    $obj9 = inv_getobj(inv_517, $int10);
+    if ($obj9 ! null) {
+        $int7 = ~poh_menagerie_drawpet($obj9, $int5, $int6);
+        $int6 = calc($int6 + 1);
+    } else {
+        cc_sethide(true);
+    }
+    $int8, $int10 = calc($int8 + 1), calc($int10 + 1);
+}
+if ($int6 > 0) {
+    $int7 = calc($int7 + 32);
+}
+if ($int7 > $int4) {
+    if_setscrollsize(0, $int7, $component0);
+    if_setscrollpos(0, $int2, $component0);
+} else {
+    $int7 = 0;
+    if_setscrollsize(0, 0, $component0);
+    if_setscrollpos(0, 0, $component0);
+}
+~scrollbar_resize($component1, $component0, $int7);
