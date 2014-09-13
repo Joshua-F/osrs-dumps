@@ -1,0 +1,53 @@
+// 637
+[proc,pet_insurance_drawlist](component $com_14, component $component, int $int2)
+cc_deleteall($com_14);
+cc_deleteall($component);
+def_int $int3 = if_getwidth($com_14);
+def_int $int4 = if_getheight($com_14);
+def_int $int5 = calc(($int3 - 36 * 7) / 6 + 36);
+def_int $int6 = 0;
+def_obj $obj = null;
+def_int $int8 = 0;
+def_int $int9 = 0;
+while ($int9 <= 13) {
+    cc_create($com_14, ^iftype_graphic, $int9);
+    if (testbit($int2, $int9) = ^true) {
+        $obj = enum(int, namedobj, enum_985, $int9);
+        cc_setsize(36, 32);
+        $int8 = calc(40 * ($int6 / 7));
+        cc_setposition(calc($int5 * ($int6 % 7)), $int8);
+        cc_setobject($obj, 1);
+        cc_setgraphicshadow(0x333333);
+        cc_setoutline(1);
+        if ($com_14 = interface_148:com_14) {
+            cc_setop(1, "Reclaim");
+            cc_setonop("pet_insurance_op(event_op, event_com, event_comsubid)");
+        }
+        cc_setop(10, "Examine");
+        cc_setopbase("<col=ff9040><oc_name($obj)></col>");
+        cc_sethide(false);
+        $int6 = calc($int6 + 1);
+    } else {
+        cc_sethide(true);
+    }
+    $int9 = calc($int9 + 1);
+}
+if ($int6 <= 0) {
+    cc_create($com_14, ^iftype_text, $int9);
+    cc_setsize($int3, $int4);
+    cc_setposition(0, 0);
+    cc_settextfont(p12_full);
+    cc_setcolour(^white);
+    cc_settextshadow(true);
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    cc_settext("None");
+} else {
+    $int8 = calc($int8 + 32);
+}
+if_setscrollpos(0, 0, $com_14);
+if ($int8 > $int4) {
+    if_setscrollsize(0, $int8, $com_14);
+} else {
+    if_setscrollsize(0, 0, $com_14);
+}
+~scrollbar_vertical($component, $com_14, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
