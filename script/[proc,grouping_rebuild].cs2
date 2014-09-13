@@ -1,51 +1,72 @@
 // 435
 [proc,grouping_rebuild]
-def_int $int0 = 0;
-def_string $string0 = lowercase(clan_getchatownername);
-def_int $int1 = 1;
-def_string $string1 = enum(int, string, enum_849, $int1);
-while (string_length($string1) > 0) {
-    if (compare($string0, $string1) = 0) {
-        $int0 = $int1;
-        if_settext(enum(int, string, enum_848, $int0), interface_76:com_9);
-    }
-    $int1 = calc($int1 + 1);
-    $string1 = enum(int, string, enum_849, $int1);
-}
-if ($int0 = 0) {
+def_string $string0 = "";
+if (%varclient_64 > 0 & %varclient_64 <= 16) {
+    $string0 = enum(int, string, enum_848, %varclient_64);
+    if_settext($string0, interface_76:com_9);
+} else {
+    %varclient_64 = 0;
     if_settext("Select a minigame...", interface_76:com_9);
 }
-def_int $int2 = enum(int, int, enum_850, $int0);
-if ($int2 = -1) {
+def_int $int0 = enum(int, int, enum_850, %varclient_64);
+if ($int0 = -1) {
     if_settext("---", interface_76:com_23);
     if_setcolour(0xff981f, interface_76:com_23);
 } else {
-    if_settext(tostring($int2), interface_76:com_23);
-    if (map_world = $int2) {
+    if_settext(tostring($int0), interface_76:com_23);
+    if (map_world = $int0) {
         if_setcolour(^green, interface_76:com_23);
     } else {
         if_setcolour(^yellow, interface_76:com_23);
     }
 }
-cc_deleteall(interface_76:com_24);
-def_int $int3 = 0;
-while ($int3 < $int0) {
-    cc_create(interface_76:com_24, ^iftype_rectangle, $int3);
+cc_deleteall(interface_76:com_27);
+def_int $int1 = 0;
+while ($int1 < %varclient_64) {
+    cc_create(interface_76:com_27, ^iftype_rectangle, $int1);
     cc_sethide(true);
-    $int3 = calc($int3 + 1);
+    $int1 = calc($int1 + 1);
 }
-cc_create(interface_76:com_24, ^iftype_rectangle, $int0);
+cc_create(interface_76:com_27, ^iftype_rectangle, %varclient_64);
 cc_setposition(0, 0);
-cc_setsize(if_getwidth(interface_76:com_24), if_getheight(interface_76:com_24));
+cc_setsize(if_getwidth(interface_76:com_27), if_getheight(interface_76:com_27));
 cc_setfill(true);
 cc_settrans(255);
-cc_setop(1, "Teleport");
+if (%varclient_64 = 0) {
+    cc_setop(1, "Teleport");
+} else {
+    cc_setop(1, "Teleport to <col=ff8040><$string0></col>");
+}
+def_int $int2 = 0;
+def_string $string1 = lowercase(clan_getchatownername);
+def_int $int3 = 1;
+def_string $string2 = enum(int, string, enum_849, $int3);
+while (string_length($string2) > 0) {
+    if (compare($string1, $string2) = 0) {
+        $int2 = $int3;
+    }
+    $int3 = calc($int3 + 1);
+    $string2 = enum(int, string, enum_849, $int3);
+}
+if (%varclient_64 = 0) {
+    if_settext("---", interface_76:com_26);
+    if_clearops(interface_76:com_24);
+    if_setonop(null, interface_76:com_24);
+} else if ($int2 ! %varclient_64) {
+    if_settext("Join", interface_76:com_26);
+    if_setop(1, "Join <col=ff8040><$string0></col> channel", interface_76:com_24);
+    if_setonop("grouping_joinchannel(%varclient_64)", interface_76:com_24);
+} else {
+    if_settext("Leave", interface_76:com_26);
+    if_setop(1, "Leave <col=ff8040><$string0></col> channel", interface_76:com_24);
+    if_setonop("grouping_joinchannel(0)", interface_76:com_24);
+}
 def_int $int4 = 0;
 def_int $int5 = 0;
 cc_deleteall(interface_76:com_19);
 cc_deleteall(interface_76:com_13);
-$int3 = 0;
-def_string $string2 = "";
+$int1 = 0;
+def_string $string3 = "";
 def_int $int6 = -1;
 def_int $int7 = 0;
 def_int $int8 = 0;
@@ -58,29 +79,40 @@ if (if_gethide(interface_76:com_15) = true) {
     if_setonclick(null, interface_76:com_0);
     $int5 = if_getwidth(interface_76:com_13);
     if_sethide(false, interface_76:com_10);
-    if ($int0 = 0) {
+    if ($int2 = 0 | %varclient_64 ! $int2) {
         if_setscrollsize(0, 0, interface_76:com_13);
         ~scrollbar_resize(interface_76:com_14, interface_76:com_13, 0);
-        cc_create(interface_76:com_13, ^iftype_text, $int3);
-        $int3 = calc($int3 + 1);
-        cc_setsize($int5, if_getheight(interface_76:com_13));
-        cc_setposition(0, 0);
+        cc_create(interface_76:com_13, ^iftype_text, $int1);
+        $int1 = calc($int1 + 1);
         cc_settextfont(p12_full);
         cc_setcolour(0xff981f);
         cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
         cc_settextshadow(true);
-        cc_settext("You are not currently in a minigame chat-channel.");
+        if ($int2 = 0) {
+            cc_settext("You are not currently in a minigame chat-channel.");
+            cc_setsize($int5, if_getheight(interface_76:com_13));
+            cc_setposition(0, 0);
+            return;
+        }
+        $string1 = "You are currently talking in the <col=ffffff><enum(int, string, enum_848, $int2)></col> channel.";
+        $int10 = calc(paraheight($string1, $int5, p12_full) * 12 + 5);
+        cc_setsize($int5, $int10);
+        cc_setposition(0, calc((if_getheight(interface_76:com_13) - $int10) / 2));
+        cc_settext($string1);
+        cc_setonmouserepeat("cc_colour_swapper(event_com, event_comsubid, 0xffb82f)");
+        cc_setonmouseleave("cc_colour_swapper(event_com, event_comsubid, 0xff981f)");
+        cc_setonclick("grouping_viewchannel($int2)");
         return;
     }
     $int7, $int8 = clan_getchatminkick, clan_getchatrank;
     $int9 = clan_getchatcount;
     while ($int9 > 0) {
         $int9 = calc($int9 - 1);
-        $string2, $int2, $int6 = clan_getchatusername($int9), clan_getchatuserworld($int9), clan_getchatuserrank($int9);
-        cc_create(interface_76:com_13, ^iftype_text, $int3);
-        $int3 = calc($int3 + 1);
-        .cc_create(interface_76:com_13, ^iftype_text, $int3);
-        $int3 = calc($int3 + 1);
+        $string3, $int0, $int6 = clan_getchatusername($int9), clan_getchatuserworld($int9), clan_getchatuserrank($int9);
+        cc_create(interface_76:com_13, ^iftype_text, $int1);
+        $int1 = calc($int1 + 1);
+        .cc_create(interface_76:com_13, ^iftype_text, $int1);
+        $int1 = calc($int1 + 1);
         cc_setsize(calc($int5 - 10), 13);
         .cc_setsize($int5, 13);
         cc_setposition(10, $int10);
@@ -88,7 +120,7 @@ if (if_gethide(interface_76:com_15) = true) {
         cc_settextfont(p11_full);
         .cc_settextfont(p11_full);
         cc_setcolour(^white);
-        if ($int2 = map_world) {
+        if ($int0 = map_world) {
             .cc_setcolour(^green);
         } else {
             .cc_setcolour(^yellow);
@@ -97,32 +129,32 @@ if (if_gethide(interface_76:com_15) = true) {
         .cc_settextalign(^settextalign_right, ^settextalign_top, 0);
         cc_settextshadow(true);
         .cc_settextshadow(true);
-        cc_settext($string2);
-        .cc_settext("World <tostring($int2)>");
-        cc_create(interface_76:com_13, ^iftype_graphic, $int3);
-        $int3 = calc($int3 + 1);
+        cc_settext($string3);
+        .cc_settext("World <tostring($int0)>");
+        cc_create(interface_76:com_13, ^iftype_graphic, $int1);
+        $int1 = calc($int1 + 1);
         cc_setsize(9, 9);
         cc_setposition(0, calc($int10 + 1));
         cc_setgraphic(enum(int, graphic, enum_706, $int6));
-        cc_create(interface_76:com_13, ^iftype_rectangle, $int3);
-        $int3 = calc($int3 + 1);
+        cc_create(interface_76:com_13, ^iftype_rectangle, $int1);
+        $int1 = calc($int1 + 1);
         cc_setsize($int5, 13);
         cc_setposition(0, $int10);
         cc_setfill(true);
         cc_settrans(255);
-        cc_setonop("clan_op($string2, event_op)");
+        cc_setonop("clan_op($string3, event_op)");
         if (clan_isself($int9) = false) {
-            if (friend_test($string2) = true) {
-                cc_setop(9, "Remove friend <$string2>");
-            } else if (ignore_test($string2) = true) {
-                cc_setop(10, "Remove ignore <$string2>");
+            if (friend_test($string3) = true) {
+                cc_setop(9, "Remove friend <$string3>");
+            } else if (ignore_test($string3) = true) {
+                cc_setop(10, "Remove ignore <$string3>");
             } else {
-                cc_setop(7, "Add friend <$string2>");
-                cc_setop(8, "Add ignore <$string2>");
+                cc_setop(7, "Add friend <$string3>");
+                cc_setop(8, "Add ignore <$string3>");
             }
         }
         if ($int8 >= $int7 & $int8 > $int6) {
-            cc_setop(6, "Kick user <$string2>");
+            cc_setop(6, "Kick user <$string3>");
         }
         $int10 = calc($int10 + 13);
     }
@@ -133,8 +165,8 @@ if (if_gethide(interface_76:com_15) = true) {
     } else {
         if_setscrollsize(0, 0, interface_76:com_13);
         ~scrollbar_resize(interface_76:com_14, interface_76:com_13, 0);
-        cc_create(interface_76:com_13, ^iftype_text, $int3);
-        $int3 = calc($int3 + 1);
+        cc_create(interface_76:com_13, ^iftype_text, $int1);
+        $int1 = calc($int1 + 1);
         cc_setsize($int5, if_getheight(interface_76:com_13));
         cc_setposition(0, 0);
         cc_settextfont(p12_full);
@@ -152,38 +184,38 @@ if_setonclick("grouping_dropdown(false)", interface_76:com_0);
 if_sethide(true, interface_76:com_10);
 $int5 = calc(if_getwidth(interface_76:com_19) - 12);
 $int10 = 3;
-cc_create(interface_76:com_19, ^iftype_rectangle, $int3);
-$int3 = calc($int3 + 1);
+cc_create(interface_76:com_19, ^iftype_rectangle, $int1);
+$int1 = calc($int1 + 1);
 cc_setsize($int5, 12);
 cc_setposition(0, 0);
 cc_setcolour(^white);
 cc_setfill(true);
 cc_settrans(230);
 cc_sethide(true);
-$int1 = 1;
-$string1 = enum(int, string, enum_849, $int1);
-while (string_length($string1) > 0) {
-    if ($int0 ! $int1) {
-        .cc_create(interface_76:com_19, ^iftype_text, $int3);
-        $int3 = calc($int3 + 1);
+$int3 = 1;
+$string2 = enum(int, string, enum_849, $int3);
+while (string_length($string2) > 0) {
+    if (%varclient_64 ! $int3) {
+        .cc_create(interface_76:com_19, ^iftype_text, $int1);
+        $int1 = calc($int1 + 1);
         .cc_setsize($int5, 12);
         .cc_setposition(6, $int10);
         .cc_setcolour(0xff981f);
         .cc_settextfont(p11_full);
         .cc_settextalign(^settextalign_left, ^settextalign_top, 0);
         .cc_settextshadow(true);
-        .cc_settext(enum(int, string, enum_848, $int1));
+        .cc_settext(enum(int, string, enum_848, $int3));
         .cc_setonmouseover("grouping_mouseover(event_com, event_comsubid, cc_getid, true)");
         .cc_setonmouseleave("grouping_mouseover(event_com, event_comsubid, cc_getid, false)");
-        .cc_setonclick("grouping_joinchannel($int1)");
+        .cc_setonclick("grouping_viewchannel($int3)");
         $int10 = calc($int10 + 12);
     }
-    $int1 = calc($int1 + 1);
-    $string1 = enum(int, string, enum_849, $int1);
-}
-if ($int0 ! 0) {
-    .cc_create(interface_76:com_19, ^iftype_text, $int3);
     $int3 = calc($int3 + 1);
+    $string2 = enum(int, string, enum_849, $int3);
+}
+if (%varclient_64 ! 0) {
+    .cc_create(interface_76:com_19, ^iftype_text, $int1);
+    $int1 = calc($int1 + 1);
     .cc_setsize($int5, 12);
     .cc_setposition(6, $int10);
     .cc_setcolour(0xff981f);
@@ -193,7 +225,7 @@ if ($int0 ! 0) {
     .cc_settext("(none)");
     .cc_setonmouseover("grouping_mouseover(event_com, event_comsubid, cc_getid, true)");
     .cc_setonmouseleave("grouping_mouseover(event_com, event_comsubid, cc_getid, false)");
-    .cc_setonclick("grouping_joinchannel(-1)");
+    .cc_setonclick("grouping_viewchannel(0)");
     $int10 = calc($int10 + 12);
 }
 if_setscrollsize(0, $int10, interface_76:com_19);
