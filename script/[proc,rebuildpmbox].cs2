@@ -38,13 +38,17 @@ def_int $chattype8 = ^chattype_gamemessage;
 if (%varplayer_287 = 1) {
     while ($int6 ! -1 & $component4 ! null & $int1 >= 278) {
         $chattype8, $int7, $string1, $string2, $string0 = chat_gethistory_byuid($int6);
-        if (~pm_filtertest($chattype8, $string1) = true) {
+        if (~pm_filtertest($chattype8, $string1, $int7) = true) {
             if ($chattype8 = ^chattype_privatechat | $chattype8 = ^chattype_modprivatechat) {
                 $int1 = calc($int1 - ~script203("From <$string1>:", $string0, $int3, $component4, interface_548:com_107, $int2, 0, 13, $int1, 1));
             } else if ($chattype8 = ^chattype_privatechatout) {
                 $int1 = calc($int1 - ~script203("To <$string1>:", $string0, $int3, $component4, interface_548:com_107, $int2, 0, 13, $int1, 1));
             } else {
                 $int1 = calc($int1 - ~script199($string0, $int3, $component4, interface_548:com_107, $int2, 0, 13, $int1, 1));
+                if ($chattype8 = ^chattype_loginlogoutnotification) {
+                    %varclient_65 = calc($int7 + 500 + 1);
+                    if_setontimer("script664", interface_548:com_116);
+                }
             }
             if_clearops($component4);
             if ($chattype8 = ^chattype_privatechat | $chattype8 = ^chattype_privatechatout | $chattype8 = ^chattype_modprivatechat) {
