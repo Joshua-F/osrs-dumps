@@ -1,5 +1,5 @@
 // 91
-[proc,pm_filtertest](int $chattype0, string $string0)(boolean)
+[proc,pm_filtertest](int $chattype0, string $string0, int $int1)(boolean)
 if ($chattype0 = ^chattype_modprivatechat) {
     return(true);
 }
@@ -13,6 +13,9 @@ if ($chattype0 = ^chattype_privatechat) {
     return(false);
 }
 if ($chattype0 = ^chattype_loginlogoutnotification | $chattype0 = ^chattype_privatechatout) {
+    if ($chattype0 = ^chattype_loginlogoutnotification & calc(clientclock - $int1) >= 500) {
+        return(false);
+    }
     if (chat_getfilter_private ! ^chatfilter_off) {
         return(true);
     }
