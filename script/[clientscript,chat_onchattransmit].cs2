@@ -1,0 +1,17 @@
+// 663
+[clientscript,chat_onchattransmit]
+def_int $int0 = ~script553;
+def_int $chattype1 = ^chattype_gamemessage;
+def_int $int2 = -1;
+def_string $string0 = "";
+def_string $string1 = "";
+def_string $string2 = "";
+if (if_hassub(interface_548:com_121) = true) {
+    $chattype1, $int2, $string0, $string1, $string2 = chat_gethistory_byuid($int0);
+    if (enum(int, boolean, enum_892, $chattype1) = true) {
+        ~meslayer_mode1($string2);
+    }
+}
+~rebuildchatbox($int0);
+~rebuildpmbox($int0);
+~chatalerts($int0);
