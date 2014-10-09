@@ -1,5 +1,6 @@
 // 297
 [proc,bankside_drawitem](obj $obj, int $int1, component $component2, component $component3, int $int4, component $component5, component $component6)
+def_string $string = "";
 if ($obj ! null) {
     cc_settrans(0);
     cc_setobject($obj, $int1);
@@ -16,6 +17,10 @@ if ($obj ! null) {
     }
     cc_setop(6, "Deposit-X");
     cc_setop(7, "Deposit-All");
+    $string = enum(obj, string, enum_995, $obj);
+    if (string_length($string) > 0) {
+        cc_setop(9, $string);
+    }
     cc_setop(10, "Examine");
     cc_setopbase("<col=ff9040><oc_name($obj)></col>");
     cc_setondragcomplete("bankside_reorder(event_com, event_comsubid, event_comsubid2, $component3, $component5, $component6)");
