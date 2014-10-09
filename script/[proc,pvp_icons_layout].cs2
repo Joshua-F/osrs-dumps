@@ -2,29 +2,36 @@
 [proc,pvp_icons_layout]
 if (~pvpw_check = true) {
     if (%varclient_53 = true) {
-        if_setposition(471, 239, interface_90:com_1);
-        if_setposition(471, 239, interface_90:com_2);
+        if_setposition(471, 239, interface_90:com_22);
+        if_setposition(471, 239, interface_90:com_23);
     } else {
-        if_setposition(471, 254, interface_90:com_1);
-        if_setposition(471, 254, interface_90:com_2);
+        if_setposition(471, 254, interface_90:com_22);
+        if_setposition(471, 254, interface_90:com_23);
     }
-    if_setposition(458, 265, interface_90:com_3);
-    if_setcolour(0xff981f, interface_90:com_3);
-    if_sethide(false, interface_90:com_4);
+    if_setposition(458, 265, interface_90:com_24);
+    if_setcolour(0xff981f, interface_90:com_24);
+    if_sethide(false, interface_90:com_25);
     ~pvp_icons_comlevelrange(~wilderness_level);
+    if_sethide(true, interface_90:com_1);
 } else {
-    if_setposition(471, 252, interface_90:com_1);
-    if_setposition(471, 252, interface_90:com_2);
-    if_setposition(458, 278, interface_90:com_3);
-    if_setcolour(^yellow, interface_90:com_3);
-    if_sethide(true, interface_90:com_4);
+    if_setposition(471, 252, interface_90:com_22);
+    if_setposition(471, 252, interface_90:com_23);
+    if_setposition(458, 278, interface_90:com_24);
+    if_setcolour(^yellow, interface_90:com_24);
+    if_sethide(true, interface_90:com_25);
     if (~clanwars_ffa_arena(coord) = true) {
         if (~inzone(0_51_74_0_0, 3_52_74_63_23, coord) = true) {
-            if_settrans(0, interface_90:com_2);
+            if_settrans(0, interface_90:com_23);
         } else {
-            if_settrans(255, interface_90:com_2);
+            if_settrans(255, interface_90:com_23);
         }
+        if_sethide(true, interface_90:com_1);
     } else {
-        if_settrans(0, interface_90:com_2);
+        if_settrans(0, interface_90:com_23);
+        if (~target_world = true) {
+            if_sethide(false, interface_90:com_1);
+        } else {
+            if_sethide(true, interface_90:com_1);
+        }
     }
 }
