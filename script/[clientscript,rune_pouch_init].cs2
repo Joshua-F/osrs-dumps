@@ -1,0 +1,46 @@
+// 453
+[clientscript,rune_pouch_init](component $component0, component $component1, component $component2)
+cc_deleteall($component1);
+def_int $int3 = 7;
+cc_create($component1, ^iftype_graphic, 0);
+cc_setsize(36, 32);
+cc_setposition($int3, 25);
+cc_setgraphicshadow(0x333333);
+cc_setoutline(1);
+cc_setdragdeadzone(5);
+cc_setdragdeadtime(5);
+$int3 = calc($int3 + 36 + 20);
+cc_create($component1, ^iftype_graphic, 1);
+cc_setsize(36, 32);
+cc_setposition($int3, 25);
+cc_setgraphicshadow(0x333333);
+cc_setoutline(1);
+cc_setdragdeadzone(5);
+cc_setdragdeadtime(5);
+$int3 = calc($int3 + 36 + 20);
+cc_create($component1, ^iftype_graphic, 2);
+cc_setsize(36, 32);
+cc_setposition($int3, 25);
+cc_setgraphicshadow(0x333333);
+cc_setoutline(1);
+cc_setdragdeadzone(5);
+cc_setdragdeadtime(5);
+~rune_pouch_drawpouch($component1);
+if_setonvartransmit("rune_pouch_drawpouch($component1){varplayer_1139, varplayer_1140}", $component0);
+cc_deleteall($component2);
+$int3 = calc((if_getwidth($component2) - (10 + 7 * 36)) / 6 + 36);
+def_int $int4 = calc((if_getheight($component2) - (30 + 4 * 32)) / 3 + 32);
+def_int $int5 = inv_size(inv_93);
+def_int $int6 = 0;
+while ($int6 < $int5) {
+    cc_create($component2, ^iftype_graphic, $int6);
+    cc_setsize(36, 32);
+    cc_setposition(calc(5 + $int6 % 7 * $int3), calc(25 + $int6 / 7 * $int4));
+    cc_setgraphicshadow(0x333333);
+    cc_setoutline(1);
+    cc_setdragdeadzone(5);
+    cc_setdragdeadtime(5);
+    $int6 = calc($int6 + 1);
+}
+~rune_pouch_drawinventory($component2);
+if_setoninvtransmit("rune_pouch_drawinventory($component2){inv_93}", $component0);
