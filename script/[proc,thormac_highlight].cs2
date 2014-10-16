@@ -1,8 +1,12 @@
 // 332
 [proc,thormac_highlight](component $component0, obj $obj1)
-if (inv_total(inv_93, $obj1) > 0) {
+def_int $int2 = inv_total(inv_93, $obj1);
+if ($obj1 = obj_11787) {
+    $int2 = calc($int2 + inv_total(inv_93, obj_12795));
+}
+if ($int2 > 0) {
     cc_setcolour(^white);
-    if_setonop("script333(event_op)", $component0);
+    if_setonop("opsound(event_op, 2)", $component0);
 } else {
     cc_setcolour(0xaaaaaa);
     if_setonop(null, $component0);
