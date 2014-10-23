@@ -1,0 +1,33 @@
+// 703
+[clientscript,script703](component $component0, int $int1)
+def_int $int2 = 1;
+def_int $int3 = -1;
+if ($int1 = -1) {
+    $int1, $int2, $int3 = 255, 255, -255;
+}
+def_int $int4 = calc(coordx(coord) - coordx(0_46_51_54_4));
+if ($int4 > 12) {
+    $int4 = 12;
+} else if ($int4 < -12) {
+    $int4 = -12;
+}
+def_int $int5 = calc(coordz(coord) - coordz(0_46_51_54_4));
+if ($int5 > 16) {
+    $int5 = 16;
+} else if ($int5 < -16) {
+    $int5 = -16;
+}
+def_int $int6 = invpow(calc(pow($int4, 2) + pow($int5, 2)), 2);
+def_int $int7 = 125;
+if (~inzone(0_25_75_0_0, 3_26_75_63_63, coord) = false) {
+    $int7 = calc(255 - (125 - interpolate(0, $int6, 0, 20, 125)));
+}
+def_int $int8 = calc($int7 - $int1);
+if ($int8 > $int2) {
+    $int8 = $int2;
+} else if ($int8 < $int3) {
+    $int8 = $int3;
+}
+$int1 = calc($int1 + $int8);
+if_settrans($int1, $component0);
+if_setontimer("script703(event_com, $int1)", $component0);
