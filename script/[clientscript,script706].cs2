@@ -1,0 +1,15 @@
+// 706
+[clientscript,script706](component $com_24, component $com_25, component $com_16)
+if_settext("<~tostring_spacer(%varplayer_1144, ",")>,000", $com_25);
+if_settext("$<~tostring_spacer(calc(%varplayer_1144 / (1000000 / 1000)), ",")>", $com_24);
+if_settext("Your maximum possible donation is: <~tostring_spacer(inv_total(inv_93, obj_995), ",")>.", $com_16);
+def_int $int3 = %varplayer_1144;
+if ($int3 > 100000000) {
+    $int3 = 100000000;
+}
+def_int $int4 = interpolate(0, calc($int3 / 1000), 0, 100000, 230);
+if ($int4 < 1) {
+    $int4 = 1;
+}
+if_setsize(72, $int4, interface_229:com_6);
+if_setposition(318, calc(51 + (230 - $int4)), interface_229:com_6);
