@@ -1,0 +1,45 @@
+// 705
+[clientscript,script705](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, string $string0)
+cc_deleteall($component0);
+def_int $int6 = if_getwidth($component0);
+def_int $int7 = if_getheight($component0);
+~create_graphic($component0, 0, tradebacking, 1, 1, calc($int6 - 2), calc($int7 - 2));
+cc_create($component0, ^iftype_text, 1);
+cc_setposition(6, 6);
+cc_setsize(calc($int6 - 12), 24);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+cc_setcolour(^yellow);
+cc_settextfont(quill_oblique_large);
+cc_settext($string0);
+def_int $int8 = calc($int6 - 25);
+def_int $int9 = calc($int7 - 30);
+~create_graphic($component0, 2, "steelborder,0", 0, 0, 25, 30);
+~create_graphic($component0, 3, "steelborder,1", $int8, 0, 25, 30);
+~create_graphic($component0, 4, "steelborder,2", 0, $int9, 25, 30);
+~create_graphic($component0, 5, "steelborder,3", $int8, $int9, 25, 30);
+~create_graphic($component0, 6, "steelborder2,0", 6, 20, calc($int6 - 12), 26);
+$int8, $int9 = calc($int6 - 50), calc($int7 - 60);
+~create_graphic($component0, 7, "miscgraphics,2", -15, 30, 36, $int9);
+~create_graphic($component0, 8, "steelborder2,1", calc($int6 - 21), 30, 36, $int9);
+~create_graphic($component0, 9, "steelborder2,0", 25, -15, $int8, 36);
+~create_graphic($component0, 10, "miscgraphics,3", 25, calc($int7 - 21), $int8, 36);
+def_graphic $graphic10 = "close_buttons,0";
+def_int $int11 = 445;
+def_int $int12 = 1040;
+if (testbit(0, 0) = ^false) {
+    ~create_graphic($component0, 11, $graphic10, calc($int6 - 29), 6, 26, 23);
+    cc_setonmouseleave("cc_graphic_swapper(event_com, event_comsubid, $graphic10)");
+    $graphic10 = "close_buttons,1";
+    cc_setonmouseover("cc_graphic_swapper(event_com, event_comsubid, $graphic10)");
+    cc_setop(1, "Close");
+    cc_setonop("closebutton_click");
+}
+~steelbox($component1, 0);
+~steelbox($component2, 0);
+~steelbox($component3, 0);
+~steelbox($component4, 0);
+if_setonmouseleave("graphic_swapper(interface_229:com_28, tradebacking_light)", interface_229:com_27);
+if_setonmouseover("graphic_swapper(interface_229:com_28, tex_red)", interface_229:com_27);
+~steelbox($component5, 0);
+if_setonmouseleave("graphic_swapper(interface_229:com_3, tradebacking_light)", interface_229:com_2);
+if_setonmouseover("graphic_swapper(interface_229:com_3, tex_red)", interface_229:com_2);
