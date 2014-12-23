@@ -1,13 +1,13 @@
 // 112
-[clientscript,meslayer_onkey](int $key0, char $char1)
+[clientscript,meslayer_onkey](int $key0, char $char1, string $string0)
 if ($key0 = ^key_return) {
     if (%varclient_56 = 1 & string_length(%varclientstring_22) <= 0) {
         if (%varclient_5 = 8) {
             %varclientstring_22 = %varclientstring_128;
-            ~script222;
+            ~script222($string0);
         } else if (%varclient_5 = 10) {
             %varclientstring_22 = %varclientstring_129;
-            ~script222;
+            ~script222($string0);
         }
     }
     ~meslayer_enter;
@@ -23,7 +23,15 @@ if (%varclient_5 = 6 | %varclient_5 = 9 | %varclient_5 = 11) {
 } else if (%varclient_5 = 13) {
     %varclientstring_22 = ~add_to_inputstring(%varclientstring_22, 0, $key0, $char1);
     ~meslayer_mode13_setprompt;
+} else if (%varclient_5 = 14) {
+    if ($key0 = ^key_escape) {
+        resume_objdialog(null);
+        sound_synth(synth_2266, 1, 0);
+        ~meslayer_close(1);
+        return;
+    }
+    %varclientstring_22 = ~add_to_inputstring(%varclientstring_22, 4, $key0, $char1);
 } else {
     %varclientstring_22 = ~add_to_inputstring(%varclientstring_22, 2, $key0, $char1);
 }
-~script222;
+~script222($string0);
