@@ -1,0 +1,32 @@
+// 765
+[clientscript,trade_slot_changed](int $int0, int $int1)
+def_int $int2 = 0;
+def_inv $inv3 = null;
+if ($int0 = 1) {
+    ~script147($int1);
+    if ($int1 < 0) {
+        $int1 = calc(0 - $int1 - 10);
+        $inv3 = enum(int, inv, enum_594, $int2);
+        while ($inv3 ! null) {
+            $int2 = calc($int2 + 1);
+            $inv3 = enum(int, inv, enum_594, $int2);
+        }
+        if (cc_find(interface_335:com32, calc($int2 + $int1)) = ^true) {
+            cc_setontimer("trade_slot_flasher(event_com, event_comsubid, clientclock)");
+        }
+    } else if (cc_find(interface_335:com31, calc(inv_size(inv_90) + $int1)) = ^true) {
+        cc_setontimer("trade_slot_flasher(event_com, event_comsubid, clientclock)");
+    }
+} else if ($int1 < 0) {
+    $int1 = calc(-10 - $int1);
+    $inv3 = enum(int, inv, enum_594, $int2);
+    while ($inv3 ! null) {
+        $int2 = calc($int2 + 1);
+        $inv3 = enum(int, inv, enum_594, $int2);
+    }
+    if (cc_find(interface_335:com26, calc($int2 + $int1)) = ^true) {
+        cc_setontimer("trade_slot_flasher(event_com, event_comsubid, clientclock)");
+    }
+} else if (cc_find(interface_335:com25, calc(inv_size(inv_90) + $int1)) = ^true) {
+    cc_setontimer("trade_slot_flasher(event_com, event_comsubid, clientclock)");
+}
