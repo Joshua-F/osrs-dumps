@@ -1,0 +1,300 @@
+// 768
+[proc,trade_confirm_redraw](int $int0, int $int1, int $int2, int $int3, component $component4, component $component5, component $component6, component $component7)
+if (%varplayerbit_4375 = 1) {
+    if_settext("Trade modified", $component7);
+} else {
+    if_settext("", $component7);
+}
+cc_deleteall($component4);
+cc_deleteall($component5);
+cc_deleteall($component6);
+def_int $int8 = calc(($int0 + $int1 + 1) / 2);
+def_int $int9 = calc(clientclock - 750);
+def_int $int10 = 0;
+def_int $int11 = 0;
+def_int $int12 = 0;
+while ($int12 < $int0) {
+    if (inv_getobj(inv_90, $int12) ! null) {
+        $int10 = calc($int10 + 1);
+    }
+    if (invother_getobj(inv_90, $int12) ! null) {
+        $int11 = calc($int11 + 1);
+    } else if (~script148($int12) > $int9) {
+        $int11 = calc($int11 + 1);
+    }
+    $int12 = calc($int12 + 1);
+}
+$int12 = 0;
+while ($int12 < $int1) {
+    if (inv_getobj(inv_524, $int12) ! null) {
+        $int10 = calc($int10 + 1);
+    }
+    if (invother_getobj(inv_524, $int12) ! null) {
+        $int11 = calc($int11 + 1);
+    } else if (~script148(calc(-10 - $int12)) > $int9) {
+        $int11 = calc($int11 + 1);
+    }
+    $int12 = calc($int12 + 1);
+}
+def_obj $obj13 = null;
+def_string $string0 = "";
+def_int $int14 = $int2;
+def_int $int15 = $int2;
+if ($int10 > $int8) {
+    $int14 = $int3;
+}
+if ($int11 > $int8) {
+    $int15 = $int3;
+}
+def_int $int16 = 0;
+def_int $int17 = 0;
+def_int $int18 = 0;
+def_int $int19 = 0;
+def_int $int20 = 0;
+def_int $int21 = 0;
+def_int $int22 = 0;
+def_int $int23 = 0;
+$int12 = 0;
+while ($int12 < $int0) {
+    $obj13 = inv_getobj(inv_90, $int12);
+    if ($obj13 ! null) {
+        cc_create($component4, ^iftype_text, $int18);
+        cc_setsize($int14, 17);
+        cc_setcolour(0xff9040);
+        cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+        cc_settextshadow(true);
+        $string0 = ~trade_confirm_itemtext($obj13, inv_getnum(inv_90, $int12));
+        if ($int10 > $int8) {
+            if (parawidth($string0, 512, p12_full) > $int3) {
+                cc_settextfont(p11_full);
+            } else {
+                cc_settextfont(p12_full);
+            }
+            if (calc($int18 % 2) = 0) {
+                cc_setposition($int3, calc($int18 / 2 * 12));
+            } else {
+                cc_setposition($int2, calc($int18 / 2 * 12));
+            }
+        } else {
+            if (parawidth($string0, 512, p12_full) > $int2) {
+                cc_settextfont(p11_full);
+            } else if (parawidth($string0, 512, b12_full) > $int2) {
+                cc_settextfont(p12_full);
+            } else {
+                cc_settextfont(b12_full);
+            }
+            cc_setposition($int3, calc($int18 * 12));
+        }
+        cc_settext($string0);
+        $int18 = calc($int18 + 1);
+    }
+    $obj13 = invother_getobj(inv_90, $int12);
+    $int21 = ~script148($int12);
+    if ($obj13 ! null) {
+        cc_create($component5, ^iftype_text, $int19);
+        cc_setsize($int15, 17);
+        cc_setcolour(0xff9040);
+        cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+        cc_settextshadow(true);
+        $string0 = ~trade_confirm_itemtext($obj13, invother_getnum(inv_90, $int12));
+        if ($int11 > $int8) {
+            if (parawidth($string0, 512, p12_full) > $int3) {
+                cc_settextfont(p11_full);
+            } else {
+                cc_settextfont(p12_full);
+            }
+            $int17 = calc($int19 / 2 * 12);
+            if (calc($int19 % 2) = 0) {
+                cc_setposition($int3, $int17);
+                $int16 = 0;
+            } else {
+                cc_setposition($int2, $int17);
+                $int16 = $int3;
+            }
+        } else {
+            if (parawidth($string0, 512, p12_full) > $int2) {
+                cc_settextfont(p11_full);
+            } else if (parawidth($string0, 512, b12_full) > $int2) {
+                cc_settextfont(p12_full);
+            } else {
+                cc_settextfont(b12_full);
+            }
+            $int17 = calc($int19 * 12);
+            cc_setposition($int3, $int17);
+            $int16 = 0;
+        }
+        cc_settext($string0);
+        if ($int21 > $int9) {
+            .cc_create($component6, ^iftype_rectangle, $int20);
+            .cc_setsize($int15, 12);
+            .cc_setposition($int16, $int17);
+            .cc_setcolour(^red);
+            .cc_setfill(true);
+            .cc_settrans(255);
+            .cc_setontimer("trade_slot_flasher(event_com, event_comsubid, $int21)");
+            $int20 = calc($int20 + 1);
+            .cc_create($component6, ^iftype_rectangle, $int20);
+            .cc_setsize($int15, 12);
+            .cc_setposition($int16, $int17);
+            .cc_setcolour(0x990000);
+            .cc_setfill(false);
+            .cc_settrans(255);
+            .cc_setontimer("trade_slot_flasher(event_com, event_comsubid, $int21)");
+            $int20 = calc($int20 + 1);
+        }
+        $int19 = calc($int19 + 1);
+    } else if ($int21 > $int9) {
+        $int22 = calc($int22 + 1);
+        if ($int21 > $int23) {
+            $int23 = $int21;
+        }
+    }
+    $int12 = calc($int12 + 1);
+}
+$int12 = 0;
+while ($int12 < $int1) {
+    $obj13 = inv_getobj(inv_524, $int12);
+    if ($obj13 ! null) {
+        cc_create($component4, ^iftype_text, $int18);
+        cc_setsize($int14, 17);
+        cc_setcolour(0xff9040);
+        cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+        cc_settextshadow(true);
+        $string0 = ~trade_confirm_itemtext($obj13, inv_getnum(inv_524, $int12));
+        if ($int10 > $int8) {
+            if (parawidth($string0, 512, p12_full) > $int3) {
+                cc_settextfont(p11_full);
+            } else {
+                cc_settextfont(p12_full);
+            }
+            if (calc($int18 % 2) = 0) {
+                cc_setposition($int3, calc($int18 / 2 * 12));
+            } else {
+                cc_setposition($int2, calc($int18 / 2 * 12));
+            }
+        } else {
+            if (parawidth($string0, 512, p12_full) > $int2) {
+                cc_settextfont(p11_full);
+            } else if (parawidth($string0, 512, b12_full) > $int2) {
+                cc_settextfont(p12_full);
+            } else {
+                cc_settextfont(b12_full);
+            }
+            cc_setposition($int3, calc($int18 * 12));
+        }
+        cc_settext($string0);
+        $int18 = calc($int18 + 1);
+    }
+    $obj13 = invother_getobj(inv_524, $int12);
+    $int21 = ~script148(calc(-10 - $int12));
+    if ($obj13 ! null) {
+        cc_create($component5, ^iftype_text, $int19);
+        cc_setsize($int15, 17);
+        cc_setcolour(0xff9040);
+        cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+        cc_settextshadow(true);
+        $string0 = ~trade_confirm_itemtext($obj13, invother_getnum(inv_524, $int12));
+        if ($int11 > $int8) {
+            if (parawidth($string0, 512, p12_full) > $int3) {
+                cc_settextfont(p11_full);
+            } else {
+                cc_settextfont(p12_full);
+            }
+            $int17 = calc($int19 / 2 * 12);
+            if (calc($int19 % 2) = 0) {
+                cc_setposition($int3, $int17);
+                $int16 = 0;
+            } else {
+                cc_setposition($int2, $int17);
+                $int16 = $int3;
+            }
+        } else {
+            if (parawidth($string0, 512, p12_full) > $int2) {
+                cc_settextfont(p11_full);
+            } else if (parawidth($string0, 512, b12_full) > $int2) {
+                cc_settextfont(p12_full);
+            } else {
+                cc_settextfont(b12_full);
+            }
+            $int17 = calc($int19 * 12);
+            cc_setposition($int3, $int17);
+            $int16 = 0;
+        }
+        cc_settext($string0);
+        if ($int21 > $int9) {
+            .cc_create($component6, ^iftype_rectangle, $int20);
+            .cc_setsize($int15, 12);
+            .cc_setposition($int16, $int17);
+            .cc_setcolour(^red);
+            .cc_setfill(true);
+            .cc_settrans(255);
+            .cc_setontimer("trade_slot_flasher(event_com, event_comsubid, $int21)");
+            $int20 = calc($int20 + 1);
+            .cc_create($component6, ^iftype_rectangle, $int20);
+            .cc_setsize($int15, 12);
+            .cc_setposition($int16, $int17);
+            .cc_setcolour(0x990000);
+            .cc_setfill(false);
+            .cc_settrans(255);
+            .cc_setontimer("trade_slot_flasher(event_com, event_comsubid, $int21)");
+            $int20 = calc($int20 + 1);
+        }
+        $int19 = calc($int19 + 1);
+    } else if ($int21 > $int9) {
+        $int22 = calc($int22 + 1);
+        if ($int21 > $int23) {
+            $int23 = $int21;
+        }
+    }
+    $int12 = calc($int12 + 1);
+}
+if ($int18 <= 0) {
+    cc_create($component4, ^iftype_text, 0);
+    cc_setsize($int2, 17);
+    cc_setposition($int3, 0);
+    cc_setcolour(^white);
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    cc_settextshadow(true);
+    cc_settext("Absolutely nothing!");
+    cc_settextfont(b12_full);
+    $int18 = calc($int18 + 1);
+}
+if ($int19 <= 0) {
+    cc_create($component5, ^iftype_text, 0);
+    cc_setsize($int2, 17);
+    cc_setposition($int3, 0);
+    cc_setcolour(^white);
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    cc_settextshadow(true);
+    cc_settext("Absolutely nothing!");
+    cc_settextfont(b12_full);
+    $int19 = calc($int19 + 1);
+}
+while ($int22 > 0) {
+    $int22 = calc($int22 - 1);
+    cc_create($component6, ^iftype_rectangle, $int20);
+    $int20 = calc($int20 + 1);
+    .cc_create($component6, ^iftype_rectangle, $int20);
+    $int20 = calc($int20 + 1);
+    cc_setsize($int15, 12);
+    .cc_setsize($int15, 12);
+    if ($int11 > $int8) {
+        if (calc($int19 % 2) = 0) {
+            cc_setposition($int3, calc($int19 / 2 * 12));
+        } else {
+            cc_setposition($int2, calc($int19 / 2 * 12));
+        }
+    } else {
+        cc_setposition(0, calc($int19 * 12));
+    }
+    .cc_setposition(cc_getx, cc_gety);
+    cc_setcolour(^red);
+    .cc_setcolour(0x990000);
+    cc_setfill(true);
+    .cc_setfill(false);
+    cc_settrans(255);
+    .cc_settrans(255);
+    cc_setontimer("trade_slot_flasher(event_com, event_comsubid, $int23)");
+    .cc_setontimer("trade_slot_flasher(event_com, event_comsubid, $int23)");
+    $int19 = calc($int19 + 1);
+}
