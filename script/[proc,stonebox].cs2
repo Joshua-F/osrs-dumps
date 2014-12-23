@@ -1,0 +1,29 @@
+// 713
+[proc,stonebox](component $component0, int $int1)(int)
+def_int $int2 = if_getwidth($component0);
+def_int $int3 = if_getheight($component0);
+def_int $int4 = calc($int2 - 32);
+def_int $int5 = calc($int3 - 32);
+~create_graphic($component0, $int1, "v2_stone_borders,18", 0, 0, 32, 32);
+$int1 = calc($int1 + 1);
+~create_graphic($component0, $int1, "v2_stone_borders,19", $int4, 0, 32, 32);
+$int1 = calc($int1 + 1);
+~create_graphic($component0, $int1, "v2_stone_borders,20", 0, $int5, 32, 32);
+$int1 = calc($int1 + 1);
+~create_graphic($component0, $int1, "v2_stone_borders,21", $int4, $int5, 32, 32);
+$int1 = calc($int1 + 1);
+def_int $int6 = calc($int2 - 64);
+if ($int6 > 0) {
+    ~create_graphic($component0, $int1, "v2_stone_borders,8", 32, -14, $int6, 32);
+    $int1 = calc($int1 + 1);
+    ~create_graphic($component0, $int1, "v2_stone_borders,8", 32, calc($int3 - 20), $int6, 32);
+    $int1 = calc($int1 + 1);
+}
+def_int $int7 = calc($int3 - 64);
+if ($int7 > 0) {
+    ~create_graphic($component0, $int1, "v2_stone_borders,13", -13, 32, 32, $int7);
+    $int1 = calc($int1 + 1);
+    ~create_graphic($component0, $int1, "v2_stone_borders,13", calc($int2 - 20), 32, 32, $int7);
+    $int1 = calc($int1 + 1);
+}
+return($int1);
