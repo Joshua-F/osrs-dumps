@@ -1,0 +1,19 @@
+// 764
+[proc,script764](int $int0, int $int1, component $component, int $int3)
+def_string $string = "1 coin";
+if ($int1 > 0) {
+    if ($int0 > 1) {
+        if (calc(^max_32bit_int / $int1) < $int0) {
+            $string = "<~tostring_spacer($int1, ",")> coins each";
+        } else if ($int1 > 1) {
+            $string = "<~tostring_spacer($int1, ",")> coins each<br>=<~tostring_spacer(calc($int1 * $int0), ",")> total";
+        } else {
+            $string = "<~tostring_spacer($int1, ",")> coin each<br>=<~tostring_spacer($int0, ",")> total";
+        }
+    } else if ($int1 > 1) {
+        $string = "<~tostring_spacer($int1, ",")> coins";
+    }
+    cc_setonmouserepeat("tooltip_mouserepeat(event_com, event_comsubid, $component, $string, 25, $int3)");
+} else {
+    cc_setonmouserepeat(null);
+}
