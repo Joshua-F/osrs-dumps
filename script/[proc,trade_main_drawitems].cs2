@@ -1,0 +1,173 @@
+// 763
+[proc,trade_main_drawitems](int $int0, int $int1, int $int2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10, component $component11)
+if (%varplayerbit_4374 = 1) {
+    if_settext("Trade modified", $component6);
+} else {
+    if_settext("", $component6);
+}
+if (%varplayerbit_4375 = 1) {
+    if_settext("Trade modified", $component10);
+} else {
+    if_settext("", $component10);
+}
+def_int $int12 = if_getwidth(if_getlayer($component4));
+def_boolean $boolean13 = true;
+def_boolean $boolean14 = true;
+def_obj $obj15 = null;
+def_int $int16 = 0;
+def_int $int17 = 0;
+def_string $string0 = "";
+def_int $int18 = 0;
+while ($int18 < $int0) {
+    $int16, $int17 = inv_getnum(inv_524, $int18), ~script735($int18);
+    if (cc_find($component4, $int18) = ^true) {
+        $obj15 = inv_getobj(inv_524, $int18);
+        if ($obj15 ! null) {
+            cc_sethide(false);
+            cc_setobject($obj15, $int16);
+            cc_setop(1, "Remove");
+            cc_setop(2, "Remove-5");
+            cc_setop(3, "Remove-10");
+            cc_setop(4, "Remove-All");
+            cc_setop(5, "Remove-X");
+            cc_setop(10, "Examine");
+            cc_setopbase("<col=ff9040><oc_name($obj15)></col>");
+            ~script764($int16, $int17, $component11, $int12);
+            $boolean13 = false;
+        } else {
+            cc_sethide(true);
+            cc_clearops;
+        }
+    }
+    if (cc_find($component5, $int18) = ^true) {
+        $obj15 = ~script757($int18);
+        $int16 = calc(~script758($int18) - $int16);
+        if ($obj15 ! null & $int16 > 0) {
+            cc_sethide(false);
+            cc_setobject($obj15, $int16);
+            cc_setop(1, "Offer");
+            cc_setop(2, "Offer-5");
+            cc_setop(3, "Offer-10");
+            cc_setop(4, "Offer-All");
+            cc_setop(5, "Offer-X");
+            cc_setop(10, "Examine");
+            cc_setopbase("<col=ff9040><oc_name($obj15)></col>");
+            ~script764($int16, $int17, $component11, $int12);
+            $boolean13 = false;
+        } else {
+            cc_sethide(true);
+            cc_clearops;
+        }
+    }
+    $int16, $int17 = invother_getnum(inv_524, $int18), ~script761($int18);
+    if (cc_find($component8, $int18) = ^true) {
+        $obj15 = invother_getobj(inv_524, $int18);
+        if ($obj15 ! null) {
+            cc_sethide(false);
+            cc_setobject($obj15, $int16);
+            cc_setop(10, "Examine");
+            cc_setopbase("<col=ff9040><oc_name($obj15)></col>");
+            ~script764($int16, $int17, $component11, $int12);
+            $boolean14 = false;
+        } else {
+            cc_sethide(true);
+            cc_clearops;
+        }
+    }
+    if (cc_find($component9, $int18) = ^true) {
+        $obj15 = ~script759($int18);
+        $int16 = calc(~script760($int18) - $int16);
+        if ($obj15 ! null & $int16 > 0) {
+            cc_sethide(false);
+            cc_setobject($obj15, $int16);
+            cc_setop(10, "Examine");
+            cc_setopbase("<col=ff9040><oc_name($obj15)></col>");
+            ~script764($int16, $int17, $component11, $int12);
+            $boolean14 = false;
+        } else {
+            cc_sethide(true);
+            cc_clearops;
+        }
+    }
+    $int18 = calc($int18 + 1);
+}
+if_sethide($boolean13, $component4);
+if_sethide($boolean14, $component8);
+def_int $intarray0(4);
+def_int $int19 = calc($int1 / 4);
+if ($int19 < 2) {
+    $int19 = 2;
+}
+def_int $int20 = calc((if_getheight($component3) - $int19 * 32) / ($int19 - 1));
+def_int $int21 = 0;
+if ($boolean13 = true) {
+    $int21 = calc((if_getwidth($component3) - 12 - 4 * 36) / 3);
+    $intarray0(0) = 6;
+} else {
+    $int21 = calc((if_getwidth($component3) - if_getwidth($component4) - 4 * 36) / 3);
+    $intarray0(0) = calc(if_getwidth($component3) - (4 * 36 + 3 * $int21));
+}
+$intarray0(1) = calc($intarray0(0) + $int21 + 36);
+$intarray0(2) = calc($intarray0(1) + $int21 + 36);
+$intarray0(3) = calc($intarray0(2) + $int21 + 36);
+def_int $int22 = 0;
+def_int $int23 = 0;
+def_int $int24 = 0;
+def_int $int25 = 0;
+$int18 = 0;
+while ($int18 < $int1) {
+    if (cc_find($component3, $int18) = ^true & .cc_find($component3, calc($int1 + $int18)) = ^true) {
+        $obj15 = inv_getobj(inv_90, $int18);
+        if ($obj15 ! null) {
+            cc_sethide(false);
+            cc_setobject($obj15, inv_getnum(inv_90, $int18));
+            cc_setop(1, "Remove");
+            cc_setop(2, "Remove-5");
+            cc_setop(3, "Remove-10");
+            cc_setop(4, "Remove-All");
+            cc_setop(5, "Remove-X");
+            cc_setop(10, "Examine");
+            cc_setopbase("<col=ff9040><oc_name($obj15)></col>");
+        } else {
+            cc_sethide(true);
+            cc_clearops;
+        }
+        $int23, $int22 = calc($int18 % 4), calc($int18 / 4);
+        $int24 = $intarray0($int23);
+        $int25 = calc($int22 * (32 + $int20));
+        cc_setposition($int24, $int25);
+        .cc_setposition(calc($int24 + $int2), $int25);
+    }
+    $int18 = calc($int18 + 1);
+}
+if ($boolean14 = true) {
+    $int21 = calc((if_getwidth($component7) - 12 - 4 * 36) / 3);
+    $intarray0(0) = 6;
+} else {
+    $int21 = calc((if_getwidth($component7) - if_getwidth($component8) - 4 * 36) / 3);
+    $intarray0(0) = 0;
+}
+$intarray0(1) = calc($intarray0(0) + $int21 + 36);
+$intarray0(2) = calc($intarray0(1) + $int21 + 36);
+$intarray0(3) = calc($intarray0(2) + $int21 + 36);
+$int18 = 0;
+while ($int18 < $int1) {
+    if (cc_find($component7, $int18) = ^true & .cc_find($component7, calc($int1 + $int18)) = ^true) {
+        $obj15 = invother_getobj(inv_90, $int18);
+        if ($obj15 ! null) {
+            cc_sethide(false);
+            cc_setobject($obj15, invother_getnum(inv_90, $int18));
+            cc_setop(10, "Examine");
+            cc_setopbase("<col=ff9040><oc_name($obj15)></col>");
+        } else {
+            cc_sethide(true);
+            cc_clearops;
+        }
+        $int23, $int22 = calc($int18 % 4), calc($int18 / 4);
+        $int24 = $intarray0($int23);
+        $int25 = calc($int22 * (32 + $int20));
+        cc_setposition($int24, $int25);
+        .cc_setposition(calc($int24 + $int2), $int25);
+    }
+    $int18 = calc($int18 + 1);
+}
