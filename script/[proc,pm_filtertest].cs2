@@ -1,9 +1,15 @@
 // 91
 [proc,pm_filtertest](int $chattype, string $string, int $int)(boolean)
 if ($chattype = ^chattype_modprivatechat) {
+    if (ignore_test(removetags($string)) = true) {
+        return(false);
+    }
     return(true);
 }
 if ($chattype = ^chattype_privatechat) {
+    if (ignore_test(removetags($string)) = true) {
+        return(false);
+    }
     if (chat_getfilter_private = ^chatfilter_on) {
         return(true);
     }
