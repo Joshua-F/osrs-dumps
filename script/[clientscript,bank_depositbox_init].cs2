@@ -1,0 +1,25 @@
+// 144
+[clientscript,bank_depositbox_init](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6)
+cc_deleteall($component0);
+def_int $int7 = 0;
+def_int $int8 = inv_size(inv_93);
+while ($int7 < $int8) {
+    cc_create($component0, ^iftype_graphic, $int7);
+    cc_setsize(36, 32);
+    cc_setgraphicshadow(0x333333);
+    cc_setoutline(1);
+    cc_setdragdeadzone(5);
+    cc_setdragdeadtime(5);
+    cc_sethide(false);
+    $int7 = calc($int7 + 1);
+}
+~bank_depositbox_update($component0, $component5, $component6);
+if_setoninvtransmit("bank_depositbox_update($component0, $component5, $component6){inv_93}", $component0);
+if_setonmouseover("settrans($component2, 75)", $component1);
+if_setonmouseleave("settrans($component2, 0)", $component1);
+if_setonmouseover("settrans($component4, 75)", $component3);
+if_setonmouseleave("settrans($component4, 0)", $component3);
+def_graphic $graphic9 = "miscgraphics,0";
+def_graphic $graphic10 = "miscgraphics,9";
+if_setonop("bankmain_depositall(event_com, $graphic10, $graphic9, event_op)", $component1);
+if_setonop("bankmain_depositall(event_com, $graphic10, $graphic9, event_op)", $component3);
