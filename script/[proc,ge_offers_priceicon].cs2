@@ -1,0 +1,14 @@
+// 809
+[proc,ge_offers_priceicon](component $component)
+def_string $string = if_gettext($component);
+if (string_length($string) <= 0) {
+    cc_settrans(255);
+    if_sethide(true, $component);
+    return;
+}
+cc_settrans(0);
+if_sethide(false, $component);
+def_int $int1 = calc(21 + parawidth(if_gettext($component), 150, p11_full));
+def_int $int2 = calc((150 - $int1) / 2);
+cc_setposition(calc(15 + $int2), if_gety($component));
+if_setsize(calc(150 - $int2), if_getheight($component), $component);
