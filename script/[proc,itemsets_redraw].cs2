@@ -1,0 +1,25 @@
+// 824
+[proc,itemsets_redraw](enum $enum)
+cc_setontimer(null);
+cc_clearops;
+cc_setop(10, "Examine");
+if (map_members = false & oc_members(enum(int, namedobj, $enum, -1)) = 1) {
+    cc_settrans(130);
+    cc_setonop(null);
+    return;
+}
+def_int $int = 0;
+def_obj $obj = enum(int, namedobj, $enum, $int);
+while ($obj ! null) {
+    if (inv_total(inv_93, $obj) <= 0) {
+        cc_settrans(130);
+        cc_setonop("cc_settrans_temporarily(event_com, event_comsubid, 170, 130)");
+        cc_setop(1, "Contents");
+        return;
+    }
+    $int = calc($int + 1);
+    $obj = enum(int, namedobj, $enum, $int);
+}
+cc_settrans(0);
+cc_setonop("cc_settrans_temporarily(event_com, event_comsubid, 100, 0)");
+cc_setop(1, "Pack");

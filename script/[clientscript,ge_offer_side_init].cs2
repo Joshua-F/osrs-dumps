@@ -1,0 +1,30 @@
+// 781
+[clientscript,ge_offer_side_init](component $com_0, component $com_1)
+cc_deleteall($com_0);
+def_int $int2 = 0;
+def_int $int3 = inv_size(inv_93);
+while ($int2 < $int3) {
+    cc_create($com_0, ^iftype_graphic, $int2);
+    cc_setsize(36, 32);
+    cc_setgraphicshadow(0x333333);
+    cc_setoutline(1);
+    cc_setdragdeadzone(5);
+    cc_setdragdeadtime(5);
+    cc_sethide(false);
+    $int2 = calc($int2 + 1);
+}
+cc_deleteall($com_1);
+$int2 = 0;
+while ($int2 < 4) {
+    cc_create($com_1, ^iftype_rectangle, $int2);
+    cc_sethide(true);
+    cc_setposition($int2, $int2);
+    cc_setsize(calc(190 - $int2 * 2), calc(261 - $int2 * 2));
+    cc_setcolour(^yellow);
+    cc_setfill(true);
+    $int2 = calc($int2 + 1);
+}
+~ge_offer_side_draw($com_0, $com_1);
+if_setoninvtransmit("ge_offer_side_draw($com_0, $com_1){inv_93}", $com_0);
+if_setonvartransmit("ge_offer_side_draw($com_0, $com_1){varplayer_563, varplayer_638}", $com_0);
+if_setonstocktransmit("ge_offer_side_draw($com_0, $com_1)", $com_0);
