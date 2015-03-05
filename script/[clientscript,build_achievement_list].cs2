@@ -1,0 +1,20 @@
+// 709
+[clientscript,build_achievement_list](component $component0)
+def_int $int1 = 0;
+def_int $int2 = 10;
+while ($int1 < 11) {
+    cc_create($component0, ^iftype_text, $int1);
+    cc_setop(1, "Open Journal");
+    cc_settext(enum(int, string, enum_595, $int1));
+    cc_settextfont(p11_full);
+    cc_settextshadow(true);
+    cc_setsize(152, 15);
+    cc_setposition(10, $int2);
+    $int2 = calc($int2 + 15);
+    cc_setonvartransmit("script710(event_com, event_comsubid){varplayer_1188, varplayer_1189, varplayer_1000, varplayer_1001, varplayer_1002}");
+    ~script716($component0, $int1);
+    $int1 = calc($int1 + 1);
+}
+if_setscrollpos(0, 0, $component0);
+if_setscrollsize(0, $int2, $component0);
+~scrollbar_vertical(interface_259:com_13, $component0, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
