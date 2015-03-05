@@ -1,0 +1,19 @@
+// 141
+[proc,ge_collect_all_init](component $component0, string $string0, string $string1)
+def_int $int1 = if_getwidth($component0);
+def_int $int2 = if_getheight($component0);
+cc_deleteall($component0);
+cc_create($component0, ^iftype_graphic, 0);
+cc_setsize($int1, $int2);
+cc_setposition(0, 0);
+cc_settiling(false);
+.cc_create($component0, ^iftype_text, 1);
+.cc_setsize($int1, $int2);
+.cc_setposition(0, 0);
+.cc_settextfont(p11_full);
+.cc_settextshadow(true);
+.cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+.cc_settext($string0);
+if_setop(1, $string1, $component0);
+~ge_collect_all_draw($component0);
+if_setoninvtransmit("ge_collect_all_draw($component0, cc_getid, .cc_getid){inv_518, inv_519, inv_520, inv_521, inv_522, inv_523}", $component0);
