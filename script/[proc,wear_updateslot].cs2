@@ -13,25 +13,28 @@ cc_sethide(false);
 cc_setobject($obj, inv_getnum(inv_94, $int));
 if_setopbase("<col=ff9040><oc_name($obj)></col>", $component);
 if_setop(1, "Remove", $component);
-def_string $string = enum(obj, string, enum_899, $obj);
-if (string_length($string) > 0) {
-    if_setop(2, $string, $component);
-}
-$string = enum(obj, string, enum_900, $obj);
-if (string_length($string) > 0) {
-    if_setop(3, $string, $component);
-}
-$string = enum(obj, string, enum_901, $obj);
-if (string_length($string) > 0) {
-    if_setop(4, $string, $component);
-}
-$string = enum(obj, string, enum_902, $obj);
-if (string_length($string) > 0) {
-    if_setop(5, $string, $component);
-}
-$string = enum(obj, string, enum_903, $obj);
-if (string_length($string) > 0) {
-    if_setop(6, $string, $component);
+def_string $string = "";
+if (map_members = true | oc_members($obj) = 0) {
+    $string = enum(obj, string, enum_899, $obj);
+    if (string_length($string) > 0) {
+        if_setop(2, $string, $component);
+    }
+    $string = enum(obj, string, enum_900, $obj);
+    if (string_length($string) > 0) {
+        if_setop(3, $string, $component);
+    }
+    $string = enum(obj, string, enum_901, $obj);
+    if (string_length($string) > 0) {
+        if_setop(4, $string, $component);
+    }
+    $string = enum(obj, string, enum_902, $obj);
+    if (string_length($string) > 0) {
+        if_setop(5, $string, $component);
+    }
+    $string = enum(obj, string, enum_903, $obj);
+    if (string_length($string) > 0) {
+        if_setop(6, $string, $component);
+    }
 }
 if_setop(10, "Examine", $component);
 if_setonop("cc_settrans_temporarily($component, cc_getid, 100, 0)", $component);
