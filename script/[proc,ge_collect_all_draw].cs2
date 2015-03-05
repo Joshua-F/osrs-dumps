@@ -1,0 +1,16 @@
+// 707
+[proc,ge_collect_all_draw](component $component)
+def_graphic $graphic1 = "combatboxesmed,0";
+def_graphic $graphic2 = "combatboxesmed,1";
+cc_setgraphic($graphic1);
+if (~script708 = true) {
+    .cc_setcolour(0xff981f);
+    if_setonmouserepeat("cc_graphic_swapper(event_com, cc_getid, $graphic2, null)", $component);
+    if_setonmouseleave("cc_graphic_swapper(event_com, cc_getid, $graphic1, null)", $component);
+    if_setonop("opsound(event_op, 2)", $component);
+} else {
+    .cc_setcolour(0x7f7f7f);
+    if_setonmouserepeat(null, $component);
+    if_setonmouseleave(null, $component);
+    if_setonop(null, $component);
+}
