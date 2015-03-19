@@ -1,0 +1,67 @@
+// 58
+[clientscript,chatbox_multi_init](string $string0, string $string1)
+def_string $string2 = "";
+def_string $string3 = "";
+def_string $string4 = "";
+def_string $string5 = "";
+def_string $string6 = "";
+$string2, $string1 = ~script632($string1);
+$string3, $string1 = ~script632($string1);
+def_int $int0 = 2;
+$string4, $string1 = ~script632($string1);
+if (string_length($string4) > 0) {
+    $int0 = 3;
+    $string5, $string1 = ~script632($string1);
+    if (string_length($string5) > 0) {
+        $int0 = 4;
+        $string6, $string1 = ~script632($string1);
+        if (string_length($string6) > 0) {
+            $int0 = 5;
+        }
+    }
+}
+cc_deleteall(interface_219:com_0);
+cc_create(interface_219:com_0, ^iftype_text, 0);
+cc_setsize(479, 20);
+cc_setposition(0, -1);
+cc_setcolour(0x800000);
+cc_settextshadow(false);
+cc_settextfont(q8_full);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+cc_settext($string0);
+if ($int0 <= 2) {
+    ~chatbox_multi_addoption(1, $string2, 31, 20, ^settextalign_centre);
+    ~chatbox_multi_addoption(2, $string3, 63, 20, ^settextalign_centre);
+} else if ($int0 = 3) {
+    ~chatbox_multi_addoption(1, $string2, 23, 20, ^settextalign_centre);
+    ~chatbox_multi_addoption(2, $string3, 47, 20, ^settextalign_centre);
+    ~chatbox_multi_addoption(3, $string4, 71, 20, ^settextalign_centre);
+} else if ($int0 = 4) {
+    ~chatbox_multi_addoption(1, $string2, 16, 20, ^settextalign_centre);
+    ~chatbox_multi_addoption(2, $string3, 36, 20, ^settextalign_centre);
+    ~chatbox_multi_addoption(3, $string4, 56, 20, ^settextalign_centre);
+    ~chatbox_multi_addoption(4, $string5, 76, 20, ^settextalign_centre);
+} else {
+    ~chatbox_multi_addoption(1, $string2, 15, 16, ^settextalign_top);
+    ~chatbox_multi_addoption(2, $string3, 31, 16, ^settextalign_top);
+    ~chatbox_multi_addoption(3, $string4, 47, 16, ^settextalign_top);
+    ~chatbox_multi_addoption(4, $string5, 63, 16, ^settextalign_top);
+    ~chatbox_multi_addoption(5, $string6, 79, 16, ^settextalign_top);
+    $int0 = 5;
+}
+def_int $int1 = parawidth($string0, 479, q8_full);
+if ($int1 < 110) {
+    $int1 = 110;
+}
+def_int $int2 = calc((479 - ($int1 + 111)) / 2 - 57);
+if ($int2 < 2) {
+    $int2 = 2;
+}
+cc_create(interface_219:com_0, ^iftype_graphic, calc($int0 + 1));
+.cc_create(interface_219:com_0, ^iftype_graphic, calc($int0 + 2));
+cc_setsize(57, 13);
+.cc_setsize(57, 13);
+cc_setposition($int2, 1);
+.cc_setposition(calc(479 - ($int2 + 57)), 1);
+cc_setgraphic("sworddecor,1");
+.cc_setgraphic("sworddecor,0");
