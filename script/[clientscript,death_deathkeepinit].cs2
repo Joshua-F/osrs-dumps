@@ -10,6 +10,7 @@ def_int $int13 = 0;
 def_int $int14 = 0;
 def_int $int15 = 0;
 def_int $int16 = 0;
+def_int $int17 = 0;
 if ($int0 = 0) {
     while ($int8 < $int1) {
         cc_create(interface_102:com_18, ^iftype_graphic, $int9);
@@ -50,18 +51,18 @@ if ($int0 = 0) {
     $int10 = 5;
     $int8 = 0;
     if (oc_stackable($obj2) = false) {
-        $int15 = calc(inv_total(inv_93, $obj2) + inv_total(inv_94, $obj2));
-        $int16 = 1;
+        $int16 = calc(inv_total(inv_93, $obj2) + inv_total(inv_94, $obj2));
+        $int17 = 1;
         if ($obj3 = $obj2) {
-            $int16 = calc($int16 + 1);
+            $int17 = calc($int17 + 1);
         }
         if ($obj4 = $obj2) {
-            $int16 = calc($int16 + 1);
+            $int17 = calc($int17 + 1);
         }
         if ($obj5 = $obj2) {
-            $int16 = calc($int16 + 1);
+            $int17 = calc($int17 + 1);
         }
-        while (calc($int15 - $int16) > 0) {
+        while (calc($int16 - $int17) > 0) {
             cc_create(interface_102:com_21, ^iftype_graphic, $int9);
             cc_setsize(36, 32);
             cc_setposition($int10, $int11);
@@ -76,19 +77,19 @@ if ($int0 = 0) {
                 $int10 = 5;
             }
             $int9 = calc($int9 + 1);
-            $int15 = calc($int15 - 1);
+            $int16 = calc($int16 - 1);
         }
     }
     if ($obj3 ! $obj2 & oc_stackable($obj3) = false) {
-        $int15 = calc(inv_total(inv_93, $obj3) + inv_total(inv_94, $obj3));
-        $int16 = 1;
+        $int16 = calc(inv_total(inv_93, $obj3) + inv_total(inv_94, $obj3));
+        $int17 = 1;
         if ($obj4 = $obj3) {
-            $int16 = calc($int16 + 1);
+            $int17 = calc($int17 + 1);
         }
         if ($obj5 = $obj3) {
-            $int16 = calc($int16 + 1);
+            $int17 = calc($int17 + 1);
         }
-        while (calc($int15 - $int16) > 0) {
+        while (calc($int16 - $int17) > 0) {
             cc_create(interface_102:com_21, ^iftype_graphic, $int9);
             cc_setsize(36, 32);
             cc_setposition($int10, $int11);
@@ -103,16 +104,16 @@ if ($int0 = 0) {
                 $int10 = 5;
             }
             $int9 = calc($int9 + 1);
-            $int15 = calc($int15 - 1);
+            $int16 = calc($int16 - 1);
         }
     }
     if ($obj4 ! $obj2 & $obj4 ! $obj3 & oc_stackable($obj4) = false) {
-        $int15 = calc(inv_total(inv_93, $obj4) + inv_total(inv_94, $obj4));
-        $int16 = 1;
+        $int16 = calc(inv_total(inv_93, $obj4) + inv_total(inv_94, $obj4));
+        $int17 = 1;
         if ($obj5 = $obj4) {
-            $int16 = calc($int16 + 1);
+            $int17 = calc($int17 + 1);
         }
-        while (calc($int15 - $int16) > 0) {
+        while (calc($int16 - $int17) > 0) {
             cc_create(interface_102:com_21, ^iftype_graphic, $int9);
             cc_setsize(36, 32);
             cc_setposition($int10, $int11);
@@ -127,13 +128,13 @@ if ($int0 = 0) {
                 $int10 = 5;
             }
             $int9 = calc($int9 + 1);
-            $int15 = calc($int15 - 1);
+            $int16 = calc($int16 - 1);
         }
     }
     if ($obj5 ! $obj2 & $obj5 ! $obj3 & $obj5 ! $obj4 & oc_stackable($obj5) = false) {
-        $int15 = calc(inv_total(inv_93, $obj5) + inv_total(inv_94, $obj5));
-        $int16 = 1;
-        while (calc($int15 - $int16) > 0) {
+        $int16 = calc(inv_total(inv_93, $obj5) + inv_total(inv_94, $obj5));
+        $int17 = 1;
+        while (calc($int16 - $int17) > 0) {
             cc_create(interface_102:com_21, ^iftype_graphic, $int9);
             cc_setsize(36, 32);
             cc_setposition($int10, $int11);
@@ -148,13 +149,15 @@ if ($int0 = 0) {
                 $int10 = 5;
             }
             $int9 = calc($int9 + 1);
-            $int15 = calc($int15 - 1);
+            $int16 = calc($int16 - 1);
         }
     }
     while ($int8 < 28) {
         $obj12 = inv_getobj(inv_93, $int8);
         if ($obj12 ! null) {
-            if ($obj12 = $obj2 | $obj12 = $obj3 | $obj12 = $obj4 | $obj12 = $obj5) {
+            if ($obj12 = obj_13190 | $obj12 = obj_13192) {
+                $int15 = 1;
+            } else if ($obj12 = $obj2 | $obj12 = $obj3 | $obj12 = $obj4 | $obj12 = $obj5) {
                 if (oc_stackable($obj12) = true) {
                     $int13 = 0;
                     if ($obj12 = $obj2) {
@@ -173,11 +176,11 @@ if ($int0 = 0) {
                         cc_create(interface_102:com_21, ^iftype_graphic, $int9);
                         cc_setsize(36, 32);
                         cc_setposition($int10, $int11);
-                        cc_setobject(inv_getobj(inv_93, $int8), calc(inv_getnum(inv_93, $int8) - $int13));
-                        cc_setopbase("<col=ff981f><oc_name(inv_getobj(inv_93, $int8))>");
+                        cc_setobject($obj12, calc(inv_getnum(inv_93, $int8) - $int13));
+                        cc_setopbase("<col=ff981f><oc_name($obj12)>");
                         cc_setop(1, "Item : ");
                         cc_setgraphicshadow(0x111111);
-                        if (enum(obj, boolean, enum_879, inv_getobj(inv_93, $int8)) = true) {
+                        if (enum(obj, boolean, enum_879, $obj12) = true) {
                             cc_setoutline(2);
                             $int14 = 1;
                         } else {
@@ -195,11 +198,11 @@ if ($int0 = 0) {
                 cc_create(interface_102:com_21, ^iftype_graphic, $int9);
                 cc_setsize(36, 32);
                 cc_setposition($int10, $int11);
-                cc_setobject(inv_getobj(inv_93, $int8), inv_getnum(inv_93, $int8));
-                cc_setopbase("<col=ff981f><oc_name(inv_getobj(inv_93, $int8))>");
+                cc_setobject($obj12, inv_getnum(inv_93, $int8));
+                cc_setopbase("<col=ff981f><oc_name($obj12)>");
                 cc_setop(1, "Item : ");
                 cc_setgraphicshadow(0x111111);
-                if (enum(obj, boolean, enum_879, inv_getobj(inv_93, $int8)) = true) {
+                if (enum(obj, boolean, enum_879, $obj12) = true) {
                     cc_setoutline(2);
                     $int14 = 1;
                 } else {
@@ -220,7 +223,9 @@ if ($int0 = 0) {
         if ($int8 ! 6 & $int8 ! 8 & $int8 ! 11) {
             $obj12 = inv_getobj(inv_94, $int8);
             if ($obj12 ! null) {
-                if ($obj12 = $obj2 | $obj12 = $obj3 | $obj12 = $obj4 | $obj12 = $obj5) {
+                if ($obj12 = obj_13190 | $obj12 = obj_13192) {
+                    $int15 = 1;
+                } else if ($obj12 = $obj2 | $obj12 = $obj3 | $obj12 = $obj4 | $obj12 = $obj5) {
                     if (oc_stackable($obj12) = true) {
                         $int13 = 0;
                         if ($obj12 = $obj2) {
@@ -239,11 +244,11 @@ if ($int0 = 0) {
                             cc_create(interface_102:com_21, ^iftype_graphic, $int9);
                             cc_setsize(36, 32);
                             cc_setposition($int10, $int11);
-                            cc_setobject(inv_getobj(inv_94, $int8), calc(inv_getnum(inv_94, $int8) - $int13));
-                            cc_setopbase("<col=ff981f><oc_name(inv_getobj(inv_94, $int8))>");
+                            cc_setobject($obj12, calc(inv_getnum(inv_94, $int8) - $int13));
+                            cc_setopbase("<col=ff981f><oc_name($obj12)>");
                             cc_setop(1, "Item : ");
                             cc_setgraphicshadow(0x111111);
-                            if (enum(obj, boolean, enum_879, inv_getobj(inv_94, $int8)) = true) {
+                            if (enum(obj, boolean, enum_879, $obj12) = true) {
                                 cc_setoutline(2);
                                 $int14 = 1;
                             } else {
@@ -261,11 +266,11 @@ if ($int0 = 0) {
                     cc_create(interface_102:com_21, ^iftype_graphic, $int9);
                     cc_setsize(36, 32);
                     cc_setposition($int10, $int11);
-                    cc_setobject(inv_getobj(inv_94, $int8), inv_getnum(inv_94, $int8));
-                    cc_setopbase("<col=ff981f><oc_name(inv_getobj(inv_94, $int8))>");
+                    cc_setobject($obj12, inv_getnum(inv_94, $int8));
+                    cc_setopbase("<col=ff981f><oc_name($obj12)>");
                     cc_setop(1, "Item : ");
                     cc_setgraphicshadow(0x111111);
-                    if (enum(obj, boolean, enum_879, inv_getobj(inv_94, $int8)) = true) {
+                    if (enum(obj, boolean, enum_879, $obj12) = true) {
                         cc_setoutline(2);
                         $int14 = 1;
                     } else {
@@ -294,8 +299,14 @@ if ($int0 = 0) {
     } else if ($int1 = 4) {
         $string0 = append($string0, "You have the <col=ff3333>Protect Items<col=ff981f> prayer active, which saves you one extra item!");
     }
-    if ($int14 = 1) {
-        $string0 = append($string0, "<br><br>Items with a <col=ffffff>white outline<col=ff981f> are ones you will always lose.");
+    if ($int14 = 1 | $int15 = 1) {
+        if ($int14 = 1 & $int15 = 1) {
+            $string0 = append($string0, "<br><br>Items with a <col=ffffff>white outline<col=ff981f> will always be lost.<br><col=00ff00>Bonds</col> are always protected.");
+        } else if ($int14 = 1) {
+            $string0 = append($string0, "<br><br>Items with a <col=ffffff>white outline<col=ff981f> will always be lost.");
+        } else {
+            $string0 = append($string0, "<br><br><col=00ff00>Bonds</col> are always protected, so are not shown here.");
+        }
     }
     if_settext($string0, interface_102:com_27);
     if_settext("<col=ffcc33>Max items kept on death :<br><br><col=ffcc33>~ <tostring($int1)> ~", interface_102:com_28);
