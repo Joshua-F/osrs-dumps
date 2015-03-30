@@ -1,7 +1,21 @@
 // 323
-[clientscript,combat_interface_opbutton](graphic $graphic0, graphic $graphic1, graphic $graphic2, graphic $graphic3, graphic $graphic4, graphic $graphic5, int $int6, int $int7)
-if ($int6 ! 1) {
+[clientscript,combat_interface_opbutton](graphic $graphic0, graphic $graphic1, graphic $graphic2, graphic $graphic3, graphic $graphic4, graphic $graphic5, int $int6, int $int7, int $int8)
+if ($int7 ! 1) {
     return;
 }
-%varplayer_43 = $int7;
-~combat_interface_setbuttons($graphic0, $graphic1, $graphic2, $graphic3, $graphic4, $graphic5);
+if ($int6 = 26) {
+    if ($int8 = 0) {
+        if (inv_getobj(inv_94, 3) ! obj_13183) {
+            sound_synth(synth_2250, 1, 0);
+            if_setgraphic($graphic5, interface_593:com_4);
+            if_setontimer("script717(event_com, $graphic4, calc(clientclock + 10))", interface_593:com_4);
+        }
+    } else if ($int8 = 1 & inv_getobj(inv_94, 3) = obj_13185) {
+        sound_synth(synth_2250, 1, 0);
+        if_setgraphic($graphic5, interface_593:com_8);
+        if_setontimer("script717(event_com, $graphic4, calc(clientclock + 10))", interface_593:com_8);
+    }
+    return;
+}
+%varplayer_43 = $int8;
+~combat_interface_setbuttons($graphic0, $graphic1, $graphic2, $graphic3, $graphic4, $graphic5, $int6);
