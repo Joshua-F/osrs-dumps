@@ -1,0 +1,113 @@
+// 759
+[proc,script759](component $component0, int $int1, string $string0)
+cc_deleteall($component0);
+if ($int1 = 0) {
+    if_sethide(true, $component0);
+    return;
+}
+if_sethide(false, $component0);
+def_int $int2 = calc($int1 & 1);
+$int1 = calc($int1 / 2);
+def_int $int3 = calc($int1 & 31);
+$int1 = calc($int1 / 32);
+def_int $int4 = $int1;
+def_int $int5 = $int4;
+if ($int4 >= 300) {
+    $int5 = calc($int4 - 300);
+}
+def_int $int6 = if_getwidth($component0);
+def_int $int7 = if_getheight($component0);
+cc_create($component0, ^iftype_rectangle, 0);
+cc_setsize($int6, $int7);
+cc_setposition(0, 0);
+cc_setfill(true);
+if (map_world ! $int4) {
+    cc_setcolour(^white);
+    cc_settrans(255);
+    if_setonmouseover("cc_settrans(event_com, cc_getid, 200, null)", $component0);
+    if_setonmouseleave("cc_settrans(event_com, cc_getid, 255, interface_69:com_116)", $component0);
+    if_setonop("opsound(event_op, -1)", $component0);
+} else {
+    cc_setcolour(^black);
+    cc_settrans(225);
+    if_setonmouseleave("deltooltip(interface_69:com_116)", $component0);
+    if_setonop(null, $component0);
+}
+if (string_length($string0) > 0) {
+    if_setonmouserepeat("tooltip_mouserepeat(event_com, -1, interface_69:com_116, removetags($string0), 25, 190)", $component0);
+} else {
+    if_setonmouserepeat(null, $component0);
+}
+cc_create($component0, ^iftype_graphic, 1);
+cc_setsize(16, 16);
+cc_setposition(0, 0);
+.cc_create($component0, ^iftype_text, 2);
+.cc_setsize(25, $int7);
+.cc_setposition(16, 0);
+.cc_settextfont(p12_full);
+.cc_settextalign(^settextalign_centre, ^settextalign_bottom, 0);
+.cc_settextshadow(true);
+.cc_settext(tostring($int5));
+if ($int2 = 1) {
+    cc_setgraphic("worldswitcher_stars,1");
+    .cc_setcolour(0xf0f000);
+} else {
+    cc_setgraphic("worldswitcher_stars,0");
+    .cc_setcolour(0xe0e0e0);
+}
+cc_create($component0, ^iftype_graphic, 3);
+cc_setsize(30, 15);
+cc_setposition(41, 0);
+cc_setgraphic(enum(int, graphic, enum_1125, $int3));
+def_int $int8 = 0;
+def_string $string1 = "";
+def_int $int9 = calc($int6 - 72);
+def_int $int10 = string_length($string0);
+if ($int10 <= 0) {
+    $string0, $int10 = "-", 1;
+}
+if ($int10 > 0 & parawidth($string0, 512, p11_full) > $int9) {
+    while ($int10 > 1 & $int8 = 0) {
+        $int10 = calc($int10 - 1);
+        $string1 = append(substring($string0, 0, $int10), "...");
+        if (parawidth($string1, 512, p11_full) <= $int9) {
+            $string0, $int8 = $string1, 1;
+        }
+    }
+}
+cc_create($component0, ^iftype_text, 4);
+cc_setsize($int9, $int7);
+cc_setposition(72, 0);
+cc_setcolour(0xff981f);
+cc_settextfont(p11_full);
+cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+cc_settextshadow(true);
+cc_settext($string0);
+cc_create($component0, ^iftype_text, 5);
+cc_setsize(0, 0);
+cc_setposition(-1, -1);
+if ($int2 = 1) {
+    cc_settext("MEMBERS");
+} else {
+    cc_settext("FREE");
+}
+cc_create($component0, ^iftype_text, 6);
+cc_setsize(0, 0);
+cc_setposition(-1, -1);
+if ($int5 < 10) {
+    cc_settext("000<tostring($int5)>");
+} else if ($int5 < 100) {
+    cc_settext("00<tostring($int5)>");
+} else if ($int5 < 1000) {
+    cc_settext("0<tostring($int5)>");
+} else {
+    cc_settext(tostring($int5));
+}
+cc_create($component0, ^iftype_text, 7);
+cc_setsize(0, 0);
+cc_setposition(-1, -1);
+if ($int3 < 10) {
+    cc_settext("0<tostring($int3)>");
+} else {
+    cc_settext(tostring($int3));
+}
