@@ -1,13 +1,13 @@
 // 231
 [proc,scrollbar_vertical_rebuild](component $component0, component $component1)
 if (cc_find($component0, 0) = ^true) {
-    cc_setposition(0, 16);
-    cc_setsize(16, calc(if_getheight($component0) - 32));
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_setsize(0, 32, ^setsize_minus, ^setsize_minus);
 }
 def_int $int2 = 0;
 def_int $int3 = 0;
 if (.cc_find($component0, 1) = ^true) {
-    .cc_setposition(0, 16);
+    .cc_setposition(0, 16, ^setpos_abs_centre, ^setpos_abs_top);
     $int2 = if_getscrollheight($component1);
     if ($int2 <= 0) {
         $int2 = if_getheight($component1);
@@ -20,21 +20,21 @@ if (.cc_find($component0, 1) = ^true) {
     if ($int3 < 10) {
         $int3 = 10;
     }
-    .cc_setsize(16, $int3);
+    .cc_setsize(0, $int3, ^setsize_minus, ^setsize_abs);
     if (cc_find($component0, 2) = ^true) {
-        cc_setposition(0, .cc_gety);
-        cc_setsize(16, 5);
+        cc_setposition(0, .cc_gety, ^setpos_abs_centre, ^setpos_abs_top);
+        cc_setsize(0, 5, ^setsize_minus, ^setsize_abs);
     }
     if (cc_find($component0, 3) = ^true) {
-        cc_setposition(0, calc(.cc_gety + .cc_getheight - 5));
-        cc_setsize(16, 5);
+        cc_setposition(0, calc(.cc_gety + .cc_getheight - 5), ^setpos_abs_centre, ^setpos_abs_top);
+        cc_setsize(0, 5, ^setsize_minus, ^setsize_abs);
     }
 }
 if (cc_find($component0, 4) = ^true) {
-    cc_setposition(0, 0);
-    cc_setsize(16, 16);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top);
+    cc_setsize(0, 16, ^setsize_minus, ^setsize_abs);
 }
 if (cc_find($component0, 5) = ^true) {
-    cc_setposition(0, calc(if_getheight($component0) - 16));
-    cc_setsize(16, 16);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_bottom);
+    cc_setsize(0, 16, ^setsize_minus, ^setsize_abs);
 }
