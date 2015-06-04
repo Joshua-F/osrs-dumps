@@ -1,0 +1,73 @@
+// 909
+[proc,toplevel_resize](component $component0, enum $enum1)
+def_component $component2 = enum(component, component, $enum1, interface_161:com_2);
+def_component $component3 = enum(component, component, $enum1, interface_161:com_5);
+def_int $int4 = enum(enum, int, enum_1135, $enum1);
+def_int $int5 = enum(enum, int, enum_1136, $enum1);
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_int $int8 = 0;
+def_int $int9 = 0;
+def_int $int10 = 0;
+def_int $int11 = 0;
+if (%varplayerbit_4606 ! 0) {
+    if (%varplayerbit_4606 = 2) {
+        viewport_setfov(256, 120);
+        viewport_setzoom(256, 120);
+        viewport_clampfov(0, 0, 0, 0);
+    } else {
+        viewport_setfov(256, 256);
+        viewport_setzoom(256, 256);
+        viewport_clampfov(256, 256, 256, 256);
+    }
+    if ($component2 ! null) {
+        $int6, $int7 = viewport_geteffectivesize;
+        if_setsize($int6, $int7, ^setsize_abs, ^setsize_abs, $component2);
+        if ($component3 ! null) {
+            $int8 = if_getwidth($component0);
+            $int9 = if_getheight($component0);
+            $int10 = calc($int8 - $int6);
+            $int11 = calc($int9 - $int7);
+            if ($int10 < 0) {
+                $int10 = 0;
+            }
+            if ($int11 < 0) {
+                $int11 = 0;
+            }
+            $int4, $int5 = calc($int4 - $int10 / 2), calc($int5 - $int11 / 2);
+            if ($int4 < 0) {
+                $int4 = 0;
+            }
+            if ($int5 < 0) {
+                $int5 = 0;
+            }
+            if_setsize($int4, $int5, ^setsize_minus, ^setsize_minus, $component3);
+            ~toplevel_mainmodal_bg_calculate($enum1, $component2, $component3, $int4, $int5);
+        } else {
+            ~toplevel_mainmodal_bg_calculate($enum1, $component2, $component2, 0, 0);
+        }
+    }
+} else {
+    viewport_setfov(0, 0);
+    viewport_setzoom(0, 0);
+    viewport_clampfov(0, 0, 0, 0);
+    $int6, $int7 = viewport_geteffectivesize;
+    if ($component2 ! null) {
+        if_setsize($int6, $int7, ^setsize_abs, ^setsize_abs, $component2);
+        if ($component3 ! null) {
+            if_setsize($int4, $int5, ^setsize_minus, ^setsize_minus, $component3);
+            ~toplevel_mainmodal_bg_calculate($enum1, $component2, $component3, $int4, $int5);
+        } else {
+            ~toplevel_mainmodal_bg_calculate($enum1, $component2, $component2, 0, 0);
+        }
+    }
+}
+$component2 = enum(component, component, $enum1, interface_161:com_8);
+if ($component2 ! null) {
+    if (%varclient_173 = ^min_32bit_int & if_hassub($component2) = true) {
+        if_setsize(512, 0, ^setsize_abs, ^setsize_minus, $component2);
+    } else {
+        if_setsize(512, 334, ^setsize_abs, ^setsize_abs, $component2);
+    }
+}
+~toplevel_resize_customise($component0, $enum1);
