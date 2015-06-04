@@ -15,7 +15,7 @@ if (%varclient_2 = 0) {
         $int4 = if_getwidth(if_getlayer($component2));
     }
     $int4 = calc($int4 - 4);
-    if_setsize(calc(4 + parawidth($string0, $int4, p12_full)), calc(4 + 13 * paraheight($string0, $int4, p12_full)), $component2);
+    if_setsize(calc(4 + parawidth($string0, $int4, p12_full)), calc(4 + 13 * paraheight($string0, $int4, p12_full)), ^setsize_abs, ^setsize_abs, $component2);
     if (cc_find($component0, $int1) = ^true) {
         $int5 = calc(cc_getx + 5);
         $int6 = calc(cc_gety + if_getheight($component0) + 5);
@@ -28,19 +28,19 @@ if (%varclient_2 = 0) {
             }
         }
     }
-    if_setposition($int5, $int6, $component2);
+    if_setposition($int5, $int6, ^setpos_abs_left, ^setpos_abs_top, $component2);
     cc_deleteall($component2);
     cc_create($component2, ^iftype_rectangle, 0);
-    cc_setsize(if_getwidth($component2), if_getheight($component2));
+    cc_setsize(if_getwidth($component2), if_getheight($component2), ^setsize_abs, ^setsize_abs);
     cc_setfill(true);
     cc_setcolour(0xffffa0);
     cc_create($component2, ^iftype_rectangle, 1);
-    cc_setsize(if_getwidth($component2), if_getheight($component2));
+    cc_setsize(if_getwidth($component2), if_getheight($component2), ^setsize_abs, ^setsize_abs);
     cc_setfill(false);
     cc_setcolour(^black);
     cc_create($component2, ^iftype_text, 2);
-    cc_setsize($int4, if_getheight($component2));
-    cc_setposition(2, 0);
+    cc_setsize($int4, if_getheight($component2), ^setsize_abs, ^setsize_abs);
+    cc_setposition(2, 0, ^setpos_abs_left, ^setpos_abs_top);
     cc_settext($string0);
     cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
     cc_settextfont(p12_full);
