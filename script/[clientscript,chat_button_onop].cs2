@@ -2,8 +2,13 @@
 [clientscript,chat_button_onop](int $int0, int $int1)
 def_int $int2 = ~script553;
 if ($int0 = 1) {
-    %varclient_41 = $int1;
-    ~script181($int1);
+    if (getwindowmode = ^windowmode_resizable & %varclient_41 = $int1) {
+        %varclient_41 = -1;
+    } else {
+        %varclient_41 = $int1;
+    }
+    ~toplevel_chatbox_background;
+    ~chat_alert_set($int1, 0);
     ~redraw_chat_buttons;
     ~rebuildchatbox($int2);
     ~rebuildpmbox($int2);
