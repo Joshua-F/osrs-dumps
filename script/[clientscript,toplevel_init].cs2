@@ -1,0 +1,24 @@
+// 901
+[clientscript,toplevel_init](component $component0, enum $enum)
+if_setonsubchange("toplevel_subchange(event_com, $enum)", $component0);
+if_setonresize("toplevel_resize(event_com, $enum)", $component0);
+if_setonvartransmit("toplevel_vartransmit(event_com, $enum){varplayer_1021, varplayer_1055}", $component0);
+if_setonkey("toplevel_keypress(event_keycode, $enum)", $component0);
+def_int $int = 0;
+def_component $component3 = enum(int, component, enum_1138, $int);
+while ($component3 ! null) {
+    $component3 = enum(component, component, $enum, $component3);
+    if ($component3 ! null) {
+        if_setop(1, enum(int, string, enum_1141, $int), $component3);
+        if_setonop("toplevel_sidebutton_op(event_op, $enum, $int)", $component3);
+    }
+    $int = calc($int + 1);
+    $component3 = enum(int, component, enum_1138, $int);
+}
+if (%varclient_171 <= 0 & enum(enum, boolean, enum_1134, $enum) = false) {
+    %varclient_171 = 3;
+}
+%varclient_172, %varclient_173 = -1, -1;
+~toplevel_redraw($component0, $enum);
+~toplevel_subchange($component0, $enum);
+~toplevel_sidebutton_switch(%varclient_171, $enum);
