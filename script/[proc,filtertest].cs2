@@ -63,6 +63,9 @@ if ($chattype0 = ^chattype_autotyper | $chattype0 = ^chattype_modautotyper) {
     return(true);
 }
 if ($chattype0 = ^chattype_privatechat) {
+    if ($int1 < %varclient_175) {
+        return(false);
+    }
     if (ignore_test(removetags($string0)) = true) {
         return(false);
     }
@@ -90,6 +93,9 @@ if ($chattype0 = ^chattype_tradereq | $chattype0 = ^chattype_chalreq_trade) {
     return(false);
 }
 if ($chattype0 = ^chattype_loginlogoutnotification | $chattype0 = ^chattype_privatechatout) {
+    if ($int1 < %varclient_175) {
+        return(false);
+    }
     if ($chattype0 = ^chattype_loginlogoutnotification & %varplayerbit_1627 = 0 & calc(clientclock - $int1) >= 500) {
         return(false);
     }
@@ -102,6 +108,9 @@ if ($chattype0 = ^chattype_loginlogoutnotification | $chattype0 = ^chattype_priv
     return(false);
 }
 if ($chattype0 = ^chattype_modprivatechat) {
+    if ($int1 < %varclient_175) {
+        return(false);
+    }
     if (%varplayer_287 = 1 & $int2 = 0 & ~trade_partner_check($chattype0, $string0) = false) {
         return(false);
     }
