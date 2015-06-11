@@ -13,6 +13,7 @@ if_sethide($boolean0, interface_162:com_29);
 cc_deleteall(interface_162:com_30);
 cc_deleteall(interface_162:com_41);
 if (~toplevel_chatbox_maketransparent = false) {
+    if_setnoclickthrough(true, interface_162:com_30);
     cc_create(interface_162:com_30, ^iftype_graphic, 0);
     cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
     cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
@@ -34,6 +35,11 @@ if (~toplevel_chatbox_maketransparent = false) {
 }
 def_int $int1 = calc(16384 / 25);
 def_int $int2 = 16384;
+if (%varplayerbit_2570 = 1) {
+    if_setnoclickthrough(true, interface_162:com_30);
+} else {
+    if_setnoclickthrough(false, interface_162:com_30);
+}
 def_int $int3 = 0;
 while ($int3 < 20) {
     cc_create(interface_162:com_30, ^iftype_rectangle, $int3);
