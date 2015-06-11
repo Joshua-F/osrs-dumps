@@ -1,12 +1,18 @@
 // 91
 [proc,pm_filtertest](int $chattype0, string $string0, int $int1)(boolean)
 if ($chattype0 = ^chattype_modprivatechat) {
+    if ($int1 < %varclient_175) {
+        return(false);
+    }
     if (ignore_test(removetags($string0)) = true) {
         return(false);
     }
     return(true);
 }
 if ($chattype0 = ^chattype_privatechat) {
+    if ($int1 < %varclient_175) {
+        return(false);
+    }
     if (ignore_test(removetags($string0)) = true) {
         return(false);
     }
@@ -19,6 +25,9 @@ if ($chattype0 = ^chattype_privatechat) {
     return(false);
 }
 if ($chattype0 = ^chattype_loginlogoutnotification | $chattype0 = ^chattype_privatechatout) {
+    if ($int1 < %varclient_175) {
+        return(false);
+    }
     if ($chattype0 = ^chattype_loginlogoutnotification & %varplayerbit_1627 = 0 & calc(clientclock - $int1) >= 500) {
         return(false);
     }
