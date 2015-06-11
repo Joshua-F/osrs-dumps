@@ -1,5 +1,5 @@
 // 843
-[proc,options_windowmode_draw](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5)
+[proc,options_windowmode_draw](component $component0, component $component1, component $component2)
 cc_deleteall($component0);
 cc_deleteall($component1);
 def_string $string = "";
@@ -25,10 +25,7 @@ if ($windowmode = ^windowmode_resizable) {
     if_setonmouserepeat("options_windowmode_mouserepeat(event_com, $component2, $string, $graphic, $int)", $component0);
     $graphic = "windowmode_icons,0";
     if_setonmouseleave("options_windowmode_mouseleave(event_com, $component2, $graphic, $int)", $component0);
-    if_setonop("options_windowmode_set(^windowmode_small, $component0, $component1, $component2, $component3, $component4, $component5)", $component0);
-    if_settrans(0, $component3);
-    if_settrans(0, $component4);
-    if_settrans(0, $component5);
+    if_setonop("options_windowmode_set(^windowmode_small, $component0, $component1, $component2)", $component0);
 } else {
     $int = ~options_button_on($component0, 0);
     cc_create($component0, ^iftype_graphic, $int);
@@ -48,9 +45,6 @@ if ($windowmode = ^windowmode_resizable) {
     if_setonmouserepeat("options_windowmode_mouserepeat(event_com, $component2, $string, $graphic, $int)", $component1);
     $graphic = "windowmode_icons,1";
     if_setonmouseleave("options_windowmode_mouseleave(event_com, $component2, $graphic, $int)", $component1);
-    if_setonop("options_windowmode_set(^windowmode_resizable, $component0, $component1, $component2, $component3, $component4, $component5)", $component1);
-    if_settrans(120, $component3);
-    if_settrans(120, $component4);
-    if_settrans(120, $component5);
+    if_setonop("options_windowmode_set(^windowmode_resizable, $component0, $component1, $component2)", $component1);
 }
-if_setontimer("options_windowmode_resynch($windowmode, $component0, $component1, $component2, $component3, $component4, $component5)", $component0);
+if_setontimer("options_windowmode_resynch($windowmode, $component0, $component1, $component2)", $component0);
