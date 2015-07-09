@@ -1,0 +1,41 @@
+// 962
+[clientscript,tournament_supplies_init](component $com_0, component $com_3, component $com_4, component $com_5)
+cc_deleteall($com_3);
+cc_deleteall($com_4);
+def_int $int4 = calc((if_getwidth($com_3) - 10 * 36) / (10 - 1));
+def_int $int5 = calc(32 + 10);
+def_int $int6 = 0;
+def_obj $obj = enum(int, namedobj, enum_1124, $int6);
+while ($obj ! null) {
+    cc_create($com_3, ^iftype_graphic, $int6);
+    cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+    cc_setobject_nonum($obj, 10000);
+    cc_setgraphicshadow(0x333333);
+    cc_setoutline(1);
+    cc_setop(1, "Take");
+    if (oc_stackable($obj) = false) {
+        cc_setop(2, "Take-5");
+        cc_setop(3, "Take-10");
+    }
+    cc_setop(4, "Take-X");
+    cc_setop(10, "Examine");
+    cc_setopbase("<col=ff9040><oc_name($obj)></col>");
+    cc_setonop("cc_settrans_temporarily(event_com, event_comsubid, 100, 0)");
+    cc_sethide(true);
+    $int6 = calc($int6 + 1);
+    $obj = enum(int, namedobj, enum_1124, $int6);
+}
+cc_create($com_3, ^iftype_text, $int6);
+cc_setsize(0, 50, ^setsize_minus, ^setsize_abs);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top);
+cc_setcolour(0xff981f);
+cc_settextshadow(true);
+cc_settextfont(p12_full);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+cc_settext("No matching items found.");
+cc_sethide(true);
+~scrollbar_vertical($com_4, $com_3, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+if (~bankmain_searching = true) {
+    ~meslayer_close(1, 1);
+}
+~tournament_supplies_search_off($com_3, $com_4, $com_5, $int4, $int5);

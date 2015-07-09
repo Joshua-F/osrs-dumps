@@ -1,7 +1,28 @@
 // 747
-[clientscript,worldswitcher_init]
-if_settext("Loading...", interface_69:com_2);
-if_setscrollpos(0, 0, interface_69:com_7);
-if_sethide(true, interface_69:com_7);
-if_setonvartransmit(null, interface_69:com_7);
-cc_deleteall(interface_69:com_113);
+[clientscript,worldswitcher_init](component $com_0, component $com_2, component $com_7, component $com_15, component $com_14, component $com_9, component $com_10, component $com_11, component $com_12, component $com_13, component $com_17, component $com_18, component $com_16, component $com_20)
+if_settext("Loading...", $com_2);
+if_setscrollpos(0, 0, $com_7);
+if_sethide(true, $com_7);
+cc_deleteall($com_15);
+~scrollbar_vertical($com_15, $com_7, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+if_sethide(true, $com_9);
+if_sethide(true, $com_10);
+if_sethide(true, $com_11);
+if_sethide(true, $com_12);
+if_sethide(true, $com_13);
+cc_deleteall($com_14);
+def_int $int = 0;
+while ($int <= 420) {
+    cc_create($com_14, ^iftype_graphic, $int);
+    cc_setsize(0, 16, ^setsize_minus, ^setsize_abs);
+    cc_setop(1, "Switch");
+    cc_setop(2, "Favourite");
+    if ($int > 300) {
+        cc_setopbase("<col=ff9040><tostring(calc($int - 300))></col>");
+    } else {
+        cc_setopbase("<col=ff9040><tostring($int)></col>");
+    }
+    cc_sethide(true);
+    $int = calc($int + 1);
+}
+if_setontimer("worldswitcher_loading($com_0, $com_2, $com_7, $com_15, $com_14, $com_9, $com_10, $com_11, $com_12, $com_13, $com_17, $com_18, $com_16, $com_20)", $com_0);
