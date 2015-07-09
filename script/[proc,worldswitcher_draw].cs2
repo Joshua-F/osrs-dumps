@@ -1,0 +1,93 @@
+// 892
+[proc,worldswitcher_draw](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10, component $component11)
+~worldswitcher_sortbutton_draw($component3, 2, 3, $component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10, $component11);
+~worldswitcher_sortbutton_draw($component4, 0, 1, $component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10, $component11);
+~worldswitcher_sortbutton_draw($component5, 4, 5, $component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10, $component11);
+~worldswitcher_sortbutton_draw($component6, 8, 9, $component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10, $component11);
+~worldswitcher_sortbutton_draw($component7, 6, 7, $component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10, $component11);
+if (%varplayerbit_4596 = 2) {
+    worldlist_sort(7, false, 0, false);
+} else if (%varplayerbit_4596 = 3) {
+    worldlist_sort(7, true, 0, false);
+} else if (%varplayerbit_4596 = 4) {
+    worldlist_sort(2, false, 0, false);
+} else if (%varplayerbit_4596 = 5) {
+    worldlist_sort(2, true, 0, false);
+} else if (%varplayerbit_4596 = 8) {
+    worldlist_sort(1, false, 0, false);
+} else if (%varplayerbit_4596 = 9) {
+    worldlist_sort(1, true, 0, false);
+} else if (%varplayerbit_4596 = 6) {
+    worldlist_sort(3, false, 0, false);
+} else if (%varplayerbit_4596 = 7) {
+    worldlist_sort(3, true, 0, false);
+} else if (%varplayerbit_4596 = 1) {
+    worldlist_sort(0, true, 7, false);
+} else {
+    worldlist_sort(0, false, 7, false);
+}
+def_int $int12 = if_getheight($component3);
+def_int $int13 = if_getwidth($component3);
+def_int $int14 = if_getwidth($component4);
+def_int $int15 = if_getwidth($component5);
+def_int $int16 = if_getwidth($component6);
+def_int $int17 = if_getwidth($component7);
+cc_deleteall($component0);
+def_int $int18 = 0;
+def_int $int19 = 0;
+def_int $int20 = 0;
+def_string $string0 = "";
+def_int $int21 = -1;
+def_int $int22 = 0;
+def_string $string1 = "";
+$int19, $int20, $string0, $int21, $int22, $string1 = worldlist_start;
+while ($int19 > 0) {
+    if (~script961($int19, $int20) = true) {
+        $int18 = ~worldswitcher_entry_draw($component0, $int18, $int12, $component2, $int19, $int19, $int20, $string0, $int21, $int22, $int13, $int14, $int15, $int16, $int17, $component11);
+        $int12 = calc($int12 + 16);
+    }
+    $int19, $int20, $string0, $int21, $int22, $string1 = worldlist_next;
+}
+if ($int12 > if_getheight($component0)) {
+    if_setscrollsize(0, $int12, $component0);
+} else {
+    if_setscrollsize(0, 0, $component0);
+}
+if_setsize(0, $int12, ^setsize_minus, ^setsize_abs, $component2);
+if (%varclient_69 < 0) {
+    %varclient_69 = 0;
+}
+~scrollbar_resize($component1, $component0, %varclient_69);
+cc_deleteall($component8);
+cc_deleteall($component9);
+def_int $int23 = calc(if_getwidth($component8) - ($int13 + $int14 + $int15 + $int16));
+if (%varplayerbit_4597 > 0) {
+    if_sethide(true, $component10);
+    $int19, $int20, $string0, $int21, $int22, $string1 = worldlist_specific(%varplayerbit_4597);
+    if (~script961($int19, $int20) = false) {
+        $int19, $string0, $int21, $int22 = 0, "Unavailable", -1, 0;
+    }
+    ~worldswitcher_entry_draw($component8, 0, 0, $component8, -1, $int19, $int20, $string0, $int21, $int22, $int13, $int14, $int15, $int16, $int23, $component11);
+    if (%varplayerbit_4598 > 0) {
+        $int19, $int20, $string0, $int21, $int22, $string1 = worldlist_specific(%varplayerbit_4598);
+        if (~script961($int19, $int20) = false) {
+            $int19, $string0, $int21, $int22 = 0, "Unavailable", -1, 0;
+        }
+        ~worldswitcher_entry_draw($component9, 0, 0, $component9, -1, $int19, $int20, $string0, $int21, $int22, $int13, $int14, $int15, $int16, $int23, $component11);
+    } else {
+        ~worldswitcher_wipe_favourite($component9);
+    }
+} else {
+    ~worldswitcher_wipe_favourite($component8);
+    if (%varplayerbit_4598 > 0) {
+        if_sethide(true, $component10);
+        $int19, $int20, $string0, $int21, $int22, $string1 = worldlist_specific(%varplayerbit_4598);
+        if (~script961($int19, $int20) = false) {
+            $int19, $string0, $int21, $int22 = 0, "Unavailable", -1, 0;
+        }
+        ~worldswitcher_entry_draw($component9, 0, 0, $component9, -1, $int19, $int20, $string0, $int21, $int22, $int13, $int14, $int15, $int16, $int23, $component11);
+    } else {
+        if_sethide(false, $component10);
+        ~worldswitcher_wipe_favourite($component9);
+    }
+}
