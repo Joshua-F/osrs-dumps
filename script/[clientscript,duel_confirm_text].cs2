@@ -95,5 +95,81 @@ while ($int3 < 28) {
     }
     $int3 = calc($int3 + 1);
 }
-if_settext($string0, interface_106:com_58);
-if_settext($string1, interface_106:com_59);
+if_settext($string0, interface_106:com_99);
+if_settext($string1, interface_106:com_101);
+def_string $string2 = "";
+def_string $string3 = "";
+if (%varplayerbit_642 > 0) {
+    $string2 = "<$string2>Some worn items will be taken off.<br>";
+}
+if (testbit(%varplayer_286, 7) = ^true | testbit(%varplayer_286, 13) = ^true) {
+    $string2 = "<$string2>Boosted stats will be restored.<br>";
+}
+if (testbit(%varplayer_286, 9) = ^true) {
+    $string2 = "<$string2>Existing prayers will be stopped.<br>";
+}
+if (testbit(%varplayer_286, 0) = ^true) {
+    $string3 = "<$string3>You cannot forfeit the duel.<br>";
+}
+if (testbit(%varplayer_286, 1) = ^true) {
+    $string3 = "<$string3>You cannot move.<br>";
+}
+if (testbit(%varplayer_286, 2) = ^true) {
+    $string3 = "<$string3>You cannot use weapons.<br>";
+}
+if (testbit(%varplayer_286, 3) = ^true) {
+    $string3 = "<$string3>You cannot wear armour.<br>";
+}
+if (testbit(%varplayer_286, 11) = ^true) {
+    $string3 = "<$string3>You cannot wear jewellery.<br>";
+}
+if (testbit(%varplayer_286, 4) = ^true) {
+    $string3 = "<$string3>You cannot use Ranged attacks <col=ff0000>or salamanders<col=ffffff>.<br>";
+}
+if (testbit(%varplayer_286, 5) = ^true) {
+    $string3 = "<$string3>You cannot use melee attacks <col=ff0000>or salamanders<col=ffffff>.<br>";
+}
+if (testbit(%varplayer_286, 6) = ^true) {
+    $string3 = "<$string3>You cannot use Magic attacks <col=ff0000>or salamanders<col=ffffff>.<br>";
+}
+if (testbit(%varplayer_286, 13) = ^true) {
+    $string3 = "<$string3>You cannot use special attacks.<br>";
+}
+if (testbit(%varplayer_286, 12) = ^true) {
+    $string3 = "<$string3>You can only attack with 'fun' weapons.<br>";
+}
+if (testbit(%varplayer_286, 7) = ^true) {
+    $string3 = "<$string3>You cannot use drinks.<br>";
+}
+if (testbit(%varplayer_286, 8) = ^true) {
+    $string3 = "<$string3>You cannot use food.<br>";
+}
+if (testbit(%varplayer_286, 9) = ^true) {
+    $string3 = "<$string3>You cannot use Prayer.<br>";
+}
+if (testbit(%varplayer_286, 10) = ^true) {
+    $string3 = "<$string3>There will be obstacles in the arena.<br>";
+}
+if (testbit(%varplayer_286, 17) = ^true | testbit(%varplayer_286, 19) = ^true) {
+    $string3 = "<$string3>You can't use 2H weapons such as bows.<br>";
+}
+if_settext($string2, interface_106:com_72);
+if_settext($string3, interface_106:com_76);
+def_int $int6 = calc(36 + 11 * paraheight($string2, 132, p11_full) + 11 * paraheight($string3, 132, p11_full));
+if ($int6 > if_getheight(interface_106:com_75)) {
+    if_setsize(132, calc(11 * paraheight($string2, 132, p11_full)), ^setsize_abs, ^setsize_abs, interface_106:com_72);
+    if_setsize(132, calc(11 * paraheight($string3, 132, p11_full)), ^setsize_abs, ^setsize_abs, interface_106:com_76);
+    if_setposition(1, calc(if_gety(interface_106:com_72) + if_getheight(interface_106:com_72) + 2), ^setpos_abs_left, ^setpos_abs_top, interface_106:com_74);
+    if_setposition(2, calc(if_gety(interface_106:com_74) + if_getheight(interface_106:com_74)), ^setpos_abs_left, ^setpos_abs_top, interface_106:com_76);
+    if_setscrollsize(0, $int6, interface_106:com_75);
+    if_sethide(false, interface_106:com_73);
+    ~scrollbar_vertical(interface_106:com_73, interface_106:com_75, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+} else {
+    if_sethide(true, interface_106:com_73);
+    if_setscrollpos(0, 0, interface_106:com_75);
+    if_setsize(132, 85, ^setsize_abs, ^setsize_abs, interface_106:com_72);
+    if_setsize(132, 16, ^setsize_abs, ^setsize_abs, interface_106:com_74);
+    if_setsize(132, 145, ^setsize_abs, ^setsize_abs, interface_106:com_76);
+    if_setposition(1, 105, ^setpos_abs_left, ^setpos_abs_top, interface_106:com_74);
+    if_setposition(2, 120, ^setpos_abs_left, ^setpos_abs_top, interface_106:com_76);
+}
