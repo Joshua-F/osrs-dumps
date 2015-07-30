@@ -1,0 +1,13 @@
+// 985
+[clientscript,keybind_open_menu](component $component0, component $com_109, component $com_108, component $com_112, int $int4, int $int5, component $com_107, component $component7)
+%varplayerbit_4690 = $int5;
+~keybind_build_dropdown($com_109, $com_108, $com_112, $int4);
+def_component $component8 = if_getlayer($component0);
+if_setposition(calc(if_getx($component8) + 40), calc(if_gety($component8) + 22), ^setpos_abs_left, ^setpos_abs_top, $com_109);
+if (calc(if_gety($com_109) + if_getheight($com_109)) > if_getheight($com_108)) {
+    if_setposition(if_getx($com_109), calc(if_gety($component8) + 6 - if_getheight($com_109)), ^setpos_abs_left, ^setpos_abs_top, $com_109);
+}
+if_setgraphic("pre_eoc_stones,1", $component7);
+if_sethide(false, $com_108);
+if_sethide(false, $com_107);
+if_setonclick("keybind_close_dropdown($com_107, $com_108, $component7)", $com_107);
