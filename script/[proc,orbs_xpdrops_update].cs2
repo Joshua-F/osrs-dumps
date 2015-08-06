@@ -1,0 +1,15 @@
+// 1042
+[proc,orbs_xpdrops_update](component $component)
+def_graphic $graphic1 = "orb_xp,0";
+def_graphic $graphic2 = "orb_xp,2";
+def_string $string = "Show";
+if (%varplayerbit_4702 = 1) {
+    $graphic1, $graphic2, $string = "orb_xp,1", "orb_xp,3", "Hide";
+    if_setonop("orbs_xpdrops_op(event_op, event_com, 0)", $component);
+} else {
+    if_setonop("orbs_xpdrops_op(event_op, event_com, 1)", $component);
+}
+if_setop(1, $string, $component);
+if_setgraphic($graphic1, $component);
+if_setonmouserepeat("graphic_swapper(event_com, $graphic2)", $component);
+if_setonmouseleave("graphic_swapper(event_com, $graphic1)", $component);
