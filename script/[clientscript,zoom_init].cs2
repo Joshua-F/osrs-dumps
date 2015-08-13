@@ -1,0 +1,13 @@
+// 831
+[clientscript,zoom_init](component $com_4, component $com_5, component $com_6, component $com_7, component $com_12, component $com_70)
+if_sethide(%varclient_75, $com_6);
+if_setondrag("zoom_slider_ondrag($com_12, $com_7, event_mousex)", $com_12);
+if_setondragcomplete("zoom_slider_dragcomplete($com_12, $com_7, event_mousex)", $com_12);
+def_string $string = "Click here to enable zooming using the mouse scroll wheel.";
+if (%varclient_75 = true) {
+    $string = "Click here to disable zooming using the mouse scroll wheel.";
+}
+if_setonmouserepeat("tooltip_mouserepeat($com_4, -1, $com_70, $string, 25, 190)", $com_4);
+if_setonmouseleave("deltooltip($com_70)", $com_4);
+if_setonmouseover("zoom_outline(1, $com_5)", $com_5);
+if_setonmouseleave("zoom_outline(0, $com_5)", $com_5);
