@@ -4,7 +4,13 @@ def_int $int32 = calc(23 + 1);
 def_stat $statarray0($int32);
 def_int $intarray1($int32);
 def_int $int33 = 0;
-def_int $int34 = calc(stat_visible_xp(attack) - $int9);
+def_int $int34 = calc(stat_visible_xp(fishing) - $int23);
+if ($int34 > 0) {
+    $statarray0($int33) = fishing;
+    $intarray1($int33) = $int34;
+    $int33 = calc($int33 + 1);
+}
+$int34 = calc(stat_visible_xp(attack) - $int9);
 if ($int34 > 0) {
     $statarray0($int33) = attack;
     $intarray1($int33) = $int34;
@@ -88,12 +94,6 @@ if ($int34 > 0) {
     $intarray1($int33) = $int34;
     $int33 = calc($int33 + 1);
 }
-$int34 = calc(stat_visible_xp(fishing) - $int23);
-if ($int34 > 0) {
-    $statarray0($int33) = fishing;
-    $intarray1($int33) = $int34;
-    $int33 = calc($int33 + 1);
-}
 $int34 = calc(stat_visible_xp(cooking) - $int24);
 if ($int34 > 0) {
     $statarray0($int33) = cooking;
@@ -164,7 +164,7 @@ if ($int33 > 0 & $int14 > 0) {
     if ($int40 < 100) {
         $int40 = 100;
     }
-    $int41 = calc($int39 * 100 / $int40 + 1);
+    $int41 = calc($int39 * enum(int, int, enum_1171, %varplayerbit_4722) / $int40 + 1);
     while ($int35 < $int33) {
         if ($int36 = 0) {
             %varclient_72 = $statarray0($int35);

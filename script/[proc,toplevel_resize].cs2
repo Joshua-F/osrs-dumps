@@ -49,8 +49,12 @@ if (%varplayerbit_4606 ! 0) {
     }
 } else {
     viewport_setfov(0, 0);
-    viewport_setzoom(0, 0);
     viewport_clampfov(0, 0, 0, 0);
+    if (%varclient_73 >= 195 & %varclient_73 <= 700 & %varclient_74 >= 175 & %varclient_74 <= 715) {
+        ~camera_do_zoom(%varclient_73, %varclient_74);
+    } else {
+        ~camera_do_zoom(256, 320);
+    }
     $int6, $int7 = viewport_geteffectivesize;
     if ($component2 ! null) {
         if_setsize($int6, $int7, ^setsize_abs, ^setsize_abs, $component2);
@@ -62,7 +66,7 @@ if (%varplayerbit_4606 ! 0) {
         }
     }
 }
-$component2 = enum(component, component, $enum1, interface_161:com_8);
+$component2 = enum(component, component, $enum1, interface_161:com_9);
 if ($component2 ! null) {
     if (%varclient_173 = ^min_32bit_int & if_hassub($component2) = true) {
         if_setsize(512, 0, ^setsize_abs, ^setsize_minus, $component2);
