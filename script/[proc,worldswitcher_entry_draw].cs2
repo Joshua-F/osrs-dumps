@@ -1,43 +1,61 @@
 // 960
-[proc,worldswitcher_entry_draw](component $component0, int $int1, int $int2, component $component3, int $int4, int $int5, int $int6, string $string0, int $int7, int $int8, int $int9, int $int10, int $int11, int $int12, int $int13, component $component14)(int)
+[proc,worldswitcher_entry_draw](component $component0, int $int1, int $int2, component $component3, int $int4, int $int5, int $int6, string $string0, int $int7, int $int8, int $int9, int $int10, int $int11, int $int12, int $int13, int $int14, component $component15)(int)
 if ($int4 ! -1 & .cc_find($component3, $int4) = ^true) {
     .cc_sethide(false);
     .cc_setposition(0, $int2, ^setpos_abs_centre, ^setpos_abs_top);
     if (string_length($string0) > 0) {
-        .cc_setonmouserepeat("tooltip_mouserepeat(event_com, event_comsubid, $component14, removetags($string0), 25, 190)");
+        .cc_setonmouserepeat("tooltip_mouserepeat(event_com, event_comsubid, $component15, removetags($string0), 25, 190)");
     } else {
         .cc_setonmouserepeat(null);
     }
 } else if (string_length($string0) > 0) {
-    if_setonmouserepeat("tooltip_mouserepeat(event_com, -1, $component14, removetags($string0), 25, 190)", $component3);
+    if_setonmouserepeat("tooltip_mouserepeat(event_com, -1, $component15, removetags($string0), 25, 190)", $component3);
 } else {
     if_setonmouserepeat(null, $component3);
+}
+def_int $int16 = 0;
+if (map_world = $int5) {
+    $int16 = 1;
+} else if (testbit($int6, 18) = ^true) {
+    if ($int14 < 2000) {
+        $int16 = 1;
+    }
+} else if (testbit($int6, 28) = ^true) {
+    if ($int14 < 1750) {
+        $int16 = 1;
+    }
+} else if (testbit($int6, 7) = ^true) {
+    if ($int14 < 1500) {
+        $int16 = 1;
+    }
+} else if (testbit($int6, 27) = ^true & $int14 < 1250) {
+    $int16 = 1;
 }
 cc_create($component0, ^iftype_rectangle, $int1);
 $int1 = calc($int1 + 1);
 cc_setsize(0, 16, ^setsize_minus, ^setsize_abs);
 cc_setposition(0, $int2, ^setpos_abs_centre, ^setpos_abs_top);
 cc_setfill(true);
-if (map_world ! $int5) {
+if ($int16 = 0) {
     cc_setcolour(^white);
     cc_settrans(255);
     if ($int4 ! -1 & .cc_find($component3, $int4) = ^true) {
         .cc_setonmouseover("cc_settrans(event_com, cc_getid, 200, null)");
-        .cc_setonmouseleave("cc_settrans(event_com, cc_getid, 255, $component14)");
+        .cc_setonmouseleave("cc_settrans(event_com, cc_getid, 255, $component15)");
         .cc_setonop("logout_op(event_op, 6)");
     } else {
         if_setonmouseover("cc_settrans(event_com, cc_getid, 200, null)", $component3);
-        if_setonmouseleave("cc_settrans(event_com, cc_getid, 255, $component14)", $component3);
+        if_setonmouseleave("cc_settrans(event_com, cc_getid, 255, $component15)", $component3);
         if_setonop("logout_op(event_op, 6)", $component3);
     }
 } else {
     cc_setcolour(^black);
     cc_settrans(175);
     if ($int4 ! -1 & .cc_find($component3, $int4) = ^true) {
-        .cc_setonmouseleave("deltooltip($component14)");
+        .cc_setonmouseleave("deltooltip($component15)");
         .cc_setonop(null);
     } else {
-        if_setonmouseleave("deltooltip($component14)", $component3);
+        if_setonmouseleave("deltooltip($component15)", $component3);
         if_setonop(null, $component3);
     }
 }
@@ -61,14 +79,14 @@ if ($int5 <= 0) {
 }
 if (testbit($int6, 0) = ^true) {
     cc_setgraphic("worldswitcher_stars,1");
-    if (map_world ! $int5) {
+    if ($int16 = 0) {
         .cc_setcolour(0xf0f000);
     } else {
         .cc_setcolour(0x7f7f7f);
     }
 } else {
     cc_setgraphic("worldswitcher_stars,0");
-    if (map_world ! $int5) {
+    if ($int16 = 0) {
         .cc_setcolour(0xe0e0e0);
     } else {
         .cc_setcolour(0x7f7f7f);
@@ -83,23 +101,27 @@ cc_create($component0, ^iftype_text, $int1);
 $int1 = calc($int1 + 1);
 cc_setsize($int12, 16, ^setsize_abs, ^setsize_abs);
 cc_setposition($int13, $int2, ^setpos_abs_right, ^setpos_abs_top);
-cc_setcolour(^white);
+if ($int16 = 0) {
+    cc_setcolour(^white);
+} else {
+    cc_setcolour(0x7f7f7f);
+}
 cc_settextfont(p11_full);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
 cc_settextshadow(true);
 cc_settext(tostring($int8));
-def_int $int15 = 0;
+def_int $int17 = 0;
 def_string $string1 = "";
-def_int $int16 = string_length($string0);
-if ($int16 <= 0) {
-    $string0, $int16 = "-", 1;
+def_int $int18 = string_length($string0);
+if ($int18 <= 0) {
+    $string0, $int18 = "-", 1;
 }
-if ($int16 > 0 & parawidth($string0, 512, p11_full) > $int13) {
-    while ($int16 > 1 & $int15 = 0) {
-        $int16 = calc($int16 - 1);
-        $string1 = append(substring($string0, 0, $int16), "...");
+if ($int18 > 0 & parawidth($string0, 512, p11_full) > $int13) {
+    while ($int18 > 1 & $int17 = 0) {
+        $int18 = calc($int18 - 1);
+        $string1 = append(substring($string0, 0, $int18), "...");
         if (parawidth($string1, 512, p11_full) <= $int13) {
-            $string0, $int15 = $string1, 1;
+            $string0, $int17 = $string1, 1;
         }
     }
 }
@@ -107,7 +129,11 @@ cc_create($component0, ^iftype_text, $int1);
 $int1 = calc($int1 + 1);
 cc_setsize($int13, 16, ^setsize_abs, ^setsize_abs);
 cc_setposition(0, $int2, ^setpos_abs_right, ^setpos_abs_top);
-cc_setcolour(0xff981f);
+if ($int16 = 0) {
+    cc_setcolour(0xff981f);
+} else {
+    cc_setcolour(0x7f7f7f);
+}
 cc_settextfont(p11_full);
 cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
 cc_settextshadow(true);
