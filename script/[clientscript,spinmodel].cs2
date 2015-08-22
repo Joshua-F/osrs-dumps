@@ -1,0 +1,7 @@
+// 1051
+[clientscript,spinmodel](int $int0, int $int1, int $int2, int $int3, int $int4, component $component, int $int6)
+if ($int6 ! -1 & cc_find($component, $int6) = true) {
+    cc_setmodelangle($int0, $int1, calc((cc_getmodelangle_x + $int2) % 2048), calc((cc_getmodelangle_y + $int3) % 2048), calc((cc_getmodelangle_z + $int4) % 2048), cc_getmodelzoom);
+} else if ($int6 = -1) {
+    if_setmodelangle($int0, $int1, calc((if_getmodelangle_x($component) + $int2) % 2048), calc((if_getmodelangle_y($component) + $int3) % 2048), calc((if_getmodelangle_z($component) + $int4) % 2048), if_getmodelzoom($component), $component);
+}
