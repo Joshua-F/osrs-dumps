@@ -1,0 +1,25 @@
+// 1062
+[proc,farming_tools_side_update](component $component, obj $obj1, string $string)
+def_int $int = 0;
+def_obj $obj3 = null;
+$int, $obj3 = ~farming_tools_getcarried($obj1);
+def_int $rgb = 0x7f2000;
+if ($int > 0) {
+    $rgb = 0x40ff40;
+}
+if ($obj1 = obj_6797) {
+    if ($obj3 = null) {
+        $obj3 = obj_6797;
+    }
+    $string = oc_name($obj3);
+}
+if (cc_find($component, 0) = true & .cc_find($component, 1) = true) {
+    cc_settext($string);
+    cc_setcolour($rgb);
+    .cc_setcolour($rgb);
+    .cc_settext(tostring($int));
+}
+if (cc_find($component, 2) = true) {
+    cc_setobject_nonum($obj3, $int);
+}
+if_setopbase("<col=ff9040><oc_name($obj3)></col>", $component);

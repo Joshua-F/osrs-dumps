@@ -1,0 +1,15 @@
+// 1070
+[proc,saradomin_light_effect_update](component $component, int $int)
+if ($int <= 50) {
+    .cc_settrans(calc(255 - $int * 4));
+    cc_setmodelangle(0, 0, 512, calc((48 + $int * 40) % 2048), 0, calc(1050 - $int * 20));
+    cc_setmodel(model_29403);
+    return;
+}
+if ($int <= 70) {
+    $int = calc($int - 50);
+    .cc_settrans(calc(55 + $int * 10));
+    cc_setmodel(model_16238);
+    return;
+}
+cc_deleteall($component);
