@@ -1,0 +1,38 @@
+// 1076
+[proc,shop_main_update](component $component0, int $int1, inv $inv2)
+def_obj $obj3 = null;
+def_int $int4 = -1;
+def_int $int5 = 0;
+while ($int5 < $int1) {
+    if (cc_find($component0, $int5) = ^true) {
+        $obj3 = inv_getobj($inv2, $int5);
+        if ($obj3 ! null) {
+            cc_sethide(false);
+            cc_setobject($obj3, inv_getnum($inv2, $int5));
+            cc_setopbase("<col=ff9040><oc_name($obj3)></col>");
+            $int4 = cc_gety;
+        } else {
+            cc_sethide(true);
+            cc_setobject_nonum(obj_6512, 1);
+            cc_setopbase("");
+            cc_settrans(0);
+            cc_setontimer(null);
+        }
+    }
+    $int5 = calc($int5 + 1);
+}
+if ($int4 ! -1) {
+    $int4 = calc($int4 + 32);
+} else {
+    $int4 = 0;
+}
+if ($int4 > if_getheight($component0)) {
+    if_setscrollsize(0, $int4, $component0);
+    ~scrollbar_resize(interface_300:com_3, $component0, if_getscrolly($component0));
+    if_sethide(false, interface_300:com_3);
+} else {
+    if_setscrollpos(0, 0, interface_300:com_2);
+    if_setscrollsize(0, 0, interface_300:com_2);
+    ~scrollbar_resize(interface_300:com_3, $component0, 0);
+    if_sethide(true, interface_300:com_3);
+}
