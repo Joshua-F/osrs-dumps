@@ -1,0 +1,26 @@
+// 1074
+[clientscript,shop_main_init](inv $inv0, string $string0)
+cc_deleteall(interface_300:com_1);
+cc_deleteall(interface_300:com_2);
+cc_deleteall(interface_300:com_3);
+~steelborder(interface_300:com_1, $string0, 0);
+def_int $int1 = calc((if_getwidth(interface_300:com_2) - 8 * 36) / 7 + 36);
+def_int $int2 = inv_size($inv0);
+def_int $int3 = 0;
+while ($int3 < $int2) {
+    cc_create(interface_300:com_2, ^iftype_graphic, $int3);
+    cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+    cc_setposition(calc($int3 % 8 * $int1), calc($int3 / 8 * $int1), ^setpos_abs_left, ^setpos_abs_top);
+    cc_setgraphicshadow(0x333333);
+    cc_setoutline(1);
+    cc_setop(1, "Value");
+    cc_setop(2, "Buy 1");
+    cc_setop(3, "Buy 5");
+    cc_setop(4, "Buy 10");
+    cc_setop(10, "Examine");
+    cc_setonop("cc_settrans_temporarily(event_com, event_comsubid, 125, 0)");
+    $int3 = calc($int3 + 1);
+}
+~scrollbar_vertical(interface_300:com_3, interface_300:com_2, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~shop_main_update(interface_300:com_2, $int2, $inv0);
+if_setoninvtransmit("shop_main_update(event_com, $int2, $inv0){$inv0}", interface_300:com_2);
