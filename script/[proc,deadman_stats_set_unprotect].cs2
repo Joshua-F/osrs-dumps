@@ -1,0 +1,33 @@
+// 1146
+[proc,deadman_stats_set_unprotect](component $component0, int $int1)
+def_stat $stat2 = enum(int, stat, enum_681, $int1);
+def_int $int3 = calc(stat_visible_xp($stat2) / 2);
+def_int $int4 = stat_base($stat2);
+def_int $int5 = $int4;
+while (enum(int, int, enum_256, $int5) > $int3) {
+    $int5 = calc($int5 - 1);
+}
+def_int $int6 = enum(int, int, enum_1240, $int1);
+if ($int4 < $int6) {
+    $int6 = $int4;
+}
+if ($int6 > $int5) {
+    $int5 = $int6;
+}
+if (cc_find($component0, 3) = ^true) {
+    cc_sethide(false);
+    cc_settext(tostring(stat_base($stat2)));
+}
+if (cc_find($component0, 4) = ^true) {
+    cc_sethide(false);
+}
+if (cc_find($component0, 5) = ^true) {
+    cc_sethide(false);
+}
+if (cc_find($component0, 6) = ^true) {
+    cc_settext(tostring($int5));
+}
+if (cc_find($component0, 7) = ^true) {
+    cc_sethide(false);
+}
+if_setop(1, "Protect", $component0);
