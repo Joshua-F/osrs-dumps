@@ -1,0 +1,38 @@
+// 1132
+[proc,script1132](component $component0, component $component1, int $int2, int $int3)
+def_int $int4 = if_getwidth($component1);
+if ($int4 <= 0) {
+    $int4 = $int2;
+} else {
+    if ($int2 > $int4) {
+        $int4 = calc($int4 + 2);
+        if ($int4 > $int2) {
+            $int4 = $int2;
+        }
+    } else {
+        $int4 = calc($int4 - 3);
+        if ($int4 < $int2) {
+            $int4 = $int2;
+        }
+    }
+    if (calc(clientclock % 7) = 0) {
+        sound_synth(synth_3051, 1, 0);
+    }
+}
+if_setsize($int4, 0, ^setsize_abs, ^setsize_minus, $component1);
+def_int $int5 = 0;
+def_int $int6 = 0;
+def_int $int7 = calc($int3 / 2);
+if ($int4 <= $int7) {
+    $int5 = interpolate(0, $int4, 0, $int7, 128);
+    $int6 = 128;
+} else {
+    $int5 = 128;
+    $int6 = calc(128 - interpolate(0, calc($int4 - $int7), 0, $int7, 128));
+}
+if_setcolour(~rgb_to_hex($int5, $int6, 0), $component1);
+if ($int4 ! $int2) {
+    if_setontimer("script1131($component0, $component1, $int2, $int3)", $component0);
+} else {
+    if_setontimer(null, $component0);
+}
