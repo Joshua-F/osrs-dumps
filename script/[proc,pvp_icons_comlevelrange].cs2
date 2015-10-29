@@ -6,10 +6,19 @@ if (%varclient_53 = true) {
 }
 def_int $int2 = calc(%varclient_52 - $int1);
 def_int $int3 = calc(%varclient_52 + $int1);
-if ($int2 < 3) {
+if (~deadman_world = true) {
     $int2 = 3;
-}
-if ($int3 > 126) {
     $int3 = 126;
+    if (%varclient_78 = 2) {
+        if_settext("", interface_90:com_24);
+        return;
+    }
+} else {
+    if ($int2 < 3) {
+        $int2 = 3;
+    }
+    if ($int3 > 126) {
+        $int3 = 126;
+    }
 }
 if_settext("<tostring($int2)>-<tostring($int3)>", interface_90:com_24);
