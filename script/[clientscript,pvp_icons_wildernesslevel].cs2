@@ -1,7 +1,15 @@
 // 388
 [clientscript,pvp_icons_wildernesslevel](component $com_25)
 def_int $int = ~wilderness_level;
-if ($int > 0) {
+if (~deadman_world = true) {
+    if (%varclient_78 = 1) {
+        if_settext("Guarded", $com_25);
+    } else if (%varclient_78 = 2) {
+        if_settext("No PvP", $com_25);
+    } else {
+        if_settext("Deadman", $com_25);
+    }
+} else if ($int > 0) {
     if_settext("Level: <tostring($int)>", $com_25);
 } else {
     if_settext("", $com_25);

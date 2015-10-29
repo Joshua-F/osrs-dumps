@@ -1,0 +1,17 @@
+// 1151
+[clientscript,deadman_safebox_onload](component $com_5)
+cc_deleteall($com_5);
+def_int $int1 = inv_size(inv_563);
+def_int $int2 = 0;
+while ($int2 < $int1) {
+    cc_create($com_5, ^iftype_graphic, $int2);
+    cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+    cc_setposition(calc($int2 % 5 * 39), calc($int2 / 5 * 38), ^setpos_abs_left, ^setpos_abs_top);
+    cc_setgraphicshadow(0x111111);
+    cc_setoutline(1);
+    cc_setdragdeadzone(5);
+    cc_setdragdeadtime(5);
+    $int2 = calc($int2 + 1);
+}
+if_setoninvtransmit("deadman_safebox_build($com_5){inv_563}", $com_5);
+~deadman_safebox_build($com_5);
