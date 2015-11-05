@@ -1,13 +1,16 @@
 // 664
-[clientscript,script664]
-def_int $int0 = clientclock;
-def_int $int1 = ~script553;
-if ($int0 = %varclient_65) {
-    ~rebuildchatbox($int1);
-}
-~rebuildpmbox($int1);
-if (%varclient_65 > $int0 | reboottimer > 0 | %varclient_55 > calc($int0 - 3000)) {
-    if_setontimer("script664", interface_162:com0);
-} else {
-    if_setontimer(null, interface_162:com0);
+[clientscript,script664](boolean $boolean0)
+def_int $int1 = clientclock;
+def_int $int2 = -1;
+if ($boolean0 = true | $int1 = %varclient_65 | calc($int1 % 25) = 0) {
+    $int2 = ~script553;
+    if ($int1 = %varclient_65) {
+        ~rebuildchatbox($int2);
+    }
+    ~rebuildpmbox($int2);
+    if (%varclient_65 > $int1 | reboottimer > 0 | %varclient_55 > calc($int1 - 3000)) {
+        if_setontimer("script664(false)", interface_162:com0);
+    } else {
+        if_setontimer(null, interface_162:com0);
+    }
 }
