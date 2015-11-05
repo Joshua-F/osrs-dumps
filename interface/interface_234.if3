@@ -27,6 +27,119 @@ layer=com0
 
 [com3]
 type=layer
+width=308
+height=320
+xmode=abs_centre
+ymode=abs_centre
+layer=com0
+hide=yes
+noclickthrough=yes
+
+[com4]
+type=rectangle
+width=2
+height=2
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=com3
+colour=0x000000
+fill=yes
+trans=120
+
+[com5]
+type=text
+y=100
+width=29
+height=32
+widthmode=minus
+xmode=abs_centre
+layer=com3
+textfont=q8_full
+text=Are you SURE you want to destroy the contents of this inventory?
+textalignh=1
+textalignv=1
+textshadow=yes
+colour=0xff0000
+
+[com6]
+type=text
+y=132
+width=80
+height=65
+widthmode=minus
+xmode=abs_centre
+layer=com3
+textfont=p11_full
+text=All items will be destroyed.<br>This action cannot be undone.
+textlineheight=12
+textalignh=1
+textalignv=1
+textshadow=yes
+colour=0xff981f
+
+[com7]
+type=layer
+y=204
+width=160
+height=46
+xmode=abs_centre
+layer=com0
+hide=yes
+
+[com8]
+type=graphic
+width=70
+height=46
+layer=com7
+graphic="combatboxes_large,0"
+events=2
+op0=Confirm Destroy
+onmouseover=text_colour_swapper(interface_234:com10, ^white)
+onmouseleave=text_colour_swapper(interface_234:com10, 0xff981f)
+onop=script1178(interface_234:com3, interface_234:com7)
+
+[com9]
+type=graphic
+width=70
+height=46
+xmode=abs_right
+layer=com7
+graphic="combatboxes_large,0"
+events=2
+op0=Cancel
+onmouseover=text_colour_swapper(interface_234:com11, ^white)
+onmouseleave=text_colour_swapper(interface_234:com11, 0xff981f)
+onop=script1178(interface_234:com3, interface_234:com7)
+
+[com10]
+type=text
+width=70
+height=46
+layer=com7
+textfont=q8_full
+text=Destroy
+textalignh=1
+textalignv=1
+textshadow=yes
+colour=0xff981f
+
+[com11]
+type=text
+width=70
+height=46
+xmode=abs_right
+layer=com7
+textfont=q8_full
+text=Cancel
+textalignh=1
+textalignv=1
+textshadow=yes
+colour=0xff981f
+
+[com12]
+type=layer
 widthmode=minus
 heightmode=minus
 xmode=abs_centre
@@ -34,7 +147,7 @@ ymode=abs_centre
 layer=com2
 onload=stoneborder(event_com, "Bank Raid", string_0)
 
-[com4]
+[com13]
 type=line
 y=84
 width=12
@@ -43,7 +156,7 @@ xmode=abs_centre
 layer=com2
 colour=0x2e2b23
 
-[com5]
+[com14]
 type=layer
 x=12
 y=45
@@ -52,7 +165,7 @@ height=40
 widthmode=minus
 layer=com2
 
-[com6]
+[com15]
 type=layer
 y=93
 width=270
@@ -60,7 +173,7 @@ height=152
 xmode=abs_centre
 layer=com2
 
-[com7]
+[com16]
 type=layer
 y=93
 width=270
@@ -69,11 +182,11 @@ xmode=abs_centre
 layer=com2
 hide=yes
 
-[com8]
+[com17]
 type=text
 widthmode=minus
 heightmode=minus
-layer=com7
+layer=com16
 textfont=p12_full
 text=This chest is now empty.
 textalignh=1
@@ -81,7 +194,7 @@ textalignv=1
 textshadow=yes
 colour=0xff981f
 
-[com9]
+[com18]
 type=graphic
 y=248
 width=32
@@ -89,7 +202,7 @@ height=32
 layer=com2
 graphic="v2_stone_borders,9"
 
-[com10]
+[com19]
 type=graphic
 x=11
 y=246
@@ -100,8 +213,9 @@ layer=com2
 graphic="v2_stone_borders,8"
 tiling=yes
 
-[com11]
+[com20]
 type=graphic
+x=1
 y=248
 width=27
 height=32
@@ -109,11 +223,53 @@ xmode=abs_right
 layer=com2
 graphic="v2_stone_borders,10"
 
-[com12]
-type=text
+[com21]
+type=layer
 x=12
 y=271
-width=170
+width=36
+height=36
+xmode=abs_right
+layer=com2
+
+[com22]
+type=graphic
+width=36
+height=36
+xmode=abs_centre
+ymode=abs_centre
+layer=com21
+graphic="miscgraphics,0"
+events=2
+op0=Destroy
+onmouseover=settrans(event_com, 75)
+onmouseleave=settrans(event_com, 0)
+onop=script1177(interface_234:com3, interface_234:com7)
+
+[com23]
+type=graphic
+width=29
+height=22
+xmode=abs_centre
+ymode=abs_centre
+layer=com21
+graphic="bankbuttons,6"
+
+[com24]
+type=line
+x=54
+y=8
+height=46
+xmode=abs_right
+ymode=abs_bottom
+layer=com2
+colour=0x2e2b23
+
+[com25]
+type=text
+x=11
+y=271
+width=124
 height=15
 layer=com2
 textfont=p12_full
@@ -123,27 +279,50 @@ textalignv=1
 textshadow=yes
 colour=0xff981f
 
-[com13]
-type=graphic
-x=12
+[com26]
+type=layer
+x=11
 y=286
-width=85
+width=62
 height=22
 layer=com2
-graphic="combatboxesmed,0"
 events=2
 op0=Item
-onmouseover=text_colour_swapper(interface_234:com14, ^white)
-onmouseleave=text_colour_swapper(interface_234:com14, 0xff981f)
+onmouseover=text_colour_swapper(interface_234:com30, ^white)
+onmouseleave=text_colour_swapper(interface_234:com30, 0xff981f)
 onop=deadmanloot_itemnote_switch(0)
 
-[com14]
+[com27]
+type=graphic
+width=6
+height=22
+layer=com26
+graphic="combatboxes_split,0"
+
+[com28]
+type=graphic
+width=12
+height=22
+widthmode=minus
+xmode=abs_centre
+layer=com26
+graphic="combatboxes_split,1"
+tiling=yes
+
+[com29]
+type=graphic
+width=6
+height=22
+xmode=abs_right
+layer=com26
+graphic="combatboxes_split,2"
+
+[com30]
 type=text
-x=12
-y=286
 width=85
 height=22
-layer=com2
+xmode=abs_centre
+layer=com26
 textfont=p12_full
 text=Item
 textalignh=1
@@ -151,27 +330,55 @@ textalignv=1
 textshadow=yes
 colour=0xff981f
 
-[com15]
-type=graphic
-x=97
+[com31]
+type=layer
+x=173
 y=286
-width=85
+width=62
 height=22
+xmode=abs_right
 layer=com2
-graphic="combatboxesmed,0"
 events=2
 op0=Note
-onmouseover=text_colour_swapper(interface_234:com16, ^white)
-onmouseleave=text_colour_swapper(interface_234:com16, 0xff981f)
 onop=deadmanloot_itemnote_switch(1)
 
-[com16]
-type=text
-x=97
-y=286
-width=85
+[com32]
+type=graphic
+width=6
 height=22
-layer=com2
+layer=com31
+graphic="combatboxes_split,0"
+onmouseover=text_colour_swapper(interface_234:com35, ^white)
+onmouseleave=text_colour_swapper(interface_234:com35, 0xff981f)
+
+[com33]
+type=graphic
+width=12
+height=22
+widthmode=minus
+xmode=abs_centre
+layer=com31
+graphic="combatboxes_split,1"
+tiling=yes
+onmouseover=text_colour_swapper(interface_234:com35, ^white)
+onmouseleave=text_colour_swapper(interface_234:com35, 0xff981f)
+
+[com34]
+type=graphic
+width=6
+height=22
+xmode=abs_right
+layer=com31
+graphic="combatboxes_split,2"
+onmouseover=text_colour_swapper(interface_234:com35, ^white)
+onmouseleave=text_colour_swapper(interface_234:com35, 0xff981f)
+
+[com35]
+type=text
+height=22
+widthmode=minus
+xmode=abs_centre
+layer=com31
 textfont=p12_full
 text=Note
 textalignh=1
@@ -179,34 +386,40 @@ textalignv=1
 textshadow=yes
 colour=0xff981f
 
-[com17]
-type=graphic
-x=183
+[com36]
+type=layer
+x=136
 y=271
 width=36
 height=36
 layer=com2
+
+[com37]
+type=graphic
+width=36
+height=36
+layer=com36
 graphic="miscgraphics,0"
 events=2
 opbase=inventory
 op0=Withdraw all to
-onmouseover=settrans(interface_234:com18, 75)
-onmouseleave=settrans(interface_234:com18, 0)
+onmouseover=settrans(event_com, 75)
+onmouseleave=settrans(event_com, 0)
 onop=deadman_lootall(event_com, "miscgraphics,9", "miscgraphics,0", event_op)
 
-[com18]
+[com38]
 type=graphic
-x=185
-y=278
+x=2
+y=7
 width=29
 height=22
-layer=com2
+layer=com36
 graphic="bankbuttons,4"
 graphicshadow=3355443
 
-[com19]
+[com39]
 type=line
-x=84
+x=131
 y=8
 height=46
 xmode=abs_right
@@ -214,9 +427,9 @@ ymode=abs_bottom
 layer=com2
 colour=0x2e2b23
 
-[com20]
+[com40]
 type=text
-x=49
+x=96
 y=277
 width=32
 height=24
@@ -227,18 +440,18 @@ textalignh=1
 textshadow=yes
 colour=0xff981f
 
-[com21]
+[com41]
 type=line
-x=60
+x=107
 y=288
 width=12
 xmode=abs_right
 layer=com2
 colour=0xff981f
 
-[com22]
+[com42]
 type=text
-x=49
+x=96
 y=277
 width=32
 height=24
@@ -250,30 +463,57 @@ textalignv=2
 textshadow=yes
 colour=0xff981f
 
-[com23]
-type=graphic
-x=12
+[com43]
+type=layer
+x=59
 y=271
 width=36
 height=36
 xmode=abs_right
 layer=com2
+
+[com44]
+type=graphic
+width=36
+height=36
+xmode=abs_centre
+ymode=abs_centre
+layer=com43
 graphic="miscgraphics,0"
 events=2
 opbase=bank
 op0=Withdraw all to
-onmouseover=settrans(interface_234:com24, 75)
-onmouseleave=settrans(interface_234:com24, 0)
+onmouseover=settrans(event_com, 75)
+onmouseleave=settrans(event_com, 0)
 onop=deadman_lootall(event_com, "miscgraphics,9", "miscgraphics,0", event_op)
 
-[com24]
+[com45]
 type=graphic
-x=16
-y=278
 width=29
 height=22
-xmode=abs_right
-layer=com2
+xmode=abs_centre
+ymode=abs_centre
+layer=com43
 graphic="bankbuttons,5"
 graphicshadow=3355443
+
+[com46]
+type=layer
+x=7
+y=266
+width=13
+height=47
+widthmode=minus
+layer=com2
+hide=yes
+noclickthrough=yes
+
+[com47]
+type=rectangle
+widthmode=minus
+heightmode=minus
+layer=com46
+colour=0x000000
+fill=yes
+trans=120
 
