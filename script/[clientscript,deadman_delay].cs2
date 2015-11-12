@@ -1,3 +1,16 @@
 // 1149
-[clientscript,deadman_delay](int $int0, string $string0, string $string1)
-~script1176($string0, $int0, $string1);
+[clientscript,deadman_delay](int $int0, boolean $boolean1, string $string0, string $string1)
+def_int $int2 = calc($int0 * 30);
+def_int $int3 = calc((49 + $int2) / 50);
+if ($int3 = 1) {
+    if_settext("There is 1 second remaining <$string0>", interface_228:com2);
+} else {
+    if_settext("There are <tostring($int3)> seconds remaining <$string0>", interface_228:com2);
+}
+if_settext($string1, interface_228:com0);
+if_sethide(false, interface_228:com1);
+def_component $component4 = enum(component, component, ~toplevel_getcomponents, interface_161:com21);
+if ($component4 = null) {
+    $component4 = interface_228:com0;
+}
+if_setontimer("deadman_delay_timer(event_com, $string0, clientclock, $int2, $boolean1)", $component4);
