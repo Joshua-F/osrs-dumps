@@ -1,0 +1,73 @@
+// 1235
+[clientscript,wilderness_lootingbag_setprices](inv $inv, int $int1, int $int2, int $int3, int $int4, int $int5, int $int6, int $int7, int $int8, int $int9, int $int10, int $int11, int $int12, int $int13, int $int14, int $int15, int $int16, int $int17, int $int18, int $int19, int $int20, int $int21, int $int22, int $int23, int $int24, int $int25, int $int26, int $int27, int $int28)
+%varclient_81 = $int1;
+%varclient_82 = $int2;
+%varclient_83 = $int3;
+%varclient_84 = $int4;
+%varclient_85 = $int5;
+%varclient_86 = $int6;
+%varclient_87 = $int7;
+%varclient_88 = $int8;
+%varclient_89 = $int9;
+%varclient_90 = $int10;
+%varclient_91 = $int11;
+%varclient_92 = $int12;
+%varclient_93 = $int13;
+%varclient_94 = $int14;
+%varclient_95 = $int15;
+%varclient_96 = $int16;
+%varclient_97 = $int17;
+%varclient_98 = $int18;
+%varclient_99 = $int19;
+%varclient_100 = $int20;
+%varclient_101 = $int21;
+%varclient_102 = $int22;
+%varclient_104 = $int23;
+%varclient_105 = $int24;
+%varclient_106 = $int25;
+%varclient_107 = $int26;
+%varclient_108 = $int27;
+%varclient_109 = $int28;
+def_int $int29 = inv_size($inv);
+def_int $intarray($int29);
+$intarray(0) = $int1;
+$intarray(1) = $int2;
+$intarray(2) = $int3;
+$intarray(3) = $int4;
+$intarray(4) = $int5;
+$intarray(5) = $int6;
+$intarray(6) = $int7;
+$intarray(7) = $int8;
+$intarray(8) = $int9;
+$intarray(9) = $int10;
+$intarray(10) = $int11;
+$intarray(11) = $int12;
+$intarray(12) = $int13;
+$intarray(13) = $int14;
+$intarray(14) = $int15;
+$intarray(15) = $int16;
+$intarray(16) = $int17;
+$intarray(17) = $int18;
+$intarray(18) = $int19;
+$intarray(19) = $int20;
+$intarray(20) = $int21;
+$intarray(21) = $int22;
+$intarray(22) = $int23;
+$intarray(23) = $int24;
+$intarray(24) = $int25;
+$intarray(25) = $int26;
+$intarray(26) = $int27;
+$intarray(27) = $int28;
+def_string $string = "Invalid item.";
+while ($int29 > 0) {
+    $int29 = calc($int29 - 1);
+    if (cc_find(interface_81:com_5, $int29) = true) {
+        if ($inv = inv_93 & $intarray($int29) <= -1 & inv_getobj(inv_93, $int29) ! null) {
+            cc_setonmouserepeat("tooltip_mouserepeat(event_com, event_comsubid, interface_81:com_7, $string, 25, 512)");
+            cc_setonmouseleave("deltooltip(interface_81:com_7)");
+        } else {
+            ~trade_tooltip(inv_getnum($inv, $int29), $intarray($int29), interface_81:com_7);
+        }
+    }
+}
+~deltooltip_action(interface_81:com_7);
