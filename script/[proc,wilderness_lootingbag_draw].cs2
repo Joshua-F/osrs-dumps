@@ -1,27 +1,66 @@
 // 497
 [proc,wilderness_lootingbag_draw](inv $inv0)
-cc_deleteall(interface_81:com_7);
+cc_deleteall(interface_81:com_5);
 def_int $int1 = inv_size($inv0);
+def_int $intarray0($int1);
+$intarray0(0) = %varclient_81;
+$intarray0(1) = %varclient_82;
+$intarray0(2) = %varclient_83;
+$intarray0(3) = %varclient_84;
+$intarray0(4) = %varclient_85;
+$intarray0(5) = %varclient_86;
+$intarray0(6) = %varclient_87;
+$intarray0(7) = %varclient_88;
+$intarray0(8) = %varclient_89;
+$intarray0(9) = %varclient_90;
+$intarray0(10) = %varclient_91;
+$intarray0(11) = %varclient_92;
+$intarray0(12) = %varclient_93;
+$intarray0(13) = %varclient_94;
+$intarray0(14) = %varclient_95;
+$intarray0(15) = %varclient_96;
+$intarray0(16) = %varclient_97;
+$intarray0(17) = %varclient_98;
+$intarray0(18) = %varclient_99;
+$intarray0(19) = %varclient_100;
+$intarray0(20) = %varclient_101;
+$intarray0(21) = %varclient_102;
+$intarray0(22) = %varclient_104;
+$intarray0(23) = %varclient_105;
+$intarray0(24) = %varclient_106;
+$intarray0(25) = %varclient_107;
+$intarray0(26) = %varclient_108;
+$intarray0(27) = %varclient_109;
 def_obj $obj2 = null;
 def_int $int3 = 0;
 def_int $int4 = 0;
-while ($int4 < $int1) {
-    cc_create(interface_81:com_7, ^iftype_graphic, $int4);
-    $obj2 = inv_getobj($inv0, $int4);
+def_string $string0 = "Invalid item.";
+def_int $int5 = 0;
+while ($int5 < $int1) {
+    cc_create(interface_81:com_5, ^iftype_graphic, $int5);
+    $obj2 = inv_getobj($inv0, $int5);
     if ($obj2 ! null) {
-        $int3 = calc($int3 + 1);
+        $int3, $int4 = inv_getnum($inv0, $int5), calc($int4 + 1);
         cc_sethide(false);
         cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
-        cc_setposition(calc($int4 % 4 * (36 + 8)), calc($int4 / 4 * (32 + 1)), ^setpos_abs_left, ^setpos_abs_top);
+        cc_setposition(calc($int5 % 4 * (36 + 8)), calc($int5 / 4 * 32), ^setpos_abs_left, ^setpos_abs_top);
         cc_setoutline(1);
         cc_setgraphicshadow(0x333333);
-        cc_setobject($obj2, inv_getnum($inv0, $int4));
+        cc_setobject($obj2, $int3);
         if ($inv0 = inv_93) {
             if ($obj2 = obj_11941) {
                 cc_settrans(150);
+                cc_setonmouserepeat(null);
+                cc_setonmouseleave(null);
             } else {
                 cc_settrans(0);
                 cc_setonop("cc_settrans_temporarily(event_com, event_comsubid, 150, 0)");
+                if ($intarray0($int5) <= -1) {
+                    cc_setonmouserepeat("tooltip_mouserepeat(event_com, event_comsubid, interface_81:com_7, $string0, 25, 512)");
+                    cc_setonmouseleave("deltooltip(interface_81:com_7)");
+                } else {
+                    ~trade_tooltip($int3, $intarray0($int5), interface_81:com_7);
+                }
             }
             cc_setop(1, "Store-1");
             cc_setop(2, "Store-5");
@@ -31,17 +70,18 @@ while ($int4 < $int1) {
         } else {
             cc_settrans(0);
             cc_setop(10, "Examine");
+            ~trade_tooltip($int3, $intarray0($int5), interface_81:com_7);
         }
         cc_setopbase("<col=ff9040><oc_name($obj2)>");
     } else {
         cc_sethide(true);
     }
-    $int4 = calc($int4 + 1);
+    $int5 = calc($int5 + 1);
 }
-if ($inv0 = inv_516 & $int3 <= 0) {
-    cc_create(interface_81:com_7, ^iftype_text, $int4);
+if ($inv0 = inv_516 & $int4 <= 0) {
+    cc_create(interface_81:com_5, ^iftype_text, $int5);
     cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
-    cc_setsize(if_getwidth(interface_81:com_7), if_getheight(interface_81:com_7), ^setsize_abs, ^setsize_abs);
+    cc_setsize(if_getwidth(interface_81:com_5), if_getheight(interface_81:com_5), ^setsize_abs, ^setsize_abs);
     cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
     cc_settextfont(p12_full);
     cc_settextshadow(true);
