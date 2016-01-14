@@ -1,11 +1,21 @@
 // 1219
 [proc,zeah_favour_overlay_hideshow](component $component0)
-def_enum $enum1 = ~toplevel_getcomponents;
-if ($enum1 = null) {
-    return;
-}
-if (if_hassub(enum(component, component, $enum1, interface_161:com3)) = true | if_hassub(enum(component, component, $enum1, interface_161:com6)) = true) {
-    if_sethide(true, $component0);
+if (%varplayerbit_4692 = 2 | %varplayerbit_4692 = 0) {
+    if_setposition(0, 2, ^setpos_abs_centre, ^setpos_abs_top, $component0);
 } else {
-    if_sethide(false, $component0);
+    if_setposition(2, 2, ^setpos_abs_right, ^setpos_abs_top, $component0);
+}
+def_enum $enum1 = null;
+if (%varplayerbit_619 = 1) {
+    $enum1 = ~toplevel_getcomponents;
+    if ($enum1 = null) {
+        return;
+    }
+    if (if_hassub(enum(component, component, $enum1, interface_161:com3)) = true | if_hassub(enum(component, component, $enum1, interface_161:com6)) = true) {
+        if_sethide(true, $component0);
+    } else {
+        if_sethide(false, $component0);
+    }
+} else {
+    if_sethide(true, $component0);
 }
