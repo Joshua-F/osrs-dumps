@@ -1,0 +1,31 @@
+// 1255
+[proc,horror_prayerbooks_box](boolean $boolean, component $component, string $string0, string $string1, obj $obj)
+def_int $int = 0;
+if ($boolean = true) {
+    $int = ~v2_stone_button_in_filled($component);
+} else {
+    $int = ~v2_stone_button_out_filled($component);
+}
+cc_create($component, ^iftype_model, $int);
+$int = calc($int + 1);
+cc_setsize(calc(if_getwidth($component) - 40), calc(if_getheight($component) - 40), ^setsize_abs, ^setsize_abs);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_setobject_nonum($obj, 1);
+cc_create($component, ^iftype_text, $int);
+$int = calc($int + 1);
+.cc_create($component, ^iftype_text, $int);
+$int = calc($int + 1);
+cc_setsize(0, 20, ^setsize_minus, ^setsize_abs);
+.cc_setsize(0, 15, ^setsize_minus, ^setsize_abs);
+cc_setposition(0, 5, ^setpos_abs_centre, ^setpos_abs_top);
+.cc_setposition(0, 5, ^setpos_abs_centre, ^setpos_abs_bottom);
+cc_setcolour(0xff981f);
+.cc_setcolour(0xff981f);
+cc_settextfont(p12_full);
+.cc_settextfont(p11_full);
+cc_settextalign(^settextalign_centre, ^settextalign_top, 0);
+.cc_settextalign(^settextalign_centre, ^settextalign_bottom, 0);
+cc_settextshadow(true);
+.cc_settextshadow(true);
+cc_settext($string0);
+.cc_settext($string1);
