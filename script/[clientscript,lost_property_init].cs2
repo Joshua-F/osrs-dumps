@@ -1,51 +1,58 @@
 // 226
-[clientscript,lost_property_init](int $int0, int $int1)
+[clientscript,lost_property_init](int $int0, int $int1, int $int2)
 cc_deleteall(interface_557:com2);
 cc_deleteall(interface_557:com3);
-def_int $int2 = calc((if_getwidth(interface_557:com2) - 20 - 6 * 36) / 5);
-def_int $int3 = calc(32 + 36);
-def_int $int4 = 0;
+def_int $int3 = calc((if_getwidth(interface_557:com2) - 20 - 6 * 36) / 5);
+def_int $int4 = calc(32 + 36);
 def_int $int5 = 0;
-def_int $intbool6 = ^false;
-def_obj $obj7 = null;
-while ($int4 <= 36) {
-    cc_create(interface_557:com2, ^iftype_graphic, calc($int4 * 2));
-    .cc_create(interface_557:com2, ^iftype_text, calc($int4 * 2 + 1));
-    if ($int4 < 32) {
-        $intbool6 = testbit($int0, $int4);
+def_int $int6 = 0;
+def_int $intbool7 = ^false;
+def_int $int8 = 0;
+def_obj $obj9 = null;
+while ($int5 <= 36) {
+    cc_create(interface_557:com2, ^iftype_graphic, calc($int5 * 2));
+    .cc_create(interface_557:com2, ^iftype_text, calc($int5 * 2 + 1));
+    if ($int5 < 32) {
+        $intbool7 = testbit($int0, $int5);
     } else {
-        $intbool6 = testbit($int1, calc($int4 - 32));
+        $intbool7 = testbit($int1, calc($int5 - 32));
     }
-    if ($intbool6 = ^true) {
-        $obj7 = enum(int, namedobj, enum_767, $int4);
+    if ($intbool7 = ^true) {
+        $obj9 = enum(int, namedobj, enum_767, $int5);
         cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
         .cc_setsize(36, 36, ^setsize_abs, ^setsize_abs);
-        cc_setposition(calc($int5 % 6 * (36 + $int2) + 10), calc($int5 / 6 * $int3), ^setpos_abs_left, ^setpos_abs_top);
+        cc_setposition(calc($int6 % 6 * (36 + $int3) + 10), calc($int6 / 6 * $int4), ^setpos_abs_left, ^setpos_abs_top);
         .cc_setposition(cc_getx, calc(cc_gety + 32), ^setpos_abs_left, ^setpos_abs_top);
-        cc_setobject($obj7, 1);
+        cc_setobject($obj9, 1);
         cc_setgraphicshadow(0x333333);
         cc_setoutline(1);
         cc_setop(1, "Buy");
         cc_setop(10, "Examine");
-        cc_setopbase("<col=ff9040><oc_name($obj7)>");
+        cc_setopbase("<col=ff9040><oc_name($obj9)>");
         .cc_settextfont(p11_full);
         .cc_setcolour(0x46320a);
         .cc_settextalign(^settextalign_centre, ^settextalign_top, 0);
-        .cc_settext(~tostring_spacer(enum(int, int, enum_768, $int4), ","));
-        $int5 = calc($int5 + 1);
+        .cc_settext(~tostring_spacer(enum(int, int, enum_768, $int5), ","));
+        $int6 = calc($int6 + 1);
+        if ($int5 = $int2) {
+            $int8 = cc_gety;
+        }
     } else {
         cc_sethide(true);
         .cc_sethide(true);
     }
-    $int4 = calc($int4 + 1);
+    $int5 = calc($int5 + 1);
 }
-def_int $int8 = calc($int5 / 6);
-if (calc($int5 % 6) > 0) {
-    $int8 = calc($int8 + 1);
+def_int $int10 = calc($int6 / 6);
+if (calc($int6 % 6) > 0) {
+    $int10 = calc($int10 + 1);
 }
-$int8 = calc($int8 * $int3);
-if_setscrollsize(0, $int8, interface_557:com2);
-if_setscrollpos(0, 0, interface_557:com2);
-if ($int8 > if_getheight(interface_557:com2)) {
+$int10 = calc($int10 * $int4);
+if ($int10 > if_getheight(interface_557:com2)) {
+    if_setscrollsize(0, $int10, interface_557:com2);
     ~scrollbar_vertical(interface_557:com3, interface_557:com2, "scrollbar_parchment_dragger_v2,3", "scrollbar_parchment_dragger_v2,0", "scrollbar_parchment_dragger_v2,1", "scrollbar_parchment_dragger_v2,2", "scrollbar_parchment_v2,0", "scrollbar_parchment_v2,1");
+    ~scrollbar_resize(interface_557:com3, interface_557:com2, $int8);
+} else {
+    if_setscrollsize(0, 0, interface_557:com2);
+    if_setscrollpos(0, 0, interface_557:com2);
 }
