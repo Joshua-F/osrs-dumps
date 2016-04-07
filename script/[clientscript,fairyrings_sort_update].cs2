@@ -1,5 +1,5 @@
 // 402
-[clientscript,fairyrings_sort_update](component $component0, component $component1, int $int2)
+[clientscript,fairyrings_sort_update](component $component0, component $component1, int $int2, component $component3, component $component4)
 if ($int2 = 1) {
     if (%varclient_54 = 1 | %varclient_54 = 0) {
         %varclient_54 = %varclient_54;
@@ -18,80 +18,131 @@ if ($int2 = 1) {
         %varclient_54 = 1;
     }
 }
-def_int $int3 = 0;
-def_component $component4 = null;
-def_component $componentarray0(64);
-def_int $int5 = 0;
-while ($int3 < 64) {
-    $component4 = enum(int, component, enum_824, $int3);
-    if ($component4 ! null) {
-        if (string_length(if_gettext($component4)) > 0) {
-            if_sethide(false, $component4);
-            $componentarray0($int5) = $component4;
-            $int5 = calc($int5 + 1);
-        } else {
-            if_sethide(true, $component4);
-        }
-    }
-    $int3 = calc($int3 + 1);
-}
-if ($int5 > 0) {
-    if (%varclient_54 = 1) {
-        ~quicksort(componentarray0, 0, calc($int5 - 1));
-    } else {
-        ~quicksort_enum(componentarray0, 0, calc($int5 - 1), enum_823);
-    }
-}
-$int3 = 0;
-def_int $int6 = if_getwidth($component0);
-if ($int6 <= 0) {
-    $int6 = 162;
+def_component $component5 = null;
+def_component $component6 = null;
+def_component $component7 = null;
+def_int $int8 = calc(if_getwidth($component0) - 20);
+if ($int8 <= 0) {
+    $int8 = 143;
 }
 cc_deleteall($component0);
-def_int $int7 = 0;
-def_int $int8 = 0;
+cc_deleteall($component4);
+def_int $int9 = 17;
+def_int $int10 = 0;
+def_int $int11 = 0;
+def_boolean $boolean12 = true;
+while ($int11 < 4) {
+    $component5 = enum(int, component, enum_1297, $int11);
+    $component7 = enum(int, component, enum_1298, $int11);
+    $component6 = enum(int, component, enum_1299, $int11);
+    if ($component5 ! null & $component6 ! null & $component7 ! null) {
+        if (string_length(if_gettext($component5)) > 0) {
+            $int9 = calc(paraheight(if_gettext($component5), $int8, p12_full) * 12 + 5);
+            if_sethide(false, $component5);
+            if_sethide(false, $component7);
+            if_sethide(false, $component6);
+            if_setsize($int8, $int9, ^setsize_abs, ^setsize_abs, $component5);
+            if_setsize($int8, $int9, ^setsize_abs, ^setsize_abs, $component7);
+            if_setposition(20, $int10, ^setpos_abs_left, ^setpos_abs_top, $component5);
+            if_setposition(2, $int10, ^setpos_abs_left, ^setpos_abs_top, $component6);
+            if_setposition(20, $int10, ^setpos_abs_left, ^setpos_abs_top, $component7);
+            if_setopbase("<col=ff981f><if_gettext($component7)></col>", $component5);
+            if_setonmouseover("text_colour_swapper($component7, 0xff7f7f)", $component5);
+            if_setonmouseleave("text_colour_swapper($component7, 0xff3f3f)", $component5);
+            $boolean12 = false;
+            $int10 = calc($int10 + $int9 + 3);
+        } else {
+            if_sethide(true, $component5);
+            if_sethide(true, $component6);
+            if_sethide(true, $component7);
+        }
+    }
+    $int11 = calc($int11 + 1);
+}
+if ($boolean12 = false) {
+    $int10 = calc($int10 + 3);
+}
+if_sethide($boolean12, $component3);
+if_setsize(0, $int10, ^setsize_minus, ^setsize_abs, $component4);
+def_int $int13 = 0;
+def_component $component14 = null;
+def_component $componentarray0(64);
+def_int $int15 = 0;
 def_string $string0 = "";
-while ($int3 < $int5) {
-    $string0 = enum(component, string, enum_823, $componentarray0($int3));
-    $int7 = calc(paraheight(if_gettext($componentarray0($int3)), $int6, p12_full) * 12 + 5);
-    if_setsize($int6, $int7, ^setsize_abs, ^setsize_abs, $componentarray0($int3));
-    if_setposition(0, $int8, ^setpos_abs_left, ^setpos_abs_top, $componentarray0($int3));
-    cc_create($component0, ^iftype_text, $int3);
-    cc_setsize($int6, $int7, ^setsize_abs, ^setsize_abs);
-    cc_setposition(0, $int8, ^setpos_abs_left, ^setpos_abs_top);
+while ($int13 < 64) {
+    $component14 = enum(int, component, enum_824, $int13);
+    if ($component14 ! null) {
+        $component6 = enum(component, component, enum_1296, $component14);
+        if (string_length(if_gettext($component14)) > 0) {
+            if_sethide(false, $component14);
+            if ($component6 ! null) {
+                if_sethide(false, $component6);
+            }
+            $componentarray0($int15) = $component14;
+            $int15 = calc($int15 + 1);
+        } else {
+            if_sethide(true, $component14);
+            if ($component6 ! null) {
+                if_sethide(true, $component6);
+            }
+        }
+    }
+    $int13 = calc($int13 + 1);
+}
+if ($int15 > 0) {
+    if (%varclient_54 = 1) {
+        ~quicksort(componentarray0, 0, calc($int15 - 1));
+    } else {
+        ~quicksort_enum(componentarray0, 0, calc($int15 - 1), enum_823);
+    }
+}
+$int13 = 0;
+cc_deleteall($component0);
+while ($int13 < $int15) {
+    $component6 = enum(component, component, enum_1296, $componentarray0($int13));
+    $string0 = enum(component, string, enum_823, $componentarray0($int13));
+    $int9 = calc(paraheight(if_gettext($componentarray0($int13)), $int8, p12_full) * 12 + 5);
+    if ($component6 ! null) {
+        if_setposition(2, $int10, ^setpos_abs_left, ^setpos_abs_top, $component6);
+    }
+    if_setsize($int8, $int9, ^setsize_abs, ^setsize_abs, $componentarray0($int13));
+    if_setposition(20, $int10, ^setpos_abs_left, ^setpos_abs_top, $componentarray0($int13));
+    cc_create($component0, ^iftype_text, $int13);
+    cc_setsize($int8, $int9, ^setsize_abs, ^setsize_abs);
+    cc_setposition(20, if_gety($componentarray0($int13)), ^setpos_abs_left, ^setpos_abs_top);
     cc_settextfont(p12_full);
     cc_setcolour(0xff3f3f);
     cc_settextshadow(true);
     cc_settextalign(^settextalign_left, ^settextalign_top, 0);
     cc_settext($string0);
-    if_setopbase("<col=ff981f><$string0></col>", $componentarray0($int3));
-    if_setonmouseover("cc_colour_swapper($component0, cc_getid, 0xff7f7f)", $componentarray0($int3));
-    if_setonmouseleave("cc_colour_swapper($component0, cc_getid, 0xff3f3f)", $componentarray0($int3));
-    $int8 = calc($int8 + $int7 + 3);
-    $int3 = calc($int3 + 1);
+    if_setopbase("<col=ff981f><$string0></col>", $componentarray0($int13));
+    if_setonmouseover("cc_colour_swapper($component0, cc_getid, 0xff7f7f)", $componentarray0($int13));
+    if_setonmouseleave("cc_colour_swapper($component0, cc_getid, 0xff3f3f)", $componentarray0($int13));
+    $int10 = calc($int10 + $int9 + 3);
+    $int13 = calc($int13 + 1);
 }
-$string0 = if_gettext(interface_381:com_73);
+$string0 = if_gettext(interface_381:com_139);
 if (string_length($string0) > 0) {
-    if_sethide(false, interface_381:com_73);
-    $int7 = calc(paraheight($string0, $int6, p12_full) * 12 + 5);
-    if_setsize($int6, $int7, ^setsize_abs, ^setsize_abs, interface_381:com_73);
-    if_setposition(0, $int8, ^setpos_abs_left, ^setpos_abs_top, interface_381:com_73);
-    if_setcolour(0xff3f3f, interface_381:com_73);
-    if_setonmouseover("text_colour_swapper(event_com, 0xff7f7f)", interface_381:com_73);
-    if_setonmouseleave("text_colour_swapper(event_com, 0xff3f3f)", interface_381:com_73);
-    $int8 = calc($int8 + $int7 + 3);
+    if_sethide(false, interface_381:com_139);
+    $int9 = calc(paraheight($string0, $int8, p12_full) * 12 + 5);
+    if_setsize($int8, $int9, ^setsize_abs, ^setsize_abs, interface_381:com_139);
+    if_setposition(20, $int10, ^setpos_abs_left, ^setpos_abs_top, interface_381:com_139);
+    if_setcolour(0xff3f3f, interface_381:com_139);
+    if_setonmouseover("text_colour_swapper(event_com, 0xff7f7f)", interface_381:com_139);
+    if_setonmouseleave("text_colour_swapper(event_com, 0xff3f3f)", interface_381:com_139);
+    $int10 = calc($int10 + $int9 + 3);
 } else {
-    if_sethide(true, interface_381:com_73);
+    if_sethide(true, interface_381:com_139);
 }
-if ($int8 > 0) {
-    $int8 = calc($int8 - 3);
+if ($int10 > 0) {
+    $int10 = calc($int10 - 3);
 }
-$int7 = if_getheight($component0);
-if ($int8 > $int7) {
-    if_setscrollsize(0, $int8, $component0);
-    $int7 = calc($int8 - $int7);
-    if (%varclient_0 > $int7) {
-        %varclient_0 = $int7;
+$int9 = if_getheight($component0);
+if ($int10 > $int9) {
+    if_setscrollsize(0, $int10, $component0);
+    $int9 = calc($int10 - $int9);
+    if (%varclient_0 > $int9) {
+        %varclient_0 = $int9;
     }
 } else {
     if_setscrollsize(0, 0, $component0);
