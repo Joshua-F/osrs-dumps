@@ -1,17 +1,25 @@
 // 277
-[proc,bankmain_build](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9)
-def_int $int10 = 0;
+[proc,bankmain_build](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10, component $component11, component $component12)
+if (%varplayerbit_5102 = 1) {
+    if_sethide(false, $component10);
+} else {
+    if_sethide(true, $component10);
+    ~deltooltip_action($component12);
+}
+if_sethide(true, $component11);
+cc_deleteall($component11);
+def_int $int13 = 0;
 if (%varplayerbit_4170 = 3) {
     if (%varplayerbit_4171 > 0 | %varplayerbit_4172 > 0 | %varplayerbit_4173 > 0 | %varplayerbit_4174 > 0 | %varplayerbit_4175 > 0 | %varplayerbit_4176 > 0 | %varplayerbit_4177 > 0 | %varplayerbit_4178 > 0 | %varplayerbit_4179 > 0) {
-        $int10 = 0;
+        $int13 = 0;
     } else {
-        $int10 = 1;
+        $int13 = 1;
     }
 }
-def_int $int11 = 0;
-if ($int10 = 1) {
+def_int $int14 = 0;
+if ($int13 = 1) {
     if_sethide(true, $component9);
-    $int11 = 11;
+    $int14 = 11;
     if_setsize(0, 26, ^setsize_minus, ^setsize_minus, $component1);
     if_setsize(374, 39, ^setsize_abs, ^setsize_minus, $component3);
     if_setsize(16, 39, ^setsize_abs, ^setsize_minus, $component4);
@@ -24,83 +32,83 @@ if ($int10 = 1) {
     if_setposition(12, 42, ^setpos_abs_right, ^setpos_abs_top, $component2);
 }
 ~scrollbar_vertical_rebuild($component4, $component3);
-def_int $int12 = 800;
-def_int $int13 = calc(800 + 9 * 3);
-while ($int12 <= $int13) {
-    if (cc_find($component3, $int12) = ^true) {
+def_int $int15 = 800;
+def_int $int16 = calc(800 + 9 * 3);
+while ($int15 <= $int16) {
+    if (cc_find($component3, $int15) = ^true) {
         cc_sethide(true);
     }
-    $int12 = calc($int12 + 1);
+    $int15 = calc($int15 + 1);
 }
-$int12 = 0;
-def_int $int14 = calc(8 - 1);
-def_int $int15 = calc((if_getwidth($component3) - 8 * 36) / $int14);
-def_obj $obj16 = null;
-def_int $int17 = 0;
-def_int $int18 = 0;
-def_int $int19 = -1;
+$int15 = 0;
+def_int $int17 = calc(8 - 1);
+def_int $int18 = calc((if_getwidth($component3) - 8 * 36) / $int17);
+def_obj $obj19 = null;
 def_int $int20 = 0;
+def_int $int21 = 0;
+def_int $int22 = -1;
+def_int $int23 = 0;
 def_string $string0 = "";
 if (%varplayerbit_4150 <= 0 | %varplayerbit_4150 > 9) {
-    while ($int12 < 800) {
-        if (cc_find($component3, $int12) = ^true) {
+    while ($int15 < 800) {
+        if (cc_find($component3, $int15) = ^true) {
             cc_sethide(true);
         }
-        if (inv_getobj(inv_95, $int12) ! null) {
-            $int18, $int19 = calc($int18 + 1), $int12;
+        if (inv_getobj(inv_95, $int15) ! null) {
+            $int21, $int22 = calc($int21 + 1), $int15;
         }
-        $int12 = calc($int12 + 1);
+        $int15 = calc($int15 + 1);
     }
-    $int20 = calc(%varplayerbit_4171 + %varplayerbit_4172 + %varplayerbit_4173 + %varplayerbit_4174 + %varplayerbit_4175 + %varplayerbit_4176 + %varplayerbit_4177 + %varplayerbit_4178 + %varplayerbit_4179);
-    if ($int20 <= 0) {
-        $int19 = calc(800 - 1);
+    $int23 = calc(%varplayerbit_4171 + %varplayerbit_4172 + %varplayerbit_4173 + %varplayerbit_4174 + %varplayerbit_4175 + %varplayerbit_4176 + %varplayerbit_4177 + %varplayerbit_4178 + %varplayerbit_4179);
+    if ($int23 <= 0) {
+        $int22 = calc(800 - 1);
     }
-    $int17 = ~script509($int20, calc($int19 + 1), 0, $component3, $component4, $int11, $int15, $int14, $int10);
-    $int12 = 0;
+    $int20 = ~script509($int23, calc($int22 + 1), 0, $component3, $component4, $component10, $component11, $component12, $int14, $int18, $int17, $int13);
+    $int15 = 0;
     if (%varplayerbit_4171 > 0) {
-        $int11 = ~script510(1, $component3, $int17);
-        $int17 = ~script509($int12, calc($int12 + %varplayerbit_4171), 1, $component3, $component4, $int11, $int15, $int14, $int10);
-        $int12 = calc($int12 + %varplayerbit_4171);
+        $int14 = ~script510(1, $component3, $int20);
+        $int20 = ~script509($int15, calc($int15 + %varplayerbit_4171), 1, $component3, $component4, $component10, $component11, $component12, $int14, $int18, $int17, $int13);
+        $int15 = calc($int15 + %varplayerbit_4171);
     }
     if (%varplayerbit_4172 > 0) {
-        $int11 = ~script510(2, $component3, $int17);
-        $int17 = ~script509($int12, calc($int12 + %varplayerbit_4172), 2, $component3, $component4, $int11, $int15, $int14, $int10);
-        $int12 = calc($int12 + %varplayerbit_4172);
+        $int14 = ~script510(2, $component3, $int20);
+        $int20 = ~script509($int15, calc($int15 + %varplayerbit_4172), 2, $component3, $component4, $component10, $component11, $component12, $int14, $int18, $int17, $int13);
+        $int15 = calc($int15 + %varplayerbit_4172);
     }
     if (%varplayerbit_4173 > 0) {
-        $int11 = ~script510(3, $component3, $int17);
-        $int17 = ~script509($int12, calc($int12 + %varplayerbit_4173), 3, $component3, $component4, $int11, $int15, $int14, $int10);
-        $int12 = calc($int12 + %varplayerbit_4173);
+        $int14 = ~script510(3, $component3, $int20);
+        $int20 = ~script509($int15, calc($int15 + %varplayerbit_4173), 3, $component3, $component4, $component10, $component11, $component12, $int14, $int18, $int17, $int13);
+        $int15 = calc($int15 + %varplayerbit_4173);
     }
     if (%varplayerbit_4174 > 0) {
-        $int11 = ~script510(4, $component3, $int17);
-        $int17 = ~script509($int12, calc($int12 + %varplayerbit_4174), 4, $component3, $component4, $int11, $int15, $int14, $int10);
-        $int12 = calc($int12 + %varplayerbit_4174);
+        $int14 = ~script510(4, $component3, $int20);
+        $int20 = ~script509($int15, calc($int15 + %varplayerbit_4174), 4, $component3, $component4, $component10, $component11, $component12, $int14, $int18, $int17, $int13);
+        $int15 = calc($int15 + %varplayerbit_4174);
     }
     if (%varplayerbit_4175 > 0) {
-        $int11 = ~script510(5, $component3, $int17);
-        $int17 = ~script509($int12, calc($int12 + %varplayerbit_4175), 5, $component3, $component4, $int11, $int15, $int14, $int10);
-        $int12 = calc($int12 + %varplayerbit_4175);
+        $int14 = ~script510(5, $component3, $int20);
+        $int20 = ~script509($int15, calc($int15 + %varplayerbit_4175), 5, $component3, $component4, $component10, $component11, $component12, $int14, $int18, $int17, $int13);
+        $int15 = calc($int15 + %varplayerbit_4175);
     }
     if (%varplayerbit_4176 > 0) {
-        $int11 = ~script510(6, $component3, $int17);
-        $int17 = ~script509($int12, calc($int12 + %varplayerbit_4176), 6, $component3, $component4, $int11, $int15, $int14, $int10);
-        $int12 = calc($int12 + %varplayerbit_4176);
+        $int14 = ~script510(6, $component3, $int20);
+        $int20 = ~script509($int15, calc($int15 + %varplayerbit_4176), 6, $component3, $component4, $component10, $component11, $component12, $int14, $int18, $int17, $int13);
+        $int15 = calc($int15 + %varplayerbit_4176);
     }
     if (%varplayerbit_4177 > 0) {
-        $int11 = ~script510(7, $component3, $int17);
-        $int17 = ~script509($int12, calc($int12 + %varplayerbit_4177), 7, $component3, $component4, $int11, $int15, $int14, $int10);
-        $int12 = calc($int12 + %varplayerbit_4177);
+        $int14 = ~script510(7, $component3, $int20);
+        $int20 = ~script509($int15, calc($int15 + %varplayerbit_4177), 7, $component3, $component4, $component10, $component11, $component12, $int14, $int18, $int17, $int13);
+        $int15 = calc($int15 + %varplayerbit_4177);
     }
     if (%varplayerbit_4178 > 0) {
-        $int11 = ~script510(8, $component3, $int17);
-        $int17 = ~script509($int12, calc($int12 + %varplayerbit_4178), 8, $component3, $component4, $int11, $int15, $int14, $int10);
-        $int12 = calc($int12 + %varplayerbit_4178);
+        $int14 = ~script510(8, $component3, $int20);
+        $int20 = ~script509($int15, calc($int15 + %varplayerbit_4178), 8, $component3, $component4, $component10, $component11, $component12, $int14, $int18, $int17, $int13);
+        $int15 = calc($int15 + %varplayerbit_4178);
     }
     if (%varplayerbit_4179 > 0) {
-        $int11 = ~script510(9, $component3, $int17);
-        $int17 = ~script509($int12, calc($int12 + %varplayerbit_4179), 9, $component3, $component4, $int11, $int15, $int14, $int10);
-        $int12 = calc($int12 + %varplayerbit_4179);
+        $int14 = ~script510(9, $component3, $int20);
+        $int20 = ~script509($int15, calc($int15 + %varplayerbit_4179), 9, $component3, $component4, $component10, $component11, $component12, $int14, $int18, $int17, $int13);
+        $int15 = calc($int15 + %varplayerbit_4179);
     }
     if (~bankmain_searching = true) {
         $string0 = ~bankmain_filterstring;
@@ -112,43 +120,43 @@ if (%varplayerbit_4150 <= 0 | %varplayerbit_4150 > 9) {
     } else {
         if_settext("The Bank of RuneScape", $component6);
     }
-    ~bankmain_finishbuilding($component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $int17, $int18);
+    ~bankmain_finishbuilding($component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10, $component11, $component12, $int20, $int21);
     return;
 }
 if (~bankmain_searching = true) {
     ~meslayer_close(1, 1);
 }
-def_int $int21 = -1;
-def_int $int22 = -1;
-$int21, $int22 = ~bank_gettabrange(%varplayerbit_4150);
-def_int $int23 = 0;
-def_int $int24 = 0;
-while ($int12 < 800) {
-    if (cc_find($component3, $int12) = ^true) {
-        $obj16 = inv_getobj(inv_95, $int12);
-        if ($obj16 ! null) {
-            $int18 = calc($int18 + 1);
+def_int $int24 = -1;
+def_int $int25 = -1;
+$int24, $int25 = ~bank_gettabrange(%varplayerbit_4150);
+def_int $int26 = 0;
+def_int $int27 = 0;
+while ($int15 < 800) {
+    if (cc_find($component3, $int15) = ^true) {
+        $obj19 = inv_getobj(inv_95, $int15);
+        if ($obj19 ! null) {
+            $int21 = calc($int21 + 1);
         }
-        if ($int12 >= $int21 & $int12 < $int22) {
+        if ($int15 >= $int24 & $int15 < $int25) {
             cc_sethide(false);
-            ~bankmain_drawitem($obj16, inv_getnum(inv_95, $int12), $component3, $component4);
-            $int17 = calc($int24 * 36);
-            cc_setposition(calc($int23 * (36 + $int15)), $int17, ^setpos_abs_left, ^setpos_abs_top);
-            $int17 = calc($int17 + 32);
-            if ($int23 < $int14) {
-                $int23 = calc($int23 + 1);
+            ~bankmain_drawitem($obj19, inv_getnum(inv_95, $int15), $component3, $component4, $component10, $component11, $component12);
+            $int20 = calc($int27 * 36);
+            cc_setposition(calc($int26 * (36 + $int18)), $int20, ^setpos_abs_left, ^setpos_abs_top);
+            $int20 = calc($int20 + 32);
+            if ($int26 < $int17) {
+                $int26 = calc($int26 + 1);
             } else {
-                $int23, $int24 = 0, calc($int24 + 1);
+                $int26, $int27 = 0, calc($int27 + 1);
             }
         } else {
             cc_sethide(true);
         }
     }
-    $int12 = calc($int12 + 1);
+    $int15 = calc($int15 + 1);
 }
 if (%varplayerbit_4170 = 2) {
     if_settext("Tab <enum(int, string, enum_207, %varplayerbit_4150)>", $component6);
 } else {
     if_settext("Tab <tostring(%varplayerbit_4150)>", $component6);
 }
-~bankmain_finishbuilding($component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $int17, $int18);
+~bankmain_finishbuilding($component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10, $component11, $component12, $int20, $int21);
