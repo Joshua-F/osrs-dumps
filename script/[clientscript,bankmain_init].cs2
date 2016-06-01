@@ -1,14 +1,14 @@
 // 274
-[clientscript,bankmain_init](component $com_1, component $com_2, component $com_3, component $com_8, component $com_9, component $com_33, component $com_12, component $com_13, component $com_14, component $com_16, component $com_18, component $com_20, component $com_23, component $com_25, component $com_27, component $com_4, component $com_5, component $com_10)
+[clientscript,bankmain_init](component $com_1, component $com_2, component $com_3, component $com_8, component $com_9, component $com_36, component $com_12, component $com_13, component $com_14, component $com_16, component $com_18, component $com_20, component $com_23, component $com_25, component $com_27, component $com_4, component $com_5, component $com_10, component $com_33, component $com_34, component $com_40)
 ~steelborder($com_3, "", 0);
-def_int $int18 = %varclient_51;
+def_int $int21 = %varclient_51;
 if (~bankmain_searching = true) {
     ~meslayer_close(1, 1);
 } else if (%varclient_5 <= 0) {
     %varclientstring_22 = "";
 }
-~bankmain_search_setbutton($com_1, $com_2, $com_8, $com_12, $com_13, $com_14, $com_4, $com_5, $com_27, $com_10);
-if_setonop("bankmain_search_toggle(event_op, $com_1, $com_2, $com_8, $com_12, $com_13, $com_14, $com_4, $com_5, $com_27, $com_10)", $com_27);
+~bankmain_search_setbutton($com_1, $com_2, $com_8, $com_12, $com_13, $com_14, $com_4, $com_5, $com_27, $com_10, $com_33, $com_34, $com_40);
+if_setonop("bankmain_search_toggle(event_op, $com_1, $com_2, $com_8, $com_12, $com_13, $com_14, $com_4, $com_5, $com_27, $com_10, $com_33, $com_34, $com_40)", $com_27);
 cc_deleteall($com_13);
 ~scrollbar_vertical($com_13, $com_12, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
 ~bankmain_swapinsert($com_16, $com_18);
@@ -18,59 +18,74 @@ if_setonvartransmit("bankmain_toggleplaceholders($com_20){varplayer_1052}", $com
 ~bankmain_itemnote($com_23, $com_25);
 if_setonvartransmit("bankmain_itemnote($com_23, $com_25){varplayer_115}", $com_23);
 cc_deleteall($com_12);
-def_int $int19 = 0;
-def_int $int20 = 0;
-while ($int20 < 800) {
-    cc_create($com_12, ^iftype_graphic, $int19);
-    $int19 = calc($int19 + 1);
+def_int $int22 = 0;
+def_int $int23 = 0;
+while ($int23 < 800) {
+    cc_create($com_12, ^iftype_graphic, $int22);
+    $int22 = calc($int22 + 1);
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
     cc_setgraphicshadow(0x333333);
     cc_setoutline(1);
     cc_setdragdeadzone(5);
     cc_setdragdeadtime(5);
-    $int20 = calc($int20 + 1);
+    $int23 = calc($int23 + 1);
 }
-def_int $int21 = if_getwidth($com_12);
-$int20 = 1;
-while ($int20 <= 9) {
-    cc_create($com_12, ^iftype_graphic, $int19);
-    $int19 = calc($int19 + 1);
-    cc_setsize($int21, 2, ^setsize_abs, ^setsize_abs);
+def_int $int24 = if_getwidth($com_12);
+$int23 = 1;
+while ($int23 <= 9) {
+    cc_create($com_12, ^iftype_graphic, $int22);
+    $int22 = calc($int22 + 1);
+    cc_setsize($int24, 2, ^setsize_abs, ^setsize_abs);
     cc_setgraphic(tradebacking_dark);
     cc_settiling(true);
-    $int20 = calc($int20 + 1);
+    $int23 = calc($int23 + 1);
 }
-$int20 = 1;
-while ($int20 <= 9) {
-    cc_create($com_12, ^iftype_text, $int19);
-    $int19 = calc($int19 + 1);
-    cc_setsize($int21, 15, ^setsize_abs, ^setsize_abs);
+$int23 = 1;
+while ($int23 <= 9) {
+    cc_create($com_12, ^iftype_text, $int22);
+    $int22 = calc($int22 + 1);
+    cc_setsize($int24, 15, ^setsize_abs, ^setsize_abs);
     cc_settextalign(^settextalign_left, ^settextalign_top, 0);
     cc_settextfont(p11_full);
     cc_setcolour(0xe4d8a2);
     cc_setonmouserepeat("cc_colour_swapper(event_com, event_comsubid, ^white)");
     cc_setonmouseleave("cc_colour_swapper(event_com, event_comsubid, 0xe4d8a2)");
     cc_settextshadow(true);
-    cc_settext("Tab <tostring($int20)>");
+    cc_settext("Tab <tostring($int23)>");
     cc_setop(1, "View tab");
-    cc_setopbase("<col=ff9040><tostring($int20)></col>");
-    cc_setonop("bankmain_switchtab($com_1, $com_2, $com_8, $com_12, $com_13, $com_14, $com_4, $com_5, $com_27, $com_10, event_op, $int20)");
-    $int20 = calc($int20 + 1);
+    cc_setopbase("<col=ff9040><tostring($int23)></col>");
+    cc_setonop("bankmain_switchtab($com_1, $com_2, $com_8, $com_12, $com_13, $com_14, $com_4, $com_5, $com_27, $com_10, $com_33, $com_34, $com_40, event_op, $int23)");
+    $int23 = calc($int23 + 1);
 }
-$int20 = 0;
-while ($int20 <= 9) {
-    cc_create($com_12, ^iftype_rectangle, $int19);
-    $int19 = calc($int19 + 1);
+$int23 = 0;
+while ($int23 <= 9) {
+    cc_create($com_12, ^iftype_rectangle, $int22);
+    $int22 = calc($int22 + 1);
     cc_setsize(0, 32, ^setsize_abs, ^setsize_abs);
     cc_setfill(true);
     cc_settrans(255);
-    $int20 = calc($int20 + 1);
+    $int23 = calc($int23 + 1);
 }
-~bankmain_menubutton(false, $com_1, $com_2, $com_8, $com_12, $com_13, $com_14, $com_4, $com_5, $com_27, $com_10, $com_9, $com_33);
-if_setoninvtransmit("bankmain_build($com_1, $com_2, $com_8, $com_12, $com_13, $com_14, $com_4, $com_5, $com_27, $com_10){inv_95}", $com_12);
-if_setonvartransmit("bankmain_build($com_1, $com_2, $com_8, $com_12, $com_13, $com_14, $com_4, $com_5, $com_27, $com_10){varplayer_304, varplayer_115, varplayer_867, varplayer_1052, varplayer_1053}", $com_12);
-%varclient_51 = $int18;
+~bankmain_menubutton(false, $com_1, $com_2, $com_8, $com_12, $com_13, $com_14, $com_4, $com_5, $com_27, $com_10, $com_33, $com_34, $com_40, $com_9, $com_36);
+if_setoninvtransmit("bankmain_build($com_1, $com_2, $com_8, $com_12, $com_13, $com_14, $com_4, $com_5, $com_27, $com_10, $com_33, $com_34, $com_40){inv_95}", $com_12);
+if_setonvartransmit("bankmain_build($com_1, $com_2, $com_8, $com_12, $com_13, $com_14, $com_4, $com_5, $com_27, $com_10, $com_33, $com_34, $com_40){varplayer_304, varplayer_115, varplayer_867, varplayer_1052, varplayer_1053}", $com_12);
+%varclient_51 = $int21;
 def_component $component = if_getlayer($com_1);
 if ($component ! null) {
     ~bankmain_size_check($com_1, $component, ^min_32bit_int, ^min_32bit_int, $com_13, $com_12);
 }
+cc_deleteall($com_33);
+cc_create($com_33, ^iftype_model, 0);
+.cc_create($com_33, ^iftype_model, 1);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+.cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+.cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_setmodel(model_9037);
+.cc_setmodel(model_9056);
+cc_setmodelangle(15, 300, 141, 220, 0, 3500);
+.cc_setmodelangle(15, 300, 141, 220, 0, 3500);
+.cc_setmodelanim(seq_2439);
+.cc_sethide(true);
+if_setonmouserepeat("script1312(true, $com_33, $com_40)", $com_33);
+if_setonmouseleave("script1312(false, $com_33, $com_40)", $com_33);

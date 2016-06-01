@@ -1,0 +1,22 @@
+// 1320
+[clientscript,script1320](component $com_38)
+def_string $string = "Incinerator";
+if_setsize(calc(parawidth($string, 512, p12_full) + 22), if_getheight($com_38), ^setsize_abs, ^setsize_abs, $com_38);
+cc_deleteall($com_38);
+cc_create($com_38, ^iftype_graphic, 0);
+cc_setsize(17, 17, ^setsize_abs, ^setsize_abs);
+cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_centre);
+.cc_create($com_38, ^iftype_text, 1);
+.cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+.cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+.cc_settextshadow(true);
+.cc_settextalign(^settextalign_right, ^settextalign_centre, 0);
+.cc_settextfont(p12_full);
+.cc_settext($string);
+.cc_setcolour(0xff981f);
+if_setonmouseover("cc_colour_swapper(event_com, .cc_getid, ^white)", $com_38);
+if_setonmouseleave("cc_colour_swapper(event_com, .cc_getid, 0xff981f)", $com_38);
+if_setopbase("<col=ff9040>Incinerator</col>", $com_38);
+~script1323($com_38);
+if_setonvartransmit("script1322($com_38, cc_getid){varplayer_1052}", $com_38);
+if_setonop("script1321(event_op, $com_38, cc_getid)", $com_38);
