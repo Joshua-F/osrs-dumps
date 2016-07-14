@@ -1,21 +1,21 @@
 // 464
 [proc,prayer_isavailable](int $int0)(boolean)
-if (stat_base(prayer) < enum(int, int, enum_861, $int0)) {
+if (stat_base(prayer) < enum(int, int, enum_861, $int0) & %varplayerbit_5314 = 0) {
     return(false);
 }
 if ($int0 = 25) {
-    if (map_members = false | stat_base(defence) < 65 | %varplayerbit_3909 < 8) {
+    if ((map_members = false | stat_base(defence) < 65 | %varplayerbit_3909 < 8) & %varplayerbit_5314 = 0) {
         return(false);
     }
 } else if ($int0 = 26) {
-    if (map_members = false | stat_base(defence) < 70 | %varplayerbit_3909 < 8) {
+    if ((map_members = false | stat_base(defence) < 70 | %varplayerbit_3909 < 8) & %varplayerbit_5314 = 0) {
         return(false);
     }
 } else if ($int0 = 15 | $int0 = 16 | $int0 = 17) {
-    if (map_members = false) {
+    if (map_members = false & %varplayerbit_5314 = 0) {
         return(false);
     }
-} else if ($int0 = 8 & (~high_risk_world = true | ~deadman_world = true)) {
+} else if ($int0 = 8 & (~high_risk_world = true | ~deadman_world = true | %varplayerbit_5314 = 1)) {
     return(false);
 }
 return(true);
