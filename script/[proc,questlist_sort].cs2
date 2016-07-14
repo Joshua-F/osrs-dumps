@@ -1,0 +1,26 @@
+// 1352
+[proc,questlist_sort](intarray $intarray0, int $int1, int $int2, enum $enum3, int $int4)
+def_int $int5 = calc(($int1 + $int2) / 2);
+def_int $int6 = $intarray0($int5);
+$intarray0($int5) = $intarray0($int2);
+$intarray0($int2) = $int6;
+def_int $int7 = $int1;
+def_int $int8 = $int1;
+def_int $int9 = -1;
+while ($int8 < $int2) {
+    if (compare("<tostring(calc($intarray0($int8) / $int4))><enum(int, string, $enum3, calc($intarray0($int8) % $int4))>", "<tostring(calc($int6 / $int4))><enum(int, string, $enum3, calc($int6 % $int4))>") <= 0) {
+        $int9 = $intarray0($int8);
+        $intarray0($int8) = $intarray0($int7);
+        $intarray0($int7) = $int9;
+        $int7 = calc($int7 + 1);
+    }
+    $int8 = calc($int8 + 1);
+}
+$intarray0($int2) = $intarray0($int7);
+$intarray0($int7) = $int6;
+if ($int1 < calc($int7 - 1)) {
+    ~questlist_sort(intarray0, $int1, calc($int7 - 1), $enum3, $int4);
+}
+if (calc($int7 + 1) < $int2) {
+    ~questlist_sort(intarray0, calc($int7 + 1), $int2, $enum3, $int4);
+}
