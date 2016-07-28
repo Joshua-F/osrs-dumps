@@ -19,25 +19,21 @@ def_int $int9 = 0;
 def_int $int10 = 0;
 def_int $int11 = 0;
 $int9, $int10, $int11 = ~hex_to_rgb(8929280);
-if (coordy(coord) > 0) {
+$int2 = invpow(pow(calc(coordx(coord) - %varplayerbit_5320), 2), 2);
+$int3 = invpow(pow(calc(coordz(coord) - %varplayerbit_5316), 2), 2);
+if ($int2 > $int3) {
+    $int1 = $int2;
+} else {
+    $int1 = $int3;
+}
+$int4, $int5 = calc(%varplayerbit_5317 - 8), calc(%varplayerbit_5317 + 8);
+if ($int1 <= $int4) {
+    $int6, $int7, $int8 = 0, 0, 0;
+} else if ($int1 >= $int5) {
     $int6, $int7, $int8 = $int9, $int10, $int11;
 } else {
-    $int2 = invpow(pow(calc(coordx(coord) - %varplayerbit_5320), 2), 2);
-    $int3 = invpow(pow(calc(coordz(coord) - %varplayerbit_5316), 2), 2);
-    if ($int2 > $int3) {
-        $int1 = $int2;
-    } else {
-        $int1 = $int3;
-    }
-    $int4, $int5 = calc(%varplayerbit_5317 - 8), calc(%varplayerbit_5317 + 8);
-    if ($int1 <= $int4) {
-        $int6, $int7, $int8 = 0, 0, 0;
-    } else if ($int1 >= $int5) {
-        $int6, $int7, $int8 = $int9, $int10, $int11;
-    } else {
-        $int1 = calc($int1 - $int4);
-        $int6, $int7, $int8 = interpolate(0, $int1, 0, 16, $int9), interpolate(0, $int1, 0, 16, $int10), interpolate(0, $int1, 0, 16, $int11);
-    }
+    $int1 = calc($int1 - $int4);
+    $int6, $int7, $int8 = interpolate(0, $int1, 0, 16, $int9), interpolate(0, $int1, 0, 16, $int10), interpolate(0, $int1, 0, 16, $int11);
 }
 def_int $int12 = 0;
 def_int $int13 = 0;
