@@ -2,7 +2,13 @@
 [proc,bankmain_drawitem](obj $obj0, int $int1, component $component2, component $component3, component $component4, component $component5, component $component6)
 if ($obj0 ! null) {
     cc_clearops;
-    if (oc_unplaceholder($obj0) ! $obj0) {
+    if ($obj0 = obj_20594) {
+        cc_setobject($obj0, -1);
+        cc_setop(7, "Clear-All");
+        cc_setop(8, "Clear");
+        cc_settrans(0);
+        cc_setondragcomplete("bankmain_reorder(event_com, event_comsubid, event_com2, event_comsubid2, 0, $component3, $component4, $component5, $component6)");
+    } else if (oc_unplaceholder($obj0) ! $obj0) {
         cc_setobject($obj0, 0);
         cc_setop(8, "Release");
         cc_settrans(120);
