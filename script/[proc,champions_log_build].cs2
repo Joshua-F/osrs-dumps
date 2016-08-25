@@ -1,0 +1,33 @@
+// 1409
+[proc,champions_log_build](obj $obj0, int $int1, int $int2, int $int3)(int, int)
+cc_create(interface_468:com2, ^iftype_model, $int2);
+$int2 = calc($int2 + 1);
+.cc_create(interface_468:com2, ^iftype_text, $int2);
+$int2 = calc($int2 + 1);
+cc_setposition(0, $int3, ^setpos_abs_left, ^setpos_abs_top);
+.cc_setposition(0, $int3, ^setpos_abs_right, ^setpos_abs_top);
+cc_setsize(80, 80, ^setsize_abs, ^setsize_abs);
+.cc_setsize(80, 80, ^setsize_minus, ^setsize_abs);
+$int3 = calc($int3 + 80);
+def_model $model4 = enum(obj, model, enum_1469, $obj0);
+if ($model4 ! null) {
+    cc_setmodel($model4);
+    cc_setmodelangle(0, 165, 0, 0, 0, 400);
+} else {
+    cc_setnpchead(npc_3360);
+    cc_setmodelangle(10, 30, 92, 1955, 0, 1100);
+    cc_setmodelanim(seq_579);
+}
+.cc_setcolour(0xffe6a0);
+.cc_settextfont(q8_full);
+.cc_settextshadow(true);
+.cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+def_int $int5 = calc(enum(obj, int, enum_139, $obj0) - 1);
+if ($int5 >= 0 & $int5 < 32) {
+    if (testbit($int1, $int5) = ^true) {
+        .cc_settext("<str><enum(obj, string, enum_1470, $obj0)></str>");
+    } else {
+        .cc_settext(enum(obj, string, enum_1470, $obj0));
+    }
+}
+return($int2, $int3);
