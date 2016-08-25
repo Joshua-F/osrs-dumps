@@ -3,7 +3,7 @@
 if ($chattype = null) {
     return(false);
 }
-if (enum(int, boolean, enum_892, $chattype) = true) {
+if (enum(int, boolean, enum_892, $chattype) = true & $chattype ! ^chattype_playerrelated) {
     if ($chattype = ^chattype_spam & %varplayerbit_26 = 1) {
         return(false);
     }
@@ -136,6 +136,12 @@ if ($chattype = ^chattype_friendschatnotification) {
 }
 if ($chattype = ^chattype_trade) {
     if (chat_getfilter_trade ! ^chatfilter_off) {
+        return(true);
+    }
+    return(false);
+}
+if ($chattype = ^chattype_playerrelated) {
+    if (ignore_test(removetags($string0)) = false) {
         return(true);
     }
     return(false);

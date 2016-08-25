@@ -1,0 +1,19 @@
+// 1309
+[clientscript,poh_options_viewer_init](component $com_1)
+cc_deleteall($com_1);
+def_int $int = ~options_button_off($com_1, 0);
+cc_create($com_1, ^iftype_graphic, $int);
+$int = calc($int + 1);
+cc_setsize(64, 32, ^setsize_abs, ^setsize_abs);
+cc_setposition(-2, 0, ^setpos_abs_left, ^setpos_abs_centre);
+cc_setgraphic(options_poh_icon);
+.cc_create($com_1, ^iftype_text, $int);
+$int = calc($int + 1);
+.cc_setsize(56, 0, ^setsize_minus, ^setsize_minus);
+.cc_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_centre);
+.cc_settextfont(p12_full);
+.cc_settextshadow(true);
+.cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+.cc_settext(if_getop(1, $com_1));
+~poh_options_viewer_set($com_1);
+if_setonvartransmit("poh_options_viewer_set(event_com, cc_getid, .cc_getid){varplayer_780}", $com_1);
