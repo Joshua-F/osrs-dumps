@@ -1,21 +1,21 @@
 // 637
-[proc,pet_insurance_drawlist](component $com_14, component $component, int $int2)
+[proc,pet_insurance_drawlist](component $com_14, component $component, int $int2, int $int3)
 cc_deleteall($com_14);
 cc_deleteall($component);
-def_int $int3 = if_getwidth($com_14);
-def_int $int4 = if_getheight($com_14);
-def_int $int5 = calc(($int3 - 36 * 7) / 6 + 36);
-def_int $int6 = 0;
+def_int $int4 = if_getwidth($com_14);
+def_int $int5 = if_getheight($com_14);
+def_int $int6 = calc(($int4 - 36 * 7) / 6 + 36);
+def_int $int7 = 0;
 def_obj $obj = null;
-def_int $int8 = 0;
 def_int $int9 = 0;
-while ($int9 <= 28) {
-    cc_create($com_14, ^iftype_graphic, $int9);
-    if (testbit($int2, $int9) = ^true) {
-        $obj = enum(int, namedobj, enum_985, $int9);
+def_int $int10 = 0;
+while ($int10 <= 32) {
+    cc_create($com_14, ^iftype_graphic, $int10);
+    if ($int10 < 32 & testbit($int2, $int10) = ^true | $int10 >= 32 & testbit($int3, calc($int10 - 32)) = ^true) {
+        $obj = enum(int, namedobj, enum_985, $int10);
         cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
-        $int8 = calc(40 * ($int6 / 7));
-        cc_setposition(calc($int5 * ($int6 % 7)), $int8, ^setpos_abs_left, ^setpos_abs_top);
+        $int9 = calc(40 * ($int7 / 7));
+        cc_setposition(calc($int6 * ($int7 % 7)), $int9, ^setpos_abs_left, ^setpos_abs_top);
         cc_setobject($obj, 1);
         cc_setgraphicshadow(0x333333);
         cc_setoutline(1);
@@ -26,15 +26,15 @@ while ($int9 <= 28) {
         cc_setop(10, "Examine");
         cc_setopbase("<col=ff9040><oc_name($obj)></col>");
         cc_sethide(false);
-        $int6 = calc($int6 + 1);
+        $int7 = calc($int7 + 1);
     } else {
         cc_sethide(true);
     }
-    $int9 = calc($int9 + 1);
+    $int10 = calc($int10 + 1);
 }
-if ($int6 <= 0) {
-    cc_create($com_14, ^iftype_text, $int9);
-    cc_setsize($int3, $int4, ^setsize_abs, ^setsize_abs);
+if ($int7 <= 0) {
+    cc_create($com_14, ^iftype_text, $int10);
+    cc_setsize($int4, $int5, ^setsize_abs, ^setsize_abs);
     cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
     cc_settextfont(p12_full);
     cc_setcolour(^white);
@@ -42,11 +42,11 @@ if ($int6 <= 0) {
     cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
     cc_settext("None");
 } else {
-    $int8 = calc($int8 + 32);
+    $int9 = calc($int9 + 32);
 }
 if_setscrollpos(0, 0, $com_14);
-if ($int8 > $int4) {
-    if_setscrollsize(0, $int8, $com_14);
+if ($int9 > $int5) {
+    if_setscrollsize(0, $int9, $com_14);
 } else {
     if_setscrollsize(0, 0, $com_14);
 }
