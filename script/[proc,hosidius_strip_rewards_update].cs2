@@ -73,50 +73,57 @@ if (%varplayerbit_4893 < $int19) {
     if_setcolour(0xff981f, $component17);
 }
 def_int $int20 = calc(if_getwidth($component3) / 3);
-def_int $int21 = calc(if_getheight($component3) / 2);
+def_int $int21 = calc(32 + 18);
 def_int $int22 = calc(($int20 - 36) / 2);
 def_int $int23 = 0;
 cc_deleteall($component3);
 cc_deleteall($component4);
 def_int $int24 = 0;
-def_obj $obj25 = enum(int, namedobj, enum_1261, $int24);
-while ($obj25 ! null) {
-    cc_create($component3, ^iftype_graphic, $int24);
-    cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
-    cc_setgraphicshadow(0x333333);
-    cc_setoutline(1);
-    cc_setobject_nonum(oc_uncert($obj25), 1);
-    cc_setopbase("<col=ff9040><oc_name($obj25)></col>");
-    cc_setop(1, "Value");
-    cc_setop(2, "Buy-1");
-    cc_setop(3, "Buy-5");
-    cc_setop(4, "Buy-X");
-    cc_setop(10, "Examine");
-    cc_setonop("cc_settrans_temporarily(event_com, event_comsubid, 120, 0)");
-    .cc_create($component4, ^iftype_text, $int24);
-    .cc_setsize($int20, calc($int21 - (32 + 2)), ^setsize_abs, ^setsize_abs);
-    .cc_setcolour(0xff981f);
-    .cc_settextfont(p11_full);
-    .cc_settextshadow(true);
-    .cc_settextalign(^settextalign_centre, ^settextalign_top, 0);
-    $int19 = enum(obj, int, enum_1262, $obj25);
-    .cc_settext(tostring($int19));
-    if (%varplayerbit_4893 < $int19) {
-        .cc_setcolour(^red);
-    } else {
+def_int $int25 = 0;
+def_obj $obj26 = enum(int, namedobj, enum_1261, $int25);
+while ($obj26 ! null) {
+    cc_create($component3, ^iftype_graphic, $int25);
+    .cc_create($component4, ^iftype_text, $int25);
+    if ($obj26 ! obj_20747 | %varplayerbit_5370 >= 2) {
+        cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+        cc_setgraphicshadow(0x333333);
+        cc_setoutline(1);
+        cc_setobject_nonum(oc_uncert($obj26), 1);
+        cc_setopbase("<col=ff9040><oc_name($obj26)></col>");
+        cc_setop(1, "Value");
+        cc_setop(2, "Buy-1");
+        cc_setop(3, "Buy-5");
+        cc_setop(4, "Buy-X");
+        cc_setop(10, "Examine");
+        cc_setonop("cc_settrans_temporarily(event_com, event_comsubid, 120, 0)");
+        .cc_setsize($int20, 18, ^setsize_abs, ^setsize_abs);
         .cc_setcolour(0xff981f);
-    }
-    if (calc($int24 % 3) = 0) {
-        cc_setposition($int22, $int23, ^setpos_abs_left, ^setpos_abs_top);
-        .cc_setposition(0, calc($int23 + 32 + 2), ^setpos_abs_left, ^setpos_abs_top);
-    } else if (calc($int24 % 3) = 1) {
-        cc_setposition(0, $int23, ^setpos_abs_centre, ^setpos_abs_top);
-        .cc_setposition(0, calc($int23 + 32 + 2), ^setpos_abs_centre, ^setpos_abs_top);
+        .cc_settextfont(p11_full);
+        .cc_settextshadow(true);
+        .cc_settextalign(^settextalign_centre, ^settextalign_top, 0);
+        $int19 = enum(obj, int, enum_1262, $obj26);
+        .cc_settext(tostring($int19));
+        if (%varplayerbit_4893 < $int19) {
+            .cc_setcolour(^red);
+        } else {
+            .cc_setcolour(0xff981f);
+        }
+        if (calc($int24 % 3) = 0) {
+            cc_setposition($int22, $int23, ^setpos_abs_left, ^setpos_abs_top);
+            .cc_setposition(0, calc($int23 + 32), ^setpos_abs_left, ^setpos_abs_top);
+        } else if (calc($int24 % 3) = 1) {
+            cc_setposition(0, $int23, ^setpos_abs_centre, ^setpos_abs_top);
+            .cc_setposition(0, calc($int23 + 32), ^setpos_abs_centre, ^setpos_abs_top);
+        } else {
+            cc_setposition($int22, $int23, ^setpos_abs_right, ^setpos_abs_top);
+            .cc_setposition(0, calc($int23 + 32), ^setpos_abs_right, ^setpos_abs_top);
+            $int23 = calc($int23 + $int21);
+        }
+        $int24 = calc($int24 + 1);
     } else {
-        cc_setposition($int22, $int23, ^setpos_abs_right, ^setpos_abs_top);
-        .cc_setposition(0, calc($int23 + 32 + 2), ^setpos_abs_right, ^setpos_abs_top);
-        $int23 = calc($int23 + $int21);
+        cc_sethide(true);
+        .cc_sethide(true);
     }
-    $int24 = calc($int24 + 1);
-    $obj25 = enum(int, namedobj, enum_1261, $int24);
+    $int25 = calc($int25 + 1);
+    $obj26 = enum(int, namedobj, enum_1261, $int25);
 }
