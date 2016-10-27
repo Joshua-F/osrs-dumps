@@ -1,0 +1,18 @@
+// 1460
+[clientscript,lumbridge_alchemy_init](component $com_0, component $com_1, component $com_2, component $com_3, component $com_7, component $com_8)
+def_int $int6 = inv_size(inv_93);
+def_int $int7 = 0;
+while ($int7 < $int6) {
+    cc_create($com_7, ^iftype_graphic, $int7);
+    cc_sethide(true);
+    cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+    cc_setposition(calc($int7 % 4 * (36 + 8)), calc($int7 / 4 * 32), ^setpos_abs_left, ^setpos_abs_top);
+    cc_setoutline(1);
+    cc_setgraphicshadow(0x333333);
+    cc_setop(10, "Examine");
+    $int7 = calc($int7 + 1);
+}
+~lumbridge_alchemy_invtransmit($com_7, $int6);
+if_setoninvtransmit("lumbridge_alchemy_invtransmit($com_7, $int6){inv_93}", $com_0);
+~lumbridge_alchemy_vartransmit($com_1, $com_2, $com_3, $com_7, $com_8, $int6);
+if_setonvartransmit("lumbridge_alchemy_vartransmit($com_1, $com_2, $com_3, $com_7, $com_8, $int6){varplayer_318, varplayer_925}", $com_0);
