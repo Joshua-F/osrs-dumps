@@ -1,0 +1,57 @@
+// 1479
+[proc,hh_get_status](loc $loc0, int $int1, int $int2, int $int3)(boolean, boolean)
+def_coord $coord4 = enum(loc, coord, enum_1368, $loc0);
+if ($coord4 = null) {
+    return(false, false);
+}
+def_int $int5 = coordx($coord4);
+def_int $int6 = coordz($coord4);
+def_int $int7 = 0;
+if ($int5 = 1) {
+    $int7 = %varplayer_1365;
+} else if ($int5 = 2) {
+    $int7 = %varplayer_1366;
+} else if ($int5 = 3) {
+    $int7 = %varplayer_1367;
+} else if ($int5 = 4) {
+    $int7 = %varplayer_1368;
+} else if ($int5 = 5) {
+    $int7 = %varplayer_1369;
+} else {
+    return(false, false);
+}
+if (testbit($int7, $int6) = ^false) {
+    return(false, false);
+}
+def_coord $coord8 = enum(loc, coord, enum_1525, $loc0);
+if ($coord8 ! null) {
+    if (inv_getobj(inv_576, coordx($coord8)) ! null) {
+        return(true, true);
+    }
+    return(true, false);
+}
+$coord8 = enum(loc, coord, enum_1440, $loc0);
+if ($coord8 ! null) {
+    $int5, $int6 = coordx($coord8), coordz($coord8);
+    if ($int5 = 1) {
+        $int7 = $int1;
+    } else if ($int5 = 2) {
+        $int7 = $int2;
+    } else if ($int5 = 3) {
+        $int7 = $int3;
+    } else {
+        return(false, false);
+    }
+    if (testbit($int7, $int6) = ^true) {
+        return(true, true);
+    }
+    return(true, false);
+}
+if ($loc0 = loc_29057) {
+    if (testbit($int3, 10) = ^true | testbit($int3, 12) = ^true) {
+        return(true, true);
+    } else {
+        return(true, false);
+    }
+}
+return(false, false);
