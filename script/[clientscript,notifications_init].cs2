@@ -1,10 +1,23 @@
 // 1465
-[clientscript,notifications_init](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5)
-def_int $int6 = 50;
-$int6 = ~script1466($int6, $component4, "Untradeable loot notifications:", "Off", "On", $component3, "If loot notifications are enabled above, you can choose whether they include untradeable loot.", $component4, $component5);
-$int6 = ~script1466($int6, $component5, "Boss kill-count updates:", "Unfiltered", "Filtered", $component3, "Boss kill-count updates can be blocked by the game message spam-filter.", $component4, $component5);
-if ($int6 > if_getheight($component1)) {
-    if_setscrollsize(0, $int6, $component1);
+[clientscript,notifications_init](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9)
+def_int $int10 = 10;
+if_setposition(0, $int10, ^setpos_abs_centre, ^setpos_abs_top, $component4);
+if_setposition(0, calc($int10 + 20), ^setpos_abs_centre, ^setpos_abs_top, $component5);
+def_string $string0 = "Monster loot notifications may be displayed when you receive items exceeding the specified value.";
+if_setonmouserepeat("tooltip_mouserepeat(event_com, -1, $component3, $string0, 25, 165)", $component4);
+if_setonmouseleave("deltooltip($component3)", $component4);
+$int10 = calc($int10 + 40);
+$int10 = ~script1466($int10, $component6, "Untradeable loot notifications:", "Off", "On", $component3, "If loot notifications are enabled above, you can choose whether they include untradeable loot.", $component6, $component7);
+$int10 = ~script1466($int10, $component7, "Boss kill-count updates:", "Unfiltered", "Filtered", $component3, "Boss kill-count updates can be blocked by the game message spam-filter.", $component6, $component7);
+$int10 = calc($int10 + 10);
+if_setposition(0, $int10, ^setpos_abs_centre, ^setpos_abs_top, $component8);
+if_setposition(0, calc($int10 + 20), ^setpos_abs_centre, ^setpos_abs_top, $component9);
+$string0 = "A warning may be displayed if you attempt to drop items exceeding the specified value.";
+if_setonmouserepeat("tooltip_mouserepeat(event_com, -1, $component3, $string0, 25, 165)", $component8);
+if_setonmouseleave("deltooltip($component3)", $component8);
+$int10 = calc($int10 + 40);
+if ($int10 > if_getheight($component1)) {
+    if_setscrollsize(0, $int10, $component1);
 } else {
     if_setscrollsize(0, 0, $component1);
 }
