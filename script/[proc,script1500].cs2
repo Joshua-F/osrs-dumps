@@ -1,0 +1,32 @@
+// 1500
+[proc,script1500](component $component)
+def_string $string = "Enable (1 coin)";
+if (%varplayerbit_5411 = 0 | %varplayerbit_5412 <= 0) {
+    cc_setcolour(0x9f9f9f);
+    cc_settext("Off");
+    if_setonmouserepeat("cc_colour_swapper(event_com, cc_getid, ^white)", $component);
+    if_setonmouseleave("cc_colour_swapper(event_com, cc_getid, 0x9f9f9f)", $component);
+    if (%varplayerbit_5412 > 0) {
+        if (%varplayerbit_5412 > 1) {
+            $string = "Enable (<~tostring_spacer(%varplayerbit_5412, ",")> coins)";
+        }
+        if_setop(1, $string, $component);
+    } else {
+        if_setop(1, "Enable", $component);
+    }
+    if_setop(2, "", $component);
+    if_setonop("script1501(event_op, false, %varplayerbit_5412, $component, cc_getid)", $component);
+} else {
+    cc_setcolour(0xff981f);
+    if (%varplayerbit_5412 ! 1) {
+        cc_settext("<~tostring_spacer(%varplayerbit_5412, ",")> coins");
+    } else {
+        cc_settext("1 coin");
+    }
+    if_setop(1, "Disable", $component);
+    if_setop(2, "Change", $component);
+    if_setonmouserepeat("cc_colour_swapper(event_com, cc_getid, ^white)", $component);
+    if_setonmouseleave("cc_colour_swapper(event_com, cc_getid, 0xff981f)", $component);
+    if_setonop("script1501(event_op, true, 0, $component, cc_getid)", $component);
+}
+if_setontimer(null, $component);
