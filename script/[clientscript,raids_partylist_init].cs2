@@ -1,0 +1,30 @@
+// 1563
+[clientscript,raids_partylist_init](component $component0, component $component1)
+def_int $int2 = 0;
+while ($int2 < 40) {
+    if_sethide(true, enum(int, component, enum_1537, $int2));
+    $int2 = calc($int2 + 1);
+}
+if_setscrollsize(0, 0, $component0);
+if_setscrollpos(0, 0, $component0);
+~scrollbar_vertical($component1, $component0, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+%varclient_178 = 0;
+cc_deleteall($component0);
+cc_create($component0, ^iftype_text, 0);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setcolour(0x808080);
+cc_settextfont(p12_full);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+cc_settextshadow(true);
+cc_settext("Loading...");
+cc_deleteall(interface_499:com3);
+if_sethide(true, interface_499:com55);
+cc_create(interface_499:com3, ^iftype_rectangle, enum(component, int, enum_1538, interface_499:com55));
+cc_sethide(true);
+if_sethide(true, interface_499:com57);
+cc_create(interface_499:com3, ^iftype_rectangle, enum(component, int, enum_1538, interface_499:com57));
+cc_sethide(true);
+~script1558(interface_499:com55, "Refresh", interface_499:com3, enum_1538, -1);
+~raids_partylist_setpartybutton;
+if_setonvartransmit("raids_partylist_setpartybutton{varplayer_1427}", interface_499:com57);
