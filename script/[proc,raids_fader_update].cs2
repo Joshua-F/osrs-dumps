@@ -1,0 +1,15 @@
+// 1515
+[proc,raids_fader_update](int $int0, int $int1, int $int2, component $component)
+if ($int2 >= 25) {
+    if_settrans($int1, $component);
+    if_setontimer(null, $component);
+    if ($int1 >= 255) {
+        if_sethide(true, $component);
+    } else {
+        if_sethide(false, $component);
+    }
+    return;
+}
+if_sethide(false, $component);
+if_settrans(calc($int0 + interpolate(0, $int2, 0, 25, calc($int1 - $int0))), $component);
+if_setontimer("raids_fader_update($int0, $int1, calc($int2 + 1), $component)", $component);

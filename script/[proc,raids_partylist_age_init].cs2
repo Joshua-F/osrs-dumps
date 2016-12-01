@@ -1,0 +1,12 @@
+// 1574
+[proc,raids_partylist_age_init](string $string)
+def_int $int0 = 0;
+def_int $int1 = 0;
+def_int $int2 = string_length($string);
+while ($int2 > 0) {
+    $int1 = string_indexof_string("0123456789", substring($string, 0, 1), 0);
+    $int0 = calc($int0 + $int1 * pow(10, calc($int2 - 1)));
+    $string = substring($string, 1, $int2);
+    $int2 = calc($int2 - 1);
+}
+~raids_partylist_age_write(scale(60, 100, $int0));
