@@ -1,0 +1,13 @@
+// 1567
+[proc,raids_partylist_entry_init](int $int0, component $component, int $int2, string $string)
+def_int $rgb = ^white;
+def_int $int4 = 235;
+if (calc($int0 % 2) = 0) {
+    $rgb, $int4 = ^black, 255;
+}
+cc_setcolour($rgb);
+cc_settrans($int4);
+if_setonmouserepeat("xpdrops_setup_skilllist_mouseover(event_com, cc_getid, ^white, 220)", $component);
+if_setonmouseleave("xpdrops_setup_skilllist_mouseover(event_com, cc_getid, $rgb, $int4)", $component);
+if_setonop("raids_partylist_op(event_op, event_com, cc_getid, $rgb, $int4, ^white, 220, $int2, $string)", $component);
+if_setontimer(null, $component);

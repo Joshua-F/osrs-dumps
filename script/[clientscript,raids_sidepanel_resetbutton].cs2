@@ -1,0 +1,10 @@
+// 1544
+[clientscript,raids_sidepanel_resetbutton](int $int, string $string, component $component)
+if (clientclock < $int) {
+    return;
+}
+~raids_sidepanel_drawbutton(false, $string, $component);
+if_setonmouserepeat("raids_sidepanel_drawbutton(true, $string, $component)", $component);
+if_setonmouseleave("raids_sidepanel_drawbutton(false, $string, $component)", $component);
+if_setonop("raids_sidepanel_opbutton(event_op, $string, $component)", $component);
+if_setontimer(null, $component);
