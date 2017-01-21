@@ -1,5 +1,5 @@
-// 1601
-[proc,script1601](component $component0, int $int1)
+// 1621
+[proc,raids_storage_side_items](component $component0, int $int1)
 def_int $int2 = 0;
 def_int $int3 = 0;
 def_obj $obj4 = null;
@@ -9,7 +9,12 @@ while ($int6 < $int1) {
     if (cc_find($component0, $int6) = true) {
         cc_clearops;
         $obj5 = inv_getobj(inv_93, $int6);
-        if ($obj5 ! null) {
+        if (%varplayerbit_3459 = 1) {
+            cc_sethide(false);
+            ~raids_storage_side_private_drawitem($obj5, inv_getnum(inv_93, $int6));
+            cc_setdragdeadzone(5);
+            cc_setdragdeadtime(5);
+        } else if ($obj5 ! null) {
             cc_sethide(false);
             cc_setobject($obj5, inv_getnum(inv_93, $int6));
             cc_setopbase("<col=ff9040><oc_name($obj5)></col>");
@@ -30,7 +35,7 @@ while ($int6 < $int1) {
                 cc_setop(5, "Donate-X");
                 cc_setop(10, "Examine");
                 cc_settrans(0);
-                cc_setonop("script1593(event_op, event_com, event_comsubid)");
+                cc_setonop("raids_storage_items_op(event_op, event_com, event_comsubid)");
             } else {
                 cc_setop(10, "Donate");
                 cc_settrans(150);
