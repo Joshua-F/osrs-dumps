@@ -1,9 +1,24 @@
 // 642
-[proc,poh_menagerie_drawpet](obj $obj0, int $int1, int $int2)(int)
+[proc,poh_menagerie_drawpet](obj $obj0, enum $enum1, int $int2, int $int3)(int)
+if ($enum1 ! null) {
+    if ($enum1 = enum_1686) {
+        $obj0 = enum(int, namedobj, $enum1, %varplayerbit_4324);
+    } else if ($enum1 = enum_1687) {
+        $obj0 = enum(int, namedobj, $enum1, %varplayerbit_4325);
+    } else if ($enum1 = enum_1688) {
+        $obj0 = enum(int, namedobj, $enum1, %varplayerbit_4326);
+    } else if ($enum1 = enum_1691) {
+        $obj0 = enum(int, namedobj, $enum1, %varplayerbit_4388);
+    } else if ($enum1 = enum_1689) {
+        $obj0 = enum(int, namedobj, $enum1, %varplayerbit_4327);
+    } else if ($enum1 = enum_1690) {
+        $obj0 = enum(int, namedobj, $enum1, %varplayerbit_4328);
+    }
+}
 cc_sethide(false);
 cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
-def_int $int3 = calc(40 * ($int2 / 6));
-cc_setposition(calc($int1 * ($int2 % 6)), $int3, ^setpos_abs_left, ^setpos_abs_top);
+def_int $int4 = calc(40 * ($int3 / 6));
+cc_setposition(calc($int2 * ($int3 % 6)), $int4, ^setpos_abs_left, ^setpos_abs_top);
 cc_setobject($obj0, 1);
 cc_setgraphicshadow(0x333333);
 cc_setoutline(1);
@@ -11,4 +26,4 @@ cc_setop(1, "Take");
 cc_setop(10, "Examine");
 cc_setopbase("<col=ff9040><oc_name($obj0)></col>");
 cc_setonop("pet_insurance_op(event_op, event_com, event_comsubid)");
-return($int3);
+return($int4);
