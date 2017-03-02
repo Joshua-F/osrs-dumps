@@ -1,0 +1,14 @@
+// 1640
+[proc,deadman_tournament_timer_update](component $component0, int $int1)
+if ($int1 < 0) {
+    $int1 = 0;
+}
+def_int $int2 = calc($int1 / 50);
+def_int $int3 = calc($int2 / 60);
+$int2 = calc($int2 % 60);
+if ($int2 < 10) {
+    if_settext("<tostring($int3)>:0<tostring($int2)>", interface_90:com_10);
+} else {
+    if_settext("<tostring($int3)>:<tostring($int2)>", interface_90:com_10);
+}
+if_setontimer("deadman_tournament_timer_update($component0, calc($int1 - 1))", $component0);
