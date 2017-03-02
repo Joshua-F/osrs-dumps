@@ -1,21 +1,36 @@
 // 12
-[clientscript,target_skull](component $com_31, component $com_32)
+[clientscript,target_skull](component $com_34, component $com_35, component $com_32, component $com_33)
 if (%varplayerbit_1538 = 0) {
-    if_settext("---", $com_32);
-    if_setgraphic("headicons_pk_interface,6", $com_31);
-} else if (%varplayerbit_1538 = 1) {
-    if_settext("Wealth: V. Low", $com_32);
-    if_setgraphic("headicons_pk_interface,7", $com_31);
+    if_settext("---", $com_35);
+    if_setgraphic("headicons_pk_interface,6", $com_34);
+    if_setobject_nonum(obj_12746, 1, $com_32);
+    if_settrans(120, $com_32);
+    if_settext("", $com_33);
+    return;
+}
+if (%varplayerbit_1538 = 1) {
+    if_settext("Wealth: V. Low", $com_35);
+    if_setgraphic("headicons_pk_interface,7", $com_34);
 } else if (%varplayerbit_1538 = 2) {
-    if_settext("Wealth: Low", $com_32);
-    if_setgraphic("headicons_pk_interface,5", $com_31);
+    if_settext("Wealth: Low", $com_35);
+    if_setgraphic("headicons_pk_interface,5", $com_34);
 } else if (%varplayerbit_1538 = 3) {
-    if_settext("Wealth: Medium", $com_32);
-    if_setgraphic("headicons_pk_interface,4", $com_31);
+    if_settext("Wealth: Medium", $com_35);
+    if_setgraphic("headicons_pk_interface,4", $com_34);
 } else if (%varplayerbit_1538 = 4) {
-    if_settext("Wealth: High", $com_32);
-    if_setgraphic("headicons_pk_interface,3", $com_31);
+    if_settext("Wealth: High", $com_35);
+    if_setgraphic("headicons_pk_interface,3", $com_34);
 } else {
-    if_settext("Wealth: V. High!", $com_32);
-    if_setgraphic("headicons_pk_interface,2", $com_31);
+    if_settext("Wealth: V. High!", $com_35);
+    if_setgraphic("headicons_pk_interface,2", $com_34);
+}
+def_obj $obj = enum(int, namedobj, enum_1701, %varplayerbit_4162);
+if ($obj ! null) {
+    if_setobject_nonum($obj, 1, $com_32);
+    if_settrans(0, $com_32);
+    if_settext(tostring(%varplayerbit_4162), $com_33);
+} else {
+    if_setobject_nonum(obj_12746, 1, $com_32);
+    if_settrans(120, $com_32);
+    if_settext("---", $com_33);
 }
