@@ -1,49 +1,89 @@
 // 129
-[proc,ignore_update](component $component0, component $component1, component $component2, component $component3)
-cc_deleteall($component0);
-def_int $int4 = ignore_count;
-if ($int4 < 0) {
-    if_settext("Loading ignore list<br>Please wait...", $component2);
-    return;
+[proc,ignore_update](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6)
+def_int $int7 = ignore_count;
+if ($int7 > 200) {
+    if (%varclient_184 ! 1) {
+        %varclient_184 = 0;
+    }
+    cc_deleteall($component1);
+    if_setonmouserepeat(null, $component1);
+    if_setonmouseleave(null, $component1);
+    if_setonclick(null, $component1);
+} else {
+    ~ignore_sortbutton_draw($component1, 2, 3, "Sort by name", $component0, $component1, $component2, $component3, $component4, $component5, $component6);
 }
-if_settext("", $component2);
+~ignore_sortbutton_draw($component2, 0, 1, "Legacy sort", $component0, $component1, $component2, $component3, $component4, $component5, $component6);
+cc_deleteall($component3);
+def_int $int8 = 0;
 def_string $string0 = "";
 def_string $string1 = "";
-def_int $int5 = if_getwidth($component0);
-def_int $int6 = 0;
-def_int $int7 = 0;
-while ($int7 < $int4) {
-    $string0, $string1 = ignore_getname($int7);
-    cc_create($component0, ^iftype_text, $int6);
-    $int6 = calc($int6 + 1);
-    cc_settext($string0);
-    cc_setposition(0, calc($int7 * 15), ^setpos_abs_left, ^setpos_abs_top);
-    cc_setsize($int5, 14, ^setsize_abs, ^setsize_abs);
-    cc_setcolour(^white);
-    cc_settextfont(p12_full);
-    cc_settextshadow(true);
-    cc_setopbase("<col=ffffff><$string0></col>");
-    cc_setop(1, "Delete");
-    cc_setonop("ignore_op(event_opbase)");
-    if (string_length($string1) > 0) {
-        $string1 = "Previous name:<br><$string1>";
-        cc_setonmouserepeat("tooltip_mouserepeat(event_com, event_comsubid, $component3, $string1, 25, 190)");
-        cc_setonmouseleave("deltooltip($component3)");
-        cc_create($component0, ^iftype_graphic, $int6);
-        $int6 = calc($int6 + 1);
-        cc_setsize(14, 14, ^setsize_abs, ^setsize_abs);
-        cc_setposition(calc(parawidth($string0, $int5, p12_full) + 3), calc($int7 * 15), ^setpos_abs_left, ^setpos_abs_top);
-        cc_setgraphic(friends_changed_name);
-        cc_setgraphicshadow(0x333333);
-    } else {
-        cc_setonmouseover("deltooltip($component3)");
-    }
-    $int7 = calc($int7 + 1);
-}
-def_int $int8 = calc($int7 * 15 + 5);
-if ($int8 > if_getheight($component0)) {
-    if_setscrollsize(0, $int8, $component0);
+def_int $intarray0(~max($int7, 1));
+def_int $int9 = 0;
+if ($int7 < 0) {
+    if_settext("Loading ignore list<br>Please wait...", $component5);
+    if_sethide(true, $component0);
 } else {
-    if_setscrollsize(0, 0, $component0);
+    if_settext("", $component5);
+    if_sethide(false, $component0);
+    while ($int8 < $int7) {
+        $intarray0($int8) = $int8;
+        $string0, $string1 = ignore_getname($int8);
+        cc_create($component3, ^iftype_text, calc($int8 * 2));
+        cc_settext($string0);
+        cc_setsize(0, 15, ^setsize_minus, ^setsize_abs);
+        cc_setcolour(^white);
+        cc_settextfont(p12_full);
+        cc_settextalign(^settextalign_left, ^settextalign_top, 0);
+        cc_settextshadow(true);
+        cc_setopbase("<col=ff9040><$string0></col>");
+        cc_setop(1, "Delete");
+        cc_setonop("ignore_op(event_opbase)");
+        .cc_create($component3, ^iftype_graphic, calc($int8 * 2 + 1));
+        .cc_setsize(14, 14, ^setsize_abs, ^setsize_abs);
+        .cc_setgraphic(friends_changed_name);
+        .cc_setgraphicshadow(0x333333);
+        if (string_length($string1) > 0) {
+            $string1 = "Previous name:<br><$string1>";
+            cc_setonmouserepeat("tooltip_mouserepeat(event_com, event_comsubid, $component6, $string1, 25, 190)");
+            cc_setonmouseleave("deltooltip($component6)");
+            .cc_sethide(false);
+        } else {
+            cc_setonmouseover("deltooltip($component6)");
+            .cc_sethide(true);
+        }
+        $int8 = calc($int8 + 1);
+    }
+    if ($int7 >= 2 & (%varclient_184 = 2 | %varclient_184 = 3)) {
+        ~script1655(intarray0, 0, calc($int7 - 1), $component3);
+    }
+    if ($int7 >= 1) {
+        if (%varclient_184 = 3 | %varclient_184 = 1) {
+            $int8 = $int7;
+            while ($int8 > 0) {
+                $int8 = calc($int8 - 1);
+                if (cc_find($component3, calc($intarray0($int8) * 2)) = ^true & .cc_find($component3, calc($intarray0($int8) * 2 + 1)) = ^true) {
+                    cc_setposition(0, $int9, ^setpos_abs_centre, ^setpos_abs_top);
+                    .cc_setposition(calc(parawidth(cc_gettext, 190, p12_full) + 3), $int9, ^setpos_abs_left, ^setpos_abs_top);
+                }
+                $int9 = calc($int9 + 15);
+            }
+        } else {
+            $int8 = 0;
+            while ($int8 < $int7) {
+                if (cc_find($component3, calc($intarray0($int8) * 2)) = ^true & .cc_find($component3, calc($intarray0($int8) * 2 + 1)) = ^true) {
+                    cc_setposition(0, $int9, ^setpos_abs_centre, ^setpos_abs_top);
+                    .cc_setposition(calc(parawidth(cc_gettext, 190, p12_full) + 3), $int9, ^setpos_abs_left, ^setpos_abs_top);
+                }
+                $int9, $int8 = calc($int9 + 15), calc($int8 + 1);
+            }
+        }
+        $int9 = calc($int9 + 5);
+    }
 }
-~scrollbar_resize($component1, $component0, if_getscrolly($component0));
+if ($int9 > if_getheight($component3)) {
+    if_setscrollsize(0, $int9, $component3);
+    ~scrollbar_resize($component4, $component3, if_getscrolly($component3));
+} else {
+    if_setscrollsize(0, 0, $component3);
+    ~scrollbar_resize($component4, $component3, 0);
+}
