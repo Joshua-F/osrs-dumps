@@ -1,0 +1,30 @@
+// 634
+[proc,displayname_draw](component $component0, component $component1, component $component2)
+if (%varplayerbit_5605 = 1) {
+    ~displayname_statusstatic($component0);
+    ~displayname_button_init($component1, "Look up name");
+    ~displayname_disablebutton($component2, "---");
+} else if (%varplayerbit_5605 = 2) {
+    if_setontimer("displayname_statusflash($component0)", $component0);
+    ~displayname_disablebutton($component1, "Look up name");
+    ~displayname_disablebutton($component2, "---");
+} else if (%varplayerbit_5605 = 4) {
+    ~displayname_statusstatic($component0);
+    ~displayname_button_init($component1, "Another name");
+    if (%varplayerbit_5606 = 1 & %varplayerbit_5607 = 0) {
+        if (string_length(%varclientstring_137) <= 0) {
+            %varclientstring_137 = "-";
+        }
+        ~displayname_button_init($component2, "<col=00ff00><%varclientstring_137></col>");
+    } else {
+        ~displayname_disablebutton($component2, "---");
+    }
+} else if (%varplayerbit_5605 = 5) {
+    if_setontimer("displayname_statusflash($component0)", $component0);
+    ~displayname_disablebutton($component1, "Another name");
+    ~displayname_disablebutton($component2, "---");
+} else {
+    if_setontimer("displayname_statusflash($component0)", $component0);
+    ~displayname_disablebutton($component1, "Look up name");
+    ~displayname_disablebutton($component2, "---");
+}
