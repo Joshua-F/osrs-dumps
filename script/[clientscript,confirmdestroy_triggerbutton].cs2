@@ -1,0 +1,18 @@
+// 1651
+[clientscript,confirmdestroy_triggerbutton](int $int0, char $char, component $component, string $string0, int $int3, string $string1, int $int4)
+if ($int0 = 1 | $char ! null & string_indexof_char($string1, $char) ! -1) {
+    sound_synth(synth_2266, 1, 0);
+    if (cc_find($component, $int4) = true) {
+        cc_setcolour(^white);
+        cc_settext("...");
+    }
+    if_setonmouserepeat(null, $component);
+    if_setonmouseleave(null, $component);
+    if_clearops($component);
+    if_setonop(null, $component);
+    if_setonkey(null, $component);
+    if_setontimer("confirmdestroy_resetbutton($component, $string0, $int3, $string1, calc(clientclock + 40))", $component);
+    if (cc_find(interface_584:com_0, $int3) = true) {
+        cc_resume_pausebutton;
+    }
+}
