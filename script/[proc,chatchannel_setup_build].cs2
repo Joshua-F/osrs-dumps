@@ -1,162 +1,89 @@
 // 1664
 [proc,chatchannel_setup_build](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5)
-def_int $int6 = friend_count;
-if ($int6 > 200) {
-    if (%varclient_186 ! 1) {
-        %varclient_186 = 0;
-    }
-    ~script1671($component0, "Sort by name", $component5);
-    ~script1671($component1, "Sort by rank", $component5);
-} else {
-    ~script1665($component0, 2, 3, "Sort by name", $component0, $component1, $component2, $component3, $component4, $component5);
-    ~script1665($component1, 6, 7, "Sort by rank", $component0, $component1, $component2, $component3, $component4, $component5);
-}
-~script1665($component2, 0, 1, "Legacy sort", $component0, $component1, $component2, $component3, $component4, $component5);
+~script1695(0, $component0, $component1, $component2, $component3, $component4, $component5);
+if_setontimer("script1694(calc(clientclock + 8), $component0, $component1, $component2, $component3, $component4, $component5)", $component3);
 cc_deleteall($component3);
-def_int $int7 = if_getwidth($component0);
+def_int $int6 = if_getwidth($component0);
+def_int $int7 = 0;
 def_int $int8 = 0;
 def_int $int9 = 0;
 def_int $int10 = 0;
-def_int $int11 = 0;
 def_string $string0 = "";
 def_string $string1 = "";
+def_int $int11 = 0;
 def_int $int12 = 0;
 def_int $int13 = 0;
-def_int $int14 = 0;
-def_int $intarray0(~max($int6, 1));
-if ($int6 <= -2) {
+def_int $int14 = friend_count;
+if ($int14 <= -2) {
     cc_create($component3, ^iftype_text, 0);
     cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_centre);
-    cc_setsize($int7, calc(16384 / 2), ^setsize_abs, ^setsize_proportion);
+    cc_setsize($int6, calc(16384 / 2), ^setsize_abs, ^setsize_proportion);
     cc_setcolour(0xffff64);
     cc_settextfont(b12_full);
     cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
     cc_settextshadow(true);
     cc_settext("Loading friend list<br>Please wait");
-} else if ($int6 = -1) {
+} else if ($int14 = -1) {
     cc_create($component3, ^iftype_text, 0);
     cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_centre);
-    cc_setsize($int7, calc(16384 / 2), ^setsize_abs, ^setsize_proportion);
+    cc_setsize($int6, calc(16384 / 2), ^setsize_abs, ^setsize_proportion);
     cc_setcolour(0xffff64);
     cc_settextfont(b12_full);
     cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
     cc_settextshadow(true);
     cc_settext("Connecting to server<br>Please wait");
 } else {
-    $int10, $int8, $int9 = if_getwidth($component3), calc($int7 - 5), calc(if_getwidth($component1) - 5);
-    while ($int13 < $int6) {
-        $int11 = calc($int13 * 5);
-        $intarray0($int13) = $int11;
-        $string0, $string1 = friend_getname($int13);
-        cc_create($component3, ^iftype_rectangle, $int11);
-        cc_setsize(0, 15, ^setsize_minus, ^setsize_abs);
+    $int9, $int7, $int8, $int13 = if_getwidth($component3), calc($int6 - 5), calc(if_getwidth($component1) - 5), calc($int14 * 15 + 5);
+    while ($int12 < $int14) {
+        $int10 = calc($int12 * 5);
+        $string0, $string1 = friend_getname($int12);
+        cc_create($component3, ^iftype_rectangle, $int10);
+        cc_setsize(0, $int13, ^setsize_minus, ^setsize_abs);
+        cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top);
         cc_setcolour(^white);
         cc_setfill(true);
-        cc_setop(1, enum(int, string, enum_170, 0));
-        cc_setop(2, enum(int, string, enum_170, 1));
-        cc_setop(3, enum(int, string, enum_170, 2));
-        cc_setop(4, enum(int, string, enum_170, 3));
-        cc_setop(5, enum(int, string, enum_170, 4));
-        cc_setop(6, enum(int, string, enum_170, 5));
-        cc_setop(7, enum(int, string, enum_170, 6));
+        cc_settrans(255);
         cc_setopbase("<col=ff9040><$string0></col>");
-        cc_setonop("chatchannel_setup_setrank($component3, calc($int11 + 3), calc($int11 + 4), $int13, event_op)");
-        cc_create($component3, ^iftype_text, calc($int11 + 1));
-        cc_setsize($int8, 15, ^setsize_abs, ^setsize_abs);
+        cc_setontimer("script1693(calc(clientclock + $int12 / 50), $component3, $int10, $int12, $int14, $int9, %varclient_186)");
+        cc_create($component3, ^iftype_text, calc($int10 + 1));
+        cc_setsize($int7, 15, ^setsize_abs, ^setsize_abs);
         cc_setcolour(0xffff64);
         cc_settextfont(b12_full);
         cc_settextalign(^settextalign_left, ^settextalign_top, 0);
         cc_settextshadow(true);
         cc_settext($string0);
-        .cc_create($component3, ^iftype_graphic, calc($int11 + 2));
+        cc_sethide(true);
+        .cc_create($component3, ^iftype_graphic, calc($int10 + 2));
         .cc_setsize(14, 14, ^setsize_abs, ^setsize_abs);
         .cc_setgraphic(friends_changed_name);
         .cc_setgraphicshadow(0x333333);
         if (string_length($string1) > 0) {
             $string1 = "Previous name:<br><$string1>";
-            cc_setonmouserepeat("tooltip_mouserepeat(event_com, event_comsubid, $component5, $string1, 25, $int10)");
+            cc_setonmouserepeat("tooltip_mouserepeat(event_com, event_comsubid, $component5, $string1, 25, $int9)");
             cc_setonmouseleave("deltooltip($component5)");
-            .cc_sethide(false);
+            .cc_settrans(0);
         } else {
             cc_setonmouseover("deltooltip($component5)");
-            .cc_sethide(true);
+            .cc_settrans(255);
         }
-        cc_create($component3, ^iftype_text, calc($int11 + 3));
-        $int12 = friend_getrank($int13);
-        cc_setsize($int9, 15, ^setsize_abs, ^setsize_abs);
+        .cc_sethide(true);
+        cc_create($component3, ^iftype_text, calc($int10 + 3));
+        $int11 = friend_getrank($int12);
+        cc_setsize($int8, 15, ^setsize_abs, ^setsize_abs);
         cc_setcolour(^white);
         cc_settextshadow(true);
         cc_settextalign(^settextalign_left, ^settextalign_top, 0);
         cc_settextfont(b12_full);
-        .cc_create($component3, ^iftype_text, calc($int11 + 4));
+        cc_sethide(true);
+        .cc_create($component3, ^iftype_text, calc($int10 + 4));
         .cc_setsize(0, 0, ^setsize_abs, ^setsize_abs);
         .cc_sethide(true);
-        ~script1668($int12, $int13);
-        $int13 = calc($int13 + 1);
-    }
-    if ($int6 >= 2) {
-        if (%varclient_186 = 2 | %varclient_186 = 3) {
-            ~script1661(intarray0, 0, calc($int6 - 1), 1, $component3);
-        } else if (%varclient_186 = 6 | %varclient_186 = 7) {
-            ~script1661(intarray0, 0, calc($int6 - 1), 4, $component3);
-        }
-    }
-    if ($int6 >= 1) {
-        if (%varclient_186 = 3 | %varclient_186 = 7 | %varclient_186 = 1) {
-            $int13 = $int6;
-            while ($int13 > 0) {
-                $int13 = calc($int13 - 1);
-                $int11 = $intarray0($int13);
-                if (cc_find($component3, $int11) = ^true) {
-                    cc_setposition(0, $int14, ^setpos_abs_centre, ^setpos_abs_top);
-                    if (calc($int13 % 2) = 0) {
-                        cc_settrans(255);
-                        cc_setonmouseleave("cc_settrans(event_com, event_comsubid, 255, null)");
-                    } else {
-                        cc_settrans(245);
-                        cc_setonmouseleave("cc_settrans(event_com, event_comsubid, 245, null)");
-                    }
-                    cc_setonmouserepeat("cc_settrans(event_com, event_comsubid, 230, null)");
-                }
-                if (cc_find($component3, calc($int11 + 1)) = ^true & .cc_find($component3, calc($int11 + 2)) = ^true) {
-                    cc_setposition(5, $int14, ^setpos_abs_left, ^setpos_abs_top);
-                    .cc_setposition(calc(parawidth(cc_gettext, $int10, b12_full) + 9), $int14, ^setpos_abs_left, ^setpos_abs_top);
-                }
-                if (cc_find($component3, calc($int11 + 3)) = ^true) {
-                    cc_setposition(0, $int14, ^setpos_abs_right, ^setpos_abs_top);
-                }
-                $int14 = calc($int14 + 15);
-            }
-        } else {
-            $int13 = 0;
-            while ($int13 < $int6) {
-                $int11 = $intarray0($int13);
-                if (cc_find($component3, $int11) = ^true) {
-                    cc_setposition(0, $int14, ^setpos_abs_centre, ^setpos_abs_top);
-                    if (calc($int13 % 2) = 0) {
-                        cc_settrans(255);
-                        cc_setonmouseleave("cc_settrans(event_com, event_comsubid, 255, null)");
-                    } else {
-                        cc_settrans(245);
-                        cc_setonmouseleave("cc_settrans(event_com, event_comsubid, 245, null)");
-                    }
-                    cc_setonmouserepeat("cc_settrans(event_com, event_comsubid, 230, null)");
-                }
-                if (cc_find($component3, calc($int11 + 1)) = ^true & .cc_find($component3, calc($int11 + 2)) = ^true) {
-                    cc_setposition(5, $int14, ^setpos_abs_left, ^setpos_abs_top);
-                    .cc_setposition(calc(parawidth(cc_gettext, $int10, b12_full) + 9), $int14, ^setpos_abs_left, ^setpos_abs_top);
-                }
-                if (cc_find($component3, calc($int11 + 3)) = ^true) {
-                    cc_setposition(0, $int14, ^setpos_abs_right, ^setpos_abs_top);
-                }
-                $int14, $int13 = calc($int14 + 15), calc($int13 + 1);
-            }
-        }
-        $int14 = calc($int14 + 5);
+        ~script1668($int11, $int12);
+        $int12 = calc($int12 + 1);
     }
 }
-if ($int14 > if_getheight($component3)) {
-    if_setscrollsize(0, $int14, $component3);
+if ($int13 > if_getheight($component3)) {
+    if_setscrollsize(0, $int13, $component3);
     ~scrollbar_resize($component4, $component3, if_getscrolly($component3));
 } else {
     if_setscrollsize(0, 0, $component3);
