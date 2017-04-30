@@ -6,24 +6,29 @@ if (%varclient_41 = 0) {
 if ($chattype0 = null) {
     return(false);
 }
-if (%varclient_41 = 1 & enum(int, boolean, enum_892, $chattype0) = true) {
-    return(true);
-}
-if (%varclient_41 = 2 & ($chattype0 = ^chattype_modchat | $chattype0 = ^chattype_publicchat | $chattype0 = ^chattype_autotyper | $chattype0 = ^chattype_modautotyper)) {
-    return(true);
-}
-if (%varclient_41 = 3 & ($chattype0 = ^chattype_privatechat | $chattype0 = ^chattype_loginlogoutnotification | $chattype0 = ^chattype_privatechatout | $chattype0 = ^chattype_modprivatechat)) {
-    return(true);
-}
-if (%varclient_41 = 4 & ($chattype0 = ^chattype_friendschat | $chattype0 = ^chattype_friendschatnotification | $chattype0 = ^chattype_chalreq_friendschat)) {
-    return(true);
-}
-if (%varclient_41 = 5) {
-    if ($chattype0 = ^chattype_tradereq | $chattype0 = ^chattype_chalreq_trade | $chattype0 = ^chattype_trade) {
-        return(true);
-    }
-    if (~trade_partner_check($chattype0, $string0) = true) {
-        return(true);
-    }
+switch_int (%varclient_41) {
+    case 1 :
+        if (enum(int, boolean, enum_892, $chattype0) = true) {
+            return(true);
+        }
+    case 2 :
+        if ($chattype0 = ^chattype_modchat | $chattype0 = ^chattype_publicchat | $chattype0 = ^chattype_autotyper | $chattype0 = ^chattype_modautotyper) {
+            return(true);
+        }
+    case 3 :
+        if ($chattype0 = ^chattype_privatechat | $chattype0 = ^chattype_loginlogoutnotification | $chattype0 = ^chattype_privatechatout | $chattype0 = ^chattype_modprivatechat) {
+            return(true);
+        }
+    case 4 :
+        if ($chattype0 = ^chattype_friendschat | $chattype0 = ^chattype_friendschatnotification | $chattype0 = ^chattype_chalreq_friendschat) {
+            return(true);
+        }
+    case 5 :
+        if ($chattype0 = ^chattype_tradereq | $chattype0 = ^chattype_chalreq_trade | $chattype0 = ^chattype_trade) {
+            return(true);
+        }
+        if (~trade_partner_check($chattype0, $string0) = true) {
+            return(true);
+        }
 }
 return(false);
