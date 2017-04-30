@@ -16,14 +16,17 @@ while ($int5 <= 107) {
             $int3 = $int1;
             $int2 = $int0;
         }
-        if ($int5 = 3 | $int5 = 6 | $int5 = 7) {
-            if ($int1 > $int4) {
-                $int4 = $int1;
-                %varclientstring_0 = removetags($string0);
-            }
-        } else if ($int5 = 14 & $int0 ! -1 & $int1 > calc(clientclock - 3000)) {
-            %varclient_55 = $int1;
-            if_setontimer("script664(false)", interface_162:com_0);
+        switch_int ($int5) {
+            case 3, 6, 7 :
+                if ($int1 > $int4) {
+                    $int4 = $int1;
+                    %varclientstring_0 = removetags($string0);
+                }
+            case 14 :
+                if ($int0 ! -1 & $int1 > calc(clientclock - 3000)) {
+                    %varclient_55 = $int1;
+                    if_setontimer("script664(false)", interface_162:com_0);
+                }
         }
     }
     $int5 = calc($int5 + 1);
