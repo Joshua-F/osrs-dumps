@@ -1,39 +1,38 @@
 // 91
 [proc,pm_filtertest](int $chattype, string $string, int $int)(boolean)
-if ($chattype = ^chattype_modprivatechat) {
-    if ($int < %varclient_175) {
-        return(false);
-    }
-    if (ignore_test(removetags($string)) = true) {
-        return(false);
-    }
-    return(true);
-}
-if ($chattype = ^chattype_privatechat) {
-    if ($int < %varclient_175) {
-        return(false);
-    }
-    if (ignore_test(removetags($string)) = true) {
-        return(false);
-    }
-    if (chat_getfilter_private = ^chatfilter_on) {
+switch_int ($chattype) {
+    case ^chattype_modprivatechat :
+        if ($int < %varclient_175) {
+            return(false);
+        }
+        if (ignore_test(removetags($string)) = true) {
+            return(false);
+        }
         return(true);
-    }
-    if (chat_getfilter_private = ^chatfilter_friends & friend_test($string) = true) {
-        return(true);
-    }
-    return(false);
-}
-if ($chattype = ^chattype_loginlogoutnotification | $chattype = ^chattype_privatechatout) {
-    if ($int < %varclient_175) {
+    case ^chattype_privatechat :
+        if ($int < %varclient_175) {
+            return(false);
+        }
+        if (ignore_test(removetags($string)) = true) {
+            return(false);
+        }
+        if (chat_getfilter_private = ^chatfilter_on) {
+            return(true);
+        }
+        if (chat_getfilter_private = ^chatfilter_friends & friend_test($string) = true) {
+            return(true);
+        }
         return(false);
-    }
-    if ($chattype = ^chattype_loginlogoutnotification & %varplayerbit_1627 = 0 & calc(clientclock - $int) >= 500) {
+    case ^chattype_loginlogoutnotification, ^chattype_privatechatout :
+        if ($int < %varclient_175) {
+            return(false);
+        }
+        if ($chattype = ^chattype_loginlogoutnotification & %varplayerbit_1627 = 0 & calc(clientclock - $int) >= 500) {
+            return(false);
+        }
+        if (chat_getfilter_private ! ^chatfilter_off) {
+            return(true);
+        }
         return(false);
-    }
-    if (chat_getfilter_private ! ^chatfilter_off) {
-        return(true);
-    }
-    return(false);
 }
 return(false);
