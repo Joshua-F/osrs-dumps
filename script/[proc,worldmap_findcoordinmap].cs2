@@ -1,0 +1,15 @@
+// 1715
+[proc,worldmap_findcoordinmap](wma $wma, coord $coord)(coord)
+if ($wma = null | $coord = null) {
+    return(null);
+}
+if (worldmap_coordinmap($wma, $coord) = true) {
+    return($coord);
+}
+while (coordy($coord) > 0) {
+    $coord = movecoord($coord, 0, -1, 0);
+    if (worldmap_coordinmap($wma, $coord) = true) {
+        return($coord);
+    }
+}
+return(null);

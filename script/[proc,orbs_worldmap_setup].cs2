@@ -1,0 +1,28 @@
+// 1700
+[proc,orbs_worldmap_setup](component $component)
+def_enum $enum = ~toplevel_getcomponents;
+if ($enum = null) {
+    return;
+}
+def_graphic $graphic2 = "worldmap_icon,0";
+def_graphic $graphic3 = "worldmap_icon,1";
+if (if_hassub(enum(component, component, $enum, interface_161:com_14)) = true) {
+    if_settrans(125, $component);
+    if_setgraphic($graphic3, $component);
+    if_setonmouserepeat("settrans(event_com, 0)", $component);
+    if_setonmouseleave("settrans(event_com, 125)", $component);
+    if_clearops($component);
+    if_setop(1, "Close", $component);
+    if_setopbase("<col=ff9040>Floating panel</col>", $component);
+    if_setonop("opsound(event_op, 2)", $component);
+} else {
+    if_settrans(0, $component);
+    if_setgraphic($graphic2, $component);
+    if_setonmouserepeat("graphic_swapper(event_com, $graphic3)", $component);
+    if_setonmouseleave("graphic_swapper(event_com, $graphic2)", $component);
+    if_clearops($component);
+    if_setop(1, "Floating", $component);
+    if_setop(2, "Fullscreen", $component);
+    if_setopbase("<col=ff9040>World Map</col>", $component);
+    if_setonop("opsound(event_op, 6)", $component);
+}
