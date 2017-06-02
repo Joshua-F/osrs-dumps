@@ -1,0 +1,17 @@
+// 1752
+[proc,worldmap_elements_chooseposition](coord $coord, boolean $boolean, component $component, int $int3, int $int4, int $int5, int $int6)(int, int)
+def_int $int7 = 0;
+def_int $int8 = 0;
+if ($boolean = true) {
+    $int7 = coordx($coord);
+    $int8 = coordz($coord);
+} else {
+    $int7, $int8 = worldmap_getdisplaycoord($coord);
+}
+def_int $int9 = if_getwidth($component);
+def_int $int10 = if_getheight($component);
+$int7 = scale($int9, calc($int5 - $int6), calc($int7 - $int6));
+$int8 = scale($int10, calc($int3 - $int4), calc($int8 - $int4));
+$int7 = calc($int7 - $int9 / 2);
+$int8 = calc($int10 / 2 - $int8);
+return($int7, $int8);
