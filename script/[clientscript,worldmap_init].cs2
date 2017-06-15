@@ -140,10 +140,13 @@ if ($int26 > 0) {
 if_setscrollpos(0, 0, $component20);
 if ($int25 > if_getheight($component20)) {
     if_setscrollsize(0, $int25, $component20);
+    %varclient_182 = ~max(~min(%varclient_182, calc($int25 - if_getheight($component20))), 0);
 } else {
     if_setscrollsize(0, 0, $component20);
+    %varclient_182 = 0;
 }
 ~scrollbar_vertical($component21, $component20, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~scrollbar_resize($component21, $component20, %varclient_182);
 $int27 = calc($int27 + 22);
 cc_deleteall($component9);
 ~worldmap_toggles_createbutton(0, $component9);
