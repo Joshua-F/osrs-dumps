@@ -3,16 +3,21 @@
 def_int $int1 = 0;
 def_obj $obj2 = enum(int, namedobj, enum_852, $int1);
 while ($obj2 ! null) {
-    cc_create($component0, ^iftype_graphic, $int1);
-    cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
-    cc_setposition(calc($int1 % 8 * 46), calc($int1 / 8 * 50), ^setpos_abs_left, ^setpos_abs_top);
-    cc_setobject($obj2, 1);
-    cc_setopbase("<col=ff9040><oc_name($obj2)>");
-    cc_setop(1, "Value");
-    cc_setop(2, "Buy");
-    cc_setop(10, "Examine");
-    cc_setgraphicshadow(0x333333);
-    cc_setoutline(1);
-    $int1 = calc($int1 + 1);
-    $obj2 = enum(int, namedobj, enum_852, $int1);
+    if (map_members = false & oc_members($obj2) = 1) {
+        $int1 = calc($int1 + 1);
+        $obj2 = enum(int, namedobj, enum_852, $int1);
+    } else {
+        cc_create($component0, ^iftype_graphic, $int1);
+        cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+        cc_setposition(calc($int1 % 8 * 46), calc($int1 / 8 * 50), ^setpos_abs_left, ^setpos_abs_top);
+        cc_setobject($obj2, 1);
+        cc_setopbase("<col=ff9040><oc_name($obj2)>");
+        cc_setop(1, "Value");
+        cc_setop(2, "Buy");
+        cc_setop(10, "Examine");
+        cc_setgraphicshadow(0x333333);
+        cc_setoutline(1);
+        $int1 = calc($int1 + 1);
+        $obj2 = enum(int, namedobj, enum_852, $int1);
+    }
 }
