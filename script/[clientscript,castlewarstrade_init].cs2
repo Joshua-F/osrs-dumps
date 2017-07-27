@@ -1,15 +1,16 @@
 // 443
 [clientscript,castlewarstrade_init](component $com_2)
-def_int $int = 0;
-def_obj $obj = enum(int, namedobj, enum_852, $int);
+def_int $int1 = 0;
+def_int $int2 = 0;
+def_obj $obj = enum(int, namedobj, enum_852, $int2);
 while ($obj ! null) {
+    cc_create($com_2, ^iftype_graphic, $int2);
     if (map_members = false & oc_members($obj) = 1) {
-        $int = calc($int + 1);
-        $obj = enum(int, namedobj, enum_852, $int);
+        cc_sethide(true);
     } else {
-        cc_create($com_2, ^iftype_graphic, $int);
         cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
-        cc_setposition(calc($int % 8 * 46), calc($int / 8 * 50), ^setpos_abs_left, ^setpos_abs_top);
+        cc_setposition(calc($int1 % 8 * 46), calc($int1 / 8 * 50), ^setpos_abs_left, ^setpos_abs_top);
+        $int1 = calc($int1 + 1);
         cc_setobject($obj, 1);
         cc_setopbase("<col=ff9040><oc_name($obj)>");
         cc_setop(1, "Value");
@@ -17,7 +18,7 @@ while ($obj ! null) {
         cc_setop(10, "Examine");
         cc_setgraphicshadow(0x333333);
         cc_setoutline(1);
-        $int = calc($int + 1);
-        $obj = enum(int, namedobj, enum_852, $int);
     }
+    $int2 = calc($int2 + 1);
+    $obj = enum(int, namedobj, enum_852, $int2);
 }
