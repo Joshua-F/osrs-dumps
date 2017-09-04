@@ -7,7 +7,11 @@ if (string_length($string) > 0) {
 def_int $int5 = 0;
 def_int $int6 = 0;
 def_int $int7 = 0;
-def_obj $obj = enum(int, namedobj, enum_1124, $int7);
+def_enum $enum = enum_1124;
+if (~wildwars_world = true) {
+    $enum = enum_1735;
+}
+def_obj $obj = enum(int, namedobj, $enum, $int7);
 while ($obj ! null) {
     if (cc_find($component0, $int7) = true) {
         if ($int4 = 1 | string_indexof_string(lowercase(oc_name($obj)), $string, 0) ! -1) {
@@ -20,7 +24,7 @@ while ($obj ! null) {
         }
     }
     $int7 = calc($int7 + 1);
-    $obj = enum(int, namedobj, enum_1124, $int7);
+    $obj = enum(int, namedobj, $enum, $int7);
 }
 if (cc_find($component0, $int7) = true) {
     if ($int5 > 0) {
