@@ -5,7 +5,11 @@ cc_deleteall($com_4);
 def_int $int4 = calc((if_getwidth($com_3) - 10 * 36) / (10 - 1));
 def_int $int5 = calc(32 + 10);
 def_int $int6 = 0;
-def_obj $obj = enum(int, namedobj, enum_1124, $int6);
+def_enum $enum = enum_1124;
+if (~wildwars_world = true) {
+    $enum = enum_1735;
+}
+def_obj $obj = enum(int, namedobj, $enum, $int6);
 while ($obj ! null) {
     cc_create($com_3, ^iftype_graphic, $int6);
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
@@ -23,7 +27,7 @@ while ($obj ! null) {
     cc_setonop("cc_settrans_temporarily(event_com, event_comsubid, 100, 0)");
     cc_sethide(true);
     $int6 = calc($int6 + 1);
-    $obj = enum(int, namedobj, enum_1124, $int6);
+    $obj = enum(int, namedobj, $enum, $int6);
 }
 cc_create($com_3, ^iftype_text, $int6);
 cc_setsize(0, 50, ^setsize_minus, ^setsize_abs);
