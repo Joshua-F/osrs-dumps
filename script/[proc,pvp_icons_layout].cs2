@@ -87,6 +87,28 @@ if (~pvpw_check = true) {
         if_sethide(true, interface_90:com_47);
     }
     ~pvp_icons_toggletargetsystem(true, $enum3);
+} else if (~wildwars_world = true) {
+    if_setsize(57, 55, ^setsize_abs, ^setsize_abs, interface_90:com_41);
+    $int4 = 13;
+    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_bottom, interface_90:com_46);
+    if_setcolour(^yellow, interface_90:com_46);
+    if_sethide(true, interface_90:com_45);
+    if (%varplayerbit_5701 >= 1) {
+        if (%varplayerbit_5701 > 2) {
+            ~script1434(false, $enum3, true);
+            if_sethide(true, interface_90:com_12);
+        } else if (%varplayerbit_5701 = 2) {
+            ~script1434(false, $enum3, false);
+            if_sethide(false, interface_90:com_12);
+        }
+        if_sethide(false, interface_90:com_1);
+        if_setgradientmode(^gradientmode_colour, interface_90:com_1);
+        if_setontimer("wildwars_fogcolour", interface_90:com_1);
+        ~wildwars_fogcolour;
+    } else {
+        if_setontimer(null, interface_90:com_1);
+        if_sethide(true, interface_90:com_1);
+    }
 } else {
     if_setsize(57, 55, ^setsize_abs, ^setsize_abs, interface_90:com_41);
     $int4 = 13;

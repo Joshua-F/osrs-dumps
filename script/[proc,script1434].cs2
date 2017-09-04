@@ -4,8 +4,8 @@ if_sethide($boolean0, interface_90:com_2);
 if_setposition(6, 6, ^setpos_abs_right, ^setpos_abs_top, interface_90:com_2);
 if_sethide($boolean2, interface_90:com_7);
 if ($boolean2 = false) {
-    if_setonvartransmit("deadman_tournament_timer_resynch(event_com){varplayer_1434}", interface_90:com_7);
-    if_setonvartransmit("script1636(event_com){varplayer_1293}", interface_90:com_11);
+    if_setonvartransmit("deadman_tournament_timer_resynch(event_com){varplayer_1434, varplayer_1601, varplayer_1602}", interface_90:com_7);
+    if_setonvartransmit("script1636(event_com){varplayer_1293, varplayer_1601, varplayer_1602}", interface_90:com_11);
 } else {
     if_setontimer(null, interface_90:com_7);
     if_setonvartransmit(null, interface_90:com_7);
@@ -14,8 +14,13 @@ if ($boolean2 = false) {
 if ($boolean0 = true) {
     return;
 }
-if_setonvartransmit("deadman_tournament_hudupdate{varplayer_1542}", interface_90:com_3);
-~deadman_tournament_hudupdate;
+if (~wildwars_world = true) {
+    if_setonvartransmit("wildwars_hudupdate{varplayer_1601, varplayer_1602}", interface_90:com_3);
+    ~wildwars_hudupdate;
+} else {
+    if_setonvartransmit("deadman_tournament_hudupdate{varplayer_1542}", interface_90:com_3);
+    ~deadman_tournament_hudupdate;
+}
 if ($enum1 = null) {
     return;
 }
