@@ -1,0 +1,125 @@
+// 2010
+[clientscript,fossil_volcanic_shop_init](component $com_0, component $com_3, component $com_4, component $com_5)
+def_int $int4 = calc(if_getwidth($com_3) / 2);
+cc_deleteall($com_3);
+def_int $int5 = 0;
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_int $int8 = 0;
+def_int $int9 = 0;
+def_obj $obj = enum(int, namedobj, enum_1779, $int9);
+while ($obj ! null) {
+    cc_create($com_3, ^iftype_rectangle, $int5);
+    $int5 = calc($int5 + 1);
+    cc_setcolour(^white);
+    cc_setfill(true);
+    if (calc($int9 % 2) = 0) {
+        cc_setsize($int4, 40, ^setsize_abs, ^setsize_abs);
+        $int7 = calc($int6 * 40);
+        cc_setposition(0, $int7, ^setpos_abs_left, ^setpos_abs_top);
+        if (calc($int6 % 2) = 0) {
+            $int8 = 245;
+        } else {
+            $int8 = 235;
+        }
+    } else {
+        cc_setsize($int4, 40, ^setsize_minus, ^setsize_abs);
+        $int7 = calc($int6 * 40);
+        cc_setposition(0, $int7, ^setpos_abs_right, ^setpos_abs_top);
+        if (calc($int6 % 2) = 0) {
+            $int8 = 235;
+        } else {
+            $int8 = 245;
+        }
+        $int6 = calc($int6 + 1);
+    }
+    cc_settrans($int8);
+    cc_setonmouseover("cc_settrans(event_com, event_comsubid, 225, null)");
+    cc_setonmouseleave("cc_settrans(event_com, event_comsubid, $int8, null)");
+    cc_setop(1, "Value");
+    cc_setop(2, "Buy-1");
+    cc_setop(3, "Buy-5");
+    cc_setop(4, "Buy-10");
+    cc_setop(5, "Buy-X");
+    cc_setop(10, "Examine");
+    cc_setopbase("<col=ff9040><oc_name($obj)></col>");
+    cc_setonop("opsound(event_op, 1086)");
+    $int9 = calc($int9 + 1);
+    $obj = enum(int, namedobj, enum_1779, $int9);
+}
+if ($int9 > 0) {
+    if (calc($int9 % 2) = 1) {
+        cc_create($com_3, ^iftype_rectangle, $int5);
+        $int5 = calc($int5 + 1);
+        cc_setsize($int4, 40, ^setsize_minus, ^setsize_abs);
+        cc_setposition(0, $int7, ^setpos_abs_right, ^setpos_abs_top);
+        cc_setcolour(^white);
+        cc_setfill(true);
+        if (calc($int6 % 2) = 0) {
+            cc_settrans(235);
+        } else {
+            cc_settrans(245);
+        }
+    }
+    $int7 = calc($int7 + 40);
+}
+if_setscrollpos(0, 0, $com_3);
+if ($int7 > if_getheight($com_3)) {
+    if_setscrollsize(0, $int7, $com_3);
+} else {
+    if_setscrollsize(0, 0, $com_3);
+    cc_create($com_3, ^iftype_rectangle, $int5);
+    $int5 = calc($int5 + 1);
+    cc_setsize(0, $int7, ^setsize_minus, ^setsize_minus);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_bottom);
+    cc_setcolour(^black);
+    cc_setfill(true);
+    cc_settrans(245);
+}
+~scrollbar_vertical($com_4, $com_3, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+def_int $int11 = calc((40 - 32) / 2);
+def_int $int12 = calc(3 + 36 + 3);
+def_int $int13 = calc($int4 - $int12);
+def_int $int14 = 0;
+while ($int9 > 0) {
+    $int9 = calc($int9 - 1);
+    if (cc_find($com_3, $int9) = true) {
+        $obj = enum(int, namedobj, enum_1779, $int9);
+        .cc_create($com_3, ^iftype_graphic, $int5);
+        $int5 = calc($int5 + 1);
+        .cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+        .cc_setposition(calc(cc_getx + 3), calc(cc_gety + $int11), ^setpos_abs_left, ^setpos_abs_top);
+        .cc_setobject_nonum(oc_uncert($obj), 1);
+        .cc_setoutline(1);
+        .cc_setgraphicshadow(0x333333);
+        .cc_create($com_3, ^iftype_text, $int5);
+        $int5 = calc($int5 + 1);
+        .cc_setsize($int13, 27, ^setsize_abs, ^setsize_abs);
+        .cc_setposition(calc(cc_getx + $int12), cc_gety, ^setpos_abs_left, ^setpos_abs_top);
+        .cc_setcolour(0xff981f);
+        .cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+        .cc_settextshadow(true);
+        .cc_settextfont(p12_full);
+        .cc_settext(oc_name($obj));
+        .cc_create($com_3, ^iftype_text, $int5);
+        $int5 = calc($int5 + 1);
+        .cc_setsize($int13, calc(40 - 27), ^setsize_abs, ^setsize_abs);
+        .cc_setposition(calc(cc_getx + $int12), calc(cc_gety + 27), ^setpos_abs_left, ^setpos_abs_top);
+        .cc_setcolour(0xafafaf);
+        .cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+        .cc_settextshadow(true);
+        .cc_settextfont(p11_full);
+        $int14 = enum(obj, int, enum_1780, $obj);
+        if ($int14 > 1) {
+            .cc_settext("<~tostring_spacer($int14, ",")> points");
+        } else if ($int14 = 1) {
+            .cc_settext("1 point");
+        } else if ($int14 = 0) {
+            .cc_settext("Free");
+        } else {
+            .cc_settext("Unavailable");
+        }
+    }
+}
+~fossil_volcanic_shop_points($com_5, 0);
+if_setonvartransmit("fossil_volcanic_shop_points($com_5){varplayer_261}", $com_5);
