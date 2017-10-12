@@ -21,19 +21,19 @@ if (%varplayerbit_26 = 1) {
 } else {
     if_settext("On", interface_162:com_9);
 }
-def_int $chatfilter1 = ^chatfilter_on;
+def_int $int1 = 0;
 while ($int0 <= 5) {
-    $chatfilter1 = ~chat_get_filter($int0);
-    if ($chatfilter1 = ^chatfilter_friends) {
-        if_settext("<col=ffff00>Friends", enum(int, component, enum_684, $int0));
-    } else if ($chatfilter1 = ^chatfilter_off) {
-        if_settext("<col=ff0000>Off", enum(int, component, enum_684, $int0));
-    } else if ($chatfilter1 = ^chatfilter_hide) {
-        if_settext("<col=00ffff>Hide", enum(int, component, enum_684, $int0));
-    } else if ($chatfilter1 = ^chatfilter_autochat) {
-        if_settext("<col=00afff>Autochat", enum(int, component, enum_684, $int0));
-    } else {
-        if_settext("On", enum(int, component, enum_684, $int0));
+    switch_int (~chat_get_filter($int0)) {
+        case ^chatfilter_friends :
+            if_settext("<col=ffff00>Friends", enum(int, component, enum_684, $int0));
+        case ^chatfilter_off :
+            if_settext("<col=ff0000>Off", enum(int, component, enum_684, $int0));
+        case ^chatfilter_hide :
+            if_settext("<col=00ffff>Hide", enum(int, component, enum_684, $int0));
+        case ^chatfilter_autochat :
+            if_settext("<col=00afff>Autochat", enum(int, component, enum_684, $int0));
+        case default :
+            if_settext("On", enum(int, component, enum_684, $int0));
     }
     $int0 = calc($int0 + 1);
 }
