@@ -47,27 +47,31 @@ if ($int0 = 1) {
     ~rebuildchatbox($int2);
     ~rebuildpmbox($int2);
 } else if ($int1 = 2) {
-    if ($int0 = 6) {
-        ~chat_set_filter($int1, ^chatfilter_hide);
-        ~redraw_chat_buttons;
-        ~rebuildchatbox($int2);
-        ~rebuildpmbox($int2);
-    } else if ($int0 = 8) {
-        ~meslayer_mode12;
-    } else if ($int0 = 9) {
-        ~meslayer_mode13;
-    } else if ($int0 = 10) {
-        if (string_length(%varclientstring_28) > 0) {
-            if (%varclient_62 = 1) {
-                %varclient_62 = 0;
+    switch_int ($int0) {
+        case 6 :
+            ~chat_set_filter($int1, ^chatfilter_hide);
+            ~redraw_chat_buttons;
+            ~rebuildchatbox($int2);
+            ~rebuildpmbox($int2);
+        case 7 :
+            %varclient_199 = clientclock;
+            ~rebuildchatbox($int2);
+        case 8 :
+            ~meslayer_mode12;
+        case 9 :
+            ~meslayer_mode13;
+        case 10 :
+            if (string_length(%varclientstring_28) > 0) {
+                if (%varclient_62 = 1) {
+                    %varclient_62 = 0;
+                } else {
+                    %varclient_62 = 1;
+                }
+                ~chat_autotyper_updateop;
             } else {
-                %varclient_62 = 1;
+                %varclient_62 = 0;
+                ~chat_autotyper_updateop;
             }
-            ~chat_autotyper_updateop;
-        } else {
-            %varclient_62 = 0;
-            ~chat_autotyper_updateop;
-        }
     }
 } else if ($int1 = 3 & $int0 = 6) {
     %varclient_175 = clientclock;
