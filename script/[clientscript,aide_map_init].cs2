@@ -1,0 +1,21 @@
+// 2039
+[clientscript,aide_map_init](component $com_0, component $com_14, component $com_18)
+cc_deleteall($com_18);
+cc_create($com_18, ^iftype_text, 0);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top);
+cc_setsize(0, 32, ^setsize_minus, ^setsize_minus);
+cc_settextfont(p12_full);
+cc_settextalign(^settextalign_centre, ^settextalign_top, 0);
+cc_settextshadow(false);
+cc_settext("Show Tutors");
+~aide_map_tutors(true, $com_14);
+if_setonmouserepeat("aide_map_tutors(false, $com_18, cc_getid, $com_14)", $com_18);
+if_setonmouseleave("aide_map_tutors(true, $com_18, cc_getid, $com_14)", $com_18);
+cc_deleteall($com_0);
+cc_create($com_0, ^iftype_model, 0);
+cc_setsize(32, 32, ^setsize_abs, ^setsize_abs);
+cc_setmodel(model_3062);
+cc_setmodelangle(0, 0, 512, 68, 0, 1526);
+cc_setmodelanim(seq_646);
+~aide_map_marker($com_0);
+if_setontimer("aide_map_marker($com_0, cc_getid)", $com_0);
