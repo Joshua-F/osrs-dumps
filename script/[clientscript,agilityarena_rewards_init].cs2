@@ -1,11 +1,29 @@
 // 197
-[clientscript,agilityarena_rewards_init](component $component0, int $int1, string $string0)
-if ($int1 = 1) {
-    if_setop(1, "Buy for 1 ticket", $component0);
-} else {
-    if_setop(1, "Buy for <~tostring_spacer($int1, ",")> tickets", $component0);
-}
-~agilityarena_rewards_draw($component0, $string0, $int1, false);
-if_setoninvtransmit("agilityarena_rewards_draw($component0, $string0, $int1, false){inv_93}", $component0);
-if_setonmouserepeat("agilityarena_rewards_draw($component0, $string0, $int1, true)", $component0);
-if_setonmouseleave("agilityarena_rewards_draw($component0, $string0, $int1, false)", $component0);
+[clientscript,agilityarena_rewards_init](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10, component $component11, component $component12, component $component13, component $component14, component $component15, component $component16, component $component17, component $component18)
+~agilityarena_rewards_initbutton($component1, "Experience", 1, null);
+~agilityarena_rewards_initbutton($component2, "Experience", 10, null);
+~agilityarena_rewards_initbutton($component3, "Experience", 25, null);
+~agilityarena_rewards_initbutton($component4, "Experience", 100, null);
+~agilityarena_rewards_initbutton($component5, "Experience", 1000, null);
+~agilityarena_rewards_initbutton($component6, oc_name(obj_2998), 3, null);
+~agilityarena_rewards_initbutton($component7, oc_name(obj_3000), 10, null);
+~agilityarena_rewards_initbutton($component9, oc_name(obj_2997), 800, null);
+if_sethide(true, $component10);
+cc_deleteall($component10);
+~thinstonebox($component10, 0);
+~agilityarena_rewards_gracefulbutton_init($component11, obj_21061, obj_11850, "Hood", 45);
+~agilityarena_rewards_gracefulbutton_init($component12, obj_21067, obj_11854, "Top", 45);
+~agilityarena_rewards_gracefulbutton_init($component13, obj_21070, obj_11856, "Legs", 45);
+~agilityarena_rewards_gracefulbutton_init($component14, obj_21064, obj_11852, "Cape", 45);
+~agilityarena_rewards_gracefulbutton_init($component15, obj_21073, obj_11858, "Gloves", 45);
+~agilityarena_rewards_gracefulbutton_init($component16, obj_21076, obj_11860, "Boots", 45);
+~agilityarena_rewards_gracefulbutton_init($component17, null, null, "Whole set", 250);
+def_string $string0 = "Dismiss";
+if_setsize(calc(50 + parawidth($string0, 512, p12_full)), if_getheight($component18), ^setsize_abs, ^setsize_abs, $component18);
+~agilityarena_rewards_gracefulcancel($component18, $string0, false);
+if_setonmouserepeat("agilityarena_rewards_gracefulcancel($component18, $string0, true)", $component18);
+if_setonmouseleave("agilityarena_rewards_gracefulcancel($component18, $string0, false)", $component18);
+if_setop(1, $string0, $component18);
+if_setonop("agilityarena_rewards_hidelayer(true, $component10)", $component18);
+~agilityarena_rewards_setgracefulbutton($component8, $component10);
+if_setonvartransmit("agilityarena_rewards_setgracefulbutton($component8, $component10){varplayer_309}", $component0);
