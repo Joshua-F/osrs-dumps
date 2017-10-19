@@ -1,0 +1,104 @@
+// 2055
+[proc,skillmulti_quantitybuttons_set](int $int0, int $int1)
+def_boolean $boolean2 = enum(int, boolean, enum_1810, $int0);
+if ($boolean2 = true) {
+    %varclient_200 = ~max(1, ~min($int1, %varclient_200));
+} else {
+    if (%varclient_200 > 5) {
+        %varclient_200 = 10;
+    } else if (%varclient_200 > 1) {
+        %varclient_200 = 5;
+    } else {
+        %varclient_200 = 1;
+    }
+    %varclient_200 = ~min(%varclient_200, $int1);
+}
+def_int $int3 = 0;
+def_string $string0 = "X";
+if ($boolean2 = true) {
+    if ($int1 > 1) {
+        if (%varclient_200 = 1) {
+            $int3 = ~skillmulti_quantitybutton_setup(1, 1, interface_270:com_7, $int0, $int1, $int3);
+        } else {
+            $int3 = ~skillmulti_quantitybutton_setup(0, 1, interface_270:com_7, $int0, $int1, $int3);
+        }
+    } else {
+        ~skillmulti_wipebutton(interface_270:com_7);
+    }
+    if ($int1 > 5) {
+        if (%varclient_200 = 5) {
+            $int3 = ~skillmulti_quantitybutton_setup(1, 5, interface_270:com_8, $int0, $int1, $int3);
+        } else {
+            $int3 = ~skillmulti_quantitybutton_setup(0, 5, interface_270:com_8, $int0, $int1, $int3);
+        }
+    } else {
+        ~skillmulti_wipebutton(interface_270:com_8);
+    }
+    if ($int1 > 10) {
+        if (%varclient_200 = 10) {
+            $int3 = ~skillmulti_quantitybutton_setup(1, 10, interface_270:com_9, $int0, $int1, $int3);
+        } else {
+            $int3 = ~skillmulti_quantitybutton_setup(0, 10, interface_270:com_9, $int0, $int1, $int3);
+        }
+    } else {
+        ~skillmulti_wipebutton(interface_270:com_9);
+    }
+    if (%varclient_201 = 1 | %varclient_201 = 5 | %varclient_201 = 10 | %varclient_201 = $int1) {
+        ~skillmulti_wipebutton(interface_270:com_10);
+    } else if (%varclient_201 < 1 | %varclient_201 > $int1) {
+        ~skillmulti_wipebutton(interface_270:com_10);
+    } else if (%varclient_200 = %varclient_201) {
+        $int3 = ~skillmulti_quantitybutton_setup(1, %varclient_201, interface_270:com_10, $int0, $int1, $int3);
+    } else {
+        $int3 = ~skillmulti_quantitybutton_setup(0, %varclient_201, interface_270:com_10, $int0, $int1, $int3);
+    }
+    if ($int1 > 2) {
+        if_setposition($int3, 0, ^setpos_abs_left, ^setpos_abs_centre, interface_270:com_11);
+        $int3 = calc($int3 + if_getwidth(interface_270:com_11) + 5);
+        ~skillmulti_quantitybutton_draw(false, $string0, interface_270:com_11);
+        if_setonmouseover("skillmulti_quantitybutton_draw(true, $string0, event_com)", interface_270:com_11);
+        if_setonmouseleave("skillmulti_quantitybutton_draw(false, $string0, event_com)", interface_270:com_11);
+        if_setop(1, "Other quantity", interface_270:com_11);
+        if_setonop("skillmulti_quantitybutton_x_start(event_op, $int0, $int1)", interface_270:com_11);
+        if_setontimer(null, interface_270:com_11);
+    } else {
+        ~skillmulti_wipebutton(interface_270:com_11);
+    }
+    if (%varclient_200 >= $int1) {
+        $int3 = ~skillmulti_quantitybutton_setup(1, $int1, interface_270:com_12, $int0, $int1, $int3);
+    } else {
+        $int3 = ~skillmulti_quantitybutton_setup(0, $int1, interface_270:com_12, $int0, $int1, $int3);
+    }
+} else {
+    if (%varclient_200 = 1) {
+        $int3 = ~skillmulti_quantitybutton_setup(1, 1, interface_270:com_7, $int0, $int1, $int3);
+    } else {
+        $int3 = ~skillmulti_quantitybutton_setup(0, 1, interface_270:com_7, $int0, $int1, $int3);
+    }
+    if ($int1 >= 5) {
+        if (%varclient_200 = 5) {
+            $int3 = ~skillmulti_quantitybutton_setup(1, 5, interface_270:com_8, $int0, $int1, $int3);
+        } else {
+            $int3 = ~skillmulti_quantitybutton_setup(0, 5, interface_270:com_8, $int0, $int1, $int3);
+        }
+    } else {
+        ~skillmulti_wipebutton(interface_270:com_8);
+    }
+    if ($int1 >= 10) {
+        if (%varclient_200 = 10) {
+            $int3 = ~skillmulti_quantitybutton_setup(1, 10, interface_270:com_9, $int0, $int1, $int3);
+        } else {
+            $int3 = ~skillmulti_quantitybutton_setup(0, 10, interface_270:com_9, $int0, $int1, $int3);
+        }
+    } else {
+        ~skillmulti_wipebutton(interface_270:com_9);
+    }
+    ~skillmulti_wipebutton(interface_270:com_10);
+    ~skillmulti_wipebutton(interface_270:com_11);
+    ~skillmulti_wipebutton(interface_270:com_12);
+}
+if ($int3 > 0) {
+    $int3 = calc($int3 - 5);
+}
+if_setsize($int3, 0, ^setsize_abs, ^setsize_minus, interface_270:com_6);
+if_setsize($int3, 0, ^setsize_minus, ^setsize_minus, interface_270:com_3);
