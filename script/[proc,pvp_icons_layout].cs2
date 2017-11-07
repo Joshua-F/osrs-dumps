@@ -3,19 +3,20 @@
 def_int $int0 = 0;
 def_int $int1 = 0;
 def_int $int2 = 0;
-def_enum $enum3 = ~toplevel_getcomponents;
-def_int $int4 = 15;
+def_int $int3 = 0;
+def_enum $enum4 = ~toplevel_getcomponents;
+def_int $int5 = 15;
 if (~pvpw_check = true) {
     if_setsize(57, 55, ^setsize_abs, ^setsize_abs, interface_90:com_41);
     if (%varclient_53 = true) {
-        $int4 = 0;
+        $int5 = 0;
     }
     if_setposition(0, 13, ^setpos_abs_centre, ^setpos_abs_bottom, interface_90:com_46);
     if_setcolour(0xff981f, interface_90:com_46);
     if_sethide(false, interface_90:com_45);
     if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_bottom, interface_90:com_45);
     ~pvp_icons_comlevelrange(~wilderness_level);
-    ~pvp_icons_toggletargetsystem(true, $enum3);
+    ~pvp_icons_toggletargetsystem(true, $enum4);
     if_sethide(true, interface_90:com_47);
     if_sethide(true, interface_90:com_1);
 } else if (%varplayerbit_5314 = 1) {
@@ -29,14 +30,14 @@ if (~pvpw_check = true) {
         if_sethide(true, interface_90:com_1);
     }
 } else if (~deadman_world = true) {
-    $int4 = 0;
+    $int5 = 0;
     if_setcolour(0xff981f, interface_90:com_46);
     if (%varplayerbit_4165 >= 4) {
         if (%varplayerbit_4165 > 5) {
-            ~script1434(false, $enum3, true);
+            ~script1434(false, $enum4, true);
             if_sethide(true, interface_90:com_12);
         } else if (%varplayerbit_4165 = 5) {
-            ~script1434(false, $enum3, false);
+            ~script1434(false, $enum4, false);
             if_sethide(false, interface_90:com_12);
         }
         if_sethide(false, interface_90:com_1);
@@ -86,19 +87,19 @@ if (~pvpw_check = true) {
         if_sethide(true, interface_90:com_45);
         if_sethide(true, interface_90:com_47);
     }
-    ~pvp_icons_toggletargetsystem(true, $enum3);
+    ~pvp_icons_toggletargetsystem(true, $enum4);
 } else if (~wildwars_world = true) {
     if_setsize(57, 55, ^setsize_abs, ^setsize_abs, interface_90:com_41);
-    $int4 = 13;
+    $int5 = 13;
     if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_bottom, interface_90:com_46);
     if_setcolour(^yellow, interface_90:com_46);
     if_sethide(true, interface_90:com_45);
     if (%varplayerbit_5701 >= 1) {
         if (%varplayerbit_5701 > 2) {
-            ~script1434(false, $enum3, true);
+            ~script1434(false, $enum4, true);
             if_sethide(true, interface_90:com_12);
         } else if (%varplayerbit_5701 = 2) {
-            ~script1434(false, $enum3, false);
+            ~script1434(false, $enum4, false);
             if_sethide(false, interface_90:com_12);
         }
         if_sethide(false, interface_90:com_1);
@@ -111,7 +112,7 @@ if (~pvpw_check = true) {
     }
 } else {
     if_setsize(57, 55, ^setsize_abs, ^setsize_abs, interface_90:com_41);
-    $int4 = 13;
+    $int5 = 13;
     if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_bottom, interface_90:com_46);
     if_setcolour(^yellow, interface_90:com_46);
     if_sethide(true, interface_90:com_45);
@@ -121,23 +122,44 @@ if (~pvpw_check = true) {
         } else {
             if_settrans(255, interface_90:com_43);
         }
-        ~pvp_icons_toggletargetsystem(true, $enum3);
+        ~pvp_icons_toggletargetsystem(true, $enum4);
     } else {
         if_settrans(0, interface_90:com_43);
         if (~target_world = true) {
-            ~pvp_icons_toggletargetsystem(false, $enum3);
+            ~pvp_icons_toggletargetsystem(false, $enum4);
         } else {
-            ~pvp_icons_toggletargetsystem(true, $enum3);
+            ~pvp_icons_toggletargetsystem(true, $enum4);
         }
     }
     if_sethide(true, interface_90:com_47);
     if_sethide(true, interface_90:com_1);
+    if (~kots_world = true) {
+        $int3 = ~kots_remaining_time;
+        $int5 = 0;
+        if ($int3 > 0) {
+            if_setsize(57, 55, ^setsize_abs, ^setsize_abs, interface_90:com_41);
+            if_sethide(true, interface_90:com_45);
+            if_setposition(0, 12, ^setpos_abs_centre, ^setpos_abs_bottom, interface_90:com_45);
+            if_setposition(0, 12, ^setpos_abs_centre, ^setpos_abs_bottom, interface_90:com_46);
+            if_sethide(false, interface_90:com_47);
+            if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_bottom, interface_90:com_47);
+            if ($int3 >= 6000) {
+                $int3 = calc(100 + ~kots_remaining_time);
+                if_settext("<tostring(calc($int3 / 6000))>h <tostring(calc($int3 % 6000 / 100))>m", interface_90:com_47);
+            } else if ($int3 > 100) {
+                $int3 = calc(100 + ~kots_remaining_time);
+                if_settext("<tostring(~max(1, calc($int3 % 6000 / 100)))>min", interface_90:com_47);
+            } else {
+                if_settext("1min", interface_90:com_47);
+            }
+        }
+    }
 }
-if_setposition(0, $int4, ^setpos_abs_centre, ^setpos_abs_top, interface_90:com_42);
-if_setposition(0, $int4, ^setpos_abs_centre, ^setpos_abs_top, interface_90:com_43);
-def_int $int5 = enum(enum, int, enum_1135, $enum3);
-if ($int5 > 0) {
-    if_setposition(29, calc(170 - $int4), ^setpos_abs_right, ^setpos_abs_top, interface_90:com_41);
+if_setposition(0, $int5, ^setpos_abs_centre, ^setpos_abs_top, interface_90:com_42);
+if_setposition(0, $int5, ^setpos_abs_centre, ^setpos_abs_top, interface_90:com_43);
+def_int $int6 = enum(enum, int, enum_1135, $enum4);
+if ($int6 > 0) {
+    if_setposition(29, calc(170 - $int5), ^setpos_abs_right, ^setpos_abs_top, interface_90:com_41);
 } else {
     if_setposition(0, 40, ^setpos_abs_right, ^setpos_abs_bottom, interface_90:com_41);
 }
