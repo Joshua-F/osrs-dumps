@@ -1,10 +1,15 @@
 // 404
 [clientscript,raids_storage_private_init](component $com_0, component $com_6, component $com_7, component $com_2, component $com_9, component $com_10, component $com_11, component $com_5)
 ~raids_storage_drawbutton("Withdraw all", $com_9, p12_full);
-~raids_storage_drawbutton("Bank all", $com_10, p12_full);
+def_int $int = -1;
+if (%varplayerbit_5432 = 1) {
+    $int = ~raids_storage_drawbutton("Deposit all", $com_10, p12_full);
+} else {
+    $int = ~raids_storage_drawbutton("Bank all", $com_10, p12_full);
+}
 ~raids_storage_drawbutton("Shared", $com_5, p11_full);
-~raids_storage_private_prompt($com_9, $com_10, $com_11);
-if_setonvartransmit("raids_storage_private_prompt($com_9, $com_10, $com_11){varplayer_1431}", $com_11);
+~raids_storage_private_prompt($com_9, $com_10, $com_11, $int);
+if_setonvartransmit("raids_storage_private_prompt($com_9, $com_10, $com_11, $int){varplayer_1431}", $com_11);
 ~scrollbar_vertical($com_7, $com_6, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
 ~raids_storage_private_items($com_6, $com_7, $com_2);
 if_setoninvtransmit("raids_storage_private_items($com_6, $com_7, $com_2){inv_583}", $com_0);
