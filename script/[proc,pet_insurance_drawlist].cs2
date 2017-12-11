@@ -1,22 +1,22 @@
 // 637
-[proc,pet_insurance_drawlist](component $component0, component $component1, int $int2, int $int3)
+[proc,pet_insurance_drawlist](component $component0, int $int1, component $component2, int $int3, int $int4)
 cc_deleteall($component0);
-cc_deleteall($component1);
-def_int $int4 = if_getwidth($component0);
-def_int $int5 = if_getheight($component0);
-def_int $int6 = calc(($int4 - 36 * 7) / 6 + 36);
-def_int $int7 = 0;
-def_obj $obj8 = null;
-def_int $int9 = 0;
+cc_deleteall($component2);
+def_int $int5 = if_getwidth($component0);
+def_int $int6 = if_getheight($component0);
+def_int $int7 = calc(($int5 - 36 * 7) / 6 + 36);
+def_int $int8 = 0;
+def_obj $obj9 = null;
 def_int $int10 = 0;
-while ($int10 <= 38) {
-    cc_create($component0, ^iftype_graphic, $int10);
-    if ($int10 < 32 & testbit($int2, $int10) = ^true | $int10 >= 32 & testbit($int3, calc($int10 - 32)) = ^true) {
-        $obj8 = enum(int, namedobj, enum_985, $int10);
+def_int $int11 = 0;
+while ($int11 <= 38) {
+    cc_create($component0, ^iftype_graphic, $int11);
+    if ($int11 < $int1 & testbit($int3, $int11) = ^true | $int11 >= $int1 & testbit($int4, calc($int11 - $int1)) = ^true) {
+        $obj9 = enum(int, namedobj, enum_985, $int11);
         cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
-        $int9 = calc(40 * ($int7 / 7));
-        cc_setposition(calc($int6 * ($int7 % 7)), $int9, ^setpos_abs_left, ^setpos_abs_top);
-        cc_setobject($obj8, 1);
+        $int10 = calc(40 * ($int8 / 7));
+        cc_setposition(calc($int7 * ($int8 % 7)), $int10, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setobject($obj9, 1);
         cc_setgraphicshadow(0x333333);
         cc_setoutline(1);
         if ($component0 = interface_148:com_14) {
@@ -24,17 +24,17 @@ while ($int10 <= 38) {
             cc_setonop("pet_insurance_op(event_op, event_com, event_comsubid)");
         }
         cc_setop(10, "Examine");
-        cc_setopbase("<col=ff9040><oc_name($obj8)></col>");
+        cc_setopbase("<col=ff9040><oc_name($obj9)></col>");
         cc_sethide(false);
-        $int7 = calc($int7 + 1);
+        $int8 = calc($int8 + 1);
     } else {
         cc_sethide(true);
     }
-    $int10 = calc($int10 + 1);
+    $int11 = calc($int11 + 1);
 }
-if ($int7 <= 0) {
-    cc_create($component0, ^iftype_text, $int10);
-    cc_setsize($int4, $int5, ^setsize_abs, ^setsize_abs);
+if ($int8 <= 0) {
+    cc_create($component0, ^iftype_text, $int11);
+    cc_setsize($int5, $int6, ^setsize_abs, ^setsize_abs);
     cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
     cc_settextfont(p12_full);
     cc_setcolour(^white);
@@ -42,12 +42,12 @@ if ($int7 <= 0) {
     cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
     cc_settext("None");
 } else {
-    $int9 = calc($int9 + 32);
+    $int10 = calc($int10 + 32);
 }
 if_setscrollpos(0, 0, $component0);
-if ($int9 > $int5) {
-    if_setscrollsize(0, $int9, $component0);
+if ($int10 > $int6) {
+    if_setscrollsize(0, $int10, $component0);
 } else {
     if_setscrollsize(0, 0, $component0);
 }
-~scrollbar_vertical($component1, $component0, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~scrollbar_vertical($component2, $component0, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
