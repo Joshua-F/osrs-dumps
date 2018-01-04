@@ -1,0 +1,46 @@
+// 2104
+[clientscript,ds2_fossil_map_init](component $component0, component $component1)
+cc_deleteall($component1);
+def_int $int2 = 0;
+while ($int2 < 36) {
+    cc_create($component1, ^iftype_model, $int2);
+    cc_setposition(calc(50 * ($int2 % 6)), calc(50 * ($int2 / 6)), ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(50, 50, ^setsize_abs, ^setsize_abs);
+    switch_int ($int2) {
+        case 4 :
+            cc_setmodel(model_35079);
+            cc_setmodelangle(0, 0, 512, 0, 0, 625);
+            cc_setop(10, "Check");
+            cc_setonop("ds2_fossil_map_stuck(event_op, 1024)");
+        case 17 :
+            cc_setmodel(model_35075);
+            cc_setmodelangle(0, 0, 512, 0, 0, 625);
+            cc_setop(10, "Check");
+            cc_setonop("ds2_fossil_map_stuck(event_op, 1024)");
+        case 18 :
+            cc_setmodel(model_35067);
+            cc_setmodelangle(0, 0, 512, 0, 0, 625);
+            cc_setop(10, "Check");
+            cc_setonop("ds2_fossil_map_stuck(event_op, 1024)");
+        case 20 :
+            cc_setmodel(model_35082);
+            cc_setmodelangle(0, 0, 512, 0, 0, 625);
+            cc_setop(10, "Check");
+            cc_setonop("ds2_fossil_map_stuck(event_op, 1024)");
+        case 30 :
+            cc_setmodel(model_35079);
+            cc_setmodelangle(0, 0, 512, 0, 0, 625);
+            cc_setop(10, "Check");
+            cc_setonop("ds2_fossil_map_stuck(event_op, 1024)");
+        case default :
+            cc_setop(1, "Rotate-right");
+            cc_setop(2, "Rotate-left");
+            cc_setonop("ds2_fossil_map_rotate(event_op, event_com, event_comsubid)");
+            cc_setdragdeadzone(5);
+            cc_setdragdeadtime(5);
+            cc_setondragcomplete("ds2_fossil_map_swap(event_com, event_comsubid, event_com2, event_comsubid2)");
+    }
+    $int2 = calc($int2 + 1);
+}
+~ds2_fossil_map_redraw($component1);
+if_setonvartransmit("ds2_fossil_map_redraw($component1){varplayer_831, varplayer_832, varplayer_833, varplayer_858, varplayer_859, varplayer_860, varplayer_861}", $component0);
