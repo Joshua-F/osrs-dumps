@@ -1,17 +1,36 @@
 // 687
-[clientscript,ironman_init](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10, component $component11, component $component12)
-~steelborder($component1, "<text_bodytype("Iron Man", "Iron Woman")> Setup", 0);
-if_settext("<text_bodytype("Iron Man", "Iron Woman")> Mode", $component2);
-if_settext("<col=ffffff>Standard <text_bodytype("Iron Man", "Iron Woman")></col><br>An <text_bodytype("Iron Man", "Iron Woman")> cannot trade, stake, receive PK loot, scavenge dropped items, nor play certain multiplayer minigames.", $component3);
-if_settext("<col=ffffff>Hardcore <text_bodytype("Iron Man", "Iron Woman")></col><br>In addition to the standard <text_bodytype("Iron Man", "Iron Woman")> rules, a Hardcore <text_bodytype("Iron Man", "Iron Woman")> only has 1 life. A dangerous death will result in being downgraded to a standard <text_bodytype("Iron Man", "Iron Woman")>.", $component4);
-if_settext("<col=ffffff>Ultimate <text_bodytype("Iron Man", "Iron Woman")></col><br>In addition to the standard <text_bodytype("Iron Man", "Iron Woman")> rules, an Ultimate <text_bodytype("Iron Man", "Iron Woman")> cannot use banks, nor retain any items on death in dangerous areas.", $component5);
-if_settext("<col=ffffff>None</col> - No <text_bodytype("Iron Man", "Iron Woman")> restrictions will apply to this account.", $component6);
-if_settext("<col=ffffff>PIN</col><br>You must enter your Bank PIN to request that <text_bodytype("Iron Man", "Iron Woman")> restrictions be removed. Changes take effect after a <tostring(7)>-day delay, in case you change your mind.", $component7);
-if_settext("<col=ffffff>Permanent</col> - The <text_bodytype("Iron Man", "Iron Woman")> restrictions can never be removed.", $component8);
-if_settext("<col=ffffff>Deactivation settings</col><br>Set restrictions on deactivating or downgrading your <text_bodytype("Iron Man", "Iron Woman")> status.", $component11);
-if (%varplayerbit_1777 = 0) {
-    if_settext("<col=ffffff>Selected</col> - None.", $component12);
-} else {
-}
-~script689($component0, $component9, $component10);
-if_setonvartransmit("script688($component0, $component9, $component10){varplayer_499, varplayer_281, varplayer_1425}", $component0);
+[clientscript,ironman_init](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10, component $component11, component $component12, component $component13, component $component14)
+~steelborder($component2, "<text_bodytype("Iron Man", "Iron Woman")> Setup", 0);
+if_settext("<text_bodytype("Iron Man", "Iron Woman")> Mode", $component3);
+~ironman_modebutton_init($component4, 0, "None", "No <text_bodytype("Iron Man", "Iron Woman")> restrictions will apply to this account.", $component4, $component5, $component6, $component7);
+~ironman_modebutton_init($component5, 1, "Standard <text_bodytype("Iron Man", "Iron Woman")>", "An <text_bodytype("Iron Man", "Iron Woman")> cannot trade, stake, receive PK loot, scavenge dropped items, nor play certain multiplayer minigames.", $component4, $component5, $component6, $component7);
+~ironman_modebutton_init($component6, 3, "Hardcore <text_bodytype("Iron Man", "Iron Woman")>", "In addition to the standard <text_bodytype("Iron Man", "Iron Woman")> rules, a Hardcore <text_bodytype("Iron Man", "Iron Woman")> only has 1 life. A dangerous death will result in being downgraded to a standard <text_bodytype("Iron Man", "Iron Woman")>.", $component4, $component5, $component6, $component7);
+~ironman_modebutton_init($component7, 2, "Ultimate <text_bodytype("Iron Man", "Iron Woman")>", "In addition to the standard <text_bodytype("Iron Man", "Iron Woman")> rules, an Ultimate <text_bodytype("Iron Man", "Iron Woman")> cannot use banks, nor retain any items on death in dangerous areas.", $component4, $component5, $component6, $component7);
+cc_deleteall($component8);
+def_int $int15 = 0;
+.cc_create($component8, ^iftype_rectangle, $int15);
+$int15 = calc($int15 + 1);
+.cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+.cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+.cc_setfill(true);
+.cc_setcolour(^white);
+$int15 = ~thinbox($component8, $int15);
+cc_create($component8, ^iftype_graphic, $int15);
+$int15 = calc($int15 + 1);
+cc_setsize(29, 22, ^setsize_abs, ^setsize_abs);
+cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_centre);
+cc_setgraphic("bankbuttons,7");
+cc_create($component8, ^iftype_text, $int15);
+$int15 = calc($int15 + 1);
+cc_setsize(33, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(3, 0, ^setpos_abs_right, ^setpos_abs_centre);
+cc_setcolour(0xff981f);
+cc_settextfont(p11_full);
+cc_settextshadow(true);
+cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+cc_settext("<col=ffffff>Deactivation settings</col><br>Avoid accidentally downgrading your <text_bodytype("Iron Man", "Iron Woman")> status.");
+~ironman_miscellaneous_redraw($component1, $component8, $component9, $component10, $component11, $component12, $component13, $component14);
+if_setonvartransmit("ironman_miscellaneous_redraw($component1, $component8, .cc_getid, $component9, $component10, $component11, $component12, $component13, $component14){varplayer_499, varplayer_281}", $component0);
+~script2116($component12, 1, "PIN", $component12, $component13);
+~script2116($component13, 0, "Permanent", $component12, $component13);
+if_sethide(true, $component10);
