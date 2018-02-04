@@ -1,11 +1,11 @@
 // 91
-[proc,pm_filtertest](int $chattype0, string $string0, int $int1)(boolean)
+[proc,pm_filtertest](int $chattype0, string $string0, int $int1, int $int2)(boolean)
 switch_int ($chattype0) {
     case ^chattype_modprivatechat :
         if ($int1 < %varclient_175) {
             return(false);
         }
-        if (ignore_test(removetags($string0)) = true) {
+        if ($int2 = 2) {
             return(false);
         }
         return(true);
@@ -13,13 +13,13 @@ switch_int ($chattype0) {
         if ($int1 < %varclient_175) {
             return(false);
         }
-        if (ignore_test(removetags($string0)) = true) {
+        if ($int2 = 2) {
             return(false);
         }
         if (chat_getfilter_private = ^chatfilter_on) {
             return(true);
         }
-        if (chat_getfilter_private = ^chatfilter_friends & friend_test($string0) = true) {
+        if (chat_getfilter_private = ^chatfilter_friends & $int2 = 1) {
             return(true);
         }
         return(false);

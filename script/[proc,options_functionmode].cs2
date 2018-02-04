@@ -1,0 +1,25 @@
+// 2150
+[proc,options_functionmode](component $component0, component $component1)
+def_string $string0 = "Function-mode toggle";
+def_string $string1 = " (hidden)";
+if (%varplayerbit_6257 > 0) {
+    switch_int (%varplayerbit_6255) {
+        case 2 :
+            $string1 = " (single-tap,";
+            if (%varplayerbit_6256 = 0) {
+                $string1 = append($string1, " off)");
+            } else {
+                $string1 = append($string1, " on)");
+            }
+        case 3 :
+            $string1 = " (show keyboard)";
+        case default :
+            $string1 = " (displayed)";
+    }
+    if_setgraphic("options_boxes,1", $component0);
+} else {
+    if_setgraphic("options_boxes,0", $component0);
+}
+$string0 = append($string0, $string1);
+if_setonmouserepeat("tooltip_mouserepeat($component0, -1, $component1, $string0, 25, 190)", $component0);
+%varclient_2 = 0;
