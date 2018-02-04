@@ -1,5 +1,5 @@
 // 210
-[proc,trade_partner_check](int $chattype, string $string0)(boolean)
+[proc,trade_partner_check](int $chattype, string $string0, int $int)(boolean)
 if (%varclient_41 ! 5) {
     return(false);
 }
@@ -19,7 +19,7 @@ if ($chattype = ^chattype_publicchat | $chattype = ^chattype_modchat | $chattype
         if (chat_getfilter_trade = ^chatfilter_on) {
             return(true);
         }
-        if (chat_getfilter_trade = ^chatfilter_friends & friend_test($string0) = true) {
+        if (chat_getfilter_trade = ^chatfilter_friends & $int = 1) {
             return(true);
         }
     }

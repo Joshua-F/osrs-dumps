@@ -1,33 +1,33 @@
 // 91
-[proc,pm_filtertest](int $chattype, string $string, int $int)(boolean)
+[proc,pm_filtertest](int $chattype, string $string, int $int1, int $int2)(boolean)
 switch_int ($chattype) {
     case ^chattype_modprivatechat :
-        if ($int < %varclient_175) {
+        if ($int1 < %varclient_175) {
             return(false);
         }
-        if (ignore_test(removetags($string)) = true) {
+        if ($int2 = 2) {
             return(false);
         }
         return(true);
     case ^chattype_privatechat :
-        if ($int < %varclient_175) {
+        if ($int1 < %varclient_175) {
             return(false);
         }
-        if (ignore_test(removetags($string)) = true) {
+        if ($int2 = 2) {
             return(false);
         }
         if (chat_getfilter_private = ^chatfilter_on) {
             return(true);
         }
-        if (chat_getfilter_private = ^chatfilter_friends & friend_test($string) = true) {
+        if (chat_getfilter_private = ^chatfilter_friends & $int2 = 1) {
             return(true);
         }
         return(false);
     case ^chattype_loginlogoutnotification, ^chattype_privatechatout :
-        if ($int < %varclient_175) {
+        if ($int1 < %varclient_175) {
             return(false);
         }
-        if ($chattype = ^chattype_loginlogoutnotification & %varplayerbit_1627 = 0 & calc(clientclock - $int) >= 500) {
+        if ($chattype = ^chattype_loginlogoutnotification & %varplayerbit_1627 = 0 & calc(clientclock - $int1) >= 500) {
             return(false);
         }
         if (chat_getfilter_private ! ^chatfilter_off) {

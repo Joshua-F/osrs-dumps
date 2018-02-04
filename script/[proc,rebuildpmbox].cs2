@@ -30,9 +30,10 @@ if (reboottimer > 0) {
 def_int $int7 = -1;
 def_int $int8 = -1;
 def_string $string1 = "";
+def_int $int9 = 0;
 def_string $string2 = "";
 if (%varclient_55 > calc(clientclock - 3000) & chat_gethistorylength(^chattype_broadcast) > 0) {
-    $int7, $int8, $string1, $string2, $string0 = chat_gethistory_bytypeandline(^chattype_broadcast, 0);
+    $int7, $int8, $string1, $string2, $string0, $int9 = chat_gethistory_bytypeandline(^chattype_broadcast, 0);
     if ($int7 ! -1) {
         $int2 = calc($int2 + ~script199($string0, $int4, $component, interface_163:com_0, $int3, 0, 13, $int2, ^setpos_abs_bottom, ^yellow, true));
         if_clearops($component);
@@ -45,8 +46,8 @@ $int7 = $int0;
 def_int $chattype = ^chattype_gamemessage;
 if (%varplayer_287 = 1 & (%varclient_41 ! -1 | %varplayerbit_4089 = 0)) {
     while ($int7 ! -1 & $component ! null & calc($int2 - $int1) < 57) {
-        $chattype, $int8, $string1, $string2, $string0 = chat_gethistory_byuid($int7);
-        if (~pm_filtertest($chattype, $string1, $int8) = true) {
+        $chattype, $int8, $string1, $string2, $string0, $int9 = chat_gethistory_byuid($int7);
+        if (~pm_filtertest($chattype, $string1, $int8, $int9) = true) {
             switch_int ($chattype) {
                 case ^chattype_privatechat, ^chattype_modprivatechat :
                     $int2 = calc($int2 + ~script203("From <$string1>:", $string0, $int4, $component, interface_163:com_0, $int3, 0, 13, $int2, ^setpos_abs_bottom, ^cyan, true));
@@ -62,7 +63,7 @@ if (%varplayer_287 = 1 & (%varclient_41 ! -1 | %varplayerbit_4089 = 0)) {
             if_clearops($component);
             if ($chattype = ^chattype_privatechat | $chattype = ^chattype_privatechatout | $chattype = ^chattype_modprivatechat) {
                 if_setopbase("<col=ffffff><$string1>", $component);
-                if (friend_test($string1) = true) {
+                if ($int9 = 1) {
                     if_setop(8, "Message", $component);
                 } else {
                     if_setop(8, "Add friend", $component);
