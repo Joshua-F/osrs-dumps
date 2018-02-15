@@ -23,6 +23,9 @@ if (reboottimer > 0) {
     }
     $int2 = calc($int2 + ~script199($string0, $int4, $component5, interface_163:com0, $int3, 0, 13, $int2, ^setpos_abs_bottom, ^yellow, true));
     if_clearops($component5);
+    if_setonop(null, $component5);
+    if_setonmouserepeat(null, $component5);
+    if_setonmouseleave(null, $component5);
     if_setsize(0, 0, ^setsize_abs, ^setsize_abs, $component5);
     $int4 = calc($int4 + 1);
     $component5 = enum(int, component, enum_580, $int4);
@@ -32,12 +35,25 @@ def_int $int8 = -1;
 def_string $string1 = "";
 def_int $int9 = 0;
 def_string $string2 = "";
-if (%varclient_55 > calc(clientclock - 3000) & chat_gethistorylength(^chattype_broadcast) > 0) {
+def_string $string3 = "";
+if (%varclient_55 >= %varclient_202 & %varclient_55 > calc(clientclock - 3000) & chat_gethistorylength(^chattype_broadcast) > 0) {
     $int7, $int8, $string1, $string2, $string0, $int9 = chat_gethistory_bytypeandline(^chattype_broadcast, 0);
     if ($int7 ! -1) {
+        $string0, $string3 = ~chat_broadcast_parseurl($string0);
         $int2 = calc($int2 + ~script199($string0, $int4, $component5, interface_163:com0, $int3, 0, 13, $int2, ^setpos_abs_bottom, ^yellow, true));
         if_clearops($component5);
-        if_setsize(0, 0, ^setsize_abs, ^setsize_abs, $component5);
+        if (string_length($string3) > 0) {
+            if_setop(6, "Open", $component5);
+            if_setop(7, "Check", $component5);
+            if_setonmouserepeat("chat_recol(if_getlayer($component5), $int4, ^white)", $component5);
+            if_setonmouseleave("chat_recol(if_getlayer($component5), $int4, ^yellow)", $component5);
+        } else {
+            if_setonmouserepeat(null, $component5);
+            if_setonmouseleave(null, $component5);
+        }
+        if_setop(9, "Clear history", $component5);
+        if_setopbase("<col=ff9040>Notification</col>", $component5);
+        if_setonop("chat_broadcast_op(event_op, $string3)", $component5);
         $int4 = calc($int4 + 1);
         $component5 = enum(int, component, enum_580, $int4);
     }
@@ -62,7 +78,6 @@ if (%varplayer_287 = 1 & (%varclient_41 ! -1 | %varplayerbit_4089 = 0)) {
             }
             if_clearops($component5);
             if ($chattype10 = ^chattype_privatechat | $chattype10 = ^chattype_privatechatout | $chattype10 = ^chattype_modprivatechat) {
-                if_setopbase("<col=ffffff><$string1>", $component5);
                 if ($int9 = 1) {
                     if_setop(8, "Message", $component5);
                 } else {
@@ -70,7 +85,13 @@ if (%varplayer_287 = 1 & (%varclient_41 ! -1 | %varplayerbit_4089 = 0)) {
                     if_setop(9, "Add ignore", $component5);
                 }
                 if_setop(10, "Report", $component5);
+                if_setopbase("<col=ffffff><$string1></col>", $component5);
+                if_setonop("private_op(event_op, removetags($string1))", $component5);
+            } else {
+                if_setonop(null, $component5);
             }
+            if_setonmouserepeat(null, $component5);
+            if_setonmouseleave(null, $component5);
             $int4 = calc($int4 + 1);
             $component5 = enum(int, component, enum_580, $int4);
         }
@@ -79,6 +100,9 @@ if (%varplayer_287 = 1 & (%varclient_41 ! -1 | %varplayerbit_4089 = 0)) {
 }
 while ($component5 ! null) {
     if_clearops($component5);
+    if_setonop(null, $component5);
+    if_setonmouserepeat(null, $component5);
+    if_setonmouseleave(null, $component5);
     if_setsize(0, 0, ^setsize_abs, ^setsize_abs, $component5);
     if (cc_find(interface_163:com0, calc($int4 * 2)) = ^true) {
         cc_settext("");
