@@ -1,56 +1,50 @@
 // 1064
 [proc,farming_tools_getcarried](obj $obj0)(int, obj)
-if ($obj0 = obj_5341) {
-    return(inv_total(inv_93, obj_5341), obj_5341);
-}
-if ($obj0 = obj_5343) {
-    return(inv_total(inv_93, obj_5343), obj_5343);
-}
-if ($obj0 = obj_952) {
-    return(inv_total(inv_93, obj_952), obj_952);
-}
 def_int $int1 = 0;
-if ($obj0 = obj_5329) {
-    $int1 = inv_total(inv_93, obj_7409);
-    if ($int1 > 0) {
-        return(calc($int1 + inv_total(inv_93, obj_5329)), obj_7409);
-    }
-    return(inv_total(inv_93, obj_5329), obj_5329);
-}
 def_int $int2 = 0;
 def_obj $obj3 = null;
 def_int $int4 = 0;
 def_obj $obj5 = null;
-if ($obj0 = obj_6797) {
-    $int2 = 15;
-    while ($int2 >= 0) {
-        $obj3 = enum(int, namedobj, enum_136, $int2);
-        if ($obj3 ! null) {
-            $int4 = inv_total(inv_93, $obj3);
-            if ($int4 > 0) {
-                $int1 = calc($int1 + $int4);
-                if ($obj5 = null) {
-                    $obj5 = $obj3;
+switch_obj ($obj0) {
+    case obj_5341 :
+        return(inv_total(inv_93, obj_5341), obj_5341);
+    case obj_5343 :
+        return(inv_total(inv_93, obj_5343), obj_5343);
+    case obj_952 :
+        return(inv_total(inv_93, obj_952), obj_952);
+    case obj_5329 :
+        $int1 = inv_total(inv_93, obj_7409);
+        if ($int1 > 0) {
+            return(calc($int1 + inv_total(inv_93, obj_5329)), obj_7409);
+        }
+        return(inv_total(inv_93, obj_5329), obj_5329);
+    case obj_6797 :
+        $int2 = 15;
+        while ($int2 >= 0) {
+            $obj3 = enum(int, namedobj, enum_136, $int2);
+            if ($obj3 ! null) {
+                $int4 = inv_total(inv_93, $obj3);
+                if ($int4 > 0) {
+                    $int1 = calc($int1 + $int4);
+                    if ($obj5 = null) {
+                        $obj5 = $obj3;
+                    }
                 }
             }
+            $int2 = calc($int2 - 1);
         }
-        $int2 = calc($int2 - 1);
-    }
-    return($int1, $obj5);
-}
-if ($obj0 = obj_5325) {
-    return(inv_total(inv_93, obj_5325), obj_5325);
-}
-if ($obj0 = obj_1925) {
-    return(inv_total(inv_93, obj_1925), obj_1925);
-}
-if ($obj0 = obj_6032) {
-    return(inv_total(inv_93, obj_6032), obj_6032);
-}
-if ($obj0 = obj_6034) {
-    return(inv_total(inv_93, obj_6034), obj_6034);
-}
-if ($obj0 = obj_21483) {
-    return(inv_total(inv_93, obj_21483), obj_21483);
+        return($int1, $obj5);
+    case obj_5325 :
+        return(inv_total(inv_93, obj_5325), obj_5325);
+    case obj_6036 :
+        return(inv_total(inv_93, obj_6036), obj_6036);
+    case obj_1925 :
+        return(inv_total(inv_93, obj_1925), obj_1925);
+    case obj_6032 :
+        return(inv_total(inv_93, obj_6032), obj_6032);
+    case obj_6034 :
+        return(inv_total(inv_93, obj_6034), obj_6034);
+    case obj_21483 :
+        return(inv_total(inv_93, obj_21483), obj_21483);
 }
 return(0, null);
