@@ -1,0 +1,18 @@
+// 485
+[proc,barbassault_tutorial_button_setup](component $component, int $int)
+if (%varplayerbit_3264 < $int) {
+    if_setcolour(^red, $component);
+    if_setonmouserepeat(null, $component);
+    if_setonmouseleave(null, $component);
+    if_setonop(null, $component);
+} else {
+    if (%varplayerbit_3264 = $int) {
+        if_setcolour(^yellow, $component);
+        if_setonmouseleave("text_colour_swapper($component, 16776960)", $component);
+    } else {
+        if_setcolour(^green, $component);
+        if_setonmouseleave("text_colour_swapper($component, 65280)", $component);
+    }
+    if_setonmouserepeat("text_colour_swapper($component, 16777215)", $component);
+    if_setonop("opsound(event_op, 2)", $component);
+}
