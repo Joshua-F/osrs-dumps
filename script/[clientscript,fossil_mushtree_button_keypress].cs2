@@ -1,0 +1,11 @@
+// 2161
+[clientscript,fossil_mushtree_button_keypress](char $char0, component $component1, string $string0)
+if ($char0 = null | ~keypress_permit(interface_608, null) = false) {
+    return;
+}
+if (string_indexof_char($string0, $char0) ! -1) {
+    ~v2_stone_button_in($component1);
+    if_setonkey(null, $component1);
+    if_setontimer("fossil_mushtree_button_reset($component1, $string0, calc(clientclock + 40))", $component1);
+    if_resume_pausebutton($component1);
+}
