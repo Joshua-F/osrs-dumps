@@ -1,19 +1,32 @@
 // 86
-[clientscript,chat_op](int $int, string $string)
+[clientscript,chat_op](int $int, string $string0)
+def_string $string1 = removetags($string0);
 if ($int = 1) {
-    opplayer(4, $string);
+    opplayer(4, $string1);
 } else if ($int = 2) {
-    opplayer(1, $string);
+    opplayer(1, $string1);
 } else if ($int = 8) {
-    %varclientstring_24 = $string;
+    %varclientstring_24 = $string1;
 } else if ($int = 9) {
-    ~clan_sendkick($string);
-} else if (friend_test($string) = true) {
+    ~clan_sendkick($string1);
+} else if (friend_test($string1) = true) {
     if ($int = 6 | $int = 7) {
-        ~meslayer_mode6($string);
+        if (%varclient_203 = 1) {
+            ~meslayer_mode6($string1);
+        } else {
+            mes("You must set a name before you can do that.");
+        }
     }
 } else if ($int = 6) {
-    friend_add($string);
+    if (%varclient_203 = 1) {
+        friend_add($string1);
+    } else {
+        mes("You must set a name before you can do that.");
+    }
 } else if ($int = 7) {
-    ignore_add($string);
+    if (%varclient_203 = 1) {
+        ignore_add($string1);
+    } else {
+        mes("You must set a name before you can do that.");
+    }
 }
