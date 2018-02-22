@@ -61,8 +61,8 @@ textalignh=left
 textalignv=top
 textshadow=yes
 colour=0xff981f
-onmouseleave=deltooltip(interface_370:com_19)
-onmouserepeat=addtooltip(event_com, interface_370:com_19, "Toggle Building mode on and off, allowing construction within your house.", 25, 140)
+onmouseleave=deltooltip(interface_370:com_23)
+onmouserepeat=addtooltip(event_com, interface_370:com_23, "Toggle Building mode on and off, allowing construction within your house.", 25, 140)
 
 [com_5]
 type=graphic
@@ -95,13 +95,13 @@ height=17
 widthmode=minus
 xmode=abs_centre
 textfont=p12_full
-text=Render doors open
+text=Teleport Inside
 textalignh=left
 textalignv=top
 textshadow=yes
 colour=0xff981f
-onmouseleave=deltooltip(interface_370:com_19)
-onmouserepeat=addtooltip(event_com, interface_370:com_19, "Toggle doors being rendered open or closed on rebuild of the house instance.", 25, 140)
+onmouseleave=deltooltip(interface_370:com_23)
+onmouserepeat=addtooltip(event_com, interface_370:com_23, "Toggle teleport location inside (on) or outside (off) of the house.", 25, 140)
 
 [com_8]
 type=graphic
@@ -112,9 +112,9 @@ height=17
 graphic="options_radio_buttons,2"
 events=2
 op1=On
-onload=poh_options_doors(event_com, interface_370:com_9)
-onvartransmit=poh_options_doors(event_com, interface_370:com_9){varplayer_1046}
-onop=poh_options_doors_onop(event_com, interface_370:com_9, 1)
+onload=poh_options_tele(event_com, interface_370:com_9)
+onvartransmit=poh_options_tele(event_com, interface_370:com_9){varplayer_1047}
+onop=poh_options_tele_onop(event_com, interface_370:com_9, 0)
 
 [com_9]
 type=graphic
@@ -126,52 +126,105 @@ xmode=abs_right
 graphic="options_radio_buttons,0"
 events=2
 op1=Off
-onop=poh_options_doors_onop(event_com, interface_370:com_8, 0)
+onop=poh_options_tele_onop(event_com, interface_370:com_8, 1)
 
 [com_10]
 type=text
-y=108
+y=110
 width=20
 height=17
 widthmode=minus
 xmode=abs_centre
 textfont=p12_full
-text=Teleport Inside
+text=Doors
 textalignh=left
 textalignv=top
 textshadow=yes
 colour=0xff981f
-onmouseleave=deltooltip(interface_370:com_19)
-onmouserepeat=addtooltip(event_com, interface_370:com_19, "Toggle teleport location inside (on) or outside (off) of the house.", 25, 140)
 
 [com_11]
 type=graphic
-x=138
-y=108
+x=50
+y=105
+width=19
+height=30
+graphic="poh_doors,0"
+events=2
+op1=Select
+onmouseleave=deltooltip(interface_370:com_23)
+onop=poh_options_doors_onop(0, interface_370:com_12, interface_370:com_14, interface_370:com_16)
+onmouserepeat=addtooltip(event_com, interface_370:com_23, "Render house doors as initially closed.", 25, 140)
+
+[com_12]
+type=graphic
+x=70
+y=113
 width=17
 height=17
 graphic="options_radio_buttons,2"
 events=2
-op1=On
-onload=poh_options_tele(event_com, interface_370:com_12)
-onvartransmit=poh_options_tele(event_com, interface_370:com_12){varplayer_1047}
-onop=poh_options_tele_onop(event_com, interface_370:com_12, 0)
-
-[com_12]
-type=graphic
-x=10
-y=108
-width=17
-height=17
-xmode=abs_right
-graphic="options_radio_buttons,0"
-events=2
-op1=Off
-onop=poh_options_tele_onop(event_com, interface_370:com_11, 1)
+op1=Select
+onload=poh_options_doors(interface_370:com_12, interface_370:com_14, interface_370:com_16)
+onmouseleave=deltooltip(interface_370:com_23)
+onvartransmit=poh_options_doors(interface_370:com_12, interface_370:com_14, interface_370:com_16){varplayer_1047}
+onop=poh_options_doors_onop(0, interface_370:com_12, interface_370:com_14, interface_370:com_16)
+onmouserepeat=addtooltip(event_com, interface_370:com_23, "Render house doors as initially closed.", 25, 140)
 
 [com_13]
+type=graphic
+x=98
+y=105
+width=19
+height=30
+graphic="poh_doors,1"
+events=2
+op1=Select
+onmouseleave=deltooltip(interface_370:com_23)
+onop=poh_options_doors_onop(1, interface_370:com_12, interface_370:com_14, interface_370:com_16)
+onmouserepeat=addtooltip(event_com, interface_370:com_23, "Render house doors as initially open.", 25, 140)
+
+[com_14]
+type=graphic
+x=118
+y=113
+width=17
+height=17
+graphic="options_radio_buttons,0"
+events=2
+op1=Select
+onmouseleave=deltooltip(interface_370:com_23)
+onop=poh_options_doors_onop(1, interface_370:com_12, interface_370:com_14, interface_370:com_16)
+onmouserepeat=addtooltip(event_com, interface_370:com_23, "Render house doors as initially open.", 25, 140)
+
+[com_15]
+type=graphic
+x=145
+y=105
+width=19
+height=30
+graphic="poh_doors,2"
+events=2
+op1=Select
+onmouseleave=deltooltip(interface_370:com_23)
+onop=poh_options_doors_onop(2, interface_370:com_12, interface_370:com_14, interface_370:com_16)
+onmouserepeat=addtooltip(event_com, interface_370:com_23, "Do not render doors.", 25, 140)
+
+[com_16]
+type=graphic
+x=165
+y=113
+width=17
+height=17
+graphic="options_radio_buttons,0"
+events=2
+op1=Select
+onmouseleave=deltooltip(interface_370:com_23)
+onop=poh_options_doors_onop(2, interface_370:com_12, interface_370:com_14, interface_370:com_16)
+onmouserepeat=addtooltip(event_com, interface_370:com_23, "Do not render doors.", 25, 140)
+
+[com_17]
 type=layer
-y=129
+y=135
 width=20
 height=36
 widthmode=minus
@@ -180,9 +233,9 @@ events=2
 op1=Expel Guests
 onload=poh_options_drawbutton(event_com)
 
-[com_14]
+[com_18]
 type=layer
-y=166
+y=170
 width=20
 height=36
 widthmode=minus
@@ -191,9 +244,9 @@ events=2
 op1=Leave House
 onload=poh_options_drawbutton(event_com)
 
-[com_15]
+[com_19]
 type=layer
-y=203
+y=205
 width=20
 height=36
 widthmode=minus
@@ -202,7 +255,7 @@ events=2
 op1=Call Servant
 onload=poh_options_drawbutton(event_com)
 
-[com_16]
+[com_20]
 type=text
 y=241
 width=190
@@ -213,7 +266,7 @@ textalignv=top
 textshadow=yes
 colour=0xff981f
 
-[com_17]
+[com_21]
 type=graphic
 x=163
 y=7
@@ -226,16 +279,16 @@ onmouseover=graphic_swapper(event_com, "close_buttons,1")
 onmouseleave=graphic_swapper(event_com, "close_buttons,0")
 onop=closebutton_click
 
-[com_18]
+[com_22]
 type=layer
 widthmode=minus
 heightmode=minus
 xmode=abs_centre
 ymode=abs_centre
 
-[com_19]
+[com_23]
 type=layer
 width=1
 height=1
-layer=com_18
+layer=com_22
 

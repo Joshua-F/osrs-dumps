@@ -21,10 +21,18 @@ def_int $int11 = 0;
 def_int $intarray0(~max($int8, 1));
 def_int $int12 = 0;
 if ($int8 <= -2) {
-    if_settext("Loading friend list<br>Please wait...", $component6);
+    if (%varclient_203 = 1) {
+        if_settext("Loading friend list<br>Please wait...", $component6);
+    } else {
+        if_settext("You must set a name<br>before using this.", $component6);
+    }
     if_sethide(true, $component0);
 } else if ($int8 = -1) {
-    if_settext("Connecting to server<br>Please wait...", $component6);
+    if (%varclient_203 = 1) {
+        if_settext("Connecting to server<br>Please wait...", $component6);
+    } else {
+        if_settext("You must set a name<br>before using this.", $component6);
+    }
     if_sethide(true, $component0);
 } else {
     if_settext("", $component6);

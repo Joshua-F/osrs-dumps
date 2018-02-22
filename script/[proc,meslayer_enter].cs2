@@ -30,6 +30,11 @@ if ($int1 > 0) {
             } else if (%varclient_5 = 3) {
                 friend_del(%varclientstring_22);
             } else if (%varclient_5 = 6) {
+                if (%varclient_203 = 0 | %varclient_203 = -1) {
+                    ~meslayer_close(1, 1);
+                    mes("You must set a name before you can chat.");
+                    return;
+                }
                 if (chat_getfilter_private = ^chatfilter_off) {
                     chat_setfilter(chat_getfilter_public, ^chatfilter_friends, chat_getfilter_trade);
                     ~redraw_chat_buttons;
@@ -52,6 +57,11 @@ if ($int1 > 0) {
         case 9, 15 :
             resume_stringdialog(%varclientstring_22);
         case 10 :
+            if (%varclient_203 = 0 | %varclient_203 = -1) {
+                ~meslayer_close(1, 1);
+                mes("You must set a name before you can chat.");
+                return;
+            }
             %varclientstring_129 = removetags(%varclientstring_22);
             clan_joinchat(%varclientstring_22);
         case 12 :
@@ -63,6 +73,11 @@ if ($int1 > 0) {
             chat_setmessagefilter(lowercase($string0));
             ~rebuildchatbox(~script553);
         case 13 :
+            if (%varclient_203 = 0 | %varclient_203 = -1) {
+                ~meslayer_close(1, 1);
+                mes("You must set a name before you can chat.");
+                return;
+            }
             %varclientstring_28, %varclient_62 = %varclientstring_22, 0;
             ~chat_autotyper_updateop;
             if_setontimer("chat_autotyper(event_com, true)", interface_162:com_10);
