@@ -1,11 +1,12 @@
 // 1104
 [clientscript,snapshot_init](int $int0, string $string0)
+~chatdefault_stopinput;
 if ($int0 = 1) {
     %varclientstring_24 = $string0;
 }
 if_setonkey("snapshot_onkey(event_keycode, event_keychar)", interface_553:com7);
 if_settext("<escape(%varclientstring_24)><col=ffff00>|", interface_553:com7);
-%varclient_11, %varclient_6, %varclient_140 = 1, false, true;
+%varclient_6, %varclient_140 = false, true;
 if (playermod = 1 | staffmodlevel > 0) {
     %varclient_140 = false;
     if_setcolour(^white, interface_553:com14);
@@ -17,10 +18,6 @@ if (playermod = 1 | staffmodlevel > 0) {
     if_clearops(interface_553:com14);
 }
 ~snapshot_toggle(interface_553:com12, %varclient_140);
-if (if_gethide(interface_162:com32) = false) {
-    ~meslayer_close(1, 1);
-}
-~chatdefault_setonkey(0);
 if (~on_mobile = true) {
     ~keyboard_show;
 }
