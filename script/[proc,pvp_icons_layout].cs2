@@ -7,6 +7,13 @@ def_int $int3 = 0;
 def_enum $enum4 = ~toplevel_getcomponents;
 def_int $int5 = 15;
 def_int $int6 = 0;
+def_boolean $boolean7 = ~deadman_world;
+if ($boolean7 = false & if_gettop = interface_80) {
+    if_sethide(true, interface_90:com_0);
+    return;
+} else {
+    if_sethide(false, interface_90:com_0);
+}
 if (~pvpw_check = true) {
     if_setsize(57, 55, ^setsize_abs, ^setsize_abs, interface_90:com_41);
     if (%varclient_53 = true) {
@@ -30,15 +37,22 @@ if (~pvpw_check = true) {
         if_setontimer(null, interface_90:com_1);
         if_sethide(true, interface_90:com_1);
     }
-} else if (~deadman_world = true) {
+} else if ($boolean7 = true) {
     $int5 = 0;
     if_setcolour(0xff981f, interface_90:com_46);
+    if (if_gettop = interface_80) {
+        if_sethide(true, interface_90:com_41);
+    } else {
+        if_sethide(false, interface_90:com_41);
+    }
     if (%varplayer_1676 >= 4) {
         $int6 = 12;
         if (%varplayerbit_1497 = 2) {
             $int6 = 13;
         }
-        if (%varplayer_1676 > 5 | %varplayerbit_4989 = $int6) {
+        if (if_gettop = interface_80) {
+            if_sethide(true, interface_90:com_2);
+        } else if (%varplayer_1676 > 5 | %varplayerbit_4989 = $int6) {
             ~script1434(false, $enum4, true);
             if_sethide(true, interface_90:com_12);
         } else if (%varplayer_1676 = 5) {
@@ -162,8 +176,8 @@ if (~pvpw_check = true) {
 }
 if_setposition(0, $int5, ^setpos_abs_centre, ^setpos_abs_top, interface_90:com_42);
 if_setposition(0, $int5, ^setpos_abs_centre, ^setpos_abs_top, interface_90:com_43);
-def_int $int7 = enum(enum, int, enum_1135, $enum4);
-if ($int7 > 0) {
+def_int $int8 = enum(enum, int, enum_1135, $enum4);
+if ($int8 > 0) {
     if_setposition(29, calc(170 - $int5), ^setpos_abs_right, ^setpos_abs_top, interface_90:com_41);
 } else {
     if_setposition(0, 40, ^setpos_abs_right, ^setpos_abs_bottom, interface_90:com_41);
