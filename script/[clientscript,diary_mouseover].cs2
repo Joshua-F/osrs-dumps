@@ -1,0 +1,35 @@
+// 2201
+[clientscript,diary_mouseover](component $component, int $int1, int $int2, boolean $boolean)
+def_int $int4 = -1;
+def_int $rgb = ^red;
+if ($boolean = false) {
+    $int4 = ~area_task_complete($int2);
+    if ($int4 = 2) {
+        $rgb = 0x0dc10d;
+    } else if ($int4 = 1) {
+        $rgb = ^yellow;
+    } else {
+        $rgb = ^red;
+    }
+}
+if (cc_find($component, $int1) = true) {
+    if ($boolean = true) {
+        cc_settrans(200);
+    } else {
+        cc_settrans(255);
+    }
+}
+if (cc_find($component, calc($int1 + 1)) = true) {
+    if ($boolean = true) {
+        cc_setcolour(^white);
+    } else {
+        cc_setcolour($rgb);
+    }
+}
+if (cc_find($component, calc($int1 + 2)) = true) {
+    if ($boolean = true) {
+        cc_setcolour(^white);
+    } else {
+        cc_setcolour($rgb);
+    }
+}
