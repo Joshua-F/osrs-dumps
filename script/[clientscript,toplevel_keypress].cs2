@@ -1,25 +1,9 @@
 // 905
 [clientscript,toplevel_keypress](int $key0, enum $enum1, boolean $boolean2)
-if (if_gettop = interface_80) {
+if (if_gettop = interface_80 & %varplayerbit_1463 = 1) {
     ~spectator_keypress($key0);
-    return;
-}
-if (~keypress_permit(null, null) = false) {
-    return;
-}
-def_component $component3 = enum(component, component, $enum1, interface_161:com_13);
-def_component $component4 = enum(int, component, enum_1137, 3);
-$component4 = enum(component, component, $enum1, $component4);
-if ($component3 ! null & $key0 = ^key_escape & %varplayerbit_4681 = 1 & if_hassub($component4) = true & if_hassub($component3) = true) {
-    if_close;
-    return;
-}
-def_int $int5 = ~keybind_get_slot($key0);
-if ($int5 = -1 | $int5 = calc(%varplayerbit_3756 - 1)) {
-    return;
-}
-def_component $component6 = enum(int, component, enum_1137, $int5);
-$component6 = enum(component, component, $enum1, $component6);
-if (if_hassub($component6) = true) {
-    ~toplevel_sidebutton_op($enum1, $int5, $boolean2);
+} else if (if_gettop = interface_165 & %varplayerbit_6331 = 1) {
+    ~deadman_map_keypress($key0);
+} else {
+    ~toplevel_keypress($key0, $enum1, $boolean2);
 }
