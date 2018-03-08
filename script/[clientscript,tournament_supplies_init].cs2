@@ -9,25 +9,52 @@ def_enum $enum7 = enum_1124;
 if (~wildwars_world = true) {
     $enum7 = enum_1735;
 }
-def_obj $obj8 = enum(int, namedobj, $enum7, $int6);
-while ($obj8 ! null) {
+def_enum $enum8 = enum_1906;
+def_boolean $boolean9 = ~tournament_beta_world;
+def_obj $obj10 = enum(int, namedobj, $enum7, $int6);
+while ($obj10 ! null) {
     cc_create($component1, ^iftype_graphic, $int6);
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
-    cc_setobject_nonum($obj8, 10000);
+    cc_setobject_nonum($obj10, 10000);
     cc_setgraphicshadow(0x333333);
     cc_setoutline(1);
     cc_setop(1, "Take");
-    if (oc_stackable($obj8) = false) {
+    if (oc_stackable($obj10) = false) {
         cc_setop(2, "Take-5");
         cc_setop(3, "Take-10");
     }
     cc_setop(4, "Take-X");
     cc_setop(10, "Examine");
-    cc_setopbase("<col=ff9040><oc_name($obj8)></col>");
+    cc_setopbase("<col=ff9040><oc_name($obj10)></col>");
     cc_setonop("cc_settrans_temporarily(event_com, event_comsubid, 100, 0)");
     cc_sethide(true);
     $int6 = calc($int6 + 1);
-    $obj8 = enum(int, namedobj, $enum7, $int6);
+    $obj10 = enum(int, namedobj, $enum7, $int6);
+}
+def_int $int11 = 0;
+if ($boolean9 = true) {
+    $int11 = 0;
+    $obj10 = enum(int, namedobj, $enum8, $int11);
+    while ($obj10 ! null) {
+        cc_create($component1, ^iftype_graphic, $int6);
+        cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+        cc_setobject_nonum($obj10, 10000);
+        cc_setgraphicshadow(0x333333);
+        cc_setoutline(1);
+        cc_setop(1, "Take");
+        if (oc_stackable($obj10) = false) {
+            cc_setop(2, "Take-5");
+            cc_setop(3, "Take-10");
+        }
+        cc_setop(4, "Take-X");
+        cc_setop(10, "Examine");
+        cc_setopbase("<col=ff9040><oc_name($obj10)></col>");
+        cc_setonop("cc_settrans_temporarily(event_com, event_comsubid, 100, 0)");
+        cc_sethide(true);
+        $int11 = calc($int11 + 1);
+        $int6 = calc($int6 + 1);
+        $obj10 = enum(int, namedobj, $enum8, $int11);
+    }
 }
 cc_create($component1, ^iftype_text, $int6);
 cc_setsize(0, 50, ^setsize_minus, ^setsize_abs);
