@@ -2,8 +2,10 @@
 [clientscript,ignore_init](component $com_0, component $com_3, component $com_5, component $com_6, component $com_7, component $com_8, component $com_9, component $com_14)
 cc_deleteall($com_8);
 ~scrollbar_vertical($com_8, $com_7, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-if (%varclient_184 ! 1 & %varclient_184 ! 2 & %varclient_184 ! 3) {
-    %varclient_184 = 0;
+switch_int (%varclient_184) {
+    case 0, 1, 2, 3 :
+    case default :
+        %varclient_184 = 0;
 }
 ~ignore_update($com_3, $com_5, $com_6, $com_7, $com_8, $com_9, $com_14);
 if_setonfriendtransmit("ignore_update($com_3, $com_5, $com_6, $com_7, $com_8, $com_9, $com_14)", $com_0);
