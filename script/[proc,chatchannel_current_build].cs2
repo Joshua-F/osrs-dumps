@@ -1,145 +1,194 @@
 // 1658
-[proc,chatchannel_current_build](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9)
-~script1659($component2, 6, 7, "Sort by rank", $component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9);
-~script1659($component3, 2, 3, "Sort by name", $component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9);
-~script1659($component4, 4, 5, "Sort by world", $component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9);
-~script1659($component5, 0, 1, "Legacy sort", $component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9);
-cc_deleteall($component6);
-def_int $int10 = 0;
+[proc,chatchannel_current_build](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10)
+~script1659($component2, 6, 7, 6, "Sort by rank", $component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10);
+~script1659($component3, 2, 3, 2, "Sort by name", $component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10);
+~script1659($component4, 8, 9, 9, "Sort by last world change", $component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10);
+~script1659($component5, 4, 5, 4, "Sort by world", $component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10);
+~script1659($component6, 0, 1, 0, "Legacy sort", $component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10);
+clan_sort_reset;
+switch_int (%varclient_185) {
+    case 1 :
+        clan_sort_legacy(false);
+    case 2 :
+        clan_sort_name(true);
+    case 3 :
+        clan_sort_name(false);
+    case 6 :
+        clan_sort_rank(true);
+        switch_int (%varclient_206) {
+            case default :
+                clan_sort_name(true);
+            case 3 :
+                clan_sort_name(false);
+            case 4 :
+                clan_sort_online_world(true);
+                clan_sort_world(true);
+                clan_sort_name(true);
+            case 5 :
+                clan_sort_online_world(true);
+                clan_sort_world(false);
+                clan_sort_name(true);
+            case 8 :
+                clan_sort_lastworldchange(true);
+            case 9 :
+                clan_sort_lastworldchange(false);
+        }
+    case 7 :
+        clan_sort_rank(false);
+        switch_int (%varclient_206) {
+            case default :
+                clan_sort_name(true);
+            case 3 :
+                clan_sort_name(false);
+            case 4 :
+                clan_sort_online_world(true);
+                clan_sort_world(true);
+                clan_sort_name(true);
+            case 5 :
+                clan_sort_online_world(true);
+                clan_sort_world(false);
+                clan_sort_name(true);
+            case 8 :
+                clan_sort_lastworldchange(true);
+            case 9 :
+                clan_sort_lastworldchange(false);
+        }
+    case 8 :
+        clan_sort_lastworldchange(true);
+    case 9 :
+        clan_sort_lastworldchange(false);
+    case 4 :
+        clan_sort_online_world(true);
+        clan_sort_world(true);
+        switch_int (%varclient_206) {
+            case default :
+                clan_sort_name(true);
+            case 3 :
+                clan_sort_name(false);
+            case 6 :
+                clan_sort_rank(true);
+                clan_sort_name(true);
+            case 7 :
+                clan_sort_rank(false);
+                clan_sort_name(true);
+            case 8 :
+                clan_sort_lastworldchange(true);
+            case 9 :
+                clan_sort_lastworldchange(false);
+        }
+    case 5 :
+        clan_sort_online_world(true);
+        clan_sort_world(false);
+        switch_int (%varclient_206) {
+            case default :
+                clan_sort_name(true);
+            case 3 :
+                clan_sort_name(false);
+            case 6 :
+                clan_sort_rank(true);
+                clan_sort_name(true);
+            case 7 :
+                clan_sort_rank(false);
+                clan_sort_name(true);
+            case 8 :
+                clan_sort_lastworldchange(true);
+            case 9 :
+                clan_sort_lastworldchange(false);
+        }
+}
+clan_sort_apply;
+cc_deleteall($component7);
 def_string $string0 = "";
 def_int $int11 = -1;
 def_int $int12 = -1;
 def_int $int13 = clan_getchatrank;
 def_int $int14 = clan_getchatminkick;
 def_int $int15 = clan_getchatcount;
-def_int $intarray0(~max($int15, 1));
 def_int $int16 = if_getwidth($component2);
 def_int $int17 = calc(($int16 - 9) / 2);
 def_int $int18 = 3;
 def_int $int19 = 0;
 def_int $int20 = 0;
-while ($int20 < $int15) {
-    $int10 = calc($int20 * 5);
-    $intarray0($int20) = $int10;
-    $string0 = clan_getchatusername($int20);
-    $int11 = clan_getchatuserworld($int20);
-    $int12 = clan_getchatuserrank($int20);
-    cc_create($component6, ^iftype_text, $int10);
+def_int $int21 = 0;
+while ($int21 < $int15) {
+    $string0, $int11, $int12 = clan_getchatusername($int21), clan_getchatuserworld($int21), clan_getchatuserrank($int21);
+    cc_create($component7, ^iftype_text, $int19);
+    $int19 = calc($int19 + 1);
+    cc_setsize($int16, 15, ^setsize_minus, ^setsize_abs);
+    cc_setposition(0, $int20, ^setpos_abs_right, ^setpos_abs_top);
     cc_settextfont(p11_full);
     cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
     cc_settext($string0);
-    cc_setsize($int16, 15, ^setsize_minus, ^setsize_abs);
     cc_setcolour(^white);
     cc_settextshadow(false);
-    .cc_create($component6, ^iftype_text, calc($int10 + 1));
+    .cc_create($component7, ^iftype_text, $int19);
+    $int19 = calc($int19 + 1);
+    .cc_setsize($int16, 15, ^setsize_minus, ^setsize_abs);
+    .cc_setposition(0, $int20, ^setpos_abs_right, ^setpos_abs_top);
     .cc_settextfont(p11_full);
     .cc_settextalign(^settextalign_right, ^settextalign_centre, 0);
     .cc_settext("World <tostring($int11)>");
-    .cc_setsize($int16, 15, ^setsize_minus, ^setsize_abs);
     if ($int11 = map_world) {
         .cc_setcolour(0xdc10d);
     } else {
         .cc_setcolour(0xffff64);
     }
     .cc_settextshadow(false);
-    .cc_create($component6, ^iftype_graphic, calc($int10 + 2));
+    .cc_create($component7, ^iftype_graphic, $int19);
+    $int19 = calc($int19 + 1);
     .cc_setsize(9, 9, ^setsize_abs, ^setsize_abs);
+    .cc_setposition(1, calc($int20 + 1), ^setpos_abs_left, ^setpos_abs_top);
     .cc_setgraphic(enum(int, graphic, enum_706, $int12));
-    if (clan_isself($int20) = false) {
-        if (clan_isfriend($int20) = true) {
-            cc_setop(9, "Remove friend <$string0>");
-            .cc_setop(9, "Remove friend <$string0>");
-        } else if (clan_isignore($int20) = true) {
-            cc_setop(10, "Remove ignore <$string0>");
-            .cc_setop(10, "Remove ignore <$string0>");
+    if (clan_isself($int21) = false) {
+        if (clan_isfriend($int21) = true) {
+            cc_setop(9, "Remove friend");
+            .cc_setop(9, "Remove friend");
+        } else if (clan_isignore($int21) = true) {
+            cc_setop(10, "Remove ignore");
+            .cc_setop(10, "Remove ignore");
         } else {
-            cc_setop(7, "Add friend <$string0>");
-            .cc_setop(7, "Add friend <$string0>");
-            cc_setop(8, "Add ignore <$string0>");
-            .cc_setop(8, "Add ignore <$string0>");
+            cc_setop(7, "Add friend");
+            .cc_setop(7, "Add friend");
+            cc_setop(8, "Add ignore");
+            .cc_setop(8, "Add ignore");
         }
     }
     if (~wildwars_world = false & $int13 >= $int14 & $int13 > $int12) {
-        cc_setop(6, "Kick user <$string0>");
-        .cc_setop(6, "Kick user <$string0>");
+        cc_setop(6, "Kick user");
+        .cc_setop(6, "Kick user");
     }
-    cc_setonop("clan_op($string0, event_op)");
-    .cc_setonop("clan_op($string0, event_op)");
-    cc_create($component6, ^iftype_text, calc($int10 + 3));
-    cc_setsize(0, 0, ^setsize_abs, ^setsize_abs);
-    cc_sethide(true);
-    cc_settext(append_num(~string_prependzero(tostring($int11), 5), $int20));
-    cc_create($component6, ^iftype_text, calc($int10 + 4));
-    cc_setsize(0, 0, ^setsize_abs, ^setsize_abs);
-    cc_sethide(true);
-    cc_settext(append_num(~string_prependzero(tostring($int12), 3), $int20));
-    $int20 = calc($int20 + 1);
-}
-if ($int15 >= 2) {
-    if (%varclient_185 = 2 | %varclient_185 = 3) {
-        ~script1661(intarray0, 0, calc($int15 - 1), 0, $component6);
-    } else if (%varclient_185 = 4 | %varclient_185 = 5) {
-        ~script1661(intarray0, 0, calc($int15 - 1), 3, $component6);
-    } else if (%varclient_185 = 6 | %varclient_185 = 7) {
-        ~script1661(intarray0, 0, calc($int15 - 1), 4, $component6);
-    }
+    cc_setopbase("<col=ff9040><$string0></col>");
+    .cc_setopbase("<col=ff9040><$string0></col>");
+    cc_setonop("clan_op(event_opbase, event_op)");
+    .cc_setonop("clan_op(event_opbase, event_op)");
+    $int21, $int20 = calc($int21 + 1), calc($int20 + 15);
 }
 if ($int15 >= 1) {
-    if (%varclient_185 = 3 | %varclient_185 = 5 | %varclient_185 = 7 | %varclient_185 = 1) {
-        $int20 = $int15;
-        while ($int20 > 0) {
-            $int20 = calc($int20 - 1);
-            if (cc_find($component6, $intarray0($int20)) = ^true) {
-                cc_setposition(0, $int19, ^setpos_abs_right, ^setpos_abs_top);
-            }
-            if (cc_find($component6, calc($intarray0($int20) + 1)) = ^true) {
-                cc_setposition(0, $int19, ^setpos_abs_right, ^setpos_abs_top);
-            }
-            if (cc_find($component6, calc($intarray0($int20) + 2)) = ^true) {
-                cc_setposition(1, calc($int19 + 1), ^setpos_abs_left, ^setpos_abs_top);
-            }
-            $int19 = calc($int19 + 15);
-        }
-    } else {
-        $int20 = 0;
-        while ($int20 < $int15) {
-            if (cc_find($component6, $intarray0($int20)) = ^true) {
-                cc_setposition(0, $int19, ^setpos_abs_right, ^setpos_abs_top);
-            }
-            if (cc_find($component6, calc($intarray0($int20) + 1)) = ^true) {
-                cc_setposition(0, $int19, ^setpos_abs_right, ^setpos_abs_top);
-            }
-            if (cc_find($component6, calc($intarray0($int20) + 2)) = ^true) {
-                cc_setposition(1, calc($int19 + 1), ^setpos_abs_left, ^setpos_abs_top);
-            }
-            $int19, $int20 = calc($int19 + 15), calc($int20 + 1);
-        }
-    }
-    $int19 = calc($int19 + 5);
+    $int20 = calc($int20 + 5);
 }
-if_clearops($component8);
+if_clearops($component9);
 if ($int15 > 0) {
     if_settext("<col=ffff64><clan_getchatdisplayname></col>", $component0);
     if_settext("<col=ffffff><clan_getchatownername></col>", $component1);
-    if_settext("Leave Chat", $component8);
+    if_settext("Leave Chat", $component9);
     if (%varplayerbit_5432 = 1 | %varplayerbit_4289 ! 0) {
-        if_setop(6, "Leave Chat", $component8);
-        if_setonop("joinchat_onop(event_op, 6)", $component8);
+        if_setop(6, "Leave Chat", $component9);
+        if_setonop("joinchat_onop(event_op, 6)", $component9);
     } else {
-        if_setop(1, "Leave Chat", $component8);
-        if_setonop("joinchat_onop(event_op, 1)", $component8);
+        if_setop(1, "Leave Chat", $component9);
+        if_setonop("joinchat_onop(event_op, 1)", $component9);
     }
 } else {
     if_settext("Not in chat", $component0);
     if_settext("None", $component1);
-    if_settext("Join Chat", $component8);
-    if_setop(1, "Join Chat", $component8);
-    if_setonop("joinchat_onop(event_op, 1)", $component8);
+    if_settext("Join Chat", $component9);
+    if_setop(1, "Join Chat", $component9);
+    if_setonop("joinchat_onop(event_op, 1)", $component9);
 }
-if ($int19 > if_getheight($component6)) {
-    if_setscrollsize(0, $int19, $component6);
-    ~scrollbar_resize($component7, $component6, if_getscrolly($component6));
+if ($int20 > if_getheight($component7)) {
+    if_setscrollsize(0, $int20, $component7);
+    ~scrollbar_resize($component8, $component7, if_getscrolly($component7));
 } else {
-    if_setscrollsize(0, 0, $component6);
-    ~scrollbar_resize($component7, $component6, 0);
+    if_setscrollsize(0, 0, $component7);
+    ~scrollbar_resize($component8, $component7, 0);
 }
