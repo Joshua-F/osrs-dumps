@@ -1,10 +1,12 @@
 // 123
-[clientscript,friend_init](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9)
+[clientscript,friend_init](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10)
 if_settext("Friends List - World <tostring(map_world)>", $component1);
-cc_deleteall($component7);
-~scrollbar_vertical($component7, $component6, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-if (%varclient_183 ! 1 & %varclient_183 ! 2 & %varclient_183 ! 3 & %varclient_183 ! 4 & %varclient_183 ! 5) {
-    %varclient_183 = 0;
+cc_deleteall($component8);
+~scrollbar_vertical($component8, $component7, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+switch_int (%varclient_183) {
+    case 0, 1, 2, 3, 8, 9, 4, 5 :
+    case default :
+        %varclient_183 = 0;
 }
-~friend_update($component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9);
-if_setonfriendtransmit("friend_update($component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9)", $component0);
+~friend_update($component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10);
+if_setonfriendtransmit("friend_update($component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10)", $component0);
