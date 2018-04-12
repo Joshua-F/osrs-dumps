@@ -15,7 +15,11 @@ if ($obj0 ! null) {
         cc_setondragcomplete("bankmain_reorder(event_com, event_comsubid, event_com2, event_comsubid2, 120, $component3, $component4, $component5, $component6)");
     } else {
         cc_setobject($obj0, $int1);
-        cc_setop(1, "Withdraw-1");
+        if (~on_mobile = true) {
+            cc_setop(1, append("Withdraw-", ~script2227));
+        } else {
+            cc_setop(1, "Withdraw-1");
+        }
         cc_setop(2, "Withdraw-5");
         cc_setop(3, "Withdraw-10");
         if (%varplayerbit_3960 > 0) {
@@ -24,8 +28,11 @@ if ($obj0 ! null) {
         cc_setop(5, "Withdraw-X");
         cc_setop(6, "Withdraw-All");
         cc_setop(7, "Withdraw-All-but-1");
+        if (%varplayerbit_6347 > 0) {
+            cc_setop(8, "Withdraw-1");
+        }
         if (%varplayerbit_3755 = 0) {
-            cc_setop(8, "Placeholder");
+            cc_setop(9, "Placeholder");
         }
         cc_settrans(0);
         cc_setondragcomplete("bankmain_reorder(event_com, event_comsubid, event_com2, event_comsubid2, 0, $component3, $component4, $component5, $component6)");
