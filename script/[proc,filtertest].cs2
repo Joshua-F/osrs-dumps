@@ -12,7 +12,7 @@ if (enum(int, boolean, enum_892, $chattype0) = true & $chattype0 ! ^chattype_pla
 def_int $chatfilter4 = null;
 def_string $string3 = "";
 switch_int ($chattype0) {
-    case ^chattype_publicchat :
+    case ^chattype_publicchat, ^chattype_modchat :
         if ($int1 < %varclient_199) {
             return(false);
         }
@@ -37,21 +37,6 @@ switch_int ($chattype0) {
             return(false);
         }
         return(true);
-    case ^chattype_modchat :
-        if ($int1 < %varclient_199) {
-            return(false);
-        }
-        $string3 = removetags($string0);
-        if (compare($string2, $string3) = 0) {
-            return(true);
-        }
-        if ($int3 = 2) {
-            return(false);
-        }
-        if (string_length(chat_getmessagefilter) > 0 & string_indexof_string(lowercase($string1), chat_getmessagefilter, 0) = -1) {
-            return(false);
-        }
-        return(true);
     case ^chattype_autotyper, ^chattype_modautotyper :
         if ($int1 < %varclient_199) {
             return(false);
@@ -69,7 +54,7 @@ switch_int ($chattype0) {
             return(false);
         }
         return(true);
-    case ^chattype_privatechat :
+    case ^chattype_privatechat, ^chattype_modprivatechat :
         if ($int1 < %varclient_175) {
             return(false);
         }
@@ -111,14 +96,6 @@ switch_int ($chattype0) {
             return(true);
         }
         return(false);
-    case ^chattype_modprivatechat :
-        if ($int1 < %varclient_175) {
-            return(false);
-        }
-        if (%varplayer_287 = 1 & $int2 = 0 & ~trade_partner_check($chattype0, $string0, $int3) = false) {
-            return(false);
-        }
-        return(true);
     case ^chattype_friendschat, ^chattype_chalreq_friendschat :
         if ($int3 = 2) {
             return(false);

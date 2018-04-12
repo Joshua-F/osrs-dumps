@@ -9,7 +9,11 @@ if ($obj0 ! null) {
         cc_setop(1, "View");
         cc_setonop("bankside_switchview(event_op, $component5, $component6, 1)");
     }
-    cc_setop(2, "Deposit-1");
+    if (~on_mobile = true) {
+        cc_setop(2, append("Deposit-", ~script2227));
+    } else {
+        cc_setop(2, "Deposit-1");
+    }
     cc_setop(3, "Deposit-5");
     cc_setop(4, "Deposit-10");
     if (%varplayerbit_3960 > 0) {
@@ -17,6 +21,9 @@ if ($obj0 ! null) {
     }
     cc_setop(6, "Deposit-X");
     cc_setop(7, "Deposit-All");
+    if (%varplayerbit_6347 > 0) {
+        cc_setop(8, "Deposit-1");
+    }
     $string0 = enum(obj, string, enum_995, $obj0);
     if (string_length($string0) > 0) {
         cc_setop(9, $string0);
