@@ -1,6 +1,6 @@
 // 73
 [clientscript,chatdefault_onkey](int $key0, char $char1)
-if (if_gethide(interface_162:com_43) = true | if_gethide(interface_162:com_44) = true) {
+if (if_gethide(interface_162:com_44) = true | if_gethide(interface_162:com_45) = true) {
     return;
 }
 if (%varclient_203 = 0 | %varclient_203 = -1 | ~keypress_permit(null, interface_162) = false) {
@@ -14,47 +14,50 @@ if (staffmodlevel > 0) {
 if ($int3 = 1 & string_indexof_char("`", $char1) ! -1 & $int2 = 0) {
     return;
 }
-if ($key0 = ^key_return & $int2 > 0) {
-    if (string_indexof_string(%varclientstring_1, "/", 0) = 0) {
-        if (clan_getchatcount > 0) {
-            if ($int2 <= 1) {
-                return;
-            }
-            if (%varplayerbit_4394 = 1) {
-                if (clan_getchatcount > 0) {
-                    clan_leavechat;
+if ($key0 = ^key_return) {
+    ~keyboard_hide;
+    if ($int2 > 0) {
+        if (string_indexof_string(%varclientstring_1, "/", 0) = 0) {
+            if (clan_getchatcount > 0) {
+                if ($int2 <= 1) {
+                    return;
                 }
-            } else {
-                ~chat_sendpublic(%varclientstring_1, 2);
-            }
-        } else {
-            ~chat_sendpublic(%varclientstring_1, 0);
-        }
-    } else if (string_indexof_string(%varclientstring_1, "::", 0) = 0) {
-        if ($int2 > 2) {
-            if (string_indexof_string(%varclientstring_1, "::toggleroof", 0) = 0) {
-                if (getremoveroofs = true) {
-                    setremoveroofs(false);
-                    mes("Roofs will only be removed selectively.");
+                if (%varplayerbit_4394 = 1) {
+                    if (clan_getchatcount > 0) {
+                        clan_leavechat;
+                    }
                 } else {
-                    setremoveroofs(true);
-                    mes("Roofs are now all hidden.");
+                    ~chat_sendpublic(%varclientstring_1, 2);
                 }
-            } else if (string_indexof_string(%varclientstring_1, "::bank", 0) = 0) {
-                ~chat_sendpublic("Hey, everyone, I just tried to do something very silly!", 0);
             } else {
-                %varclientstring_1 = ~inputstring_handlecheat(%varclientstring_1);
-                $int2 = string_length(%varclientstring_1);
-                docheat(substring(%varclientstring_1, 2, $int2));
+                ~chat_sendpublic(%varclientstring_1, 0);
+            }
+        } else if (string_indexof_string(%varclientstring_1, "::", 0) = 0) {
+            if ($int2 > 2) {
+                if (string_indexof_string(%varclientstring_1, "::toggleroof", 0) = 0) {
+                    if (getremoveroofs = true) {
+                        setremoveroofs(false);
+                        mes("Roofs will only be removed selectively.");
+                    } else {
+                        setremoveroofs(true);
+                        mes("Roofs are now all hidden.");
+                    }
+                } else if (string_indexof_string(%varclientstring_1, "::bank", 0) = 0) {
+                    ~chat_sendpublic("Hey, everyone, I just tried to do something very silly!", 0);
+                } else {
+                    %varclientstring_1 = ~inputstring_handlecheat(%varclientstring_1);
+                    $int2 = string_length(%varclientstring_1);
+                    docheat(substring(%varclientstring_1, 2, $int2));
+                }
+            } else {
+                ~chat_sendpublic(%varclientstring_1, 0);
             }
         } else {
             ~chat_sendpublic(%varclientstring_1, 0);
         }
-    } else {
-        ~chat_sendpublic(%varclientstring_1, 0);
+        ~chatout_add(%varclientstring_1);
+        %varclientstring_1 = "";
     }
-    ~chatout_add(%varclientstring_1);
-    %varclientstring_1 = "";
 } else if ($key0 = ^key_page_up) {
     if ($int3 = 1) {
         ~chatout_scrollup;
