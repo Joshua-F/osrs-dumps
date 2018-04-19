@@ -2,13 +2,17 @@
 [clientscript,zoom_mouse_toggle](component $com_4, component $com_6, int $int, component $com_88)
 def_string $string = "<~text_device("Click", "Tap")> here to enable zooming using <~text_device("the mouse scroll wheel", "the pinch gesture")>.";
 if ($int = 1) {
-    if (%varclient_75 = true) {
-        %varclient_75 = false;
+    if (%varplayerbit_6357 = 0) {
+        %varplayerbit_6357 = 1;
     } else {
-        %varclient_75 = true;
+        %varplayerbit_6357 = 0;
         $string = "<~text_device("Click", "Tap")> here to disable zooming using <~text_device("the mouse scroll wheel", "the pinch gesture")>.";
     }
-    if_sethide(%varclient_75, $com_6);
+    if (%varplayerbit_6357 = 0) {
+        if_sethide(true, $com_6);
+    } else if (%varplayerbit_6357 = 1) {
+        if_sethide(false, $com_6);
+    }
     if_setonmouserepeat("tooltip_mouserepeat($com_4, -1, $com_88, $string, 25, 190)", $com_4);
     if_setonmouseleave("deltooltip($com_88)", $com_4);
 } else if ($int = 2) {
