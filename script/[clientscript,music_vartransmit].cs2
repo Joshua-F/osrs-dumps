@@ -1,6 +1,6 @@
 // 313
-[clientscript,music_vartransmit](component $component)
-def_int $intarray(19);
+[clientscript,music_vartransmit](component $component0, component $component1, int $int2)
+def_int $intarray(calc(18 + 1));
 $intarray(1) = %varplayer_20;
 $intarray(2) = %varplayer_21;
 $intarray(3) = %varplayer_22;
@@ -19,27 +19,29 @@ $intarray(15) = %varplayer_906;
 $intarray(16) = %varplayer_1009;
 $intarray(17) = %varplayer_1338;
 $intarray(18) = %varplayer_1681;
-def_int $int1 = 0;
-def_int $int2 = 0;
+def_int $int3 = 0;
 def_coord $coord = null;
-def_int $int4 = -1;
-def_int $int5 = -1;
-while ($int1 <= 556) {
-    $int2 = enum(int, int, enum_818, $int1);
-    if ($int2 ! 0 & cc_find($component, $int2) = true) {
-        $coord = enum(int, coord, enum_819, $int2);
+def_int $int5 = 0;
+def_int $int6 = 0;
+while ($int6 < $int2) {
+    if (cc_find($component0, $int6) = true) {
+        $int3 = enum(int, int, enum_818, $int6);
+        $coord = enum(int, coord, enum_819, $int3);
         if ($coord ! null) {
-            $int4, $int5 = coordx($coord), coordz($coord);
-            if (testbit($intarray($int4), $int5) = ^true) {
+            if (testbit($intarray(coordx($coord)), coordz($coord)) = ^true) {
                 ~music_setcolour(^green);
-            } else if ($int2 = 331 & %varplayerbit_1028 > 35) {
+                $int5 = calc($int5 + 1);
+            } else if ($int3 = 331 & %varplayerbit_1028 > 35) {
                 ~music_setcolour(^green);
+                $int5 = calc($int5 + 1);
             } else {
                 ~music_setcolour(^red);
             }
         } else {
             ~music_setcolour(^green);
+            $int5 = calc($int5 + 1);
         }
     }
-    $int1 = calc($int1 + 1);
+    $int6 = calc($int6 + 1);
 }
+if_settext("<~tostring_spacer(~min($int5, $int2), ",")> / <~tostring_spacer($int2, ",")>", $component1);
