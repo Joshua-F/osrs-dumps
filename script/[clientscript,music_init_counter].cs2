@@ -1,0 +1,41 @@
+// 2257
+[clientscript,music_init_counter](component $component0, int $int1)
+if_setontimer(null, $component0);
+def_int $intarray0(calc(18 + 1));
+$intarray0(1) = %varplayer_20;
+$intarray0(2) = %varplayer_21;
+$intarray0(3) = %varplayer_22;
+$intarray0(4) = %varplayer_23;
+$intarray0(5) = %varplayer_24;
+$intarray0(6) = %varplayer_25;
+$intarray0(7) = %varplayer_298;
+$intarray0(8) = %varplayer_311;
+$intarray0(9) = %varplayer_346;
+$intarray0(10) = %varplayer_414;
+$intarray0(11) = %varplayer_464;
+$intarray0(12) = %varplayer_598;
+$intarray0(13) = %varplayer_662;
+$intarray0(14) = %varplayer_721;
+$intarray0(15) = %varplayer_906;
+$intarray0(16) = %varplayer_1009;
+$intarray0(17) = %varplayer_1338;
+$intarray0(18) = %varplayer_1681;
+def_int $int2 = 0;
+def_coord $coord3 = null;
+def_int $int4 = 0;
+def_int $int5 = 0;
+while ($int5 < $int1) {
+    $int2 = enum(int, int, enum_818, $int5);
+    $coord3 = enum(int, coord, enum_819, $int2);
+    if ($coord3 ! null) {
+        if (testbit($intarray0(coordx($coord3)), coordz($coord3)) = ^true) {
+            $int4 = calc($int4 + 1);
+        } else if ($int2 = 331 & %varplayerbit_1028 > 35) {
+            $int4 = calc($int4 + 1);
+        }
+    } else {
+        $int4 = calc($int4 + 1);
+    }
+    $int5 = calc($int5 + 1);
+}
+if_settext("<~tostring_spacer(~min($int4, $int1), ",")> / <~tostring_spacer($int1, ",")>", $component0);
