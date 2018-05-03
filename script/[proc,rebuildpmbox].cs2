@@ -21,7 +21,11 @@ if (reboottimer > 0) {
     } else {
         $string0 = "System update in: <tostring(calc(reboottimer / 3000))>:<tostring($int6)>";
     }
-    $int2 = calc($int2 + ~script199($string0, $int4, $component5, interface_163:com0, $int3, 0, 13, $int2, ^setpos_abs_bottom, ^yellow, true));
+    if (~toplevel_getcomponents = enum_1745) {
+        $int2 = calc($int2 + ~script199($string0, $int4, $component5, interface_163:com0, $int3, 0, 13, $int2, ^setpos_abs_top, ^yellow, true));
+    } else {
+        $int2 = calc($int2 + ~script199($string0, $int4, $component5, interface_163:com0, $int3, 0, 13, $int2, ^setpos_abs_bottom, ^yellow, true));
+    }
     if_clearops($component5);
     if_setonop(null, $component5);
     if_setonmouserepeat(null, $component5);
