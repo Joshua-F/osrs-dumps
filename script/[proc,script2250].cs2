@@ -1,5 +1,14 @@
 // 2250
-[proc,script2250](component $component)
-if (~on_mobile = true) {
-    if_setsize(16064, 16258, ^setsize_rel, ^setsize_rel, $component);
+[proc,script2250](component $com_25)
+if (~on_mobile = false) {
+    return;
+}
+def_int $int = if_getwidth(interface_601:com_15);
+if ($int >= 1080) {
+    if_setsize(15064, 15858, ^setsize_rel, ^setsize_rel, $com_25);
+    if ($com_25 = interface_601:com_25) {
+        if_setsize(90, 90, ^setsize_abs, ^setsize_abs, interface_601:com_1);
+    }
+} else {
+    if_setsize(16064, 16258, ^setsize_rel, ^setsize_rel, $com_25);
 }
