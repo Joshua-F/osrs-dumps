@@ -8,6 +8,10 @@ if (%varclient_203 = 0 | %varclient_203 = -1 | ~keypress_permit(null, overlayint
 }
 def_int $int2 = string_length(%varclientstring_1);
 def_int $int3 = 0;
+def_int $int4 = 0;
+if (~on_mobile = true & %varclient_41 = 4) {
+    $int4 = 1;
+}
 if (staffmodlevel > 0) {
     $int3 = 1;
 }
@@ -17,7 +21,7 @@ if ($int3 = 1 & string_indexof_char("`", $char1) ! -1 & $int2 = 0) {
 if ($key0 = ^key_return) {
     ~keyboard_hide;
     if ($int2 > 0) {
-        if (string_indexof_string(%varclientstring_1, "/", 0) = 0) {
+        if (string_indexof_string(%varclientstring_1, "/", 0) = 0 | $int4 = 1) {
             if (clan_getchatcount > 0) {
                 if ($int2 <= 1) {
                     return;
@@ -27,6 +31,9 @@ if ($key0 = ^key_return) {
                         clan_leavechat;
                     }
                 } else {
+                    if ($int4 = 1) {
+                        %varclientstring_1 = append("/", %varclientstring_1);
+                    }
                     ~chat_sendpublic(%varclientstring_1, 2);
                 }
             } else {
