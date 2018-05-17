@@ -21,45 +21,56 @@ if (~inzone(0_55_151_0_0, 3_55_151_63_63, coord) = true) {
     if_sethide(true, $component9);
 }
 def_int $int15 = enum(enum, int, enum_1135, $enum11);
+def_int $int16 = 5;
+def_int $int17 = 200;
+def_int $int18 = 20;
+def_int $setposh19 = ^setpos_abs_left;
 if_setsize($int15, enum(enum, int, enum_1136, $enum11), ^setsize_minus, ^setsize_minus, $component1);
 if ($int15 > 0) {
-    if_setposition(18, 200, ^setpos_abs_right, ^setpos_abs_top, $component8);
-    if_setposition(5, 20, ^setpos_abs_left, ^setpos_abs_top, $component9);
+    if (~on_mobile = true) {
+        $int15, $int16 = 45, 220;
+        $int17, $int18 = 180, 60;
+        $setposh19 = ^setpos_abs_right;
+    } else {
+        $int15 = 18;
+    }
+    if_setposition($int15, $int17, ^setpos_abs_right, ^setpos_abs_top, $component8);
+    if_setposition($int16, $int18, $setposh19, ^setpos_abs_top, $component9);
     $rgb12, $setposh13, $setposh14 = 0xa0a0a0, ^setpos_abs_right, ^setpos_abs_left;
 } else {
     if_setposition(10, 8, ^setpos_abs_right, ^setpos_abs_bottom, $component8);
     if_setposition(10, 28, ^setpos_abs_right, ^setpos_abs_bottom, $component9);
 }
 if_setcolour($rgb12, $component8);
-def_int $int16 = 0;
-while ($int16 < 6) {
-    if (cc_find($component9, calc($int16 * 2)) = ^true & .cc_find($component9, calc($int16 * 2 + 1)) = ^true) {
-        cc_setposition(0, calc($int16 * 17), $setposh14, ^setpos_abs_top);
-        .cc_setposition(0, calc($int16 * 17), $setposh13, ^setpos_abs_top);
+def_int $int20 = 0;
+while ($int20 < 6) {
+    if (cc_find($component9, calc($int20 * 2)) = ^true & .cc_find($component9, calc($int20 * 2 + 1)) = ^true) {
+        cc_setposition(0, calc($int20 * 17), $setposh14, ^setpos_abs_top);
+        .cc_setposition(0, calc($int20 * 17), $setposh13, ^setpos_abs_top);
         cc_setcolour($rgb12);
     }
-    $int16 = calc($int16 + 1);
+    $int20 = calc($int20 + 1);
 }
-def_int $int17 = if_getheight($component1);
-if ($int17 < 334) {
-    $int17 = 334;
-} else if ($int17 > 1500) {
-    $int17 = 1500;
+def_int $int21 = if_getheight($component1);
+if ($int21 < 334) {
+    $int21 = 334;
+} else if ($int21 > 1500) {
+    $int21 = 1500;
 }
-if ($int17 = $int10) {
+if ($int21 = $int10) {
     return;
 }
-def_int $int18 = calc(400 - interpolate(0, invpow(calc($int17 - 334), 2), 0, invpow(calc(1500 - 334), 2), 280));
-if_setmodelangle(0, 0, 0, 0, 0, $int18, $component2);
-if_setmodelangle(0, 0, 0, 0, 0, $int18, $component3);
-if_setmodelangle(0, 0, 0, 0, 0, $int18, $component4);
-if_setmodelangle(0, 0, 0, 0, 0, $int18, $component5);
-if_setmodelangle(0, 0, 0, 0, 0, $int18, $component6);
-if_setmodelangle(0, 0, 0, 0, 0, $int18, $component7);
+def_int $int22 = calc(400 - interpolate(0, invpow(calc($int21 - 334), 2), 0, invpow(calc(1500 - 334), 2), 280));
+if_setmodelangle(0, 0, 0, 0, 0, $int22, $component2);
+if_setmodelangle(0, 0, 0, 0, 0, $int22, $component3);
+if_setmodelangle(0, 0, 0, 0, 0, $int22, $component4);
+if_setmodelangle(0, 0, 0, 0, 0, $int22, $component5);
+if_setmodelangle(0, 0, 0, 0, 0, $int22, $component6);
+if_setmodelangle(0, 0, 0, 0, 0, $int22, $component7);
 if_sethide(true, $component2);
 if_sethide(true, $component3);
 if_sethide(true, $component4);
 if_sethide(true, $component5);
 if_sethide(true, $component6);
 if_sethide(true, $component7);
-if_setontimer("barrows_overlay_size($component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $int17)", $component0);
+if_setontimer("barrows_overlay_size($component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $int21)", $component0);
