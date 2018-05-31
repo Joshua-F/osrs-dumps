@@ -2,8 +2,6 @@
 [clientscript,stats_init](component $component0, component $component1, int $int2, int $int3)
 def_string $string0 = enum(int, string, enum_108, $int2);
 def_stat $stat4 = enum(int, stat, enum_681, $int2);
-if_setop(1, "View <col=ff981f><$string0></col> guide", $component0);
-if_setonmouseleave("deltooltip($component1)", $component0);
 cc_deleteall($component0);
 cc_create($component0, ^iftype_graphic, 0);
 cc_setposition(-2, -2, ^setpos_abs_left, ^setpos_abs_top);
@@ -31,6 +29,15 @@ cc_settextalign(^settextalign_centre, ^settextalign_top, 0);
 .cc_settextalign(^settextalign_centre, ^settextalign_top, 0);
 cc_settextshadow(true);
 .cc_settextshadow(true);
+if_clearops($component0);
+if (~on_mobile = true) {
+    if_setop(1, "Toggle <col=ff981f><$string0></col> XP", $component0);
+    if_setop(2, "View <col=ff981f><$string0></col> guide", $component0);
+    if_setonclick("stats_setlevels($stat4, $component0, $string0, cc_getid, .cc_getid, $component1)", $component0);
+} else {
+    if_setop(1, "View <col=ff981f><$string0></col> guide", $component0);
+    if_setonmouseleave("deltooltip($component1)", $component0);
+}
 if_setonstattransmit("stats_setlevels($stat4, $component0, $string0, cc_getid, .cc_getid, $component1){$stat4, attack, strength, defence, ranged, magic}", $component0);
 if_setonvartransmit("stats_setlevels($stat4, $component0, $string0, cc_getid, .cc_getid, $component1){varplayer_427, varplayer_1588, varplayer_1437, varplayer_1438, varplayer_1439, varplayer_1436, varplayer_1435, varplayer_1440, varplayer_1453, varplayer_1447, varplayer_1452, varplayer_1443, varplayer_1449, varplayer_1441, varplayer_1442, varplayer_1444, varplayer_1450, varplayer_1457, varplayer_1445, varplayer_1446, varplayer_1454, varplayer_1455, varplayer_1456, varplayer_1451, varplayer_1448}", $component0);
 ~stats_setlevels($stat4, $component0, $string0, $component1);
