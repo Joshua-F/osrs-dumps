@@ -1,0 +1,54 @@
+// 2317
+[clientscript,tob_partydetails_addmember](int $int0, string $string0)
+if (if_hassub(enum(component, component, ~toplevel_getcomponents, interface_161:com_13)) = false) {
+    return;
+}
+def_string $string1 = "";
+def_string $string2 = "";
+$string1, $string2 = ~script632($string0);
+if (%varclient_178 = 0) {
+    if (string_length($string1) > 0) {
+        ~steelborder(interface_50:com_1, "Party of <$string1>", 0);
+    } else {
+        ~steelborder(interface_50:com_1, "Leaderless party", 0);
+    }
+}
+def_int $rgb1 = 0xff981f;
+if (compare(lowercase($string1), lowercase(removetags(chat_playername))) = 0) {
+    $rgb1 = ^white;
+}
+def_int $int2 = calc(~max(0, %varclient_178) * 11);
+def_int $int3 = calc(%varclient_178 * 13);
+cc_create(interface_50:com_26, ^iftype_rectangle, $int2);
+cc_setsize(0, 13, ^setsize_minus, ^setsize_abs);
+cc_setposition(0, $int3, ^setpos_abs_centre, ^setpos_abs_top);
+cc_setfill(true);
+cc_setcolour(^black);
+def_int $int4 = 255;
+if (calc(%varclient_178 % 2) = 0) {
+    $int4 = 235;
+}
+cc_settrans($int4);
+if ($int0 = 2 & string_length($string1) > 0) {
+    cc_setonmouserepeat("cc_settrans(event_com, event_comsubid, 220, null)");
+    cc_setonmouseleave("cc_settrans(event_com, event_comsubid, $int4, null)");
+    if (%varclient_178 > 0) {
+        cc_setop(10, "Kick");
+        cc_setopbase("<col=ff9040><$string1></col>");
+    } else {
+        cc_setop(10, "Quit party");
+    }
+    cc_setonop("tob_partydetails_kickmember(event_op, %varclient_178, event_com, event_comsubid, $string1, $int4)");
+}
+def_int $int5 = 0;
+$string0, $int5 = ~script2318(1, interface_50:com_31, $string0, $int2, $int5, $int3, $rgb1);
+$string0, $int5 = ~script2318(2, interface_50:com_32, $string0, $int2, $int5, $int3, $rgb1);
+$string0, $int5 = ~script2318(3, interface_50:com_33, $string0, $int2, $int5, $int3, $rgb1);
+$string0, $int5 = ~script2318(4, interface_50:com_34, $string0, $int2, $int5, $int3, $rgb1);
+$string0, $int5 = ~script2318(5, interface_50:com_35, $string0, $int2, $int5, $int3, $rgb1);
+$string0, $int5 = ~script2318(6, interface_50:com_36, $string0, $int2, $int5, $int3, $rgb1);
+$string0, $int5 = ~script2318(7, interface_50:com_37, $string0, $int2, $int5, $int3, $rgb1);
+$string0, $int5 = ~script2318(8, interface_50:com_38, $string0, $int2, $int5, $int3, $rgb1);
+$string0, $int5 = ~script2318(9, interface_50:com_39, $string0, $int2, $int5, $int3, $rgb1);
+$string0, $int5 = ~script2318(10, interface_50:com_40, $string0, $int2, $int5, $int3, $rgb1);
+%varclient_178 = calc(%varclient_178 + 1);
