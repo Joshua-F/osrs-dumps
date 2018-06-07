@@ -3,10 +3,17 @@
 if (%varclient_187 > clientclock) {
     return(false);
 }
-if ($overlayinterface ! interface_595 & if_hassub(enum(component, component, ~toplevel_getcomponents, interface_161:com_14)) = true & %varclient_190 = 1) {
+def_enum $enum = ~toplevel_getcomponents;
+if (%varclient_190 = 1 & if_hassub(enum(component, component, $enum, interface_161:com_14)) = true & $overlayinterface ! interface_595) {
     return(false);
 }
-if ($interface ! interface_16 & if_hassub(interface_165:com_27) = true) {
-    return(false);
+if ($enum = enum_1132 & if_hassub(interface_165:com_27) = true) {
+    if ($interface = interface_16) {
+        $enum = $enum;
+    } else if ($overlayinterface = interface_595 & %varclient_190 = 1) {
+        $enum = $enum;
+    } else {
+        return(false);
+    }
 }
 return(true);
