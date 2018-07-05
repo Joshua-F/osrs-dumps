@@ -2,7 +2,7 @@
 [clientscript,toplevel_init](component $component0, enum $enum1)
 if_setonsubchange("toplevel_subchange(event_com, $enum1)", $component0);
 if_setonresize("toplevel_resize(event_com, $enum1)", $component0);
-if_setonvartransmit("toplevel_vartransmit(event_com, $enum1){varplayer_1021, varplayer_1055, varplayer_1431, varplayer_1227, varplayer_439}", $component0);
+if_setonvartransmit("toplevel_vartransmit(event_com, $enum1){varplayer_1021, varplayer_1055, varplayer_1734, varplayer_1431, varplayer_1227, varplayer_439}", $component0);
 def_int $int2 = 0;
 def_component $component3 = enum(int, component, enum_1138, $int2);
 while ($component3 ! null) {
@@ -33,10 +33,29 @@ if ($component3 ! null) {
     .cc_setonop("toplevel_compass_op(event_op)");
 }
 ~script1044;
-if (~toplevel_getcomponents = enum_1745) {
-    ~script1974;
+if ($enum1 = enum_139) {
+    setshowmouseovertext(false);
+    setshowmousecross(false);
+    setshowloadingmessages(false);
+    setfeedbacksprite(cross, null);
+    setfeedbackshowpopuptext(false);
+} else if ($enum1 = enum_1745) {
+    setshowmouseovertext(true);
+    setshowmousecross(true);
+    setshowloadingmessages(true);
+    setfeedbacksprite(clickcircle_filled, true);
+    setfeedbackshowpopuptext(true);
+    ~script1490(interface_601:com_16);
+    ~osm_wifi_init(interface_601:com_32);
+    ~osm_battery_init(interface_601:com_33);
+} else {
+    setshowmouseovertext(true);
+    setshowmousecross(true);
+    setshowloadingmessages(true);
+    setfeedbacksprite(cross, null);
+    setfeedbackshowpopuptext(false);
 }
-~script2176;
+~options_appearance;
 ~toplevel_redraw($component0, $enum1);
 ~toplevel_subchange($component0, $enum1);
 ~toplevel_sidebutton_switch(%varclient_171, $enum1);
