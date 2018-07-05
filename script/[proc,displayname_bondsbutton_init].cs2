@@ -1,5 +1,10 @@
 // 1678
 [proc,displayname_bondsbutton_init](component $component0)
+if (~on_mobile = true) {
+    if_sethide(true, $component0);
+    return;
+}
+if_sethide(false, $component0);
 ~displayname_bondsbutton_draw($component0, false);
 if_setonmouserepeat("displayname_bondsbutton_draw(event_com, true)", $component0);
 if_setonmouseleave("displayname_bondsbutton_draw(event_com, false)", $component0);
