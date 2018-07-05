@@ -2,18 +2,13 @@
 [clientscript,stats_skilltotal](component $component0, component $component1)
 if_settext("Total level:<br><tostring(~stat_totallevel)>", $component0);
 if_clearops($component0);
-if (~on_mobile = true) {
-    if_setop(1, "Toggle Total XP", $component0);
-}
 def_string $string0 = "Total XP:";
 def_string $string1 = ~stats_tostring_totalxp(~stats_totalxp);
 if (~on_mobile = true) {
-    if_setonclick("stats_skilltotal($component0, $component1)", $component0);
-    if (%varclient_217 = 1 & %varclient_218 = null) {
-        ~script742($component0, -1, $component1, $string0, $string1, p12_full, null);
-        if_setonop("deltooltip($component1)", $component0);
-    } else {
-        if_setonop("script732(event_com, -1, $component1, $string0, $string1, p12_full, null)", $component0);
+    if_setop(1, "Toggle Total XP", $component0);
+    if_setonop("stats_op(event_op, event_com, -1, $component1, $string0, $string1, p12_full)", $component0);
+    if (%varclient_218 = $component0 & %varclient_217 = -1) {
+        ~script2344($component0, -1, $component1, $string0, $string1, p12_full);
     }
 } else {
     if_setonmouserepeat("script992(event_com, -1, $component1, $string0, $string1, p12_full, calc(25 / 5))", $component0);
