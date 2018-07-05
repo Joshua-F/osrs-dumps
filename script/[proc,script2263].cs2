@@ -1,18 +1,22 @@
 // 2263
-[proc,script2263]
-if (~on_mobile = false) {
-    return;
+[proc,script2263]()(int)
+def_enum $enum = ~toplevel_getcomponents;
+if ($enum ! enum_1745) {
+    return(0);
 }
-def_component $component = null;
+def_component $component = enum(component, component, $enum, interface_161:com_13);
+def_int $int2 = calc((if_getheight(if_getlayer($component)) - 334) / 2);
+def_int $int3 = -1;
 if (%varclient_171 ! -1) {
-    $component = enum(int, component, enum_1137, %varclient_171);
-    if ($component = interface_161:com_68 | $component = interface_161:com_73 | $component = interface_161:com_74 | $component = interface_161:com_80 | $component = interface_161:com_76 | $component = interface_161:com_77 | $component = interface_161:com_75) {
-        if_setposition(35, 64, ^setpos_abs_right, ^setpos_abs_centre, interface_601:com_28);
-        return;
+    switch_component (enum(int, component, enum_1137, %varclient_171)) {
+        case interface_161:com_68, interface_161:com_73, interface_161:com_74, interface_161:com_80, interface_161:com_76, interface_161:com_77, interface_161:com_75 :
+            if_setposition(245, ~min(64, $int2), ^setpos_abs_left, ^setpos_abs_centre, $component);
+            return(1);
     }
 }
 if (%varclient_41 = -1) {
-    if_setposition(35, 7, ^setpos_abs_left, ^setpos_abs_top, interface_601:com_28);
-    return;
+    if_setposition(calc(50 + enum(enum, int, enum_1960, $enum)), 7, ^setpos_abs_left, ^setpos_abs_top, $component);
+    return(2);
 }
-if_setposition(35, 64, ^setpos_abs_left, ^setpos_abs_centre, interface_601:com_28);
+if_setposition(calc(50 + enum(enum, int, enum_1960, $enum)), ~min(64, $int2), ^setpos_abs_left, ^setpos_abs_centre, $component);
+return(0);

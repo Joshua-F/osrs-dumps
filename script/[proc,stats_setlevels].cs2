@@ -1,5 +1,5 @@
 // 395
-[proc,stats_setlevels](stat $stat, component $component1, string $string0, component $component2)
+[proc,stats_setlevels](stat $stat, component $com_27, string $string0, component $component)
 cc_settext(tostring(stat($stat)));
 def_int $int3 = stat_base($stat);
 .cc_settext(tostring($int3));
@@ -57,14 +57,14 @@ if (~deadman_world = true) {
         }
     }
 }
-if (.cc_find($component1, 5) = true) {
+if (.cc_find($com_27, 5) = true) {
     if ($int8 = 1) {
         .cc_sethide(false);
     } else {
         .cc_sethide(true);
     }
 } else {
-    .cc_create($component1, ^iftype_graphic, 5);
+    .cc_create($com_27, ^iftype_graphic, 5);
     .cc_setposition(6, 0, ^setpos_abs_left, ^setpos_abs_centre);
     .cc_setsize(19, 19, ^setsize_abs, ^setsize_abs);
     .cc_setgraphic("warning_icons,0");
@@ -76,13 +76,11 @@ if (.cc_find($component1, 5) = true) {
     }
 }
 if (~on_mobile = true) {
-    if (%varclient_217 = 1 & $stat = %varclient_218) {
-        ~script742($component1, -1, $component2, $string2, $string3, p12_full, $stat);
-        if_setonop("deltooltip($component2)", $component1);
-    } else {
-        if_setonop("script732(event_com, -1, $component2, $string2, $string3, p12_full, $stat)", $component1);
+    if_setonop("stats_op(event_op, event_com, -1, $component, $string2, $string3, p12_full)", $com_27);
+    if (%varclient_218 = $com_27 & %varclient_217 = -1) {
+        ~script2344($com_27, -1, $component, $string2, $string3, p12_full);
     }
 } else {
-    if_setonmouserepeat("script992(event_com, -1, $component2, $string2, $string3, p12_full, calc(25 / 5))", $component1);
+    if_setonmouserepeat("script992(event_com, -1, $component, $string2, $string3, p12_full, calc(25 / 5))", $com_27);
     %varclient_2 = 0;
 }
