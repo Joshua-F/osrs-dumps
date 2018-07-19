@@ -1,17 +1,14 @@
 // 1223
-[clientscript,zeah_overlay_grow_it](component $component0, component $component1)
-def_int $int2 = if_getwidth($component0);
-$int2 = calc($int2 + 5);
-if ($int2 > 240) {
-    $int2 = 240;
-}
-def_int $int3 = if_getheight($component0);
-$int3 = calc($int3 + 2);
-if ($int3 > 100) {
-    $int3 = 100;
-}
-if_setsize($int2, $int3, ^setsize_abs, ^setsize_abs, $component0);
-if ($int2 = 240 & $int3 = 100) {
-    if_setontimer(null, $component0);
+[clientscript,zeah_overlay_grow_it](component $component0, component $component1, boolean $boolean2)
+def_int $int3 = ~min(calc(if_getwidth($component0) + 5), 240);
+def_int $int4 = ~min(calc(if_getheight($component0) + 2), 100);
+if_setsize($int3, $int4, ^setsize_abs, ^setsize_abs, $component0);
+if ($int3 >= 240 & $int4 >= 100) {
     if_sethide(false, $component1);
+    if ($boolean2 = true) {
+        if_setontimer("zeah_overlay_shrink(event_com, $component1, calc(clientclock + 150), true)", $component0);
+        if_setonclick("zeah_overlay_shrink(event_com, $component1, 0, true)", $component0);
+    } else {
+        if_setontimer(null, $component0);
+    }
 }
