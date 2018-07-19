@@ -15,6 +15,7 @@ def_string $string0 = "";
 def_string $string1 = "";
 def_string $string2 = "";
 def_int $int5 = 0;
+def_boolean $boolean6 = ~on_mobile;
 while ($int0 ! -1) {
     $chattype3, $int4, $string0, $string1, $string2, $int5 = chat_gethistory_byuid($int0);
     if ($int4 <= $int1) {
@@ -24,8 +25,12 @@ while ($int0 ! -1) {
         switch_int ($chattype3) {
             case ^chattype_modchat, ^chattype_publicchat :
                 ~chat_alert_enable(2);
-            case ^chattype_privatechat, ^chattype_loginlogoutnotification, ^chattype_privatechatout, ^chattype_modprivatechat :
+            case ^chattype_privatechat, ^chattype_privatechatout, ^chattype_modprivatechat :
                 ~chat_alert_enable(3);
+            case ^chattype_loginlogoutnotification :
+                if ($boolean6 = false) {
+                    ~chat_alert_enable(3);
+                }
             case ^chattype_tradereq, ^chattype_trade, ^chattype_chalreq_trade :
                 ~chat_alert_enable(5);
             case ^chattype_friendschat, ^chattype_friendschatnotification, ^chattype_chalreq_friendschat :
