@@ -8,13 +8,14 @@ if (%varplayerbit_4692 = 2 | %varplayerbit_4692 = 0) {
 def_enum $enum = null;
 if (%varplayerbit_619 = 1) {
     $enum = ~toplevel_getcomponents;
-    if ($enum = null) {
-        return;
-    }
-    if (if_hassub(enum(component, component, $enum, interface_161:com_3)) = true | if_hassub(enum(component, component, $enum, interface_161:com_6)) = true) {
-        if_sethide(true, $component);
+    if ($enum ! null) {
+        if (if_hassub(enum(component, component, $enum, interface_161:com_3)) = true | if_hassub(enum(component, component, $enum, interface_161:com_6)) = true) {
+            if_sethide(true, $component);
+        } else {
+            if_sethide(false, $component);
+        }
     } else {
-        if_sethide(false, $component);
+        if_sethide(true, $component);
     }
 } else {
     if_sethide(true, $component);
