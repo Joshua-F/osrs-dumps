@@ -1,20 +1,21 @@
 // 1226
 [clientscript,zeah_favour_update](component $component0, component $component1, int $int2)
 def_int $int3 = 0;
-if ($int2 = 3) {
-    $int3 = %varplayerbit_4896;
-} else if ($int2 = 2) {
-    $int3 = %varplayerbit_4895;
-} else if ($int2 = 4) {
-    $int3 = %varplayerbit_4898;
-} else if ($int2 = 5) {
-    $int3 = %varplayerbit_4899;
-} else if ($int2 = 1) {
-    $int3 = %varplayerbit_4894;
+switch_int ($int2) {
+    case 3 :
+        $int3 = %varplayerbit_4896;
+    case 2 :
+        $int3 = %varplayerbit_4895;
+    case 4 :
+        $int3 = %varplayerbit_4898;
+    case 5 :
+        $int3 = %varplayerbit_4899;
+    case 1 :
+        $int3 = %varplayerbit_4894;
 }
-if_setsize(interpolate(0, $int3, 0, 1000, 16384), 0, ^setsize_rel, ^setsize_minus, $component0);
+if_setsize(scale($int3, 1000, 16384), 0, ^setsize_rel, ^setsize_minus, $component0);
 if ($int3 > 0 & if_getwidth($component0) < 2) {
     if_setsize(2, 0, ^setsize_abs, ^setsize_minus, $component0);
 }
-def_int $int4 = interpolate(0, $int3, 0, 1000, 1000);
+def_int $int4 = scale($int3, 1000, 1000);
 if_settext("<tostring(calc($int4 / 10))>.<tostring(calc($int4 % 10))>%", $component1);
