@@ -1,12 +1,14 @@
 // 1633
-[clientscript,motherlode_hud_init](component $com_0, component $com_1)
-cc_deleteall($com_1);
-def_int $int = ~thinstonebox($com_1, 0);
-cc_create($com_1, ^iftype_text, $int);
+[clientscript,motherlode_hud_init](component $com_0, component $com_1, component $com_2)
+~script2249($com_1, setbit(0, 3));
+cc_deleteall($com_2);
+def_int $int = ~thinstonebox($com_2, 0);
+cc_create($com_2, ^iftype_text, $int);
 cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top);
 cc_setsize(0, 40, ^setsize_minus, ^setsize_abs);
 cc_settextfont(quill_oblique_large);
 cc_settextshadow(true);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-~motherlode_hud_update($com_1);
-if_setonvartransmit("motherlode_hud_update($com_1, $int){varplayer_1429, varplayer_375, varplayer_1227}", $com_0);
+~motherlode_hud_update($com_2);
+if_setonvartransmit("motherlode_hud_update($com_2, $int){varplayer_1429, varplayer_375, varplayer_1227}", $com_0);
+if_setonsubchange("motherlode_hud_update($com_2, $int)", $com_0);

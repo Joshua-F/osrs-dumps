@@ -1,5 +1,18 @@
 // 1215
-[clientscript,zeah_favour_overlay_init](component $com_0, component $com_1)
+[clientscript,zeah_favour_overlay_init](component $com_0, component $com_1, component $com_2, component $com_37)
 ~zeah_favour_overlay_hideshow($com_1);
 if_setonsubchange("zeah_favour_overlay_hideshow($com_1)", $com_0);
 if_setonvartransmit("zeah_favour_overlay_hideshow($com_1){varplayer_1227, varplayer_1055}", $com_0);
+if (~on_mobile = true) {
+    if_setonmouseover(null, $com_1);
+    if_setonmouseleave(null, $com_1);
+    if_setonclick("zeah_overlay_grow(event_com, $com_37, true)", $com_1);
+    if_setnoclickthrough(true, $com_2);
+    if_setonclick("opsound(0, 0)", $com_2);
+} else {
+    if_setonmouseover("zeah_overlay_grow(event_com, $com_37, false)", $com_1);
+    if_setonmouseleave("zeah_overlay_shrink(event_com, $com_37, 0, false)", $com_1);
+    if_setonclick(null, $com_1);
+    if_setnoclickthrough(false, $com_2);
+    if_setonclick(null, $com_2);
+}
