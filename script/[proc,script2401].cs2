@@ -1,0 +1,55 @@
+// 2401
+[proc,script2401](component $component0, component $component1, component $component2, component $component3)
+def_int $int4 = 0;
+def_int $int5 = 0;
+if (%varplayerbit_6504 = 1 & ~on_mobile = true & clienttype = ^clienttype_android) {
+    if_sethide(false, $component1);
+    if_setposition(88, 30, ^setpos_abs_left, ^setpos_abs_top, $component0);
+    $int4, $int5 = ~v2_stone_button_fadable($component1, 0);
+    if_setonmouserepeat("bondif_redeem_hover(true, $component1, $int4)", $component1);
+    if_setonmouseleave("bondif_redeem_hover(false, $component1, $int4)", $component1);
+    if_setop(1, "Buy", $component1);
+    if_setopbase("Old School Bonds", $component1);
+    if_setonop("opsound(event_op, 2)", $component1);
+    cc_create($component1, ^iftype_text, $int5);
+    $int5 = calc($int5 + 1);
+    cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_setcolour(^white);
+    cc_settextfont(q8_full);
+    cc_settextshadow(true);
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    cc_settext("Buy");
+    if_sethide(false, $component2);
+    if_setposition(0, 80, ^setpos_abs_centre, ^setpos_abs_top, $component3);
+    $int4, $int5 = ~v2_stone_button_fadable($component2, 0);
+    if_setonmouserepeat("bondif_redeem_hover(true, $component2, $int4)", $component2);
+    if_setonmouseleave("bondif_redeem_hover(false, $component2, $int4)", $component2);
+    if_setop(1, "Buy", $component2);
+    if_setopbase("Membership", $component2);
+    if_setonop("opsound(event_op, 2)", $component2);
+    cc_create($component2, ^iftype_text, $int5);
+    $int5 = calc($int5 + 1);
+    cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_setcolour(^white);
+    cc_settextfont(q8_full);
+    cc_settextshadow(true);
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    cc_settext("Buy");
+} else {
+    if_sethide(true, $component1);
+    if_setposition(88, 45, ^setpos_abs_left, ^setpos_abs_top, $component0);
+    cc_deleteall($component1);
+    if_setonmouserepeat(null, $component1);
+    if_setonmouseleave(null, $component1);
+    if_clearops($component1);
+    if_setonop(null, $component1);
+    if_sethide(true, $component2);
+    if_setposition(0, 15, ^setpos_abs_centre, ^setpos_abs_centre, $component3);
+    cc_deleteall($component2);
+    if_setonmouserepeat(null, $component2);
+    if_setonmouseleave(null, $component2);
+    if_clearops($component2);
+    if_setonop(null, $component2);
+}
