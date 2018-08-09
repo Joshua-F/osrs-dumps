@@ -134,26 +134,28 @@ def_int $int17 = -1;
 def_int $int18 = clan_getchatrank;
 def_int $int19 = clan_getchatminkick;
 def_int $int20 = if_getwidth($component3);
-def_int $int21 = calc(($int20 - 9) / 2);
-def_int $int22 = 3;
-def_int $int23 = 0;
+def_int $int21 = 0;
+def_int $int22 = 0;
+def_int $int23 = 15;
+if (~on_mobile = true) {
+    $int23 = scale(8, 5, $int23);
+}
 def_int $int24 = 0;
-def_int $int25 = 0;
-while ($int25 < $int15) {
-    $string0, $int16, $int17 = clan_getchatusername($int25), clan_getchatuserworld($int25), clan_getchatuserrank($int25);
-    cc_create($component8, ^iftype_text, $int23);
-    $int23 = calc($int23 + 1);
-    cc_setsize($int20, 15, ^setsize_minus, ^setsize_abs);
-    cc_setposition(0, $int24, ^setpos_abs_right, ^setpos_abs_top);
+while ($int24 < $int15) {
+    $string0, $int16, $int17 = clan_getchatusername($int24), clan_getchatuserworld($int24), clan_getchatuserrank($int24);
+    cc_create($component8, ^iftype_text, $int21);
+    $int21 = calc($int21 + 1);
+    cc_setsize($int20, $int23, ^setsize_minus, ^setsize_abs);
+    cc_setposition(0, $int22, ^setpos_abs_right, ^setpos_abs_top);
     cc_settextfont(p11_full);
     cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
     cc_settext($string0);
     cc_setcolour(^white);
     cc_settextshadow(false);
-    .cc_create($component8, ^iftype_text, $int23);
-    $int23 = calc($int23 + 1);
-    .cc_setsize($int20, 15, ^setsize_minus, ^setsize_abs);
-    .cc_setposition(0, $int24, ^setpos_abs_right, ^setpos_abs_top);
+    .cc_create($component8, ^iftype_text, $int21);
+    $int21 = calc($int21 + 1);
+    .cc_setsize($int20, $int23, ^setsize_minus, ^setsize_abs);
+    .cc_setposition(0, $int22, ^setpos_abs_right, ^setpos_abs_top);
     .cc_settextfont(p11_full);
     .cc_settextalign(^settextalign_right, ^settextalign_centre, 0);
     .cc_settext("World <tostring($int16)>");
@@ -163,16 +165,16 @@ while ($int25 < $int15) {
         .cc_setcolour(0xffff64);
     }
     .cc_settextshadow(false);
-    .cc_create($component8, ^iftype_graphic, $int23);
-    $int23 = calc($int23 + 1);
+    .cc_create($component8, ^iftype_graphic, $int21);
+    $int21 = calc($int21 + 1);
     .cc_setsize(9, 9, ^setsize_abs, ^setsize_abs);
-    .cc_setposition(1, calc($int24 + 1), ^setpos_abs_left, ^setpos_abs_top);
+    .cc_setposition(1, calc($int22 + ($int23 - 9) / 2), ^setpos_abs_left, ^setpos_abs_top);
     .cc_setgraphic(enum(int, graphic, enum_706, $int17));
-    if (clan_isself($int25) = false) {
-        if (clan_isfriend($int25) = true) {
+    if (clan_isself($int24) = false) {
+        if (clan_isfriend($int24) = true) {
             cc_setop(9, "Remove friend");
             .cc_setop(9, "Remove friend");
-        } else if (clan_isignore($int25) = true) {
+        } else if (clan_isignore($int24) = true) {
             cc_setop(10, "Remove ignore");
             .cc_setop(10, "Remove ignore");
         } else {
@@ -190,10 +192,10 @@ while ($int25 < $int15) {
     .cc_setopbase("<col=ff9040><$string0></col>");
     cc_setonop("clan_op(event_opbase, event_op)");
     .cc_setonop("clan_op(event_opbase, event_op)");
-    $int25, $int24 = calc($int25 + 1), calc($int24 + 15);
+    $int24, $int22 = calc($int24 + 1), calc($int22 + $int23);
 }
 if ($int15 >= 1) {
-    $int24 = calc($int24 + 5);
+    $int22 = calc($int22 + 5);
 }
 if_clearops($component10);
 if (%varplayerbit_6363 = 1) {
@@ -220,8 +222,8 @@ if (%varplayerbit_6363 = 1) {
     if_setop(1, "Join Chat", $component10);
     if_setonop("joinchat_onop(event_op, 1)", $component10);
 }
-if ($int24 > if_getheight($component8)) {
-    if_setscrollsize(0, $int24, $component8);
+if ($int22 > if_getheight($component8)) {
+    if_setscrollsize(0, $int22, $component8);
     ~scrollbar_resize($component9, $component8, if_getscrolly($component8));
 } else {
     if_setscrollsize(0, 0, $component8);
