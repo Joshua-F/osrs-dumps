@@ -11,12 +11,14 @@ def_int $int8 = 0;
 def_int $int9 = 0;
 def_int $int10 = 0;
 def_int $int11 = 0;
+def_int $int12 = 15;
 def_string $string0 = "";
 def_string $string1 = "";
-def_int $int12 = 0;
 def_int $int13 = 0;
-def_int $int14 = friend_count;
-if ($int14 <= -2) {
+def_int $int14 = 0;
+def_boolean $boolean15 = null;
+def_int $int16 = friend_count;
+if ($int16 <= -2) {
     cc_create($component3, ^iftype_text, 0);
     cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_centre);
     cc_setsize($int6, calc(16384 / 2), ^setsize_abs, ^setsize_proportion);
@@ -25,7 +27,7 @@ if ($int14 <= -2) {
     cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
     cc_settextshadow(true);
     cc_settext("Loading friend list<br>Please wait");
-} else if ($int14 = -1) {
+} else if ($int16 = -1) {
     cc_create($component3, ^iftype_text, 0);
     cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_centre);
     cc_setsize($int6, calc(16384 / 2), ^setsize_abs, ^setsize_proportion);
@@ -35,6 +37,10 @@ if ($int14 <= -2) {
     cc_settextshadow(true);
     cc_settext("Connecting to server<br>Please wait");
 } else {
+    $boolean15 = ~on_mobile;
+    if ($boolean15 = true) {
+        $int12 = scale(8, 5, $int12);
+    }
     friendlist_sort_reset;
     switch_int (%varclient_186) {
         case 1 :
@@ -52,18 +58,17 @@ if ($int14 <= -2) {
     }
     friendlist_sort_apply;
     $int9, $int7, $int8 = if_getwidth($component3), calc($int6 - 5), calc(if_getwidth($component1) - 5);
-    while ($int13 < $int14) {
-        $string0, $string1 = friend_getname($int13);
+    while ($int14 < $int16) {
+        $string0, $string1 = friend_getname($int14);
         cc_create($component3, ^iftype_rectangle, $int10);
         $int10 = calc($int10 + 1);
-        cc_setsize(0, 15, ^setsize_minus, ^setsize_abs);
+        cc_setsize(0, $int12, ^setsize_minus, ^setsize_abs);
         cc_setposition(0, $int11, ^setpos_abs_centre, ^setpos_abs_top);
         cc_setcolour(^white);
         cc_setfill(true);
         cc_settrans(255);
         cc_setopbase("<col=ff9040><$string0></col>");
-        cc_setsize(0, 15, ^setsize_minus, ^setsize_abs);
-        if (calc($int13 % 2) = 0) {
+        if (calc($int14 % 2) = 0) {
             cc_settrans(255);
             cc_setonmouseleave("cc_settrans(event_com, event_comsubid, 255, null)");
         } else {
@@ -80,42 +85,48 @@ if ($int14 <= -2) {
         cc_setop(7, enum(int, string, enum_170, 6));
         .cc_create($component3, ^iftype_text, $int10);
         $int10 = calc($int10 + 1);
-        $int12 = friend_getrank($int13);
-        .cc_setsize($int8, 15, ^setsize_abs, ^setsize_abs);
+        $int13 = friend_getrank($int14);
+        .cc_setsize($int8, $int12, ^setsize_abs, ^setsize_abs);
         .cc_setposition(0, $int11, ^setpos_abs_right, ^setpos_abs_top);
         .cc_setcolour(^white);
         .cc_settextshadow(true);
-        .cc_settextalign(^settextalign_left, ^settextalign_top, 0);
+        .cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
         .cc_settextfont(b12_full);
-        .cc_settext(enum(int, string, enum_170, $int12));
+        .cc_settext(enum(int, string, enum_170, $int13));
         cc_setonop("chatchannel_setup_setrank($component3, .cc_getid, event_opbase, event_op)");
         cc_create($component3, ^iftype_text, $int10);
         $int10 = calc($int10 + 1);
-        cc_setsize($int7, 15, ^setsize_abs, ^setsize_abs);
+        cc_setsize($int7, $int12, ^setsize_abs, ^setsize_abs);
         cc_setposition(5, $int11, ^setpos_abs_left, ^setpos_abs_top);
         cc_setcolour(0xffff64);
         cc_settextfont(b12_full);
-        cc_settextalign(^settextalign_left, ^settextalign_top, 0);
+        cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
         cc_settextshadow(true);
         cc_settext($string0);
         .cc_create($component3, ^iftype_graphic, $int10);
         $int10 = calc($int10 + 1);
         .cc_setsize(14, 14, ^setsize_abs, ^setsize_abs);
-        .cc_setposition(calc(parawidth($string0, $int9, b12_full) + 9), $int11, ^setpos_abs_left, ^setpos_abs_top);
+        .cc_setposition(calc(parawidth($string0, $int9, b12_full) + 9), calc($int11 + ($int12 - 14) / 2), ^setpos_abs_left, ^setpos_abs_top);
         .cc_setgraphic(friends_changed_name);
         .cc_setgraphicshadow(0x333333);
         if (string_length($string1) > 0) {
-            $string1 = "Previous name:<br><$string1>";
-            cc_setonmouserepeat("tooltip_mouserepeat(event_com, event_comsubid, $component5, $string1, 25, $int9)");
-            cc_setonmouseleave("deltooltip($component5)");
+            if ($boolean15 = true) {
+                cc_setop(1, "Reveal previous name");
+                cc_setopbase("<col=ff9040><$string0></col>");
+                cc_setonop("script1926(event_com, cc_getid, .cc_getid, $string1, $string0)");
+            } else {
+                $string1 = "Previous name:<br><$string1>";
+                cc_setonmouserepeat("tooltip_mouserepeat(event_com, event_comsubid, $component5, $string1, 25, $int9)");
+                cc_setonmouseleave("deltooltip($component5)");
+            }
             .cc_sethide(false);
         } else {
             cc_setonmouseover("deltooltip($component5)");
             .cc_sethide(true);
         }
-        $int13, $int11 = calc($int13 + 1), calc($int11 + 15);
+        $int14, $int11 = calc($int14 + 1), calc($int11 + $int12);
     }
-    if ($int14 >= 1) {
+    if ($int16 >= 1) {
         $int11 = calc($int11 + 5);
     }
 }
