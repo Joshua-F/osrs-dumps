@@ -39,18 +39,18 @@ if ($int0 = 2) {
 def_int $int5 = 0;
 def_string $string1 = "";
 if ($int0 = 1) {
+    if ($int3 > 0) {
+        $string1 = lowercase(substring($string0, calc($int3 - 1), $int3));
+        if (compare($string1, "k") = 0 | compare($string1, "m") = 0 | compare($string1, "b") = 0) {
+            return($string0);
+        }
+    }
     if (string_indexof_char("kKmMbB", $char2) ! -1) {
         $int5 = 1;
     }
     if (($int5 = 1 | char_isnumeric($char2) = true) & $int3 < 10) {
         if ($int5 = 1 & $int3 <= 0) {
             return($string0);
-        }
-        if ($int3 > 0 & $int5 = 0) {
-            $string1 = lowercase(substring($string0, calc($int3 - 1), $int3));
-            if (compare($string1, "k") = 0 | compare($string1, "m") = 0 | compare($string1, "b") = 0) {
-                return($string0);
-            }
         }
         return(append_char($string0, $char2));
     }
