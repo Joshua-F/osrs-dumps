@@ -2,9 +2,9 @@
 [proc,toplevel_resize_customise](component $component0, enum $enum1)
 def_int $int2 = 0;
 def_int $int3 = 0;
+def_component $component4 = null;
 if ($enum1 = enum_1131) {
-    $int2 = if_getwidth(interface_164:com_33);
-    $int3 = if_getheight(interface_164:com_33);
+    $int2, $int3 = if_getwidth(interface_164:com_33), if_getheight(interface_164:com_33);
     if (calc(if_getwidth($component0) - if_getwidth(enum(component, component, $enum1, interface_161:com_29))) < 429) {
         if_setposition(0, calc($int3 + if_getheight(interface_164:com_47)), ^setpos_abs_right, ^setpos_abs_bottom, enum(component, component, $enum1, interface_164:com_62));
         if_setposition(0, $int3, ^setpos_abs_right, ^setpos_abs_bottom, interface_164:com_47);
@@ -39,11 +39,17 @@ if ($enum1 = enum_1131) {
             if_settrans(0, interface_601:com_33);
         }
     }
-    if (if_hassub(interface_162:com_550) = true) {
-        if_setsize(519, 165, ^setsize_abs, ^setsize_abs, enum(component, component, $enum1, interface_161:com_29));
+    $component4 = enum(component, component, $enum1, interface_161:com_29);
+    $int2 = if_getheight($component4);
+    if (if_hassub(interface_162:com_553) = true) {
+        $int3 = 165;
     } else {
-        if_setsize(519, calc(165 - 30), ^setsize_abs, ^setsize_abs, enum(component, component, $enum1, interface_161:com_29));
+        $int3 = calc(165 - 30);
     }
-    ~scrollbar_resize(interface_162:com_548, interface_162:com_47, %varclient_7);
+    if_setsize(519, $int3, ^setsize_abs, ^setsize_abs, $component4);
+    if ($int3 ! $int2) {
+        %varclient_7 = calc(%varclient_7 - ($int3 - $int2));
+    }
+    ~scrollbar_resize(interface_162:com_551, interface_162:com_50, %varclient_7);
     if_sethide(~int_to_bool(%varplayerbit_6254), interface_601:com_20);
 }
