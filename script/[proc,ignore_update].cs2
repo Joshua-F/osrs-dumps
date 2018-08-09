@@ -8,8 +8,10 @@ def_int $int8 = 0;
 def_string $string0 = "";
 def_string $string1 = "";
 def_int $int9 = 0;
-def_int $int10 = ignore_count;
-if ($int10 < 0) {
+def_int $int10 = 15;
+def_boolean $boolean11 = null;
+def_int $int12 = ignore_count;
+if ($int12 < 0) {
     if (%varclient_203 = 1) {
         if_settext("Loading ignore list<br>Please wait...", $component5);
     } else {
@@ -17,6 +19,10 @@ if ($int10 < 0) {
     }
     if_sethide(true, $component0);
 } else {
+    $boolean11 = ~on_mobile;
+    if ($boolean11 = true) {
+        $int10 = scale(8, 5, $int10);
+    }
     if_settext("", $component5);
     if_sethide(false, $component0);
     ignorelist_sort_reset;
@@ -29,38 +35,44 @@ if ($int10 < 0) {
             ignorelist_sort_name(false);
     }
     ignorelist_sort_apply;
-    while ($int7 < $int10) {
+    while ($int7 < $int12) {
         $string0, $string1 = ignore_getname($int7);
         cc_create($component3, ^iftype_text, $int8);
         $int8 = calc($int8 + 1);
         cc_settext($string0);
-        cc_setsize(0, 15, ^setsize_minus, ^setsize_abs);
+        cc_setsize(0, $int10, ^setsize_minus, ^setsize_abs);
         cc_setposition(0, $int9, ^setpos_abs_centre, ^setpos_abs_top);
         cc_setcolour(^white);
         cc_settextfont(p12_full);
-        cc_settextalign(^settextalign_left, ^settextalign_top, 0);
+        cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
         cc_settextshadow(true);
         cc_setopbase("<col=ff9040><$string0></col>");
         cc_setop(1, "Delete");
-        cc_setonop("ignore_op(event_opbase)");
         .cc_create($component3, ^iftype_graphic, $int8);
         $int8 = calc($int8 + 1);
         .cc_setsize(14, 14, ^setsize_abs, ^setsize_abs);
-        .cc_setposition(calc(parawidth($string0, 190, p12_full) + 3), $int9, ^setpos_abs_left, ^setpos_abs_top);
+        .cc_setposition(calc(parawidth($string0, 190, p12_full) + 3), calc($int9 + ($int10 - 14) / 2), ^setpos_abs_left, ^setpos_abs_top);
         .cc_setgraphic(friends_changed_name);
         .cc_setgraphicshadow(0x333333);
         if (string_length($string1) > 0) {
-            $string1 = "Previous name:<br><$string1>";
-            cc_setonmouserepeat("tooltip_mouserepeat(event_com, event_comsubid, $component6, $string1, 25, 190)");
-            cc_setonmouseleave("deltooltip($component6)");
+            if ($boolean11 = true) {
+                cc_setop(10, "Reveal previous name");
+                cc_setonop("ignore_op(event_op, event_opbase, event_com, cc_getid, .cc_getid, $string1, $string0)");
+            } else {
+                $string1 = "Previous name:<br><$string1>";
+                cc_setonmouserepeat("tooltip_mouserepeat(event_com, event_comsubid, $component6, $string1, 25, 190)");
+                cc_setonmouseleave("deltooltip($component6)");
+                cc_setonop("ignore_op(event_op, event_opbase, null, -1, -1, null, null)");
+            }
             .cc_sethide(false);
         } else {
             cc_setonmouseover("deltooltip($component6)");
             .cc_sethide(true);
+            cc_setonop("ignore_op(event_op, event_opbase, null, -1, -1, null, null)");
         }
-        $int7, $int9 = calc($int7 + 1), calc($int9 + 15);
+        $int7, $int9 = calc($int7 + 1), calc($int9 + $int10);
     }
-    if ($int10 >= 1) {
+    if ($int12 >= 1) {
         $int9 = calc($int9 + 5);
     }
 }
