@@ -1,23 +1,26 @@
 // 298
-[clientscript,bankside_reorder](component $component0, int $int1, int $int2, component $component3, component $component4, component $component5)
-def_int $int6 = inv_size(inv_93);
-if ($int1 < 0 | $int1 >= $int6) {
+[clientscript,bankside_reorder](component $component0, component $component1, int $int2, int $int3, component $component4, component $component5, component $component6)
+def_int $int7 = inv_size(inv_93);
+if ($int2 < 0 | $int2 >= $int7) {
     return;
 }
-if ($int2 < 0 | $int2 >= $int6) {
+if ($int3 < 0 | $int3 >= $int7) {
     return;
 }
-def_obj $obj7 = inv_getobj(inv_93, $int1);
-if ($obj7 = null) {
+if ($component0 ! $component1) {
     return;
 }
 def_obj $obj8 = inv_getobj(inv_93, $int2);
+if ($obj8 = null) {
+    return;
+}
+def_obj $obj9 = inv_getobj(inv_93, $int3);
+if (cc_find($component0, $int3) = ^true) {
+    ~bankside_drawitem($obj8, inv_getnum(inv_93, $int2), $component0, $component4, 0, $component5, $component6);
+}
 if (cc_find($component0, $int2) = ^true) {
-    ~bankside_drawitem($obj7, inv_getnum(inv_93, $int1), $component0, $component3, 0, $component4, $component5);
+    ~bankside_drawitem($obj9, inv_getnum(inv_93, $int3), $component0, $component4, 0, $component5, $component6);
 }
-if (cc_find($component0, $int1) = ^true) {
-    ~bankside_drawitem($obj8, inv_getnum(inv_93, $int2), $component0, $component3, 0, $component4, $component5);
-}
-if ($obj7 = obj_11941 | $obj7 = obj_22586 | $obj8 = obj_11941 | $obj8 = obj_22586) {
-    cc_deleteall($component3);
+if ($obj8 = obj_11941 | $obj8 = obj_22586 | $obj9 = obj_11941 | $obj9 = obj_22586) {
+    cc_deleteall($component4);
 }
