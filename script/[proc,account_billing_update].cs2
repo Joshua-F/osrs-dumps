@@ -1,0 +1,16 @@
+// 2503
+[proc,account_billing_update]
+def_component $component0 = interface_109:com_2;
+def_string $string0 = "Membership: <col=ff0000>None</col>";
+if (%varclient_103 = 1 & %varplayer_1780 > 0) {
+    if (%varplayer_1780 > 99999) {
+        $string0 = "Membership: 99999+ days left";
+    } else if (%varplayer_1780 = 1) {
+        $string0 = "Membership: <col=ff0000>1 day left</col>";
+    } else if (%varplayer_1780 <= 3) {
+        $string0 = "Membership: <col=ff0000><tostring(%varplayer_1780)> days left</col>";
+    } else {
+        $string0 = "Membership: <tostring(%varplayer_1780)> days left";
+    }
+}
+if_settext($string0, $component0);
