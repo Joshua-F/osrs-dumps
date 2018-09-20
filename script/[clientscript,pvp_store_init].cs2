@@ -4,7 +4,11 @@ cc_deleteall($com_2);
 cc_deleteall($com_3);
 def_int $int2 = 0;
 def_int $int3 = 0;
-def_obj $obj = enum(int, namedobj, enum_878, $int3);
+def_enum $enum = enum_878;
+if (~deadman_mode = 2) {
+    $enum = enum_1975;
+}
+def_obj $obj = enum(int, namedobj, $enum, $int3);
 while ($obj ! null) {
     cc_create($com_2, ^iftype_graphic, $int3);
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
@@ -26,7 +30,7 @@ while ($obj ! null) {
     cc_setgraphicshadow(0x333333);
     cc_setoutline(1);
     $int3 = calc($int3 + 1);
-    $obj = enum(int, namedobj, enum_878, $int3);
+    $obj = enum(int, namedobj, $enum, $int3);
 }
 if ($int2 > 0) {
     $int2 = calc($int2 + 32);
