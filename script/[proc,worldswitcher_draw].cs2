@@ -42,11 +42,15 @@ def_string $string0 = "";
 def_int $int23 = -1;
 def_int $int24 = 0;
 def_string $string1 = "";
+def_int $int25 = 16;
+if (~on_mobile = true) {
+    $int25 = 24;
+}
 $int21, $int22, $string0, $int23, $int24, $string1 = worldlist_start;
 while ($int21 > 0) {
     if (~script961($int21, $int22) = true) {
         $int20 = ~worldswitcher_entry_draw($component0, $int20, $int12, $component2, $int21, $int21, $int22, $string0, $int23, $int24, $int13, $int14, $int15, $int16, $int17, $int18, $int19, $component11);
-        $int12 = calc($int12 + 16);
+        $int12 = calc($int12 + $int25);
     }
     $int21, $int22, $string0, $int23, $int24, $string1 = worldlist_next;
 }
@@ -62,20 +66,20 @@ if (%varclient_69 < 0) {
 ~scrollbar_resize($component1, $component0, %varclient_69);
 cc_deleteall($component8);
 cc_deleteall($component9);
-def_int $int25 = calc(if_getwidth($component8) - ($int13 + $int14 + $int15 + $int16));
+def_int $int26 = calc(if_getwidth($component8) - ($int13 + $int14 + $int15 + $int16));
 if (%varplayerbit_4597 > 0) {
     if_sethide(true, $component10);
     $int21, $int22, $string0, $int23, $int24, $string1 = worldlist_specific(%varplayerbit_4597);
     if (~script961($int21, $int22) = false) {
         $int21, $string0, $int23, $int24 = 0, "Unavailable", -1, 0;
     }
-    ~worldswitcher_entry_draw($component8, 0, 0, $component8, -1, $int21, $int22, $string0, $int23, $int24, $int13, $int14, $int15, $int16, $int25, $int18, $int19, $component11);
+    ~worldswitcher_entry_draw($component8, 0, 0, $component8, -1, $int21, $int22, $string0, $int23, $int24, $int13, $int14, $int15, $int16, $int26, $int18, $int19, $component11);
     if (%varplayerbit_4598 > 0) {
         $int21, $int22, $string0, $int23, $int24, $string1 = worldlist_specific(%varplayerbit_4598);
         if (~script961($int21, $int22) = false) {
             $int21, $string0, $int23, $int24 = 0, "Unavailable", -1, 0;
         }
-        ~worldswitcher_entry_draw($component9, 0, 0, $component9, -1, $int21, $int22, $string0, $int23, $int24, $int13, $int14, $int15, $int16, $int25, $int18, $int19, $component11);
+        ~worldswitcher_entry_draw($component9, 0, 0, $component9, -1, $int21, $int22, $string0, $int23, $int24, $int13, $int14, $int15, $int16, $int26, $int18, $int19, $component11);
     } else {
         ~worldswitcher_wipe_favourite($component9);
     }
@@ -87,7 +91,7 @@ if (%varplayerbit_4597 > 0) {
         if (~script961($int21, $int22) = false) {
             $int21, $string0, $int23, $int24 = 0, "Unavailable", -1, 0;
         }
-        ~worldswitcher_entry_draw($component9, 0, 0, $component9, -1, $int21, $int22, $string0, $int23, $int24, $int13, $int14, $int15, $int16, $int25, $int18, $int19, $component11);
+        ~worldswitcher_entry_draw($component9, 0, 0, $component9, -1, $int21, $int22, $string0, $int23, $int24, $int13, $int14, $int15, $int16, $int26, $int18, $int19, $component11);
     } else {
         if_sethide(false, $component10);
         ~worldswitcher_wipe_favourite($component9);

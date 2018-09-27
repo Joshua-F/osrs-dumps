@@ -1,5 +1,6 @@
 // 172
 [proc,bank_depositbox_drawslot](component $component, obj $obj, int $int)
+def_string $string = "";
 if ($obj ! null) {
     cc_settrans(0);
     cc_setobject($obj, $int);
@@ -8,6 +9,10 @@ if ($obj ! null) {
     cc_setop(3, "Deposit-10");
     cc_setop(4, "Deposit-All");
     cc_setop(5, "Deposit-X");
+    $string = ~bankside_extraop($obj);
+    if (string_length($string) > 0) {
+        cc_setop(9, $string);
+    }
     cc_setop(10, "Examine");
     cc_setopbase("<col=ff9040><oc_name($obj)></col>");
     cc_setondragcomplete("bank_depositbox_drag(event_com, event_comsubid, event_comsubid2)");
