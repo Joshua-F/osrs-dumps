@@ -1,20 +1,11 @@
 // 113
 [proc,chat_onsetupchange]
 ~toplevel_chatbox_background;
-if (~on_mobile = true) {
-    if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top, interface_162:com_1);
-    if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_bottom, interface_162:com_30);
-    if_sethide(false, interface_162:com_32);
+~chatbox_mobile_rearrange;
+if (%varplayerbit_5983 = 1 & if_hassub(interface_162:com_561) = true) {
+    if_setsize(0, 0, ^setsize_minus, ^setsize_minus, interface_162:com_561);
 } else {
-    if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_bottom, interface_162:com_1);
-    if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top, interface_162:com_30);
-    if_sethide(true, interface_162:com_32);
-}
-~script2522;
-if (%varplayerbit_5983 = 1 & if_hassub(interface_162:com_554) = true) {
-    if_setsize(0, 0, ^setsize_minus, ^setsize_minus, interface_162:com_554);
-} else {
-    if_setsize(479, 96, ^setsize_abs, ^setsize_abs, interface_162:com_554);
+    if_setsize(479, 96, ^setsize_abs, ^setsize_abs, interface_162:com_561);
 }
 ~redraw_chat_buttons;
 def_int $int0 = ~script553;
