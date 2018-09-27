@@ -2,7 +2,7 @@
 [proc,toplevel_resize_customise](component $component0, enum $enum1)
 def_int $int2 = 0;
 def_int $int3 = 0;
-def_component $component4 = null;
+def_int $int4 = -1;
 if ($enum1 = enum_1131) {
     $int2, $int3 = calc(if_getwidth(interface_164:com_32) - 33), if_getheight(interface_164:com_32);
     if (calc(if_getwidth($component0) - if_getwidth(enum(component, component, $enum1, interface_161:com_29))) < 429) {
@@ -35,18 +35,7 @@ if ($enum1 = enum_1131) {
             if_settrans(0, interface_601:com_32);
         }
     }
-    $component4 = enum(component, component, $enum1, interface_161:com_29);
-    $int2 = if_getheight($component4);
-    if (if_hassub(interface_162:com_554) = true) {
-        $int3 = 165;
-    } else {
-        $int3 = calc(165 - 30);
-    }
-    if_setsize(519, $int3, ^setsize_abs, ^setsize_abs, $component4);
-    if ($int3 ! $int2) {
-        %varclient_7 = calc(%varclient_7 - ($int3 - $int2));
-    }
-    ~scrollbar_resize(interface_162:com_552, interface_162:com_51, %varclient_7);
+    ~mobile_chatbox_resize;
     if_sethide(~int_to_bool(%varplayerbit_6254), interface_601:com_21);
     ~script2526;
 }
