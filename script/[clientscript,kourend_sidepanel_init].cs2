@@ -1,24 +1,24 @@
 // 1186
-[clientscript,kourend_sidepanel_init](component $com_7, component $com_8, component $com_10, component $com_11, component $com_13, component $com_14, component $com_16, component $com_17, component $com_19, component $com_20, component $com_22, component $com_23, component $com_24, component $com_25)
-cc_deleteall($com_7);
-def_int $int14 = 0;
-def_int $int15 = 0;
-$int14, $int15 = ~kourend_sidepanel_build($com_7, $com_8, $com_10, 3, $int14, $int15);
-$int14, $int15 = ~kourend_sidepanel_build($com_7, $com_11, $com_13, 2, $int14, $int15);
-$int14, $int15 = ~kourend_sidepanel_build($com_7, $com_14, $com_16, 4, $int14, $int15);
-$int14, $int15 = ~kourend_sidepanel_build($com_7, $com_17, $com_19, 5, $int14, $int15);
-$int14, $int15 = ~kourend_sidepanel_build($com_7, $com_20, $com_22, 1, $int14, $int15);
+[clientscript,kourend_sidepanel_init](component $com_9, component $com_10, component $com_12, component $com_13, component $com_15, component $com_16, component $com_18, component $com_19, component $com_21, component $com_22, component $com_24, component $com_25, component $com_26, component $com_27, component $com_1, component $com_3, component $com_2)
+cc_deleteall($com_9);
+def_int $int17 = 0;
+def_int $int18 = 0;
+$int17, $int18 = ~kourend_sidepanel_build($com_9, $com_10, $com_12, 3, $int17, $int18);
+$int17, $int18 = ~kourend_sidepanel_build($com_9, $com_13, $com_15, 2, $int17, $int18);
+$int17, $int18 = ~kourend_sidepanel_build($com_9, $com_16, $com_18, 4, $int17, $int18);
+$int17, $int18 = ~kourend_sidepanel_build($com_9, $com_19, $com_21, 5, $int17, $int18);
+$int17, $int18 = ~kourend_sidepanel_build($com_9, $com_22, $com_24, 1, $int17, $int18);
 def_string $string = "View tasks";
-if_setop(1, $string, $com_23);
-if_setsize(calc(parawidth($string, 190, p12_full) + 10), if_getheight($com_23), ^setsize_abs, ^setsize_abs, $com_23);
-~kourend_sidepanel_tasks_default($com_23, $string);
+if_setop(1, $string, $com_25);
+if_setsize(calc(parawidth($string, 190, p12_full) + 10), if_getheight($com_25), ^setsize_abs, ^setsize_abs, $com_25);
+~kourend_sidepanel_tasks_default($com_25, $string);
 $string = "Favour Overlay";
-if_setopbase("<col=ff9040><$string></col>", $com_24);
-if_setsize(calc(parawidth($string, 190, p12_full) + 20), if_getheight($com_24), ^setsize_abs, ^setsize_abs, $com_24);
-cc_create($com_24, ^iftype_graphic, 0);
+if_setopbase("<col=ff9040><$string></col>", $com_26);
+if_setsize(calc(parawidth($string, 190, p12_full) + 20), if_getheight($com_26), ^setsize_abs, ^setsize_abs, $com_26);
+cc_create($com_26, ^iftype_graphic, 0);
 cc_setsize(17, 17, ^setsize_abs, ^setsize_abs);
 cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_centre);
-.cc_create($com_24, ^iftype_text, 1);
+.cc_create($com_26, ^iftype_text, 1);
 .cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
 .cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
 .cc_setcolour(0xff981f);
@@ -26,9 +26,14 @@ cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_centre);
 .cc_settextshadow(true);
 .cc_settextalign(^settextalign_right, ^settextalign_centre, 0);
 .cc_settext($string);
-.cc_setonmouseleave("deltooltip($com_25)");
-if_setonmouseover("cc_colour_swapper(event_com, .cc_getid, ^white)", $com_24);
-if_setonmouseleave("cc_colour_swapper(event_com, .cc_getid, 0xff981f)", $com_24);
-~kourend_sidepanel_hudtoggle($com_24, $com_25);
-if_setonvartransmit("kourend_sidepanel_hudtoggle($com_24, cc_getid, .cc_getid, $com_25){varplayer_1055}", $com_24);
-if_setonop("kourend_sidepanel_hudop(event_op, $com_24, cc_getid, .cc_getid, $com_25)", $com_24);
+.cc_setonmouseleave("deltooltip($com_27)");
+if_setonmouseover("cc_colour_swapper(event_com, .cc_getid, ^white)", $com_26);
+if_setonmouseleave("cc_colour_swapper(event_com, .cc_getid, 0xff981f)", $com_26);
+~kourend_sidepanel_hudtoggle($com_26, $com_27);
+if_setonvartransmit("kourend_sidepanel_hudtoggle($com_26, cc_getid, .cc_getid, $com_27){varplayer_1055}", $com_26);
+if_setonop("kourend_sidepanel_hudop(event_op, $com_26, cc_getid, .cc_getid, $com_27)", $com_26);
+if (~on_mobile = true) {
+    if_sethide(true, $com_3);
+    if_setsize(0, if_getheight($com_1), ^setsize_minus, ^setsize_abs, $com_1);
+    if_sethide(false, $com_2);
+}

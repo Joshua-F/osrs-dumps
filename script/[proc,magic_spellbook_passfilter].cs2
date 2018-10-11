@@ -1,0 +1,27 @@
+// 2619
+[proc,magic_spellbook_passfilter](obj $obj)(boolean)
+if (~on_mobile = false) {
+    return(true);
+}
+def_int $int = oc_param($obj, param_605);
+if ($int = 0) {
+    if (%varplayerbit_6605 = 1) {
+        return(false);
+    }
+} else if ($int = 1) {
+    if (%varplayerbit_6606 = 1) {
+        return(false);
+    }
+} else if ($int = 2 & %varplayerbit_6609 = 1) {
+    return(false);
+}
+if (%varplayerbit_6607 = 1) {
+    $int = oc_param($obj, param_604);
+    if (stat_base(magic) < $int & stat(magic) < $int) {
+        return(false);
+    }
+}
+if (%varplayerbit_6608 = 1 & ~magic_spellbook_hasrunes($obj) = false) {
+    return(false);
+}
+return(true);
