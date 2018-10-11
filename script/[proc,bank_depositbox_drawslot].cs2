@@ -4,11 +4,28 @@ def_string $string0 = "";
 if ($obj1 ! null) {
     cc_settrans(0);
     cc_setobject($obj1, $int2);
-    cc_setop(1, "Deposit-1");
-    cc_setop(2, "Deposit-5");
-    cc_setop(3, "Deposit-10");
-    cc_setop(4, "Deposit-All");
-    cc_setop(5, "Deposit-X");
+    cc_setop(1, ~depositbox_mobile_item_optext);
+    if (~on_mobile = true & %varplayerbit_4430 = 0) {
+        cc_setop(2, "");
+    } else {
+        cc_setop(2, "Deposit-1");
+    }
+    if (~on_mobile = true & %varplayerbit_4430 = 1) {
+        cc_setop(3, "");
+    } else {
+        cc_setop(3, "Deposit-5");
+    }
+    if (~on_mobile = true & %varplayerbit_4430 = 2) {
+        cc_setop(4, "");
+    } else {
+        cc_setop(4, "Deposit-10");
+    }
+    if (~on_mobile = true & %varplayerbit_4430 = 4) {
+        cc_setop(5, "");
+    } else {
+        cc_setop(5, "Deposit-All");
+    }
+    cc_setop(6, "Deposit-X");
     $string0 = ~bankside_extraop($obj1);
     if (string_length($string0) > 0) {
         cc_setop(9, $string0);
