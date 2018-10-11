@@ -1,0 +1,43 @@
+// 6
+[clientscript,wom_tab_init](component $com_0, component $com_27, component $com_28)
+def_int $int3 = 0;
+def_component $component4 = null;
+def_component $component5 = null;
+def_string $string = "";
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_int $int8 = 0;
+def_int $int9 = enum_getoutputcount(enum_2070);
+while ($int3 <= $int9) {
+    $component4 = ~wom_get_tab($int3);
+    $component5 = ~wom_get_text($int3);
+    $string = enum(int, string, enum_2071, $int3);
+    if (map_members = false & compare($string, "Free") ! 0) {
+        $string = "";
+    }
+    if ($component4 = null) {
+        return;
+    }
+    if ($component5 = null) {
+        if_sethide(true, $component4);
+    }
+    if (compare($string, "") = 0) {
+        if_sethide(true, $component4);
+    } else {
+        $int7 = ~max(40, calc(40 + parawidth($string, 400, p11_full)));
+        if_setonmouseover("text_colour_swapper($component5, 16777215)", $component4);
+        if_setonmouseleave("text_colour_swapper($component5, 16750623)", $component4);
+        if_setonop("wom_tab_highlight_onclick($int3, $com_27, $com_28)", $component4);
+        if_setonvartransmit("wom_tab_highlight($com_27, $com_28){varplayer_279}", $com_0);
+        if_setoninvtransmit("wom_item_update($com_27, $com_28){inv_93, inv_94, inv_95}", $com_27);
+        if_sethide(false, $component4);
+        if_setsize($int7, 0, ^setsize_abs, ^setsize_minus, $component4);
+        if_settext($string, $component5);
+        if_setposition($int6, 0, ^setpos_abs_left, ^setpos_abs_centre, $component4);
+        $int6 = calc($int6 + $int7);
+    }
+    $int3 = calc($int3 + 1);
+}
+~wom_build_item_list($com_27, $com_28);
+~scrollbar_vertical($com_28, $com_27, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+if_setscrollpos(0, 0, $com_27);
