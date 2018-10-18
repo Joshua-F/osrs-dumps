@@ -1,12 +1,14 @@
 // 1678
-[proc,displayname_bondsbutton_init](component $component0)
+[proc,displayname_bondsbutton_init](component $component0, component $component1)
 if (clienttype = ^clienttype_ios) {
     if_sethide(true, $component0);
+    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_bottom, $component1);
     return;
 }
 if_sethide(false, $component0);
+if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_bottom, $component1);
 ~displayname_bondsbutton_draw($component0, false);
 if_setonmouserepeat("displayname_bondsbutton_draw(event_com, true)", $component0);
 if_setonmouseleave("displayname_bondsbutton_draw(event_com, false)", $component0);
-if_setonop("displayname_bondsbutton_op(event_op, event_com)", $component0);
+if_setonop("displayname_bondsbutton_op(event_op, event_com, $component1)", $component0);
 if_setontimer(null, $component0);
