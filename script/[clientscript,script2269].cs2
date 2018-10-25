@@ -1,0 +1,16 @@
+// 2269
+[clientscript,script2269](component $component0, int $int1, int $int2)
+def_int $int3 = 0;
+if (cc_find($component0, $int1) = ^true) {
+    $int3 = calc(clientclock - $int2);
+    if ($int3 <= 20) {
+        return;
+    }
+    if ($int3 < 50) {
+        $int3 = calc($int3 - 20);
+        cc_setmodelangle(0, calc($int3 * 10), 81, 2000, 0, calc(200 + 100 * $int3));
+        return;
+    }
+    cc_setontimer(null);
+    cc_deleteall($component0);
+}
