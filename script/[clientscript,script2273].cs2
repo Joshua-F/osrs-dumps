@@ -1,0 +1,63 @@
+// 2273
+[clientscript,script2273](int $int0, model $model1, int $int2, int $int3, int $int4, int $int5, int $int6, seq $seq7, string $string0, string $string1)
+cc_deleteall(interface_17:com1);
+if ($int0 = 1) {
+    ~steelborder(interface_17:com1, "The Tale of Derek, by Eric", 0);
+} else {
+    ~steelborder(interface_17:com1, "The Tale of Derek, by Eric", 1);
+}
+cc_deleteall(interface_17:com5);
+def_int $int8 = 0;
+def_int $int9 = 0;
+if (string_length($string1) > 0) {
+    $int9 = 1;
+    while ($int8 < 4) {
+        cc_create(interface_17:com5, ^iftype_rectangle, $int8);
+        $int8 = calc($int8 + 1);
+        cc_sethide(true);
+    }
+}
+def_int $int10 = if_getwidth(interface_17:com5);
+def_int $int11 = 0;
+def_int $int12 = calc(paraheight($string0, $int10, p12_full) * 15 + 5);
+cc_create(interface_17:com5, ^iftype_text, $int8);
+$int8 = calc($int8 + 1);
+cc_setsize(0, $int12, ^setsize_minus, ^setsize_abs);
+cc_setposition(0, $int11, ^setpos_abs_centre, ^setpos_abs_top);
+cc_setcolour(^black);
+cc_settextfont(p12_full);
+cc_settextalign(^settextalign_left, ^settextalign_top, 15);
+cc_settextshadow(false);
+cc_settext($string0);
+$int11 = calc($int11 + $int12);
+def_string $string2 = "";
+if ($int9 = 1) {
+    $int11 = calc($int11 + 10);
+    $string2, $string1 = ~script632($string1);
+    $int8, $int12 = ~script2360(0, $string2, $int8, $int10, $int11);
+    $int11 = calc($int11 + $int12 + 5);
+    $string2, $string1 = ~script632($string1);
+    $int8, $int12 = ~script2360(1, $string2, $int8, $int10, $int11);
+    $int11 = calc($int11 + $int12 + 5);
+    $string2, $string1 = ~script632($string1);
+    $int8, $int12 = ~script2360(2, $string2, $int8, $int10, $int11);
+    $int11 = calc($int11 + $int12 + 5);
+    $int8, $int12 = ~script2360(3, $string1, $int8, $int10, $int11);
+    $int11 = calc($int11 + $int12);
+}
+~scrollbar_vertical(interface_17:com6, interface_17:com5, "scrollbar_parchment_dragger_v2,3", "scrollbar_parchment_dragger_v2,0", "scrollbar_parchment_dragger_v2,1", "scrollbar_parchment_dragger_v2,2", "scrollbar_parchment_v2,0", "scrollbar_parchment_v2,1");
+if ($int11 > if_getheight(interface_17:com5)) {
+    if_setscrollsize(0, $int11, interface_17:com5);
+    if_setscrollpos(0, calc($int11 - if_getheight(interface_17:com5)), interface_17:com5);
+} else {
+    if_setscrollpos(0, 0, interface_17:com5);
+    if_setscrollsize(0, 0, interface_17:com5);
+}
+~scrollbar_vertical_rebuild(interface_17:com6, interface_17:com5);
+cc_deleteall(interface_17:com7);
+cc_create(interface_17:com7, ^iftype_model, 0);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_setmodel($model1);
+cc_setmodelangle($int2, $int3, $int4, $int5, 0, $int6);
+cc_setmodelanim($seq7);
