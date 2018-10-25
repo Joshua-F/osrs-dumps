@@ -1,0 +1,16 @@
+// 2272
+[clientscript,script2272](component $component0, int $int1, int $int2)
+def_int $int3 = 0;
+if (cc_find($component0, $int1) = ^true) {
+    $int3 = calc(clientclock - $int2);
+    if ($int3 <= 30) {
+        cc_setmodelangle(0, 0, 60, 0, 0, calc(3400 - 100 * $int3));
+    } else if ($int3 <= 60) {
+        return;
+    } else if ($int3 < 90) {
+        cc_setmodelangle(0, 0, 60, 0, 0, calc(400 + 100 * ($int3 - 60)));
+    } else {
+        cc_setontimer(null);
+        cc_sethide(true);
+    }
+}
