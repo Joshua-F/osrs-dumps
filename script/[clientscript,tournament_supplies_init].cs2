@@ -1,19 +1,18 @@
 // 962
-[clientscript,tournament_supplies_init](component $com_0, component $com_3, component $com_4, component $com_5)
-cc_deleteall($com_3);
+[clientscript,tournament_supplies_init](component $com_0, component $com_2, component $com_3, component $com_4, component $com_5, component $com_6, component $com_7, component $com_9)
 cc_deleteall($com_4);
-def_int $int4 = calc((if_getwidth($com_3) - 10 * 36) / (10 - 1));
-def_int $int5 = calc(32 + 10);
-def_int $int6 = 0;
-def_enum $enum7 = enum_1124;
+cc_deleteall($com_5);
+def_int $int8 = calc((if_getwidth($com_4) - 10 * 36) / (10 - 1));
+def_int $int9 = calc(32 + 10);
+def_int $int10 = 0;
+def_enum $enum = enum_1124;
 if (~wildwars_world = true) {
-    $enum7 = enum_1735;
+    $enum = enum_1735;
 }
-def_enum $enum8 = enum_1906;
 def_boolean $boolean = ~tournament_beta_world;
-def_obj $obj = enum(int, namedobj, $enum7, $int6);
+def_obj $obj = enum(int, namedobj, $enum, $int10);
 while ($obj ! null) {
-    cc_create($com_3, ^iftype_graphic, $int6);
+    cc_create($com_4, ^iftype_graphic, $int10);
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
     cc_setobject_nonum($obj, 10000);
     cc_setgraphicshadow(0x333333);
@@ -28,15 +27,15 @@ while ($obj ! null) {
     cc_setopbase("<col=ff9040><oc_name($obj)></col>");
     cc_setonop("cc_settrans_temporarily(event_com, event_comsubid, 100, 0)");
     cc_sethide(true);
-    $int6 = calc($int6 + 1);
-    $obj = enum(int, namedobj, $enum7, $int6);
+    $int10 = calc($int10 + 1);
+    $obj = enum(int, namedobj, $enum, $int10);
 }
-def_int $int11 = 0;
+def_int $int14 = 0;
 if ($boolean = true) {
-    $int11 = 0;
-    $obj = enum(int, namedobj, $enum8, $int11);
+    $int14 = 0;
+    $obj = enum(int, namedobj, enum_1906, $int14);
     while ($obj ! null) {
-        cc_create($com_3, ^iftype_graphic, $int6);
+        cc_create($com_4, ^iftype_graphic, $int10);
         cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
         cc_setobject_nonum($obj, 10000);
         cc_setgraphicshadow(0x333333);
@@ -51,12 +50,12 @@ if ($boolean = true) {
         cc_setopbase("<col=ff9040><oc_name($obj)></col>");
         cc_setonop("cc_settrans_temporarily(event_com, event_comsubid, 100, 0)");
         cc_sethide(true);
-        $int11 = calc($int11 + 1);
-        $int6 = calc($int6 + 1);
-        $obj = enum(int, namedobj, $enum8, $int11);
+        $int14 = calc($int14 + 1);
+        $int10 = calc($int10 + 1);
+        $obj = enum(int, namedobj, enum_1906, $int14);
     }
 }
-cc_create($com_3, ^iftype_text, $int6);
+cc_create($com_4, ^iftype_text, $int10);
 cc_setsize(0, 50, ^setsize_minus, ^setsize_abs);
 cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top);
 cc_setcolour(0xff981f);
@@ -65,8 +64,11 @@ cc_settextfont(p12_full);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
 cc_settext("No matching items found.");
 cc_sethide(true);
-~scrollbar_vertical($com_4, $com_3, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~scrollbar_vertical($com_5, $com_4, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
 if (~bankmain_searching = true) {
     ~meslayer_close(1, 1);
 }
-~tournament_supplies_search_off($com_3, $com_4, $com_5, $int4, $int5);
+~tournament_supplies_search_off($com_4, $com_5, $com_6, $int8, $int9);
+~tournament_supplies_switchlayer($com_3, $com_2, $com_3, "Items", $com_7, "Load-outs", $com_4, $com_5, $com_6, $int8, $int9);
+~tournament_supplies_previewarea($com_9);
+if_setoninvtransmit("tournament_supplies_previewarea($com_9){inv_207}", $com_9);
