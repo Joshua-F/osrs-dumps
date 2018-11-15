@@ -1,10 +1,17 @@
 // 396
 [clientscript,stats_skilltotal](component $com_27, component $com_28)
-if_settext("Total level:<br><tostring(~stat_totallevel)>", $com_27);
+def_int $int = ~stat_totallevel;
+if_settext("Total level:<br><tostring($int)>", $com_27);
 if_clearops($com_27);
 def_string $string0 = "";
 def_string $string1 = "";
-$string0, $string1 = ~script2685;
+if (map_members = true | %varclient_103 = 1) {
+    $string0 = "Total XP:";
+    $string1 = ~stats_tostring_totalxp(~stats_totalxp);
+} else {
+    $string0 = "Total XP:|Free Total Level:";
+    $string1 = "<~stats_tostring_totalxp(~stats_totalxp)>|<tostring(~stat_f2plevel)>";
+}
 if (~on_mobile = true) {
     if_setop(1, "Toggle Total XP", $com_27);
     if_setonop("stats_op(event_op, event_com, -1, $com_28, $string0, $string1, p12_full)", $com_27);
