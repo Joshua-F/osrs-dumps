@@ -1,0 +1,13 @@
+// 2714
+[clientscript,1v1arena_hud_button](int $int0, component $component, int $int2)
+if ($int0 ! 1) {
+    return;
+}
+sound_synth(synth_2266, 1, 0);
+if (cc_find($component, $int2) = true) {
+    cc_setcolour(^red);
+    if_setonmouserepeat(null, $component);
+    if_setonmouseleave(null, $component);
+    if_setonop(null, $component);
+    if_setontimer("1v1arena_hud_resetbutton($component, $int2, calc(clientclock + 20))", $component);
+}
