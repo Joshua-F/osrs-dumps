@@ -1,0 +1,12 @@
+// 2712
+[clientscript,1v1arena_clear_resetbutton](component $component, int $int1, int $int2, int $int3)
+if (clientclock < $int3) {
+    return;
+}
+if (cc_find($component, $int2) = true) {
+    cc_setcolour(0xff981f);
+    if_setonmouserepeat("cc_colour_swapper(event_com, cc_getid, ^white)", $component);
+    if_setonmouseleave("cc_colour_swapper(event_com, cc_getid, 0xff981f)", $component);
+    if_setonop("1v1arena_clear_opbutton($component, $int1, cc_getid)", $component);
+}
+if_setontimer(null, $component);

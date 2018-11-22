@@ -1,20 +1,43 @@
 // 2503
 [proc,account_billing_update]
 def_component $com_2 = interface_109:com_2;
-def_string $string = "Membership: <col=ff0000>None</col>";
+def_component $com_3 = interface_109:com_3;
+def_component $com_7 = interface_109:com_7;
+def_component $com_5 = interface_109:com_5;
+def_component $com_6 = interface_109:com_6;
+def_component $com_12 = interface_109:com_12;
+def_component $com_10 = interface_109:com_10;
+def_component $com_11 = interface_109:com_11;
+def_string $string0 = "Membership: <col=ff0000>None</col>";
+def_string $string1 = "Upgrade Now";
+def_graphic $graphic8 = "acc_man_icons,6";
+def_string $string2 = "Bond Pouch";
+def_graphic $graphic9 = "acc_man_icons,1";
 if (%varclient_103 = 1 & %varplayer_1780 > 0) {
     if (%varplayer_1780 > 99999) {
-        $string = "Membership: 99999+ days left";
+        $string0 = "Membership: 99999+ days left";
     } else if (%varplayer_1780 = 1) {
         if (%varclient_226 = 0) {
-            $string = "Membership: <col=ff0000>1 day left</col>";
+            $string0 = "Membership: <col=ff0000>1 day left</col>";
         } else {
-            $string = "Membership: 1 day left";
+            $string0 = "Membership: 1 day left";
         }
     } else if (%varplayer_1780 <= 3 & %varclient_226 = 0) {
-        $string = "Membership: <col=ff0000><tostring(%varplayer_1780)> days left</col>";
+        $string0 = "Membership: <col=ff0000><tostring(%varplayer_1780)> days left</col>";
     } else {
-        $string = "Membership: <tostring(%varplayer_1780)> days left";
+        $string0 = "Membership: <tostring(%varplayer_1780)> days left";
     }
+    $string1 = "Open Store";
+    $graphic8 = "acc_man_icons,0";
+} else if (%varplayerbit_6713 = 0) {
+    $string2 = "View Benefits";
+    $graphic9 = "acc_man_icons,5";
 }
-if_settext($string, $com_2);
+if_settext($string2, $com_12);
+if_setgraphic($graphic9, $com_10);
+if_setgraphic($graphic9, $com_11);
+if_settext($string0, $com_2);
+if_setop(1, $string1, $com_3);
+if_settext($string1, $com_7);
+if_setgraphic($graphic8, $com_5);
+if_setgraphic($graphic8, $com_6);

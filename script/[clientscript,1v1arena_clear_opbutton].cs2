@@ -1,0 +1,11 @@
+// 2711
+[clientscript,1v1arena_clear_opbutton](component $component, int $int1, int $int2)
+if (.cc_find($component, $int1) = true & cc_find($component, $int2) = true) {
+    sound_synth(synth_2266, 1, 0);
+    cc_setcolour(^red);
+    if_setonmouserepeat(null, $component);
+    if_setonmouseleave(null, $component);
+    if_setonop(null, $component);
+    if_setontimer("1v1arena_clear_resetbutton($component, .cc_getid, cc_getid, calc(clientclock + 20))", $component);
+    .cc_resume_pausebutton;
+}

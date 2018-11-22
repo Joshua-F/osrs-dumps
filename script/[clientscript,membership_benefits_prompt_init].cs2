@@ -1,9 +1,13 @@
 // 2566
 [clientscript,membership_benefits_prompt_init](component $com_9, component $com_6, component $com_7, component $com_8)
+def_string $string = "Upgrade Now";
+if (map_members = true | %varclient_103 = 1) {
+    $string = "Open Store";
+}
 ~membership_benefits_prompt_button_init($com_9, "World Switcher");
 ~membership_benefits_prompt_button_init($com_6, "Learn More");
-~membership_benefits_prompt_button_init($com_8, "Open Store");
-if (~on_mobile = true & clienttype = ^clienttype_ios & %varplayerbit_6704 = 0) {
+~membership_benefits_prompt_button_init($com_8, $string);
+if (~on_mobile = true & clienttype = ^clienttype_ios & %varplayerbit_6713 = 0) {
     ~membership_benefits_prompt_hide_bonds;
 } else {
     ~membership_benefits_prompt_button_init($com_7, "Bond Pouch");
