@@ -1,17 +1,13 @@
 // 2262
 [clientscript,magic_spellbook_init](component $com_0, component $com_1, component $com_3, component $com_178, component $com_2, component $com_180, component $com_183, component $com_184, component $com_185, component $com_186, component $com_187)
-def_int $int11 = 190;
-def_int $int12 = 261;
+def_int $int11 = if_getwidth($com_1);
+def_int $int12 = if_getheight($com_1);
 cc_deleteall($com_184);
 def_string $string0 = "Info";
 def_string $string1 = "Filters";
 def_int $int13 = 0;
 def_boolean $boolean = ~on_mobile;
 if ($boolean = true) {
-    if_setsize(6, 240, ^setsize_minus, ^setsize_abs, $com_1);
-    $int11, $int12 = calc(190 - 6), 240;
-    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top, $com_1);
-    if_sethide(false, $com_184);
     $int13 = calc(~max(parawidth($string0, 190, p11_full), parawidth($string1, 190, p11_full)) + 14);
     if_setsize($int13, 0, ^setsize_abs, ^setsize_minus, $com_185);
     if_setsize($int13, 0, ^setsize_abs, ^setsize_minus, $com_186);
@@ -29,21 +25,16 @@ if ($boolean = true) {
         cc_setfill(true);
         $int13 = calc($int13 + 1);
     }
-    ~script2603(null, $com_185, $com_186, $com_3, $com_178, $com_2, $com_180, $com_183, $com_187, $string0, $string1);
 } else {
-    if_setsize(0, 0, ^setsize_minus, ^setsize_minus, $com_1);
-    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, $com_1);
-    if_sethide(true, $com_184);
-    if_sethide(false, $com_3);
-    if_sethide(true, $com_180);
-    if_sethide(true, $com_178);
-    if_sethide(true, $com_2);
+    if_setsize(calc(parawidth($string1, 190, p11_full) + 14), 0, ^setsize_abs, ^setsize_minus, $com_186);
+    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, $com_186);
 }
+~script2603(null, $boolean, $com_185, $com_186, $com_3, $com_178, $com_2, $com_180, $com_183, $com_187, $string0, $string1);
 ~magic_spellbook_initialisespells(enum_1982, $com_187, $boolean, $int12);
 ~magic_spellbook_initialisespells(enum_1983, $com_187, $boolean, $int12);
 ~magic_spellbook_initialisespells(enum_1984, $com_187, $boolean, $int12);
 ~magic_spellbook_initialisespells(enum_1985, $com_187, $boolean, $int12);
-~magic_spellbook_redraw($com_3, $com_178, $com_187, $int11, $int12);
-if_setonvartransmit("magic_spellbook_redraw($com_3, $com_178, $com_187, $int11, $int12){varplayer_638, varplayer_375, varplayer_1139, varplayer_1140, varplayer_1141, varplayer_439, varplayer_318, varplayer_635, varplayer_1377, varplayer_1339, varplayer_1429, varplayer_1632, varplayer_1047}", $com_0);
-if_setoninvtransmit("magic_spellbook_redraw($com_3, $com_178, $com_187, $int11, $int12){inv_93}", $com_0);
-if_setonstattransmit("magic_spellbook_redraw($com_3, $com_178, $com_187, $int11, $int12){magic}", $com_0);
+~magic_spellbook_redraw($com_3, $com_178, $com_187, $int11, $int12, $boolean);
+if_setonvartransmit("magic_spellbook_redraw($com_3, $com_178, $com_187, $int11, $int12, $boolean){varplayer_638, varplayer_375, varplayer_1139, varplayer_1140, varplayer_1141, varplayer_439, varplayer_318, varplayer_635, varplayer_1377, varplayer_1339, varplayer_1429, varplayer_1632, varplayer_1047}", $com_0);
+if_setoninvtransmit("magic_spellbook_redraw($com_3, $com_178, $com_187, $int11, $int12, $boolean){inv_93}", $com_0);
+if_setonstattransmit("magic_spellbook_redraw($com_3, $com_178, $com_187, $int11, $int12, $boolean){magic}", $com_0);
