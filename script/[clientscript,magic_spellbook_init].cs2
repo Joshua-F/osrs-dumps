@@ -3,7 +3,21 @@
 cc_deleteall($com_184);
 def_string $string0 = "Info";
 def_string $string1 = "Filters";
+def_int $int = 0;
 def_boolean $boolean = ~on_mobile;
+if ($boolean = true) {
+    cc_deleteall($com_2);
+    $int = 0;
+    while ($int < 4) {
+        cc_create($com_2, ^iftype_rectangle, $int);
+        cc_sethide(false);
+        cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+        cc_setsize(calc($int * 2), calc($int * 2), ^setsize_minus, ^setsize_minus);
+        cc_setcolour(^white);
+        cc_setfill(true);
+        $int = calc($int + 1);
+    }
+}
 ~script2603(null, $boolean, $com_185, $com_186, $com_3, $com_178, $com_2, $com_180, $com_183, $com_187, $string0, $string1);
 ~magic_spellbook_initialisespells(enum_1982, $com_187, $boolean);
 ~magic_spellbook_initialisespells(enum_1983, $com_187, $boolean);
