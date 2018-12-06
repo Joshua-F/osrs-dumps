@@ -1,5 +1,5 @@
 // 494
-[clientscript,pvp_icons_killdeathratio](component $com_7, int $int1)
+[clientscript,pvp_icons_killdeathratio](component $com_10, int $int1)
 if ($int1 = 0 & calc(clientclock % 50) ! 0) {
     return;
 }
@@ -7,15 +7,15 @@ if (~deadman_world = true & %varplayerbit_4965 > 0) {
     return;
 }
 if (%varplayerbit_4143 = 0 | ~deadman_world = false & ~wilderness_level <= 0) {
-    if_sethide(true, $com_7);
+    if_sethide(true, $com_10);
     return;
 }
-if_sethide(false, $com_7);
+if_sethide(false, $com_10);
 if (%varplayer_1102 = 0) {
-    if_settext("Kills: <tostring(%varplayer_1103)><br>Deaths: 0<br>K/D Ratio: 0", $com_7);
+    if_settext("Kills: <tostring(%varplayer_1103)><br>Deaths: 0<br>K/D Ratio: 0", $com_10);
     return;
 }
 def_int $int2 = calc(%varplayer_1103 * 10 / %varplayer_1102);
 def_int $int3 = calc($int2 / 10);
 def_int $int4 = calc($int2 % 10);
-if_settext("Kills: <tostring(%varplayer_1103)><br>Deaths: <tostring(%varplayer_1102)><br>K/D Ratio: <tostring($int3)>.<tostring($int4)>", $com_7);
+if_settext("Kills: <tostring(%varplayer_1103)><br>Deaths: <tostring(%varplayer_1102)><br>K/D Ratio: <tostring($int3)>.<tostring($int4)>", $com_10);
