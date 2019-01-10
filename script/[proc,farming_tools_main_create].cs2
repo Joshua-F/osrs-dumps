@@ -1,23 +1,5 @@
 // 1057
 [proc,farming_tools_main_create](component $component0, obj $obj1, string $string0, int $int2)
-cc_deleteall($component0);
-cc_create($component0, ^iftype_text, 0);
-cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top);
-cc_setsize(0, 20, ^setsize_minus, ^setsize_abs);
-cc_settextfont(p12_full);
-cc_settextshadow(true);
-cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
-cc_create($component0, ^iftype_text, 1);
-cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_bottom);
-cc_setsize(0, 20, ^setsize_minus, ^setsize_minus);
-cc_settextfont(p11_full);
-cc_settextshadow(true);
-cc_settextalign(^settextalign_left, ^settextalign_top, 0);
-cc_create($component0, ^iftype_graphic, 2);
-cc_setposition(55, 20, ^setpos_abs_left, ^setpos_abs_top);
-cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
-cc_setgraphicshadow(0x333333);
-cc_setoutline(1);
-if_setonop("cc_settrans_temporarily(event_com, cc_getid, 125, 0)", $component0);
-~farming_tools_main_update($component0, $obj1, $string0, $int2);
-if_setonvartransmit("farming_tools_main_update($component0, $obj1, $string0, $int2){varplayer_615, varplayer_439, varplayer_967}", $component0);
+if_setonmouserepeat("farming_tools_main_recreate($component0, $obj1, $string0, $int2, true)", $component0);
+if_setonmouseleave("farming_tools_main_recreate($component0, $obj1, $string0, $int2, false)", $component0);
+~farming_tools_main_recreate($component0, $obj1, $string0, $int2, false);
