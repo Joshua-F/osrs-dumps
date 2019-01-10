@@ -1,0 +1,15 @@
+// 2737
+[clientscript,lovaquest_power_grid_init](component $com_0, component $com_2)
+cc_deleteall($com_2);
+def_int $int = 0;
+while ($int < 36) {
+    cc_create($com_2, ^iftype_model, $int);
+    cc_setposition(calc(50 * ($int % 6)), calc(50 * ($int / 6)), ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(50, 50, ^setsize_abs, ^setsize_abs);
+    cc_setop(1, "Rotate-right");
+    cc_setop(2, "Rotate-left");
+    cc_setonop("lovaquest_power_grid_rotate(event_op, event_com, event_comsubid)");
+    $int = calc($int + 1);
+}
+~lovaquest_power_grid_redraw($com_2);
+if_setonvartransmit("lovaquest_power_grid_redraw($com_2){varplayer_2067, varplayer_2068, varplayer_2069}", $com_0);
