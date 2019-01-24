@@ -1,36 +1,35 @@
 // 747
-[clientscript,worldswitcher_init](component $com_0, component $com_2, component $com_4, component $com_8, component $com_16, component $com_15, component $com_10, component $com_11, component $com_12, component $com_13, component $com_14, component $com_17, component $com_19, component $com_20, component $com_18, component $com_22)
+[clientscript,worldswitcher_init](component $com_0, component $com_2, component $com_4, component $com_15, component $com_18, component $com_17, component $com_16, component $com_9, component $com_10, component $com_11, component $com_12, component $com_13, component $com_14, component $com_19, component $com_21, component $com_22, component $com_20, component $com_24)
+def_int $int18 = 16;
+def_int $int19 = 11;
 if (~on_mobile = true) {
     if_setsize(0, 190, ^setsize_minus, ^setsize_abs, $com_4);
-    if_setsize(0, 48, ^setsize_minus, ^setsize_abs, $com_17);
+    if_setsize(0, 48, ^setsize_minus, ^setsize_abs, $com_19);
+    $int18, $int19 = 24, 21;
 } else {
     if_setsize(0, 206, ^setsize_minus, ^setsize_abs, $com_4);
-    if_setsize(0, 32, ^setsize_minus, ^setsize_abs, $com_17);
+    if_setsize(0, 32, ^setsize_minus, ^setsize_abs, $com_19);
 }
-if_settext(~text_device("Right-click on worlds to<br>set them as Favourites.", "<"Long press"> on worlds to<br>set them as Favourites."), $com_18);
+if_settext(~text_device("Right-click on worlds to<br>set them as Favourites.", "<"Long press"> on worlds to<br>set them as Favourites."), $com_20);
 if_settext("Loading...", $com_2);
-if_setscrollpos(0, 0, $com_8);
-if_sethide(true, $com_8);
-cc_deleteall($com_16);
-~scrollbar_vertical($com_16, $com_8, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+if_setscrollpos(0, 0, $com_15);
+if_sethide(true, $com_15);
+cc_deleteall($com_18);
+~scrollbar_vertical($com_18, $com_15, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
 if_sethide(true, $com_10);
 if_sethide(true, $com_11);
 if_sethide(true, $com_12);
 if_sethide(true, $com_13);
 if_sethide(true, $com_14);
-cc_deleteall($com_15);
-def_int $int16 = 0;
-def_int $int17 = 16;
-if (~on_mobile = true) {
-    $int17 = 24;
-}
-while ($int16 <= 600) {
-    cc_create($com_15, ^iftype_graphic, $int16);
-    cc_setsize(0, $int17, ^setsize_minus, ^setsize_abs);
+cc_deleteall($com_16);
+def_int $int20 = 0;
+while ($int20 <= 600) {
+    cc_create($com_16, ^iftype_graphic, $int20);
+    cc_setsize(0, $int18, ^setsize_minus, ^setsize_abs);
     cc_setop(1, "Switch");
     cc_setop(2, "Favourite");
-    cc_setopbase("<col=ff9040><tostring($int16)></col>");
+    cc_setopbase("<col=ff9040><tostring($int20)></col>");
     cc_sethide(true);
-    $int16 = calc($int16 + 1);
+    $int20 = calc($int20 + 1);
 }
-if_setontimer("worldswitcher_loading($com_0, $com_2, $com_8, $com_16, $com_15, $com_10, $com_11, $com_12, $com_13, $com_14, $com_19, $com_20, $com_18, $com_22)", $com_0);
+if_setontimer("worldswitcher_loading($com_0, $com_2, $com_15, $com_18, $com_17, $com_16, $int18, $int19, $com_9, $com_10, $com_11, $com_12, $com_13, $com_14, $com_21, $com_22, $com_20, $com_24)", $com_0);

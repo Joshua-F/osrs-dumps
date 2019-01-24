@@ -1,0 +1,10 @@
+// 2755
+[proc,wint_timer_resynch](component $component)
+if (%varplayerbit_7980 <= 0) {
+    if_settext("", $component);
+    if_setontimer(null, $component);
+    return;
+}
+def_int $int = calc(clientclock + %varplayerbit_7980 * 30);
+~wint_timer_countdown($component, $int);
+if_setontimer("wint_timer_countdown($component, $int)", $component);
