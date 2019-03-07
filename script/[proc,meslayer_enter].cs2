@@ -6,7 +6,7 @@ if (%varclient_5 = 14) {
 }
 def_int $int0 = -1;
 def_string $string0 = "";
-def_int $int1 = string_length(%varclientstring_22);
+def_int $int1 = string_length(%varclient_359);
 if ($int1 > 0) {
     switch_int (%varclient_5) {
         case 1 :
@@ -15,17 +15,17 @@ if ($int1 > 0) {
             if (ignore_count < 0) {
                 mes("Unable to update ignore list - system busy.");
             } else if (%varclient_5 = 4) {
-                ignore_add(%varclientstring_22);
+                ignore_add(%varclient_359);
             } else if (%varclient_5 = 5) {
-                ignore_del(%varclientstring_22);
+                ignore_del(%varclient_359);
             }
         case 2, 3, 6 :
             if (friend_count < 0) {
                 mes("Unable to complete action - system busy.");
             } else if (%varclient_5 = 2) {
-                friend_add(%varclientstring_22);
+                friend_add(%varclient_359);
             } else if (%varclient_5 = 3) {
-                friend_del(%varclientstring_22);
+                friend_del(%varclient_359);
             } else if (%varclient_5 = 6) {
                 if (%varplayerbit_8119 = 0) {
                     ~meslayer_close(1, 1);
@@ -40,32 +40,32 @@ if ($int1 > 0) {
                     ~rebuildpmbox($int0);
                 }
                 if (%varplayerbit_4394 = 1) {
-                    friend_del(%varclientstring_23);
+                    friend_del(%varclient_360);
                 } else {
-                    chat_sendprivate(%varclientstring_23, %varclientstring_22);
+                    chat_sendprivate(%varclient_360, %varclient_359);
                 }
                 %varclient_61 = clientclock;
             }
         case 7 :
-            resume_countdialog(~script212(%varclientstring_22));
+            resume_countdialog(~script212(%varclient_359));
         case 8 :
-            %varclientstring_128 = removetags(%varclientstring_22);
-            resume_namedialog(%varclientstring_22);
+            %varclient_361 = removetags(%varclient_359);
+            resume_namedialog(%varclient_359);
         case 9, 15 :
-            resume_stringdialog(%varclientstring_22);
+            resume_stringdialog(%varclient_359);
         case 10 :
             if (%varplayerbit_8119 = 0) {
                 ~meslayer_close(1, 1);
                 mes("You must set a name before you can chat.");
                 return;
             }
-            %varclientstring_129 = removetags(%varclientstring_22);
-            clan_joinchat(%varclientstring_22);
+            %varclient_362 = removetags(%varclient_359);
+            clan_joinchat(%varclient_359);
         case 12 :
             if ($int1 > 10) {
-                $string0 = substring(%varclientstring_22, 0, 9);
+                $string0 = substring(%varclient_359, 0, 9);
             } else {
-                $string0 = %varclientstring_22;
+                $string0 = %varclient_359;
             }
             chat_setmessagefilter(lowercase($string0));
             ~rebuildchatbox(~script553);
@@ -75,14 +75,14 @@ if ($int1 > 0) {
                 mes("You must set a name before you can chat.");
                 return;
             }
-            %varclientstring_28, %varclient_62 = %varclientstring_22, 0;
+            %varclient_358, %varclient_62 = %varclient_359, 0;
             ~chat_autotyper_updateop;
             if_setontimer("chat_autotyper(event_com, true)", interface_162:com_13);
         case 11 :
             ~meslayer_close(0, 1);
             return;
         case 16 :
-            ~skillmulti_quantitybutton_x_receive(%varclientstring_22);
+            ~skillmulti_quantitybutton_x_receive(%varclient_359);
     }
 } else {
     switch_int (%varclient_5) {
