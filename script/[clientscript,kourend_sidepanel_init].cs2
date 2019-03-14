@@ -1,39 +1,34 @@
 // 1186
-[clientscript,kourend_sidepanel_init](component $com_9, component $com_10, component $com_12, component $com_13, component $com_15, component $com_16, component $com_18, component $com_19, component $com_21, component $com_22, component $com_24, component $com_25, component $com_26, component $com_27, component $com_1, component $com_3, component $com_2)
-cc_deleteall($com_9);
-def_int $int17 = 0;
-def_int $int18 = 0;
-$int17, $int18 = ~kourend_sidepanel_build($com_9, $com_10, $com_12, 3, $int17, $int18);
-$int17, $int18 = ~kourend_sidepanel_build($com_9, $com_13, $com_15, 2, $int17, $int18);
-$int17, $int18 = ~kourend_sidepanel_build($com_9, $com_16, $com_18, 4, $int17, $int18);
-$int17, $int18 = ~kourend_sidepanel_build($com_9, $com_19, $com_21, 5, $int17, $int18);
-$int17, $int18 = ~kourend_sidepanel_build($com_9, $com_22, $com_24, 1, $int17, $int18);
+[clientscript,kourend_sidepanel_init](component $com_4, component $com_5, component $com_7, component $com_8, component $com_10, component $com_11, component $com_13, component $com_14, component $com_16, component $com_17, component $com_19, component $com_20, component $com_21, component $com_22, int $int14)
+cc_deleteall($com_4);
+def_int $int15 = 0;
+def_int $int16 = 0;
+$int15, $int16 = ~kourend_sidepanel_build($com_4, $com_5, $com_7, 3, $int15, $int16);
+$int15, $int16 = ~kourend_sidepanel_build($com_4, $com_8, $com_10, 2, $int15, $int16);
+$int15, $int16 = ~kourend_sidepanel_build($com_4, $com_11, $com_13, 4, $int15, $int16);
+$int15, $int16 = ~kourend_sidepanel_build($com_4, $com_14, $com_16, 5, $int15, $int16);
+$int15, $int16 = ~kourend_sidepanel_build($com_4, $com_17, $com_19, 1, $int15, $int16);
 def_string $string = "View tasks";
-if_setop(1, $string, $com_25);
-if_setsize(calc(parawidth($string, 190, p12_full) + 10), if_getheight($com_25), ^setsize_abs, ^setsize_abs, $com_25);
-~kourend_sidepanel_tasks_default($com_25, $string);
+if_setop(1, $string, $com_20);
+if_setsize(calc(parawidth($string, 190, p11_full) + 10), if_getheight($com_20), ^setsize_abs, ^setsize_abs, $com_20);
+~kourend_sidepanel_tasks_default($com_20, $string);
 $string = "Favour Overlay";
-if_setopbase("<col=ff9040><$string></col>", $com_26);
-if_setsize(calc(parawidth($string, 190, p12_full) + 20), if_getheight($com_26), ^setsize_abs, ^setsize_abs, $com_26);
-cc_create($com_26, ^iftype_graphic, 0);
+if_setopbase("<col=ff9040><$string></col>", $com_21);
+if_setsize(calc(parawidth($string, 190, p11_full) + 20), if_getheight($com_21), ^setsize_abs, ^setsize_abs, $com_21);
+cc_create($com_21, ^iftype_graphic, 0);
 cc_setsize(17, 17, ^setsize_abs, ^setsize_abs);
 cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_centre);
-.cc_create($com_26, ^iftype_text, 1);
+.cc_create($com_21, ^iftype_text, 1);
 .cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
 .cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
 .cc_setcolour(0xff981f);
-.cc_settextfont(p12_full);
+.cc_settextfont(p11_full);
 .cc_settextshadow(true);
 .cc_settextalign(^settextalign_right, ^settextalign_centre, 0);
 .cc_settext($string);
-.cc_setonmouseleave("deltooltip($com_27)");
-if_setonmouseover("cc_colour_swapper(event_com, .cc_getid, ^white)", $com_26);
-if_setonmouseleave("cc_colour_swapper(event_com, .cc_getid, 0xff981f)", $com_26);
-~kourend_sidepanel_hudtoggle($com_26, $com_27);
-if_setonvartransmit("kourend_sidepanel_hudtoggle($com_26, cc_getid, .cc_getid, $com_27){varplayer_1055}", $com_26);
-if_setonop("kourend_sidepanel_hudop(event_op, $com_26, cc_getid, .cc_getid, $com_27)", $com_26);
-if (~on_mobile = true) {
-    if_sethide(true, $com_3);
-    if_setsize(0, if_getheight($com_1), ^setsize_minus, ^setsize_abs, $com_1);
-    if_sethide(false, $com_2);
-}
+.cc_setonmouseleave("deltooltip($com_22)");
+if_setonmouseover("cc_colour_swapper(event_com, .cc_getid, ^white)", $com_21);
+if_setonmouseleave("cc_colour_swapper(event_com, .cc_getid, 0xff981f)", $com_21);
+~kourend_sidepanel_hudtoggle($com_21, $com_22);
+if_setonvartransmit("kourend_sidepanel_hudtoggle($com_21, cc_getid, .cc_getid, $com_22){varplayer_1055}", $com_21);
+if_setonop("kourend_sidepanel_hudop(event_op, $com_21, cc_getid, .cc_getid, $com_22)", $com_21);
