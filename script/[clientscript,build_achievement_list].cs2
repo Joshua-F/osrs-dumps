@@ -1,39 +1,36 @@
 // 709
-[clientscript,build_achievement_list](component $com_10, component $com_13, component $com_0, component $com_6, component $com_1)
+[clientscript,build_achievement_list](component $com_2, component $com_4, int $int2)
+cc_deleteall($com_2);
+cc_deleteall($com_4);
 def_int $intarray(12);
-def_int $int5 = 0;
-def_int $int6 = 0;
-while ($int5 < 12) {
-    cc_create($com_10, ^iftype_rectangle, $int6);
-    $int6 = calc($int6 + 1);
-    cc_setop(1, "Open <enum(int, string, enum_595, $int5)> Journal");
+def_int $int3 = 0;
+def_int $int4 = 0;
+while ($int3 < 12) {
+    cc_create($com_2, ^iftype_rectangle, $int4);
+    $int4 = calc($int4 + 1);
+    cc_setop(1, "Open <enum(int, string, enum_595, $int3)> Journal");
     cc_setfill(false);
     cc_setcolour(0xff9933);
     cc_settrans(150);
     cc_setsize(16, 27, ^setsize_minus, ^setsize_abs);
-    $intarray($int5) = $int5;
-    $int5 = calc($int5 + 1);
+    $intarray($int3) = $int3;
+    $int3 = calc($int3 + 1);
 }
 ~quicksort_intenum(intarray0, 0, calc(12 - 1), enum_595);
-def_int $int7 = 8;
-$int5 = 0;
-while ($int5 < 12) {
-    if (cc_find($com_10, $intarray($int5)) = true) {
-        cc_setposition(0, $int7, ^setpos_abs_centre, ^setpos_abs_top);
+def_int $int5 = 8;
+$int3 = 0;
+while ($int3 < 12) {
+    if (cc_find($com_2, $intarray($int3)) = true) {
+        cc_setposition(0, $int5, ^setpos_abs_centre, ^setpos_abs_top);
     }
-    $int6 = ~setup_diary_entry($com_10, $intarray($int5), $int6, $int7);
-    $int5, $int7 = calc($int5 + 1), calc($int7 + 28);
+    $int4 = ~setup_diary_entry($com_2, $intarray($int3), $int4, $int5);
+    $int3, $int5 = calc($int3 + 1), calc($int5 + 28);
 }
-$int7 = calc($int7 + 8);
-if_setscrollpos(0, 0, $com_10);
-if ($int7 > if_getheight($com_10)) {
-    if_setscrollsize(0, $int7, $com_10);
+$int5 = calc($int5 + 8);
+if_setscrollpos(0, 0, $com_2);
+if ($int5 > if_getheight($com_2)) {
+    if_setscrollsize(0, $int5, $com_2);
 } else {
-    if_setscrollsize(0, 0, $com_10);
+    if_setscrollsize(0, 0, $com_2);
 }
-~scrollbar_vertical($com_13, $com_10, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-if (~on_mobile = true) {
-    if_sethide(true, $com_6);
-    if_setsize(0, if_getheight($com_0), ^setsize_minus, ^setsize_abs, $com_0);
-    if_sethide(false, $com_1);
-}
+~scrollbar_vertical($com_4, $com_2, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
