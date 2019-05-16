@@ -1,5 +1,12 @@
 // 2818
-[clientscript,seed_vault_init](component $com_14, component $com_15, component $com_12, component $com_13, component $com_10, component $com_9, component $com_11)
-~seed_vault_build($com_14, $com_15, $com_12, $com_13, $com_10, $com_9, $com_11);
-if_setoninvtransmit("seed_vault_build($com_14, $com_15, $com_12, $com_13, $com_10, $com_9, $com_11){inv_626}", $com_10);
-if_setonvartransmit("seed_vault_build($com_14, $com_15, $com_12, $com_13, $com_10, $com_9, $com_11){varplayer_2195, varplayer_2196, varplayer_2197}", $com_10);
+[clientscript,seed_vault_init](component $com_15, component $com_16, component $com_13, component $com_14, component $com_11, component $com_10, component $com_12, component $com_24)
+def_int $int = %varclient_376;
+if (~seed_vault_searching = true) {
+    ~meslayer_close(1, 1);
+}
+~scrollbar_vertical($com_10, $com_11, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~seed_vault_build($com_15, $com_16, $com_13, $com_14, $com_11, $com_10, $com_12);
+if_setonop("seed_vault_search_toggle($com_15, $com_16, $com_13, $com_14, $com_11, $com_10, $com_12, $com_24)", $com_24);
+if_setoninvtransmit("seed_vault_build($com_15, $com_16, $com_13, $com_14, $com_11, $com_10, $com_12){inv_626}", $com_11);
+if_setonvartransmit("seed_vault_build($com_15, $com_16, $com_13, $com_14, $com_11, $com_10, $com_12){varplayer_2195, varplayer_2196, varplayer_2197}", $com_11);
+%varclient_376 = $int;
