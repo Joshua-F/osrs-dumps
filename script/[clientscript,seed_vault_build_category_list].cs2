@@ -1,51 +1,52 @@
 // 2814
-[clientscript,seed_vault_build_category_list](component $com_7, component $com_6, component $com_12, component $com_10, component $com_9, component $com_5, component $com_4)
+[clientscript,seed_vault_build_category_list](component $com_8, component $com_7, component $com_13, component $com_11, component $com_10, component $com_6, component $com_5, component $com_2, component $com_1, component $com_0)
+cc_deleteall($com_8);
 cc_deleteall($com_7);
-cc_deleteall($com_6);
-def_int $int7 = 0;
-def_int $int8 = 0;
-def_int $int9 = 0;
+cc_deleteall($com_5);
+~seed_vault_size_check($com_1, $com_0, ^min_32bit_int, ^min_32bit_int, $com_11, $com_10, $com_6, $com_5, $com_2);
 def_int $int10 = 0;
+def_int $int11 = 0;
+def_int $int12 = 0;
+def_int $int13 = 0;
 if (~on_mobile = true) {
-    $int9 = 20;
+    $int12 = 20;
 }
-while ($int8 <= enum_getoutputcount(enum_2304)) {
-    $int7 = enum(int, int, enum_2304, $int8);
-    cc_create($com_7, ^iftype_text, $int8);
-    cc_setsize(5, calc(20 + $int9), ^setsize_minus, ^setsize_abs);
-    cc_setposition(5, $int10, ^setpos_abs_left, ^setpos_abs_top);
+while ($int11 <= enum_getoutputcount(enum_2304)) {
+    $int10 = enum(int, int, enum_2304, $int11);
+    cc_create($com_8, ^iftype_text, $int11);
+    cc_setsize(5, calc(20 + $int12), ^setsize_minus, ^setsize_abs);
+    cc_setposition(5, $int13, ^setpos_abs_left, ^setpos_abs_top);
     cc_setcolour(0xff981f);
     cc_settextfont(p12_full);
     cc_settextshadow(true);
-    cc_settext(enum(int, string, enum_2305, $int7));
+    cc_settext(enum(int, string, enum_2305, $int10));
     cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
-    cc_setonmouseover("cc_colour_swapper($com_7, $int8, ^white)");
-    cc_setonmouseleave("cc_colour_swapper($com_7, $int8, 0xff981f)");
-    cc_setonop("seed_vault_catop($com_12, $int7, $com_10, $com_9)");
-    cc_setonvartransmit("seed_vault_catvar($com_12, $com_10, $com_9){varplayer_2194}");
+    cc_setonmouseover("cc_colour_swapper($com_8, $int11, ^white)");
+    cc_setonmouseleave("cc_colour_swapper($com_8, $int11, 0xff981f)");
+    cc_setonop("seed_vault_catop($com_13, $int10, $com_11, $com_10)");
+    cc_setonvartransmit("seed_vault_catvar($com_13, $com_11, $com_10){varplayer_2194}");
     cc_setop(1, "Select");
-    .cc_create($com_6, ^iftype_rectangle, $int8);
-    .cc_setsize(0, calc(20 + $int9), ^setsize_minus, ^setsize_abs);
-    .cc_setposition(0, $int10, ^setpos_abs_left, ^setpos_abs_top);
+    .cc_create($com_7, ^iftype_rectangle, $int11);
+    .cc_setsize(0, calc(20 + $int12), ^setsize_minus, ^setsize_abs);
+    .cc_setposition(0, $int13, ^setpos_abs_left, ^setpos_abs_top);
     .cc_setfill(true);
-    if (calc($int8 % 2) = 0) {
+    if (calc($int11 % 2) = 0) {
         .cc_setcolour(^white);
         .cc_settrans(255);
     } else {
         .cc_setcolour(^black);
         .cc_settrans(225);
     }
-    $int10 = calc(cc_gety + cc_getheight);
-    $int8 = calc($int8 + 1);
+    $int13 = calc(cc_gety + cc_getheight);
+    $int11 = calc($int11 + 1);
 }
-def_int $int11 = 0;
-if ($int10 > if_getheight($com_5)) {
-    $int11 = if_getscrolly($com_5);
-    if_setscrollsize(0, $int10, $com_5);
-    ~scrollbar_vertical($com_4, $com_5, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-    ~scrollbar_resize($com_4, $com_5, $int11);
+def_int $int14 = 0;
+if ($int13 > if_getheight($com_6)) {
+    $int14 = if_getscrolly($com_6);
+    if_setscrollsize(0, $int13, $com_6);
 } else {
-    if_setscrollsize(0, 0, $com_5);
-    if_setscrollpos(0, 0, $com_5);
-    ~scrollbar_vertical($com_4, $com_5, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+    if_setscrollsize(0, 0, $com_6);
+    $int14 = 0;
 }
+~scrollbar_vertical($com_5, $com_6, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~scrollbar_resize($com_5, $com_6, $int14);
