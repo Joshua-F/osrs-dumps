@@ -1,0 +1,17 @@
+// 2863
+[proc,seed_vault_filteritem](obj $obj0)(boolean)
+def_string $string0 = "";
+def_string $string1 = "";
+if (~seed_vault_searching = true) {
+    $string1 = ~seed_vault_filterstring;
+    if (string_length($string1) > 0) {
+        if ($obj0 ! null) {
+            $string0 = lowercase(oc_name($obj0));
+        }
+        if (string_indexof_string($string0, $string1, 0) ! -1) {
+            return(true);
+        }
+        return(false);
+    }
+}
+return(true);
