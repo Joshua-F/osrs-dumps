@@ -1,17 +1,28 @@
 // 865
-[clientscript,pvp_icons_layout_init](component $com_0, component $com_2, component $com_3, component $com_17, component $com_18, component $com_13, component $com_14, component $com_60, component $com_4, int $int, component $com_5)
+[clientscript,pvp_icons_layout_init](component $com_0, component $com_2, component $com_3, component $com_16, component $com_17, component $com_13, component $com_14, component $com_59, component $com_4, int $int, component $com_5, component $com_15)
 ~script1490($com_2);
 ~hud_clamp_init($com_3);
 ~script2249($com_4, setbit(0, 2));
 ~script2249($com_5, setbit(setbit(0, 3), 2));
-~script2249($com_17, setbit(0, 2));
-~script1486($com_18, ^setpos_abs_right, 1, 0);
+~script2249($com_16, setbit(0, 2));
+~script1486($com_17, ^setpos_abs_right, 1, 0);
 ~script2249($com_13, setbit(0, 3));
 ~script1486($com_14, ^setpos_abs_left, 1, 0);
-~script2249($com_60, setbit(0, 1));
+~script2249($com_59, setbit(0, 1));
 if_setontimer("pvp_icons_layout(false)", $com_0);
 if_setonresize("pvp_icons_layout(true)", $com_0);
 if_setonsubchange("pvp_icons_layout(true)", $com_0);
 if_setonvartransmit("pvp_icons_layout(true){varplayer_1293, varplayer_1434, varplayer_1542, varplayer_1676, varplayer_1327, varplayer_1377, varplayer_1378, varplayer_1601, varplayer_1602}", $com_0);
-if_setonmouseleave("deltooltip(interface_90:com_70)", interface_90:com_63);
+if_setonmouseleave("deltooltip(interface_90:com_69)", interface_90:com_62);
+cc_deleteall($com_15);
+cc_create($com_15, ^iftype_text, 0);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_sethide(false);
+cc_setcolour(^yellow);
+cc_settextfont(p11_full);
+cc_settextalign(^settextalign_left, ^settextalign_top, 0);
+cc_settextshadow(true);
+cc_setonvartransmit("kdr_update(event_com, event_comsubid){varplayer_1105, varplayer_1320, varplayer_718, varplayer_1327}");
+~kdr_update;
 ~pvp_icons_layout;
