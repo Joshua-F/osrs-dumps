@@ -1,10 +1,10 @@
 // 554
 [clientscript,clanwars_confirm_setup](int $int0, string $string0)
-cc_deleteall(interface_92:com3);
 cc_deleteall(interface_92:com4);
-def_int $int1 = if_getwidth(interface_92:com3);
+cc_deleteall(interface_92:com5);
+def_int $int1 = if_getwidth(interface_92:com4);
 def_int $int2 = calc(paraheight($string0, $int1, p12_full) * 12 + 5);
-cc_create(interface_92:com3, ^iftype_text, 0);
+cc_create(interface_92:com4, ^iftype_text, 0);
 cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
 cc_setsize($int1, $int2, ^setsize_abs, ^setsize_abs);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
@@ -12,25 +12,26 @@ cc_settextfont(p12_full);
 cc_setcolour(0xff981f);
 cc_settextshadow(true);
 cc_settext($string0);
-if_setscrollpos(0, 0, interface_92:com3);
-if ($int2 > if_getheight(interface_92:com3)) {
-    if_setscrollsize(0, $int2, interface_92:com3);
+if_setscrollpos(0, 0, interface_92:com4);
+if ($int2 > if_getheight(interface_92:com4)) {
+    if_setscrollsize(0, $int2, interface_92:com4);
 } else {
-    if_setscrollsize(0, 0, interface_92:com3);
+    if_setscrollsize(0, 0, interface_92:com4);
 }
-~scrollbar_vertical(interface_92:com4, interface_92:com3, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~scrollbar_vertical(interface_92:com5, interface_92:com4, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
 if ($int0 = 0) {
-    if_sethide(true, interface_92:com6);
-    if_setontimer("clanwars_confirm_challenge_wait(event_com, interface_92:com6, calc(clientclock + 150))", interface_92:com0);
-    ~clanwars_confirm_challenge_redraw(interface_92:com6);
-    if_setonvartransmit("clanwars_confirm_challenge_redraw(interface_92:com6){varplayer_92}", interface_92:com0);
-    if_setonop("clanwars_confirm_challenge_op(event_op, event_com)", interface_92:com6);
+    if_sethide(true, interface_92:com7);
+    if_setontimer("clanwars_confirm_challenge_wait(event_com, interface_92:com7, calc(clientclock + 150))", interface_92:com1);
+    ~clanwars_confirm_challenge_redraw(interface_92:com7);
+    if_setonvartransmit("clanwars_confirm_challenge_redraw(interface_92:com7){varplayer_92}", interface_92:com1);
+    if_setonop("clanwars_confirm_challenge_op(event_op, event_com)", interface_92:com7);
 } else if ($int0 = 1) {
-    if_sethide(false, interface_92:com6);
-    ~clanwars_confirm_notpressed(interface_92:com6);
-    if_setonop("clanwars_confirm_join_op(event_op, event_com)", interface_92:com6);
+    if_sethide(false, interface_92:com7);
+    ~clanwars_confirm_notpressed(interface_92:com7);
+    if_setonop("clanwars_confirm_join_op(event_op, event_com)", interface_92:com7);
 } else {
-    if_sethide(false, interface_92:com6);
-    ~clanwars_confirm_notpressed(interface_92:com6);
-    if_setonop("closebutton_click", interface_92:com6);
+    if_sethide(false, interface_92:com7);
+    ~clanwars_confirm_notpressed(interface_92:com7);
+    if_setonop("closebutton_click", interface_92:com7);
 }
+~script2876(interface_92:com0, interface_92:com1, interface_92:com4, interface_92:com5, calc($int2 + 85), ^min_32bit_int, ^min_32bit_int);
