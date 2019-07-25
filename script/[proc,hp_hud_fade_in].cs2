@@ -1,0 +1,15 @@
+// 2888
+[proc,hp_hud_fade_in](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, int $int)
+$int = ~max(0, calc($int - 3));
+if_settrans($int, $component0);
+if_settrans($int, $component1);
+if_settrans($int, $component3);
+if_settrans($int, $component4);
+if_settrans($int, $component5);
+if ($int <= 0) {
+    if_sethide(false, $component2);
+    if_sethide(false, $component6);
+    if_setontimer(null, $component0);
+    return;
+}
+if_setontimer("hp_hud_fade_in($component0, $component1, $component2, $component3, $component4, $component5, $component6, $int)", $component0);
