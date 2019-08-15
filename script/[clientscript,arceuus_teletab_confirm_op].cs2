@@ -1,0 +1,11 @@
+// 3065
+[clientscript,arceuus_teletab_confirm_op](int $int, component $component, string $string)
+if ($int ! 1) {
+    return;
+}
+sound_synth(synth_2266, 1, 0);
+~arceuus_teletab_confirm_draw(true, $string, $component);
+if_setonmouserepeat(null, $component);
+if_setonmouseleave(null, $component);
+if_setonop(null, $component);
+if_setontimer("arceuus_teletab_confirm_reset(calc(clientclock + 40), event_com, $string)", $component);
