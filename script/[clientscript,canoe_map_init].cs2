@@ -1,0 +1,58 @@
+// 3099
+[clientscript,canoe_map_init](component $com_11, component $com_12, component $com_15, component $com_16, component $com_17, component $com_14, component $com_18)
+cc_deleteall($com_11);
+cc_deleteall($com_12);
+cc_deleteall($com_15);
+cc_deleteall($com_16);
+cc_deleteall($com_17);
+cc_deleteall($com_14);
+cc_deleteall($com_18);
+cc_create($com_11, ^iftype_text, 0);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_setcolour(0xc8d1db);
+cc_settextshadow(true);
+cc_settextfont(q8_full);
+cc_settext("Please Select <br>Your Destination");
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+cc_create($com_12, ^iftype_graphic, 0);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_setgraphic("close_buttons,4");
+if (~on_mobile = false) {
+    if_setonmouserepeat("close_mouse_interact($com_12, true, 0)", $com_12);
+    if_setonmouseleave("close_mouse_interact($com_12, false, 0)", $com_12);
+}
+if_setop(1, "Close", $com_12);
+if_setonop("canoe_close", $com_12);
+def_int $int7 = 1;
+def_int $int8 = 1;
+def_int $int9 = 1;
+def_int $int10 = 1;
+def_int $int11 = 1;
+$int7, $int8, $int9, $int10, $int11 = ~canoe_return_locations;
+if ($int7 ! 1) {
+    ~canoe_location_setup($com_15, "Lumbridge", false, model_12103, model_12104, "Travel to<col=ff9040> Lumbridge", 0, 15);
+}
+if ($int8 ! 1) {
+    ~canoe_location_setup($com_16, "Champions <br>Guild", false, model_12103, model_12104, "Travel to<col=ff9040> Champions Guild", -20, 0);
+}
+if ($int9 ! 1) {
+    ~canoe_location_setup($com_17, "Barbarian <br> Village", false, model_12103, model_12104, "Travel to<col=ff9040> Barbarian Village", -10, 20);
+}
+if ($int10 ! 1) {
+    ~canoe_location_setup($com_14, "Edgeville", false, model_12103, model_12104, "Travel to<col=ff9040> Edgeville", -10, 25);
+}
+if ($int11 ! 1) {
+    ~canoe_location_setup($com_18, "Wilderness Pond - <br>No canoe trees here.", true, null, null, "Travel to<col=ff9040> Wilderness Pond", 0, 0);
+}
+switch_int (%varplayerbit_1846) {
+    case 3 :
+        ~canoe_location_you_are_here($com_17);
+    case 2 :
+        ~canoe_location_you_are_here($com_16);
+    case 4 :
+        ~canoe_location_you_are_here($com_14);
+    case 1 :
+        ~canoe_location_you_are_here($com_15);
+}

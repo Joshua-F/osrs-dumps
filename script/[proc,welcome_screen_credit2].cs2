@@ -1,0 +1,22 @@
+// 1417
+[proc,welcome_screen_credit2](component $component)
+def_string $string = "";
+def_int $int = 0;
+if (%varplayer_1780 > 1) {
+    $string = "You have<br><col=00ff00><~tostring_spacer(%varplayer_1780, ",")></col> days of<br>membership<br>remaining.";
+} else if (%varplayer_1780 = 1) {
+    $string = "You have<br><col=00ff00>1</col> day of<br>membership<br>remaining.";
+} else if (%varclient_103 = 1) {
+    $string = "You have<br>0 days of<br>membership<br>remaining.";
+} else if (%varclient_103 = 0) {
+    $string = "You are not a member.<br>Subscribe to access<br>extra skills, areas,<br>quests, and more.";
+} else {
+    $int = 1;
+}
+if ($int = 1) {
+    if_setontimer("welcome_screen_credit($component)", $component);
+    if_settext("", $component);
+} else {
+    if_settext($string, $component);
+    if_setontimer(null, $component);
+}
