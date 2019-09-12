@@ -3,15 +3,18 @@
 def_string $string0 = "";
 def_int $int1 = 0;
 if (%varplayer_1780 > 1) {
-    $string0 = "You have<br><col=00ff00><~tostring_spacer(%varplayer_1780, ",")></col> days of<br>membership<br>remaining.";
+    $string0 = "You have <col=00ff00><~tostring_spacer(%varplayer_1780, ",")></col> days of membership left.";
 } else if (%varplayer_1780 = 1) {
-    $string0 = "You have<br><col=00ff00>1</col> day of<br>membership<br>remaining.";
+    $string0 = "You have <col=00ff00><~tostring_spacer(%varplayer_1780, ",")></col> day of membership left.";
 } else if (%varclient_103 = 1) {
-    $string0 = "You have<br>0 days of<br>membership<br>remaining.";
+    $string0 = "You have no membership credit left.<br><br><col=ff9040>Subscribe to retain your membership status!</col>";
 } else if (%varclient_103 = 0) {
-    $string0 = "You are not a member.<br>Subscribe to access<br>extra skills, areas,<br>quests, and more.";
+    $string0 = "You are not a member.<br>Subscribe to access extra skills, areas,<br>quests, and more.";
 } else {
     $int1 = 1;
+}
+if (%varclient_226 = false & %varplayer_1780 <= 3 & %varclient_103 = 1) {
+    $string0 = "<$string0><br><col=ff9040>Renew now to avoid losing your</col><br><col=ff9040>membership status!</col>";
 }
 if ($int1 = 1) {
     if_setontimer("welcome_screen_credit($component0)", $component0);
