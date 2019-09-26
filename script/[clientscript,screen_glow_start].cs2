@@ -1,0 +1,13 @@
+// 3128
+[clientscript,screen_glow_start](int $rgb0, component $component1, int $int2, int $int3)
+cc_deleteall($component1);
+cc_create($component1, ^iftype_rectangle, 0);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_bottom);
+cc_setfill(true);
+cc_setcolour($rgb0);
+cc_setgradientcolour($rgb0);
+cc_settrans(255);
+cc_setgradienttrans(255);
+cc_setgradientmode(^gradientmode_colourtrans);
+cc_setontimer("screen_glow_fadein(calc(clientclock + $int2), calc(clientclock + $int3), $rgb0, $component1)");
