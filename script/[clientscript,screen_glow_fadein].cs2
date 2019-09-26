@@ -1,0 +1,15 @@
+// 3130
+[clientscript,screen_glow_fadein](int $int0, int $int1, int $rgb2, component $component3)
+if (cc_find($component3, 0) = ^true) {
+    if (clientclock < $int0) {
+        return;
+    }
+    if (clientclock >= $int1) {
+        cc_setontimer(null);
+        return;
+    }
+    cc_setcolour($rgb2);
+    cc_setblendcolour($rgb2);
+    cc_settrans(interpolate(255, 0, $int0, $int1, clientclock));
+    cc_setblendtrans(255);
+}
