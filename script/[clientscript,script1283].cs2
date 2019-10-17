@@ -1,0 +1,34 @@
+// 1283
+[clientscript,script1283](component $com_0, component $com_2, component $com_3, component $com_4, component $com_5, component $com_6, component $com_7, component $com_8)
+def_int $int8 = if_getwidth($com_2);
+def_int $int9 = if_getwidth($com_3);
+cc_deleteall($com_2);
+cc_create($com_2, ^iftype_text, 0);
+cc_setcolour(0xff981f);
+cc_settextfont(p12_full);
+cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+cc_settextshadow(true);
+def_string $string = "<col=ffffff>Mysterious Emblems</col> may be purchased here for <col=ffffff>cash</col>, then <col=ffffff>carried into the Wilderness</col> on a Bounty Hunter world.<br><br>If you kill your assigned <col=ffffff>Bounty Target</col> while they're carrying <col=ffffff>an emblem of the same tier</col>, your own emblem may be <col=ffffff>upgraded</col>.<br><br>You can then <col=ffffff>sell it back</col> here for <col=ffffff>more cash</col>.";
+cc_settext($string);
+def_int $int10 = calc(paraheight($string, $int8, p12_full) * 12 + 5);
+cc_setsize(0, $int10, ^setsize_minus, ^setsize_abs);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top);
+def_int $int11 = calc($int10 + 8);
+if_setposition(0, $int11, ^setpos_abs_centre, ^setpos_abs_top, $com_5);
+def_int $int12 = calc(($int8 - 5 * $int9) / 5);
+def_int $int13 = calc($int9 + $int12);
+if_setposition(calc(0 - $int13), $int11, ^setpos_abs_centre, ^setpos_abs_top, $com_4);
+if_setposition($int13, $int11, ^setpos_abs_centre, ^setpos_abs_top, $com_6);
+$int13 = calc($int13 * 2);
+if_setposition(calc(0 - $int13), $int11, ^setpos_abs_centre, ^setpos_abs_top, $com_3);
+if_setposition($int13, $int11, ^setpos_abs_centre, ^setpos_abs_top, $com_7);
+$int11 = calc($int11 + $int9 + 10);
+if_setsize(if_getwidth($com_0), calc($int11 + if_getheight($com_8) + 50), ^setsize_abs, ^setsize_abs, $com_0);
+~script1284(1, $com_3);
+~script1284(2, $com_4);
+~script1284(3, $com_5);
+~script1284(4, $com_6);
+~script2232(true, 5, $com_7);
+if_setop(1, "Buy", $com_7);
+if_setopbase("<col=ff9040>Tier <tostring(5)></col>", $com_7);
+if_setonop("opsound(event_op, 2)", $com_7);
