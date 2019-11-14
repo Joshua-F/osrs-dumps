@@ -1,0 +1,63 @@
+// 3175
+[proc,script3175](component $component, int $int1)
+def_enum $enum = null;
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_int $int5 = 0;
+def_int $int6 = 0;
+def_int $setposh = ^setpos_abs_left;
+def_int $setposv = ^setpos_abs_bottom;
+if ($int1 ! %varclient_384) {
+    $enum = ~toplevel_getcomponents;
+    if ($enum = enum_1745) {
+        if (~script2519 = true) {
+            $int3 = calc(204 - 1);
+        } else {
+            $int3 = 0;
+        }
+        $int4 = 80;
+        $int5 = 75;
+        $int6 = 249;
+        $setposh = ^setpos_abs_right;
+        $setposv = ^setpos_abs_centre;
+    } else if ($enum = enum_1130 | $enum = enum_1131) {
+        if (%varplayerbit_9530 = 0) {
+            $int3 = 1;
+            $int4 = -66;
+            $int5 = 75;
+            $int6 = 249;
+            $setposh = ^setpos_abs_left;
+            $setposv = ^setpos_abs_centre;
+        } else {
+            $int3 = 1;
+            if (~chatbox_open = true) {
+                $int4 = calc(165 + 1);
+            } else {
+                $int4 = calc(23 + 1);
+            }
+            $int5 = 497;
+            $int6 = 63;
+            $setposh = ^setpos_abs_left;
+            $setposv = ^setpos_abs_bottom;
+        }
+    } else if ($enum = enum_1129) {
+        if (%varplayerbit_9530 = 0) {
+            $int3 = 1;
+            $int4 = 76;
+            $int5 = 75;
+            $int6 = 249;
+            $setposh = ^setpos_abs_left;
+            $setposv = ^setpos_abs_bottom;
+        } else {
+            $int3 = 1;
+            $int4 = 1;
+            $int5 = 435;
+            $int6 = 63;
+            $setposh = ^setpos_abs_left;
+            $setposv = ^setpos_abs_bottom;
+        }
+    }
+    if_setposition($int3, $int4, $setposh, $setposv, $component);
+    if_setsize($int5, $int6, ^setsize_abs, ^setsize_abs, $component);
+    if_setontimer("script3174($component, %varclient_384)", $component);
+}

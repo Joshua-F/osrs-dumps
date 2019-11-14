@@ -1,5 +1,5 @@
 // 3130
-[clientscript,screen_glow_fadein](int $int0, int $int1, int $rgb, component $component)
+[clientscript,screen_glow_fadein](int $int0, int $int1, int $int2, int $int3, int $rgb, component $component)
 if (cc_find($component, 0) = true) {
     if (clientclock < $int0) {
         return;
@@ -10,6 +10,6 @@ if (cc_find($component, 0) = true) {
     }
     cc_setcolour($rgb);
     cc_setblendcolour($rgb);
-    cc_settrans(interpolate(255, 0, $int0, $int1, clientclock));
+    cc_settrans(interpolate($int2, $int3, $int0, $int1, clientclock));
     cc_setblendtrans(255);
 }
