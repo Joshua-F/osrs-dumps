@@ -1,0 +1,45 @@
+// 3225
+[clientscript,league_side_panel_init](component $com_16, component $com_19, component $com_22)
+cc_deleteall($com_16);
+cc_deleteall($com_19);
+cc_deleteall($com_22);
+~v2_stone_button_filled($com_16);
+if (~on_mobile = false) {
+    if_setonmouseleave("league_side_panel_button_hover($com_16, 0)", $com_16);
+    if_setonmouseover("league_side_panel_button_hover($com_16, 1)", $com_16);
+}
+~v2_stone_button_filled($com_19);
+if (~on_mobile = false) {
+    if_setonmouseleave("league_side_panel_button_hover($com_19, 0)", $com_19);
+    if_setonmouseover("league_side_panel_button_hover($com_19, 1)", $com_19);
+}
+~v2_stone_button_filled($com_22);
+if (~on_mobile = false) {
+    if_setonmouseleave("league_side_panel_button_hover($com_22, 0)", $com_22);
+    if_setonmouseover("league_side_panel_button_hover($com_22, 1)", $com_22);
+}
+def_string $string = "Relics Overlay";
+def_component $com_25 = interface_656:com_25;
+def_component $com_24 = interface_656:com_24;
+if_setopbase("<col=ff9040><$string></col>", $com_24);
+if_setsize(calc(parawidth($string, 190, p11_full) + 20), if_getheight($com_24), ^setsize_abs, ^setsize_abs, $com_24);
+cc_create($com_24, ^iftype_graphic, 0);
+cc_setsize(17, 17, ^setsize_abs, ^setsize_abs);
+cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_centre);
+.cc_create($com_24, ^iftype_text, 1);
+.cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+.cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+.cc_setcolour(0xff981f);
+.cc_settextfont(p11_full);
+.cc_settextshadow(true);
+.cc_settextalign(^settextalign_right, ^settextalign_centre, 0);
+.cc_settext($string);
+.cc_setonmouseleave("deltooltip($com_25)");
+if (~on_mobile = false) {
+    if_setonmouseover("cc_colour_swapper(event_com, .cc_getid, ^white)", $com_24);
+    if_setonmouseleave("cc_colour_swapper(event_com, .cc_getid, 0xff981f)", $com_24);
+}
+~league_side_panel_hudtoggle($com_24, $com_25);
+if_setonvartransmit("league_side_panel_hudtoggle($com_24, cc_getid, .cc_getid, $com_25){varplayer_1734}", $com_24);
+if_setonop("league_side_panel_hudop(event_op, $com_24, cc_getid, .cc_getid, $com_25)", $com_24);
+~league_side_panel_update_bar(interface_656:com_8, %varplayer_2615);
