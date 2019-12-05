@@ -44,24 +44,35 @@ def_string $string1 = "";
 def_int $int14 = 0;
 def_string $string2 = "";
 def_string $string3 = "";
+def_int $int15 = -1;
+def_boolean $boolean = false;
 if (%varclient_55 >= %varclient_202 & %varclient_55 > calc(clientclock - 3000) & chat_gethistorylength(^chattype_broadcast) > 0) {
     $int12, $int13, $string1, $string2, $string0, $int14 = chat_gethistory_bytypeandline(^chattype_broadcast, 0);
     if ($int12 ! -1) {
-        $string0, $string3 = ~chat_broadcast_parseurl($string0);
+        $string0, $string3, $int15 = ~chat_broadcast_parseurl($string0);
         $int7 = calc($int7 + ~script199($string0, $int9, $component, interface_163:com_0, $int8, $int1, 13, $int7, $setposv, $int3, ^yellow, true));
         if_clearops($component);
-        if (string_length($string3) > 0) {
-            if_setop(6, "Open", $component);
-            if_setop(7, "Check", $component);
-            if_setonmouserepeat("chat_recol(if_getlayer($component), $int9, ^white)", $component);
-            if_setonmouseleave("chat_recol(if_getlayer($component), $int9, ^yellow)", $component);
+        if (string_length($string3) > 0 & $int15 ! -1) {
+            $boolean = enum(int, boolean, enum_2761, $int15);
+            if (clienttype ! ^clienttype_ios) {
+                $boolean = false;
+            }
+            if ($boolean = false) {
+                if_setop(6, "Open", $component);
+                if_setop(7, "Check", $component);
+                if_setonmouserepeat("chat_recol(if_getlayer($component), $int9, ^white)", $component);
+                if_setonmouseleave("chat_recol(if_getlayer($component), $int9, ^yellow)", $component);
+            } else {
+                if_setonmouserepeat(null, $component);
+                if_setonmouseleave(null, $component);
+            }
         } else {
             if_setonmouserepeat(null, $component);
             if_setonmouseleave(null, $component);
         }
         if_setop(9, "Clear history", $component);
         if_setopbase("<col=ff9040>Notification</col>", $component);
-        if_setonop("chat_broadcast_op(event_op, $string3)", $component);
+        if_setonop("chat_broadcast_op(event_op, $string3, $int15)", $component);
         $int9 = calc($int9 + 1);
         $component = enum(int, component, enum_580, $int9);
     }
