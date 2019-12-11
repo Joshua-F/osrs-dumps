@@ -1,27 +1,33 @@
 // 2502
 [proc,account_update_layout]
-def_int $int0 = 0;
-if (clienttype = ^clienttype_ios & %varplayerbit_6713 = 0 & %varclient_103 = 1) {
-    if_sethide(true, interface_109:com31);
-    if_setsize(190, 56, ^setsize_abs, ^setsize_abs, interface_109:com24);
-    if_setposition(0, 31, ^setpos_abs_left, ^setpos_abs_top, interface_109:com24);
-    if_setposition(0, 92, ^setpos_abs_left, ^setpos_abs_top, interface_109:com36);
-    if_setposition(0, 153, ^setpos_abs_left, ^setpos_abs_top, interface_109:com43);
-    $int0 = 32;
+if (clienttype = ^clienttype_ios) {
+    if (%varplayerbit_6713 = 0 & %varclient_103 = 1) {
+        if_sethide(false, interface_109:com26);
+        if_sethide(true, interface_109:com31);
+        if_setsize(190, 56, ^setsize_abs, ^setsize_abs, interface_109:com24);
+        if_sethide(true, interface_109:com38);
+        if_setsize(190, 28, ^setsize_abs, ^setsize_abs, interface_109:com36);
+        if_setposition(0, 31, ^setpos_abs_left, ^setpos_abs_top, interface_109:com24);
+        if_setposition(0, 92, ^setpos_abs_left, ^setpos_abs_top, interface_109:com36);
+        if_setposition(0, 124, ^setpos_abs_left, ^setpos_abs_top, interface_109:com43);
+    } else {
+        if_sethide(false, interface_109:com26);
+        if_sethide(false, interface_109:com31);
+        if_setsize(190, 88, ^setsize_abs, ^setsize_abs, interface_109:com24);
+        if_sethide(true, interface_109:com38);
+        if_setsize(190, 28, ^setsize_abs, ^setsize_abs, interface_109:com36);
+        if_setposition(0, 31, ^setpos_abs_left, ^setpos_abs_top, interface_109:com24);
+        if_setposition(0, 123, ^setpos_abs_left, ^setpos_abs_top, interface_109:com36);
+        if_setposition(0, 155, ^setpos_abs_left, ^setpos_abs_top, interface_109:com43);
+    }
+    if_sethide(true, interface_109:com65);
 } else {
+    if_sethide(false, interface_109:com26);
     if_sethide(false, interface_109:com31);
     if_setsize(190, 88, ^setsize_abs, ^setsize_abs, interface_109:com24);
+    if_sethide(false, interface_109:com38);
+    if_setsize(190, 56, ^setsize_abs, ^setsize_abs, interface_109:com36);
     if_setposition(0, 21, ^setpos_abs_left, ^setpos_abs_top, interface_109:com24);
     if_setposition(0, 109, ^setpos_abs_left, ^setpos_abs_top, interface_109:com36);
     if_setposition(0, 165, ^setpos_abs_left, ^setpos_abs_top, interface_109:com43);
-}
-if (clienttype = ^clienttype_ios) {
-    if_sethide(true, interface_109:com26);
-    if_sethide(true, interface_109:com38);
-    if_sethide(true, interface_109:com65);
-    if_setsize(190, calc(56 - $int0), ^setsize_abs, ^setsize_abs, interface_109:com24);
-    if_setposition(0, 21, ^setpos_abs_left, ^setpos_abs_top, interface_109:com24);
-    if_setsize(190, 24, ^setsize_abs, ^setsize_abs, interface_109:com36);
-    if_setposition(0, calc(77 - $int0), ^setpos_abs_left, ^setpos_abs_top, interface_109:com36);
-    if_setposition(0, calc(101 - $int0), ^setpos_abs_left, ^setpos_abs_top, interface_109:com43);
 }
