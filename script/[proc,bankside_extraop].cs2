@@ -1,5 +1,8 @@
 // 2576
-[proc,bankside_extraop](obj $obj0)(string)
+[proc,bankside_extraop](obj $obj0, int $int1)(string)
+if (%varplayerbit_10079 = 1) {
+    return("");
+}
 def_string $string0 = oc_param($obj0, param_595);
 switch_obj ($obj0) {
     case obj_5509 :
@@ -17,6 +20,14 @@ switch_obj ($obj0) {
     case obj_5514, obj_5515 :
         if (testbit(%varplayer_261, 3) = ^true) {
             $string0 = "Empty";
+        }
+    case default :
+        if (string_length($string0) <= 0 & (map_members = true | oc_members($obj0) = 0)) {
+            if (testbit(%varplayer_262, $int1) = ^true) {
+                $string0 = oc_iop($obj0, oc_param($obj0, param_148));
+            } else if (testbit(%varplayer_263, $int1) = ^true) {
+                $string0 = oc_iop($obj0, 1);
+            }
         }
 }
 return($string0);
