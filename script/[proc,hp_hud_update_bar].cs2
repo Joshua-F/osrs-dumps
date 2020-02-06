@@ -1,0 +1,13 @@
+// 1414
+[proc,hp_hud_update_bar](component $component, int $int1)
+def_int $int2 = if_getwidth($component);
+if ($int2 = $int1) {
+    if_setsize($int1, if_getheight($component), ^setsize_abs, ^setsize_abs, $component);
+    if_setontimer(null, $component);
+    return;
+}
+if ($int2 < $int1) {
+    if_setsize(calc($int2 + 1), if_getheight($component), ^setsize_abs, ^setsize_abs, $component);
+} else if ($int2 > $int1) {
+    if_setsize(calc($int2 - 1), if_getheight($component), ^setsize_abs, ^setsize_abs, $component);
+}
