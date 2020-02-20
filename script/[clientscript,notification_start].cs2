@@ -1,0 +1,24 @@
+// 3346
+[clientscript,notification_start](int $int0, int $int1, int $int2)
+if ($int0 = 1) {
+    $int1 = calc($int1 + 4);
+    if ($int1 >= 178) {
+        $int0 = 2;
+        %varclient_391 = 2;
+        $int1 = 178;
+    }
+} else if ($int0 = 2) {
+    $int2 = calc($int2 + 4);
+    if_setposition(0, calc((100 - $int2) / 2), ^setpos_abs_centre, ^setpos_abs_top, interface_660:com_1);
+    if ($int2 >= 100) {
+        $int0 = 3;
+        %varclient_391 = 3;
+        $int2 = 100;
+    }
+}
+if_setsize($int1, $int2, ^setsize_abs, ^setsize_abs, interface_660:com_1);
+if ($int0 < 3) {
+    if_setontimer("notification_start($int0, $int1, $int2)", interface_660:com_2);
+} else {
+    if_setontimer("notification_delay(0)", interface_660:com_2);
+}
