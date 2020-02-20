@@ -1,0 +1,11 @@
+// 3331
+[clientscript,script3331](component $component, coord $coord, mapelement $mapelement)
+if ($coord = null | worldmap_isloaded = false) {
+    return;
+}
+def_wma $wma = worldmap_getmap($coord);
+if ($wma ! worldmap_getcurrentmap) {
+    worldmap_setmap($wma);
+}
+if_sethide(false, $component);
+if_setontimer("script3332($component, $coord, $mapelement, 0)", $component);
