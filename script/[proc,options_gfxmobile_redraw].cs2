@@ -1,0 +1,31 @@
+// 3358
+[proc,options_gfxmobile_redraw](struct $struct0)
+def_boolean $boolean1 = false;
+switch_struct ($struct0) {
+    case struct_1269 :
+        $boolean1 = getremoveroofs;
+        cc_setontimer("options_gfxmobile_roof_redraw(event_com, cc_getid, .cc_getid, $boolean1)");
+    case struct_1272 :
+        if (%varplayerbit_2570 = 0) {
+            $boolean1 = true;
+        }
+    case struct_1270 :
+        if (%varplayerbit_6506 = 1) {
+            $boolean1 = true;
+        }
+    case struct_1271 :
+        if (%varplayerbit_10113 = 0) {
+            $boolean1 = true;
+        }
+    case struct_1273 :
+        if (%varplayerbit_10236 = 0) {
+            $boolean1 = true;
+        }
+}
+if ($boolean1 = true) {
+    cc_setop(1, "Disable");
+    .cc_setgraphic("options_boxes,1");
+} else {
+    cc_setop(1, "Enable");
+    .cc_setgraphic("options_boxes,0");
+}
