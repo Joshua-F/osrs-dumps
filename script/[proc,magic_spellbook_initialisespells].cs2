@@ -10,8 +10,10 @@ while ($obj ! null) {
     $component3 = oc_param($obj, param_596);
     if_setopbase("<col=00ff00><oc_param($obj, param_601)></col>", $component3);
     if (if_gettargetmask($component3) ! 0) {
-        if_setontargetenter("magic_spellbook_targetmode(true, event_com)", $component3);
-        if_setontargetleave("magic_spellbook_targetmode(false, event_com)", $component3);
+        if_setontargetenter("magic_spellbook_targetmode(true, event_com, $obj)", $component3);
+        if_setontargetleave("magic_spellbook_targetmode(false, event_com, $obj)", $component3);
+    } else {
+        if_setonop("script2080($obj)", $component3);
     }
     $int = calc($int + 1);
     $obj = enum(int, obj, $enum, $int);
