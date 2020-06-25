@@ -1,0 +1,34 @@
+// 3453
+[proc,deathkeep_right_initbutton](int $int0, int $int1, int $int2, int $int3, int $int4, int $int5, int $int6)(int)
+def_boolean $boolean = false;
+switch_int ($int0) {
+    case 0 :
+        if ($int3 = 1) {
+            $boolean = true;
+        }
+    case 1 :
+        if ($int4 > 0) {
+            $boolean = true;
+        }
+    case 2 :
+        if ($int5 = 1) {
+            $boolean = true;
+        }
+    case 3 :
+        if ($int6 >= 21) {
+            $boolean = true;
+        }
+}
+def_component $component = enum(int, component, enum_2902, $int0);
+if_setposition(0, $int2, ^setpos_abs_centre, ^setpos_abs_top, $component);
+def_string $string = enum(int, string, enum_2910, $int0);
+def_int $int9 = calc(5 + ~max(17, calc(paraheight($string, $int1, p11_full) * 12 + 2)) + 5);
+if_setsize(20, $int9, ^setsize_minus, ^setsize_abs, $component);
+def_int $int10 = ~deathkeep_right_drawbutton($component, $int0, $string, $boolean, 0);
+if_setonmouserepeat("cc_colour_swapper(event_com, $int10, ^white)", $component);
+if_setonmouseleave("cc_colour_swapper(event_com, $int10, 0xff981f)", $component);
+if_setop(1, "Toggle", $component);
+.cc_create(interface_4:com_12, ^iftype_rectangle, $int0);
+.cc_sethide(true);
+if_setonop("deathkeep_right_opbutton(event_com, $int0, $string, $boolean)", $component);
+return(calc($int2 + $int9));
