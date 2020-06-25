@@ -1,0 +1,14 @@
+// 3477
+[clientscript,gravestone_generic_resynchdata](int $int0, component $component1, int $int2, component $component3, component $component4, component $component5)
+if (%varclient_400 ! $int2 | %varclient_399 ! $int0) {
+    if_settext(~gravestone_generic_parsefee(%varclient_399), $component1);
+    if_settext(~gravestone_generic_parsecoffer(%varclient_400), $component3);
+    if (%varclient_399 ! 0) {
+        if_setop(1, "Unlock", $component4);
+        if_setgraphic("bankbuttons,7", $component5);
+    } else {
+        if_setop(1, "Take-All", $component4);
+        if_setgraphic("bankbuttons,4", $component5);
+    }
+    if_setontimer("gravestone_generic_resynchdata(%varclient_399, $component1, %varclient_400, $component3, $component4, $component5)", $component3);
+}
