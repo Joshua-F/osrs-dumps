@@ -1,0 +1,15 @@
+// 3455
+[clientscript,deathkeep_right_opbutton](component $component, int $int, string $string, boolean $boolean)
+sound_synth(synth_2266, 1, 0);
+if ($boolean = true) {
+    ~deathkeep_right_drawbutton($component, $int, $string, false, 1);
+} else {
+    ~deathkeep_right_drawbutton($component, $int, $string, true, 1);
+}
+if_setonmouserepeat(null, $component);
+if_setonmouseleave(null, $component);
+if_setonop(null, $component);
+if_setontimer("deathkeep_right_resetbutton(calc(clientclock + 40), event_com, $int, $string, $boolean)", $component);
+if (cc_find(interface_4:com_12, $int) = true) {
+    cc_resume_pausebutton;
+}

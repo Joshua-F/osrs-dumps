@@ -1,7 +1,7 @@
 // 2236
-[proc,script2236](component $com_14, component $component, int $int2, int $int3, int $int4)
-def_int $int5 = if_getwidth($component);
-def_int $int6 = if_getheight($component);
+[proc,script2236](component $com_14, component $component1, int $int2, int $int3, int $int4)
+def_int $int5 = if_getwidth($component1);
+def_int $int6 = if_getheight($component1);
 if ($int5 = $int2 & $int6 = $int3 & %varclient_381 = $int4 & calc(clientclock % 75) ! 0) {
     return;
 }
@@ -12,6 +12,7 @@ def_int $int10 = ~min(safearea_getmaxx, calc($int5 - $int7));
 def_int $int11 = safearea_getmaxy;
 if_setposition($int8, $int9, ^setpos_abs_left, ^setpos_abs_top, $com_14);
 if_setsize(calc($int5 - ($int10 - $int8)), calc($int6 - ($int11 - $int9)), ^setsize_minus, ^setsize_minus, $com_14);
+def_component $component12 = null;
 if ($com_14 = interface_601:com_14) {
     if (.cc_find(interface_601:com_2, 0) = true) {
         .cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top);
@@ -53,7 +54,11 @@ if ($com_14 = interface_601:com_14) {
         .cc_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_centre);
         .cc_setsize($int10, 0, ^setsize_minus, ^setsize_minus);
     }
+    $component12 = enum(component, component, enum_1745, interface_161:com_18);
+    if ($component12 ! null) {
+        ~script3506($component12);
+    }
 }
-if_setonresize("script2235($com_14, $component, $int5, $int6, %varclient_381)", $com_14);
-if_setonsubchange("script2235($com_14, $component, $int5, $int6, %varclient_381)", $com_14);
-if_setontimer("script2235($com_14, $component, $int5, $int6, %varclient_381)", $com_14);
+if_setonresize("script2235($com_14, $component1, $int5, $int6, %varclient_381)", $com_14);
+if_setonsubchange("script2235($com_14, $component1, $int5, $int6, %varclient_381)", $com_14);
+if_setontimer("script2235($com_14, $component1, $int5, $int6, %varclient_381)", $com_14);
