@@ -1,0 +1,9 @@
+// 3552
+[clientscript,poh_costumes_buttons_1off_op](int $int, component $component, graphic $graphic, obj $obj)
+if ($int ! 1) {
+    return;
+}
+sound_synth(synth_2266, 1, 0);
+~poh_costumes_buttons_draw($component, $graphic, $obj, true);
+if_setontimer("poh_costumes_buttons_1off_reset($component, $graphic, $obj, calc(clientclock + 30))", $component);
+if_setonop(null, $component);
