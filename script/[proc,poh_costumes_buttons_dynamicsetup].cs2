@@ -1,0 +1,27 @@
+// 3549
+[proc,poh_costumes_buttons_dynamicsetup](component $component)
+if_clearops($component);
+if (%varplayer_262 ! -1) {
+    if_sethide(false, $component);
+    if_setop(1, "Tiers", $component);
+    if_setop(2, "Beginner", $component);
+    if (%varplayer_262 >= 1) {
+        if_setop(3, "Easy", $component);
+        if (%varplayer_262 >= 2) {
+            if_setop(4, "Medium", $component);
+            if (%varplayer_262 >= 3) {
+                if_setop(5, "Hard", $component);
+                if (%varplayer_262 >= 4) {
+                    if_setop(6, "Elite", $component);
+                    if (%varplayer_262 >= 5) {
+                        if_setop(7, "Master", $component);
+                    }
+                }
+            }
+        }
+    }
+    ~poh_costumes_buttons_1off_reset($component, null, obj_10668);
+} else {
+    if_sethide(true, $component);
+    cc_deleteall($component);
+}

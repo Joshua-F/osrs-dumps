@@ -1,0 +1,24 @@
+// 3562
+[clientscript,poh_costumes_searchresult](obj $obj, enum $enum, int $key)
+if ($key ! ^key_return) {
+    return;
+}
+sound_synth(synth_2266, 1, 0);
+~meslayer_close(1, 1);
+resume_objdialog($obj);
+if ($obj = null) {
+    return;
+}
+def_string $string = enum(obj, string, enum_3302, $obj);
+def_int $int3 = calc(4 + 32);
+def_int $int4 = enum_getoutputcount($enum);
+while ($int4 > 0) {
+    $int4 = calc($int4 - 1);
+    if (cc_find(interface_675:com_4, calc($int4 * $int3 + 3)) = true & compare(removetags(cc_gettext), $string) = 0) {
+        cc_settext("<col=ff0000><$string></col>");
+        cc_setontimer("poh_costumes_searchtimeout(event_com, event_comsubid, $string, calc(clientclock + 250))");
+        ~scrollbar_resize(interface_675:com_5, interface_675:com_4, cc_gety);
+        return;
+    }
+}
+mes("The set could not be found in here: <$string>");
