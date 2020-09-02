@@ -1,0 +1,49 @@
+// 3537
+[proc,poh_costumes_drawalternates](int $int0, int $int1, int $int2, int $int3, int $int4, int $int5, obj $obj6, boolean $boolean7, component $component8, int $int9)(int, int, int, boolean)
+def_boolean $boolean10 = enum(obj, boolean, enum_3305, $obj6);
+def_int $int11 = 0;
+def_obj $obj12 = null;
+def_int $int13 = 0;
+def_boolean $boolean14 = false;
+def_enum $enum15 = enum(obj, enum, enum_3304, $obj6);
+if ($enum15 ! null) {
+    $int11 = enum_getoutputcount($enum15);
+    while ($int11 > 0) {
+        $int11 = calc($int11 - 1);
+        $obj12 = enum(int, namedobj, $enum15, $int11);
+        if ($obj12 ! null) {
+            $int13 = invother_total(inv_637, $obj12);
+            if ($int13 > 0) {
+                $int0, $int1, $int2, $boolean14 = ~poh_costumes_drawitem($int0, $int1, $int2, $int3, $int4, $int5, $obj12, $int13, $boolean7, $component8, $int9), true;
+                if ($boolean10 = true) {
+                    return($int0, $int1, $int2, $boolean14);
+                }
+            } else if ($boolean10 = false) {
+                $int2 = ~poh_costumes_hideitem($int2, $component8, $int9);
+            }
+        }
+    }
+} else {
+    $obj12 = enum(obj, namedobj, enum_3303, $obj6);
+    if ($obj12 ! null) {
+        $int13 = invother_total(inv_637, $obj12);
+        if ($int13 > 0) {
+            $int0, $int1, $int2, $boolean14 = ~poh_costumes_drawitem($int0, $int1, $int2, $int3, $int4, $int5, $obj12, $int13, $boolean7, $component8, $int9), true;
+            if ($boolean10 = true) {
+                return($int0, $int1, $int2, $boolean14);
+            }
+        } else if ($boolean10 = false) {
+            $int2 = ~poh_costumes_hideitem($int2, $component8, $int9);
+        }
+    }
+}
+$int13 = invother_total(inv_637, $obj6);
+if ($boolean14 = false | $int13 > 0) {
+    $int0, $int1, $int2 = ~poh_costumes_drawitem($int0, $int1, $int2, $int3, $int4, $int5, $obj6, $int13, $boolean7, $component8, $int9);
+    if ($int13 > 0) {
+        $boolean14 = true;
+    }
+} else {
+    $int2 = ~poh_costumes_hideitem($int2, $component8, $int9);
+}
+return($int0, $int1, $int2, $boolean14);
