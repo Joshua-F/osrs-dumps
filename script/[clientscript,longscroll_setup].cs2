@@ -1,0 +1,30 @@
+// 418
+[clientscript,longscroll_setup](string $string0, string $string1)
+def_component $com_4 = interface_625:com_4;
+def_component $com_7 = interface_625:com_7;
+def_component $com_5 = interface_625:com_5;
+def_component $com_6 = interface_625:com_6;
+def_int $int4 = 0;
+if (string_length($string0) = 0) {
+    $int4 = 1;
+}
+def_int $int5 = calc(paraheight($string1, if_getwidth($com_7), q8_full) * 15 + 10);
+if_settext($string1, $com_7);
+if_setscrollsize(0, $int5, $com_5);
+if_setsize(if_getwidth($com_7), $int5, ^setsize_abs, ^setsize_abs, $com_7);
+if_setscrollpos(0, 0, $com_5);
+if ($int4 = 1) {
+    if_sethide(true, $com_4);
+    if_setsize(16, 266, ^setsize_abs, ^setsize_abs, $com_6);
+    if_setposition(84, -1, ^setpos_abs_right, ^setpos_abs_centre, $com_6);
+    if_setsize(if_getwidth($com_5), 266, ^setsize_abs, ^setsize_abs, $com_5);
+    if_setposition(-19, -1, ^setpos_abs_centre, ^setpos_abs_centre, $com_5);
+} else {
+    if_settext($string0, $com_4);
+    if_sethide(false, $com_4);
+    if_setsize(16, 244, ^setsize_abs, ^setsize_abs, $com_6);
+    if_setposition(84, 55, ^setpos_abs_right, ^setpos_abs_top, $com_6);
+    if_setsize(if_getwidth($com_5), 244, ^setsize_abs, ^setsize_abs, $com_5);
+    if_setposition(-19, 10, ^setpos_abs_centre, ^setpos_abs_centre, $com_5);
+}
+~scrollbar_vertical($com_6, $com_5, "scrollbar_parchment_dragger_v2,3", "scrollbar_parchment_dragger_v2,0", "scrollbar_parchment_dragger_v2,1", "scrollbar_parchment_dragger_v2,2", "scrollbar_parchment_v2,0", "scrollbar_parchment_v2,1");
