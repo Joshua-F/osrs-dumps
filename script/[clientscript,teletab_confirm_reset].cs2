@@ -1,0 +1,10 @@
+// 3598
+[clientscript,teletab_confirm_reset](int $int, component $component, string $string)
+if (clientclock < $int) {
+    return;
+}
+~teletab_confirm_draw(false, $string, $component);
+if_setonmouserepeat("teletab_confirm_draw(true, $string, $component)", $component);
+if_setonmouseleave("teletab_confirm_draw(false, $string, $component)", $component);
+if_setonop("teletab_confirm_op(event_op, event_com, $string)", $component);
+if_setontimer(null, $component);
