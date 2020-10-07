@@ -1,0 +1,17 @@
+// 3609
+[proc,partydrop_main_chestitems](int $int0, component $component)
+def_obj $obj = null;
+def_int $int3 = $int0;
+while ($int3 > 0) {
+    $int3 = calc($int3 - 1);
+    if (cc_find($component, $int3) = true) {
+        $obj = inv_getobj(inv_91, $int3);
+        if ($obj ! null) {
+            cc_sethide(false);
+            cc_setobject($obj, inv_getnum(inv_91, $int3));
+            cc_setopbase("<col=ff9040><oc_name($obj)></col>");
+        } else {
+            cc_sethide(true);
+        }
+    }
+}
