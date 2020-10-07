@@ -1,0 +1,17 @@
+// 3606
+[proc,100guide_flour_drawitems](int $int0, component $component, inv $inv)
+def_obj $obj = null;
+def_int $int4 = $int0;
+while ($int4 > 0) {
+    $int4 = calc($int4 - 1);
+    if (cc_find($component, $int4) = true) {
+        $obj = inv_getobj($inv, $int4);
+        if ($obj ! null) {
+            cc_sethide(false);
+            cc_setobject($obj, inv_getnum($inv, $int4));
+            cc_setopbase("<col=ff9040><oc_name($obj)></col>");
+        } else {
+            cc_sethide(true);
+        }
+    }
+}
