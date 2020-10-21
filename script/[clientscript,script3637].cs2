@@ -1,0 +1,54 @@
+// 3637
+[clientscript,script3637](component $com_0, component $com_2, component $com_3, component $com_6, component $com_7, component $com_8, component $com_9)
+def_int $int7 = enum_getoutputcount(enum_3319);
+def_int $int8 = calc((if_getwidth($com_2) - 8 * 36) / 7 + 36);
+def_obj $obj = null;
+def_int $int10 = 0;
+def_int $int11 = -1;
+cc_deleteall($com_2);
+def_int $int12 = 0;
+while ($int12 < $int7) {
+    cc_create($com_2, ^iftype_graphic, $int12);
+    cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+    $int11 = calc($int12 / 8 * $int8);
+    cc_setposition(calc($int12 % 8 * $int8), $int11, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setgraphicshadow(0x333333);
+    cc_setoutline(1);
+    $obj = enum(int, namedobj, enum_3319, $int12);
+    if ($obj ! null) {
+        cc_sethide(false);
+        $int10 = ~max(1, enum(obj, int, enum_3320, $obj));
+        cc_setobject($obj, $int10);
+        if ($int10 > 1) {
+            cc_setopbase("<col=ff9040><oc_name($obj)> set</col>");
+        } else {
+            cc_setopbase("<col=ff9040><oc_name($obj)></col>");
+        }
+        cc_setonop("cc_settrans_temporarily(event_com, event_comsubid, 125, 0)");
+    } else {
+        cc_sethide(true);
+    }
+    $int12 = calc($int12 + 1);
+}
+if ($int11 ! -1) {
+    $int11 = calc($int11 + 32);
+}
+if_setscrollpos(0, 0, $com_2);
+if ($int11 > if_getheight($com_2)) {
+    if_setscrollsize(0, $int11, $com_2);
+    if_sethide(false, $com_3);
+    ~scrollbar_vertical($com_3, $com_2, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+} else {
+    if_setscrollsize(0, 0, $com_2);
+    if_sethide(true, $com_3);
+}
+if_setop(1, "Value", $com_6);
+if_setonop("script3638(event_op, event_com, 0, $int7, $com_2, $com_6, $com_7, $com_8, $com_9)", $com_6);
+if_setop(1, "1", $com_7);
+if_setonop("script3638(event_op, event_com, 1, $int7, $com_2, $com_6, $com_7, $com_8, $com_9)", $com_7);
+if_setop(1, "5", $com_8);
+if_setonop("script3638(event_op, event_com, 2, $int7, $com_2, $com_6, $com_7, $com_8, $com_9)", $com_8);
+if_setop(1, "X", $com_9);
+if_setonop("script3638(event_op, event_com, 3, $int7, $com_2, $com_6, $com_7, $com_8, $com_9)", $com_9);
+~script3640($int7, $com_2, $com_6, $com_7, $com_8, $com_9);
+if_setonvartransmit("script3639($int7, $com_2, $com_6, $com_7, $com_8, $com_9){varplayer_1022}", $com_0);
