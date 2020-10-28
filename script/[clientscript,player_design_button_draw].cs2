@@ -1,0 +1,26 @@
+// 3746
+[clientscript,player_design_button_draw](component $component, string $string, boolean $boolean)
+cc_deleteall($component);
+def_int $int = ~v2_stone_button_filled($component);
+if (string_length($string) > 0) {
+    cc_create($component, ^iftype_text, $int);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    cc_setcolour(^white);
+    cc_settextshadow(true);
+    cc_settextfont(p12_full);
+    cc_settext($string);
+    if_setop(1, removetags($string), $component);
+} else {
+    cc_create($component, ^iftype_graphic, $int);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_setsize(27, 16, ^setsize_abs, ^setsize_abs);
+    cc_setgraphic(single_arrow);
+    cc_sethflip($boolean);
+    if_setop(1, "Select", $component);
+}
+if (~on_mobile = false) {
+    if_setonmouseleave("player_design_button_hover($component, 0, $string, $boolean)", $component);
+    if_setonmouserepeat("player_design_button_hover($component, 1, $string, $boolean)", $component);
+}

@@ -1,0 +1,45 @@
+// 3726
+[proc,script3726](component $component, int $int, string $string, int $rgb2, int $rgb3)(int)
+def_graphic $graphic4 = "tabs_modal_short,0";
+def_graphic $graphic5 = "tabs_modal_short,1";
+if ($int = 1) {
+    $rgb2 = $rgb3;
+} else if ($int = 0) {
+    $graphic4, $graphic5 = "tabs_modal_short,2", "tabs_modal_short,3";
+} else if ($int = 2) {
+    $graphic4, $graphic5 = "tabs_modal_short,4", "tabs_modal_short,5";
+}
+cc_deleteall($component);
+cc_create($component, ^iftype_graphic, 0);
+cc_setsize(20, 21, ^setsize_abs, ^setsize_abs);
+cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+cc_setgraphic($graphic4);
+cc_create($component, ^iftype_graphic, 1);
+cc_setsize(40, 21, ^setsize_minus, ^setsize_abs);
+cc_setposition(20, 0, ^setpos_abs_left, ^setpos_abs_top);
+cc_setgraphic($graphic5);
+cc_settiling(true);
+cc_create($component, ^iftype_graphic, 2);
+cc_setsize(20, 21, ^setsize_abs, ^setsize_abs);
+cc_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_top);
+cc_setgraphic($graphic4);
+cc_sethflip(true);
+if ($int = 1) {
+    if_setonmouseover(null, $component);
+    if_setonmouseleave(null, $component);
+} else if (~on_mobile = false) {
+    if_setonmouseover("script3724($component, 2, $string, $rgb2, $rgb3)", $component);
+    if_setonmouseleave("script3724($component, 0, $string, $rgb2, $rgb3)", $component);
+}
+if (string_length($string) > 0) {
+    cc_create($component, ^iftype_text, 3);
+    cc_setsize(0, 2, ^setsize_minus, ^setsize_minus);
+    cc_setposition(0, -1, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_settextshadow(true);
+    cc_settextfont(p12_full);
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    cc_settext($string);
+    cc_setcolour($rgb2);
+    return(4);
+}
+return(3);

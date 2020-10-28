@@ -1,12 +1,12 @@
 // 294
-[clientscript,bankside_init](component $com_0, component $com_1, component $com_2, component $com_3, component $com_4, component $com_5, component $com_12, component $com_9)
+[clientscript,bankside_init](component $com_0, component $com_1, component $com_2, component $com_3, component $com_4, component $com_5, component $com_13, component $com_10, component $com_6, component $com_19, component $com_16)
 cc_deleteall($com_3);
 cc_deleteall($com_4);
-def_int $int8 = 0;
-def_int $int9 = inv_size(inv_93);
-while ($int8 < $int9) {
-    cc_create($com_3, ^iftype_graphic, $int8);
-    .cc_create($com_4, ^iftype_graphic, $int8);
+def_int $int11 = 0;
+def_int $int12 = inv_size(inv_93);
+while ($int11 < $int12) {
+    cc_create($com_3, ^iftype_graphic, $int11);
+    .cc_create($com_4, ^iftype_graphic, $int11);
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
     .cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
     cc_setgraphicshadow(0x333333);
@@ -19,13 +19,16 @@ while ($int8 < $int9) {
     .cc_setdragdeadtime(5);
     cc_sethide(false);
     .cc_sethide(false);
-    $int8 = calc($int8 + 1);
+    $int11 = calc($int11 + 1);
 }
-~bankside_build($com_1, $com_3, $com_2, $com_4, $com_5);
-if_setoninvtransmit("bankside_build($com_1, $com_3, $com_2, $com_4, $com_5){inv_93, inv_516}", $com_1);
-if_setonvartransmit("bankside_build($com_1, $com_3, $com_2, $com_4, $com_5){varplayer_304, varplayer_1666, varplayer_1141, varplayer_261, varplayer_262, varplayer_263}", $com_1);
-~bankside_lootingbag_draw($com_12);
-if_setoninvtransmit("bankside_lootingbag_draw($com_12){inv_516}", $com_5);
-~bankside_switchview($com_1, $com_5);
-if_setonvartransmit("bankside_switchview(-1, $com_1, $com_5, -1){varplayer_115}", $com_0);
-if_setonop("bankside_switchview(event_op, $com_1, $com_5, 0)", $com_9);
+~bankside_build($com_1, $com_3, $com_2, $com_4, $com_5, $com_6);
+if_setoninvtransmit("bankside_build($com_1, $com_3, $com_2, $com_4, $com_5, $com_6){inv_93, inv_516, inv_646}", $com_1);
+if_setonvartransmit("bankside_build($com_1, $com_3, $com_2, $com_4, $com_5, $com_6){varplayer_304, varplayer_1666, varplayer_1141, varplayer_261, varplayer_262, varplayer_263}", $com_1);
+~bankside_bag_draw($com_13, inv_516);
+if_setoninvtransmit("bankside_bag_draw($com_13, inv_516){inv_516}", $com_5);
+~bankside_bag_draw($com_19, inv_646);
+if_setoninvtransmit("bankside_bag_draw($com_19, inv_646){inv_646}", $com_6);
+~bankside_switchview($com_1, $com_5, $com_6);
+if_setonvartransmit("bankside_switchview(-1, $com_1, $com_5, $com_6, -1){varplayer_115}", $com_0);
+if_setonop("bankside_switchview(event_op, $com_1, $com_5, $com_6, 0)", $com_10);
+if_setonop("bankside_switchview(event_op, $com_1, $com_5, $com_6, 0)", $com_16);
