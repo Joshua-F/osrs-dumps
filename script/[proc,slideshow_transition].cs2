@@ -1,0 +1,22 @@
+// 3734
+[proc,slideshow_transition](component $component, enum $enum, int $int2, int $int3)
+def_int $int4 = 0;
+def_int $int5 = 0;
+if (cc_find($component, 0) = true) {
+    $int4 = calc(255 - cc_gettrans);
+    $int5 = calc($int4 + 1);
+    if ($int5 = enum_getoutputcount($enum)) {
+        $int5 = 0;
+    }
+    cc_settrans(calc(255 - $int5));
+}
+def_graphic $graphic6 = enum(int, graphic, $enum, $int4);
+def_graphic $graphic7 = enum(int, graphic, $enum, $int5);
+if (cc_find($component, 1) = true) {
+    cc_setgraphic($graphic7);
+}
+if (cc_find($component, 2) = true) {
+    cc_setgraphic($graphic6);
+    cc_settrans(0);
+    cc_setontimer("slideshow_fadeout($component, 2, $int3)");
+}
