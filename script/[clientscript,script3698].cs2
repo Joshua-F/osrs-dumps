@@ -1,0 +1,66 @@
+// 3698
+[clientscript,script3698](component $component0, int $int1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7)
+cc_deleteall($component3);
+cc_deleteall($component4);
+cc_deleteall($component5);
+def_int $int8 = ~steelborder($component0, "League Firsts", 1);
+~leagues_close_button($component6, false);
+def_int $int9 = 0;
+def_int $int10 = 0;
+def_string $string0 = "-";
+def_string $string1 = "-";
+def_string $string2 = "-";
+def_int $int11 = 30;
+def_int $int12 = if_getwidth($component2);
+def_enum $enum13 = enum_3420;
+while ($int9 < enum_getoutputcount($enum13)) {
+    $string0 = struct_param(enum(int, struct, $enum13, $int9), param_1042);
+    $string1 = struct_param(enum(int, struct, $enum13, $int9), param_1043);
+    $string2 = struct_param(enum(int, struct, $enum13, $int9), param_1044);
+    cc_create($component3, ^iftype_text, $int10);
+    cc_settext($string0);
+    cc_setposition(10, $int11, ^setpos_abs_left, ^setpos_abs_top);
+    cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+    cc_settextfont(p12_full);
+    cc_settextshadow(true);
+    cc_setcolour(0x11ee11);
+    cc_setsize(calc(if_getwidth($component3) - 10), 30, ^setsize_abs, ^setsize_abs);
+    mes("Added: <$string0> at position ypos: <tostring(cc_gety)>");
+    cc_create($component2, ^iftype_rectangle, $int10);
+    cc_setsize($int12, 30, ^setsize_abs, ^setsize_abs);
+    cc_setposition(0, calc(31 + $int9 * 30), ^setpos_abs_left, ^setpos_abs_top);
+    if (calc($int9 % 2) = 0) {
+        cc_setcolour(^white);
+    } else {
+        cc_setcolour(^yellow);
+    }
+    cc_setfill(true);
+    cc_settrans(235);
+    cc_create($component4, ^iftype_text, $int10);
+    cc_settext($string1);
+    cc_setposition(10, $int11, ^setpos_abs_left, ^setpos_abs_top);
+    cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+    cc_settextfont(p12_full);
+    cc_settextshadow(true);
+    cc_setcolour(0x11ee11);
+    cc_setsize(calc(if_getwidth($component4) - 10), 30, ^setsize_abs, ^setsize_abs);
+    cc_create($component5, ^iftype_text, $int10);
+    cc_settext($string2);
+    cc_setposition(10, $int11, ^setpos_abs_left, ^setpos_abs_top);
+    cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+    cc_settextfont(p12_full);
+    cc_settextshadow(true);
+    cc_setcolour(0x11ee11);
+    cc_setsize(calc(if_getwidth($component5) - 10), 30, ^setsize_abs, ^setsize_abs);
+    $int10 = calc($int10 + 1);
+    $int9 = calc($int9 + 1);
+    $int11 = calc($int11 + 30);
+}
+cc_deleteall($component7);
+def_int $int14 = if_getheight($component2);
+if ($int11 > $int14) {
+    if_setscrollsize(0, $int11, $component2);
+} else {
+    if_setscrollsize(0, 0, $component2);
+}
+~scrollbar_vertical($component7, $component2, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
