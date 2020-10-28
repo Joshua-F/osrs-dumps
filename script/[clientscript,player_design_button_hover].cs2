@@ -1,0 +1,25 @@
+// 3756
+[clientscript,player_design_button_hover](component $component0, int $int1, string $string0, boolean $boolean2)
+cc_deleteall($component0);
+def_int $int3 = 0;
+if ($int1 = 1) {
+    $int3 = ~v2_stone_button_in_filled($component0);
+} else {
+    $int3 = ~v2_stone_button_filled($component0);
+}
+if (string_length($string0) > 0) {
+    cc_create($component0, ^iftype_text, $int3);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    cc_setcolour(^white);
+    cc_settextshadow(true);
+    cc_settextfont(p12_full);
+    cc_settext($string0);
+} else {
+    cc_create($component0, ^iftype_graphic, $int3);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_setsize(27, 16, ^setsize_abs, ^setsize_abs);
+    cc_setgraphic(single_arrow);
+    cc_sethflip($boolean2);
+}
