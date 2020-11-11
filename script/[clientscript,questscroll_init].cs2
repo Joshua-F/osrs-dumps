@@ -1,4 +1,18 @@
 // 118
-[clientscript,questscroll_init](component $com_6)
+[clientscript,questscroll_init](component $com_6, component $com_16, component $com_17)
+def_graphic $graphic3 = "close_buttons,2";
+def_graphic $graphic4 = "close_buttons,3";
+if (~on_mobile = false) {
+    if_setonmouseover("graphic_swapper($com_17, $graphic4)", $com_16);
+    if_setonmouseleave("graphic_swapper($com_17, $graphic3)", $com_16);
+    if_setposition(67, 59, ^setpos_abs_right, ^setpos_abs_top, $com_16);
+    if_setsize(26, 23, ^setsize_abs, ^setsize_abs, $com_16);
+} else {
+    if_setonmouseover(null, $com_16);
+    if_setonmouseleave(null, $com_16);
+    if_setposition(64, 55, ^setpos_abs_right, ^setpos_abs_top, $com_16);
+    if_setsize(32, 32, ^setsize_abs, ^setsize_abs, $com_16);
+}
+if_setonop("closebutton_click", $com_16);
 def_string $string = ~tostring_spacer(%varplayer_101, ",");
 if_settext("Total Quest Points: <$string>", $com_6);
