@@ -1,0 +1,26 @@
+// 3934
+[clientscript,script3934](component $com_15, component $com_37, component $com_38, component $com_34)
+cc_deleteall($com_37);
+def_int $int4 = struct_param(struct_2754, param_1101);
+def_int $int5 = 0;
+def_int $int6 = if_getwidth($com_37);
+def_graphic $graphic = "options_icons,2";
+def_int $int8 = ~settings_get_slider(31);
+def_string $string0 = "Mute Sound Effects";
+def_string $string1 = "Unmute Sound Effects";
+~settings_create_icon($int8, 31, $com_38, $com_37, $int4, $graphic, $com_15, $string0, $string1, $com_34);
+if_setonvartransmit("script3939(31, $com_38, $com_37, $int4, $graphic, $com_15, $string0, $string1, $com_34){varplayer_169}", $com_38);
+if_setnoclickthrough(true, $com_38);
+if_setonclick("opsound(0, 0)", $com_38);
+while ($int5 <= $int4) {
+    cc_create($com_37, ^iftype_rectangle, $int5);
+    cc_setop(1, "Adjust Sound Effect Volume");
+    cc_setposition(scale($int5, $int4, $int6), 0, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(calc(scale(calc(1 + $int5), $int4, $int6) - scale($int5, $int4, $int6)), 0, ^setsize_abs, ^setsize_minus);
+    cc_setfill(true);
+    cc_setcolour(^white);
+    cc_settrans(255);
+    cc_setonop("settings_side_notch_op(31, $int5, $com_38, $com_37, $int4, $graphic, $com_15, $string0, $string1, $com_34)");
+    $int5 = calc($int5 + 1);
+}
+~script3941($int8, $com_38, $com_37, $int4);

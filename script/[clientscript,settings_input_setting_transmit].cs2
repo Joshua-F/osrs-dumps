@@ -1,0 +1,40 @@
+// 3858
+[clientscript,settings_input_setting_transmit](struct $struct, int $int1, int $int2, int $int3, int $int4, component $component, int $int6)
+def_boolean $boolean = ~settings_dependency_checker($struct);
+def_string $string = ",";
+def_int $int8 = 0;
+if (cc_find($component, $int2) = true) {
+    if ($boolean = true) {
+        cc_setcolour(0xff981f);
+    } else {
+        cc_setcolour(0x9f9f9f);
+    }
+    $int8 = ~settings_get_number_input($int1);
+    if ($int8 > 1) {
+        cc_settext("<~tostring_spacer($int8, $string)> <struct_param($struct, param_1112)>");
+    } else if ($int8 = 0) {
+        cc_settext(struct_param($struct, param_1113));
+    } else {
+        cc_settext("1 <struct_param($struct, param_1111)>");
+    }
+}
+if (cc_find($component, $int4) = true) {
+    if ($boolean = true) {
+        cc_setcolour(0xff981f);
+    } else {
+        cc_setcolour(0x9f9f9f);
+    }
+}
+if (cc_find($component, $int3) = true) {
+    if (~on_mobile = false & $boolean = true) {
+        cc_setonmouseover("cc_settrans($component, $int3, 220, null)");
+        cc_setonmouseleave("cc_settrans($component, $int3, 255, null)");
+    } else {
+        cc_setonmouseover(null);
+        cc_setonmouseleave(null);
+    }
+}
+if (%varplayerbit_9647 = 1 & %varplayerbit_9657 = $int1 & cc_find($component, $int6) = true) {
+    cc_setcolour(^white);
+    cc_setontimer("settings_input_timer($component, $int6)");
+}

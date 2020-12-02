@@ -1,0 +1,22 @@
+// 3867
+[clientscript,settings_button_on_transmit](struct $struct, component $component, int $int2, int $int3, int $int4)
+def_boolean $boolean = ~settings_dependency_checker($struct);
+if ($boolean = true) {
+    if (cc_find($component, $int2) = true) {
+        cc_setcolour(0xff981f);
+    }
+    ~v2_stone_button_change_out($component, $int3);
+    if (~on_mobile = false & cc_find($component, $int4) = true) {
+        cc_setonmouseover("v2_stone_button_change_in($component, $int3)");
+        cc_setonmouseleave("v2_stone_button_change_out($component, $int3)");
+    }
+} else {
+    if (cc_find($component, $int2) = true) {
+        cc_setcolour(0x9f9f9f);
+    }
+    ~v2_stone_button_change_in($component, $int3);
+    if (cc_find($component, $int4) = true) {
+        cc_setonmouseover(null);
+        cc_setonmouseleave(null);
+    }
+}

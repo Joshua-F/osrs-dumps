@@ -1,0 +1,20 @@
+// 3804
+[clientscript,xpreward_init](component $com_0, component $com_26)
+cc_deleteall($com_0);
+def_int $int = 0;
+while ($int < 23) {
+    cc_create($com_0, ^iftype_rectangle, $int);
+    cc_setsize(1, 1, ^setsize_abs, ^setsize_abs);
+    cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+    cc_sethide(true);
+    $int = calc($int + 1);
+}
+cc_deleteall($com_26);
+cc_create($com_26, ^iftype_text, 0);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_settextfont(p12_full);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+cc_settextshadow(true);
+if_setop(1, "Confirm", $com_26);
+~xpreward_update(0, $com_0, $com_26);
