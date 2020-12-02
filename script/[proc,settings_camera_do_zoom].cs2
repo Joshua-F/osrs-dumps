@@ -1,0 +1,23 @@
+// 3899
+[proc,settings_camera_do_zoom](component $component0, int $int1, int $int2, int $int3, int $int4, int $int5, int $int6)
+if (%varplayerbit_4606 ! 0) {
+    return;
+}
+$int2 = ~min(896, $int2);
+$int2 = ~max(128, $int2);
+$int3 = ~min(896, $int3);
+$int3 = ~max(128, $int3);
+viewport_setfov($int2, $int3);
+def_int $int7 = 0;
+def_int $int8 = 0;
+$int7, $int8 = viewport_geteffectivesize;
+def_int $int9 = calc($int8 - 334);
+if ($int9 < 0) {
+    $int9 = 0;
+} else if ($int9 > 100) {
+    $int9 = 100;
+}
+def_int $int10 = calc($int2 + ($int3 - $int2) * $int9 / 100);
+cam_setfollowheight(calc(25 + 25 * $int10 / 256));
+%varclient_73, %varclient_74 = $int2, $int3;
+~settings_zoom_position_slider($component0, $int1, $int4, $int5, $int6);
