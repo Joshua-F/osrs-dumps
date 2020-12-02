@@ -1,0 +1,20 @@
+// 3847
+[clientscript,settings_toggle_op](struct $struct0, int $int1, component $component2, int $int3, boolean $boolean4, boolean $boolean5)
+if (~settings_op_checker($struct0) = false) {
+    return;
+}
+~settings_clicked_toggle($int1);
+def_int $int6 = ~settings_get_toggle($int1);
+if ($boolean4 = true) {
+    $int6 = calc(1 - $int6);
+}
+if (cc_find($component2, $int3) = ^true) {
+    if ($int6 = 1) {
+        cc_setgraphic("toggle_box,1");
+    } else {
+        cc_setgraphic("toggle_box,0");
+    }
+    if ($boolean5 = false) {
+        cc_setontimer("settings_toggle_synch(0, event_com, event_comsubid, $boolean4, $int6, $int1)");
+    }
+}
