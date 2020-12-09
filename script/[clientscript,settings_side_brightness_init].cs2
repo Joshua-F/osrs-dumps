@@ -1,0 +1,27 @@
+// 381
+[clientscript,settings_side_brightness_init](component $com_104, component $com_115, component $com_116, component $com_39)
+cc_deleteall($com_115);
+def_int $int4 = 4;
+def_int $int5 = 0;
+def_int $int6 = if_getwidth($com_115);
+def_int $int7 = ~settings_get_slider(15);
+cc_deleteall($com_104);
+cc_create($com_104, ^iftype_graphic, 0);
+cc_setsize(32, 32, ^setsize_abs, ^setsize_abs);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_setgraphic("options_icons,0");
+if_setonvartransmit("script382(15, $com_116, $com_115, $int4, $com_39){varplayer_166}", $com_116);
+if_setnoclickthrough(true, $com_116);
+if_setonclick("opsound(0, 0)", $com_116);
+while ($int5 <= $int4) {
+    cc_create($com_115, ^iftype_rectangle, $int5);
+    cc_setop(1, "Adjust Music Volume");
+    cc_setposition(scale($int5, $int4, $int6), 0, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(calc(scale(calc(1 + $int5), $int4, $int6) - scale($int5, $int4, $int6)), 0, ^setsize_abs, ^setsize_minus);
+    cc_setfill(true);
+    cc_setcolour(^white);
+    cc_settrans(255);
+    cc_setonop("script439(15, $int5, $com_116, $com_115, $int4, $com_39)");
+    $int5 = calc($int5 + 1);
+}
+~script3941($int7, $com_116, $com_115, $int4);
