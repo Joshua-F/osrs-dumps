@@ -1,0 +1,18 @@
+// 365
+[proc,soul_wars_game_hud_update_contested](component $component, int $int)
+cc_deleteall($component);
+if ($int ! 1 & $int ! 2) {
+    ~stonepanel(38, $component, 0);
+    if_setontimer(null, $component);
+    return;
+}
+if (calc(clientclock % 20) < 10) {
+    ~stonepanel(38, $component, 0);
+} else if ($int = 1) {
+    ~stonepanel_blue(38, $component, 0);
+} else if ($int = 2) {
+    ~stonepanel_red(38, $component, 0);
+} else {
+    ~stonepanel(38, $component, 0);
+}
+if_setontimer("soul_wars_game_hud_update_contested($component, $int)", $component);
