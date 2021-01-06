@@ -1,0 +1,19 @@
+// 842
+[proc,script842](int $int0, component $component1, component $component2, component $component3)
+cc_deleteall($component1);
+def_int $int4 = 0;
+def_int $int5 = 10;
+def_int $int6 = 0;
+def_int $int7 = if_getwidth($component1);
+def_int $int8 = calc(if_getwidth($component1) / 3);
+def_int $int9 = 0;
+while ($int9 < enum_getoutputcount(enum_3553)) {
+    $int4 = ~soul_wars_rewards_drawitem($int9, enum_3553, enum_3540, $int5, $int6, $int8, 2, $component1, $component2, $component3, $int4, $int0);
+    $int9 = calc($int9 + 1);
+    $int6 = calc($int6 + $int8);
+    if (calc($int6 + $int8) > $int7) {
+        $int6 = 0;
+        $int5 = calc($int5 + 32 + 10);
+    }
+}
+~soul_wars_rewards_drawconfirm($int0, $component1, $component2, $component3, enum_3553, 2);

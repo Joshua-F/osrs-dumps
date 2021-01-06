@@ -1,0 +1,15 @@
+// 575
+[proc,script575](stat $stat)(int)
+if (stat_base($stat) < 30) {
+    return(0);
+}
+def_int $int = 0;
+switch_stat ($stat) {
+    case attack, strength, defence, hitpoints :
+        $int = calc(stat_base($stat) * stat_base($stat) / 600 * 24 * 10);
+    case ranged, magic :
+        $int = calc(stat_base($stat) * stat_base($stat) / 600 * 22 * 10);
+    case prayer :
+        $int = calc(stat_base($stat) * stat_base($stat) / 600 * 12 * 10);
+}
+return($int);
