@@ -1,0 +1,50 @@
+// 2146
+[proc,storage_main_update](enum $enum, component $component, obj $obj2, string $string, int $int3, int $int4)
+def_int $int5 = 0;
+def_obj $obj6 = null;
+$int5, $obj6 = ~storage_getstored($enum, $obj2);
+def_int $rgb = 0xbb0000;
+if ($int5 > 0) {
+    $rgb = 0x20df20;
+}
+if (cc_find($component, $int4) = true & .cc_find($component, calc($int4 + 1)) = true) {
+    cc_settext($string);
+    cc_setcolour($rgb);
+    .cc_setcolour($rgb);
+    .cc_settext("<tostring($int5)>/<tostring($int3)>");
+}
+if (cc_find($component, calc($int4 + 2)) = true) {
+    cc_setobject_nonum($obj6, $int5);
+}
+if_setopbase("<col=ff9040><oc_name($obj6)></col>", $component);
+if_clearops($component);
+if_setop(10, "Examine", $component);
+if ($int3 <= 1) {
+    if_setop(1, "Remove", $component);
+} else {
+    if (oc_cert($obj6) ! $obj6) {
+        if_setop(9, "Banknotes", $component);
+    }
+    switch_int (%varplayerbit_7792) {
+        case 0 :
+            if_setop(1, "Remove-1", $component);
+            if_setop(2, "Remove-5", $component);
+            if_setop(3, "Remove-X", $component);
+            if_setop(4, "Remove-All", $component);
+        case 1 :
+            if_setop(1, "Remove-5", $component);
+            if_setop(2, "Remove-1", $component);
+            if_setop(3, "Remove-X", $component);
+            if_setop(4, "Remove-All", $component);
+        case 3 :
+            if_setop(1, "Remove-X", $component);
+            if_setop(2, "Remove-1", $component);
+            if_setop(3, "Remove-5", $component);
+            if_setop(4, "Remove-All", $component);
+        case 2 :
+            if_setop(1, "Remove-All", $component);
+            if_setop(2, "Remove-1", $component);
+            if_setop(3, "Remove-5", $component);
+            if_setop(4, "Remove-X", $component);
+    }
+}
