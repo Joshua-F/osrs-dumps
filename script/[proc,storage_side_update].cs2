@@ -1,0 +1,48 @@
+// 2148
+[proc,storage_side_update](enum $enum, component $component, obj $obj2, string $string, int $int3)
+def_int $int4 = 0;
+def_obj $obj5 = null;
+$int4, $obj5 = ~storage_getcarried($enum, $obj2);
+def_int $rgb = 0xbb0000;
+if ($int4 > 0) {
+    $rgb = 0x20df20;
+}
+if (cc_find($component, $int3) = true & .cc_find($component, calc($int3 + 1)) = true) {
+    cc_settext($string);
+    cc_setcolour($rgb);
+    .cc_setcolour($rgb);
+    .cc_settext(~magic_tostring($int4));
+}
+if (cc_find($component, calc($int3 + 2)) = true) {
+    cc_setobject_nonum($obj5, $int4);
+}
+if_setopbase("<col=ff9040><oc_name($obj5)></col>", $component);
+if_clearops($component);
+if_setop(10, "Examine", $component);
+def_int $int7 = enum(obj, int, $enum, $obj2);
+if ($int7 <= 1) {
+    if_setop(1, "Store", $component);
+} else {
+    switch_int (%varplayerbit_7792) {
+        case 0 :
+            if_setop(1, "Store-1", $component);
+            if_setop(2, "Store-5", $component);
+            if_setop(3, "Store-X", $component);
+            if_setop(4, "Store-All", $component);
+        case 1 :
+            if_setop(1, "Store-5", $component);
+            if_setop(2, "Store-1", $component);
+            if_setop(3, "Store-X", $component);
+            if_setop(4, "Store-All", $component);
+        case 3 :
+            if_setop(1, "Store-X", $component);
+            if_setop(2, "Store-1", $component);
+            if_setop(3, "Store-5", $component);
+            if_setop(4, "Store-All", $component);
+        case 2 :
+            if_setop(1, "Store-All", $component);
+            if_setop(2, "Store-1", $component);
+            if_setop(3, "Store-5", $component);
+            if_setop(4, "Store-X", $component);
+    }
+}
