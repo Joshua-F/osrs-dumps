@@ -1,0 +1,25 @@
+// 4080
+[clientscript,collection_init_frame]
+~steelborder(interface_621:com_1, "Collection Log - <tostring(%varplayer_2943)>/<tostring(%varplayer_2944)>", 1);
+def_graphic $graphic = null;
+def_int $int = 0;
+def_boolean $boolean = ~on_mobile;
+def_component $com_78 = interface_621:com_78;
+if ($boolean = true) {
+    if_setsize(33, 33, ^setsize_abs, ^setsize_abs, $com_78);
+    if_setposition(8, 11, ^setpos_abs_right, ^setpos_abs_top, $com_78);
+    if_setgraphic("steelborder_close_button,0", $com_78);
+    $int = calc(165 - (23 + 30));
+} else {
+    if_setsize(26, 23, ^setsize_abs, ^setsize_abs, $com_78);
+    if_setposition(10, 16, ^setpos_abs_right, ^setpos_abs_top, $com_78);
+    $graphic = "close_buttons,0";
+    if_setgraphic($graphic, $com_78);
+    if_setonmouseleave("graphic_swapper(event_com, $graphic)", $com_78);
+    $graphic = "close_buttons,1";
+    if_setonmouseover("graphic_swapper(event_com, $graphic)", $com_78);
+}
+if_setop(1, "Close", $com_78);
+if_setonop("opsound(event_op, 2)", $com_78);
+if_setopkey(2, ^key_escape, 0, $com_78);
+if_setop(2, "", $com_78);

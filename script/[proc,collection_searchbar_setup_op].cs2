@@ -1,0 +1,34 @@
+// 4088
+[proc,collection_searchbar_setup_op](int $int0, component $component1, component $component2)
+def_component $com_71 = interface_621:com_71;
+def_component $com_72 = interface_621:com_72;
+def_component $com_76 = interface_621:com_76;
+def_component $com_75 = interface_621:com_75;
+def_component $com_77 = interface_621:com_77;
+def_int $int8 = 0;
+if (%varplayerbit_9638 = 0) {
+    if_setop(1, "Search", $com_71);
+    if_setonop("collection_searchbar_op($component1, $component2)", $com_71);
+    if_setonmouseover("collection_searchbar_mouseover($com_72)", $com_72);
+    if_setonmouseleave("collection_searchbar_mouseleave($com_72)", $com_72);
+    if_settext("*", $com_72);
+    if_setcolour(0xff981f, $com_72);
+    if ($int0 = 1) {
+        %varclient_417 = "";
+    }
+    if_setonkey(null, $com_72);
+} else {
+    if (~on_mobile = false) {
+        if_setop(1, "", $com_71);
+        if_setonop(null, $com_71);
+    } else {
+        if_setop(1, "Show keyboard", $com_71);
+        if_setonop("settings_show_keyboard", $com_71);
+    }
+    if_setonmouseover(null, $com_72);
+    if_setonmouseleave(null, $com_72);
+    if_settext(append(%varclient_417, "<col=f4f4f4>*</col>"), $com_72);
+    if_setonkey("collection_searchbar_keypress(event_keycode, event_keychar, $com_72, $com_77, $com_76, $com_75, $component1, $component2)", $com_72);
+    ~collection_search_keyboard_listener;
+}
+~collection_populate_search_results(1);
