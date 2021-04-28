@@ -1,5 +1,8 @@
 // 2619
 [proc,magic_spellbook_passfilter](obj $obj0)(boolean)
+if (~script4130($obj0) = true & ~tournament_beta_world = false) {
+    return(false);
+}
 def_int $int1 = oc_param($obj0, param_605);
 if ($int1 = 0) {
     if (%varplayerbit_6605 = 1) {
@@ -19,6 +22,9 @@ if (%varplayerbit_6607 = 1) {
     }
 }
 if (%varplayerbit_6608 = 1 & ~magic_spellbook_hasrunes($obj0) = false) {
+    return(false);
+}
+if (%varplayerbit_12137 = 1 & ~magic_spellbook_unlocked($obj0) = false) {
     return(false);
 }
 return(true);
