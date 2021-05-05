@@ -4,7 +4,7 @@ widthmode=minus
 heightmode=minus
 xmode=abs_centre
 ymode=abs_centre
-onload=tutorial_displayname_init(event_com, interface_558:com17, interface_558:com18)
+onload=tutorial_displayname_init(event_com, interface_558:com18, interface_558:com19, interface_558:com12, interface_558:com2, interface_558:com8, interface_558:com7)
 
 [com1]
 type=layer
@@ -17,10 +17,10 @@ noclickthrough=yes
 
 [com2]
 type=layer
+y=44
 width=350
-height=246
+height=261
 xmode=abs_centre
-ymode=abs_centre
 layer=com0
 
 [com3]
@@ -30,12 +30,12 @@ heightmode=minus
 xmode=abs_centre
 ymode=abs_centre
 layer=com2
-onload=tutorial_displayname_border(event_com, "Choose display name")
+onload=tutorial_displayname_border(event_com, "Set display name")
 
 [com4]
 type=layer
 y=40
-width=20
+width=18
 height=50
 widthmode=minus
 heightmode=minus
@@ -44,18 +44,18 @@ layer=com2
 
 [com5]
 type=text
-height=53
+height=68
 widthmode=minus
 xmode=abs_centre
 layer=com4
 textfont=p12_full
-text=In order to play Old School RuneScape, you must select a unique <col=ffffff>display name</col> for your character.<br><br>This may be changed at a later stage.
+text=In order to play Old School RuneScape, you must select a unique <col=ffffff>display name</col> for your character, up to twelve characters long.<br><br>This may be changed at a later stage.
 textshadow=yes
 colour=0xff981f
 
 [com6]
 type=text
-y=63
+y=78
 height=18
 widthmode=minus
 xmode=abs_centre
@@ -68,16 +68,29 @@ colour=0xff981f
 
 [com7]
 type=layer
-y=81
-height=20
+y=95
+height=22
 widthmode=minus
 layer=com4
 events=2
-op0=Look up name
+op0=Enter name
+onmouseleave=tutorial_displayname_input_mouseover(interface_558:com8, false)
+onmouserepeat=tutorial_displayname_input_mouseover(interface_558:com8, true)
 
 [com8]
+type=rectangle
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=com7
+hide=yes
+colour=0xffffff
+fill=yes
+
+[com9]
 type=graphic
-width=8
+width=10
 height=20
 widthmode=minus
 xmode=abs_centre
@@ -86,16 +99,18 @@ layer=com7
 graphic=graphic_1124
 tiling=yes
 
-[com9]
+[com10]
 type=graphic
+x=1
 width=4
 height=20
 ymode=abs_centre
 layer=com7
 graphic=graphic_1123
 
-[com10]
+[com11]
 type=graphic
+x=1
 width=4
 height=20
 xmode=abs_right
@@ -103,7 +118,7 @@ ymode=abs_centre
 layer=com7
 graphic=graphic_1125
 
-[com11]
+[com12]
 type=text
 widthmode=minus
 heightmode=minus
@@ -114,49 +129,33 @@ textalignh=1
 textalignv=1
 textshadow=yes
 
-[com12]
+[com13]
 type=text
-y=116
+y=131
 height=36
 widthmode=minus
 xmode=abs_centre
 layer=com4
 textfont=p12_full
-text=Please enter a name to see whether it is available.
+text=Please look up a name to see whether it is available.
 textalignh=1
 textalignv=1
 textshadow=yes
 colour=0xff981f
 
-[com13]
+[com14]
 type=layer
-y=135
+y=150
 height=26
 widthmode=minus
 layer=com4
 hide=yes
 
-[com14]
-type=text
-width=110
-heightmode=minus
-layer=com13
-textfont=p12_full
-textalignh=1
-textalignv=1
-textshadow=yes
-colour=0xff981f
-events=2
-op0=Set name
-onmouseleave=text_colour_swapper(event_com, 16750623)
-onmouserepeat=text_colour_swapper(event_com, 16777215)
-
 [com15]
 type=text
 width=110
 heightmode=minus
-xmode=abs_centre
-layer=com13
+layer=com14
 textfont=p12_full
 textalignh=1
 textalignv=1
@@ -171,8 +170,8 @@ onmouserepeat=text_colour_swapper(event_com, 16777215)
 type=text
 width=110
 heightmode=minus
-xmode=abs_right
-layer=com13
+xmode=abs_centre
+layer=com14
 textfont=p12_full
 textalignh=1
 textalignv=1
@@ -184,24 +183,38 @@ onmouseleave=text_colour_swapper(event_com, 16750623)
 onmouserepeat=text_colour_swapper(event_com, 16777215)
 
 [com17]
-type=layer
-x=25
-y=164
-width=120
-height=30
-layer=com4
+type=text
+width=110
+heightmode=minus
+xmode=abs_right
+layer=com14
+textfont=p12_full
+textalignh=1
+textalignv=1
+textshadow=yes
+colour=0xff981f
 events=2
-op0=Look up name
+op0=Set name
+onmouseleave=text_colour_swapper(event_com, 16750623)
+onmouserepeat=text_colour_swapper(event_com, 16777215)
 
 [com18]
 type=layer
-x=25
-y=2
+y=179
 width=120
 height=30
-xmode=abs_right
-ymode=abs_bottom
+xmode=abs_centre
 layer=com4
 events=2
-op0=Set name
+op0=*
+
+[com19]
+type=layer
+y=179
+width=120
+height=30
+xmode=abs_centre
+layer=com4
+events=2
+op0=*
 
