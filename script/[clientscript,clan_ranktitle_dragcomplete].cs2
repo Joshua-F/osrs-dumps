@@ -1,0 +1,29 @@
+// 4313
+[clientscript,clan_ranktitle_dragcomplete](component $component0, int $int1, component $component2, int $int3, int $int4, int $int5, component $component6, component $component7, component $component8, component $component9, component $component10, component $component11)
+cc_deleteall($component6);
+def_int $int12 = 0;
+def_int $int13 = 0;
+def_int $int14 = 0;
+if ($component0 = $component9 | $component0 = $component7) {
+    $int12 = enum_getoutputcount(enum_3795);
+    if ($int4 ! 0 & $component2 = $component7 & $int3 >= 0 & $int3 < $int12 & enum(int, boolean, enum_3796, $int3) = false) {
+        sound_synth(synth_2266, 1, 0);
+        if ($component0 = $component7) {
+            $int14 = ~script4306(~clan_ranktitles_editing_get(enum(int, int, enum_3795, $int3)));
+        }
+        while ($int12 > 0) {
+            $int12 = calc($int12 - 1);
+            $int13 = enum(int, int, enum_3795, $int12);
+            if ($int12 = $int3) {
+                ~clan_ranktitles_editing_set($int13, $int4);
+            } else if (~clan_ranktitles_editing_get($int13) = $int4) {
+                if ($int12 = $int1 & $int14 ! 0) {
+                    ~clan_ranktitles_editing_set($int13, $int14);
+                } else {
+                    ~clan_ranktitles_editing_set($int13, 0);
+                }
+            }
+        }
+        ~clan_ranktitles_draw($int5, $component6, $component7, $component8, $component9, $component10, $component11);
+    }
+}

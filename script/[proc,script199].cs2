@@ -1,22 +1,29 @@
 // 199
-[proc,script199](string $string, int $int0, component $component1, component $component2, int $int3, int $int4, int $int5, int $int6, int $setposv, int $int8, int $rgb, boolean $boolean)(int)
+[proc,script199](string $string, int $int0, component $component1, component $component2, int $int3, int $int4, int $int5, int $int6, int $setposv, int $int8, int $int9, boolean $boolean)(int)
 def_int $int11 = calc($int3 - $int4);
 def_int $int12 = calc(paraheight($string, $int11, p12_full) * $int5);
 if ($setposv = ^setpos_abs_top & $int8 = 103) {
     $int6 = calc($int6 - $int12);
 }
-if (cc_find($component2, calc($int0 * 2)) = true) {
+if (cc_find($component2, calc($int0 * 4)) = true) {
     if_setsize($int11, $int12, ^setsize_abs, ^setsize_abs, $component1);
     if_setposition($int4, $int6, ^setpos_abs_left, $setposv, $component1);
     cc_sethide(false);
     cc_setsize($int11, $int12, ^setsize_abs, ^setsize_abs);
     cc_setposition($int4, $int6, ^setpos_abs_left, $setposv);
     cc_settext($string);
-    cc_setcolour($rgb);
+    cc_setcolour($int9);
     cc_settextshadow($boolean);
 }
-if (cc_find($component2, calc($int0 * 2 + 1)) = true) {
+if (cc_find($component2, calc($int0 * 4 + 1)) = true) {
     cc_settext("");
+    cc_sethide(true);
+}
+if (cc_find($component2, calc($int0 * 4 + 2)) = true) {
+    cc_settext("");
+    cc_sethide(true);
+}
+if (cc_find($component2, calc($int0 * 4 + 3)) = true) {
     cc_sethide(true);
 }
 return($int12);

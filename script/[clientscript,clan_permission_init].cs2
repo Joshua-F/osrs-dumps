@@ -1,0 +1,92 @@
+// 4457
+[clientscript,clan_permission_init](component $com_1, component $com_2, component $com_5, component $com_4, component $com_8, component $com_9, component $com_10, component $com_12, component $com_13)
+def_int $int9 = ~steelborder($com_2, "", 0);
+~clan_permission_settitle($com_2, $int9);
+if_setonvartransmit("clan_permission_settitle($com_2, $int9){varplayer_3019}", $com_2);
+if_setonclansettingstransmit("clan_permission_settitle($com_2, $int9)", $com_2);
+def_string $string = "<col=ff0000>Back</col>";
+def_int $int10 = ~max(70, calc(parawidth($string, 512, p12_full) + 20));
+if_setsize($int10, if_getheight($com_5), ^setsize_abs, ^setsize_abs, $com_5);
+~clan_stonebutton_init($string, $com_5, p12_full);
+if_setonop("opsound(event_op, 2)", $com_5);
+$int10 = calc($int10 + 20);
+def_enum $enum = null;
+def_struct $struct = null;
+def_int $int13 = enum_getoutputcount(enum_3825);
+def_int $int14 = 0;
+def_int $int15 = 0;
+while ($int15 < $int13) {
+    $enum = enum(int, enum, enum_3825, $int15);
+    if ($enum ! null) {
+        $struct = enum(int, struct, $enum, -1);
+        if ($struct ! null) {
+            $string = struct_param($struct, param_1251);
+            $int10 = ~max($int10, calc(parawidth($string, 512, p12_full) + 22 + 6));
+        }
+        $int14 = calc($int14 + enum_getoutputcount($enum) - 1);
+    }
+    $int15 = calc($int15 + 1);
+}
+if_setsize($int10, 0, ^setsize_abs, ^setsize_minus, $com_4);
+if_setsize(calc($int10 - 1), 0, ^setsize_minus, ^setsize_minus, $com_10);
+def_int $int16 = 0;
+def_int $int17 = 263;
+while ($int17 > 0) {
+    $int16 = ~max($int16, parawidth(enum(int, string, enum_3797, $int17), 512, p12_full));
+    $int17 = calc($int17 - 1);
+}
+$int16 = calc(6 + 13 + 3 + $int16 + 3 + 13 + 6);
+cc_deleteall($com_8);
+def_int $int18 = 0;
+def_int $int19 = 20;
+if (~on_mobile = true) {
+    $int19 = scale(5, 3, $int19);
+}
+cc_deleteall($com_12);
+def_int $int20 = 0;
+while ($int20 <= $int14) {
+    cc_create($com_12, ^iftype_graphic, $int20);
+    cc_setgraphic(tradebacking);
+    cc_settiling(true);
+    $int20 = calc($int20 + 1);
+}
+$int10 = calc(if_getwidth(if_getlayer($com_4)) - ($int10 - 1 + 4 + 16));
+def_int $int21 = calc(($int10 - 8 * 3) / 2);
+def_int $int22 = calc(8 + $int21 + 8);
+def_int $int23 = 6;
+def_int $int24 = 0;
+$int20, $int24 = ~clan_permissions_buttoninit($int20, 8, $int23, calc($int10 - 8 * 2), $int16, 0, struct_2943, null, $com_12);
+$int23 = calc($int23 + $int24 + 6);
+def_int $int25 = 0;
+$int15, $int14 = 0, 1;
+while ($int15 < $int13) {
+    $enum = enum(int, enum, enum_3825, $int15);
+    if ($enum ! null) {
+        $struct = enum(int, struct, $enum, -1);
+        if ($struct ! null) {
+            $int20, $int18 = ~clan_permissions_categorytitle($int20, $int23, struct_param($struct, param_1251), $com_12, $com_8, $int18, $com_13, $int15, $int19);
+            $int23 = calc($int23 + 25 + 6);
+        }
+        $int17, $int25 = 0, calc(enum_getoutputcount($enum) - 1);
+        while ($int17 < $int25) {
+            $struct = enum(int, struct, $enum, $int17);
+            if ($struct ! null) {
+                if (calc($int17 % 2) = 1) {
+                    $int20, $int24 = ~clan_permissions_buttoninit($int20, $int22, $int23, $int21, $int16, $int14, $struct, enum(int, struct, $enum, calc($int17 - 1)), $com_12);
+                    $int23 = calc($int23 + $int24 + 6);
+                } else if ($int17 < calc($int25 - 1)) {
+                    $int20, $int24 = ~clan_permissions_buttoninit($int20, 8, $int23, $int21, $int16, $int14, $struct, enum(int, struct, $enum, calc($int17 + 1)), $com_12);
+                } else {
+                    $int20, $int24 = ~clan_permissions_buttoninit($int20, 8, $int23, $int21, $int16, $int14, $struct, null, $com_12);
+                    $int23 = calc($int23 + $int24 + 6);
+                }
+                $int14 = calc($int14 + 1);
+            }
+            $int17 = calc($int17 + 1);
+        }
+    }
+    $int15 = calc($int15 + 1);
+}
+~scrollbar_vertical($com_13, $com_12, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~scrollbar_vertical($com_9, $com_8, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~clan_permissions_setsize($int23, $com_12, $com_13, calc($int19 * $int13), $com_8, $com_9, $com_1, if_getheight(if_getlayer($com_1)));

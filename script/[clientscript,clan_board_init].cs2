@@ -1,0 +1,58 @@
+// 4354
+[clientscript,clan_board_init](component $com_1, component $com_5, component $com_6, int $int3, component $com_20, component $com_66, component $com_68, component $com_69, component $com_70, component $com_12)
+def_int $int10 = 0;
+while ($int10 < 45) {
+    if_sethide(true, enum(int, component, enum_3803, $int10));
+    $int10 = calc($int10 + 1);
+}
+if_setsize(500, calc(334 - 10), ^setsize_abs, ^setsize_abs, $com_1);
+if_setscrollsize(0, 0, $com_5);
+if_setscrollpos(0, 0, $com_5);
+if_setscrollsize(0, 0, $com_20);
+if_setscrollpos(0, 0, $com_20);
+~scrollbar_vertical($com_6, $com_5, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~scrollbar_vertical($com_66, $com_20, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+%varclient_43, %varclient_49 = 0, 0;
+cc_deleteall($com_20);
+cc_create($com_20, ^iftype_text, 0);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setcolour(0x808080);
+cc_settextfont(p12_full);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+cc_settextshadow(true);
+cc_settext("Loading...");
+if_sethide(true, $com_68);
+if_sethide(true, $com_70);
+if_sethide(true, $com_12);
+cc_deleteall($com_1);
+cc_create($com_1, ^iftype_rectangle, enum(component, int, enum_3804, $com_68));
+cc_sethide(true);
+cc_create($com_1, ^iftype_rectangle, enum(component, int, enum_3804, $com_69));
+cc_sethide(true);
+cc_create($com_1, ^iftype_rectangle, enum(component, int, enum_3804, $com_70));
+cc_sethide(true);
+cc_create($com_1, ^iftype_rectangle, enum(component, int, enum_3804, $com_12));
+cc_sethide(true);
+def_string $string0 = "List your clan";
+def_string $string1 = "<col=ff0000>De-list</col>";
+def_int $int11 = calc(20 + ~max(parawidth($string0, 512, p12_full), parawidth($string1, 512, p12_full)));
+if_setsize($int11, 10, ^setsize_abs, ^setsize_minus, $com_68);
+~script4356($com_1, $com_68, enum_3804, $string0, $string1);
+if_setonvartransmit("script4355(event_com, $com_68, enum_3804, $string0, $string1){varplayer_261}", $com_1);
+$string0 = "Applicants";
+def_int $int12 = calc(20 + parawidth($string0, 512, p12_full));
+if_setsize($int12, 10, ^setsize_abs, ^setsize_minus, $com_69);
+~script1558($com_69, $string0, $com_1, enum_3804, -1);
+$string0 = "<col=0dc10d>Refresh</col>";
+def_int $int13 = calc(20 + parawidth($string0, 512, p12_full));
+if_setsize($int13, 10, ^setsize_abs, ^setsize_minus, $com_70);
+~script1558($com_70, $string0, $com_1, enum_3804, -1);
+def_int $int14 = calc((if_getwidth(if_getlayer($com_68)) - 4 - ($int11 + $int12 + $int13)) / 4);
+def_int $int15 = calc(2 + $int14);
+if_setposition($int15, 0, ^setpos_abs_left, ^setpos_abs_centre, $com_68);
+$int15 = calc($int15 + $int11 + $int14);
+if_setposition($int15, 0, ^setpos_abs_left, ^setpos_abs_centre, $com_69);
+$int15 = calc($int15 + $int12 + $int14);
+if_setposition($int15, 0, ^setpos_abs_left, ^setpos_abs_centre, $com_70);
+~script1558($com_12, "<col=0dc10d>Reset</col>", $com_1, enum_3804, -1);
