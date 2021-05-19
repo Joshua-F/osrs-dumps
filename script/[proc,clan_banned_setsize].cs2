@@ -1,0 +1,14 @@
+// 4272
+[proc,clan_banned_setsize](component $component0, component $component1, component $component2, component $component3, int $int4, int $int5)
+def_int $int6 = ~min(calc($int5 - 10), calc($int4 + 34 + 4 + 50));
+if_setsize(if_getwidth($component1), $int6, ^setsize_abs, ^setsize_abs, $component1);
+def_int $int7 = if_getheight($component2);
+if ($int4 > $int7) {
+    if_setscrollsize(0, $int4, $component2);
+    ~scrollbar_resize($component3, $component2, ~max(0, ~min(calc($int4 - $int7), if_getscrolly($component2))));
+} else {
+    if_setscrollpos(0, 0, $component2);
+    if_setscrollsize(0, 0, $component2);
+    ~scrollbar_resize($component3, $component2, 0);
+}
+if_setontimer("clan_banned_checksize($component0, $component1, $component2, $component3, $int4, $int5)", $component0);

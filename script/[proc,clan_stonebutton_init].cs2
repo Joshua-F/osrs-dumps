@@ -1,6 +1,9 @@
 // 3622
 [proc,clan_stonebutton_init](string $string, component $component, graphic $graphic)
 ~clan_stonebutton_draw(false, $string, $graphic, $component);
-if_setonmouserepeat("clan_stonebutton_draw(true, $string, $graphic, event_com)", $component);
-if_setonmouseleave("clan_stonebutton_draw(false, $string, $graphic, event_com)", $component);
+if (~on_mobile = false) {
+    if_setonmouserepeat("script4297(true, $string, event_com, $graphic)", $component);
+}
+if_setonmouseleave("script4297(false, $string, event_com, $graphic)", $component);
 if_setop(1, removetags($string), $component);
+if_setontimer(null, $component);
