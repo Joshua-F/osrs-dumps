@@ -46,13 +46,30 @@ if ($int1 > 0) {
                 }
                 %varclient_61 = clientclock;
             }
-        case 7 :
+        case 7, 19 :
             resume_countdialog(~script212(%varclient_359));
+            %varclient_5 = 0;
         case 8 :
             %varclient_361 = removetags(%varclient_359);
             resume_namedialog(%varclient_359);
-        case 9, 15 :
+            %varclient_5 = 0;
+        case 9, 15, 20, 21 :
+            if (%varclient_5 = 20) {
+                ~script4394(removetags(%varclient_359));
+            } else if (%varclient_5 = 21) {
+                %varclient_359 = ~script4191(%varclient_359, "jagex", " ");
+                %varclient_359 = ~script4191(%varclient_359, "jaqex", " ");
+                %varclient_359 = ~script4191(%varclient_359, "jagx", " ");
+                %varclient_359 = ~script4191(%varclient_359, "jgex", " ");
+                %varclient_359 = ~script4191(%varclient_359, "jgx", " ");
+                %varclient_359 = ~script4191(%varclient_359, "admin", " ");
+                %varclient_359 = ~script4191(%varclient_359, "staff", " ");
+                %varclient_359 = ~script4191(%varclient_359, "-", " ");
+                %varclient_359 = ~script4191(%varclient_359, "_", " ");
+                %varclient_359 = ~script4191(%varclient_359, "  ", " ");
+            }
             resume_stringdialog(%varclient_359);
+            %varclient_5 = 0;
         case 10 :
             if (%varplayerbit_8119 = 0) {
                 ~meslayer_close(1, 1);
@@ -77,8 +94,8 @@ if ($int1 > 0) {
             }
             %varclient_358, %varclient_62 = %varclient_359, 0;
             ~chat_autotyper_updateop;
-            if_setontimer("chat_autotyper(event_com, true)", interface_162:com_13);
-        case 11 :
+            if_setontimer("chat_autotyper(event_com, true)", interface_162:com_11);
+        case 11, 18 :
             ~meslayer_close(0, 1);
             return;
         case 16 :
@@ -86,7 +103,7 @@ if ($int1 > 0) {
     }
 } else {
     switch_int (%varclient_5) {
-        case 7, 8, 9, 15 :
+        case 7, 8, 9, 15, 20, 21 :
             return;
         case 16 :
             return;
