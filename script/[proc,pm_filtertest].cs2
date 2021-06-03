@@ -1,5 +1,6 @@
 // 91
 [proc,pm_filtertest](int $chattype0, string $string0, int $int1, int $int2)(boolean)
+def_int $int3 = ~loginlogout_setting_get;
 switch_int ($chattype0) {
     case ^chattype_modprivatechat :
         if ($int1 < %varclient_175) {
@@ -27,8 +28,12 @@ switch_int ($chattype0) {
         if ($int1 < %varclient_175) {
             return(false);
         }
-        if ($chattype0 = ^chattype_loginlogoutnotification & %varplayerbit_1627 = 0 & calc(clientclock - $int1) >= 500) {
-            return(false);
+        if ($chattype0 = ^chattype_loginlogoutnotification) {
+            if ($int3 = 2) {
+                return(false);
+            } else if ($int3 = 0 & calc(clientclock - $int1) >= 500) {
+                return(false);
+            }
         }
         if (chat_getfilter_private ! ^chatfilter_off) {
             return(true);
