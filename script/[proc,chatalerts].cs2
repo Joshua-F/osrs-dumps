@@ -15,20 +15,22 @@ def_string $string0 = "";
 def_string $string1 = "";
 def_string $string2 = "";
 def_int $int5 = 0;
-def_boolean $boolean6 = ~on_mobile;
+def_string $string3 = "";
+def_int $int6 = 0;
+def_boolean $boolean7 = ~on_mobile;
 while ($int0 ! -1) {
-    $chattype3, $int4, $string0, $string1, $string2, $int5 = chat_gethistory_byuid($int0);
+    $chattype3, $int4, $string0, $string1, $string2, $int5, $string3, $int6 = chat_gethistory_byuid($int0);
     if ($int4 <= $int1) {
         return;
     }
-    if (~filtertest($chattype3, $string0, $string2, $int4, $int2, removetags(chat_playername), $int5) = true & ~trade_partner_check($chattype3, $string0, $int5) = false) {
+    if (~filtertest($chattype3, $string0, ~affixtimestamp($string3, $string2), $int4, $int2, removetags(chat_playername), $int5) = true & ~trade_partner_check($chattype3, $string0, $int5) = false) {
         switch_int ($chattype3) {
             case ^chattype_modchat, ^chattype_publicchat :
                 ~chat_alert_enable(2);
             case ^chattype_privatechat, ^chattype_privatechatout, ^chattype_modprivatechat :
                 ~chat_alert_enable(3);
             case ^chattype_loginlogoutnotification :
-                if ($boolean6 = false) {
+                if ($boolean7 = false) {
                     ~chat_alert_enable(3);
                 }
             case ^chattype_tradereq, ^chattype_trade, ^chattype_chalreq_trade :
