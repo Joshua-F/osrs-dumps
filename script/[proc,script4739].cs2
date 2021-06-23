@@ -1,0 +1,45 @@
+// 4739
+[proc,script4739](component $component0, int $int1, int $int2, int $int3, int $int4)(boolean)
+def_int $int5 = 0;
+def_int $int6 = 0;
+def_int $int7 = if_getwidth($component0);
+def_int $int8 = if_getheight($component0);
+$int5, $int6 = ~script4735($component0);
+$int5 = calc($int5 + $int1);
+$int6 = calc($int6 + $int2);
+def_int $int9 = 0;
+def_int $int10 = 0;
+def_int $int11 = cc_getwidth;
+def_int $int12 = cc_getheight;
+$int9, $int10 = ~script4736;
+$int9 = calc($int9 + $int3);
+$int10 = calc($int10 + $int4);
+if ($int5 >= $int9 & $int5 <= calc($int9 + $int11)) {
+    if ($int6 >= $int10 & $int6 <= calc($int10 + $int12)) {
+        return(true);
+    } else if (calc($int6 + $int8) >= $int10 & calc($int6 + $int8) <= calc($int10 + $int12)) {
+        return(true);
+    }
+}
+if (calc($int5 + $int7) >= $int9 & calc($int5 + $int7) <= calc($int9 + $int11)) {
+    if ($int6 >= $int10 & $int6 <= calc($int10 + $int12)) {
+        return(true);
+    } else if (calc($int6 + $int8) >= $int10 & calc($int6 + $int8) <= calc($int10 + $int12)) {
+        return(true);
+    }
+}
+if ($int9 >= $int5 & $int9 <= calc($int5 + $int7)) {
+    if ($int10 >= $int6 & $int10 <= calc($int6 + $int8)) {
+        return(true);
+    } else if (calc($int10 + $int12) >= $int6 & calc($int10 + $int12) <= calc($int6 + $int8)) {
+        return(true);
+    }
+}
+if (calc($int9 + $int11) >= $int5 & calc($int9 + $int11) <= calc($int5 + $int7)) {
+    if ($int10 >= $int6 & $int10 <= calc($int6 + $int8)) {
+        return(true);
+    } else if (calc($int10 + $int12) >= $int6 & calc($int10 + $int12) <= calc($int6 + $int8)) {
+        return(true);
+    }
+}
+return(false);
