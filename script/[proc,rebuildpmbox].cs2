@@ -13,7 +13,7 @@ if (enum(enum, int, enum_1136, $enum6) > 0) {
     if (%varclient_41 = 1337 & ~toplevel_chatbox_permittransparent = true) {
         $int4 = calc($int4 + $int5);
     } else {
-        $int4 = calc($int4 + if_getheight(enum(component, component, $enum6, interface_161:com32)));
+        $int4 = calc($int4 + if_getheight(enum(component, component, $enum6, interface_161:com37)));
     }
 }
 def_int $int7 = $int4;
@@ -43,20 +43,22 @@ def_int $int13 = -1;
 def_string $string1 = "";
 def_int $int14 = 0;
 def_string $string2 = "";
+def_int $int15 = 0;
 def_string $string3 = "";
-def_int $int15 = -1;
-def_int $int16 = 0;
-def_string $string4 = "<col=00ffff>";
-def_string $string5 = "<col=ffff00>";
-$string4, $string5 = ~script4485($string4, $string5);
+def_string $string4 = "";
+def_int $int16 = -1;
+def_int $int17 = 0;
+def_string $string5 = "<col=00ffff>";
+def_string $string6 = "<col=ffff00>";
+$string5, $string6 = ~script4485($string5, $string6);
 if (%varclient_55 >= %varclient_202 & %varclient_55 > calc(clientclock - 3000) & chat_gethistorylength(^chattype_broadcast) > 0) {
-    $int12, $int13, $string1, $string2, $string0, $int14 = chat_gethistory_bytypeandline(^chattype_broadcast, 0);
+    $int12, $int13, $string1, $string3, $string0, $int14, $string2, $int15 = chat_gethistory_bytypeandline(^chattype_broadcast, 0);
     if ($int12 ! -1) {
-        $string0, $string3, $int15 = ~chat_broadcast_parseurl($string0);
-        if ($int15 ! 4 | reboottimer <= 0) {
-            $int7 = calc($int7 + ~script199("<$string5><$string0></col>", $int9, $component10, interface_163:com0, $int8, $int1, 13, $int7, $setposv2, $int3, 16776960, true));
+        $string0, $string4, $int16 = ~chat_broadcast_parseurl($string0);
+        if ($int16 ! 4 | reboottimer <= 0) {
+            $int7 = calc($int7 + ~script199(~affixtimestamp($string2, "<$string6><$string0></col>"), $int9, $component10, interface_163:com0, $int8, $int1, 13, $int7, $setposv2, $int3, 16776960, true));
             if_clearops($component10);
-            if (string_length($string3) > 0 & $int15 ! -1) {
+            if (string_length($string4) > 0 & $int16 ! -1) {
                 if_setop(6, "Open", $component10);
                 if_setop(7, "Check", $component10);
                 if_setonmouserepeat("chat_recol(if_getlayer($component10), $int9, 16777215)", $component10);
@@ -67,35 +69,35 @@ if (%varclient_55 >= %varclient_202 & %varclient_55 > calc(clientclock - 3000) &
             }
             if_setop(9, "Clear history", $component10);
             if_setopbase("<col=ff9040>Notification</col>", $component10);
-            if_setonop("chat_broadcast_op(event_op, $string3, $int15)", $component10);
+            if_setonop("chat_broadcast_op(event_op, $string4, $int16)", $component10);
             $int9 = calc($int9 + 1);
             $component10 = enum(int, component, enum_580, $int9);
         }
     }
 }
 $int12 = $int0;
-def_int $chattype17 = ^chattype_gamemessage;
-def_int $int18 = ~script4487;
+def_int $chattype18 = ^chattype_gamemessage;
+def_int $int19 = ~script4487;
 if (%varplayer_287 = 1 & (%varclient_41 ! 1337 | %varplayerbit_4089 = 0)) {
     while ($int12 ! -1 & $component10 ! null & calc($int7 - $int4) < 57) {
-        $chattype17, $int13, $string1, $string2, $string0, $int14 = chat_gethistory_byuid($int12);
-        if (~pm_filtertest($chattype17, $string1, $int13, $int14) = true) {
-            switch_int ($chattype17) {
+        $chattype18, $int13, $string1, $string3, $string0, $int14, $string2, $int15 = chat_gethistory_byuid($int12);
+        if (~pm_filtertest($chattype18, $string1, $int13, $int14) = true) {
+            switch_int ($chattype18) {
                 case ^chattype_privatechat, ^chattype_modprivatechat :
-                    $int7 = calc($int7 + ~script203("<$string4>From <$string1>:</col>", "<$string4><$string0></col>", $int9, $component10, interface_163:com0, $int8, $int1, 13, $int7, $setposv2, $int3, 65535, true));
+                    $int7 = calc($int7 + ~script203(~affixtimestamp($string2, "<$string5>From <$string1>:</col>"), "<$string5><$string0></col>", $int9, $component10, interface_163:com0, $int8, $int1, 13, $int7, $setposv2, $int3, 65535, true));
                 case ^chattype_privatechatout :
-                    $int7 = calc($int7 + ~script203("<$string4>To <$string1>:</col>", "<$string4><$string0></col>", $int9, $component10, interface_163:com0, $int8, $int1, 13, $int7, $setposv2, $int3, 65535, true));
+                    $int7 = calc($int7 + ~script203(~affixtimestamp($string2, "<$string5>To <$string1>:</col>"), "<$string5><$string0></col>", $int9, $component10, interface_163:com0, $int8, $int1, 13, $int7, $setposv2, $int3, 65535, true));
                 case ^chattype_loginlogoutnotification :
-                    $int7 = calc($int7 + ~script199("<$string4><$string0></col>", $int9, $component10, interface_163:com0, $int8, $int1, 13, $int7, $setposv2, $int3, 65535, true));
-                    if ($int18 = 0) {
+                    $int7 = calc($int7 + ~script199(~affixtimestamp($string2, "<$string5><$string0></col>"), $int9, $component10, interface_163:com0, $int8, $int1, 13, $int7, $setposv2, $int3, 65535, true));
+                    if ($int19 = 0) {
                         %varclient_65 = calc($int13 + 500 + 1);
                         if_setontimer("script664(false)", interface_162:com0);
                     }
                 case default :
-                    $int7 = calc($int7 + ~script199($string0, $int9, $component10, interface_163:com0, $int8, $int1, 13, $int7, $setposv2, $int3, 65535, true));
+                    $int7 = calc($int7 + ~script199(~affixtimestamp($string2, $string0), $int9, $component10, interface_163:com0, $int8, $int1, 13, $int7, $setposv2, $int3, 65535, true));
             }
             if_clearops($component10);
-            if ($chattype17 = ^chattype_privatechat | $chattype17 = ^chattype_privatechatout | $chattype17 = ^chattype_modprivatechat) {
+            if ($chattype18 = ^chattype_privatechat | $chattype18 = ^chattype_privatechatout | $chattype18 = ^chattype_modprivatechat) {
                 if ($int14 = 1) {
                     if_setop(8, "Message", $component10);
                 } else {
