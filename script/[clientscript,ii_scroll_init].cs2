@@ -1,8 +1,8 @@
 // 2534
 [clientscript,ii_scroll_init](component $com_1, component $com_2)
+def_int $setposv = ^setpos_abs_top;
 if (~on_mobile = true) {
-    if_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_bottom, $com_2);
-} else {
-    if_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_top, $com_2);
+    $setposv = ^setpos_abs_bottom;
 }
-~script2249($com_1, setbit(0, 1));
+if_setposition(0, 0, ^setpos_abs_right, $setposv, $com_2);
+~interface_dodger_init($com_1, $com_2, setbit(0, 1), ^setpos_abs_right, $setposv, false);

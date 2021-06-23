@@ -1,0 +1,18 @@
+// 4130
+[clientscript,stat_boosts_hud_init](component $com_1, component $com_2, component $com_0, component $com_5, component $com_6, component $com_3)
+if (~on_enhanced = false) {
+    return;
+}
+if (~on_mobile = false) {
+    ~interface_dodger_init($com_1, $com_2, 30720, ^setpos_abs_left, ^setpos_abs_bottom, false);
+} else {
+    ~interface_dodger_init($com_1, $com_2, 14338, ^setpos_abs_right, ^setpos_abs_top, false);
+}
+if_setonstattransmit("stat_boosts_hud_update_displays($com_2, $com_6, $com_3, $com_5)", $com_6);
+if_setonvartransmit("stat_boosts_hud_update_displays($com_2, $com_6, $com_3, $com_5){varplayer_3074}", $com_6);
+if_setonvartransmit("stat_boosts_hud_update_enabled($com_2){varplayer_3074}", $com_0);
+def_int $int = 0;
+$int = ~script4516($com_5, 0, $int, true);
+$int = ~script4516($com_5, 1, $int, false);
+if_sethide(true, $com_5);
+if_setposition(2, 2, ^setpos_abs_left, ^setpos_abs_bottom, $com_2);

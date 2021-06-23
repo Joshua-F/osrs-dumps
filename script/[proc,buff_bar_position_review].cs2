@@ -1,0 +1,47 @@
+// 4672
+[proc,buff_bar_position_review](component $component0, component $component1, component $component2, component $component3, int $int4)
+def_enum $enum = null;
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_int $int8 = 1;
+def_int $int9 = 1;
+def_int $int10 = 0;
+def_int $int11 = 0;
+def_int $setposh = ^setpos_abs_left;
+def_int $setposv = ^setpos_abs_bottom;
+if ($int4 ! %varclient_384) {
+    $enum = ~toplevel_getcomponents;
+    if ($enum = enum_1745) {
+        $int6 = 1;
+        $int7 = 1;
+        $int8 = 91;
+        $int9 = 249;
+        $setposh = ^setpos_abs_right;
+        $setposv = ^setpos_abs_centre;
+        ~interface_dodger_init($component1, $component0, 12294, ^setpos_abs_right, ^setpos_abs_centre, false);
+    } else if ($enum = enum_1130 | $enum = enum_1131) {
+        $int6 = 1;
+        $int7 = 1;
+        $int8 = 497;
+        $int9 = 79;
+        $setposh = ^setpos_abs_left;
+        $setposv = ^setpos_abs_bottom;
+        ~interface_dodger_init($component1, $component0, 28672, ^setpos_abs_left, ^setpos_abs_bottom, false);
+    } else if ($enum = enum_1129) {
+        $int6 = 1;
+        $int7 = 1;
+        $int8 = 320;
+        $int9 = 40;
+        $setposh = ^setpos_abs_left;
+        $setposv = ^setpos_abs_bottom;
+        ~interface_dodger_init($component1, $component0, 28672, ^setpos_abs_left, ^setpos_abs_bottom, false);
+    }
+    $int10 = if_getwidth($component0);
+    $int11 = if_getheight($component0);
+    if_setposition($int6, $int7, $setposh, $setposv, $component0);
+    if_setsize($int8, $int9, ^setsize_abs, ^setsize_abs, $component0);
+    if_setontimer("buff_bar_position_review($component0, $component1, $component2, $component3, %varclient_384)", $component0);
+    if ($int10 ! $int8 | $int11 ! $int9) {
+        ~buff_bar_setup($component2, $component3);
+    }
+}
