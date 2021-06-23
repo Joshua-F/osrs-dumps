@@ -1,0 +1,39 @@
+// 4703
+[proc,helper_generic_build_ui]
+def_int $int0 = 0;
+def_int $int1 = 0;
+def_int $int2 = 0;
+def_int $int3 = 0;
+def_int $int4 = 0;
+%varclient_492 = 0;
+%varclient_493 = 0;
+while ($int0 < %varclient_494) {
+    ~helper_generic_set_width(~script4700($int0));
+    if (~helper_generic_get_type($int0) = 3) {
+        $int1 = 2;
+    } else {
+        $int1 = 1;
+    }
+    $int0 = calc($int0 + $int1);
+}
+~helper_generic_set_size(%varclient_492, %varclient_493);
+$int0 = 0;
+while ($int0 < %varclient_494) {
+    switch_int (~helper_generic_get_type($int0)) {
+        case 0 :
+            $int1 = 1;
+        case 1 :
+            ~helper_generic_draw_title($int0);
+            $int1 = 1;
+        case 2 :
+            ~helper_generic_draw_text($int0);
+            $int1 = 1;
+        case 3 :
+            ~helper_generic_draw_data($int0);
+            $int1 = 2;
+        case 4 :
+            $int1 = 1;
+    }
+    $int0 = calc($int0 + $int1);
+}
+~helper_generic_set_size(calc(%varclient_492 + 8), calc(%varclient_493 + 8));
