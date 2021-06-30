@@ -1,26 +1,27 @@
 // 3934
-[clientscript,script3934](component $com_19, component $com_44, component $com_45, component $com_41)
-cc_deleteall($com_44);
+[clientscript,script3934](component $com_42, component $com_53, component $com_54, component $com_84)
+cc_deleteall($com_53);
 def_int $int4 = struct_param(struct_2754, param_1101);
 def_int $int5 = 0;
-def_int $int6 = if_getwidth($com_44);
+def_int $int6 = if_getwidth($com_53);
 def_graphic $graphic = "options_icons,2";
 def_int $int8 = ~settings_get_slider(31);
+~settings_set_slider(31, $int8);
 def_string $string0 = "Mute Sound Effects";
 def_string $string1 = "Unmute Sound Effects";
-~settings_create_icon($int8, 31, $com_45, $com_44, $int4, $graphic, $com_19, $string0, $string1, $com_41);
-if_setonvartransmit("script3939(31, $com_45, $com_44, $int4, $graphic, $com_19, $string0, $string1, $com_41){varplayer_169}", $com_45);
-if_setnoclickthrough(true, $com_45);
-if_setonclick("opsound(0, 0)", $com_45);
+~settings_create_icon($int8, 31, $com_54, $com_53, $int4, $graphic, $com_42, $string0, $string1, $com_84);
+if_setonvartransmit("script3939(31, $com_54, $com_53, $int4, $graphic, $com_42, $string0, $string1, $com_84){varplayer_169}", $com_54);
+if_setnoclickthrough(true, $com_54);
+if_setonclick("opsound(0, 0)", $com_54);
 while ($int5 <= $int4) {
-    cc_create($com_44, ^iftype_rectangle, $int5);
+    cc_create($com_53, ^iftype_rectangle, $int5);
     cc_setop(1, "Adjust Sound Effect Volume");
     cc_setposition(scale($int5, $int4, $int6), 0, ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize(calc(scale(calc(1 + $int5), $int4, $int6) - scale($int5, $int4, $int6)), 0, ^setsize_abs, ^setsize_minus);
     cc_setfill(true);
     cc_setcolour(^white);
     cc_settrans(255);
-    cc_setonop("settings_side_notch_op(31, $int5, $com_45, $com_44, $int4, $graphic, $com_19, $string0, $string1, $com_41)");
+    cc_setonop("settings_side_notch_op(31, $int5, $com_54, $com_53, $int4, $graphic, $com_42, $string0, $string1, $com_84)");
     $int5 = calc($int5 + 1);
 }
-~script3941($int8, $com_45, $com_44, $int4);
+~script3941($int8, $com_54, $com_53, $int4);
