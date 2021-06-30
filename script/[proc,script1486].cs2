@@ -1,0 +1,25 @@
+// 1486
+[proc,script1486](component $component0)
+def_string $string0 = "";
+if (~wildwars_world = true) {
+    if (%varplayerbit_5703 = 0) {
+        $string0 = "<col=00ff00>When the timer hits 0:00 you'll be safe here</col>";
+    } else {
+        $string0 = "<col=ffa71f>When the timer hits 0:00 you'll </col><col=ff0000>DIE</col><col=ffa71f> - Get to safety</col>";
+    }
+} else if (~private_event_world = 1) {
+    if (%varplayerbit_4991 = 2) {
+        $string0 = "<col=ff812c>You'll </col><col=ff0000>DIE</col><col=ff812c> if you stay in this area - Get to safety</col>";
+    } else if (%varplayerbit_4991 = 1) {
+        $string0 = "<col=ffa71f>The Strange Power is </col><col=ff0000>approaching you</col><col=ffa71f> - Get to safety</col>";
+    } else {
+        $string0 = "<col=00ff00>The Strange Power hasn't reached this area yet...</col>";
+    }
+} else if (%varplayerbit_4991 = 2) {
+    $string0 = "<col=ff812c>You'll </col><col=ff0000>DIE</col><col=ff812c> if you stay in this area - Get to safety</col>";
+} else if (%varplayerbit_4991 = 1) {
+    $string0 = "<col=ffa71f>When the timer hits 0:00 you'll </col><col=ff0000>DIE</col><col=ffa71f> - Get to safety</col>";
+} else {
+    $string0 = "<col=00ff00>When the timer hits 0:00 you'll be safe here</col>";
+}
+if_settext($string0, $component0);
