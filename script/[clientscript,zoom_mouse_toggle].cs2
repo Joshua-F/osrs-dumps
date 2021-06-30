@@ -1,20 +1,20 @@
 // 43
-[clientscript,zoom_mouse_toggle](component $com_48, component $com_50, int $int, component $com_41)
+[clientscript,zoom_mouse_toggle](component $com_85, component $com_87, int $int, component $com_84)
 ~settings_side_op_sound;
 %varclient_2 = 0;
 def_string $string = "<~text_device("Click", "Tap")> here to enable zooming using <~text_device("the mouse scroll wheel", "the pinch gesture")>.";
 if ($int = 1) {
     %varplayerbit_6357 = calc(1 - %varplayerbit_6357);
     if (%varplayerbit_6357 = 0) {
-        if_sethide(true, $com_50);
-        if_setop(1, "Disable", $com_48);
+        if_sethide(true, $com_87);
+        if_setop(1, "Disable", $com_85);
         $string = "<~text_device("Click", "Tap")> here to disable zooming using <~text_device("the mouse scroll wheel", "the pinch gesture")>.";
     } else {
-        if_setop(1, "Enable", $com_48);
-        if_sethide(false, $com_50);
+        if_setop(1, "Enable", $com_85);
+        if_sethide(false, $com_87);
     }
-    if_setonmouserepeat("tooltip_mouserepeat($com_48, -1, $com_41, $string, 25, 190)", $com_48);
-    if_setonmouseleave("deltooltip($com_41)", $com_48);
+    if_setonmouserepeat("tooltip_mouserepeat($com_85, -1, $com_84, $string, 25, 190)", $com_85);
+    if_setonmouseleave("deltooltip($com_84)", $com_85);
 } else if ($int = 2) {
     ~camera_do_zoom(512, 512);
 }
