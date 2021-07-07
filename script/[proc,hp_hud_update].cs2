@@ -1,5 +1,8 @@
 // 2103
 [proc,hp_hud_update](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, boolean $boolean10)
+if (if_gethide(interface_303:com5) = true) {
+    return;
+}
 def_string $string0 = "";
 if (%varplayer_1683 ! null) {
     $string0 = nc_param(%varplayer_1683, param_510);
@@ -47,11 +50,6 @@ if (%varplayerbit_10341 > 0 & %varplayerbit_10341 <= $int13) {
     if_setposition(scale(calc(%varplayerbit_10341 - 1), %varplayerbit_6100, $int11), 0, ^setpos_abs_left, ^setpos_abs_centre, $component9);
 } else {
     if_sethide(true, $component9);
-}
-if (%varplayerbit_12389 = 1 & ~on_enhanced = false) {
-    if_sethide(true, $component0);
-} else {
-    if_sethide(false, $component0);
 }
 if ($int12 = 0 & %varplayerbit_6099 > 0) {
     $int12 = 1;
