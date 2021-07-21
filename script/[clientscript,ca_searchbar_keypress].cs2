@@ -1,0 +1,62 @@
+// 4798
+[clientscript,ca_searchbar_keypress](int $key, char $char, component $component2, component $component3)
+def_component $com_10 = interface_716:com_10;
+def_component $com_13 = interface_716:com_13;
+def_component $com_19 = interface_716:com_19;
+def_component $com_14 = interface_716:com_14;
+def_component $com_11 = interface_716:com_11;
+def_component $com_12 = interface_716:com_12;
+def_component $com_16 = interface_716:com_16;
+def_component $com_17 = interface_716:com_17;
+def_component $com_18 = interface_716:com_18;
+def_component $com_20 = interface_716:com_20;
+def_component $com_9 = interface_716:com_9;
+def_component $com_15 = interface_716:com_15;
+if (%varplayerbit_12884 = 0) {
+    return;
+}
+if ($key = ^key_control_left) {
+    %varclient_528 = 1;
+    return;
+} else if ($key = ^key_backspace & %varclient_528 = 1) {
+    %varclient_527 = "";
+    ~ca_searchbar_set_text($component3);
+    ~ca_bosses_draw_list($component2, $com_10, $com_13, $com_19, $com_14, $com_11, $com_12, $com_16, $com_17, $com_18, $com_20, $com_9, $com_15);
+    return;
+} else {
+    %varclient_528 = 0;
+}
+if ($key = ^key_del) {
+    %varclient_527 = "";
+    ~ca_searchbar_set_text($component3);
+    ~ca_bosses_draw_list($component2, $com_10, $com_13, $com_19, $com_14, $com_11, $com_12, $com_16, $com_17, $com_18, $com_20, $com_9, $com_15);
+    return;
+}
+if ($key = ^key_return) {
+    if (~on_mobile = true) {
+        ~keyboard_hide;
+    }
+    if (%varplayerbit_12884 = 1) {
+        ~ca_boss_disable_search;
+    }
+    return;
+}
+def_string $string = %varclient_527;
+def_int $int = string_length($string);
+if ($key = ^key_backspace) {
+    if ($int > 0) {
+        %varclient_527 = substring($string, 0, calc($int - 1));
+    }
+    ~ca_searchbar_set_text($component3);
+    ~ca_bosses_draw_list($component2, $com_10, $com_13, $com_19, $com_14, $com_11, $com_12, $com_16, $com_17, $com_18, $com_20, $com_9, $com_15);
+    return;
+}
+if (char_isalphanumeric($char) = false & string_indexof_char("-'", $char) = -1) {
+    return;
+}
+if (string_length(append_char($string, $char)) > 50) {
+    return;
+}
+%varclient_527 = append_char($string, $char);
+~ca_searchbar_set_text($component3);
+~ca_bosses_draw_list($component2, $com_10, $com_13, $com_19, $com_14, $com_11, $com_12, $com_16, $com_17, $com_18, $com_20, $com_9, $com_15);

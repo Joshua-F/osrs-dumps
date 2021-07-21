@@ -1,0 +1,19 @@
+// 3948
+[proc,script3948](component $component, int $int1, int $int2, int $int3, int $int4, int $int5, fontmetrics $fontmetrics, string $string)
+def_int $int7 = 0;
+def_int $int8 = 0;
+def_int $int9 = 0;
+def_int $int10 = 0;
+def_int $int11 = 0;
+if (cc_find($component, $int1) = true) {
+    cc_settext($string);
+    if ($int2 ! -1 & .cc_find($component, $int2) = true) {
+        $int10 = .cc_getwidth;
+        $int7 = parawidth(cc_gettext, if_getwidth($component), $fontmetrics);
+        $int8 = calc($int4 + $int5 / 2);
+        $int9 = calc($int8 - ($int7 + $int10 + 4) / 2);
+        $int11 = calc($int9 + $int10 + 4);
+        cc_setposition($int11, cc_gety, ^setpos_abs_left, ^setpos_abs_top);
+        .cc_setposition($int9, .cc_gety, ^setpos_abs_left, ^setpos_abs_top);
+    }
+}
