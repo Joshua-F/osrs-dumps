@@ -1,0 +1,20 @@
+// 4814
+[proc,script4814](mapelement $mapelement)(string)
+def_struct $struct = enum(mapelement, struct, enum_3996, $mapelement);
+if ($struct = null) {
+    return(enum(category, string, enum_1713, mec_category($mapelement)));
+}
+def_string $string = "Quest: <~get_quest_name($struct)>";
+if (map_members = false & struct_param($struct, param_1297) = true) {
+    return("<col=ff0000><$string> (Members Only)</col>");
+}
+def_int $int = ~quest_status_get($struct);
+switch_int ($int) {
+    case 1 :
+        $string = "<$string> (Not Started)";
+    case 0 :
+        $string = "<$string> (In Progress)";
+    case 2 :
+        $string = "<$string> (Completed)";
+}
+return($string);
