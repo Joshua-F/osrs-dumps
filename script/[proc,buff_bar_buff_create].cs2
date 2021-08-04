@@ -12,28 +12,53 @@ if (~buff_bar_buff_show($int5) = 0) {
     return(false);
 }
 def_int $int7 = ~buff_bar_get_number($int5);
-def_boolean $boolean8 = false;
+def_int $int8 = 0;
 if ($int6 = 2 | $int6 = 3 | $int6 = 4) {
     if ($int7 <= 0) {
         return(false);
     }
     $int7 = ~buff_bar_time_to_cycles($int6, $int7);
-    $boolean8 = true;
+    $int8 = 1;
 }
-def_obj $obj = struct_param($struct, param_1281);
-def_enum $enum = struct_param($struct, param_1286);
-def_inv $inv = struct_param($struct, param_1283);
-def_boolean $boolean12 = struct_param($struct, param_1282);
-if ($obj = null & $enum ! null) {
-    $obj = enum(int, namedobj, $enum, $int4);
-}
-if ($boolean12 = true) {
-    if ($obj = null | $inv = null) {
+def_obj $obj = null;
+def_enum $enum = null;
+def_inv $inv = null;
+def_boolean $boolean = false;
+if ($int6 = 5) {
+    $inv = struct_param($struct, param_1283);
+    if ($inv = null) {
         return(false);
     }
-    $int7 = inv_total($inv, $obj);
+    $obj = inv_getobj($inv, struct_param($struct, param_1351));
+    if ($obj = null) {
+        return(false);
+    }
+    $int7 = inv_getnum($inv, struct_param($struct, param_1351));
     if ($int7 <= 0) {
         return(false);
+    }
+    if (struct_param($struct, param_1352) = true & oc_stackable($obj) = false) {
+        return(false);
+    }
+} else {
+    $obj = struct_param($struct, param_1281);
+    $enum = struct_param($struct, param_1286);
+    $inv = struct_param($struct, param_1283);
+    $boolean = struct_param($struct, param_1282);
+    if ($obj = null & $enum ! null) {
+        $obj = enum(int, namedobj, $enum, $int4);
+    }
+    if ($obj = null) {
+        $obj = ~script5195($int5);
+    }
+    if ($boolean = true) {
+        if ($obj = null | $inv = null) {
+            return(false);
+        }
+        $int7 = inv_total($inv, $obj);
+        if ($int7 <= 0) {
+            return(false);
+        }
     }
 }
 def_int $rgb = struct_param($struct, param_1276);
@@ -98,10 +123,10 @@ if ($graphic ! null) {
 }
 $int1 = calc($int1 + 1);
 if (struct_param($struct, param_1288) = true) {
-    ~buff_bar_get_transmit($int5, $int6, ~script4681($int5), $component0, $component2, $int1, $boolean8, struct_param($struct, param_1290), struct_param($struct, param_1291));
+    ~buff_bar_get_transmit($int5, $struct, ~script4681($int5), $component0, $component2, $int1);
 }
 cc_create($component0, ^iftype_text, $int1);
-if ($boolean8 = true) {
+if ($int8 = 1) {
     cc_setposition($int14, calc($int15 + 1), ^setpos_abs_left, ^setpos_abs_bottom);
     cc_setsize(calc(37 - 3), 12, ^setsize_abs, ^setsize_abs);
     cc_setcolour(^white);
