@@ -1,12 +1,17 @@
 // 2496
 [proc,mobile_billing_open](int $int, boolean $boolean)
 if (~on_mobile = true) {
-    if (~bonds_hide = true) {
+    if (clienttype = ^clienttype_ios & $int = 5) {
+        $int = 0;
+    }
+    if (~bonds_hide = true & $int ! 5) {
         $int = 3;
         $boolean = true;
     }
     if ($int = 0) {
         shop_open;
+    } else if ($int = 5) {
+        shop_opencategories(16, 16);
     } else {
         shop_opensubset($int, $boolean);
     }
