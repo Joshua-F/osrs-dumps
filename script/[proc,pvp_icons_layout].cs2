@@ -24,6 +24,7 @@ if (~pvpw_check = true) {
     if_setcolour(0xff981f, interface_90:com_50);
     if_sethide(false, interface_90:com_49);
     if_setposition(0, 18, ^setpos_abs_centre, ^setpos_abs_bottom, interface_90:com_49);
+    if_setgraphic("pvpw_icons,0", interface_90:com_46);
     ~pvp_icons_comlevelrange($int8);
     ~pvp_icons_toggletargetsystem(true);
     if_sethide(true, interface_90:com_51);
@@ -40,6 +41,7 @@ if (~pvpw_check = true) {
         if_setontimer(null, interface_328:com_1);
         if_sethide(true, interface_328:com_1);
     }
+    if_setgraphic("pvpw_icons,0", interface_90:com_46);
     ~pvp_icons_toggletargetsystem(true);
     if (if_gethide(interface_90:com_50) = false) {
         if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_bottom, interface_90:com_53);
@@ -79,6 +81,11 @@ if (~pvpw_check = true) {
     } else {
         if_setontimer(null, interface_90:com_1);
         if_sethide(true, interface_90:com_1);
+    }
+    if (~deadman_mode = 3) {
+        if_setgraphic(enum(int, graphic, enum_4042, %varplayerbit_13017), interface_90:com_46);
+    } else {
+        if_setgraphic("pvpw_icons,0", interface_90:com_46);
     }
     if (%varplayerbit_4965 > 0) {
         if_setsize(78, 73, ^setsize_abs, ^setsize_abs, interface_90:com_44);
@@ -128,6 +135,7 @@ if (~pvpw_check = true) {
     if_setposition(0, 18, ^setpos_abs_centre, ^setpos_abs_bottom, interface_90:com_50);
     if_setcolour(^yellow, interface_90:com_50);
     if_sethide(true, interface_90:com_49);
+    if_setgraphic("pvpw_icons,0", interface_90:com_46);
     if (%varplayerbit_5701 >= 1) {
         if (%varplayerbit_5701 > 2) {
             ~script1434(false, $enum4, true);
