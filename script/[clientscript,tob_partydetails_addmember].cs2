@@ -18,7 +18,7 @@ if (compare(lowercase($string1), lowercase(removetags(chat_playername))) = 0) {
     $rgb1 = ^white;
 }
 def_int $int2 = calc(~max(0, %varclient_178) * 11);
-def_int $int3 = calc(%varclient_178 * 13);
+def_int $int3 = calc(%varclient_178 * 13 + 1);
 cc_create(interface_50:com27, ^iftype_rectangle, $int2);
 cc_setsize(0, 13, ^setsize_minus, ^setsize_abs);
 cc_setposition(0, $int3, ^setpos_abs_centre, ^setpos_abs_top);
@@ -51,4 +51,8 @@ $string0, $int5 = ~script2318(7, interface_50:com38, $string0, $int2, $int5, $in
 $string0, $int5 = ~script2318(8, interface_50:com39, $string0, $int2, $int5, $int3, $rgb1);
 $string0, $int5 = ~script2318(9, interface_50:com40, $string0, $int2, $int5, $int3, $rgb1);
 $string0, $int5 = ~script2318(10, interface_50:com41, $string0, $int2, $int5, $int3, $rgb1);
+if ($int0 = 2 & string_length($string1) > 0) {
+    $int5 = ~script3989($string1, $int5, $int3);
+}
+if_sethide(false, interface_50:com61);
 %varclient_178 = calc(%varclient_178 + 1);
