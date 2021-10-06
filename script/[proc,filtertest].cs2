@@ -1,5 +1,5 @@
 // 90
-[proc,filtertest](int $chattype0, string $string0, string $string1, int $int1, int $int2, string $string2, int $int3)(boolean)
+[proc,filtertest](int $chattype0, string $string0, string $string1, string $string2, int $int1, int $int2, string $string3, int $int3)(boolean)
 if ($chattype0 = null) {
     return(false);
 }
@@ -13,7 +13,7 @@ if (enum(int, boolean, enum_892, $chattype0) = true & $chattype0 ! ^chattype_pla
     return(true);
 }
 def_int $chatfilter4 = null;
-def_string $string3 = "";
+def_string $string4 = "";
 def_int $int5 = -1;
 def_int $int6 = ~loginlogout_setting_get;
 switch_int ($chattype0) {
@@ -21,7 +21,7 @@ switch_int ($chattype0) {
         if ($int1 < %varclient_199) {
             return(false);
         }
-        if (compare($string2, removetags($string0)) = 0) {
+        if (compare($string3, removetags($string0)) = 0) {
             return(true);
         }
         if ($int3 = 2) {
@@ -45,7 +45,7 @@ switch_int ($chattype0) {
         if ($int1 < %varclient_199) {
             return(false);
         }
-        if (compare($string2, removetags($string0)) = 0) {
+        if (compare($string3, removetags($string0)) = 0) {
             return(true);
         }
         if ($int3 = 2) {
@@ -108,7 +108,7 @@ switch_int ($chattype0) {
         if ($int1 < %varclient_439) {
             return(false);
         }
-        if (compare($string2, removetags($string0)) = 0) {
+        if (compare($string3, removetags($string0)) = 0) {
             return(true);
         }
         if ($int3 = 2) {
@@ -129,14 +129,17 @@ switch_int ($chattype0) {
             return(true);
         }
         return(false);
-    case ^chattype_clanchat, ^chattype_clanguestchat, ^chattype_clanmessage, ^chattype_clanguestmessage, ^chattype_clancreationinvitation, ^chattype_chalreq_clanchat :
+    case ^chattype_clanchat, ^chattype_clanguestchat, ^chattype_clanmessage, ^chattype_clanguestmessage, ^chattype_clancreationinvitation, ^chattype_chalreq_clanchat, 111, 112 :
+        if ($chattype0 = ^chattype_clanmessage & ~gim_notification_message($string2) = true) {
+            return(true);
+        }
         if ($int1 < %varclient_440) {
             return(false);
         }
         if (%varplayerbit_931 = 1 & ($chattype0 = ^chattype_clanchat | $chattype0 = ^chattype_clanmessage)) {
             return(false);
         }
-        if (compare($string2, removetags($string0)) = 0) {
+        if (compare($string3, removetags($string0)) = 0) {
             return(true);
         }
         if ($int3 = 2) {
@@ -163,7 +166,7 @@ switch_int ($chattype0) {
         if ($int1 < %varclient_202) {
             return(false);
         }
-        $string1, $string3, $int5 = ~chat_broadcast_parseurl($string1);
+        $string1, $string4, $int5 = ~chat_broadcast_parseurl($string1);
         if ($int5 = 4 & reboottimer > 0) {
             return(false);
         }
