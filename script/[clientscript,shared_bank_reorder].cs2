@@ -1,0 +1,50 @@
+// 5274
+[clientscript,shared_bank_reorder](component $component0, component $component1, int $int2, component $component3, int $int4, int $int5, int $int6, component $component7)
+if ($component3 ! $component1 | $int2 < 0 | $int2 >= $int5 | $int4 < 0 | $int4 >= $int5) {
+    return;
+}
+def_obj $obj8 = inv_getobj(inv_659, $int2);
+if ($obj8 = null) {
+    return;
+}
+if (~bankmain_searching = true) {
+    if (cc_find($component1, $int2) = ^true) {
+        cc_settrans(200);
+        cc_setontimer("cc_settrans_temporarily_end(event_com, event_comsubid, $int6, calc(clientclock + 10))");
+    }
+    return;
+}
+def_obj $obj9 = inv_getobj(inv_659, $int4);
+if (%varplayerbit_3959 = 0 | $int4 = calc($int2 + 1) | $int4 = calc($int2 - 1) | $obj9 = null) {
+    if (cc_find($component1, $int4) = ^true) {
+        ~shared_bank_drawitem($obj8, inv_getnum(inv_659, $int2), $int5, $component0, $component1, $component7);
+    }
+    if (cc_find($component1, $int2) = ^true) {
+        ~shared_bank_drawitem($obj9, inv_getnum(inv_659, $int4), $int5, $component0, $component1, $component7);
+    }
+    return;
+}
+def_int $int10 = -1;
+def_int $int11 = -1;
+if ($int4 < $int2) {
+    $int10 = $int2;
+    while ($int10 > $int4) {
+        if (cc_find($component1, $int10) = ^true) {
+            $int11 = calc($int10 - 1);
+            ~shared_bank_drawitem(inv_getobj(inv_659, $int11), inv_getnum(inv_659, $int11), $int5, $component0, $component1, $component7);
+        }
+        $int10 = calc($int10 - 1);
+    }
+} else {
+    $int10 = $int2;
+    while ($int10 < $int4) {
+        if (cc_find($component1, $int10) = ^true) {
+            $int11 = calc($int10 + 1);
+            ~shared_bank_drawitem(inv_getobj(inv_659, $int11), inv_getnum(inv_659, $int11), $int5, $component0, $component1, $component7);
+        }
+        $int10 = calc($int10 + 1);
+    }
+}
+if (cc_find($component1, $int4) = ^true) {
+    ~shared_bank_drawitem($obj8, inv_getnum(inv_659, $int2), $int5, $component0, $component1, $component7);
+}
