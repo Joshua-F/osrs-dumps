@@ -1,0 +1,38 @@
+// 5259
+[clientscript,gim_sidepanel_op](int $int0, component $component, int $int2, string $string, int $int3)
+if (cc_find($component, $int2) = true) {
+    sound_synth(synth_2266, 1, 0);
+    cc_settrans(200);
+    cc_setonmouserepeat(null);
+    cc_setonmouseleave(null);
+    cc_setonop(null);
+    switch_int ($int0) {
+        case 1 :
+            cc_setontimer("gim_sidepanel_reset(calc(clientclock + 20), event_com, event_comsubid, $string, $int3, false)");
+            if ($int3 ! -1) {
+                if (friend_test($string) = true) {
+                    ~meslayer_mode6($string);
+                }
+            } else {
+                mes("The player is not online at the moment.");
+            }
+        case 2 :
+            cc_setontimer("gim_sidepanel_reset(calc(clientclock + 20), event_com, event_comsubid, $string, $int3, false)");
+            if (friend_test($string) = true) {
+                friend_del($string);
+            } else {
+                friend_add($string);
+            }
+        case 3 :
+            cc_setontimer("gim_sidepanel_reset(calc(clientclock + 20), event_com, event_comsubid, $string, $int3, false)");
+            if (ignore_test($string) = true) {
+                ignore_del($string);
+            } else {
+                ignore_add($string);
+            }
+        case 10 :
+            cc_setontimer("gim_sidepanel_reset(calc(clientclock + 15), event_com, event_comsubid, $string, $int3, true)");
+        case default :
+            cc_setontimer("gim_sidepanel_reset(calc(clientclock + 20), event_com, event_comsubid, $string, $int3, false)");
+    }
+}

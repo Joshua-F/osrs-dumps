@@ -1,0 +1,24 @@
+// 5267
+[proc,shared_bank_drawcap]
+def_string $string = "";
+if (%varplayer_262 < 1) {
+    cc_sethide(false);
+    .cc_sethide(true);
+    $string = "<col=ff0000>View only</col>";
+} else if (%varplayer_262 < 2) {
+    cc_sethide(false);
+    .cc_sethide(true);
+    $string = "<col=ff0000>Deposit only</col>";
+} else if (%varplayer_261 <= -1) {
+    cc_sethide(true);
+    .cc_sethide(true);
+    return;
+} else {
+    cc_sethide(false);
+    .cc_sethide(false);
+    $string = ~tostring_spacer(%varplayer_261, ",");
+}
+def_int $int = parawidth($string, 512, p11_full);
+cc_setsize($int, .cc_getheight, ^setsize_abs, ^setsize_abs);
+.cc_setposition(calc(36 + $int + 2), cc_gety, ^setpos_abs_right, ^setpos_abs_top);
+cc_settext($string);
