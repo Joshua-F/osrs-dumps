@@ -1,5 +1,5 @@
 // 193
-[proc,panetest](int $chattype0, string $string0, int $int1)(boolean)
+[proc,panetest](int $chattype0, string $string0, int $int1, string $string1)(boolean)
 if (%varclient_41 = 0) {
     return(true);
 }
@@ -9,6 +9,9 @@ if ($chattype0 = null) {
 switch_int (%varclient_41) {
     case 1 :
         if (enum(int, boolean, enum_892, $chattype0) = true) {
+            return(true);
+        }
+        if ($chattype0 = ^chattype_clanmessage & ~gim_notification_message($string1) = true) {
             return(true);
         }
     case 2 :
@@ -25,8 +28,12 @@ switch_int (%varclient_41) {
         }
     case 5 :
         switch_int ($chattype0) {
-            case ^chattype_clanchat, ^chattype_clanguestchat, ^chattype_clanmessage, ^chattype_clanguestmessage, ^chattype_clancreationinvitation, ^chattype_chalreq_clanchat :
+            case ^chattype_clanchat, ^chattype_clanguestchat, ^chattype_clanguestmessage, ^chattype_clancreationinvitation, ^chattype_chalreq_clanchat, 111, 112 :
                 return(true);
+            case ^chattype_clanmessage :
+                if (~gim_notification_message($string1) = false) {
+                    return(true);
+                }
         }
     case 6 :
         if ($chattype0 = ^chattype_tradereq | $chattype0 = ^chattype_chalreq_trade | $chattype0 = ^chattype_trade) {
