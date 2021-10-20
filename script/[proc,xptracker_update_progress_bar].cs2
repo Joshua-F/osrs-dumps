@@ -1,0 +1,16 @@
+// 5370
+[proc,xptracker_update_progress_bar](stat $stat0)
+def_int $int1 = ~xptracker_get_id($stat0);
+def_int $int2 = stat_base($stat0);
+def_int $int3 = enum(int, int, enum_256, $int2);
+def_int $int4 = enum(int, int, enum_256, calc($int2 + 1));
+def_int $int5 = calc(stat_visible_xp($stat0) - $int3);
+def_int $int6 = scale($int5, calc($int4 - $int3), 16384);
+if (cc_find(interface_729:com_8, $int1) = ^true) {
+    if ($int2 < 99) {
+        cc_setsize($int6, 15, ^setsize_rel, ^setsize_abs);
+    } else {
+        cc_setcolour(0x885500);
+        cc_setsize(0, 15, ^setsize_minus, ^setsize_abs);
+    }
+}

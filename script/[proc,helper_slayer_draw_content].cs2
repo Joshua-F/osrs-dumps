@@ -1,0 +1,15 @@
+// 5318
+[proc,helper_slayer_draw_content]
+def_int $int0 = 0;
+def_int $int1 = 0;
+~helper_generic_setup(0, 1, 1);
+~helper_generic_set_bit(0);
+$int0 = ~helper_generic_add_title("Slayer Info", 0);
+$int0, $int1 = ~helper_generic_add_data(~helper_slayer_current_assignment);
+if (cc_find(interface_711:com_3, $int0) = ^true) {
+    cc_setonvartransmit("helper_slayer_update_info($int0){varplayer_394, varplayer_395, varplayer_2096, varplayer_1077}");
+}
+$int0, $int1 = ~helper_generic_add_data(~helper_slayer_current_amount);
+$int0, $int1 = ~helper_generic_add_data(~helper_slayer_area);
+$int0, $int1 = ~helper_generic_add_data("Streak:", tostring(%varplayerbit_4069));
+~helper_generic_build_ui;

@@ -1,0 +1,15 @@
+// 5374
+[proc,xptracker_update_text_left](stat $stat0)
+def_int $int1 = ~xptracker_get_id($stat0);
+def_int $int2 = stat_base($stat0);
+def_int $int3 = stat_visible_xp($stat0);
+def_int $int4 = enum(int, int, enum_256, calc($int2 + 1));
+def_string $string0 = ~script5377(~xptracker_xph($stat0));
+def_string $string1 = "Done!";
+if ($int2 < 99) {
+    $string1 = ~script5377(calc($int4 - $int3));
+}
+def_string $string2 = append(append($string0, "<br>"), $string1);
+if (cc_find(interface_729:com_13, $int1) = ^true) {
+    cc_settext($string2);
+}
