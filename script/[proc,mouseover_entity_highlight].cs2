@@ -1,0 +1,30 @@
+// 5350
+[proc,mouseover_entity_highlight]
+~script5351;
+def_int $menuentrytype0 = minimenu_type;
+if (%varplayerbit_13088 = 0 | $menuentrytype0 = ^menuentrytype_tile | $menuentrytype0 = ^menuentrytype_none) {
+    return;
+}
+if ($menuentrytype0 = ^menuentrytype_npc & minimenu_findnpc = true) {
+    %varclient_553 = npc_uid;
+    %varclient_554 = npc_creationcycle;
+    highlight_npc_on(npc_uid, npc_creationcycle, 5);
+    return;
+}
+if ($menuentrytype0 = ^menuentrytype_loc & minimenu_findloc = true) {
+    %varclient_555 = loc_type;
+    %varclient_556 = loc_coord;
+    highlight_loc_on(loc_type, loc_coord, 5, 1);
+    return;
+}
+if ($menuentrytype0 = ^menuentrytype_obj & minimenu_findobj = true) {
+    %varclient_557 = obj_type;
+    %varclient_558 = obj_coord;
+    highlight_obj_on(obj_type, obj_coord, 5, 1);
+    return;
+}
+if ($menuentrytype0 = ^menuentrytype_player & minimenu_findplayer = true) {
+    %varclient_559 = p_name;
+    highlight_player_on(p_name, 5);
+    return;
+}
