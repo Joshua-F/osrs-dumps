@@ -1,0 +1,28 @@
+// 5474
+[clientscript,add_overlaytimer_loc](coord $coord, loc $loc, locshape $locshape, int $int3, int $int4, int $rgb, int $int6)
+if (~on_enhanced = false) {
+    return;
+}
+def_entityoverlay $entityoverlay = null;
+def_int $int8 = -1;
+if (loc_find($coord, $loc) = true) {
+    ~add_overlaytimer_loc($int3, $int4, $rgb, $int6);
+} else {
+    switch_locshape ($locshape) {
+        case 1, 2, 3, 4, 5 :
+            $int8 = 2;
+        case Q, W, E, R, T :
+            $int8 = 3;
+        case 8, 9 :
+            $int8 = 5;
+        case 0 :
+            $int8 = 4;
+        case default :
+            ~debug_mes("Overlay Timers: No locfind overlay ID specified for loc_shape. Timer ID: <tostring($int3)>");
+            return;
+    }
+    $entityoverlay = entityoverlay_create_coord($coord, $int8, ^overlaytype_middle, 1, 1, 0);
+    if (if_find_entityoverlay($entityoverlay) = true) {
+        cc_setontimer("overlaytimer_loc_find($coord, $loc, $int3, $int4, $rgb, $int6, clientclock, $int8)");
+    }
+}
