@@ -1,0 +1,14 @@
+// 5453
+[proc,script5453](stat $stat)
+if (~xptracker_get_timetrained($stat) >= 0 & ~xptracker_get_paused($stat) = 0) {
+    ~xptracker_set_timetrained($stat, calc(~xptracker_get_timetrained($stat) + 60));
+    if (~xptracker_get_updated($stat) = false) {
+        if ($stat ! null) {
+            ~xptracker_update_text_left($stat);
+        } else {
+            ~xptracker_update_overall_text;
+        }
+    } else {
+        ~xptracker_set_updated($stat, false);
+    }
+}

@@ -1,0 +1,20 @@
+// 5340
+[proc,buff_bar_timer](struct $struct, int $int1, int $int2, int $int3, int $int4)(int, obj, boolean)
+def_int $int5 = ~buff_bar_get_number($int1);
+if ($int5 <= 0) {
+    return(0, null, false);
+}
+$int5 = ~buff_bar_time_to_cycles($int2, $int5);
+def_obj $obj = null;
+def_enum $enum = null;
+if ($int4 = 0) {
+    $obj = struct_param($struct, param_1281);
+    $enum = struct_param($struct, param_1286);
+    if ($obj = null & $enum ! null) {
+        $obj = enum(int, namedobj, $enum, $int3);
+    }
+    if ($obj = null) {
+        $obj = ~script5195($int1);
+    }
+}
+return($int5, $obj, true);

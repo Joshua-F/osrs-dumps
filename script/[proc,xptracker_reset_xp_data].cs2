@@ -1,0 +1,13 @@
+// 5456
+[proc,xptracker_reset_xp_data](stat $stat, int $int1, int $int2)
+if ($stat ! null) {
+    ~xptracker_reset_xp_array($stat);
+}
+~xptracker_set_startxp($stat, $int2);
+~xptracker_set_lastxp($stat, $int2);
+~xptracker_set_timetrained($stat, -1);
+~xptracker_set_paused($stat, 0);
+~xptracker_set_updated($stat, false);
+if ($int1 = 1) {
+    ~xptracker_set_id($stat, -1);
+}
