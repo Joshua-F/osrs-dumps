@@ -1,0 +1,19 @@
+// 5455
+[proc,script5455](stat $stat0, int $int1)
+def_int $int2 = 1;
+def_stat $stat3 = null;
+def_int $int4 = 0;
+while ($int2 <= 23) {
+    $stat3 = enum(int, stat, enum_681, $int2);
+    if ($stat3 ! $stat0) {
+        ~xptracker_reset_xp_data($stat3, $int1, stat_xp($stat3));
+    } else if ($stat3 = $stat0 & $int1 = 1) {
+        ~xptracker_set_id($stat3, 1);
+    }
+    $int4 = calc($int4 + stat_xp($stat3));
+    $int2 = calc($int2 + 1);
+}
+if ($stat0 = null) {
+    ~xptracker_reset_xp_data(null, 0, $int4);
+}
+~xptracker_reset_interface;

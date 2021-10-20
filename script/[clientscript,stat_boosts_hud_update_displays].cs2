@@ -11,12 +11,12 @@ def_int $int6 = if_getwidth($component3);
 def_int $int7 = enum_getoutputcount(enum_681);
 def_int $int8 = 1;
 def_stat $stat9 = null;
-def_int $int10 = 0;
-while ($int8 <= $int7 & ($int5 <= %varplayerbit_12375 | $int10 = 0)) {
+%varclient_551 = 0;
+while ($int8 <= $int7 & ($int5 <= %varplayerbit_12375 | %varclient_551 = 0)) {
     $stat9 = enum(int, stat, enum_681, $int8);
     if ($stat9 ! hitpoints & $stat9 ! prayer & stat($stat9) ! stat_base($stat9)) {
         if (stat($stat9) > stat_base($stat9)) {
-            $int10 = 1;
+            %varclient_551 = 1;
         }
         if ($int5 <= %varplayerbit_12375) {
             $int4 = ~script4515($component1, $component2, $stat9, $int5, $int6, $int4);
@@ -29,7 +29,7 @@ if (if_gethide($component1) = false) {
     if ($int5 > 0) {
         if_sethide(false, $component3);
         if (cc_find($component3, %varclient_531) = ^true) {
-            if ($int10 = 1) {
+            if (%varclient_551 = 1) {
                 cc_sethide(false);
             } else {
                 cc_sethide(true);
