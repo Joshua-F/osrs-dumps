@@ -1,9 +1,14 @@
 // 5308
 [proc,shared_bank_closebutton](component $component)
-~script4215($component, "Close");
 if (%varplayerbit_4602 = 1) {
+    ~script4215($component, "Save and Close");
     if_setonop("opsound(event_op, 2)", $component);
-    if_setopkey(1, ^key_escape, 0, $component);
+    if_setonkey(null, $component);
+    if (%varplayerbit_4681 = 1) {
+        if_setopkey(1, ^key_escape, 0, $component);
+    }
 } else {
+    ~script4215($component, "Close");
     if_setonop("closebutton_click", $component);
+    if_setonkey("closebutton_key(event_keycode)", $component);
 }
