@@ -17,16 +17,25 @@ if ($component ! null) {
             if_setsize($int2, 0, ^setsize_abs, ^setsize_minus, $component);
         }
         $component = enum(component, component, $enum, interface_161:com_33);
-        if ($component ! null) {
-            if_setsize($int2, 0, ^setsize_minus, ^setsize_minus, $component);
-        }
-        unknown_command_6230(calc(765 + $int2));
-        if ($int3 = 1) {
-            if (clientoption_get(10) < calc(765 + $int2)) {
-                clientoption_set(10, calc(765 + $int2));
+        if (~on_mobile = true) {
+            ~script1282;
+            $int2 = ~min(safearea_getmaxx, calc(if_getwidth($component) - scale(%varclient_381, 16384, if_getwidth($component))));
+            $int2 = calc(if_getwidth($component) - $int2 + 42);
+            if ($component ! null) {
+                if_setsize($int2, 0, ^setsize_minus, ^setsize_minus, $component);
             }
-        } else if (clientoption_get(10) < calc(765 + 42) | clientoption_get(10) = calc(765 + 312)) {
-            clientoption_set(10, calc(765 + 42));
+        } else {
+            if ($component ! null) {
+                if_setsize($int2, 0, ^setsize_minus, ^setsize_minus, $component);
+            }
+            unknown_command_6230(calc(765 + $int2));
+            if ($int3 = 1) {
+                if (clientoption_get(10) < calc(765 + $int2)) {
+                    clientoption_set(10, calc(765 + $int2));
+                }
+            } else if (clientoption_get(10) < calc(765 + 42) | clientoption_get(10) = calc(765 + 312)) {
+                clientoption_set(10, calc(765 + 42));
+            }
         }
         ~toplevel_setup_popout_buttons;
     } else {
@@ -35,7 +44,7 @@ if ($component ! null) {
         if ($component ! null) {
             if_setsize(0, 0, ^setsize_minus, ^setsize_minus, $component);
         }
-        if (~on_enhanced = true) {
+        if (~on_enhanced_any = true) {
             unknown_command_6230(765);
             if (clientoption_get(10) = calc(765 + 42) | clientoption_get(10) = calc(765 + 312)) {
                 clientoption_set(10, 765);
@@ -47,7 +56,7 @@ if ($component ! null) {
     if ($component ! null) {
         if_setsize(0, 0, ^setsize_minus, ^setsize_minus, $component);
     }
-    if (~on_enhanced = true) {
+    if (~on_enhanced_any = true) {
         unknown_command_6230(765);
         if (clientoption_get(10) = calc(765 + 42) | clientoption_get(10) = calc(765 + 312)) {
             clientoption_set(10, 765);
