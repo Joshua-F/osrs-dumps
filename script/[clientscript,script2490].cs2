@@ -8,7 +8,6 @@ def_int $int5 = 55;
 cc_deleteall($component0);
 def_int $int6 = 0;
 cc_create($component0, ^iftype_graphic, $int6);
-def_int $int7 = $int6;
 $int6 = calc($int6 + 1);
 cc_setsize(20, 18, ^setsize_abs, ^setsize_abs);
 cc_setposition(10, $int4, ^setpos_abs_left, ^setpos_abs_top);
@@ -16,8 +15,8 @@ cc_setgraphic("ge_smallicons,4");
 cc_setonmouserepeat("cc_settrans(event_com, event_comsubid, 100, null)");
 cc_setonmouseleave("cc_settrans(event_com, event_comsubid, 0, null)");
 cc_setop(1, "-1");
+cc_setonop("opsound(event_op, 2)");
 cc_create($component0, ^iftype_graphic, $int6);
-def_int $int8 = $int6;
 $int6 = calc($int6 + 1);
 cc_setsize(20, 18, ^setsize_abs, ^setsize_abs);
 cc_setposition(10, $int4, ^setpos_abs_right, ^setpos_abs_top);
@@ -25,32 +24,36 @@ cc_setgraphic("ge_smallicons,5");
 cc_setonmouserepeat("cc_settrans(event_com, event_comsubid, 100, null)");
 cc_setonmouseleave("cc_settrans(event_com, event_comsubid, 0, null)");
 cc_setop(1, "+1");
+cc_setonop("opsound(event_op, 2)");
 cc_create($component0, ^iftype_graphic, $int6);
-def_int $int9 = $int6;
+def_int $int7 = $int6;
 $int6 = calc($int6 + 1);
 cc_setsize(35, 35, ^setsize_abs, ^setsize_abs);
 cc_setposition(0, $int5, ^setpos_abs_left, ^setpos_abs_top);
 cc_setgraphic($graphic2);
 cc_setonmouserepeat("cc_graphic_swapper(event_com, event_comsubid, $graphic3, null)");
 cc_setonmouseleave("cc_graphic_swapper(event_com, event_comsubid, $graphic2, null)");
+cc_setonop("opsound(event_op, 2)");
 cc_create($component0, ^iftype_graphic, $int6);
-def_int $int10 = $int6;
+def_int $int8 = $int6;
 $int6 = calc($int6 + 1);
 cc_setsize(35, 35, ^setsize_abs, ^setsize_abs);
 cc_setposition(40, $int5, ^setpos_abs_left, ^setpos_abs_top);
 cc_setgraphic($graphic2);
 cc_setonmouserepeat("cc_graphic_swapper(event_com, event_comsubid, $graphic3, null)");
 cc_setonmouseleave("cc_graphic_swapper(event_com, event_comsubid, $graphic2, null)");
+cc_setonop("opsound(event_op, 2)");
 cc_create($component0, ^iftype_graphic, $int6);
-def_int $int11 = $int6;
+def_int $int9 = $int6;
 $int6 = calc($int6 + 1);
 cc_setsize(35, 35, ^setsize_abs, ^setsize_abs);
 cc_setposition(80, $int5, ^setpos_abs_left, ^setpos_abs_top);
 cc_setgraphic($graphic2);
 cc_setonmouserepeat("cc_graphic_swapper(event_com, event_comsubid, $graphic3, null)");
 cc_setonmouseleave("cc_graphic_swapper(event_com, event_comsubid, $graphic2, null)");
+cc_setonop("opsound(event_op, 2)");
 cc_create($component0, ^iftype_graphic, $int6);
-def_int $int12 = $int6;
+def_int $int10 = $int6;
 $int6 = calc($int6 + 1);
 cc_setsize(35, 35, ^setsize_abs, ^setsize_abs);
 cc_setposition(120, $int5, ^setpos_abs_left, ^setpos_abs_top);
@@ -59,35 +62,26 @@ cc_setonmouserepeat("cc_graphic_swapper(event_com, event_comsubid, $graphic3, nu
 cc_setonmouseleave("cc_graphic_swapper(event_com, event_comsubid, $graphic2, null)");
 cc_setop(1, "Enter quantity");
 cc_setonop("opsound(event_op, 2)");
+$int6 = ~duel_stake_setup_buttontext($component0, $int10, "...", $int6);
 $int6 = ~duel_stake_textbox($component0, $int6, 32, calc($int4 - 2), calc($int1 - 64));
+def_string $string0 = "+100k";
+def_string $string1 = "+1m";
+def_string $string2 = "+10m";
 if ($component0 = interface_481:com_19) {
+    $string0, $string1, $string2 = "+100", "+1k", "+10k";
     cc_setoninvtransmit("script2493(event_com, event_comsubid, obj_13204){inv_93, inv_134}");
-    if (cc_find($component0, $int9) = ^true) {
-        cc_setop(1, "+10");
-    }
-    if (cc_find($component0, $int10) = ^true) {
-        cc_setop(1, "+100");
-    }
-    if (cc_find($component0, $int11) = ^true) {
-        cc_setop(1, "+1k");
-    }
-    $int6 = ~duel_stake_setup_buttontext($component0, $int9, "+10", $int6);
-    $int6 = ~duel_stake_setup_buttontext($component0, $int10, "+100", $int6);
-    $int6 = ~duel_stake_setup_buttontext($component0, $int11, "+1k", $int6);
-    $int6 = ~duel_stake_setup_buttontext($component0, $int12, "...", $int6);
 } else {
     cc_setoninvtransmit("script2493(event_com, event_comsubid, obj_995){inv_93, inv_134}");
-    if (cc_find($component0, $int9) = ^true) {
-        cc_setop(1, "+100k");
-    }
-    if (cc_find($component0, $int10) = ^true) {
-        cc_setop(1, "+1m");
-    }
-    if (cc_find($component0, $int11) = ^true) {
-        cc_setop(1, "+10m");
-    }
-    $int6 = ~duel_stake_setup_buttontext($component0, $int9, "+100k", $int6);
-    $int6 = ~duel_stake_setup_buttontext($component0, $int10, "+1m", $int6);
-    $int6 = ~duel_stake_setup_buttontext($component0, $int11, "+10m", $int6);
-    $int6 = ~duel_stake_setup_buttontext($component0, $int12, "...", $int6);
 }
+if (cc_find($component0, $int7) = ^true) {
+    cc_setop(1, $string0);
+}
+$int6 = ~duel_stake_setup_buttontext($component0, $int7, $string0, $int6);
+if (cc_find($component0, $int8) = ^true) {
+    cc_setop(1, $string1);
+}
+$int6 = ~duel_stake_setup_buttontext($component0, $int8, $string1, $int6);
+if (cc_find($component0, $int9) = ^true) {
+    cc_setop(1, $string2);
+}
+$int6 = ~duel_stake_setup_buttontext($component0, $int9, $string2, $int6);
