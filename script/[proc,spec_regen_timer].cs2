@@ -1,6 +1,6 @@
 // 4723
 [proc,spec_regen_timer](int $int0)
-if (~on_enhanced = false) {
+if (~on_enhanced_any = false) {
     return;
 }
 if (%varplayerbit_4084 = 1) {
@@ -13,7 +13,7 @@ if ($int0 >= 1500) {
     $int0 = calc($int0 % 1500);
 }
 def_component $component1 = interface_160:com_36;
-if (~on_mobile = true) {
+if (~on_mobile = true & %varplayerbit_6254 = 1 | ~on_enhanced_desktop = true & ~toplevel_getcomponents ! enum_1129 & %varplayerbit_12986 = 1) {
     $component1 = interface_311:com_38;
 }
 cc_create($component1, ^iftype_circle, 0);
