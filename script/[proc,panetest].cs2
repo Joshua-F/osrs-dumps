@@ -14,6 +14,9 @@ switch_int (%varclient_41) {
         if ($chattype0 = ^chattype_clanmessage & ~gim_notification_message($string1) = true) {
             return(true);
         }
+        if ($chattype0 = ^chattype_clanchat & ~script5501($string1) = true) {
+            return(true);
+        }
     case 2 :
         if ($chattype0 = ^chattype_modchat | $chattype0 = ^chattype_publicchat | $chattype0 = ^chattype_autotyper | $chattype0 = ^chattype_modautotyper) {
             return(true);
@@ -28,16 +31,29 @@ switch_int (%varclient_41) {
         }
     case 5 :
         switch_int ($chattype0) {
-            case ^chattype_clanchat, ^chattype_clanguestchat, ^chattype_clanguestmessage, ^chattype_clancreationinvitation, ^chattype_chalreq_clanchat, 111, 112 :
-                return(true);
+            case ^chattype_clanchat, ^chattype_clanguestchat, ^chattype_clanguestmessage, ^chattype_clancreationinvitation, ^chattype_chalreq_clanchat, 112 :
+                if (~script5501($string1) = false) {
+                    return(true);
+                }
             case ^chattype_clanmessage :
                 if (~gim_notification_message($string1) = false) {
                     return(true);
                 }
         }
     case 6 :
-        if ($chattype0 = ^chattype_tradereq | $chattype0 = ^chattype_chalreq_trade | $chattype0 = ^chattype_trade) {
-            return(true);
+        switch_int ($chattype0) {
+            case ^chattype_tradereq, ^chattype_chalreq_trade, ^chattype_trade :
+                return(true);
+            case ^chattype_clanchat, ^chattype_clanmessage, 111, 112 :
+                if (~is_group_iron = false) {
+                    return(false);
+                }
+                if (~script5501($string1) = true) {
+                    return(true);
+                }
+                if (~gim_notification_message($string1) = true) {
+                    return(true);
+                }
         }
         if (~trade_partner_check($chattype0, $string0, $int1) = true) {
             return(true);
