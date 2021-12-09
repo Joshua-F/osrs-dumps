@@ -1,0 +1,17 @@
+// 5736
+[proc,ge_itemsink_monitor_setsize](int $int0, int $int1)
+def_int $int2 = 74;
+def_int $int3 = calc(~max(220, $int0) + $int2);
+def_int $int4 = ~min(calc($int1 - 4), $int3);
+if_setsize(0, $int4, ^setsize_minus, ^setsize_abs, interface_731:com_1);
+def_int $int5 = calc($int4 - $int2);
+if ($int5 >= $int0) {
+    %varclient_63 = 0;
+    if_setscrollpos(0, 0, interface_731:com_12);
+    if_setscrollsize(0, 0, interface_731:com_12);
+    ~scrollbar_resize(interface_731:com_13, interface_731:com_12, 0);
+} else {
+    if_setscrollsize(0, $int0, interface_731:com_12);
+    ~scrollbar_resize(interface_731:com_13, interface_731:com_12, %varclient_63);
+}
+if_setontimer("ge_itemsink_monitor_checksize($int0, $int1)", interface_731:com_0);
