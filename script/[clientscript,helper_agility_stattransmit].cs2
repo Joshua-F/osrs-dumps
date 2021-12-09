@@ -1,0 +1,12 @@
+// 5723
+[clientscript,helper_agility_stattransmit](entityoverlay $entityoverlay, int $int1, int $int2, int $int3, loc $loc, coord $coord)
+def_int $int6 = stat(agility);
+def_int $int7 = stat(ranged);
+def_int $int8 = stat(strength);
+if ($int1 = $int6 & $int2 = $int7 & $int3 = $int8) {
+    return;
+}
+~script5724($entityoverlay, $loc, $coord);
+if (if_find_entityoverlay($entityoverlay) = true) {
+    cc_setonstattransmit("helper_agility_stattransmit($entityoverlay, $int6, $int7, $int8, $loc, $coord){ranged, agility, strength}");
+}
