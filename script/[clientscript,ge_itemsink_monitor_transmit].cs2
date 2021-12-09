@@ -1,0 +1,28 @@
+// 5734
+[clientscript,ge_itemsink_monitor_transmit](int $int0, int $int1, obj $obj2, string $string0)
+if ($int0 = 1) {
+    cc_deleteall(interface_731:com_12);
+    %varclient_43, %varclient_49, %varclient_58 = 0, 0, -1;
+    cc_deleteall(interface_731:com_13);
+    cc_deleteall(interface_731:com_3);
+    if_sethide(true, interface_731:com_3);
+}
+if ($int1 ! %varclient_43 | $obj2 = null) {
+    return;
+}
+cc_create(interface_731:com_12, ^iftype_rectangle, $int1);
+%varclient_43 = calc(%varclient_43 + 1);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_setcolour(^white);
+cc_setfill(false);
+cc_settrans(255);
+cc_setontimer("ge_itemsink_monitor_drawline(event_com, event_comsubid, $obj2, $string0, %varclient_49)");
+%varclient_49 = calc(%varclient_49 + 40);
+if ($int0 = 2) {
+    %varclient_58 = %varclient_49;
+    ~scrollbar_vertical(interface_731:com_13, interface_731:com_12, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+    ~ge_itemsink_monitor_setsize(%varclient_49, if_getheight(interface_731:com_0));
+    if_sethide(false, interface_731:com_3);
+    ~ge_offers_bigbutton(interface_731:com_3, "Refresh", 0);
+}

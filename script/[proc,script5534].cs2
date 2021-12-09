@@ -1,0 +1,21 @@
+// 5534
+[proc,script5534](stat $stat0)(int)
+def_int $int1 = stat_visible_xp($stat0);
+if ($int1 >= 200000000) {
+    return(2);
+}
+def_int $int2 = 0;
+def_int $int3 = 0;
+$int2, $int3 = ~xpdrops_data_get($stat0);
+if ($int3 <= 0) {
+    if ($int1 >= enum(int, int, enum_256, 126)) {
+        return(3);
+    } else {
+        return(0);
+    }
+}
+if ($int1 >= $int3) {
+    return(2);
+} else {
+    return(1);
+}
