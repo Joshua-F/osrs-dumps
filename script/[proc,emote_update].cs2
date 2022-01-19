@@ -1,8 +1,8 @@
 // 701
-[proc,emote_update](component $component)
+[proc,emote_update](component $component0, component $component1)
 def_int $int = 0;
 while ($int <= 50) {
-    if (cc_find($component, $int) = true) {
+    if (cc_find($component0, $int) = true) {
         if (~emote_checkunlocked($int) = true) {
             ~emote_set_graphic($int);
         } else {
@@ -11,6 +11,7 @@ while ($int <= 50) {
         cc_clearops;
         ~emote_op1_configure($int);
         ~emote_op2_configure($int);
+        cc_setonmouserepeat("tooltip_mouserepeat(event_com, event_comsubid, $component1, ~emote_get_name($int), 25, 120)");
     }
     $int = calc($int + 1);
 }

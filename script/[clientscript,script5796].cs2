@@ -1,0 +1,26 @@
+// 5796
+[clientscript,script5796](component $component, int $int1, int $int2, int $int3, int $int4)
+def_enum $enum = enum(int, enum, enum_4145, $int3);
+def_graphic $graphic = enum(int, graphic, $enum, $int4);
+if (cc_find($component, $int1) = true) {
+    $int2 = calc($int2 - 1);
+    if ($int2 <= 0) {
+        $enum = enum(int, enum, enum_4145, $int3);
+        cc_setgraphic(enum(int, graphic, $enum, $int4));
+        if ($graphic = null) {
+            $int4 = 0;
+            $int2 = calc(3 + randominc(3));
+            $int3 = random(enum_getoutputcount(enum_4145));
+            switch_int (randominc(1)) {
+                case 0 :
+                    cc_sethflip(false);
+                case 1 :
+                    cc_sethflip(true);
+            }
+        } else {
+            $int4 = calc($int4 + 1);
+            $int2 = calc(4 + randominc(1));
+        }
+    }
+    cc_setontimer("script5796($component, $int1, $int2, $int3, $int4)");
+}

@@ -2,7 +2,6 @@
 [clientscript,emote_init](component $com_0, component $com_1, component $com_2, component $com_3)
 cc_deleteall($com_1);
 cc_deleteall($com_2);
-def_string $string = "";
 def_int $int4 = 0;
 def_int $int5 = 0;
 def_int $int6 = 0;
@@ -13,8 +12,7 @@ while ($int6 <= 50) {
         cc_setsize(42, 48, ^setsize_abs, ^setsize_abs);
         $int5 = calc($int4 / 4 * 49 + 6);
         cc_setposition(calc($int4 % 4 * 43), $int5, ^setpos_abs_left, ^setpos_abs_top);
-        $string = enum(int, string, enum_1000, $int6);
-        cc_setonmouserepeat("tooltip_mouserepeat(event_com, event_comsubid, $com_3, $string, 25, 120)");
+        cc_setonmouserepeat("tooltip_mouserepeat(event_com, event_comsubid, $com_3, ~emote_get_name($int6), 25, 120)");
         cc_setonmouseleave("deltooltip($com_3)");
         $int4 = calc($int4 + 1);
     } else {
@@ -32,6 +30,6 @@ if ($int5 > if_getheight($com_1)) {
     if_setscrollsize(0, 0, $com_1);
 }
 ~scrollbar_vertical($com_2, $com_1, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-~emote_update($com_1);
-if_setonvartransmit("emote_update($com_1){varplayer_313, varplayer_802, varplayer_465, varplayer_101, varplayer_904, varplayer_1336, varplayer_2886}", $com_0);
-if_setonstattransmit("emote_update($com_1)", $com_0);
+~emote_update($com_1, $com_3);
+if_setonvartransmit("emote_update($com_1, $com_3){varplayer_313, varplayer_802, varplayer_465, varplayer_101, varplayer_904, varplayer_1336, varplayer_2886}", $com_0);
+if_setonstattransmit("emote_update($com_1, $com_3)", $com_0);
