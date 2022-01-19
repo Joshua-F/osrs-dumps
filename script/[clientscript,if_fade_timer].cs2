@@ -1,0 +1,15 @@
+// 5844
+[clientscript,if_fade_timer](component $component0, int $int1, int $int2)
+def_int $int3 = calc(if_gettrans($component0) + $int2);
+if ($int2 < 0) {
+    if ($int3 < $int1) {
+        if_settrans($int1, $component0);
+        if_setontimer(null, $component0);
+        return;
+    }
+} else if ($int3 > $int1) {
+    if_settrans($int1, $component0);
+    if_setontimer(null, $component0);
+    return;
+}
+if_settrans($int3, $component0);
