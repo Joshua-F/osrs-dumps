@@ -1,0 +1,32 @@
+// 5886
+[clientscript,speedrunning_init](component $com_5, component $com_8, component $com_7, component $com_9, component $com_10, component $com_11, component $com_26, component $com_27, component $com_15, component $com_16, component $com_21, component $com_14, component $com_18, component $com_19, component $com_20, component $com_40, component $com_41, component $com_42, component $com_43, component $com_37, component $com_45, component $com_38, component $com_47, component $com_48, component $com_56, component $com_53, component $com_54, component $com_55, component $com_57, component $com_83, component $com_70, component $com_72, component $com_74, component $com_76, component $com_78, component $com_80, component $com_82)
+~questlist_draw($com_5, $com_8, $com_7, $com_9, $com_10, $com_11, 1);
+if (%varplayer_3373 ! null) {
+    if (enum(struct, boolean, enum_4209, %varplayer_3373) = true) {
+        if_settext("<~get_quest_name(%varplayer_3373)> (Beta)", $com_21);
+    } else {
+        if_settext(~get_quest_name(%varplayer_3373), $com_21);
+    }
+}
+~speedrunning_stats_update($com_14, $com_40, $com_41, $com_42, $com_43, $com_70, $com_72, $com_74, $com_76, $com_78, $com_80, $com_82);
+if_setonvartransmit("speedrunning_stats_update($com_14, $com_40, $com_41, $com_42, $com_43, $com_70, $com_72, $com_74, $com_76, $com_78, $com_80, $com_82){varplayer_3365, varplayer_3366, varplayer_3367, varplayer_3368, varplayer_3369}", $com_14);
+~script5909($com_37, $com_45, $com_38, $com_47, $com_20);
+if_sethide(true, $com_48);
+if_sethide(true, $com_57);
+def_string $string = ~script5913;
+if_settext($string, $com_55);
+def_int $int = paraheight($string, if_getwidth($com_55), p12_full);
+$int = calc($int * 14 + 9);
+if_setsize(12, $int, ^setsize_minus, ^setsize_abs, $com_55);
+if_setscrollsize(0, if_getheight($com_20), $com_19);
+if_setscrollpos(0, 0, $com_19);
+~scrollbar_vertical($com_18, $com_19, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+if_setscrollsize(0, $int, $com_54);
+if_setscrollpos(0, 0, $com_54);
+~scrollbar_vertical($com_53, $com_54, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~script5896($com_26, "Set Up Speedrun", "Abandon Speedrun");
+~speedrunning_button_init($com_27, "Quest Journal");
+~script5897($com_15, "Info", $com_48);
+~script5897($com_16, "Stats", $com_57);
+~script5905($com_56, $com_48);
+~script5905($com_83, $com_57);

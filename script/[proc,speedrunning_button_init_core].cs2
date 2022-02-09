@@ -1,0 +1,11 @@
+// 5900
+[proc,speedrunning_button_init_core](component $component, string $string)
+~speedrunning_button_draw($component, $string, false, false);
+if (~on_mobile = false) {
+    if_setonmouserepeat("speedrunning_button_draw($component, $string, true, false)", $component);
+    if_setonmouseleave("speedrunning_button_draw($component, $string, false, false)", $component);
+} else {
+    if_setonhold("speedrunning_button_draw($component, $string, true, false)", $component);
+    if_setonrelease("speedrunning_button_draw($component, $string, false, false)", $component);
+    if_setonmouseleave("speedrunning_button_draw($component, $string, false, false)", $component);
+}
