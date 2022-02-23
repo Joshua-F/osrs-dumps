@@ -1,0 +1,21 @@
+// 5955
+[proc,entity_highlight_minimenu](int $int0)
+def_int $int1 = ~max(minimenu_hovered_index, 0);
+switch_int (minimenu_typeat($int1)) {
+    case ^menuentrytype_npc :
+        if (minimenu_findnpcat($int1) = true) {
+            ~entity_highlight_active_npc($int0);
+        }
+    case ^menuentrytype_loc :
+        if (minimenu_findlocat($int1) = true) {
+            ~entity_highlight_active_loc($int0);
+        }
+    case ^menuentrytype_obj :
+        if (minimenu_findobjat($int1) = true) {
+            ~entity_highlight_active_obj($int0);
+        }
+    case ^menuentrytype_player :
+        if (minimenu_findplayerat($int1) = true) {
+            ~entity_highlight_active_player($int0);
+        }
+}
