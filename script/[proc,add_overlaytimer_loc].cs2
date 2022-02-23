@@ -1,7 +1,11 @@
 // 5473
-[proc,add_overlaytimer_loc](int $int0, int $int1, int $rgb, int $int3)
-if (~on_enhanced_any = false | ~script5476($int0, $int1) = false) {
+[proc,add_overlaytimer_loc](loc $loc, int $int1, int $int2, int $int3, int $rgb, int $int5)
+if (~on_enhanced_any = false | ~script5476($int1, $int3) = false) {
     return;
 }
-def_entityoverlay $entityoverlay = entityoverlay_create_loc(1, ^overlaytype_middle, 25, 25, 0);
-~add_overlaytimer_inner($int0, $entityoverlay, $int1, $rgb, $int3);
+def_int $overlaytype = ^overlaytype_middle;
+if (lc_param($loc, param_1545) = true) {
+    $overlaytype = ^overlaytype_bottom;
+}
+def_entityoverlay $entityoverlay = entityoverlay_create_loc(1, $overlaytype, 25, 25, 0);
+~add_overlaytimer_inner($int1, $entityoverlay, $int2, $int3, $rgb, $int5);
