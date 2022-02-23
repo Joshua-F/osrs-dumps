@@ -1,0 +1,53 @@
+// 5936
+[proc,script5936](struct $struct, int $int1)
+def_component $com_2 = interface_651:com_2;
+def_int $int3 = 0;
+def_int $int4 = calc(clientclock - $int1);
+def_int $int5 = 0;
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_int $rgb = ^black;
+def_string $string = "";
+def_int $int9 = 0;
+def_int $int10 = 0;
+def_int $int11 = -1;
+def_int $int12 = -1;
+def_int $int13 = 0;
+def_int $int14 = 0;
+def_int $int15 = 10;
+if (calc($int4 % $int15) = 0) {
+    $int11 = struct_param($struct, param_1275);
+    if (cc_find($com_2, $int11) = true) {
+        $int12 = struct_param($struct, param_1277);
+        $int10 = cc_getcolour;
+        $int9 = ~buff_bar_time_to_cycles($int12, $int10);
+        $int5 = calc($int9 - $int4);
+        $rgb = cc_getblendcolour;
+        $int6 = cc_getscrollwidth;
+        $int7 = cc_getscrollheight;
+        if (%varplayerbit_12393 = 1 & struct_param($struct, param_1290) = true) {
+            $int6 = calc($int6 + $int15);
+            $int14 = calc(~buff_bar_get_server_transmit_rate($struct) * 30 - $int4);
+            if ($int14 < 0) {
+                $int7 = calc($int7 + $int15);
+            }
+            if ($int7 > 0) {
+                $int5 = calc($int5 + $int7);
+            }
+        } else {
+            $int6 = 0;
+            $int7 = 0;
+        }
+        cc_setscrollsize($int6, $int7);
+        cc_setblendcolour($int5);
+        cc_settext(~script5943($struct, $int5));
+        if ($int5 <= 0) {
+            cc_setscrollsize(0, 0);
+            cc_setcolour(struct_param($struct, param_1540));
+            cc_setblendcolour(^black);
+            cc_settext("");
+            cc_setontimer(null);
+            ~buff_bar_layout_redraw;
+        }
+    }
+}

@@ -1,6 +1,6 @@
 // 5340
-[proc,buff_bar_timer](struct $struct, int $int1, int $int2, int $int3, int $int4)(int, obj, boolean)
-def_int $int5 = ~buff_bar_get_number($int1);
+[proc,buff_bar_timer](struct $struct, int $rgb, int $int2, int $int3, int $int4)(int, obj, boolean)
+def_int $int5 = ~buff_bar_get_number($rgb);
 if ($int5 <= 0) {
     return(0, null, false);
 }
@@ -14,7 +14,7 @@ if ($int4 = 0) {
         $obj = enum(int, namedobj, $enum, $int3);
     }
     if ($obj = null) {
-        $obj = ~script5195($int1);
+        $obj = ~buff_bar_dynamic_obj($rgb);
     }
 }
 return($int5, $obj, true);

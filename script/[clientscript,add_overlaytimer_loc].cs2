@@ -6,7 +6,7 @@ if (~on_enhanced_any = false) {
 def_entityoverlay $entityoverlay = null;
 def_int $int8 = -1;
 if (loc_find($coord, $loc) = true) {
-    ~add_overlaytimer_loc($int3, $int4, $rgb, $int6);
+    ~add_overlaytimer_loc($loc, $int3, clientclock, calc($int4 * 30), $rgb, $int6);
 } else {
     switch_locshape ($locshape) {
         case 1, 2, 3, 4, 5 :
@@ -23,6 +23,6 @@ if (loc_find($coord, $loc) = true) {
     }
     $entityoverlay = entityoverlay_create_coord($coord, $int8, ^overlaytype_middle, 1, 1, 0);
     if (if_find_entityoverlay($entityoverlay) = true) {
-        cc_setontimer("overlaytimer_loc_find($coord, $loc, $int3, $int4, $rgb, $int6, clientclock, $int8)");
+        cc_setontimer("overlaytimer_loc_find($coord, $loc, $int3, clientclock, calc($int4 * 30), $rgb, $int6, $int8)");
     }
 }
