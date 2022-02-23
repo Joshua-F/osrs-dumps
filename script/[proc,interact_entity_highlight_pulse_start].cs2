@@ -1,0 +1,10 @@
+// 5961
+[proc,interact_entity_highlight_pulse_start]
+if (~on_enhanced_mobile = false) {
+    return;
+}
+~entity_highlight_setup(4, 2, 128);
+def_enum $enum0 = ~toplevel_getcomponents;
+def_component $component1 = enum(component, component, $enum0, interface_161:com_36);
+def_int $int2 = clientclock;
+if_setontimer("interact_entity_highlight_pulse($int2)", $component1);
