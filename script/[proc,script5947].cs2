@@ -57,7 +57,11 @@ cc_setposition(calc($int6 + 1 + (37 - 5) / 2 - $int9 / 2 + coordx(struct_param($
 cc_setsize($int9, $int10, ^setsize_abs, ^setsize_abs);
 def_int $int11 = 0;
 def_graphic $graphic = null;
-def_obj $obj = struct_param($struct, param_1281);
+def_obj $obj13 = struct_param($struct, param_1281);
+def_obj $obj14 = ~buff_bar_dynamic_obj($rgb3);
+if ($obj14 ! null) {
+    $obj13 = $obj14;
+}
 if (struct_param($struct, param_1480) = true) {
     $graphic = ~buff_bar_dynamic_graphic($rgb3);
 } else {
@@ -68,9 +72,9 @@ if (struct_param($struct, param_1285) ! null & $int11 ! -1) {
 }
 if ($graphic ! null) {
     cc_setgraphic($graphic);
-} else if ($obj ! null) {
+} else if ($obj13 ! null) {
     cc_setoutline(1);
-    cc_setobject_nonum(oc_uncert($obj), 100000);
+    cc_setobject_nonum(oc_uncert($obj13), 100000);
 }
 $int1 = calc($int1 + 1);
 cc_create($com_4, ^iftype_graphic, $int1);

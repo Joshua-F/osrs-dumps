@@ -1,0 +1,15 @@
+// 5194
+[proc,gim_shared_bank_unlocks_setsize](int $int0, int $int1, component $component2, component $component3, int $int4)
+def_int $int5 = 54;
+def_int $int6 = ~min(calc($int4 - 20), calc($int1 + $int5));
+if_setsize($int0, $int6, ^setsize_abs, ^setsize_abs, interface_743:com_3);
+def_int $int7 = calc($int6 - $int5);
+if ($int1 > $int7) {
+    if_setscrollsize(0, $int1, $component2);
+    ~scrollbar_resize($component3, $component2, ~min(calc($int1 - $int7), ~max(0, %varclient_63)));
+} else {
+    if_setscrollpos(0, 0, $component2);
+    if_setscrollsize(0, 0, $component2);
+    ~scrollbar_resize($component3, $component2, 0);
+}
+if_setontimer("gim_shared_bank_unlocks_checksize($int0, $int1, $component2, $component3, $int4)", interface_743:com_1);
