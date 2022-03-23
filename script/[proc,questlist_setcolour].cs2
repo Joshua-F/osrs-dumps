@@ -1,0 +1,15 @@
+// 4027
+[proc,questlist_setcolour](struct $struct0, int $int1, boolean $boolean2, boolean $boolean3)
+def_int $int4 = ~settings_get_colour_or_default(224);
+if (~script4028($struct0, $int1, $boolean2, $boolean3) = true) {
+    $int4 = ~settings_get_colour_or_default(227);
+} else if ($int1 = 0) {
+    $int4 = ~settings_get_colour_or_default(225);
+} else if ($int1 = 2 & ~speedrunning_world = false) {
+    $int4 = ~settings_get_colour_or_default(226);
+}
+cc_setcolour($int4);
+if (~on_mobile = false) {
+    cc_setonmouseover("cc_colour_swapper(event_com, event_comsubid, 16777215)");
+    cc_setonmouseleave("cc_colour_swapper(event_com, event_comsubid, $int4)");
+}
