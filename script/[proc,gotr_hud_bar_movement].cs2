@@ -1,0 +1,15 @@
+// 5983
+[proc,gotr_hud_bar_movement](component $component, int $int1)
+def_int $int2 = if_getwidth($component);
+if ($int2 = $int1) {
+    if_setsize($int1, if_getheight($component), ^setsize_abs, ^setsize_abs, $component);
+    if_setontimer(null, $component);
+    return;
+}
+if (if_getwidth($component) = 0) {
+    if_setsize($int1, 0, ^setsize_abs, ^setsize_minus, $component);
+} else if ($int2 < $int1) {
+    if_setsize(calc($int2 + 1), 0, ^setsize_abs, ^setsize_minus, $component);
+} else if ($int2 > $int1) {
+    if_setsize(calc($int2 - 1), 0, ^setsize_abs, ^setsize_minus, $component);
+}
