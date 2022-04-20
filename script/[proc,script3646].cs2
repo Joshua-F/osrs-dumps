@@ -1,22 +1,18 @@
 // 3646
-[proc,script3646](obj $obj0, int $int1, component $component2, int $int3)
-cc_clearops;
-if ($obj0 ! null) {
-    cc_settrans(100);
-    cc_setobject($obj0, $int1);
-    if (%varplayerbit_12132 = 1) {
-        cc_setonop("cc_settrans_temporarily(event_com, event_comsubid, 150, 100)");
-        cc_setop(1, "Examine");
-        cc_setopbase("<col=ff9040><oc_name($obj0)></col>");
-        cc_setondragcomplete("script3647(event_com, event_com2, event_comsubid, event_comsubid2, $int3)");
-    } else {
-        cc_setonop(null);
-        cc_setondragcomplete(null);
-    }
-} else {
-    cc_settrans(255);
-    cc_setobject(obj_6512, 1);
-    cc_setonop(null);
-    cc_setondragcomplete(null);
+[proc,script3646](int $int0)
+if (~on_mobile = false & ~on_enhanced_desktop = false) {
+    return;
 }
-cc_setontimer(null);
+$int0 = calc($int0 + 1);
+switch_int ($int0) {
+    case 1 :
+        deviceoption_set(^deviceoption_fps_limit, 15);
+    case 2 :
+        deviceoption_set(^deviceoption_fps_limit, 20);
+    case 3 :
+        deviceoption_set(^deviceoption_fps_limit, 30);
+    case 4 :
+        deviceoption_set(^deviceoption_fps_limit, 60);
+    case default :
+        deviceoption_set(^deviceoption_fps_limit, 0);
+}
