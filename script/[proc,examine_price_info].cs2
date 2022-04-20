@@ -1,0 +1,36 @@
+// 6005
+[proc,examine_price_info](obj $obj0, int $int1, int $int2, boolean $boolean3, int $int4, boolean $boolean5, int $int6, int $int7)
+if (~on_enhanced_any = false) {
+    return;
+}
+if (%varplayerbit_13826 = 0 & %varplayerbit_13827 = 0) {
+    return;
+}
+if ($obj0 = null) {
+    return;
+}
+$obj0 = oc_uncert($obj0);
+def_string $string0 = "";
+if (%varplayerbit_13826 = 1 & $boolean3 = true) {
+    $string0 = ~script6006($string0, "GE", $int4, $int1);
+}
+if (%varplayerbit_13827 = 1 & $boolean5 = false) {
+    if ($int6 > 0) {
+        $string0 = ~script6006($string0, "HA", $int6, $int1);
+    }
+    if ($int7 > 0) {
+        $string0 = ~script6006($string0, "LA", $int7, $int1);
+    }
+}
+if (string_length($string0) <= 0) {
+    return;
+}
+if ($int2 = 1) {
+    if ($int1 > 1) {
+        mes("Price of <tostring($int1)> x <oc_name($obj0)>: <$string0>");
+    } else {
+        mes("Price of <oc_name($obj0)>: <$string0>");
+    }
+} else {
+    mes("Price: <$string0>");
+}
