@@ -1,0 +1,29 @@
+// 6013
+[clientscript,inventory_reorder](component $component0, component $component1, int $int2, int $int3, int $int4, boolean $boolean5)
+if ($int2 < 0 | $int2 >= $int4) {
+    return;
+}
+if ($int3 < 0 | $int3 >= $int4) {
+    return;
+}
+if ($component0 ! $component1) {
+    return;
+}
+def_boolean $boolean6 = keyheld(^key_shift_left);
+def_obj $obj7 = null;
+def_int $int8 = -1;
+def_obj $obj9 = null;
+def_int $int10 = -1;
+if (cc_find($component0, $int2) = ^true) {
+    $obj7, $int8 = cc_getinvobject, cc_getinvcount;
+}
+if ($obj7 = null) {
+    return;
+}
+if (cc_find($component0, $int3) = ^true) {
+    $obj9, $int10 = cc_getinvobject, cc_getinvcount;
+    ~inventory_drawitem($obj7, $int8, $component0, $int4, $boolean5, $boolean6);
+}
+if (cc_find($component0, $int2) = ^true) {
+    ~inventory_drawitem($obj9, $int10, $component0, $int4, $boolean5, $boolean6);
+}
