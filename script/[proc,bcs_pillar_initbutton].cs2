@@ -1,0 +1,9 @@
+// 6028
+[proc,bcs_pillar_initbutton](component $component0, graphic $graphic1, string $string0)
+~bcs_pillar_setbutton($component0, $graphic1, $string0, false, 0);
+if (~on_mobile = false) {
+    if_setonmouserepeat("bcs_pillar_setbutton(event_com, $graphic1, $string0, true)", $component0);
+}
+if_setonmouseleave("bcs_pillar_setbutton(event_com, $graphic1, $string0, false)", $component0);
+if_setop(1, removetags($string0), $component0);
+if_setontimer(null, $component0);
