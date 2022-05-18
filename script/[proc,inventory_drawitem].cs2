@@ -7,6 +7,7 @@ cc_setonmouserepeat(null);
 cc_setdragdeadtime(6);
 if ($obj0 ! null) {
     cc_setobject($obj0, $int1);
+    cc_sethide(false);
     if ($boolean4 = true) {
         cc_settrans(0);
         cc_settargetverb("Use");
@@ -14,6 +15,7 @@ if ($obj0 ! null) {
         cc_setontargetleave("settings_questlist_section_page(event_com, event_comsubid, 1)");
         ~inventory_setophelds($obj0, $boolean5);
         cc_setopbase("<col=ff9040><oc_name($obj0)></col>");
+        cc_setondrag("inventory_startdrag(event_com, $int3)");
         cc_setondragcomplete("inventory_reorder(event_com, event_com2, event_comsubid, event_comsubid2, $int3, $boolean4)");
         cc_setonop("inventory_op(event_com, $obj0, event_comsubid, event_op)");
         cc_setonmouserepeat("inventory_antidrag_update(event_com, event_comsubid)");
@@ -22,11 +24,13 @@ if ($obj0 ! null) {
         if (%varplayerbit_12132 = 1) {
             cc_setop(1, "Examine");
             cc_setopbase("<col=ff9040><oc_name($obj0)></col>");
+            cc_setondrag("inventory_startdrag(event_com, $int3)");
             cc_setondragcomplete("inventory_reorder(event_com, event_com2, event_comsubid, event_comsubid2, $int3, $boolean4)");
             cc_setonop("cc_settrans_temporarily(event_com, event_comsubid, 150, 100)");
             cc_setonmouserepeat("inventory_antidrag_update(event_com, event_comsubid)");
         } else {
             cc_setonop(null);
+            cc_setondrag(null);
             cc_setondragcomplete(null);
         }
     }
@@ -34,6 +38,8 @@ if ($obj0 ! null) {
     cc_settrans(255);
     cc_setobject(obj_6512, 1);
     cc_setonop(null);
+    cc_setondrag(null);
     cc_setondragcomplete(null);
+    cc_sethide(true);
 }
 cc_setontimer(null);

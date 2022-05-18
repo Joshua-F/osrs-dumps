@@ -1,41 +1,59 @@
 // 4718
-[proc,health_regen_timer](int $int0)
+[proc,health_regen_timer](int $int0, int $int1, int $int2, int $int3)
 if (~on_enhanced_any = false) {
     return;
 }
+def_component $component4 = interface_160:com_11;
+if (~on_mobile = true & %varplayerbit_6254 = 1 | ~on_enhanced_desktop = true & ~toplevel_getcomponents ! enum_1129 & %varplayerbit_12986 = 1) {
+    $component4 = interface_311:com_13;
+}
+cc_deleteall($component4);
+if_setonstattransmit("health_orb_stattransmit{hitpoints}", $component4);
+if_setonvartransmit("health_orb_vartransmit($component4, %varplayerbit_12346){varplayer_2856, varplayer_83}", $component4);
 if (%varplayerbit_4084 = 1) {
     return;
 }
-def_component $component1 = interface_160:com_11;
-if (~on_mobile = true & %varplayerbit_6254 = 1 | ~on_enhanced_desktop = true & ~toplevel_getcomponents ! enum_1129 & %varplayerbit_12986 = 1) {
-    $component1 = interface_311:com_13;
+if (%varplayerbit_12346 = 1) {
+    return;
 }
-def_int $int2 = 100;
-if (%varplayerbit_4111 = 1) {
-    $int2 = 50;
+if (stat(hitpoints) = stat_base(hitpoints)) {
+    return;
 }
-if (~league_relic_active(struct_725) = 1) {
-    $int2 = scale(1, 4, $int2);
-}
-if (~league_relic_active(struct_1729) = 1) {
-    $int2 = scale(1, 4, $int2);
-}
-if (~script5792(8) >= 2) {
-    $int2 = scale(1, 4, $int2);
+$int0 = calc($int0 * 30);
+if ($int0 = 0) {
+    $int1 = 0;
+} else if ($int1 >= $int0) {
+    $int1 = calc($int1 % $int0);
 }
 $int2 = calc($int2 * 30);
-if ($int0 >= $int2) {
-    $int0 = calc($int0 % $int2);
+if ($int2 = 0) {
+    $int3 = 0;
+} else if ($int3 >= $int2) {
+    $int3 = calc($int3 % $int2);
 }
-cc_deleteall($component1);
-cc_create($component1, ^iftype_circle, 0);
+.cc_create($component4, ^iftype_circle, 0);
+.cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+.cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+.cc_setcolour(0x024def);
+.cc_setfill(false);
+.cc_setlinewid(2);
+if ($int2 > 0) {
+    .cc_setarc(0, calc(scale($int3, $int2, 65536) % 65536));
+} else {
+    .cc_setarc(0, 0);
+}
+cc_create($component4, ^iftype_circle, 1);
 cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
 cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
 cc_setcolour(0xf00b04);
 cc_setfill(false);
 cc_setlinewid(2);
-cc_setarc(0, 0);
-if_setontimer("health_orb_arc($component1, 0, $int0, $int2, %varplayerbit_12346)", $component1);
-if (%varplayerbit_12346 = 1) {
-    cc_sethide(true);
+if ($int0 > 0) {
+    cc_setarc(0, calc(scale($int1, $int0, 65536) % 65536));
+} else {
+    cc_setarc(0, 0);
+}
+if_setontimer("health_orb_arc($component4, $int0, $int1, $int2, $int3)", $component4);
+if (%varplayerbit_4111 = 1 | $int2 <= 0) {
+    .cc_sethide(true);
 }
