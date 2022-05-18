@@ -1,15 +1,13 @@
 // 2220
-[clientscript,oculus_controls](int $key, component $component, int $int)
+[clientscript,oculus_controls](int $key)
 if (~keypress_permit(interface_16, null) = false) {
     return;
 }
 switch_int ($key) {
     case ^key_escape :
-        if_close;
+        resume_countdialog("0");
     case ^key_space :
-        if (cc_find($component, $int) = true) {
-            cc_resume_pausebutton;
-        }
+        resume_countdialog("1");
     case ^key_page_up :
         if (%varclient_204 < 15) {
             %varclient_204 = ~max(3, calc(%varclient_204 + 1));

@@ -1,20 +1,28 @@
 // 4723
-[proc,spec_regen_timer](int $int)
+[proc,spec_regen_timer](int $int0, int $int1)
 if (~on_enhanced_any = false) {
     return;
 }
+def_component $component = interface_160:com_36;
+if (~on_mobile = true & %varplayerbit_6254 = 1 | ~on_enhanced_desktop = true & ~toplevel_getcomponents ! enum_1129 & %varplayerbit_12986 = 1) {
+    $component = interface_311:com_38;
+}
+cc_deleteall($component);
+if_setonvartransmit("spec_regen_vartransmit($component, %varplayerbit_12346, %varplayer_300){varplayer_2856, varplayer_300}", $component);
 if (%varplayerbit_4084 = 1) {
+    return;
+}
+if (%varplayerbit_12346 = 1) {
     return;
 }
 if (%varplayer_300 >= 1000) {
     return;
 }
-if ($int >= 1500) {
-    $int = calc($int % 1500);
-}
-def_component $component = interface_160:com_36;
-if (~on_mobile = true & %varplayerbit_6254 = 1 | ~on_enhanced_desktop = true & ~toplevel_getcomponents ! enum_1129 & %varplayerbit_12986 = 1) {
-    $component = interface_311:com_38;
+$int0 = calc($int0 * 30);
+if ($int0 = 0) {
+    $int1 = 0;
+} else if ($int1 >= $int0) {
+    $int1 = calc($int1 % $int0);
 }
 cc_create($component, ^iftype_circle, 0);
 cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
@@ -23,7 +31,4 @@ cc_setcolour(0x03cffd);
 cc_setfill(false);
 cc_setlinewid(2);
 cc_setarc(0, 0);
-if_setontimer("spec_regen_arc($component, 0, $int, 1500, %varplayerbit_12346)", $component);
-if (%varplayerbit_12346 = 1) {
-    cc_sethide(true);
-}
+if_setontimer("spec_regen_arc($component, 0, $int1, $int0)", $component);

@@ -1,0 +1,33 @@
+// 945
+[proc,entity_highlight_active_loc_linked](loc $loc0, coord $coord, int $int2, int $int3)
+if ($loc0 = null) {
+    return;
+}
+def_enum $enum = enum(loc, enum, enum_4320, $loc0);
+if ($enum = null) {
+    $enum = enum(coord, enum, enum_4321, $coord);
+    if ($enum = null) {
+        return;
+    }
+}
+def_int $int5 = 0;
+def_int $int6 = enum_getoutputcount($enum);
+def_loc $loc7 = null;
+def_int $int8 = lc_param($loc0, param_1612);
+while ($int5 < $int6) {
+    $loc7 = enum(int, loc, $enum, $int5);
+    if ($loc7 ! null) {
+        if ($int8 = 1) {
+            $coord = ~entity_highlight_active_loc_linked_fairy_ring($coord, $int5);
+        } else if ($int8 = 2) {
+            $coord = ~entity_highlight_active_loc_linked_tree($coord, $int5);
+        }
+        if ($int3 = 1) {
+            highlight_loc_on($loc7, $coord, $int2, 0);
+        } else {
+            highlight_loc_off($loc7, $coord, $int2, 0);
+        }
+    }
+    $loc7 = null;
+    $int5 = calc($int5 + 1);
+}
