@@ -1,11 +1,24 @@
 // 5249
-[clientscript,gim_leaving_init](component $com_1, int $int, component $com_9, component $com_7, component $com_13, component $com_12, component $com_14)
+[clientscript,gim_leaving_init](component $com_1, int $int1, component $com_10, component $com_18, component $com_8, component $com_5, component $com_6, component $com_7, component $com_14, component $com_13, component $com_15)
 ~steelborder($com_1, "Choose your Gamemode", 0);
-cc_deleteall($com_14);
-~scrollbar_vertical($com_14, $com_13, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-~gim_leave_text($com_12, 0);
-~gim_buttons_init($com_9, $com_7, 0);
-if_setonop("gim_buttons_click($com_12, $com_9, $com_7, 1)", $com_9);
-if_setop(1, "Select", $com_9);
-if_setonop("gim_buttons_click($com_12, $com_9, $com_7, 2)", $com_7);
-if_setop(1, "Select", $com_7);
+cc_deleteall($com_15);
+~scrollbar_vertical($com_15, $com_14, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~gim_leave_text($com_13, 0);
+~gim_buttons_init($com_10, $com_18, $com_8, 0);
+if_setonop("gim_buttons_click($com_13, $com_10, $com_18, $com_8, 1)", $com_10);
+if_setop(1, "Select", $com_10);
+def_int $int11 = 0;
+if (%varplayerbit_1777 = 6) {
+    if_sethide(true, $com_6);
+    $int11 = calc(if_getwidth($com_1) / 2);
+    if_setsize($int11, 0, ^setsize_abs, ^setsize_minus, $com_5);
+    if_setsize($int11, 0, ^setsize_abs, ^setsize_minus, $com_7);
+    if_setgraphic("iron_icons,3", interface_722:com_11);
+    if_setsize(64, 64, ^setsize_abs, ^setsize_abs, interface_722:com_11);
+} else {
+    if_sethide(false, $com_6);
+    if_setonop("gim_buttons_click($com_13, $com_10, $com_18, $com_8, 2)", $com_18);
+    if_setop(1, "Select", $com_18);
+}
+if_setonop("gim_buttons_click($com_13, $com_10, $com_18, $com_8, 3)", $com_8);
+if_setop(1, "Select", $com_8);
