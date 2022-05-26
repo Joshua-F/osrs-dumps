@@ -1,14 +1,42 @@
 // 5252
-[proc,gim_buttons_init](component $component0, component $component1, int $int2)
-def_int $rgb3 = 0x66ff00;
-def_int $rgb4 = 0xff2020;
-if ($int2 = 1) {
-    ~gim_button_init($component0, "Confirm", $rgb3, false);
-    ~gim_button_init($component1, "Regular Account", $rgb4, false);
-} else if ($int2 = 2) {
-    ~gim_button_init($component1, "Confirm", $rgb3, false);
-    ~gim_button_init($component0, "GIM Account", $rgb4, false);
+[proc,gim_buttons_init](component $component0, component $component1, component $component2, int $int3)
+def_int $rgb4 = 0x66ff00;
+def_int $rgb5 = 0xff2020;
+def_int $int6 = 0;
+if (%varplayerbit_1777 = 6) {
+    if_sethide(true, $component1);
+    if_sethide(true, interface_722:com19);
 } else {
-    ~gim_button_init($component1, "Regular Account", $rgb4, false);
-    ~gim_button_init($component0, "GIM Account", $rgb4, false);
+    $int6 = 1;
+}
+if ($int3 = 1) {
+    ~gim_button_init($component0, "Confirm", $rgb4, false);
+    if ($int6 = 1) {
+        ~gim_button_init($component1, "Ranked GIM Account", $rgb5, false);
+    }
+    ~gim_button_init($component2, "Regular Account", $rgb5, false);
+} else if ($int3 = 2) {
+    if ($int6 = 1) {
+        ~gim_button_init($component0, "Unranked GIM Account", $rgb5, false);
+        ~gim_button_init($component1, "Confirm", $rgb4, false);
+    } else {
+        ~gim_button_init($component0, "GIM Account", $rgb5, false);
+    }
+    ~gim_button_init($component2, "Regular Account", $rgb5, false);
+} else if ($int3 = 3) {
+    if ($int6 = 1) {
+        ~gim_button_init($component1, "Ranked GIM Account", $rgb5, false);
+        ~gim_button_init($component0, "Unranked GIM Account", $rgb5, false);
+    } else {
+        ~gim_button_init($component0, "GIM Account", $rgb5, false);
+    }
+    ~gim_button_init($component2, "Confirm", $rgb4, false);
+} else {
+    if ($int6 = 1) {
+        ~gim_button_init($component1, "Ranked GIM Account", $rgb5, false);
+        ~gim_button_init($component0, "Unranked GIM Account", $rgb5, false);
+    } else {
+        ~gim_button_init($component0, "GIM Account", $rgb5, false);
+    }
+    ~gim_button_init($component2, "Regular Account", $rgb5, false);
 }
