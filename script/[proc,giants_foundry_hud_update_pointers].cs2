@@ -1,0 +1,66 @@
+// 6115
+[proc,giants_foundry_hud_update_pointers]
+def_component $component0 = interface_754:com_7;
+def_component $component1 = interface_754:com_74;
+def_component $component2 = interface_754:com_78;
+def_component $component3 = interface_754:com_77;
+def_component $component4 = interface_754:com_76;
+def_component $component5 = interface_754:com_6;
+def_component $component6 = interface_754:com_46;
+def_component $component7 = interface_754:com_45;
+def_component $component8 = interface_754:com_31;
+def_component $component9 = interface_754:com_61;
+def_component $component10 = interface_754:com_71;
+def_int $int11 = calc(if_getwidth($component5) - 2);
+def_int $int12 = 0;
+$int12 = scale(%varplayerbit_13939, 205, $int11);
+if_setposition($int12, -1, ^setpos_abs_left, ^setpos_abs_bottom, $component0);
+if_setsize(calc($int12 + 1), 2, ^setsize_abs, ^setsize_minus, $component6);
+$int12 = scale(%varplayerbit_13950, 205, $int11);
+if_setsize(calc($int12 + 1), 2, ^setsize_abs, ^setsize_minus, $component7);
+if (%varplayerbit_13939 = 0) {
+    if_sethide(true, $component6);
+} else {
+    if_sethide(false, $component6);
+}
+$int12 = scale(%varplayerbit_13948, 1000, $int11);
+if_setposition($int12, -1, ^setpos_abs_left, ^setpos_abs_bottom, $component1);
+$int12 = scale(%varplayerbit_13949, 1000, $int11);
+if_setposition($int12, -1, ^setpos_abs_left, ^setpos_abs_bottom, $component2);
+def_int $int13 = ~giants_foundry_section_count;
+def_int $int14 = ~script6120;
+if (%varplayerbit_13949 >= 1000) {
+    if_sethide(true, $component4);
+    if_sethide(false, $component3);
+} else {
+    if_sethide(false, $component4);
+    if_sethide(true, $component3);
+}
+def_int $int15 = calc($int11 / $int13);
+def_int $int16 = calc($int11 % $int15);
+$int12 = calc($int15 * $int14 + 7 + ~min($int16, $int14));
+if ($int14 < $int16) {
+    $int15 = calc($int15 + 1);
+}
+if_setposition($int12, 1, ^setpos_abs_left, ^setpos_abs_top, $component4);
+if_setsize($int15, 2, ^setsize_abs, ^setsize_minus, $component4);
+def_int $int17 = 0;
+def_int $int18 = 0;
+$int17, $int18 = ~script6121(0);
+if (%varplayerbit_13948 >= $int17 & %varplayerbit_13948 <= calc($int17 + $int18)) {
+    if_sethide(false, $component8);
+} else {
+    if_sethide(true, $component8);
+}
+$int17, $int18 = ~script6121(1);
+if (%varplayerbit_13948 >= $int17 & %varplayerbit_13948 <= calc($int17 + $int18)) {
+    if_sethide(false, $component9);
+} else {
+    if_sethide(true, $component9);
+}
+$int17, $int18 = ~script6121(2);
+if (%varplayerbit_13948 >= $int17 & %varplayerbit_13948 <= calc($int17 + $int18)) {
+    if_sethide(false, $component10);
+} else {
+    if_sethide(true, $component10);
+}

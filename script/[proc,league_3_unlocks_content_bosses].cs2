@@ -1,6 +1,6 @@
 // 5814
 [proc,league_3_unlocks_content_bosses](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7)
-def_int $rgb8 = ~league_get_league_colour(3);
+def_int $int8 = ~league_get_league_colour(3);
 def_int $int9 = if_getscrollheight($component0);
 cc_deleteall($component0);
 cc_deleteall($component1);
@@ -24,7 +24,7 @@ while ($struct12 ! null) {
         $int13 = 0;
     }
     $int14 = ~league_3_boss_is_unlocked(struct_param($struct12, param_1436));
-    $int10 = ~league_3_unlocks_content_bosses_button($component0, struct_param($struct12, param_1440), struct_param($struct12, param_1437), struct_param($struct12, param_1442), $rgb8, $int13, $int14, $int11, $int10);
+    $int10 = ~league_3_unlocks_content_bosses_button($component0, struct_param($struct12, param_1440), struct_param($struct12, param_1437), struct_param($struct12, param_1442), $int8, $int13, $int14, $int11, $int10);
     $int11 = calc($int11 + 1);
     $struct12 = enum(int, struct, enum_4130, $int11);
 }
@@ -54,16 +54,16 @@ if (%varplayer_3344 ! 0) {
     if_setop(1, "View", $component6);
     if_setopbase("<col=ff9040>Map Location</col>", $component6);
     if (~league_3_boss_is_unlocked(struct_param($struct12, param_1436)) = 1) {
-        ~league_3_unlocks_buy_button($component4, 4, $rgb8, 0);
+        ~league_3_unlocks_buy_button($component4, 4, $int8, 0);
         $string0 = "<struct_param($struct12, param_1437)> - Unlocked";
     } else if ($int15 > %varplayer_3276) {
-        ~league_3_unlocks_buy_button($component4, 3, $rgb8, $int15);
+        ~league_3_unlocks_buy_button($component4, 3, $int8, $int15);
     } else {
-        ~league_3_unlocks_buy_button($component4, 1, $rgb8, $int15);
+        ~league_3_unlocks_buy_button($component4, 1, $int8, $int15);
     }
-    ~league_3_unlocks_info_panel($component3, $string0, struct_param($struct12, param_1438), $rgb8);
+    ~league_3_unlocks_info_panel($component3, $string0, struct_param($struct12, param_1438), $int8);
 } else {
-    ~league_3_unlocks_info_panel($component3, "Unlock a boss", "<col=cfcfcf>First, select a boss above. Once you've chosen, use the Unlock<br><col=cfcfcf>button to unlock access to your<br><col=cfcfcf>selected boss.", $rgb8);
+    ~league_3_unlocks_info_panel($component3, "Unlock a boss", "<col=cfcfcf>First, select a boss above. Once you've chosen, use the Unlock<br><col=cfcfcf>button to unlock access to your<br><col=cfcfcf>selected boss.", $int8);
     ~v2_stone_button_in($component5);
     ~v2_stone_button_in($component6);
     if_setonmouseover(null, $component5);
@@ -73,5 +73,5 @@ if (%varplayer_3344 ! 0) {
     if_setop(1, "", $component5);
     if_setonop(null, $component5);
     if_setop(1, "", $component6);
-    ~league_3_unlocks_buy_button($component4, 0, $rgb8, 0);
+    ~league_3_unlocks_buy_button($component4, 0, $int8, 0);
 }
