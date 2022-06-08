@@ -1,0 +1,34 @@
+// 6083
+[clientscript,giants_foundry_reward_shop_setup](boolean $boolean)
+def_component $com_1 = interface_753:com_1;
+def_component $com_3 = interface_753:com_3;
+def_component $com_4 = interface_753:com_4;
+def_component $com_6 = interface_753:com_6;
+def_component $com_9 = interface_753:com_9;
+def_component $com_14 = interface_753:com_14;
+def_component $com_15 = interface_753:com_15;
+def_component $com_5 = interface_753:com_5;
+def_component $com_24 = interface_753:com_24;
+def_component $com_25 = interface_753:com_25;
+def_component $com_26 = interface_753:com_26;
+~responsive_interface_resize($com_1, $com_4);
+~steelborder($com_3, "Giants' Foundry Reward Shop", 16);
+def_int $int = 200;
+switch_int (%varclient_988) {
+    case 1 :
+        $int = 230;
+    case 2 :
+        $int = 250;
+    case 3 :
+        $int = 270;
+}
+if_setsize(calc($int + 18), 38, ^setsize_minus, ^setsize_minus, $com_6);
+if_setsize($int, 112, ^setsize_abs, ^setsize_minus, $com_9);
+if_setsize($int, 44, ^setsize_abs, ^setsize_abs, $com_14);
+if_setsize($int, 44, ^setsize_abs, ^setsize_abs, $com_15);
+if_setposition(calc(6 + if_getwidth($com_6) / 2 - if_getwidth($com_5) / 2), 6, ^setpos_abs_left, ^setpos_abs_top, $com_5);
+~giants_foundry_reward_shop_list_setup(%varplayer_3435, $boolean);
+~giants_foundry_reward_shop_info_setup(%varplayer_3435, $boolean);
+~giants_foundry_reward_shop_points_setup;
+~script5771($com_5, enum_4380, %varplayerbit_13915, 16750623);
+if_setonop("script6084($com_24, $com_25, $com_26, $com_5, enum_4380, 16750623)", $com_5);
