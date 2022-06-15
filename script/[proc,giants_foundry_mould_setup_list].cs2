@@ -77,8 +77,12 @@ if ($int5 >= 0) {
     cc_setcolour(0xff981f);
     $int2 = calc($int2 + 1);
 }
-if_setscrollsize(if_getwidth($com_9), ~max(if_getheight($com_9), $int4), $com_9);
+$int4 = ~max(if_getheight($com_9), $int4);
+if_setscrollsize(if_getwidth($com_9), $int4, $com_9);
 if (if_getscrolly($com_9) > ~max($int5, 0) | calc(if_getscrolly($com_9) + if_getheight($com_9)) < calc(~max($int5, 0) + $int9)) {
+    if_setscrollpos(0, ~min($int5, calc(if_getscrollheight($com_9) - if_getheight($com_9))), $com_9);
+}
+if (calc(if_getscrolly($com_9) + if_getheight($com_9)) > $int4) {
     if_setscrollpos(0, ~min($int5, calc(if_getscrollheight($com_9) - if_getheight($com_9))), $com_9);
 }
 ~scrollbar_vertical($com_11, $com_9, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
