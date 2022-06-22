@@ -3,10 +3,14 @@
 if ($component0 ! null) {
     if_setnoclickthrough(true, $component7);
     if_setonstattransmit("orbs_update_health(null, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9){hitpoints}", $component0);
-    if_setonvartransmit("orbs_update_health(null, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9){varplayer_102, varplayer_456, varplayer_2648, varplayer_2898}", $component0);
+    if_setonvartransmit("orbs_update_health(null, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9){varplayer_102, varplayer_456, varplayer_2648, varplayer_2898, varplayer_1377}", $component0);
     if_setonsubchange("orbs_update_health(null, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9)", $component0);
 }
-~orbs_update($component1, $component2, stat(hitpoints), stat_base(hitpoints));
+def_int $int = stat_base(hitpoints);
+if (%varplayerbit_5314 = 1) {
+    $int = 99;
+}
+~orbs_update($component1, $component2, stat(hitpoints), $int);
 if (%varplayer_102 > 0 | %varplayer_456 > 0 | %varplayerbit_10151 > 0) {
     if_settrans(100, $component3);
 } else {
@@ -45,7 +49,7 @@ if ((%varplayer_102 > 0 | %varplayer_456 > 0 | %varplayerbit_10151 > 0) & ~tople
     if_setonmouseleave(null, $component8);
     if_sethide(true, $component8);
 }
-if (stat(hitpoints) <= scale(40, 100, stat_base(hitpoints)) & %varplayerbit_13006 = 1) {
+if (stat(hitpoints) <= scale(40, 100, $int) & %varplayerbit_13006 = 1) {
     if_setgraphic("orb_icon,10", $component9);
 } else {
     if_setgraphic("orb_icon,0", $component9);
