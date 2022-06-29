@@ -1,78 +1,34 @@
 // 5989
-[proc,quest_requirement_check](struct $struct)(boolean)
-if (struct_param($struct, param_1297) = true & map_members = false & %varclient_103 = 0) {
+[proc,quest_requirement_check](dbrow $dbrow)(boolean)
+if (db_getfield($dbrow, dbtable_0:col5, 0) = true & map_members = false & %varclient_103 = 0) {
     return(false);
 }
-if (~quest_requirement_check_quest(struct_param($struct, param_648)) = false) {
+def_int $int1 = db_getfieldcount($dbrow, dbtable_0:col22);
+def_int $int2 = 0;
+while ($int2 < $int1) {
+    if (~quest_requirement_check_quest(db_getfield($dbrow, dbtable_0:col22, $int2)) = false) {
+        return(false);
+    }
+    $int2 = calc($int2 + 1);
+}
+def_stat $stat = null;
+def_int $int4 = -1;
+$int1 = db_getfieldcount($dbrow, dbtable_0:col20);
+$int2 = 0;
+while ($int2 < $int1) {
+    $stat, $int4 = db_getfield($dbrow, dbtable_0:col20, $int2);
+    if (~quest_requirement_check_skill($stat, $int4) = false) {
+        return(false);
+    }
+    $int2 = calc($int2 + 1);
+}
+if (%varplayer_101 < db_getfield($dbrow, dbtable_0:col23, 0)) {
     return(false);
 }
-if (~quest_requirement_check_quest(struct_param($struct, param_649)) = false) {
+if (%varclient_52 < db_getfield($dbrow, dbtable_0:col24, 0)) {
     return(false);
 }
-if (~quest_requirement_check_quest(struct_param($struct, param_650)) = false) {
-    return(false);
-}
-if (~quest_requirement_check_quest(struct_param($struct, param_651)) = false) {
-    return(false);
-}
-if (~quest_requirement_check_quest(struct_param($struct, param_652)) = false) {
-    return(false);
-}
-if (~quest_requirement_check_quest(struct_param($struct, param_653)) = false) {
-    return(false);
-}
-if (~quest_requirement_check_quest(struct_param($struct, param_654)) = false) {
-    return(false);
-}
-if (~quest_requirement_check_skill(struct_param($struct, param_616), struct_param($struct, param_617)) = false) {
-    return(false);
-}
-if (~quest_requirement_check_skill(struct_param($struct, param_618), struct_param($struct, param_619)) = false) {
-    return(false);
-}
-if (~quest_requirement_check_skill(struct_param($struct, param_620), struct_param($struct, param_621)) = false) {
-    return(false);
-}
-if (~quest_requirement_check_skill(struct_param($struct, param_622), struct_param($struct, param_623)) = false) {
-    return(false);
-}
-if (~quest_requirement_check_skill(struct_param($struct, param_624), struct_param($struct, param_625)) = false) {
-    return(false);
-}
-if (~quest_requirement_check_skill(struct_param($struct, param_626), struct_param($struct, param_627)) = false) {
-    return(false);
-}
-if (~quest_requirement_check_skill(struct_param($struct, param_628), struct_param($struct, param_629)) = false) {
-    return(false);
-}
-if (~quest_requirement_check_skill(struct_param($struct, param_630), struct_param($struct, param_631)) = false) {
-    return(false);
-}
-if (~quest_requirement_check_skill(struct_param($struct, param_632), struct_param($struct, param_633)) = false) {
-    return(false);
-}
-if (~quest_requirement_check_skill(struct_param($struct, param_634), struct_param($struct, param_635)) = false) {
-    return(false);
-}
-if (~quest_requirement_check_skill(struct_param($struct, param_636), struct_param($struct, param_637)) = false) {
-    return(false);
-}
-if (~quest_requirement_check_skill(struct_param($struct, param_638), struct_param($struct, param_639)) = false) {
-    return(false);
-}
-if (~quest_requirement_check_skill(struct_param($struct, param_640), struct_param($struct, param_641)) = false) {
-    return(false);
-}
-if (~quest_requirement_check_skill(struct_param($struct, param_642), struct_param($struct, param_643)) = false) {
-    return(false);
-}
-if (%varplayer_101 < struct_param($struct, param_655)) {
-    return(false);
-}
-if (%varclient_52 < struct_param($struct, param_656)) {
-    return(false);
-}
-if (~quest_requirement_check_misc($struct) = false) {
+if (~quest_requirement_check_misc($dbrow) = false) {
     return(false);
 }
 return(true);
