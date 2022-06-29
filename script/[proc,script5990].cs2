@@ -1,18 +1,17 @@
 // 5990
-[proc,script5990](struct $struct0)(boolean)
-if (~quest_requirement_check_skill(struct_param($struct0, param_644), struct_param($struct0, param_645)) = false) {
-    return(false);
+[proc,script5990](dbrow $dbrow0)(boolean)
+def_stat $stat1 = null;
+def_int $int2 = -1;
+def_int $int3 = db_getfieldcount($dbrow0, dbtable_0:col21);
+def_int $int4 = 0;
+while ($int4 < $int3) {
+    $stat1, $int2 = db_getfield($dbrow0, dbtable_0:col21, $int4);
+    if (~quest_requirement_check_skill($stat1, $int2) = false) {
+        return(false);
+    }
+    $int4 = calc($int4 + 1);
 }
-if (~quest_requirement_check_skill(struct_param($struct0, param_646), struct_param($struct0, param_647)) = false) {
-    return(false);
-}
-if (~quest_requirement_check_skill(struct_param($struct0, param_1521), struct_param($struct0, param_1522)) = false) {
-    return(false);
-}
-if (~quest_requirement_check_skill(struct_param($struct0, param_1523), struct_param($struct0, param_1524)) = false) {
-    return(false);
-}
-if (%varclient_52 < struct_param($struct0, param_657)) {
+if (%varclient_52 < db_getfield($dbrow0, dbtable_0:col25, 0)) {
     return(false);
 }
 return(true);
