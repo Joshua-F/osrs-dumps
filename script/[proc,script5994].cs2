@@ -1,54 +1,23 @@
 // 5994
-[proc,script5994](struct $struct, stat $stat, int $int2, int $int3)(stat, int)
-if ($stat = null | $int2 <= 1) {
+[proc,script5994](dbrow $dbrow, stat $stat1, int $int2, int $int3)(stat, int)
+if ($stat1 = null | $int2 <= 1) {
     return(null, 1);
 }
-if ($stat = struct_param($struct, param_616)) {
+def_stat $stat4 = null;
+def_int $int5 = 1;
+def_int $int6 = db_getfieldcount($dbrow, dbtable_0:col20);
+def_int $int7 = 0;
+while ($int7 < $int6) {
+    $stat4, $int5 = db_getfield($dbrow, dbtable_0:col20, $int7);
+    if ($stat4 = $stat1) {
+        return(null, 1);
+    }
+    $int7 = calc($int7 + 1);
+}
+if ($stat1 = agility & $int2 <= 50) {
     return(null, 1);
 }
-if ($stat = struct_param($struct, param_618)) {
+if (($stat1 = attack | $stat1 = strength | $stat1 = defence | $stat1 = magic | $stat1 = ranged | $stat1 = hitpoints | $stat1 = prayer) & $int2 <= $int3) {
     return(null, 1);
 }
-if ($stat = struct_param($struct, param_620)) {
-    return(null, 1);
-}
-if ($stat = struct_param($struct, param_622)) {
-    return(null, 1);
-}
-if ($stat = struct_param($struct, param_624)) {
-    return(null, 1);
-}
-if ($stat = struct_param($struct, param_626)) {
-    return(null, 1);
-}
-if ($stat = struct_param($struct, param_628)) {
-    return(null, 1);
-}
-if ($stat = struct_param($struct, param_630)) {
-    return(null, 1);
-}
-if ($stat = struct_param($struct, param_632)) {
-    return(null, 1);
-}
-if ($stat = struct_param($struct, param_634)) {
-    return(null, 1);
-}
-if ($stat = struct_param($struct, param_636)) {
-    return(null, 1);
-}
-if ($stat = struct_param($struct, param_638)) {
-    return(null, 1);
-}
-if ($stat = struct_param($struct, param_640)) {
-    return(null, 1);
-}
-if ($stat = struct_param($struct, param_642)) {
-    return(null, 1);
-}
-if ($stat = agility & $int2 <= 50) {
-    return(null, 1);
-}
-if (($stat = attack | $stat = strength | $stat = defence | $stat = magic | $stat = ranged | $stat = hitpoints | $stat = prayer) & $int2 <= $int3) {
-    return(null, 1);
-}
-return($stat, $int2);
+return($stat1, $int2);
