@@ -1,16 +1,21 @@
 // 230
-[clientscript,makeover_clothes_setup](component $com_2, component $com_3, component $com_5, component $com_7, component $com_13)
+[clientscript,makeover_clothes_setup](component $com_1, component $com_2, component $com_3, component $com_5, component $com_7, component $com_13)
+def_string $string = "Thessalia's Makeovers";
+if (~pvpa_world = true) {
+    $string = "Select a clothing style";
+}
+~steelborder($com_1, $string, 0);
 cc_deleteall($com_3);
 cc_deleteall($com_5);
 cc_deleteall($com_7);
 cc_deleteall($com_13);
-def_enum $enum5 = enum_789;
-def_enum $enum6 = enum_790;
+def_enum $enum6 = enum_789;
+def_enum $enum7 = enum_790;
 if (%varplayerbit_3945 = 1) {
     if_sethide(true, $com_2);
     if_sethide(false, $com_7);
-    $enum5 = enum_791;
-    $enum6 = enum_792;
+    $enum6 = enum_791;
+    $enum7 = enum_792;
     if (%varplayerbit_3944 = 1) {
         ~makeover_drawmodels($com_7, enum_787, enum_788, null, null, 800, 60, 0, 1, 1);
     } else {
@@ -37,8 +42,8 @@ while ($int < 29) {
         cc_setposition(calc(($int - 15) * 25 + 12), 26, ^setpos_abs_left, ^setpos_abs_top);
     }
     cc_setfill(true);
-    cc_setcolour(enum(int, int, $enum5, $int));
-    cc_setop(1, enum(int, string, $enum6, $int));
+    cc_setcolour(enum(int, int, $enum6, $int));
+    cc_setop(1, enum(int, string, $enum7, $int));
     $int = calc($int + 1);
 }
 $int = 0;

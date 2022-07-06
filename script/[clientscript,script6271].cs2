@@ -1,0 +1,23 @@
+// 6271
+[clientscript,script6271](component $component, string $string, graphic $graphic, int $int)
+cc_deleteall($component);
+cc_create($component, ^iftype_rectangle, 0);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_setfill(true);
+cc_setcolour(^white);
+cc_settrans(255);
+if_setonmouserepeat("cc_settrans(event_com, cc_getid, 225, null)", $component);
+if_setonmouseleave("cc_settrans(event_com, cc_getid, 255, null)", $component);
+.cc_create($component, ^iftype_graphic, 1);
+.cc_setsize(17, 17, ^setsize_abs, ^setsize_abs);
+.cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_centre);
+~script6273($int);
+if_setonvartransmit("script6272(event_com, .cc_getid, $int){varplayer_261}", $component);
+if_setonop("pvpa_options_op(event_op, event_com, cc_getid, 200, 225, 255, .cc_getid)", $component);
+cc_create($component, ^iftype_graphic, 2);
+cc_setsize(30, 15, ^setsize_abs, ^setsize_abs);
+cc_setposition(22, 0, ^setpos_abs_left, ^setpos_abs_centre);
+cc_setgraphic($graphic);
+if_setop(1, "Select", $component);
+if_setopbase("<col=ff9040><$string></col>", $component);
