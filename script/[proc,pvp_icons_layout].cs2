@@ -133,6 +133,33 @@ if (~pvpw_check = true) {
     }
     ~pvp_icons_toggletargetsystem(true);
     if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_bottom, interface_90:com_53);
+} else if (%varplayerbit_14022 = 1 | ~pvpa_world = true) {
+    if_setsize(78, 73, ^setsize_abs, ^setsize_abs, interface_90:com_44);
+    $int5 = 15;
+    if_sethide(true, interface_90:com_49);
+    if (%varplayerbit_14017 ! 0) {
+        if (%varplayerbit_14017 = 1) {
+            if_setgraphic("pvpw_icons,0", interface_90:com_46);
+        } else {
+            if_setgraphic(overlay_duel, interface_90:com_46);
+        }
+        if_sethide(false, interface_90:com_1);
+        if_setgradientmode(^gradientmode_colourtrans, interface_90:com_1);
+        ~script6247(interface_90:com_1);
+        if_setontimer("script6246(event_com)", interface_90:com_1);
+    } else {
+        if_setgraphic(overlay_duel, interface_90:com_46);
+        if_setontimer(null, interface_90:com_1);
+        if_sethide(true, interface_90:com_1);
+    }
+    ~pvp_icons_toggletargetsystem(true);
+    if (if_gethide(interface_90:com_50) = false) {
+        if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_bottom, interface_90:com_53);
+    } else if (%varplayerbit_4605 = 1 | %varplayerbit_10465 > 0) {
+        if_setposition(0, 12, ^setpos_abs_centre, ^setpos_abs_bottom, interface_90:com_53);
+    } else {
+        if_setposition(0, 24, ^setpos_abs_centre, ^setpos_abs_bottom, interface_90:com_53);
+    }
 } else if (~wildwars_world = true) {
     if_setsize(78, 73, ^setsize_abs, ^setsize_abs, interface_90:com_44);
     $int5 = 13;
@@ -174,6 +201,7 @@ if (~pvpw_check = true) {
         if_setposition(0, 16, ^setpos_abs_centre, ^setpos_abs_bottom, interface_90:com_50);
     }
     if (~clanwars_ffa_arena(coord) = true) {
+        if_setgraphic("pvpw_icons,0", interface_90:com_46);
         if (~inzone(0_51_74_0_0, 3_52_74_63_23, coord) = true) {
             if_settrans(0, interface_90:com_47);
         } else {
