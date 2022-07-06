@@ -1,0 +1,132 @@
+// 6193
+[clientscript,script6193](int $int0, int $int1, int $int2, string $string0)
+def_int $int3 = if_getwidth(interface_756:com53);
+cc_deleteall(interface_756:com53);
+def_int $int4 = 0;
+def_int $int5 = 0;
+$int4, $int5 = ~script6194($int4, $int5, $int3, "Opponent details:", $string0);
+def_string $string1 = "";
+if (getbit_range($int0, 14, 27) > 0) {
+    if (string_length($string1) > 0) {
+        $string1 = append($string1, "<br>");
+    }
+    $string1 = append($string1, "Some worn items will be taken off.");
+}
+if (testbit($int0, 7) = ^true | testbit($int0, 13) = ^true) {
+    if (string_length($string1) > 0) {
+        $string1 = append($string1, "<br>");
+    }
+    $string1 = append($string1, "Boosted stats will be restored.");
+}
+if (testbit($int0, 9) = ^true) {
+    if (string_length($string1) > 0) {
+        $string1 = append($string1, "<br>");
+    }
+    $string1 = append($string1, "Existing prayers will be stopped.");
+}
+if (string_length($string1) <= 0) {
+    $string1 = append($string1, "No options apply.");
+}
+$int4, $int5 = ~script6194($int4, $int5, $int3, "Before the duel starts:", $string1);
+$string1 = "";
+if (testbit($int0, 0) = ^true) {
+    if (string_length($string1) > 0) {
+        $string1 = append($string1, "<br>");
+    }
+    $string1 = append($string1, "You cannot forfeit the duel.");
+}
+if (testbit($int0, 1) = ^true) {
+    if (string_length($string1) > 0) {
+        $string1 = append($string1, "<br>");
+    }
+    $string1 = append($string1, "You cannot move.");
+}
+if (testbit($int0, 2) = ^true) {
+    if (string_length($string1) > 0) {
+        $string1 = append($string1, "<br>");
+    }
+    $string1 = append($string1, "You cannot switch weapons.");
+}
+if (testbit($int0, 4) = ^true) {
+    if (string_length($string1) > 0) {
+        $string1 = append($string1, "<br>");
+    }
+    $string1 = append($string1, "You cannot use Ranged attacks <col=ff0000>or salamanders<col=ffffff>.");
+}
+if (testbit($int0, 5) = ^true) {
+    if (string_length($string1) > 0) {
+        $string1 = append($string1, "<br>");
+    }
+    $string1 = append($string1, "You cannot use Melee attacks <col=ff0000>or salamanders<col=ffffff>.");
+}
+if (testbit($int0, 6) = ^true) {
+    if (string_length($string1) > 0) {
+        $string1 = append($string1, "<br>");
+    }
+    $string1 = append($string1, "You cannot use Magic attacks <col=ff0000>or salamanders<col=ffffff>.");
+}
+if (testbit($int0, 13) = ^true) {
+    if (string_length($string1) > 0) {
+        $string1 = append($string1, "<br>");
+    }
+    $string1 = append($string1, "You cannot use special attacks.");
+}
+if (testbit($int0, 12) = ^true) {
+    if (string_length($string1) > 0) {
+        $string1 = append($string1, "<br>");
+    }
+    $string1 = append($string1, "You can only attack with 'fun' weapons.");
+}
+if (testbit($int0, 7) = ^true) {
+    if (string_length($string1) > 0) {
+        $string1 = append($string1, "<br>");
+    }
+    $string1 = append($string1, "You cannot use potions or drinks.");
+}
+if (testbit($int0, 8) = ^true) {
+    if (string_length($string1) > 0) {
+        $string1 = append($string1, "<br>");
+    }
+    $string1 = append($string1, "You cannot use food.");
+}
+if (testbit($int0, 9) = ^true) {
+    if (string_length($string1) > 0) {
+        $string1 = append($string1, "<br>");
+    }
+    $string1 = append($string1, "You cannot use Prayer.");
+}
+if (testbit($int0, 17) = ^true | testbit($int0, 19) = ^true) {
+    if (string_length($string1) > 0) {
+        $string1 = append($string1, "<br>");
+    }
+    $string1 = append($string1, "You can't use 2H weapons such as bows.");
+}
+if (string_length($string1) <= 0) {
+    $string1 = append($string1, "No options apply.");
+}
+$int4, $int5 = ~script6194($int4, $int5, $int3, "During the duel:", $string1);
+def_int $int6 = 229499867;
+def_int $int7 = 229630939;
+if (map_members = false) {
+    $int1, $int2 = setbit($int1, 13), setbit($int2, 13);
+    $int6, $int7 = setbit($int6, 13), setbit($int7, 13);
+}
+if ($int0 = $int6) {
+    $string1 = "<col=0dc10d>Options match 'Whip'</col>";
+} else if ($int0 = $int7) {
+    $string1 = "<col=0dc10d>Options match 'Boxing'</col>";
+} else if ($int0 = $int1) {
+    $string1 = "<col=0dc10d>Options match preset</col>";
+} else if ($int0 = $int2) {
+    $string1 = "<col=0dc10d>Options match last duel</col>";
+} else {
+    $string1 = "";
+}
+$int4, $int5 = ~script6194($int4, $int5, $int3, $string1, "");
+if_setscrollpos(0, 0, interface_756:com53);
+if ($int5 < if_getheight(interface_756:com53)) {
+    if_setscrollsize(0, 0, interface_756:com53);
+} else {
+    if_setscrollsize(0, $int5, interface_756:com53);
+}
+~scrollbar_vertical(interface_756:com54, interface_756:com53, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
