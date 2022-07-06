@@ -1,0 +1,23 @@
+// 6354
+[proc,pvpa_1v1_info_sizehandler](component $component0, component $component1, component $component2, int $int3, int $int4, int $int5, component $component6, component $component7, component $component8, component $component9, component $component10, int $int11, int $int12, int $int13)
+def_int $int14 = if_getwidth($component0);
+def_int $int15 = calc(if_getheight($component0) - $int3);
+if ($int11 = $int14 & $int12 = $int15 & $int13 = %varplayerbit_14020) {
+    return;
+}
+if (calc(if_getx($component1) + if_getwidth($component1)) >= calc($int11 - 10)) {
+    if (if_getx($component1) <= 10) {
+        %varclient_207 = calc(%varclient_207 + ($int14 - $int11));
+    } else {
+        %varclient_209 = calc(%varclient_209 + ($int14 - $int11));
+    }
+}
+if (calc(if_gety($component1) + if_getheight($component1)) >= calc($int12 - 10)) {
+    if (if_gety($component1) <= calc($int3 + 10)) {
+        %varclient_208 = calc(%varclient_208 + ($int15 - $int12));
+    } else {
+        %varclient_210 = calc(%varclient_210 + ($int15 - $int12));
+    }
+}
+~pvpa_1v1_info_setlayout($component0, $component1, $component2, $int3, $int4, $int5, $component6, $component7, $component8, $component9, $component10);
+if_setontimer("pvpa_1v1_info_sizehandler($component0, $component1, $component2, $int3, $int4, $int5, $component6, $component7, $component8, $component9, $component10, $int14, $int15, %varplayerbit_14020)", $component0);
