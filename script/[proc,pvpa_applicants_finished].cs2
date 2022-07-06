@@ -1,0 +1,27 @@
+// 6282
+[proc,pvpa_applicants_finished]
+cc_deleteall(interface_760:com_11);
+if (%varclient_49 > if_getheight(interface_760:com_11)) {
+    if_setscrollsize(0, %varclient_49, interface_760:com_11);
+} else {
+    if_setscrollsize(0, 0, interface_760:com_11);
+}
+if_setscrollpos(0, 0, interface_760:com_11);
+~scrollbar_vertical(interface_760:com_33, interface_760:com_11, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+def_int $int0 = ~thinbox(interface_760:com_11, 0);
+if (%varclient_43 <= 0) {
+    cc_create(interface_760:com_11, ^iftype_text, $int0);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+    cc_setcolour(0x808080);
+    cc_settextfont(p12_full);
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    cc_settextshadow(true);
+    cc_settext("Your group does not have any applicants.");
+}
+switch_int (%varclient_993) {
+    case 1, 2, 0, 3 :
+    case default :
+        %varclient_993 = 0;
+}
+~pvpa_applicants_setsort;
