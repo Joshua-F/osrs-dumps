@@ -1,0 +1,24 @@
+// 6298
+[proc,pvpa_stagingarea_supplies_settitle]
+def_string $string0 = "";
+switch_int (%varplayerbit_14023) {
+    case 1001 :
+        $string0 = "1v1 Tournament (unranked)";
+    case 1002 :
+        $string0 = "1v1 Tournament (ranked)";
+    case 1005 :
+        $string0 = "Duel (unranked)";
+    case 1006 :
+        $string0 = "Duel (ranked)";
+    case default :
+        cc_settext("PvP Arena Supplies");
+        cc_setontimer(null);
+        return;
+}
+%varclient_991 = ~max(0, %varclient_991);
+def_int $int0 = calc(%varplayerbit_14015 * 30);
+if ($int0 > calc(%varclient_991 + 300) | $int0 < calc(%varclient_991 - 300)) {
+    %varclient_991 = $int0;
+}
+~script6300($string0);
+cc_setontimer("script6299(event_com, event_comsubid, $string0)");

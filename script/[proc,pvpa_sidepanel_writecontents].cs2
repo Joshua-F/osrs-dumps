@@ -1,0 +1,142 @@
+// 6269
+[proc,pvpa_sidepanel_writecontents](boolean $boolean0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8)
+def_int $int9 = -1;
+def_string $string0 = "";
+def_string $string1 = "";
+def_int $int10 = 0;
+def_int $int11 = 0;
+switch_int (%varclansetting_33) {
+    case 1001 :
+        $int9, $string0 = activeclansettings_getcurrentowner_slot, "1v1 Tournament";
+        if ($int9 ! -1) {
+            $string1 = activeclansettings_getaffineddisplayname($int9);
+        } else {
+            $string1 = "Host not found";
+        }
+        if ($int9 = activeclansettings_getaffinedslot(removetags(chat_playername))) {
+            $int11 = 1;
+        }
+    case 1002 :
+        $string0, $string1, $int10 = "1v1 Tournament", "<img=1> Official Group", 1;
+    case 1003 :
+        $int9, $string0 = activeclansettings_getcurrentowner_slot, "Group Battle";
+        if ($int9 ! -1) {
+            $string1 = activeclansettings_getaffineddisplayname($int9);
+        } else {
+            $string1 = activeclansettings_getclanname;
+        }
+        if ($int9 = activeclansettings_getaffinedslot(removetags(chat_playername))) {
+            $int11 = 1;
+        }
+    case 1004 :
+        $string0, $string1, $int10 = "Group Battle", "<img=1> Official Group", 1;
+    case 1005 :
+        $int9, $string0 = activeclansettings_getcurrentowner_slot, "1v1 Duels";
+        if ($int9 ! -1) {
+            $string1 = activeclansettings_getaffineddisplayname($int9);
+        } else {
+            $string1 = activeclansettings_getclanname;
+        }
+        if ($int9 = activeclansettings_getaffinedslot(removetags(chat_playername))) {
+            $int11 = 1;
+        }
+    case 1006 :
+        $string0, $string1, $int10 = "1v1 Duels", "<img=1> Official Group", 1;
+}
+if_settext($string0, $component1);
+if_settext($string1, $component2);
+def_string $string2 = "";
+def_string $string3 = "<tostring(activeclansettings_getaffinedcount)>/<tostring(64)>";
+if ($int10 = 1) {
+    if ($boolean0 = true) {
+        $string2 = "<col=ffb83f>Sign up</col> to be invited to fights.";
+        ~clan_stonebutton_init("<col=0dc10d>Sign up</col>", $component6, p12_full);
+        if_setonop("opsound(event_op, 2)", $component6);
+        ~clan_stonebutton_init("<col=ff0000>Discard</col>", $component7, p12_full);
+    } else {
+        $string2 = "Waiting for players to match...";
+        ~clan_stonebutton_init("Options", $component6, p12_full);
+        if_setonop("opsound(event_op, 2)", $component6);
+        ~clan_stonebutton_init("<col=ff0000>Leave</col>", $component7, p12_full);
+    }
+} else if ($int11 = 1 & $boolean0 = false) {
+    $string1 = "JC: <activeclansettings_getclanname>";
+    if_settext($string1, $component2);
+    $string2 = ~text_device("<$string3> - Click <col=ffb83f>Start</col> when ready.", "<$string3> - <"Tap"> <col=ffb83f>Start</col> when ready.");
+    ~clan_stonebutton_init("<col=0dc10d>Start</col>", $component6, p12_full);
+    if_setonop("opsound(event_op, 2)", $component6);
+    ~clan_stonebutton_init("<col=ff981f>Options</col>", $component7, p12_full);
+} else if ($boolean0 = true) {
+    $string2 = "<col=ffb83f>Sign up</col> to be invited to the fight.";
+    ~clan_stonebutton_init("<col=0dc10d>Sign up</col>", $component6, p12_full);
+    if_setonop("opsound(event_op, 2)", $component6);
+    ~clan_stonebutton_init("<col=ff0000>Discard</col>", $component7, p12_full);
+} else {
+    $string2 = "<$string3> - Waiting for group leader.";
+    ~clan_stonebutton_draw(true, "<col=9f9f9f>---</col>", p12_full, $component6);
+    if_setonmouserepeat(null, $component6);
+    if_setonmouseleave(null, $component6);
+    if_clearops($component6);
+    if_setonop(null, $component6);
+    if_setontimer(null, $component6);
+    ~clan_stonebutton_init("<col=ff0000>Leave</col>", $component7, p12_full);
+}
+if_setonop("opsound(event_op, 2)", $component7);
+if_sethide(false, $component4);
+def_int $int12 = 0;
+def_string $string4 = "";
+if ($boolean0 = true) {
+    if (activeclanchannel_find_listened = true) {
+        $int12 = activeclanchannel_getusercount;
+        if ($int12 > 0) {
+            if_settext($string2, $component5);
+            ~clan_sidepanel_drawchannel($boolean0, $int12, $component3, 0, $component4);
+            return;
+        }
+        $string4 = "There are no players to list.";
+    } else {
+        $string4 = "Loading player list...";
+    }
+    cc_deleteall($component8);
+    if_sethide(true, $component8);
+} else if (%varplayerbit_14013 ! 0) {
+    if (map_world = %varplayerbit_14013) {
+        $string4 = "Join your opponents<br>upstairs in the Arena building. Hurry!";
+        $string2 = "A fight has been found for you!";
+        if_sethide(false, $component8);
+        ~clan_stonebutton_init("<col=0dc10d>Join fight</col>", $component8, p12_full);
+        if_setonop("opsound(event_op, 2)", $component8);
+    } else {
+        $string4 = "Waiting for you<br>on world <tostring(%varplayerbit_14013)>...";
+        $string2 = "A fight has been found for you!";
+        if_sethide(false, $component8);
+        ~clan_stonebutton_init("<col=0dc10d>Switch world</col>", $component8, p12_full);
+        if_setonop("opsound(event_op, 2)", $component8);
+    }
+} else if (activeclanchannel_find_affined(^clantype_pvpa_group) = true) {
+    cc_deleteall($component8);
+    if_sethide(true, $component8);
+    $int12 = activeclanchannel_getusercount;
+    if ($int12 > 0) {
+        if_settext($string2, $component5);
+        ~clan_sidepanel_drawchannel($boolean0, $int12, $component3, 0, $component4);
+        return;
+    }
+    $string4 = "There are no players to list.";
+} else {
+    $string4 = "Loading player list...";
+    cc_deleteall($component8);
+    if_sethide(true, $component8);
+}
+if_settext($string2, $component5);
+if_setscrollpos(0, 0, $component3);
+if_setscrollsize(0, 0, $component3);
+cc_create($component3, ^iftype_text, 0);
+cc_setsize(10, 10, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_setcolour(0xff981f);
+cc_settextfont(p12_full);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 15);
+cc_settextshadow(true);
+cc_settext($string4);
+~scrollbar_resize($component4, $component3, 0);
