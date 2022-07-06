@@ -11,8 +11,12 @@ switch_int (%varclient_41) {
         if (enum(int, boolean, enum_892, $chattype0) = true) {
             return(true);
         }
-        if ($chattype0 = ^chattype_clanmessage & ~gim_notification_message($string1) = true) {
-            return(true);
+        if ($chattype0 = ^chattype_clanmessage) {
+            if (~gim_notification_message($string1) = true) {
+                return(true);
+            } else if (~pvpa_notification_message($string1) = true) {
+                return(true);
+            }
         }
         if ($chattype0 = ^chattype_clanchat & ~gim_notification_message($string1) = true) {
             return(true);
@@ -39,6 +43,9 @@ switch_int (%varclient_41) {
                 if (~gim_notification_message($string1) = false) {
                     return(true);
                 }
+                if (~pvpa_notification_message($string1) = false) {
+                    return(true);
+                }
         }
     case 6 :
         switch_int ($chattype0) {
@@ -52,6 +59,9 @@ switch_int (%varclient_41) {
                     return(true);
                 }
                 if (~gim_notification_message($string1) = true) {
+                    return(true);
+                }
+                if (~pvpa_notification_message($string1) = true) {
                     return(true);
                 }
         }
