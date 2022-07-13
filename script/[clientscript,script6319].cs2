@@ -1,14 +1,48 @@
 // 6319
-[clientscript,script6319](obj $obj, component $component1, component $component2)
+[clientscript,script6319](int $int0, obj $obj, component $component2, component $component3)
 if ($obj = null) {
     return;
 }
-def_int $int = enum_getoutputcount(enum_4390);
-while ($int > 0) {
-    $int = calc($int - 1);
-    if ($obj = enum(int, namedobj, enum_4390, $int)) {
-        if (cc_find($component1, $int) = true) {
-            ~scrollbar_resize($component2, $component1, cc_gety);
+def_int $int4 = 0;
+def_int $int5 = 0;
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_int $int8 = 0;
+def_int $int9 = 0;
+def_int $int10 = 0;
+def_int $int11 = 0;
+$int4, $int5, $int6, $int7, $int8, $int9, $int10, $int11 = ~script6335($int0);
+def_int $intarray(calc(23 + 1));
+def_int $int12 = 23;
+while ($int12 > 0) {
+    switch_int ($int12) {
+        case 1 :
+            $intarray($int12) = $int4;
+        case 2 :
+            $intarray($int12) = $int5;
+        case 3 :
+            $intarray($int12) = $int6;
+        case 4 :
+            $intarray($int12) = $int7;
+        case 5 :
+            $intarray($int12) = $int8;
+        case 6 :
+            $intarray($int12) = $int9;
+        case 7 :
+            $intarray($int12) = $int10;
+        case default :
+            $intarray($int12) = $int11;
+    }
+    $int12 = calc($int12 - 1);
+}
+def_int $int13 = enum_getoutputcount(enum_4390);
+while ($int13 > 0) {
+    $int13 = calc($int13 - 1);
+    if ($obj = enum(int, namedobj, enum_4390, $int13)) {
+        if (oc_param($obj, param_434) ! null & oc_param($obj, param_436) > $intarray(enum(stat, int, enum_81, oc_param($obj, param_434))) | oc_param($obj, param_435) ! null & oc_param($obj, param_437) > $intarray(enum(stat, int, enum_81, oc_param($obj, param_435))) | oc_param($obj, param_191) ! null & oc_param($obj, param_613) > $intarray(enum(stat, int, enum_81, oc_param($obj, param_191))) | oc_param($obj, param_579) ! null & oc_param($obj, param_614) > $intarray(enum(stat, int, enum_81, oc_param($obj, param_579))) | oc_param($obj, param_610) ! null & oc_param($obj, param_615) > $intarray(enum(stat, int, enum_81, oc_param($obj, param_610))) | oc_param($obj, param_611) ! null & oc_param($obj, param_616) > $intarray(enum(stat, int, enum_81, oc_param($obj, param_611))) | oc_param($obj, param_612) ! null & oc_param($obj, param_617) > $intarray(enum(stat, int, enum_81, oc_param($obj, param_612)))) {
+            mes("<oc_name($obj)>: This build's stats will not permit you to equip that item.");
+        } else if (cc_find($component2, $int13) = true) {
+            ~scrollbar_resize($component3, $component2, cc_gety);
         } else {
             mes("<oc_name($obj)>: Unable to scroll to that item.");
         }
