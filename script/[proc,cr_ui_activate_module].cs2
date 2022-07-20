@@ -1,0 +1,21 @@
+// 6389
+[proc,cr_ui_activate_module](dbrow $dbrow0, component $component)
+if (%varclient_1007 = 0) {
+    ~debug_mes_warn("CR UI", "Activate module called without UI open.");
+    return;
+}
+%varclient_1008 = $dbrow0;
+~cr_ui_create_tabs($component);
+def_int $int = db_listall_with_count(dbtable_2);
+def_boolean $boolean = true;
+def_dbrow $dbrow4 = db_findnext;
+while ($dbrow4 ! null) {
+    if ($dbrow4 = %varclient_1008) {
+        $boolean = false;
+    } else {
+        $boolean = true;
+    }
+    if_sethide($boolean, db_getfield($dbrow4, dbtable_2:col3, 0));
+    $dbrow4 = db_findnext;
+}
+~cr_module_ui_init(%varclient_1008);
