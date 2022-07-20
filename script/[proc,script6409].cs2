@@ -1,0 +1,60 @@
+// 6409
+[proc,script6409](string $string0, int $rgb, int $int1, int $int2, boolean $boolean, int $int4, int $int5, int $int6, int $int7, component $component)(int, int, int, int)
+def_fontmetrics $fontmetrics = null;
+def_graphic $graphic = null;
+def_int $int11 = 0;
+def_int $int12 = 0;
+def_int $int13 = 0;
+def_int $int14 = 0;
+def_int $int15 = 0;
+def_string $string1 = null;
+def_string $string2 = null;
+if ($int1 < 0) {
+    $int12 = ~cr_ui_list_entry_description_width($component);
+    $fontmetrics = p11_full;
+    $graphic = p11_full;
+    $int11 = 12;
+    $int15 = calc($int11 + 1);
+} else {
+    if ($boolean = false) {
+        return($int4, $int5, $int1, $int6);
+    }
+    $int12 = ~cr_ui_list_entry_details_width(1, $component);
+    $fontmetrics = p11_full;
+    $graphic = p11_full;
+    $int11 = 12;
+    $int15 = calc($int11 + 1);
+}
+cc_create($component, ^iftype_text, $int4);
+$int4 = calc($int4 + 1);
+$int13 = parawidth($string0, calc($int12 - $int5), $fontmetrics);
+$int14 = paraheight($string0, calc($int12 - $int5), $fontmetrics);
+if ($int1 < 0) {
+    if ($int14 > 1) {
+        $string0, $string2, $string1 = ~script2479($string0, calc($int12 - $int5), $fontmetrics);
+        if ($boolean = true) {
+            $string0 = $string2;
+        }
+    }
+    $int14 = 1;
+    $int5, $int6 = ~script6404($int13, calc($int15 * $int14), $int2, $int5, $int7);
+} else {
+    if ($int5 > 0 & $int14 > 1) {
+        $int1 = calc($int1 + 1);
+        $int5 = 0;
+        $int13 = parawidth($string0, $int12, $fontmetrics);
+        $int14 = paraheight($string0, $int12, $fontmetrics);
+    }
+    $int5, $int6 = ~script6407($int1, $int14, $int13, calc($int15 * $int14), $int2, $int5, $int7);
+}
+cc_setposition(cc_getx, calc(cc_gety + 1), ^setpos_abs_left, ^setpos_abs_top);
+cc_settext($string0);
+cc_settextfont($graphic);
+cc_settextshadow(true);
+cc_setcolour($rgb);
+cc_settextalign(^settextalign_left, ^settextalign_centre, $int15);
+$int1 = calc($int1 + $int14 - 1);
+if (~string_isnullorempty($string1) = false & $boolean = true) {
+    return(~script6409($string1, $rgb, calc($int1 + 1), $int2, $boolean, $int4, 0, $int6, $int7, $component));
+}
+return($int4, $int5, $int1, $int6);
