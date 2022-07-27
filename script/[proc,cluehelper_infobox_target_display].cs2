@@ -1,0 +1,38 @@
+// 6627
+[proc,cluehelper_infobox_target_display](dbrow $dbrow0)
+def_int $int1 = 0;
+def_npc $npc2 = null;
+switch_dbtable (db_getrowtable($dbrow0)) {
+    case dbtable_15 :
+        $int1 = ~helper_generic_add_title("Talk-to", 0);
+        $npc2 = db_getfield($dbrow0, dbtable_15:col1, 0);
+        if ($npc2 ! null) {
+            $int1 = ~helper_generic_add_text(nc_name($npc2));
+        } else {
+            $int1 = ~helper_generic_add_text(nc_name(db_getfield($dbrow0, dbtable_15:col0, 0)));
+        }
+        $int1 = ~helper_generic_add_title("Location", 0);
+        $int1 = ~helper_generic_add_text(~cluehelper_get_target_description($dbrow0));
+    case dbtable_16 :
+        $int1 = ~helper_generic_add_title("Search", 0);
+        $int1 = ~helper_generic_add_text(lc_name(db_getfield($dbrow0, dbtable_16:col0, 0)));
+        $int1 = ~helper_generic_add_title("Location", 0);
+        $int1 = ~helper_generic_add_text(~cluehelper_get_target_description($dbrow0));
+    case dbtable_17 :
+        $int1 = ~helper_generic_add_title("Location", 0);
+        $int1 = ~helper_generic_add_text(~cluehelper_get_target_description($dbrow0));
+    case dbtable_18 :
+        $int1 = ~helper_generic_add_title("Location ", 0);
+        $int1 = ~helper_generic_add_text(~cluehelper_get_target_description($dbrow0));
+    case dbtable_19 :
+        $int1 = ~helper_generic_add_text(~cluehelper_get_target_description($dbrow0));
+        $int1 = ~helper_generic_add_title("Kill", 0);
+        $int1 = ~helper_generic_add_text(nc_name(db_getfield($dbrow0, dbtable_19:col2, 0)));
+        $int1 = ~helper_generic_add_title("Key", 0);
+        $int1 = ~helper_generic_add_text(oc_name(db_getfield($dbrow0, dbtable_19:col3, 0)));
+        $int1 = ~helper_generic_add_title("Search", 0);
+        $int1 = ~helper_generic_add_text(lc_name(db_getfield($dbrow0, dbtable_19:col0, 0)));
+    case dbtable_20 :
+        $int1 = ~helper_generic_add_title("Kill", 0);
+        $int1 = ~helper_generic_add_text(~cluehelper_get_target_description($dbrow0));
+}

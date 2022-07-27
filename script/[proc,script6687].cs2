@@ -1,0 +1,27 @@
+// 6687
+[proc,script6687](int $int0)
+if (~on_enhanced_desktop = false) {
+    return;
+}
+def_int $int1 = ~settings_get_colour_or_default(262);
+def_int $int2 = setbit(0, 6);
+if ($int0 = 1) {
+    if (%varplayerbit_14170 = 1) {
+        $int2 = setbit($int2, 0);
+    }
+    if (%varplayerbit_14171 = 1) {
+        $int2 = setbit($int2, 1);
+    } else if (%varplayerbit_14171 = 2) {
+        $int2 = setbit($int2, 1);
+        $int2 = setbit($int2, 3);
+    }
+    highlight_npc_setup(6, $int1, 2, 50, $int2);
+    highlight_group_setup(6, $int1, 2, 50, $int2);
+    clientop_npc_set(1, "Tag", script6688);
+    clientop_npc_set(2, "Tag-All", script6689);
+} else {
+    highlight_npc_setup(6, null, 0, 0, 75);
+    highlight_group_setup(6, null, 0, 0, 75);
+    clientop_npc_del(1);
+    clientop_npc_del(2);
+}

@@ -1,0 +1,24 @@
+// 6532
+[proc,loadnpc_cluehelper_uri_overlay](entityoverlay $entityoverlay0, npc_uid $npc_uid1, int $int2)
+if ($entityoverlay0 = null) {
+    return;
+}
+if (%varplayer_3548 ! $npc_uid1) {
+    return;
+}
+if (%varplayer_3546 ! %varplayer_3547) {
+    return;
+}
+if (%varplayerbit_14189 = 0) {
+    return;
+}
+highlight_npc_on($npc_uid1, $int2, 9);
+cc_create_entityoverlay($entityoverlay0, ^iftype_graphic, 0);
+cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+cc_setposition(8, 3, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_setobject_nonum(enum(int, obj, enum_4616, ~cluehelper_clue_difficulty(%varplayer_3546)), 1);
+cc_setoutline(1);
+cc_create_entityoverlay($entityoverlay0, ^iftype_graphic, 1);
+cc_setsize(32, 32, ^setsize_abs, ^setsize_abs);
+cc_setposition(-8, -3, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_setgraphic("emotes,44");
