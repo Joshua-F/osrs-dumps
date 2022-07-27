@@ -1,0 +1,13 @@
+// 6506
+[clientscript,cluehelper_overlay_loc_transmit](entityoverlay $entityoverlay0, dbrow $dbrow1, loc $loc2, coord $coord3, obj $obj4, int $int5, npc_uid $npc_uid6, npc_uid $npc_uid7, npc_uid $npc_uid8, dbrow $dbrow9, int $int10, int $int11)
+if (loc_find($coord3, $loc2) = true) {
+    if ($int5 = %varplayerbit_14189 & $dbrow1 = %varplayer_3546 & $npc_uid6 = %varplayer_3548 & $npc_uid7 = %varplayer_3549 & $npc_uid8 = %varplayer_3550 & $dbrow9 = %varplayer_3547 & %varplayerbit_14184 = $int10 & %varplayerbit_14182 = $int11) {
+        return;
+    }
+    if (%varplayer_3546 ! $dbrow1 | %varplayerbit_14182 = 0) {
+        entityoverlay_delete_loc(6);
+        highlight_loc_off($loc2, $coord3, 9, 1);
+    } else {
+        ~cluehelper_overlay_loc_draw($dbrow1, $loc2, $coord3, $obj4);
+    }
+}

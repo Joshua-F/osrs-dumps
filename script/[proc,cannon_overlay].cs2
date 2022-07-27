@@ -1,0 +1,14 @@
+// 6674
+[proc,cannon_overlay](coord $coord0)
+if (~on_enhanced_any = false) {
+    return;
+}
+if (%varplayer_3551 ! $coord0) {
+    return;
+}
+def_entityoverlay $entityoverlay1 = entityoverlay_create_coord(~centre_inner(3, $coord0), 6, 1, calc(36 * 2 + 6), calc(32 + 10), 0);
+if (if_find_entityoverlay($entityoverlay1) = ^true) {
+    cc_setonvartransmit("cannon_overlay_transmit($entityoverlay1, %varplayerbit_14174, %varplayerbit_13672, %varplayer_3551, $coord0){varplayer_3417, varplayer_2903, varplayer_3551}");
+}
+mes("Transmit.");
+~cannon_overlay_create($entityoverlay1, $coord0);

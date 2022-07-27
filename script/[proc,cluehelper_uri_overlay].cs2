@@ -1,0 +1,22 @@
+// 6527
+[proc,cluehelper_uri_overlay](int $int0)
+highlight_npc_off(npc_uid, npc_creationcycle, 9);
+def_entityoverlay $entityoverlay1 = entityoverlay_create_npc(4, 1, calc(36 * 2), calc(32 * 2), 1);
+if (if_find_entityoverlay($entityoverlay1) = ^true) {
+    if ($int0 = 2 | $int0 = 3) {
+        cc_setonvartransmit("script6530($entityoverlay1, npc_uid, npc_creationcycle, %varplayerbit_14189, %varplayer_3548, %varplayer_3547, %varplayer_3546, %varplayer_292, $int0){varplayer_3543, varplayer_3546, varplayer_3548, varplayer_3547, varplayer_292}");
+    } else if ($int0 = 4) {
+        cc_setonvartransmit("loadnpc_cluehelper_uri_elite_transmit($entityoverlay1, npc_uid, npc_creationcycle, %varplayerbit_14189, %varplayer_3548, %varplayer_3547, %varplayer_3546, %varplayerbit_4269){varplayer_3543, varplayer_3546, varplayer_3548, varplayer_3547, varplayer_1115}");
+    } else if ($int0 = 5) {
+        cc_setonvartransmit("loadnpc_cluehelper_uri_master_transmit($entityoverlay1, npc_uid, npc_creationcycle, %varplayerbit_14189, %varplayer_3548, %varplayer_3547, %varplayer_3546, %varplayerbit_5190){varplayer_3543, varplayer_3546, varplayer_3548, varplayer_3547, varplayer_1353}");
+    } else {
+        cc_setonvartransmit("loadnpc_cluehelper_uri_transmit($entityoverlay1, npc_uid, npc_creationcycle, %varplayerbit_14189, %varplayer_3548, %varplayer_3547, %varplayer_3546){varplayer_3543, varplayer_3546, varplayer_3548, varplayer_3547}");
+    }
+}
+if ($int0 = 3 & testbit(%varplayer_292, 6) = ^true) {
+    ~loadnpc_cluehelper_double_agent_overlay($entityoverlay1, npc_uid, npc_creationcycle);
+} else if ($int0 = 5 & %varplayerbit_5190 = 0) {
+    ~loadnpc_cluehelper_double_agent_overlay($entityoverlay1, npc_uid, npc_creationcycle);
+} else {
+    ~loadnpc_cluehelper_uri_overlay($entityoverlay1, npc_uid, npc_creationcycle);
+}

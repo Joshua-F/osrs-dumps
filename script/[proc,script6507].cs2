@@ -1,0 +1,37 @@
+// 6507
+[proc,script6507](dbrow $dbrow0, dbrow $dbrow1, loc $loc2, coord $coord3, obj $obj4)
+def_entityoverlay $entityoverlay5 = null;
+if (loc_find($coord3, $loc2) = true) {
+    $entityoverlay5 = entityoverlay_get_loc(6);
+    if ($entityoverlay5 = null) {
+        $entityoverlay5 = entityoverlay_create_loc(6, 1, 60, 60, 1);
+    } else {
+        cc_deleteall_entityoverlay($entityoverlay5);
+    }
+    if (if_find_entityoverlay($entityoverlay5) = ^true) {
+        cc_setonvartransmit("script6508($entityoverlay5, $dbrow0, $dbrow1, $loc2, $coord3, $obj4, %varplayerbit_14189, %varplayerbit_14164, %varplayerbit_14184, %varplayerbit_14182){varplayer_3546, varplayer_3543, varplayer_2855}");
+    }
+    if (%varplayerbit_14182 = 0) {
+        highlight_loc_off($loc2, $coord3, 9, 1);
+        return;
+    }
+    if (%varplayerbit_14189 = 1) {
+        cc_create_entityoverlay($entityoverlay5, ^iftype_graphic, 0);
+        cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+        cc_setposition(5, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+        cc_setobject_nonum($obj4, 1);
+        cc_setoutline(1);
+        cc_create_entityoverlay($entityoverlay5, ^iftype_graphic, 1);
+        cc_setsize(33, 36, ^setsize_abs, ^setsize_abs);
+        cc_setposition(-5, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+        cc_setgraphic("side_icons,4");
+    }
+    if (%varplayerbit_14164 = 1 & ~script6472($loc2) = ^true) {
+        highlight_loc_setup(9, ^green, 2, 30, 1);
+    } else {
+        highlight_loc_setup(9, ^red, 2, 30, 1);
+    }
+    if (%varplayerbit_14184 = 1) {
+        highlight_loc_on($loc2, $coord3, 9, 1);
+    }
+}
