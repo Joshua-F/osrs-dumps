@@ -1,0 +1,50 @@
+// 6496
+[proc,cluehelper_overlay](dbrow $dbrow0, dbrow $dbrow1)
+if ($dbrow0 = null) {
+    return;
+}
+if (%varplayerbit_14182 = 0) {
+    return;
+}
+if (db_getrowtable($dbrow0) = dbtable_12) {
+    return;
+}
+def_loc $loc = null;
+def_coord $coord = null;
+$loc, $coord = ~script6652($dbrow0);
+def_int $int = -1;
+def_obj $obj5 = null;
+def_obj $obj6 = enum(int, obj, enum_4616, ~cluehelper_clue_difficulty($dbrow0));
+if ($loc ! null & $coord ! null & tile_find($coord) = true) {
+    ~script6507($dbrow0, $dbrow1, $loc, $coord, $obj6);
+} else if (db_getrowtable($dbrow1) = dbtable_16) {
+    if (%varplayerbit_14184 = 1) {
+        highlight_loc_setup(9, ^green, 2, 30, 1);
+    }
+    $loc = db_getfield($dbrow1, dbtable_16:col0, 0);
+    $coord = db_getfield($dbrow1, dbtable_16:col1, 0);
+    if ($loc ! null & $coord ! null) {
+        ~cluehelper_overlay_loc_draw($dbrow0, $loc, $coord, $obj6);
+    }
+} else if (db_getrowtable($dbrow1) = dbtable_19) {
+    if (%varplayerbit_14184 = 1) {
+        highlight_loc_setup(9, ^green, 2, 30, 1);
+    }
+    $loc = db_getfield($dbrow1, dbtable_19:col0, 0);
+    $coord = db_getfield($dbrow1, dbtable_19:col1, 0);
+    $obj5 = db_getfield($dbrow1, dbtable_19:col3, 0);
+    if ($loc ! null & $coord ! null & $obj5 ! null) {
+        ~script6498($dbrow0, $loc, $obj5, $coord, $obj6);
+    }
+}
+if (~cluehelper_is_dig($dbrow0, $dbrow1) = 1) {
+    $coord = ~script6653($dbrow1);
+    if ($coord ! null) {
+        ~cluehelper_overlay_dig_draw($dbrow0, $coord, $obj6);
+    }
+} else if (db_getrowtable($dbrow1) = dbtable_18) {
+    $coord = ~script6653($dbrow1);
+    if ($coord ! null) {
+        ~script6501($dbrow0, $coord, $obj6);
+    }
+}

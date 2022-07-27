@@ -1,0 +1,32 @@
+// 6501
+[proc,script6501](dbrow $dbrow, coord $coord, obj $obj)
+def_entityoverlay $entityoverlay = null;
+if (tile_find($coord) = true) {
+    $entityoverlay = entityoverlay_get_coord($coord, 8);
+    if ($entityoverlay = null) {
+        $entityoverlay = entityoverlay_create_coord($coord, 8, ^overlaytype_top, 60, 60, 1);
+    } else {
+        cc_deleteall_entityoverlay($entityoverlay);
+    }
+    if (if_find_entityoverlay($entityoverlay) = true) {
+        cc_setonvartransmit("script6502($dbrow, $coord, $obj, %varplayerbit_14189, %varplayer_3548, %varplayer_3549, %varplayer_3550, %varplayer_3547, %varplayerbit_14182, %varplayerbit_14184){varplayer_3546, varplayer_3543, varplayer_3548, varplayer_3549, varplayer_3550, varplayer_3547}");
+    }
+    if (%varplayerbit_14182 = 0 | ~cluehelper_overlay_npc_active = 1) {
+        highlight_tile_off($coord, 9, 1);
+        return;
+    }
+    if (%varplayerbit_14189 = 1) {
+        cc_create_entityoverlay($entityoverlay, ^iftype_graphic, 0);
+        cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+        cc_setposition(8, 3, ^setpos_abs_centre, ^setpos_abs_centre);
+        cc_setobject_nonum($obj, 1);
+        cc_setoutline(1);
+        cc_create_entityoverlay($entityoverlay, ^iftype_graphic, 1);
+        cc_setsize(48, 48, ^setsize_abs, ^setsize_abs);
+        cc_setposition(-8, -3, ^setpos_abs_centre, ^setpos_abs_centre);
+        cc_setgraphic("emotes,44");
+    }
+    if (%varplayerbit_14184 = 1) {
+        highlight_tile_on($coord, 9, 1);
+    }
+}

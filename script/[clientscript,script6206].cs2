@@ -1,19 +1,19 @@
 // 6206
-[clientscript,script6206](component $com_120, component $com_140, component $com_122, component $com_145, component $com_121, component $com_141, component $com_143, component $com_144)
-cc_deleteall($com_122);
+[clientscript,script6206](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $com_143, component $component7, enum $enum)
+cc_deleteall($component2);
 def_int $int = 0;
-cc_create($com_122, ^iftype_graphic, $int);
+cc_create($component2, ^iftype_graphic, $int);
 $int = calc($int + 1);
 cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_centre);
 cc_setsize(36, 36, ^setsize_abs, ^setsize_abs);
 cc_setgraphic("miscgraphics,0");
-cc_create($com_122, ^iftype_graphic, $int);
+cc_create($component2, ^iftype_graphic, $int);
 $int = calc($int + 1);
 cc_setposition(2, 0, ^setpos_abs_left, ^setpos_abs_centre);
 cc_setsize(29, 22, ^setsize_abs, ^setsize_abs);
 cc_setgraphic("bankbuttons,6");
 cc_settrans(150);
-cc_create($com_122, ^iftype_text, $int);
+cc_create($component2, ^iftype_text, $int);
 cc_setcolour(0x9f9f9f);
 $int = calc($int + 1);
 cc_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_centre);
@@ -22,9 +22,18 @@ cc_settextfont(p12_full);
 cc_settextshadow(true);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
 cc_settext("---");
-~script6208($com_140, $com_145, $com_121);
-if_setonvartransmit("script6207($com_140, $com_145, $com_121){varplayer_3465, varplayer_3533}", $com_120);
-if_setoninvtransmit("script6207($com_140, $com_145, $com_121){inv_207}", $com_120);
-if_sethide(false, $com_143);
-~script6210($com_141, $com_143, $com_144);
-if_setonvartransmit("script6209($com_141, $com_143, $com_144){varplayer_3465}", $com_141);
+~script6208($component1, $component3, $component4, $enum);
+if_setonvartransmit("script6207($component1, $component3, $component4, $enum){varplayer_3465, varplayer_3533}", $component0);
+if_setoninvtransmit("script6207($component1, $component3, $component4, $enum){inv_207}", $component0);
+def_string $string = "";
+if ($com_143 ! null) {
+    if_sethide(false, $com_143);
+    ~script6210($component5, $com_143, $component7);
+    if_setonvartransmit("script6209($component5, $com_143, $component7){varplayer_3465}", $component5);
+} else {
+    ~script6708($component5);
+    if_setonvartransmit("script6707($component5){varplayer_3465}", $component5);
+    $string = "<col=0dc10d>Copy Load-out</col>";
+    ~clan_stonebutton_init($string, $component7, p12_full);
+    if_setonop("script6709(event_op, $string, $component7, p12_full)", $component7);
+}
