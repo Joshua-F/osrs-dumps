@@ -1,10 +1,10 @@
 // 5961
-[proc,interact_entity_highlight_pulse_start]
+[proc,interact_entity_highlight_pulse_start](entityoverlay $entityoverlay0)
 if (~on_enhanced_mobile = false) {
     return;
 }
 ~entity_highlight_setup(4, 2, 128);
-def_enum $enum0 = ~toplevel_getcomponents;
-def_component $component1 = enum(component, component, $enum0, interface_161:com36);
-def_int $int2 = clientclock;
-if_setontimer("interact_entity_highlight_pulse($int2)", $component1);
+def_int $int1 = clientclock;
+if (if_find_entityoverlay($entityoverlay0) = ^true) {
+    cc_setontimer("interact_entity_highlight_pulse($int1, $entityoverlay0, %varclient_973, %varclient_974, %varclient_975, %varclient_976, %varclient_977, %varclient_978, %varclient_979)");
+}
