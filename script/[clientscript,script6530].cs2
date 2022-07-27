@@ -1,0 +1,17 @@
+// 6530
+[clientscript,script6530](entityoverlay $entityoverlay0, npc_uid $npc_uid1, int $int2, int $int3, npc_uid $npc_uid4, dbrow $dbrow5, dbrow $dbrow6, int $int7, int $int8)
+if (%varplayer_292 = $int7 & %varplayerbit_14189 = $int3 & %varplayer_3548 = $npc_uid4 & %varplayer_3547 = $dbrow5 & %varplayer_3546 = $dbrow6) {
+    return;
+}
+if (if_find_entityoverlay($entityoverlay0) = ^true) {
+    cc_setonvartransmit("script6530($entityoverlay0, $npc_uid1, $int2, %varplayerbit_14189, %varplayer_3548, %varplayer_3547, %varplayer_3546, %varplayer_292, $int8){varplayer_3543, varplayer_3546, varplayer_3548, varplayer_3547, varplayer_292}");
+}
+highlight_npc_off($npc_uid1, $int2, 9);
+cc_deleteall_entityoverlay($entityoverlay0);
+if (testbit(%varplayer_292, 6) = ^false) {
+    if (npc_finduid($npc_uid1) = true) {
+        ~loadnpc_cluehelper_uri_overlay($entityoverlay0, $npc_uid1, $int2);
+    }
+} else if ($int8 = 3 & npc_finduid($npc_uid1) = true) {
+    ~loadnpc_cluehelper_double_agent_overlay($entityoverlay0, $npc_uid1, $int2);
+}
