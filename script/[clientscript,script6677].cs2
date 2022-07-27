@@ -1,0 +1,18 @@
+// 6677
+[clientscript,script6677](entityoverlay $entityoverlay0, coord $coord1, int $int2)
+if ($int2 = %varplayer_3) {
+    return;
+}
+if (cc_find_entityoverlay($entityoverlay0, 0) = ^true) {
+    cc_settext(tostring(%varplayer_3));
+    cc_setonvartransmit("script6677($entityoverlay0, $coord1, %varplayer_3){varplayer_3}");
+    if (%varplayer_3 <= 0) {
+        ~cannon_overlay_create($entityoverlay0, $coord1);
+    } else if (%varplayer_3 <= 5) {
+        cc_setcolour(^red);
+    } else if (%varplayer_3 <= 15) {
+        cc_setcolour(0xffb71e);
+    } else {
+        cc_setcolour(^green);
+    }
+}
