@@ -1,0 +1,38 @@
+// 6698
+[proc,npc_name_create](entityoverlay $entityoverlay, npc_uid $npc_uid, int $int2, string $string, npc $npc)
+cc_deleteall_entityoverlay($entityoverlay);
+if (%varplayerbit_542 = 1) {
+    return;
+}
+def_fontmetrics $fontmetrics = null;
+def_graphic $graphic = null;
+def_int $int6 = 0;
+if (%varplayerbit_14168 = 1 & %varplayerbit_14169 > 0 & (highlight_group_get(~script6690($npc), 6) = true | highlight_npc_get($npc_uid, $int2, 6) = true)) {
+    if (%varplayerbit_14169 = 1) {
+        $fontmetrics, $graphic = p12_full, p12_full;
+    } else {
+        $fontmetrics, $graphic = b12_full, b12_full;
+    }
+    $int6 = ~settings_get_colour_or_default(263);
+} else if (%varplayerbit_14178 > 0) {
+    if (%varplayerbit_14178 = 1) {
+        $fontmetrics, $graphic = p12_full, p12_full;
+    } else {
+        $fontmetrics, $graphic = b12_full, b12_full;
+    }
+    $int6 = ~settings_get_colour_or_default(266);
+} else {
+    return;
+}
+cc_create_entityoverlay($entityoverlay, ^iftype_text, 0);
+def_int $int7 = parawidth($string, 1000, $fontmetrics);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_setsize($int7, 20, ^setsize_abs, ^setsize_abs);
+cc_setcolour($int6);
+cc_settextfont($graphic);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 20);
+cc_settextshadow(true);
+cc_settext($string);
+if (if_find_entityoverlay($entityoverlay) = true) {
+    cc_setsize($int7, 20, ^setsize_abs, ^setsize_abs);
+}
