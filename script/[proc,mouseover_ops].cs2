@@ -1,6 +1,8 @@
 // 4726
 [proc,mouseover_ops]
-if (~on_enhanced_any = false) {
+def_boolean $boolean0 = ~on_enhanced_mobile;
+def_boolean $boolean1 = ~on_enhanced_desktop;
+if ($boolean0 = false & $boolean1 = false) {
     return;
 }
 if (mouse_getx = -1 & mouse_gety = -1) {
@@ -13,18 +15,20 @@ if ($component = null) {
 }
 if_setontimer("mouseover_ops", $component);
 cc_deleteall($component);
-~mouseover_entity_highlight;
+if ($boolean1 = true) {
+    ~mouseover_entity_highlight;
+}
 if (minimenu_isopen = true) {
     return;
 }
-def_int $int2 = 0;
+def_int $int4 = 0;
 def_string $string0 = "";
 def_string $string1 = "";
 $string0, $string1 = minimenu_entry;
 def_string $string2 = "<$string0> <$string1>";
-def_int $int3 = minimenu_numops;
+def_int $int5 = minimenu_numops;
 def_int $menuentrytype = minimenu_type;
-if (%varplayerbit_12377 = 1) {
-    $int2 = ~mouseover_text($int2, $component, $string2, $menuentrytype, $int3);
+if ($boolean1 = true & %varplayerbit_12377 = 1) {
+    $int4 = ~mouseover_text($int4, $component, $string2, $menuentrytype, $int5);
 }
-$int2 = ~mouseover_tooltip($int2, $component, $string2, $menuentrytype, $int3);
+$int4 = ~mouseover_tooltip($int4, $component, $string2, $menuentrytype, $int5, $enum);
