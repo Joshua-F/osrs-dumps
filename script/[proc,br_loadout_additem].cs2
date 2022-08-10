@@ -1,18 +1,18 @@
 // 3070
-[proc,br_loadout_additem](int $int0, obj $obj1, int $int2, component $component3, component $component4, component $component5, component $component6)
+[proc,br_loadout_additem](int $int0, obj $obj1, int $int2, int $int3, enum $enum4, enum $enum5, component $component6, component $component7, component $component8, component $component9)
 if ($obj1 = null) {
     return;
 }
-def_int $int7 = 0;
-def_int $int8 = 0;
-def_int $int9 = inv_size(inv_93);
-while ($int8 < $int9) {
-    $int7 = calc(($int2 + $int8) % $int9);
-    if (enum(int, namedobj, enum_2630, ~br_loadout_get_inv($int7)) = null) {
+def_int $int10 = 0;
+def_int $int11 = 0;
+def_int $int12 = inv_size(inv_93);
+while ($int11 < $int12) {
+    $int10 = calc(($int2 + $int11) % $int12);
+    if (enum(int, namedobj, $enum4, ~br_loadout_get_inv($int3, $int10)) = null) {
         sound_synth(synth_2266, 1, 0);
-        ~br_loadout_set_inv($int7, $int0);
-        ~br_loadout_drawloadout($component3, $component4, $component5, $component6);
+        ~br_loadout_set_inv($int3, $int10, $int0);
+        ~br_loadout_drawloadout($int3, $enum4, $enum5, $component6, $component7, $component8, $component9);
         return;
     }
-    $int8 = calc($int8 + 1);
+    $int11 = calc($int11 + 1);
 }
