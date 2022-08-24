@@ -1,0 +1,39 @@
+// 6594
+[clientscript,toa_partylist_init](component $com_16, component $com_62)
+def_int $int = 0;
+def_component $component = enum(int, component, enum_4793, $int);
+while ($component ! null) {
+    cc_deleteall($component);
+    if_sethide(true, $component);
+    $int = calc($int + 1);
+    $component = enum(int, component, enum_4793, $int);
+}
+if_setscrollsize(0, 0, $com_16);
+if_setscrollpos(0, 0, $com_16);
+~scrollbar_vertical($com_62, $com_16, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+%varclient_178, %varclient_59 = 0, clientclock;
+cc_deleteall($com_16);
+cc_create($com_16, ^iftype_text, 0);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setcolour(0x808080);
+cc_settextfont(p12_full);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+cc_settextshadow(true);
+cc_settext("Loading...");
+cc_deleteall(interface_772:com_1);
+if_sethide(true, interface_772:com_63);
+cc_create(interface_772:com_1, ^iftype_rectangle, enum(component, int, enum_4794, interface_772:com_63));
+cc_sethide(true);
+if_sethide(true, interface_772:com_64);
+cc_create(interface_772:com_1, ^iftype_rectangle, enum(component, int, enum_4794, interface_772:com_64));
+cc_sethide(true);
+if_sethide(true, interface_772:com_65);
+cc_create(interface_772:com_1, ^iftype_rectangle, enum(component, int, enum_4794, interface_772:com_65));
+cc_sethide(true);
+~script1558(interface_772:com_63, "Refresh", interface_772:com_1, enum_4794, -1);
+~toa_partylist_setpartybutton;
+~script6600;
+if_setonvartransmit("toa_partylist_setpartybutton{varplayer_3603}", interface_772:com_64);
+if_setonvartransmit("script6599{varplayer_3585}", interface_772:com_65);
+~toa_partylist_setsize(interface_772:com_1, ^max_32bit_int, $com_16, $com_62);

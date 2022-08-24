@@ -1,0 +1,25 @@
+// 6752
+[clientscript,script6752](struct $struct, boolean $boolean, int $int2, int $int3, int $int4, component $component5, component $component6, int $int7)
+if (clientclock = $int7) {
+    return;
+}
+if ($int2 = 2 & cc_find($component5, $int3) = true & .cc_find($component5, $int4) = true) {
+    cc_settrans(0);
+    cc_setgraphic(struct_param($struct, param_1297));
+    .cc_setcolour(^white);
+}
+def_string $string = struct_param($struct, param_1160);
+if ($boolean = false) {
+    $string = "<$string> (Inactive):";
+} else {
+    $string = "<$string> (Active):";
+}
+$string = "<$string> <struct_param($struct, param_1262)>";
+def_int $int8 = struct_param($struct, param_1162);
+if ($int8 < 0) {
+    $int8 = calc($int8 * -1);
+    $string = "<$string> Decreases Raid Level by <tostring($int8)>.";
+} else if ($int8 > 0) {
+    $string = "<$string> Increases Raid Level by <tostring($int8)>.";
+}
+~tooltip_mouserepeat($component5, $int4, $component6, $string, 25, 256);
