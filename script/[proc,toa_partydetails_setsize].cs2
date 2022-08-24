@@ -1,0 +1,15 @@
+// 6616
+[proc,toa_partydetails_setsize](component $component0, int $int1, component $component2, component $component3, component $component4, component $component5)
+def_component $component6 = if_getlayer($component0);
+if ($component6 = null) {
+    return;
+}
+def_int $int7 = if_getheight($component6);
+if ($int7 = $int1) {
+    return;
+}
+def_int $int8 = ~script6618($component0);
+if_setsize(484, $int8, ^setsize_abs, ^setsize_abs, $component0);
+~scrollbar_vertical_rebuild($component3, $component2);
+~scrollbar_vertical_rebuild($component5, $component4);
+if_setontimer("toa_partydetails_checksize($component0, $int7, $component2, $component3, $component4, $component5)", $component0);
