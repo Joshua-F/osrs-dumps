@@ -1,0 +1,23 @@
+// 6562
+[proc,script6562](graphic $graphic0, string $string0)
+if ($graphic0 = null) {
+    $graphic0 = graphic_2245;
+}
+if (string_length($string0) <= 0) {
+    $string0 = "View News";
+    if (~on_ios = true) {
+        $string0 = "Play";
+    }
+}
+cc_deleteall(interface_378:com_93);
+if_sethide(true, interface_378:com_91);
+if (cc_find(interface_378:com_90, 0) = ^true) {
+    cc_delete;
+}
+if_setgraphic($graphic0, interface_378:com_89);
+if_setop(1, $string0, interface_378:com_86);
+if (~on_mobile = false) {
+    if_setonmouserepeat("comp_sethide(false, interface_378:com_94)", interface_378:com_86);
+    if_setonmouseleave("comp_sethide(true, interface_378:com_94)", interface_378:com_86);
+}
+if_sethide(true, interface_378:com_94);
