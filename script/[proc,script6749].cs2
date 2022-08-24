@@ -1,0 +1,37 @@
+// 6749
+[proc,script6749](component $component0, component $component1, int $int2, int $int3, int $int4, int $int5, component $component6)
+def_int $int7 = 0;
+def_int $int8 = 0;
+def_int $int9 = 0;
+def_struct $struct10 = null;
+def_boolean $boolean11 = false;
+def_int $int12 = enum_getoutputcount(enum_4664);
+def_int $int13 = 4;
+def_int $int14 = 111;
+def_int $int15 = 6;
+if (%varclient_1086 ! 1) {
+    $int13 = 3;
+    $int14 = 96;
+    $int15 = 5;
+}
+cc_deleteall($component0);
+while ($int7 < $int12) {
+    $struct10 = enum(int, struct, enum_4664, $int7);
+    $boolean11 = ~script6755($struct10, $int2, $int3, $int4);
+    if (calc($int7 % $int13) = 0) {
+        $int8 = $int15;
+    } else {
+        $int8 = calc($int8 + $int14);
+    }
+    $int9 = calc($int7 / $int13 * 74);
+    ~script6750($int7, $int8, $int9, $struct10, $boolean11, $int5, $component0, $component6);
+    $int7 = calc($int7 + 1);
+}
+$int9 = calc($int9 + 73);
+if ($int9 > if_getheight($component0)) {
+    if_setscrollsize(0, $int9, $component0);
+} else {
+    if_setscrollsize(0, 0, $component0);
+    %varclient_1083 = 0;
+}
+~scrollbar_resize($component1, $component0, %varclient_1083);
