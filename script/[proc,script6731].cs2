@@ -1,0 +1,15 @@
+// 6731
+[proc,script6731](component $component, string $string, int $int1, int $int2, int $int3, int $int4)
+if (%varclient_1086 ! 1) {
+    ~script1560($component, $string, true, 0);
+    if_setonmouserepeat(null, $component);
+    if_setonmouseleave(null, $component);
+} else {
+    ~script1560($component, $string, false, 0);
+    if (~on_mobile = false) {
+        if_setonmouserepeat("script1559(event_com, $string, true)", $component);
+    }
+    if_setonmouseleave("script1559(event_com, $string, false)", $component);
+}
+if_setonop("script6732(event_op, $component, $string, $int1, $int2, $int3, $int4)", $component);
+if_setop(1, removetags($string), $component);

@@ -1,46 +1,50 @@
 // 453
-[clientscript,rune_pouch_init](component $com_0, component $com_4, component $com_8)
+[clientscript,rune_pouch_init](component $com_0, component $com_1, component $com_4, component $com_2, component $com_3, component $com_8)
+def_int $int6 = 14;
+def_int $int7 = 0;
+def_int $int8 = 25;
+def_int $int9 = 3;
+def_string $string = "Rune Pouch";
+def_int $int10 = %varplayer_261;
+if ($int10 = 4) {
+    $int6 = 9;
+    $int8 = 8;
+    $int9 = 4;
+    $string = "Divine Rune Pouch";
+    if_setmodel(model_46463, $com_2);
+    if_setmodelangle(-10, 0, 510, 513, 0, 500, $com_2);
+    if_setmodel(model_46463, $com_3);
+    if_setmodelangle(-10, 0, 510, 513, 0, 500, $com_3);
+}
+~steelborder($com_1, $string, 0);
 cc_deleteall($com_4);
-def_int $int3 = 7;
-cc_create($com_4, ^iftype_graphic, 0);
-cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
-cc_setposition($int3, 25, ^setpos_abs_left, ^setpos_abs_top);
-cc_setgraphicshadow(0x333333);
-cc_setoutline(1);
-cc_setdragdeadzone(5);
-cc_setdragdeadtime(5);
-$int3 = calc($int3 + 36 + 20);
-cc_create($com_4, ^iftype_graphic, 1);
-cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
-cc_setposition($int3, 25, ^setpos_abs_left, ^setpos_abs_top);
-cc_setgraphicshadow(0x333333);
-cc_setoutline(1);
-cc_setdragdeadzone(5);
-cc_setdragdeadtime(5);
-$int3 = calc($int3 + 36 + 20);
-cc_create($com_4, ^iftype_graphic, 2);
-cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
-cc_setposition($int3, 25, ^setpos_abs_left, ^setpos_abs_top);
-cc_setgraphicshadow(0x333333);
-cc_setoutline(1);
-cc_setdragdeadzone(5);
-cc_setdragdeadtime(5);
-~rune_pouch_drawpouch($com_4);
-if_setonvartransmit("rune_pouch_drawpouch($com_4){varplayer_1139, varplayer_1140}", $com_0);
-cc_deleteall($com_8);
-$int3 = calc((if_getwidth($com_8) - (10 + 7 * 36)) / 6 + 36);
-def_int $int4 = calc((if_getheight($com_8) - (30 + 4 * 32)) / 3 + 32);
-def_int $int5 = inv_size(inv_93);
-def_int $int6 = 0;
-while ($int6 < $int5) {
-    cc_create($com_8, ^iftype_graphic, $int6);
+while ($int7 < $int9) {
+    cc_create($com_4, ^iftype_graphic, $int7);
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
-    cc_setposition(calc(5 + $int6 % 7 * $int3), calc(25 + $int6 / 7 * $int4), ^setpos_abs_left, ^setpos_abs_top);
+    cc_setposition($int6, 25, ^setpos_abs_left, ^setpos_abs_top);
     cc_setgraphicshadow(0x333333);
     cc_setoutline(1);
     cc_setdragdeadzone(5);
     cc_setdragdeadtime(5);
-    $int6 = calc($int6 + 1);
+    $int7 = calc($int7 + 1);
+    $int6 = calc($int6 + 36 + $int8);
+}
+~rune_pouch_drawpouch($com_4);
+if_setonvartransmit("rune_pouch_drawpouch($com_4){varplayer_1139, varplayer_1140, varplayer_3574}", $com_0);
+cc_deleteall($com_8);
+$int6 = calc((if_getwidth($com_8) - (10 + 7 * 36)) / 6 + 36);
+def_int $int11 = calc((if_getheight($com_8) - (30 + 4 * 32)) / 3 + 32);
+def_int $int12 = inv_size(inv_93);
+def_int $int13 = 0;
+while ($int13 < $int12) {
+    cc_create($com_8, ^iftype_graphic, $int13);
+    cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+    cc_setposition(calc(5 + $int13 % 7 * $int6), calc(25 + $int13 / 7 * $int11), ^setpos_abs_left, ^setpos_abs_top);
+    cc_setgraphicshadow(0x333333);
+    cc_setoutline(1);
+    cc_setdragdeadzone(5);
+    cc_setdragdeadtime(5);
+    $int13 = calc($int13 + 1);
 }
 ~rune_pouch_drawinventory($com_8);
 if_setoninvtransmit("rune_pouch_drawinventory($com_8){inv_93}", $com_0);
