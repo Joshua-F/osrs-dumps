@@ -37,6 +37,8 @@ if_sethide(false, interface_774:com_7);
 if_sethide(false, interface_774:com_8);
 if_sethide(false, interface_774:com_9);
 if_sethide(true, interface_774:com_57);
+if_sethide(true, interface_774:com_75);
+if_sethide(true, interface_774:com_76);
 def_int $int9 = 0;
 def_int $int10 = 0;
 def_int $int11 = 0;
@@ -50,11 +52,19 @@ if ($int4 = 0) {
 } else if ($int4 = 2) {
     $int11 = 1;
     if_sethide(false, interface_774:com_49);
-    if (%varclient_1086 ! 1) {
-        ~toa_invocations_layout_setup(1);
-    } else {
-        ~toa_invocations_layout_setup(0);
+    if (%varclient_1086 = 1 & $int0 ! 2) {
+        %varclient_1086 = 0;
     }
+    if (%varclient_1086 = 0) {
+        ~toa_invocations_layout_setup(1, 0);
+    } else if (%varclient_1086 = 1) {
+        ~toa_invocations_layout_setup(1, 1);
+    } else {
+        ~toa_invocations_layout_setup(0, 0);
+    }
+    ~script1558(interface_774:com_83, "Load", interface_774:com_1, enum_4792, -1);
+    ~script1558(interface_774:com_84, "Save", interface_774:com_1, enum_4792, -1);
+    ~script6839;
 } else {
     $int12 = 1;
     if_sethide(false, interface_774:com_53);
@@ -79,4 +89,4 @@ if_sethide(false, interface_774:com_4);
 if ($int4 = 0 | $int4 = 1) {
     if_setontimer("toa_partydetails_autorefresh(interface_774:com_0, interface_774:com_1, interface_774:com_62, clientclock)", interface_774:com_0);
 }
-~toa_invocations_side_panel_update(interface_774:com_82, interface_774:com_84, interface_774:com_80, interface_774:com_83, $int3, $int2, interface_774:com_68);
+~toa_invocations_side_panel_update(interface_774:com_95, interface_774:com_87, interface_774:com_93, interface_774:com_96, $int3, $int2, interface_774:com_68);
