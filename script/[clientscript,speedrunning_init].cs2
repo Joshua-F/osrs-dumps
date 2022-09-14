@@ -1,32 +1,32 @@
 // 5886
-[clientscript,speedrunning_init](component $com_5, component $com_7, component $com_9, component $com_8, component $com_10, component $com_25, component $com_26, component $com_14, component $com_15, component $com_20, component $com_13, component $com_17, component $com_18, component $com_19, component $com_39, component $com_40, component $com_41, component $com_42, component $com_36, component $com_44, component $com_37, component $com_46, component $com_47, component $com_55, component $com_52, component $com_53, component $com_54, component $com_56, component $com_82, component $com_69, component $com_71, component $com_73, component $com_75, component $com_77, component $com_79, component $com_81)
+[clientscript,speedrunning_init](component $com_5, component $com_7, component $com_9, component $com_8, component $com_10, component $com_25, component $com_26, component $com_14, component $com_15, component $com_20, component $com_13, component $com_17, component $com_18, component $com_19, component $com_39, component $com_40, component $com_41, component $com_42, component $com_36, component $com_44, component $com_37, component $com_46, component $com_74, component $com_82, component $com_79, component $com_80, component $com_81, component $com_47, component $com_73, component $com_60, component $com_62, component $com_64, component $com_66, component $com_68, component $com_70, component $com_72)
 ~questlist_draw($com_5, $com_7, $com_9, $com_8, $com_10, true);
 if (%varplayer_3373 ! null) {
-    if (db_getfield(%varplayer_3373, dbtable_0:col28, 0) = 2) {
+    if (~speedrunning_beta_quest(%varplayer_3373) = true) {
         if_settext("<~get_quest_name(%varplayer_3373)> (Beta)", $com_20);
     } else {
         if_settext(~get_quest_name(%varplayer_3373), $com_20);
     }
 }
-~speedrunning_stats_update($com_13, $com_39, $com_40, $com_41, $com_42, $com_69, $com_71, $com_73, $com_75, $com_77, $com_79, $com_81);
-if_setonvartransmit("speedrunning_stats_update($com_13, $com_39, $com_40, $com_41, $com_42, $com_69, $com_71, $com_73, $com_75, $com_77, $com_79, $com_81){varplayer_3365, varplayer_3366, varplayer_3367, varplayer_3368, varplayer_3369}", $com_13);
+~speedrunning_stats_update($com_13, $com_39, $com_40, $com_41, $com_42, $com_60, $com_62, $com_64, $com_66, $com_68, $com_70, $com_72);
+if_setonvartransmit("speedrunning_stats_update($com_13, $com_39, $com_40, $com_41, $com_42, $com_60, $com_62, $com_64, $com_66, $com_68, $com_70, $com_72){varplayer_3365, varplayer_3366, varplayer_3367, varplayer_3368, varplayer_3369}", $com_13);
 ~script5909($com_36, $com_44, $com_37, $com_46, $com_19);
+if_sethide(true, $com_74);
 if_sethide(true, $com_47);
-if_sethide(true, $com_56);
 def_string $string = ~script5913;
-if_settext($string, $com_54);
-def_int $int = paraheight($string, if_getwidth($com_54), p12_full);
+if_settext($string, $com_81);
+def_int $int = paraheight($string, if_getwidth($com_81), p12_full);
 $int = calc($int * 14 + 9);
-if_setsize(12, $int, ^setsize_minus, ^setsize_abs, $com_54);
+if_setsize(12, $int, ^setsize_minus, ^setsize_abs, $com_81);
 if_setscrollsize(0, if_getheight($com_19), $com_18);
 if_setscrollpos(0, 0, $com_18);
 ~scrollbar_vertical($com_17, $com_18, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-if_setscrollsize(0, $int, $com_53);
-if_setscrollpos(0, 0, $com_53);
-~scrollbar_vertical($com_52, $com_53, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+if_setscrollsize(0, $int, $com_80);
+if_setscrollpos(0, 0, $com_80);
+~scrollbar_vertical($com_79, $com_80, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
 ~script5896($com_25, "Set Up Speedrun", "Abandon Speedrun");
 ~speedrunning_button_init($com_26, "Quest Journal");
-~script5897($com_14, "Info", $com_47);
-~script5897($com_15, "Stats", $com_56);
-~script5905($com_55, $com_47);
-~script5905($com_82, $com_56);
+~script5897($com_14, "Info", $com_74);
+~script5897($com_15, "Stats", $com_47);
+~script5905($com_82, $com_74);
+~script5905($com_73, $com_47);
