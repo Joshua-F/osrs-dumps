@@ -24,37 +24,75 @@ def_int $int7 = -1;
 def_int $int8 = calc(if_getwidth($component1) - 2);
 def_int $int9 = 0;
 def_dbrow $dbrow10 = null;
-def_int $int11 = db_getfieldcount(%varplayer_3373, dbtable_0:col22);
+def_int $int11 = db_getfieldcount(%varplayer_3373, dbtable_0:col23);
 def_int $int12 = 0;
 while ($int12 < $int11) {
     $int9 = 1;
-    $dbrow10 = db_getfield(%varplayer_3373, dbtable_0:col22, $int12);
+    $dbrow10 = db_getfield(%varplayer_3373, dbtable_0:col23, $int12);
     $int6, $int5 = ~script5912($component1, $int6, $int5, db_getfield($dbrow10, dbtable_0:col2, 0));
     $int12 = calc($int12 + 1);
 }
-def_int $int13 = ~max(db_getfield(%varplayer_3373, dbtable_0:col24, 0), db_getfield(%varplayer_3373, dbtable_0:col25, 0));
-def_int $int14 = ~minmax(3, 99, scale(4, 5, $int13));
-def_int $int15 = calc($int14 % 5);
-if ($int15 < 3) {
-    $int14 = calc($int14 - $int15);
-} else {
-    $int14 = calc($int14 + (5 - $int15));
+$int11 = db_getfieldcount(%varplayer_3373, dbtable_0:col32);
+$int12 = 0;
+while ($int12 < $int11) {
+    $int9 = 1;
+    $dbrow10 = db_getfield(%varplayer_3373, dbtable_0:col32, $int12);
+    $int6, $int5 = ~script5912($component1, $int6, $int5, db_getfield($dbrow10, dbtable_0:col2, 0));
+    $int12 = calc($int12 + 1);
 }
-$int14 = ~minmax(20, 99, calc($int14 + 10));
+def_int $int13 = ~max(db_getfield(%varplayer_3373, dbtable_0:col25, 0), db_getfield(%varplayer_3373, dbtable_0:col26, 0));
+def_int $int14 = ~minmax(3, 99, calc(scale(4, 5, $int13) + 15));
+if (db_getfield(%varplayer_3373, dbtable_0:col34, 0) > 1) {
+    $int14 = db_getfield(%varplayer_3373, dbtable_0:col34, 0);
+}
+def_int $int15 = calc($int14 % 5);
+if ($int13 > 3 | db_getfield(%varplayer_3373, dbtable_0:col34, 0) > 1) {
+    if ($int15 < 3) {
+        $int14 = calc($int14 - $int15);
+    } else {
+        $int14 = calc($int14 + (5 - $int15));
+    }
+    $int14 = ~minmax(1, 99, $int14);
+} else {
+    $int14 = 1;
+}
 def_stat $stat16 = null;
 def_int $int17 = 1;
-def_int $int18 = db_getfieldcount(%varplayer_3373, dbtable_0:col20);
+def_int $int18 = db_getfieldcount(%varplayer_3373, dbtable_0:col21);
 $int12 = 0;
 while ($int12 < $int18) {
-    $stat16, $int17 = db_getfield(%varplayer_3373, dbtable_0:col20, $int12);
+    $stat16, $int17 = db_getfield(%varplayer_3373, dbtable_0:col21, $int12);
     $stat16, $int17 = ~script5911(%varplayer_3373, $stat16, $int17, $int14);
     if ($stat16 ! null & $int17 > 1) {
         $int6, $int5 = ~script5912($component1, $int6, $int5, "<tostring($int17)> <enum(stat, string, enum_680, $stat16)>");
     }
     $int12 = calc($int12 + 1);
 }
-if ($int14 > 20) {
+$int18 = db_getfieldcount(%varplayer_3373, dbtable_0:col22);
+$int12 = 0;
+while ($int12 < $int18) {
+    $stat16, $int17 = db_getfield(%varplayer_3373, dbtable_0:col22, $int12);
+    $stat16, $int17 = ~script5994(%varplayer_3373, $stat16, $int17, $int14);
+    if ($stat16 ! null & $int17 > 1) {
+        $int6, $int5 = ~script5912($component1, $int6, $int5, "<tostring($int17)> <enum(stat, string, enum_680, $stat16)>");
+    }
+    $int12 = calc($int12 + 1);
+}
+$int18 = db_getfieldcount(%varplayer_3373, dbtable_0:col33);
+$int12 = 0;
+while ($int12 < $int18) {
+    $stat16, $int17 = db_getfield(%varplayer_3373, dbtable_0:col33, $int12);
+    $stat16, $int17 = ~script6809(%varplayer_3373, $stat16, $int17, $int14);
+    if ($stat16 ! null & $int17 > 1) {
+        $int6, $int5 = ~script5912($component1, $int6, $int5, "<tostring($int17)> <enum(stat, string, enum_680, $stat16)>");
+    }
+    $int12 = calc($int12 + 1);
+}
+if ($int14 > 1) {
     $int6, $int5 = ~script5912($component1, $int6, $int5, "Level <tostring($int14)> in all combat stats");
+}
+if (db_getfield(%varplayer_3373, dbtable_0:col35, 0) > 0) {
+    $int6, $int5 = ~script5912($component1, $int6, $int5, "<enum(int, string, enum_252, db_getfield(%varplayer_3373, dbtable_0:col35, 0))> Player Owned House");
 }
 $int6, $int5 = ~speedrunning_misc_unlocks(%varplayer_3373, $component1, $int6, $int5);
 if ($int9 = 1) {
@@ -77,12 +115,12 @@ cc_settext("Items");
 cc_settextshadow(true);
 $int5 = 23;
 $int6 = calc($int6 + 1);
-$int6, $int5 = ~script5910($component3, %varplayer_3373, 94, $int6, $int5);
-$int6, $int5 = ~script5910($component3, %varplayer_3373, 93, $int6, $int5);
+$int6, $int5 = ~script5910($component3, %varplayer_3373, inv_94, $int6, $int5);
+$int6, $int5 = ~script5910($component3, %varplayer_3373, inv_93, $int6, $int5);
 if ($int5 = 23) {
     $int6, $int5 = ~script5912($component3, $int6, $int5, "None");
 }
-if (db_getfieldcount(%varplayer_3373, dbtable_0:col35) > 0) {
+if (~script6808(%varplayer_3373, inv_95) > 0) {
     $int5 = calc($int5 + 3);
     cc_create($component3, ^iftype_text, $int6);
     cc_setsize(6, 20, ^setsize_minus, ^setsize_abs);
@@ -94,7 +132,7 @@ if (db_getfieldcount(%varplayer_3373, dbtable_0:col35) > 0) {
     cc_settextshadow(true);
     $int5 = calc($int5 + 22);
     $int6 = calc($int6 + 1);
-    $int6, $int5 = ~script5910($component3, %varplayer_3373, 95, $int6, $int5);
+    $int6, $int5 = ~script5910($component3, %varplayer_3373, inv_95, $int6, $int5);
 }
 $int5 = calc($int5 + 3);
 if ($int5 > $int19) {
