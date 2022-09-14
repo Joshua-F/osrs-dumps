@@ -1,32 +1,22 @@
 // 5910
-[proc,script5910](component $component0, dbrow $dbrow1, int $int2, int $int3, int $int4)(int, int)
+[proc,script5910](component $component0, dbrow $dbrow1, inv $inv2, int $int3, int $int4)(int, int)
 def_int $int5 = 0;
-def_int $int6 = 0;
-switch_int ($int2) {
-    case 94 :
-        $int6 = db_getfieldcount($dbrow1, dbtable_0:col34);
-    case 93 :
-        $int6 = db_getfieldcount($dbrow1, dbtable_0:col33);
-    case 95 :
-        $int6 = db_getfieldcount($dbrow1, dbtable_0:col35);
-}
-if ($int6 <= 0) {
+def_int $int6 = db_getfieldcount($dbrow1, dbtable_0:col31);
+if ($inv2 = null | $int6 <= 0) {
     return($int3, $int4);
 }
 def_obj $obj7 = null;
 def_int $int8 = 0;
+def_inv $inv9 = null;
 def_string $string0 = ",";
 while ($int5 < $int6) {
-    switch_int ($int2) {
-        case 94 :
-            $obj7, $int8 = db_getfield($dbrow1, dbtable_0:col34, $int5);
-        case 93 :
-            $obj7, $int8 = db_getfield($dbrow1, dbtable_0:col33, $int5);
-        case 95 :
-            $obj7, $int8 = db_getfield($dbrow1, dbtable_0:col35, $int5);
-    }
-    if ($obj7 ! null & $int8 ! -1 & $int8 > 0) {
-        $int3, $int4 = ~script5912($component0, $int3, $int4, "<oc_name($obj7)> x <~tostring_spacer($int8, $string0)>");
+    $inv9, $obj7, $int8 = db_getfield($dbrow1, dbtable_0:col31, $int5);
+    if ($inv9 ! null & $inv9 = $inv2 & $obj7 ! null & $int8 ! -1 & $int8 > 0) {
+        if ($int8 = 1) {
+            $int3, $int4 = ~script5912($component0, $int3, $int4, oc_name($obj7));
+        } else {
+            $int3, $int4 = ~script5912($component0, $int3, $int4, "<oc_name($obj7)> x <~tostring_spacer($int8, $string0)>");
+        }
     }
     $int5 = calc($int5 + 1);
 }
