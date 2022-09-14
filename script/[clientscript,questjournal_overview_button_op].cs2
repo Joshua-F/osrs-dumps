@@ -1,0 +1,14 @@
+// 6823
+[clientscript,questjournal_overview_button_op](component $component, int $int1, int $int2, int $int3, int $int4, string $string)
+if ($int2 ! 1) {
+    return;
+}
+sound_synth(synth_2266, 1, 0);
+if (cc_find($component, $int1) = true) {
+    cc_setcolour($int3);
+    cc_setop(1, "");
+    cc_setonop(null);
+    cc_setonmouserepeat(null);
+    cc_setonmouseleave(null);
+    cc_setontimer("questjournal_overview_button_reset($component, $int1, calc(clientclock + 40), $int3, $int4, $string)");
+}
