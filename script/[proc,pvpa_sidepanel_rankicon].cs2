@@ -1,13 +1,31 @@
 // 6270
-[proc,pvpa_sidepanel_rankicon](int $int0, int $int1)(graphic)
+[proc,pvpa_sidepanel_rankicon](int $int0, int $int1, int $int2)(graphic)
 if ($int1 <= -1) {
     return(enum(int, graphic, enum_3798, -1));
 }
 if ($int1 = 127) {
     return(enum(int, graphic, enum_3798, -5));
 }
-def_int $int2 = activeclansettings_getaffinedslot(removetags(activeclanchannel_getuserdisplayname($int0)));
-if ($int2 ! -1 & activeclansettings_getaffinedextrainfo($int2, 20, 31) ! 0) {
+def_int $int3 = activeclansettings_getaffinedslot(removetags(activeclanchannel_getuserdisplayname($int0)));
+if ($int3 ! -1 & activeclansettings_getaffinedextrainfo($int3, 20, 31) ! 0) {
+    if ($int2 = 1 & %varplayerbit_14013 = 0) {
+        switch_int (~pvpa_getrank(%varplayerbit_13990)) {
+            case 26 :
+                return(enum(int, graphic, enum_3798, -4));
+            case 6 :
+                return("pvpa_rankicons,6");
+            case 5 :
+                return("pvpa_rankicons,5");
+            case 4 :
+                return("pvpa_rankicons,4");
+            case 3 :
+                return("pvpa_rankicons,3");
+            case 2 :
+                return("pvpa_rankicons,2");
+            case 1 :
+                return("pvpa_rankicons,1");
+        }
+    }
     return("pvpa_rankicons,7");
 }
 switch_int (calc($int1 - 100)) {
