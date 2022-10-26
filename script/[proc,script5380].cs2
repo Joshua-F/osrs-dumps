@@ -2,8 +2,14 @@
 [proc,script5380](stat $stat, int $int1)(int)
 def_int $int2 = stat_visible_xp($stat);
 def_int $int3 = 0;
+def_int $int4 = ~private_event_world;
+def_int $int5 = 0;
 if ($stat = slayer) {
-    $int3 = calc(scale(%varplayerbit_13670, 100, ~max(100, %varplayerbit_13669)) / 10);
+    $int5 = %varplayerbit_13669;
+    if ($int4 = 3) {
+        $int5 = calc($int5 * 10);
+    }
+    $int3 = calc(scale(%varplayerbit_13670, 100, ~max(100, $int5)) / 10);
     if ($int3 ! 0 & abs(calc(~xptracker_get_slayer_xp(0) - $int3)) <= 1) {
         return(calc(($int1 - $int2 - 1) / $int3 + 1));
     }
@@ -16,47 +22,65 @@ if (%varclient_568 ! %varplayerbit_6100 & %varplayerbit_6100 ! 0) {
     %varclient_568 = %varplayerbit_6100;
 }
 def_enum $enum = enum(int, enum, enum_3908, %varplayerbit_357);
-def_int $int5 = %varplayer_43;
-if ($int5 = 4 & %varplayerbit_2668 = 1) {
-    $int5 = 5;
+def_int $int7 = %varplayer_43;
+if ($int7 = 4 & %varplayerbit_2668 = 1) {
+    $int7 = 5;
 }
-def_struct $struct = enum(int, struct, $enum, $int5);
-def_int $int7 = 0;
-if (%varplayerbit_357 = 23 | %varplayerbit_357 = 28) {
-    $int7 = 1;
-}
-def_int $int8 = 0;
+def_struct $struct = enum(int, struct, $enum, $int7);
 def_int $int9 = 0;
+if (%varplayerbit_357 = 23 | %varplayerbit_357 = 28) {
+    $int9 = 1;
+}
 def_int $int10 = 0;
-if (($int7 = 1 & %varplayer_43 = 3 | %varplayerbit_2668 = 1) & $stat = defence) {
+def_int $int11 = 0;
+def_int $int12 = 0;
+if (($int9 = 1 & %varplayer_43 = 3 | %varplayerbit_2668 = 1) & $stat = defence) {
     $int3 = %varclient_568;
-    $int8 = %varplayerbit_13094;
-    $int9 = 3;
+    $int10 = %varplayerbit_13094;
+    if ($int4 = 3) {
+        $int10 = calc($int10 * 10);
+    }
+    $int11 = 3;
 } else {
     switch_stat ($stat) {
         case attack :
-            $int9 = struct_param($struct, param_1401);
-            $int8 = %varplayerbit_13092;
+            $int11 = struct_param($struct, param_1401);
+            $int10 = %varplayerbit_13092;
+            if ($int4 = 3) {
+                $int10 = calc($int10 * 10);
+            }
         case strength :
-            $int9 = struct_param($struct, param_1402);
-            $int8 = %varplayerbit_13093;
+            $int11 = struct_param($struct, param_1402);
+            $int10 = %varplayerbit_13093;
+            if ($int4 = 3) {
+                $int10 = calc($int10 * 10);
+            }
         case ranged :
-            $int9 = struct_param($struct, param_1405);
-            $int8 = %varplayerbit_13091;
+            $int11 = struct_param($struct, param_1405);
+            $int10 = %varplayerbit_13091;
+            if ($int4 = 3) {
+                $int10 = calc($int10 * 10);
+            }
         case defence :
-            $int9 = struct_param($struct, param_1403);
-            $int8 = %varplayerbit_13094;
+            $int11 = struct_param($struct, param_1403);
+            $int10 = %varplayerbit_13094;
+            if ($int4 = 3) {
+                $int10 = calc($int10 * 10);
+            }
         case hitpoints :
-            $int9 = struct_param($struct, param_1404);
-            $int8 = %varplayerbit_13095;
+            $int11 = struct_param($struct, param_1404);
+            $int10 = %varplayerbit_13095;
+            if ($int4 = 3) {
+                $int10 = calc($int10 * 10);
+            }
     }
 }
-if ($int9 <= 0) {
+if ($int11 <= 0) {
     return(-2);
 }
-$int3 = scale(%varclient_568, 3, ~max(3, $int9));
+$int3 = scale(%varclient_568, 3, ~max(3, $int11));
 if ($int3 <= 0) {
     return(-2);
 }
-$int3 = scale($int3, 100, ~max(100, $int8));
+$int3 = scale($int3, 100, ~max(100, $int10));
 return(calc(($int1 - $int2 - 1) / $int3 + 1));
