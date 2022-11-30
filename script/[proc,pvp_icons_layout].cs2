@@ -7,15 +7,14 @@ def_int $int3 = 0;
 def_enum $enum4 = ~toplevel_getcomponents;
 def_int $int5 = 15;
 def_int $int6 = 0;
-def_boolean $boolean7 = ~deadman_world;
-def_int $int8 = ~wilderness_level;
-if ($boolean7 = false & if_gettop = interface_80) {
+def_int $int7 = ~wilderness_level;
+if (~deadman_world ! 0 & if_gettop = interface_80) {
     if_sethide(true, interface_90:com_0);
     return;
 } else {
     if_sethide(false, interface_90:com_0);
 }
-if (~pvpw_check = true) {
+if (~pvp_world = true) {
     if_setsize(78, 73, ^setsize_abs, ^setsize_abs, interface_90:com_44);
     if (%varclient_53 = true) {
         $int5 = 0;
@@ -25,7 +24,7 @@ if (~pvpw_check = true) {
     if_sethide(false, interface_90:com_49);
     if_setposition(0, 18, ^setpos_abs_centre, ^setpos_abs_bottom, interface_90:com_49);
     if_setgraphic("pvpw_icons,0", interface_90:com_46);
-    ~pvp_icons_comlevelrange($int8);
+    ~pvp_icons_comlevelrange($int7);
     ~pvp_icons_toggletargetsystem(true);
     if_sethide(true, interface_90:com_51);
     if_sethide(true, interface_90:com_1);
@@ -50,7 +49,7 @@ if (~pvpw_check = true) {
     } else {
         if_setposition(0, 24, ^setpos_abs_centre, ^setpos_abs_bottom, interface_90:com_53);
     }
-} else if ($boolean7 = true) {
+} else if (~deadman_world ! 0) {
     $int5 = 0;
     if_setcolour(0xff981f, interface_90:com_50);
     if (if_gettop = interface_80) {
@@ -82,7 +81,7 @@ if (~pvpw_check = true) {
         if_setontimer(null, interface_90:com_1);
         if_sethide(true, interface_90:com_1);
     }
-    if (~deadman_mode = 3) {
+    if (~deadman_world = 3) {
         if (%varplayerbit_1463 = 1) {
             if_setgraphic(null, interface_90:com_46);
         } else {
@@ -107,7 +106,7 @@ if (~pvpw_check = true) {
             if_setposition(0, 43, ^setpos_abs_centre, ^setpos_abs_bottom, interface_90:com_50);
             if_sethide(false, interface_90:com_49);
             if_setposition(0, 30, ^setpos_abs_centre, ^setpos_abs_bottom, interface_90:com_49);
-            ~pvp_icons_comlevelrange($int8);
+            ~pvp_icons_comlevelrange($int7);
             if_sethide(false, interface_90:com_51);
             if_settext(~deadman_skullduration, interface_90:com_51);
             if_setposition(0, 18, ^setpos_abs_centre, ^setpos_abs_bottom, interface_90:com_51);
@@ -116,7 +115,7 @@ if (~pvpw_check = true) {
             if_setposition(0, 31, ^setpos_abs_centre, ^setpos_abs_bottom, interface_90:com_50);
             if_sethide(false, interface_90:com_49);
             if_setposition(0, 18, ^setpos_abs_centre, ^setpos_abs_bottom, interface_90:com_49);
-            ~pvp_icons_comlevelrange($int8);
+            ~pvp_icons_comlevelrange($int7);
             if_sethide(true, interface_90:com_51);
         }
     } else if (%varplayerbit_4854 > 0) {
@@ -190,7 +189,7 @@ if (~pvpw_check = true) {
     if_setcolour(^yellow, interface_90:com_50);
     if (~on_enhanced_any = true & %varclient_53 = true) {
         if_sethide(false, interface_90:com_49);
-        ~pvp_icons_comlevelrange($int8);
+        ~pvp_icons_comlevelrange($int7);
         if_setcolour(^yellow, interface_90:com_49);
         $int5 = 0;
         if_setposition(0, 16, ^setpos_abs_centre, ^setpos_abs_bottom, interface_90:com_49);
@@ -262,10 +261,10 @@ if (~on_enhanced_any = true) {
     if_sethide(true, interface_90:com_53);
 }
 if_setposition(0, $int5, ^setpos_abs_centre, ^setpos_abs_top, interface_90:com_45);
-def_int $int9 = enum(enum, int, enum_1135, $enum4);
+def_int $int8 = enum(enum, int, enum_1135, $enum4);
 if (~on_mobile = true) {
     if_setposition(40, 0, ^setpos_abs_right, ^setpos_abs_bottom, interface_90:com_44);
-} else if ($int9 > 0) {
+} else if ($int8 > 0) {
     if_setposition(29, calc(170 - $int5), ^setpos_abs_right, ^setpos_abs_top, interface_90:com_44);
 } else {
     if_setposition(0, 40, ^setpos_abs_right, ^setpos_abs_bottom, interface_90:com_44);
