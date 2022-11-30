@@ -1,26 +1,24 @@
 // 2529
 [proc,deadman_restricted_item](obj $obj)(boolean)
-def_int $int1 = oc_param($obj, param_568);
-if ($int1 = 0) {
+def_int $int = oc_param($obj, param_568);
+if ($int = 0) {
     return(false);
 }
-def_int $int2 = 0;
-$int2 = ~deadman_mode;
-switch_int ($int2) {
+switch_int (~deadman_world) {
     case 0 :
-        if ($int1 ! 0) {
+        if ($int ! 0) {
             return(true);
         }
     case 1 :
-        if ($int1 ! 1 & $int1 ! 5) {
+        if ($int ! 1 & $int ! 5) {
             return(true);
         }
     case 2 :
-        if ($int1 ! 1 & $int1 ! 2 & $int1 ! 4) {
+        if ($int ! 1 & $int ! 2 & $int ! 4) {
             return(true);
         }
     case 3 :
-        if ($int1 ! 1 & $int1 ! 3 & $int1 ! 4) {
+        if ($int ! 1 & $int ! 3 & $int ! 4) {
             return(true);
         }
 }
