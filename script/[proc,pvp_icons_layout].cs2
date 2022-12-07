@@ -59,7 +59,9 @@ if (~pvp_world = true) {
     }
     if (%varplayer_1676 >= 4) {
         $int6 = 12;
-        if (~private_event_world = 1) {
+        if (~private_event_world = 4) {
+            $int6 = 2;
+        } else if (~private_event_world = 1) {
             $int6 = 8;
         } else if (%varplayerbit_1497 = 2) {
             $int6 = 13;
@@ -84,6 +86,8 @@ if (~pvp_world = true) {
     if (~deadman_world = 3) {
         if (%varplayerbit_1463 = 1) {
             if_setgraphic(null, interface_90:com_46);
+        } else if (~private_event_world ! 0) {
+            if_setgraphic(enum(int, graphic, enum_4042, -1), interface_90:com_46);
         } else {
             if_setgraphic(enum(int, graphic, enum_4042, %varplayerbit_13017), interface_90:com_46);
         }
