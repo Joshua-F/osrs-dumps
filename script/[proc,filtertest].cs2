@@ -7,8 +7,19 @@ if ($int1 < %varclient_383) {
     return(false);
 }
 if (enum(int, boolean, enum_892, $chattype0) = true & $chattype0 ! ^chattype_playerrelated) {
-    if ($chattype0 = ^chattype_spam & %varplayerbit_26 = 1) {
-        return(false);
+    switch_int ($chattype0) {
+        case ^chattype_spam :
+            if (%varplayerbit_26 = 1) {
+                return(false);
+            }
+        case ^chattype_dialogue :
+            if (%varplayerbit_14709 = 0) {
+                return(false);
+            }
+        case ^chattype_mesbox :
+            if (%varplayerbit_14710 = 0) {
+                return(false);
+            }
     }
     return(true);
 }
