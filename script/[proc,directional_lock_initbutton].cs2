@@ -1,0 +1,9 @@
+// 6979
+[proc,directional_lock_initbutton](component $component, graphic $graphic, string $string)
+~directional_lock_setbutton($component, $graphic, $string, false, 0);
+if (~on_mobile = false) {
+    if_setonmouserepeat("directional_lock_setbutton(event_com, $graphic, $string, true)", $component);
+}
+if_setonmouseleave("directional_lock_setbutton(event_com, $graphic, $string, false)", $component);
+if_setop(1, removetags($string), $component);
+if_setontimer(null, $component);
