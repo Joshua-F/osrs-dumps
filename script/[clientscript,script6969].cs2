@@ -1,0 +1,18 @@
+// 6969
+[clientscript,script6969](component $component, string $string)
+sound_synth(synth_6652, 1, 0);
+~directional_lock_setbutton($component, null, $string, true, 1);
+if_setonmouserepeat(null, $component);
+if_setonmouseleave(null, $component);
+if_setonop(null, $component);
+if_clearops($component);
+def_int $int1 = 0;
+def_int $int2 = ~combination_lock_getvar($int1);
+$int1 = calc($int1 + 1);
+while ($int1 < 6) {
+    $int2 = calc($int2 * 10);
+    $int2 = calc($int2 + ~combination_lock_getvar($int1));
+    $int1 = calc($int1 + 1);
+}
+resume_countdialog(tostring($int2));
+if_setontimer("script6970($component, $string, calc(clientclock + 40), false)", $component);
