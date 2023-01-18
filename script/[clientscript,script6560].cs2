@@ -5,10 +5,7 @@ if_sethide(true, interface_378:com90);
 def_string $string0 = "";
 def_string $string1 = "";
 if (cc_find(interface_378:com89, 0) = ^true) {
-    if (cc_crmview_gethasresponse = false) {
-        cc_delete;
-        ~script6562(null, "");
-    } else {
+    if (cc_crmview_gethasresponse = true) {
         $string0 = cc_crmview_getstring("op_text");
         $string1 = cc_crmview_getstring("op_text_ios");
         if (string_length($string0) <= 0) {
@@ -24,6 +21,9 @@ if (cc_find(interface_378:com89, 0) = ^true) {
             if_setop(1, $string0, interface_378:com94);
         }
         ~script533;
+    } else {
+        cc_delete;
+        ~script6562(null, "");
     }
 } else {
     ~script6562(null, "");
