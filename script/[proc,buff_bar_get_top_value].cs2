@@ -1,5 +1,6 @@
 // 5342
 [proc,buff_bar_get_top_value](struct $struct)(int)
+def_int $int = 0;
 switch_struct ($struct) {
     case struct_3740 :
         if (%varplayer_102 > 0 & %varplayer_102 < 1000000) {
@@ -8,6 +9,19 @@ switch_struct ($struct) {
     case struct_3741 :
         if (%varplayer_102 >= 1000000) {
             return(~script5347(%varplayer_102));
+        }
+    case struct_4457 :
+        if (%varplayerbit_14692 = 50) {
+            return(calc(1 + (%varplayerbit_14692 - 5) / 5));
+        } else if (%varplayerbit_14692 < 5) {
+            return(1);
+        } else {
+            $int = calc(1 + (%varplayerbit_14692 - 5) / 5);
+            if (calc(%varplayerbit_14692 % 5) = calc(5 - 1)) {
+                return(calc($int + 1));
+            } else {
+                return($int);
+            }
         }
 }
 return(struct_param($struct, param_1556));
