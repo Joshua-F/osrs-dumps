@@ -1,5 +1,6 @@
 // 5342
 [proc,script5342](struct $struct0)(int)
+def_int $int1 = 0;
 switch_struct ($struct0) {
     case struct_3740 :
         if (%varplayer_102 > 0 & %varplayer_102 < 1000000) {
@@ -8,6 +9,19 @@ switch_struct ($struct0) {
     case struct_3741 :
         if (%varplayer_102 >= 1000000) {
             return(~script5347(%varplayer_102));
+        }
+    case struct_4457 :
+        if (%varplayerbit_14692 = 50) {
+            return(calc(1 + (%varplayerbit_14692 - 5) / 5));
+        } else if (%varplayerbit_14692 < 5) {
+            return(1);
+        } else {
+            $int1 = calc(1 + (%varplayerbit_14692 - 5) / 5);
+            if (calc(%varplayerbit_14692 % 5) = calc(5 - 1)) {
+                return(calc($int1 + 1));
+            } else {
+                return($int1);
+            }
         }
 }
 return(struct_param($struct0, param_1556));
