@@ -1,0 +1,11 @@
+// 6902
+[proc,fishing_spot_indicator_setup_inner](entityoverlay $entityoverlay, struct $struct, npc_uid $npc_uid, int $int, loc $loc, coord $coord)
+if (~on_enhanced_any = false) {
+    return;
+}
+if (if_find_entityoverlay($entityoverlay) = true) {
+    cc_setonvartransmit("fishing_spot_indicator_vartransmit($entityoverlay, $struct, %varplayerbit_12349, %varplayerbit_12350, %varplayerbit_12351, $npc_uid, $int, $loc, $coord){varplayer_2856, varplayer_3074}");
+    cc_setoninvtransmit("fishing_spot_indicator_invtransmit($entityoverlay, $struct, $npc_uid, $int, $loc, $coord){inv_93, inv_94}");
+    cc_setonstattransmit("fishing_spot_indicator_stattransmit($entityoverlay, $struct, stat(fishing), $npc_uid, $int, $loc, $coord){fishing, agility, strength}");
+}
+~fishing_spot_indicator_create($entityoverlay, $struct, $npc_uid, $int, $loc, $coord);
