@@ -7,6 +7,9 @@ switch_dbtable (db_getrowtable($dbrow)) {
     case dbtable_15 :
         $int = ~helper_generic_add_title("Talk-to", 0);
         $npc = db_getfield($dbrow, dbtable_15:col1, 0);
+        if ($npc = npc_11876 & %varplayerbit_334 < 28) {
+            $npc = null;
+        }
         if ($npc ! null) {
             $int = ~helper_generic_add_text(nc_name($npc));
         } else {
