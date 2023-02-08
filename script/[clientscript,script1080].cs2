@@ -1,14 +1,22 @@
 // 1080
-[clientscript,script1080](string $string0)
+[clientscript,script1080](string $string0, string $string1)
 if (string_length($string0) > 0 & ~on_ios = false) {
     if_sethide(false, interface_378:com_7);
     if_settrans(255, interface_378:com_7);
-    if_setonmouserepeat("settrans(event_com, 220)", interface_378:com_7);
-    if_setonmouseleave("settrans(event_com, 255)", interface_378:com_7);
-    if_setonclick("openurl_raw($string0, true, true)", interface_378:com_7);
+    if (~on_mobile = false) {
+        if_setonmouserepeat("settrans(event_com, 220)", interface_378:com_7);
+        if_setonmouseleave("settrans(event_com, 255)", interface_378:com_7);
+    }
+    if (string_length($string1) > 0) {
+        if_setop(1, $string1, interface_378:com_7);
+    } else {
+        if_setop(1, "Open Link", interface_378:com_7);
+    }
+    if_setonop("openurl_raw($string0, true, true)", interface_378:com_7);
 } else {
     if_sethide(true, interface_378:com_7);
     if_setonmouseover(null, interface_378:com_7);
     if_setonmouseleave(null, interface_378:com_7);
-    if_setonclick(null, interface_378:com_7);
+    if_setop(1, "", interface_378:com_7);
+    if_setonop(null, interface_378:com_7);
 }
