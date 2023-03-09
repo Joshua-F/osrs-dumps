@@ -1,0 +1,24 @@
+// 3309
+[proc,prayer_passfilter](obj $obj0)(boolean)
+def_int $int1 = 1;
+def_int $int2 = 1;
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_boolean $boolean5 = false;
+def_boolean $boolean6 = false;
+def_boolean $boolean7 = false;
+def_obj $obj8 = oc_param($obj0, param_1760);
+$int1, $int2, $int3, $int4, $boolean5, $boolean6, $boolean7 = ~prayer_overrides;
+if (%varplayerbit_6577 = 1 & ~script4547($obj0, $int1) = false) {
+    return(false);
+}
+if (%varplayerbit_6578 = 1 & ~prayer_isavailable_req($obj0, $boolean6, $int2, $boolean5, $int3, $int4, $boolean7) = false) {
+    return(false);
+}
+if (%varplayerbit_6576 = 1 & oc_param($obj0, param_1758) = 1) {
+    return(false);
+}
+if ($obj8 ! null & %varplayerbit_6574 = 1 & (%varplayerbit_6575 = 1 | oc_param($obj8, param_1759) = oc_param($obj0, param_1759)) & ~script4547($obj8, $int1) = true & ~prayer_isavailable_req($obj8, $boolean6, $int2, $boolean5, $int3, $int4, $boolean7) = true) {
+    return(false);
+}
+return(true);
