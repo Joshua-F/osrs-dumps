@@ -1,25 +1,26 @@
 // 463
-[proc,prayer_updatebutton](boolean $boolean, int $int, component $component2, component $component3, component $component4)
-switch_int ($int) {
-    case 25 :
-        if_setonstattransmit("prayer_updatebutton($boolean, $int, $component2, cc_getid, .cc_getid, $component3, $component4){prayer, defence}", $component2);
-        if_setonvartransmit("prayer_updatebutton($boolean, $int, $component2, cc_getid, .cc_getid, $component3, $component4){varplayer_83, varplayer_1377, varplayer_2900, varplayer_1050, varplayer_284, varplayer_1636}", $component2);
-        if_setopbase("<col=ff9040><enum(int, string, enum_860, $int)></col>", $component2);
-    case 26 :
-        if_setonstattransmit("prayer_updatebutton($boolean, $int, $component2, cc_getid, .cc_getid, $component3, $component4){prayer, defence}", $component2);
-        if_setonvartransmit("prayer_updatebutton($boolean, $int, $component2, cc_getid, .cc_getid, $component3, $component4){varplayer_83, varplayer_1377, varplayer_2900, varplayer_1050, varplayer_284, varplayer_1636}", $component2);
-        if_setopbase("<col=ff9040><enum(int, string, enum_860, $int)></col>", $component2);
-    case 24, 27, 28 :
-        if_setonstattransmit("prayer_updatebutton($boolean, $int, $component2, cc_getid, .cc_getid, $component3, $component4){prayer, defence}", $component2);
-        if_setonvartransmit("prayer_updatebutton($boolean, $int, $component2, cc_getid, .cc_getid, $component3, $component4){varplayer_83, varplayer_1377, varplayer_2900, varplayer_1429, varplayer_284}", $component2);
-        if_setopbase("<col=ff9040><enum(int, string, enum_860, $int)></col>", $component2);
+[proc,prayer_updatebutton](boolean $boolean, obj $obj, component $component2, component $component3, component $component4)
+switch_obj ($obj) {
+    case obj_20828 :
+        if_setonstattransmit("prayer_updatebutton($boolean, $obj, $component2, $component3, $component4){prayer, defence}", $component2);
+        if_setonvartransmit("prayer_updatebutton($boolean, $obj, $component2, $component3, $component4){varplayer_83, varplayer_1377, varplayer_2900, varplayer_1050, varplayer_284, varplayer_1636}", $component2);
+        if_setopbase("<col=ff9040><oc_param($obj, param_1752)></col>", $component2);
+    case obj_20829 :
+        if_setonstattransmit("prayer_updatebutton($boolean, $obj, $component2, $component3, $component4){prayer, defence}", $component2);
+        if_setonvartransmit("prayer_updatebutton($boolean, $obj, $component2, $component3, $component4){varplayer_83, varplayer_1377, varplayer_2900, varplayer_1050, varplayer_284, varplayer_1636}", $component2);
+        if_setopbase("<col=ff9040><oc_param($obj, param_1752)></col>", $component2);
+    case obj_20827, obj_20830, obj_20831 :
+        if_setonstattransmit("prayer_updatebutton($boolean, $obj, $component2, $component3, $component4){prayer, defence}", $component2);
+        if_setonvartransmit("prayer_updatebutton($boolean, $obj, $component2, $component3, $component4){varplayer_83, varplayer_1377, varplayer_2900, varplayer_1429, varplayer_284}", $component2);
+        if_setopbase("<col=ff9040><oc_param($obj, param_1752)></col>", $component2);
     case default :
-        if_setonstattransmit("prayer_updatebutton($boolean, $int, $component2, cc_getid, .cc_getid, $component3, $component4){prayer}", $component2);
-        if_setonvartransmit("prayer_updatebutton($boolean, $int, $component2, cc_getid, .cc_getid, $component3, $component4){varplayer_83, varplayer_1377, varplayer_2900, varplayer_284}", $component2);
-        if_setopbase("<col=ff9040><enum(int, string, enum_860, $int)></col>", $component2);
+        if_setonstattransmit("prayer_updatebutton($boolean, $obj, $component2, $component3, $component4){prayer}", $component2);
+        if_setonvartransmit("prayer_updatebutton($boolean, $obj, $component2, $component3, $component4){varplayer_83, varplayer_1377, varplayer_2900, varplayer_284}", $component2);
+        if_setopbase("<col=ff9040><oc_param($obj, param_1752)></col>", $component2);
 }
-if_setonop("prayer_op(event_op, $boolean, $int, $component2, cc_getid, .cc_getid, $component3, $component4)", $component2);
+if_setonop("prayer_op(event_op, $boolean, $obj, $component2, $component3, $component4)", $component2);
 if_clearops($component2);
+def_int $int = oc_param($obj, param_630);
 if ($boolean = true) {
     if_setop(2, "Info", $component2);
     if (testbit(%varplayerbit_4101, $int) = ^true) {
@@ -34,13 +35,13 @@ if ($boolean = true) {
     if_setop(1, "Activate", $component2);
     cc_sethide(true);
 }
-if (~prayer_isavailable($int) = true) {
-    .cc_setgraphic(enum(int, graphic, enum_865, $int));
+if (~prayer_isavailable($obj) = true) {
+    .cc_setgraphic(oc_param($obj, param_1757));
 } else {
-    .cc_setgraphic(enum(int, graphic, enum_864, $int));
+    .cc_setgraphic(oc_param($obj, param_1756));
 }
 if ($boolean = false & %varplayerbit_5711 = 0) {
-    if_setonmouserepeat("tooltip_mouserepeat(event_com, -1, $component4, ~prayer_gettooltiptext($int), 25, if_getwidth($component3))", $component2);
+    if_setonmouserepeat("tooltip_mouserepeat(event_com, -1, $component4, ~prayer_gettooltiptext($obj), 25, if_getwidth($component3))", $component2);
     if_setonmouseleave("deltooltip($component4)", $component2);
 } else {
     if_setonmouserepeat(null, $component2);

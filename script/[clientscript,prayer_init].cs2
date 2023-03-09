@@ -1,82 +1,22 @@
 // 458
-[clientscript,prayer_init](component $com_0, component $com_2, component $com_4, component $com_3, component $com_1, component $com_34)
-def_int $intarray(calc(28 + 1));
-def_int $int6 = 0;
-def_component $component = null;
-def_int $int8 = 0;
-def_int $int9 = 0;
-def_int $int10 = 0;
-while ($int10 <= 28) {
-    $component = enum(int, component, enum_859, $int10);
-    if ($component ! null) {
-        $intarray($int6) = $int10;
-        $int6 = calc($int6 + 1);
-        cc_deleteall($component);
-        cc_create($component, ^iftype_graphic, 0);
-        cc_setsize(34, 34, ^setsize_abs, ^setsize_abs);
-        cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
-        cc_setgraphic(prayerglow);
-        .cc_create($component, ^iftype_graphic, 1);
-        .cc_setsize(30, 30, ^setsize_abs, ^setsize_abs);
-        .cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
-        $int8, $int9 = cc_getid, .cc_getid;
-        ~prayer_updatebutton(false, $int10, $component, $com_4, $com_34);
-    }
-    $int10 = calc($int10 + 1);
-}
-if ($int6 > 0) {
-    ~prayer_quicksort(intarray0, 0, calc($int6 - 1));
-}
-def_int $int11 = if_getwidth(enum(int, component, enum_859, 0));
-def_int $int12 = calc((if_getwidth($com_4) - 5 * $int11) / 4 + $int11);
-def_int $int13 = 0;
-def_int $int14 = 0;
-while ($int14 < $int6) {
-    $int13 = calc($int14 / 5 * $int12);
-    if_setposition(calc($int14 % 5 * $int12), $int13, ^setpos_abs_left, ^setpos_abs_top, enum(int, component, enum_859, $intarray($int14)));
-    $int14 = calc($int14 + 1);
-}
-cc_deleteall($com_2);
-cc_create($com_2, ^iftype_graphic, 0);
-cc_setsize(17, 18, ^setsize_abs, ^setsize_abs);
-cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_centre);
-cc_setgraphic("options_icons_small,2");
-.cc_create($com_2, ^iftype_text, 1);
-.cc_setsize(24, 0, ^setsize_minus, ^setsize_minus);
-.cc_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_centre);
-.cc_setcolour(0xff981f);
-.cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
-.cc_settextshadow(true);
-.cc_settextfont(p12_full);
-~prayer_levelupdate;
-if_setonstattransmit("prayer_levelupdate(event_com, .cc_getid){prayer}", $com_2);
-def_string $string0 = "Enter";
-def_boolean $boolean15 = true;
-def_string $string1 = "Dismiss";
-def_boolean $boolean16 = false;
-cc_deleteall($com_1);
-if (~on_mobile = true) {
-    if_setposition(-40, 5, ^setpos_abs_centre, ^setpos_abs_bottom, $com_2);
-    if_setposition(40, 5, ^setpos_abs_centre, ^setpos_abs_bottom, $com_3);
-    if_sethide(false, $com_3);
-    if_setopbase("<col=ff9040>Info mode</col>", $com_3);
-    if_setsize(0, calc(4 + $int13 + 34 + 4), ^setsize_minus, ^setsize_abs, $com_1);
-    $int10 = 0;
-    while ($int10 < 4) {
-        cc_create($com_1, ^iftype_rectangle, $int10);
+[clientscript,prayer_init](component $com_0, component $com_7, component $com_3, component $com_8, component $com_2, component $com_4, component $com_41, component $com_6, component $com_38)
+def_int $int = 0;
+def_boolean $boolean = ~on_mobile;
+def_string $string0 = "Info";
+def_string $string1 = "Filters";
+if ($boolean = true) {
+    while ($int < 4) {
+        cc_create($com_2, ^iftype_rectangle, $int);
         cc_sethide(false);
         cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
-        cc_setsize(calc($int10 * 2), calc($int10 * 2), ^setsize_minus, ^setsize_minus);
+        cc_setsize(calc($int * 2), calc($int * 2), ^setsize_minus, ^setsize_minus);
         cc_setcolour(^white);
         cc_settrans(220);
         cc_setfill(true);
-        $int10 = calc($int10 + 1);
+        $int = calc($int + 1);
     }
-    ~prayer_infobutton($string0, $boolean15, $string1, $boolean16, $com_4, $int8, $int9, $com_3, $com_1, $com_34);
-} else {
-    if_setposition(0, 5, ^setpos_abs_centre, ^setpos_abs_bottom, $com_2);
-    if_sethide(true, $com_3);
-    if_setonop(null, $com_3);
-    if_clearops($com_3);
-    if_sethide(true, $com_1);
 }
+~script3156(null, $boolean, $com_8, $com_6, $com_3, $com_2, $com_4, $com_41, $com_38, $string0, $string1);
+~prayer_redraw($boolean, $com_7, $com_3, $com_8, $com_2, $com_4, $com_41, $com_6, $com_38, $string0, $string1);
+if_setonvartransmit("prayer_redraw($boolean, $com_7, $com_3, $com_8, $com_2, $com_4, $com_41, $com_6, $com_38, $string0, $string1){varplayer_1377, varplayer_2900, varplayer_1050, varplayer_2972, varplayer_3109, varplayer_1429}", $com_0);
+if_setonstattransmit("prayer_redraw($boolean, $com_7, $com_3, $com_8, $com_2, $com_4, $com_41, $com_6, $com_38, $string0, $string1){prayer}", $com_0);
