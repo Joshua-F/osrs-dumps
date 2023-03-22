@@ -17,8 +17,8 @@ def_int $rgb1 = 0xff981f;
 if (compare(lowercase($string1), lowercase(removetags(chat_playername))) = 0) {
     $rgb1 = ^white;
 }
-def_int $int2 = calc(~max(0, %varclient_178) * 11);
-def_int $int3 = ~script6723;
+def_int $int2 = calc(~max(0, %varclient_178) * 13);
+def_int $int3 = 22;
 def_int $int4 = calc(%varclient_178 * $int3);
 cc_create(interface_774:com32, ^iftype_rectangle, $int2);
 cc_setsize(0, $int3, ^setsize_minus, ^setsize_abs);
@@ -30,7 +30,9 @@ if (calc(%varclient_178 % 2) = 0) {
     $int5 = 246;
 }
 cc_settrans($int5);
+def_int $int6 = 0;
 if ($int0 = 2 & string_length($string1) > 0) {
+    $int6 = 1;
     if (~on_mobile = false) {
         cc_setonmouserepeat("cc_settrans(event_com, event_comsubid, 210, null)");
         cc_setonmouseleave("cc_settrans(event_com, event_comsubid, $int5, null)");
@@ -43,17 +45,45 @@ if ($int0 = 2 & string_length($string1) > 0) {
     }
     cc_setonop("toa_partydetails_kickmember(event_op, %varclient_178, event_com, event_comsubid, $string1, $int5)");
 }
-def_int $int6 = 0;
-$string0, $int6 = ~script6724(1, interface_774:com21, $string0, $int2, $int6, $int4, $rgb1);
-$string0, $int6 = ~script6724(2, interface_774:com22, $string0, $int2, $int6, $int4, $rgb1);
-$string0, $int6 = ~script6724(3, interface_774:com23, $string0, $int2, $int6, $int4, $rgb1);
-$string0, $int6 = ~script6724(4, interface_774:com24, $string0, $int2, $int6, $int4, $rgb1);
-$string0, $int6 = ~script6724(5, interface_774:com25, $string0, $int2, $int6, $int4, $rgb1);
-$string0, $int6 = ~script6724(6, interface_774:com26, $string0, $int2, $int6, $int4, $rgb1);
-$string0, $int6 = ~script6724(7, interface_774:com27, $string0, $int2, $int6, $int4, $rgb1);
-$string0, $int6 = ~script6724(8, interface_774:com28, $string0, $int2, $int6, $int4, $rgb1);
-$string0, $int6 = ~script6724(9, interface_774:com29, $string0, $int2, $int6, $int4, $rgb1);
-$string0, $int6 = ~script6724(10, interface_774:com30, $string0, $int2, $int6, $int4, $rgb1);
+def_int $int7 = 0;
+$string0, $int7 = ~script6724(1, interface_774:com21, $string0, $int2, $int7, $int4, $rgb1);
+$string0, $int7 = ~script6724(2, interface_774:com22, $string0, $int2, $int7, $int4, $rgb1);
+$string0, $int7 = ~script6724(3, interface_774:com23, $string0, $int2, $int7, $int4, $rgb1);
+$string0, $int7 = ~script6724(4, interface_774:com24, $string0, $int2, $int7, $int4, $rgb1);
+$string0, $int7 = ~script6724(5, interface_774:com25, $string0, $int2, $int7, $int4, $rgb1);
+$string0, $int7 = ~script6724(6, interface_774:com26, $string0, $int2, $int7, $int4, $rgb1);
+$string0, $int7 = ~script6724(7, interface_774:com27, $string0, $int2, $int7, $int4, $rgb1);
+$string0, $int7 = ~script6724(8, interface_774:com28, $string0, $int2, $int7, $int4, $rgb1);
+$string0, $int7 = ~script6724(9, interface_774:com29, $string0, $int2, $int7, $int4, $rgb1);
+$string0, $int7 = ~script6724(10, interface_774:com30, $string0, $int2, $int7, $int4, $rgb1);
+cc_create(interface_774:com32, ^iftype_graphic, calc($int2 + 11));
+.cc_create(interface_774:com32, ^iftype_graphic, calc($int2 + 12));
+if ($int6 = 1) {
+    cc_sethide(false);
+    .cc_sethide(false);
+    cc_setsize(16, 16, ^setsize_abs, ^setsize_abs);
+    .cc_setsize(16, 16, ^setsize_abs, ^setsize_abs);
+    $int4 = calc($int4 + ($int3 - 16) / 2);
+    cc_setposition(calc($int7 + 3), $int4, ^setpos_abs_left, ^setpos_abs_top);
+    .cc_setposition(3, $int4, ^setpos_abs_right, ^setpos_abs_top);
+    cc_setgraphic("scrollbar_trans_arrows,0");
+    .cc_setgraphic("scrollbar_trans_arrows,1");
+    if (~on_mobile = false) {
+        cc_setonmouseover("cc_settrans(event_com, event_comsubid, 150, null)");
+        cc_setonmouseleave("cc_settrans(event_com, event_comsubid, 0, null)");
+        .cc_setonmouseover("cc_settrans(event_com, event_comsubid, 150, null)");
+        .cc_setonmouseleave("cc_settrans(event_com, event_comsubid, 0, null)");
+    }
+    cc_setop(1, "Move up");
+    .cc_setop(1, "Move down");
+    cc_setopbase("<col=ff9040><$string1></col>");
+    .cc_setopbase("<col=ff9040><$string1></col>");
+    cc_setonop("toa_partydetails_sortmember(%varclient_178, true)");
+    .cc_setonop("toa_partydetails_sortmember(%varclient_178, false)");
+} else {
+    cc_sethide(true);
+    .cc_sethide(true);
+}
 %varclient_178 = calc(%varclient_178 + 1);
 if (string_length($string1) > 0) {
     %varclient_1087 = calc(%varclient_1087 + 1);
