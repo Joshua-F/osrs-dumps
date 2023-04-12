@@ -2,13 +2,13 @@
 [clientscript,quickprayer_button_op](int $int0, obj $obj1, component $component2, int $int3, int $int4)
 def_int $int5 = oc_param($obj1, param_630);
 if ($int0 = 1 & .cc_find($component2, $int4) = ^true) {
-    if (testbit(%varplayerbit_4102, $int5) = ^true) {
-        %varplayerbit_4102 = clearbit(%varplayerbit_4102, $int5);
+    if (testbit(~quickprayer_selected_get, $int5) = ^true) {
+        ~quickprayer_selected_set(clearbit(~quickprayer_selected_get, $int5));
     } else {
         if (~prayer_isavailable($obj1) = false) {
             return;
         }
-        %varplayerbit_4102 = setbit(%varplayerbit_4102, $int5);
+        ~quickprayer_selected_set(setbit(~quickprayer_selected_get, $int5));
     }
     sound_synth(synth_2266, 1, 0);
     if (cc_find($component2, $int3) = ^true) {
