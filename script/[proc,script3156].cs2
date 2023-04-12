@@ -8,6 +8,10 @@ def_int $int10 = 0;
 def_component $component11 = null;
 def_obj $obj = null;
 def_int $int13 = 0;
+def_enum $enum = enum_4956;
+if (%varplayerbit_14826 = 1) {
+    $enum = enum_4959;
+}
 if ($component0 = $component2) {
     if_sethide(false, $component2);
     if_setonclick("script3155(null, $boolean, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $string0, $string1)", $component2);
@@ -16,8 +20,8 @@ if ($component0 = $component2) {
     if_sethide(false, $component4);
     if_sethide(false, $component5);
     if_sethide(true, $component6);
-    while ($int10 <= 28) {
-        $obj = enum(int, obj, enum_4956, $int10);
+    while ($int10 < enum_getoutputcount($enum)) {
+        $obj = enum(int, obj, $enum, $int10);
         $component11 = oc_param($obj, param_1751);
         if ($component11 ! null & cc_find($component11, 0) = true & .cc_find($component11, 1) = true) {
             ~prayer_updatebutton(true, $obj, $component11, $component4, $component8);
@@ -73,8 +77,8 @@ if ($component0 = $component2) {
     if_sethide(true, $component5);
     if_sethide(true, $component6);
     $int10 = 0;
-    while ($int10 <= 28) {
-        $obj = enum(int, obj, enum_4956, $int10);
+    while ($int10 <= enum_getoutputcount($enum)) {
+        $obj = enum(int, obj, $enum, $int10);
         $component11 = oc_param($obj, param_1751);
         if ($component11 ! null & cc_find($component11, 0) = true & .cc_find($component11, 1) = true) {
             ~prayer_updatebutton(false, $obj, $component11, $component4, $component8);
