@@ -2,9 +2,17 @@
 [clientscript,orbs_update_specenergy](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5)
 if ($component0 ! null) {
     if_setnoclickthrough(true, $component4);
-    if_setonvartransmit("orbs_update_specenergy(null, $component1, $component2, $component3, $component4, $component5){varplayer_301, varplayer_300, varplayer_284, varplayer_1377, varplayer_243}", $component0);
+    if_setonvartransmit("orbs_update_specenergy(null, $component1, $component2, $component3, $component4, $component5){varplayer_301, varplayer_300, varplayer_3784, varplayer_284, varplayer_1377, varplayer_243}", $component0);
     if_setoninvtransmit("orbs_update_specenergy(null, $component1, $component2, $component3, $component4, $component5){inv_94}", $component0);
     if_setonsubchange("orbs_update_specenergy(null, $component1, $component2, $component3, $component4, $component5)", $component0);
 }
 ~orbs_spec_draw_button($component0, $component1, $component2, $component3, $component4, $component5);
-~orbs_update($component1, $component2, calc(%varplayer_300 / 10), 100);
+def_int $int6 = calc(%varplayer_300 / 10);
+def_int $int7 = 100;
+if (inv_getobj(inv_94, 3) = obj_25484) {
+    $int6, $int7 = %varplayer_3784, 5;
+    if_setgraphic("orb_icon,12", interface_160:com_41);
+} else {
+    if_setgraphic("orb_icon,6", interface_160:com_41);
+}
+~orbs_update($component1, $component2, $int6, $int7);
