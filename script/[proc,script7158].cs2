@@ -1,0 +1,18 @@
+// 7158
+[proc,script7158](string $string0, obj $obj0, int $int1)
+def_component $component2 = null;
+def_component $component3 = null;
+def_int $int4 = 0;
+def_int $int5 = ~loottracker_get_source_index($string0);
+if ($int5 >= 0) {
+    $component2 = ~loottracker_get_source_info_component($int5);
+    $component3 = ~loottracker_get_source_display_component($int5);
+    $int4 = ~script7177($component2, $obj0);
+    if ($int4 >= 0) {
+        ~loottracker_ui_item_increment($component2, $component3, $int4, $int1);
+        ~loottracker_ui_calc_gp($component2, $component3, $int5, $int4);
+    } else {
+        ~loottracker_ui_item_add($component2, $component3, $obj0, $int1);
+        ~loottracker_ui_redraw_display_full;
+    }
+}
