@@ -1,0 +1,21 @@
+// 7236
+[proc,ground_items_price](obj $obj0)(int, boolean)
+if ($obj0 = obj_995) {
+    return(1, true);
+}
+$obj0 = oc_uncert($obj0);
+def_int $int1 = 0;
+def_int $int2 = 0;
+def_boolean $boolean3 = true;
+if (%varplayerbit_14870 = 0 & oc_stockmarket($obj0) = true) {
+    $int2, $int1 = oc_stockmarketvalue($obj0);
+    if ($int2 = 2) {
+        return($int1, true);
+    } else {
+        $boolean3 = false;
+    }
+}
+if (oc_param($obj0, param_295) = 0) {
+    $int1 = ~script7127(oc_cost($obj0));
+}
+return($int1, $boolean3);
