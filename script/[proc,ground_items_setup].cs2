@@ -1,0 +1,148 @@
+// 7227
+[proc,ground_items_setup](coord $coord0)
+def_boolean $boolean1 = ~ground_items_edit_mode;
+def_boolean $boolean2 = ~ground_items_display_despawn_time;
+def_boolean $boolean3 = ~ground_items_display_visibility_time;
+def_int $int4 = objstack_size($coord0);
+def_int $int5 = 5;
+def_int $int6 = $int5;
+def_entityoverlay $entityoverlay7 = entityoverlay_get_coord($coord0, 0);
+if ($entityoverlay7 = null) {
+    if ($int4 <= 0) {
+        return;
+    }
+    $entityoverlay7 = entityoverlay_create_coord($coord0, 0, 1, calc(350 + 108), calc($int5 * 17), 1);
+}
+if ($int4 <= 0) {
+    entityoverlay_delete_coord($coord0, 0);
+    return;
+}
+def_obj $objarray0($int4);
+def_int $intarray1($int4);
+def_int $intarray2($int4);
+def_boolean $booleanarray3($int4);
+def_int $intarray4($int4);
+def_boolean $boolean8 = false;
+def_int $int9 = 0;
+def_int $int10 = $int4;
+def_obj $obj11 = null;
+def_obj $obj12 = null;
+def_int $int13 = -1;
+def_int $int14 = -1;
+def_int $int15 = 0;
+def_int $int16 = 0;
+def_int $int17 = 0;
+def_boolean $boolean18 = true;
+def_int $int19 = 0;
+if (%varplayerbit_14869 = 1) {
+    while ($int10 > 0) {
+        $int10 = calc($int10 - 1);
+        $obj11 = $obj12;
+        $obj12 = objstack_obj($coord0, $int10);
+        $boolean8 = ~ground_items_display($obj12);
+        $int9 = objstack_count($coord0, $int10);
+        $int13, $boolean18 = ~ground_items_price($obj12);
+        if (oc_stackable($obj12) = true) {
+            $int14 = ~min(^max_32bit_int, calc($int13 * $int9));
+        } else {
+            $int14 = $int13;
+        }
+        if ($boolean18 = false) {
+            $int19 = 1;
+        }
+        if (obj_findbyindex($coord0, $int10) = true & ~script7240($obj12) = true & (~script7228($int14) = true & $boolean8 = true | $boolean1 = true | ~ground_items_custom_highlight($obj12) = true)) {
+            if ($obj12 = $obj11) {
+                $int17 = calc($int17 - 1);
+                $intarray1($int17) = calc($intarray1($int17) + $int9);
+                $intarray4($int17) = ~min(^max_32bit_int, calc($intarray4($int17) + $int14));
+                if ($int15 > obj_despawntime) {
+                    $intarray2($int17) = $int10;
+                    $int15 = obj_despawntime;
+                }
+            } else {
+                $objarray0($int17) = $obj12;
+                $intarray1($int17) = $int9;
+                $booleanarray3($int17) = $boolean8;
+                $intarray4($int17) = $int14;
+                $intarray2($int17) = $int10;
+                $int15 = obj_despawntime;
+            }
+            $int17 = calc($int17 + 1);
+        }
+    }
+}
+def_int $int20 = 0;
+def_int $int21 = 0;
+cc_deleteall_entityoverlay($entityoverlay7);
+def_int $int22 = 0;
+if ($boolean1 = true) {
+    $int6 = $int17;
+    $int5 = $int17;
+    $int22 = 0;
+} else if ($int17 > $int5) {
+    $int6 = calc($int5 - 1);
+    $int22 = calc($int17 - $int6);
+} else {
+    $int5 = $int17;
+}
+if (if_find_entityoverlay($entityoverlay7) = ^true) {
+    cc_setsize(calc(350 + 108), calc($int5 * 17), ^setsize_abs, ^setsize_abs);
+}
+def_int $int23 = 6;
+def_int $int24 = -1;
+def_int $int25 = -1;
+if (%varplayerbit_14869 = 1) {
+    while ($int23 >= 0) {
+        $int10 = 0;
+        switch_int ($int23) {
+            case 6 :
+                $int24, $int25 = ~settings_get_colour_or_default(327), -1;
+            case 5 :
+                $int24, $int25 = ~settings_get_colour_or_default(322), %varplayer_3800;
+            case 4 :
+                $int24, $int25 = ~settings_get_colour_or_default(323), %varplayer_3801;
+            case 3 :
+                $int24, $int25 = ~settings_get_colour_or_default(324), %varplayer_3802;
+            case 2 :
+                $int24, $int25 = ~settings_get_colour_or_default(325), %varplayer_3803;
+            case 1 :
+                $int24, $int25 = ~settings_get_colour_or_default(326), %varplayer_3804;
+            case 0 :
+                $int24, $int25 = 16777215, 0;
+        }
+        while ($int10 < $int17 & $int20 < $int6) {
+            $obj12 = $objarray0($int10);
+            if ($obj12 ! null & ($int25 ! -1 & $intarray4($int10) >= $int25 | ~ground_items_custom_highlight($obj12) = true)) {
+                if ($boolean1 = true & $booleanarray3($int10) = false & $int23 ! 6) {
+                    $int21 = ~script7232($entityoverlay7, $coord0, $int20, $int21, $int5, $obj12, $intarray1($int10), $intarray4($int10), 10526880, $intarray2($int10), $boolean1, $boolean2, $boolean3);
+                } else {
+                    $int21 = ~script7232($entityoverlay7, $coord0, $int20, $int21, $int5, $obj12, $intarray1($int10), $intarray4($int10), $int24, $intarray2($int10), $boolean1, $boolean2, $boolean3);
+                }
+                $objarray0($int10) = null;
+                $int20 = calc($int20 + 1);
+            }
+            $int10 = calc($int10 + 1);
+        }
+        $int23 = calc($int23 - 1);
+    }
+    if ($int22 ! 0) {
+        cc_create_entityoverlay($entityoverlay7, ^iftype_text, $int21);
+        cc_setsize(108, 17, ^setsize_minus, ^setsize_abs);
+        cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_bottom);
+        cc_settextfont(p12_full);
+        cc_setcolour($int24);
+        cc_settextshadow(true);
+        cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+        cc_settext("and <tostring($int22)> more");
+    }
+}
+if (if_find_entityoverlay($entityoverlay7) = ^true) {
+    if ($int19 = 1) {
+        cc_setontimer("ground_items_polling($entityoverlay7, $coord0, clientclock, 1)");
+    } else {
+        cc_setontimer("ground_items_polling($entityoverlay7, $coord0, -1, -1)");
+    }
+    cc_setonkeydown("ground_items_key(event_keycode, $coord0)");
+    cc_setonkeyup("ground_items_key(event_keycode, $coord0)");
+    cc_setonvartransmit("ground_items_transmit($coord0){varplayer_3539, varplayer_3795, varplayer_3800, varplayer_3801, varplayer_3802, varplayer_3803, varplayer_3804, varplayer_3805, varplayer_3806, varplayer_3807, varplayer_3808, varplayer_3809, varplayer_3810}");
+}
