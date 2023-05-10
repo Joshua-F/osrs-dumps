@@ -1,0 +1,35 @@
+// 7094
+[proc,settings_textfield_input_update](component $component0, int $int1, struct $struct2, int $int3, component $component4, int $int5)
+def_string $string0 = struct_param($struct2, param_1360);
+if (~settings_textfield_has_text($int3) = 1) {
+    $string0 = ~settings_textfield_get_text($int3, 30);
+}
+def_boolean $boolean6 = ~script3957($struct2);
+def_boolean $boolean7 = ~on_mobile;
+def_int $int8 = 4;
+if ($boolean7 = true) {
+    $int8 = calc($int8 - 1);
+}
+if (cc_find($component0, $int1) = ^true) {
+    if (.cc_find($component0, calc($int1 + $int8)) = ^true) {
+        .cc_settext($string0);
+    }
+    if ($boolean6 = true) {
+        if ($boolean7 = false & .cc_find($component0, calc($int1 + 1)) = ^true) {
+            .cc_setonmouserepeat("cc_settrans_temporarily(event_com, calc($int1 + 1), 220, 250)");
+            .cc_setonmouseleave("cc_settrans(event_com, calc($int1 + 1), 250, null)");
+        }
+        if (.cc_find($component0, calc($int1 - 1)) = ^true) {
+            .cc_setcolour(0xff981f);
+        }
+    } else {
+        if ($boolean7 = false & .cc_find($component0, calc($int1 + 1)) = ^true) {
+            .cc_settrans(250);
+            .cc_setonmouserepeat(null);
+            .cc_setonmouseleave(null);
+        }
+        if (.cc_find($component0, calc($int1 - 1)) = ^true) {
+            .cc_setcolour(0x9f9f9f);
+        }
+    }
+}
