@@ -1,0 +1,31 @@
+// 7099
+[clientscript,script7099](component $com_79, component $com_90, component $com_91, component $com_43, component $com_78)
+cc_deleteall($com_90);
+if (~on_enhanced_any = false) {
+    if_sethide(true, $com_78);
+    return;
+}
+def_int $int5 = struct_param(struct_2753, param_1101);
+def_int $int6 = 0;
+def_int $int7 = if_getwidth($com_90);
+def_graphic $graphic = "options_icons,58";
+def_int $int9 = ~settings_get_slider(319);
+~settings_set_slider(319, $int9);
+def_string $string0 = "Mute Master";
+def_string $string1 = "Unmute Master";
+~settings_create_icon($int9, 319, $com_91, $com_90, $int5, $graphic, $com_79, $string0, $string1, $com_43);
+if_setonvartransmit("script3939(319, $com_91, $com_90, $int5, $graphic, $com_79, $string0, $string1, $com_43){varplayer_3796}", $com_91);
+if_setnoclickthrough(true, $com_91);
+if_setonclick("opsound(0, 0)", $com_91);
+while ($int6 <= $int5) {
+    cc_create($com_90, ^iftype_rectangle, $int6);
+    cc_setop(1, "Adjust Master Volume");
+    cc_setposition(scale($int6, $int5, $int7), 0, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(calc(scale(calc(1 + $int6), $int5, $int7) - scale($int6, $int5, $int7)), 0, ^setsize_abs, ^setsize_minus);
+    cc_setfill(true);
+    cc_setcolour(^white);
+    cc_settrans(255);
+    cc_setonop("settings_side_notch_op(319, $int6, $com_91, $com_90, $int5, $graphic, $com_79, $string0, $string1, $com_43)");
+    $int6 = calc($int6 + 1);
+}
+~script3941($int9, $com_91, $com_90, $int5);
