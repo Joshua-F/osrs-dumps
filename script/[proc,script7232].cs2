@@ -1,0 +1,109 @@
+// 7232
+[proc,script7232](entityoverlay $entityoverlay0, coord $coord1, int $int2, int $int3, int $int4, obj $obj5, int $int6, int $int7, int $int8, int $int9, boolean $boolean10, boolean $boolean11, boolean $boolean12)(int)
+def_int $int13 = calc(($int4 - $int2 - 1) * 17);
+cc_create_entityoverlay($entityoverlay0, ^iftype_text, $int3);
+$int3 = calc($int3 + 1);
+cc_setsize(108, 17, ^setsize_minus, ^setsize_abs);
+cc_setposition(0, $int13, ^setpos_abs_centre, ^setpos_abs_bottom);
+cc_settextfont(p12_full);
+cc_setcolour($int8);
+cc_settextshadow(true);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+def_string $string0 = removetags(oc_name($obj5));
+def_string $string1 = "Lots!";
+def_string $string2 = ",";
+if ($int7 < ^max_32bit_int) {
+    $string1 = "<~magic_spacer_tostring($int7, $string2)> gp";
+}
+if ($int6 > 1) {
+    $string0 = "<$string0> x <~magic_spacer_tostring($int6, $string2)>";
+}
+if ($obj5 ! obj_995) {
+    $string0 = "<$string0> (<$string1>)";
+}
+cc_settext($string0);
+def_int $int14 = parawidth($string0, 300, p12_full);
+def_graphic $graphic15 = null;
+def_graphic $graphic16 = null;
+if ($boolean10 = true) {
+    .cc_create_entityoverlay($entityoverlay0, ^iftype_graphic, $int3);
+    $int3 = calc($int3 + 1);
+    cc_create_entityoverlay($entityoverlay0, ^iftype_graphic, $int3);
+    $int3 = calc($int3 + 1);
+    if (~script7225(stringvector_4, $obj5, true) = true) {
+        $graphic15 = "ground_items_plusminus,4";
+        $graphic16 = "ground_items_plusminus,5";
+        $string0 = "Unhighlight <col=ff981f><removetags(oc_name($obj5))>";
+    } else {
+        $graphic15 = "ground_items_plusminus,0";
+        $graphic16 = "ground_items_plusminus,1";
+        $string0 = "Highlight <col=ff981f><removetags(oc_name($obj5))>";
+    }
+    .cc_setsize(17, 17, ^setsize_abs, ^setsize_abs);
+    .cc_setgraphic($graphic15);
+    .cc_setposition(calc($int14 / 2 + 27), $int13, ^setpos_abs_centre, ^setpos_abs_bottom);
+    .cc_setonmouserepeat("cc_graphic_swapper_entityoverlay($entityoverlay0, calc($int3 - 2), $graphic16, null)");
+    .cc_setonmouseleave("cc_graphic_swapper_entityoverlay($entityoverlay0, calc($int3 - 2), $graphic15, null)");
+    .cc_setnoclickthrough(true);
+    .cc_setop(1, $string0);
+    .cc_setonop("ground_items_highlight($obj5)");
+    if (~script7225(stringvector_3, $obj5, true) = true) {
+        $graphic15 = "ground_items_plusminus,6";
+        $graphic16 = "ground_items_plusminus,7";
+        $string0 = "Unignore <col=ff981f><removetags(oc_name($obj5))>";
+    } else {
+        $graphic15 = "ground_items_plusminus,2";
+        $graphic16 = "ground_items_plusminus,3";
+        $string0 = "Ignore <col=ff981f><removetags(oc_name($obj5))>";
+    }
+    cc_setsize(17, 17, ^setsize_abs, ^setsize_abs);
+    cc_setgraphic($graphic15);
+    cc_setposition(calc($int14 / 2 + 10), $int13, ^setpos_abs_centre, ^setpos_abs_bottom);
+    cc_setonmouserepeat("cc_graphic_swapper_entityoverlay($entityoverlay0, calc($int3 - 1), $graphic16, null)");
+    cc_setonmouseleave("cc_graphic_swapper_entityoverlay($entityoverlay0, calc($int3 - 1), $graphic15, null)");
+    cc_setnoclickthrough(true);
+    cc_setop(1, $string0);
+    cc_setonop("ground_items_filter($obj5)");
+}
+def_int $int17 = 0;
+def_int $int18 = 0;
+def_int $int19 = 0;
+if (obj_findbyindex($coord1, $int9) = true) {
+    if ($boolean11 = true) {
+        $int17 = calc(30 * obj_despawntime);
+    }
+    if ($boolean12 = true) {
+        $int18 = calc(30 * obj_revealtime);
+    }
+    if ($int17 > 0 | $int18 > 0 | $boolean12 = true) {
+        cc_create_entityoverlay($entityoverlay0, ^iftype_text, $int3);
+        cc_setsize(34, 17, ^setsize_abs, ^setsize_abs);
+        $int19 = calc(0 - $int14 / 2 - 34 / 2);
+        cc_setposition($int19, $int13, ^setpos_abs_centre, ^setpos_abs_bottom);
+        cc_settextfont(p12_full);
+        cc_settextshadow(true);
+        cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+        $int3 = calc($int3 + 1);
+        .cc_create_entityoverlay($entityoverlay0, ^iftype_graphic, $int3);
+        .cc_setsize(17, 17, ^setsize_abs, ^setsize_abs);
+        .cc_setposition(calc($int19 - 34 / 2 - 10), $int13, ^setpos_abs_centre, ^setpos_abs_bottom);
+        $int3 = calc($int3 + 1);
+        if ($int18 > 0) {
+            cc_settext("[<~buff_bar_time_string($int18)>]");
+            cc_setcolour(~script7244($int18, $int8));
+            .cc_setgraphic("ground_items_visibility,1");
+        } else {
+            if ($int17 > 0) {
+                cc_settext("[<~buff_bar_time_string($int17)>]");
+                cc_setcolour(~script7244($int17, $int8));
+            } else {
+                .cc_setposition(calc(0 - $int14 / 2 - 10), $int13, ^setpos_abs_centre, ^setpos_abs_bottom);
+            }
+            if ($boolean12 = true) {
+                .cc_setgraphic("ground_items_visibility,0");
+            }
+        }
+        cc_setontimer("ground_items_update_time_remaining($entityoverlay0, calc($int3 - 2), clientclock, $int17, $int18, $int8, $boolean12, $boolean11, calc($int3 - 1), $int14, $int13)");
+    }
+}
+return($int3);
