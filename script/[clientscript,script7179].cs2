@@ -1,0 +1,39 @@
+// 7179
+[clientscript,script7179](int $int0, int $int1)
+def_component $component2 = ~script7168($int1);
+def_int $rgbarray0(10);
+def_int $int3 = -1;
+def_component $component4 = null;
+switch_int ($int0) {
+    case 1 :
+        if_setgradientcolour(calc(1 - if_getgradientcolour($component2)), $component2);
+        ~script7133;
+    case 2 :
+        $int3 = 0;
+        while ($int3 < 10) {
+            if ($int3 >= $int1) {
+                $component4 = ~script7168(calc($int3 + 1));
+            } else {
+                $component4 = ~script7168($int3);
+            }
+            if ($component4 = null) {
+                $rgbarray0($int3) = 0x1;
+            } else {
+                $rgbarray0($int3) = if_getgradientcolour($component4);
+            }
+            $int3 = calc($int3 + 1);
+        }
+        loottracker_lootdel_byname(if_gettext($component2));
+        ~script7166;
+        $int3 = 0;
+        while ($int3 < 10) {
+            $component4 = ~script7168($int3);
+            if ($rgbarray0($int3) = null) {
+                $rgbarray0($int3) = ^black;
+            }
+            if_setgradientcolour($rgbarray0($int3), $component4);
+            $int3 = calc($int3 + 1);
+        }
+        ~script7133;
+    case default :
+}
