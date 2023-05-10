@@ -1,0 +1,10 @@
+// 7215
+[clientscript,ground_items_focus_changed](component $component, int $int, stringvector $stringvector)
+if ($int ! -1) {
+    if (cc_find($component, $int) = true & cc_input_getfocus = true) {
+        return;
+    }
+} else if (if_input_getfocus($component) = true) {
+    return;
+}
+~ground_items_update_vector($component, $int, $stringvector);
