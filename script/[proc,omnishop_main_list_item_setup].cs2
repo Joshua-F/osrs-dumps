@@ -1,0 +1,154 @@
+// 7144
+[proc,omnishop_main_list_item_setup](int $int0, int $int1, dbrow $dbrow2, inv $inv3, int $int4)(boolean, int)
+def_int $int5 = calc($int0 * 12);
+def_component $component6 = interface_819:com_32;
+def_obj $obj7 = null;
+def_obj $obj8 = null;
+def_int $int9 = 0;
+$obj7, $obj8, $int9 = ~script7263($dbrow2, $inv3, $int0);
+if ($obj7 = null) {
+    $obj7 = $obj8;
+}
+def_int $int10 = 0;
+if ($obj7 = null) {
+    $int10 = 1;
+}
+def_int $int11 = 0;
+def_int $int12 = -1;
+def_dbrow $dbrow13 = db_getfield($dbrow2, dbtable_39:col5, $int0);
+def_int $int14 = 0;
+def_int $int15 = 0;
+if (%varplayer_3872 > 0) {
+    $int10 = 1;
+    if ($dbrow13 ! null) {
+        $int15 = db_getfieldcount($dbrow13, dbtable_40:col4);
+        while ($int14 < $int15) {
+            if (db_getfield($dbrow13, dbtable_40:col4, $int14) = %varplayer_3872) {
+                $int10 = 0;
+            }
+            $int14 = calc($int14 + 1);
+        }
+    }
+}
+def_int $int16 = 1;
+if ($dbrow13 ! null) {
+    if (db_getfield($dbrow13, dbtable_40:col12, 0) = false) {
+        $int10 = 1;
+    }
+    $int16 = db_getfield($dbrow13, dbtable_40:col9, 0);
+}
+if ($int10 = 1) {
+    while ($int11 < 12) {
+        cc_create($component6, ^iftype_rectangle, $int5);
+        cc_sethide(true);
+        $int5 = calc($int5 + 1);
+        $int11 = calc($int11 + 1);
+    }
+    return(false, 0);
+}
+def_int $int17 = 3;
+def_int $int18 = 7;
+def_int $int19 = 74;
+def_int $int20 = 110;
+def_graphic $graphic21 = p12_full;
+def_int $int22 = 496;
+def_int $int23 = 0;
+def_string $string0 = db_getfield($dbrow2, dbtable_39:col13, 0);
+if (%varplayer_3871 = 1) {
+    $int19 = 50;
+    $int20 = 54;
+}
+switch_int (%varclient_988) {
+    case 1 :
+        $int17 = 4;
+        $int19 = 78;
+        $graphic21 = verdana_11pt_regular;
+        $int22 = 1446;
+        $int23 = 1;
+        if (%varplayer_3871 = 1) {
+            $int19 = 52;
+            $int20 = 56;
+        }
+    case 2 :
+        $int17 = 6;
+        $int20 = 130;
+        $int19 = 82;
+        $int18 = 10;
+        $graphic21 = verdana_13pt_regular;
+        $int22 = 1446;
+        $int23 = 1;
+        if (%varplayer_3871 = 1) {
+            $int19 = 56;
+            $int20 = 60;
+        }
+    case 3 :
+        $int17 = 7;
+        $int20 = 130;
+        $int19 = 86;
+        $int18 = 12;
+        $graphic21 = verdana_13pt_regular;
+        $int22 = 1446;
+        $int23 = 2;
+        if (%varplayer_3871 = 1) {
+            $int19 = 64;
+            $int20 = 70;
+        }
+}
+def_int $int24 = calc(if_getwidth($component6) / $int20);
+def_int $int25 = calc((if_getwidth($component6) - ($int24 + 1) * $int17) / $int24);
+def_int $int26 = calc($int1 % $int24 * ($int25 + $int17) + $int17);
+def_int $int27 = calc($int1 / $int24 * ($int19 + $int17) + $int17);
+def_int $int28 = 7496785;
+if ($int4 = 1) {
+    $int28 = 16750623;
+}
+$int5 = ~script5288($component6, $int5, $int26, $int27, $int25, $int19, struct_3712, $int28);
+def_string $string1 = oc_param($obj7, param_1733);
+if (string_length($string1) = 0) {
+    $string1 = oc_name($obj7);
+}
+if ($int16 > 1) {
+    $string1 = "<$string1> (x<tostring($int16)>)";
+}
+cc_setop(1, "Select");
+cc_setop(2, "<$string0>-1");
+cc_setop(3, "<$string0>-5");
+cc_setop(4, "<$string0>-10");
+if (~kots_world = false) {
+    cc_setop(5, "<$string0>-50");
+}
+cc_setop(10, "Examine");
+cc_setopbase("<col=ff9040><$string1></col>");
+if (~on_mobile = false & $int4 = 0) {
+    cc_setonmouseover("cc_colour_swapper(event_com, event_comsubid, 12099970)");
+    cc_setonmouseleave("cc_colour_swapper(event_com, event_comsubid, $int28)");
+}
+if ($int4 = 0) {
+    cc_setonop("omnishop_main_list_item_select($dbrow2, $inv3, $int0, event_op)");
+} else {
+    cc_setonop("omnishop_main_list_item_select($dbrow2, $inv3, -1, event_op)");
+}
+def_int $int29 = 0;
+if (%varplayer_3871 = 1) {
+    $int29 = 2;
+}
+cc_create($component6, ^iftype_graphic, $int5);
+cc_setposition(calc($int26 + $int25 / 2 - 36 / 2 + 2), calc($int27 + $int18 + $int29), ^setpos_abs_left, ^setpos_abs_top);
+cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+cc_setobject($obj7, $int9);
+cc_setoutline(1);
+cc_setgraphicshadow(0x333333);
+$int5 = calc($int5 + 1);
+cc_create($component6, ^iftype_text, $int5);
+cc_setposition(calc($int26 + 7), calc($int27 + 27 + $int18 + $int23), ^setpos_abs_left, ^setpos_abs_top);
+cc_setsize(calc($int25 - 14), 40, ^setsize_abs, ^setsize_abs);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 16);
+cc_settextshadow(true);
+cc_settextfont($graphic21);
+cc_setcolour(0xff981f);
+cc_settext($string1);
+if (%varplayer_3871 = 1) {
+    cc_sethide(true);
+}
+$int5 = calc($int5 + 1);
+return(true, calc($int27 + $int19 + $int17));
