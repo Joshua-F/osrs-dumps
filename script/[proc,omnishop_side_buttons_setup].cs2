@@ -1,0 +1,80 @@
+// 7255
+[proc,omnishop_side_buttons_setup](int $int0, string $string)
+def_component $com_8 = interface_806:com_8;
+def_component $com_9 = interface_806:com_9;
+def_component $com_10 = interface_806:com_10;
+def_component $com_11 = interface_806:com_11;
+def_component $com_2 = interface_806:com_2;
+def_component $com_3 = interface_806:com_3;
+def_graphic $graphic = p11_full;
+switch_int (%varclient_988) {
+    case 1 :
+        $graphic = verdana_11pt_regular;
+    case 2 :
+        $graphic = verdana_11pt_regular;
+    case 3 :
+        $graphic = verdana_13pt_regular;
+}
+cc_create($com_2, ^iftype_text, 0);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top);
+cc_setsize(0, 18, ^setsize_minus, ^setsize_abs);
+cc_settextalign(^settextalign_centre, ^settextalign_top, 0);
+cc_settextshadow(true);
+cc_settextfont($graphic);
+cc_setcolour(0xff981f);
+cc_settext($string);
+def_int $int8 = calc((if_getwidth($com_2) - 18) / 4);
+if_setsize($int8, 17, ^setsize_abs, ^setsize_minus, $com_8);
+if_setsize($int8, 17, ^setsize_abs, ^setsize_minus, $com_9);
+if_setsize($int8, 17, ^setsize_abs, ^setsize_minus, $com_10);
+if_setsize($int8, 17, ^setsize_abs, ^setsize_minus, $com_11);
+if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_bottom, $com_8);
+if_setposition(calc(-3 - $int8 / 2), 0, ^setpos_abs_centre, ^setpos_abs_bottom, $com_9);
+if_setposition(calc(3 + $int8 / 2), 0, ^setpos_abs_centre, ^setpos_abs_bottom, $com_10);
+if_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_bottom, $com_11);
+def_boolean $boolean = true;
+if ($int0 < 1 & $int0 ! -1) {
+    $boolean = false;
+}
+~script7139($com_8, "1", $boolean, false);
+if ($boolean = true) {
+    if_setop(1, "<$string>-1", $com_8);
+} else {
+    if_clearops($com_8);
+}
+if ($int0 < 5 & $int0 ! -1) {
+    $boolean = false;
+}
+~script7139($com_9, "5", $boolean, false);
+if ($boolean = true) {
+    if_setop(1, "<$string>-5", $com_9);
+} else {
+    if_clearops($com_9);
+}
+if ($int0 < 10 & $int0 ! -1) {
+    $boolean = false;
+}
+~script7139($com_10, "10", $boolean, false);
+if ($boolean = true) {
+    if_setop(1, "<$string>-10", $com_10);
+} else {
+    if_clearops($com_10);
+}
+if ($int0 < 50 & $int0 ! -1) {
+    $boolean = false;
+}
+~script7139($com_11, "50", $boolean, false);
+if ($boolean = true) {
+    if_setop(1, "<$string>-50", $com_11);
+} else {
+    if_clearops($com_11);
+}
+~create_graphic($com_3, 0, "directional_lock_arrows,3", 0, -1, ^setpos_abs_left, ^setpos_abs_centre, 16, 16, ^setsize_abs, ^setsize_abs);
+cc_create($com_3, ^iftype_text, 1);
+cc_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_centre);
+cc_setsize(26, 18, ^setsize_minus, ^setsize_abs);
+cc_settextalign(^settextalign_right, ^settextalign_centre, 0);
+cc_settextshadow(true);
+cc_settextfont(b12_full);
+cc_setcolour(0xff981f);
+cc_settext("Close Info");

@@ -1,0 +1,21 @@
+// 7248
+[proc,omnishop_side_draw](dbrow $dbrow)
+def_component $com_0 = interface_806:com_0;
+def_obj $obj = null;
+def_int $int3 = 0;
+def_int $int4 = inv_size(inv_93);
+def_string $string = db_getfield($dbrow, dbtable_39:col14, 0);
+while ($int3 < $int4) {
+    if (cc_find($com_0, $int3) = true) {
+        cc_clearops;
+        cc_setontimer(null);
+        cc_setposition(calc($int3 % 4 * 42), calc($int3 / 4 * 36), ^setpos_abs_left, ^setpos_abs_top);
+        $obj = inv_getobj(inv_93, $int3);
+        if ($obj ! null) {
+            ~omnishop_setsideitem($obj, inv_getnum(inv_93, $int3), $string, $dbrow);
+        } else {
+            ~omnishop_setblank;
+        }
+    }
+    $int3 = calc($int3 + 1);
+}
