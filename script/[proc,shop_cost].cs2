@@ -1,0 +1,11 @@
+// 7260
+[proc,shop_cost](inv $inv, obj $obj)(int)
+def_int $int = -1;
+def_enum $enum = oc_param($obj, param_983);
+if ($enum ! null) {
+    $int = enum(inv, int, $enum, $inv);
+}
+if ($int = -1) {
+    $int = oc_cost($obj);
+}
+return($int);

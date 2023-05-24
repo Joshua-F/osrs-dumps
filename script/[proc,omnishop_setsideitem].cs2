@@ -1,0 +1,15 @@
+// 7249
+[proc,omnishop_setsideitem](obj $obj, int $int1, string $string, dbrow $dbrow)
+def_int $int3 = 0;
+def_int $int4 = 120;
+cc_settrans($int3);
+cc_setobject($obj, $int1);
+cc_setop(1, "Select");
+cc_setop(2, "<$string>-1");
+cc_setop(3, "<$string>-5");
+cc_setop(4, "<$string>-10");
+cc_setop(5, "<$string>-50");
+cc_setop(10, "Examine");
+cc_setopbase("<col=ff9040><oc_name($obj)></col>");
+cc_setonop("omnishop_opitem(event_op, event_com, event_comsubid, $int4, $int3, $dbrow)");
+cc_setondragcomplete("omnishop_swapsideitem(event_com, event_comsubid, event_com2, event_comsubid2, $string, $dbrow)");

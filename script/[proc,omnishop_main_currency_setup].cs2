@@ -1,0 +1,31 @@
+// 7152
+[proc,omnishop_main_currency_setup](dbrow $dbrow0)(boolean)
+def_dbrow $dbrow1 = db_getfield($dbrow0, dbtable_39:col2, 0);
+def_component $com_18 = interface_819:com_18;
+def_component $com_22 = interface_819:com_22;
+def_component $com_23 = interface_819:com_23;
+def_component $com_39 = interface_819:com_39;
+def_component $com_40 = interface_819:com_40;
+if ($dbrow1 = null) {
+    if_sethide(true, $com_18);
+    return(false);
+}
+if_sethide(false, $com_18);
+def_string $string = db_getfield($dbrow1, dbtable_41:col2, 0);
+def_int $int = ~omnishop_var_getter($dbrow1);
+def_graphic $graphic8 = b12_full;
+def_graphic $graphic9 = q8_full;
+switch_int (%varclient_988) {
+    case 1 :
+    case 2 :
+    case 3 :
+}
+if_settext($string, $com_22);
+if_settextfont($graphic8, $com_22);
+if_settext($string, $com_39);
+if_settextfont($graphic8, $com_39);
+if_settext(tostring($int), $com_23);
+if_settextfont($graphic9, $com_23);
+if_settext(tostring($int), $com_40);
+if_settextfont($graphic9, $com_40);
+return(true);
