@@ -1,49 +1,19 @@
 // 313
-[clientscript,music_vartransmit](component $component0, component $component1, int $int2)
-def_int $intarray0(calc(23 + 1));
-$intarray0(1) = %varplayer_20;
-$intarray0(2) = %varplayer_21;
-$intarray0(3) = %varplayer_22;
-$intarray0(4) = %varplayer_23;
-$intarray0(5) = %varplayer_24;
-$intarray0(6) = %varplayer_25;
-$intarray0(7) = %varplayer_298;
-$intarray0(8) = %varplayer_311;
-$intarray0(9) = %varplayer_346;
-$intarray0(10) = %varplayer_414;
-$intarray0(11) = %varplayer_464;
-$intarray0(12) = %varplayer_598;
-$intarray0(13) = %varplayer_662;
-$intarray0(14) = %varplayer_721;
-$intarray0(15) = %varplayer_906;
-$intarray0(16) = %varplayer_1009;
-$intarray0(17) = %varplayer_1338;
-$intarray0(18) = %varplayer_1681;
-$intarray0(19) = %varplayer_2065;
-$intarray0(20) = %varplayer_2237;
-$intarray0(21) = %varplayer_2950;
-$intarray0(22) = %varplayer_3418;
-$intarray0(23) = %varplayer_3575;
+[clientscript,music_vartransmit](component $component0, component $component1)
+def_dbrow $dbrow2 = null;
 def_int $int3 = 0;
-def_coord $coord4 = null;
+def_int $int4 = db_find_with_count(dbtable_44:col8, false);
 def_int $int5 = 0;
-def_int $int6 = 0;
-while ($int6 < $int2) {
-    if (cc_find($component0, $int6) = ^true) {
-        $int3 = enum(int, int, enum_818, $int6);
-        $coord4 = enum(int, coord, enum_819, $int3);
-        if ($coord4 ! null) {
-            if (testbit($intarray0(coordx($coord4)), coordz($coord4)) = ^true) {
-                ~music_setcolour(901389);
-                $int5 = calc($int5 + 1);
-            } else {
-                ~music_setcolour(16711680);
-            }
-        } else {
+while ($int5 < $int4) {
+    if (cc_find($component0, $int5) = ^true) {
+        $dbrow2 = db_find_get($int5);
+        if (~music_isunlocked($dbrow2) = true) {
             ~music_setcolour(901389);
-            $int5 = calc($int5 + 1);
+            $int3 = calc($int3 + 1);
+        } else {
+            ~music_setcolour(16711680);
         }
     }
-    $int6 = calc($int6 + 1);
+    $int5 = calc($int5 + 1);
 }
-if_settext("<~tostring_spacer(~min($int5, $int2), ",")> / <~tostring_spacer($int2, ",")>", $component1);
+if_settext("<~tostring_spacer(~min($int3, $int4), ",")> / <~tostring_spacer($int4, ",")>", $component1);
