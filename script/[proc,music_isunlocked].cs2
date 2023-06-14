@@ -1,14 +1,16 @@
 // 252
-[proc,music_isunlocked](int $int0)(boolean)
-def_coord $coord1 = enum(int, coord, enum_819, $int0);
-if ($coord1 = null) {
+[proc,music_isunlocked](dbrow $dbrow0)(boolean)
+def_int $int1 = -1;
+def_int $int2 = -1;
+$int1, $int2 = ~script7316($dbrow0);
+if ($int1 > 23) {
+    return(false);
+}
+if ($int1 < 1 | $int2 < 0) {
     return(true);
 }
-def_int $int2 = -1;
-def_int $int3 = -1;
-$int2, $int3 = coordx($coord1), coordz($coord1);
-def_int $intbool4 = ~music_isunlocked_core($int2, $int3);
-if ($intbool4 = ^true) {
+def_int $intbool3 = ~script7308($int1, $int2);
+if ($intbool3 = ^true) {
     return(true);
 }
 return(false);
