@@ -5,15 +5,16 @@ if (~keypress_permit(null, interface_162) = false) {
 }
 if ($key0 = ^key_return) {
     if (%varclient_56 = 1 & string_length(%varclient_359) <= 0) {
-        if (%varclient_5 = 8) {
-            %varclient_359 = %varclient_361;
-            ~script222($string0);
-        } else if (%varclient_5 = 10) {
-            %varclient_359 = %varclient_362;
-            ~script222($string0);
-        } else if (%varclient_5 = 20) {
-            %varclient_359 = ~clan_lastclansearch_get;
-            ~script222($string0);
+        switch_int (%varclient_5) {
+            case 8 :
+                %varclient_359 = %varclient_361;
+                ~script222($string0);
+            case 10 :
+                %varclient_359 = %varclient_362;
+                ~script222($string0);
+            case 20 :
+                %varclient_359 = ~clan_lastclansearch_get;
+                ~script222($string0);
         }
     }
     ~meslayer_enter;
@@ -55,6 +56,8 @@ switch_int (%varclient_5) {
         %varclient_359 = ~add_to_inputstring(%varclient_359, 4, $key0, $char1);
     case 20, 21 :
         %varclient_359 = ~add_to_inputstring(%varclient_359, 8, $key0, $char1);
+    case 27 :
+        %varclient_359 = ~add_to_inputstring(%varclient_359, 12, $key0, $char1);
     case default :
         %varclient_359 = ~add_to_inputstring(%varclient_359, 2, $key0, $char1);
 }
