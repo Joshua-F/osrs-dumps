@@ -25,6 +25,8 @@ switch_int ($int0) {
         if (~script1353($string0) = true) {
             $int4 = 79;
         }
+    case 12 :
+        $int4 = 8;
 }
 if (char_isprintable($char2) = false) {
     if ($int0 = 5 & $key1 = ^key_return) {
@@ -41,17 +43,22 @@ if (char_isprintable($char2) = false) {
     }
     return($string0);
 }
-if ($int0 = 2) {
-    if ((char_isalphanumeric($char2) = true | string_indexof_char(" _-", $char2) ! -1) & $int3 < 12) {
-        return(append_char($string0, $char2));
-    }
-    return($string0);
-}
-if ($int0 = 8) {
-    if ((char_isalphanumeric($char2) = true | string_indexof_char(" ", $char2) ! -1) & $int3 < 12) {
-        return(append_char($string0, $char2));
-    }
-    return($string0);
+switch_int ($int0) {
+    case 2 :
+        if ((char_isalphanumeric($char2) = true | string_indexof_char(" _-", $char2) ! -1) & $int3 < 12) {
+            return(append_char($string0, $char2));
+        }
+        return($string0);
+    case 8 :
+        if ((char_isalphanumeric($char2) = true | string_indexof_char(" ", $char2) ! -1) & $int3 < 12) {
+            return(append_char($string0, $char2));
+        }
+        return($string0);
+    case 12 :
+        if ((char_isalphanumeric($char2) = true | string_indexof_char("0123456789abcdefghijklmnopqrstuvwxyz _-", $char2) ! -1) & $int3 < $int4) {
+            return(append_char($string0, $char2));
+        }
+        return($string0);
 }
 def_int $int5 = 0;
 def_string $string1 = "";
