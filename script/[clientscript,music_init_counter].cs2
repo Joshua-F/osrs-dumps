@@ -1,44 +1,15 @@
 // 2257
-[clientscript,music_init_counter](component $component, int $int1)
+[clientscript,music_init_counter](component $component)
 if_setontimer(null, $component);
-def_int $intarray(calc(23 + 1));
-$intarray(1) = %varplayer_20;
-$intarray(2) = %varplayer_21;
-$intarray(3) = %varplayer_22;
-$intarray(4) = %varplayer_23;
-$intarray(5) = %varplayer_24;
-$intarray(6) = %varplayer_25;
-$intarray(7) = %varplayer_298;
-$intarray(8) = %varplayer_311;
-$intarray(9) = %varplayer_346;
-$intarray(10) = %varplayer_414;
-$intarray(11) = %varplayer_464;
-$intarray(12) = %varplayer_598;
-$intarray(13) = %varplayer_662;
-$intarray(14) = %varplayer_721;
-$intarray(15) = %varplayer_906;
-$intarray(16) = %varplayer_1009;
-$intarray(17) = %varplayer_1338;
-$intarray(18) = %varplayer_1681;
-$intarray(19) = %varplayer_2065;
-$intarray(20) = %varplayer_2237;
-$intarray(21) = %varplayer_2950;
-$intarray(22) = %varplayer_3418;
-$intarray(23) = %varplayer_3575;
+def_dbrow $dbrow = null;
 def_int $int2 = 0;
-def_coord $coord = null;
+def_int $int3 = db_find_with_count(dbtable_44:col8, false);
 def_int $int4 = 0;
-def_int $int5 = 0;
-while ($int5 < $int1) {
-    $int2 = enum(int, int, enum_818, $int5);
-    $coord = enum(int, coord, enum_819, $int2);
-    if ($coord ! null) {
-        if (testbit($intarray(coordx($coord)), coordz($coord)) = ^true) {
-            $int4 = calc($int4 + 1);
-        }
-    } else {
-        $int4 = calc($int4 + 1);
+while ($int4 < $int3) {
+    $dbrow = db_find_get($int4);
+    if (~music_isunlocked($dbrow) = true) {
+        $int2 = calc($int2 + 1);
     }
-    $int5 = calc($int5 + 1);
+    $int4 = calc($int4 + 1);
 }
-if_settext("<~tostring_spacer(~min($int4, $int1), ",")> / <~tostring_spacer($int1, ",")>", $component);
+if_settext("<~tostring_spacer(~min($int2, $int3), ",")> / <~tostring_spacer($int3, ",")>", $component);

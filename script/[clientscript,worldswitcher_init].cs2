@@ -1,35 +1,44 @@
 // 747
-[clientscript,worldswitcher_init](component $com_0, component $com_2, component $com_4, component $com_15, component $com_18, component $com_17, component $com_16, component $com_9, component $com_10, component $com_11, component $com_12, component $com_13, component $com_14, component $com_19, component $com_21, component $com_22, component $com_20, component $com_24)
-def_int $int18 = 16;
-def_int $int19 = 11;
-if (~on_mobile = true) {
-    if_setsize(0, 190, ^setsize_minus, ^setsize_abs, $com_4);
-    if_setsize(0, 48, ^setsize_minus, ^setsize_abs, $com_19);
-    $int18, $int19 = 24, 21;
-} else {
-    if_setsize(0, 206, ^setsize_minus, ^setsize_abs, $com_4);
-    if_setsize(0, 32, ^setsize_minus, ^setsize_abs, $com_19);
+[clientscript,worldswitcher_init](component $component0, component $com_3, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10, component $component11, component $component12, component $component13, component $component14, component $component15, component $component16, component $com_26)
+if_settext(~text_device("Right-click on worlds to<br>set them as Favourites.", "<"Long press"> on worlds to<br>set them as Favourites."), $component16);
+def_int $int18 = 10;
+if ($com_3 ! null) {
+    if_settext("<col=9f9f9f>Loading...</col>", $com_3);
+    if_setonvartransmit(null, $com_3);
+    if_setonsubchange(null, $com_3);
+    $int18 = 0;
 }
-if_settext(~text_device("Right-click on worlds to<br>set them as Favourites.", "<"Long press"> on worlds to<br>set them as Favourites."), $com_20);
-if_settext("Loading...", $com_2);
-if_setscrollpos(0, 0, $com_15);
-if_sethide(true, $com_15);
-cc_deleteall($com_18);
-~scrollbar_vertical($com_18, $com_15, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-if_sethide(true, $com_10);
-if_sethide(true, $com_11);
-if_sethide(true, $com_12);
-if_sethide(true, $com_13);
-if_sethide(true, $com_14);
-cc_deleteall($com_16);
-def_int $int20 = 0;
-while ($int20 <= 600) {
-    cc_create($com_16, ^iftype_graphic, $int20);
-    cc_setsize(0, $int18, ^setsize_minus, ^setsize_abs);
+def_int $int19 = 16;
+def_int $int20 = 11;
+def_int $int21 = 32;
+if (~on_mobile = true) {
+    $int19, $int20, $int21 = 24, 21, 48;
+}
+if_setsize(calc($int18 * 2), $int21, ^setsize_minus, ^setsize_abs, $component13);
+if_setsize(calc($int18 * 2), calc(if_gety($component2) + $int21 + $int18), ^setsize_minus, ^setsize_minus, $component2);
+if_setscrollpos(0, 0, $component3);
+if_sethide(true, $component3);
+cc_deleteall($component4);
+~scrollbar_vertical($component4, $component3, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+if_sethide(true, $component8);
+if_sethide(true, $component9);
+if_sethide(true, $component10);
+if_sethide(true, $component11);
+if_sethide(true, $component12);
+cc_deleteall($component6);
+def_int $int22 = 0;
+while ($int22 <= 600) {
+    cc_create($component6, ^iftype_graphic, $int22);
+    cc_setsize(0, $int19, ^setsize_minus, ^setsize_abs);
     cc_setop(1, "Switch");
     cc_setop(2, "Favourite");
-    cc_setopbase("<col=ff9040><tostring($int20)></col>");
+    cc_setopbase("<col=ff9040><tostring($int22)></col>");
     cc_sethide(true);
-    $int20 = calc($int20 + 1);
+    $int22 = calc($int22 + 1);
 }
-if_setontimer("worldswitcher_loading($com_0, $com_2, $com_15, $com_18, $com_17, $com_16, $int18, $int19, $com_9, $com_10, $com_11, $com_12, $com_13, $com_14, $com_21, $com_22, $com_20, $com_24)", $com_0);
+if (worldlist_fetch = true) {
+    ~worldswitcher_loaded($component0, $com_3, $component3, $component4, $component5, $component6, $int19, $int21, $int20, $component7, $component8, $component9, $component10, $component11, $component12, $component14, $component15, $component16, $com_26);
+    if_setontimer(null, $component0);
+} else {
+    if_setontimer("worldswitcher_loading($component0, $com_3, $component3, $component4, $component5, $component6, $int19, $int21, $int20, $component7, $component8, $component9, $component10, $component11, $component12, $component14, $component15, $component16, $com_26)", $component0);
+}
