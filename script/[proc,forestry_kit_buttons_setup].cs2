@@ -1,0 +1,53 @@
+// 1763
+[proc,forestry_kit_buttons_setup](int $int0)
+def_component $com_11 = interface_823:com_11;
+def_component $com_12 = interface_823:com_12;
+def_component $com_13 = interface_823:com_13;
+def_component $com_14 = interface_823:com_14;
+def_component $com_15 = interface_823:com_15;
+def_component $com_16 = interface_823:com_16;
+def_component $com_10 = interface_823:com_10;
+def_graphic $graphic = p11_full;
+switch_int (%varclient_988) {
+    case 1 :
+        $graphic = verdana_11pt_regular;
+    case 2 :
+        $graphic = verdana_11pt_regular;
+    case 3 :
+        $graphic = verdana_13pt_regular;
+}
+def_boolean $boolean = true;
+def_int $int10 = 0;
+def_obj $obj11 = enum(int, namedobj, enum_817, $int0);
+def_int $int12 = inv_total(inv_814, $obj11);
+if ($int12 < 1) {
+    $boolean = false;
+}
+~script7139($com_14, "All", $boolean, false);
+~script7139($com_13, "X", $boolean, false);
+~script7139($com_11, "1", $boolean, false);
+if ($int12 < 5) {
+    $boolean = false;
+}
+~script7139($com_12, "5", $boolean, false);
+$boolean = false;
+$int10 = 1;
+def_obj $obj13 = enum(int, namedobj, enum_817, $int10);
+while ($obj13 ! null & $boolean = false) {
+    if (inv_total(inv_93, $obj13) > 0) {
+        $boolean = true;
+    }
+    $int10 = calc($int10 + 1);
+    $obj13 = enum(int, namedobj, enum_817, $int10);
+}
+~script7139($com_15, "Fill", $boolean, false);
+$boolean = false;
+$int10 = 0;
+while ($int10 < inv_size(inv_814) & $boolean = false) {
+    if (inv_getnum(inv_814, $int10) > 0) {
+        $boolean = true;
+    }
+    $int10 = calc($int10 + 1);
+}
+~script7139($com_16, "Empty", $boolean, false);
+if_settextfont($graphic, $com_10);

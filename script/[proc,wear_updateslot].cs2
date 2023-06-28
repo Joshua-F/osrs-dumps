@@ -12,7 +12,7 @@ if ($obj = null) {
 cc_sethide(false);
 .cc_sethide(true);
 cc_setobject($obj, inv_getnum(inv_94, $int));
-if_setopbase("<col=ff9040><oc_name($obj)></col>", $component);
+if_setopbase("<col=ff9040><~inventory_name_override($obj)></col>", $component);
 if_setop(1, "Remove", $component);
 def_string $string = "";
 if ($boolean = true) {
@@ -49,14 +49,18 @@ if ($boolean = true) {
         if (string_length($string) > 0) {
             if_setop(9, $string, $component);
         }
-        if ($obj = obj_6707) {
-            if (%varplayerbit_4525 = 1 | %varplayerbit_4526 = 1) {
-                if_setop(3, "Temple", $component);
-                if_setop(4, "Surface", $component);
-            }
-            if_setonvartransmit("wear_updateslot($component, $int, $boolean, cc_getid, .cc_getid){varplayer_1190}", $component);
-        } else {
-            if_setonvartransmit(null, $component);
+        switch_obj ($obj) {
+            case obj_6707 :
+                if (%varplayerbit_4525 = 1 | %varplayerbit_4526 = 1) {
+                    if_setop(3, "Temple", $component);
+                    if_setop(4, "Surface", $component);
+                }
+                if_setonvartransmit("wear_updateslot($component, $int, $boolean, cc_getid, .cc_getid){varplayer_1190}", $component);
+            case obj_22517 :
+                if_setop(4, ~inventory_op_override($obj, 3), $component);
+                if_setonvartransmit("wear_updateslot($component, $int, $boolean, cc_getid, .cc_getid){varplayer_3150}", $component);
+            case default :
+                if_setonvartransmit(null, $component);
         }
     } else {
         if_setonvartransmit(null, $component);
