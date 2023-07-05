@@ -1,12 +1,14 @@
 // 1787
 [proc,inventory_name_override](obj $obj)(string)
 def_string $string = oc_name($obj);
-switch_obj ($obj) {
-    case obj_22517 :
-        if (%varplayerbit_14838 = 1) {
-            $string = "<$string> (Active)";
-        } else {
-            $string = "<$string> (Inactive)";
-        }
+if (map_members = true | oc_members($obj) = 0) {
+    switch_obj ($obj) {
+        case obj_22517 :
+            if (%varplayerbit_14838 = 1) {
+                $string = "<$string> (Active)";
+            } else {
+                $string = "<$string> (Inactive)";
+            }
+    }
 }
 return($string);

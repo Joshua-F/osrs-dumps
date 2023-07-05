@@ -1,14 +1,16 @@
 // 1786
 [proc,inventory_op_override](obj $obj, int $int)(string)
 def_string $string = oc_iop($obj, $int);
-switch_obj ($obj) {
-    case obj_22517 :
-        if ($int = 3) {
-            if (%varplayerbit_14838 = 1) {
-                $string = "Disable-auto";
-            } else {
-                $string = "Enable-autotele";
+if (map_members = true | oc_members($obj) = 0) {
+    switch_obj ($obj) {
+        case obj_22517 :
+            if ($int = 3) {
+                if (%varplayerbit_14838 = 1) {
+                    $string = "Disable-autotele";
+                } else {
+                    $string = "Enable-autotele";
+                }
             }
-        }
+    }
 }
 return($string);
