@@ -8,7 +8,8 @@ def_int $int7 = 0;
 def_int $int8 = 0;
 def_int $int9 = 0;
 def_int $int10 = 0;
-def_int $int11 = loottracker_ignorelootcount;
+def_int $int11 = 0;
+def_int $int12 = loottracker_ignorelootcount;
 def_string $string1 = null;
 cc_deleteall($component0);
 if_settext($string0, $component0);
@@ -24,5 +25,6 @@ while ($int5 <= $int4) {
     cc_setobject($obj6, $int7);
     cc_setcolour($int8);
     cc_setblendcolour($int9);
+    cc_setblendtrans(~bool_to_int(stringvector_contains(stringvector_2, oc_name($obj6), true, false)));
     $int5 = calc($int5 + 1);
 }
