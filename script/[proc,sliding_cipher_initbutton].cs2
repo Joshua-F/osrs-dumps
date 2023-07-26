@@ -1,0 +1,9 @@
+// 1804
+[proc,sliding_cipher_initbutton](component $component, graphic $graphic, string $string)
+~sliding_cipher_setbutton($component, $graphic, $string, false, 0);
+if (~on_mobile = false) {
+    if_setonmouserepeat("sliding_cipher_setbutton(event_com, $graphic, $string, true)", $component);
+}
+if_setonmouseleave("sliding_cipher_setbutton(event_com, $graphic, $string, false)", $component);
+if_setop(1, removetags($string), $component);
+if_setontimer(null, $component);
