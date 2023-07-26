@@ -1,0 +1,15 @@
+// 1856
+[proc,dt2_survival_bar_movement](boolean $boolean, component $component, int $int2)
+def_int $int3 = if_getwidth($component);
+if ($int3 = $int2) {
+    if_setsize($int2, if_getheight($component), ^setsize_abs, ^setsize_abs, $component);
+    if_setontimer(null, $component);
+    return;
+}
+if ($boolean = true | if_getwidth($component) = 0) {
+    if_setsize($int2, 0, ^setsize_abs, ^setsize_minus, $component);
+} else if ($int3 < $int2) {
+    if_setsize(calc($int3 + 1), 0, ^setsize_abs, ^setsize_minus, $component);
+} else if ($int3 > $int2) {
+    if_setsize(calc($int3 - 1), 0, ^setsize_abs, ^setsize_minus, $component);
+}
