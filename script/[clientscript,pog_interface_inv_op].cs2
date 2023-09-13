@@ -1,0 +1,20 @@
+// 1894
+[clientscript,pog_interface_inv_op](component $component0, int $int1, int $int2, inv $inv, component $component4)
+def_obj $obj = inv_getobj($inv, $int1);
+if ($int2 = 1) {
+    if ($obj = %varplayer_856) {
+        %varplayer_856 = null;
+    } else {
+        %varplayer_856 = $obj;
+    }
+    ~pog_interface_inv_update($component4, $inv);
+}
+if (cc_find($component0, $int1) = true) {
+    cc_settrans(100);
+    if ($obj = %varplayer_856) {
+        cc_setoutline(2);
+    } else {
+        cc_setoutline(1);
+    }
+    cc_setontimer("pog_interface_inv_op_end(event_com, event_comsubid, calc(clientclock + 10))");
+}
