@@ -1,0 +1,61 @@
+// 1902
+[clientscript,skill_guide_v2_init](int $int0, int $int1)
+def_component $com_0 = interface_860:com_0;
+def_component $com_1 = interface_860:com_1;
+def_int $int4 = 56360963;
+def_int $int5 = 56360964;
+def_int $int6 = 56360965;
+def_component $com_2 = interface_860:com_2;
+def_component $com_8 = interface_860:com_8;
+if (%varclient_1172 ! $int0 | %varclient_1173 ! $int1) {
+    if_setscrollpos(0, 0, $com_8);
+}
+%varclient_1172 = $int0;
+%varclient_1173 = $int1;
+def_enum $enum = ~toplevel_getcomponents;
+def_component $component = enum(component, component, $enum, interface_161:com_16);
+if (~on_mobile = true) {
+    if_setontimer("script3833($com_0, $com_1, 0)", $com_0);
+} else {
+    if (%varclient_1170 = 0 & %varclient_1171 = 0 & %varclient_1168 = 0 & %varclient_1169 = 0) {
+        %varclient_1168 = if_getwidth($component);
+        %varclient_1169 = if_getheight($component);
+        %varclient_1170 = if_getx($component);
+        %varclient_1171 = if_gety($component);
+    }
+    if_setontimer("responsive_interface_scaler($com_0, -1)", $com_0);
+}
+if_setonresize("skill_guide_v2_rebuild", $com_0);
+if_sethide(false, $com_1);
+if_sethide(true, $com_2);
+if ($enum = enum_1132) {
+    if_setposition(6, 6, ^setpos_abs_centre, ^setpos_abs_centre, $com_1);
+    if_setsize(12, 12, ^setsize_minus, ^setsize_minus, $com_1);
+    ~skill_guide_v2_rebuild;
+    return;
+}
+cc_deleteall($com_0);
+def_int $int11 = 0;
+while ($int11 < 9) {
+    cc_create($com_0, ^iftype_graphic, $int11);
+    cc_settiling(true);
+    cc_settrans(255);
+    cc_setonmouserepeat("cc_settrans(event_com, event_comsubid, 200, null)");
+    cc_setonmouseleave("cc_settrans(event_com, event_comsubid, 255, null)");
+    cc_setdraggable($com_0, -1);
+    cc_setdragdeadzone(1);
+    cc_setdragdeadtime(5);
+    $int11 = calc($int11 + 1);
+}
+cc_deleteall($com_2);
+$int11 = 0;
+while ($int11 < 4) {
+    cc_create($com_2, ^iftype_rectangle, $int11);
+    cc_setsize(calc($int11 * 2), calc($int11 * 2), ^setsize_minus, ^setsize_minus);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_setcolour(0x9f9f9f);
+    cc_setfill(false);
+    cc_settrans(calc(100 + $int11 * 10));
+    $int11 = calc($int11 + 1);
+}
+~skill_guide_v2_size_handler(-1, -1, $com_0, $com_1);

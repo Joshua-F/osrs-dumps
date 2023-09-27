@@ -1,4 +1,19 @@
 // 654
-[clientscript,skill_guide_init](component $com_0, component $com_6, component $com_10, component $com_7, component $com_8, component $com_9, component $com_4, component $com_3, component $com_5)
-~skill_guide_build($com_6, $com_10, $com_7, $com_8, $com_9, $com_4, $com_3, $com_5);
-if_setonvartransmit("skill_guide_build($com_6, $com_10, $com_7, $com_8, $com_9, $com_4, $com_3, $com_5){varplayer_965}", $com_0);
+[clientscript,skill_guide_init](component $com_1, component $com_7, component $com_8, component $com_10, component $com_27, component $com_11, component $com_5, component $com_4, component $com_6, component $com_0)
+~skill_guide_build($com_7, $com_8, $com_10, $com_27, $com_11, $com_5, $com_4, $com_6, $com_0);
+def_enum $enum = ~toplevel_getcomponents;
+def_component $component = enum(component, component, $enum, interface_161:com_16);
+if (~on_mobile = true) {
+    if_setontimer("script3833($com_0, $com_1, 0)", $com_0);
+} else {
+    if (%varclient_1170 = 0 & %varclient_1171 = 0 & %varclient_1168 = 0 & %varclient_1169 = 0) {
+        %varclient_1168 = if_getwidth($component);
+        %varclient_1169 = if_getheight($component);
+        %varclient_1170 = if_getx($component);
+        %varclient_1171 = if_gety($component);
+    }
+    if_setontimer("responsive_interface_scaler($com_0, -1)", $com_0);
+    if_setonresize("skill_guide_rebuild", $com_0);
+}
+if_setonvartransmit("skill_guide_build($com_7, $com_8, $com_10, $com_27, $com_11, $com_5, $com_4, $com_6, $com_0){varplayer_965}", $com_1);
+~skill_guide_v2_size_handler(-1, -1, $com_0, $com_1);
