@@ -1,0 +1,45 @@
+// 1932
+[proc,script1932](component $component0, int $int1, int $int2, int $int3, component $component4, component $component5)
+def_int $int6 = 0;
+def_obj $obj7 = null;
+if ($component0 = $component4) {
+    $int6, $obj7 = %varplayer_261, obj_13190;
+} else if ($component0 = $component5) {
+    $int6, $obj7 = %varplayer_262, obj_13192;
+} else {
+    return;
+}
+def_string $string0 = "";
+def_int $int8 = inv_total(inv_536, $obj7);
+def_int $int9 = inv_total(inv_93, $obj7);
+def_int $int10 = max(0, calc($int6 - ($int8 + $int9)));
+if (cc_find($component0, $int1) = ^true) {
+    cc_setobject_alwaysnum($obj7, $int8);
+    if ($int8 > 0) {
+        cc_settrans(0);
+    } else {
+        cc_settrans(120);
+    }
+    $string0 = "Bond pouch: <~tostring_spacer($int8, ",")> x <oc_name($obj7)>";
+    cc_setonclick("mes($string0)");
+}
+if (cc_find($component0, $int2) = ^true) {
+    cc_setobject_alwaysnum($obj7, $int9);
+    if ($int9 > 0) {
+        cc_settrans(0);
+    } else {
+        cc_settrans(100);
+    }
+    $string0 = "Inventory: <~tostring_spacer($int9, ",")> x <oc_name($obj7)>";
+    cc_setonclick("mes($string0)");
+}
+if (cc_find($component0, $int3) = ^true) {
+    cc_setobject_alwaysnum($obj7, $int10);
+    if ($int10 > 0) {
+        cc_settrans(0);
+    } else {
+        cc_settrans(120);
+    }
+    $string0 = "Bank: <~tostring_spacer($int10, ",")> x <oc_name($obj7)>";
+    cc_setonclick("mes($string0)");
+}
