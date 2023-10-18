@@ -1,0 +1,18 @@
+// 2432
+[proc,script2432](string $string, component $component, graphic $graphic)
+~stonebutton_draw(false, $string, $graphic, 0, $component);
+%varclient_454 = 0;
+if (~on_mobile = false) {
+    if_setonmouserepeat("script2433(true, $string, event_com, $graphic)", $component);
+}
+if_setonmouseleave("script2433(false, $string, event_com, $graphic)", $component);
+if (%varplayerbit_12171 = 1 | %varplayerbit_13058 = 1) {
+    if_setop(1, removetags($string), $component);
+}
+if_setontimer(null, $component);
+if_settargetverb(removetags($string), $component);
+if_setopbase("", $component);
+if (if_gettargetmask($component) ! 0) {
+    if_setontargetenter("clan_create_targetmode(true, event_com, $string, $graphic)", $component);
+    if_setontargetleave("clan_create_targetmode(false, event_com, $string, $graphic)", $component);
+}

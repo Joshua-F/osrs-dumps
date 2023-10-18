@@ -1,0 +1,11 @@
+// 2418
+[proc,script2418](int $int0, int $int1, int $int2, component $component)
+def_string $string = "";
+if (%varplayerbit_1777 ! 0 & ~is_group_iron = false) {
+    $string = "However, <col=ff0000>Iron</col> players <col=ff0000>cannot</col> sell bonds, nor give them as gifts, even if they are <col=ff0000>tradeable</col>.";
+} else {
+    $string = "If you'd like to <col=ffffff>sell</col> an <col=ffffff>untradeable</col> bond, you can make it <col=ffffff>tradeable</col>, for a fee of <col=ffffff><~tostring_spacer(%varplayer_263, ",")></col> coins:";
+}
+cc_settext($string);
+def_int $int4 = calc(paraheight($string, $int0, p12_full) * 14 + 4);
+if_setposition(0, calc(5 + ($int1 - ($int4 + if_getheight($component) + 5)) / 2), ^setpos_abs_centre, ^setpos_abs_bottom, $component);
