@@ -2,7 +2,7 @@
 [clientscript,shop_main_init](inv $inv0, obj $obj1, int $int2, int $int3, string $string0)
 cc_deleteall(interface_300:com1);
 cc_deleteall(interface_300:com16);
-cc_deleteall(interface_300:com17);
+cc_deleteall(interface_300:com18);
 ~steelborder(interface_300:com1, $string0, 0);
 def_int $int4 = calc((if_getwidth(interface_300:com16) - 8 * 36) / 7 + 36);
 def_int $int5 = inv_size($inv0);
@@ -24,6 +24,10 @@ while ($int6 < $int5) {
     cc_setonop("cc_settrans_temporarily(event_com, event_comsubid, 125, 0)");
     $int6 = calc($int6 + 1);
 }
-~scrollbar_vertical(interface_300:com17, interface_300:com16, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~scrollbar_vertical(interface_300:com18, interface_300:com16, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
 ~shop_main_update(interface_300:com16, $int5, $inv0, $obj1, $int2);
 if_setoninvtransmit("shop_main_update(event_com, $int5, $inv0, $obj1, $int2){$inv0}", interface_300:com16);
+if (~script2288 = true) {
+    ~script2461(interface_300:com17, false);
+    if_setposition(calc(if_getx(interface_300:com19) - 30), if_gety(interface_300:com19), ^setpos_abs_centre, ^setpos_abs_top, interface_300:com19);
+}
