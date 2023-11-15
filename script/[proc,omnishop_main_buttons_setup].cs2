@@ -1,9 +1,10 @@
 // 7245
 [proc,omnishop_main_buttons_setup](int $int0, string $string)
-def_component $com_24 = interface_819:com_24;
 def_component $com_25 = interface_819:com_25;
 def_component $com_26 = interface_819:com_26;
 def_component $com_27 = interface_819:com_27;
+def_component $com_28 = interface_819:com_28;
+def_component $com_24 = interface_819:com_24;
 def_component $com_19 = interface_819:com_19;
 def_graphic $graphic = p11_full;
 switch_int (%varclient_988) {
@@ -22,49 +23,63 @@ cc_settextshadow(true);
 cc_settextfont($graphic);
 cc_setcolour(0xff981f);
 cc_settext($string);
-def_int $int7 = calc((if_getwidth($com_19) - 18) / 4);
-if_setsize($int7, 18, ^setsize_abs, ^setsize_minus, $com_24);
-if_setsize($int7, 18, ^setsize_abs, ^setsize_minus, $com_25);
-if_setsize($int7, 18, ^setsize_abs, ^setsize_minus, $com_26);
-if_setsize($int7, 18, ^setsize_abs, ^setsize_minus, $com_27);
-if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_bottom, $com_24);
-if_setposition(calc(-3 - $int7 / 2), 0, ^setpos_abs_centre, ^setpos_abs_bottom, $com_25);
-if_setposition(calc(3 + $int7 / 2), 0, ^setpos_abs_centre, ^setpos_abs_bottom, $com_26);
-if_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_bottom, $com_27);
-def_boolean $boolean = true;
-if ($int0 < 1 & $int0 ! -1) {
-    $boolean = false;
+def_int $int8 = calc((if_getwidth($com_19) - 18) / 4);
+def_boolean $boolean9 = ~script2288;
+if ($boolean9 = true) {
+    $int8 = calc((if_getwidth($com_19) - 18) / 5);
 }
-~script7139($com_24, "1", $boolean, false);
-if ($boolean = true) {
-    if_setop(1, "<$string>-1", $com_24);
+if_setsize($int8, 18, ^setsize_abs, ^setsize_minus, $com_25);
+if_setsize($int8, 18, ^setsize_abs, ^setsize_minus, $com_26);
+if_setsize($int8, 18, ^setsize_abs, ^setsize_minus, $com_27);
+if_setsize($int8, 18, ^setsize_abs, ^setsize_minus, $com_28);
+if ($boolean9 = true) {
+    if_setsize($int8, 18, ^setsize_abs, ^setsize_minus, $com_24);
+    if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_bottom, $com_25);
+    if_setposition(calc(-1 * ($int8 + 5)), 0, ^setpos_abs_centre, ^setpos_abs_bottom, $com_26);
+    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_bottom, $com_27);
+    if_setposition(calc($int8 + 5), 0, ^setpos_abs_centre, ^setpos_abs_bottom, $com_28);
+    if_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_bottom, $com_24);
+    ~script2461($com_24, false);
 } else {
-    if_clearops($com_24);
+    if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_bottom, $com_25);
+    if_setposition(calc(-3 - $int8 / 2), 0, ^setpos_abs_centre, ^setpos_abs_bottom, $com_26);
+    if_setposition(calc(3 + $int8 / 2), 0, ^setpos_abs_centre, ^setpos_abs_bottom, $com_27);
+    if_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_bottom, $com_28);
 }
-if ($int0 < 5 & $int0 ! -1) {
-    $boolean = false;
+def_boolean $boolean10 = true;
+if ($int0 < 1 & $int0 ! -1) {
+    $boolean10 = false;
 }
-~script7139($com_25, "5", $boolean, false);
-if ($boolean = true) {
-    if_setop(1, "<$string>-5", $com_25);
+~script7139($com_25, "1", $boolean10, false);
+if ($boolean10 = true) {
+    if_setop(1, "<$string>-1", $com_25);
 } else {
     if_clearops($com_25);
 }
-if ($int0 < 10 & $int0 ! -1) {
-    $boolean = false;
+if ($int0 < 5 & $int0 ! -1) {
+    $boolean10 = false;
 }
-~script7139($com_26, "10", $boolean, false);
-if ($boolean = true) {
-    if_setop(1, "<$string>-10", $com_26);
+~script7139($com_26, "5", $boolean10, false);
+if ($boolean10 = true) {
+    if_setop(1, "<$string>-5", $com_26);
 } else {
     if_clearops($com_26);
 }
-if ($int0 < 50 & $int0 ! -1) {
-    $boolean = false;
+if ($int0 < 10 & $int0 ! -1) {
+    $boolean10 = false;
 }
-~script7139($com_27, "50", $boolean, false);
-if ($boolean = true) {
-    if_setop(1, "<$string>-50", $com_27);
+~script7139($com_27, "10", $boolean10, false);
+if ($boolean10 = true) {
+    if_setop(1, "<$string>-10", $com_27);
 } else {
     if_clearops($com_27);
+}
+if ($int0 < 50 & $int0 ! -1) {
+    $boolean10 = false;
+}
+~script7139($com_28, "50", $boolean10, false);
+if ($boolean10 = true) {
+    if_setop(1, "<$string>-50", $com_28);
+} else {
+    if_clearops($com_28);
 }
