@@ -1,67 +1,75 @@
 // 3415
-[proc,highlight_textbox](string $string0, int $rgb0, boolean $boolean1, boolean $boolean2, component $component3, int $int4)
+[proc,highlight_textbox](string $string0, int $rgb0, boolean $boolean1, boolean $boolean2, component $component3, int $int4, int $int5, int $int6)
 if ($boolean2 = true) {
     if_sethide(false, interface_664:com29);
 } else {
     if_sethide(true, interface_664:com29);
 }
-def_int $int5 = if_getheight($component3);
-if ($int5 = $int4) {
+def_int $int7 = if_getheight($component3);
+def_int $int8 = if_getwidth($component3);
+if (calc(clientclock % 100) ! 0 & $int7 = $int4 & $int8 = $int5) {
     return;
 }
-def_int $int6 = if_getwidth($component3);
 if ($rgb0 = null) {
     $rgb0 = 0xff981f;
 }
 if_setcolour($rgb0, interface_664:com28);
 if_settext("<tostring(calc(1 + %varplayerbit_10308))>/<tostring(%varplayerbit_10309)>", interface_664:com28);
-def_int $int7 = 0;
-def_int $int8 = 0;
-$int7, $int8 = ~script3416($string0, p12_full, 16);
-if_setsize($int7, $int8, ^setsize_abs, ^setsize_abs, interface_664:com8);
+def_int $int9 = 0;
+def_int $int10 = 0;
+$int9, $int10 = ~script3416($string0, p12_full, 16);
+if_setsize($int9, $int10, ^setsize_abs, ^setsize_abs, interface_664:com8);
 if_setcolour($rgb0, interface_664:com27);
 if_settext($string0, interface_664:com27);
-def_int $int9 = if_getx(interface_664:com7);
-def_int $int10 = if_gety(interface_664:com7);
-def_int $int11 = if_getwidth(interface_664:com7);
-def_int $int12 = if_getheight(interface_664:com7);
+def_int $int11 = if_getx(interface_664:com7);
+def_int $int12 = if_gety(interface_664:com7);
+def_int $int13 = if_getwidth(interface_664:com7);
+def_int $int14 = if_getheight(interface_664:com7);
 if (if_gethide(interface_664:com7) = false) {
-    if (calc($int8 + 10) <= $int10) {
-        $int10 = calc($int10 - 10 - $int8);
-        $int9 = calc($int9 + if_getwidth(interface_664:com7) / 2 - $int7 / 2);
-        if ($int9 <= 1) {
-            $int9 = 2;
-        } else if (calc($int9 + $int7) >= $int6) {
-            $int9 = calc($int6 - 2 - $int7);
+    if (calc($int10 + 10) <= $int12) {
+        $int12 = calc($int12 - 10 - $int10);
+        $int11 = calc($int11 + if_getwidth(interface_664:com7) / 2 - $int9 / 2);
+        if ($int11 <= 1) {
+            $int11 = 2;
+        } else if (calc($int11 + $int9) >= $int8) {
+            $int11 = calc($int8 - 2 - $int9);
         }
-        if_setposition($int9, $int10, ^setpos_abs_left, ^setpos_abs_top, interface_664:com8);
-    } else if (calc($int10 + $int12 + $int8 + 10) <= $int5) {
-        $int10 = calc($int10 + 10 + if_getheight(interface_664:com7));
-        $int9 = calc($int9 + if_getwidth(interface_664:com7) / 2 - $int7 / 2);
-        if ($int9 <= 1) {
-            $int9 = 2;
-        } else if (calc($int9 + $int7) >= $int6) {
-            $int9 = calc($int6 - 2 - $int7);
+        if_setposition($int11, $int12, ^setpos_abs_left, ^setpos_abs_top, interface_664:com8);
+    } else if (calc($int12 + $int14 + $int10 + 10) <= $int7) {
+        $int12 = calc($int12 + 10 + if_getheight(interface_664:com7));
+        $int11 = calc($int11 + if_getwidth(interface_664:com7) / 2 - $int9 / 2);
+        if ($int11 <= 1) {
+            $int11 = 2;
+        } else if (calc($int11 + $int9) >= $int8) {
+            $int11 = calc($int8 - 2 - $int9);
         }
-        if_setposition($int9, $int10, ^setpos_abs_left, ^setpos_abs_top, interface_664:com8);
-    } else if (calc($int7 + 10) <= $int9) {
-        $int9 = calc($int9 - 10 - $int7);
-        $int10 = calc($int10 + if_getheight(interface_664:com7) / 2 - $int8 / 2);
-        if ($int10 <= 1) {
-            $int10 = 2;
-        } else if (calc($int10 + $int8) >= $int5) {
-            $int10 = calc($int5 - 2 - $int8);
+        if_setposition($int11, $int12, ^setpos_abs_left, ^setpos_abs_top, interface_664:com8);
+    } else if (calc($int9 + 10) <= $int11) {
+        $int11 = calc($int11 - 10 - $int9);
+        $int12 = calc($int12 + if_getheight(interface_664:com7) / 2 - $int10 / 2);
+        if ($int12 <= 1) {
+            $int12 = 2;
+        } else if (calc($int12 + $int10) >= $int7) {
+            $int12 = calc($int7 - 2 - $int10);
         }
-        if_setposition($int9, $int10, ^setpos_abs_left, ^setpos_abs_top, interface_664:com8);
-    } else if (calc($int9 + $int11 + $int7 + 10) <= $int6) {
-        $int9 = calc($int9 + 10 + if_getwidth(interface_664:com7));
-        $int10 = calc($int10 + if_getheight(interface_664:com7) / 2 - $int8 / 2);
-        if ($int10 <= 1) {
-            $int10 = 2;
-        } else if (calc($int10 + $int8) >= $int5) {
-            $int10 = calc($int5 - 2 - $int8);
+        if_setposition($int11, $int12, ^setpos_abs_left, ^setpos_abs_top, interface_664:com8);
+    } else if (calc($int11 + $int13 + $int9 + 10) <= $int8) {
+        $int11 = calc($int11 + 10 + if_getwidth(interface_664:com7));
+        $int12 = calc($int12 + if_getheight(interface_664:com7) / 2 - $int10 / 2);
+        if ($int12 <= 1) {
+            $int12 = 2;
+        } else if (calc($int12 + $int10) >= $int7) {
+            $int12 = calc($int7 - 2 - $int10);
         }
-        if_setposition($int9, $int10, ^setpos_abs_left, ^setpos_abs_top, interface_664:com8);
+        if_setposition($int11, $int12, ^setpos_abs_left, ^setpos_abs_top, interface_664:com8);
+    } else if ($int6 = 1) {
+        if_setposition(0, 5, ^setpos_abs_centre, ^setpos_abs_bottom, interface_664:com8);
+    } else if ($int6 = 2) {
+        if_setposition(0, 5, ^setpos_abs_centre, ^setpos_abs_bottom, interface_664:com8);
+    } else if ($int6 = 3) {
+        if_setposition(0, 5, ^setpos_abs_centre, ^setpos_abs_bottom, interface_664:com8);
+    } else if ($int6 = 4) {
+        if_setposition(0, 5, ^setpos_abs_centre, ^setpos_abs_bottom, interface_664:com8);
     } else {
         if_setposition(0, 50, ^setpos_abs_centre, ^setpos_abs_bottom, interface_664:com8);
     }
@@ -69,4 +77,4 @@ if (if_gethide(interface_664:com7) = false) {
     if_setposition(0, 50, ^setpos_abs_centre, ^setpos_abs_bottom, interface_664:com8);
 }
 if_sethide(false, interface_664:com8);
-if_setontimer("highlight_textbox_resize($string0, $rgb0, $boolean1, $boolean2, $component3, $int5)", interface_664:com8);
+if_setontimer("highlight_textbox_resize($string0, $rgb0, $boolean1, $boolean2, $component3, $int7, $int8, $int6)", interface_664:com0);

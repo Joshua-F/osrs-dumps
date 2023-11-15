@@ -5,7 +5,7 @@ cc_deleteall($component3);
 cc_deleteall($component6);
 cc_deleteall($component4);
 cc_deleteall($component2);
-~leagues_close_button($component8, false);
+~leagues_close_button($component8, false, 0);
 ~steelborder($component0, "League Firsts", 1);
 def_int $int10 = 0;
 def_int $int11 = 0;
@@ -56,7 +56,9 @@ while ($int11 < enum_getoutputcount($enum15)) {
     cc_settextshadow(true);
     cc_setcolour(0xff981f);
     if ($enum12 = null) {
-        cc_settext($string1);
+        if (string_length($string1) > 0) {
+            cc_settext($string1);
+        }
     } else {
         cc_settext(~script859($enum12));
         cc_settextfont(p11_full);
@@ -71,7 +73,9 @@ while ($int11 < enum_getoutputcount($enum15)) {
     cc_setcolour(0xff981f);
     cc_setsize(calc(if_getwidth($component5) - 10), 70, ^setsize_abs, ^setsize_abs);
     cc_create($component6, ^iftype_text, $int10);
-    cc_settext($string2);
+    if (string_length($string2) > 0) {
+        cc_settext($string2);
+    }
     cc_setposition(0, $int13, ^setpos_abs_left, ^setpos_abs_top);
     cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
     cc_settextfont(p12_full);
