@@ -1,12 +1,12 @@
 // 7147
 [proc,omnishop_main_info_setup](dbrow $dbrow0, inv $inv, int $int2, int $int3, int $int4, int $int5, dbrow $dbrow6, string $string0, boolean $boolean)
-def_component $com_29 = interface_819:com_29;
 def_component $com_30 = interface_819:com_30;
+def_component $com_31 = interface_819:com_31;
 def_int $int10 = 53673989;
 def_component $com_16 = interface_819:com_16;
 def_component $com_14 = interface_819:com_14;
-if_setonresize("omnishop_main_info_setup($dbrow0, $inv, $int2, $int3, $int4, $int5, $dbrow6, $string0, $boolean)", $com_29);
-cc_deleteall($com_29);
+if_setonresize("omnishop_main_info_setup($dbrow0, $inv, $int2, $int3, $int4, $int5, $dbrow6, $string0, $boolean)", $com_30);
+cc_deleteall($com_30);
 cc_deleteall($com_16);
 if (%varplayer_3871 = 1) {
     if ($int2 = -1) {
@@ -58,9 +58,9 @@ if ($int2 ! -1) {
 }
 def_int $int21 = 0;
 def_int $int22 = 0;
-def_int $int23 = if_getwidth($com_29);
+def_int $int23 = if_getwidth($com_30);
 if ($int2 ! -1 & string_length($string0) = 0) {
-    ~loading_icon_init_extended($com_29, null, enum_3787, 10, 1000, 3000, 512, 1024, 0, 3, "", 0, 30);
+    ~loading_icon_init_extended($com_30, null, enum_3787, 10, 1000, 3000, 512, 1024, 0, 3, "", 0, 30);
     $int21 = enum_getoutputcount(enum_3787);
 }
 def_string $string1 = db_getfield($dbrow0, dbtable_39:col10, 0);
@@ -76,7 +76,7 @@ if ($int2 ! -1) {
     }
 }
 def_int $int25 = calc(paraheight($string1, calc($int23 - $int17 * 2), $fontmetrics14) * $int19);
-cc_create($com_29, ^iftype_text, $int21);
+cc_create($com_30, ^iftype_text, $int21);
 cc_setposition($int17, $int17, ^setpos_abs_left, ^setpos_abs_top);
 cc_setsize(calc($int23 - $int17 * 2), $int25, ^setsize_abs, ^setsize_abs);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, $int19);
@@ -87,7 +87,7 @@ cc_settext($string1);
 $int21 = calc($int21 + 1);
 $int22 = calc($int22 + $int17 + $int25 + $int18);
 if ($int2 ! -1) {
-    cc_create($com_29, ^iftype_graphic, $int21);
+    cc_create($com_30, ^iftype_graphic, $int21);
     cc_setposition(calc($int23 / 2 - 36 / 2), $int22, ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
     cc_setobject($obj, -1);
@@ -106,7 +106,7 @@ if (string_length($string0) > 0) {
     if ($int3 = -1) {
         $string2 = "Unlimited stock";
     }
-    cc_create($com_29, ^iftype_text, $int21);
+    cc_create($com_30, ^iftype_text, $int21);
     cc_setposition(0, $int22, ^setpos_abs_centre, ^setpos_abs_top);
     cc_setsize(50, 18, ^setsize_abs, ^setsize_abs);
     cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
@@ -116,7 +116,7 @@ if (string_length($string0) > 0) {
     cc_settext($string2);
     $int21 = calc($int21 + 1);
     $int22 = calc($int22 + 22);
-    cc_create($com_29, ^iftype_text, $int21);
+    cc_create($com_30, ^iftype_text, $int21);
     cc_setposition(0, $int22, ^setpos_abs_centre, ^setpos_abs_top);
     cc_setsize(50, 18, ^setsize_abs, ^setsize_abs);
     cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
@@ -134,7 +134,7 @@ if (string_length($string0) > 0) {
         } else {
             $string3 = "<$string3> <db_getfield($dbrow26, dbtable_41:col2, 0)>";
         }
-        cc_create($com_29, ^iftype_text, $int21);
+        cc_create($com_30, ^iftype_text, $int21);
         cc_setposition(0, $int22, ^setpos_abs_centre, ^setpos_abs_top);
         cc_setsize(50, 18, ^setsize_abs, ^setsize_abs);
         cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
@@ -171,7 +171,7 @@ if ($int2 = -1) {
     $string1 = $string0;
 }
 $int25 = calc(paraheight($string1, calc($int23 - $int17 * 2), $fontmetrics16) * $int19);
-cc_create($com_29, ^iftype_text, $int21);
+cc_create($com_30, ^iftype_text, $int21);
 cc_setposition($int17, $int22, ^setpos_abs_left, ^setpos_abs_top);
 cc_setsize(calc($int23 - $int17 * 2), $int25, ^setsize_abs, ^setsize_abs);
 cc_settextalign(^settextalign_left, ^settextalign_top, $int19);
@@ -182,10 +182,10 @@ cc_settext($string1);
 $int21 = calc($int21 + 1);
 $int22 = calc($int22 + $int25 + $int18);
 if ($boolean = true) {
-    if_setscrollpos(0, 0, $com_29);
+    if_setscrollpos(0, 0, $com_30);
 }
-if_setscrollsize(if_getwidth($com_29), $int22, $com_29);
-~scrollbar_vertical($com_30, $com_29, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-~scrollbar_vertical_rebuild($com_30, $com_29);
+if_setscrollsize(if_getwidth($com_30), $int22, $com_30);
+~scrollbar_vertical($com_31, $com_30, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~scrollbar_vertical_rebuild($com_31, $com_30);
 def_string $string6 = db_getfield($dbrow0, dbtable_39:col13, 0);
 ~omnishop_main_buttons_setup($int3, $string6);

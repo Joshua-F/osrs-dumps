@@ -30,39 +30,45 @@ if (~on_mobile = false) {
 }
 if_setonop("button_select_sound", $com_28);
 def_struct $struct = enum(int, struct, enum_2670, %varplayerbit_10032);
-def_int $int = 16750623;
+def_int $int6 = 16750623;
 if ($struct ! null) {
     if_setgraphic(struct_param($struct, param_1024), interface_656:com_11);
     if_setgraphic(struct_param($struct, param_1025), interface_656:com_10);
-    $int = struct_param($struct, param_1027);
+    $int6 = struct_param($struct, param_1027);
 }
-if_setcolour($int, interface_656:com_2);
-if_setcolour($int, interface_656:com_6);
-if_setcolour($int, interface_656:com_7);
-if_setcolour($int, interface_656:com_13);
-if_setcolour($int, interface_656:com_15);
+if_setcolour($int6, interface_656:com_2);
+if_setcolour($int6, interface_656:com_6);
+if_setcolour($int6, interface_656:com_7);
+if_setcolour($int6, interface_656:com_13);
+if_setcolour($int6, interface_656:com_15);
 def_string $string = "Display Relics";
-def_component $com_35 = interface_656:com_35;
+def_component $com_36 = interface_656:com_36;
 def_component $com_34 = interface_656:com_34;
+def_component $com_35 = interface_656:com_35;
+def_int $int10 = calc(parawidth($string, 190, p11_full) + 20);
 if_setopbase("<col=ff9040><$string></col>", $com_34);
-if_setsize(calc(parawidth($string, 190, p11_full) + 20), if_getheight($com_34), ^setsize_abs, ^setsize_abs, $com_34);
+if_setsize($int10, if_getheight($com_34), ^setsize_abs, ^setsize_abs, $com_34);
 cc_create($com_34, ^iftype_graphic, 0);
 cc_setsize(17, 17, ^setsize_abs, ^setsize_abs);
 cc_setposition(0, 5, ^setpos_abs_left, ^setpos_abs_top);
 .cc_create($com_34, ^iftype_text, 1);
 .cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
 .cc_setposition(0, 1, ^setpos_abs_centre, ^setpos_abs_top);
-.cc_setcolour($int);
+.cc_setcolour($int6);
 .cc_settextfont(p11_full);
 .cc_settextshadow(true);
 .cc_settextalign(^settextalign_right, ^settextalign_centre, 0);
 .cc_settext($string);
-.cc_setonmouseleave("deltooltip($com_35)");
+.cc_setonmouseleave("deltooltip($com_36)");
 if (~on_mobile = false) {
     if_setonmouseover("cc_colour_swapper(event_com, .cc_getid, 16777215)", $com_34);
-    if_setonmouseleave("cc_colour_swapper(event_com, .cc_getid, $int)", $com_34);
+    if_setonmouseleave("cc_colour_swapper(event_com, .cc_getid, $int6)", $com_34);
 }
-~league_side_panel_hudtoggle($com_34, $com_35);
-if_setonvartransmit("league_side_panel_hudtoggle($com_34, cc_getid, .cc_getid, $com_35){varplayer_1734}", $com_34);
-if_setonop("league_side_panel_hudop(event_op, $com_34, cc_getid, .cc_getid, $com_35)", $com_34);
+~league_side_panel_hudtoggle($com_34, $com_36);
+def_int $int11 = ~league_side_panel_rank($com_35, $com_36, $int6);
+def_int $int12 = calc((if_getwidth(interface_656:com_1) - $int10 - $int11) / 2 - 2);
+if_setposition(calc(0 - $int10 / 2 - 5 + $int12), 0, ^setpos_abs_centre, ^setpos_abs_bottom, $com_34);
+if_setposition(calc($int11 / 2 + 5 + $int12), 0, ^setpos_abs_centre, ^setpos_abs_bottom, $com_35);
+if_setonvartransmit("league_side_panel_hudtoggle($com_34, cc_getid, .cc_getid, $com_36){varplayer_1734}", $com_34);
+if_setonop("league_side_panel_hudop(event_op, $com_34, cc_getid, .cc_getid, $com_36)", $com_34);
 ~league_side_panel_update_bar(interface_656:com_11, %varplayer_2615);
