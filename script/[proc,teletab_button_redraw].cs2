@@ -1,39 +1,33 @@
 // 3591
-[proc,teletab_button_redraw](int $int, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10, component $component11, component $component12, component $component13, component $component14, component $component15)
-def_enum $enum16 = enum(int, enum, enum_908, %varplayerbit_10599);
-if ($enum16 = null) {
+[proc,teletab_button_redraw](component $component0, int $int, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10, component $component11, component $component12, component $component13, component $component14, component $component15, component $component16, component $component17, component $component18, component $component19, component $component20, component $component21, component $component22, component $component23, component $component24, component $component25, component $component26, component $component27, component $component28, component $component29)
+def_enum $enum = %varplayer_4074;
+if ($enum = null) {
     return;
 }
-def_enum $enum17 = enum(int, enum, enum_909, %varplayerbit_10599);
-if ($enum17 = null) {
-    return;
-}
-if ($enum16 = null) {
-    return;
-}
-def_obj $obj18 = enum(int, namedobj, $enum16, $int);
-if ($obj18 = null) {
-    if_sethide(true, $component1);
+def_obj $obj31 = enum(int, namedobj, $enum, calc($int - 1));
+def_string $string = enum(obj, string, enum_5272, $obj31);
+if ($obj31 = null) {
+    if_sethide(true, $component2);
     return;
 } else {
-    if_sethide(false, $component1);
+    if_sethide(false, $component2);
 }
-def_obj $obj19 = oc_param($obj18, param_608);
-if ($obj19 = null) {
+def_obj $obj32 = oc_param($obj31, param_608);
+if ($obj32 = null) {
     return;
 }
 def_boolean $boolean = false;
-if (stat(magic) >= oc_param($obj19, param_604) & ~magic_spellbook_hasrunes($obj19, inv_getobj(inv_94, 3), inv_getobj(inv_94, 5)) = true) {
+if (stat(magic) >= oc_param($obj32, param_604) & ~magic_spellbook_hasrunes($obj32, inv_getobj(inv_94, 3), inv_getobj(inv_94, 5)) = true) {
     $boolean = true;
 }
 if (%varplayerbit_10600 = $int) {
-    ~teletab_button_draw(true, $enum16, $enum17, $int, $component1, $boolean);
-    if_setonmouserepeat(null, $component1);
-    if_setonmouseleave(null, $component1);
-    if_setonop("opsound(event_op, 2)", $component1);
+    ~teletab_button_draw(true, $enum, $string, $int, $component2, $boolean);
+    if_setonmouserepeat(null, $component2);
+    if_setonmouseleave(null, $component2);
+    if_setonop("opsound(event_op, 2)", $component2);
 } else {
-    ~teletab_button_draw(false, $enum16, $enum17, $int, $component1, $boolean);
-    if_setonmouserepeat("teletab_button_draw(true, $enum16, $enum17, $int, $component1, $boolean)", $component1);
-    if_setonmouseleave("teletab_button_draw(false, $enum16, $enum17, $int, $component1, $boolean)", $component1);
-    if_setonop("teletab_button_op(event_op, $int, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10, $component11, $component12, $component13, $component14, $component15)", $component1);
+    ~teletab_button_draw(false, $enum, $string, $int, $component2, $boolean);
+    if_setonmouserepeat("teletab_button_draw(true, $enum, $string, $int, $component2, $boolean)", $component2);
+    if_setonmouseleave("teletab_button_draw(false, $enum, $string, $int, $component2, $boolean)", $component2);
+    if_setonop("teletab_button_op($component0, event_op, $int, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10, $component11, $component12, $component13, $component14, $component15, $component16, $component17, $component18, $component19, $component20, $component21, $component22, $component23, $component24, $component25, $component26, $component27, $component28, $component29)", $component2);
 }
