@@ -1,7 +1,13 @@
 // 341
-[proc,godwars_killcount](component $component, int $int)
-if ($int >= 4000) {
-    if_settext("Max", $component);
+[proc,godwars_killcount](component $component, int $int1)
+def_int $int2 = calc(40 - ~script533);
+def_string $string = "";
+if ($int1 >= 4000) {
+    $string = "Max";
 } else {
-    if_settext(~tostring_spacer($int, ","), $component);
+    $string = ~tostring_spacer($int1, ",");
 }
+if ($int1 < $int2) {
+    $string = append("<col=ff4747>", $string);
+}
+if_settext($string, $component);

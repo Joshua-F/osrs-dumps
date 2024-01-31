@@ -1,0 +1,38 @@
+// 2836
+[proc,loottracker_debug_ui_output_info_components]
+~debug_mes("loottracker_debug_ui_output_info_components");
+def_component $component = null;
+def_int $int1 = 0;
+def_string $string = null;
+def_int $int2 = 0;
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_int $rgb = ^black;
+def_int $int6 = 0;
+def_obj $obj = null;
+def_int $int8 = -1;
+def_int $int9 = -1;
+def_int $int10 = -1;
+def_int $int11 = -1;
+def_int $int12 = -1;
+def_int $int13 = 0;
+while ($int1 < 10) {
+    $component = ~script7168($int1);
+    $string = if_gettext($component);
+    $int2 = if_getscrollwidth($component);
+    $int3 = if_getscrollheight($component);
+    $int4 = if_getcolour($component);
+    $rgb = if_getblendcolour($component);
+    $int6 = 0;
+    ~debug_mes("source (<~script47($int1)>) = <$string>x<tostring($int3)> has <tostring($int4)> items.");
+    while ($int6 < $int4) {
+        $obj, $int8, $int9, $int10, $int11, $int12, $int13 = ~script7173($component, $int6);
+        if ($int13 = 1) {
+            ~debug_mes("source (<~script47($int1)>) item  (<~script47($int6)>) = <tostring($int8)> x <oc_name($obj)> | IGNORED!");
+        } else {
+            ~debug_mes("source (<~script47($int1)>) item  (<~script47($int6)>) = <tostring($int8)> x <oc_name($obj)>");
+        }
+        $int6 = calc($int6 + 1);
+    }
+    $int1 = calc($int1 + 1);
+}

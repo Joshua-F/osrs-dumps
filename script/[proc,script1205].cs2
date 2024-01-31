@@ -1,0 +1,31 @@
+// 1205
+[proc,script1205]()(boolean)
+def_struct $struct = null;
+def_component $component = null;
+def_boolean $boolean = false;
+def_int $int3 = enum_getoutputcount(enum_1310);
+def_struct $structarray($int3);
+def_int $int4 = 0;
+while ($int3 > 0) {
+    $int3 = calc($int3 - 1);
+    $struct = enum(int, struct, enum_1310, $int3);
+    if ($struct ! null) {
+        $component = struct_param($struct, param_1875);
+        if ($component ! null & cc_find($component, 0) = true) {
+            sound_synth(synth_2266, 1, 0);
+            $boolean = true;
+            if (struct_param($struct, param_1877) = true) {
+                cc_crmview_dismiss;
+            }
+            if (struct_param($struct, param_1871) ! -1) {
+                $structarray($int4) = $struct;
+                $int4 = calc($int4 + 1);
+            }
+        }
+    }
+}
+while ($int4 > 0) {
+    $int4 = calc($int4 - 1);
+    ~script1188($structarray($int4));
+}
+return($boolean);
