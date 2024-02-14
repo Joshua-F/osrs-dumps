@@ -1,7 +1,11 @@
 // 7239
 [proc,ground_items_display](obj $obj)(boolean)
+$obj = oc_uncert($obj);
 def_string $string = removetags(oc_name($obj));
 if (stringvector_contains(stringvector_3, $string, true, false) = true) {
+    return(false);
+}
+if (%varplayerbit_9606 = 1 & oc_stockmarket($obj) = false) {
     return(false);
 }
 return(true);
