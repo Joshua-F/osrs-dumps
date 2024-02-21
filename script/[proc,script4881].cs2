@@ -1,0 +1,61 @@
+// 4881
+[proc,script4881](component $component0, int $int1)
+def_int $int2 = 4;
+if (%varplayerbit_9727 = 3) {
+    $int2 = 3;
+    if (cc_find($component0, $int1) = ^true) {
+        cc_setobject_nonum(obj_12791, 1);
+    }
+} else if (cc_find($component0, $int1) = ^true) {
+    cc_setobject_nonum(obj_27281, 1);
+}
+def_int $int3 = calc((if_getwidth($component0) - (45 + 2 + 36 * $int2)) / $int2);
+def_obj $obj4 = null;
+def_int $int5 = 0;
+def_int $int6 = 1;
+while ($int6 <= $int2) {
+    if (cc_find($component0, $int6) = ^true & .cc_find($component0, calc($int6 + 4)) = ^true) {
+        cc_sethide(false);
+        cc_setposition(calc(45 + 2 + ($int6 - 1) * ($int3 + 36)), 0, ^setpos_abs_left, ^setpos_abs_centre);
+        .cc_setposition(cc_getx, 0, ^setpos_abs_left, ^setpos_abs_centre);
+        cc_clearops;
+        $obj4, $int5 = ~script4891($int6);
+        if ($obj4 ! null) {
+            cc_setobject($obj4, $int5);
+            cc_settrans(0);
+            cc_setopbase("<col=ff9040><oc_name($obj4)></col>");
+            cc_setop(1, "Deposit-<~script2579>");
+            if (%varplayerbit_6590 ! 0) {
+                cc_setop(2, "Deposit-1");
+            }
+            cc_setop(3, "Deposit-5");
+            cc_setop(4, "Deposit-10");
+            if (%varplayerbit_3960 > 0) {
+                cc_setop(5, "Deposit-<tostring(%varplayerbit_3960)>");
+            }
+            cc_setop(6, "Deposit-X");
+            cc_setop(7, "Deposit-All");
+            cc_setop(10, "Examine");
+            cc_setonop("cc_settrans_temporarily(event_com, event_comsubid, 100, 0)");
+            cc_setondragcomplete("script4882(event_com, event_com2, event_comsubid, event_comsubid2, $int2, $int1)");
+            .cc_sethide(true);
+        } else {
+            cc_setobject_nonum(obj_6512, 1);
+            cc_settrans(255);
+            cc_setonop(null);
+            cc_setondragcomplete(null);
+            .cc_sethide(false);
+        }
+        cc_setontimer(null);
+    }
+    $int6 = calc($int6 + 1);
+}
+while ($int6 <= 4) {
+    if (cc_find($component0, $int6) = ^true) {
+        cc_sethide(true);
+    }
+    if (.cc_find($component0, calc($int6 + 4)) = ^true) {
+        .cc_sethide(true);
+    }
+    $int6 = calc($int6 + 1);
+}
