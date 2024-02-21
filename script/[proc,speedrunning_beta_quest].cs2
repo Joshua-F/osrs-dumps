@@ -1,6 +1,10 @@
 // 6807
-[proc,speedrunning_beta_quest](dbrow $dbrow)(boolean)
-def_int $int = db_getfield($dbrow, dbtable_0:col29, 0);
+[proc,speedrunning_beta_quest](dbrow $dbrow0)(boolean)
+def_dbrow $dbrow1 = ~speedrunning_get_dbrow($dbrow0);
+if ($dbrow1 = null | db_getrowtable($dbrow1) ! dbtable_61) {
+    return(false);
+}
+def_int $int = db_getfield($dbrow1, dbtable_61:col1, 0);
 if ($int = 2 | $int = 3) {
     return(true);
 }
