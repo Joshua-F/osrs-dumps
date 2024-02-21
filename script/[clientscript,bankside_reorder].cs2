@@ -1,29 +1,32 @@
 // 298
-[clientscript,bankside_reorder](component $component0, component $component1, int $int2, int $int3, component $component4, component $component5, component $component6, component $component7)
-def_int $int8 = inv_size(inv_93);
-if ($int2 < 0 | $int2 >= $int8) {
+[clientscript,bankside_reorder](component $component0, component $component1, int $int2, int $int3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9)
+def_int $int10 = inv_size(inv_93);
+if ($int2 < 0 | $int2 >= $int10) {
     return;
 }
-if ($int3 < 0 | $int3 >= $int8) {
+if ($int3 < 0 | $int3 >= $int10) {
     return;
 }
 if ($component0 ! $component1) {
     return;
 }
-def_obj $obj9 = inv_getobj(inv_93, $int2);
-if ($obj9 = null) {
+def_obj $obj11 = inv_getobj(inv_93, $int2);
+if ($obj11 = null) {
     return;
 }
-def_obj $obj10 = inv_getobj(inv_93, $int3);
+def_obj $obj12 = inv_getobj(inv_93, $int3);
 if (cc_find($component0, $int3) = ^true) {
-    ~bankside_drawitem($obj9, inv_getnum(inv_93, $int2), $int2, $component0, $component4, 0, $component5, $component6, $component7);
+    ~bankside_drawitem($obj11, inv_getnum(inv_93, $int2), $int2, $component0, $component4, 0, $component5, $component6, $component7, $component8, $component9);
 }
 if (cc_find($component0, $int2) = ^true) {
-    ~bankside_drawitem($obj10, inv_getnum(inv_93, $int3), $int3, $component0, $component4, 0, $component5, $component6, $component7);
+    ~bankside_drawitem($obj12, inv_getnum(inv_93, $int3), $int3, $component0, $component4, 0, $component5, $component6, $component7, $component8, $component9);
 }
-if ($obj9 = obj_11941 | $obj9 = obj_22586 | $obj10 = obj_11941 | $obj10 = obj_22586) {
-    cc_deleteall($component4);
-}
-if ($obj9 = obj_25106 | $obj9 = obj_25108 | $obj10 = obj_25106 | $obj10 = obj_25108) {
-    cc_deleteall($component4);
+switch_obj ($obj11) {
+    case obj_11941, obj_22586, obj_25106, obj_25108, obj_12791, obj_24416, obj_27281, obj_27509 :
+        cc_deleteall($component4);
+    case default :
+        switch_obj ($obj12) {
+            case obj_11941, obj_22586, obj_25106, obj_25108, obj_12791, obj_24416, obj_27281, obj_27509 :
+                cc_deleteall($component4);
+        }
 }

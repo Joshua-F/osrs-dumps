@@ -59,8 +59,13 @@ while ($int8 <= $int7) {
     } else {
         cc_setop(3, "");
     }
-    cc_setop(4, "Open wiki guide:");
-    cc_setop(5, "Open wiki quick guide:");
+    if (db_getfield($dbrow13, dbtable_0:col3, 0) = false) {
+        cc_setop(4, "Open wiki guide:");
+        cc_setop(5, "Open wiki quick guide:");
+    } else {
+        cc_setop(4, "");
+        cc_setop(5, "");
+    }
     $int14 = ~quest_status_get($dbrow13);
     $intarray0(calc($int8 - 1)) = calc($int14 * $int15 + $int8);
     cc_sethide(true);
@@ -91,7 +96,7 @@ while ($int16 < $int7) {
             $string1 = $string2;
         }
         if (cc_find($component4, $int17) = ^true) {
-            if (db_getfield($dbrow13, dbtable_0:col19, 0) ! null) {
+            if (db_getfield($dbrow13, dbtable_0:col21, 0) ! null) {
                 cc_sethide(true);
             } else {
                 cc_sethide(false);
