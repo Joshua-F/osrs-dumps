@@ -1,0 +1,20 @@
+// 4874
+[proc,script4874](dbrow $dbrow0)
+if (~quest_is_miniquest($dbrow0) = true | ~quest_is_subquest($dbrow0) = true | db_getfield($dbrow0, dbtable_0:col3, 0) = true | ~quest_status_get($dbrow0) ! 1) {
+    return;
+}
+if (%varplayerbit_9622 = 1 & ~quest_requirement_check($dbrow0) = false) {
+    return;
+}
+def_int $int1 = db_getfieldcount($dbrow0, dbtable_0:col14);
+def_int $int2 = db_getfieldcount($dbrow0, dbtable_0:col15);
+def_int $int3 = 0;
+while ($int3 < $int1) {
+    highlight_npctype_on(db_getfield($dbrow0, dbtable_0:col14, $int3), 13);
+    $int3 = calc($int3 + 1);
+}
+$int3 = 0;
+while ($int3 < $int2) {
+    highlight_loctype_on(db_getfield($dbrow0, dbtable_0:col15, $int3), 16);
+    $int3 = calc($int3 + 1);
+}
