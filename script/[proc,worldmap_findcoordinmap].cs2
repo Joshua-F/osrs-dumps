@@ -6,10 +6,18 @@ if ($wma = null | $coord = null) {
 if (worldmap_coordinmap($wma, $coord) = true) {
     return($coord);
 }
-while (coordy($coord) > 0) {
-    $coord = movecoord($coord, 0, -1, 0);
-    if (worldmap_coordinmap($wma, $coord) = true) {
-        return($coord);
+if (~script2080($wma, $coord) = false) {
+    while (coordy($coord) > 0) {
+        $coord = movecoord($coord, 0, -1, 0);
+        if (worldmap_coordinmap($wma, $coord) = true) {
+            return($coord);
+        }
+    }
+    while (coordy($coord) < 3) {
+        $coord = movecoord($coord, 0, 1, 0);
+        if (worldmap_coordinmap($wma, $coord) = true) {
+            return($coord);
+        }
     }
 }
 return(null);

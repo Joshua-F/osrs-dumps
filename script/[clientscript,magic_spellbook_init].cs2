@@ -1,29 +1,41 @@
 // 2262
-[clientscript,magic_spellbook_init](component $com_0, component $com_1, component $com_3, component $com_190, component $com_2, component $com_192, component $com_195, component $com_196, component $com_197, component $com_198, component $com_199)
-cc_deleteall($com_196);
+[clientscript,magic_spellbook_init](component $com_0, component $com_1, component $com_3, component $com_193, component $com_2, component $com_195, component $com_198, component $com_199, component $com_200, component $com_201, component $com_202)
+cc_deleteall($com_199);
 def_string $string0 = "Info";
 def_string $string1 = "Filters";
-def_int $int = 0;
+def_int $int11 = 0;
 def_boolean $boolean = ~on_mobile;
 if ($boolean = true) {
     cc_deleteall($com_2);
-    $int = 0;
-    while ($int < 4) {
-        cc_create($com_2, ^iftype_rectangle, $int);
+    $int11 = 0;
+    while ($int11 < 4) {
+        cc_create($com_2, ^iftype_rectangle, $int11);
         cc_sethide(false);
         cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
-        cc_setsize(calc($int * 2), calc($int * 2), ^setsize_minus, ^setsize_minus);
+        cc_setsize(calc($int11 * 2), calc($int11 * 2), ^setsize_minus, ^setsize_minus);
         cc_setcolour(^white);
         cc_setfill(true);
-        $int = calc($int + 1);
+        $int11 = calc($int11 + 1);
     }
 }
-~script2603(null, $boolean, $com_197, $com_198, $com_3, $com_190, $com_2, $com_192, $com_195, $com_199, $string0, $string1);
-~magic_spellbook_initialisespells(enum_1982, $com_199, $boolean);
-~magic_spellbook_initialisespells(enum_1983, $com_199, $boolean);
-~magic_spellbook_initialisespells(enum_1984, $com_199, $boolean);
-~magic_spellbook_initialisespells(enum_1985, $com_199, $boolean);
-~magic_spellbook_redraw($com_3, $com_190, $com_199, $com_1, $com_196, $com_197, $com_198, $com_2, $com_192, $com_195, $string0, $string1, $boolean);
-~script5743($com_3, $com_190, $com_199, $com_1, $com_196, $com_197, $com_198, $com_2, $com_192, $com_195, $string0, $string1, $boolean, $com_0);
-if_setoninvtransmit("magic_spellbook_redraw($com_3, $com_190, $com_199, $com_1, $com_196, $com_197, $com_198, $com_2, $com_192, $com_195, $string0, $string1, $boolean){inv_93}", $com_0);
-if_setonstattransmit("magic_spellbook_redraw($com_3, $com_190, $com_199, $com_1, $com_196, $com_197, $com_198, $com_2, $com_192, $com_195, $string0, $string1, $boolean){magic, prayer}", $com_0);
+~script2603(null, $boolean, $com_200, $com_201, $com_3, $com_193, $com_2, $com_195, $com_198, $com_202, $string0, $string1);
+def_int $int13 = 0;
+def_int $int14 = enum_getoutputcount(enum_1981);
+def_int $int15 = 1;
+def_int $int16 = 0;
+def_enum $enum = null;
+while ($int13 < $int14) {
+    ~magic_spellbook_initialisespells(enum(int, enum, enum_1981, $int13), $com_3, $com_193, $com_202, $com_1, $com_199, $com_200, $com_201, $com_2, $com_195, $com_198, $string0, $string1, $boolean);
+    $enum = enum(int, enum, enum_5280, $int13);
+    $int15 = 1;
+    $int16 = enum_getoutputcount($enum);
+    while ($int15 <= $int16) {
+        ~magic_spellbook_initialisespells(enum(int, enum, $enum, $int15), $com_3, $com_193, $com_202, $com_1, $com_199, $com_200, $com_201, $com_2, $com_195, $com_198, $string0, $string1, $boolean);
+        $int15 = calc($int15 + 1);
+    }
+    $int13 = calc($int13 + 1);
+}
+~magic_spellbook_redraw($com_3, $com_193, $com_202, $com_1, $com_199, $com_200, $com_201, $com_2, $com_195, $com_198, $string0, $string1, $boolean);
+~script5743($com_3, $com_193, $com_202, $com_1, $com_199, $com_200, $com_201, $com_2, $com_195, $com_198, $string0, $string1, $boolean, $com_0);
+if_setoninvtransmit("magic_spellbook_redraw($com_3, $com_193, $com_202, $com_1, $com_199, $com_200, $com_201, $com_2, $com_195, $com_198, $string0, $string1, $boolean){inv_93}", $com_0);
+if_setonstattransmit("magic_spellbook_redraw($com_3, $com_193, $com_202, $com_1, $com_199, $com_200, $com_201, $com_2, $com_195, $com_198, $string0, $string1, $boolean){magic, prayer}", $com_0);

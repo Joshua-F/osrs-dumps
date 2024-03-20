@@ -1,0 +1,13 @@
+// 5028
+[proc,dizanas_quiver_in_inventory](inv $inv)(boolean)
+def_int $int1 = 0;
+def_int $int2 = inv_size($inv);
+def_obj $obj = null;
+while ($int1 < $int2) {
+    $obj = inv_getobj($inv, $int1);
+    if ($obj ! null & oc_param($obj, param_1910) = 1) {
+        return(true);
+    }
+    $int1 = calc($int1 + 1);
+}
+return(false);
