@@ -1,0 +1,26 @@
+// 4996
+[clientscript,huntsmans_kit_swapsideitem](component $component0, int $int1, component $component2, int $int3, int $int4)
+if ($int1 < 0 | $int1 >= $int4) {
+    return;
+}
+if ($int3 < 0 | $int3 >= $int4) {
+    return;
+}
+if ($component0 ! $component2) {
+    return;
+}
+def_obj $obj5 = inv_getobj(inv_93, $int1);
+if ($obj5 = null) {
+    return;
+}
+def_obj $obj6 = inv_getobj(inv_93, $int3);
+if (cc_find($component0, $int3) = ^true) {
+    ~huntsmans_kit_setsideitem($obj5, inv_getnum(inv_93, $int1), $int4);
+}
+if (cc_find($component0, $int1) = ^true) {
+    if ($obj6 ! null) {
+        ~huntsmans_kit_setsideitem($obj6, inv_getnum(inv_93, $int3), $int4);
+    } else {
+        ~huntsmans_kit_setblank;
+    }
+}

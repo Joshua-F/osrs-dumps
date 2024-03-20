@@ -1,0 +1,36 @@
+// 4997
+[clientscript,huntsmans_kit_dragitem](component $component0, int $int1, component $component2, int $int3, int $int4)
+def_int $int5 = 5;
+def_int $int6 = 0;
+def_int $int7 = if_getscrolly($component0);
+if (calc($int3 - $int7) < 15) {
+    if ($int4 <= clientclock) {
+        if (cc_find($component0, $int1) = ^true) {
+            cc_setondrag("huntsmans_kit_dragitem(event_com, event_comsubid, $component2, event_mousey, calc(clientclock + 2))");
+            return;
+        }
+    } else if (calc($int4 - clientclock) < 5) {
+        if (cc_find($component0, $int1) = ^true) {
+            cc_setondrag("huntsmans_kit_dragitem(event_com, event_comsubid, $component2, event_mousey, calc($int4 + 2))");
+            return;
+        }
+    } else if (cc_find($component0, $int1) = ^true) {
+        cc_setondrag("huntsmans_kit_dragitem(event_com, event_comsubid, $component2, event_mousey, calc($int4 + 1))");
+    }
+    if (calc($int3 - $int7) < 5) {
+        $int5 = 8;
+    }
+    $int7 = ~max(0, calc($int7 - $int5));
+    ~scrollbar_resize($component2, $component0, $int7);
+} else {
+    $int6 = calc(if_getheight($component0) - 32 - $int3);
+    if ($int6 < 20) {
+        if ($int6 < -5) {
+            $int5 = 10;
+        } else if ($int6 < 5) {
+            $int5 = 8;
+        }
+        $int7 = calc($int7 + $int5);
+        ~scrollbar_resize($component2, $component0, $int7);
+    }
+}

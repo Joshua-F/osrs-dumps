@@ -1,0 +1,44 @@
+// 4969
+[proc,colosseum_confirm_draw](component $component0, component $component1, component $component2, component $component3, component $component4)
+~steelborder($component0, "Are you sure you want to claim your loot?", 1);
+def_string $string0 = "Claiming your loot early will <col=ffff00>forfeit your run</col>, not allowing you to proceed any further.";
+if (inv_total(inv_844, obj_28960) > 0) {
+    $string0 = "<$string0> You might not see that pet again for a while...";
+}
+if_settext($string0, $component3);
+def_string $string1 = "Confirm";
+def_int $rgb5 = ^white;
+def_boolean $boolean6 = ~on_mobile;
+def_int $int7 = ~v2_stone_button($component1);
+cc_create($component1, ^iftype_text, $int7);
+if_setop(1, $string1, $component1);
+if_setopbase("<col=ff981f>Claim</col>", $component1);
+if ($boolean6 = false) {
+    if_setonmouseleave("colosseum_button_hover($component1, false, $string1, $rgb5)", $component1);
+    if_setonmouserepeat("colosseum_button_hover($component1, true, $string1, $rgb5)", $component1);
+}
+if_setonop("script4971", $component1);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_settext($string1);
+cc_settextfont(p12_full);
+cc_settextshadow(true);
+cc_setcolour($rgb5);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+$int7 = ~v2_stone_button($component2);
+cc_create($component2, ^iftype_text, $int7);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+$string1 = "Cancel";
+cc_settext($string1);
+cc_settextfont(p12_full);
+cc_settextshadow(true);
+cc_setcolour(^white);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+if_setop(1, $string1, $component2);
+if_setopbase("<col=ff981f>Claim</col>", $component2);
+if ($boolean6 = false) {
+    if_setonmouseleave("colosseum_button_hover($component2, false, $string1, $rgb5)", $component2);
+    if_setonmouserepeat("colosseum_button_hover($component2, true, $string1, $rgb5)", $component2);
+}
+if_setonop("colosseum_confirm_cancel($component4)", $component2);
