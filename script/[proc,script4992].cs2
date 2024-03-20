@@ -1,0 +1,42 @@
+// 4992
+[proc,script4992](obj $obj0, int $int1, int $int2)
+def_int $int3 = 150;
+def_int $int4 = 200;
+def_int $int5 = 0;
+def_int $int6 = 0;
+def_obj $obj7 = enum(int, namedobj, enum_5397, $int6);
+while ($int5 = 0 & $obj7 ! null) {
+    if ($obj0 = $obj7) {
+        $int5, $int3, $int4 = 1, 0, 120;
+    }
+    $int6 = calc($int6 + 1);
+    $obj7 = enum(int, namedobj, enum_5397, $int6);
+}
+cc_settrans($int3);
+cc_setobject($obj0, $int1);
+switch_int (%varplayerbit_11795) {
+    case default :
+        cc_setop(1, "Deposit-1");
+        cc_setop(3, "Deposit-5");
+        cc_setop(4, "Deposit-X");
+        cc_setop(5, "Deposit-All");
+    case 1 :
+        cc_setop(1, "Deposit-5");
+        cc_setop(2, "Deposit-1");
+        cc_setop(4, "Deposit-X");
+        cc_setop(5, "Deposit-All");
+    case 3 :
+        cc_setop(1, "Deposit-X");
+        cc_setop(2, "Deposit-1");
+        cc_setop(3, "Deposit-5");
+        cc_setop(5, "Deposit-All");
+    case 2 :
+        cc_setop(1, "Deposit-All");
+        cc_setop(2, "Deposit-1");
+        cc_setop(3, "Deposit-5");
+        cc_setop(4, "Deposit-X");
+}
+cc_setop(10, "Examine");
+cc_setopbase("<col=ff9040><oc_name($obj0)></col>");
+cc_setonop("script4994(event_op, event_com, event_comsubid, $int4, $int3)");
+cc_setondragcomplete("script4996(event_com, event_comsubid, event_com2, event_comsubid2, $int2)");
