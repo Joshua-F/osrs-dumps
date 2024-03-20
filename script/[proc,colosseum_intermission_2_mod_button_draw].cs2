@@ -1,0 +1,47 @@
+// 4935
+[proc,colosseum_intermission_2_mod_button_draw](component $component, int $int1, int $int2, int $int3, int $int4, int $int5)
+def_struct $struct = null;
+def_int $int7 = 0;
+if (%varplayerbit_9788 = $int1) {
+    $int7 = 1;
+}
+switch_int ($int1) {
+    case 1 :
+        $struct = enum(int, struct, enum_5312, $int2);
+    case 2 :
+        $struct = enum(int, struct, enum_5312, $int3);
+    case 3 :
+        $struct = enum(int, struct, enum_5312, $int4);
+}
+def_string $string = struct_param($struct, param_1896);
+def_boolean $boolean = struct_param($struct, param_1901);
+def_int $int9 = 0;
+if ($boolean = true) {
+    $int9 = ~script4980($struct);
+}
+if ($int9 = 1) {
+    $string = append($string, " (II)");
+} else if ($int9 = 2) {
+    $string = append($string, " (III)");
+}
+def_enum $enum = enum(int, enum, enum_5364, calc($int9 + 1));
+def_graphic $graphic11 = enum(int, graphic, $enum, struct_param($struct, param_1914));
+def_graphic $graphic12 = enum(int, graphic, enum_5363, calc($int9 + 1));
+cc_deleteall($component);
+def_int $int13 = 0;
+def_int $int14 = 7496785;
+if ($int7 = 1) {
+    $int14 = 16750623;
+}
+$int13 = ~script5288($component, 0, 0, 0, if_getwidth($component), if_getheight($component), struct_3714, $int14);
+if (~on_mobile = false & $int7 = 0) {
+    cc_setonmouseover("colosseum_intermission_2_mod_button_hover(event_com, event_comsubid, 0xb8a182, $int1)");
+    cc_setonmouseleave("colosseum_intermission_2_mod_button_leave(event_com, event_comsubid, $int14, $int1)");
+}
+~create_graphic($component, $int13, $graphic12, 0, 0, ^setpos_abs_centre, ^setpos_abs_centre, 64, 64, ^setsize_abs, ^setsize_abs);
+$int13 = calc($int13 + 1);
+~create_graphic($component, $int13, $graphic11, 0, 0, ^setpos_abs_centre, ^setpos_abs_centre, 64, 64, ^setsize_abs, ^setsize_abs);
+$int13 = calc($int13 + 1);
+if_setop(1, "Set", $component);
+if_setopbase("<col=ff9040><$string></col>", $component);
+if_setonop("colosseum_intermission_2_mod_button_click($int1, $int2, $int3, $int4, $int5)", $component);
