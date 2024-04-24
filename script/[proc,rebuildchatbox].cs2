@@ -256,6 +256,18 @@ while ($int10 ! -1 & $component ! null) {
                         }
                     }
                 }
+            case ^chattype_gamemessage :
+                if (string_length($string18) > 0 & compare($string0, removetags($string18)) ! 0) {
+                    if_setop(8, "Report", $component);
+                    if_setopbase("<col=ffffff><$string18></col>", $component);
+                    if_setonop("chat_op(event_op, event_opbase, $chattype)", $component);
+                    if_setonmouseover(null, $component);
+                    if_setonmouseleave(null, $component);
+                } else {
+                    if_setonop(null, $component);
+                    if_setonmouseover(null, $component);
+                    if_setonmouseleave(null, $component);
+                }
             case ^chattype_tradereq :
                 if_setopbase("<col=ffffff><$string18></col>", $component);
                 if_setonop("chat_op(event_op, event_opbase, $chattype)", $component);
