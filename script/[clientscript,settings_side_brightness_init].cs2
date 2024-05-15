@@ -4,15 +4,17 @@ cc_deleteall($com_23);
 def_int $int4 = struct_param(struct_2736, param_1101);
 def_int $int5 = 0;
 def_int $int6 = if_getwidth($com_23);
-def_int $int7 = ~settings_get_slider(15);
-~settings_set_slider(15, $int7);
+def_graphic $graphic = "options_icons,0";
+def_int $int8 = ~settings_get_slider(15);
+~settings_set_slider(15, $int8);
 cc_deleteall($com_12);
 cc_create($com_12, ^iftype_graphic, 0);
 cc_setsize(32, 32, ^setsize_abs, ^setsize_abs);
 cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
-cc_setgraphic("options_icons,0");
+cc_setgraphic($graphic);
 if_setnoclickthrough(true, $com_24);
 if_setonclick("opsound(0, 0)", $com_24);
+if_setonvartransmit("script3939(15, $com_24, $com_23, $int4, $graphic, $com_12, \"\", \"\", $com_43){varplayer_2856}", $com_24);
 while ($int5 <= $int4) {
     cc_create($com_23, ^iftype_rectangle, $int5);
     cc_setop(1, "Adjust Brightness");
@@ -24,4 +26,4 @@ while ($int5 <= $int4) {
     cc_setonop("script439(15, $int5, $com_24, $com_23, $int4, $com_43)");
     $int5 = calc($int5 + 1);
 }
-~script3941($int7, $com_24, $com_23, $int4);
+~script3941($int8, $com_24, $com_23, $int4);
