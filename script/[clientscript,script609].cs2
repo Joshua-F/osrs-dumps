@@ -1,31 +1,11 @@
 // 609
-[clientscript,script609](int $int0, int $settextalignh1, graphic $graphic2, fontmetrics $fontmetrics3, int $int4, int $int5, component $component6, string $string0)
+[clientscript,script609](int $rgb0, int $settextalignh1, graphic $graphic2, fontmetrics $fontmetrics3, int $int4, int $int5, component $component6, string $string0)
 if (if_hassub(enum(component, component, ~toplevel_getcomponents, interface_161:com16)) = false) {
     return;
 }
 def_int $int7 = if_getwidth($component6);
 def_int $int8 = 0;
 def_int $int9 = 0;
-def_int $int10 = 0;
-def_int $int11 = 0;
-def_int $int12 = 0;
-$int10, $int11, $int12 = ~hex_to_rgb($int0);
-if ($int10 > 64) {
-    $int10 = calc($int10 - 32);
-} else {
-    $int10 = calc($int10 / 2);
-}
-if ($int11 > 64) {
-    $int11 = calc($int11 - 32);
-} else {
-    $int11 = calc($int11 / 2);
-}
-if ($int12 > 64) {
-    $int12 = calc($int12 - 32);
-} else {
-    $int12 = calc($int12 / 2);
-}
-def_int $int13 = ~rgb_to_hex($int10, $int11, $int12);
 def_string $string1 = "";
 $string1, $string0 = ~script632($string0);
 while (string_length($string1) > 0) {
@@ -34,11 +14,7 @@ while (string_length($string1) > 0) {
     %varclient_43 = calc(%varclient_43 + 1);
     cc_setposition(0, %varclient_49, ^setposh_abs_left, ^setposv_abs_top);
     cc_setsize($int7, $int8, ^setsize_abs, ^setsize_abs);
-    if (calc($int9 % 2) = 0) {
-        cc_setcolour($int0);
-    } else {
-        cc_setcolour($int13);
-    }
+    cc_setcolour($rgb0);
     cc_settextfont($graphic2);
     cc_settextalign($settextalignh1, ^settextalignv_top, 0);
     cc_settextshadow(true);
