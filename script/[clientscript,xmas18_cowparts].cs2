@@ -1,0 +1,37 @@
+// 2738
+[clientscript,xmas18_cowparts]
+def_component $component0 = interface_623:com8;
+def_component $component1 = interface_623:com9;
+def_component $component2 = interface_623:com7;
+def_component $component3 = interface_623:com6;
+def_component $component4 = interface_623:com10;
+def_component $component5 = interface_623:com11;
+def_component $component6 = interface_623:com12;
+def_component $component7 = interface_623:com13;
+def_component $component8 = interface_623:com14;
+def_component $component9 = interface_623:com15;
+def_int $int10 = calc(clientclock % 150);
+def_int $int11 = $int10;
+if (calc(2 * $int10) > 150) {
+    $int11 = calc(150 - $int10);
+}
+$int11 = calc(2 * $int11);
+if_setposition($int11, 0, ^setposh_abs_centre, ^setposv_abs_centre, interface_623:com5);
+if ($int11 < 0) {
+    if_setsize(interpolate(0, 40, 0, 150, $int11), 40, ^setsize_abs, ^setsize_abs, $component8);
+} else {
+    if_setsize(interpolate(0, 40, 0, -150, $int11), 40, ^setsize_abs, ^setsize_abs, $component8);
+}
+if ($int11 > 0) {
+    if_setsize(interpolate(0, 20, 0, 150, $int11), 60, ^setsize_abs, ^setsize_abs, $component9);
+} else {
+    if_setsize(interpolate(0, 20, 0, -150, $int11), 60, ^setsize_abs, ^setsize_abs, $component9);
+}
+if_setsize(interpolate(0, 40, -150, 150, $int11), 30, ^setsize_abs, ^setsize_abs, $component0);
+if_setsize(interpolate(40, 0, -150, 150, $int11), 30, ^setsize_abs, ^setsize_abs, $component1);
+if_setsize(interpolate(0, 100, -150, 150, $int11), 80, ^setsize_abs, ^setsize_abs, $component4);
+if_setsize(interpolate(100, 0, -150, 150, $int11), 80, ^setsize_abs, ^setsize_abs, $component5);
+if_setsize(interpolate(0, 80, -150, 150, $int11), 80, ^setsize_abs, ^setsize_abs, $component6);
+if_setsize(interpolate(80, 0, -150, 150, $int11), 80, ^setsize_abs, ^setsize_abs, $component7);
+if_setsize(interpolate(0, 40, -150, 150, $int11), 100, ^setsize_abs, ^setsize_abs, $component2);
+if_setsize(interpolate(40, 0, -150, 150, $int11), 100, ^setsize_abs, ^setsize_abs, $component3);
