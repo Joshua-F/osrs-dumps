@@ -2,31 +2,32 @@
 [clientscript,build_achievement_list](component $component0, component $component1)
 def_int $intarray0(11);
 def_int $int2 = 0;
+def_int $int3 = 0;
 while ($int2 < 11) {
-    cc_create($component0, ^iftype_text, $int2);
-    cc_setop(1, "Open Journal");
-    cc_settext(enum(int, string, enum_595, $int2));
-    cc_settextfont(p11_full);
-    cc_settextshadow(true);
-    cc_setsize(15, 15, ^setsize_minus, ^setsize_abs);
-    cc_setonvartransmit("script710(event_com, event_comsubid){varplayer_1188, varplayer_1189, varplayer_1000, varplayer_1001, varplayer_1002}");
-    ~script716($component0, $int2);
+    cc_create($component0, ^iftype_rectangle, $int3);
+    $int3 = calc($int3 + 1);
+    cc_setop(1, "Open <enum(int, string, enum_595, $int2)> Journal");
+    cc_setfill(false);
+    cc_setcolour(0xff9933);
+    cc_settrans(150);
+    cc_setsize(16, 27, ^setsize_minus, ^setsize_abs);
     $intarray0($int2) = $int2;
     $int2 = calc($int2 + 1);
 }
 ~quicksort_intenum(0, 0, calc(11 - 1), enum_595);
-def_int $int3 = 10;
+def_int $int4 = 8;
 $int2 = 0;
 while ($int2 < 11) {
     if (cc_find($component0, $intarray0($int2)) = ^true) {
-        cc_setposition(10, $int3, ^setposh_abs_left, ^setposv_abs_top);
+        cc_setposition(0, $int4, ^setposh_abs_centre, ^setposv_abs_top);
     }
-    $int2, $int3 = calc($int2 + 1), calc($int3 + 15);
+    $int3 = ~setup_diary_entry($component0, $intarray0($int2), $int3, $int4);
+    $int2, $int4 = calc($int2 + 1), calc($int4 + 28);
 }
-$int3 = calc($int3 + 10);
+$int4 = calc($int4 + 8);
 if_setscrollpos(0, 0, $component0);
-if ($int3 > if_getheight($component0)) {
-    if_setscrollsize(0, $int3, $component0);
+if ($int4 > if_getheight($component0)) {
+    if_setscrollsize(0, $int4, $component0);
 } else {
     if_setscrollsize(0, 0, $component0);
 }
