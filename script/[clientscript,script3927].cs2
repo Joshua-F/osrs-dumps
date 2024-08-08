@@ -1,0 +1,27 @@
+// 3927
+[clientscript,script3927](component $component0, component $component1)
+cc_deleteall($component0);
+def_int $int2 = 17;
+def_int $int3 = 17;
+def_int $int4 = calc(if_getwidth($component0) - $int2);
+cc_create($component0, ^iftype_text, 0);
+cc_setsize($int4, 0, ^setsize_abs, ^setsize_minus);
+cc_setposition(0, 0, ^setposh_abs_right, ^setposv_abs_top);
+cc_setcolour(0xff981f);
+cc_settextfont(p12_full);
+cc_settextshadow(true);
+cc_settextalign(^settextalignh_centre, ^settextalignv_centre, 10);
+cc_settext("Music unlock message");
+cc_create($component0, ^iftype_graphic, 1);
+cc_setsize($int2, $int3, ^setsize_abs, ^setsize_abs);
+cc_setposition(0, calc(if_getheight($component0) / 2 - $int3 / 2 - 1), ^setposh_abs_left, ^setposv_abs_top);
+if (%varplayerbit_10078 = 0) {
+    cc_setgraphic("options_radio_buttons,6");
+} else {
+    cc_setgraphic("options_radio_buttons,5");
+}
+if_setonop("script3930($component0, %varplayerbit_10078, $component1)", $component0);
+if_setonvartransmit("script3931($component0, $component1){varplayer_19}", $component0);
+if_setonmouseleave("script3929($component0, $component1)", $component0);
+if_setonmouserepeat("script3928($component0, $component1)", $component0);
+%varclient_2 = 0;

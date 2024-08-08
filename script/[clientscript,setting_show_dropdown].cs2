@@ -1,0 +1,85 @@
+// 3851
+[clientscript,setting_show_dropdown](int $int0, struct $struct1, component $component2, int $int3, enum $enum4, int $int5, int $int6, int $int7, int $int8, component $component9, component $component10, component $component11, component $component12, component $component13, component $component14, int $int15, boolean $boolean16)
+if (~settings_op_checker($struct1) = false) {
+    return;
+}
+cc_deleteall($component9);
+cc_deleteall($component10);
+cc_deleteall($component11);
+cc_deleteall($component12);
+cc_deleteall($component14);
+if_setonclick("setting_dropdown_entry_close($component9, $component10, $component11, $component12, $component14, $component2, $int15)", $component10);
+def_int $int17 = 0;
+def_int $int18 = enum_getoutputcount($enum4);
+def_int $int19 = 0;
+def_int $int20 = 20;
+if (~on_mobile = true | $int18 = 2) {
+    $int20 = 24;
+}
+def_int $int21 = 0;
+def_int $int22 = 220;
+def_string $string0 = "";
+def_int $int23 = struct_param($struct1, param_1077);
+while ($int17 < $int18) {
+    cc_create($component11, ^iftype_rectangle, $int19);
+    cc_setsize(0, $int20, ^setsize_minus, ^setsize_abs);
+    cc_setposition(0, $int21, ^setposh_abs_left, ^setposv_abs_top);
+    cc_setfill(true);
+    cc_setcolour(^black);
+    cc_settrans($int22);
+    if (~on_mobile = false) {
+        cc_setonmouseover("cc_settrans($component11, $int19, 240, null)");
+        cc_setonmouseleave("cc_settrans($component11, $int19, $int22, null)");
+    }
+    $int19 = calc($int19 + 1);
+    cc_create($component11, ^iftype_text, $int19);
+    cc_setsize(0, $int20, ^setsize_minus, ^setsize_abs);
+    cc_setposition(0, $int21, ^setposh_abs_left, ^setposv_abs_top);
+    $string0 = enum(int, string, $enum4, $int17);
+    cc_settext($string0);
+    cc_settextfont(p12_full);
+    cc_settextshadow(true);
+    cc_setcolour(0xff981f);
+    cc_settextalign(^settextalignh_centre, ^settextalignv_centre, 14);
+    $int19 = calc($int19 + 1);
+    cc_create($component11, ^iftype_rectangle, $int19);
+    cc_setsize(0, $int20, ^setsize_minus, ^setsize_abs);
+    cc_setposition(0, $int21, ^setposh_abs_left, ^setposv_abs_top);
+    cc_setfill(true);
+    cc_setcolour(^black);
+    cc_settrans(255);
+    cc_setop(1, "Select");
+    cc_setonop("setting_dropdown_entry_op($int0, $string0, $int3, $int17, $component2, $component9, $component10, $component11, $component12, $component14, $enum4, $int23, $int15, $boolean16)");
+    $int19 = calc($int19 + 1);
+    $int21 = calc($int21 + $int20);
+    $int17 = calc($int17 + 1);
+    if ($int22 = 220) {
+        $int22 = 200;
+    } else {
+        $int22 = 220;
+    }
+}
+def_int $int24 = $int21;
+if ($int24 > 120) {
+    $int24 = 120;
+}
+if_setsize($int5, calc($int24 + 4), ^setsize_abs, ^setsize_abs, $component9);
+def_int $int25 = if_getscrolly($component13);
+$int25 = calc($int25 + if_getheight($component13));
+if (calc($int8 + $int6 + $int24 + 4) > $int25) {
+    $int8 = calc($int8 - $int24 - 4);
+} else {
+    $int8 = calc($int8 + $int6);
+}
+if_setposition($int7, $int8, ^setposh_abs_left, ^setposv_abs_top, $component9);
+if_setscrollpos(0, 0, $component11);
+if ($int21 > $int24) {
+    if_setscrollsize(0, $int21, $component11);
+} else {
+    if_setscrollsize(0, 0, $component11);
+}
+~scrollbar_vertical($component12, $component11, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+if_sethide(false, $component14);
+if (cc_find($component2, $int15) = ^true) {
+    cc_setgraphic("scrollbar_v2,0");
+}
