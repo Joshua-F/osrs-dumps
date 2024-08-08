@@ -1,0 +1,24 @@
+// 42
+[proc,camera_do_zoom](int $int0, int $int1)
+if (%varplayerbit_4606 ! 0) {
+    return;
+}
+$int0 = ~min(700, $int0);
+$int0 = ~max(195, $int0);
+$int1 = ~min(715, $int1);
+$int1 = ~max(175, $int1);
+viewport_setzoom($int0, $int1);
+%varclient_73, %varclient_74 = $int0, $int1;
+def_int $int2 = calc(715 - 175);
+def_int $int3 = calc(700 - 195);
+def_int $int4 = calc(if_getwidth(interface_261:com7) - if_getwidth(interface_261:com12) - 16);
+def_int $int5 = 0;
+def_int $int6 = 0;
+$int5, $int6 = viewport_geteffectivesize;
+def_int $int7 = 0;
+if ($int5 > 334) {
+    $int7 = calc(8 + (%varclient_74 - 175) * $int4 / $int2);
+} else {
+    $int7 = calc(8 + (%varclient_73 - 195) * $int4 / $int3);
+}
+if_setposition($int7, 0, ^setposh_abs_left, ^setposv_abs_top, interface_261:com12);
