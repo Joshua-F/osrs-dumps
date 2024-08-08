@@ -1,20 +1,33 @@
 // 709
-[clientscript,build_achievement_list](component $component0)
-def_int $int1 = 0;
-def_int $int2 = 10;
-while ($int1 < 11) {
-    cc_create($component0, ^iftype_text, $int1);
+[clientscript,build_achievement_list](component $component0, component $component1)
+def_int $intarray0(11);
+def_int $int2 = 0;
+while ($int2 < 11) {
+    cc_create($component0, ^iftype_text, $int2);
     cc_setop(1, "Open Journal");
-    cc_settext(enum(int, string, enum_595, $int1));
+    cc_settext(enum(int, string, enum_595, $int2));
     cc_settextfont(p11_full);
     cc_settextshadow(true);
-    cc_setsize(152, 15, ^setsize_abs, ^setsize_abs);
-    cc_setposition(10, $int2, ^setposh_abs_left, ^setposv_abs_top);
-    $int2 = calc($int2 + 15);
+    cc_setsize(15, 15, ^setsize_minus, ^setsize_abs);
     cc_setonvartransmit("script710(event_com, event_comsubid){varplayer_1188, varplayer_1189, varplayer_1000, varplayer_1001, varplayer_1002}");
-    ~script716($component0, $int1);
-    $int1 = calc($int1 + 1);
+    ~script716($component0, $int2);
+    $intarray0($int2) = $int2;
+    $int2 = calc($int2 + 1);
 }
+~quicksort_intenum(0, 0, calc(11 - 1), enum_595);
+def_int $int3 = 10;
+$int2 = 0;
+while ($int2 < 11) {
+    if (cc_find($component0, $intarray0($int2)) = ^true) {
+        cc_setposition(10, $int3, ^setposh_abs_left, ^setposv_abs_top);
+    }
+    $int2, $int3 = calc($int2 + 1), calc($int3 + 15);
+}
+$int3 = calc($int3 + 10);
 if_setscrollpos(0, 0, $component0);
-if_setscrollsize(0, $int2, $component0);
-~scrollbar_vertical(interface_259:com14, $component0, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+if ($int3 > if_getheight($component0)) {
+    if_setscrollsize(0, $int3, $component0);
+} else {
+    if_setscrollsize(0, 0, $component0);
+}
+~scrollbar_vertical($component1, $component0, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
