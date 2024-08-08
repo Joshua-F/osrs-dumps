@@ -16,10 +16,10 @@ while ($obj18 ! null) {
     $int13, $int14 = calc($int17 % 5 * $int10), calc($int17 / 5 * $int11);
     cc_create($component1, ^iftype_graphic, $int17);
     .cc_create($component2, ^iftype_text, $int17);
-    cc_setposition(calc($int13 + $int12), $int14);
-    .cc_setposition($int13, calc($int14 + 32));
-    cc_setsize(36, 32);
-    .cc_setsize($int10, 15);
+    cc_setposition(calc($int13 + $int12), $int14, ^setposh_abs_left, ^setposv_abs_top);
+    .cc_setposition($int13, calc($int14 + 32), ^setposh_abs_left, ^setposv_abs_top);
+    cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+    .cc_setsize($int10, 15, ^setsize_abs, ^setsize_abs);
     $int15 = calc($int14 + 32 + 15);
     cc_setgraphicshadow(0x333333);
     cc_setoutline(1);
@@ -48,8 +48,8 @@ while ($obj18 ! null) {
     $obj18 = enum(int, namedobj, enum_840, $int17);
 }
 if_setscrollpos(0, 0, $component0);
-if_setsize($int9, $int15, $component1);
-if_setsize($int9, $int15, $component2);
+if_setsize($int9, $int15, ^setsize_abs, ^setsize_abs, $component1);
+if_setsize($int9, $int15, ^setsize_abs, ^setsize_abs, $component2);
 if ($int15 > if_getheight($component0)) {
     if_setscrollsize(0, $int15, $component0);
 } else {

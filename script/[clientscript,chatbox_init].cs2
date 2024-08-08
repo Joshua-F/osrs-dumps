@@ -1,0 +1,39 @@
+// 925
+[clientscript,chatbox_init]
+~chatdefault_setonkey(1);
+if_setonvartransmit("script924{varplayer_1054, varplayer_1055, varplayer_499}", interface_162:com0);
+if_setonsubchange("script924", interface_162:com0);
+if_setonchattransmit("chat_onchattransmit", interface_162:com0);
+if_setonfriendtransmit("chat_onchattransmit", interface_162:com0);
+if_setonclantransmit("rebuildchatbox", interface_162:com0);
+if_setonmisctransmit("script664", interface_162:com0);
+%varclientstring_1 = "";
+%varclient_41, %varclient_42 = 0, -1;
+%varclient_3, %varclient_4 = -1, 0;
+%varclientstring_2, %varclientstring_3, %varclientstring_4, %varclientstring_5, %varclientstring_6, %varclientstring_7, %varclientstring_8, %varclientstring_9, %varclientstring_10, %varclientstring_11, %varclientstring_12, %varclientstring_13, %varclientstring_14, %varclientstring_15, %varclientstring_16, %varclientstring_17, %varclientstring_18, %varclientstring_19, %varclientstring_20, %varclientstring_21 = "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "";
+%varclientstring_0, %varclientstring_25 = "", "";
+%varclient_55 = -2147483648;
+%varclientstring_28, %varclient_62 = "", 0;
+def_int $int0 = 0;
+def_component $component1 = enum(int, component, enum_579, $int0);
+while ($component1 ! null) {
+    cc_create(interface_162:com43, ^iftype_text, calc($int0 * 2));
+    .cc_create(interface_162:com43, ^iftype_text, calc($int0 * 2 + 1));
+    cc_setcolour(^black);
+    .cc_setcolour(^black);
+    cc_settextfont(p12_full);
+    .cc_settextfont(p12_full);
+    cc_settextalign(^settextalignh_left, ^settextalignv_top, 14);
+    .cc_settextalign(^settextalignh_left, ^settextalignv_top, 14);
+    cc_sethide(true);
+    .cc_sethide(true);
+    $int0 = calc($int0 + 1);
+    $component1 = enum(int, component, enum_579, $int0);
+}
+if_setscrollpos(0, 0, interface_162:com43);
+~scrollbar_vertical(interface_162:com544, interface_162:com43, null, null, null, null, null, null);
+~toplevel_chatbox_background;
+chat_setmessagefilter("");
+~script223;
+~redraw_chat_buttons;
+~rebuildchatbox(~script553);

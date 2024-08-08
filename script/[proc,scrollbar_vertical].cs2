@@ -1,13 +1,13 @@
 // 31
 [proc,scrollbar_vertical](component $component0, component $component1, graphic $graphic2, graphic $graphic3, graphic $graphic4, graphic $graphic5, graphic $graphic6, graphic $graphic7)
 cc_create($component0, ^iftype_graphic, 0);
-cc_setposition(0, 16);
-cc_setsize(16, calc(if_getheight($component0) - 32));
+cc_setposition(0, 0, ^setposh_abs_centre, ^setposv_abs_centre);
+cc_setsize(0, 32, ^setsize_minus, ^setsize_minus);
 cc_setgraphic($graphic2);
 cc_settiling(false);
 cc_setonclick("scrollbar_vertical_jump($component0, $component1, event_mousey)");
 .cc_create($component0, ^iftype_graphic, 1);
-.cc_setposition(0, 16);
+.cc_setposition(0, 16, ^setposh_abs_centre, ^setposv_abs_top);
 def_int $int8 = if_getscrollheight($component1);
 if ($int8 <= 0) {
     $int8 = if_getheight($component1);
@@ -21,7 +21,7 @@ if ($int8 > 0) {
 if ($int9 < 10) {
     $int9 = 10;
 }
-.cc_setsize(16, $int9);
+.cc_setsize(0, $int9, ^setsize_minus, ^setsize_abs);
 .cc_setgraphic($graphic4);
 .cc_settiling(false);
 .cc_setdraggable($component0, 0);
@@ -29,24 +29,24 @@ if ($int9 < 10) {
 .cc_setondragcomplete("scrollbar_vertical_drag($component0, $component1, event_mousey, true)");
 .cc_setdraggablebehavior(1);
 cc_create($component0, ^iftype_graphic, 2);
-cc_setposition(0, .cc_gety);
-cc_setsize(16, 5);
+cc_setposition(0, .cc_gety, ^setposh_abs_centre, ^setposv_abs_top);
+cc_setsize(0, 5, ^setsize_minus, ^setsize_abs);
 cc_setgraphic($graphic3);
 cc_settiling(false);
 cc_create($component0, ^iftype_graphic, 3);
-cc_setposition(0, calc(.cc_gety + .cc_getheight - 5));
-cc_setsize(16, 5);
+cc_setposition(0, calc(.cc_gety + .cc_getheight - 5), ^setposh_abs_centre, ^setposv_abs_top);
+cc_setsize(0, 5, ^setsize_minus, ^setsize_abs);
 cc_setgraphic($graphic5);
 cc_settiling(false);
 cc_create($component0, ^iftype_graphic, 4);
-cc_setposition(0, 0);
-cc_setsize(16, 16);
+cc_setposition(0, 0, ^setposh_abs_centre, ^setposv_abs_top);
+cc_setsize(0, 16, ^setsize_minus, ^setsize_abs);
 cc_setgraphic($graphic6);
 cc_settiling(false);
 cc_setonhold("scrollbar_vertical_up($component0, $component1)");
 cc_create($component0, ^iftype_graphic, 5);
-cc_setposition(0, calc(if_getheight($component0) - 16));
-cc_setsize(16, 16);
+cc_setposition(0, 0, ^setposh_abs_centre, ^setposv_abs_bottom);
+cc_setsize(0, 16, ^setsize_minus, ^setsize_abs);
 cc_setgraphic($graphic7);
 cc_settiling(false);
 cc_setonhold("scrollbar_vertical_down($component0, $component1)");

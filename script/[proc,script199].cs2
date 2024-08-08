@@ -1,20 +1,22 @@
 // 199
-[proc,script199](string $string0, int $int0, component $component1, component $component2, int $int3, int $int4, int $int5, int $int6, int $int7)(int)
-def_int $int8 = calc($int3 - $int4);
-def_int $int9 = calc(paraheight($string0, $int8, fontmetrics_495) * $int5);
-if ($int7 = 1) {
-    $int6 = calc($int6 - $int9);
+[proc,script199](string $string0, int $int0, component $component1, component $component2, int $int3, int $int4, int $int5, int $int6, int $setposv7, int $rgb8, boolean $boolean9)(int)
+def_int $int10 = calc($int3 - $int4);
+def_int $int11 = calc(paraheight($string0, $int10, fontmetrics_495) * $int5);
+if ($setposv7 = ^setposv_abs_top) {
+    $int6 = calc($int6 - $int11);
 }
 if (cc_find($component2, calc($int0 * 2)) = ^true) {
-    if_setsize($int8, $int9, $component1);
-    if_setposition($int4, $int6, $component1);
+    if_setsize($int10, $int11, ^setsize_abs, ^setsize_abs, $component1);
+    if_setposition($int4, $int6, ^setposh_abs_left, $setposv7, $component1);
     cc_sethide(false);
-    cc_setsize($int8, $int9);
-    cc_setposition($int4, $int6);
+    cc_setsize($int10, $int11, ^setsize_abs, ^setsize_abs);
+    cc_setposition($int4, $int6, ^setposh_abs_left, $setposv7);
     cc_settext($string0);
+    cc_setcolour($rgb8);
+    cc_settextshadow($boolean9);
 }
 if (cc_find($component2, calc($int0 * 2 + 1)) = ^true) {
     cc_settext("");
     cc_sethide(true);
 }
-return($int9);
+return($int11);

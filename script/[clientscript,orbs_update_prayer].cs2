@@ -1,13 +1,14 @@
 // 82
 [clientscript,orbs_update_prayer](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6)
 if ($component0 ! null) {
+    if_setnoclickthrough(true, $component5);
     if_setonstattransmit("orbs_update_prayer(null, $component1, $component2, $component3, $component4, $component5, $component6){prayer}", $component0);
     if_setonvartransmit("orbs_update_prayer(null, $component1, $component2, $component3, $component4, $component5, $component6){varplayer_375}", $component0);
     if_setonsubchange("orbs_update_prayer(null, $component1, $component2, $component3, $component4, $component5, $component6)", $component0);
     if_setonop("orbs_toggle_prayer(event_opindex, $component3, $component4, $component6)", $component6);
 }
 def_graphic $graphic7 = "orb_frame,1";
-if (if_hassub(enum(int, component, enum_870, 5)) = true) {
+if (~toplevel_check_sidepanel(5) = true) {
     if_setonmouserepeat("graphic_swapper($component5, $graphic7)", $component6);
     $graphic7 = "orb_frame,0";
     if_setonmouseleave("graphic_swapper($component5, $graphic7)", $component6);
