@@ -1,4 +1,20 @@
 // 3092
-[clientscript,script3092](graphic $graphic0, string $string0)
-if_setgraphic($graphic0, interface_378:com89);
-if_setop(1, $string0, interface_378:com86);
+[clientscript,script3092](graphic $graphic0, int $int1, string $string0)
+if ($int1 = 0) {
+    ~script6065($graphic0, $string0);
+    return;
+}
+if_setop(1, "", interface_378:com86);
+if_setgraphic(null, interface_378:com89);
+cc_deleteall(interface_378:com93);
+if_sethide(false, interface_378:com91);
+~loading_icon_init(interface_378:com93, null, enum_3787, 10, 1000, 3000, 512, 1024, 0, 3, "");
+cc_create(interface_378:com90, ^iftype_crmview, 0);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setposh_abs_centre, ^setposv_abs_centre);
+def_int $int2 = 1;
+def_string $string1 = ~script6066($int2);
+cc_crmview_init($string1);
+cc_crmview_settextfont(0, b12_full);
+cc_crmview_settextfont(1, p11_full);
+cc_crmview_setonupdated("script6064($graphic0, $string0)");
