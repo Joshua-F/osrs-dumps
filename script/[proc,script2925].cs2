@@ -1,24 +1,31 @@
 // 2925
-[proc,script2925](component $component0, string $string0, string $string1, obj $obj1)
-cc_create($component0, ^iftype_graphic, 0);
-cc_setobject($obj1, -1);
+[proc,script2925](int $int0, component $component1, string $string0, string $string1, obj $obj2)(int)
+cc_deleteall($component1);
+cc_create($component1, ^iftype_graphic, 0);
+cc_setobject($obj2, -1);
 cc_setoutline(1);
 cc_setgraphicshadow(0x604e32);
 cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
-cc_setposition(1, 0, ^setposh_abs_left, ^setposv_abs_centre);
-cc_create($component0, ^iftype_text, 1);
-cc_setsize(292, 16, ^setsize_abs, ^setsize_abs);
-cc_setposition(43, 1, ^setposh_abs_left, ^setposv_abs_top);
+cc_setposition(0, 0, ^setposh_abs_left, ^setposv_abs_top);
+def_int $int3 = calc(if_getwidth($component1) - (36 + 7));
+cc_create($component1, ^iftype_text, 1);
+cc_setsize($int3, 16, ^setsize_abs, ^setsize_abs);
+cc_setposition(0, 0, ^setposh_abs_right, ^setposv_abs_top);
 cc_settextalign(^settextalignh_left, ^settextalignv_top, 0);
 cc_setcolour(0xf5e9d5);
 cc_settextfont(p12_full);
 cc_settextshadow(true);
 cc_settext($string0);
-cc_create($component0, ^iftype_text, 2);
-cc_setsize(292, 22, ^setsize_abs, ^setsize_abs);
-cc_setposition(43, 1, ^setposh_abs_left, ^setposv_abs_bottom);
-cc_settextalign(^settextalignh_left, ^settextalignv_top, 0);
+def_int $int4 = calc(paraheight($string1, $int3, fontmetrics_494) * 10 + 2);
+cc_create($component1, ^iftype_text, 2);
+cc_setsize($int3, 16, ^setsize_abs, ^setsize_minus);
+cc_setposition(0, 0, ^setposh_abs_right, ^setposv_abs_bottom);
+cc_settextalign(^settextalignh_left, ^settextalignv_centre, 0);
 cc_setcolour(0xf5e9d5);
 cc_settextfont(p11_full);
 cc_settextshadow(true);
 cc_settext($string1);
+$int4 = ~max(calc(32 + 4), calc($int4 + 16));
+if_setsize(0, $int4, ^setsize_minus, ^setsize_abs, $component1);
+if_setposition(0, $int0, ^setposh_abs_centre, ^setposv_abs_top, $component1);
+return(calc($int0 + $int4));
