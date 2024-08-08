@@ -1,0 +1,90 @@
+// 3167
+[clientscript,gim_options_init](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8)
+def_int $int9 = ~steelborder($component1, "", 0);
+~gim_options_settitle($component1, $int9);
+if_setonvartransmit("gim_options_settitle($component1, $int9){varplayer_3172}", $component1);
+if_setonclansettingstransmit("gim_options_settitle($component1, $int9)", $component1);
+def_string $string0 = "<col=ff0000>Back</col>";
+def_int $int10 = ~max(70, calc(parawidth($string0, 512, fontmetrics_495) + 20));
+if_setsize($int10, if_getheight($component2), ^setsize_abs, ^setsize_abs, $component2);
+~clan_stonebutton_init($string0, $component2, p12_full);
+if_setonop("opsound(event_opindex, 2)", $component2);
+$int10 = calc($int10 + 20);
+def_enum $enum11 = null;
+def_struct $struct12 = null;
+def_int $int13 = enum_getoutputcount(enum_4223);
+def_int $int14 = 0;
+def_int $int15 = 0;
+while ($int15 < $int13) {
+    $enum11 = enum(int, enum, enum_4223, $int15);
+    if ($enum11 ! null) {
+        $struct12 = enum(int, struct, $enum11, -1);
+        if ($struct12 ! null) {
+            if (struct_param($struct12, param_1549) = true) {
+                $string0 = struct_param($struct12, param_1550);
+            } else {
+                $string0 = struct_param($struct12, param_1163);
+            }
+            $int10 = ~max($int10, calc(parawidth($string0, 512, fontmetrics_495) + 22 + 6));
+        }
+        $int14 = calc($int14 + enum_getoutputcount($enum11) - 1);
+    }
+    $int15 = calc($int15 + 1);
+}
+if_setsize($int10, 0, ^setsize_abs, ^setsize_minus, $component3);
+if_setsize(calc($int10 - 1), 0, ^setsize_minus, ^setsize_minus, $component6);
+def_int $int16 = 100;
+$int16 = calc(6 + 13 + 3 + $int16 + 3 + 13 + 6);
+cc_deleteall($component4);
+def_int $int17 = 0;
+def_int $int18 = 20;
+if (~on_mobile = true) {
+    $int18 = scale(5, 3, $int18);
+}
+cc_deleteall($component7);
+def_int $int19 = 0;
+while ($int19 <= $int14) {
+    cc_create($component7, ^iftype_graphic, $int19);
+    cc_setgraphic(tradebacking);
+    cc_settiling(true);
+    $int19 = calc($int19 + 1);
+}
+$int10 = calc(if_getwidth(if_getlayer($component3)) - ($int10 - 1 + 4 + 16));
+def_int $int20 = calc(($int10 - 8 * 3) / 2);
+def_int $int21 = calc(8 + $int20 + 8);
+def_int $int22 = 6;
+def_int $int23 = 0;
+def_int $int24 = 0;
+def_int $int25 = 0;
+$int15, $int14 = 0, 0;
+while ($int15 < $int13) {
+    $enum11 = enum(int, enum, enum_4223, $int15);
+    if ($enum11 ! null) {
+        $struct12 = enum(int, struct, $enum11, -1);
+        if ($struct12 ! null) {
+            $int19, $int17 = ~gim_options_categorytitle($int19, $int22, struct_param($struct12, param_1163), $component7, $component4, $int17, $component8, $int15, $int18, struct_param($struct12, param_1549), struct_param($struct12, param_1550));
+            $int22 = calc($int22 + 25 + 6);
+        }
+        $int24, $int25 = 0, calc(enum_getoutputcount($enum11) - 1);
+        while ($int24 < $int25) {
+            $struct12 = enum(int, struct, $enum11, $int24);
+            if ($struct12 ! null) {
+                if (calc($int24 % 2) = 1) {
+                    $int19, $int23 = ~gim_options_buttoninit($int19, $int21, $int22, $int20, $int16, $int14, $struct12, enum(int, struct, $enum11, calc($int24 - 1)), $component7);
+                    $int22 = calc($int22 + $int23 + 6);
+                } else if ($int24 < calc($int25 - 1)) {
+                    $int19, $int23 = ~gim_options_buttoninit($int19, 8, $int22, $int20, $int16, $int14, $struct12, enum(int, struct, $enum11, calc($int24 + 1)), $component7);
+                } else {
+                    $int19, $int23 = ~gim_options_buttoninit($int19, 8, $int22, $int20, $int16, $int14, $struct12, null, $component7);
+                    $int22 = calc($int22 + $int23 + 6);
+                }
+                $int14 = calc($int14 + 1);
+            }
+            $int24 = calc($int24 + 1);
+        }
+    }
+    $int15 = calc($int15 + 1);
+}
+~scrollbar_vertical($component8, $component7, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~scrollbar_vertical($component5, $component4, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~gim_options_setsize($int22, $component7, $component8, calc($int18 * $int13), $component4, $component5, $component0, if_getheight(if_getlayer($component0)));

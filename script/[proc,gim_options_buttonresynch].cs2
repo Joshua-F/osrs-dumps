@@ -1,0 +1,116 @@
+// 4681
+[proc,gim_options_buttonresynch](component $component0, int $int1, int $int2, int $int3, int $int4, struct $struct5)
+def_int $int6 = 0;
+def_int $int7 = -1;
+def_int $int8 = 0;
+def_string $string0 = "...";
+def_int $int9 = 0;
+if (%varplayerbit_12165 = 1 & %varplayerbit_12164 = 3 & activeclansettings_find_listened = true | %varplayerbit_12165 = 0 & %varplayerbit_13060 = 3 & activeclansettings_find_affined(1) = true) {
+    $int7 = activeclansettings_getaffinedslot(removetags(chat_playername));
+    if (struct_param($struct5, param_1537) = true) {
+        switch_struct ($struct5) {
+            case struct_4223 :
+                if (~gim_option_get(struct_4222) = ^true) {
+                    if (%varclansettingint_52 > 1) {
+                        $string0 = "<~tostring_spacer(%varclansettingint_52, ",")> coins";
+                    } else if (%varclansettingint_52 = 1) {
+                        $string0 = "1 coin";
+                    } else {
+                        $string0 = "No minimum";
+                    }
+                } else {
+                    $string0 = "N/A";
+                }
+            case struct_4227 :
+                if (~gim_option_get(struct_4226) = ^true) {
+                    if (%varclansettingint_53 > 1) {
+                        $string0 = "<~tostring_spacer(%varclansettingint_53, ",")> coins";
+                    } else if (%varclansettingint_53 = 1) {
+                        $string0 = "1 coin";
+                    } else {
+                        $string0 = "No minimum";
+                    }
+                } else {
+                    $string0 = "N/A";
+                }
+            case struct_4216 :
+                if (~gim_option_get(struct_4215) = ^true) {
+                    if (%varclansettingint_54 > 0) {
+                        $string0 = "Level <tostring(%varclansettingint_54)>";
+                    } else {
+                        $string0 = "No minimum";
+                    }
+                } else {
+                    $string0 = "N/A";
+                }
+            case struct_4217 :
+                if (~gim_option_get(struct_4215) = ^true) {
+                    if (%varclansettingint_55 > 0) {
+                        $string0 = "Level <tostring(%varclansettingint_55)>";
+                    } else {
+                        $string0 = "No minimum";
+                    }
+                } else {
+                    $string0 = "N/A";
+                }
+            case struct_4218 :
+                if (~gim_option_get(struct_4215) = ^true) {
+                    if (%varclansettingint_56 > 0) {
+                        $string0 = "Level <tostring(%varclansettingint_56)>";
+                    } else {
+                        $string0 = "No minimum";
+                    }
+                } else {
+                    $string0 = "N/A";
+                }
+            case struct_4220 :
+                if (~gim_option_get(struct_4219) = ^true) {
+                    if (%varclansettingint_57 > 0) {
+                        $string0 = "<tostring(%varclansettingint_57)> million XP";
+                    } else {
+                        $string0 = "No minimum";
+                    }
+                } else {
+                    $string0 = "N/A";
+                }
+        }
+    } else if (~gim_option_get($struct5) = ^true) {
+        $string0 = "Enabled";
+    } else {
+        $string0 = "Disabled";
+    }
+    if ($int7 ! -1) {
+        $int9 = 1;
+    }
+    if (cc_find($component0, $int3) = ^true) {
+        cc_settext($string0);
+    }
+    if ($int9 = 1) {
+        if (cc_find($component0, $int2) = ^true) {
+            cc_setgraphic(tradebacking);
+        }
+        if (cc_find($component0, $int1) = ^true) {
+            cc_settrans(245);
+        }
+        if (~on_mobile = false) {
+            .cc_setonmouserepeat("gim_options_buttonhover(true, event_com, event_comsubid, $int1, 245, 225)");
+        }
+        .cc_setonmouseleave("gim_options_buttonhover(false, event_com, event_comsubid, $int1, 245, 225)");
+        .cc_setontimer(null);
+        .cc_setonop("gim_options_buttonop(event_opindex, event_com, event_comsubid, $int1, 200, 245, 225)");
+        return;
+    }
+}
+if (cc_find($component0, $int3) = ^true) {
+    cc_settext($string0);
+}
+if (cc_find($component0, $int2) = ^true) {
+    cc_setgraphic(tradebacking_dark);
+}
+if (cc_find($component0, $int1) = ^true) {
+    cc_settrans(255);
+}
+.cc_setonmouserepeat(null);
+.cc_setonmouseleave(null);
+.cc_setontimer(null);
+.cc_setonop(null);
