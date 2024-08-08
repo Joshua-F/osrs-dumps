@@ -1,0 +1,19 @@
+// 3654
+[proc,button_setup](component $component0, component $component1, string $string0)
+def_int $int2 = 0;
+cc_deleteall($component1);
+if ($component0 = $component1) {
+    $int2 = ~options_button_on($component1, 0);
+} else {
+    $int2 = ~options_button_off($component1, 0);
+}
+cc_create($component1, ^iftype_text, $int2);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setposh_abs_centre, ^setposv_abs_centre);
+cc_setcolour(0xff981f);
+cc_settextshadow(true);
+cc_settextfont(p11_full);
+cc_settextalign(^settextalignh_centre, ^settextalignv_centre, 0);
+cc_settext($string0);
+if_setonmouserepeat("cc_colour_swapper(event_com, $int2, 16777215)", $component1);
+if_setonmouseleave("cc_colour_swapper(event_com, $int2, 16750623)", $component1);
