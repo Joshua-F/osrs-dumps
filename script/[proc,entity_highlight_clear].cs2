@@ -1,0 +1,31 @@
+// 5950
+[proc,entity_highlight_clear](int $int0)
+def_npc_uid $npc_uid1 = null;
+def_int $int2 = -1;
+def_loc $loc3 = null;
+def_coord $coord4 = null;
+def_obj $obj5 = null;
+def_coord $coord6 = null;
+def_string $string0 = "";
+switch_int ($int0) {
+    case 5 :
+        $npc_uid1, $int2, $loc3, $coord4, $obj5, $coord6, $string0 = %varclient_553, %varclient_554, %varclient_555, %varclient_556, %varclient_557, %varclient_558, %varclient_559;
+        %varclient_553, %varclient_554, %varclient_555, %varclient_556, %varclient_557, %varclient_558, %varclient_559 = -1, -1, -1, -1, -1, -1, "";
+    case 4 :
+        $npc_uid1, $int2, $loc3, $coord4, $obj5, $coord6, $string0 = %varclient_973, %varclient_974, %varclient_975, %varclient_976, %varclient_977, %varclient_978, %varclient_979;
+        %varclient_973, %varclient_974, %varclient_975, %varclient_976, %varclient_977, %varclient_978, %varclient_979 = -1, -1, -1, -1, -1, -1, "";
+    case default :
+        return;
+}
+if ($npc_uid1 ! null & $int2 ! -1 & highlight_npc_get($npc_uid1, $int2, $int0) = true) {
+    highlight_npc_off($npc_uid1, $int2, $int0);
+}
+if ($loc3 ! null & $coord4 ! null & highlight_loc_get($loc3, $coord4, $int0, 0) = true) {
+    highlight_loc_off($loc3, $coord4, $int0, 0);
+}
+if ($obj5 ! null & $coord6 ! null & highlight_obj_get($obj5, $coord6, $int0, 0) = true) {
+    highlight_obj_off($obj5, $coord6, $int0, 0);
+}
+if (string_length($string0) > 0 & highlight_player_get($string0, $int0) = true) {
+    highlight_player_off($string0, $int0);
+}
