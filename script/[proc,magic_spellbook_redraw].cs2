@@ -57,13 +57,9 @@ if ($boolean10 = false & %varplayerbit_6718 = 1) {
         if (~league_world = true) {
             $obj17 = ~script3159($obj17);
         }
-        if (~script4130($obj17) = false | ~tournament_beta_world = true) {
-            if_sethide(false, oc_param($obj17, param_596));
-            $intarray0($int16) = $int18;
-            $int16 = calc($int16 + 1);
-        } else {
-            if_sethide(true, oc_param($obj17, param_596));
-        }
+        if_sethide(false, oc_param($obj17, param_596));
+        $intarray0($int16) = $int18;
+        $int16 = calc($int16 + 1);
         $int18 = calc($int18 + 1);
     }
 } else {
@@ -130,8 +126,8 @@ if ($boolean10 = true) {
             $int21, $int22, $int24, $int23 = 6, 8, 6, 5;
             if_setposition(0, 8, ^setposh_abs_centre, ^setposv_abs_top, $component0);
         case 3 :
-            $int21, $int22, $int24, $int23 = 5, 9, 16, 6;
-            if_setposition(0, 3, ^setposh_abs_centre, ^setposv_abs_top, $component0);
+            $int21, $int22, $int24, $int23 = 5, 9, 16, 3;
+            if_setposition(0, 0, ^setposh_abs_centre, ^setposv_abs_top, $component0);
     }
     $int25 = calc($int22 * $int20 + ($int22 - 1) * $int23);
 } else {
@@ -153,7 +149,7 @@ def_boolean $boolean26 = false;
 def_component $component27 = null;
 def_int $int28 = calc($int20 + $int24);
 def_int $int29 = calc($int20 + $int23);
-def_int $int30 = -1;
+def_graphic $graphic30 = null;
 def_int $int31 = 0;
 def_int $int32 = 0;
 $int18 = 0;
@@ -166,17 +162,26 @@ while ($int18 < $int16) {
     if_setsize($int20, $int20, ^setsize_abs, ^setsize_abs, $component27);
     $int31, $int32 = calc($int18 % $int21 * $int28), calc($int18 / $int21 * $int29);
     if_setposition($int31, $int32, ^setposh_abs_left, ^setposv_abs_top, $component27);
-    $boolean26, $int30 = ~script2614($obj17, $component27);
+    $boolean26, $graphic30 = ~script2614($obj17, $component27, $int20);
     if ($boolean26 = true) {
         if ($int20 >= 40) {
             if_setgraphic(oc_param($obj17, param_599), $component27);
         } else {
             if_setgraphic(oc_param($obj17, param_597), $component27);
         }
-    } else if ($int20 >= 40) {
-        if_setgraphic(oc_param($obj17, param_600), $component27);
     } else {
-        if_setgraphic(oc_param($obj17, param_598), $component27);
+        if ($int20 >= 40) {
+            if_setgraphic(oc_param($obj17, param_600), $component27);
+        } else {
+            if_setgraphic(oc_param($obj17, param_598), $component27);
+        }
+        if ($graphic30 ! null) {
+            cc_create($component0, ^iftype_graphic, $int19);
+            cc_setsize($int20, $int20, ^setsize_abs, ^setsize_abs);
+            cc_setposition($int31, $int32, ^setposh_abs_left, ^setposv_abs_top);
+            cc_setgraphic($graphic30);
+            $int19 = calc($int19 + 1);
+        }
     }
     ~magic_spellbook_modifyops($component27);
     if ($boolean10 = true) {
