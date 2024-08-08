@@ -1,0 +1,74 @@
+// 419
+[proc,script419](inv $inv0, int $int1, int $int2)
+cc_deleteall(interface_592:com3);
+cc_deleteall(interface_592:com5);
+if ($inv0 = null) {
+    return;
+}
+def_obj $obj3 = null;
+def_int $int4 = calc(if_getwidth(interface_592:com3) - 4);
+def_int $int5 = inv_size($inv0);
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_int $int8 = 2;
+def_int $intbool9 = ^false;
+while ($int6 < $int5) {
+    $obj3 = inv_getobj($inv0, $int6);
+    if ($obj3 ! null) {
+        if ($int6 < 32) {
+            $intbool9 = testbit($int1, $int6);
+        } else {
+            $intbool9 = testbit($int2, calc($int6 - 32));
+        }
+        cc_create(interface_592:com3, ^iftype_rectangle, $int7);
+        cc_setsize($int4, 61);
+        cc_setposition(2, $int8);
+        cc_setcolour(0x333333);
+        cc_setfill(false);
+        if ($obj3 = obj_10165) {
+            cc_setop(1, "More");
+        } else if ($obj3 = obj_10166) {
+            cc_setop(1, "Back");
+        } else {
+            if ($intbool9 = ^true) {
+                cc_setop(1, "Take");
+            }
+            cc_setop(10, "Examine");
+            cc_setopbase("<col=ff9040><oc_name($obj3)>");
+        }
+        $int7 = calc($int7 + 1);
+        cc_create(interface_592:com3, ^iftype_graphic, $int7);
+        cc_setsize(36, 32);
+        cc_setposition(16, calc($int8 + 14));
+        cc_setobject($obj3, 1);
+        cc_setgraphicshadow(0x333333);
+        cc_setoutline(1);
+        $int7 = calc($int7 + 1);
+        cc_create(interface_592:com3, ^iftype_text, $int7);
+        cc_setsize(calc($int4 - 79), 61);
+        cc_setposition(79, $int8);
+        cc_settextfont(p12_full);
+        cc_setcolour(0xff981f);
+        cc_settextshadow(true);
+        cc_settextalign(^settextalignh_left, ^settextalignv_centre, 0);
+        cc_settext(enum(obj, string, enum_380, $obj3));
+        $int7 = calc($int7 + 1);
+        cc_create(interface_592:com3, ^iftype_rectangle, $int7);
+        cc_setsize(calc($int4 - 2), 59);
+        cc_setposition(3, calc($int8 + 1));
+        cc_setcolour(^black);
+        cc_settrans(164);
+        cc_setfill(true);
+        if ($intbool9 = ^true) {
+            cc_sethide(true);
+        }
+        $int7 = calc($int7 + 1);
+        $int8 = calc($int8 + 62);
+    }
+    $int6 = calc($int6 + 1);
+}
+$int8 = calc($int8 + 1);
+def_int $int10 = if_getscrolly(interface_592:com3);
+if_setscrollsize(0, $int8, interface_592:com3);
+~scrollbar_vertical(interface_592:com5, interface_592:com3, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~scrollbar_resize(interface_592:com5, interface_592:com3, $int10);
