@@ -1,0 +1,35 @@
+// 393
+[clientscript,stats_init](component $component0, int $int1, int $int2)
+def_string $string0 = enum(int, string, enum_108, $int1);
+def_stat $stat3 = enum(int, stat, enum_681, $int1);
+if_setop(1, "View <col=ff981f><$string0></col> guide", $component0);
+if_setonmouseleave("deltooltip(interface_320:com28)", $component0);
+cc_deleteall($component0);
+cc_create($component0, ^iftype_graphic, 0);
+cc_setposition(-2, -2);
+cc_setsize(36, 36);
+cc_setgraphic("miscgraphics,4");
+cc_create($component0, ^iftype_graphic, 1);
+cc_setposition(28, -2);
+cc_setsize(36, 36);
+cc_setgraphic("miscgraphics,5");
+cc_create($component0, ^iftype_graphic, 2);
+cc_setposition(calc(3 + $int2), 4);
+cc_setsize(25, 25);
+cc_setgraphic(enum(stat, graphic, enum_255, $stat3));
+cc_create($component0, ^iftype_text, 3);
+.cc_create($component0, ^iftype_text, 4);
+cc_setposition(32, 4);
+.cc_setposition(44, 16);
+cc_setsize(15, 12);
+.cc_setsize(15, 12);
+cc_setcolour(^yellow);
+.cc_setcolour(^yellow);
+cc_settextfont(p11_full);
+.cc_settextfont(p11_full);
+cc_settextalign(^settextalignh_centre, ^settextalignv_top, 0);
+.cc_settextalign(^settextalignh_centre, ^settextalignv_top, 0);
+cc_settextshadow(true);
+.cc_settextshadow(true);
+~stats_setlevels($stat3, $component0, $string0);
+if_setonstattransmit("stats_setlevels($stat3, $component0, $string0, cc_getid, .cc_getid){$stat3}", $component0);
