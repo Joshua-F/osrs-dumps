@@ -10,7 +10,15 @@ if (enum(int, boolean, enum_892, $chattype0) = true) {
     return(true);
 }
 def_int $chatfilter3 = null;
+def_string $string3 = "";
 if ($chattype0 = ^chattype_publicchat) {
+    $string3 = removetags($string0);
+    if (compare($string2, $string3) = 0) {
+        return(true);
+    }
+    if (ignore_test($string3) = true) {
+        return(false);
+    }
     $chatfilter3 = chat_getfilter_public;
     if ($chatfilter3 = ^chatfilter_off | $chatfilter3 = ^chatfilter_hide) {
         return(false);
@@ -27,8 +35,12 @@ if ($chattype0 = ^chattype_publicchat) {
     return(true);
 }
 if ($chattype0 = ^chattype_modchat) {
-    if (compare($string2, removetags($string0)) = 0) {
+    $string3 = removetags($string0);
+    if (compare($string2, $string3) = 0) {
         return(true);
+    }
+    if (ignore_test($string3) = true) {
+        return(false);
     }
     if (string_length(%varclientstring_27) > 0 & string_indexof_string(lowercase($string1), %varclientstring_27, 0) = -1) {
         return(false);
@@ -39,6 +51,9 @@ if ($chattype0 = ^chattype_autotyper | $chattype0 = ^chattype_modautotyper) {
     if (compare($string2, removetags($string0)) = 0) {
         return(true);
     }
+    if (ignore_test(removetags($string0)) = true) {
+        return(false);
+    }
     if (chat_getfilter_public ! ^chatfilter_autochat) {
         return(false);
     }
@@ -48,6 +63,9 @@ if ($chattype0 = ^chattype_autotyper | $chattype0 = ^chattype_modautotyper) {
     return(true);
 }
 if ($chattype0 = ^chattype_privatechat) {
+    if (ignore_test(removetags($string0)) = true) {
+        return(false);
+    }
     if (%varplayer_287 = 1 & $int2 = 0 & ~trade_partner_check($chattype0, $string0) = false) {
         return(false);
     }
@@ -60,6 +78,9 @@ if ($chattype0 = ^chattype_privatechat) {
     return(false);
 }
 if ($chattype0 = ^chattype_tradereq | $chattype0 = ^chattype_chalreq_trade) {
+    if (ignore_test(removetags($string0)) = true) {
+        return(false);
+    }
     if (chat_getfilter_trade = ^chatfilter_on) {
         return(true);
     }
@@ -87,6 +108,9 @@ if ($chattype0 = ^chattype_modprivatechat) {
     return(true);
 }
 if ($chattype0 = ^chattype_friendschat | $chattype0 = ^chattype_chalreq_friendschat) {
+    if (ignore_test(removetags($string0)) = true) {
+        return(false);
+    }
     if (%varplayer_1054 = 0) {
         return(true);
     }
