@@ -1,0 +1,34 @@
+// 4401
+[proc,clan_sidepanel_op](int $int0, int $int1, string $string0, int $int2)
+switch_int ($int0) {
+    case 7 :
+        if ($int2 ! -1) {
+            ~chat_sendpublic("Attempting to kick player from clan chat...", 3);
+            activeclanchannel_kickuser($int2);
+        } else {
+            mes("That player appears to have left the channel.");
+        }
+    case 8 :
+        if (activeclansettings_find_affined(0) = true) {
+            if ($int2 ! -1) {
+                ~chat_sendpublic("Attempting to ban player from clan chat...", 3);
+                affinedclansettings_addbanned_fromchannel($int2, 0);
+            } else {
+                mes("That player appears to have left the channel.");
+            }
+        } else {
+            mes("The game cannot process your Ban request now.");
+        }
+    case 9 :
+        if ($int1 = 1) {
+            friend_del($string0);
+        } else {
+            friend_add($string0);
+        }
+    case 10 :
+        if ($int1 = 2) {
+            ignore_del($string0);
+        } else {
+            ignore_add($string0);
+        }
+}

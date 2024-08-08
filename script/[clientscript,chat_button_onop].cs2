@@ -1,82 +1,91 @@
 // 175
 [clientscript,chat_button_onop](int $int0, int $int1)
 def_int $int2 = ~script553;
-if ($int0 = 1) {
-    if (getwindowmode = ^windowmode_resizable & %varclient_41 = $int1) {
-        %varclient_41 = 1337;
-    } else {
-        %varclient_41 = $int1;
-    }
-    ~script2526;
-    %varclient_384 = clientclock;
-    ~toplevel_chatbox_background;
-    ~chat_alert_set($int1, 0);
-    ~redraw_chat_buttons;
-    ~rebuildchatbox($int2);
-    ~rebuildpmbox($int2);
-} else if ($int0 = 2) {
-    if ($int1 = 2) {
-        ~chat_set_filter($int1, ^chatfilter_autochat);
-        ~redraw_chat_buttons;
-        ~rebuildchatbox($int2);
-        ~rebuildpmbox($int2);
-    } else if ($int1 = 1) {
-        if (%varplayerbit_26 = 0) {
-            %varplayerbit_26 = 1;
+switch_int ($int0) {
+    case 1 :
+        if (getwindowmode = ^windowmode_resizable & %varclient_41 = $int1) {
+            %varclient_41 = 1337;
         } else {
-            %varplayerbit_26 = 0;
+            %varclient_41 = $int1;
         }
+        ~script2526;
+        %varclient_384 = clientclock;
+        ~toplevel_chatbox_background;
+        ~chat_alert_set($int1, 0);
         ~redraw_chat_buttons;
         ~rebuildchatbox($int2);
         ~rebuildpmbox($int2);
-    }
-} else if ($int0 = 3) {
-    if ($int1 = 1) {
-        return;
-    }
-    ~chat_set_filter($int1, ^chatfilter_on);
-    ~redraw_chat_buttons;
-    ~rebuildchatbox($int2);
-    ~rebuildpmbox($int2);
-} else if ($int0 = 4) {
-    ~chat_set_filter($int1, ^chatfilter_friends);
-    ~redraw_chat_buttons;
-    ~rebuildchatbox($int2);
-    ~rebuildpmbox($int2);
-} else if ($int0 = 5) {
-    ~chat_set_filter($int1, ^chatfilter_off);
-    ~redraw_chat_buttons;
-    ~rebuildchatbox($int2);
-    ~rebuildpmbox($int2);
-} else if ($int1 = 2) {
-    switch_int ($int0) {
-        case 6 :
-            ~chat_set_filter($int1, ^chatfilter_hide);
+    case 2 :
+        if ($int1 = 2) {
+            ~chat_set_filter($int1, 4);
             ~redraw_chat_buttons;
             ~rebuildchatbox($int2);
             ~rebuildpmbox($int2);
-        case 7 :
-            %varclient_199 = clientclock;
-            ~rebuildchatbox($int2);
-        case 8 :
-            ~meslayer_mode12;
-        case 9 :
-            ~meslayer_mode13;
-        case 10 :
-            if (string_length(%varclient_358) > 0) {
-                if (%varclient_62 = 1) {
-                    %varclient_62 = 0;
-                } else {
-                    %varclient_62 = 1;
-                }
-                ~chat_autotyper_updateop;
+        } else if ($int1 = 1) {
+            if (%varplayerbit_26 = 0) {
+                %varplayerbit_26 = 1;
             } else {
-                %varclient_62 = 0;
-                ~chat_autotyper_updateop;
+                %varplayerbit_26 = 0;
             }
-    }
-} else if ($int1 = 3 & $int0 = 6) {
-    %varclient_175 = clientclock;
-    ~rebuildchatbox($int2);
-    ~rebuildpmbox($int2);
+            ~redraw_chat_buttons;
+            ~rebuildchatbox($int2);
+            ~rebuildpmbox($int2);
+        }
+    case 3 :
+        if ($int1 = 1) {
+            return;
+        }
+        ~chat_set_filter($int1, 0);
+        ~redraw_chat_buttons;
+        ~rebuildchatbox($int2);
+        ~rebuildpmbox($int2);
+    case 4 :
+        ~chat_set_filter($int1, 1);
+        ~redraw_chat_buttons;
+        ~rebuildchatbox($int2);
+        ~rebuildpmbox($int2);
+    case 5 :
+        ~chat_set_filter($int1, 2);
+        ~redraw_chat_buttons;
+        ~rebuildchatbox($int2);
+        ~rebuildpmbox($int2);
+    case 7 :
+        switch_int ($int1) {
+            case 2 :
+                %varclient_199 = clientclock;
+            case 3 :
+                %varclient_175 = clientclock;
+                ~rebuildpmbox($int2);
+            case 4 :
+                %varclient_439 = clientclock;
+            case 5 :
+                %varclient_440 = clientclock;
+        }
+        ~rebuildchatbox($int2);
+    case default :
+        if ($int1 = 2) {
+            switch_int ($int0) {
+                case 6 :
+                    ~chat_set_filter($int1, 3);
+                    ~redraw_chat_buttons;
+                    ~rebuildchatbox($int2);
+                    ~rebuildpmbox($int2);
+                case 8 :
+                    ~meslayer_mode12;
+                case 9 :
+                    ~meslayer_mode13;
+                case 10 :
+                    if (string_length(%varclient_358) > 0) {
+                        if (%varclient_62 = 1) {
+                            %varclient_62 = 0;
+                        } else {
+                            %varclient_62 = 1;
+                        }
+                        ~chat_autotyper_updateop;
+                    } else {
+                        %varclient_62 = 0;
+                        ~chat_autotyper_updateop;
+                    }
+            }
+        }
 }

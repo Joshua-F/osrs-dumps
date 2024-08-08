@@ -1,0 +1,14 @@
+// 4412
+[proc,clan_events_has_permission](string $string0)(int)
+def_int $int0 = -1;
+def_int $int1 = -1;
+if (%varplayerbit_933 = 3 & activeclansettings_find_affined(0) = true) {
+    $int0 = activeclansettings_getaffinedslot(removetags($string0));
+    if ($int0 ! -1) {
+        $int1 = ~clan_permission_get(struct_2966);
+        if (activeclansettings_getaffinedrank($int0) >= $int1) {
+            return(1);
+        }
+    }
+}
+return(0);

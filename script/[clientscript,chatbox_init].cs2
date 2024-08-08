@@ -1,18 +1,18 @@
 // 925
 [clientscript,chatbox_init]
 ~chatdefault_setonkey(1);
-if_setonvartransmit("script924{varplayer_1054, varplayer_1055, varplayer_1021, varplayer_499, varplayer_1737}", interface_162:com0);
-if_setonsubchange("chat_onsubchange(event_com, getwindowmode, if_hassub(interface_162:com562), if_hassub(interface_162:com561), ~toplevel_getcomponents)", interface_162:com0);
+if_setonvartransmit("script924{varplayer_1054, varplayer_1055, varplayer_1021, varplayer_499, varplayer_1737, varplayer_2992, varplayer_2993, varplayer_2994, varplayer_2995, varplayer_2996, varplayer_2997, varplayer_2998, varplayer_2999, varplayer_3000, varplayer_3001, varplayer_3002, varplayer_3003, varplayer_3004, varplayer_3005, varplayer_3006, varplayer_3007, varplayer_3008, varplayer_3009}", interface_162:com0);
+if_setonsubchange("chat_onsubchange(event_com, getwindowmode, if_hassub(interface_162:com559), if_hassub(interface_162:com558), ~toplevel_getcomponents)", interface_162:com0);
 if_setonchattransmit("chat_onchattransmit", interface_162:com0);
 if_setonfriendtransmit("chat_onchattransmit", interface_162:com0);
 if_setonclantransmit("rebuildchatbox", interface_162:com0);
+if_setonclansettingstransmit("rebuildchatbox", interface_162:com0);
 if_setonmisctransmit("script664(true)", interface_162:com0);
 %varclient_335, %varclient_42 = "", -1;
-switch_int (%varclient_41) {
-    case 0, 1, 2, 3, 4, 5, 1337 :
-        %varclient_41 = %varclient_41;
-    case default :
-        %varclient_41 = 0;
+if (%varclient_41 >= 0 & %varclient_41 <= 6 | %varclient_41 = 1337) {
+    %varclient_41 = %varclient_41;
+} else {
+    %varclient_41 = 0;
 }
 %varclient_3, %varclient_4 = -1, 0;
 %varclient_336, %varclient_337, %varclient_338, %varclient_339, %varclient_340, %varclient_341, %varclient_342, %varclient_343, %varclient_344, %varclient_345, %varclient_346, %varclient_347, %varclient_348, %varclient_349, %varclient_350, %varclient_351, %varclient_352, %varclient_353, %varclient_354, %varclient_355 = "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "";
@@ -22,8 +22,8 @@ switch_int (%varclient_41) {
 def_int $int0 = 0;
 def_component $component1 = enum(int, component, enum_579, $int0);
 while ($component1 ! null) {
-    cc_create(interface_162:com59, ^iftype_text, calc($int0 * 2));
-    .cc_create(interface_162:com59, ^iftype_text, calc($int0 * 2 + 1));
+    cc_create(interface_162:com56, ^iftype_text, calc($int0 * 4));
+    .cc_create(interface_162:com56, ^iftype_text, calc($int0 * 4 + 1));
     cc_setcolour(^black);
     .cc_setcolour(^black);
     cc_settextfont(p12_full);
@@ -32,11 +32,18 @@ while ($component1 ! null) {
     .cc_settextalign(^settextalignh_left, ^settextalignv_top, 14);
     cc_sethide(true);
     .cc_sethide(true);
+    cc_create(interface_162:com56, ^iftype_text, calc($int0 * 4 + 2));
+    .cc_create(interface_162:com56, ^iftype_graphic, calc($int0 * 4 + 3));
+    cc_setcolour(^black);
+    cc_settextfont(p12_full);
+    cc_settextalign(^settextalignh_left, ^settextalignv_top, 14);
+    cc_sethide(true);
+    .cc_sethide(true);
     $int0 = calc($int0 + 1);
     $component1 = enum(int, component, enum_579, $int0);
 }
-if_setscrollpos(0, 0, interface_162:com59);
-~scrollbar_vertical(interface_162:com560, interface_162:com59, null, null, null, null, null, null);
+if_setscrollpos(0, 0, interface_162:com56);
+~scrollbar_vertical(interface_162:com557, interface_162:com56, null, null, null, null, null, null);
 ~toplevel_chatbox_background;
 chat_setmessagefilter("");
 ~script223;

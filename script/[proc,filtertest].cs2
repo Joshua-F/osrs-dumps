@@ -100,21 +100,47 @@ switch_int ($chattype0) {
         }
         return(false);
     case ^chattype_friendschat, ^chattype_chalreq_friendschat :
+        if ($int1 < %varclient_439) {
+            return(false);
+        }
         if (compare($string2, removetags($string0)) = 0) {
             return(true);
         }
         if ($int3 = 2) {
             return(false);
         }
-        if (%varplayer_1054 = 0) {
+        if (%varplayerbit_928 = 0) {
             return(true);
         }
-        if (%varplayer_1054 = 1 & $int3 = 1) {
+        if (%varplayerbit_928 = 1 & $int3 = 1) {
             return(true);
         }
         return(false);
     case ^chattype_friendschatnotification :
-        if (%varplayer_1054 ! 2) {
+        if ($int1 < %varclient_439) {
+            return(false);
+        }
+        if (%varplayerbit_928 ! 2) {
+            return(true);
+        }
+        return(false);
+    case ^chattype_clanchat, ^chattype_clanguestchat, ^chattype_clanmessage, ^chattype_clanguestmessage, ^chattype_clancreationinvitation, ^chattype_chalreq_clanchat :
+        if ($int1 < %varclient_440) {
+            return(false);
+        }
+        if (%varplayerbit_931 = 1 & ($chattype0 = ^chattype_clanchat | $chattype0 = ^chattype_clanmessage)) {
+            return(false);
+        }
+        if (compare($string2, removetags($string0)) = 0) {
+            return(true);
+        }
+        if ($int3 = 2) {
+            return(false);
+        }
+        if (%varplayerbit_929 = 0) {
+            return(true);
+        }
+        if (%varplayerbit_929 = 1 & $int3 = 1) {
             return(true);
         }
         return(false);

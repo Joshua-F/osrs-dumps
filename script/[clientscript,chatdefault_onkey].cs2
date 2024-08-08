@@ -1,6 +1,6 @@
 // 73
 [clientscript,chatdefault_onkey](int $key0, char $char1)
-if (if_gethide(interface_162:com56) = true | if_gethide(interface_162:com57) = true) {
+if (if_gethide(interface_162:com53) = true | if_gethide(interface_162:com54) = true) {
     return;
 }
 if (%varplayerbit_8119 = 0 | ~keypress_permit(-1, 162) = false) {
@@ -8,28 +8,97 @@ if (%varplayerbit_8119 = 0 | ~keypress_permit(-1, 162) = false) {
 }
 def_int $int2 = string_length(%varclient_335);
 def_int $int3 = 0;
-def_int $int4 = 0;
-if (~on_mobile = true & %varclient_41 = 4) {
-    $int4 = 1;
-}
 if (staffmodlevel > 0) {
     $int3 = 1;
+    if (string_indexof_char("`", $char1) ! -1 & $int2 = 0) {
+        return;
+    }
+    if (string_indexof_char(":", $char1) ! -1 & string_indexof_string(%varclient_335, "::", 0) = 0 & $int2 = 2) {
+        return;
+    }
 }
-if ($int3 = 1 & string_indexof_char("`", $char1) ! -1 & $int2 = 0) {
-    return;
-}
+def_int $int4 = 0;
+def_int $int5 = -1;
+def_int $int6 = 0;
+def_int $int7 = -1;
 if ($key0 = ^key_return) {
     ~keyboard_hide;
     if ($int2 > 0) {
-        if (string_indexof_string(%varclient_335, "/", 0) = 0 | $int4 = 1) {
+        if ($int3 = 1) {
+            if (~script4481("give", $int2) = true) {
+                $int2 = string_length(%varclient_335);
+            } else if (~script4481("set", $int2) = true) {
+                $int2 = string_length(%varclient_335);
+            } else if (~script4481("get", $int2) = true) {
+                $int2 = string_length(%varclient_335);
+            } else if (~script4481("tele", $int2) = true) {
+                $int2 = string_length(%varclient_335);
+            } else if (~script4481("~", $int2) = true) {
+                $int2 = string_length(%varclient_335);
+            } else {
+                $int7 = string_indexof_string(%varclient_335, "::", 0);
+                if ($int7 > 0) {
+                    %varclient_335 = substring(%varclient_335, $int7, $int2);
+                    $int2 = string_length(%varclient_335);
+                }
+            }
+        }
+        if (string_indexof_string(%varclient_335, "::", 0) = 0) {
+            $int4 = 1;
+        } else if (%varclient_41 = 5) {
+            $int5 = 41;
+        } else if (%varclient_41 = 4) {
+            $int5 = 9;
+        }
+        if (string_indexof_string(%varclient_335, "///", 0) = 0 | string_indexof_string(lowercase(%varclient_335), "/g ", 0) = 0) {
+            $int6, $int5 = 3, 44;
+        } else if (string_indexof_string(%varclient_335, "//", 0) = 0) {
+            $int6, $int5 = 2, 41;
+        } else if (string_indexof_string(lowercase(%varclient_335), "/c ", 0) = 0) {
+            $int6, $int5 = 3, 41;
+        } else if (string_indexof_string(%varclient_335, "/", 0) = 0) {
+            $int6, $int5 = 1, 9;
+        }
+        if ($int5 = 44) {
+            if (activeclansettings_find_listened = true & activeclanchannel_find_listened = true) {
+                if ($int2 <= $int6) {
+                    return;
+                }
+                if (activeclansettings_getallowunaffined = true) {
+                    ~chat_sendpublic(substring(%varclient_335, $int6, $int2), 4);
+                } else {
+                    mes("Guests are not invited to speak in this clan's channel.");
+                }
+            } else {
+                mes("You are not chatting as a guest in a clan channel at the moment.");
+            }
+        } else if ($int5 = 41) {
+            if (activeclanchannel_find_affined(0) = true) {
+                if (%varplayerbit_931 = 0) {
+                    if ($int2 <= $int6) {
+                        return;
+                    }
+                    $int7 = activeclanchannel_getuserslot(removetags(chat_playername));
+                    if ($int7 ! -1 & activeclanchannel_getuserrank($int7) >= activeclanchannel_getranktalk) {
+                        ~chat_sendpublic(substring(%varclient_335, $int6, $int2), 3);
+                    } else {
+                        mes("You do not have the required rank to talk in the clan's channel.");
+                    }
+                } else {
+                    mes("You have muted your clan's channel. Unmute it if you wish to talk in it.");
+                }
+            } else {
+                mes("You are not chatting in the channel of your own clan at the moment.");
+            }
+        } else if ($int5 = 9) {
             if (clan_getchatcount > 0) {
-                if ($int2 <= 1 & $int4 = 0) {
+                if ($int2 <= $int6) {
                     return;
                 }
                 if (%varplayerbit_4394 = 1) {
                     clan_leavechat;
                 } else {
-                    if ($int4 = 1) {
+                    if ($int6 < 1) {
                         %varclient_335 = append("/", %varclient_335);
                     }
                     ~chat_sendpublic(%varclient_335, 2);
@@ -37,7 +106,7 @@ if ($key0 = ^key_return) {
             } else {
                 ~chat_sendpublic(%varclient_335, 0);
             }
-        } else if (string_indexof_string(%varclient_335, "::", 0) = 0) {
+        } else if ($int4 = 1) {
             if ($int2 > 2) {
                 if (string_indexof_string(%varclient_335, "::toggleroof", 0) = 0) {
                     if (getremoveroofs = true) {

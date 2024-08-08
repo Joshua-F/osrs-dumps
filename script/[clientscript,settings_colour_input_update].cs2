@@ -1,0 +1,15 @@
+// 4184
+[clientscript,settings_colour_input_update](component $component0, int $int1, struct $struct2, int $int3)
+def_int $int4 = struct_param($struct2, param_1230);
+if (~settings_get_colour($int3) ! -1) {
+    $int4 = ~settings_get_colour($int3);
+}
+if (cc_find($component0, $int1) = ^true) {
+    cc_setcolour($int4);
+}
+if (~on_mobile = true) {
+    return;
+}
+if (cc_find($component0, calc($int1 + 1)) = ^true) {
+    cc_settrans(250);
+}
