@@ -135,6 +135,8 @@ if (cc_find($component8, $int12) = ^true) {
     cc_settrans(255);
     cc_setonmouseover("cc_settrans($component8, $int12, 245, null)");
     cc_setonmouseleave("cc_settrans($component8, $int12, 255, $component27)");
+    cc_clearops;
+    cc_setop(1, "View offer");
     if ($int36 = 1) {
         $string1 = "Collect your items.";
     } else if (stockmarket_getoffertype($int9) = 1) {
@@ -142,11 +144,13 @@ if (cc_find($component8, $int12) = ^true) {
             $string1 = "Sold: <oc_name($obj28)><br><~tostring_spacer($int30, $string2)> / <~tostring_spacer($int29, $string2)>";
         } else {
             $string1 = "Selling: <oc_name($obj28)><br><~tostring_spacer($int30, $string2)> / <~tostring_spacer($int29, $string2)>";
+            cc_setop(2, "Abort offer");
         }
     } else if (stockmarket_isofferfinished($int9) = true) {
         $string1 = "Bought: <oc_name($obj28)><br><~tostring_spacer($int30, $string2)> / <~tostring_spacer($int29, $string2)>";
     } else {
         $string1 = "Buying: <oc_name($obj28)><br><~tostring_spacer($int30, $string2)> / <~tostring_spacer($int29, $string2)>";
+        cc_setop(2, "Abort offer");
     }
     cc_setonmouserepeat("tooltip_mouserepeat(event_com, event_comsubid, $component27, $string1, 25, 512)");
 }
