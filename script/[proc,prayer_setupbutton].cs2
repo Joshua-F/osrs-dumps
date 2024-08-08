@@ -10,22 +10,19 @@ cc_setgraphic(prayerglow);
 .cc_create($component1, ^iftype_graphic, 1);
 .cc_setsize(30, 30, ^setsize_abs, ^setsize_abs);
 .cc_setposition(2, 2, ^setposh_abs_left, ^setposv_abs_top);
-~prayer_updatebutton($int0, $component1);
+~prayer_updatebutton($int0, $component1, $component2);
 if ($int0 = 25 | $int0 = 26) {
-    if_setonstattransmit("prayer_updatebutton($int0, $component1, cc_getid, .cc_getid){prayer, defence}", $component1);
-    if_setonvartransmit("prayer_updatebutton($int0, $component1, cc_getid, .cc_getid){varplayer_83, varplayer_1377, varplayer_1050}", $component1);
+    if_setonstattransmit("prayer_updatebutton($int0, $component1, cc_getid, .cc_getid, $component2){prayer, defence}", $component1);
+    if_setonvartransmit("prayer_updatebutton($int0, $component1, cc_getid, .cc_getid, $component2){varplayer_83, varplayer_1377, varplayer_1050, varplayer_284}", $component1);
 } else if ($int0 = 24 | $int0 = 27 | $int0 = 28) {
-    if_setonstattransmit("prayer_updatebutton($int0, $component1, cc_getid, .cc_getid){prayer, defence}", $component1);
-    if_setonvartransmit("prayer_updatebutton($int0, $component1, cc_getid, .cc_getid){varplayer_83, varplayer_1377, varplayer_1429}", $component1);
+    if_setonstattransmit("prayer_updatebutton($int0, $component1, cc_getid, .cc_getid, $component2){prayer, defence}", $component1);
+    if_setonvartransmit("prayer_updatebutton($int0, $component1, cc_getid, .cc_getid, $component2){varplayer_83, varplayer_1377, varplayer_1429, varplayer_284}", $component1);
 } else {
-    if_setonstattransmit("prayer_updatebutton($int0, $component1, cc_getid, .cc_getid){prayer}", $component1);
-    if_setonvartransmit("prayer_updatebutton($int0, $component1, cc_getid, .cc_getid){varplayer_83, varplayer_1377}", $component1);
+    if_setonstattransmit("prayer_updatebutton($int0, $component1, cc_getid, .cc_getid, $component2){prayer}", $component1);
+    if_setonvartransmit("prayer_updatebutton($int0, $component1, cc_getid, .cc_getid, $component2){varplayer_83, varplayer_1377, varplayer_284}", $component1);
 }
-if_setonop("prayer_op(event_opindex, $int0, $component1, cc_getid, .cc_getid)", $component1);
-$string0 = append("Level <tostring(enum(int, int, enum_861, $int0))><br>", $string0);
-$string0 = append($string0, "<br><enum(int, string, enum_862, $int0)>");
-if_setonmouserepeat("addtooltip(event_com, $component2, $string0, 25, if_getwidth(if_getlayer($component1)))", $component1);
-if_setonmouseleave("deltooltip($component2)", $component1);
+if_setonop("prayer_op(event_opindex, $int0, $component1, cc_getid, .cc_getid, $component2)", $component1);
+~prayer_tooltips($component2, $component1, $int0);
 if ($int0 = 8 & (~high_risk_world = true | ~deadman_world = true | %varplayerbit_5314 = 1)) {
     .cc_settrans(100);
     .cc_create($component1, ^iftype_graphic, 2);
