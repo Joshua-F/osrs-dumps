@@ -1,0 +1,27 @@
+// 2361
+[clientscript,script2361](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, struct $struct7, component $component8, int $int9, int $int10)
+def_int $int11 = 4;
+if (%varplayerbit_6670 = 2) {
+    $int11 = 8;
+} else if (%varplayerbit_6670 = 3) {
+    $int11 = 15;
+}
+if ($int10 < 0 | $int10 > $int11) {
+    return;
+}
+def_int $int12 = 0;
+if ($component8 = $component0) {
+    if ($int9 < 0 | $int9 >= $int11) {
+        return;
+    }
+    $int12 = ~telenexus_get_slot_value($int10);
+    ~telenexus_set_slot($int10, ~telenexus_get_slot_value($int9));
+    ~telenexus_set_slot($int9, ~telenexus_get_slot_value($int12));
+    ~script2273($component0, $component1, $component2, $component3, $component4, $component5, $component6, false);
+} else if ($component8 = interface_19:com20) {
+    ~telenexus_remove_tele(~telenexus_get_slot_value($int10));
+    ~script2273($component0, $component1, $component2, $component3, $component4, $component5, $component6, false);
+} else if ($component8 = interface_19:com3) {
+    %varplayerbit_6669 = ~telenexus_get_slot_value($int10);
+    ~telenexus_left_click($component8, interface_19:com7, interface_19:com8, interface_19:com4, interface_19:com6);
+}
