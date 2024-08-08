@@ -17,32 +17,32 @@ if ($int0 = 0) {
 }
 def_int $int2 = enum(int, int, enum_850, $int0);
 if ($int2 = -1) {
-    if_settext("---", interface_76:com21);
-    if_setcolour(0xff981f, interface_76:com21);
+    if_settext("---", interface_76:com23);
+    if_setcolour(0xff981f, interface_76:com23);
 } else {
-    if_settext(tostring($int2), interface_76:com21);
+    if_settext(tostring($int2), interface_76:com23);
     if (map_world = $int2) {
-        if_setcolour(^green, interface_76:com21);
+        if_setcolour(^green, interface_76:com23);
     } else {
-        if_setcolour(^yellow, interface_76:com21);
+        if_setcolour(^yellow, interface_76:com23);
     }
 }
-cc_deleteall(interface_76:com22);
+cc_deleteall(interface_76:com24);
 def_int $int3 = 0;
 while ($int3 < $int0) {
-    cc_create(interface_76:com22, ^iftype_rectangle, $int3);
+    cc_create(interface_76:com24, ^iftype_rectangle, $int3);
     cc_sethide(true);
     $int3 = calc($int3 + 1);
 }
-cc_create(interface_76:com22, ^iftype_rectangle, $int0);
+cc_create(interface_76:com24, ^iftype_rectangle, $int0);
 cc_setposition(0, 0);
-cc_setsize(if_getwidth(interface_76:com22), if_getheight(interface_76:com22));
+cc_setsize(if_getwidth(interface_76:com24), if_getheight(interface_76:com24));
 cc_setfill(true);
 cc_settrans(255);
 cc_setop(1, "Teleport");
 def_int $int4 = 0;
 def_int $int5 = 0;
-cc_deleteall(interface_76:com15);
+cc_deleteall(interface_76:com19);
 cc_deleteall(interface_76:com13);
 $int3 = 0;
 def_string $string2 = "";
@@ -52,7 +52,7 @@ def_int $int8 = 0;
 def_int $int9 = 0;
 def_int $int10 = 1;
 if (if_gethide(interface_76:com15) = true) {
-    if_setgraphic("scrollbar_v2,1", interface_76:com16);
+    if_setgraphic("scrollbar_v2,1", interface_76:com21);
     if_sethide(false, interface_76:com6);
     if_setonclick("grouping_dropdown(true)", interface_76:com6);
     if_setonclick(null, interface_76:com0);
@@ -145,14 +145,14 @@ if (if_gethide(interface_76:com15) = true) {
     }
     return;
 }
-if_setgraphic("scrollbar_v2,0", interface_76:com16);
+if_setgraphic("scrollbar_v2,0", interface_76:com21);
 if_sethide(true, interface_76:com6);
 if_setonclick(null, interface_76:com6);
 if_setonclick("grouping_dropdown(false)", interface_76:com0);
 if_sethide(true, interface_76:com10);
-$int5 = calc(if_getwidth(interface_76:com15) - 12);
+$int5 = calc(if_getwidth(interface_76:com19) - 12);
 $int10 = 3;
-cc_create(interface_76:com15, ^iftype_rectangle, $int3);
+cc_create(interface_76:com19, ^iftype_rectangle, $int3);
 $int3 = calc($int3 + 1);
 cc_setsize($int5, 12);
 cc_setposition(0, 0);
@@ -164,7 +164,7 @@ $int1 = 1;
 $string1 = enum(int, string, enum_849, $int1);
 while (string_length($string1) > 0) {
     if ($int0 ! $int1) {
-        .cc_create(interface_76:com15, ^iftype_text, $int3);
+        .cc_create(interface_76:com19, ^iftype_text, $int3);
         $int3 = calc($int3 + 1);
         .cc_setsize($int5, 12);
         .cc_setposition(6, $int10);
@@ -182,7 +182,7 @@ while (string_length($string1) > 0) {
     $string1 = enum(int, string, enum_849, $int1);
 }
 if ($int0 ! 0) {
-    .cc_create(interface_76:com15, ^iftype_text, $int3);
+    .cc_create(interface_76:com19, ^iftype_text, $int3);
     $int3 = calc($int3 + 1);
     .cc_setsize($int5, 12);
     .cc_setposition(6, $int10);
@@ -194,4 +194,7 @@ if ($int0 ! 0) {
     .cc_setonmouseover("grouping_mouseover(event_com, event_comsubid, cc_getid, true)");
     .cc_setonmouseleave("grouping_mouseover(event_com, event_comsubid, cc_getid, false)");
     .cc_setonclick("grouping_joinchannel(-1)");
+    $int10 = calc($int10 + 12);
 }
+if_setscrollsize(0, $int10, interface_76:com19);
+~scrollbar_resize(interface_76:com20, interface_76:com19, if_getscrolly(interface_76:com19));
