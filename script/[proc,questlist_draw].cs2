@@ -1,25 +1,33 @@
 // 2633
-[proc,questlist_draw](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5)
-def_int $int6 = 3;
-def_int $int7 = ~questlist_sectioninit("Free Quests", $component3, enum_2098, ~quest_f2p_count, $component3, $component4, $component5);
-if_setposition(0, $int6, ^setposh_abs_centre, ^setposv_abs_top, $component3);
-$int6 = calc($int6 + $int7 + 8);
-$int7 = ~questlist_sectioninit("Members' Quests", $component4, enum_2099, ~quest_members_count, $component3, $component4, $component5);
-if_setposition(0, $int6, ^setposh_abs_centre, ^setposv_abs_top, $component4);
-$int6 = calc($int6 + $int7 + 8);
-$int7 = ~questlist_sectioninit("Miniquests", $component5, enum_2100, ~miniquest_count, $component3, $component4, $component5);
-if_setposition(0, $int6, ^setposh_abs_centre, ^setposv_abs_top, $component5);
-$int6 = calc($int6 + $int7);
-$int6 = calc($int6 + 2);
-def_int $int8 = %varclient_10;
-if ($int6 > if_getheight($component1)) {
-    if_setscrollsize(0, $int6, $component1);
+[proc,questlist_draw](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, int $int6)
+def_int $int7 = 3;
+def_int $int8 = ~questlist_sectioninit("Free Quests", $component3, enum_2098, ~quest_f2p_count, $component3, $component4, $component5);
+if_setposition(0, $int7, ^setposh_abs_centre, ^setposv_abs_top, $component3);
+$int7 = calc($int7 + $int8 + 8);
+$int8 = ~questlist_sectioninit("Members' Quests", $component4, enum_2099, ~quest_members_count, $component3, $component4, $component5);
+if_setposition(0, $int7, ^setposh_abs_centre, ^setposv_abs_top, $component4);
+if (~speedrunning_world = false) {
+    $int7 = calc($int7 + $int8 + 8);
+    $int8 = ~questlist_sectioninit("Miniquests", $component5, enum_2100, ~miniquest_count, $component3, $component4, $component5);
+    if_setposition(0, $int7, ^setposh_abs_centre, ^setposv_abs_top, $component5);
+}
+$int7 = calc($int7 + $int8 + 2);
+def_int $int9 = %varclient_10;
+if ($int6 = 1) {
+    $int9 = %varclient_972;
+}
+if ($int7 > if_getheight($component1)) {
+    if_setscrollsize(0, $int7, $component1);
     ~scrollbar_vertical($component2, $component1, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
     if (cc_find($component2, 1) = ^true) {
-        ~scrollbar_vertical_doscroll($component2, $component1, $int8, true);
+        ~scrollbar_vertical_doscroll($component2, $component1, $int9, true);
     }
 } else {
-    %varclient_10 = 0;
+    if ($int6 = 1) {
+        %varclient_972 = 0;
+    } else {
+        %varclient_10 = 0;
+    }
     if_setscrollsize(0, 0, $component1);
     ~scrollbar_vertical($component2, $component1, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
 }
