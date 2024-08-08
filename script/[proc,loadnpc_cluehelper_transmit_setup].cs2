@@ -1,7 +1,9 @@
 // 6510
 [proc,loadnpc_cluehelper_transmit_setup]
-def_entityoverlay $entityoverlay0 = entityoverlay_create_npc(4, 1, calc(36 * 2), calc(32 * 2), 1);
-if (if_find_entityoverlay($entityoverlay0) = ^true) {
-    cc_setonvartransmit("script6511($entityoverlay0, %varplayer_3546, npc_uid, npc_spawncycle, %varplayerbit_14189){varplayer_3546, varplayer_3543}");
+if (nc_param(npc_type, param_626) ! -1) {
+    ~cluehelper_uri_overlay(nc_param(npc_type, param_626));
+} else if (nc_param(npc_type, param_627) = 1) {
+    ~script6542;
+} else {
+    ~loadnpc_cluehelper_generic_setup;
 }
-~script6512($entityoverlay0, %varplayer_3546, npc_uid, npc_spawncycle);
