@@ -1,49 +1,87 @@
 // 125
-[proc,friend_update](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7)
-def_int $int8 = friend_count;
-if ($int8 > 200) {
-    if (%varclient_183 ! 1) {
-        %varclient_183 = 0;
-    }
-    ~script1671($component1, "Sort by name", $component7);
-    ~script1671($component2, "Sort by world", $component7);
-} else {
-    ~friends_sortbutton_draw($component1, 2, 3, "Sort by name", $component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7);
-    ~friends_sortbutton_draw($component2, 4, 5, "Sort by world", $component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7);
-}
-~friends_sortbutton_draw($component3, 0, 1, "Legacy sort", $component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7);
-cc_deleteall($component4);
+[proc,friend_update](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8)
+~friends_sortbutton_draw($component1, 2, 3, 2, "Sort by name", $component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8);
+~friends_sortbutton_draw($component2, 8, 9, 9, "Sort by last world change", $component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8);
+~friends_sortbutton_draw($component3, 4, 5, 4, "Sort by world", $component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8);
+~friends_sortbutton_draw($component4, 0, 1, 0, "Legacy sort", $component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8);
+cc_deleteall($component5);
 def_int $int9 = 0;
 def_int $int10 = 0;
 def_string $string0 = "";
 def_string $string1 = "";
 def_int $int11 = 0;
-def_int $intarray0(~max($int8, 1));
 def_int $int12 = 0;
-if ($int8 <= -2) {
+def_int $int13 = friend_count;
+if ($int13 <= -2) {
     if (%varclient_203 = 1) {
-        if_settext("Loading friend list<br>Please wait...", $component6);
+        if_settext("Loading friend list<br>Please wait...", $component7);
     } else {
-        if_settext("You must set a name<br>before using this.", $component6);
+        if_settext("You must set a name<br>before using this.", $component7);
     }
     if_sethide(true, $component0);
-} else if ($int8 = -1) {
+} else if ($int13 = -1) {
     if (%varclient_203 = 1) {
-        if_settext("Connecting to server<br>Please wait...", $component6);
+        if_settext("Connecting to server<br>Please wait...", $component7);
     } else {
-        if_settext("You must set a name<br>before using this.", $component6);
+        if_settext("You must set a name<br>before using this.", $component7);
     }
     if_sethide(true, $component0);
 } else {
-    if_settext("", $component6);
+    if_settext("", $component7);
     if_sethide(false, $component0);
-    while ($int9 < $int8) {
-        $int10 = calc($int9 * 5);
-        $intarray0($int9) = $int10;
+    friendlist_sort_reset;
+    switch_int (%varclient_183) {
+        case 1 :
+            friendlist_sort_legacy(false);
+        case 2 :
+            friendlist_sort_online_status(true);
+            friendlist_sort_name(true);
+        case 3 :
+            friendlist_sort_online_status(true);
+            friendlist_sort_name(false);
+        case 8 :
+            friendlist_sort_online_status(true);
+            friendlist_sort_lastworldchange(true);
+        case 9 :
+            friendlist_sort_online_status(true);
+            friendlist_sort_lastworldchange(false);
+        case 4 :
+            friendlist_sort_online_status(true);
+            friendlist_sort_online_world(true);
+            friendlist_sort_world(true);
+            switch_int (%varclient_205) {
+                case default :
+                    friendlist_sort_name(true);
+                case 3 :
+                    friendlist_sort_name(false);
+                case 8 :
+                    friendlist_sort_lastworldchange(true);
+                case 9 :
+                    friendlist_sort_lastworldchange(false);
+            }
+        case 5 :
+            friendlist_sort_online_status(true);
+            friendlist_sort_online_world(true);
+            friendlist_sort_world(false);
+            switch_int (%varclient_205) {
+                case default :
+                    friendlist_sort_name(true);
+                case 3 :
+                    friendlist_sort_name(false);
+                case 8 :
+                    friendlist_sort_lastworldchange(true);
+                case 9 :
+                    friendlist_sort_lastworldchange(false);
+            }
+    }
+    friendlist_sort_apply;
+    while ($int9 < $int13) {
         $string0, $string1 = friend_getname($int9);
-        cc_create($component4, ^iftype_text, $int10);
+        cc_create($component5, ^iftype_text, $int10);
+        $int10 = calc($int10 + 1);
         cc_settext($string0);
         cc_setsize(0, 15, ^setsize_minus, ^setsize_abs);
+        cc_setposition(0, $int12, ^setposh_abs_centre, ^setposv_abs_top);
         cc_setcolour(^white);
         cc_settextfont(p12_full);
         cc_settextalign(^settextalignh_left, ^settextalignv_top, 0);
@@ -59,21 +97,25 @@ if ($int8 <= -2) {
         }
         cc_setop(3, "Delete");
         cc_setonop("friend_op(event_opindex, event_opbase)");
-        .cc_create($component4, ^iftype_graphic, calc($int10 + 1));
+        .cc_create($component5, ^iftype_graphic, $int10);
+        $int10 = calc($int10 + 1);
         .cc_setsize(14, 14, ^setsize_abs, ^setsize_abs);
+        .cc_setposition(calc(parawidth($string0, 190, fontmetrics_495) + 3), $int12, ^setposh_abs_left, ^setposv_abs_top);
         .cc_setgraphic(friends_changed_name);
         .cc_setgraphicshadow(0x333333);
         if (string_length($string1) > 0) {
             $string1 = "Previous name:<br><$string1>";
-            cc_setonmouserepeat("tooltip_mouserepeat(event_com, event_comsubid, $component7, $string1, 25, 190)");
-            cc_setonmouseleave("deltooltip($component7)");
+            cc_setonmouserepeat("tooltip_mouserepeat(event_com, event_comsubid, $component8, $string1, 25, 190)");
+            cc_setonmouseleave("deltooltip($component8)");
             .cc_sethide(false);
         } else {
-            cc_setonmouseover("deltooltip($component7)");
+            cc_setonmouseover("deltooltip($component8)");
             .cc_sethide(true);
         }
-        cc_create($component4, ^iftype_text, calc($int10 + 2));
+        cc_create($component5, ^iftype_text, $int10);
+        $int10 = calc($int10 + 1);
         cc_setsize(0, 15, ^setsize_minus, ^setsize_abs);
+        cc_setposition(0, $int12, ^setposh_abs_centre, ^setposv_abs_top);
         cc_settextfont(p12_full);
         cc_settextalign(^settextalignh_right, ^settextalignv_top, 0);
         cc_settextshadow(true);
@@ -91,67 +133,16 @@ if ($int8 <= -2) {
             }
             cc_setcolour(^yellow);
         }
-        cc_create($component4, ^iftype_text, calc($int10 + 3));
-        cc_setsize(0, 0, ^setsize_abs, ^setsize_abs);
-        cc_sethide(true);
-        cc_settext(append_num(~string_prependzero(tostring($int11), 5), $int9));
-        cc_create($component4, ^iftype_text, calc($int10 + 4));
-        cc_setsize(0, 0, ^setsize_abs, ^setsize_abs);
-        cc_sethide(true);
-        if (%varclient_183 = 3) {
-            if ($int11 ! 0) {
-                cc_settext(append("zzzzzzzzzzzzzzz", $string0));
-            } else {
-                cc_settext($string0);
-            }
-        } else if ($int11 = 0) {
-            cc_settext(append("zzzzzzzzzzzzzzz", $string0));
-        } else {
-            cc_settext($string0);
-        }
-        $int9 = calc($int9 + 1);
+        $int9, $int12 = calc($int9 + 1), calc($int12 + 15);
     }
-    if ($int8 >= 2) {
-        if (%varclient_183 = 2 | %varclient_183 = 3) {
-            ~script114(0, 0, calc($int8 - 1));
-        } else if (%varclient_183 = 4 | %varclient_183 = 5) {
-            ~script1683(0, 0, calc($int8 - 1));
-        }
-    }
-    if ($int8 >= 1) {
-        if (%varclient_183 = 3 | %varclient_183 = 5 | %varclient_183 = 1) {
-            $int9 = $int8;
-            while ($int9 > 0) {
-                $int9 = calc($int9 - 1);
-                if (cc_find($component4, $intarray0($int9)) = ^true & .cc_find($component4, calc($intarray0($int9) + 1)) = ^true) {
-                    cc_setposition(0, $int12, ^setposh_abs_centre, ^setposv_abs_top);
-                    .cc_setposition(calc(parawidth(cc_gettext, 190, fontmetrics_495) + 3), $int12, ^setposh_abs_left, ^setposv_abs_top);
-                }
-                if (cc_find($component4, calc($intarray0($int9) + 2)) = ^true) {
-                    cc_setposition(0, $int12, ^setposh_abs_centre, ^setposv_abs_top);
-                }
-                $int12 = calc($int12 + 15);
-            }
-        } else {
-            $int9 = 0;
-            while ($int9 < $int8) {
-                if (cc_find($component4, $intarray0($int9)) = ^true & .cc_find($component4, calc($intarray0($int9) + 1)) = ^true) {
-                    cc_setposition(0, $int12, ^setposh_abs_centre, ^setposv_abs_top);
-                    .cc_setposition(calc(parawidth(cc_gettext, 190, fontmetrics_495) + 3), $int12, ^setposh_abs_left, ^setposv_abs_top);
-                }
-                if (cc_find($component4, calc($intarray0($int9) + 2)) = ^true) {
-                    cc_setposition(0, $int12, ^setposh_abs_centre, ^setposv_abs_top);
-                }
-                $int12, $int9 = calc($int12 + 15), calc($int9 + 1);
-            }
-        }
+    if ($int13 >= 1) {
         $int12 = calc($int12 + 5);
     }
 }
-if ($int12 > if_getheight($component4)) {
-    if_setscrollsize(0, $int12, $component4);
-    ~scrollbar_resize($component5, $component4, %varclient_9);
+if ($int12 > if_getheight($component5)) {
+    if_setscrollsize(0, $int12, $component5);
+    ~scrollbar_resize($component6, $component5, %varclient_9);
 } else {
-    if_setscrollsize(0, 0, $component4);
-    ~scrollbar_resize($component5, $component4, 0);
+    if_setscrollsize(0, 0, $component5);
+    ~scrollbar_resize($component6, $component5, 0);
 }
