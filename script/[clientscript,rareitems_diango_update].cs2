@@ -1,29 +1,35 @@
 // 474
-[clientscript,rareitems_diango_update](int $int0, int $int1)
-def_int $int2 = 0;
-def_obj $obj3 = null;
-def_int $int4 = 0;
-while ($int4 <= 63) {
-    if (cc_find(interface_78:com4, $int4) = ^true) {
-        if ($int4 < 32) {
-            if (testbit($int0, $int4) = ^true) {
-                $int2 = 1;
+[clientscript,rareitems_diango_update](int $int0, int $int1, int $int2)
+def_int $int3 = 0;
+def_obj $obj4 = null;
+def_int $int5 = 0;
+while ($int5 <= 65) {
+    if (cc_find(interface_78:com4, $int5) = ^true) {
+        if ($int5 < 32) {
+            if (testbit($int0, $int5) = ^true) {
+                $int3 = 1;
             } else {
-                $int2 = 0;
+                $int3 = 0;
             }
-        } else if ($int4 < 64) {
-            if (testbit($int1, calc($int4 - 32)) = ^true) {
-                $int2 = 1;
+        } else if ($int5 < 64) {
+            if (testbit($int1, calc($int5 - 32)) = ^true) {
+                $int3 = 1;
             } else {
-                $int2 = 0;
+                $int3 = 0;
+            }
+        } else if ($int5 < 96) {
+            if (testbit($int2, calc($int5 - 64)) = ^true) {
+                $int3 = 1;
+            } else {
+                $int3 = 0;
             }
         } else {
-            $int2 = 0;
+            $int3 = 0;
         }
-        if ($int2 = 1) {
-            $obj3 = enum(int, namedobj, enum_708, $int4);
-            if ($obj3 ! null) {
-                if (inv_total(inv_93, $obj3) = 0) {
+        if ($int3 = 1) {
+            $obj4 = enum(int, namedobj, enum_708, $int5);
+            if ($obj4 ! null) {
+                if (inv_total(inv_93, $obj4) = 0) {
                     cc_sethide(false);
                 } else {
                     cc_sethide(true);
@@ -35,5 +41,5 @@ while ($int4 <= 63) {
             cc_sethide(true);
         }
     }
-    $int4 = calc($int4 + 1);
+    $int5 = calc($int5 + 1);
 }
