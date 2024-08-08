@@ -1,5 +1,6 @@
 // 420
 [clientscript,combat_interface_setup]
+if_setoninvtransmit("combat_interface_setup{inv_94}", interface_593:com0);
 def_int $intarray0(4);
 def_int $intarray1(4);
 def_graphic $graphic0 = "combatboxes_large,0";
@@ -53,11 +54,20 @@ if (%varplayerbit_357 = 18 | %varplayerbit_357 = 21) {
     if (%varplayerbit_357 = 8) {
         if_setposition(22, 2, interface_593:com5);
         if_setsize(30, 30, interface_593:com5);
+    } else if (%varplayerbit_357 = 26) {
+        if_setposition(23, 5, interface_593:com5);
+        if_setsize(24, 24, interface_593:com5);
     } else {
         if_setposition(20, 5, interface_593:com5);
         if_setsize(34, 24, interface_593:com5);
     }
-    if_setposition(20, 5, interface_593:com9);
+    if (%varplayerbit_357 = 26) {
+        if_setposition(23, 5, interface_593:com9);
+        if_setsize(24, 24, interface_593:com9);
+    } else {
+        if_setposition(20, 5, interface_593:com9);
+        if_setsize(34, 24, interface_593:com9);
+    }
     if_setposition(20, 5, interface_593:com13);
     if_setposition(20, 5, interface_593:com17);
     if_setposition(0, 30, interface_593:com6);
@@ -186,12 +196,15 @@ if (%varplayerbit_357 = 1) {
 } else if (%varplayerbit_357 = 23) {
     $string0, $string4, $graphic2 = "Accurate", "(Accurate)<br>(Magic XP)", "combaticons2,10";
     $string3, $string7, $graphic5 = "Longrange", "(Longrange)<br>(Magic XP)<br>(Defence XP)", "combaticons2,12";
+} else if (%varplayerbit_357 = 26) {
+    $string0, $string4, $graphic2 = "Explosive", "(Fires an explosive round)", "magicon,32";
+    $string1, $string5, $graphic3 = "Flamer", "(Emits a jet of flame)", "magicon,21";
 } else {
     $string0, $string4, $graphic2 = "Punch", "(Accurate)<br>(Crush)<br>(Attack XP)", "combaticons,14";
     $string1, $string5, $graphic3 = "Kick", "(Aggressive)<br>(Crush)<br>(Strength XP)", "combaticons,15";
     $string3, $string7, $graphic5 = "Block", "(Defensive)<br>(Crush)<br>(Defence XP)", "combaticons,16";
 }
-~combat_interface_setbuttons($graphic2, $graphic3, $graphic4, $graphic5, $graphic0, $graphic1);
+~combat_interface_setbuttons($graphic2, $graphic3, $graphic4, $graphic5, $graphic0, $graphic1, %varplayerbit_357);
 def_int $int6 = 0;
 if ($graphic2 ! null) {
     if_sethide(false, interface_593:com3);
@@ -200,7 +213,7 @@ if ($graphic2 ! null) {
     if_setgraphic($graphic2, interface_593:com5);
     if_settext($string0, interface_593:com6);
     if_setop(1, $string0, interface_593:com3);
-    if_setonop("combat_interface_opbutton($graphic2, $graphic3, $graphic4, $graphic5, $graphic0, $graphic1, event_opindex, 0)", interface_593:com3);
+    if_setonop("combat_interface_opbutton($graphic2, $graphic3, $graphic4, $graphic5, $graphic0, $graphic1, %varplayerbit_357, event_opindex, 0)", interface_593:com3);
     if_setonmouseleave("deltooltip(interface_593:com35)", interface_593:com3);
     if (string_length($string4) > 0) {
         if_setonmouserepeat("addtooltip(event_com, interface_593:com35, $string4, 25, 140)", interface_593:com3);
@@ -215,7 +228,7 @@ if ($graphic3 ! null) {
     if_setgraphic($graphic3, interface_593:com9);
     if_settext($string1, interface_593:com10);
     if_setop(1, $string1, interface_593:com7);
-    if_setonop("combat_interface_opbutton($graphic2, $graphic3, $graphic4, $graphic5, $graphic0, $graphic1, event_opindex, 1)", interface_593:com7);
+    if_setonop("combat_interface_opbutton($graphic2, $graphic3, $graphic4, $graphic5, $graphic0, $graphic1, %varplayerbit_357, event_opindex, 1)", interface_593:com7);
     if_setonmouseleave("deltooltip(interface_593:com35)", interface_593:com7);
     if (string_length($string5) > 0) {
         if_setonmouserepeat("addtooltip(event_com, interface_593:com35, $string5, 25, 140)", interface_593:com7);
@@ -230,7 +243,7 @@ if ($graphic4 ! null) {
     if_setgraphic($graphic4, interface_593:com13);
     if_settext($string2, interface_593:com14);
     if_setop(1, $string2, interface_593:com11);
-    if_setonop("combat_interface_opbutton($graphic2, $graphic3, $graphic4, $graphic5, $graphic0, $graphic1, event_opindex, 2)", interface_593:com11);
+    if_setonop("combat_interface_opbutton($graphic2, $graphic3, $graphic4, $graphic5, $graphic0, $graphic1, %varplayerbit_357, event_opindex, 2)", interface_593:com11);
     if_setonmouseleave("deltooltip(interface_593:com35)", interface_593:com11);
     if (string_length($string6) > 0) {
         if_setonmouserepeat("addtooltip(event_com, interface_593:com35, $string6, 25, 140)", interface_593:com11);
@@ -245,7 +258,7 @@ if ($graphic5 ! null) {
     if_setgraphic($graphic5, interface_593:com17);
     if_settext($string3, interface_593:com18);
     if_setop(1, $string3, interface_593:com15);
-    if_setonop("combat_interface_opbutton($graphic2, $graphic3, $graphic4, $graphic5, $graphic0, $graphic1, event_opindex, 3)", interface_593:com15);
+    if_setonop("combat_interface_opbutton($graphic2, $graphic3, $graphic4, $graphic5, $graphic0, $graphic1, %varplayerbit_357, event_opindex, 3)", interface_593:com15);
     if_setonmouseleave("deltooltip(interface_593:com35)", interface_593:com15);
     if (string_length($string7) > 0) {
         if_setonmouserepeat("addtooltip(event_com, interface_593:com35, $string7, 25, 140)", interface_593:com15);
