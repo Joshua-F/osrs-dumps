@@ -146,6 +146,17 @@ if (~pvpw_check = true) {
         ~pvp_icons_toggletargetsystem(true);
     } else {
         if_settrans(0, interface_90:com56);
+        if (%varplayerbit_4163 > 100) {
+            if_setgraphic("pvpw_icons,3", interface_90:com55);
+            if_setop(1, "Show time remaining", interface_90:com55);
+            if (%varplayerbit_10531 = 0) {
+                if_setonop("teleblock_timer_tooltip(interface_90:com55, interface_90:com62, true)", interface_90:com55);
+            }
+        } else {
+            if_setgraphic("pvpw_icons,0", interface_90:com55);
+            if_setonop(null, interface_90:com55);
+            %varplayerbit_10531 = 0;
+        }
         if (~target_world = true) {
             ~pvp_icons_toggletargetsystem(false);
         } else {
