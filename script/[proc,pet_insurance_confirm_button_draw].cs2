@@ -1,0 +1,81 @@
+// 6135
+[proc,pet_insurance_confirm_button_draw](int $int0, component $component1)
+def_int $int2 = 0;
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_int $int5 = 0;
+def_obj $obj6 = null;
+if (%varplayerbit_13979 ! 0) {
+    $int3 = 1;
+}
+if (%varplayerbit_13980 ! 0) {
+    $int4 = 1;
+}
+if ($int3 = 1 & $int4 = 1) {
+    return;
+}
+if ($int4 = 1) {
+    $obj6 = enum(int, namedobj, enum_985, calc(%varplayerbit_13980 - 1));
+    if ($obj6 = null) {
+        return;
+    }
+}
+cc_deleteall($component1);
+if ($int3 = 1 | $int4 = 1) {
+    $int2 = 1;
+}
+if ($int2 = 1 & $int0 = 0) {
+    $int5 = ~v2_stone_button_out_filled($component1);
+} else {
+    $int5 = ~v2_stone_button_in_filled($component1);
+}
+def_string $string0 = "Confirm";
+def_string $string1 = "";
+def_string $string2 = "";
+cc_create($component1, ^iftype_text, $int5);
+$int5 = calc($int5 + 1);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_settextalign(^settextalignh_centre, ^settextalignv_centre, 0);
+cc_settextfont(p12_full);
+cc_settextshadow(true);
+cc_setcolour(0x9f9f9f);
+if ($int2 = 1) {
+    if ($int3 = 1) {
+        if (%varplayerbit_13977 = 1) {
+            $string2 = "<tostring(calc(%varplayerbit_13979 - 1))>.5mil";
+        } else {
+            $string2 = "<tostring(%varplayerbit_13979)>mil";
+        }
+        $string0 = "Confirm (<$string2>)";
+        $string1 = "<tostring(%varplayerbit_13979)> Reclaims";
+    } else if ($int4 = 1) {
+        $string0 = "Confirm Reclaim";
+        $string1 = oc_name($obj6);
+    }
+    cc_setposition(0, -8, ^setposh_abs_centre, ^setposv_abs_centre);
+    .cc_create($component1, ^iftype_text, $int5);
+    .cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+    .cc_setposition(0, 8, ^setposh_abs_centre, ^setposv_abs_centre);
+    .cc_settextalign(^settextalignh_centre, ^settextalignv_centre, 0);
+    if (paraheight($string1, 110, fontmetrics_496) > 1) {
+        if (paraheight($string1, 110, fontmetrics_495) > 1) {
+            .cc_settextfont(p11_full);
+        } else {
+            .cc_settextfont(p12_full);
+        }
+    } else {
+        .cc_settextfont(b12_full);
+    }
+    .cc_settextshadow(true);
+    .cc_settext($string1);
+    if ($int0 = 0) {
+        cc_setcolour(0xdc10d);
+        .cc_setcolour(0xdc10d);
+    } else {
+        cc_setcolour(^white);
+        .cc_setcolour(^white);
+    }
+} else {
+    cc_setposition(0, 0, ^setposh_abs_centre, ^setposv_abs_centre);
+}
+cc_settext($string0);
