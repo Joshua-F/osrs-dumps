@@ -1,0 +1,22 @@
+// 1148
+[clientscript,deadmanprotect_bank_transmit]
+cc_deleteall(interface_226:com17);
+def_int $int0 = inv_size(inv_554);
+def_int $int1 = 0;
+def_int $int2 = 0;
+def_obj $obj3 = null;
+while ($int1 < $int0) {
+    $obj3 = inv_getobj(inv_554, $int1);
+    if ($obj3 ! null) {
+        cc_create(interface_226:com17, ^iftype_graphic, $int2);
+        cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+        cc_setposition(calc($int2 % 7 * 39), calc($int2 / 7 * 38), ^setposh_abs_left, ^setposv_abs_top);
+        cc_setobject($obj3, inv_getnum(inv_554, $int1));
+        cc_setopbase("<col=ff981f><oc_name($obj3)>");
+        cc_setop(1, "Examine");
+        cc_setgraphicshadow(0x111111);
+        cc_setoutline(1);
+        $int2 = calc($int2 + 1);
+    }
+    $int1 = calc($int1 + 1);
+}
