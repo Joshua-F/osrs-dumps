@@ -1,0 +1,19 @@
+// 2101
+[proc,hp_hud_pos](int $int0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6)
+def_int $int7 = if_getwidth(interface_303:com0);
+def_int $int8 = scale(1, 4, $int7);
+$int8 = ~max($int8, 150);
+$int8 = ~min($int8, 500);
+if ($int0 = $int8) {
+    return;
+}
+if_setsize($int8, 38, ^setsize_abs, ^setsize_abs, $component1);
+if (%varplayerbit_4692 = 2) {
+    if_setposition(0, 5, ^setposh_abs_centre, ^setposv_abs_top, $component1);
+    if_setposition(0, 0, ^setposh_abs_centre, ^setposv_abs_top, $component2);
+} else {
+    if_setposition(5, 22, ^setposh_abs_left, ^setposv_abs_top, $component1);
+    if_setposition(0, 0, ^setposh_abs_left, ^setposv_abs_top, $component2);
+}
+if_setontimer("hp_hud_pos($int8, $component1, $component2, $component3, $component4, $component5, $component6)", interface_303:com0);
+~hp_hud_update($component5, $component6, $component2, $component4);
