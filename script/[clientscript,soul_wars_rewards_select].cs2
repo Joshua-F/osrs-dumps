@@ -1,7 +1,11 @@
 // 845
-[clientscript,soul_wars_rewards_select](int $int0, component $component1, component $component2, component $component3, int $int4, int $int5)
+[clientscript,soul_wars_rewards_select](int $int0, component $component1, component $component2, component $component3, int $int4, int $int5, component $component6, component $component7)
 if ($int5 ! 1) {
     return;
 }
 sound_synth(synth_2266, 1, 0);
-~soul_wars_rewards_select($int0, $component1, $component2, $component3, $int4);
+def_int $int8 = 0;
+if ($int4 = 1 | $int4 = 2) {
+    $int8 = if_getscrolly($component1);
+}
+~soul_wars_rewards_select($int0, $component1, $component2, $component3, $int4, $int8, $component6, $component7);
