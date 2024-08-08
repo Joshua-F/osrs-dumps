@@ -2,7 +2,7 @@
 [proc,script2632](component $component0, component $component1, component $component2, component $component3)
 def_int $int4 = 0;
 def_int $int5 = 0;
-if (~on_mobile = true & clienttype ! ^clienttype_ios) {
+if (clienttype ! ^clienttype_ios) {
     if_sethide(false, $component1);
     if_setposition(94, 30, ^setposh_abs_left, ^setposv_abs_top, $component0);
     $int4, $int5 = ~v2_stone_button_fadable($component1, 0);
@@ -20,6 +20,16 @@ if (~on_mobile = true & clienttype ! ^clienttype_ios) {
     cc_settextshadow(true);
     cc_settextalign(^settextalignh_centre, ^settextalignv_centre, 0);
     cc_settext("Buy");
+} else {
+    if_sethide(true, $component1);
+    if_setposition(94, 45, ^setposh_abs_left, ^setposv_abs_top, $component0);
+    cc_deleteall($component1);
+    if_setonmouserepeat(null, $component1);
+    if_setonmouseleave(null, $component1);
+    if_clearops($component1);
+    if_setonop(null, $component1);
+}
+if (clienttype ! ^clienttype_ios | %varplayerbit_6617 = 1) {
     if_sethide(false, $component2);
     if_setposition(0, 72, ^setposh_abs_centre, ^setposv_abs_top, $component3);
     $int4, $int5 = ~v2_stone_button_fadable($component2, 0);
@@ -38,13 +48,6 @@ if (~on_mobile = true & clienttype ! ^clienttype_ios) {
     cc_settextalign(^settextalignh_centre, ^settextalignv_centre, 0);
     cc_settext("Buy");
 } else {
-    if_sethide(true, $component1);
-    if_setposition(94, 45, ^setposh_abs_left, ^setposv_abs_top, $component0);
-    cc_deleteall($component1);
-    if_setonmouserepeat(null, $component1);
-    if_setonmouseleave(null, $component1);
-    if_clearops($component1);
-    if_setonop(null, $component1);
     if_sethide(true, $component2);
     if_setposition(0, 51, ^setposh_abs_centre, ^setposv_abs_top, $component3);
     cc_deleteall($component2);
