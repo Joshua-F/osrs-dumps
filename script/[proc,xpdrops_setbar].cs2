@@ -102,14 +102,10 @@ if ($stat7 ! null) {
     }
 }
 def_component $component19 = if_getlayer($component2);
-if (string_length($string2) > 0) {
-    if_setonmouserepeat("script992(event_com, -1, $component6, $string1, $string2, fontmetrics_495, 0)", $component19);
-} else if (string_length($string1) > 0) {
-    if_setonmouserepeat("tooltip_mouserepeat(event_com, -1, $component6, $string1, 0, 512)", $component19);
-} else {
-    if_setonmouserepeat(null, $component19);
+~xp_drops_tooltip_setup($string2, $string1, $component6, $component19, $component0);
+if (~on_mobile = true) {
+    ~xp_drops_tooltip_setup($string2, $string1, $component6, $component3, $component0);
 }
-if_setonmouseleave("deltooltip($component6)", $component19);
 def_int $int20 = 0;
 def_int $int21 = 0;
 def_int $int22 = 0;
@@ -188,14 +184,9 @@ if ($stat8 ! null) {
     $string1, $string2 = "", "";
     ~deltooltip_action($component6);
 }
-if (string_length($string2) > 0) {
-    if_setonmouserepeat("script992(event_com, -1, $component6, $string1, $string2, fontmetrics_495, 0)", $component3);
-} else if (string_length($string1) > 0) {
-    if_setonmouserepeat("tooltip_mouserepeat(event_com, -1, $component6, $string1, 0, 512)", $component3);
-} else {
-    if_setonmouserepeat(null, $component3);
+if (~on_mobile = false) {
+    ~xp_drops_tooltip_setup($string2, $string1, $component6, $component3, $component0);
 }
-if_setonmouseleave("deltooltip($component6)", $component3);
 if ($int9 = 1) {
     if_sethide(false, $component19);
     if_setposition(0, 0, ^setposh_abs_centre, ^setposv_abs_top, $component19);
