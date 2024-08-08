@@ -1,75 +1,81 @@
 // 450
-[clientscript,rareitems_diango](int $int0, int $int1, int $int2, int $int3, int $int4, int $int5, string $string0)
+[clientscript,rareitems_diango](int $int0, int $int1, int $int2, int $int3, int $int4, int $int5, int $int6, string $string0)
 if_settext($string0, interface_78:com1);
 cc_deleteall(interface_78:com3);
 cc_deleteall(interface_78:com4);
-def_int $int6 = calc((if_getwidth(interface_78:com3) - 10 * 36) / 9 + 36);
-def_int $int7 = 0;
+def_int $int7 = calc((if_getwidth(interface_78:com3) - 10 * 36) / 9 + 36);
 def_int $int8 = 0;
 def_int $int9 = 0;
-def_obj $obj10 = null;
-def_int $int11 = 0;
-while ($int11 <= 191) {
-    if ($int11 < 32) {
-        if (testbit($int0, $int11) = ^true) {
-            $int9 = 1;
+def_int $int10 = 0;
+def_obj $obj11 = null;
+def_int $int12 = 0;
+while ($int12 <= 193) {
+    if ($int12 < 32) {
+        if (testbit($int0, $int12) = ^true) {
+            $int10 = 1;
         } else {
-            $int9 = 0;
+            $int10 = 0;
         }
-    } else if ($int11 < 64) {
-        if (testbit($int1, calc($int11 - 32)) = ^true) {
-            $int9 = 1;
+    } else if ($int12 < 64) {
+        if (testbit($int1, calc($int12 - 32)) = ^true) {
+            $int10 = 1;
         } else {
-            $int9 = 0;
+            $int10 = 0;
         }
-    } else if ($int11 < 96) {
-        if (testbit($int2, calc($int11 - 64)) = ^true) {
-            $int9 = 1;
+    } else if ($int12 < 96) {
+        if (testbit($int2, calc($int12 - 64)) = ^true) {
+            $int10 = 1;
         } else {
-            $int9 = 0;
+            $int10 = 0;
         }
-    } else if ($int11 < 128) {
-        if (testbit($int3, calc($int11 - 96)) = ^true) {
-            $int9 = 1;
+    } else if ($int12 < 128) {
+        if (testbit($int3, calc($int12 - 96)) = ^true) {
+            $int10 = 1;
         } else {
-            $int9 = 0;
+            $int10 = 0;
         }
-    } else if ($int11 < 160) {
-        if (testbit($int4, calc($int11 - 128)) = ^true) {
-            $int9 = 1;
+    } else if ($int12 < 160) {
+        if (testbit($int4, calc($int12 - 128)) = ^true) {
+            $int10 = 1;
         } else {
-            $int9 = 0;
+            $int10 = 0;
         }
-    } else if ($int11 < 192) {
-        if (testbit($int5, calc($int11 - 160)) = ^true) {
-            $int9 = 1;
+    } else if ($int12 < 192) {
+        if (testbit($int5, calc($int12 - 160)) = ^true) {
+            $int10 = 1;
         } else {
-            $int9 = 0;
+            $int10 = 0;
+        }
+    } else if ($int12 < 224) {
+        if (testbit($int6, calc($int12 - 192)) = ^true) {
+            $int10 = 1;
+        } else {
+            $int10 = 0;
         }
     } else {
-        $int9 = 0;
+        $int10 = 0;
     }
-    cc_create(interface_78:com3, ^iftype_graphic, $int11);
-    if ($int9 = 1) {
-        $obj10 = enum(int, namedobj, enum_708, $int11);
-        if ($obj10 ! null) {
-            if (inv_total(inv_93, $obj10) = 0) {
+    cc_create(interface_78:com3, ^iftype_graphic, $int12);
+    if ($int10 = 1) {
+        $obj11 = enum(int, namedobj, enum_708, $int12);
+        if ($obj11 ! null) {
+            if (inv_total(inv_93, $obj11) = 0) {
                 cc_sethide(false);
             } else {
                 cc_sethide(true);
             }
             cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
-            cc_setposition(calc($int8 * $int6), $int7, ^setposh_abs_left, ^setposv_abs_top);
+            cc_setposition(calc($int9 * $int7), $int8, ^setposh_abs_left, ^setposv_abs_top);
             cc_setgraphicshadow(0x333333);
             cc_setoutline(1);
-            cc_setobject($obj10, 1);
+            cc_setobject($obj11, 1);
             cc_setop(1, "Take");
             cc_setop(10, "Examine");
-            cc_setopbase("<col=ff9040><oc_name($obj10)>");
-            if ($int8 < 9) {
-                $int8 = calc($int8 + 1);
+            cc_setopbase("<col=ff9040><oc_name($obj11)>");
+            if ($int9 < 9) {
+                $int9 = calc($int9 + 1);
             } else {
-                $int8, $int7 = 0, calc($int7 + 32 + 15);
+                $int9, $int8 = 0, calc($int8 + 32 + 15);
             }
         } else {
             cc_sethide(true);
@@ -77,18 +83,18 @@ while ($int11 <= 191) {
     } else {
         cc_sethide(true);
     }
-    $int11 = calc($int11 + 1);
+    $int12 = calc($int12 + 1);
 }
-if ($int8 > 0) {
-    $int7 = calc($int7 + 32);
-} else if ($int7 > 0) {
-    $int7 = calc($int7 - 15);
+if ($int9 > 0) {
+    $int8 = calc($int8 + 32);
+} else if ($int8 > 0) {
+    $int8 = calc($int8 - 15);
 }
-if ($int7 <= if_getheight(interface_78:com3)) {
+if ($int8 <= if_getheight(interface_78:com3)) {
     if_setscrollsize(0, 0, interface_78:com3);
 } else {
-    if_setscrollsize(0, $int7, interface_78:com3);
+    if_setscrollsize(0, $int8, interface_78:com3);
 }
 if_setscrollpos(0, 0, interface_78:com3);
 ~scrollbar_vertical(interface_78:com4, interface_78:com3, "scrollbar_parchment_dragger_v2,3", "scrollbar_parchment_dragger_v2,0", "scrollbar_parchment_dragger_v2,1", "scrollbar_parchment_dragger_v2,2", "scrollbar_parchment_v2,0", "scrollbar_parchment_v2,1");
-if_setoninvtransmit("rareitems_diango_update($int0, $int1, $int2, $int3, $int4, $int5){inv_93}", interface_78:com3);
+if_setoninvtransmit("rareitems_diango_update($int0, $int1, $int2, $int3, $int4, $int5, $int6){inv_93}", interface_78:com3);
