@@ -1,0 +1,18 @@
+// 5278
+[clientscript,shared_bank_side_init](component $component0)
+cc_deleteall($component0);
+def_int $int1 = 0;
+def_int $int2 = inv_size(inv_660);
+while ($int1 < $int2) {
+    cc_create($component0, ^iftype_graphic, $int1);
+    cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+    cc_setgraphicshadow(0x333333);
+    cc_setoutline(1);
+    cc_setdragdeadzone(5);
+    cc_setdragdeadtime(5);
+    cc_sethide(false);
+    $int1 = calc($int1 + 1);
+}
+~shared_bank_side_build($component0);
+if_setoninvtransmit("shared_bank_side_build(event_com){inv_660}", $component0);
+if_setonvartransmit("shared_bank_side_build(event_com){varplayer_304, varplayer_1666}", $component0);
