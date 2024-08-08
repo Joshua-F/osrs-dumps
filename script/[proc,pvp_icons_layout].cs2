@@ -17,7 +17,17 @@ if (~pvpw_check = true) {
 } else if (~deadman_world = true) {
     $int1 = 0;
     if_setcolour(0xff981f, interface_90:com26);
-    if (%varclient_78 ! 2) {
+    if (%varplayerbit_4965 > 0) {
+        if_setsize(57, 55, ^setsize_abs, ^setsize_abs, interface_90:com21);
+        if_sethide(true, interface_90:com25);
+        if_setposition(0, 12, ^setposh_abs_centre, ^setposv_abs_bottom, interface_90:com25);
+        if_sethide(false, interface_90:com27);
+        if (%varplayerbit_4965 >= 60) {
+            if_settext("<tostring(calc(%varplayerbit_4965 / 60))>h <tostring(calc(%varplayerbit_4965 % 60))>m", interface_90:com27);
+        } else {
+            if_settext("<tostring(calc(%varplayerbit_4965 % 60))>min", interface_90:com27);
+        }
+    } else if (%varclient_78 ! 2) {
         if (%varplayerbit_4854 > 0) {
             if_setsize(57, 66, ^setsize_abs, ^setsize_abs, interface_90:com21);
             if_setposition(0, 25, ^setposh_abs_centre, ^setposv_abs_bottom, interface_90:com26);
