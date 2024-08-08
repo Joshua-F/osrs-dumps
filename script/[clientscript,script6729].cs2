@@ -1,0 +1,82 @@
+// 6729
+[clientscript,script6729](int $int0, int $int1, int $int2, int $int3, int $int4, int $int5, int $int6, int $int7)
+if (if_hassub(enum(component, component, ~toplevel_getcomponents, interface_161:com16)) = false) {
+    return;
+}
+if_settext("Raid Level: <tostring($int3)> <col=ffffff>(<tostring($int2)>)</col>", interface_774:com73);
+if ($int3 >= 300) {
+    if_settext("Mode: <col=ffffff>Expert</col>", interface_774:com74);
+} else if ($int3 >= 150) {
+    if_settext("Mode: <col=ffffff>Normal</col>", interface_774:com74);
+} else {
+    if_settext("Mode: <col=ffffff>Entry</col>", interface_774:com74);
+}
+cc_deleteall(interface_774:com16);
+if_sethide(false, interface_774:com19);
+if_sethide(false, interface_774:com35);
+~script6768;
+def_int $int8 = calc(%varclient_178 - 8);
+switch_int (%varclient_181) {
+    case 0, 1, 2, 3, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 6, 7 :
+    case default :
+        %varclient_181 = 0;
+}
+~toa_partydetails_setsort($int0, $int8);
+if ($int8 <= 0) {
+    cc_create(interface_774:com48, ^iftype_text, 0);
+    cc_setposition(0, 0, ^setposh_abs_centre, ^setposv_abs_centre);
+    cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+    cc_setcolour(0xff981f);
+    cc_settextfont(p12_full);
+    cc_settextalign(^settextalignh_centre, ^settextalignv_centre, 0);
+    cc_settextshadow(true);
+    cc_settext("No current applicants.");
+}
+if_sethide(false, interface_774:com6);
+if_sethide(false, interface_774:com7);
+if_sethide(false, interface_774:com8);
+if_sethide(false, interface_774:com9);
+if_sethide(true, interface_774:com57);
+def_int $int9 = 0;
+def_int $int10 = 0;
+def_int $int11 = 0;
+def_int $int12 = 0;
+if ($int4 = 0) {
+    $int9 = 1;
+    if_sethide(false, interface_774:com17);
+} else if ($int4 = 1) {
+    $int10 = 1;
+    if_sethide(false, interface_774:com33);
+} else if ($int4 = 2) {
+    $int11 = 1;
+    if_sethide(false, interface_774:com49);
+    if (%varclient_1086 ! 1) {
+        ~toa_invocations_layout_setup(1);
+    } else {
+        ~toa_invocations_layout_setup(0);
+    }
+} else {
+    $int12 = 1;
+    if_sethide(false, interface_774:com53);
+}
+def_string $string0 = "";
+if (%varclient_1087 > 0) {
+    $string0 = " (<tostring(%varclient_1087)>)";
+}
+def_string $string1 = "";
+if ($int8 > 0) {
+    $string1 = " (<tostring($int8)>)";
+}
+~script6736(interface_774:com6, $int9, "Members", $string0, interface_774:com1, enum_4792, -1);
+~script6736(interface_774:com7, $int10, "Applicants", $string1, interface_774:com1, enum_4792, -1);
+~script6736(interface_774:com8, $int11, "Invocations", "", interface_774:com1, enum_4792, -1);
+~script6736(interface_774:com9, $int12, "Summary", "", interface_774:com1, enum_4792, -1);
+if_sethide(false, interface_774:com4);
+~toa_partydetails_back_button(interface_774:com4, "Back", interface_774:com1, enum_4792, -1);
+~script6749(interface_774:com52, interface_774:com51, $int5, $int6, $int7, $int0, interface_774:com68);
+~toa_partydetails_summary(interface_774:com56, interface_774:com55, $int5, $int6, $int7, $int3);
+~script6730($int4, $int0, $int1, $int5, $int6, $int7);
+if ($int4 = 0 | $int4 = 1) {
+    if_setontimer("toa_partydetails_autorefresh(interface_774:com0, interface_774:com1, interface_774:com62, clientclock)", interface_774:com0);
+}
+~toa_invocations_side_panel_update(interface_774:com82, interface_774:com84, interface_774:com80, interface_774:com83, $int3, $int2);
