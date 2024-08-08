@@ -1,0 +1,66 @@
+// 252
+[clientscript,music_init_component](component $component0, int $int1, int $int2)
+def_coord $coord3 = null;
+def_int $int4 = -1;
+def_int $int5 = -1;
+def_int $int6 = 0;
+def_string $string0 = "";
+if (cc_find($component0, $int1) = ^true) {
+    cc_setsize(if_getwidth($component0), 14);
+    cc_setposition(0, calc(30 + $int2 * 15));
+    cc_settextfont(p12_full);
+    cc_settextshadow(true);
+    cc_settextalign(^settextalignh_left, ^settextalignv_top, 0);
+    $string0 = enum(int, string, enum_812, $int1);
+    cc_settext($string0);
+    cc_setop(1, "Play");
+    cc_setopbase("<col=ff9040><$string0>");
+    $coord3 = enum(int, coord, enum_819, $int1);
+    if ($coord3 ! null) {
+        $int4, $int5 = coordx($coord3), coordz($coord3);
+        if ($int4 = 1) {
+            $int6 = %varplayer_20;
+        } else if ($int4 = 2) {
+            $int6 = %varplayer_21;
+        } else if ($int4 = 3) {
+            $int6 = %varplayer_22;
+        } else if ($int4 = 4) {
+            $int6 = %varplayer_23;
+        } else if ($int4 = 5) {
+            $int6 = %varplayer_24;
+        } else if ($int4 = 6) {
+            $int6 = %varplayer_25;
+        } else if ($int4 = 7) {
+            $int6 = %varplayer_298;
+        } else if ($int4 = 8) {
+            $int6 = %varplayer_311;
+        } else if ($int4 = 9) {
+            $int6 = %varplayer_346;
+        } else if ($int4 = 10) {
+            $int6 = %varplayer_414;
+        } else if ($int4 = 11) {
+            $int6 = %varplayer_464;
+        } else if ($int4 = 12) {
+            $int6 = %varplayer_598;
+        } else if ($int4 = 13) {
+            $int6 = %varplayer_662;
+        } else if ($int4 = 14) {
+            $int6 = %varplayer_721;
+        } else if ($int4 = 15) {
+            $int6 = %varplayer_906;
+        } else if ($int4 = 16) {
+            $int6 = %varplayer_1009;
+        }
+        if (testbit($int6, $int5) = ^true) {
+            ~music_setcolour(^green);
+        } else if ($int1 = 331 & %varplayerbit_1028 > 35) {
+            ~music_setcolour(^green);
+        } else {
+            ~music_setcolour(^red);
+        }
+    } else {
+        ~music_setcolour(^green);
+    }
+    cc_setonmouseover("cc_colour_swapper(event_com, event_comsubid, ^white)");
+    cc_setontimer(null);
+}
