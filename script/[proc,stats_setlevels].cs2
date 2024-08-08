@@ -19,6 +19,9 @@ if (%varplayerbit_4181 = 0) {
     $string3 = append($string3, "|<~tostring_spacer(enum(int, int, enum_256, calc($int3 + 1)), $string1)>");
 }
 def_int $int6 = 0;
+def_int $int7 = 0;
+def_int $int8 = 0;
+def_int $int9 = 0;
 if (~deadman_world = true) {
     $int6 = ~script1936($stat0);
     if ($int6 ! -1) {
@@ -26,7 +29,50 @@ if (~deadman_world = true) {
         if ($int6 > $int4) {
             $string2 = append($string2, "|<col=7c0808>XP to regain:</col>");
             $string3 = append($string3, "|<col=7c0808><~tostring_spacer(calc($int6 - $int4), $string1)></col>");
+            $int7 = 1;
         }
+    }
+    if ($int7 = 0 & %varplayer_1588 > 0) {
+        switch_stat ($stat0) {
+            case attack, strength :
+                $int9 = ~script2031(20);
+                if ($int9 > 0) {
+                    $string2 = append($string2, "|<col=7c0808>XP permitted:</col>");
+                    $string3 = append($string3, "|<col=7c0808><~tostring_spacer($int9, $string1)></col>");
+                } else {
+                    $int8 = 1;
+                    $string2 = append($string2, "|<col=7c0808>XP permitted:</col>");
+                    $string3 = append($string3, "|<col=7c0808>NONE</col>");
+                }
+            case defence, ranged, magic :
+                $int9 = ~script2031(30);
+                if ($int9 > 0) {
+                    $string2 = append($string2, "|<col=7c0808>XP permitted:</col>");
+                    $string3 = append($string3, "|<col=7c0808><~tostring_spacer($int9, $string1)></col>");
+                } else {
+                    $int8 = 1;
+                    $string2 = append($string2, "|<col=7c0808>XP permitted:</col>");
+                    $string3 = append($string3, "|<col=7c0808>NONE</col>");
+                }
+        }
+    }
+}
+if (.cc_find($component1, 5) = ^true) {
+    if ($int8 = 1) {
+        .cc_sethide(false);
+    } else {
+        .cc_sethide(true);
+    }
+} else {
+    .cc_create($component1, ^iftype_graphic, 5);
+    .cc_setposition(6, 0, ^setposh_abs_left, ^setposv_abs_centre);
+    .cc_setsize(19, 19, ^setsize_abs, ^setsize_abs);
+    .cc_setgraphic("warning_icons,0");
+    .cc_setgraphicshadow(0x10101);
+    if ($int8 = 1) {
+        .cc_sethide(false);
+    } else {
+        .cc_sethide(true);
     }
 }
 if_setonmouserepeat("script992(event_com, -1, $component2, $string2, $string3, fontmetrics_495, calc(25 / 5))", $component1);
