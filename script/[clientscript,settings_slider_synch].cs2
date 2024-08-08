@@ -1,20 +1,27 @@
 // 3862
-[clientscript,settings_slider_synch](int $int0, int $int1, int $int2, int $int3, int $int4, component $component5, int $int6, int $int7, int $int8, int $int9, component $component10, int $int11)
-def_int $int12 = 0;
-if (cc_find($component10, $int11) = ^true) {
+[clientscript,settings_slider_synch](int $int0, struct $struct1, int $int2, int $int3, int $int4, int $int5, component $component6, int $int7, int $int8, int $int9, int $int10, component $component11, int $int12, int $int13, string $string0)
+def_int $int14 = 0;
+def_string $string1 = "";
+if (cc_find($component11, $int12) = ^true) {
     $int0 = calc($int0 + 1);
     if ($int0 < 35) {
-        cc_setontimer("settings_slider_synch($int0, $int1, $int2, $int3, $int4, $component5, $int6, $int7, $int8, $int9, $component10, $int11)");
+        cc_setontimer("settings_slider_synch($int0, $struct1, $int2, $int3, $int4, $int5, $component6, $int7, $int8, $int9, $int10, $component11, $int12, $int13, $string0)");
     } else {
-        if (.cc_find($component5, $int6) = ^true) {
-            $int12 = ~settings_get_slider($int1);
-            if ($int12 = 0) {
-                .cc_setposition($int8, $int7, ^setposh_abs_left, ^setposv_abs_top);
-            } else if ($int12 = calc($int3 - 1)) {
-                .cc_setposition(calc($int9 - 16), $int7, ^setposh_abs_left, ^setposv_abs_top);
+        if (.cc_find($component6, $int7) = ^true) {
+            $int14 = ~settings_get_slider($int2);
+            if ($int14 = 0) {
+                .cc_setposition($int9, $int8, ^setposh_abs_left, ^setposv_abs_top);
+            } else if ($int14 = calc($int4 - 1)) {
+                .cc_setposition(calc($int10 - 16), $int8, ^setposh_abs_left, ^setposv_abs_top);
             } else {
-                .cc_setposition(calc($int8 + scale($int12, calc($int3 - 1), calc($int4 - 16))), $int7, ^setposh_abs_left, ^setposv_abs_top);
+                .cc_setposition(calc($int9 + scale(calc($int14 * 2), calc(($int4 - 1) * 2), calc($int5 - 16))), $int8, ^setposh_abs_left, ^setposv_abs_top);
             }
+        }
+        if (.cc_find($component11, $int13) = ^true) {
+            if (struct_param($struct1, param_1158) = true) {
+                $string1 = ~script2364($int2);
+            }
+            .cc_settext(append($string0, $string1));
         }
         cc_setontimer(null);
     }
