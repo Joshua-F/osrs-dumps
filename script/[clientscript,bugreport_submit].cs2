@@ -2,7 +2,9 @@
 [clientscript,bugreport_submit]
 if (string_length(%varclientstring_27) > 0) {
     sound_synth(synth_2266, 1, 0);
-    bug_report(0, ~bugreport_parse(%varclientstring_27), ~bugreport_parse(%varclientstring_130));
+    if (%varplayerbit_4931 < 10) {
+        bug_report(0, ~bugreport_parse(%varclientstring_27), ~bugreport_parse(%varclientstring_130));
+    }
     if_close;
     mes("Your bug report has been submitted. Thank you.");
     return;
