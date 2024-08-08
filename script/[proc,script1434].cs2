@@ -1,14 +1,25 @@
 // 1434
-[proc,script1434](boolean $boolean0, enum $enum1)
+[proc,script1434](boolean $boolean0, enum $enum1, boolean $boolean2)
 if_sethide($boolean0, interface_90:com2);
 if_setposition(6, 6, ^setposh_abs_right, ^setposv_abs_top, interface_90:com2);
+if_sethide($boolean2, interface_90:com7);
+if ($boolean2 = false) {
+    if_setonvartransmit("deadman_tournament_timer_resynch(event_com){varplayer_1434}", interface_90:com7);
+    if_setonvartransmit("script1636(event_com){varplayer_1293}", interface_90:com11);
+} else {
+    if_setontimer(null, interface_90:com7);
+    if_setonvartransmit(null, interface_90:com7);
+    if_setonvartransmit(null, interface_90:com11);
+}
 if ($boolean0 = true) {
     return;
 }
+if_setonvartransmit("deadman_tournament_hudupdate{varplayer_1542}", interface_90:com3);
+~deadman_tournament_hudupdate;
 if ($enum1 = null) {
     return;
 }
-def_int $int2 = enum(enum, int, enum_1135, $enum1);
-if ($int2 > 0) {
+def_int $int3 = enum(enum, int, enum_1135, $enum1);
+if ($int3 > 0) {
     if_setposition(210, 6, ^setposh_abs_right, ^setposv_abs_top, interface_90:com2);
 }
