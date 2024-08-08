@@ -1,0 +1,48 @@
+// 285
+[clientscript,bankmain_reorder](component $component0, int $int1, int $int2, component $component3)
+if ($int1 < 0 | $int1 >= 424) {
+    return;
+}
+if ($int2 < 0 | $int2 >= 424) {
+    return;
+}
+def_obj $obj4 = inv_getobj(inv_95, $int1);
+if ($obj4 = null) {
+    return;
+}
+if (%varplayerbit_3959 = 0 | $int2 = calc($int1 + 1) | $int2 = calc($int1 - 1)) {
+    if (cc_find($component0, $int2) = ^true) {
+        ~bankmain_drawitem($obj4, inv_getnum(inv_95, $int1), $component0, $component3);
+    }
+    if (cc_find($component0, $int1) = ^true) {
+        ~bankmain_drawitem(inv_getobj(inv_95, $int2), inv_getnum(inv_95, $int2), $component0, $component3);
+    }
+    return;
+}
+if ((%varclient_5 = 11 | %varclient_5 <= 0) & string_length(%varclientstring_22) > 0) {
+    return;
+}
+def_int $int5 = -1;
+def_int $int6 = -1;
+if ($int2 < $int1) {
+    $int5 = $int1;
+    while ($int5 > $int2) {
+        if (cc_find($component0, $int5) = ^true) {
+            $int6 = calc($int5 - 1);
+            ~bankmain_drawitem(inv_getobj(inv_95, $int6), inv_getnum(inv_95, $int6), $component0, $component3);
+        }
+        $int5 = calc($int5 - 1);
+    }
+} else {
+    $int5 = $int1;
+    while ($int5 < $int2) {
+        if (cc_find($component0, $int5) = ^true) {
+            $int6 = calc($int5 + 1);
+            ~bankmain_drawitem(inv_getobj(inv_95, $int6), inv_getnum(inv_95, $int6), $component0, $component3);
+        }
+        $int5 = calc($int5 + 1);
+    }
+}
+if (cc_find($component0, $int2) = ^true) {
+    ~bankmain_drawitem($obj4, inv_getnum(inv_95, $int1), $component0, $component3);
+}

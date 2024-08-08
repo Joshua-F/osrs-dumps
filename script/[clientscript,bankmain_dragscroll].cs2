@@ -1,0 +1,25 @@
+// 284
+[clientscript,bankmain_dragscroll](component $component0, int $int1, int $int2, component $component3)
+def_int $int4 = if_getscrolly($component0);
+def_int $int5 = calc($int2 - $int4);
+def_int $int6 = 5;
+if ($int5 < 20) {
+    if ($int5 < 5) {
+        $int6 = 8;
+    }
+    if ($int4 > $int6) {
+        $int4 = calc($int4 - $int6);
+    } else {
+        $int4 = 0;
+    }
+    ~scrollbar_resize($component3, $component0, $int4);
+} else {
+    $int5 = calc(if_getheight($component0) - $int5 - 32);
+    if ($int5 < 20) {
+        if ($int5 < 5) {
+            $int6 = 8;
+        }
+        $int4 = calc($int4 + $int6);
+        ~scrollbar_resize($component3, $component0, $int4);
+    }
+}
