@@ -1,0 +1,52 @@
+// 1738
+[proc,worldmap_search_update](string $string0, component $component0)
+def_mapelement $mapelement1 = null;
+def_coord $coord2 = null;
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_string $string1 = "";
+def_int $int5 = 0;
+def_string $string2 = "";
+def_coord $coord6 = null;
+if (string_length($string0) > 0) {
+    .cc_settext($string0);
+    cc_setonkey(null);
+    %varclient_190, %varclient_187 = 0, calc(clientclock + 2);
+} else {
+    $int3 = string_length(%varclientstring_138);
+    if ($int3 > 0) {
+        if ($int3 > 1) {
+            $mapelement1, $coord2 = worldmap_listelement_start;
+            while ($coord6 = null & $mapelement1 ! null) {
+                $string1 = mec_text($mapelement1);
+                $int4 = string_length($string1);
+                if ($int4 > 0) {
+                    $string1 = ~string_findandreplace($string1, "<br>", " ");
+                    $int4 = string_length($string1);
+                    $int5 = string_indexof_string(lowercase($string1), lowercase(%varclientstring_138), 0);
+                    if ($int5 ! -1) {
+                        if ($int5 > 0) {
+                            $string2 = "<col=ff0000><substring($string1, 0, $int5)>";
+                        }
+                        $string2 = append($string2, "<col=ffffff><substring($string1, $int5, calc($int5 + $int3))>");
+                        if (calc($int5 + $int3) < $int4) {
+                            $string2 = append($string2, "<col=ff0000><substring($string1, calc($int5 + $int3), $int4)>");
+                        }
+                        $coord6 = $coord2;
+                    }
+                }
+                $mapelement1, $coord2 = worldmap_listelement_next;
+            }
+        }
+        if ($coord6 ! null) {
+            .cc_settext($string2);
+        } else {
+            .cc_settext("<col=ffffff><%varclientstring_138><col=ff0000>*</col>");
+        }
+    } else {
+        .cc_settext("<col=ff0000>*</col>");
+    }
+    cc_setonkey("worldmap_search_input(event_key, event_keychar, $component0, cc_getid, .cc_getid, $coord6)");
+    %varclient_190 = 1;
+}
+~worldmap_search_setalignment(if_getwidth($component0));
