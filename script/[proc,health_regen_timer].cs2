@@ -1,0 +1,38 @@
+// 4718
+[proc,health_regen_timer](int $int0)
+if (~on_enhanced = false) {
+    return;
+}
+if (%varplayerbit_4084 = 1) {
+    return;
+}
+def_component $component1 = interface_160:com11;
+if (~on_mobile = true) {
+    $component1 = interface_311:com13;
+}
+def_int $int2 = 100;
+if (%varplayerbit_4111 = 1) {
+    $int2 = 50;
+}
+if (~league_relic_active(struct_725) = 1) {
+    $int2 = scale(1, 4, $int2);
+}
+if (~league_relic_active(struct_1729) = 1) {
+    $int2 = scale(1, 4, $int2);
+}
+$int2 = calc($int2 * 30);
+if ($int0 >= $int2) {
+    $int0 = calc($int0 % $int2);
+}
+cc_deleteall($component1);
+cc_create($component1, ^iftype_arc, 0);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setposh_abs_centre, ^setposv_abs_centre);
+cc_setcolour(0xf00b04);
+cc_setfill(false);
+cc_setlinewid(2);
+cc_setarc(0, 0);
+if_setontimer("health_orb_arc($component1, 0, $int0, $int2, %varplayerbit_12346)", $component1);
+if (%varplayerbit_12346 = 1) {
+    cc_sethide(true);
+}
