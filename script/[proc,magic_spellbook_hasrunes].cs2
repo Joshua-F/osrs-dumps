@@ -1,5 +1,11 @@
 // 2620
 [proc,magic_spellbook_hasrunes](obj $obj0)(boolean)
+switch_obj ($obj0) {
+    case obj_4645, obj_4644, obj_4650, obj_4651 :
+        if (inv_total(inv_93, obj_23650) > 0 & ~fake_runes_enabled = true) {
+            return(true);
+        }
+}
 def_obj $obj1 = oc_param($obj0, param_365);
 if ($obj1 ! null & ~magic_runecount($obj1) < oc_param($obj0, param_366)) {
     return(false);
