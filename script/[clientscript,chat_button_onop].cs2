@@ -1,91 +1,21 @@
 // 175
 [clientscript,chat_button_onop](int $int0, int $int1)
 def_int $int2 = ~script553;
-switch_int ($int0) {
-    case 1 :
-        if (getwindowmode = ^windowmode_resizable & %varclient_41 = $int1) {
-            %varclient_41 = 1337;
-        } else {
-            %varclient_41 = $int1;
-        }
-        ~script2526;
-        %varclient_384 = clientclock;
-        ~toplevel_chatbox_background;
-        ~chat_alert_set($int1, 0);
-        ~redraw_chat_buttons;
-        ~rebuildchatbox($int2);
-        ~rebuildpmbox($int2);
-    case 2 :
-        if ($int1 = 2) {
-            ~chat_set_filter($int1, 4);
-            ~redraw_chat_buttons;
-            ~rebuildchatbox($int2);
-            ~rebuildpmbox($int2);
-        } else if ($int1 = 1) {
-            if (%varplayerbit_26 = 0) {
-                %varplayerbit_26 = 1;
-            } else {
-                %varplayerbit_26 = 0;
-            }
-            ~redraw_chat_buttons;
-            ~rebuildchatbox($int2);
-            ~rebuildpmbox($int2);
-        }
-    case 3 :
-        if ($int1 = 1) {
-            return;
-        }
-        ~chat_set_filter($int1, 0);
-        ~redraw_chat_buttons;
-        ~rebuildchatbox($int2);
-        ~rebuildpmbox($int2);
-    case 4 :
-        ~chat_set_filter($int1, 1);
-        ~redraw_chat_buttons;
-        ~rebuildchatbox($int2);
-        ~rebuildpmbox($int2);
-    case 5 :
-        ~chat_set_filter($int1, 2);
-        ~redraw_chat_buttons;
-        ~rebuildchatbox($int2);
-        ~rebuildpmbox($int2);
-    case 7 :
-        switch_int ($int1) {
+switch_int ($int1) {
+    case 0 :
+        switch_int ($int0) {
+            case 1 :
+                ~chat_button_switch($int1, $int2);
             case 2 :
-                %varclient_199 = clientclock;
+                %varclient_945 = 0;
+                ~redraw_chat_buttons;
+                ~script223;
             case 3 :
-                %varclient_175 = clientclock;
-                ~rebuildpmbox($int2);
-            case 4 :
-                %varclient_439 = clientclock;
-            case 5 :
-                %varclient_440 = clientclock;
-        }
-        ~rebuildchatbox($int2);
-    case 9 :
-        if ($int1 = 5) {
-            %varclient_945 = 2;
-            ~redraw_chat_buttons;
-            ~script223;
-        } else if ($int1 = 2) {
-            ~meslayer_mode13;
-        }
-    case 10 :
-        switch_int ($int1) {
-            case 2 :
-                if (string_length(%varclient_358) > 0) {
-                    if (%varclient_62 = 1) {
-                        %varclient_62 = 0;
-                    } else {
-                        %varclient_62 = 1;
-                    }
-                    ~chat_autotyper_updateop;
-                } else {
-                    %varclient_62 = 0;
-                    ~chat_autotyper_updateop;
-                }
-            case 4 :
                 %varclient_945 = 1;
+                ~redraw_chat_buttons;
+                ~script223;
+            case 4 :
+                %varclient_945 = 2;
                 ~redraw_chat_buttons;
                 ~script223;
             case 5 :
@@ -99,16 +29,161 @@ switch_int ($int0) {
                 ~redraw_chat_buttons;
                 ~script223;
         }
-    case default :
-        if ($int1 = 2) {
-            switch_int ($int0) {
-                case 6 :
-                    ~chat_set_filter($int1, 3);
-                    ~redraw_chat_buttons;
+    case 1 :
+        switch_int ($int0) {
+            case 1 :
+                ~chat_button_switch($int1, $int2);
+            case 2 :
+                if (%varplayerbit_26 = 0) {
+                    %varplayerbit_26 = 1;
+                } else {
+                    %varplayerbit_26 = 0;
+                }
+                ~redraw_chat_buttons;
+                ~rebuildchatbox($int2);
+                ~rebuildpmbox($int2);
+        }
+    case 2 :
+        switch_int ($int0) {
+            case 1 :
+                ~chat_button_switch($int1, $int2);
+            case 2 :
+                ~chat_set_filter($int1, 4);
+                ~redraw_chat_buttons;
+                ~rebuildchatbox($int2);
+                ~rebuildpmbox($int2);
+            case 3 :
+                ~chat_set_filter($int1, 0);
+                ~redraw_chat_buttons;
+                ~rebuildchatbox($int2);
+                ~rebuildpmbox($int2);
+            case 4 :
+                ~chat_set_filter($int1, 1);
+                ~redraw_chat_buttons;
+                ~rebuildchatbox($int2);
+                ~rebuildpmbox($int2);
+            case 5 :
+                ~chat_set_filter($int1, 2);
+                ~redraw_chat_buttons;
+                ~rebuildchatbox($int2);
+                ~rebuildpmbox($int2);
+            case 6 :
+                ~chat_set_filter($int1, 3);
+                ~redraw_chat_buttons;
+                ~rebuildchatbox($int2);
+                ~rebuildpmbox($int2);
+            case 7 :
+                %varclient_199 = clientclock;
+                ~rebuildchatbox($int2);
+            case 8 :
+                ~meslayer_mode12;
+            case 9 :
+                ~meslayer_mode13;
+            case 10 :
+                if (string_length(%varclient_358) > 0) {
+                    if (%varclient_62 = 1) {
+                        %varclient_62 = 0;
+                    } else {
+                        %varclient_62 = 1;
+                    }
+                    ~chat_autotyper_updateop;
+                } else {
+                    %varclient_62 = 0;
+                    ~chat_autotyper_updateop;
+                }
+        }
+    case 3 :
+        switch_int ($int0) {
+            case 1 :
+                ~chat_button_switch($int1, $int2);
+            case 3 :
+                ~chat_set_filter($int1, 0);
+                ~redraw_chat_buttons;
+                ~rebuildchatbox($int2);
+                ~rebuildpmbox($int2);
+            case 4 :
+                ~chat_set_filter($int1, 1);
+                ~redraw_chat_buttons;
+                ~rebuildchatbox($int2);
+                ~rebuildpmbox($int2);
+            case 5 :
+                ~chat_set_filter($int1, 2);
+                ~redraw_chat_buttons;
+                ~rebuildchatbox($int2);
+                ~rebuildpmbox($int2);
+            case 7 :
+                %varclient_175 = clientclock;
+                ~rebuildpmbox($int2);
+        }
+    case 4 :
+        switch_int ($int0) {
+            case 1 :
+                ~chat_button_switch($int1, $int2);
+            case 3 :
+                ~chat_set_filter($int1, 0);
+                ~redraw_chat_buttons;
+                ~rebuildchatbox($int2);
+                ~rebuildpmbox($int2);
+            case 4 :
+                ~chat_set_filter($int1, 1);
+                ~redraw_chat_buttons;
+                ~rebuildchatbox($int2);
+                ~rebuildpmbox($int2);
+            case 5 :
+                ~chat_set_filter($int1, 2);
+                ~redraw_chat_buttons;
+                ~rebuildchatbox($int2);
+                ~rebuildpmbox($int2);
+            case 7 :
+                %varclient_439 = clientclock;
+                ~rebuildchatbox($int2);
+        }
+    case 5 :
+        switch_int ($int0) {
+            case 1 :
+                ~chat_button_switch($int1, $int2);
+            case 3 :
+                ~chat_set_filter($int1, 0);
+                ~redraw_chat_buttons;
+                ~rebuildchatbox($int2);
+                ~rebuildpmbox($int2);
+            case 4 :
+                ~chat_set_filter($int1, 1);
+                ~redraw_chat_buttons;
+                ~rebuildchatbox($int2);
+                ~rebuildpmbox($int2);
+            case 5 :
+                ~chat_set_filter($int1, 2);
+                ~redraw_chat_buttons;
+                ~rebuildchatbox($int2);
+                ~rebuildpmbox($int2);
+            case 7 :
+                %varclient_440 = clientclock;
+                ~rebuildchatbox($int2);
+        }
+    case 6 :
+        switch_int ($int0) {
+            case 1 :
+                ~chat_button_switch($int1, $int2);
+            case 3 :
+                ~chat_set_filter($int1, 0);
+                ~redraw_chat_buttons;
+                ~rebuildchatbox($int2);
+                ~rebuildpmbox($int2);
+            case 4 :
+                ~chat_set_filter($int1, 1);
+                ~redraw_chat_buttons;
+                ~rebuildchatbox($int2);
+                ~rebuildpmbox($int2);
+            case 5 :
+                ~chat_set_filter($int1, 2);
+                ~redraw_chat_buttons;
+                ~rebuildchatbox($int2);
+                ~rebuildpmbox($int2);
+            case 7 :
+                if (~is_group_iron = true) {
+                    %varclient_946 = clientclock;
                     ~rebuildchatbox($int2);
-                    ~rebuildpmbox($int2);
-                case 8 :
-                    ~meslayer_mode12;
-            }
+                }
         }
 }
