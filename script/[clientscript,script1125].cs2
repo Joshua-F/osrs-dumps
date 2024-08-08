@@ -5,28 +5,23 @@ if_sethide(true, $component11);
 ~deltooltip_action($component11);
 ~xpdrops_setup_display_hoverdisable($component0);
 if_sethide(false, $component6);
-def_int $int12 = if_getx($component0);
-def_int $int13 = if_gety($component0);
-def_component $component14 = if_getlayer($component0);
-while ($component14 ! $component3) {
-    $int12, $int13 = calc($int12 + if_getx($component14) - if_getscrollx($component14)), calc($int13 + if_gety($component14) - if_getscrolly($component14));
-    $component14 = if_getlayer($component14);
-}
-$int13 = calc($int13 + if_getheight($component0) - 1);
-if_setposition($int12, $int13, ^setposh_abs_left, ^setposv_abs_top, $component7);
 cc_deleteall($component1);
+def_int $int12 = 13;
+if (~on_mobile = true) {
+    $int12 = scale(8, 5, $int12);
+}
 .cc_create($component1, ^iftype_rectangle, 0);
-.cc_setsize(0, 15, ^setsize_minus, ^setsize_abs);
+.cc_setsize(0, calc($int12 + 2), ^setsize_minus, ^setsize_abs);
 .cc_setfill(true);
 .cc_setcolour(^white);
 .cc_settrans(200);
 .cc_sethide(true);
-def_int $int15 = 0;
-def_string $string0 = enum(int, string, enum_1246, $int15);
+def_int $int13 = 0;
+def_string $string0 = enum(int, string, enum_1246, $int13);
 while (string_length($string0) > 0) {
-    cc_create($component1, ^iftype_text, calc($int15 + 1));
-    cc_setsize(0, 13, ^setsize_minus, ^setsize_abs);
-    cc_setposition(0, calc($int15 * 13), ^setposh_abs_centre, ^setposv_abs_top);
+    cc_create($component1, ^iftype_text, calc($int13 + 1));
+    cc_setsize(0, $int12, ^setsize_minus, ^setsize_abs);
+    cc_setposition(0, calc($int13 * $int12), ^setposh_abs_centre, ^setposv_abs_top);
     cc_setcolour(0xff981f);
     cc_settextshadow(true);
     cc_settextfont(p11_full);
@@ -36,11 +31,11 @@ while (string_length($string0) > 0) {
     cc_setonmouseover("script1126(true, event_com, event_comsubid, .cc_getid)");
     cc_setonmouseleave("script1126(false, event_com, event_comsubid, .cc_getid)");
     cc_setonop("script1127(event_opindex, event_com, event_comsubid, $component6, $component11, $component4, $component8, $component5, $component9)");
-    $int15 = calc($int15 + 1);
+    $int13 = calc($int13 + 1);
     if (~on_mobile = true) {
-        $string0 = enum(int, string, enum_1879, $int15);
+        $string0 = enum(int, string, enum_1879, $int13);
     } else {
-        $string0 = enum(int, string, enum_1246, $int15);
+        $string0 = enum(int, string, enum_1246, $int13);
     }
 }
 if_sethide(false, $component1);
@@ -50,15 +45,32 @@ if ($component1 ! $component8) {
 if ($component1 ! $component9) {
     if_sethide(true, $component9);
 }
-def_int $int16 = calc($int15 * 13 + 2);
-def_int $int17 = calc($int16 + 4);
-def_int $int18 = calc(if_getheight($component3) - $int13);
-if ($int17 > $int18) {
-    if_setsize(if_getwidth($component0), $int18, ^setsize_abs, ^setsize_abs, $component7);
-    if_setscrollpos(0, 0, $component1);
-    if_setscrollsize(0, $int16, $component1);
+def_int $int14 = calc($int13 * $int12);
+def_int $int15 = calc($int14 + 4);
+def_int $int16 = if_getx($component0);
+def_int $int17 = if_gety($component0);
+def_int $int18 = 0;
+def_component $component19 = if_getlayer($component0);
+while ($component19 ! $component3) {
+    $int16, $int17 = calc($int16 + if_getx($component19) - if_getscrollx($component19)), calc($int17 + if_gety($component19) - if_getscrolly($component19));
+    $component19 = if_getlayer($component19);
+}
+if (~on_mobile = true) {
+    $int18 = ~max(0, calc($int17 + 20 - $int15));
 } else {
-    if_setsize(if_getwidth($component0), $int17, ^setsize_abs, ^setsize_abs, $component7);
+    $int18 = calc($int17 + if_getheight($component0) - 1);
+}
+if_setposition($int16, $int18, ^setposh_abs_left, ^setposv_abs_top, $component7);
+def_int $int20 = calc(if_getheight($component3) - $int18);
+if (~on_mobile = true) {
+    $int20 = calc($int17 + 20 - $int18);
+}
+if ($int15 > $int20) {
+    if_setsize(if_getwidth($component0), $int20, ^setsize_abs, ^setsize_abs, $component7);
+    if_setscrollpos(0, 0, $component1);
+    if_setscrollsize(0, $int14, $component1);
+} else {
+    if_setsize(if_getwidth($component0), $int15, ^setsize_abs, ^setsize_abs, $component7);
     if_setscrollpos(0, 0, $component1);
     if_setscrollsize(0, 0, $component1);
 }
