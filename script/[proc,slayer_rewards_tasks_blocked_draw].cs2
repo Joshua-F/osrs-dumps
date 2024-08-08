@@ -15,50 +15,55 @@ if ($int1 = 1) {
 } else {
     return;
 }
-def_int $int9 = if_getwidth($component0);
-def_int $int10 = if_getheight($component0);
-def_int $int11 = 0;
-cc_create($component0, ^iftype_text, $int11);
-$int11 = calc($int11 + 1);
-cc_setposition(0, 0, ^setposh_abs_left, ^setposv_abs_top);
-cc_setsize(85, $int10, ^setsize_abs, ^setsize_abs);
+def_int $int9 = 0;
+cc_create($component0, ^iftype_text, $int9);
+$int9 = calc($int9 + 1);
+cc_setposition(0, 0, ^setposh_abs_left, ^setposv_abs_centre);
+cc_setsize(85, 0, ^setsize_abs, ^setsize_minus);
 cc_setcolour(0xff981f);
 cc_settextfont(p12_full);
 cc_settextshadow(true);
-cc_settextalign(^settextalignh_left, ^settextalignv_top, 0);
+cc_settextalign(^settextalignh_left, ^settextalignv_centre, 0);
 cc_settext("Slot <tostring($int1)>:");
-cc_create($component0, ^iftype_text, $int11);
-$int11 = calc($int11 + 1);
-cc_setposition(85, 0, ^setposh_abs_left, ^setposv_abs_top);
-cc_setsize(calc($int9 - 170), $int10, ^setsize_abs, ^setsize_abs);
-cc_settextfont(p12_full);
+cc_create($component0, ^iftype_text, $int9);
+$int9 = calc($int9 + 1);
+cc_setposition(0, 0, ^setposh_abs_centre, ^setposv_abs_centre);
+cc_setsize(170, 0, ^setsize_minus, ^setsize_minus);
 cc_settextshadow(true);
-cc_settextalign(^settextalignh_centre, ^settextalignv_top, 0);
+cc_settextalign(^settextalignh_centre, ^settextalignv_centre, 0);
 if ($int8 = 0) {
-    if (%varplayer_101 < $int2) {
-        if ($int2 = 0 & %varplayerbit_4538 = 0) {
+    if ($int2 = 0) {
+        if (%varplayerbit_4538 = 0) {
             cc_setcolour(^red);
-            cc_settext("You need to complete the Lumbridge and Draynor elite diary to use this slot.");
-            return;
+            cc_settextfont(p11_full);
+            cc_settext("You must complete the Lumbridge & Draynor<br>elite diary to use this slot.");
+        } else {
+            cc_setcolour(0xff981f);
+            cc_settextfont(p12_full);
+            cc_settext("Empty");
         }
+    } else if (%varplayer_101 < $int2) {
         cc_setcolour(^red);
+        cc_settextfont(p12_full);
         cc_settext("You need <tostring($int2)> QP to use this slot.");
     } else {
         cc_setcolour(0xff981f);
+        cc_settextfont(p12_full);
         cc_settext("Empty");
     }
 } else {
     cc_setcolour(^white);
+    cc_settextfont(p12_full);
     cc_settext(enum(int, string, enum_693, $int8));
 }
-cc_create($component0, ^iftype_graphic, $int11);
-$int11 = calc($int11 + 1);
-.cc_create($component0, ^iftype_text, $int11);
-$int11 = calc($int11 + 1);
+cc_create($component0, ^iftype_graphic, $int9);
+$int9 = calc($int9 + 1);
+.cc_create($component0, ^iftype_text, $int9);
+$int9 = calc($int9 + 1);
 cc_setsize(85, 22, ^setsize_abs, ^setsize_abs);
 .cc_setsize(85, 22, ^setsize_abs, ^setsize_abs);
-cc_setposition(calc($int9 - 85), 0, ^setposh_abs_left, ^setposv_abs_top);
-.cc_setposition(cc_getx, 0, ^setposh_abs_left, ^setposv_abs_top);
+cc_setposition(0, 0, ^setposh_abs_right, ^setposv_abs_centre);
+.cc_setposition(0, 0, ^setposh_abs_right, ^setposv_abs_centre);
 cc_setgraphic("combatboxesmed,0");
 .cc_settextfont(p11_full);
 .cc_settextalign(^settextalignh_centre, ^settextalignv_centre, 0);
