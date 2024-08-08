@@ -1,0 +1,121 @@
+// 2611
+[proc,magic_spellbook_redraw](component $component0, component $component1, component $component2, int $int3, int $int4)
+cc_deleteall($component0);
+cc_deleteall($component1);
+cc_deleteall($component2);
+def_enum $enum5 = enum(int, enum, enum_1981, %varplayerbit_4070);
+if ($enum5 ! enum_1982) {
+    ~magic_spellbook_hidespells(enum_1982);
+}
+if ($enum5 ! enum_1983) {
+    ~magic_spellbook_hidespells(enum_1983);
+}
+if ($enum5 ! enum_1984) {
+    ~magic_spellbook_hidespells(enum_1984);
+}
+if ($enum5 ! enum_1985) {
+    ~magic_spellbook_hidespells(enum_1985);
+}
+if ($enum5 = null) {
+    return;
+}
+def_int $int6 = enum_getoutputcount($enum5);
+def_int $intarray0($int6);
+def_int $int7 = 0;
+def_obj $obj8 = null;
+def_int $int9 = 0;
+while ($int9 < $int6) {
+    $obj8 = enum(int, obj, $enum5, $int9);
+    if (~magic_spellbook_passfilter($obj8) = true) {
+        if_sethide(false, oc_param($obj8, param_596));
+        $intarray0($int7) = $int9;
+        $int7 = calc($int7 + 1);
+    } else {
+        if_sethide(true, oc_param($obj8, param_596));
+    }
+    $int9 = calc($int9 + 1);
+}
+if ($int7 >= 2) {
+    ~magic_spellbook_sort(0, 0, calc($int7 - 1), $enum5);
+} else if ($int7 <= 0) {
+    cc_create($component0, ^iftype_text, 0);
+    cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+    cc_setposition(0, 0, ^setposh_abs_centre, ^setposv_abs_centre);
+    cc_setcolour(0xff981f);
+    cc_settextfont(p12_full);
+    cc_settextshadow(true);
+    cc_settextalign(^settextalignh_centre, ^settextalignv_centre, 0);
+    cc_settext("No spells match your selected filters.");
+    return;
+}
+def_int $int10 = 24;
+def_int $int11 = 0;
+def_int $int12 = 0;
+def_int $int13 = 0;
+def_int $int14 = 0;
+def_boolean $boolean15 = ~on_mobile;
+if ($boolean15 = true) {
+    if ($int7 <= 15) {
+        $int10, $int11 = 40, 3;
+    } else if ($int7 <= 20) {
+        $int10, $int11 = 40, 4;
+    } else {
+        $int11 = ~max(4, ~min(7, calc(($int7 + 8) / 9)));
+    }
+    $int13 = ~max(0, ~min(scale(5, 7, $int10), calc(($int3 - $int10 * $int11) / ($int11 - 1))));
+    $int12 = ~max(1, calc(($int7 + ($int11 - 1)) / $int11));
+    if ($int12 >= 2) {
+        $int14 = ~max(0, ~min($int13, calc(($int4 - $int10 * $int12) / ($int12 - 1))));
+    }
+    if_setposition(0, 0, ^setposh_abs_centre, ^setposv_abs_centre, $component0);
+} else {
+    switch_int (%varplayerbit_4070) {
+        case default :
+            $int11, $int12, $int13, $int14 = 7, 10, 0, 0;
+            if_setposition(1, 15, ^setposh_abs_centre, ^setposv_abs_top, $component0);
+        case 1 :
+            $int11, $int12, $int13, $int14 = 4, 7, 20, 4;
+            if_setposition(2, 8, ^setposh_abs_centre, ^setposv_abs_top, $component0);
+        case 2 :
+            $int11, $int12, $int13, $int14 = 6, 8, 6, 5;
+            if_setposition(0, 8, ^setposh_abs_centre, ^setposv_abs_top, $component0);
+        case 3 :
+            $int11, $int12, $int13, $int14 = 5, 7, 10, 11;
+            if_setposition(0, 15, ^setposh_abs_centre, ^setposv_abs_top, $component0);
+    }
+}
+if_setsize(calc($int11 * $int10 + ($int11 - 1) * $int13), calc($int12 * $int10 + ($int12 - 1) * $int14), ^setsize_abs, ^setsize_abs, $component0);
+def_component $component16 = null;
+def_int $int17 = calc($int10 + $int13);
+def_int $int18 = calc($int10 + $int14);
+def_int $int19 = 0;
+def_int $int20 = 0;
+$int9 = 0;
+while ($int9 < $int7) {
+    $obj8 = enum(int, obj, $enum5, $intarray0($int9));
+    $component16 = oc_param($obj8, param_596);
+    if_setsize($int10, $int10, ^setsize_abs, ^setsize_abs, $component16);
+    $int19, $int20 = calc($int9 % $int11 * $int17), calc($int9 / $int11 * $int18);
+    if_setposition($int19, $int20, ^setposh_abs_left, ^setposv_abs_top, $component16);
+    if (~script2614($obj8, $component16) = true) {
+        if ($int10 >= 40) {
+            if_setgraphic(oc_param($obj8, param_599), $component16);
+        } else {
+            if_setgraphic(oc_param($obj8, param_597), $component16);
+        }
+    } else if ($int10 >= 40) {
+        if_setgraphic(oc_param($obj8, param_600), $component16);
+    } else {
+        if_setgraphic(oc_param($obj8, param_598), $component16);
+    }
+    ~magic_spellbook_modifyops($component16);
+    if ($boolean15 = true) {
+        cc_create($component1, ^iftype_graphic, $int9);
+        cc_setsize($int10, $int10, ^setsize_abs, ^setsize_abs);
+        cc_setposition($int19, $int20, ^setposh_abs_left, ^setposv_abs_top);
+        cc_setobject($obj8, 1);
+        cc_settrans(255);
+        cc_setonclick("script2612($obj8, $component1, $component2, $int4)");
+    }
+    $int9 = calc($int9 + 1);
+}
