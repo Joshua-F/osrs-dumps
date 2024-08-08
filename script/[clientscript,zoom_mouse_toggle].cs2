@@ -1,20 +1,20 @@
 // 43
 [clientscript,zoom_mouse_toggle](component $component0, component $component1, int $int2, component $component3)
-def_string $string0 = "Click here to enable zooming using the mouse scroll wheel.";
+def_string $string0 = "<~text_device("Click", "Tap")> here to enable zooming using <~text_device("the mouse scroll wheel", "the pinch gesture")>.";
 if ($int2 = 1) {
-    if (~toplevel_getcomponents = enum_1745) {
-        sound_synth(synth_2277, 1, 0);
-        return;
-    }
     if (%varclient_75 = 1) {
         %varclient_75 = 0;
     } else {
         %varclient_75 = 1;
-        $string0 = "Click here to disable zooming using the mouse scroll wheel.";
+        $string0 = "<~text_device("Click", "Tap")> here to disable zooming using <~text_device("the mouse scroll wheel", "the pinch gesture")>.";
     }
     if_sethide(%varclient_75, $component1);
     if_setonmouserepeat("tooltip_mouserepeat($component0, -1, $component3, $string0, 25, 190)", $component0);
     if_setonmouseleave("deltooltip($component3)", $component0);
 } else if ($int2 = 2) {
-    ~camera_do_zoom(256, 320);
+    if (~on_mobile = true) {
+        ~camera_do_zoom(195, 175);
+    } else {
+        ~camera_do_zoom(256, 320);
+    }
 }
