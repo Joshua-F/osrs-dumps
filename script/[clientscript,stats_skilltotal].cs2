@@ -1,7 +1,22 @@
 // 396
 [clientscript,stats_skilltotal](component $component0, component $component1)
 if_settext("Total level:<br><tostring(~stat_totallevel)>", $component0);
+if_clearops($component0);
+if (~on_mobile = true) {
+    if_setop(1, "Toggle Total XP", $component0);
+}
 def_string $string0 = "Total XP:";
 def_string $string1 = ~stats_tostring_totalxp(~stats_totalxp);
-if_setonmouserepeat("script992(event_com, -1, $component1, $string0, $string1, fontmetrics_495, calc(25 / 5))", $component0);
-%varclient_2 = 0;
+if (~on_mobile = true) {
+    if_setonclick("stats_skilltotal($component0, $component1)", $component0);
+    if (%varclient_217 = 1 & %varclient_218 = -1) {
+        ~script742($component0, -1, $component1, $string0, $string1, fontmetrics_495, null);
+        if_setonop("deltooltip($component1)", $component0);
+    } else {
+        if_setonop("script732(event_com, -1, $component1, $string0, $string1, fontmetrics_495, null)", $component0);
+    }
+} else {
+    if_setonmouserepeat("script992(event_com, -1, $component1, $string0, $string1, fontmetrics_495, calc(25 / 5))", $component0);
+    if_setonmouseleave("deltooltip($component1)", $component0);
+    %varclient_2 = 0;
+}
