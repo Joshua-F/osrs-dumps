@@ -1,55 +1,78 @@
 // 1708
-[clientscript,worldmap_maplist_open](component $component0, component $component1, component $component2, int $int3, int $int4)
+[clientscript,worldmap_maplist_open](component $component0, component $component1, component $component2, int $int3, int $int4, int $int5)
 sound_synth(synth_2266, 1, 0);
 ~xpdrops_setup_display_hoverdisable($component0);
 if_sethide(false, $component1);
-def_int $int5 = -2147483648;
 def_int $int6 = -2147483648;
-def_int $int7 = 0;
-def_wma $wma8 = null;
-while ($int7 <= 41) {
-    $wma8 = enum(int, wma, enum_1697, $int7);
-    if ($wma8 ! null & cc_find($component2, calc($int7 + 1)) = ^true) {
-        if (~worldmap_findcoordinmap($wma8, %varclient_188) ! null) {
-            if (~on_mobile = false) {
-                $int5 = calc(cc_gety - 1);
-            } else {
-                $int5 = calc(cc_gety + 3);
-            }
-        }
-        if (~worldmap_findcoordinmap($wma8, %varclient_401) ! null) {
+def_int $int7 = -2147483648;
+def_int $int8 = -2147483648;
+def_int $int9 = 0;
+def_wma $wma10 = null;
+while ($int9 <= 41) {
+    $wma10 = enum(int, wma, enum_1697, $int9);
+    if ($wma10 ! null & cc_find($component2, calc($int9 + 1)) = ^true) {
+        if (~worldmap_findcoordinmap($wma10, %varclient_188) ! null) {
             if (~on_mobile = false) {
                 $int6 = calc(cc_gety - 1);
             } else {
                 $int6 = calc(cc_gety + 3);
             }
         }
-    }
-    $int7 = calc($int7 + 1);
-}
-if (cc_find($component2, $int3) = ^true & .cc_find($component2, $int4) = ^true) {
-    if ($int5 ! -2147483648) {
-        if ($int6 ! -2147483648) {
-            cc_sethide(false);
-            .cc_sethide(false);
-            if ($int5 = $int6) {
-                cc_setposition(0, $int5, ^setposh_abs_left, ^setposv_abs_top);
-                .cc_setposition(3, $int6, ^setposh_abs_left, ^setposv_abs_top);
+        if (~worldmap_findcoordinmap($wma10, %varclient_1078) ! null) {
+            if (~on_mobile = false) {
+                $int7 = calc(cc_gety - 1);
             } else {
-                cc_setposition(1, $int5, ^setposh_abs_left, ^setposv_abs_top);
-                .cc_setposition(1, $int6, ^setposh_abs_left, ^setposv_abs_top);
+                $int7 = calc(cc_gety + 3);
             }
-        } else {
-            cc_sethide(false);
-            .cc_sethide(true);
-            cc_setposition(1, $int5, ^setposh_abs_left, ^setposv_abs_top);
         }
-    } else if ($int6 ! -2147483648) {
-        cc_sethide(true);
-        .cc_sethide(false);
-        .cc_setposition(1, $int6, ^setposh_abs_left, ^setposv_abs_top);
+        if (~worldmap_findcoordinmap($wma10, %varclient_401) ! null) {
+            if (~on_mobile = false) {
+                $int8 = calc(cc_gety - 1);
+            } else {
+                $int8 = calc(cc_gety + 3);
+            }
+        }
+    }
+    $int9 = calc($int9 + 1);
+}
+def_int $int11 = 1;
+def_int $int12 = 1;
+def_int $int13 = 1;
+if ($int6 = $int7) {
+    if ($int6 = $int8) {
+        $int11, $int12, $int13 = 0, 2, 4;
+    } else {
+        $int11, $int12 = 0, 3;
+    }
+} else if ($int6 = $int8) {
+    $int11, $int13 = 0, 3;
+} else if ($int7 = $int8) {
+    $int12, $int13 = 0, 3;
+}
+if (cc_find($component2, $int3) = ^true) {
+    if ($int6 ! -2147483648) {
+        cc_sethide(false);
+        cc_setposition($int11, $int6, ^setposh_abs_left, ^setposv_abs_top);
     } else {
         cc_sethide(true);
-        .cc_sethide(true);
+        cc_setposition(1, $int6, ^setposh_abs_left, ^setposv_abs_top);
+    }
+}
+if (cc_find($component2, $int4) = ^true) {
+    if ($int7 ! -2147483648) {
+        cc_sethide(false);
+        cc_setposition($int12, $int7, ^setposh_abs_left, ^setposv_abs_top);
+    } else {
+        cc_sethide(true);
+        cc_setposition(1, $int7, ^setposh_abs_left, ^setposv_abs_top);
+    }
+}
+if (cc_find($component2, $int5) = ^true) {
+    if ($int8 ! -2147483648) {
+        cc_sethide(false);
+        cc_setposition($int13, $int8, ^setposh_abs_left, ^setposv_abs_top);
+    } else {
+        cc_sethide(true);
+        cc_setposition(1, $int8, ^setposh_abs_left, ^setposv_abs_top);
     }
 }

@@ -1,0 +1,29 @@
+// 6505
+[proc,cluehelper_overlay_loc_draw](dbrow $dbrow0, loc $loc1, coord $coord2, obj $obj3)
+def_entityoverlay $entityoverlay4 = null;
+if (loc_find($coord2, $loc1) = true) {
+    $entityoverlay4 = entityoverlay_get_loc(6);
+    if ($entityoverlay4 = null) {
+        $entityoverlay4 = entityoverlay_create_loc(6, 1, 36, 32, 1);
+    } else {
+        cc_deleteall_entityoverlay($entityoverlay4);
+    }
+    if (if_find_entityoverlay($entityoverlay4) = ^true) {
+        cc_setonvartransmit("cluehelper_overlay_loc_transmit($entityoverlay4, $dbrow0, $loc1, $coord2, $obj3, %varplayerbit_14189, %varplayer_3548, %varplayer_3549, %varplayer_3550, %varplayer_3547, %varplayerbit_14184, %varplayerbit_14182){varplayer_3546, varplayer_3543, varplayer_3548, varplayer_3549, varplayer_3550, varplayer_3547}");
+    }
+    if (%varplayerbit_14182 = 0 | ~cluehelper_overlay_npc_active = 1) {
+        highlight_loc_off($loc1, $coord2, 9, 1);
+        return;
+    }
+    if (%varplayerbit_14189 = 1) {
+        cc_create_entityoverlay($entityoverlay4, ^iftype_graphic, 0);
+        cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+        cc_setposition(0, 0, ^setposh_abs_centre, ^setposv_abs_centre);
+        cc_setobject_nonum($obj3, 1);
+        cc_setoutline(1);
+    }
+    highlight_loc_setup(9, ^green, 2, 30, 1);
+    if (%varplayerbit_14184 = 1) {
+        highlight_loc_on($loc1, $coord2, 9, 1);
+    }
+}

@@ -1,21 +1,40 @@
 // 5955
 [proc,entity_highlight_minimenu](int $int0)
 def_int $int1 = ~max(unknown_command_7460, 0);
+def_entityoverlay $entityoverlay2 = null;
 switch_int (minimenu_type($int1)) {
     case ^menuentrytype_npc :
         if (minimenu_npc($int1) = true) {
             ~entity_highlight_active_npc($int0);
+            if ($int0 = 4) {
+                $entityoverlay2 = entityoverlay_create_npc(3, 0, 1, 1, 0);
+                ~interact_entity_highlight_pulse_start($entityoverlay2);
+            }
         }
     case ^menuentrytype_loc :
         if (minimenu_loc($int1) = true) {
             ~entity_highlight_active_loc($int0);
+            if ($int0 = 4) {
+                $entityoverlay2 = entityoverlay_create_loc(4, 0, 1, 1, 0);
+                ~interact_entity_highlight_pulse_start($entityoverlay2);
+            }
         }
     case ^menuentrytype_obj :
         if (minimenu_obj($int1) = true) {
             ~entity_highlight_active_obj($int0);
+            if ($int0 = 4) {
+                $entityoverlay2 = entityoverlay_create_coord(obj_coord, 7, 0, 1, 1, 0);
+                ~interact_entity_highlight_pulse_start($entityoverlay2);
+            }
         }
     case ^menuentrytype_component :
         if (minimenu_player($int1) = true) {
             ~entity_highlight_active_player($int0);
+            if ($int0 = 4) {
+                if (player_findself = true) {
+                    $entityoverlay2 = entityoverlay_create_player(0, 0, 1, 1, 0);
+                }
+                ~interact_entity_highlight_pulse_start($entityoverlay2);
+            }
         }
 }

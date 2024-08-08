@@ -1,0 +1,11 @@
+// 6695
+[proc,npc_name_setup](npc_uid $npc_uid0, int $int1, string $string0, npc $npc2)
+if (~on_enhanced_any = false) {
+    return;
+}
+def_entityoverlay $entityoverlay3 = entityoverlay_create_npc(2, 1, 1, 1, 1);
+if (if_find_entityoverlay($entityoverlay3) = ^true) {
+    cc_setonvartransmit("npc_name_vartransmit($entityoverlay3, $npc_uid0, $int1, $string0, $npc2, %varplayer_3416, %varplayer_3417, %varplayer_3540, %varplayer_3541, %varplayer_3542, %varplayer_1021){varplayer_3416, varplayer_3417, varplayer_3540, varplayer_3541, varplayer_1021, varplayer_3542}");
+    cc_setontimer("npc_name_timer(%varclient_1079, $entityoverlay3, $npc_uid0, $int1, $string0, $npc2)");
+}
+~npc_name_create($entityoverlay3, $npc_uid0, $int1, $string0, $npc2);
