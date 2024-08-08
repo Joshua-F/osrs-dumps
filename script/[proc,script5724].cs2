@@ -1,0 +1,42 @@
+// 5724
+[proc,script5724](entityoverlay $entityoverlay0, loc $loc1, coord $coord2)
+cc_deleteall_entityoverlay($entityoverlay0);
+if (if_find_entityoverlay($entityoverlay0) = ^true) {
+    cc_setonmouseleave(null);
+    cc_setonmouseover(null);
+}
+highlight_loc_off($loc1, $coord2, 12, 1);
+highlight_loc_off($loc1, $coord2, 13, 1);
+if (%varplayerbit_13135 = 0) {
+    return;
+}
+if (%varplayerbit_13135 = 1) {
+    highlight_loc_on($loc1, $coord2, 12, 1);
+    return;
+}
+if (map_members = false) {
+    highlight_loc_on($loc1, $coord2, 13, 1);
+    return;
+}
+def_int $int3 = enum(loc, int, enum_4077, $loc1);
+def_int $int4 = enum(loc, int, enum_4076, $loc1);
+def_int $int5 = enum(loc, int, enum_4075, $loc1);
+if (enum(loc, int, enum_4078, $loc1) = 1) {
+    $int3 = enum(coord, int, enum_4079, $coord2);
+}
+def_string $string0 = "";
+def_boolean $boolean6 = false;
+$boolean6, $string0 = ~helper_agility_requirements($loc1, $coord2);
+if (stat(agility) < $int3) {
+    highlight_loc_on($loc1, $coord2, 13, 1);
+} else if (stat(strength) < $int4) {
+    highlight_loc_on($loc1, $coord2, 13, 1);
+} else if (stat(ranged) < $int5) {
+    highlight_loc_on($loc1, $coord2, 13, 1);
+} else if ($boolean6 = false) {
+    highlight_loc_on($loc1, $coord2, 13, 1);
+} else {
+    highlight_loc_on($loc1, $coord2, 12, 1);
+    return;
+}
+~script5725($entityoverlay0, $loc1, $coord2, $int3, $int4, $int5, $string0, $boolean6);
