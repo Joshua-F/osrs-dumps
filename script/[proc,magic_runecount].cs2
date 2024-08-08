@@ -153,16 +153,17 @@ switch_obj ($obj0) {
         return(0);
 }
 def_obj $obj6 = enum(obj, obj, enum_13, $obj0);
-if ($obj6 ! null) {
-    if (%varplayerbit_4145 = 1) {
+if ($obj6 ! null & ~fake_runes_enabled = true) {
+    if (map_members = true | oc_members($obj6) = 0) {
+        return(inv_total(inv_93, $obj6));
+    }
+    return(0);
+}
+if (%varplayerbit_4145 = 1 & enum(obj, int, enum_55, $obj0) ! 0) {
+    if (map_members = true | oc_members($obj0) = 0) {
         return(2147483647);
     }
-    if (~fake_runes_enabled = true) {
-        if (map_members = true | oc_members($obj6) = 0) {
-            return(inv_total(inv_93, $obj6));
-        }
-        return(0);
-    }
+    return(0);
 }
 if (map_members = true) {
     $int5 = inv_total(inv_93, $obj0);
