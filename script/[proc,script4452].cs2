@@ -1,0 +1,27 @@
+// 4452
+[proc,script4452](component $component0, string $string0, int $int1)
+def_int $int2 = 0;
+def_int $int3 = 0;
+def_int $int4 = 1;
+def_obj $obj5 = null;
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_int $int8 = 0;
+def_int $int9 = 0;
+cc_deleteall($component0);
+if_settext($string0, $component0);
+if_setscrollsize($int1, 0, $component0);
+$int3 = loottracker_lootcount_byid($int1);
+if_setcolour($int3, $component0);
+if_setgradientcolour(0x1, $component0);
+while ($int4 <= $int3) {
+    $obj5, $int6 = loottracker_lootget_byid($int1, $int4);
+    $int7, $int8, $int9 = ~loottracker_value_item($obj5);
+    cc_create($component0, ^iftype_rectangle, $int2);
+    $int2 = calc($int2 + 1);
+    cc_setobject($obj5, $int6);
+    cc_setcolour($int7);
+    cc_setgradientcolour($int8);
+    cc_setgradienttrans(~bool_to_int(stringvector_contains(stringvector_2, oc_name($obj5), true, false)));
+    $int4 = calc($int4 + 1);
+}
