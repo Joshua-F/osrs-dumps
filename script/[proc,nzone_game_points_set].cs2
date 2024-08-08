@@ -1,0 +1,25 @@
+// 259
+[proc,nzone_game_points_set](component $component0, int $int1)
+def_string $string0 = ",";
+$string0 = "Points:<br><~tostring_spacer($int1, $string0)>";
+def_int $int2 = calc(parawidth($string0, 512, fontmetrics_494) + 8);
+def_int $int3 = calc(paraheight($string0, 512, fontmetrics_494) * 10 + 2 + 8);
+def_int $int4 = calc(512 - 5 - $int2);
+if (cc_find($component0, 0) = ^true) {
+    cc_setposition($int4, 15);
+    cc_setsize($int2, $int3);
+}
+if (cc_find($component0, 1) = ^true) {
+    cc_setposition($int4, 15);
+    cc_setsize($int2, $int3);
+}
+if (cc_find($component0, 2) = ^true) {
+    cc_setposition(calc($int4 + 1), 16);
+    cc_setsize(calc($int2 - 2), calc($int3 - 2));
+}
+if (cc_find($component0, 3) = ^true) {
+    cc_setposition($int4, 15);
+    cc_setsize($int2, $int3);
+    cc_settext($string0);
+    cc_setonvartransmit("nzone_game_points_transmit(event_com, event_comsubid, $int1){varplayer_1059}");
+}
