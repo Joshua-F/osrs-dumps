@@ -1,0 +1,21 @@
+// 3711
+[clientscript,league_tutorial_button_op](int $int0, component $component1, string $string0)
+if ($int0 ! 1) {
+    return;
+}
+sound_synth(synth_2266, 1, 0);
+cc_deleteall($component1);
+def_int $int2 = 0;
+$int2 = ~v2_stone_button_in_filled($component1);
+cc_create($component1, ^iftype_text, $int2);
+cc_setposition(0, 0, ^setposh_abs_centre, ^setposv_abs_centre);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_settextalign(^settextalignh_centre, ^settextalignv_centre, 0);
+cc_setcolour(^white);
+cc_settextshadow(true);
+cc_settextfont(p12_full);
+cc_settext($string0);
+if_setonmouserepeat(null, $component1);
+if_setonmouseleave(null, $component1);
+if_setonop(null, $component1);
+if_setontimer("league_tutorial_button_reset($component1, $string0, calc(clientclock + 40))", $component1);

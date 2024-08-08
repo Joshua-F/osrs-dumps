@@ -1,6 +1,11 @@
 // 3343
-[clientscript,notification_display_init](string $string0, string $string1)
-if_settext("<u=ff981f><$string0>", interface_660:com4);
+[clientscript,notification_display_init](int $rgb0, string $string0, string $string1)
+if ($rgb0 = null) {
+    $rgb0 = 0xff981f;
+}
+if_setcolour($rgb0, interface_660:com4);
+if_settext($string0, interface_660:com4);
+if_setcolour($rgb0, interface_660:com8);
 if_settext($string1, interface_660:com8);
 if_settrans(255, interface_660:com4);
 if_settrans(255, interface_660:com8);
@@ -8,6 +13,7 @@ if_setposition(0, calc((100 - 2) / 2), ^setposh_abs_centre, ^setposv_abs_top, in
 if_setsize(1, 2, ^setsize_abs, ^setsize_abs, interface_660:com1);
 %varclient_387 = $string0;
 %varclient_388 = $string1;
+%varclient_415 = $rgb0;
 %varclient_391 = 1;
 %varclient_392 = 0;
 if_setontimer("notification_start(1, 0, 2)", interface_660:com2);
