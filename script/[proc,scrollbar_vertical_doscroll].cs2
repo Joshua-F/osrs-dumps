@@ -1,15 +1,7 @@
 // 37
 [proc,scrollbar_vertical_doscroll](component $component0, component $component1, int $int2, boolean $boolean3)
-def_int $int4 = calc(if_getscrollheight($component1) - if_getheight($component1));
-if ($int4 = 0) {
-    $int4 = 1;
-}
-if ($int2 < 0) {
-    $int2 = 0;
-}
-if ($int2 > $int4) {
-    $int2 = $int4;
-}
+def_int $int4 = ~max(calc(if_getscrollheight($component1) - if_getheight($component1)), 1);
+$int2 = ~max(~min($int2, $int4), 0);
 if_setscrollpos(0, $int2, $component1);
 if ($component1 = interface_162:com43) {
     %varclient_7 = if_getscrolly($component1);
@@ -38,13 +30,6 @@ if ($component1 = interface_162:com43) {
 } else if ($component1 = interface_595:com15) {
     %varclient_182 = if_getscrolly($component1);
 }
-def_int $int5 = calc(if_getheight($component0) - 32 - cc_getheight);
 if ($boolean3 = true) {
-    cc_setposition(0, calc(16 + $int5 * $int2 / $int4), ^setposh_abs_centre, ^setposv_abs_top);
-    if (.cc_find($component0, 2) = ^true) {
-        .cc_setposition(0, cc_gety, ^setposh_abs_centre, ^setposv_abs_top);
-    }
-    if (.cc_find($component0, 3) = ^true) {
-        .cc_setposition(0, calc(cc_gety + cc_getheight - 5), ^setposh_abs_centre, ^setposv_abs_top);
-    }
+    ~scrollbar_vertical_setdragger($component0, $component1);
 }
