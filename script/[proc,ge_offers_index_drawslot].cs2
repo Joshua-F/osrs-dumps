@@ -11,6 +11,14 @@ def_graphic $graphic34 = "ge_icons,0";
 def_graphic $graphic35 = "ge_icons,1";
 def_string $string1 = "Offer to BUY items.";
 def_int $int36 = 0;
+def_int $int37 = 0;
+if (~deadman_world = true) {
+    if ($int9 < 2) {
+        $int37 = 1;
+    }
+} else if ($int9 < 3 | %varclient_103 = 1) {
+    $int37 = 1;
+}
 if (stockmarket_isofferempty($int9) = true) {
     $obj28 = inv_getobj($inv0, 0);
     if ($obj28 = null) {
@@ -59,7 +67,7 @@ if (stockmarket_isofferempty($int9) = true) {
         if (cc_find($component8, $int13) = ^true & .cc_find($component8, $int14) = ^true) {
             cc_sethide(false);
             .cc_sethide(false);
-            if ($int9 < 3 | %varclient_103 = 1) {
+            if ($int37 = 1) {
                 cc_setop(1, "Create <col=ff9040>Buy</col> offer");
                 .cc_setop(1, "Create <col=ff9040>Sell</col> offer");
                 cc_setonop("script805(event_opindex, $int9, 0, $component2, $int3, $component4, $component5, $component6, $component7, $component27)");
@@ -161,21 +169,21 @@ if (cc_find($component8, $int17) = ^true) {
     cc_sethide(false);
     cc_setobject($obj28, $int29);
 }
-def_int $int37 = 0;
-def_string $string3 = "";
 def_int $int38 = 0;
+def_string $string3 = "";
 def_int $int39 = 0;
+def_int $int40 = 0;
 def_string $string4 = "";
 if (cc_find($component8, $int18) = ^true) {
     cc_sethide(false);
-    $int37, $string3 = cc_getwidth, oc_name($obj28);
-    $int38 = string_length($string3);
-    if ($int38 > 0 & parawidth($string3, $int37, fontmetrics_494) > $int37) {
-        while ($int38 > 1 & $int39 = 0) {
-            $int38 = calc($int38 - 1);
-            $string4 = append(substring($string3, 0, $int38), "...");
-            if (parawidth($string4, $int37, fontmetrics_494) <= $int37) {
-                $string3, $int39 = $string4, 1;
+    $int38, $string3 = cc_getwidth, oc_name($obj28);
+    $int39 = string_length($string3);
+    if ($int39 > 0 & parawidth($string3, $int38, fontmetrics_494) > $int38) {
+        while ($int39 > 1 & $int40 = 0) {
+            $int39 = calc($int39 - 1);
+            $string4 = append(substring($string3, 0, $int39), "...");
+            if (parawidth($string4, $int38, fontmetrics_494) <= $int38) {
+                $string3, $int40 = $string4, 1;
             }
         }
     }
