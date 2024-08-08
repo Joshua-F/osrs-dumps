@@ -1,0 +1,37 @@
+// 793
+[proc,ge_offers_index_inittop](component $component0)
+def_int $int1 = if_getwidth($component0);
+def_int $int2 = if_getheight($component0);
+cc_deleteall($component0);
+def_int $int3 = 0;
+def_int $int4 = calc($int1 - 85);
+cc_create($component0, ^iftype_graphic, $int3);
+def_int $int5 = $int3;
+$int3 = calc($int3 + 1);
+cc_setsize(85, 22);
+cc_setposition($int4, calc(($int2 - 22) / 2));
+cc_settiling(false);
+cc_setop(1, "Collect to inventory");
+cc_setop(2, "Collect to bank");
+cc_setonop("opsound(event_opindex, 6)");
+cc_create($component0, ^iftype_text, $int3);
+def_int $int6 = $int3;
+$int3 = calc($int3 + 1);
+cc_setsize(85, $int2);
+cc_setposition($int4, 0);
+cc_setcolour(^white);
+cc_settextfont(p11_full);
+cc_settextshadow(true);
+cc_settextalign(^settextalignh_centre, ^settextalignv_centre, 0);
+cc_settext("Collect");
+cc_create($component0, ^iftype_text, $int3);
+def_int $int7 = $int3;
+$int3 = calc($int3 + 1);
+cc_setposition(0, 0);
+cc_setcolour(0xff981f);
+cc_settextfont(p11_full);
+cc_settextshadow(true);
+cc_settextalign(^settextalignh_centre, ^settextalignv_centre, 0);
+cc_settext("Select an offer slot to set up or view an offer.");
+~ge_offers_index_drawtop($int1, $int2, $component0, $int5, $int6, $int7);
+if_setoninvtransmit("ge_offers_index_drawtop($int1, $int2, $component0, $int5, $int6, $int7){inv_518, inv_519, inv_520, inv_521, inv_522, inv_523}", $component0);

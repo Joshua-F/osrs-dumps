@@ -1,0 +1,38 @@
+// 796
+[proc,ge_offers_index_drawtop](int $int0, int $int1, component $component2, int $int3, int $int4, int $int5)
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_inv $inv8 = enum(int, inv, enum_150, $int7);
+while ($inv8 ! null & $int6 = 0) {
+    if (inv_getnum($inv8, 0) > 0 | inv_getnum($inv8, 1) > 0) {
+        $int6 = 1;
+    }
+    $int7 = calc($int7 + 1);
+    $inv8 = enum(int, inv, enum_150, $int7);
+}
+def_graphic $graphic9 = "combatboxesmed,0";
+def_graphic $graphic10 = "combatboxesmed,1";
+if ($int6 = 1) {
+    if (cc_find($component2, $int3) = ^true) {
+        cc_sethide(false);
+        cc_setgraphic($graphic9);
+        cc_setonmouserepeat("cc_graphic_swapper(event_com, event_comsubid, $graphic10, null)");
+        cc_setonmouseleave("cc_graphic_swapper(event_com, event_comsubid, $graphic9, null)");
+    }
+    if (cc_find($component2, $int4) = ^true) {
+        cc_sethide(false);
+    }
+    if (cc_find($component2, $int5) = ^true) {
+        cc_setsize(calc($int0 - 85), $int1);
+    }
+} else {
+    if (cc_find($component2, $int3) = ^true) {
+        cc_sethide(true);
+    }
+    if (cc_find($component2, $int4) = ^true) {
+        cc_sethide(true);
+    }
+    if (cc_find($component2, $int5) = ^true) {
+        cc_setsize($int0, $int1);
+    }
+}
