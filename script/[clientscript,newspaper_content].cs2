@@ -1,0 +1,31 @@
+// 3330
+[clientscript,newspaper_content](string $string0, string $string1)
+def_int $int0 = 15;
+def_int $int1 = calc(paraheight($string0, if_getwidth(interface_659:com3), fontmetrics_497) * $int0 + 10);
+def_int $int2 = calc(paraheight($string1, if_getwidth(interface_659:com5), fontmetrics_497) * $int0 + 10);
+cc_create(interface_659:com3, ^iftype_text, 0);
+cc_setsize(0, $int1, ^setsize_minus, ^setsize_abs);
+cc_setposition(0, 0, ^setposh_abs_left, ^setposv_abs_top);
+cc_settext($string0);
+cc_settextfont(q8_full);
+cc_setcolour(0x1b1b1b);
+cc_settextalign(^settextalignh_left, ^settextalignv_top, $int0);
+cc_create(interface_659:com5, ^iftype_text, 0);
+cc_setsize(0, $int2, ^setsize_minus, ^setsize_abs);
+cc_setposition(0, 0, ^setposh_abs_left, ^setposv_abs_top);
+cc_settext($string1);
+cc_settextfont(q8_full);
+cc_setcolour(0x1b1b1b);
+cc_settextalign(^settextalignh_left, ^settextalignv_top, $int0);
+if ($int1 > if_getheight(interface_659:com3)) {
+    if_setscrollsize(0, $int1, interface_659:com3);
+} else {
+    if_setscrollsize(0, 0, interface_659:com3);
+}
+~scrollbar_vertical(interface_659:com4, interface_659:com3, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+if ($int2 > if_getheight(interface_659:com5)) {
+    if_setscrollsize(0, $int2, interface_659:com5);
+} else {
+    if_setscrollsize(0, 0, interface_659:com5);
+}
+~scrollbar_vertical(interface_659:com6, interface_659:com5, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
