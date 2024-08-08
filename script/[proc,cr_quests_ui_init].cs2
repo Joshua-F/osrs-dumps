@@ -1,0 +1,20 @@
+// 2537
+[proc,cr_quests_ui_init]
+%varclient_1004 = -1;
+if (~string_isnullorempty(%varclient_1000) = true) {
+    %varclient_1002 = 1;
+    cc_deleteall(interface_372:com17);
+    ~loading_icon_init(interface_372:com17, null, enum_3787, 10, 1000, 3000, 512, 1024, 0, 3, "");
+    return;
+}
+if (%varclient_1001 = 1) {
+    return;
+}
+%varclient_1002 = 0;
+if_setonstattransmit("script5496", interface_372:com16);
+if_setonvartransmit("script5498{varplayer_904, varplayer_2920, varplayer_3537}", interface_372:com16);
+~cr_quests_ui_create_header;
+cc_deleteall(interface_372:com19);
+~scrollbar_vertical(interface_372:com19, interface_372:com16, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~cr_quests_ui_create_list;
+%varclient_1001 = 1;
