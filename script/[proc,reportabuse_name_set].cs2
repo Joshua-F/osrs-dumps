@@ -2,4 +2,17 @@
 [proc,reportabuse_name_set]
 def_string $string0 = escape(%varclient_370);
 if_settext("<$string0><col=0000ff>|</col>", interface_875:com_4);
-if_settext($string0, interface_875:com_11);
+if_settext($string0, interface_875:com_12);
+def_int $int0 = string_length($string0);
+while ($int0 > 0 & compare(substring($string0, calc($int0 - 1), $int0), " ") = 0) {
+    $string0 = substring($string0, 0, calc($int0 - 1));
+    $int0 = string_length($string0);
+}
+if ($int0 > 0) {
+    $string0 = ~string_findandreplace($string0, " ", " ");
+    ~reportabuse_name_recentchat($string0);
+    if_setonchattransmit("reportabuse_name_recentchat($string0)", interface_875:com_7);
+} else {
+    if_settext("<col=6f6f6f>Recent chat from the named player will be shown here.</col>", interface_875:com_7);
+    if_setonchattransmit(null, interface_875:com_7);
+}
