@@ -9,16 +9,16 @@ if ($boolean1 = true) {
 ~beige_stone_button_init(interface_875:com_5, "Next", p12_full, 15);
 if_setop(1, "Next", interface_875:com_5);
 if_setonop("script5088(true)", interface_875:com_5);
-~beige_stone_button_init(interface_875:com_13, "Edit Name", p12_full, 15);
-if_setop(1, "Edit Name", interface_875:com_13);
-if_setonop("script5088(false)", interface_875:com_13);
-if_setonclick("script5088(false)", interface_875:com_11);
-~beige_stone_button_init(interface_875:com_6, "Law-breaking content", p12_full, 15);
+~beige_stone_button_init(interface_875:com_14, "Check Name", p12_full, 15);
+if_setop(1, "Check Name", interface_875:com_14);
+if_setonop("script5088(false)", interface_875:com_14);
+if_setonclick("script5088(false)", interface_875:com_12);
+~beige_stone_button_init(interface_875:com_6, "Law-breaking content", p12_full, 13);
 if_setop(1, "Law-breaking content", interface_875:com_6);
 if_setonop("script5094", interface_875:com_6);
-~beige_stone_button_init(interface_875:com_21, "Law-breaking content", p12_full, 15);
-if_setop(1, "Law-breaking content", interface_875:com_21);
-if_setonop("script5094", interface_875:com_21);
+~beige_stone_button_init(interface_875:com_22, "Law-breaking content", p12_full, 15);
+if_setop(1, "Law-breaking content", interface_875:com_22);
+if_setonop("script5094", interface_875:com_22);
 if_setonkey("reportabuse_onkey(event_keycode, event_keychar)", interface_875:com_4);
 ~reportabuse_name_set;
 %varclient_224 = $boolean0;
@@ -33,23 +33,23 @@ if (%varclient_140 = true | %varclient_140 = false) {
     %varclient_140 = true;
 }
 %varclient_6 = false;
-~reportabuse_toggle_set(interface_875:com_10, "Add player to Ignore list", true);
+~reportabuse_toggle_set(interface_875:com_11, "Add player to Ignore list", true);
 if (playermod = 1 | staffmodlevel > 0) {
-    if_setposition(5, 24, ^setpos_abs_left, ^setpos_abs_top, interface_875:com_10);
-    ~reportabuse_toggle_set(interface_875:com_9, "Mute player", false);
+    if_setposition(5, 24, ^setpos_abs_left, ^setpos_abs_top, interface_875:com_11);
+    ~reportabuse_toggle_set(interface_875:com_10, "Mute player", false);
 } else {
-    if_setposition(5, 13, ^setpos_abs_left, ^setpos_abs_top, interface_875:com_10);
-    if_sethide(true, interface_875:com_9);
-    if_setonop(null, interface_875:com_9);
-    if_setontimer(null, interface_875:com_9);
+    if_setposition(5, 13, ^setpos_abs_left, ^setpos_abs_top, interface_875:com_11);
+    if_sethide(true, interface_875:com_10);
+    if_setonop(null, interface_875:com_10);
+    if_setontimer(null, interface_875:com_10);
 }
 def_int $int2 = 19;
 if (~on_mobile = true) {
     $int2 = 25;
 }
-cc_deleteall(interface_875:com_18);
+cc_deleteall(interface_875:com_19);
 def_int $int3 = 0;
-cc_deleteall(interface_875:com_8);
+cc_deleteall(interface_875:com_9);
 def_int $int4 = 0;
 $int3, $int4 = ~script5103("Macroing or use of bots", 7, $int3, $int4, $int2);
 $int3, $int4 = ~script5103("Seriously offensive language", 16, $int3, $int4, $int2);
@@ -67,19 +67,20 @@ $int3, $int4 = ~script5103("Player-run Games of Chance", 22, $int3, $int4, $int2
 $int3, $int4 = ~script5103("Exploiting a bug", 4, $int3, $int4, $int2);
 $int3, $int4 = ~script5103("Disruptive behaviour", 18, $int3, $int4, $int2);
 $int3, $int4 = ~script5103("Staff impersonation", 5, $int3, $int4, $int2);
+$int3, $int4 = ~script5103("Deathmatching", 22, $int3, $int4, $int2);
 if (~deadman_world = 3) {
     $int3, $int4 = ~script5103("Boxing in the Deadman Tournament", 8, $int3, $int4, $int2);
     $int3, $int4 = ~script5103("Muling in the Deadman Tournament", 12, $int3, $int4, $int2);
 }
-def_int $int5 = if_getheight(interface_875:com_18);
+def_int $int5 = if_getheight(interface_875:com_19);
 $int2 = calc($int4 * $int2);
 if ($int2 > $int5) {
-    if_setscrollsize(0, $int2, interface_875:com_18);
-    ~scrollbar_vertical(interface_875:com_19, interface_875:com_18, "scrollbar_parchment_dragger_v2,3", "scrollbar_parchment_dragger_v2,0", "scrollbar_parchment_dragger_v2,1", "scrollbar_parchment_dragger_v2,2", "scrollbar_parchment_v2,0", "scrollbar_parchment_v2,1");
+    if_setscrollsize(0, $int2, interface_875:com_19);
+    ~scrollbar_vertical(interface_875:com_20, interface_875:com_19, "scrollbar_parchment_dragger_v2,3", "scrollbar_parchment_dragger_v2,0", "scrollbar_parchment_dragger_v2,1", "scrollbar_parchment_dragger_v2,2", "scrollbar_parchment_v2,0", "scrollbar_parchment_v2,1");
     %varclient_67 = ~minmax(0, calc($int2 - $int5), %varclient_67);
-    ~scrollbar_resize(interface_875:com_19, interface_875:com_18, %varclient_67);
+    ~scrollbar_resize(interface_875:com_20, interface_875:com_19, %varclient_67);
 } else {
-    if_setscrollsize(0, 0, interface_875:com_18);
+    if_setscrollsize(0, 0, interface_875:com_19);
     %varclient_67 = 0;
-    ~scrollbar_vertical(interface_875:com_19, interface_875:com_18, "scrollbar_parchment_dragger_v2,3", "scrollbar_parchment_dragger_v2,0", "scrollbar_parchment_dragger_v2,1", "scrollbar_parchment_dragger_v2,2", "scrollbar_parchment_v2,0", "scrollbar_parchment_v2,1");
+    ~scrollbar_vertical(interface_875:com_20, interface_875:com_19, "scrollbar_parchment_dragger_v2,3", "scrollbar_parchment_dragger_v2,0", "scrollbar_parchment_dragger_v2,1", "scrollbar_parchment_dragger_v2,2", "scrollbar_parchment_v2,0", "scrollbar_parchment_v2,1");
 }
