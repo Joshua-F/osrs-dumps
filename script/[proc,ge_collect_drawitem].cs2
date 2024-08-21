@@ -1,32 +1,36 @@
 // 792
-[proc,ge_collect_drawitem](int $int0, inv $inv, component $component, int $int3)
-def_graphic $graphic4 = "ge_itembackdrop,0";
-def_graphic $graphic5 = "ge_itembackdrop,1";
-if (.cc_find($component, $int3) = true) {
-    .cc_setgraphic($graphic4);
+[proc,ge_collect_drawitem](int $int0, inv $inv, component $component2, int $int3, component $component4, component $component5)
+def_graphic $graphic6 = "ge_itembackdrop,0";
+def_graphic $graphic7 = "ge_itembackdrop,1";
+if (.cc_find($component2, $int3) = true) {
+    .cc_setgraphic($graphic6);
 }
 def_obj $obj = inv_getobj($inv, $int0);
-def_int $int7 = 0;
+def_int $int9 = 0;
 if ($obj ! null) {
-    $int7 = inv_getnum($inv, $int0);
+    $int9 = inv_getnum($inv, $int0);
     cc_sethide(false);
     cc_clearops;
-    cc_setonmouserepeat("cc_graphic_swapper(event_com, $int3, $graphic5, null)");
-    cc_setonmouseleave("cc_graphic_swapper(event_com, $int3, $graphic4, null)");
-    if (oc_cert($obj) ! $obj) {
-        if ($int7 = 1) {
-            cc_setop(1, "Collect-item");
-            cc_setop(2, "Collect-note");
+    cc_setonmouserepeat("cc_graphic_swapper(event_com, $int3, $graphic7, null)");
+    cc_setonmouseleave("cc_graphic_swapper(event_com, $int3, $graphic6, null)");
+    if ($component4 ! null) {
+        if (oc_cert($obj) ! $obj) {
+            if ($int9 = 1) {
+                cc_setop(1, "Collect-item");
+                cc_setop(2, "Collect-note");
+            } else {
+                cc_setop(1, "Collect-notes");
+                cc_setop(2, "Collect-items");
+            }
         } else {
-            cc_setop(1, "Collect-notes");
-            cc_setop(2, "Collect-items");
+            cc_setop(2, "Collect");
         }
-    } else {
-        cc_setop(2, "Collect");
     }
-    cc_setop(3, "Bank");
+    if ($component5 ! null) {
+        cc_setop(3, "Bank");
+    }
     cc_setop(10, "Examine");
-    cc_setobject($obj, $int7);
+    cc_setobject($obj, $int9);
     cc_setopbase("<col=ff9040><oc_name($obj)></col>");
 } else {
     cc_sethide(true);
