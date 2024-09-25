@@ -1,0 +1,15 @@
+// 3602
+[proc,omnishop_currency_draw_value](int $int0, int $int1, int $int2, component $component, int $int4, int $int5, int $int6, int $setposh, int $setposv, int $int9, int $int10, int $int11)(int)
+cc_create($component, ^iftype_text, $int4);
+cc_setposition($int5, $int6, $setposh, $setposv);
+cc_setsize($int10, $int11, ^setsize_abs, ^setsize_abs);
+if ($int0 >= 1000000000) {
+    cc_settext("Lots");
+} else {
+    cc_settext(~abbreviate_tostring($int0, $int1, $int2, ","));
+}
+cc_settextfont(q8_full);
+cc_settextshadow(true);
+cc_setcolour(0xff981f);
+cc_settextalign($int9, $int9, 0);
+return(calc($int4 + 1));
