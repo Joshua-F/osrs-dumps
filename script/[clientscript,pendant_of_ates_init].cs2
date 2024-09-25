@@ -1,0 +1,17 @@
+// 6561
+[clientscript,pendant_of_ates_init]
+~chatdefault_stopinput;
+cc_deleteall(interface_879:com_0);
+def_int $int0 = db_listall_with_count(dbtable_72);
+def_int $int1 = 1;
+def_dbrow $dbrow = null;
+def_component $component = null;
+while ($int1 <= $int0) {
+    db_find(dbtable_72:col0, $int1);
+    $dbrow = db_findnext;
+    if ($dbrow ! null) {
+        $component = db_getfield($dbrow, dbtable_72:col3, 0);
+        ~script6562($component, $dbrow);
+    }
+    $int1 = calc($int1 + 1);
+}

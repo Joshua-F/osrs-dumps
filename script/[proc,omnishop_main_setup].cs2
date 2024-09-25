@@ -38,10 +38,12 @@ def_int $int23 = $int20;
 if (%varplayer_3871 = 1) {
     $int23 = -6;
 }
-def_boolean $boolean24 = ~omnishop_main_currency_setup($dbrow);
+def_boolean $boolean24 = true;
+def_boolean $boolean25 = false;
 if_setsize(calc($int23 + 18), 20, ^setsize_minus, ^setsize_abs, $com_6);
+$boolean24, $boolean25 = ~omnishop_main_currency_setup($dbrow, $int20);
 ~omnishop_main_controls_setup($dbrow, $inv);
-if (%varplayer_3871 = 1 & $boolean24 = true) {
+if (%varplayer_3871 = 1 & $boolean25 = true) {
     if_sethide(false, $com_10);
     if_setsize(200, 20, ^setsize_abs, ^setsize_abs, $com_9);
 } else {
@@ -54,8 +56,8 @@ if (%varplayer_3871 = 1 & $boolean24 = true) {
 }
 if_setsize(calc($int23 + 18), 38, ^setsize_minus, ^setsize_minus, $com_11);
 ~omnishop_main_list_setup($dbrow, $inv, %varplayer_3869, 1);
-def_int $int25 = 0;
 def_int $int26 = 0;
+def_int $int27 = 0;
 cc_deleteall($com_16);
 if (%varplayer_3871 = 0) {
     if_sethide(false, $com_5);
@@ -75,19 +77,19 @@ if (%varplayer_3871 = 0) {
     if_setsize(calc($int20 + 24), 18, ^setsize_abs, ^setsize_minus, $com_15);
     if_sethide(false, $com_14);
     if_sethide(false, $com_8);
-    $int25 = 12;
-    $int26 = calc(if_gety($com_4) - 6);
+    $int26 = 12;
+    $int27 = calc(if_gety($com_4) - 6);
 }
 if ($boolean24 = false) {
     $int22 = -6;
     if_sethide(true, $com_18);
 } else {
-    if_setsize(calc(2 * $int25), $int22, ^setsize_minus, ^setsize_abs, $com_18);
-    if_setposition(0, calc($int21 + 6 + $int25), ^setpos_abs_centre, ^setpos_abs_bottom, $com_18);
+    if_setsize(calc(2 * $int26), $int22, ^setsize_minus, ^setsize_abs, $com_18);
+    if_setposition(0, calc($int21 + 6 + $int26), ^setpos_abs_centre, ^setpos_abs_bottom, $com_18);
     if_sethide(false, $com_18);
 }
-if_setsize(calc(2 * $int25), calc($int21 + $int22 + 12 + 2 * $int25 + $int26), ^setsize_minus, ^setsize_minus, $com_17);
-if_setposition(0, calc($int25 + $int26), ^setpos_abs_centre, ^setpos_abs_top, $com_17);
-if_setsize(calc(2 * $int25), $int21, ^setsize_minus, ^setsize_abs, $com_19);
-if_setposition(0, $int25, ^setpos_abs_centre, ^setpos_abs_bottom, $com_19);
+if_setsize(calc(2 * $int26), calc($int21 + $int22 + 12 + 2 * $int26 + $int27), ^setsize_minus, ^setsize_minus, $com_17);
+if_setposition(0, calc($int26 + $int27), ^setpos_abs_centre, ^setpos_abs_top, $com_17);
+if_setsize(calc(2 * $int26), $int21, ^setsize_minus, ^setsize_abs, $com_19);
+if_setposition(0, $int26, ^setpos_abs_centre, ^setpos_abs_bottom, $com_19);
 if_callonresize($com_30);

@@ -1,0 +1,16 @@
+// 6555
+[clientscript,potionstore_vile_size_update](component $component, int $int1, enum $enum)
+def_int $int3 = ~script4818($enum);
+def_obj $obj = enum(int, namedobj, $enum, $int3);
+if (cc_find($component, $int1) = true) {
+    cc_setobject($obj, -1);
+}
+def_string $string = enum(enum, string, enum_4827, $enum);
+if (string_length($string) = 0) {
+    $string = oc_name($obj);
+} else {
+    $string = "<$string>(<tostring($int3)>)";
+}
+if (cc_find($component, calc($int1 + 1)) = true) {
+    cc_settext($string);
+}

@@ -1,0 +1,18 @@
+// 7394
+[proc,number_pad_press_confirm_button](component $component, int $int1)
+sound_synth(synth_6652, 1, 0);
+if (cc_find($component, 0) = true) {
+    if ($int1 = 0) {
+        cc_setgraphic("number_pad_buttons,1");
+    } else {
+        cc_setgraphic("number_pad_buttons,0");
+    }
+}
+if_setonmouserepeat(null, $component);
+if_setonmouseleave(null, $component);
+if_setonop(null, $component);
+if_setonkey(null, $component);
+if_clearops($component);
+def_int $int2 = calc((%varclient_1202 - 1) * 1000 + (%varclient_1203 - 1) * 100 + (%varclient_1204 - 1) * 10 + (%varclient_1205 - 1));
+resume_countdialog(tostring($int2));
+if_setontimer("script7395($component, calc(clientclock + 40))", $component);
