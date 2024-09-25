@@ -1,0 +1,52 @@
+// 7375
+[proc,number_pad_add_button](int $int0, int $int1, int $int2, int $int3, component $component4, component $component5, int $int6, int $int7, int $int8, int $int9, int $int10)(int)
+cc_create($component4, ^iftype_graphic, $int0);
+cc_setsize(32, 32, ^setsize_abs, ^setsize_abs);
+cc_setposition($int2, $int3, ^setpos_abs_left, ^setpos_abs_top);
+def_graphic $graphic11 = "number_pad_buttons,1";
+def_graphic $graphic12 = "number_pad_buttons,0";
+def_int $int13 = 0;
+if ($int10 = 1) {
+    if ($int1 = $int6 | $int1 = $int7 | $int1 = $int8 | $int1 = $int9) {
+        $graphic11 = "number_pad_buttons,5";
+        $graphic12 = "number_pad_buttons,4";
+        $int13 = 30;
+    }
+} else if ($int10 = 2) {
+    if ($int1 = $int6) {
+        $graphic11 = "number_pad_buttons,9";
+        $graphic12 = "number_pad_buttons,8";
+        $int13 = 60;
+    } else if ($int1 = $int7) {
+        $graphic11 = "number_pad_buttons,7";
+        $graphic12 = "number_pad_buttons,6";
+        $int13 = 45;
+    } else if ($int1 = $int8) {
+        $graphic11 = "number_pad_buttons,5";
+        $graphic12 = "number_pad_buttons,4";
+        $int13 = 30;
+    } else if ($int1 = $int9) {
+        $graphic11 = "number_pad_buttons,3";
+        $graphic12 = "number_pad_buttons,2";
+        $int13 = 15;
+    }
+}
+cc_setgraphic($graphic12);
+cc_setop(1, "Select");
+cc_setopbase("<col=ff9040><tostring($int1)></col>");
+cc_setonop("number_pad_press_button($int1, $component5)");
+cc_setonkey("number_pad_keypress(event_keychar, $int1, $component5)");
+cc_setonmouserepeat("cc_graphic_swapper(event_com, event_comsubid, $graphic11, null)");
+cc_setonmouseleave("cc_graphic_swapper(event_com, event_comsubid, $graphic12, null)");
+$int0 = calc($int0 + 1);
+cc_create($component4, ^iftype_text, $int0);
+cc_setsize(32, 32, ^setsize_abs, ^setsize_abs);
+cc_setposition($int2, $int3, ^setpos_abs_left, ^setpos_abs_top);
+cc_settextfont(b12_full);
+cc_setcolour(0xfcfcfc);
+cc_settextshadow(true);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+cc_settext(tostring($int1));
+cc_settrans($int13);
+$int0 = calc($int0 + 1);
+return($int0);
