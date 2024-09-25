@@ -1,0 +1,11 @@
+// 7363
+[proc,prepot_device_loadouts_draw_loadout](dbrow $dbrow0, int $int1)
+def_int $int2 = db_getfield($dbrow0, dbtable_77:col0, 0);
+def_component $component3 = db_getfield($dbrow0, dbtable_77:col2, 0);
+def_int $int4 = 0;
+while ($int4 < $int1) {
+    if (cc_find($component3, $int4) = ^true) {
+        ~prepot_device_loadouts_draw_loadout_slot($int2, ~prepot_device_loadouts_get_slot($int2, $int4), $int1);
+    }
+    $int4 = calc($int4 + 1);
+}
