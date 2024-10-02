@@ -7,46 +7,53 @@ def_int $int6 = 0;
 def_int $int7 = 0;
 def_int $int8 = 0;
 def_int $int9 = 0;
+def_int $int10 = 0;
 if ($int2 ! %varclient_222) {
     $enum3 = ~toplevel_getcomponents;
     if ($enum3 = enum_1745) {
         if (testbit($int1, 2) = ^true) {
-            $int4 = 1;
+            $int5 = 1;
+        } else if (testbit($int1, 7) = ^true) {
+            $int5, $int4 = 1, 1;
         } else if (testbit($int1, 3) = ^true) {
             if (%varplayerbit_4692 = 0) {
-                $int4 = 1;
+                $int5 = 1;
             }
         } else if (testbit($int1, 4) = ^true) {
             if (%varplayerbit_4702 = 1 & %varplayerbit_4692 = 0) {
-                $int4 = 1;
+                $int5 = 1;
             }
         } else if (testbit($int1, 5) = ^true) {
             if (%varplayerbit_4692 = 0 | %varplayerbit_4692 = 2) {
-                $int4 = 1;
+                $int5 = 1;
             }
         } else if (testbit($int1, 6) = ^true & (%varplayerbit_4692 = 1 | %varplayerbit_4692 = 2)) {
-            $int4 = 1;
+            $int5 = 1;
         }
-        if ($int4 = 1 & (%varclient_41 ! -1 | if_hassub(interface_162:com549) = true)) {
-            $int5 = calc(165 - 30 - enum(enum, int, enum_1961, $enum3));
+        if ($int5 = 1) {
+            if ($int4 = 1 & if_hassub(interface_162:com553) = true) {
+                $int6 = calc(165 - enum(enum, int, enum_1961, $enum3));
+            } else if (%varclient_41 ! -1 | if_hassub(interface_162:com552) = true) {
+                $int6 = calc(165 - 30 - enum(enum, int, enum_1961, $enum3));
+            }
         }
         switch_component (enum(int, component, enum_1137, %varclient_171)) {
             case interface_161:com68, interface_161:com73, interface_161:com74, interface_161:com80, interface_161:com76, interface_161:com77, interface_161:com75 :
-                $int8 = 1;
-            case interface_161:com69, interface_161:com70, interface_161:com71, interface_161:com72, interface_161:com78, interface_161:com79, interface_161:com81 :
                 $int9 = 1;
+            case interface_161:com69, interface_161:com70, interface_161:com71, interface_161:com72, interface_161:com78, interface_161:com79, interface_161:com81 :
+                $int10 = 1;
         }
         if (if_hassub(enum(component, component, $enum3, interface_161:com66)) = true) {
-            $int9 = 1;
+            $int10 = 1;
         }
-        if ($int8 = 1 & testbit($int1, 0) = ^true) {
-            $int6 = if_getwidth(enum(component, component, $enum3, interface_164:com62));
+        if ($int9 = 1 & testbit($int1, 0) = ^true) {
+            $int7 = if_getwidth(enum(component, component, $enum3, interface_164:com62));
         }
-        if ($int9 = 1 & testbit($int1, 1) = ^true) {
-            $int7 = calc(if_getwidth(enum(component, component, $enum3, interface_164:com62)) - (enum(enum, int, enum_1135, $enum3) - enum(enum, int, enum_1960, $enum3)));
+        if ($int10 = 1 & testbit($int1, 1) = ^true) {
+            $int8 = calc(if_getwidth(enum(component, component, $enum3, interface_164:com62)) - (enum(enum, int, enum_1135, $enum3) - enum(enum, int, enum_1960, $enum3)));
         }
-        if_setposition($int6, $int5, ^setposh_abs_left, ^setposv_abs_top, $component0);
-        if_setsize(calc($int6 + $int7), $int5, ^setsize_minus, ^setsize_minus, $component0);
+        if_setposition($int7, $int6, ^setposh_abs_left, ^setposv_abs_top, $component0);
+        if_setsize(calc($int7 + $int8), $int6, ^setsize_minus, ^setsize_minus, $component0);
     }
     if_setontimer("script2250($component0, $int1, %varclient_222)", $component0);
     if (testbit($int1, 4) = ^true) {

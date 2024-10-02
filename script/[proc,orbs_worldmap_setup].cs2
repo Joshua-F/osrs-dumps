@@ -1,41 +1,58 @@
 // 1700
-[proc,orbs_worldmap_setup](component $component0)
-def_enum $enum1 = ~toplevel_getcomponents;
-if ($enum1 = null) {
+[proc,orbs_worldmap_setup](component $component0, component $component1, component $component2)
+def_enum $enum3 = ~toplevel_getcomponents;
+if ($enum3 = null) {
     return;
 }
-def_graphic $graphic2 = "worldmap_icon,0";
-def_graphic $graphic3 = "worldmap_icon,1";
-def_int $int4 = 0;
-if (~on_mobile = true & %varplayerbit_6349 = 0) {
-    $int4 = 1;
-}
-if (if_hassub(enum(component, component, $enum1, interface_161:com14)) = true & $int4 = 0) {
-    if_settrans(125, $component0);
-    if_setgraphic($graphic3, $component0);
-    if_setonmouserepeat("settrans(event_com, 0)", $component0);
-    if_setonmouseleave("settrans(event_com, 125)", $component0);
-    if_clearops($component0);
-    if_setop(1, "Close", $component0);
-    if_setopbase("<col=ff9040>Floating panel</col>", $component0);
-    if_setonop("opsound(event_opindex, 2)", $component0);
+def_graphic $graphic4 = null;
+def_graphic $graphic5 = null;
+if ($enum3 = enum_1745) {
+    if_setposition(0, 0, ^setposh_abs_right, ^setposv_abs_bottom, $component0);
+    if_setsize(40, 40, ^setsize_abs, ^setsize_abs, $component0);
+    if_setgraphic(ring_40, $component1);
+    if_setsize(40, 40, ^setsize_abs, ^setsize_abs, $component1);
+    if_setsize(32, 32, ^setsize_abs, ^setsize_abs, $component2);
+    $graphic4 = "worldmap_icon_large,0";
+    $graphic5 = "worldmap_icon_large,1";
 } else {
-    if_settrans(0, $component0);
-    if_setgraphic($graphic2, $component0);
-    if_setonmouserepeat("graphic_swapper(event_com, $graphic3)", $component0);
-    if_setonmouseleave("graphic_swapper(event_com, $graphic2)", $component0);
-    if_clearops($component0);
-    if ($enum1 = enum_1745) {
-        if_setop(1, "Fullscreen", $component0);
+    if_setposition(0, 20, ^setposh_abs_right, ^setposv_abs_bottom, $component0);
+    if_setsize(30, 30, ^setsize_abs, ^setsize_abs, $component0);
+    if_setgraphic(ring_30, $component1);
+    if_setsize(30, 30, ^setsize_abs, ^setsize_abs, $component1);
+    if_setsize(22, 22, ^setsize_abs, ^setsize_abs, $component2);
+    $graphic4 = "worldmap_icon,0";
+    $graphic5 = "worldmap_icon,1";
+}
+def_int $int6 = 0;
+if (~on_mobile = true & %varplayerbit_6349 = 0) {
+    $int6 = 1;
+}
+if (if_hassub(enum(component, component, $enum3, interface_161:com14)) = true & $int6 = 0) {
+    if_settrans(125, $component2);
+    if_setgraphic($graphic5, $component2);
+    if_setonmouserepeat("settrans(event_com, 0)", $component2);
+    if_setonmouseleave("settrans(event_com, 125)", $component2);
+    if_clearops($component2);
+    if_setop(1, "Close", $component2);
+    if_setopbase("<col=ff9040>Floating panel</col>", $component2);
+    if_setonop("opsound(event_opindex, 2)", $component2);
+} else {
+    if_settrans(0, $component2);
+    if_setgraphic($graphic4, $component2);
+    if_setonmouserepeat("graphic_swapper(event_com, $graphic5)", $component2);
+    if_setonmouseleave("graphic_swapper(event_com, $graphic4)", $component2);
+    if_clearops($component2);
+    if ($enum3 = enum_1745) {
+        if_setop(1, "Fullscreen", $component2);
         if (%varplayerbit_6254 = 0) {
-            if_setop(3, "Minimise", $component0);
+            if_setop(3, "Minimise", $component2);
         } else {
-            if_setop(3, "Restore", $component0);
+            if_setop(3, "Restore", $component2);
         }
     } else {
-        if_setop(1, "Floating", $component0);
-        if_setop(2, "Fullscreen", $component0);
+        if_setop(1, "Floating", $component2);
+        if_setop(2, "Fullscreen", $component2);
     }
-    if_setopbase("<col=ff9040>World Map</col>", $component0);
-    if_setonop("opsound(event_opindex, 6)", $component0);
+    if_setopbase("<col=ff9040>World Map</col>", $component2);
+    if_setonop("opsound(event_opindex, 6)", $component2);
 }
