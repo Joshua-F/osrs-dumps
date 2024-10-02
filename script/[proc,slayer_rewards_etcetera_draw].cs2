@@ -1,0 +1,48 @@
+// 1092
+[proc,slayer_rewards_etcetera_draw](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5)
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_int $int8 = 0;
+def_int $int9 = enum(int, int, enum_273, $int8);
+while ($int9 ! -1 & $int9 <= 29) {
+    if (testbit(%varplayer_1076, $int9) = ^false) {
+        $int6, $int7 = calc($int6 + 1), calc($int7 + enum(int, int, enum_836, $int9));
+    }
+    $int8 = calc($int8 + 1);
+    $int9 = enum(int, int, enum_273, $int8);
+}
+cc_deleteall($component0);
+def_int $int10 = ~options_button_off($component0, 0);
+cc_create($component0, ^iftype_text, $int10);
+$int10 = calc($int10 + 1);
+cc_setposition(0, 0, ^setposh_abs_centre, ^setposv_abs_centre);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_settextfont(p11_full);
+cc_settextshadow(true);
+cc_settextalign(^settextalignh_centre, ^settextalignv_centre, 0);
+def_string $string0 = "Nothing more to extend";
+if ($int6 > 0 & $int7 > 0) {
+    if ($int6 > 1) {
+        $int7 = interpolate(0, 95, 0, 100, $int7);
+        if ($int7 < 2) {
+            $int7 = 2;
+        }
+        $string0 = "Extend remaining <tostring($int6)> tasks: <~tostring_spacer($int7, ",")> points";
+    } else {
+        $string0 = "Extend remaining task: <~tostring_spacer($int7, ",")> points";
+    }
+    cc_setcolour(0xff981f);
+    cc_settext($string0);
+    if_setonmouserepeat("options_button_on(event_com, 0)", $component0);
+    if_setonmouseleave("options_button_off(event_com, 0)", $component0);
+    if_setop(1, "Etcetera", $component0);
+    if_setonop("slayer_rewards_unlock_confirm(null, calc(29 + 8), $component1, $component2, $component3, $component4, $component5, $int7)", $component0);
+} else {
+    cc_setcolour(0x7f4c0f);
+    cc_settext($string0);
+    if_setonmouserepeat(null, $component0);
+    if_setonmouseleave(null, $component0);
+    if_clearops($component0);
+    if_setonop(null, $component0);
+}
+if_setsize(calc(parawidth($string0, if_getwidth(if_getlayer($component0)), fontmetrics_494) + 20), if_getheight($component0), ^setsize_abs, ^setsize_abs, $component0);

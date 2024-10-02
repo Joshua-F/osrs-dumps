@@ -2,22 +2,24 @@
 [proc,slayer_rewards_tasks_blocked_draw](component $component0, int $int1, int $int2, component $component3, component $component4, component $component5, component $component6, component $component7)
 cc_deleteall($component0);
 def_int $int8 = 0;
+def_int $int9 = -1;
 if ($int1 = 1) {
-    $int8 = %varplayerbit_3209;
+    $int8, $int9 = %varplayerbit_3209, 3;
 } else if ($int1 = 2) {
-    $int8 = %varplayerbit_3210;
+    $int8, $int9 = %varplayerbit_3210, 4;
 } else if ($int1 = 3) {
-    $int8 = %varplayerbit_3211;
+    $int8, $int9 = %varplayerbit_3211, 5;
 } else if ($int1 = 4) {
-    $int8 = %varplayerbit_3212;
+    $int8, $int9 = %varplayerbit_3212, 6;
 } else if ($int1 = 5) {
-    $int8 = %varplayerbit_4441;
+    $int8, $int9 = %varplayerbit_4441, 7;
 } else {
     return;
 }
-def_int $int9 = 0;
-cc_create($component0, ^iftype_text, $int9);
-$int9 = calc($int9 + 1);
+$int9 = calc(29 + $int9);
+def_int $int10 = 0;
+cc_create($component0, ^iftype_text, $int10);
+$int10 = calc($int10 + 1);
 cc_setposition(0, 0, ^setposh_abs_left, ^setposv_abs_centre);
 cc_setsize(85, 0, ^setsize_abs, ^setsize_minus);
 cc_setcolour(0xff981f);
@@ -25,8 +27,8 @@ cc_settextfont(p12_full);
 cc_settextshadow(true);
 cc_settextalign(^settextalignh_left, ^settextalignv_centre, 0);
 cc_settext("Slot <tostring($int1)>:");
-cc_create($component0, ^iftype_text, $int9);
-$int9 = calc($int9 + 1);
+cc_create($component0, ^iftype_text, $int10);
+$int10 = calc($int10 + 1);
 cc_setposition(0, 0, ^setposh_abs_centre, ^setposv_abs_centre);
 cc_setsize(170, 0, ^setsize_minus, ^setsize_minus);
 cc_settextshadow(true);
@@ -56,10 +58,10 @@ if ($int8 = 0) {
     cc_settextfont(p12_full);
     cc_settext(enum(int, string, enum_693, $int8));
 }
-cc_create($component0, ^iftype_graphic, $int9);
-$int9 = calc($int9 + 1);
-.cc_create($component0, ^iftype_text, $int9);
-$int9 = calc($int9 + 1);
+cc_create($component0, ^iftype_graphic, $int10);
+$int10 = calc($int10 + 1);
+.cc_create($component0, ^iftype_text, $int10);
+$int10 = calc($int10 + 1);
 cc_setsize(85, 22, ^setsize_abs, ^setsize_abs);
 .cc_setsize(85, 22, ^setsize_abs, ^setsize_abs);
 cc_setposition(0, 0, ^setposh_abs_right, ^setposv_abs_centre);
@@ -74,7 +76,7 @@ if ($int8 ! 0) {
     cc_setonmouseover("cc_colour_swapper(event_com, .cc_getid, ^white)");
     cc_setonmouseleave("cc_colour_swapper(event_com, .cc_getid, 0xff981f)");
     cc_setop(1, "Unblock");
-    cc_setonop("slayer_rewards_tasks_unblocktask($int8, $int1, $component3, $component4, $component5, $component6, $component7)");
+    cc_setonop("slayer_rewards_tasks_unblocktask($int8, $int9, $component3, $component4, $component5, $component6, $component7)");
 } else {
     .cc_setcolour(0x7f4c0f);
 }

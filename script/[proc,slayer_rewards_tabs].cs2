@@ -1,27 +1,31 @@
 // 407
-[proc,slayer_rewards_tabs](component $component0, component $component1, component $component2, component $component3, component $component4)
+[proc,slayer_rewards_tabs](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5)
 cc_deleteall($component0);
-def_int $int5 = 0;
 def_int $int6 = 0;
-$int5, $int6 = ~slayer_rewards_tab($component0, $component1, "Unlock", $int5, $int6, $component1, $component2, $component3, $component4);
-$int5, $int6 = ~slayer_rewards_tab($component0, $component2, "Buy", $int5, $int6, $component1, $component2, $component3, $component4);
-$int5, $int6 = ~slayer_rewards_tab($component0, $component3, "Tasks", $int5, $int6, $component1, $component2, $component3, $component4);
-cc_create($component0, ^iftype_text, $int5);
-cc_setposition($int6, 0, ^setposh_abs_left, ^setposv_abs_top);
-cc_setsize(calc(if_getwidth($component0) - $int6), if_getheight($component0), ^setsize_abs, ^setsize_abs);
-cc_settextfont(p12_full);
+def_int $int7 = 0;
+$int6, $int7 = ~slayer_rewards_tab($component0, $component1, "Unlock", $int6, $int7, $component1, $component2, $component3, $component4, $component5);
+$int6, $int7 = ~slayer_rewards_tab($component0, $component2, "Extend", $int6, $int7, $component1, $component2, $component3, $component4, $component5);
+$int6, $int7 = ~slayer_rewards_tab($component0, $component3, "Buy", $int6, $int7, $component1, $component2, $component3, $component4, $component5);
+$int6, $int7 = ~slayer_rewards_tab($component0, $component4, "Tasks", $int6, $int7, $component1, $component2, $component3, $component4, $component5);
+cc_create($component0, ^iftype_text, $int6);
+cc_setposition(0, 0, ^setposh_abs_right, ^setposv_abs_top);
+cc_setsize($int7, 0, ^setsize_minus, ^setsize_minus);
+cc_settextfont(p11_full);
 cc_settextalign(^settextalignh_centre, ^settextalignv_centre, 0);
 cc_setcolour(0xff981f);
 cc_settextshadow(true);
 ~slayer_rewards_setpoints;
 cc_setonvartransmit("slayer_rewards_setpoints(event_com, event_comsubid){varplayer_661}");
-if_sethide(false, $component4);
-if ($component4 ! $component1) {
+if_sethide(false, $component5);
+if ($component5 ! $component1) {
     if_sethide(true, $component1);
 }
-if ($component4 ! $component2) {
+if ($component5 ! $component2) {
     if_sethide(true, $component2);
 }
-if ($component4 ! $component3) {
+if ($component5 ! $component3) {
     if_sethide(true, $component3);
+}
+if ($component5 ! $component4) {
+    if_sethide(true, $component4);
 }
