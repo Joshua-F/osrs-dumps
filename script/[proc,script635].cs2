@@ -1,0 +1,78 @@
+// 635
+[proc,script635](component $component0, component $component1, component $component2)
+cc_deleteall($component0);
+def_int $int3 = friend_count;
+if ($int3 = -2) {
+    cc_create($component0, ^iftype_text, 0);
+    cc_settextfont(b12_full);
+    cc_settext("Loading Friend List - please wait...");
+    cc_setposition(0, 0);
+    cc_setsize(138, 100);
+    cc_setcolour(0xffff64);
+    cc_settextshadow(true);
+    if_setscrollpos(0, 0, $component0);
+    return;
+}
+if ($int3 = -1) {
+    cc_create($component0, ^iftype_text, 0);
+    cc_settextfont(b12_full);
+    cc_settext("Connecting to friend server - please wait...");
+    cc_setposition(0, 0);
+    cc_setsize(138, 100);
+    cc_setcolour(0xffff64);
+    cc_settextshadow(true);
+    if_setscrollpos(0, 0, $component0);
+    return;
+}
+def_string $string0 = "";
+def_string $string1 = "";
+def_int $int4 = 0;
+def_int $int5 = 0;
+while ($int5 < $int3) {
+    $string0, $string1 = friend_getname($int5);
+    cc_create($component0, ^iftype_text, $int4);
+    $int4 = calc($int4 + 1);
+    cc_settextfont(b12_full);
+    cc_settext($string0);
+    cc_setposition(0, calc($int5 * 15));
+    cc_setsize(138, 15);
+    cc_setcolour(0xffff64);
+    cc_settextshadow(true);
+    if (string_length($string1) > 0) {
+        $string1 = "Previous name:<br><$string1>";
+        cc_setonmouserepeat("tooltip_mouserepeat(event_com, event_comsubid, $component2, $string1, 25, 300)");
+        cc_setonmouseleave("deltooltip($component2)");
+        cc_create($component0, ^iftype_graphic, $int4);
+        $int4 = calc($int4 + 1);
+        cc_setsize(14, 14);
+        cc_setposition(calc(parawidth($string0, 138, fontmetrics_496) + 3), calc($int5 * 15));
+        cc_setgraphic(friends_changed_name);
+        cc_setgraphicshadow(0x333333);
+    } else {
+        cc_setonmouseover("deltooltip($component2)");
+    }
+    cc_create($component0, ^iftype_text, $int4);
+    $int4 = calc($int4 + 1);
+    cc_settextfont(b12_full);
+    cc_settext(enum(int, string, enum_170, friend_getrank($int5)));
+    cc_setposition(137, calc($int5 * 15));
+    cc_setsize(131, 15);
+    cc_setcolour(^white);
+    cc_settextshadow(true);
+    cc_setop(1, "Not in clan");
+    cc_setop(2, "Recruit");
+    cc_setop(3, "Corporal");
+    cc_setop(4, "Sergeant");
+    cc_setop(5, "Lieutenant");
+    cc_setop(6, "Captain");
+    cc_setop(7, "General");
+    cc_setonop("script204($component0, cc_getid, $int5, event_opindex)");
+    $int5 = calc($int5 + 1);
+}
+def_int $int6 = calc($int5 * 15 + 5);
+if ($int6 > if_getheight($component0)) {
+    if_setscrollsize(0, $int6, $component0);
+} else {
+    if_setscrollsize(0, 0, $component0);
+}
+~scrollbar_resize($component1, $component0, if_getscrolly($component0));
