@@ -27,7 +27,9 @@ if (%varplayerbit_4606 ! 0) {
     if ($component2 ! null & $component3 ! null) {
         $int8, $int9 = viewport_geteffectivesize;
         if_setsize($int8, $int9, ^setsize_abs, ^setsize_abs, $component2);
-        if_setsize($int8, $int9, ^setsize_abs, ^setsize_abs, $component3);
+        if (~on_mobile = false) {
+            if_setsize($int8, $int9, ^setsize_abs, ^setsize_abs, $component3);
+        }
         if ($component4 ! null & $component5 ! null) {
             $int10 = if_getwidth($component0);
             $int11 = if_getheight($component0);
@@ -64,10 +66,14 @@ if (%varplayerbit_4606 ! 0) {
     $int8, $int9 = viewport_geteffectivesize;
     if ($component2 ! null & $component3 ! null) {
         if_setsize($int8, $int9, ^setsize_abs, ^setsize_abs, $component2);
-        if_setsize($int8, $int9, ^setsize_abs, ^setsize_abs, $component3);
+        if (~on_mobile = false) {
+            if_setsize($int8, $int9, ^setsize_abs, ^setsize_abs, $component3);
+        }
         if ($component4 ! null & $component5 ! null) {
             if_setsize($int6, $int7, ^setsize_minus, ^setsize_minus, $component4);
-            if_setsize($int6, $int7, ^setsize_minus, ^setsize_minus, $component5);
+            if (~on_mobile = false) {
+                if_setsize($int6, $int7, ^setsize_minus, ^setsize_minus, $component5);
+            }
             ~toplevel_mainmodal_bg_calculate($enum1, enum(component, component, $enum1, interface_161:com11), $component5, $int6, $int7);
         } else {
             ~toplevel_mainmodal_bg_calculate($enum1, enum(component, component, $enum1, interface_161:com11), $component3, 0, 0);

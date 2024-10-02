@@ -325,7 +325,11 @@ while ($component47 ! $component1) {
     $int46 = calc($int46 + if_gety($component47) - if_getscrolly($component47));
     $component47 = if_getlayer($component47);
 }
-if_setposition(0, calc(if_getheight($component1) - 1 - $int46), ^setposh_abs_centre, ^setposv_abs_bottom, $component14);
+if (~on_mobile = false) {
+    if_setposition(0, calc(if_getheight($component1) - 1 - $int46), ^setposh_abs_centre, ^setposv_abs_bottom, $component14);
+} else {
+    if_setposition(0, calc(if_getheight($component1) - 1 - $int46), ^setposh_abs_centre, ^setposv_abs_top, $component14);
+}
 while ($int26 > 0) {
     $int26 = calc($int26 - 1);
     if (cc_find($component15, $intarray0($int26)) = ^true) {
@@ -367,3 +371,4 @@ cc_settextshadow(true);
 cc_settextalign(^settextalignh_centre, ^settextalignv_centre, 0);
 ~xpdrops_setup_display_hoveroff($component11);
 ~worldmap_loadmap($wma37, $coord39, $component11, $component12, $component3, $component5, $component6, $component17, $component18);
+~worldmap_mobile_layout;
