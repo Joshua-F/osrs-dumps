@@ -2,6 +2,7 @@
 [clientscript,xpdrops_dropletmove](component $component0, int $int1)
 def_int $int2 = 0;
 def_int $int3 = 1;
+def_int $int4 = 0;
 if (cc_find($component0, 0) = ^true) {
     $int1 = calc(clientclock - $int1);
     if ($int1 < 0) {
@@ -14,8 +15,9 @@ if (cc_find($component0, 0) = ^true) {
         }
         return;
     }
-    if ($int1 < 100) {
-        $int2 = interpolate(0, $int1, 0, 100, 16384);
+    $int4 = enum(int, int, enum_1171, %varplayerbit_4722);
+    if ($int1 < $int4) {
+        $int2 = interpolate(0, $int1, 0, $int4, 16384);
         cc_setposition(cc_getx, $int2, ^setposh_abs_left, ^setposv_proportion_bottom);
         cc_sethide(false);
         while ($int3 <= 5) {
