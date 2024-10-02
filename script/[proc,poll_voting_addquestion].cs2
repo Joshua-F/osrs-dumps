@@ -24,9 +24,7 @@ cc_setfill(false);
 def_string $string1 = "";
 $string1, $string0 = ~script632($string0);
 def_int $int8 = calc(paraheight($string1, $int5, fontmetrics_494) * 10 + 2);
-if ($int8 < 15) {
-    $int8 = 15;
-}
+$int8 = ~max($int8, 15);
 cc_create(interface_400:com10, ^iftype_text, %varclient_43);
 %varclient_43 = calc(%varclient_43 + 1);
 cc_setposition(4, %varclient_49, ^setposh_abs_left, ^setposv_abs_top);
@@ -59,8 +57,9 @@ def_int $int11 = 0;
 while ($int11 < $int2) {
     $string1, $string0 = ~script632($string0);
     $int8 = calc(paraheight($string1, $int10, fontmetrics_494) * 10 + 2);
-    if ($int8 < 17) {
-        $int8 = 17;
+    $int8 = ~max($int8, 17);
+    if (~on_mobile = true) {
+        $int8 = ~max($int8, 27);
     }
     cc_create(interface_400:com10, ^iftype_rectangle, %varclient_43);
     cc_settrans(255);
