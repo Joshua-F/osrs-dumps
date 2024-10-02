@@ -6,7 +6,11 @@ def_int $int8 = 0;
 def_string $string0 = "Creature";
 if (%varplayer_261 > 0 & %varplayer_262 ! 0) {
     $int8 = 1;
-    $string0 = enum(int, string, enum_693, %varplayer_262);
+    if (%varplayer_262 = 98) {
+        $string0 = enum(int, string, enum_1174, %varplayer_263);
+    } else {
+        $string0 = enum(int, string, enum_693, %varplayer_262);
+    }
     if_settext("<tostring(%varplayer_261)> x <$string0>", $component1);
 } else {
     if_settext("None", $component1);
@@ -46,7 +50,7 @@ cc_setgraphic("combatboxesmed,0");
 .cc_settextalign(^settextalignh_centre, ^settextalignv_centre, 0);
 .cc_settextshadow(true);
 .cc_settext("Block task");
-if ($int8 = 1 & %varplayer_262 ! 97) {
+if ($int8 = 1 & %varplayer_262 ! 97 & %varplayer_262 ! 98) {
     .cc_setcolour(0xff981f);
     cc_setonmouseover("cc_colour_swapper(event_com, .cc_getid, ^white)");
     cc_setonmouseleave("cc_colour_swapper(event_com, .cc_getid, 0xff981f)");
