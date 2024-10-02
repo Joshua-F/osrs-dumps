@@ -1,93 +1,128 @@
 // 253
-[clientscript,nzone_listbosses](int $int0, int $int1, string $string0, string $string1, string $string2)
-def_component $component2 = interface_187:com0;
-def_component $component3 = interface_187:com2;
-def_component $component4 = interface_187:com1;
-def_int $int5 = 386;
-def_int $int6 = calc(paraheight($string0, $int5, fontmetrics_495) * 12 + 3);
-def_int $int7 = 0;
-if (string_length($string1) > 0 | string_length($string2) > 0) {
-    $int7 = 33;
-}
-~script245($component2, $component3, $component4, "Available bosses", calc(33 + $int6), $int7);
-cc_create($component2, ^iftype_text, 3);
-cc_setposition(calc((512 - $int5) / 2), 70, ^setposh_abs_left, ^setposv_abs_top);
-cc_setsize($int5, $int6, ^setsize_abs, ^setsize_abs);
-cc_settextfont(p12_full);
-cc_setcolour(0x46320a);
-cc_settextalign(^settextalignh_centre, ^settextalignv_centre, 0);
-cc_settext($string0);
-def_graphic $graphic8 = "ame_confirm_button,0";
-def_graphic $graphic9 = "ame_confirm_button,1";
-def_int $int10 = 0;
-def_int $int11 = 0;
-def_int $int12 = 0;
-if ($int7 > 0) {
-    $int12 = calc(if_gety($component3) + if_getheight($component3) + 3);
-    $int10 = calc(parawidth($string1, 2147483647, fontmetrics_495) + 3);
-    $int11 = calc(parawidth($string2, 2147483647, fontmetrics_495) + 3 + 30);
-    cc_create($component2, ^iftype_rectangle, 4);
-    cc_setposition(55, $int12, ^setposh_abs_left, ^setposv_abs_top);
-    cc_setsize(calc($int10 + 30), 30, ^setsize_abs, ^setsize_abs);
-    cc_setfill(true);
-    cc_settrans(255);
-    cc_setonmouseover("cc_graphic_swapper(event_com, 8, $graphic9, null)");
-    cc_setonmouseleave("cc_graphic_swapper(event_com, 8, $graphic8, null)");
-    cc_create($component2, ^iftype_rectangle, 5);
-    cc_setposition(calc(457 - $int11), $int12, ^setposh_abs_left, ^setposv_abs_top);
-    cc_setsize($int11, 30, ^setsize_abs, ^setsize_abs);
-    cc_setfill(true);
-    cc_settrans(255);
-    cc_setonmouseover("cc_graphic_swapper(event_com, 9, $graphic9, null)");
-    cc_setonmouseleave("cc_graphic_swapper(event_com, 9, $graphic8, null)");
-    cc_create($component2, ^iftype_text, 6);
-    cc_setposition(55, $int12, ^setposh_abs_left, ^setposv_abs_top);
-    cc_setsize($int10, 30, ^setsize_abs, ^setsize_abs);
-    cc_settextfont(p12_full);
-    cc_setcolour(0x46320a);
-    cc_settextalign(^settextalignh_left, ^settextalignv_centre, 0);
-    cc_settext($string1);
-    cc_create($component2, ^iftype_text, 7);
-    cc_setposition(calc(457 - $int11), $int12, ^setposh_abs_left, ^setposv_abs_top);
-    cc_setsize($int11, 30, ^setsize_abs, ^setsize_abs);
-    cc_settextfont(p12_full);
-    cc_setcolour(0x46320a);
-    cc_settextalign(^settextalignh_left, ^settextalignv_centre, 0);
-    cc_settext($string2);
-    ~create_graphic($component2, 8, $graphic8, calc(55 + $int10), $int12, ^setposh_abs_left, ^setposv_abs_top, 29, 29, ^setsize_abs, ^setsize_abs);
-    cc_setvflip(true);
-    ~create_graphic($component2, 9, $graphic8, 427, $int12, ^setposh_abs_left, ^setposv_abs_top, 29, 29, ^setsize_abs, ^setsize_abs);
-}
-$int10 = if_getwidth($component3);
-def_int $int13 = 0;
-def_int $int14 = 0;
-def_int $int15 = 0;
-def_int $int16 = -1;
-def_int $int17 = enum(int, int, enum_797, $int15);
-while ($int17 ! -1) {
-    $int16 = enum(int, int, enum_803, $int17);
-    if ($int16 ! -1 & testbit($int0, $int16) = ^true) {
-        cc_create($component3, ^iftype_text, $int13);
-        cc_setposition(0, $int14, ^setposh_abs_left, ^setposv_abs_top);
-        cc_setsize($int10, 14, ^setsize_abs, ^setsize_abs);
-        cc_settextfont(p12_full);
-        cc_setcolour(0x46320a);
-        cc_settextalign(^settextalignh_centre, ^settextalignv_top, 14);
-        if (testbit($int1, $int16) = ^true) {
-            cc_settext(enum(int, string, enum_802, $int17));
+[clientscript,nzone_listbosses](int $int0, int $int1, int $int2, int $int3, int $int4, int $int5, int $int6, int $int7, string $string0, string $string1)
+if (string_length($string0) > 0 | string_length($string1) > 0) {
+    if_setsize(400, if_getheight(interface_129:com1), ^setsize_abs, ^setsize_abs, interface_129:com1);
+    ~script1246(interface_129:com6, "<col=00ff00><$string1></col>");
+    ~script1246(interface_129:com7, "<col=ff0000><$string0></col>");
+    if ($int6 ! -1) {
+        ~script1246(interface_129:com8, "All");
+        if ($int7 = 1) {
+            ~script1246(interface_129:com9, "Previous");
         } else {
-            cc_settext("<str><enum(int, string, enum_802, $int17)></str>");
+            if_sethide(true, interface_129:com9);
         }
-        $int13, $int14 = calc($int13 + 1), calc($int14 + 14);
+    } else {
+        if_sethide(true, interface_129:com8);
+        if_sethide(true, interface_129:com9);
+    }
+} else {
+    if_setsize(300, if_getheight(interface_129:com1), ^setsize_abs, ^setsize_abs, interface_129:com1);
+    if_sethide(true, interface_129:com6);
+    if_sethide(true, interface_129:com7);
+    if_sethide(true, interface_129:com8);
+    if_sethide(true, interface_129:com9);
+}
+cc_deleteall(interface_129:com13);
+def_int $int8 = 0;
+if ($int6 ! -1) {
+    while ($int8 < 62) {
+        cc_create(interface_129:com13, ^iftype_graphic, $int8);
+        cc_sethide(true);
+        $int8 = calc($int8 + 1);
+    }
+}
+def_int $int9 = 0;
+if ($int6 ! -1) {
+    $int9 = 17;
+}
+def_int $int10 = -1;
+def_int $int11 = -1;
+def_int $int12 = 0;
+def_int $int13 = 0;
+def_string $string2 = "";
+def_boolean $boolean14 = false;
+def_int $int15 = 0;
+while ($int15 < 62) {
+    $int10 = enum(int, int, enum_797, $int15);
+    if ($int10 ! -1) {
+        $int11 = enum(int, int, enum_803, $int10);
+        if ($int11 ! -1 & ~script1260($int0, $int1, $int11) = true) {
+            cc_create(interface_129:com13, ^iftype_graphic, $int8);
+            $int8 = calc($int8 + 1);
+            cc_setsize(0, 17, ^setsize_minus, ^setsize_abs);
+            cc_setposition(0, $int13, ^setposh_abs_centre, ^setposv_abs_top);
+            if (calc($int12 % 2) = 0) {
+                cc_setgraphic(tradebacking);
+            } else {
+                cc_setgraphic(tradebacking_light);
+            }
+            cc_settiling(true);
+            .cc_create(interface_129:com13, ^iftype_text, $int8);
+            $int8 = calc($int8 + 1);
+            .cc_setsize($int9, 17, ^setsize_minus, ^setsize_abs);
+            .cc_setposition(0, $int13, ^setposh_abs_left, ^setposv_abs_top);
+            .cc_settextfont(p12_full);
+            .cc_settextshadow(true);
+            .cc_settextalign(^settextalignh_centre, ^settextalignv_centre, 0);
+            if (~script1260($int2, $int3, $int11) = true) {
+                $string2 = enum(int, string, enum_802, $int10);
+                .cc_settext($string2);
+                if ($int6 ! -1) {
+                    $boolean14 = ~script1260($int4, $int5, $int11);
+                    if ($boolean14 = true) {
+                        .cc_setcolour(0x8f8f8f);
+                    } else {
+                        .cc_setcolour(0xff981f);
+                    }
+                    cc_setop(1, "Toggle");
+                    cc_setopbase("<col=ff9040><enum(int, string, enum_804, $int11)></col> bosses");
+                    cc_setonop("script1258(event_opindex, $int15, event_com, .cc_getid, $string2)");
+                    cc_setonmouseover("cc_settrans(event_com, event_comsubid, 255, null)");
+                    cc_setonmouseleave("cc_settrans(event_com, event_comsubid, 0, interface_129:com15)");
+                    $string2 = "<$string2>:<br>Unlocked from <col=7f0000><enum(int, string, enum_804, $int11)></col>";
+                    cc_setonmouserepeat("tooltip_mouserepeat(event_com, event_comsubid, interface_129:com15, $string2, 25, 512)");
+                    .cc_create(interface_129:com13, ^iftype_graphic, $int8);
+                    $int8 = calc($int8 + 1);
+                    .cc_setsize(17, 17, ^setsize_abs, ^setsize_abs);
+                    .cc_setposition(0, $int13, ^setposh_abs_right, ^setposv_abs_top);
+                    if ($boolean14 = true) {
+                        .cc_setgraphic("options_radio_buttons,1");
+                    } else {
+                        .cc_setgraphic("options_radio_buttons,2");
+                    }
+                } else {
+                    .cc_setcolour(0xff981f);
+                }
+            } else {
+                .cc_setcolour(0xff981f);
+                .cc_settext("<str><col=8f8f8f><enum(int, string, enum_802, $int10)></col></str>");
+            }
+            $int12, $int13 = calc($int12 + 1), calc($int13 + 17);
+        }
     }
     $int15 = calc($int15 + 1);
-    $int17 = enum(int, int, enum_797, $int15);
 }
-if ($int14 > 0) {
-    $int14 = calc($int14 + 1);
+if ($int13 > if_getheight(interface_129:com13)) {
+    if_setscrollsize(0, $int13, interface_129:com13);
+    if ($int6 ! 1) {
+        if_setscrollpos(0, 0, interface_129:com13);
+        %varclient_138 = 0;
+    }
+} else {
+    if_setscrollsize(0, 0, interface_129:com13);
+    if_setscrollpos(0, 0, interface_129:com13);
+    %varclient_138 = 0;
+    cc_create(interface_129:com13, ^iftype_graphic, $int8);
+    $int8 = calc($int8 + 1);
+    cc_setsize(0, $int13, ^setsize_minus, ^setsize_minus);
+    cc_setposition(0, 0, ^setposh_abs_centre, ^setposv_abs_bottom);
+    cc_setgraphic(tradebacking_dark);
+    cc_settiling(true);
 }
-if_setscrollsize(0, $int14, $component3);
-if_setscrollpos(0, 0, $component3);
-if ($int14 > if_getheight($component3)) {
-    ~scrollbar_vertical($component4, $component3, "scrollbar_parchment_dragger_v2,3", "scrollbar_parchment_dragger_v2,0", "scrollbar_parchment_dragger_v2,1", "scrollbar_parchment_dragger_v2,2", "scrollbar_parchment_v2,0", "scrollbar_parchment_v2,1");
+~scrollbar_vertical(interface_129:com14, interface_129:com13, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+if ($int6 = 1) {
+    if (%varclient_138 < 0) {
+        %varclient_138 = 0;
+    }
+    ~scrollbar_resize(interface_129:com14, interface_129:com13, %varclient_138);
 }
