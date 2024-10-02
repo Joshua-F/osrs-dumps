@@ -1,0 +1,43 @@
+// 3834
+[proc,script3834](component $component0, enum $enum1)
+%varclient_222 = clientclock;
+def_int $int2 = 0;
+def_int $int3 = if_getheight($component0);
+def_int $int4 = if_getwidth($component0);
+def_int $int5 = if_getheight(if_getlayer($component0));
+def_int $int6 = if_getwidth(if_getlayer($component0));
+def_int $int7 = calc($int6 - 204 + 3);
+def_int $int8 = calc($int7 / 2 - $int4 / 2);
+def_int $int9 = calc($int5 - 184 + 26);
+def_int $int10 = calc($int6 - 182 + 40);
+def_int $int11 = calc($int10 / 2 - $int4 / 2);
+if ($int3 >= $int9) {
+    $int2 = 1;
+}
+def_int $int12 = calc(($int5 - $int3) / 2);
+if (calc($int4 + 204 * 2 + 10) <= $int6 & $int2 = 0) {
+    if_setposition(0, ~min(64, $int12), ^setposh_abs_centre, ^setposv_abs_centre, $component0);
+    return;
+}
+if (~script2518 = true) {
+    if ($int2 = 0) {
+        if_setposition(~max(0, $int8), ~min(64, $int12), ^setposh_abs_right, ^setposv_abs_centre, $component0);
+    } else {
+        if_setposition(~max(calc($int6 - $int10), $int11), ~min(64, $int12), ^setposh_abs_right, ^setposv_abs_centre, $component0);
+    }
+    return;
+}
+if (~script2519 = true) {
+    if ($int2 = 1 & calc($int11 + $int4 + 204 + 4) <= $int6) {
+        if_setposition(~max(0, $int11), ~min(64, $int12), ^setposh_abs_left, ^setposv_abs_centre, $component0);
+    } else {
+        if_setposition(~max(0, $int8), ~min(64, $int12), ^setposh_abs_left, ^setposv_abs_centre, $component0);
+    }
+    return;
+}
+if ($int2 = 0) {
+    if_setposition(0, ~min(64, $int12), ^setposh_abs_centre, ^setposv_abs_centre, $component0);
+} else {
+    if_setposition(~max(0, $int11), ~min(64, $int12), ^setposh_abs_left, ^setposv_abs_centre, $component0);
+}
+return;
