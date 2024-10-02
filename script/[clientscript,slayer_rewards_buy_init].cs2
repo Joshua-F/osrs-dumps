@@ -31,22 +31,26 @@ while ($obj18 ! null) {
     .cc_settextshadow(true);
     .cc_settextalign(^settextalignh_centre, ^settextalignv_centre, 0);
     .cc_settext(~tostring_spacer(enum(obj, int, enum_842, $obj18), ","));
-    if ($int16 = 1) {
+    if ($obj18 = obj_13226) {
+        cc_setop(2, "Buy 1");
+    } else if ($int16 = 1) {
         cc_setop(2, "Buy 1");
         cc_setop(3, "Buy 5");
         cc_setop(4, "Buy 10");
+        if (~kots_world = false) {
+            cc_setop(5, "Buy 50");
+        }
     } else {
         cc_setop(2, "Buy 1 set");
         cc_setop(3, "Buy 5 sets");
         cc_setop(4, "Buy 10 sets");
-    }
-    if ($obj18 = obj_13226) {
-        cc_clearops;
-        cc_setop(2, "Buy 1");
+        if (~kots_world = false) {
+            cc_setop(5, "Buy 50 sets");
+        }
     }
     cc_setop(1, "Info");
     cc_setop(10, "Examine");
-    cc_setopbase("<col=ff9040><oc_name($obj18)>");
+    cc_setopbase("<col=ff9040><oc_name($obj18)></col>");
     cc_setonop("slayer_rewards_buy_op(event_opindex, event_com, event_comsubid, $component4, $component5, $component6, $component7, $component8)");
     $int17 = calc($int17 + 1);
     $obj18 = enum(int, namedobj, enum_840, $int17);
