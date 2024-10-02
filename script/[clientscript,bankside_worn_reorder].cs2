@@ -1,0 +1,23 @@
+// 3328
+[clientscript,bankside_worn_reorder](component $component0, component $component1, int $int2, int $int3)
+def_int $int4 = inv_size(inv_93);
+if ($int2 < 0 | $int2 >= $int4) {
+    return;
+}
+if ($int3 < 0 | $int3 >= $int4) {
+    return;
+}
+if ($component0 ! $component1) {
+    return;
+}
+def_obj $obj5 = inv_getobj(inv_93, $int2);
+if ($obj5 = null) {
+    return;
+}
+def_obj $obj6 = inv_getobj(inv_93, $int3);
+if (cc_find($component0, $int3) = ^true) {
+    ~bankside_worn_drawitem($obj5, inv_getnum(inv_93, $int2), $int2);
+}
+if (cc_find($component0, $int2) = ^true) {
+    ~bankside_worn_drawitem($obj6, inv_getnum(inv_93, $int3), $int3);
+}
