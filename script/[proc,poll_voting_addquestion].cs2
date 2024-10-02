@@ -6,18 +6,18 @@ def_int $int6 = %varclient_43;
 def_int $int7 = %varclient_49;
 cc_create(interface_400:com9, ^iftype_rectangle, %varclient_43);
 %varclient_43 = calc(%varclient_43 + 1);
-cc_setposition(0, $int7);
+cc_setposition(0, $int7, ^setposh_abs_left, ^setposv_abs_top);
 cc_setcolour(^white);
 cc_setfill(true);
 cc_settrans(225);
 cc_create(interface_400:com9, ^iftype_rectangle, %varclient_43);
 %varclient_43 = calc(%varclient_43 + 1);
-cc_setposition(0, $int7);
+cc_setposition(0, $int7, ^setposh_abs_left, ^setposv_abs_top);
 cc_setcolour(0x777775);
 cc_setfill(false);
 cc_create(interface_400:com9, ^iftype_rectangle, %varclient_43);
 %varclient_43 = calc(%varclient_43 + 1);
-cc_setposition(1, calc($int7 + 1));
+cc_setposition(1, calc($int7 + 1), ^setposh_abs_left, ^setposv_abs_top);
 cc_setcolour(0x474745);
 cc_setfill(false);
 %varclient_49 = calc(%varclient_49 + 4);
@@ -29,8 +29,8 @@ if ($int8 < 15) {
 }
 cc_create(interface_400:com9, ^iftype_text, %varclient_43);
 %varclient_43 = calc(%varclient_43 + 1);
-cc_setposition(4, %varclient_49);
-cc_setsize($int5, $int8);
+cc_setposition(4, %varclient_49, ^setposh_abs_left, ^setposv_abs_top);
+cc_setsize($int5, $int8, ^setsize_abs, ^setsize_abs);
 %varclient_49 = calc(%varclient_49 + $int8);
 cc_setcolour(0xff981f);
 cc_settextfont(p11_full);
@@ -41,8 +41,8 @@ $string1, $string0 = ~script632($string0);
 $int8 = calc(paraheight($string1, $int5, fontmetrics_495) * 12 + 5);
 cc_create(interface_400:com9, ^iftype_text, %varclient_43);
 %varclient_43 = calc(%varclient_43 + 1);
-cc_setposition(4, %varclient_49);
-cc_setsize($int5, $int8);
+cc_setposition(4, %varclient_49, ^setposh_abs_left, ^setposv_abs_top);
+cc_setsize($int5, $int8, ^setsize_abs, ^setsize_abs);
 %varclient_49 = calc(%varclient_49 + $int8);
 cc_setcolour(^white);
 cc_settextfont(p12_full);
@@ -69,10 +69,10 @@ while ($int11 < $int2) {
     %varclient_43 = calc(%varclient_43 + 1);
     .cc_create(interface_400:com9, ^iftype_text, %varclient_43);
     %varclient_43 = calc(%varclient_43 + 1);
-    cc_setposition(4, %varclient_49);
-    .cc_setposition($int9, %varclient_49);
-    cc_setsize($int5, $int8);
-    .cc_setsize($int10, $int8);
+    cc_setposition(4, %varclient_49, ^setposh_abs_left, ^setposv_abs_top);
+    .cc_setposition($int9, %varclient_49, ^setposh_abs_left, ^setposv_abs_top);
+    cc_setsize($int5, $int8, ^setsize_abs, ^setsize_abs);
+    .cc_setsize($int10, $int8, ^setsize_abs, ^setsize_abs);
     .cc_settextfont(p11_full);
     .cc_settextalign(^settextalignh_left, ^settextalignv_centre, 0);
     .cc_settextshadow(true);
@@ -82,8 +82,8 @@ while ($int11 < $int2) {
     .cc_settext($string1);
     .cc_create(interface_400:com9, ^iftype_graphic, %varclient_43);
     %varclient_43 = calc(%varclient_43 + 1);
-    .cc_setposition(4, calc(%varclient_49 + ($int8 - 17) / 2));
-    .cc_setsize(17, 17);
+    .cc_setposition(4, calc(%varclient_49 + ($int8 - 17) / 2), ^setposh_abs_left, ^setposv_abs_top);
+    .cc_setsize(17, 17, ^setsize_abs, ^setsize_abs);
     if (testbit($int3, $int11) = ^true) {
         .cc_setgraphic("options_radio_buttons,2");
     } else if ($boolean1 = true) {
@@ -103,12 +103,12 @@ while ($int11 < $int2) {
 %varclient_49 = calc(%varclient_49 + 4);
 $int8 = calc(%varclient_49 - $int7);
 if (cc_find(interface_400:com9, $int6) = ^true) {
-    cc_setsize($int4, $int8);
+    cc_setsize($int4, $int8, ^setsize_abs, ^setsize_abs);
 }
 if (cc_find(interface_400:com9, calc($int6 + 1)) = ^true) {
-    cc_setsize($int4, $int8);
+    cc_setsize($int4, $int8, ^setsize_abs, ^setsize_abs);
 }
 if (cc_find(interface_400:com9, calc($int6 + 2)) = ^true) {
-    cc_setsize(calc($int4 - 2), calc($int8 - 2));
+    cc_setsize(calc($int4 - 2), calc($int8 - 2), ^setsize_abs, ^setsize_abs);
 }
 %varclient_49 = calc(%varclient_49 + 4);

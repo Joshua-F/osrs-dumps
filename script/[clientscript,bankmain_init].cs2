@@ -1,69 +1,74 @@
 // 274
-[clientscript,bankmain_init](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10, component $component11, component $component12, component $component13, component $component14, component $component15)
-def_int $int16 = %varclient_51;
+[clientscript,bankmain_init](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10, component $component11, component $component12, component $component13, component $component14, component $component15, component $component16)
+~steelborder($component2, "", 0);
+def_int $int17 = %varclient_51;
 if (~bankmain_searching = true) {
     ~meslayer_close(1);
 } else if (%varclient_5 <= 0) {
     %varclientstring_22 = "";
 }
-~bankmain_search_setbutton($component0, $component1, $component2, $component5, $component6, $component7, $component13, $component14, $component12, $component15);
-if_setonop("bankmain_search_toggle(event_opindex, $component0, $component1, $component2, $component5, $component6, $component7, $component13, $component14, $component12, $component15)", $component12);
+~bankmain_search_setbutton($component0, $component1, $component3, $component6, $component7, $component8, $component14, $component15, $component13, $component16);
+if_setonop("bankmain_search_toggle(event_opindex, $component0, $component1, $component3, $component6, $component7, $component8, $component14, $component15, $component13, $component16)", $component13);
+cc_deleteall($component7);
+~scrollbar_vertical($component7, $component6, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~bankmain_swapinsert($component9, $component10);
+if_setonvartransmit("bankmain_swapinsert($component9, $component10){varplayer_304}", $component9);
+~bankmain_itemnote($component11, $component12);
+if_setonvartransmit("bankmain_itemnote($component11, $component12){varplayer_115}", $component11);
 cc_deleteall($component6);
-~scrollbar_vertical($component6, $component5, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-~bankmain_swapinsert($component8, $component9);
-if_setonvartransmit("bankmain_swapinsert($component8, $component9){varplayer_304}", $component8);
-~bankmain_itemnote($component10, $component11);
-if_setonvartransmit("bankmain_itemnote($component10, $component11){varplayer_115}", $component10);
-cc_deleteall($component5);
-def_int $int17 = 0;
 def_int $int18 = 0;
-while ($int18 < 800) {
-    cc_create($component5, ^iftype_graphic, $int17);
-    $int17 = calc($int17 + 1);
-    cc_setsize(36, 32);
+def_int $int19 = 0;
+while ($int19 < 800) {
+    cc_create($component6, ^iftype_graphic, $int18);
+    $int18 = calc($int18 + 1);
+    cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
     cc_setgraphicshadow(0x333333);
     cc_setoutline(1);
     cc_setdragdeadzone(5);
     cc_setdragdeadtime(5);
-    $int18 = calc($int18 + 1);
+    $int19 = calc($int19 + 1);
 }
-def_int $int19 = if_getwidth($component5);
-$int18 = 1;
-while ($int18 <= 9) {
-    cc_create($component5, ^iftype_graphic, $int17);
-    $int17 = calc($int17 + 1);
-    cc_setsize($int19, 2);
+def_int $int20 = if_getwidth($component6);
+$int19 = 1;
+while ($int19 <= 9) {
+    cc_create($component6, ^iftype_graphic, $int18);
+    $int18 = calc($int18 + 1);
+    cc_setsize($int20, 2, ^setsize_abs, ^setsize_abs);
     cc_setgraphic(tradebacking_dark);
     cc_settiling(true);
-    $int18 = calc($int18 + 1);
+    $int19 = calc($int19 + 1);
 }
-$int18 = 1;
-while ($int18 <= 9) {
-    cc_create($component5, ^iftype_text, $int17);
-    $int17 = calc($int17 + 1);
-    cc_setsize($int19, 15);
+$int19 = 1;
+while ($int19 <= 9) {
+    cc_create($component6, ^iftype_text, $int18);
+    $int18 = calc($int18 + 1);
+    cc_setsize($int20, 15, ^setsize_abs, ^setsize_abs);
     cc_settextalign(^settextalignh_left, ^settextalignv_top, 0);
     cc_settextfont(p11_full);
     cc_setcolour(0xe4d8a2);
     cc_setonmouserepeat("cc_colour_swapper(event_com, event_comsubid, ^white)");
     cc_setonmouseleave("cc_colour_swapper(event_com, event_comsubid, 0xe4d8a2)");
     cc_settextshadow(true);
-    cc_settext("Tab <tostring($int18)>");
+    cc_settext("Tab <tostring($int19)>");
     cc_setop(1, "View tab");
-    cc_setopbase("<col=ff9040><tostring($int18)></col>");
-    cc_setonop("bankmain_switchtab($component0, $component1, $component2, $component5, $component6, $component7, $component13, $component14, $component12, $component15, event_opindex, $int18)");
-    $int18 = calc($int18 + 1);
+    cc_setopbase("<col=ff9040><tostring($int19)></col>");
+    cc_setonop("bankmain_switchtab($component0, $component1, $component3, $component6, $component7, $component8, $component14, $component15, $component13, $component16, event_opindex, $int19)");
+    $int19 = calc($int19 + 1);
 }
-$int18 = 0;
-while ($int18 <= 9) {
-    cc_create($component5, ^iftype_rectangle, $int17);
-    $int17 = calc($int17 + 1);
-    cc_setsize(0, 32);
+$int19 = 0;
+while ($int19 <= 9) {
+    cc_create($component6, ^iftype_rectangle, $int18);
+    $int18 = calc($int18 + 1);
+    cc_setsize(0, 32, ^setsize_abs, ^setsize_abs);
     cc_setfill(true);
     cc_settrans(255);
-    $int18 = calc($int18 + 1);
+    $int19 = calc($int19 + 1);
 }
-~bankmain_menubutton(false, $component0, $component1, $component2, $component5, $component6, $component7, $component13, $component14, $component12, $component15, $component3, $component4);
-if_setoninvtransmit("bankmain_build($component0, $component1, $component2, $component5, $component6, $component7, $component13, $component14, $component12, $component15){inv_95}", $component5);
-if_setonvartransmit("bankmain_build($component0, $component1, $component2, $component5, $component6, $component7, $component13, $component14, $component12, $component15){varplayer_304, varplayer_115, varplayer_867, varplayer_1052, varplayer_1053}", $component5);
-%varclient_51 = $int16;
+~bankmain_menubutton(false, $component0, $component1, $component3, $component6, $component7, $component8, $component14, $component15, $component13, $component16, $component4, $component5);
+if_setoninvtransmit("bankmain_build($component0, $component1, $component3, $component6, $component7, $component8, $component14, $component15, $component13, $component16){inv_95}", $component6);
+if_setonvartransmit("bankmain_build($component0, $component1, $component3, $component6, $component7, $component8, $component14, $component15, $component13, $component16){varplayer_304, varplayer_115, varplayer_867, varplayer_1052, varplayer_1053}", $component6);
+%varclient_51 = $int17;
+def_component $component21 = if_getlayer($component0);
+if ($component21 ! null) {
+    ~bankmain_size_check($component0, $component21, -2147483648, -2147483648, $component7, $component6);
+}
