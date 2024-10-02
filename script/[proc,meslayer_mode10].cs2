@@ -3,11 +3,14 @@
 if (%varclient_11 = 1) {
     if_close;
 }
-if_sethide(false, interface_548:com118);
-if_sethide(true, interface_548:com119);
+~meslayer_open;
 if_settext("Enter the player name whose channel you wish to join:", interface_548:com123);
 %varclient_5 = 10;
-%varclientstring_22 = "";
 ~script222;
-if_setonclick(null, interface_548:com118);
 if_setonkey("meslayer_onkey(event_key, event_keychar)", interface_548:com124);
+~meslayer_initlastnames;
+if (string_length(%varclientstring_129) > 0) {
+    ~meslayer_dynamicbutton;
+    cc_settext("<col=000000>Last name:</col> <%varclientstring_129>");
+    cc_setonclick("meslayer_lastname_click(10, %varclientstring_129)");
+}
