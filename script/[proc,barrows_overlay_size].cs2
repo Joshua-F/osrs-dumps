@@ -1,38 +1,65 @@
 // 168
-[proc,barrows_overlay_size](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, int $int9)
-def_enum $enum10 = ~toplevel_getcomponents;
-if ($enum10 = null) {
+[proc,barrows_overlay_size](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, int $int10)
+def_enum $enum11 = ~toplevel_getcomponents;
+if ($enum11 = null) {
     return;
 }
-def_int $int11 = enum(enum, int, enum_1135, $enum10);
-if_setsize($int11, enum(enum, int, enum_1136, $enum10), ^setsize_minus, ^setsize_minus, $component1);
-if ($int11 > 0) {
+def_int $rgb12 = 0x4d4d2f;
+def_int $setposh13 = ^setposh_abs_left;
+def_int $setposh14 = ^setposh_abs_right;
+if (~inzone(0_55_151_0_0, 3_55_151_63_63, coord) = true) {
+    if_sethide(false, $component1);
+    if_sethide(false, $component8);
+    if_sethide(false, $component9);
+} else if (~inzone(0_55_51_26_4, 0_55_51_63_55, coord) = true) {
+    if_sethide(true, $component1);
+    if_sethide(false, $component8);
+    if_sethide(false, $component9);
+} else {
+    if_sethide(true, $component1);
+    if_sethide(true, $component8);
+    if_sethide(true, $component9);
+}
+def_int $int15 = enum(enum, int, enum_1135, $enum11);
+if_setsize($int15, enum(enum, int, enum_1136, $enum11), ^setsize_minus, ^setsize_minus, $component1);
+if ($int15 > 0) {
     if_setposition(18, 200, ^setposh_abs_right, ^setposv_abs_top, $component8);
-    if_setcolour(0xa0a0a0, $component8);
+    if_setposition(5, 20, ^setposh_abs_left, ^setposv_abs_top, $component9);
+    $rgb12, $setposh13, $setposh14 = 0xa0a0a0, ^setposh_abs_right, ^setposh_abs_left;
 } else {
     if_setposition(10, 8, ^setposh_abs_right, ^setposv_abs_bottom, $component8);
-    if_setcolour(0x4d4d2f, $component8);
+    if_setposition(10, 28, ^setposh_abs_right, ^setposv_abs_bottom, $component9);
 }
-def_int $int12 = if_getheight($component1);
-if ($int12 < 334) {
-    $int12 = 334;
-} else if ($int12 > 1500) {
-    $int12 = 1500;
+if_setcolour($rgb12, $component8);
+def_int $int16 = 0;
+while ($int16 < 6) {
+    if (cc_find($component9, calc($int16 * 2)) = ^true & .cc_find($component9, calc($int16 * 2 + 1)) = ^true) {
+        cc_setposition(0, calc($int16 * 17), $setposh14, ^setposv_abs_top);
+        .cc_setposition(0, calc($int16 * 17), $setposh13, ^setposv_abs_top);
+        cc_setcolour($rgb12);
+    }
+    $int16 = calc($int16 + 1);
 }
-if ($int12 = $int9) {
+def_int $int17 = if_getheight($component1);
+if ($int17 < 334) {
+    $int17 = 334;
+} else if ($int17 > 1500) {
+    $int17 = 1500;
+}
+if ($int17 = $int10) {
     return;
 }
-def_int $int13 = calc(400 - interpolate(0, invpow(calc($int12 - 334), 2), 0, invpow(calc(1500 - 334), 2), 280));
-if_setmodelangle(0, 0, 0, 0, 0, $int13, $component2);
-if_setmodelangle(0, 0, 0, 0, 0, $int13, $component3);
-if_setmodelangle(0, 0, 0, 0, 0, $int13, $component4);
-if_setmodelangle(0, 0, 0, 0, 0, $int13, $component5);
-if_setmodelangle(0, 0, 0, 0, 0, $int13, $component6);
-if_setmodelangle(0, 0, 0, 0, 0, $int13, $component7);
+def_int $int18 = calc(400 - interpolate(0, invpow(calc($int17 - 334), 2), 0, invpow(calc(1500 - 334), 2), 280));
+if_setmodelangle(0, 0, 0, 0, 0, $int18, $component2);
+if_setmodelangle(0, 0, 0, 0, 0, $int18, $component3);
+if_setmodelangle(0, 0, 0, 0, 0, $int18, $component4);
+if_setmodelangle(0, 0, 0, 0, 0, $int18, $component5);
+if_setmodelangle(0, 0, 0, 0, 0, $int18, $component6);
+if_setmodelangle(0, 0, 0, 0, 0, $int18, $component7);
 if_sethide(true, $component2);
 if_sethide(true, $component3);
 if_sethide(true, $component4);
 if_sethide(true, $component5);
 if_sethide(true, $component6);
 if_sethide(true, $component7);
-if_setontimer("barrows_overlay_size($component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $int12)", $component0);
+if_setontimer("barrows_overlay_size($component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $int17)", $component0);

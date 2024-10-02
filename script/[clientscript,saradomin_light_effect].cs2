@@ -1,0 +1,22 @@
+// 1068
+[clientscript,saradomin_light_effect]
+def_enum $enum0 = ~toplevel_getcomponents;
+if ($enum0 = null) {
+    return;
+}
+def_component $component1 = enum(component, component, $enum0, interface_161:com3);
+if ($component1 = null) {
+    return;
+}
+cc_deleteall($component1);
+cc_create($component1, ^iftype_model, 0);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setposh_abs_centre, ^setposv_abs_centre);
+cc_setmodel(model_29403);
+.cc_create($component1, ^iftype_rectangle, 1);
+.cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+.cc_setposition(0, 0, ^setposh_abs_centre, ^setposv_abs_centre);
+.cc_setcolour(^white);
+.cc_setfill(true);
+cc_setontimer("saradomin_light_effect_update(event_com, event_comsubid, .cc_getid, clientclock)");
+~saradomin_light_effect_update($component1, 0);
