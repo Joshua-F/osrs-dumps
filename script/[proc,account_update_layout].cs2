@@ -1,28 +1,27 @@
 // 2502
 [proc,account_update_layout]
+def_int $int0 = 0;
 if (~bonds_hide = true) {
     if (%varplayerbit_6713 = 0 & %varclient_103 = 1) {
-        if_sethide(false, interface_109:com26);
         if_sethide(true, interface_109:com31);
         if_setsize(190, 56, ^setsize_abs, ^setsize_abs, interface_109:com24);
-        if_sethide(true, interface_109:com38);
-        if_setsize(190, 28, ^setsize_abs, ^setsize_abs, interface_109:com36);
-        if_setposition(0, 31, ^setposh_abs_left, ^setposv_abs_top, interface_109:com24);
-        if_setposition(0, 92, ^setposh_abs_left, ^setposv_abs_top, interface_109:com36);
-        if_setposition(0, 124, ^setposh_abs_left, ^setposv_abs_top, interface_109:com43);
+        $int0 = calc($int0 + 32);
     } else {
-        if_sethide(false, interface_109:com26);
         if_sethide(false, interface_109:com31);
         if_setsize(190, 88, ^setsize_abs, ^setsize_abs, interface_109:com24);
-        if_sethide(true, interface_109:com38);
-        if_setsize(190, 28, ^setsize_abs, ^setsize_abs, interface_109:com36);
-        if_setposition(0, 31, ^setposh_abs_left, ^setposv_abs_top, interface_109:com24);
-        if_setposition(0, 123, ^setposh_abs_left, ^setposv_abs_top, interface_109:com36);
-        if_setposition(0, 155, ^setposh_abs_left, ^setposv_abs_top, interface_109:com43);
     }
+    if_setposition(0, calc(109 - $int0), ^setposh_abs_left, ^setposv_abs_top, interface_109:com36);
+    if (%varclient_228 = 0) {
+        if_sethide(true, interface_109:com38);
+        if_setsize(190, 24, ^setsize_abs, ^setsize_abs, interface_109:com36);
+        $int0 = calc($int0 + 32);
+    } else {
+        if_sethide(false, interface_109:com38);
+        if_setsize(190, 56, ^setsize_abs, ^setsize_abs, interface_109:com36);
+    }
+    if_setposition(0, calc(165 - $int0), ^setposh_abs_left, ^setposv_abs_top, interface_109:com43);
     if_sethide(true, interface_109:com65);
 } else {
-    if_sethide(false, interface_109:com26);
     if_sethide(false, interface_109:com31);
     if_setsize(190, 88, ^setsize_abs, ^setsize_abs, interface_109:com24);
     if_sethide(false, interface_109:com38);
