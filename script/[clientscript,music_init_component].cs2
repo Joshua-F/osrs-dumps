@@ -1,72 +1,78 @@
 // 252
 [clientscript,music_init_component](component $component0, int $int1, int $int2)
-def_coord $coord3 = null;
-def_int $int4 = -1;
+def_int $int3 = 0;
+def_coord $coord4 = null;
 def_int $int5 = -1;
-def_int $int6 = 0;
+def_int $int6 = -1;
+def_int $int7 = 0;
 def_string $string0 = "";
 if (cc_find($component0, $int1) = ^true) {
-    cc_setsize(if_getwidth($component0), 14, ^setsize_abs, ^setsize_abs);
-    cc_setposition(0, calc(32 + $int2 * 15), ^setposh_abs_left, ^setposv_abs_top);
-    cc_settextfont(p12_full);
-    cc_settextshadow(true);
-    cc_settextalign(^settextalignh_left, ^settextalignv_top, 0);
-    $string0 = enum(int, string, enum_812, $int1);
-    cc_settext($string0);
-    cc_setop(1, "Play");
-    cc_setop(2, "Unlock hint");
-    cc_setopbase("<col=ff9040><$string0>");
-    $coord3 = enum(int, coord, enum_819, $int1);
-    if ($coord3 ! null) {
-        $int4, $int5 = coordx($coord3), coordz($coord3);
-        switch_int ($int4) {
-            case 1 :
-                $int6 = %varplayer_20;
-            case 2 :
-                $int6 = %varplayer_21;
-            case 3 :
-                $int6 = %varplayer_22;
-            case 4 :
-                $int6 = %varplayer_23;
-            case 5 :
-                $int6 = %varplayer_24;
-            case 6 :
-                $int6 = %varplayer_25;
-            case 7 :
-                $int6 = %varplayer_298;
-            case 8 :
-                $int6 = %varplayer_311;
-            case 9 :
-                $int6 = %varplayer_346;
-            case 10 :
-                $int6 = %varplayer_414;
-            case 11 :
-                $int6 = %varplayer_464;
-            case 12 :
-                $int6 = %varplayer_598;
-            case 13 :
-                $int6 = %varplayer_662;
-            case 14 :
-                $int6 = %varplayer_721;
-            case 15 :
-                $int6 = %varplayer_906;
-            case 16 :
-                $int6 = %varplayer_1009;
-            case 17 :
-                $int6 = %varplayer_1338;
-            case 18 :
-                $int6 = %varplayer_1681;
-        }
-        if (testbit($int6, $int5) = ^true) {
-            ~music_setcolour(^green);
-        } else if ($int1 = 331 & %varplayerbit_1028 > 35) {
-            ~music_setcolour(^green);
-        } else {
-            ~music_setcolour(^red);
-        }
-    } else {
-        ~music_setcolour(^green);
-    }
-    cc_setonmouseover("cc_colour_swapper(event_com, event_comsubid, ^white)");
     cc_setontimer(null);
+    $int3 = enum(int, int, enum_818, $int1);
+    if ($int3 ! 0) {
+        cc_setsize(0, 15, ^setsize_minus, ^setsize_abs);
+        cc_setposition(0, calc(32 + $int2 * 15), ^setposh_abs_centre, ^setposv_abs_top);
+        cc_settextfont(p12_full);
+        cc_settextshadow(true);
+        cc_settextalign(^settextalignh_left, ^settextalignv_top, 0);
+        $string0 = enum(int, string, enum_812, $int3);
+        cc_settext($string0);
+        cc_setop(1, "Play");
+        cc_setop(2, "Unlock hint");
+        cc_setopbase("<col=ff9040><$string0></col>");
+        $coord4 = enum(int, coord, enum_819, $int3);
+        if ($coord4 ! null) {
+            $int5, $int6 = coordx($coord4), coordz($coord4);
+            switch_int ($int5) {
+                case 1 :
+                    $int7 = %varplayer_20;
+                case 2 :
+                    $int7 = %varplayer_21;
+                case 3 :
+                    $int7 = %varplayer_22;
+                case 4 :
+                    $int7 = %varplayer_23;
+                case 5 :
+                    $int7 = %varplayer_24;
+                case 6 :
+                    $int7 = %varplayer_25;
+                case 7 :
+                    $int7 = %varplayer_298;
+                case 8 :
+                    $int7 = %varplayer_311;
+                case 9 :
+                    $int7 = %varplayer_346;
+                case 10 :
+                    $int7 = %varplayer_414;
+                case 11 :
+                    $int7 = %varplayer_464;
+                case 12 :
+                    $int7 = %varplayer_598;
+                case 13 :
+                    $int7 = %varplayer_662;
+                case 14 :
+                    $int7 = %varplayer_721;
+                case 15 :
+                    $int7 = %varplayer_906;
+                case 16 :
+                    $int7 = %varplayer_1009;
+                case 17 :
+                    $int7 = %varplayer_1338;
+                case 18 :
+                    $int7 = %varplayer_1681;
+            }
+            if (testbit($int7, $int6) = ^true) {
+                ~music_setcolour(^green);
+            } else if ($int3 = 331 & %varplayerbit_1028 > 35) {
+                ~music_setcolour(^green);
+            } else {
+                ~music_setcolour(^red);
+            }
+        } else {
+            ~music_setcolour(^green);
+        }
+        cc_setonmouseover("cc_colour_swapper(event_com, event_comsubid, ^white)");
+    } else {
+        cc_sethide(true);
+    }
 }
