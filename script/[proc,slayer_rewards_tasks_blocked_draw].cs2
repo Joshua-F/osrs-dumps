@@ -1,0 +1,68 @@
+// 426
+[proc,slayer_rewards_tasks_blocked_draw](component $component0, int $int1, int $int2, component $component3, component $component4, component $component5, component $component6, component $component7)
+cc_deleteall($component0);
+def_int $int8 = 0;
+if ($int1 = 1) {
+    $int8 = %varplayerbit_3209;
+} else if ($int1 = 2) {
+    $int8 = %varplayerbit_3210;
+} else if ($int1 = 3) {
+    $int8 = %varplayerbit_3211;
+} else if ($int1 = 4) {
+    $int8 = %varplayerbit_3212;
+} else {
+    return;
+}
+def_int $int9 = if_getwidth($component0);
+def_int $int10 = if_getheight($component0);
+def_int $int11 = 0;
+cc_create($component0, ^iftype_text, $int11);
+$int11 = calc($int11 + 1);
+cc_setposition(0, 0);
+cc_setsize(85, $int10);
+cc_setcolour(0xff981f);
+cc_settextfont(p12_full);
+cc_settextshadow(true);
+cc_settextalign(^settextalignh_left, ^settextalignv_top, 0);
+cc_settext("Slot <tostring($int1)>:");
+cc_create($component0, ^iftype_text, $int11);
+$int11 = calc($int11 + 1);
+cc_setposition(85, 0);
+cc_setsize(calc($int9 - 170), $int10);
+cc_settextfont(p12_full);
+cc_settextshadow(true);
+cc_settextalign(^settextalignh_centre, ^settextalignv_top, 0);
+if ($int8 = 0) {
+    if (%varplayer_101 < $int2) {
+        cc_setcolour(^red);
+        cc_settext("You need <tostring($int2)> QP to use this slot.");
+    } else {
+        cc_setcolour(0xff981f);
+        cc_settext("Empty");
+    }
+} else {
+    cc_setcolour(^white);
+    cc_settext(enum(int, string, enum_693, $int8));
+}
+cc_create($component0, ^iftype_graphic, $int11);
+$int11 = calc($int11 + 1);
+.cc_create($component0, ^iftype_text, $int11);
+$int11 = calc($int11 + 1);
+cc_setsize(85, 22);
+.cc_setsize(85, 22);
+cc_setposition(calc($int9 - 85), 0);
+.cc_setposition(cc_getx, 0);
+cc_setgraphic("combatboxesmed,0");
+.cc_settextfont(p11_full);
+.cc_settextalign(^settextalignh_centre, ^settextalignv_centre, 0);
+.cc_settextshadow(true);
+.cc_settext("Unblock task");
+if ($int8 ! 0) {
+    .cc_setcolour(0xff981f);
+    cc_setonmouseover("cc_colour_swapper(event_com, .cc_getid, ^white)");
+    cc_setonmouseleave("cc_colour_swapper(event_com, .cc_getid, 0xff981f)");
+    cc_setop(1, "Unblock");
+    cc_setonop("slayer_rewards_tasks_unblocktask($int8, $int1, $component3, $component4, $component5, $component6, $component7)");
+} else {
+    .cc_setcolour(0x7f4c0f);
+}
