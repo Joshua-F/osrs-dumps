@@ -1,0 +1,29 @@
+// 3252
+[proc,script3252](component $component0)
+def_int $int1 = 0;
+def_obj $obj2 = null;
+if (%varplayerbit_3729 = 0) {
+    $int1 = ~v2_stone_button_in_filled($component0);
+} else {
+    $obj2 = enum(int, namedobj, enum_2750, %varplayerbit_3729);
+    $int1 = ~v2_stone_button_filled($component0);
+}
+cc_create($component0, ^iftype_text, $int1);
+cc_setsize(if_getwidth($component0), if_getheight($component0), ^setsize_abs, ^setsize_abs);
+cc_setposition(0, 0, ^setposh_abs_left, ^setposv_abs_top);
+cc_settextalign(^settextalignh_centre, ^settextalignv_centre, 0);
+cc_settextfont(p11_full);
+cc_setcolour(0xff981f);
+cc_settextshadow(true);
+if (%varplayerbit_3729 = 0) {
+    cc_settext("Select an item");
+} else {
+    if ($obj2 ! null) {
+        cc_settext("Confirm: <col=ffffff><oc_name($obj2)> x<tostring(enum(namedobj, int, enum_2751, $obj2))>");
+    } else {
+        cc_settext("Confirm");
+    }
+    cc_setonmouseleave("v2_stone_button_change_out($component0, 0)");
+    cc_setonmouserepeat("v2_stone_button_change_in($component0, 0)");
+    cc_setop(1, "Confirm");
+}

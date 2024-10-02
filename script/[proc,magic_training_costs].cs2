@@ -1,0 +1,128 @@
+// 3260
+[proc,magic_training_costs](component $component0, int $int1)
+if ($int1 = 63) {
+    return;
+}
+def_int $int2 = %varplayer_2224;
+def_int $int3 = ~magic_training_costs_background($component0);
+def_int $int4 = calc(if_getwidth($component0) / 2);
+def_int $int5 = calc(if_getheight($component0) / 3 - 1);
+def_int $int6 = 0;
+def_obj $obj7 = enum(int, namedobj, enum_2753, $int1);
+def_int $int8 = 0;
+def_int $int9 = 0;
+def_obj $obj10 = enum(obj, namedobj, enum_2759, $obj7);
+def_string $string0 = ",";
+cc_create($component0, ^iftype_text, $int3);
+$int3 = calc($int3 + 1);
+cc_settextalign(^settextalignh_centre, ^settextalignv_centre, 0);
+cc_settextfont(p11_full);
+cc_settextshadow(true);
+cc_setcolour(0xff981f);
+cc_settext("Cost to buy the item");
+if ($obj10 ! null) {
+    $int6 = 50;
+    $int4 = calc($int4 - 25);
+    cc_setsize(calc(if_getwidth($component0) - $int6), $int5, ^setsize_abs, ^setsize_abs);
+    cc_setposition($int6, 2, ^setposh_abs_left, ^setposv_abs_top);
+    cc_create($component0, ^iftype_graphic, $int3);
+    cc_setoutline(1);
+    cc_setsize(32, 32, ^setsize_abs, ^setsize_abs);
+    cc_setposition(9, calc(if_getheight($component0) / 2 - 20), ^setposh_abs_left, ^setposv_abs_top);
+    cc_setobject($obj10, 1);
+    $int3 = calc($int3 + 1);
+    $int9 = inv_total(inv_93, $obj10);
+    $int8 = calc(1 * $int2);
+    cc_create($component0, ^iftype_text, $int3);
+    cc_setsize(50, 15, ^setsize_abs, ^setsize_abs);
+    cc_setposition(0, 0, ^setposh_abs_left, ^setposv_abs_bottom);
+    cc_settextalign(^settextalignh_centre, ^settextalignv_centre, 0);
+    cc_settextfont(p11_full);
+    if ($int9 >= $int8) {
+        cc_setcolour(^green);
+    } else {
+        cc_setcolour(^red);
+    }
+    cc_settextshadow(true);
+    if (%varplayer_2224 = 0) {
+        cc_settext("<~tostring_spacer($int9, $string0)>/?>");
+    } else {
+        cc_settext("<~tostring_spacer($int9, $string0)>/<~tostring_spacer($int8, $string0)>");
+    }
+    $int3 = calc($int3 + 1);
+} else {
+    cc_setsize(if_getwidth($component0), $int5, ^setsize_abs, ^setsize_abs);
+    cc_setposition($int6, 2, ^setposh_abs_left, ^setposv_abs_top);
+}
+$int8 = calc(enum(obj, int, enum_2755, $obj7) * $int2);
+cc_create($component0, ^iftype_text, $int3);
+cc_setsize($int4, $int5, ^setsize_abs, ^setsize_abs);
+cc_setposition($int6, calc(2 + $int5), ^setposh_abs_left, ^setposv_abs_top);
+cc_settextalign(^settextalignh_centre, ^settextalignv_centre, 0);
+cc_settextfont(p11_full);
+if (%varplayer_261 < $int8 | %varplayer_2224 = 0) {
+    cc_setcolour(^red);
+} else {
+    cc_setcolour(^green);
+}
+cc_settextshadow(true);
+if (%varplayer_2224 = 0) {
+    cc_settext("Telekinetic: ?");
+} else {
+    cc_settext("Telekinetic: <~tostring_spacer(%varplayer_261, $string0)>/<~tostring_spacer($int8, $string0)>");
+}
+$int3 = calc($int3 + 1);
+$int8 = calc(enum(obj, int, enum_2756, $obj7) * $int2);
+cc_create($component0, ^iftype_text, $int3);
+cc_setsize($int4, $int5, ^setsize_abs, ^setsize_abs);
+cc_setposition(calc($int4 + $int6), calc(2 + $int5), ^setposh_abs_left, ^setposv_abs_top);
+cc_settextalign(^settextalignh_centre, ^settextalignv_centre, 0);
+cc_settextfont(p11_full);
+if (%varplayer_264 < $int8 | %varplayer_2224 = 0) {
+    cc_setcolour(^red);
+} else {
+    cc_setcolour(^green);
+}
+cc_settextshadow(true);
+if (%varplayer_2224 = 0) {
+    cc_settext("Graveyard: ?");
+} else {
+    cc_settext("Graveyard: <~tostring_spacer(%varplayer_264, $string0)>/<~tostring_spacer($int8, $string0)>");
+}
+$int3 = calc($int3 + 1);
+$int8 = calc(enum(obj, int, enum_2757, $obj7) * $int2);
+cc_create($component0, ^iftype_text, $int3);
+cc_setsize($int4, $int5, ^setsize_abs, ^setsize_abs);
+cc_setposition($int6, calc(2 + $int5 * 2), ^setposh_abs_left, ^setposv_abs_top);
+cc_settextalign(^settextalignh_centre, ^settextalignv_centre, 0);
+cc_settextfont(p11_full);
+if (%varplayer_263 < $int8 | %varplayer_2224 = 0) {
+    cc_setcolour(^red);
+} else {
+    cc_setcolour(^green);
+}
+cc_settextshadow(true);
+if (%varplayer_2224 = 0) {
+    cc_settext("Enchantment: ?");
+} else {
+    cc_settext("Enchantment: <~tostring_spacer(%varplayer_263, $string0)>/<~tostring_spacer($int8, $string0)>");
+}
+$int3 = calc($int3 + 1);
+$int8 = calc(enum(obj, int, enum_2758, $obj7) * $int2);
+cc_create($component0, ^iftype_text, $int3);
+cc_setsize($int4, $int5, ^setsize_abs, ^setsize_abs);
+cc_setposition(calc($int4 + $int6), calc(2 + $int5 * 2), ^setposh_abs_left, ^setposv_abs_top);
+cc_settextalign(^settextalignh_centre, ^settextalignv_centre, 0);
+cc_settextfont(p11_full);
+if (%varplayer_262 < $int8 | %varplayer_2224 = 0) {
+    cc_setcolour(^red);
+} else {
+    cc_setcolour(^green);
+}
+cc_settextshadow(true);
+if (%varplayer_2224 = 0) {
+    cc_settext("Alchemist: ?");
+} else {
+    cc_settext("Alchemist: <~tostring_spacer(%varplayer_262, $string0)>/<~tostring_spacer($int8, $string0)>");
+}
+$int3 = calc($int3 + 1);
