@@ -2,42 +2,81 @@
 [proc,makeovermage_colour_update](component $component0)
 cc_deleteall($component0);
 def_int $int1 = if_getwidth($component0);
-def_int $int2 = calc($int1 - 2);
-def_int $int3 = 1;
-def_int $int4 = 0;
+def_int $int2 = 1;
+def_int $int3 = 0;
+def_int $int4 = -1;
 def_int $int5 = -1;
-def_int $int6 = -1;
-def_int $rgb7 = enum(int, int, enum_998, $int4);
+def_int $int6 = 27;
+if (%varplayerbit_4803 = 1) {
+    if (%varplayerbit_4804 = 1) {
+        $int6 = 21;
+    } else {
+        $int6 = 25;
+    }
+} else if (%varplayerbit_4804 = 1) {
+    $int6 = 23;
+}
+def_int $rgb7 = enum(int, int, enum_998, $int3);
 while ($rgb7 ! null) {
-    cc_create($component0, ^iftype_rectangle, $int4);
-    $int5 = enum(int, int, enum_999, $int4);
-    if (%varplayerbit_1001 >= 12 | $int5 ! 8) {
-        if ($int5 = %varplayer_262) {
-            $int6 = $int3;
+    cc_create($component0, ^iftype_rectangle, $int3);
+    $int4 = enum(int, int, enum_999, $int3);
+    if ($int4 = 8) {
+        if (%varplayerbit_4803 = 1) {
+            if ($int4 = %varplayer_262) {
+                $int5 = $int2;
+            }
+            cc_sethide(false);
+            cc_setsize(2, $int6, ^setsize_minus, ^setsize_abs);
+            cc_setposition(1, $int2, ^setposh_abs_left, ^setposv_abs_top);
+            cc_setfill(true);
+            cc_setcolour($rgb7);
+            cc_setop(1, "Select colour");
+            cc_setonop("makeovermage_colour_op(event_opindex, $int4, $component0)");
+            $int2 = calc($int2 + $int6);
+        } else {
+            cc_sethide(true);
+        }
+    } else if ($int4 = 9 | $int4 = 10) {
+        if (%varplayerbit_4804 = 1) {
+            if ($int4 = %varplayer_262) {
+                $int5 = $int2;
+            }
+            cc_sethide(false);
+            cc_setsize(2, $int6, ^setsize_minus, ^setsize_abs);
+            cc_setposition(1, $int2, ^setposh_abs_left, ^setposv_abs_top);
+            cc_setfill(true);
+            cc_setcolour($rgb7);
+            cc_setop(1, "Select colour");
+            cc_setonop("makeovermage_colour_op(event_opindex, $int4, $component0)");
+            $int2 = calc($int2 + $int6);
+        } else {
+            cc_sethide(true);
+        }
+    } else {
+        if ($int4 = %varplayer_262) {
+            $int5 = $int2;
         }
         cc_sethide(false);
-        cc_setsize($int2, 25, ^setsize_abs, ^setsize_abs);
-        cc_setposition(1, $int3, ^setposh_abs_left, ^setposv_abs_top);
+        cc_setsize(2, $int6, ^setsize_minus, ^setsize_abs);
+        cc_setposition(1, $int2, ^setposh_abs_left, ^setposv_abs_top);
         cc_setfill(true);
         cc_setcolour($rgb7);
         cc_setop(1, "Select colour");
-        cc_setonop("makeovermage_colour_op(event_opindex, $int5, $component0)");
-        $int3 = calc($int3 + 25);
-    } else {
-        cc_sethide(true);
+        cc_setonop("makeovermage_colour_op(event_opindex, $int4, $component0)");
+        $int2 = calc($int2 + $int6);
     }
-    $int4 = calc($int4 + 1);
-    $rgb7 = enum(int, int, enum_998, $int4);
+    $int3 = calc($int3 + 1);
+    $rgb7 = enum(int, int, enum_998, $int3);
 }
-cc_create($component0, ^iftype_rectangle, $int4);
-cc_setsize($int1, calc($int3 + 1), ^setsize_abs, ^setsize_abs);
+cc_create($component0, ^iftype_rectangle, $int3);
+cc_setsize(0, calc($int2 + 1), ^setsize_minus, ^setsize_abs);
 cc_setposition(0, 0, ^setposh_abs_left, ^setposv_abs_top);
 cc_setfill(false);
 cc_setcolour(^black);
-$int4 = calc($int4 + 1);
-if ($int6 ! -1) {
-    cc_create($component0, ^iftype_graphic, $int4);
+$int3 = calc($int3 + 1);
+if ($int5 ! -1) {
+    cc_create($component0, ^iftype_graphic, $int3);
     cc_setsize(25, 25, ^setsize_abs, ^setsize_abs);
     cc_setgraphic(overlay_multiway);
-    cc_setposition(calc(($int1 - 25) / 2), $int6, ^setposh_abs_left, ^setposv_abs_top);
+    cc_setposition(0, calc($int5 - (25 - $int6) / 2), ^setposh_abs_centre, ^setposv_abs_top);
 }
