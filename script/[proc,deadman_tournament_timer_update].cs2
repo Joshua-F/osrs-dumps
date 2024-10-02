@@ -1,14 +1,24 @@
 // 1640
-[proc,deadman_tournament_timer_update](int $int0)
-$int0 = calc($int0 - clientclock);
-if ($int0 < 0) {
-    $int0 = calc(600 * 30 + $int0);
+[proc,deadman_tournament_timer_update](component $component0, int $int1)
+if (%varplayerbit_6462 = 1) {
+    if_setontimer("deadman_tournament_timer_update($component0, %varplayerbit_4164)", $component0);
+    return;
 }
-$int0 = calc($int0 / 50);
-def_int $int1 = calc($int0 / 60);
-def_int $int2 = calc($int0 % 60);
-if ($int2 < 10) {
-    if_settext("<tostring($int1)>:0<tostring($int2)>", interface_90:com10);
+$int1 = calc($int1 - clientclock);
+if ($int1 < 0) {
+    $int1 = calc(600 * 30 + $int1);
+}
+$int1 = calc($int1 / 50);
+if ($int1 > %varclient_221 & $int1 < calc(%varclient_221 + 20)) {
+    return;
+}
+%varclient_221 = $int1;
+$int1 = ~min($int1, scale(30, 50, 600));
+$int1 = ~max($int1, 0);
+def_int $int2 = calc($int1 / 60);
+def_int $int3 = calc($int1 % 60);
+if ($int3 < 10) {
+    if_settext("<tostring($int2)>:0<tostring($int3)>", interface_90:com10);
 } else {
-    if_settext("<tostring($int1)>:<tostring($int2)>", interface_90:com10);
+    if_settext("<tostring($int2)>:<tostring($int3)>", interface_90:com10);
 }
