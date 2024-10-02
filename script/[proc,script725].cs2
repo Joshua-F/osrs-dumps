@@ -1,0 +1,100 @@
+// 725
+[proc,script725](component $component0, int $int1, int $int2, int $int3, int $int4, component $component5, component $component6, component $component7)
+def_int $int8 = 0;
+def_component $component9 = enum(int, component, enum_583, $int8);
+while ($component9 ! null) {
+    ~script726($component0, $int1, $int2, $int3, $int4, $component5, $component6, $component7, $int8, $component9);
+    $int8 = calc($int8 + 1);
+    $component9 = enum(int, component, enum_583, $int8);
+}
+if (%varplayerbit_4376 = 0) {
+    if (cc_find($component0, $int1) = ^true) {
+        cc_setgraphic(tradebacking_dark);
+    }
+    if (cc_find($component0, $int2) = ^true) {
+        cc_settextalign(^settextalignh_centre, ^settextalignv_centre, 0);
+        cc_settext("To advertise an item for sale, select an empty slot above.");
+    }
+    if (cc_find($component0, $int3) = ^true) {
+        cc_setobject(obj_6512, 1);
+    }
+    if (cc_find($component0, $int4) = ^true) {
+        cc_settext("");
+    }
+    if_sethide(true, $component5);
+    if_sethide(true, $component6);
+    if_sethide(true, $component7);
+    return;
+}
+if (cc_find($component0, $int1) = ^true) {
+    cc_setgraphic(tradebacking_light);
+}
+def_obj $obj10 = inv_getobj(inv_307, 0);
+if ($obj10 = null) {
+    $obj10 = inv_getobj(inv_307, 1);
+}
+if ($obj10 = null) {
+    if (cc_find($component0, $int2) = ^true) {
+        cc_settextalign(^settextalignh_centre, ^settextalignv_centre, 0);
+        cc_settext("Select an item from your inventory.<br><br>Right-click to offer higher quantities.");
+    }
+    if (cc_find($component0, $int3) = ^true) {
+        cc_setobject(obj_6512, 1);
+    }
+    if (cc_find($component0, $int4) = ^true) {
+        cc_settext("");
+    }
+    if_sethide(true, $component5);
+    if_sethide(true, $component6);
+    if_sethide(true, $component7);
+    return;
+}
+def_int $int11 = inv_getnum(inv_307, 0);
+def_int $int12 = inv_getnum(inv_307, 1);
+if (calc(2147483647 - $int11) < $int12) {
+    $int11 = 2147483647;
+} else {
+    $int11 = calc($int11 + $int12);
+}
+if (cc_find($component0, $int2) = ^true) {
+    cc_settextalign(^settextalignh_centre, ^settextalignv_top, 0);
+    cc_settext("Selling: <~tostring_spacer($int11, ",")> x <oc_name($obj10)>");
+}
+if (cc_find($component0, $int3) = ^true) {
+    cc_setobject(oc_uncert($obj10), $int11);
+}
+def_int $int13 = -1;
+if (cc_find($component0, $int4) = ^true) {
+    if (%varplayerbit_4373 > 0) {
+        if (%varplayerbit_4373 > 1) {
+            if ($int11 > 1) {
+                if (calc(2147483647 / $int11) < %varplayerbit_4373) {
+                    $int13 = 2147483647;
+                } else {
+                    $int13 = calc(%varplayerbit_4373 * $int11);
+                }
+            }
+            if ($int11 > 1) {
+                if ($int13 ! -1 & $int13 < 2147483647) {
+                    cc_settext("<~tostring_spacer(%varplayerbit_4373, ",")> coins each<br><col=9f9f9f>=<~tostring_spacer($int13, ",")> total</col>");
+                } else {
+                    cc_settext("<~tostring_spacer(%varplayerbit_4373, ",")> coins each");
+                }
+            } else {
+                cc_settext("<~tostring_spacer(%varplayerbit_4373, ",")> coins");
+            }
+        } else if ($int11 = 1) {
+            cc_settext("1 coin");
+        } else {
+            cc_settext("1 coin each<br><col=9f9f9f>=<~tostring_spacer($int11, ",")> coins total</col>");
+        }
+        if_sethide(false, $component5);
+        if_sethide(false, $component6);
+        if_sethide(false, $component7);
+    } else {
+        cc_settext("Set a price.");
+        if_sethide(false, $component5);
+        if_sethide(false, $component6);
+        if_sethide(true, $component7);
+    }
+}
