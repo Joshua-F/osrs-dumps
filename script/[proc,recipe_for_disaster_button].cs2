@@ -1,0 +1,50 @@
+// 3758
+[proc,recipe_for_disaster_button](int $int0, int $int1, int $int2, npc $npc3, int $int4, int $int5, component $component6)(int)
+def_string $string0 = enum(int, string, enum_1540, $int2);
+cc_create($component6, ^iftype_rectangle, $int5);
+$int5 = calc($int5 + 1);
+cc_sethide(false);
+cc_setsize($int4, 50, ^setsize_abs, ^setsize_abs);
+cc_setposition($int0, $int1, ^setposh_abs_left, ^setposv_abs_top);
+cc_setcolour(^white);
+cc_setfill(true);
+cc_settrans(255);
+cc_setonmouserepeat("cc_settrans(event_com, event_comsubid, 220, null)");
+cc_setonmouseleave("cc_settrans(event_com, event_comsubid, 255, null)");
+cc_setop(1, $string0);
+cc_setonop("recipe_for_disaster_op(event_com, event_comsubid, $int2)");
+cc_create($component6, ^iftype_model, $int5);
+$int5 = calc($int5 + 1);
+cc_sethide(false);
+if ($int2 = 1) {
+    cc_setsize(30, 50, ^setsize_abs, ^setsize_abs);
+    cc_setposition($int0, $int1, ^setposh_abs_left, ^setposv_abs_top);
+    cc_setnpchead($npc3);
+    cc_setmodelangle(0, 10, 80, 0, 0, 2500);
+    cc_setontimer("recipe_for_disaster_animate(event_com, event_comsubid, calc(clientclock + random(5)), seq_579)");
+    cc_create($component6, ^iftype_model, $int5);
+    $int5 = calc($int5 + 1);
+    cc_setsize(30, 50, ^setsize_abs, ^setsize_abs);
+    cc_setposition(calc($int0 + 20), $int1, ^setposh_abs_left, ^setposv_abs_top);
+    cc_setnpchead(npc_3392);
+    cc_setmodelangle(0, 10, 80, 0, 0, 2500);
+    cc_setontimer("recipe_for_disaster_animate(event_com, event_comsubid, calc(clientclock + random(5)), seq_579)");
+} else {
+    cc_setsize(50, 50, ^setsize_abs, ^setsize_abs);
+    cc_setposition($int0, $int1, ^setposh_abs_left, ^setposv_abs_top);
+    cc_setnpchead($npc3);
+    cc_setmodelangle(0, 20, 80, 0, 0, 2100);
+    cc_setontimer("recipe_for_disaster_animate(event_com, event_comsubid, calc(clientclock + random(20)), seq_579)");
+}
+cc_create($component6, ^iftype_text, $int5);
+$int5 = calc($int5 + 1);
+cc_sethide(false);
+cc_setsize(calc($int4 - 60), 50, ^setsize_abs, ^setsize_abs);
+cc_setposition(calc($int0 + 55), $int1, ^setposh_abs_left, ^setposv_abs_top);
+cc_setcolour(~recipe_for_disaster_getcolour($int2));
+cc_setonvartransmit("recipe_for_disaster_updatecolour(event_com, event_comsubid, $int2){varplayer_681, varplayer_679, varplayer_683, varplayer_680, varplayer_684, varplayer_685}");
+cc_settextfont(p12_full);
+cc_settextalign(^settextalignh_left, ^settextalignv_centre, 0);
+cc_settextshadow(true);
+cc_settext($string0);
+return($int5);
