@@ -17,7 +17,7 @@ if (%varplayerbit_4698 = 31) {
 } else {
     $stat8 = enum(int, stat, enum_681, %varplayerbit_4698);
 }
-def_int $int9 = 0;
+def_boolean $boolean9 = false;
 def_string $string0 = ",";
 def_string $string1 = "";
 def_string $string2 = "";
@@ -32,7 +32,7 @@ def_int $int16 = 0;
 def_int $int17 = 0;
 def_int $int18 = 0;
 if ($stat7 ! null) {
-    $int9 = 1;
+    $boolean9 = true;
     if_setgraphic(enum(stat, graphic, enum_255, $stat7), $component1);
     $int10, $int11 = ~xpdrops_data_get($stat7);
     $int12 = stat_xp($stat7);
@@ -66,7 +66,7 @@ if ($stat7 ! null) {
     $string1, $string2 = "", "";
     ~deltooltip_action($component6);
 } else {
-    $int9 = 1;
+    $boolean9 = true;
     if_setgraphic("staticons2,7", $component1);
     $int17, $int16 = ~stats_totalxp;
     if (%varplayer_1252 = -1) {
@@ -104,9 +104,11 @@ if ($stat7 ! null) {
 def_component $component19 = if_getlayer($component2);
 ~xp_drops_tooltip_setup($string2, $string1, $component6, $component19, $component0);
 if (~on_mobile = true) {
-    ~xp_drops_tooltip_setup($string2, $string1, $component6, $component3, $component0);
+    if_setnoclickthrough($boolean9, $component19);
+} else {
+    if_setnoclickthrough(false, $component19);
 }
-def_int $int20 = 0;
+def_boolean $boolean20 = false;
 def_int $int21 = 0;
 def_int $int22 = 0;
 def_int $int23 = 0;
@@ -114,7 +116,7 @@ def_int $int24 = 0;
 def_int $int25 = 0;
 def_int $int26 = 0;
 if ($stat8 ! null) {
-    $int20 = 1;
+    $boolean20 = true;
     $int12 = stat_xp($stat8);
     $int10, $int11 = ~xpdrops_data_get($stat8);
     if ($int11 ! -1 & $int11 > $int10) {
@@ -142,7 +144,7 @@ if ($stat8 ! null) {
         }
     }
 } else if (%varplayerbit_4698 = 30) {
-    $int20 = 1;
+    $boolean20 = true;
     $int17, $int16 = ~stats_totalxp;
     if (%varplayer_1252 ! -1 & %varplayer_1252 > %varplayer_1228) {
         if ($int17 < 2 & %varplayer_1252 <= calc(2147483647 / 1000)) {
@@ -184,14 +186,17 @@ if ($stat8 ! null) {
     $string1, $string2 = "", "";
     ~deltooltip_action($component6);
 }
-if (~on_mobile = false) {
-    ~xp_drops_tooltip_setup($string2, $string1, $component6, $component3, $component0);
+~xp_drops_tooltip_setup($string2, $string1, $component6, $component3, $component0);
+if (~on_mobile = true) {
+    if_setnoclickthrough($boolean20, $component3);
+} else {
+    if_setnoclickthrough(false, $component3);
 }
-if ($int9 = 1) {
+if ($boolean9 = true) {
     if_sethide(false, $component19);
     if_setposition(0, 0, ^setposh_abs_centre, ^setposv_abs_top, $component19);
     if_setsize(0, 29, ^setsize_minus, ^setsize_abs, $component19);
-    if ($int20 = 1) {
+    if ($boolean20 = true) {
         if_sethide(false, $component3);
         if_setposition(0, 28, ^setposh_abs_centre, ^setposv_abs_top, $component3);
         if_setposition(0, calc(if_gety($component0) + 38), ^setposh_abs_centre, ^setposv_abs_top, $component5);
@@ -199,7 +204,7 @@ if ($int9 = 1) {
         if_sethide(true, $component3);
         if_setposition(0, calc(if_gety($component0) + 29), ^setposh_abs_centre, ^setposv_abs_top, $component5);
     }
-} else if ($int20 = 1) {
+} else if ($boolean20 = true) {
     if_sethide(false, $component19);
     if_setposition(0, 5, ^setposh_abs_centre, ^setposv_abs_top, $component19);
     if_setsize(0, 4, ^setsize_minus, ^setsize_abs, $component19);
