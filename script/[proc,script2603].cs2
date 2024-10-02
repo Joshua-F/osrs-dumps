@@ -1,0 +1,97 @@
+// 2603
+[proc,script2603](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, string $string0, string $string1)
+cc_deleteall($component8);
+if_setontimer(null, $component4);
+%varclient_225 = -1;
+cc_deleteall($component7);
+def_int $int9 = 0;
+def_int $int10 = 0;
+if ($component0 = $component1) {
+    if_sethide(false, $component1);
+    if_setonclick("script2602(null, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $string0, $string1)", $component1);
+    if_sethide(true, $component2);
+    if_setonclick(null, $component2);
+    if_sethide(false, $component3);
+    if_sethide(false, $component4);
+    if_sethide(false, $component5);
+    if_sethide(true, $component6);
+    while ($int9 = 0) {
+        if (cc_find($component5, $int10) = ^true) {
+            cc_settrans(220);
+        } else {
+            $int9 = 1;
+        }
+        $int10 = calc($int10 + 1);
+    }
+} else if ($component0 = $component2) {
+    if_sethide(true, $component1);
+    if_setonclick(null, $component1);
+    if_sethide(false, $component2);
+    if_setonclick("script2602(null, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $string0, $string1)", $component2);
+    if_sethide(true, $component3);
+    if_sethide(true, $component4);
+    if_sethide(true, $component5);
+    if_sethide(false, $component6);
+    $int10 = 0;
+    while ($int10 < 5) {
+        cc_create($component7, ^iftype_rectangle, $int10);
+        cc_setsize(0, 25, ^setsize_minus, ^setsize_abs);
+        cc_setposition(0, calc($int10 * 25), ^setposh_abs_centre, ^setposv_abs_top);
+        cc_setfill(true);
+        cc_setcolour(^white);
+        ~script2608(0);
+        cc_setop(1, "Change filter");
+        cc_setonop("magic_spellbook_filtertoggle_op(event_opindex, event_com, event_comsubid)");
+        $int10 = calc($int10 + 1);
+    }
+    $int10 = ~script2604(0, "Show <col=ffffff>Combat</col> spells", $component7, $int10);
+    $int10 = ~script2604(1, "Show <col=ffffff>Teleport</col> spells", $component7, $int10);
+    $int10 = ~script2604(2, "Show <col=ffffff>Utility</col> spells", $component7, $int10);
+    $int10 = ~script2604(3, "Show spells you lack the Magic level to cast", $component7, $int10);
+    $int10 = ~script2604(4, "Show spells you lack the runes to cast", $component7, $int10);
+} else {
+    if_sethide(false, $component1);
+    if_setonclick("script2602($component1, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $string0, $string1)", $component1);
+    if_sethide(false, $component2);
+    if_setonclick("script2602($component2, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $string0, $string1)", $component2);
+    if_sethide(false, $component3);
+    if_sethide(true, $component4);
+    if_sethide(true, $component5);
+    if_sethide(true, $component6);
+}
+cc_deleteall($component1);
+if ($component0 = null | $component0 = $component1) {
+    if ($component0 = $component1) {
+        $int10 = ~options_button_on($component1, 0);
+    } else {
+        $int10 = ~options_button_off($component1, 0);
+    }
+    cc_create($component1, ^iftype_text, $int10);
+    cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+    cc_setposition(0, 0, ^setposh_abs_centre, ^setposv_abs_centre);
+    cc_setcolour(0xff981f);
+    cc_settextshadow(true);
+    cc_settextfont(p11_full);
+    cc_settextalign(^settextalignh_centre, ^settextalignv_centre, 0);
+    cc_settext($string0);
+    if_setonmouserepeat("cc_colour_swapper(event_com, $int10, ^white)", $component1);
+    if_setonmouseleave("cc_colour_swapper(event_com, $int10, 0xff981f)", $component1);
+}
+cc_deleteall($component2);
+if ($component0 = null | $component0 = $component2) {
+    if ($component0 = $component2) {
+        $int10 = ~options_button_on($component2, 0);
+    } else {
+        $int10 = ~options_button_off($component2, 0);
+    }
+    cc_create($component2, ^iftype_text, $int10);
+    cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+    cc_setposition(0, 0, ^setposh_abs_centre, ^setposv_abs_centre);
+    cc_setcolour(0xff981f);
+    cc_settextshadow(true);
+    cc_settextfont(p11_full);
+    cc_settextalign(^settextalignh_centre, ^settextalignv_centre, 0);
+    cc_settext($string1);
+    if_setonmouserepeat("cc_colour_swapper(event_com, $int10, ^white)", $component2);
+    if_setonmouseleave("cc_colour_swapper(event_com, $int10, 0xff981f)", $component2);
+}

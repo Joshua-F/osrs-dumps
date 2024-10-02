@@ -1,23 +1,28 @@
 // 329
-[clientscript,combat_interface_autocast](component $component0, int $int1, int $int2, component $component3, int $int4)
-def_int $int5 = 33;
-def_int $int6 = 36;
-def_graphic $graphic7 = "sideicons_interface,6";
-if (%varplayerbit_276 ! 0) {
-    $graphic7 = enum(int, graphic, enum_796, %varplayerbit_276);
-    if ($graphic7 ! null) {
-        $int5, $int6 = 24, 24;
+[clientscript,combat_interface_autocast](component $component0, component $component1, int $int2)
+def_int $int3 = 33;
+def_int $int4 = 36;
+def_int $int5 = 0;
+def_graphic $graphic6 = "sideicons_interface,6";
+def_obj $obj7 = enum(int, obj, enum_1986, %varplayerbit_276);
+if ($obj7 ! null) {
+    $graphic6 = oc_param($obj7, param_597);
+    if ($graphic6 ! null) {
+        $int3, $int4 = 24, 24;
     } else {
-        $graphic7 = "sideicons_interface,6";
+        $graphic6 = "sideicons_interface,6";
     }
-    if (%varplayerbit_2668 = $int4) {
-        if_setgraphic("combatboxes_large,1", $component3);
+    if (%varplayerbit_2668 = $int2) {
+        ~options_button_on($component1, 0);
     } else {
-        if_setgraphic("combatboxes_large,0", $component3);
+        ~options_button_off($component1, 0);
     }
 } else {
-    if_setgraphic("combatboxes_large,0", $component3);
+    ~options_button_off($component1, 0);
 }
-if_setsize($int5, $int6, ^setsize_abs, ^setsize_abs, $component0);
-if_setgraphic($graphic7, $component0);
-if_setposition(calc($int1 - $int5 / 2), calc($int2 - $int6 / 2), ^setposh_abs_left, ^setposv_abs_top, $component0);
+if_setsize($int3, $int4, ^setsize_abs, ^setsize_abs, $component0);
+if_setgraphic($graphic6, $component0);
+if ($int2 = 1) {
+    $int5 = 14;
+}
+if_setposition($int5, -5, ^setposh_abs_centre, ^setposv_abs_centre, $component0);

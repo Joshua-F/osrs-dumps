@@ -1,26 +1,27 @@
 // 144
-[clientscript,bank_depositbox_init](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6)
-cc_deleteall($component0);
-def_int $int7 = 0;
-def_int $int8 = inv_size(inv_93);
-while ($int7 < $int8) {
-    cc_create($component0, ^iftype_graphic, $int7);
+[clientscript,bank_depositbox_init](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9)
+~bank_depositbox_layout($component0, $component2, $component3);
+cc_deleteall($component1);
+def_int $int10 = 0;
+def_int $int11 = inv_size(inv_93);
+while ($int10 < $int11) {
+    cc_create($component1, ^iftype_graphic, $int10);
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
     cc_setgraphicshadow(0x333333);
     cc_setoutline(1);
     cc_setdragdeadzone(5);
     cc_setdragdeadtime(5);
     cc_sethide(false);
-    $int7 = calc($int7 + 1);
+    $int10 = calc($int10 + 1);
 }
-~bank_depositbox_update($component0, $component5, $component6);
-if_setoninvtransmit("bank_depositbox_update($component0, $component5, $component6){inv_93}", $component0);
-if_setonvartransmit("bank_depositbox_update($component0, $component5, $component6){varplayer_261}", $component0);
-if_setonmouseover("settrans($component2, 75)", $component1);
-if_setonmouseleave("settrans($component2, 0)", $component1);
-if_setonmouseover("settrans($component4, 75)", $component3);
-if_setonmouseleave("settrans($component4, 0)", $component3);
-def_graphic $graphic9 = "miscgraphics,0";
-def_graphic $graphic10 = "miscgraphics,9";
-if_setonop("bankmain_depositall(event_com, $graphic10, $graphic9, event_opindex)", $component1);
-if_setonop("bankmain_depositall(event_com, $graphic10, $graphic9, event_opindex)", $component3);
+~bank_depositbox_update($component1, $component8, $component9);
+if_setoninvtransmit("bank_depositbox_update($component1, $component8, $component9){inv_93}", $component1);
+if_setonvartransmit("bank_depositbox_update($component1, $component8, $component9){varplayer_261, varplayer_1793, varplayer_1794}", $component1);
+if_setonmouseover("settrans($component5, 75)", $component4);
+if_setonmouseleave("settrans($component5, 0)", $component4);
+if_setonmouseover("settrans($component7, 75)", $component6);
+if_setonmouseleave("settrans($component7, 0)", $component6);
+def_graphic $graphic12 = "miscgraphics,0";
+def_graphic $graphic13 = "miscgraphics,9";
+if_setonop("bankmain_depositall(event_com, $graphic13, $graphic12, event_opindex)", $component4);
+if_setonop("bankmain_depositall(event_com, $graphic13, $graphic12, event_opindex)", $component6);
