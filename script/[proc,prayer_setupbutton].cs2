@@ -1,0 +1,34 @@
+// 460
+[proc,prayer_setupbutton](int $int0, component $component1, component $component2)
+cc_deleteall($component1);
+def_string $string0 = enum(int, string, enum_860, $int0);
+if_setopbase("<col=ff9040><$string0>", $component1);
+cc_create($component1, ^iftype_graphic, 0);
+cc_setsize(34, 34);
+cc_setposition(0, 0);
+cc_setgraphic(prayerglow);
+.cc_create($component1, ^iftype_graphic, 1);
+.cc_setsize(30, 30);
+.cc_setposition(2, 2);
+~prayer_updatebutton($int0, $component1);
+if ($int0 = 25 | $int0 = 26) {
+    if_setonstattransmit("prayer_updatebutton($int0, $component1, cc_getid, .cc_getid){prayer, defence}", $component1);
+    if_setonvartransmit("prayer_updatebutton($int0, $component1, cc_getid, .cc_getid){varplayer_83, varplayer_1050}", $component1);
+} else {
+    if_setonstattransmit("prayer_updatebutton($int0, $component1, cc_getid, .cc_getid){prayer}", $component1);
+    if_setonvartransmit("prayer_updatebutton($int0, $component1, cc_getid, .cc_getid){varplayer_83}", $component1);
+}
+if_setonop("prayer_op(event_opindex, $int0, $component1, cc_getid, .cc_getid)", $component1);
+$string0 = append("Level <tostring(enum(int, int, enum_861, $int0))><br>", $string0);
+$string0 = append($string0, "<br><enum(int, string, enum_862, $int0)>");
+if_setonmouserepeat("addtooltip(event_com, $component2, $string0, 25, if_getwidth(if_getlayer($component1)))", $component1);
+if_setonmouseleave("deltooltip($component2)", $component1);
+if ($int0 = 8 & ~high_risk_world = true) {
+    .cc_settrans(100);
+    .cc_create($component1, ^iftype_graphic, 2);
+    .cc_setsize(25, 25);
+    .cc_setposition(5, 4);
+    .cc_setgraphic("pvpw_icons,1");
+} else {
+    .cc_settrans(0);
+}

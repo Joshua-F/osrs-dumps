@@ -1,0 +1,14 @@
+// 463
+[proc,prayer_updatebutton](int $int0, component $component1)
+if (testbit(%varplayerbit_4101, $int0) = ^true) {
+    if_setop(1, "Deactivate", $component1);
+    cc_sethide(false);
+} else {
+    if_setop(1, "Activate", $component1);
+    cc_sethide(true);
+}
+if (~prayer_isavailable($int0) = true) {
+    .cc_setgraphic(enum(int, graphic, enum_865, $int0));
+} else {
+    .cc_setgraphic(enum(int, graphic, enum_864, $int0));
+}
