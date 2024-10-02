@@ -29,11 +29,23 @@ def_int $int8 = calc($int3 - 64);
 ~create_graphic($component0, 11, "v2_stone_borders,10", $int5, 17, ^setposh_abs_left, ^setposv_abs_top, 32, 32, ^setsize_abs, ^setsize_abs);
 ~create_graphic($component0, 12, "v2_stone_borders,8", 11, 15, ^setposh_abs_left, ^setposv_abs_top, calc($int2 - 22), 32, ^setsize_abs, ^setsize_abs);
 def_graphic $graphic9 = "v2_stone_close_button,0";
+def_graphic $graphic10 = "v2_stone_close_button,1";
+def_int $int11 = calc($int2 - 26);
+def_int $int12 = 10;
+def_int $int13 = 16;
+def_int $int14 = 16;
+if (~on_mobile = true) {
+    $graphic9 = "stoneborder_close_button,0";
+    $graphic10 = "stoneborder_close_button,0";
+    $int11 = calc($int2 - 34);
+    $int12 = 2;
+    $int13 = 32;
+    $int14 = 32;
+}
 if (testbit($int1, 0) = ^false) {
-    ~create_graphic($component0, 13, $graphic9, calc($int2 - 26), 10, ^setposh_abs_left, ^setposv_abs_top, 16, 16, ^setsize_abs, ^setsize_abs);
+    ~create_graphic($component0, 13, $graphic9, $int11, $int12, ^setposh_abs_left, ^setposv_abs_top, $int13, $int14, ^setsize_abs, ^setsize_abs);
     cc_setonmouseleave("cc_graphic_swapper(event_com, event_comsubid, $graphic9, null)");
-    $graphic9 = "v2_stone_close_button,1";
-    cc_setonmouseover("cc_graphic_swapper(event_com, event_comsubid, $graphic9, null)");
+    cc_setonmouseover("cc_graphic_swapper(event_com, event_comsubid, $graphic10, null)");
     cc_setop(1, "Close");
     cc_setonop("closebutton_click");
 }

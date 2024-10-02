@@ -21,11 +21,23 @@ def_int $int2 = cc_getid;
 ~create_graphic($component0, 9, "steelborder2,0", 0, -15, ^setposh_abs_centre, ^setposv_abs_top, 50, 36, ^setsize_minus, ^setsize_abs);
 ~create_graphic($component0, 10, "miscgraphics,3", 0, -15, ^setposh_abs_centre, ^setposv_abs_bottom, 50, 36, ^setsize_minus, ^setsize_abs);
 def_graphic $graphic3 = "close_buttons,0";
+def_graphic $graphic4 = "close_buttons,1";
+def_int $int5 = 3;
+def_int $int6 = 6;
+def_int $int7 = 26;
+def_int $int8 = 23;
+if (~on_mobile = true) {
+    $graphic3 = "steelborder_close_button,0";
+    $graphic4 = "steelborder_close_button,0";
+    $int5 = 1;
+    $int6 = 1;
+    $int7 = 33;
+    $int8 = 33;
+}
 if (testbit($int1, 0) = ^false) {
-    ~create_graphic($component0, 11, $graphic3, 3, 6, ^setposh_abs_right, ^setposv_abs_top, 26, 23, ^setsize_abs, ^setsize_abs);
+    ~create_graphic($component0, 11, $graphic3, $int5, $int6, ^setposh_abs_right, ^setposv_abs_top, $int7, $int8, ^setsize_abs, ^setsize_abs);
     cc_setonmouseleave("cc_graphic_swapper(event_com, event_comsubid, $graphic3, null)");
-    $graphic3 = "close_buttons,1";
-    cc_setonmouseover("cc_graphic_swapper(event_com, event_comsubid, $graphic3, null)");
+    cc_setonmouseover("cc_graphic_swapper(event_com, event_comsubid, $graphic4, null)");
     cc_setop(1, "Close");
     cc_setonop("closebutton_click");
     cc_setonkey("closebutton_key(event_key)");
