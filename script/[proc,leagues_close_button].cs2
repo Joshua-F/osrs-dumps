@@ -1,0 +1,27 @@
+// 3691
+[proc,leagues_close_button](component $component0, boolean $boolean1)
+def_graphic $graphic2 = "close_buttons,0";
+def_graphic $graphic3 = "close_buttons,1";
+def_int $int4 = 3;
+def_int $int5 = 6;
+def_int $int6 = 26;
+def_int $int7 = 23;
+if (~on_mobile = true) {
+    $graphic2 = "steelborder_close_button,0";
+    $graphic3 = "steelborder_close_button,0";
+    $int4 = 1;
+    $int5 = 1;
+    $int6 = 33;
+    $int7 = 33;
+}
+if_setposition($int4, $int5, ^setposh_abs_right, ^setposv_abs_top, $component0);
+if_setsize($int6, $int7, ^setsize_abs, ^setsize_abs, $component0);
+~create_graphic($component0, 0, $graphic2, 0, 0, ^setposh_abs_centre, ^setposv_abs_centre, $int6, $int7, ^setsize_abs, ^setsize_abs);
+cc_setonmouseleave("cc_graphic_swapper(event_com, event_comsubid, $graphic2, null)");
+cc_setonmouseover("cc_graphic_swapper(event_com, event_comsubid, $graphic3, null)");
+if_setop(1, "Close", $component0);
+if_setonop("leagues_closebutton_click($boolean1)", $component0);
+if (~in_league_tutorial = true) {
+    return;
+}
+if_setonkey("closebutton_key(event_key)", $component0);
