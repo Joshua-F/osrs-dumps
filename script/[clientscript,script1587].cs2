@@ -1,0 +1,16 @@
+// 1587
+[clientscript,script1587](component $component0, int $int1)
+def_int $int2 = 0;
+def_int $int3 = 0;
+if (cc_find($component0, $int1) = ^true & .cc_find(interface_549:com13, $int1) = ^true) {
+    if_settext("Reset streak:<br><.cc_gettext>", interface_549:com24);
+    if_setsize(calc(parawidth(if_gettext(interface_549:com24), 75, fontmetrics_494) + 10), 50, ^setsize_abs, ^setsize_abs, interface_549:com19);
+    if (paraheight(if_gettext(interface_549:com24), if_getwidth(interface_549:com24), fontmetrics_494) > 2) {
+        if_setsize(if_getwidth(interface_549:com19), 60, ^setsize_abs, ^setsize_abs, interface_549:com19);
+    }
+    $int2 = if_getscrolly(interface_549:com5);
+    $int3 = calc(if_getscrolly(interface_549:com5) + if_getheight(interface_549:com5) - if_getheight(interface_549:com19));
+    if_sethide(false, interface_549:com17);
+    if_sethide(false, interface_549:com19);
+    if_setposition(12, ~minmax($int2, $int3, calc(18 * $int1 + 5)), ^setposh_abs_right, ^setposv_abs_top, interface_549:com19);
+}
