@@ -6,15 +6,19 @@ def_int $int5 = -1;
 def_int $int6 = -1;
 def_int $int7 = 0;
 def_string $string0 = "";
+def_int $int8 = 15;
+if (~on_mobile = true) {
+    $int8 = scale(4, 3, $int8);
+}
 if (cc_find($component0, $int1) = ^true) {
     cc_setontimer(null);
     $int3 = enum(int, int, enum_818, $int1);
     if ($int3 ! 0) {
-        cc_setsize(0, 15, ^setsize_minus, ^setsize_abs);
-        cc_setposition(0, calc(32 + $int2 * 15), ^setposh_abs_centre, ^setposv_abs_top);
+        cc_setsize(0, $int8, ^setsize_minus, ^setsize_abs);
+        cc_setposition(0, calc(3 + $int2 * $int8), ^setposh_abs_centre, ^setposv_abs_top);
         cc_settextfont(p12_full);
         cc_settextshadow(true);
-        cc_settextalign(^settextalignh_left, ^settextalignv_top, 0);
+        cc_settextalign(^settextalignh_left, ^settextalignv_centre, 0);
         $string0 = enum(int, string, enum_812, $int3);
         cc_settext($string0);
         cc_setop(1, "Play");
@@ -62,14 +66,14 @@ if (cc_find($component0, $int1) = ^true) {
                     $int7 = %varplayer_1681;
             }
             if (testbit($int7, $int6) = ^true) {
-                ~music_setcolour(^green);
+                ~music_setcolour(0xdc10d);
             } else if ($int3 = 331 & %varplayerbit_1028 > 35) {
-                ~music_setcolour(^green);
+                ~music_setcolour(0xdc10d);
             } else {
                 ~music_setcolour(^red);
             }
         } else {
-            ~music_setcolour(^green);
+            ~music_setcolour(0xdc10d);
         }
         cc_setonmouseover("cc_colour_swapper(event_com, event_comsubid, ^white)");
     } else {
