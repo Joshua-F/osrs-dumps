@@ -1,0 +1,93 @@
+// 253
+[clientscript,nzone_listbosses](int $int0, int $int1, string $string0, string $string1, string $string2)
+def_component $component2 = interface_187:com1;
+def_component $component3 = interface_187:com3;
+def_component $component4 = interface_187:com2;
+def_int $int5 = 386;
+def_int $int6 = calc(paraheight($string0, $int5, fontmetrics_495) * 12 + 3);
+def_int $int7 = 0;
+if (string_length($string1) > 0 | string_length($string2) > 0) {
+    $int7 = 33;
+}
+~script245($component2, $component3, $component4, "Available bosses", calc(33 + $int6), $int7);
+cc_create($component2, ^iftype_text, 3);
+cc_setposition(calc((512 - $int5) / 2), 70);
+cc_setsize($int5, $int6);
+cc_settextfont(p12_full);
+cc_setcolour(0x46320a);
+cc_settextalign(^settextalignh_centre, ^settextalignv_centre, 0);
+cc_settext($string0);
+def_graphic $graphic8 = "ame_confirm_button,0";
+def_graphic $graphic9 = "ame_confirm_button,1";
+def_int $int10 = 0;
+def_int $int11 = 0;
+def_int $int12 = 0;
+if ($int7 > 0) {
+    $int12 = calc(if_gety($component3) + if_getheight($component3) + 3);
+    $int10 = calc(parawidth($string1, 2147483647, fontmetrics_495) + 3);
+    $int11 = calc(parawidth($string2, 2147483647, fontmetrics_495) + 3 + 30);
+    cc_create($component2, ^iftype_rectangle, 4);
+    cc_setposition(55, $int12);
+    cc_setsize(calc($int10 + 30), 30);
+    cc_setfill(true);
+    cc_settrans(255);
+    cc_setonmouseover("cc_graphic_swapper(event_com, 8, $graphic9)");
+    cc_setonmouseleave("cc_graphic_swapper(event_com, 8, $graphic8)");
+    cc_create($component2, ^iftype_rectangle, 5);
+    cc_setposition(calc(457 - $int11), $int12);
+    cc_setsize($int11, 30);
+    cc_setfill(true);
+    cc_settrans(255);
+    cc_setonmouseover("cc_graphic_swapper(event_com, 9, $graphic9)");
+    cc_setonmouseleave("cc_graphic_swapper(event_com, 9, $graphic8)");
+    cc_create($component2, ^iftype_text, 6);
+    cc_setposition(55, $int12);
+    cc_setsize($int10, 30);
+    cc_settextfont(p12_full);
+    cc_setcolour(0x46320a);
+    cc_settextalign(^settextalignh_left, ^settextalignv_centre, 0);
+    cc_settext($string1);
+    cc_create($component2, ^iftype_text, 7);
+    cc_setposition(calc(457 - $int11), $int12);
+    cc_setsize($int11, 30);
+    cc_settextfont(p12_full);
+    cc_setcolour(0x46320a);
+    cc_settextalign(^settextalignh_left, ^settextalignv_centre, 0);
+    cc_settext($string2);
+    ~create_graphic($component2, 8, $graphic8, calc(55 + $int10), $int12, 29, 29);
+    cc_setvflip(true);
+    ~create_graphic($component2, 9, $graphic8, 427, $int12, 29, 29);
+}
+$int10 = if_getwidth($component3);
+def_int $int13 = 0;
+def_int $int14 = 0;
+def_int $int15 = 0;
+def_int $int16 = -1;
+def_int $int17 = enum(int, int, enum_797, $int15);
+while ($int17 ! -1) {
+    $int16 = enum(int, int, enum_803, $int17);
+    if ($int16 ! -1 & testbit($int0, $int16) = ^true) {
+        cc_create($component3, ^iftype_text, $int13);
+        cc_setposition(0, $int14);
+        cc_setsize($int10, 14);
+        cc_settextfont(p12_full);
+        cc_setcolour(0x46320a);
+        cc_settextalign(^settextalignh_centre, ^settextalignv_top, 14);
+        if (testbit($int1, $int16) = ^true) {
+            cc_settext(enum(int, string, enum_802, $int17));
+        } else {
+            cc_settext("<str><enum(int, string, enum_802, $int17)></str>");
+        }
+        $int13, $int14 = calc($int13 + 1), calc($int14 + 14);
+    }
+    $int15 = calc($int15 + 1);
+    $int17 = enum(int, int, enum_797, $int15);
+}
+if ($int14 > 0) {
+    $int14 = calc($int14 + 1);
+}
+if_setscrollsize(0, $int14, $component3);
+if_setscrollpos(0, 0, $component3);
+if ($int14 > if_getheight($component3)) {
+    ~scrollbar_vertical($component4, $component3, "scrollbar_parchment_dragger_v2,3", "scrollbar_parchment_dragger_v2,0", "scrollbar_parchment_dragger_v2,1", "scrollbar_parchment_dragger_v2,2", "scrollbar_parchment_v2,0", "scrollbar_parchment_v2,1");
+}
