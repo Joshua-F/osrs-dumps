@@ -1,0 +1,23 @@
+// 2692
+[proc,script2692](boolean $boolean0, boolean $boolean1)
+def_int $int2 = 0;
+if ($boolean0 = true) {
+    $int2 = ~v2_stone_button_in_filled(interface_100:com33);
+} else {
+    $int2 = ~v2_stone_button_out_filled(interface_100:com33);
+}
+cc_create(interface_100:com33, ^iftype_text, $int2);
+cc_setposition(0, 0, ^setposh_abs_centre, ^setposv_abs_centre);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_settextfont(b12_full);
+cc_settextshadow(true);
+cc_settextalign(^settextalignh_centre, ^settextalignv_centre, 0);
+if ($boolean1 = true) {
+    cc_setcolour(^white);
+    cc_settext("...");
+    if_clearops(interface_100:com33);
+} else {
+    cc_setcolour(0xff981f);
+    cc_settext("Apply");
+    if_setop(1, "Apply", interface_100:com33);
+}

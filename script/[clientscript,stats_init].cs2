@@ -2,6 +2,7 @@
 [clientscript,stats_init](component $component0, component $component1, int $int2, int $int3)
 def_string $string0 = enum(int, string, enum_108, $int2);
 def_stat $stat4 = enum(int, stat, enum_681, $int2);
+def_boolean $boolean5 = enum(stat, boolean, enum_1497, $stat4);
 cc_deleteall($component0);
 cc_create($component0, ^iftype_graphic, 0);
 cc_setposition(-2, -2, ^setposh_abs_left, ^setposv_abs_top);
@@ -39,3 +40,16 @@ if (~on_mobile = true) {
 if_setonstattransmit("stats_setlevels($stat4, $component0, $string0, cc_getid, .cc_getid, $component1){$stat4, attack, strength, defence, ranged, magic}", $component0);
 if_setonvartransmit("stats_setlevels($stat4, $component0, $string0, cc_getid, .cc_getid, $component1){varplayer_427, varplayer_1588, varplayer_1437, varplayer_1438, varplayer_1439, varplayer_1436, varplayer_1435, varplayer_1440, varplayer_1453, varplayer_1447, varplayer_1452, varplayer_1443, varplayer_1449, varplayer_1441, varplayer_1442, varplayer_1444, varplayer_1450, varplayer_1457, varplayer_1445, varplayer_1446, varplayer_1454, varplayer_1455, varplayer_1456, varplayer_1451, varplayer_1448}", $component0);
 ~stats_setlevels($stat4, $component0, $string0, $component1);
+if ($boolean5 = false | map_members = true | %varclient_103 = 1) {
+    return;
+}
+cc_create($component0, ^iftype_graphic, 6);
+cc_setposition(-2, -2, ^setposh_abs_left, ^setposv_abs_top);
+cc_setsize(36, 36, ^setsize_abs, ^setsize_abs);
+cc_setgraphic("miscgraphics,4");
+cc_settrans(90);
+cc_create($component0, ^iftype_graphic, 7);
+cc_setposition(28, -2, ^setposh_abs_left, ^setposv_abs_top);
+cc_setsize(36, 36, ^setsize_abs, ^setsize_abs);
+cc_setgraphic("miscgraphics,6");
+cc_settrans(90);
