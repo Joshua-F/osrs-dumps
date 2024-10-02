@@ -1,0 +1,74 @@
+// 3532
+[clientscript,poh_costumes_init](enum $enum0, boolean $boolean1, int $int2)
+if ($int2 = 1) {
+    %varclient_58 = 0;
+}
+def_int $int3 = ~steelborder(interface_675:com2, "", 0);
+~scrollbar_vertical(interface_675:com5, interface_675:com4, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+def_int $int4 = calc(4 + 32);
+def_int $int5 = 0;
+def_int $int6 = 0;
+cc_deleteall(interface_675:com4);
+def_obj $obj7 = null;
+def_string $string0 = "";
+def_int $int8 = calc(if_getwidth(interface_675:com4) / 2);
+def_int $int9 = calc($int8 - 20);
+def_graphic $graphic10 = p12_full;
+def_int $int11 = 0;
+def_int $int12 = enum_getoutputcount($enum0);
+def_int $int13 = 0;
+while ($int13 < $int12) {
+    $obj7 = enum(int, namedobj, $enum0, $int13);
+    $string0 = enum(obj, string, enum_3302, $obj7);
+    if ($graphic10 = p12_full & parawidth($string0, 512, fontmetrics_495) > $int9) {
+        $graphic10 = p11_full;
+    }
+    cc_create(interface_675:com4, ^iftype_graphic, $int6);
+    $int5, $int6 = calc($int5 + 1), calc($int6 + 1);
+    cc_settiling(true);
+    cc_setopbase("<col=ff9040><$string0></col>");
+    cc_create(interface_675:com4, ^iftype_graphic, $int6);
+    $int5, $int6 = calc($int5 + 1), calc($int6 + 1);
+    cc_setsize(12, 10, ^setsize_abs, ^setsize_abs);
+    cc_setgraphic(graphic_2496);
+    cc_settrans(80);
+    cc_create(interface_675:com4, ^iftype_graphic, $int6);
+    $int5, $int6 = calc($int5 + 1), calc($int6 + 1);
+    cc_setgraphic("v2_borders_slim,8");
+    cc_settrans(0);
+    cc_settiling(true);
+    cc_create(interface_675:com4, ^iftype_text, $int6);
+    $int5, $int6 = calc($int5 + 1), calc($int6 + 1);
+    cc_settextshadow(true);
+    cc_settextalign(^settextalignh_left, ^settextalignv_centre, 0);
+    cc_settext($string0);
+    while ($int5 < $int4) {
+        cc_create(interface_675:com4, ^iftype_graphic, $int6);
+        $int5, $int6 = calc($int5 + 1), calc($int6 + 1);
+        cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+        cc_setgraphicshadow(0x333333);
+        cc_setoutline(1);
+    }
+    if (enum(obj, enum, enum_3077, $obj7) ! null | enum(obj, namedobj, enum_3303, $obj7) ! null | enum(obj, enum, enum_3304, $obj7) ! null) {
+        $int11 = 1;
+    }
+    $int5, $int13 = 0, calc($int13 + 1);
+}
+~poh_costumes_build($enum0, $int12, $int4, $int6, $boolean1, interface_675:com4, interface_675:com5, $int8, $graphic10, interface_675:com2, $int3);
+if_setoninvtransmit("poh_costumes_build($enum0, $int12, $int4, $int6, $boolean1, event_com, interface_675:com5, $int8, $graphic10, interface_675:com2, $int3){inv_637}", interface_675:com4);
+~poh_costumes_buttons_search_reset($enum0, interface_675:com9, "bankbuttons,2");
+if ($boolean1 = true & $int11 = 1) {
+    if_sethide(false, interface_675:com8);
+    if_setop(1, "Deposit mode", interface_675:com8);
+    ~poh_costumes_buttons_toggle_reset(interface_675:com8, "bankbuttons,8");
+    if_setposition(0, 210, ^setposh_abs_centre, ^setposv_abs_bottom, interface_675:com7);
+} else {
+    if_sethide(true, interface_675:com8);
+    if_clearops(interface_675:com8);
+    cc_deleteall(interface_675:com8);
+    if_setposition(0, 140, ^setposh_abs_centre, ^setposv_abs_bottom, interface_675:com7);
+}
+if_setop(1, "Deposit inventory", interface_675:com10);
+~poh_costumes_buttons_1off_reset(interface_675:com10, "bankbuttons,0", null);
+~poh_costumes_buttons_dynamicsetup(interface_675:com7);
+if_setonvartransmit("poh_costumes_buttons_dynamicsetup(interface_675:com7){varplayer_262}", interface_675:com4);
