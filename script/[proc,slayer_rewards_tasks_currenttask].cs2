@@ -4,13 +4,18 @@ cc_deleteall($component0);
 def_int $int7 = 0;
 def_int $int8 = 0;
 def_string $string0 = "Creature";
-if (%varplayer_261 > 0 & %varplayer_262 ! 0) {
-    $int8 = 1;
-    if (%varplayer_262 = 98) {
-        $string0 = enum(int, string, enum_1174, %varplayer_263);
+if (%varplayer_262 = 98) {
+    if (%varplayer_261 > 0) {
+        $int8, $string0 = 1, enum(int, string, enum_1174, %varplayer_263);
+        if_settext("<tostring(%varplayer_261)> x <$string0>", $component1);
+    } else if (%varplayer_261 = -1) {
+        $int8, $string0 = 1, enum(int, string, enum_1174, %varplayer_263);
+        if_settext($string0, $component1);
     } else {
-        $string0 = enum(int, string, enum_693, %varplayer_262);
+        if_settext("None", $component1);
     }
+} else if (%varplayer_261 > 0 & %varplayer_262 ! 0) {
+    $int8, $string0 = 1, enum(int, string, enum_693, %varplayer_262);
     if_settext("<tostring(%varplayer_261)> x <$string0>", $component1);
 } else {
     if_settext("None", $component1);
