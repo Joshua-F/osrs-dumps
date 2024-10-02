@@ -11,139 +11,130 @@ if (enum(int, boolean, enum_892, $chattype0) = true & $chattype0 ! ^chattype_pla
 }
 def_int $chatfilter3 = null;
 def_string $string3 = "";
-if ($chattype0 = ^chattype_publicchat) {
-    $string3 = removetags($string0);
-    if (compare($string2, $string3) = 0) {
+switch_int ($chattype0) {
+    case ^chattype_publicchat :
+        $string3 = removetags($string0);
+        if (compare($string2, $string3) = 0) {
+            return(true);
+        }
+        if (ignore_test($string3) = true) {
+            return(false);
+        }
+        $chatfilter3 = chat_getfilter_public;
+        if ($chatfilter3 = ^chatfilter_off | $chatfilter3 = ^chatfilter_hide) {
+            return(false);
+        }
+        if (string_length(chat_getmessagefilter) > 0 & string_indexof_string(lowercase($string1), chat_getmessagefilter, 0) = -1) {
+            return(false);
+        }
+        if ($chatfilter3 = ^chatfilter_friends) {
+            if (friend_test($string0) = true) {
+                return(true);
+            }
+            return(false);
+        }
         return(true);
-    }
-    if (ignore_test($string3) = true) {
-        return(false);
-    }
-    $chatfilter3 = chat_getfilter_public;
-    if ($chatfilter3 = ^chatfilter_off | $chatfilter3 = ^chatfilter_hide) {
-        return(false);
-    }
-    if (string_length(chat_getmessagefilter) > 0 & string_indexof_string(lowercase($string1), chat_getmessagefilter, 0) = -1) {
-        return(false);
-    }
-    if ($chatfilter3 = ^chatfilter_friends) {
-        if (friend_test($string0) = true) {
+    case ^chattype_modchat :
+        $string3 = removetags($string0);
+        if (compare($string2, $string3) = 0) {
+            return(true);
+        }
+        if (ignore_test($string3) = true) {
+            return(false);
+        }
+        if (string_length(chat_getmessagefilter) > 0 & string_indexof_string(lowercase($string1), chat_getmessagefilter, 0) = -1) {
+            return(false);
+        }
+        return(true);
+    case ^chattype_autotyper, ^chattype_modautotyper :
+        if (compare($string2, removetags($string0)) = 0) {
+            return(true);
+        }
+        if (ignore_test(removetags($string0)) = true) {
+            return(false);
+        }
+        if (chat_getfilter_public ! ^chatfilter_autochat) {
+            return(false);
+        }
+        if (string_length(chat_getmessagefilter) > 0 & string_indexof_string(lowercase($string1), chat_getmessagefilter, 0) = -1) {
+            return(false);
+        }
+        return(true);
+    case ^chattype_privatechat :
+        if ($int1 < %varclient_175) {
+            return(false);
+        }
+        if (ignore_test(removetags($string0)) = true) {
+            return(false);
+        }
+        if (%varplayer_287 = 1 & $int2 = 0 & ~trade_partner_check($chattype0, $string0) = false) {
+            return(false);
+        }
+        if (chat_getfilter_private = ^chatfilter_on) {
+            return(true);
+        }
+        if (chat_getfilter_private = ^chatfilter_friends & friend_test($string0) = true) {
             return(true);
         }
         return(false);
-    }
-    return(true);
-}
-if ($chattype0 = ^chattype_modchat) {
-    $string3 = removetags($string0);
-    if (compare($string2, $string3) = 0) {
+    case ^chattype_tradereq, ^chattype_chalreq_trade :
+        if (ignore_test(removetags($string0)) = true) {
+            return(false);
+        }
+        if (chat_getfilter_trade = ^chatfilter_on) {
+            return(true);
+        }
+        if (chat_getfilter_trade = ^chatfilter_friends & friend_test($string0) = true) {
+            return(true);
+        }
+        return(false);
+    case ^chattype_loginlogoutnotification, ^chattype_privatechatout :
+        if ($int1 < %varclient_175) {
+            return(false);
+        }
+        if ($chattype0 = ^chattype_loginlogoutnotification & %varplayerbit_1627 = 0 & calc(clientclock - $int1) >= 500) {
+            return(false);
+        }
+        if (%varplayer_287 = 1 & $int2 = 0 & ~trade_partner_check($chattype0, $string0) = false) {
+            return(false);
+        }
+        if (chat_getfilter_private ! ^chatfilter_off) {
+            return(true);
+        }
+        return(false);
+    case ^chattype_modprivatechat :
+        if ($int1 < %varclient_175) {
+            return(false);
+        }
+        if (%varplayer_287 = 1 & $int2 = 0 & ~trade_partner_check($chattype0, $string0) = false) {
+            return(false);
+        }
         return(true);
-    }
-    if (ignore_test($string3) = true) {
+    case ^chattype_friendschat, ^chattype_chalreq_friendschat :
+        if (ignore_test(removetags($string0)) = true) {
+            return(false);
+        }
+        if (%varplayer_1054 = 0) {
+            return(true);
+        }
+        if (%varplayer_1054 = 1 & friend_test($string0) = true) {
+            return(true);
+        }
         return(false);
-    }
-    if (string_length(chat_getmessagefilter) > 0 & string_indexof_string(lowercase($string1), chat_getmessagefilter, 0) = -1) {
+    case ^chattype_friendschatnotification :
+        if (%varplayer_1054 ! 2) {
+            return(true);
+        }
         return(false);
-    }
-    return(true);
-}
-if ($chattype0 = ^chattype_autotyper | $chattype0 = ^chattype_modautotyper) {
-    if (compare($string2, removetags($string0)) = 0) {
-        return(true);
-    }
-    if (ignore_test(removetags($string0)) = true) {
+    case ^chattype_trade :
+        if (chat_getfilter_trade ! ^chatfilter_off) {
+            return(true);
+        }
         return(false);
-    }
-    if (chat_getfilter_public ! ^chatfilter_autochat) {
+    case ^chattype_playerrelated :
+        if (ignore_test(removetags($string0)) = false) {
+            return(true);
+        }
         return(false);
-    }
-    if (string_length(chat_getmessagefilter) > 0 & string_indexof_string(lowercase($string1), chat_getmessagefilter, 0) = -1) {
-        return(false);
-    }
-    return(true);
-}
-if ($chattype0 = ^chattype_privatechat) {
-    if ($int1 < %varclient_175) {
-        return(false);
-    }
-    if (ignore_test(removetags($string0)) = true) {
-        return(false);
-    }
-    if (%varplayer_287 = 1 & $int2 = 0 & ~trade_partner_check($chattype0, $string0) = false) {
-        return(false);
-    }
-    if (chat_getfilter_private = ^chatfilter_on) {
-        return(true);
-    }
-    if (chat_getfilter_private = ^chatfilter_friends & friend_test($string0) = true) {
-        return(true);
-    }
-    return(false);
-}
-if ($chattype0 = ^chattype_tradereq | $chattype0 = ^chattype_chalreq_trade) {
-    if (ignore_test(removetags($string0)) = true) {
-        return(false);
-    }
-    if (chat_getfilter_trade = ^chatfilter_on) {
-        return(true);
-    }
-    if (chat_getfilter_trade = ^chatfilter_friends & friend_test($string0) = true) {
-        return(true);
-    }
-    return(false);
-}
-if ($chattype0 = ^chattype_loginlogoutnotification | $chattype0 = ^chattype_privatechatout) {
-    if ($int1 < %varclient_175) {
-        return(false);
-    }
-    if ($chattype0 = ^chattype_loginlogoutnotification & %varplayerbit_1627 = 0 & calc(clientclock - $int1) >= 500) {
-        return(false);
-    }
-    if (%varplayer_287 = 1 & $int2 = 0 & ~trade_partner_check($chattype0, $string0) = false) {
-        return(false);
-    }
-    if (chat_getfilter_private ! ^chatfilter_off) {
-        return(true);
-    }
-    return(false);
-}
-if ($chattype0 = ^chattype_modprivatechat) {
-    if ($int1 < %varclient_175) {
-        return(false);
-    }
-    if (%varplayer_287 = 1 & $int2 = 0 & ~trade_partner_check($chattype0, $string0) = false) {
-        return(false);
-    }
-    return(true);
-}
-if ($chattype0 = ^chattype_friendschat | $chattype0 = ^chattype_chalreq_friendschat) {
-    if (ignore_test(removetags($string0)) = true) {
-        return(false);
-    }
-    if (%varplayer_1054 = 0) {
-        return(true);
-    }
-    if (%varplayer_1054 = 1 & friend_test($string0) = true) {
-        return(true);
-    }
-    return(false);
-}
-if ($chattype0 = ^chattype_friendschatnotification) {
-    if (%varplayer_1054 ! 2) {
-        return(true);
-    }
-    return(false);
-}
-if ($chattype0 = ^chattype_trade) {
-    if (chat_getfilter_trade ! ^chatfilter_off) {
-        return(true);
-    }
-    return(false);
-}
-if ($chattype0 = ^chattype_playerrelated) {
-    if (ignore_test(removetags($string0)) = false) {
-        return(true);
-    }
-    return(false);
 }
 return(true);
