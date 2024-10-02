@@ -1,8 +1,13 @@
 // 402
 [clientscript,fairyrings_sort_update](component $component0, component $component1, int $int2)
 if ($int2 = 1) {
-    if (%varclient_54 = -1) {
+    if (%varclient_54 = 1 | %varclient_54 = 0) {
+        %varclient_54 = %varclient_54;
+    } else {
         %varclient_54 = 0;
+    }
+    if (%varclient_0 < 0) {
+        %varclient_0 = 0;
     }
     ~scrollbar_vertical($component1, $component0, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
 } else {
@@ -37,6 +42,9 @@ if (%varclient_54 = 1) {
 }
 $int3 = 0;
 def_int $int6 = if_getwidth($component0);
+if ($int6 <= 0) {
+    $int6 = 162;
+}
 cc_deleteall($component0);
 def_int $int7 = 0;
 def_int $int8 = 0;
@@ -76,8 +84,13 @@ if (string_length($string0) > 0) {
 if ($int8 > 0) {
     $int8 = calc($int8 - 3);
 }
-if ($int8 > if_getheight($component0)) {
+$int7 = if_getheight($component0);
+if ($int8 > $int7) {
     if_setscrollsize(0, $int8, $component0);
+    $int7 = calc($int8 - $int7);
+    if (%varclient_0 > $int7) {
+        %varclient_0 = $int7;
+    }
 } else {
     if_setscrollsize(0, 0, $component0);
     %varclient_0 = 0;
