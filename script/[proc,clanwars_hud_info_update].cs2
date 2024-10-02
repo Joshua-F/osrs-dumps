@@ -51,7 +51,9 @@ def_string $string5 = "";
 def_int $int6 = 0;
 def_int $int7 = enum(int, int, enum_376, %varplayerbit_4270);
 def_int $int8 = enum(int, int, enum_377, %varplayerbit_4270);
-if ($int7 > 0 | $int8 > 0) {
+def_int $int9 = enum(int, int, enum_1120, %varplayerbit_4270);
+def_int $int10 = enum(int, int, enum_1119, %varplayerbit_4270);
+if ($int7 > 0 | $int8 > 0 | $int9 > 0 | $int10 > 0) {
     $int3 = calc($int3 + 1);
     $string4 = "Kills:";
     $string0 = append($string0, append("<br>", $string4));
@@ -83,14 +85,20 @@ if ($int7 > 0 | $int8 > 0) {
         $string4 = ~tostring_spacer(%varplayerbit_4291, $string3);
     }
     $string2 = append($string2, append("<br>", $string4));
-    if ($int8 > 0) {
+    if ($int8 > 0 | $int9 > 0) {
         $int3 = calc($int3 + 1);
-        $string4 = "Hill points:";
+        if ($int8 > 0) {
+            $string4 = "Hill points:";
+        } else if ($int9 > 0) {
+            $string4 = "Skull points:";
+        } else {
+            $string4 = "Points:";
+        }
         $string0 = append($string0, append("<br>", $string4));
         if (%varplayerbit_4289 = 2) {
-            $string4 = ~tostring_spacer(%varplayerbit_4293, $string3);
+            $string4 = ~tostring_spacer(%varplayerbit_4576, $string3);
         } else {
-            $string4 = ~tostring_spacer(%varplayerbit_4292, $string3);
+            $string4 = ~tostring_spacer(%varplayerbit_4575, $string3);
         }
         $string1 = append($string1, append("<br>", $string4));
         $int4 = parawidth($string4, 512, fontmetrics_494);
@@ -98,59 +106,63 @@ if ($int7 > 0 | $int8 > 0) {
             $int5 = $int4;
         }
         if (%varplayerbit_4289 = 2) {
-            $string4 = ~tostring_spacer(%varplayerbit_4292, $string3);
+            $string4 = ~tostring_spacer(%varplayerbit_4575, $string3);
         } else {
-            $string4 = ~tostring_spacer(%varplayerbit_4293, $string3);
+            $string4 = ~tostring_spacer(%varplayerbit_4576, $string3);
         }
         $string2 = append($string2, append("<br>", $string4));
     }
     if ($int8 > 0) {
         $string5 = "Victory: <~tostring_spacer($int8, $string3)> points";
+    } else if ($int9 > 0) {
+        $string5 = "Victory: <~tostring_spacer($int9, $string3)> points";
     } else if ($int7 > 0) {
         $string5 = "Victory: <~tostring_spacer($int7, $string3)> kills";
+    } else if ($int10 > 0 & cc_find($component1, calc($int2 + 3)) = ^true) {
+        $string5 = ~clanwars_hud_timeremaining_resynch;
     }
     $int6 = parawidth($string5, 512, fontmetrics_494);
 }
-def_int $int9 = parawidth($string0, 512, fontmetrics_494);
-def_int $int10 = parawidth($string1, 512, fontmetrics_494);
-def_int $int11 = parawidth($string2, 512, fontmetrics_494);
-$int4 = calc($int9 + 4 + $int10 + 4 + $int11);
+def_int $int11 = parawidth($string0, 512, fontmetrics_494);
+def_int $int12 = parawidth($string1, 512, fontmetrics_494);
+def_int $int13 = parawidth($string2, 512, fontmetrics_494);
+$int4 = calc($int11 + 4 + $int12 + 4 + $int13);
 if ($int6 > $int4) {
-    $int9 = calc($int9 + ($int6 - $int4));
-    $int5 = $int10;
+    $int11 = calc($int11 + ($int6 - $int4));
+    $int5 = $int12;
 }
-$int3 = calc($int3 * 8 + 3);
-def_int $int12 = 4;
+$int3 = calc($int3 * 10 + 2);
+def_int $int14 = 4;
 if (cc_find($component1, $int2) = ^true) {
-    cc_setsize($int9, $int3);
-    cc_setposition($int12, 4);
+    cc_setsize($int11, $int3);
+    cc_setposition($int14, 4);
     cc_settext($string0);
-    $int12 = calc($int12 + $int9);
+    $int14 = calc($int14 + $int11);
 }
 if (cc_find($component1, calc($int2 + 1)) = ^true) {
-    $int4 = calc(($int10 - $int5) / 2);
+    $int4 = calc(($int12 - $int5) / 2);
     $int4 = calc($int4 - 4);
-    $int12 = calc($int12 - $int4);
-    if ($int12 < 4) {
-        $int12 = 4;
+    $int14 = calc($int14 - $int4);
+    if ($int14 < 4) {
+        $int14 = 4;
     }
-    cc_setsize($int10, $int3);
-    cc_setposition($int12, 4);
+    cc_setsize($int12, $int3);
+    cc_setposition($int14, 4);
     cc_settext($string1);
-    $int12 = calc($int12 + $int10 + 4);
+    $int14 = calc($int14 + $int12 + 4);
 }
 if (cc_find($component1, calc($int2 + 2)) = ^true) {
-    cc_setsize($int11, $int3);
-    cc_setposition($int12, 4);
+    cc_setsize($int13, $int3);
+    cc_setposition($int14, 4);
     cc_settext($string2);
-    $int12 = calc($int12 + $int11);
+    $int14 = calc($int14 + $int13);
 }
 if (cc_find($component1, calc($int2 + 3)) = ^true) {
-    cc_setsize(calc($int12 - 4), 11);
+    cc_setsize(calc($int14 - 4), 11);
     cc_setposition(4, calc(4 + $int3));
     cc_settext($string5);
 }
-$int4 = calc($int12 + 4);
+$int4 = calc($int14 + 4);
 $int3 = calc(4 + $int3 + 4);
 if ($int6 > 0) {
     $int3 = calc($int3 + 11);
