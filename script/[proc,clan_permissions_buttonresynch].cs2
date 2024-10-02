@@ -1,0 +1,114 @@
+// 4465
+[proc,clan_permissions_buttonresynch](component $component0, int $int1, int $int2, int $int3, int $int4, struct $struct5)
+def_int $int6 = 126;
+def_int $int7 = -1;
+def_int $int8 = 0;
+def_string $string0 = "...";
+def_graphic $graphic9 = null;
+def_int $int10 = 0;
+def_int $int11 = -1;
+if (%varplayerbit_12165 = 1 & %varplayerbit_12164 = 3 & activeclansettings_find_listened = true | %varplayerbit_12165 = 0 & %varplayerbit_933 = 3 & activeclansettings_find_affined(0) = true) {
+    $int7 = activeclansettings_getaffinedslot(removetags(chat_playername));
+    if (struct_param($struct5, param_1255) = true) {
+        $int6 = -1;
+        switch_struct ($struct5) {
+            case struct_2957 :
+                if (activeclansettings_getallowunaffined = true) {
+                    $string0 = "Permitted";
+                } else {
+                    $string0 = "Blocked";
+                }
+            case struct_2958 :
+                if (activeclansettings_getallowunaffined = true) {
+                    $int8 = ~getbit_range(%varclansettingint_26, 0, 6);
+                    if ($int8 > 0 & %varclansettingint_26 ! -1) {
+                        $string0 = tostring($int8);
+                    } else {
+                        $string0 = "None";
+                    }
+                } else {
+                    $string0 = "<col=9f9f9f>N/A</col>";
+                }
+            case struct_2959 :
+                if (activeclansettings_getallowunaffined = true) {
+                    $int8 = ~getbit_range(%varclansettingint_26, 7, 18);
+                    if ($int8 > 0 & %varclansettingint_26 ! -1) {
+                        $string0 = ~tostring_spacer($int8, ",");
+                    } else {
+                        $string0 = "None";
+                    }
+                } else {
+                    $string0 = "<col=9f9f9f>N/A</col>";
+                }
+            case struct_2960 :
+                if (activeclansettings_getallowunaffined = true) {
+                    $int8 = ~getbit_range(%varclansettingint_26, 19, 29);
+                    if ($int8 > 0 & %varclansettingint_26 ! -1) {
+                        $string0 = tostring($int8);
+                    } else {
+                        $string0 = "None";
+                    }
+                } else {
+                    $string0 = "<col=9f9f9f>N/A</col>";
+                }
+            case struct_2961 :
+                if (activeclansettings_getallowunaffined = true) {
+                    if (%varclansettingint_26 ! -1) {
+                        $string0 = enum(int, string, enum_3828, ~getbit_range(%varclansettingint_26, 30, 31));
+                    } else {
+                        $string0 = enum(int, string, enum_3828, 0);
+                    }
+                } else {
+                    $string0 = "<col=9f9f9f>N/A</col>";
+                }
+        }
+    } else {
+        $int6 = ~clan_permission_get($struct5);
+        $string0, $graphic9 = ~script4302($int6);
+    }
+    if ($int7 ! -1) {
+        $int11 = activeclansettings_getaffinedrank($int7);
+        if ($int11 < $int6) {
+            $string0 = "<col=ff0000><$string0></col>";
+        } else if ($int11 >= ~clan_permission_get(struct_2943)) {
+            $int10 = 1;
+        }
+    }
+    if (cc_find($component0, $int3) = ^true) {
+        cc_settext($string0);
+    }
+    if (cc_find($component0, $int4) = ^true) {
+        cc_setgraphic($graphic9);
+    }
+    if ($int10 = 1) {
+        if (cc_find($component0, $int2) = ^true) {
+            cc_setgraphic(tradebacking);
+        }
+        if (cc_find($component0, $int1) = ^true) {
+            cc_settrans(245);
+        }
+        if (~on_mobile = false) {
+            .cc_setonmouserepeat("clan_permissions_buttonhover(true, event_com, event_comsubid, $int1, 245, 225)");
+        }
+        .cc_setonmouseleave("clan_permissions_buttonhover(false, event_com, event_comsubid, $int1, 245, 225)");
+        .cc_setontimer(null);
+        .cc_setonop("clan_permissions_buttonop(event_opindex, event_com, event_comsubid, $int1, 200, 245, 225)");
+        return;
+    }
+}
+if (cc_find($component0, $int3) = ^true) {
+    cc_settext($string0);
+}
+if (cc_find($component0, $int4) = ^true) {
+    cc_setgraphic($graphic9);
+}
+if (cc_find($component0, $int2) = ^true) {
+    cc_setgraphic(tradebacking_dark);
+}
+if (cc_find($component0, $int1) = ^true) {
+    cc_settrans(255);
+}
+.cc_setonmouserepeat(null);
+.cc_setonmouseleave(null);
+.cc_setontimer(null);
+.cc_setonop(null);
