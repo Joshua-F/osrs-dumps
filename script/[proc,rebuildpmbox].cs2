@@ -56,7 +56,7 @@ if (%varclient_55 >= %varclient_202 & %varclient_55 > calc(clientclock - 3000) &
     if ($int12 ! -1) {
         $string0, $string4, $int16 = ~chat_broadcast_parseurl($string0);
         if ($int16 ! 4 | reboottimer <= 0) {
-            $int7 = calc($int7 + ~script199(~affixtimestamp($string2, "<$string6><$string0></col>"), $int9, $component10, interface_163:com0, $int8, $int1, 13, $int7, $setposv2, $int3, 16776960, true));
+            $int7 = calc($int7 + ~script199(~affixtimestamp($string2, "<$string6><$string0></col>", null), $int9, $component10, interface_163:com0, $int8, $int1, 13, $int7, $setposv2, $int3, 16776960, true));
             if_clearops($component10);
             if (string_length($string4) > 0 & $int16 ! -1) {
                 if_setop(6, "Open", $component10);
@@ -84,17 +84,17 @@ if (%varplayer_287 = 1 & (%varclient_41 ! 1337 | %varplayerbit_4089 = 0)) {
         if (~pm_filtertest($chattype18, $string1, $int13, $int14) = true) {
             switch_int ($chattype18) {
                 case ^chattype_privatechat, ^chattype_modprivatechat :
-                    $int7 = calc($int7 + ~script203(~affixtimestamp(append(append($string5, $string2), "</col>"), "<$string5>From <$string1>:</col>"), "<$string5><$string0></col>", $int9, $component10, interface_163:com0, $int8, $int1, 13, $int7, $setposv2, $int3, 65535, true));
+                    $int7 = calc($int7 + ~script203(~affixtimestamp($string2, "<$string5>From <$string1>:</col>", $string5), "<$string5><$string0></col>", $int9, $component10, interface_163:com0, $int8, $int1, 13, $int7, $setposv2, $int3, 65535, true));
                 case ^chattype_privatechatout :
-                    $int7 = calc($int7 + ~script203(~affixtimestamp(append(append($string5, $string2), "</col>"), "<$string5>To <$string1>:</col>"), "<$string5><$string0></col>", $int9, $component10, interface_163:com0, $int8, $int1, 13, $int7, $setposv2, $int3, 65535, true));
+                    $int7 = calc($int7 + ~script203(~affixtimestamp($string2, "<$string5>To <$string1>:</col>", $string5), "<$string5><$string0></col>", $int9, $component10, interface_163:com0, $int8, $int1, 13, $int7, $setposv2, $int3, 65535, true));
                 case ^chattype_loginlogoutnotification :
-                    $int7 = calc($int7 + ~script199(~affixtimestamp(append(append($string5, $string2), "</col>"), "<$string5><$string0></col>"), $int9, $component10, interface_163:com0, $int8, $int1, 13, $int7, $setposv2, $int3, 65535, true));
+                    $int7 = calc($int7 + ~script199(~affixtimestamp($string2, "<$string5><$string0></col>", $string5), $int9, $component10, interface_163:com0, $int8, $int1, 13, $int7, $setposv2, $int3, 65535, true));
                     if ($int19 = 0) {
                         %varclient_65 = calc($int13 + 500 + 1);
                         if_setontimer("script664(false)", interface_162:com0);
                     }
                 case default :
-                    $int7 = calc($int7 + ~script199(~affixtimestamp($string2, $string0), $int9, $component10, interface_163:com0, $int8, $int1, 13, $int7, $setposv2, $int3, 65535, true));
+                    $int7 = calc($int7 + ~script199(~affixtimestamp($string2, $string0, null), $int9, $component10, interface_163:com0, $int8, $int1, 13, $int7, $setposv2, $int3, 65535, true));
             }
             if_clearops($component10);
             if ($chattype18 = ^chattype_privatechat | $chattype18 = ^chattype_privatechatout | $chattype18 = ^chattype_modprivatechat) {

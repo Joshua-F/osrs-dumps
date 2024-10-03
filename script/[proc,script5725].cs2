@@ -1,0 +1,14 @@
+// 5725
+[proc,script5725](entityoverlay $entityoverlay0, loc $loc1, coord $coord2, int $int3, int $int4, int $int5, string $string0, boolean $boolean6)
+if (~on_mobile = true | %varplayerbit_13136 = 1 | enum(coord, int, enum_4080, $coord2) = 1) {
+    return;
+}
+cc_create_entityoverlay($entityoverlay0, ^iftype_graphic, 0);
+cc_setsize(25, 25, ^setsize_abs, ^setsize_abs);
+cc_setposition(0, 0, ^setposh_abs_left, ^setposv_abs_top);
+cc_setgraphic("staticons,7");
+if (if_find_entityoverlay($entityoverlay0) = ^true) {
+    cc_setsize(25, 25, ^setsize_abs, ^setsize_abs);
+    cc_setonmouseleave("helper_agility_mouseleave($entityoverlay0, $loc1, $coord2)");
+    cc_setonmouseover("helper_agility_mouseover($entityoverlay0, $loc1, $coord2, $int3, $int4, $int5, $string0, $boolean6)");
+}
