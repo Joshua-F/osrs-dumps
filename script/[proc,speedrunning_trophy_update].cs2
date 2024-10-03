@@ -7,12 +7,16 @@ cc_setsize(61, 73, ^setsize_abs, ^setsize_minus);
 cc_settextfont(p12_full);
 cc_settextalign(^settextalignh_centre, ^settextalignv_centre, 0);
 cc_settextshadow(true);
-if ($boolean3 = true) {
+if ($boolean3 = true & $int1 > 0) {
     cc_setcolour(0xdc10d);
 } else {
     cc_setcolour(0x9f9f9f);
 }
-cc_settext(~time_convert($int1, %varplayerbit_11890));
+if ($int1 > 0) {
+    cc_settext(~time_convert($int1, %varplayerbit_11890));
+} else {
+    cc_settext("-");
+}
 cc_create($component0, ^iftype_graphic, 1);
 cc_setposition(0, 0, ^setposh_abs_centre, ^setposv_abs_top);
 cc_setsize(61, 73, ^setsize_abs, ^setsize_abs);
