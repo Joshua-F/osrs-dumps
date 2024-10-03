@@ -5,22 +5,21 @@ highlight_npc_off($npc_uid4, $int3, 9);
 if (%varplayer_3546 ! $dbrow0) {
     return;
 }
-if (inv_total(inv_93, $obj5) > 0) {
+if ($int6 = 1) {
+    return;
+}
+highlight_npc_on($npc_uid4, $int3, 9);
+if (%varplayerbit_14189 = 0) {
     return;
 }
 def_obj $obj7 = enum(int, obj, enum_4616, ~cluehelper_clue_difficulty($dbrow0));
-if (%varplayerbit_14189 = 1) {
-    cc_create_entityoverlay($entityoverlay2, ^iftype_graphic, 0);
-    cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
-    cc_setposition(4, 4, ^setposh_abs_centre, ^setposv_abs_centre);
-    cc_setobject_nonum($obj7, 1);
-    cc_setoutline(1);
-    cc_create_entityoverlay($entityoverlay2, ^iftype_graphic, 1);
-    cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
-    cc_setposition(-4, -4, ^setposh_abs_centre, ^setposv_abs_centre);
-    cc_setobject_nonum($obj5, 1);
-    cc_setoutline(1);
-}
-if (%varplayerbit_14184 = 1) {
-    highlight_npc_on($npc_uid4, $int3, 9);
-}
+cc_create_entityoverlay($entityoverlay2, ^iftype_graphic, 0);
+cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+cc_setposition(4, 4, ^setposh_abs_centre, ^setposv_abs_centre);
+cc_setobject_nonum($obj7, 1);
+cc_setoutline(1);
+cc_create_entityoverlay($entityoverlay2, ^iftype_graphic, 1);
+cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+cc_setposition(-4, -4, ^setposh_abs_centre, ^setposv_abs_centre);
+cc_setobject_nonum($obj5, 1);
+cc_setoutline(1);
