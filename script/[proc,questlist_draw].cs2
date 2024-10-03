@@ -1,6 +1,9 @@
 // 2633
 [proc,questlist_draw](component $component0, component $component1, component $component2, component $component3, component $component4, boolean $boolean5)
 def_int $int6 = -3;
+if (%varplayerbit_13889 = 1) {
+    $int6 = 2;
+}
 def_enum $enum7 = enum_4285;
 def_int $int8 = enum_getoutputcount($enum7);
 def_int $int9 = 0;
@@ -63,6 +66,7 @@ def_int $int18 = 0;
 def_int $int19 = 0;
 def_boolean $boolean20 = true;
 def_boolean $boolean21 = true;
+def_boolean $boolean22 = false;
 def_string $string1 = "************";
 def_string $string2 = "************";
 while ($int17 < $int8) {
@@ -72,15 +76,16 @@ while ($int17 < $int8) {
     $boolean20 = ~quest_requirement_check($struct14);
     $boolean21 = ~script5990($struct14);
     $string2 = ~script2265($struct14, $int15, %varplayerbit_13772);
-    if (~questlist_hide_quest($struct14, $int15, $boolean20, $boolean21) = false) {
-        if (compare($string2, $string1) ! 0) {
+    $boolean22 = ~script4028($struct14, $int15, $boolean20, $boolean21);
+    if (~questlist_hide_quest($struct14, $int15, $boolean20, $boolean21, $boolean22) = false) {
+        if (compare($string2, $string1) ! 0 & %varplayerbit_13889 = 0) {
             $int9, $int6 = ~script1354($string2, $int9, $int6, $component4);
             $string1 = $string2;
         }
         if (cc_find($component4, $int18) = ^true) {
             cc_sethide(false);
             cc_setposition(0, $int6, ^setposh_abs_centre, ^setposv_abs_top);
-            ~questlist_setcolour($struct14, $int15, $boolean20, $boolean21);
+            ~questlist_setcolour($int15, $boolean22);
             $int19 = calc($int19 + 1);
             $int12 = cc_getheight;
         }
@@ -105,15 +110,15 @@ if ($int19 <= 0) {
 } else {
     if_sethide(false, $component3);
 }
-def_int $int22 = %varclient_10;
+def_int $int23 = %varclient_10;
 if ($boolean5 = true) {
-    $int22 = %varclient_972;
+    $int23 = %varclient_972;
 }
 if ($int6 > if_getheight($component2)) {
     if_setscrollsize(0, $int6, $component2);
     ~scrollbar_vertical($component3, $component2, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
     if (cc_find($component3, 1) = ^true) {
-        ~scrollbar_vertical_doscroll($component3, $component2, $int22, true);
+        ~scrollbar_vertical_doscroll($component3, $component2, $int23, true);
     }
 } else {
     if ($boolean5 = true) {
