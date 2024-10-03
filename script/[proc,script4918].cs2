@@ -1,0 +1,56 @@
+// 4918
+[proc,script4918](component $component0, boolean $boolean1, int $int2)
+cc_deleteall(interface_626:com20);
+def_int $int3 = 0;
+def_int $int4 = inv_size(inv_843);
+def_int $int5 = calc((42 - 36) * 3 - 2);
+def_int $int6 = calc((36 - 32) * 2);
+def_int $int7 = -1;
+def_int $int8 = 0;
+def_int $int9 = 0;
+def_string $string0 = ",";
+def_int $int10 = 1;
+def_int $int11 = 0;
+cc_create(interface_626:com20, ^iftype_graphic, $int11);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setposh_abs_centre, ^setposv_abs_centre);
+cc_setgraphic(tradebacking_dark);
+cc_settiling(true);
+$int11 = calc($int11 + 1);
+$int11 = ~thinbox(interface_626:com20, $int11);
+if ($boolean1 = true & ~on_mobile = false) {
+    if (cc_find(interface_626:com29, $int2) = ^true) {
+        cc_settrans(100);
+        cc_setposition(0, 2, ^setposh_abs_centre, ^setposv_abs_centre);
+    }
+    while ($int3 < $int4 & $int10 = 1) {
+        if (inv_getobj(inv_843, $int3) ! null) {
+            $int9 = calc($int6 + $int3 / 4 * 36);
+            cc_create(interface_626:com20, ^iftype_graphic, $int11);
+            cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+            cc_setgraphicshadow(0x333333);
+            cc_setoutline(1);
+            cc_sethide(false);
+            cc_setposition(calc(36 * $int3 + 5), 5, ^setposh_abs_left, ^setposv_abs_top);
+            ~script4959(inv_getobj(inv_843, $int3), inv_getnum(inv_843, $int3));
+            $int11 = calc($int11 + 1);
+        } else {
+            $int10 = 0;
+        }
+        $int3 = calc($int3 + 1);
+    }
+    cc_create(interface_626:com20, ^iftype_text, $int11);
+    cc_setposition(0, 0, ^setposh_abs_centre, ^setposv_abs_bottom);
+    cc_setcolour(0xff981f);
+    cc_settextfont(p11_full);
+    cc_settextshadow(true);
+    cc_settextalign(^settextalignh_centre, ^settextalignv_centre, 0);
+    cc_setsize(0, 20, ^setsize_minus, ^setsize_abs);
+    cc_settext("Total value: <col=ffffff><~tostring_spacer(%varplayer_263, $string0)> GP</col>");
+} else {
+    if (cc_find(interface_626:com29, $int2) = ^true) {
+        cc_settrans(0);
+        cc_setposition(0, 0, ^setposh_abs_centre, ^setposv_abs_centre);
+    }
+    ~script4965(1, 0);
+}
