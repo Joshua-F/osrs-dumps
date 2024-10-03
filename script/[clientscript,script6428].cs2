@@ -1,0 +1,12 @@
+// 6428
+[clientscript,script6428](component $component0, int $int1, obj $obj2, obj $obj3, obj $obj4)
+sound_synth(synth_2266, 1, 0);
+if (%varclient_225 = $obj2) {
+    cc_deleteall(interface_389:com9);
+    if_setontimer(null, interface_389:com9);
+    %varclient_225 = -1;
+} else {
+    %varclient_225 = $obj2;
+    ~magic_spellbook_settooltip(true, $obj2, $component0, $int1, interface_389:com9, calc(if_getheight($component0) - 5), $obj3, $obj4);
+    if_setontimer("script6429(calc(clientclock + 125), event_com)", interface_389:com9);
+}
