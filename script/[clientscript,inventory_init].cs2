@@ -1,0 +1,20 @@
+// 6007
+[clientscript,inventory_init](component $component0, boolean $boolean1)
+cc_deleteall($component0);
+def_int $int2 = 0;
+def_int $int3 = inv_size(inv_93);
+while ($int2 < $int3) {
+    cc_create($component0, ^iftype_graphic, $int2);
+    cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+    cc_setgraphicshadow(0x333333);
+    cc_setoutline(1);
+    cc_setdragdeadzone(5);
+    cc_setdragdeadtime(5);
+    cc_sethide(false);
+    $int2 = calc($int2 + 1);
+}
+~inventory_build($component0, $int3, $boolean1, null);
+if_setoninvtransmit("inventory_build($component0, $int3, $boolean1, null){inv_93}", $component0);
+if_setonvartransmit("inventory_build($component0, $int3, $boolean1, null){varplayer_1432}", $component0);
+if_setonkeydown("inventory_key($component0, $int3, $boolean1, event_key, true)", $component0);
+if_setonkeyup("inventory_key($component0, $int3, $boolean1, event_key, false)", $component0);

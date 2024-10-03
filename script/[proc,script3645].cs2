@@ -1,14 +1,19 @@
 // 3645
-[proc,script3645](component $component0, int $int1)
-def_int $int2 = calc((42 - 36) * 3 - 2);
-def_int $int3 = calc((36 - 32) * 2);
-def_obj $obj4 = null;
-def_int $int5 = $int1;
-while ($int5 > 0) {
-    $int5 = calc($int5 - 1);
-    if (cc_find($component0, $int5) = ^true) {
-        $obj4 = inv_getobj(inv_93, $int5);
-        ~script3646($obj4, inv_getnum(inv_93, $int5), $component0, $int1);
-        cc_setposition(calc($int2 + $int5 % 4 * 42), calc($int3 + $int5 / 4 * 36), ^setposh_abs_left, ^setposv_abs_top);
-    }
+[proc,script3645]()(int)
+if (~on_mobile = false & ~on_enhanced_desktop = false) {
+    return(4);
+}
+def_int $int0 = deviceoption_get(^deviceoption_fps_limit);
+if ($int0 = 0) {
+    return(4);
+} else if ($int0 <= 15) {
+    return(0);
+} else if ($int0 <= 20) {
+    return(1);
+} else if ($int0 <= 30) {
+    return(2);
+} else if ($int0 <= 60) {
+    return(3);
+} else {
+    return(4);
 }
