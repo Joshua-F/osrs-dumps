@@ -61,6 +61,18 @@ if (%varplayerbit_12165 = 1 & %varplayerbit_12164 = 3 & activeclansettings_find_
                 } else {
                     $string0 = "<col=9f9f9f>N/A</col>";
                 }
+            case struct_3109 :
+                if (~clan_permission_get(struct_3108) ! 128) {
+                    if (%varclansettingint_31 > 1) {
+                        $string0 = "<~tostring_spacer(%varclansettingint_31, ",")> coins";
+                    } else if (%varclansettingint_31 = 1) {
+                        $string0 = "1 coin";
+                    } else {
+                        $string0 = "No minimum";
+                    }
+                } else {
+                    $string0 = "<col=9f9f9f>N/A</col>";
+                }
         }
     } else {
         $int6 = ~clan_permission_get($struct5);
@@ -68,7 +80,12 @@ if (%varplayerbit_12165 = 1 & %varplayerbit_12164 = 3 & activeclansettings_find_
     }
     if ($int7 ! -1) {
         $int11 = activeclansettings_getaffinedrank($int7);
-        if ($int11 < $int6) {
+        if ($int6 = 128) {
+            $string0 = "<col=9f9f9f><$string0></col>";
+            if ($int11 >= ~clan_permission_get(struct_2943)) {
+                $int10 = 1;
+            }
+        } else if ($int11 < $int6) {
             $string0 = "<col=ff0000><$string0></col>";
         } else if ($int11 >= ~clan_permission_get(struct_2943)) {
             $int10 = 1;

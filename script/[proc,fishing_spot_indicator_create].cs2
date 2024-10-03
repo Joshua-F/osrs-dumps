@@ -1,0 +1,84 @@
+// 4553
+[proc,fishing_spot_indicator_create](entityoverlay $entityoverlay0, struct $struct1, npc_uid $npc_uid2, int $int3)
+cc_deleteall_entityoverlay($entityoverlay0);
+if (if_find_entityoverlay($entityoverlay0) = ^true) {
+    cc_setonmouseleave(null);
+    cc_setonmouseover(null);
+}
+if (%varplayerbit_12349 = 1) {
+    highlight_npc_off($npc_uid2, $int3, 11);
+    return;
+}
+def_namedobj $namedobj4 = struct_param($struct1, param_1265);
+def_namedobj $namedobj5 = struct_param($struct1, param_1268);
+def_boolean $boolean6 = ~fishing_spot_indicator_tools_check($namedobj4);
+def_boolean $boolean7 = ~fishing_spot_indicator_tools_check($namedobj5);
+if (%varplayerbit_12350 = 0 & $boolean6 = false & $boolean7 = false) {
+    highlight_npc_off($npc_uid2, $int3, 11);
+    return;
+}
+def_enum $enum8 = struct_param($struct1, param_1266);
+def_enum $enum9 = struct_param($struct1, param_1269);
+if ($enum8 = null & $enum9 = null) {
+    highlight_npc_off($npc_uid2, $int3, 11);
+    return;
+}
+def_obj $obj10 = ~script4556($enum8);
+def_obj $obj11 = ~script4556($enum9);
+def_obj $obj12 = null;
+def_int $int13 = 0;
+if ($obj10 = null & $obj11 = null) {
+    $obj12 = struct_param($struct1, param_1270);
+    $int13 = 100;
+    if ($obj12 = null) {
+        highlight_npc_off($npc_uid2, $int3, 11);
+        return;
+    }
+}
+def_int $int14 = enum(obj, int, enum_3864, $obj10);
+def_int $int15 = enum(obj, int, enum_3864, $obj11);
+def_int $int16 = stat(fishing);
+def_int $int17 = 0;
+if ($obj12 = null) {
+    if ($obj10 ! null & $boolean6 = true & $int14 <= $int16) {
+        $obj12 = $obj10;
+        $int17 = $int14;
+    }
+    if ($obj11 ! null & $boolean7 = true & $int15 <= $int16) {
+        if ($obj12 ! null) {
+            if ($int15 > $int14) {
+                $obj12 = $obj11;
+                $int17 = $int15;
+            }
+        } else {
+            $obj12 = $obj11;
+            $int17 = $int15;
+        }
+    }
+    if ($obj12 = null) {
+        if ($int14 >= $int15) {
+            $obj12 = $obj10;
+        } else {
+            $obj12 = $obj11;
+        }
+        $int13 = 100;
+    }
+}
+if ($obj12 = null) {
+    highlight_npc_off($npc_uid2, $int3, 11);
+    return;
+}
+cc_create_entityoverlay($entityoverlay0, ^iftype_graphic, 0);
+cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+cc_setposition(0, 0, ^setposh_abs_left, ^setposv_abs_top);
+cc_setobject_nonum($obj12, 1);
+cc_setoutline(1);
+cc_settrans($int13);
+highlight_npc_on($npc_uid2, $int3, 11);
+if (if_find_entityoverlay($entityoverlay0) = ^true) {
+    cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+    if (%varplayerbit_12351 = 0) {
+        cc_setonmouseleave("fishing_spot_indicator_mouseleave($entityoverlay0, $struct1, $npc_uid2, $int3)");
+        cc_setonmouseover("fishing_spot_indicator_mouseover($entityoverlay0, $struct1)");
+    }
+}

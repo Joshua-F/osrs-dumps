@@ -1,0 +1,32 @@
+// 4520
+[clientscript,script4520](component $component0, int $int1, boolean $boolean2)
+def_int $int3 = 1;
+def_int $int4 = 35;
+def_int $int5 = %varclient_467;
+def_int $int6 = %varclient_468;
+def_int $int7 = %varclient_469;
+if ($boolean2 = false) {
+    $int5 = %varclient_470;
+    $int6 = %varclient_471;
+    $int7 = %varclient_472;
+    $int3 = 35;
+    $int4 = 1;
+}
+def_int $int8 = 1;
+if ($int5 <= 0) {
+    $int8 = 0;
+}
+$int5 = calc(~max($int5, 1) * 30);
+$int6 = calc(~max($int6, 1) * 30);
+def_int $int9 = calc($int7 + $int6);
+def_int $int10 = interpolate($int3, $int4, 0, $int5, calc($int5 - $int6));
+def_int $int11 = $int4;
+if ($int8 = 1) {
+    $int11 = interpolate($int10, $int4, $int7, $int9, clientclock);
+} else {
+    $int11 = 0;
+}
+if (cc_find($component0, $int1) = ^true) {
+    cc_setsize(cc_getwidth, $int11, ^setsize_abs, ^setsize_abs);
+    cc_setposition(cc_getx, calc(35 - $int11), ^setposh_abs_left, ^setposv_abs_top);
+}

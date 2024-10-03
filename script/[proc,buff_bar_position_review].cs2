@@ -1,0 +1,47 @@
+// 4672
+[proc,buff_bar_position_review](component $component0, component $component1, component $component2, component $component3, int $int4)
+def_enum $enum5 = null;
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_int $int8 = 1;
+def_int $int9 = 1;
+def_int $int10 = 0;
+def_int $int11 = 0;
+def_int $setposh12 = ^setposh_abs_left;
+def_int $setposv13 = ^setposv_abs_bottom;
+if ($int4 ! %varclient_384) {
+    $enum5 = ~toplevel_getcomponents;
+    if ($enum5 = enum_1745) {
+        $int6 = 1;
+        $int7 = 1;
+        $int8 = 91;
+        $int9 = 249;
+        $setposh12 = ^setposh_abs_right;
+        $setposv13 = ^setposv_abs_centre;
+        ~script4729($component1, $component0, 12294, ^setposh_abs_right, ^setposv_abs_centre, false);
+    } else if ($enum5 = enum_1130 | $enum5 = enum_1131) {
+        $int6 = 1;
+        $int7 = 1;
+        $int8 = 497;
+        $int9 = 79;
+        $setposh12 = ^setposh_abs_left;
+        $setposv13 = ^setposv_abs_bottom;
+        ~script4729($component1, $component0, 28672, ^setposh_abs_left, ^setposv_abs_bottom, false);
+    } else if ($enum5 = enum_1129) {
+        $int6 = 1;
+        $int7 = 1;
+        $int8 = 320;
+        $int9 = 40;
+        $setposh12 = ^setposh_abs_left;
+        $setposv13 = ^setposv_abs_bottom;
+        ~script4729($component1, $component0, 28672, ^setposh_abs_left, ^setposv_abs_bottom, false);
+    }
+    $int10 = if_getwidth($component0);
+    $int11 = if_getheight($component0);
+    if_setposition($int6, $int7, $setposh12, $setposv13, $component0);
+    if_setsize($int8, $int9, ^setsize_abs, ^setsize_abs, $component0);
+    if_setontimer("buff_bar_position_review($component0, $component1, $component2, $component3, %varclient_384)", $component0);
+    if ($int10 ! $int8 | $int11 ! $int9) {
+        ~buff_bar_setup($component2, $component3);
+    }
+}
