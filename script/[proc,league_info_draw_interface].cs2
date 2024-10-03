@@ -10,13 +10,17 @@ def_struct $struct12 = enum(int, struct, enum_2670, %varplayerbit_10032);
 if ($struct12 = null) {
     return;
 }
-def_struct $struct13 = struct_1239;
+def_struct $struct13 = struct_param(enum(int, struct, enum_2670, %varplayerbit_10032), param_1434);
 def_int $rgb14 = 0xff981f;
-$rgb14 = struct_param($struct12, param_1027);
+if (%varplayerbit_10032 = 3) {
+    $rgb14 = ^white;
+} else {
+    $rgb14 = struct_param($struct12, param_1027);
+}
 if (cc_find(interface_654:com2, $int11) = ^true) {
     cc_setcolour($rgb14);
 } else {
-    mes("Couldn't find the frame.");
+    ~debug_mes("Couldn't find the frame.");
 }
 cc_create($component0, ^iftype_text, 0);
 cc_setposition(0, 1, ^setposh_abs_centre, ^setposv_abs_top);
@@ -61,7 +65,7 @@ def_string $string1 = "<img=13> <~text_device("Click", "Tap")> to open the Leagu
 def_int $int31 = calc(12 * paraheight($string1, calc($int29 - 10), fontmetrics_495) + 10);
 def_string $string2 = "<img=13> <~text_device("Click", "Tap")> to open the <~league_get_league_name> blog!<br>";
 def_string $string3 = "https://osrs.game/Leagues";
-def_string $string4 = "https://osrs.game/Trailblazer-League";
+def_string $string4 = "https://secure.runescape.com/m=news/leagues-iii---shattered-relics-launch?oldschool=1";
 def_int $int32 = calc(12 * paraheight($string2, calc($int30 - 10), fontmetrics_495) + 10);
 def_int $int33 = $int32;
 if ($int31 > $int32) {
