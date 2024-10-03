@@ -1,0 +1,57 @@
+// 6905
+[proc,script6905](int $int0, boolean $boolean1, string $string0)
+if ($int0 = 1) {
+    if_sethide(false, interface_788:com5);
+} else {
+    if_sethide(true, interface_788:com5);
+    return;
+}
+if_settext("What is a <col=ff981f>Fresh Start World</col>?", interface_788:com50);
+~script5288(interface_788:com48, 0, 0, 0, if_getwidth(interface_788:com48), if_getheight(interface_788:com48), struct_3712, 11965282);
+~script6909(51642373, interface_788:com51, 0, $boolean1, 2, $string0);
+def_int $int2 = 10;
+def_int $int3 = 6;
+def_int $int4 = 13;
+def_graphic $graphic5 = p12_full;
+def_fontmetrics $fontmetrics6 = fontmetrics_495;
+def_int $int7 = 0;
+def_int $int8 = calc(460 - $int2 * 2);
+def_int $int9 = 0;
+def_int $int10 = calc($int2 + 30);
+def_string $string1 = "";
+def_string $string2 = "";
+def_string $string3 = "";
+def_string $string4 = "";
+def_int $int11 = 0;
+def_int $int12 = db_getfieldcount(dbrow_170, dbtable_30:col0);
+while ($int7 < $int12) {
+    $string1, $string2, $string3 = db_getfield(dbrow_170, dbtable_30:col0, $int7);
+    $string4 = $string3;
+    $int9 = calc(paraheight($string4, $int8, $fontmetrics6) * $int4);
+    cc_create(interface_788:com49, ^iftype_text, $int11);
+    $int11 = calc($int11 + 1);
+    cc_setposition($int2, $int10, ^setposh_abs_left, ^setposv_abs_top);
+    cc_settextfont($graphic5);
+    if (calc($int7 % 2) = 0) {
+        cc_setcolour(0xff981f);
+    } else {
+        cc_setcolour(0xe6dbca);
+    }
+    cc_setsize($int8, $int9, ^setsize_abs, ^setsize_abs);
+    cc_settextalign(^settextalignh_centre, ^settextalignv_top, $int4);
+    cc_settextshadow(true);
+    cc_settext($string4);
+    $int10 = calc($int10 + $int9 + $int3);
+    $int7 = calc($int7 + 1);
+}
+cc_create(interface_788:com49, ^iftype_text, $int11);
+$int11 = calc($int11 + 1);
+cc_setposition($int2, calc($int10 + 2), ^setposh_abs_left, ^setposv_abs_top);
+$string4 = "There are <$string0> remaining before Fresh Start Worlds ends.";
+$int9 = calc(paraheight($string4, $int8, $fontmetrics6) * $int4);
+cc_settextfont(p11_full);
+cc_setcolour(^yellow);
+cc_setsize($int8, $int9, ^setsize_abs, ^setsize_abs);
+cc_settextalign(^settextalignh_centre, ^settextalignv_top, $int4);
+cc_settextshadow(true);
+cc_settext($string4);

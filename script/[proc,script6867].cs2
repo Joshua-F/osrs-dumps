@@ -1,0 +1,155 @@
+// 6867
+[proc,script6867](int $int0, int $int1, string $string0)
+if_settext("<col=ffffff>Opt Out from <col=ff981f>Fresh Start Worlds</col>", interface_786:com16);
+def_component $component2 = interface_786:com11;
+def_component $component3 = interface_786:com13;
+def_component $component4 = interface_786:com12;
+def_int $int5 = 0;
+def_int $int6 = 50;
+def_string $string1 = "<col=e6dbca>Opting out will move your account to the main game. There will be a <col=ff981f>three day countdown<col=e6dbca> before you're transfered, during which you can change your mind. After the countdown ends you will be transfered to the main game.";
+def_string $string2 = "You will <col=ff981f>no longer be able to join Fresh Start Worlds<col=e6dbca> and will <col=ff981f>no longer gain Achievement Points or be able to earn World Firsts<col=e6dbca>. You <col=ff981f>cannot change your mind<col=e6dbca> once you've opted out.";
+def_graphic $graphic7 = p11_full;
+def_graphic $graphic8 = p11_full;
+def_int $int9 = 20;
+def_int $int10 = 13;
+def_int $int11 = 19;
+def_int $int12 = 55;
+def_int $int13 = 22;
+def_int $int14 = 14;
+switch_int (%varclient_988) {
+    case 1 :
+        $graphic7 = p12_full;
+        $int10 = 16;
+        $int9 = 30;
+        $int6 = 65;
+        $int11 = 25;
+        $int12 = 55;
+        $int13 = 21;
+        $graphic8 = verdana_11pt_regular;
+    case 2, 3 :
+        $graphic7 = verdana_15pt_regular;
+        $graphic8 = verdana_13pt_regular;
+        $int14 = 15;
+        $int10 = 17;
+        $int9 = 40;
+        $int6 = 80;
+        $int11 = 30;
+        $int12 = 55;
+        $int13 = 20;
+}
+def_int $int15 = calc(if_getheight($component4) * $int11 / 100);
+def_int $int16 = calc(if_getheight($component4) * $int12 / 100);
+def_int $int17 = calc(if_getheight($component4) * $int13 / 100);
+if_setsize(calc($int9 * 2), 7372, ^setsize_minus, ^setsize_proportion, $component2);
+if_setposition(0, $int9, ^setposh_proportion_centre, ^setposv_abs_top, $component2);
+if_setsize(calc($int9 * 2), 5734, ^setsize_minus, ^setsize_proportion, $component4);
+if_setposition(0, $int9, ^setposh_proportion_centre, ^setposv_abs_bottom, $component4);
+if_setposition(0, $int16, ^setposh_proportion_centre, ^setposv_abs_top, interface_786:com15);
+if_setposition(0, $int16, ^setposh_proportion_centre, ^setposv_abs_top, interface_786:com14);
+if (%varplayerbit_14580 = 1) {
+    if_sethide(true, interface_786:com15);
+    if_sethide(false, interface_786:com14);
+} else {
+    if_sethide(false, interface_786:com15);
+    if_sethide(true, interface_786:com14);
+    if ($int0 ! 0) {
+        if_sethide(true, interface_786:com15);
+    } else {
+        if_sethide(false, interface_786:com15);
+    }
+}
+cc_create($component2, ^iftype_text, $int5);
+$int5 = calc($int5 + 1);
+cc_setposition(0, 0, ^setposh_abs_left, ^setposv_abs_top);
+cc_settextfont($graphic7);
+cc_setcolour(0xe6dbca);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_settextalign(^settextalignh_centre, ^settextalignv_top, $int10);
+cc_settextshadow(true);
+cc_settext($string1);
+cc_create($component2, ^iftype_text, $int5);
+$int5 = calc($int5 + 1);
+cc_setposition(0, $int6, ^setposh_abs_left, ^setposv_abs_top);
+cc_settextfont($graphic7);
+cc_setcolour(0xe6dbca);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_settextalign(^settextalignh_centre, ^settextalignv_top, $int10);
+cc_settextshadow(true);
+cc_settext($string2);
+def_int $int18 = 0;
+$int18 = ~script5288($component3, $int18, 0, 0, if_getwidth($component3), if_getheight($component3), struct_3712, 11965282);
+cc_create($component3, ^iftype_rectangle, $int18);
+$int18 = calc($int18 + 1);
+cc_setposition(0, 0, ^setposh_abs_left, ^setposv_abs_top);
+cc_setsize(2, 2, ^setsize_minus, ^setsize_minus);
+cc_setfill(true);
+cc_setcolour(^white);
+cc_settrans(235);
+def_string $string3 = "";
+def_int $int19 = 0;
+if (%varplayerbit_14580 = 0) {
+    if ($int0 = 0) {
+        cc_create($component4, ^iftype_text, $int19);
+        $int19 = calc($int19 + 1);
+        cc_setposition(0, $int15, ^setposh_proportion_centre, ^setposv_abs_top);
+        cc_settextfont(verdana_15pt_regular);
+        cc_setcolour(0xff981f);
+        cc_setsize(0, 10, ^setsize_minus, ^setsize_minus);
+        cc_settextalign(^settextalignh_centre, ^settextalignv_top, 12);
+        cc_settextshadow(true);
+        cc_settext("<col=0dc10d>You are able to opt out");
+    } else {
+        cc_create($component4, ^iftype_text, $int19);
+        $int19 = calc($int19 + 1);
+        cc_setposition(0, $int15, ^setposh_proportion_centre, ^setposv_abs_top);
+        cc_settextfont(verdana_15pt_regular);
+        cc_setcolour(0xff981f);
+        cc_setsize(0, 10, ^setsize_minus, ^setsize_minus);
+        cc_settextalign(^settextalignh_centre, ^settextalignv_top, 12);
+        cc_settextshadow(true);
+        cc_settext("<col=db3e32>You are currently unable to opt out");
+        cc_create($component4, ^iftype_text, $int19);
+        $int19 = calc($int19 + 1);
+        cc_setposition(0, $int17, ^setposh_proportion_centre, ^setposv_abs_top);
+        cc_settextfont($graphic8);
+        cc_setsize(30, 10, ^setsize_minus, ^setsize_minus);
+        cc_settextalign(^settextalignh_centre, ^settextalignv_centre, $int14);
+        cc_settextshadow(true);
+        switch_int ($int0) {
+            case 4 :
+                $string3 = "<col=ffffff>There is not enough time left before the<br><col=ffffff>end of Fresh Start Worlds to opt out.";
+            case default :
+                $string3 = "<col=ffffff>You have <col=db3e32>pending transactions<col=ffffff> in the Grand Exchange.";
+        }
+        if ($int0 ! 4) {
+            $string3 = "<$string3> <col=ffffff>You cannot have pending offers or collections in the Grand Exchange when opting out.";
+        }
+        cc_settext($string3);
+    }
+} else {
+    cc_create($component4, ^iftype_text, $int19);
+    $int19 = calc($int19 + 1);
+    cc_setcolour(0xff981f);
+    cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+    cc_settextshadow(true);
+    if ($int1 = 0) {
+        if (%varclient_988 < 2) {
+            cc_settextfont(verdana_13pt_regular);
+        } else {
+            cc_settextfont(verdana_15pt_regular);
+        }
+        cc_settext("<col=ffff00>You have <$string0> remaining before opt out");
+        cc_setposition(0, $int15, ^setposh_proportion_centre, ^setposv_abs_top);
+        cc_settextalign(^settextalignh_centre, ^settextalignv_top, 12);
+    } else {
+        if (%varclient_988 < 1) {
+            cc_settextfont(verdana_13pt_regular);
+        } else {
+            cc_settextfont(verdana_15pt_regular);
+        }
+        cc_settext("<col=ffff00>You have opted out<br><br><col=ffff00>Please relog to complete the transfer");
+        cc_setposition(0, 0, ^setposh_proportion_centre, ^setposv_abs_top);
+        cc_settextalign(^settextalignh_centre, ^settextalignv_centre, 12);
+        if_sethide(true, interface_786:com14);
+    }
+}
