@@ -1,20 +1,12 @@
 // 2165
-[proc,xpdrops_setposition](component $component0)
-def_int $int1 = 2;
-def_int $int2 = 0;
-def_int $int3 = 0;
-$int2, $int3 = ~script4735($component0);
-if (%varclient_490 ! -1 & if_find(%varclient_490) = ^true & ~script4738($component0, 0, calc(2 - $int3), %varclient_490, 0, 0) = true) {
-    $int1 = calc($int1 + 2 + if_getheight(%varclient_490));
-}
+[proc,xpdrops_setposition](component $component0, component $component1)
 if (~on_mobile = true | %varplayerbit_4692 = 0) {
-    if_setposition(2, $int1, ^setposh_abs_right, ^setposv_abs_top, $component0);
+    if_setposition(2, 0, ^setposh_abs_right, ^setposv_abs_top, $component0);
+    ~script4729($component1, $component0, setbit(setbit(0, 10), 17), ^setposh_abs_right, ^setposv_abs_top, false);
 } else if (%varplayerbit_4692 = 2) {
-    if (~on_enhanced = false | %varplayerbit_12377 = 1) {
-        if_setposition(2, calc($int1 + 22), ^setposh_abs_left, ^setposv_abs_top, $component0);
-    } else {
-        if_setposition(2, $int1, ^setposh_abs_left, ^setposv_abs_top, $component0);
-    }
+    if_setposition(2, 0, ^setposh_abs_left, ^setposv_abs_top, $component0);
+    ~script4729($component1, $component0, setbit(setbit(0, 10), 17), ^setposh_abs_left, ^setposv_abs_top, false);
 } else {
-    if_setposition(0, $int1, ^setposh_abs_centre, ^setposv_abs_top, $component0);
+    if_setposition(0, 0, ^setposh_abs_centre, ^setposv_abs_top, $component0);
+    ~script4729($component1, $component0, setbit(setbit(0, 10), 17), ^setposh_abs_centre, ^setposv_abs_top, false);
 }
