@@ -7,7 +7,6 @@ def_boolean $boolean = false;
 def_int $int8 = inv_size(inv_95);
 def_int $int9 = inv_size(inv_93);
 def_int $int10 = 0;
-def_int $int11 = 0;
 if ($int2 <= 0) {
     $int2 = 100;
 }
@@ -15,16 +14,15 @@ if (~script7347($obj, $int2, 1) = true) {
     $enum, $int5, $int6 = ~script7370($obj);
     if (inv_total(inv_911, $obj) > 0) {
         $boolean = true;
+    } else if (%varplayerbit_4150 = 15 & ~script3750($enum) > 0) {
+        $boolean = true;
     } else {
-        while ($int10 < $int8 & $boolean = false) {
-            $int11 = 1;
-            while ($int11 <= $int6 & $boolean = false) {
-                if (inv_getobj(inv_95, $int10) = enum(int, namedobj, $enum, $int11)) {
-                    $boolean = true;
-                } else if ($int10 < $int9 & inv_getobj(inv_93, $int10) = enum(int, namedobj, $enum, $int11)) {
-                    $boolean = true;
-                }
-                $int11 = calc($int11 + 1);
+        $int10 = 1;
+        while ($int10 <= $int6 & $boolean = false) {
+            if (%varplayerbit_4150 ! 15 & inv_total(inv_95, enum(int, namedobj, $enum, $int10)) > 0) {
+                $boolean = true;
+            } else if (inv_total(inv_93, enum(int, namedobj, $enum, $int10)) > 0) {
+                $boolean = true;
             }
             $int10 = calc($int10 + 1);
         }
