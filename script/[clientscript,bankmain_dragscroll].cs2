@@ -1,31 +1,44 @@
 // 284
-[clientscript,bankmain_dragscroll](component $component0, int $int1, int $int2, component $component3)
+[clientscript,bankmain_dragscroll](component $component0, int $int1, int $int2, component $component3, int $int4)
 $int2 = calc($int2 - if_gety($component0));
-def_int $int4 = 5;
-def_int $int5 = 0;
-def_int $int6 = if_getscrolly($component0);
+def_int $int5 = 5;
+def_int $int6 = 0;
+def_int $int7 = if_getscrolly($component0);
 if ($int2 < 15) {
-    if ($int2 < -3) {
+    if ($int2 < -8) {
         return;
     }
-    if ($int2 < 5) {
-        $int4 = 8;
-    }
-    if ($int6 > $int4) {
-        $int6 = calc($int6 - $int4);
-    } else {
-        $int6 = 0;
-    }
-    ~scrollbar_resize($component3, $component0, $int6);
-} else {
-    $int5 = calc(if_getheight($component0) - 32 - $int2);
-    if ($int5 < 20) {
-        if ($int5 < -5) {
-            $int4 = 10;
-        } else if ($int5 < 5) {
-            $int4 = 8;
+    if ($int4 <= clientclock) {
+        if (cc_find($component0, $int1) = ^true) {
+            cc_setondrag("bankmain_dragscroll(event_com, event_comsubid, event_mousey, $component3, calc(clientclock + 2))");
+            return;
         }
-        $int6 = calc($int6 + $int4);
-        ~scrollbar_resize($component3, $component0, $int6);
+    } else if (calc($int4 - clientclock) < 5) {
+        if (cc_find($component0, $int1) = ^true) {
+            cc_setondrag("bankmain_dragscroll(event_com, event_comsubid, event_mousey, $component3, calc($int4 + 2))");
+            return;
+        }
+    } else if (cc_find($component0, $int1) = ^true) {
+        cc_setondrag("bankmain_dragscroll(event_com, event_comsubid, event_mousey, $component3, calc($int4 + 1))");
+    }
+    if ($int2 < 5) {
+        $int5 = 8;
+    }
+    if ($int7 > $int5) {
+        $int7 = calc($int7 - $int5);
+    } else {
+        $int7 = 0;
+    }
+    ~scrollbar_resize($component3, $component0, $int7);
+} else {
+    $int6 = calc(if_getheight($component0) - 32 - $int2);
+    if ($int6 < 20) {
+        if ($int6 < -5) {
+            $int5 = 10;
+        } else if ($int6 < 5) {
+            $int5 = 8;
+        }
+        $int7 = calc($int7 + $int5);
+        ~scrollbar_resize($component3, $component0, $int7);
     }
 }
