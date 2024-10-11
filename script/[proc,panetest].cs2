@@ -19,10 +19,12 @@ if (%varclient_41 = 3 & ($chattype1 = ^chattype_privatechat | $chattype1 = ^chat
 if (%varclient_41 = 4 & ($chattype1 = ^chattype_friendschat | $chattype1 = ^chattype_friendschatnotification)) {
     return(true);
 }
-if (%varclient_41 = 5 & ($chattype1 = ^chattype_engine | $chattype1 = ^chattype_8 | $chattype1 = ^chattype_12)) {
-    return(true);
-}
-if (%varclient_41 = 6 & ($chattype1 = ^chattype_10 | $chattype1 = ^chattype_13)) {
-    return(true);
+if (%varclient_41 = 5) {
+    if ($chattype1 = ^chattype_engine | $chattype1 = ^chattype_8 | $chattype1 = ^chattype_12) {
+        return(true);
+    }
+    if (~trade_partner_check($int0) = true) {
+        return(true);
+    }
 }
 return(false);
