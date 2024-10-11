@@ -14,12 +14,13 @@ def_int $int4 = -1;
 def_string $string0 = "";
 def_string $string1 = "";
 def_string $string2 = "";
+def_int $int5 = 0;
 while ($int0 ! -1) {
-    $chattype3, $int4, $string0, $string1, $string2 = chat_gethistory_byuid($int0);
+    $chattype3, $int4, $string0, $string1, $string2, $int5 = chat_gethistory_byuid($int0);
     if ($int4 <= $int1) {
         return;
     }
-    if (~filtertest($chattype3, $string0, $string2, $int4, $int2, removetags(chat_playername)) = true & ~trade_partner_check($chattype3, $string0) = false) {
+    if (~filtertest($chattype3, $string0, $string2, $int4, $int2, removetags(chat_playername), $int5) = true & ~trade_partner_check($chattype3, $string0, $int5) = false) {
         switch_int ($chattype3) {
             case ^chattype_modchat, ^chattype_publicchat :
                 ~chat_alert_enable(2);
