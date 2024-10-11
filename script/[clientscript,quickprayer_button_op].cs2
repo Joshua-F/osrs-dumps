@@ -1,0 +1,14 @@
+// 469
+[clientscript,quickprayer_button_op](int $int0, int $int1, component $component2, int $int3)
+if ($int0 = 1 & .cc_find($component2, $int3) = ^true) {
+    if (testbit(%varplayerbit_4102, $int1) = ^true) {
+        %varplayerbit_4102 = clearbit(%varplayerbit_4102, $int1);
+    } else {
+        if (~prayer_isavailable($int1) = false) {
+            return;
+        }
+        %varplayerbit_4102 = setbit(%varplayerbit_4102, $int1);
+    }
+    sound_synth(synth_2266, 1, 0);
+    ~quickprayer_button_update($int1);
+}
