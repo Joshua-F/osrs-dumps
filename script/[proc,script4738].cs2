@@ -1,0 +1,45 @@
+// 4738
+[proc,script4738](component $component0, int $int1, int $int2, component $component3, int $int4, int $int5)(boolean)
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_int $int8 = if_getwidth($component0);
+def_int $int9 = if_getheight($component0);
+$int6, $int7 = ~script4735($component0);
+$int6 = calc($int6 + $int1);
+$int7 = calc($int7 + $int2);
+def_int $int10 = 0;
+def_int $int11 = 0;
+def_int $int12 = if_getwidth($component3);
+def_int $int13 = if_getheight($component3);
+$int10, $int11 = ~script4735($component3);
+$int10 = calc($int10 + $int4);
+$int11 = calc($int11 + $int5);
+if ($int6 >= $int10 & $int6 <= calc($int10 + $int12)) {
+    if ($int7 >= $int11 & $int7 <= calc($int11 + $int13)) {
+        return(true);
+    } else if (calc($int7 + $int9) >= $int11 & calc($int7 + $int9) <= calc($int11 + $int13)) {
+        return(true);
+    }
+}
+if (calc($int6 + $int8) >= $int10 & calc($int6 + $int8) <= calc($int10 + $int12)) {
+    if ($int7 >= $int11 & $int7 <= calc($int11 + $int13)) {
+        return(true);
+    } else if (calc($int7 + $int9) >= $int11 & calc($int7 + $int9) <= calc($int11 + $int13)) {
+        return(true);
+    }
+}
+if ($int10 >= $int6 & $int10 <= calc($int6 + $int8)) {
+    if ($int11 >= $int7 & $int11 <= calc($int7 + $int9)) {
+        return(true);
+    } else if (calc($int11 + $int13) >= $int7 & calc($int11 + $int13) <= calc($int7 + $int9)) {
+        return(true);
+    }
+}
+if (calc($int10 + $int12) >= $int6 & calc($int10 + $int12) <= calc($int6 + $int8)) {
+    if ($int11 >= $int7 & $int11 <= calc($int7 + $int9)) {
+        return(true);
+    } else if (calc($int11 + $int13) >= $int7 & calc($int11 + $int13) <= calc($int7 + $int9)) {
+        return(true);
+    }
+}
+return(false);
