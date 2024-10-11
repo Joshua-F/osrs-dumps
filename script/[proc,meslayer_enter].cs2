@@ -9,67 +9,75 @@ if (~on_mobile = true) {
 }
 def_int $int0 = -1;
 def_string $string0 = "";
-if (string_length(%varclientstring_22) > 0) {
-    if (%varclient_5 = 1) {
-        return;
-    }
-    if (%varclient_5 = 4 | %varclient_5 = 5) {
-        if (ignore_count < 0) {
-            mes("Unable to update ignore list - system busy.");
-        } else if (%varclient_5 = 4) {
-            ignore_add(%varclientstring_22);
-        } else if (%varclient_5 = 5) {
-            ignore_del(%varclientstring_22);
-        }
-    } else if (%varclient_5 = 2 | %varclient_5 = 3 | %varclient_5 = 6) {
-        if (friend_count < 0) {
-            mes("Unable to complete action - system busy.");
-        } else if (%varclient_5 = 2) {
-            friend_add(%varclientstring_22);
-        } else if (%varclient_5 = 3) {
-            friend_del(%varclientstring_22);
-        } else if (%varclient_5 = 6) {
-            if (chat_getfilter_private = ^chatfilter_off) {
-                chat_setfilter(chat_getfilter_public, ^chatfilter_friends, chat_getfilter_trade);
-                ~redraw_chat_buttons;
-                $int0 = ~script553;
-                ~rebuildchatbox($int0);
-                ~rebuildpmbox($int0);
+def_int $int1 = string_length(%varclientstring_22);
+if ($int1 > 0) {
+    switch_int (%varclient_5) {
+        case 1 :
+            return;
+        case 4, 5 :
+            if (ignore_count < 0) {
+                mes("Unable to update ignore list - system busy.");
+            } else if (%varclient_5 = 4) {
+                ignore_add(%varclientstring_22);
+            } else if (%varclient_5 = 5) {
+                ignore_del(%varclientstring_22);
             }
-            if (%varplayerbit_4394 = 1) {
-                friend_del(%varclientstring_23);
+        case 2, 3, 6 :
+            if (friend_count < 0) {
+                mes("Unable to complete action - system busy.");
+            } else if (%varclient_5 = 2) {
+                friend_add(%varclientstring_22);
+            } else if (%varclient_5 = 3) {
+                friend_del(%varclientstring_22);
+            } else if (%varclient_5 = 6) {
+                if (chat_getfilter_private = ^chatfilter_off) {
+                    chat_setfilter(chat_getfilter_public, ^chatfilter_friends, chat_getfilter_trade);
+                    ~redraw_chat_buttons;
+                    $int0 = ~script553;
+                    ~rebuildchatbox($int0);
+                    ~rebuildpmbox($int0);
+                }
+                if (%varplayerbit_4394 = 1) {
+                    friend_del(%varclientstring_23);
+                } else {
+                    chat_sendprivate(%varclientstring_23, %varclientstring_22);
+                }
+                %varclient_61 = clientclock;
+            }
+        case 7 :
+            resume_countdialog(~script212(%varclientstring_22));
+        case 8 :
+            %varclientstring_128 = removetags(%varclientstring_22);
+            resume_namedialog(%varclientstring_22);
+        case 9, 15 :
+            resume_stringdialog(%varclientstring_22);
+        case 10 :
+            %varclientstring_129 = removetags(%varclientstring_22);
+            clan_joinchat(%varclientstring_22);
+        case 12 :
+            if ($int1 > 10) {
+                $string0 = substring(%varclientstring_22, 0, 9);
             } else {
-                chat_sendprivate(%varclientstring_23, %varclientstring_22);
+                $string0 = %varclientstring_22;
             }
-            %varclient_61 = clientclock;
-        }
-    } else if (%varclient_5 = 7) {
-        resume_countdialog(~script212(%varclientstring_22));
-    } else if (%varclient_5 = 8) {
-        %varclientstring_128 = removetags(%varclientstring_22);
-        resume_namedialog(%varclientstring_22);
-    } else if (%varclient_5 = 9 | %varclient_5 = 15) {
-        resume_stringdialog(%varclientstring_22);
-    } else if (%varclient_5 = 10) {
-        %varclientstring_129 = removetags(%varclientstring_22);
-        clan_joinchat(%varclientstring_22);
-    } else if (%varclient_5 = 12) {
-        if (string_length(%varclientstring_22) > 10) {
-            $string0 = substring(%varclientstring_22, 0, 9);
-        } else {
-            $string0 = %varclientstring_22;
-        }
-        chat_setmessagefilter(lowercase($string0));
-        ~rebuildchatbox(~script553);
-    } else if (%varclient_5 = 13) {
-        %varclientstring_28, %varclient_62 = %varclientstring_22, 0;
-        ~chat_autotyper_updateop;
-        if_setontimer("chat_autotyper(event_com, true)", interface_162:com10);
-    } else if (%varclient_5 = 11) {
-        ~meslayer_close(0, 1);
-        return;
+            chat_setmessagefilter(lowercase($string0));
+            ~rebuildchatbox(~script553);
+        case 13 :
+            %varclientstring_28, %varclient_62 = %varclientstring_22, 0;
+            ~chat_autotyper_updateop;
+            if_setontimer("chat_autotyper(event_com, true)", interface_162:com10);
+        case 11 :
+            ~meslayer_close(0, 1);
+            return;
+        case 16 :
+            ~skillmulti_quantitybutton_x_receive(%varclientstring_22);
     }
-} else if (%varclient_5 = 7 | %varclient_5 = 8 | %varclient_5 = 9 | %varclient_5 = 15) {
-    return;
+} else {
+    switch_int (%varclient_5) {
+        case 7, 8, 9, 15 :
+            return;
+        case 16 :
+            return;
+    }
 }
 ~meslayer_close(1, 1);
