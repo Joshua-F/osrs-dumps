@@ -40,8 +40,8 @@ if ($int16 = 0) {
     cc_setcolour(^white);
     cc_settrans(255);
     if ($int4 ! -1 & .cc_find($component3, $int4) = ^true) {
-        .cc_setonmouseover("cc_settrans(event_com, cc_getid, 200, null)");
-        .cc_setonmouseleave("cc_settrans(event_com, cc_getid, 255, $component15)");
+        .cc_setonmouseover("cc_settrans($component0, cc_getid, 200, null)");
+        .cc_setonmouseleave("cc_settrans($component0, cc_getid, 255, $component15)");
         .cc_setonop("logout_op(event_op, 6)");
     } else {
         if_setonmouseover("cc_settrans(event_com, cc_getid, 200, null)", $component3);
@@ -77,7 +77,21 @@ if ($int5 <= 0) {
 } else {
     .cc_settext(tostring($int5));
 }
-if (testbit($int6, 0) = ^true) {
+if (testbit($int6, 2) = ^true) {
+    cc_setgraphic("worldswitcher_stars,2");
+    if ($int16 = 0) {
+        .cc_setcolour(0xf0f000);
+    } else {
+        .cc_setcolour(0x7f7f7f);
+    }
+} else if (testbit($int6, 29) = ^true) {
+    cc_setgraphic("worldswitcher_stars,3");
+    if ($int16 = 0) {
+        .cc_setcolour(0xf0f000);
+    } else {
+        .cc_setcolour(0x7f7f7f);
+    }
+} else if (testbit($int6, 0) = ^true) {
     cc_setgraphic("worldswitcher_stars,1");
     if ($int16 = 0) {
         .cc_setcolour(0xf0f000);
@@ -129,10 +143,12 @@ cc_create($component0, ^iftype_text, $int1);
 $int1 = calc($int1 + 1);
 cc_setsize($int13, 16, ^setsize_abs, ^setsize_abs);
 cc_setposition(0, $int2, ^setpos_abs_right, ^setpos_abs_top);
-if ($int16 = 0) {
-    cc_setcolour(0xff981f);
-} else {
+if ($int16 = 1) {
     cc_setcolour(0x7f7f7f);
+} else if (testbit($int6, 2) = ^true | testbit($int6, 29) = ^true) {
+    cc_setcolour(^red);
+} else {
+    cc_setcolour(0xff981f);
 }
 cc_settextfont(p11_full);
 cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
