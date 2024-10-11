@@ -1,0 +1,43 @@
+// 698
+[proc,makeovermage_colour_update](component $component0)
+cc_deleteall($component0);
+def_int $int1 = if_getwidth($component0);
+def_int $int2 = calc($int1 - 2);
+def_int $int3 = 1;
+def_int $int4 = 0;
+def_int $int5 = -1;
+def_int $int6 = -1;
+def_int $rgb7 = enum(int, int, enum_998, $int4);
+while ($rgb7 ! null) {
+    cc_create($component0, ^iftype_rectangle, $int4);
+    $int5 = enum(int, int, enum_999, $int4);
+    if (%varplayerbit_1001 >= 12 | $int5 ! 8) {
+        if ($int5 = %varplayer_262) {
+            $int6 = $int3;
+        }
+        cc_sethide(false);
+        cc_setsize($int2, 25);
+        cc_setposition(1, $int3);
+        cc_setfill(true);
+        cc_setcolour($rgb7);
+        cc_setop(1, "Select colour");
+        cc_setonop("makeovermage_colour_op(event_op, $int5, $component0)");
+        $int3 = calc($int3 + 25);
+    } else {
+        cc_sethide(true);
+    }
+    $int4 = calc($int4 + 1);
+    $rgb7 = enum(int, int, enum_998, $int4);
+}
+cc_create($component0, ^iftype_rectangle, $int4);
+cc_setsize($int1, calc($int3 + 1));
+cc_setposition(0, 0);
+cc_setfill(false);
+cc_setcolour(^black);
+$int4 = calc($int4 + 1);
+if ($int6 ! -1) {
+    cc_create($component0, ^iftype_graphic, $int4);
+    cc_setsize(25, 25);
+    cc_setgraphic(overlay_multiway);
+    cc_setposition(calc(($int1 - 25) / 2), $int6);
+}
