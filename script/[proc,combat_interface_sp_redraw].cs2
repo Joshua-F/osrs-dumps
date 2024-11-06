@@ -7,22 +7,23 @@ if (map_members = true | %varplayerbit_5314 = 1) {
     $int1 = ~script3648($obj2);
 }
 if ($int1 <= 0) {
-    if_sethide(true, interface_593:com36);
-    if_setsize(190, 28, ^setsize_abs, ^setsize_abs, interface_593:com2);
+    if_sethide(true, interface_593:com37);
+    if_setsize(190, 28, ^setsize_abs, ^setsize_abs, interface_593:com3);
+    ~script7602;
     return;
 }
 if (~on_mobile = true) {
-    if_setsize(190, 16, ^setsize_abs, ^setsize_abs, interface_593:com2);
+    if_setsize(190, 16, ^setsize_abs, ^setsize_abs, interface_593:com3);
 }
 def_int $int4 = 0;
-if (if_gethide(interface_593:com36) = true) {
+if (if_gethide(interface_593:com37) = true) {
     $int4 = 1;
 }
-if_sethide(false, interface_593:com36);
+if_sethide(false, interface_593:com37);
 if (%varplayer_301 > 0) {
-    if_setcolour(^yellow, interface_593:com41);
+    if_setcolour(^yellow, interface_593:com42);
 } else {
-    if_setcolour(0x10, interface_593:com41);
+    if_setcolour(0x10, interface_593:com42);
 }
 def_int $int5 = %varplayer_300;
 def_int $int6 = 1000;
@@ -36,25 +37,25 @@ if ($obj2 = obj_28338) {
     if ($int5 > 0) {
         $int3 = 1;
     }
-    if_settext("Special Attack: <tostring($int5)>/5", interface_593:com41);
+    if_settext("Special Attack: <tostring($int5)>/5", interface_593:com42);
 } else if (~league_relic_active(struct_4721) = 1 & $int5 < $int7 & stat(hitpoints) > 25) {
     $int5 = calc((stat(hitpoints) - 1) / 25);
     $int6 = calc((stat_base(hitpoints) - 1) / 25);
     $int8 = 1;
-    if_settext("Special Attack: <tostring($int5)>/<tostring($int6)>", interface_593:com41);
+    if_settext("Special Attack: <tostring($int5)>/<tostring($int6)>", interface_593:com42);
 } else {
-    if_settext("Special Attack: <tostring(calc($int5 / 10))>%", interface_593:com41);
+    if_settext("Special Attack: <tostring(calc($int5 / 10))>%", interface_593:com42);
 }
 ~combat_interface_sp_updatebar($component0, $int5, $int6, $int4);
 if ($int5 >= $int1 | $int8 = 1) {
     $int3 = 1;
 }
 if ($int3 = 1) {
-    if_setcolour(0x397d3b, interface_593:com40);
+    if_setcolour(0x397d3b, interface_593:com41);
 } else {
-    if_setcolour(0x326b, interface_593:com40);
+    if_setcolour(0x326b, interface_593:com41);
 }
-~options_button_off(interface_593:com37, 0);
+~options_button_off(interface_593:com38, 0);
 def_string $string0 = "<enum(obj, string, enum_1739, $obj2)> (<tostring(calc($int7 / 10))>%)";
 switch_obj ($obj2) {
     case obj_22731, obj_22734, obj_22737, obj_22740, obj_22743 :
@@ -74,8 +75,9 @@ if (%varplayerbit_5712 = 0) {
     if ($obj2 = obj_27853 & ($obj9 = obj_11212 | $obj9 = obj_11227 | $obj9 = obj_11228 | $obj9 = obj_11229)) {
         $string0 = "Descent of Dragons: Deal a double attack with dragon arrows that inflicts up to 50% more damage (minimum damage of 10 per hit). (<tostring(calc(~script3648($obj2) / 10))>%)";
     }
-    if_setonmouserepeat("tooltip_mouserepeat(event_com, -1, interface_593:com43, $string0, 25, 160)", interface_593:com36);
-    if_setonmouseleave("deltooltip(interface_593:com43)", interface_593:com36);
+    if_setonmouserepeat("tooltip_mouserepeat(event_com, -1, interface_593:com44, $string0, 25, 160)", interface_593:com37);
+    if_setonmouseleave("deltooltip(interface_593:com44)", interface_593:com37);
 } else {
-    if_setonmouserepeat(null, interface_593:com36);
+    if_setonmouserepeat(null, interface_593:com37);
 }
+~script7602;
