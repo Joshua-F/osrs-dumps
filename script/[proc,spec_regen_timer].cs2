@@ -4,8 +4,12 @@ if (~on_enhanced_any = false) {
     return;
 }
 def_component $component2 = interface_160:com_40;
-if (~on_mobile = true & %varplayerbit_6254 = 1 | ~on_enhanced_desktop = true & ~toplevel_getcomponents ! enum_1129 & %varplayerbit_12986 = 1) {
-    $component2 = interface_311:com_42;
+if (~on_enhanced_desktop = true & ~toplevel_getcomponents ! enum_1129 & %varplayerbit_12986 = 1) {
+    $component2 = interface_895:com_37;
+} else if (~on_mobile = true & %varplayerbit_6254 = 0) {
+    $component2 = interface_897:com_36;
+} else if (~on_mobile = true & %varplayerbit_6254 = 1) {
+    $component2 = interface_898:com_37;
 }
 cc_deleteall($component2);
 if_setonvartransmit("spec_regen_vartransmit($component2, %varplayerbit_12346, %varplayer_300){varplayer_2856, varplayer_300}", $component2);
