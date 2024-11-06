@@ -1,0 +1,25 @@
+// 7610
+[clientscript,osm_chatbox_toggle_op](int $int0)
+switch_int ($int0) {
+    case 1 :
+        if (%varclient_1220 = 1) {
+            %varclient_1220 = 0;
+            if (cc_find(interface_601:com_46, 0) = ^true) {
+                cc_setgraphic("tli_button01_rectangle_58x40,1");
+            }
+            if_sethide(false, interface_601:com_48);
+            if_sethide(false, interface_601:com_47);
+            if (%varclient_41 = 0) {
+                ~chat_alert_set(0, 0);
+            }
+        } else {
+            %varclient_1220 = 1;
+            if (cc_find(interface_601:com_46, 0) = ^true) {
+                cc_setgraphic("tli_button01_rectangle_58x40,0");
+            }
+            if_sethide(true, interface_601:com_48);
+            if_sethide(true, interface_601:com_47);
+        }
+        ~chat_onsetupchange;
+}
+%varclient_222 = clientclock;

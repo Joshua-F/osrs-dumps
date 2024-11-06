@@ -1,0 +1,35 @@
+// 7608
+[proc,script7608]
+def_int $int0 = 0;
+cc_create(interface_601:com_46, ^iftype_graphic, 0);
+cc_setsize(58, 40, ^setsize_abs, ^setsize_abs);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+if (%varclient_1220 = 1) {
+    cc_setgraphic("tli_button01_rectangle_58x40,0");
+} else {
+    cc_setgraphic("tli_button01_rectangle_58x40,1");
+}
+cc_create(interface_601:com_46, ^iftype_graphic, 1);
+cc_setsize(32, 32, ^setsize_abs, ^setsize_abs);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_setgraphic("options_icons,5");
+if_setop(1, "Toggle Chatbox", interface_601:com_46);
+if_setop(2, "Toggle Filters", interface_601:com_46);
+if_setop(3, "Report player abuse", interface_601:com_46);
+if_setop(4, "Toggle report minimenu option", interface_601:com_46);
+if_setop(5, "Report game bug", interface_601:com_46);
+if_setonop("osm_chatbox_toggle_op(event_op)", interface_601:com_46);
+cc_create(interface_601:com_48, ^iftype_graphic, 0);
+cc_setsize(58, 40, ^setsize_abs, ^setsize_abs);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top);
+cc_setgraphic("tli_button01_rectangle_58x40,1");
+cc_create(interface_601:com_48, ^iftype_graphic, 1);
+cc_setsize(33, 36, ^setsize_abs, ^setsize_abs);
+cc_setposition(0, -1, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_setgraphic("side_icons,40");
+if_setop(1, "Start chatting", interface_601:com_48);
+if (%varclient_1220 = 1) {
+    if_sethide(true, interface_601:com_48);
+} else {
+    if_sethide(false, interface_601:com_48);
+}

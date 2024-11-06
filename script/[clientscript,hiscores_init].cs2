@@ -1,0 +1,20 @@
+// 7469
+[clientscript,hiscores_init](component $component0, int $int1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10)
+~hiscores_dropdown_setup($component2, $component3, $component4, $component5, $component6);
+~script7525($component7);
+cc_input_setonsubmit("script7527(event_com, event_comsubid)");
+cc_input_setonfocuschanged("script7526(event_com, event_comsubid)");
+if (~hiscores_group_check = 1) {
+    ~hiscores_group_skills_show;
+    ~hiscores_group_xp_show;
+    ~hiscores_group_members_show;
+} else {
+    ~hiscores_skills_setup($component8);
+    ~hiscores_activities_setup($component9);
+    ~hiscores_bosses_setup($component10);
+}
+~hiscores_content_position;
+if_setonresize("hiscores_content_position", $component0);
+if (string_length(%varclient_1233) > 0) {
+    if_setontimer("hiscores_queue_lookup(clientclock, $component0)", $component0);
+}

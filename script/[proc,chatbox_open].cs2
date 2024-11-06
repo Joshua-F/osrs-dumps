@@ -1,6 +1,23 @@
 // 3179
-[proc,chatbox_open]()(boolean)
-if (%varclient_41 ! 1337 | if_hassub(interface_162:com_564) = true | if_hassub(interface_162:com_565) = true | if_gethide(interface_162:com_37) = false) {
-    return(true);
+[proc,chatbox_open]()(int)
+if (if_hassub(interface_162:com_564) = true | if_hassub(interface_162:com_565) = true | if_gethide(interface_162:com_37) = false) {
+    return(0);
 }
-return(false);
+if (~on_mobile = true) {
+    if (%varclient_1220 = 1) {
+        return(2);
+    }
+    if (%varclient_41 = 1337) {
+        if (%varclient_1221 = 1) {
+            return(2);
+        } else {
+            return(1);
+        }
+    }
+    if (%varclient_41 ! 1337 & %varclient_1220 ! 1) {
+        return(0);
+    }
+} else if (%varclient_41 ! 1337) {
+    return(0);
+}
+return(1);
