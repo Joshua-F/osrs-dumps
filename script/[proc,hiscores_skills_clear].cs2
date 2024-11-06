@@ -1,0 +1,40 @@
+// 7475
+[proc,hiscores_skills_clear]
+def_int $int0 = calc(enum_getoutputcount(enum_5624) + 2 + 9 + 1);
+def_int $int1 = enum_getoutputcount(enum_5624);
+def_int $int2 = 0;
+def_dbrow $dbrow3 = null;
+while ($int2 < $int1) {
+    $dbrow3 = enum(int, dbrow, enum_5624, $int2);
+    if ($dbrow3 ! null) {
+        if (cc_find(interface_894:com_7, $int0) = ^true) {
+            cc_settext("--");
+        }
+        if (cc_find(interface_894:com_7, $int2) = ^true) {
+            ~script7516(db_getfield($dbrow3, dbtable_79:col0, 0), 0, 0);
+        }
+    } else {
+        if (cc_find(interface_894:com_7, $int0) = ^true) {
+            cc_settext("--");
+        }
+        if (cc_find(interface_894:com_7, $int2) = ^true) {
+            ~hiscores_clear_tooltip;
+        }
+    }
+    $int0 = calc($int0 + 2);
+    $int2 = calc($int2 + 1);
+}
+if (cc_find(interface_894:com_7, $int0) = ^true) {
+    cc_settext("--");
+}
+if (cc_find(interface_894:com_7, $int2) = ^true) {
+    ~script7516("Combat", 0, 0);
+}
+$int0 = calc($int0 + 2);
+if (cc_find(interface_894:com_7, $int0) = ^true) {
+    cc_settext("--");
+}
+if (cc_find(interface_894:com_7, calc($int2 + 1)) = ^true) {
+    ~script7516("Overall", 0, 0);
+}
+~deltooltip_action(interface_894:com_2);
