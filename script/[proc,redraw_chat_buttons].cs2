@@ -2,21 +2,51 @@
 [proc,redraw_chat_buttons]
 def_graphic $graphic = null;
 def_int $int = 0;
+def_enum $enum = ~toplevel_getcomponents;
+def_component $component = null;
+if (~on_mobile = true & %varclient_1220 = 1) {
+    if (calc(~chat_alert_get(73) / 25 % 2) = 1) {
+        if (cc_find(interface_601:com_46, 0) = true) {
+            cc_setgraphic("tli_button01_rectangle_58x40,2");
+        }
+    } else if (cc_find(interface_601:com_46, 0) = true) {
+        cc_setgraphic("tli_button01_rectangle_58x40,0");
+    }
+    return;
+}
 while ($int <= 6) {
+    $component = enum(int, component, enum_683, $int);
+    if ($enum = enum_1745) {
+        if_setsize(58, 24, ^setsize_abs, ^setsize_abs, $component);
+    } else {
+        if_setsize(56, 22, ^setsize_abs, ^setsize_abs, $component);
+    }
     if (%varclient_41 = $int) {
-        if (%varclient_42 = $int) {
+        if ($enum = enum_1745) {
+            $graphic = "tli_button01_rectangle_58x24,1";
+        } else if (%varclient_42 = $int) {
             $graphic = "chat_tab_button,3";
         } else {
             $graphic = "chat_tab_button,2";
         }
     } else if (%varclient_42 = $int) {
-        $graphic = "chat_tab_button,1";
+        if ($enum = enum_1745) {
+            $graphic = "tli_button01_rectangle_58x24,1";
+        } else {
+            $graphic = "chat_tab_button,1";
+        }
     } else if (calc(~chat_alert_get($int) / 25 % 2) = 1) {
-        $graphic = "chat_tab_button,4";
+        if ($enum = enum_1745) {
+            $graphic = "tli_button01_rectangle_58x24,2";
+        } else {
+            $graphic = "chat_tab_button,4";
+        }
+    } else if ($enum = enum_1745) {
+        $graphic = "tli_button01_rectangle_58x24,0";
     } else {
         $graphic = "chat_tab_button,0";
     }
-    if_setgraphic($graphic, enum(int, component, enum_683, $int));
+    if_setgraphic($graphic, $component);
     if ($int >= 2) {
         if_settext(enum(int, string, enum_3844, ~chat_get_filter($int)), enum(int, component, enum_3843, $int));
     }

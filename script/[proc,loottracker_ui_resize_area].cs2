@@ -4,6 +4,48 @@ def_component $com_32 = interface_650:com_32;
 def_component $com_34 = interface_650:com_34;
 def_component $com_33 = interface_650:com_33;
 def_component $com_31 = interface_650:com_31;
+def_component $com_67 = interface_650:com_67;
+def_component $com_69 = interface_650:com_69;
+def_component $com_68 = interface_650:com_68;
+def_component $com_66 = interface_650:com_66;
+def_component $com_78 = interface_650:com_78;
+def_component $com_71 = interface_650:com_71;
+if_setsize(0, 20, ^setsize_minus, ^setsize_abs, interface_650:com_70);
+if (~on_mobile = true & %varclient_1223 = 2) {
+    if_sethide(true, interface_650:com_26);
+    if_setsize(0, 0, ^setsize_minus, ^setsize_minus, interface_650:com_29);
+    if_sethide(true, interface_650:com_81);
+} else {
+    if_sethide(false, interface_650:com_26);
+    if_setsize(0, 33, ^setsize_minus, ^setsize_minus, interface_650:com_29);
+}
+if (if_getheight($com_67) < 500) {
+    if_setsize(22, 4, ^setsize_minus, ^setsize_minus, $com_67);
+    if_setsize(0, calc(500 + 20), ^setsize_minus, ^setsize_abs, $com_69);
+    if_sethide(false, $com_66);
+    if_setscrollsize(0, calc(500 + 20), $com_68);
+    if_setsize(0, 106, ^setsize_minus, ^setsize_abs, $com_78);
+    if_setsize(0, 128, ^setsize_minus, ^setsize_minus, $com_71);
+    if_setposition(0, 108, ^setpos_abs_left, ^setpos_abs_bottom, $com_71);
+    if (cc_find($com_66, 0) = true) {
+        ~scrollbar_resize($com_66, $com_68, if_getscrolly($com_68));
+    } else {
+        ~scrollbar_vertical($com_66, $com_68, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+        if (cc_find($com_66, 1) = true) {
+            ~scrollbar_vertical_setdragger($com_66, $com_68);
+        }
+    }
+} else {
+    if_setsize(4, 4, ^setsize_minus, ^setsize_minus, $com_67);
+    if_setsize(0, 0, ^setsize_minus, ^setsize_minus, $com_69);
+    if_setsize(0, 96, ^setsize_minus, ^setsize_abs, $com_78);
+    if_setsize(0, 118, ^setsize_minus, ^setsize_minus, $com_71);
+    if_setposition(0, 98, ^setpos_abs_left, ^setpos_abs_bottom, $com_71);
+    cc_deleteall($com_66);
+    if_sethide(true, $com_66);
+    if_setscrollsize(0, 0, $com_68);
+    if_setscrollpos(0, 0, $com_68);
+}
 if ($int0 > if_getheight($com_32)) {
     if_setsize(22, 4, ^setsize_minus, ^setsize_minus, $com_32);
     if_setsize(0, $int0, ^setsize_minus, ^setsize_abs, $com_34);
@@ -26,38 +68,38 @@ if ($int0 > if_getheight($com_32)) {
     if_setscrollpos(0, 0, $com_33);
 }
 def_component $component = null;
-def_int $int6 = 0;
-def_int $int7 = 0;
-def_int $int8 = 0;
-def_int $int9 = calc((if_getwidth($com_32) - 212) / 4);
-while ($int6 < 10) {
-    $component = ~script7167($int6);
-    $int7 = 0;
-    $int8 = 8;
-    while (cc_find($component, $int8) = true) {
-        $int8 = calc($int8 + 1);
-        if (.cc_find($component, $int8) = true & .cc_getinvobject ! null) {
-            cc_setposition(calc(6 + 40 * $int7 + ($int9 * $int7 - 1)), cc_gety, ^setpos_abs_left, ^setpos_abs_top);
+def_int $int12 = 0;
+def_int $int13 = 0;
+def_int $int14 = 0;
+def_int $int15 = calc((if_getwidth($com_32) - 212) / 4);
+while ($int12 < 10) {
+    $component = ~script7167($int12);
+    $int13 = 0;
+    $int14 = 8;
+    while (cc_find($component, $int14) = true) {
+        $int14 = calc($int14 + 1);
+        if (.cc_find($component, $int14) = true & .cc_getinvobject ! null) {
+            cc_setposition(calc(6 + 40 * $int13 + ($int15 * $int13 - 1)), cc_gety, ^setpos_abs_left, ^setpos_abs_top);
             .cc_setposition(calc(cc_getx + 2), .cc_gety, ^setpos_abs_left, ^setpos_abs_top);
         }
-        $int8 = calc($int8 + 1);
-        $int7 = calc(($int7 + 1) % 5);
+        $int14 = calc($int14 + 1);
+        $int13 = calc(($int13 + 1) % 5);
     }
-    $int6 = calc($int6 + 1);
+    $int12 = calc($int12 + 1);
 }
-$int6 = 0;
-while ($int6 < 10) {
-    $component = ~script4221($int6);
-    $int7 = 0;
-    $int8 = 8;
-    while (cc_find($component, $int8) = true) {
-        $int8 = calc($int8 + 1);
-        if (.cc_find($component, $int8) = true & .cc_getinvobject ! null) {
-            cc_setposition(calc(6 + 40 * $int7 + ($int9 * $int7 - 1)), cc_gety, ^setpos_abs_left, ^setpos_abs_top);
+$int12 = 0;
+while ($int12 < 10) {
+    $component = ~script4221($int12);
+    $int13 = 0;
+    $int14 = 8;
+    while (cc_find($component, $int14) = true) {
+        $int14 = calc($int14 + 1);
+        if (.cc_find($component, $int14) = true & .cc_getinvobject ! null) {
+            cc_setposition(calc(6 + 40 * $int13 + ($int15 * $int13 - 1)), cc_gety, ^setpos_abs_left, ^setpos_abs_top);
             .cc_setposition(calc(cc_getx + 2), .cc_gety, ^setpos_abs_left, ^setpos_abs_top);
         }
-        $int8 = calc($int8 + 1);
-        $int7 = calc(($int7 + 1) % 5);
+        $int14 = calc($int14 + 1);
+        $int13 = calc(($int13 + 1) % 5);
     }
-    $int6 = calc($int6 + 1);
+    $int12 = calc($int12 + 1);
 }
