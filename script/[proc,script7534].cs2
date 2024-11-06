@@ -1,0 +1,13 @@
+// 7534
+[proc,script7534](int $int)
+def_string $string = stringvector_get(stringvector_5, $int);
+if (string_length($string) <= 0) {
+    return;
+}
+hiscore_setapi(0);
+hiscore_lookup($string, 0);
+if_sethide(false, interface_894:com_3);
+cc_deleteall(interface_894:com_3);
+~loading_icon_init(interface_894:com_3, null, enum_3789, 10, 500, 3000, 512, 1024, 0, 3, "");
+if_setontimer("hiscores_poll($string, 1)", interface_894:com_1);
+if_setontimer("hiscores_poll_secondary($int)", interface_894:com_1);

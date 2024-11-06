@@ -1,0 +1,20 @@
+// 7592
+[clientscript,combat_interface_init]
+def_component $com_45 = interface_593:com_45;
+def_component $com_1 = interface_593:com_1;
+def_int $int = 0;
+if (~on_mobile = true) {
+    while ($int < 4) {
+        cc_create($com_1, ^iftype_rectangle, $int);
+        cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+        cc_setsize(calc($int * 2), calc($int * 2), ^setsize_minus, ^setsize_minus);
+        cc_setcolour(^white);
+        cc_setfill(true);
+        cc_settrans(220);
+        $int = calc($int + 1);
+    }
+    ~combat_interface_info_toggle(false);
+} else {
+    if_sethide(true, $com_45);
+}
+~combat_interface_setup;

@@ -1,29 +1,29 @@
 // 192
 [proc,chatalerts](int $int0)
 def_int $int1 = %varclient_57;
+def_boolean $boolean = ~on_mobile;
 %varclient_57 = clientclock;
-if (%varclient_41 = 0) {
+if (%varclient_41 = 0 & ($boolean = false | %varclient_1220 = 0)) {
     return;
 }
-def_int $int2 = 0;
+def_int $int3 = 0;
 if (%varclient_41 = 1337) {
-    $int2 = 1;
+    $int3 = 1;
 }
 def_int $chattype = ^chattype_gamemessage;
-def_int $int4 = -1;
+def_int $int5 = -1;
 def_string $string0 = "";
 def_string $string1 = "";
 def_string $string2 = "";
-def_int $int5 = 0;
-def_string $string3 = "";
 def_int $int6 = 0;
-def_boolean $boolean = ~on_mobile;
+def_string $string3 = "";
+def_int $int7 = 0;
 while ($int0 ! -1) {
-    $chattype, $int4, $string0, $string1, $string2, $int5, $string3, $int6 = chat_gethistory_byuid($int0);
-    if ($int4 <= $int1) {
+    $chattype, $int5, $string0, $string1, $string2, $int6, $string3, $int7 = chat_gethistory_byuid($int0);
+    if ($int5 <= $int1) {
         return;
     }
-    if (~filtertest($chattype, $string0, ~affixtimestamp($string3, $string2, null), $string2, $int4, $int2, removetags(chat_playername), $int5) = true & ~trade_partner_check($chattype, $string0, $int5) = false) {
+    if (~filtertest($chattype, $string0, ~affixtimestamp($string3, $string2, null), $string2, $int5, $int3, removetags(chat_playername), $int6) = true & ~trade_partner_check($chattype, $string0, $int6) = false) {
         switch_int ($chattype) {
             case ^chattype_modchat, ^chattype_publicchat :
                 ~chat_alert_enable(2);

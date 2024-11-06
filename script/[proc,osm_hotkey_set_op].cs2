@@ -1,0 +1,87 @@
+// 7425
+[proc,osm_hotkey_set_op](int $int, component $component, struct $struct)
+if_setop(2, "", $component);
+switch_int ($int) {
+    case 20 :
+        if (%varplayer_102 > 0 | %varplayer_456 > 0 | %varplayerbit_10151 > 0) {
+            if_setop(1, struct_param($struct, param_1991), $component);
+        } else {
+            if_setop(1, "", $component);
+        }
+    case 23 :
+        if (map_members = false & %varplayerbit_5314 = 0 | ~script3648(inv_getobj(inv_94, 3)) <= 0) {
+            if_setop(1, "", $component);
+        } else {
+            if_setop(1, struct_param($struct, param_1991), $component);
+        }
+    case 16 :
+        if (%varplayerbit_6516 = 0) {
+            if_setop(1, "Friends List", $component);
+        } else {
+            if_setop(1, "Ignore List", $component);
+        }
+    case 11 :
+        switch_int (%varplayerbit_8168) {
+            case default :
+                if_setop(1, "Character Summary", $component);
+            case 1 :
+                if_setop(1, "Quest List", $component);
+            case 2 :
+                if_setop(1, "Achievement Diaries", $component);
+            case 3 :
+                if_setop(1, "Adventure Paths", $component);
+            case 4 :
+                if_setop(1, "Leagues", $component);
+        }
+    case 15 :
+        if_setop(1, enum(int, string, enum_3839, %varplayerbit_13071), $component);
+    case 3 :
+        if (%varclient_1214 = 0) {
+            if_setop(1, "Mark highlighted tiles", $component);
+        } else {
+            if_setop(1, "Stop marking highlighted tiles", $component);
+        }
+        if (%varclient_1215 = 1) {
+            if_setop(2, "Show tile highlights", $component);
+        } else {
+            if_setop(2, "Hide tile highlights", $component);
+        }
+    case 21 :
+        if_setopbase("Quick-prayers", $component);
+        if_setop(2, "Setup", $component);
+        if (%varplayerbit_12142 > 0) {
+            if (%varplayerbit_4103 = 1) {
+                if_setop(1, "Deactivate", $component);
+            } else {
+                if_setop(1, "Activate", $component);
+            }
+        } else if (%varplayerbit_4103 = 1) {
+            if_setop(1, "Deactivate", $component);
+        } else {
+            if_setop(1, "Activate", $component);
+        }
+    case 25 :
+        if (%varplayerbit_11518 = 0) {
+            if_setop(1, "Edit NPC tags", $component);
+        } else {
+            if_setop(1, "Stop editing NPC tags", $component);
+        }
+        if (%varplayerbit_14168 = 0) {
+            if_setop(2, "Show tagged NPCs", $component);
+        } else {
+            if_setop(2, "Hide tagged NPCs", $component);
+        }
+    case 24 :
+        if (%varplayerbit_14872 = 0) {
+            if_setop(1, "Edit ground items", $component);
+        } else {
+            if_setop(1, "Stop editing ground items", $component);
+        }
+        if (%varplayerbit_14869 = 0) {
+            if_setop(2, "Show ground items", $component);
+        } else {
+            if_setop(2, "Hide ground items", $component);
+        }
+    case default :
+        if_setop(1, struct_param($struct, param_1991), $component);
+}

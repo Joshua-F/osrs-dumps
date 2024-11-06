@@ -1,9 +1,13 @@
 // 2617
 [clientscript,magic_spellbook_targetmode](boolean $boolean, component $component, obj $obj)
+def_int $int = 0;
 if ($boolean = true) {
     if_setoutline(2, $component);
+    if (%varclient_1225 = 1) {
+        $int = 1;
+    }
     if (testbit(if_gettargetmask($component), 5) = ^true) {
-        ~toplevel_sidebutton_switch(3, ~toplevel_getcomponents);
+        ~toplevel_sidebutton_switch(3, ~toplevel_getcomponents, $int);
     }
 } else {
     if_setoutline(0, $component);

@@ -1,0 +1,53 @@
+// 7479
+[proc,hiscores_activities_display]
+def_int $int0 = calc(enum_getoutputcount(enum_5625) + 9 + 1);
+def_int $int1 = enum_getoutputcount(enum_5625);
+def_dbrow $dbrow = null;
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_int $int5 = 0;
+def_varp $varp = null;
+def_string $string = "";
+def_int $int7 = 0;
+while ($int3 < $int1) {
+    $dbrow = enum(int, dbrow, enum_5625, $int3);
+    if ($dbrow ! null) {
+        $varp = db_getfield($dbrow, dbtable_80:col0, 0);
+        $int4 = ~max(0, hiscore_getbosskills($varp));
+        $int5 = ~max(0, calc(hiscore_getbossrank($varp) + 1));
+        if (cc_find(interface_894:com_8, $int0) = true) {
+            cc_settext(~hiscores_tostring($int4));
+        }
+        switch_dbrow ($dbrow) {
+            case dbrow_3997 :
+                if ($int5 > 0) {
+                    $string = "<db_getfield($dbrow, dbtable_80:col1, 0)><br>All: <~tostring_spacer(~min($int4, ^max_32bit_int), ",")> Rank: <~tostring_spacer($int5, ",")>";
+                    $int7 = calc(hiscore_getbossrank(varplayer_2201) + 1);
+                    $string = append($string, "<br>Beginner: <~tostring_spacer(~max(0, hiscore_getbosskills(varplayer_2201)), ",")> Rank: <~tostring_spacer(~max(0, $int7), ",")>");
+                    $int7 = calc(hiscore_getbossrank(varplayer_1111) + 1);
+                    $string = append($string, "<br>Easy: <~tostring_spacer(~max(0, hiscore_getbosskills(varplayer_1111)), ",")> Rank: <~tostring_spacer(~max(0, $int7), ",")>");
+                    $int7 = calc(hiscore_getbossrank(varplayer_1112) + 1);
+                    $string = append($string, "<br>Medium: <~tostring_spacer(~max(0, hiscore_getbosskills(varplayer_1112)), ",")> Rank: <~tostring_spacer(~max(0, $int7), ",")>");
+                    $int7 = calc(hiscore_getbossrank(varplayer_1354) + 1);
+                    $string = append($string, "<br>Hard: <~tostring_spacer(~max(0, hiscore_getbosskills(varplayer_1354)), ",")> Rank: <~tostring_spacer(~max(0, $int7), ",")>");
+                    $int7 = calc(hiscore_getbossrank(varplayer_1533) + 1);
+                    $string = append($string, "<br>Elite: <~tostring_spacer(~max(0, hiscore_getbosskills(varplayer_1533)), ",")> Rank: <~tostring_spacer(~max(0, $int7), ",")>");
+                    $int7 = calc(hiscore_getbossrank(varplayer_1534) + 1);
+                    $string = append($string, "<br>Master: <~tostring_spacer(~max(0, hiscore_getbosskills(varplayer_1534)), ",")> Rank: <~tostring_spacer(~max(0, $int7), ",")>");
+                } else {
+                    $string = "<db_getfield($dbrow, dbtable_80:col1, 0)><br>Rank: Unranked";
+                }
+            case default :
+                if ($int5 > 0) {
+                    $string = "<db_getfield($dbrow, dbtable_80:col1, 0)><br>Rank: <~tostring_spacer($int5, ",")><br>Score: <~tostring_spacer($int4, ",")>";
+                } else {
+                    $string = "<db_getfield($dbrow, dbtable_80:col1, 0)><br>Rank: Unranked";
+                }
+        }
+        if (cc_find(interface_894:com_8, $int3) = true) {
+            ~hiscores_set_tooltip($string, 0, 0);
+        }
+        $int0 = calc($int0 + 2);
+    }
+    $int3 = calc($int3 + 1);
+}

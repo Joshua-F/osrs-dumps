@@ -1,0 +1,15 @@
+// 7513
+[proc,hiscores_tostring](int $int)(string)
+if ($int >= ^max_32bit_int) {
+    return("*");
+}
+if ($int >= 1000000000) {
+    return(append(tostring(calc($int / 1000000000)), "B"));
+}
+if ($int >= 1000000) {
+    return(append(tostring(calc($int / 1000000)), "M"));
+}
+if ($int >= 10000) {
+    return(append(tostring(calc($int / 1000)), "K"));
+}
+return(tostring($int));
