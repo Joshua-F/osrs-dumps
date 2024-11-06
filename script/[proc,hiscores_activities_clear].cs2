@@ -1,0 +1,27 @@
+// 7480
+[proc,hiscores_activities_clear]
+def_int $int0 = calc(enum_getoutputcount(enum_5625) + 9 + 1);
+def_int $int1 = enum_getoutputcount(enum_5625);
+def_int $int2 = 0;
+def_dbrow $dbrow3 = null;
+while ($int2 < $int1) {
+    $dbrow3 = enum(int, dbrow, enum_5625, $int2);
+    if ($dbrow3 ! null) {
+        if (cc_find(interface_894:com_8, $int0) = ^true) {
+            cc_settext("--");
+        }
+        if (cc_find(interface_894:com_8, $int2) = ^true) {
+            ~hiscores_set_tooltip(db_getfield($dbrow3, dbtable_80:col1, 0), 0, 0);
+        }
+    } else {
+        if (cc_find(interface_894:com_8, $int0) = ^true) {
+            cc_settext("--");
+        }
+        if (cc_find(interface_894:com_8, $int2) = ^true) {
+            ~hiscores_clear_tooltip;
+        }
+    }
+    $int0 = calc($int0 + 2);
+    $int2 = calc($int2 + 1);
+}
+~deltooltip_action(interface_894:com_2);

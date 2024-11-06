@@ -1,0 +1,16 @@
+// 7419
+[clientscript,osm_hotkey_default_transmit](int $int0, component $component1, struct $struct2)
+def_int $int3 = ~osm_hotkey_active($int0);
+if (cc_find($component1, 0) = ^true & .cc_find($component1, 1) = ^true) {
+    ~osm_hotkey_set_op($int0, $component1, $struct2);
+    ~osm_hotkey_set_icon($int0, $struct2);
+    ~osm_hotkey_transmits($int0, $component1, $struct2);
+    if (struct_param($struct2, param_1994) = 1) {
+        if ($int3 = 1) {
+            $int3 = 0;
+        } else {
+            $int3 = 1;
+        }
+    }
+    ~osm_hotkey_set_background($int0, $int3);
+}
