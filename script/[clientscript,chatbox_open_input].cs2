@@ -1,8 +1,12 @@
 // 2251
 [clientscript,chatbox_open_input]
-if (~on_mobile = true) {
-    if (if_hassub(interface_162:com565) = true | if_hassub(interface_162:com564) = true | if_gethide(interface_162:com37) = false) {
-        return;
-    }
-    mobile_keyboardshowstring(%varclient_335, 80);
+if (if_hassub(interface_162:com565) = true | if_hassub(interface_162:com564) = true | if_gethide(interface_162:com37) = false) {
+    return;
+}
+if (%varclient_1226 = 0) {
+    %varclient_1226 = 1;
+    ~keyboard_show_string(0, 80, %varclient_335);
+} else {
+    %varclient_1226 = 0;
+    ~keyboard_hide;
 }
