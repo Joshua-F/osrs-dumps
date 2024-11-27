@@ -12,6 +12,10 @@ def_int $int15 = 0;
 def_int $int16 = 0;
 def_int $int17 = 0;
 def_obj $obj18 = enum(int, namedobj, enum_840, $int17);
+def_int $int19 = 0;
+if (~league_relic_active(struct_1129) = 1) {
+    $int19 = 1;
+}
 while ($obj18 ! null) {
     $int13, $int14 = calc($int17 % 5 * $int10), calc($int17 / 5 * $int11);
     cc_create($component1, ^iftype_graphic, $int17);
@@ -30,7 +34,11 @@ while ($obj18 ! null) {
     .cc_settextfont(p12_full);
     .cc_settextshadow(true);
     .cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-    .cc_settext(~tostring_spacer(enum(obj, int, enum_842, $obj18), ","));
+    if ($int19 = 1 & ($obj18 = obj_12791 | $obj18 = obj_11941 | $obj18 = obj_13226)) {
+        .cc_settext("Free");
+    } else {
+        .cc_settext(~tostring_spacer(enum(obj, int, enum_842, $obj18), ","));
+    }
     switch_obj ($obj18) {
         case obj_13226, obj_12791, obj_11941 :
             cc_setop(2, "Buy 1");
