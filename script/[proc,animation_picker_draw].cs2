@@ -1,0 +1,43 @@
+// 7709
+[proc,animation_picker_draw](int $int0, int $int1, dbrow $dbrow)
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_int $int5 = 0;
+def_int $int6 = setbit(0, 4);
+def_int $int7 = -1;
+~responsive_interface_resize(interface_525:com_1, interface_525:com_5);
+$int3 = ~steelborder(interface_525:com_3, db_getfield($dbrow, dbtable_83:col0, 0), $int6);
+def_component $com_6 = interface_525:com_6;
+~scrollbar_vertical(interface_525:com_9, $com_6, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+def_int $int9 = 0;
+def_int $intarray(2);
+$intarray(0) = 200;
+$intarray(1) = 220;
+def_graphic $graphicarray(3);
+$graphicarray(0) = "toggle_box,4";
+$graphicarray(1) = "toggle_box,2";
+$graphicarray(2) = "toggle_box,1";
+def_int $int10 = db_getfieldcount($dbrow, dbtable_83:col1);
+def_int $int11 = -1;
+def_int $int12 = -1;
+def_int $int13 = 32;
+if (~on_mobile = true) {
+    $int13 = 64;
+}
+while ($int9 < $int10) {
+    $int11 = calc($int9 % 2);
+    $int12 = calc((testbit($int0, $int9) + 1) * testbit($int1, $int9));
+    $int12 = min($int12, 2);
+    $int4, $int5 = ~animation_picker_strip($int4, $int5, $int9, $int13, $intarray($int11), $graphicarray($int12), $dbrow);
+    $int9 = calc($int9 + 1);
+}
+def_int $int14 = 11;
+while ($int9 < $int14) {
+    $int11 = calc($int9 % 2);
+    $int5 = ~animation_picker_strip_background($int5, $int9, $int13, $intarray($int11), 0);
+    $int9 = calc($int9 + 1);
+}
+def_int $int15 = max(calc($int13 * $int10), if_getheight($com_6));
+def_int $int16 = 0;
+$int16 = ~thinbox(interface_525:com_4, $int16);
+if_setscrollsize(0, $int15, $com_6);
