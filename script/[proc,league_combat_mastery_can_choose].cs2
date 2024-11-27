@@ -1,0 +1,41 @@
+// 7657
+[proc,league_combat_mastery_can_choose](struct $struct0)(int)
+if (~league_world = false) {
+    return(0);
+}
+if ($struct0 = null) {
+    return(0);
+}
+if (%varplayerbit_11583 <= 0) {
+    return(0);
+}
+def_enum $enum1 = null;
+def_int $int2 = -1;
+switch_int (struct_param($struct0, param_2027)) {
+    case 3 :
+        $enum1, $int2 = enum_5691, %varplayerbit_11580;
+    case 4 :
+        $enum1, $int2 = enum_5692, %varplayerbit_11581;
+    case 5 :
+        $enum1, $int2 = enum_5693, %varplayerbit_11582;
+}
+if ($enum1 = null) {
+    return(0);
+}
+def_int $int3 = 1;
+def_int $int4 = -1;
+def_int $int5 = 0;
+while ($int3 <= enum_getoutputcount($enum1) & $int5 = 0) {
+    if (enum(int, struct, $enum1, $int3) = $struct0) {
+        $int5, $int4 = 1, $int3;
+    } else {
+        $int3 = calc($int3 + 1);
+    }
+}
+if ($int4 = -1) {
+    return(0);
+}
+if ($int4 = calc($int2 + 1)) {
+    return(1);
+}
+return(0);
