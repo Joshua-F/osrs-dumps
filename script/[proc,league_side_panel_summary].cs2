@@ -1,0 +1,17 @@
+// 7701
+[proc,league_side_panel_summary](component $component, int $rgb)
+def_component $com_7 = interface_656:com_7;
+def_component $com_9 = interface_656:com_9;
+def_component $com_6 = interface_656:com_6;
+if_setcolour($rgb, $com_9);
+if_setop(1, "Show <col=ff9040>Summary</col>", $com_7);
+if (~on_mobile = false) {
+    if_setonmouserepeat("league_side_panel_misc_hover(true, $com_9, $rgb)", $com_7);
+    if_setonmouseleave("league_side_panel_misc_hover(false, $com_9, $rgb)", $com_7);
+}
+def_string $string = "Open your league summary";
+if (~on_mobile = false) {
+    if_setonmouserepeat("tooltip_mouserepeat($com_7, 0, $component, $string, 25, 190)", $com_6);
+    if_setonmouseleave("deltooltip($component)", $com_6);
+}
+def_int $int = ~script3953($com_6, $int, 24, if_getwidth($com_6), 0, 0, 0);

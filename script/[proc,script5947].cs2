@@ -56,22 +56,22 @@ def_int $int10 = calc(coordz(struct_param($struct, param_1280)) % 64);
 cc_setposition(calc($int6 + 1 + (37 - 5) / 2 - $int9 / 2 + coordx(struct_param($struct, param_1284)) % 64), calc($int7 + 1 + (37 - 5) / 2 - $int10 / 2 + coordz(struct_param($struct, param_1284)) % 64), ^setpos_abs_left, ^setpos_abs_bottom);
 cc_setsize($int9, $int10, ^setsize_abs, ^setsize_abs);
 def_int $int11 = 0;
-def_graphic $graphic = null;
+def_graphic $graphic12 = null;
 def_obj $obj13 = struct_param($struct, param_1281);
 def_obj $obj14 = ~buff_bar_dynamic_obj($rgb3);
 if ($obj14 ! null) {
     $obj13 = $obj14;
 }
 if (struct_param($struct, param_1480) = true) {
-    $graphic = ~buff_bar_dynamic_graphic($rgb3);
+    $graphic12 = ~buff_bar_dynamic_graphic($rgb3);
 } else {
-    $graphic = struct_param($struct, param_1278);
+    $graphic12 = struct_param($struct, param_1278);
 }
 if (struct_param($struct, param_1285) ! null & $int11 ! -1) {
-    $graphic = enum(int, graphic, struct_param($struct, param_1285), $int11);
+    $graphic12 = enum(int, graphic, struct_param($struct, param_1285), $int11);
 }
-if ($graphic ! null) {
-    cc_setgraphic($graphic);
+if ($graphic12 ! null) {
+    cc_setgraphic($graphic12);
 } else if ($obj13 ! null) {
     cc_setoutline(1);
     cc_setobject_nonum(oc_uncert($obj13), 100000);
@@ -82,23 +82,32 @@ $int9 = calc(coordx(struct_param($struct, param_1483)) % 64);
 $int10 = calc(coordz(struct_param($struct, param_1483)) % 64);
 cc_setposition(calc($int6 + 1 + (37 - 5) / 2 - $int9 / 2 + coordx(struct_param($struct, param_1484)) % 64), calc($int7 + 1 + (37 - 5) / 2 - $int10 / 2 + coordz(struct_param($struct, param_1484)) % 64), ^setpos_abs_left, ^setpos_abs_bottom);
 cc_setsize($int9, $int10, ^setsize_abs, ^setsize_abs);
-$graphic = null;
+$graphic12 = null;
 if (struct_param($struct, param_1481) = true) {
-    $graphic = ~buff_bar_dynamic_graphic2($rgb3);
+    $graphic12 = ~buff_bar_dynamic_graphic2($rgb3);
 } else {
-    $graphic = struct_param($struct, param_1479);
+    $graphic12 = struct_param($struct, param_1479);
 }
-if ($graphic ! null) {
-    cc_setgraphic($graphic);
+if ($graphic12 ! null) {
+    cc_setgraphic($graphic12);
 } else {
     cc_sethide(true);
 }
 $int1 = calc($int1 + 1);
 cc_create($com_4, ^iftype_text, $int1);
-cc_setposition($int6, calc($int7 + 1), ^setpos_abs_left, ^setpos_abs_bottom);
+if (struct_param($struct, param_1998) = true) {
+    cc_setposition($int6, calc($int7 + 6), ^setpos_abs_left, ^setpos_abs_bottom);
+} else {
+    cc_setposition($int6, calc($int7 + 1), ^setpos_abs_left, ^setpos_abs_bottom);
+}
 cc_setsize(calc(37 - 3), 12, ^setsize_abs, ^setsize_abs);
 cc_setcolour(^white);
-cc_settextfont(p11_full);
+def_graphic $graphic15 = struct_param($struct, param_1997);
+if ($graphic15 ! null) {
+    cc_settextfont($graphic15);
+} else {
+    cc_settextfont(p11_full);
+}
 cc_settextshadow(true);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
 if (~buff_bar_buff_displays_value($struct) = true) {

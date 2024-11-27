@@ -1,29 +1,20 @@
 // 2452
-[proc,league_side_panel_rank](component $component0, component $component1, int $int2)(int)
-def_string $string0 = "Current Rank:";
-def_int $int3 = calc(parawidth($string0, 190, p11_full) + 15);
-if_setop(1, "Show <col=ff9040>Ranks</col>", $component0);
-if_setsize($int3, if_getheight($component0), ^setsize_abs, ^setsize_abs, $component0);
-cc_create($component0, ^iftype_graphic, 0);
-cc_setsize(13, 13, ^setsize_abs, ^setsize_abs);
-cc_setposition(0, -1, ^setpos_abs_right, ^setpos_abs_centre);
-~script2454($component0);
-.cc_create($component0, ^iftype_text, 1);
-.cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
-.cc_setposition(0, 1, ^setpos_abs_centre, ^setpos_abs_top);
-.cc_setcolour($int2);
-.cc_settextfont(p11_full);
-.cc_settextshadow(true);
-.cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
-.cc_settext($string0);
-.cc_setonmouseleave("deltooltip($component1)");
-.cc_setonvartransmit("league_side_panel_rank_transmit($component0){varplayer_2614}");
+[proc,league_side_panel_rank](component $component, int $rgb)
+def_component $com_15 = interface_656:com_15;
+def_component $com_14 = interface_656:com_14;
+def_component $com_10 = interface_656:com_10;
+def_component $com_11 = interface_656:com_11;
+if_setcolour($rgb, $com_14);
+if_setop(1, "Show <col=ff9040>Ranks</col>", $com_10);
+if_setgraphic(enum(int, graphic, enum_5199, ~league_current_rank), $com_15);
+if_setonvartransmit("league_side_panel_rank_transmit($com_15){varplayer_2614}", $com_10);
 if (~on_mobile = false) {
-    if_setonmouseover("cc_colour_swapper(event_com, .cc_getid, 16777215)", $component0);
-    if_setonmouseleave("cc_colour_swapper(event_com, .cc_getid, $int2)", $component0);
+    if_setonmouserepeat("league_side_panel_misc_hover(true, $com_14, $rgb)", $com_10);
+    if_setonmouseleave("league_side_panel_misc_hover(false, $com_14, $rgb)", $com_10);
 }
-def_string $string1 = "Open the rank interface.";
+def_string $string = "Open the rank interface";
 if (~on_mobile = false) {
-    .cc_setonmouserepeat("tooltip_mouserepeat(event_com, event_comsubid, $component1, $string1, 25, 190)");
+    if_setonmouserepeat("tooltip_mouserepeat($com_10, 0, $component, $string, 25, 190)", $com_11);
+    if_setonmouseleave("deltooltip($component)", $com_11);
 }
-return($int3);
+def_int $int = ~script3953($com_11, $int, 24, if_getwidth($com_11), 0, 0, 0);

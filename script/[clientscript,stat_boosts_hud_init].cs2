@@ -1,30 +1,30 @@
 // 4130
-[clientscript,stat_boosts_hud_init](component $com_1, component $com_2, component $com_0, component $com_4, component $com_5, component $com_3)
+[clientscript,stat_boosts_hud_init](component $com_1, component $com_3, component $com_0, component $com_5, component $com_6, component $com_4)
 if (~on_enhanced_any = false) {
     return;
 }
 if (~on_mobile = false) {
-    if_setposition(2, 2, ^setpos_abs_left, ^setpos_abs_bottom, $com_2);
-    ~interface_dodger_init($com_1, $com_2, 30720, ^setpos_abs_left, ^setpos_abs_bottom, false);
+    if_setposition(2, 2, ^setpos_abs_left, ^setpos_abs_bottom, $com_3);
+    ~interface_dodger_init($com_1, $com_3, 30720, ^setpos_abs_left, ^setpos_abs_bottom, false);
 } else {
-    if_setposition(2, 0, ^setpos_abs_right, ^setpos_abs_bottom, $com_2);
-    ~interface_dodger_init($com_1, $com_2, setbit(0, 1), ^setpos_abs_right, ^setpos_abs_bottom, false);
+    if_setposition(2, 0, ^setpos_abs_right, ^setpos_abs_bottom, $com_3);
+    ~interface_dodger_init($com_1, $com_3, setbit(0, 1), ^setpos_abs_right, ^setpos_abs_bottom, false);
 }
-if_setonstattransmit("stat_boosts_hud_update_displays($com_2, $com_5, $com_3, $com_4)", $com_5);
-if_setonvartransmit("stat_boosts_hud_update_displays($com_2, $com_5, $com_3, $com_4){varplayer_3074}", $com_5);
-if_setonvartransmit("stat_boosts_hud_update_enabled($com_2, $com_3){varplayer_3074}", $com_0);
-if_setsize(calc(4 * 2 + 3), 35, ^setsize_abs, ^setsize_abs, $com_4);
+if_setonstattransmit("stat_boosts_hud_update_displays($com_3, $com_6, $com_4, $com_5)", $com_6);
+if_setonvartransmit("stat_boosts_hud_update_displays($com_3, $com_6, $com_4, $com_5){varplayer_3074}", $com_6);
+if_setonvartransmit("stat_boosts_hud_update_enabled($com_3, $com_4){varplayer_3074}", $com_0);
+if_setsize(calc(4 * 2 + 3), 35, ^setsize_abs, ^setsize_abs, $com_5);
 def_int $int = 0;
-$int = ~script4516($com_4, 0, $int, true);
-$int = ~script4516($com_4, 1, $int, false);
-cc_create($com_4, ^iftype_rectangle, $int);
+$int = ~script4516($com_5, 0, $int, true);
+$int = ~script4516($com_5, 1, $int, false);
+cc_create($com_5, ^iftype_rectangle, $int);
 $int = calc($int + 1);
 cc_setcolour(0x383023);
 cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
 cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
-cc_create($com_4, ^iftype_rectangle, $int);
+cc_create($com_5, ^iftype_rectangle, $int);
 $int = calc($int + 1);
 cc_setcolour(0x5a5245);
 cc_setsize(1, 1, ^setsize_minus, ^setsize_minus);
 cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
-if_sethide(true, $com_4);
+if_sethide(true, $com_5);
