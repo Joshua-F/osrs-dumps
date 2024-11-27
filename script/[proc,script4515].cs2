@@ -61,14 +61,18 @@ cc_settextshadow(true);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
 def_string $string1 = "";
 def_int $int18 = 0;
+def_int $int19 = stat($stat2);
+if (%varplayerbit_17573 > 0) {
+    $int19 = ~script7769($stat2);
+}
 if (%varplayerbit_12376 = 1) {
-    $int18 = calc(stat($stat2) - stat_base($stat2));
+    $int18 = calc($int19 - stat_base($stat2));
     if ($int18 > 0) {
         $string1 = "+";
     }
     $string1 = "<$string1><tostring($int18)>";
 } else {
-    $string1 = tostring(stat($stat2));
+    $string1 = tostring($int19);
 }
 cc_settext($string1);
 cc_create($component0, ^iftype_rectangle, $int5);
