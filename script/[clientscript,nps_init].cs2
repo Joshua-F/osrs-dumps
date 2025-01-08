@@ -1,0 +1,46 @@
+// 3195
+[clientscript,nps_init](component $com_0, component $com_2, component $com_15, component $com_16)
+cc_deleteall($com_2);
+cc_create($com_2, ^iftype_graphic, 0);
+cc_setsize(26, 23, ^setsize_abs, ^setsize_abs);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+def_graphic $graphic = "close_buttons,6";
+cc_setgraphic($graphic);
+if_setonmouseleave("script3440(event_com, cc_getid, $graphic, null)", $com_2);
+$graphic = "close_buttons,7";
+if_setonmouseover("script3440(event_com, cc_getid, $graphic, null)", $com_2);
+if_setop(1, "Close", $com_2);
+if_setonop("closebutton_click_sound", $com_2);
+if (%varplayerbit_4681 = 1) {
+    if_setopkey(1, ^key_escape, 0, $com_2);
+}
+def_component $component = null;
+def_string $string = "";
+def_int $int6 = -1;
+def_int $int7 = ^min_32bit_int;
+def_int $int8 = ^max_32bit_int;
+def_int $int9 = 0;
+while ($int9 <= 10) {
+    $component = enum(int, component, enum_2734, $int9);
+    if ($component ! null) {
+        $string = tostring($int9);
+        if_setop(1, $string, $component);
+        if_setonop("closebutton_click_sound", $component);
+        $int6 = ~scale_colour(8323072, 255, $int9, 10);
+        ~beige_stone_button_init($component, "<~script3739($int6, "col")><$string></col>", b12_full, 0);
+        if ($int7 = ^min_32bit_int) {
+            $int7 = if_getx($component);
+        }
+        $int8 = calc(if_getx($component) + if_getwidth($component));
+    }
+    $int9 = calc($int9 + 1);
+}
+def_int $int10 = 0;
+if ($int7 ! ^min_32bit_int & $int8 ! ^max_32bit_int) {
+    $int10 = calc($int8 - $int7);
+    if_setsize($int10, if_getheight($com_15), ^setsize_abs, ^setsize_abs, $com_15);
+    if_setsize($int10, if_getheight($com_16), ^setsize_abs, ^setsize_abs, $com_16);
+} else {
+    if_setsize(0, if_getheight($com_15), ^setsize_minus, ^setsize_abs, $com_15);
+    if_setsize(0, if_getheight($com_16), ^setsize_minus, ^setsize_abs, $com_16);
+}

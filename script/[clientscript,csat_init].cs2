@@ -1,0 +1,30 @@
+// 2170
+[clientscript,csat_init](component $com_0, component $com_6, component $com_7, component $com_8, component $com_9, component $com_10, component $com_11, component $com_12, component $com_13, component $com_14)
+if_setontimer(null, $com_0);
+def_int $int = 180;
+cc_deleteall($com_6);
+cc_create($com_6, ^iftype_graphic, 0);
+cc_setsize(26, 23, ^setsize_abs, ^setsize_abs);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+def_graphic $graphic = "close_buttons,0";
+cc_setgraphic($graphic);
+if_setonmouseleave("script3440(event_com, cc_getid, $graphic, null)", $com_6);
+$graphic = "close_buttons,1";
+if_setonmouseover("script3440(event_com, cc_getid, $graphic, null)", $com_6);
+if_setop(1, "Close", $com_6);
+if_setonop("closebutton_click_sound", $com_6);
+if (%varplayerbit_4681 = 1) {
+    if_setopkey(1, ^key_escape, 0, $com_6);
+}
+if_setop(1, "1", $com_10);
+if_setop(1, "2", $com_11);
+if_setop(1, "3", $com_12);
+if_setop(1, "4", $com_13);
+if_setop(1, "5", $com_14);
+if_setonop("csat_select(event_op, 1, $com_0, $com_10, $com_11, $com_12, $com_13, $com_14)", $com_10);
+if_setonop("csat_select(event_op, 2, $com_0, $com_10, $com_11, $com_12, $com_13, $com_14)", $com_11);
+if_setonop("csat_select(event_op, 3, $com_0, $com_10, $com_11, $com_12, $com_13, $com_14)", $com_12);
+if_setonop("csat_select(event_op, 4, $com_0, $com_10, $com_11, $com_12, $com_13, $com_14)", $com_13);
+if_setonop("csat_select(event_op, 5, $com_0, $com_10, $com_11, $com_12, $com_13, $com_14)", $com_14);
+~satisfaction_5scale_update($com_10, $com_11, $com_12, $com_13, $com_14, -1, 0);
+~csat_layout($com_7, $int, $com_8, $com_9);
