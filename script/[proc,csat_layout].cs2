@@ -1,0 +1,10 @@
+// 2172
+[proc,csat_layout](component $component0, int $int1, component $component2, component $component3)
+def_string $string0 = if_gettext($component2);
+if_settextalign(^settextalign_centre, ^settextalign_centre, 18, $component2);
+def_int $int4 = calc(paraheight($string0, $int1, p12_full) * 18 + 24);
+$int4 = max(50, $int4);
+if_setsize(0, $int4, ^setsize_minus, ^setsize_abs, $component2);
+if_setsize($int1, calc($int4 + 40), ^setsize_abs, ^setsize_abs, $component0);
+if_setsize(0, $int4, ^setsize_minus, ^setsize_minus, $component3);
+if_setontimer("csat_layout($component0, $int1, $component2, $component3, $string0)", $component0);
