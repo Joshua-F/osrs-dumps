@@ -1,5 +1,5 @@
 // 297
-[proc,bankside_drawitem](obj $obj0, int $int1, int $int2, component $component3, component $component4, int $int5, component $component6, component $component7, component $component8, component $component9, component $component10, component $component11)
+[proc,bankside_drawitem](obj $obj0, int $int1, int $int2, component $component3, component $component4, int $int5, component $component6, component $component7, component $component8, component $component9, component $component10, component $component11, boolean $boolean12)
 cc_clearops;
 def_string $string0 = "";
 if ($obj0 ! null) {
@@ -42,10 +42,22 @@ if ($obj0 ! null) {
     cc_setop(7, "Deposit-X");
     cc_setop(8, "Deposit-All");
     cc_setop(9, ~bankside_extraop($obj0, $int2));
-    cc_setop(10, "Examine");
+    if (~script7795 = true) {
+        if ($boolean12 = true) {
+            cc_setop(10, "Unlock-slot");
+        } else {
+            cc_setop(10, "Lock-slot");
+        }
+    } else {
+        cc_setop(10, "Examine");
+    }
     cc_setopbase("<col=ff9040><oc_name($obj0)></col>");
     cc_setondragcomplete("bankside_reorder(event_com, event_com2, event_comsubid, event_comsubid2, $component4, $component6, $component7, $component8, $component9, $component10, $component11)");
 } else {
+    if ($boolean12 = true & ~script7795 = true) {
+        cc_setop(10, "Unlock-slot");
+        cc_setopbase("<col=ff9040>Slot</col>");
+    }
     cc_settrans(255);
     cc_setobject(obj_6512, 1);
     cc_setonop(null);

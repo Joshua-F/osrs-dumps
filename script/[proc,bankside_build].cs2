@@ -34,20 +34,29 @@ while ($int12 > 0 & $int13 = 0) {
     }
 }
 def_int $int14 = 0;
+def_boolean $boolean15 = ~script7794(93);
+def_int $int16 = 0;
+def_int $int17 = 0;
+def_boolean $boolean18 = false;
 $int12 = inv_size(inv_93);
 while ($int12 > 0) {
     $int12 = calc($int12 - 1);
     if (cc_find($component1, $int12) = ^true) {
         $obj11 = inv_getobj(inv_93, $int12);
-        ~bankside_drawitem($obj11, inv_getnum(inv_93, $int12), $int12, $component1, $component2, $int13, $component0, $component4, $component5, $component6, $component7, $component8);
-        cc_setposition(calc($int9 + $int12 % 4 * 42), calc($int10 + $int12 / 4 * 36), ^setpos_abs_left, ^setpos_abs_top);
+        $boolean18 = ~bank_side_locked_slot($int12);
+        ~bankside_drawitem($obj11, inv_getnum(inv_93, $int12), $int12, $component1, $component2, $int13, $component0, $component4, $component5, $component6, $component7, $component8, $boolean18);
+        $int16, $int17 = calc($int9 + $int12 % 4 * 42), calc($int10 + $int12 / 4 * 36);
+        cc_setposition($int16, $int17, ^setpos_abs_left, ^setpos_abs_top);
+        if ($boolean15 = true) {
+            $int14 = ~script7783($component2, $int16, $int17, $boolean18, $int14);
+        }
         switch_obj ($obj11) {
             case obj_11941, obj_22586 :
                 if ($int13 = 1) {
                     .cc_create($component2, ^iftype_graphic, $int14);
                     $int14 = calc($int14 + 1);
                     .cc_setsize(34, 34, ^setsize_abs, ^setsize_abs);
-                    .cc_setposition(cc_getx, cc_gety, ^setpos_abs_left, ^setpos_abs_top);
+                    .cc_setposition($int16, $int17, ^setpos_abs_left, ^setpos_abs_top);
                     .cc_setgraphic("prayerglow,0");
                     .cc_settrans(180);
                 }
@@ -55,7 +64,7 @@ while ($int12 > 0) {
                 .cc_create($component2, ^iftype_graphic, $int14);
                 $int14 = calc($int14 + 1);
                 .cc_setsize(34, 34, ^setsize_abs, ^setsize_abs);
-                .cc_setposition(cc_getx, cc_gety, ^setpos_abs_left, ^setpos_abs_top);
+                .cc_setposition($int16, $int17, ^setpos_abs_left, ^setpos_abs_top);
                 .cc_setgraphic("prayerglow,0");
                 .cc_settrans(180);
         }
