@@ -1,34 +1,34 @@
 // 3933
-[clientscript,script3933](component $com_93, component $com_104, component $com_105, component $com_43, component $com_92)
-cc_deleteall($com_104);
+[clientscript,script3933](component $com_99, component $com_110, component $com_111, component $com_43, component $com_98)
+cc_deleteall($com_110);
 if (~on_enhanced_any = false) {
-    if_setposition(0, 5, ^setpos_abs_centre, ^setpos_abs_top, $com_92);
+    if_setposition(0, 5, ^setpos_abs_centre, ^setpos_abs_top, $com_98);
 } else {
-    if_setposition(0, 42, ^setpos_abs_centre, ^setpos_abs_top, $com_92);
-    if_setonvartransmit("script7100($com_105){varplayer_3796}", $com_104);
-    ~script7101($com_105);
+    if_setposition(0, 42, ^setpos_abs_centre, ^setpos_abs_top, $com_98);
+    if_setonvartransmit("script7100($com_111){varplayer_3796}", $com_110);
+    ~script7101($com_111);
 }
 def_int $int5 = struct_param(struct_2753, param_1101);
 def_int $int6 = 0;
-def_int $int7 = if_getwidth($com_104);
+def_int $int7 = if_getwidth($com_110);
 def_graphic $graphic = "options_icons,1";
 def_int $int9 = ~settings_get_slider(30);
 ~settings_set_slider(30, $int9);
 def_string $string0 = "Mute Music";
 def_string $string1 = "Unmute Music";
-~settings_create_icon($int9, 30, $com_105, $com_104, $int5, $graphic, $com_93, $string0, $string1, $com_43);
-if_setonvartransmit("script3939(30, $com_105, $com_104, $int5, $graphic, $com_93, $string0, $string1, $com_43){varplayer_168}", $com_105);
-if_setnoclickthrough(true, $com_105);
-if_setonclick("opsound(0, 0)", $com_105);
+~settings_create_icon($int9, 30, $com_111, $com_110, $int5, $graphic, $com_99, $string0, $string1, $com_43);
+if_setonvartransmit("script3939(30, $com_111, $com_110, $int5, $graphic, $com_99, $string0, $string1, $com_43){varplayer_168}", $com_111);
+if_setnoclickthrough(true, $com_111);
+if_setonclick("opsound(0, 0)", $com_111);
 while ($int6 <= $int5) {
-    cc_create($com_104, ^iftype_rectangle, $int6);
+    cc_create($com_110, ^iftype_rectangle, $int6);
     cc_setop(1, "Adjust Music Volume");
     cc_setposition(scale($int6, $int5, $int7), 0, ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize(calc(scale(calc(1 + $int6), $int5, $int7) - scale($int6, $int5, $int7)), 0, ^setsize_abs, ^setsize_minus);
     cc_setfill(true);
     cc_setcolour(^white);
     cc_settrans(255);
-    cc_setonop("settings_side_notch_op(30, $int6, $com_105, $com_104, $int5, $graphic, $com_93, $string0, $string1, $com_43)");
+    cc_setonop("settings_side_notch_op(30, $int6, $com_111, $com_110, $int5, $graphic, $com_99, $string0, $string1, $com_43)");
     $int6 = calc($int6 + 1);
 }
-~script3941($int9, $com_105, $com_104, $int5);
+~script3941($int9, $com_111, $com_110, $int5);

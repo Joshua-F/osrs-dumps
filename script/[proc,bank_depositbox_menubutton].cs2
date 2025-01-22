@@ -1,0 +1,27 @@
+// 7780
+[proc,bank_depositbox_menubutton](component $component, int $int1)
+cc_deleteall($component);
+def_int $int2 = 0;
+if ($int1 = 1) {
+    $int2 = ~options_button_on($component, $int2);
+    if_setonmouserepeat(null, $component);
+    if_setonmouseleave(null, $component);
+    if_setonop(null, $component);
+} else {
+    $int2 = ~options_button_off($component, $int2);
+    if_setonmouserepeat("cc_settrans(event_com, $int2, 100, null)", $component);
+    if_setonmouseleave("cc_settrans(event_com, $int2, 0, null)", $component);
+    if_setonop("bank_depositbox_menu_op(event_op, event_com)", $component);
+    if_setontimer(null, $component);
+}
+cc_create($component, ^iftype_graphic, $int2);
+$int2 = calc($int2 + 1);
+cc_setsize(29, 22, ^setsize_abs, ^setsize_abs);
+cc_setposition(-5, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_setgraphic("bankbuttons,7");
+cc_settrans(0);
+cc_create($component, ^iftype_graphic, $int2);
+$int2 = calc($int2 + 1);
+cc_setsize(22, 22, ^setsize_abs, ^setsize_abs);
+cc_setposition(7, 1, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_setgraphic("acc_man_icons,7");

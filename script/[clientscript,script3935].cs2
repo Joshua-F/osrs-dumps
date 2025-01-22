@@ -1,34 +1,34 @@
 // 3935
-[clientscript,script3935](component $com_122, component $com_133, component $com_134, component $com_43, component $com_120)
-cc_deleteall($com_133);
+[clientscript,script3935](component $com_128, component $com_139, component $com_140, component $com_43, component $com_126)
+cc_deleteall($com_139);
 if (~on_enhanced_any = false) {
-    if_setposition(0, 91, ^setpos_abs_centre, ^setpos_abs_top, $com_120);
+    if_setposition(0, 91, ^setpos_abs_centre, ^setpos_abs_top, $com_126);
 } else {
-    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_bottom, $com_120);
-    if_setonvartransmit("script7100($com_134){varplayer_3796}", $com_133);
-    ~script7101($com_134);
+    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_bottom, $com_126);
+    if_setonvartransmit("script7100($com_140){varplayer_3796}", $com_139);
+    ~script7101($com_140);
 }
 def_int $int5 = struct_param(struct_2755, param_1101);
 def_int $int6 = 0;
-def_int $int7 = if_getwidth($com_133);
+def_int $int7 = if_getwidth($com_139);
 def_graphic $graphic = "options_icons,14";
 def_int $int9 = ~settings_get_slider(32);
 ~settings_set_slider(32, $int9);
 def_string $string0 = "Mute Area Sound";
 def_string $string1 = "Unmute Area Sound";
-~settings_create_icon($int9, 32, $com_134, $com_133, $int5, $graphic, $com_122, $string0, $string1, $com_43);
-if_setonvartransmit("script3939(32, $com_134, $com_133, $int5, $graphic, $com_122, $string0, $string1, $com_43){varplayer_872}", $com_134);
-if_setnoclickthrough(true, $com_134);
-if_setonclick("settings_side_op_sound", $com_134);
+~settings_create_icon($int9, 32, $com_140, $com_139, $int5, $graphic, $com_128, $string0, $string1, $com_43);
+if_setonvartransmit("script3939(32, $com_140, $com_139, $int5, $graphic, $com_128, $string0, $string1, $com_43){varplayer_872}", $com_140);
+if_setnoclickthrough(true, $com_140);
+if_setonclick("settings_side_op_sound", $com_140);
 while ($int6 <= $int5) {
-    cc_create($com_133, ^iftype_rectangle, $int6);
+    cc_create($com_139, ^iftype_rectangle, $int6);
     cc_setop(1, "Adjust Area Sound Volume");
     cc_setposition(scale($int6, $int5, $int7), 0, ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize(calc(scale(calc(1 + $int6), $int5, $int7) - scale($int6, $int5, $int7)), 0, ^setsize_abs, ^setsize_minus);
     cc_setfill(true);
     cc_setcolour(^white);
     cc_settrans(255);
-    cc_setonop("settings_side_notch_op(32, $int6, $com_134, $com_133, $int5, $graphic, $com_122, $string0, $string1, $com_43)");
+    cc_setonop("settings_side_notch_op(32, $int6, $com_140, $com_139, $int5, $graphic, $com_128, $string0, $string1, $com_43)");
     $int6 = calc($int6 + 1);
 }
-~script3941($int9, $com_134, $com_133, $int5);
+~script3941($int9, $com_140, $com_139, $int5);
