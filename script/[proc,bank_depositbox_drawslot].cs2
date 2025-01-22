@@ -1,36 +1,59 @@
 // 172
-[proc,bank_depositbox_drawslot](component $component0, obj $obj1, int $int2, int $int3)
-if ($obj1 ! null) {
+[proc,bank_depositbox_drawslot](component $component0, component $component1, obj $obj2, int $int3, int $int4, boolean $boolean5)
+if ($obj2 ! null) {
     cc_settrans(0);
-    cc_setobject($obj1, $int2);
+    cc_setobject($obj2, $int3);
     cc_clearops;
-    cc_setop(1, ~depositbox_mobile_item_optext);
-    if (%varplayerbit_4430 = 0) {
-        cc_setop(2, "");
-    } else {
-        cc_setop(2, "Deposit-1");
+    switch_int (%varplayerbit_4430) {
+        case default :
+            cc_setop(2, "Deposit-1");
+            cc_setop(3, "Deposit-5");
+            cc_setop(4, "Deposit-10");
+            cc_setop(5, "Deposit-X");
+            cc_setop(6, "Deposit-All");
+        case 1 :
+            cc_setop(1, "Deposit-5");
+            cc_setop(2, "Deposit-1");
+            cc_setop(4, "Deposit-10");
+            cc_setop(5, "Deposit-X");
+            cc_setop(6, "Deposit-All");
+        case 4 :
+            cc_setop(1, "Deposit-10");
+            cc_setop(2, "Deposit-1");
+            cc_setop(3, "Deposit-5");
+            cc_setop(5, "Deposit-X");
+            cc_setop(6, "Deposit-All");
+        case 3 :
+            cc_setop(1, "Deposit-<tostring(max(1, %varplayer_1794))>");
+            cc_setop(2, "Deposit-1");
+            cc_setop(3, "Deposit-5");
+            cc_setop(4, "Deposit-10");
+            cc_setop(5, "Deposit-X");
+            cc_setop(6, "Deposit-All");
+        case 2 :
+            cc_setop(1, "Deposit-All");
+            cc_setop(2, "Deposit-1");
+            cc_setop(3, "Deposit-5");
+            cc_setop(4, "Deposit-10");
+            cc_setop(5, "Deposit-X");
     }
-    if (%varplayerbit_4430 = 1) {
-        cc_setop(3, "");
+    cc_setop(9, ~bankside_extraop($obj2, $int4));
+    if (~script7795 = true) {
+        if ($boolean5 = true) {
+            cc_setop(10, "Unlock-slot");
+        } else {
+            cc_setop(10, "Lock-slot");
+        }
     } else {
-        cc_setop(3, "Deposit-5");
+        cc_setop(10, "Examine");
     }
-    if (%varplayerbit_4430 = 2) {
-        cc_setop(4, "");
-    } else {
-        cc_setop(4, "Deposit-10");
-    }
-    if (%varplayerbit_4430 = 4) {
-        cc_setop(5, "");
-    } else {
-        cc_setop(5, "Deposit-All");
-    }
-    cc_setop(6, "Deposit-X");
-    cc_setop(9, ~bankside_extraop($obj1, $int3));
-    cc_setop(10, "Examine");
-    cc_setopbase("<col=ff9040><oc_name($obj1)></col>");
-    cc_setondragcomplete("bank_depositbox_drag(event_com, event_comsubid, event_comsubid2)");
+    cc_setopbase("<col=ff9040><oc_name($obj2)></col>");
+    cc_setondragcomplete("bank_depositbox_drag(event_com, $component1, event_comsubid, event_comsubid2)");
 } else {
+    if ($boolean5 = true & ~script7795 = true) {
+        cc_setop(10, "Unlock-slot");
+        cc_setopbase("<col=ff9040>Slot</col>");
+    }
     cc_settrans(255);
     cc_setobject(obj_6512, 1);
     cc_setondragcomplete(null);

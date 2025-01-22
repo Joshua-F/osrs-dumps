@@ -1,0 +1,45 @@
+// 2597
+[proc,script2597](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6)
+def_int $int7 = 0;
+def_int $int8 = 0;
+def_component $component9 = null;
+cc_deleteall($component0);
+def_int $rgb10 = ^black;
+if (%varplayerbit_4609 = 0) {
+    if_setgraphic("tabs_tall,8", $component1);
+    if_setgraphic("tabs_tall,9", $component2);
+    if_setgraphic("tabs_tall,8", $component3);
+    if_sethide(true, $component4);
+    if_sethide(true, $component5);
+    if_sethide(true, $component6);
+    $rgb10 = 0x28251e;
+} else {
+    if_setgraphic("tabs_tall,0", $component1);
+    if_setgraphic("tabs_tall,1", $component2);
+    if_setgraphic("tabs_tall,0", $component3);
+    $rgb10 = 0x5d5848;
+}
+$component9 = if_getlayer($component1);
+cc_create($component0, ^iftype_line, 0);
+cc_setcolour($rgb10);
+if (if_getwidth($component0) = 1) {
+    $int7 = calc(if_getx($component9) - 2);
+    $int8 = 500;
+    cc_setposition($int7, 0, ^setpos_abs_centre, ^setpos_abs_top);
+} else {
+    $int7 = if_getx($component9);
+    $int8 = calc($int7 * 2);
+    cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+}
+cc_setsize($int8, 1, ^setsize_abs, ^setsize_abs);
+cc_create($component0, ^iftype_line, 1);
+cc_setcolour($rgb10);
+$int8 = 500;
+if (if_getwidth($component0) = 1) {
+    $int7 = calc($int7 + if_getwidth($component9) + $int8 / 2 + 1);
+    cc_setposition($int7, 0, ^setpos_abs_centre, ^setpos_abs_top);
+} else {
+    $int7 = calc($int7 + if_getwidth($component9));
+    cc_setposition($int7, 0, ^setpos_abs_left, ^setpos_abs_top);
+}
+cc_setsize($int8, 1, ^setsize_abs, ^setsize_abs);
