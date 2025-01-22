@@ -2,9 +2,11 @@
 [proc,inventory_drawitem](obj $obj0, int $int1, component $component2, int $int3, boolean $boolean4, boolean $boolean5)
 cc_clearops;
 cc_settargetverb("");
+cc_setoppriority(-1);
 cc_setopbase("");
 cc_setonmouserepeat(null);
 cc_setdragdeadtime(6);
+def_int $int6 = -1;
 if ($obj0 ! null) {
     cc_setobject($obj0, $int1);
     cc_sethide(false);
@@ -13,6 +15,13 @@ if ($obj0 ! null) {
         cc_settargetverb("Use");
         cc_setontargetenter("settings_questlist_section_page(event_com, event_comsubid, 2)");
         cc_setontargetleave("settings_questlist_section_page(event_com, event_comsubid, 1)");
+        $int6 = enum(int, int, enum_4303, oc_param($obj0, param_2226));
+        if ($int6 < -1) {
+            $int6 = 0;
+        } else if ($int6 > 10) {
+            $int6 = 10;
+        }
+        cc_setoppriority($int6);
         ~inventory_setophelds($obj0, $boolean5);
         cc_setopbase("<col=ff9040><~inventory_name_override($obj0)></col>");
         cc_setondrag("inventory_startdrag(event_com, $int3)");

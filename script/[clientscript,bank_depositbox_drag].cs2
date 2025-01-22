@@ -1,20 +1,20 @@
 // 705
-[clientscript,bank_depositbox_drag](component $component0, int $int1, int $int2)
-def_int $int3 = inv_size(inv_93);
-if ($int1 < 0 | $int1 >= $int3) {
+[clientscript,bank_depositbox_drag](component $component0, component $component1, int $int2, int $int3)
+def_int $int4 = inv_size(inv_93);
+if ($int2 < 0 | $int2 >= $int4) {
     return;
 }
-if ($int2 < 0 | $int2 >= $int3) {
-    return;
-}
-def_obj $obj4 = inv_getobj(inv_93, $int1);
-if ($obj4 = null) {
+if ($int3 < 0 | $int3 >= $int4) {
     return;
 }
 def_obj $obj5 = inv_getobj(inv_93, $int2);
-if (cc_find($component0, $int2) = ^true) {
-    ~bank_depositbox_drawslot($component0, $obj4, inv_getnum(inv_93, $int1), $int1);
+if ($obj5 = null) {
+    return;
 }
-if (cc_find($component0, $int1) = ^true) {
-    ~bank_depositbox_drawslot($component0, $obj5, inv_getnum(inv_93, $int2), $int2);
+def_obj $obj6 = inv_getobj(inv_93, $int3);
+if (cc_find($component0, $int3) = ^true) {
+    ~bank_depositbox_drawslot($component0, $component1, $obj5, inv_getnum(inv_93, $int2), $int2, ~bank_side_locked_slot($int3));
+}
+if (cc_find($component0, $int2) = ^true) {
+    ~bank_depositbox_drawslot($component0, $component1, $obj6, inv_getnum(inv_93, $int3), $int3, ~bank_side_locked_slot($int2));
 }
