@@ -1,20 +1,69 @@
 // 4475
-[proc,side_channels_settab](int $int0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6)
+[proc,side_channels_settab](int $int0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7)
 if ($component1 = null) {
     return;
 }
 if_sethide(false, $component1);
-def_graphic $graphic7 = "tabs_short,2";
-def_graphic $graphic8 = "tabs_short,3";
+def_graphic $graphic8 = null;
+def_graphic $graphic9 = null;
+def_graphic $graphic10 = null;
+def_graphic $graphic11 = null;
+def_int $rgb12 = ^black;
+def_component $component13 = null;
+def_int $int14 = 0;
+def_int $int15 = 0;
 if (%varplayerbit_13071 = $int0) {
-    ~side_channels_drawtab($component1, "tabs_short,0", "tabs_short,1");
+    if (%varplayerbit_4609 = 1) {
+        ~side_channels_drawtab($component1, "tabs_short,0", "tabs_short,1", null, null);
+        $rgb12 = 0x5d5848;
+    } else {
+        ~side_channels_drawtab($component1, "tabs_short,8", "tabs_short,9", null, null);
+        $rgb12 = 0x28251e;
+    }
     if_setonmouserepeat(null, $component1);
     if_setonmouseleave(null, $component1);
     if_setonop("opsound(0, 0)", $component1);
+    cc_deleteall($component7);
+    $component13 = if_getlayer($component1);
+    cc_create($component7, ^iftype_line, 0);
+    cc_setcolour($rgb12);
+    if (if_getwidth($component7) = 1) {
+        $int14 = calc(if_getx($component1) - 2);
+        $int15 = 500;
+        cc_setposition($int14, 0, ^setpos_abs_centre, ^setpos_abs_bottom);
+    } else {
+        $int14 = if_getx($component1);
+        $int15 = calc($int14 * 2);
+        cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_bottom);
+    }
+    cc_setsize($int15, 1, ^setsize_abs, ^setsize_abs);
+    cc_create($component7, ^iftype_line, 1);
+    cc_setcolour($rgb12);
+    $int15 = 500;
+    if (if_getwidth($component7) = 1) {
+        $int14 = calc($int14 + if_getwidth($component1) + $int15 / 2 + 1);
+        cc_setposition($int14, 0, ^setpos_abs_centre, ^setpos_abs_bottom);
+    } else {
+        $int14 = calc($int14 + if_getwidth($component1));
+        cc_setposition($int14, 0, ^setpos_abs_left, ^setpos_abs_bottom);
+    }
+    cc_setsize($int15, 1, ^setsize_abs, ^setsize_abs);
 } else {
-    ~side_channels_drawtab($component1, $graphic7, $graphic8);
-    if_setonmouseleave("side_channels_drawtab($component1, $graphic7, $graphic8)", $component1);
-    $graphic7, $graphic8 = "tabs_short,4", "tabs_short,5";
-    if_setonmouserepeat("side_channels_drawtab($component1, $graphic7, $graphic8)", $component1);
-    if_setonop("side_channels_optab(event_op, $int0, $component2, $component3, $component4, $component5, $component6)", $component1);
+    if (%varplayerbit_4609 = 1) {
+        $graphic8, $graphic9 = "tabs_short,2", "tabs_short,3";
+        ~side_channels_drawtab($component1, $graphic8, $graphic9, null, null);
+    } else {
+        $graphic8, $graphic9 = "tabs_short,10", "tabs_short,11";
+        $graphic10, $graphic11 = "tabs_short,12", "tabs_short,13";
+        ~side_channels_drawtab($component1, $graphic8, $graphic9, $graphic10, $graphic11);
+    }
+    if_setonmouseleave("side_channels_drawtab($component1, $graphic8, $graphic9, $graphic10, $graphic11)", $component1);
+    if (%varplayerbit_4609 = 1) {
+        $graphic8, $graphic9 = "tabs_short,4", "tabs_short,5";
+    } else {
+        $graphic8, $graphic9 = "tabs_short,10", "tabs_short,11";
+        $graphic10, $graphic11 = "tabs_short,14", "tabs_short,15";
+    }
+    if_setonmouserepeat("side_channels_drawtab($component1, $graphic8, $graphic9, $graphic10, $graphic11)", $component1);
+    if_setonop("side_channels_optab(event_op, $int0, $component2, $component3, $component4, $component5, $component6, $component7)", $component1);
 }
