@@ -1,0 +1,287 @@
+// 7809
+[proc,collection_overview_draw](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10, component $component11, component $component12)
+def_int $int13 = 0;
+if (~on_mobile = true | getwindowmode = ^windowmode_small | %varclient_1249 = 0) {
+    $int13 = 1;
+}
+if ($int13 = 1) {
+    ~steelborder(interface_908:com_3, "Collection Log - Overview for <chat_playername>", 1);
+} else {
+    ~steelborder(interface_908:com_3, "Collection Log - Overview for <chat_playername>", 1);
+}
+def_int $int14 = 500;
+def_int $int15 = 300;
+def_int $int16 = 0;
+def_int $int17 = 0;
+def_int $int18 = if_getwidth(interface_908:com_0);
+def_int $int19 = ~script1912;
+def_int $int20 = calc(if_getheight(interface_908:com_0) - $int19);
+if_sethide(false, interface_908:com_1);
+if_sethide(true, interface_908:com_2);
+if ($int13 = 0) {
+    $int16 = max(0, min(%varclient_1247, calc($int18 - $int14)));
+    $int17 = max($int19, min(%varclient_1248, calc($int19 + $int20 - $int15)));
+}
+if (~on_mobile = false) {
+    if_setposition($int16, $int17, ^setpos_abs_left, ^setpos_abs_top, interface_908:com_1);
+}
+if_setsize($int14, $int15, ^setsize_abs, ^setsize_abs, interface_908:com_1);
+def_int $int21 = calc(if_gety(interface_908:com_4) - 2 * 6);
+def_int $int22 = calc($int14 - 6 * 2);
+def_int $int23 = calc($int16 + $int14 - 6);
+def_int $int24 = calc($int17 + $int15 - 6);
+if ($int13 = 0 & ~on_mobile = false & cc_find(interface_908:com_0, 0) = ^true) {
+    cc_setsize(calc($int22 - 44), $int21, ^setsize_abs, ^setsize_abs);
+    cc_setposition(calc($int16 + 6 + 22), calc($int17 + 6), ^setpos_abs_left, ^setpos_abs_top);
+    ~script7805($int19);
+}
+def_enum $enum25 = enum_2102;
+def_int $int26 = enum_getoutputcount($enum25);
+def_int $int27 = 0;
+def_int $int28 = 0;
+def_struct $struct29 = null;
+def_string $string0 = null;
+def_obj $obj30 = null;
+def_int $int31 = 0;
+def_int $int32 = 0;
+def_int $int33 = 90;
+def_int $int34 = calc((if_getwidth($component0) - $int33 * $int26) / ($int26 - 1));
+def_int $int35 = calc((if_getwidth($component0) - $int33 * $int26) % ($int26 - 1) / 2);
+def_int $int36 = $int35;
+def_int $int37 = 0;
+def_int $int38 = 0;
+def_int $int39 = 0;
+def_int $rgb40 = ^yellow;
+def_int $int41 = 16750899;
+~script7811($component10, $int28, $component11, $component12);
+$int28 = 0;
+~collection_create_dropdown($component10, $component11, $component12, $int28, 1);
+$int28 = 0;
+while ($int27 < $int26) {
+    $struct29 = enum(int, struct, $enum25, $int27);
+    $string0 = struct_param($struct29, param_682);
+    $obj30 = struct_param($struct29, param_2229);
+    $int31, $int32 = ~script7818($struct29);
+    if ($int31 > $int32) {
+        $int31 = $int32;
+    }
+    if ($int32 = $int31) {
+        $rgb40 = 0xdc10d;
+        $int41 = 901389;
+    } else {
+        $rgb40 = ^yellow;
+        $int41 = 16750899;
+    }
+    cc_create($component0, ^iftype_rectangle, $int28);
+    cc_setsize($int33, calc(if_getheight($component0) - 8), ^setsize_abs, ^setsize_abs);
+    cc_setposition($int35, calc($int37 + 2), ^setpos_abs_left, ^setpos_abs_top);
+    cc_setfill(false);
+    cc_setcolour(^black);
+    cc_settrans(200);
+    cc_setopbase("<col=ff981f><$string0></col>");
+    cc_create(interface_908:com_25, ^iftype_text, $int28);
+    cc_setsize($int33, 12, ^setsize_abs, ^setsize_abs);
+    cc_setposition($int35, calc($int37 + 5), ^setpos_abs_left, ^setpos_abs_top);
+    cc_settext($string0);
+    cc_settextfont(p12_full);
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    cc_settextshadow(true);
+    cc_setcolour(0xff9933);
+    cc_create(interface_908:com_26, ^iftype_graphic, $int28);
+    cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+    cc_setposition(calc($int35 + $int33 / 2 - 36 / 2), calc($int37 + 19), ^setpos_abs_left, ^setpos_abs_top);
+    cc_setobject_nonum($obj30, 1);
+    cc_setoutline(1);
+    $int38 = ~dynamic_stone_button_filled($component1, $component2, "", $int35, $int37, $int33, calc(if_getheight($component0) - 4), $int38, $int28, 1, 0);
+    if (cc_find($component2, $int28) = ^true) {
+        cc_setop(1, "<$string0> Collections");
+        cc_setonop("button_select_sound");
+    }
+    $int39 = ~collection_setup_progress_bar($component3, $int32, $int31, $int39, calc($int35 + 9), calc($int37 + 50), calc($int33 - 18), ^settextalign_centre, $rgb40, 2);
+    $int35 = calc($int35 + $int33 + $int34);
+    $int28 = calc($int28 + 1);
+    $int27 = calc($int27 + 1);
+}
+cc_deleteall($component4);
+if_setop(1, "", $component4);
+if_setopbase("", $component4);
+if_setposition($int36, 5, ^setpos_abs_left, ^setpos_abs_top, $component5);
+if_setposition($int36, 60, ^setpos_abs_left, ^setpos_abs_top, $component7);
+if_setposition($int36, 5, ^setpos_abs_right, ^setpos_abs_top, $component6);
+if_setposition($int36, 60, ^setpos_abs_right, ^setpos_abs_top, $component8);
+def_struct $struct42 = null;
+def_struct $struct43 = null;
+def_int $int44 = 0;
+def_int $int45 = 0;
+def_int $int46 = if_getwidth($component4);
+$struct42, $int44, $struct43, $int45 = ~script7800;
+$int28 = 0;
+if (cc_find($component4, 0) = ^false) {
+    cc_create($component4, ^iftype_rectangle, $int28);
+    cc_setsize(calc($int46 - 4), 29, ^setsize_abs, ^setsize_abs);
+    cc_setposition(2, 2, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setfill(false);
+    cc_setcolour(0x474745);
+    $int28 = calc($int28 + 1);
+    cc_create($component4, ^iftype_graphic, $int28);
+    cc_setsize(calc($int46 - 6), 27, ^setsize_abs, ^setsize_abs);
+    cc_setposition(3, 3, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setgraphic("ca_progress_bar,1");
+    cc_settiling(true);
+    $int28 = calc($int28 + 1);
+    cc_create($component4, ^iftype_graphic, $int28);
+    cc_setsize(1, 27, ^setsize_abs, ^setsize_abs);
+    cc_setposition(3, 3, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setgraphic("ca_progress_bar,0");
+    cc_settiling(true);
+    $int28 = calc($int28 + 1);
+    cc_create($component4, ^iftype_text, $int28);
+    cc_setsize($int46, 33, ^setsize_abs, ^setsize_abs);
+    cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+    cc_settextfont(p12_full);
+    cc_setcolour(^white);
+    cc_settextshadow(true);
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    if ($struct43 = null) {
+        cc_settext("Collections Logged: <tostring(%varplayer_2943)>");
+    } else {
+        cc_settext("Collections Logged: <tostring(~min(%varplayer_2943, $int45))>/<tostring($int45)>");
+    }
+    $int28 = calc($int28 + 1);
+    cc_create($component4, ^iftype_rectangle, $int28);
+    cc_setsize($int46, 33, ^setsize_abs, ^setsize_abs);
+    cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setfill(false);
+    cc_setcolour(0xe0e0c);
+    $int28 = calc($int28 + 1);
+    cc_create($component4, ^iftype_rectangle, $int28);
+    cc_setsize(calc($int46 - 2), 31, ^setsize_abs, ^setsize_abs);
+    cc_setposition(1, 1, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setfill(false);
+    cc_setcolour(0xe0e0c);
+    $int28 = calc($int28 + 1);
+}
+def_int $int47 = calc($int46 - 4);
+$int46 = $int47;
+if ($int45 ! -1 & $int45 > 0) {
+    $int46 = scale(calc(%varplayer_2943 - $int44), calc($int45 - $int44), $int47);
+}
+if ($int46 > $int47) {
+    $int46 = $int47;
+}
+if (cc_find($component4, 2) = ^true) {
+    cc_setsize($int46, cc_getheight, ^setsize_abs, ^setsize_abs);
+}
+if ($struct42 ! null) {
+    $int28 = 0;
+    cc_create($component5, ^iftype_rectangle, $int28);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+    cc_setfill(false);
+    cc_setcolour(^black);
+    $int28 = calc($int28 + 1);
+    cc_create($component5, ^iftype_rectangle, $int28);
+    cc_setposition(1, 1, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(2, 2, ^setsize_minus, ^setsize_minus);
+    cc_setfill(false);
+    cc_setcolour(struct_param($struct42, param_2235));
+    $int28 = calc($int28 + 1);
+    cc_create($component5, ^iftype_graphic, $int28);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+    cc_setobject_nonum(struct_param($struct42, param_2234), 1);
+    cc_setoutline(1);
+    $int28 = calc($int28 + 1);
+    if_settext(struct_param($struct42, param_2231), $component7);
+} else {
+    if_sethide(true, $component5);
+    if_settext("", $component7);
+}
+if ($struct43 ! null) {
+    $int28 = 0;
+    cc_create($component6, ^iftype_rectangle, $int28);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+    cc_setfill(false);
+    cc_setcolour(^black);
+    $int28 = calc($int28 + 1);
+    cc_create($component6, ^iftype_rectangle, $int28);
+    cc_setposition(1, 1, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(2, 2, ^setsize_minus, ^setsize_minus);
+    cc_setfill(false);
+    cc_setcolour(struct_param($struct43, param_2235));
+    $int28 = calc($int28 + 1);
+    cc_create($component6, ^iftype_graphic, $int28);
+    cc_setposition(0, 9, ^setpos_abs_centre, ^setpos_abs_top);
+    cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+    cc_setobject_nonum(struct_param($struct43, param_2234), 1);
+    cc_setoutline(1);
+    $int28 = calc($int28 + 1);
+    if_settext(struct_param($struct43, param_2231), $component8);
+} else {
+    if_sethide(true, $component6);
+    if_settext("", $component8);
+}
+if_setsize(calc($int36 * 2), 40, ^setsize_minus, ^setsize_abs, $component9);
+$int28 = 0;
+$int28 = ~thinbox($component9, $int28);
+$int27 = 0;
+$int26 = 12;
+def_obj $obj48 = null;
+def_int $int49 = 0;
+$int34 = calc((if_getwidth($component9) - 36 * $int26) / ($int26 - 1));
+$int35 = calc((if_getwidth($component9) - 36 * $int26) % ($int26 - 1) / 2);
+while ($int27 < $int26) {
+    switch_int ($int27) {
+        case 0 :
+            $obj48, $int49 = %varplayer_4623, %varplayer_4624;
+        case 1 :
+            $obj48, $int49 = %varplayer_4625, %varplayer_4626;
+        case 2 :
+            $obj48, $int49 = %varplayer_4627, %varplayer_4628;
+        case 3 :
+            $obj48, $int49 = %varplayer_4629, %varplayer_4630;
+        case 4 :
+            $obj48, $int49 = %varplayer_4631, %varplayer_4632;
+        case 5 :
+            $obj48, $int49 = %varplayer_4633, %varplayer_4634;
+        case 6 :
+            $obj48, $int49 = %varplayer_4635, %varplayer_4636;
+        case 7 :
+            $obj48, $int49 = %varplayer_4637, %varplayer_4638;
+        case 8 :
+            $obj48, $int49 = %varplayer_4639, %varplayer_4640;
+        case 9 :
+            $obj48, $int49 = %varplayer_4641, %varplayer_4642;
+        case 10 :
+            $obj48, $int49 = %varplayer_4643, %varplayer_4644;
+        case 11 :
+            $obj48, $int49 = %varplayer_4645, %varplayer_4646;
+        case default :
+            $obj48 = null;
+    }
+    if ($obj48 ! null & string_length(oc_name($obj48)) > 0) {
+        cc_create($component9, ^iftype_graphic, $int28);
+        cc_setposition($int35, 0, ^setpos_abs_left, ^setpos_abs_centre);
+        cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+        cc_setobject_nonum($obj48, 1);
+        cc_setop(1, "Check-obtained");
+        cc_setonop("script7810($int49, $obj48, $component9, $int28)");
+        cc_setopbase("<col=ff9040><oc_name($obj48)></col>");
+        cc_setoutline(1);
+        $int35 = calc($int35 + 36 + $int34);
+        $int28 = calc($int28 + 1);
+    }
+    $int27 = calc($int27 + 1);
+}
+if ($int28 = 2) {
+    cc_create($component9, ^iftype_text, $int28);
+    cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_settextfont(p12_full);
+    cc_setcolour(^white);
+    cc_settextshadow(true);
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    cc_settext("No latest collections found.");
+    $int28 = calc($int28 + 1);
+}

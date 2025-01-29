@@ -1,0 +1,18 @@
+// 7810
+[clientscript,script7810](int $int0, obj $obj1, component $component2, int $int3)
+if (cc_find($component2, $int3) = ^true) {
+    cc_settrans(100);
+    cc_setontimer("cc_settrans_temporarily_end(event_com, event_comsubid, 0, calc(clientclock + 10))");
+}
+def_int $int4 = calc(%varplayerbit_9535 - $int0);
+def_string $string0 = "";
+if ($int4 < 0) {
+    $string0 = "recently";
+} else if ($int4 = 0) {
+    $string0 = "today";
+} else if ($int4 = 1) {
+    $string0 = "yesterday";
+} else {
+    $string0 = "<tostring($int4)> days ago";
+}
+mes("<chat_playername> obtained <oc_name($obj1)> <$string0>.");
