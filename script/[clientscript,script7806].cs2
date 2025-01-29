@@ -1,0 +1,26 @@
+// 7806
+[clientscript,script7806](int $int0, int $int1, int $int2, int $int3, int $int4, int $int5, component $component6, component $component7, component $component8)
+def_int $int9 = %varclient_1247;
+def_int $int10 = %varclient_1248;
+def_int $int11 = if_getwidth($component6);
+def_int $int12 = calc(if_getheight($component6) - $int5);
+def_int $int13 = 0;
+if (~on_mobile = true) {
+    return;
+}
+if (cc_find($component6, 0) = ^true) {
+    cc_setgraphic(null);
+    $int9, $int10 = calc($int9 + ($int1 - $int3)), calc($int10 + ($int2 - $int4));
+    if ($int9 < 10) {
+        $int9 = 0;
+    }
+    if ($int10 < calc($int5 + 10)) {
+        $int10 = $int5;
+    }
+    $int9 = max(0, min($int9, $int11));
+    $int10 = max($int5, min($int10, calc($int5 + $int12)));
+    if_setposition($int9, $int10, ^setpos_abs_left, ^setpos_abs_top, $component8);
+    if_sethide(false, $component8);
+    if_sethide(true, $component7);
+    cc_setontimer("script7807(calc(clientclock + 3), $int9, $int10)");
+}
