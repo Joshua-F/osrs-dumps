@@ -1,0 +1,20 @@
+// 7821
+[clientscript,chat_op_extended](int $int0, string $string0, int $chattype1, int $int2)
+def_struct $struct3 = null;
+def_struct $struct4 = null;
+switch_int ($int0) {
+    case 4 :
+        if ($chattype1 = ^chattype_gamemessage | $chattype1 = ^chattype_clanmessage) {
+            $struct3 = ~ca_get_data($int2);
+            if ($struct3 ! null) {
+                $struct4 = struct_param($struct3, param_1307);
+                mes("<~script7820(struct_param($struct4, param_1304), struct_param($struct4, param_1305))><struct_param($struct3, param_1308)></col>: <struct_param($struct3, param_1309)>");
+            }
+        }
+    case 5 :
+        if (($chattype1 = ^chattype_gamemessage | $chattype1 = ^chattype_clanmessage) & cc_find(interface_162:com_35, $int2) = ^true) {
+            cc_triggerop(1);
+        }
+    case default :
+        ~chat_op_core($int0, $string0, $chattype1);
+}
