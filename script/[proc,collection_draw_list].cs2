@@ -1,67 +1,70 @@
 // 2731
-[proc,collection_draw_list](component $component0, component $component1, component $component2, component $component3, struct $struct4, int $int5, int $int6)
-def_enum $enum7 = struct_param($struct4, param_683);
-def_int $int8 = 0;
-def_int $int9 = enum_getoutputcount($enum7);
-def_int $int10 = 15;
-def_int $int11 = 0;
-def_int $int12 = 255;
+[proc,collection_draw_list](int $int0, component $component1, component $component2, component $component3, component $component4, struct $struct5, int $int6, int $int7)
+if_setonresize("script7797($int0, $component1, $component2, $component3, $component4, $struct5, $int6)", interface_621:com87);
+def_enum $enum8 = struct_param($struct5, param_683);
+def_int $int9 = 0;
+def_int $int10 = enum_getoutputcount($enum8);
+def_int $int11 = 15;
+def_int $int12 = 0;
+def_int $int13 = 255;
 def_string $string0 = "";
-def_struct $struct13 = null;
+def_struct $struct14 = null;
 if (~on_mobile = true) {
-    $int10 = scale(8, 5, $int10);
+    $int11 = scale(8, 5, $int11);
 }
-while ($int8 < $int9) {
-    $struct13 = enum(int, struct, $enum7, $int8);
-    $string0 = struct_param($struct13, param_689);
-    cc_create($component2, ^iftype_text, $int8);
+while ($int9 < $int10) {
+    $struct14 = enum(int, struct, $enum8, $int9);
+    $string0 = struct_param($struct14, param_689);
+    cc_create($component3, ^iftype_text, $int9);
     cc_settext($string0);
-    cc_setsize(0, $int10, ^setsize_minus, ^setsize_abs);
-    cc_setposition(0, $int11, ^setpos_abs_centre, ^setpos_abs_top);
+    cc_setsize(0, $int11, ^setsize_minus, ^setsize_abs);
+    cc_setposition(0, $int12, ^setpos_abs_centre, ^setpos_abs_top);
     cc_settextfont(p12_full);
     cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
     cc_settextshadow(true);
-    if (~script4103($struct13) = 1) {
+    if (~script4103($struct14) = 1) {
         cc_setcolour(0xdc10d);
     } else {
         cc_setcolour(0xff981f);
     }
-    cc_create($component1, ^iftype_rectangle, $int8);
-    cc_setsize(0, $int10, ^setsize_minus, ^setsize_abs);
-    cc_setposition(0, $int11, ^setpos_abs_centre, ^setpos_abs_top);
+    cc_create($component2, ^iftype_rectangle, $int9);
+    cc_setsize(0, $int11, ^setsize_minus, ^setsize_abs);
+    cc_setposition(0, $int12, ^setpos_abs_centre, ^setpos_abs_top);
     cc_setcolour(^white);
     cc_setfill(true);
-    if (calc($int8 % 2) = 0) {
-        $int12 = 235;
+    if (calc($int9 % 2) = 0) {
+        $int13 = 235;
     } else {
-        $int12 = 255;
+        $int13 = 255;
     }
-    cc_settrans($int12);
+    cc_settrans($int13);
     cc_setop(1, "Check");
     cc_setopbase("<col=ff9040><$string0></col>");
-    if ($int8 = $int5) {
+    if ($int9 = $int6) {
         cc_setcolour(^white);
         cc_setfill(true);
         cc_settrans(200);
         cc_setonmouseover(null);
         cc_setonmouseleave(null);
-        ~collection_draw_log($struct13, $enum7, $int8);
+        ~collection_draw_log($struct14, $enum8, $int9);
     } else if (~on_mobile = false) {
-        cc_setonmouseover("cc_settrans(event_com, event_comsubid, calc($int12 - 40), null)");
-        cc_setonmouseleave("cc_settrans(event_com, event_comsubid, $int12, null)");
+        cc_setonmouseover("cc_settrans(event_com, event_comsubid, calc($int13 - 40), null)");
+        cc_setonmouseleave("cc_settrans(event_com, event_comsubid, $int13, null)");
     } else {
         cc_setonmouseover(null);
         cc_setonmouseleave(null);
     }
-    $int11 = calc($int11 + $int10);
-    $int8 = calc($int8 + 1);
+    $int12 = calc($int12 + $int11);
+    $int9 = calc($int9 + 1);
 }
-if ($int11 > if_getheight($component0)) {
-    if_setscrollsize(0, $int11, $component0);
-} else {
-    if_setscrollsize(0, 0, $component0);
+if ($component1 ! null & $int7 ! -1 & $int12 ! -1) {
+    if ($int12 > if_getheight($component1)) {
+        if_setscrollsize(0, $int12, $component1);
+    } else {
+        if_setscrollsize(0, 0, $component1);
+    }
+    if_setscrollpos(0, $int7, $component1);
+    cc_deleteall($component4);
+    ~scrollbar_vertical($component4, $component1, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+    ~scrollbar_resize($component4, $component1, $int7);
 }
-if_setscrollpos(0, $int6, $component0);
-cc_deleteall($component3);
-~scrollbar_vertical($component3, $component0, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-~scrollbar_resize($component3, $component0, $int6);
