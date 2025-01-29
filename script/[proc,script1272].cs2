@@ -66,6 +66,8 @@ cc_setposition(15, 1, ^setpos_abs_left, ^setpos_abs_centre);
 cc_setgraphic("acc_man_icons,7");
 $string0 = "Deposit Lock Settings";
 if_setop(1, $string0, $component1);
+~script4081(2, $component1);
+if_setonvartransmit("script4080(2, event_com){varplayer_4611}", $component1);
 $int6 = parawidth($string0, if_getwidth(if_getlayer($component1)), p12_full);
 cc_create($component1, ^iftype_text, $int5);
 cc_setsize($int6, 0, ^setsize_abs, ^setsize_minus);
@@ -79,7 +81,7 @@ if (~on_mobile = false) {
     if_setonmouseover("cc_colour_swapper(event_com, $int5, 16777215)", $component1);
     if_setonmouseleave("cc_colour_swapper(event_com, $int5, 16750623)", $component1);
 }
-if_setonop("opsound(event_op, 2)", $component1);
+if_setonop("opsound(event_op, 6)", $component1);
 def_int $int8 = calc($int6 + 46);
 if_setsize($int8, if_getheight($component1), ^setsize_abs, ^setsize_abs, $component1);
 def_int $int9 = calc($int7 + 15 + $int8);
