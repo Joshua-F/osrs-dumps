@@ -1,3 +1,82 @@
 // 2240
 [clientscript,collection_init]
-~collection_draw_tabs_all(0);
+def_graphic $graphic0 = null;
+def_int $int1 = 0;
+def_boolean $boolean2 = ~on_mobile;
+def_component $component3 = interface_621:com_1;
+if ($boolean2 = true) {
+    if_setsize(33, 33, ^setsize_abs, ^setsize_abs, $component3);
+    if_setposition(1, 1, ^setpos_abs_right, ^setpos_abs_top, $component3);
+    if_setgraphic("steelborder_close_button,0", $component3);
+    $int1 = calc(165 - (20 + 30));
+} else {
+    if_setsize(26, 23, ^setsize_abs, ^setsize_abs, $component3);
+    if_setposition(2, 6, ^setpos_abs_right, ^setpos_abs_top, $component3);
+    $graphic0 = "close_buttons,0";
+    if_setgraphic($graphic0, $component3);
+    if_setonmouseleave("graphic_swapper(event_com, $graphic0)", $component3);
+    $graphic0 = "close_buttons,1";
+    if_setonmouseover("graphic_swapper(event_com, $graphic0)", $component3);
+}
+if_setop(1, "Close", $component3);
+if_setonop("opsound(event_op, 2)", $component3);
+if_setopkey(2, ^key_escape, 0, $component3);
+if_setop(2, "", $component3);
+def_component $component4 = interface_621:com_87;
+def_component $component5 = interface_621:com_88;
+def_component $component6 = interface_621:com_89;
+def_enum $enum7 = ~toplevel_getcomponents;
+def_component $component8 = enum(component, component, $enum7, interface_161:com_16);
+if (%varclient_1245 ! 1) {
+    %varclient_1247 = if_getx($component8);
+    %varclient_1248 = if_gety($component8);
+    %varclient_1241 = if_getwidth($component8);
+    %varclient_1242 = if_getheight($component8);
+    %varclient_1243 = if_getx($component8);
+    %varclient_1244 = if_gety($component8);
+    %varclient_1245 = 1;
+}
+if (~on_mobile = true) {
+    if_setontimer("script3833($component4, $component5, 0)", $component4);
+} else {
+    if (%varclient_1243 = 0 & %varclient_1244 = 0 & %varclient_1241 = 0 & %varclient_1242 = 0) {
+        %varclient_1241 = if_getwidth($component8);
+        %varclient_1242 = if_getheight($component8);
+        %varclient_1243 = if_getx($component8);
+        %varclient_1244 = if_gety($component8);
+    }
+    if_setontimer("script6110($component4, -1)", $component4);
+}
+if_sethide(false, $component5);
+if_sethide(true, $component6);
+if ($enum7 = enum_1132) {
+    if_setposition(6, 6, ^setpos_abs_centre, ^setpos_abs_centre, $component5);
+    if_setsize(12, 12, ^setsize_minus, ^setsize_minus, $component5);
+    ~collection_draw(0, null, null, null, null, null, 0);
+    return;
+}
+cc_deleteall($component4);
+def_int $int9 = 0;
+while ($int9 < 9) {
+    cc_create($component4, ^iftype_graphic, $int9);
+    cc_settiling(true);
+    cc_settrans(255);
+    cc_setonmouserepeat("cc_settrans(event_com, event_comsubid, 200, null)");
+    cc_setonmouseleave("cc_settrans(event_com, event_comsubid, 255, null)");
+    cc_setdraggable($component4, -1);
+    cc_setdragdeadzone(1);
+    cc_setdragdeadtime(5);
+    $int9 = calc($int9 + 1);
+}
+cc_deleteall($component6);
+$int9 = 0;
+while ($int9 < 4) {
+    cc_create($component6, ^iftype_rectangle, $int9);
+    cc_setsize(calc($int9 * 2), calc($int9 * 2), ^setsize_minus, ^setsize_minus);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_setcolour(0x9f9f9f);
+    cc_setfill(false);
+    cc_settrans(calc(100 + $int9 * 10));
+    $int9 = calc($int9 + 1);
+}
+~script2600(-1, -1, $component4, $component5);
