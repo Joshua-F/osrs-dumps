@@ -1,0 +1,21 @@
+// 2874
+[proc,kdr_update]
+def_string $string0 = ",";
+def_int $int0 = 0;
+def_int $int1 = 0;
+def_int $int2 = 0;
+if (%varplayerbit_4143 = 0 | %varplayerbit_5963 = 0 & ~script2871 = false) {
+    cc_settext("");
+} else if (~deadman_world = true & %varplayerbit_4965 > 0) {
+    cc_settext("");
+} else if (%varplayerbit_8375 = 0) {
+    cc_settext("Kills: <~tostring_spacer(%varplayerbit_8376, $string0)><br>Deaths: 0<br>K/D Ratio: 0.0");
+} else {
+    if (%varplayerbit_8376 < calc(2147483647 / 10)) {
+        $int0 = scale(%varplayerbit_8376, %varplayerbit_8375, 10);
+        $int1, $int2 = calc($int0 / 10), calc($int0 % 10);
+    } else {
+        $int1, $int2 = calc(%varplayerbit_8376 / %varplayerbit_8375), 0;
+    }
+    cc_settext("Kills: <~tostring_spacer(%varplayerbit_8376, $string0)><br>Deaths: <~tostring_spacer(%varplayerbit_8375, $string0)><br>K/D Ratio: <~tostring_spacer($int1, $string0)>.<tostring($int2)>");
+}
