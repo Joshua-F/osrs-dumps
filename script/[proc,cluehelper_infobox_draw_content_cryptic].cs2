@@ -1,0 +1,44 @@
+// 6643
+[proc,cluehelper_infobox_draw_content_cryptic](dbrow $dbrow0)
+def_int $int1 = 0;
+def_int $int2 = ~script6657(db_getfield($dbrow0, dbtable_8:col3, 0));
+def_dbrow $dbrow3 = db_getfield($dbrow0, dbtable_8:col3, $int2);
+$int1 = ~helper_generic_add_title("Cryptic Clue", 1);
+if (%varplayerbit_14188 = 1) {
+    $int1 = ~helper_generic_add_text(db_getfield($dbrow0, dbtable_8:col2, 0));
+}
+~cluehelper_infobox_target_display($dbrow3);
+def_loc $loc4 = db_getfield($dbrow0, dbtable_8:col8, 0);
+if ($loc4 ! null) {
+    $int1 = ~helper_generic_add_title("S.T.A.S.H", 0);
+    $int1 = ~helper_generic_add_text("...");
+    if (cc_find(interface_711:com4, $int1) = ^true) {
+        cc_setonvartransmit("script6624($int1, $loc4){varplayer_2855, varplayer_1365, varplayer_1366, varplayer_1367, varplayer_1368, varplayer_1369, varplayer_2202}");
+    }
+}
+def_dbrow $dbrow5 = db_getfield($dbrow0, dbtable_8:col7, 0);
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_int $int8 = 0;
+def_int $int9 = -1;
+def_int $int10 = -1;
+def_string $string0 = null;
+def_int $int11 = -1;
+if ($dbrow5 ! null) {
+    $int1 = ~helper_generic_add_title("Equip", 0);
+    $string0 = db_getfield($dbrow0, dbtable_8:col6, 0);
+    if (string_length($string0) > 0) {
+        $int1 = ~helper_generic_add_text("...");
+        if (cc_find(interface_711:com4, $int1) = ^true) {
+            cc_setoninvtransmit("script6483($int1, $dbrow0){inv_93, inv_94}");
+        }
+    } else {
+        ~script6629($dbrow5);
+    }
+}
+if (~cluehelper_is_dig($dbrow0, $dbrow3) = 1) {
+    $int1 = ~helper_generic_add_text("...");
+    if (cc_find(interface_711:com4, $int1) = ^true) {
+        cc_setoninvtransmit("script6623($int1){inv_93}");
+    }
+}
