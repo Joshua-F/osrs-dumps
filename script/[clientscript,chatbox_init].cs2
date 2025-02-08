@@ -2,7 +2,7 @@
 [clientscript,chatbox_init]
 ~chatdefault_setonkey(1);
 if_setonvartransmit("script924{varplayer_1054, varplayer_1055, varplayer_1021, varplayer_499}", interface_162:com0);
-if_setonsubchange("chat_onsubchange(event_com, getwindowmode, if_hassub(interface_162:com547), if_hassub(interface_162:com546), ~toplevel_getcomponents)", interface_162:com0);
+if_setonsubchange("chat_onsubchange(event_com, getwindowmode, if_hassub(interface_162:com549), if_hassub(interface_162:com548), ~toplevel_getcomponents)", interface_162:com0);
 if_setonchattransmit("chat_onchattransmit", interface_162:com0);
 if_setonfriendtransmit("chat_onchattransmit", interface_162:com0);
 if_setonclantransmit("rebuildchatbox", interface_162:com0);
@@ -17,8 +17,8 @@ if_setonmisctransmit("script664(true)", interface_162:com0);
 def_int $int0 = 0;
 def_component $component1 = enum(int, component, enum_579, $int0);
 while ($component1 ! null) {
-    cc_create(interface_162:com44, ^iftype_text, calc($int0 * 2));
-    .cc_create(interface_162:com44, ^iftype_text, calc($int0 * 2 + 1));
+    cc_create(interface_162:com46, ^iftype_text, calc($int0 * 2));
+    .cc_create(interface_162:com46, ^iftype_text, calc($int0 * 2 + 1));
     cc_setcolour(^black);
     .cc_setcolour(^black);
     cc_settextfont(p12_full);
@@ -30,25 +30,11 @@ while ($component1 ! null) {
     $int0 = calc($int0 + 1);
     $component1 = enum(int, component, enum_579, $int0);
 }
-if_setscrollpos(0, 0, interface_162:com44);
-~scrollbar_vertical(interface_162:com545, interface_162:com44, null, null, null, null, null, null);
+if_setscrollpos(0, 0, interface_162:com46);
+~scrollbar_vertical(interface_162:com547, interface_162:com46, null, null, null, null, null, null);
 ~toplevel_chatbox_background;
 chat_setmessagefilter("");
 ~script223;
 ~redraw_chat_buttons;
 ~rebuildchatbox(~script553);
-if (~toplevel_getcomponents = enum_1745) {
-    if (if_find(interface_162:com1) = ^true) {
-        cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
-    }
-    if (if_find(interface_162:com29) = ^true) {
-        cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_bottom);
-    }
-} else {
-    if (if_find(interface_162:com1) = ^true) {
-        cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_bottom);
-    }
-    if (if_find(interface_162:com29) = ^true) {
-        cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
-    }
-}
+~script2155;
