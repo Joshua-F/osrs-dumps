@@ -1,13 +1,12 @@
 // 3001
 [clientscript,script3001](component $component0, int $int1, int $int2)
-def_int $int3 = 0;
-def_int $int4 = ~script2973($int1, $int2);
-if (~adventurepath_return_task_focus($int2) = %varplayer_2358) {
-    ~adventurepath_set_task_focus(0, %varplayer_2357);
+def_int $int3 = ~adventurepath_return_task_focus($int2);
+if ($int3 = $int1) {
+    ~adventurepath_set_task_focus(0, $int2);
     $int3 = 0;
 } else {
-    ~adventurepath_set_task_focus(%varplayer_2358, %varplayer_2357);
-    $int3 = %varplayer_2358;
+    ~adventurepath_set_task_focus($int1, $int2);
+    $int3 = $int1;
 }
 ~adventurepath_task_focus($component0, $int3, $int1, 0, $int2);
-if_setonvartransmit("script3000($component0, $int4, $int2){varplayer_2360, varplayer_2358}", $component0);
+if_setonvartransmit("script3000($component0){varplayer_2360, varplayer_2358}", $component0);
