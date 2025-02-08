@@ -18,7 +18,7 @@ def_int $int18 = 0;
 def_int $int19 = 0;
 def_int $int20 = 0;
 def_boolean $boolean21 = ~on_mobile;
-def_boolean $boolean22 = ~on_enhanced;
+def_boolean $boolean22 = ~on_enhanced_any;
 def_enum $enum23 = ~toplevel_getcomponents;
 def_int $int24 = 0;
 def_int $setposh25 = $setposh3;
@@ -39,10 +39,6 @@ def_int $int39 = 0;
 def_int $int40 = 0;
 if_setposition(0, 0, $setposh25, $setposv4, $component0);
 if_setsize(0, 0, ^setsize_minus, ^setsize_minus, $component0);
-def_int $int41 = 0;
-if ($component1 = interface_303:com3) {
-    $int41 = 1;
-}
 if (testbit($int2, 13) = ^true & $boolean21 = true & $component13 ! null) {
     ~script1282;
     $int31 = scale(%varclient_381, 16384, $int11);
@@ -109,6 +105,9 @@ if (testbit($int2, 13) = ^true & $boolean21 = true & $component13 ! null) {
     $int20 = calc($int20 + $int19);
     $int16 = calc($int11 - $int16);
     $int17 = calc($int12 - $int17);
+    if (~popout_available(-1) = true) {
+        $int16 = calc(42 + $int16 * 2);
+    }
 }
 $int35 = 0;
 if ($boolean21 = true & $enum23 = enum_1745) {
@@ -281,10 +280,10 @@ if (testbit($int2, 14) = ^true & %varplayer_287 = 1) {
         $int17 = calc($int17 + $int35);
     }
 }
-$component38 = enum(component, component, $enum23, interface_161:com6);
+$component38 = enum(component, component, $enum23, interface_161:com5);
 $boolean30 = false;
 if (testbit($int2, 15) = ^true & $boolean22 = true & $component38 ! null & if_hassub($component38) = true & if_gethide(interface_708:com2) = false) {
-    if ($setposh25 = ^setpos_abs_left) {
+    if ($boolean21 = false & $setposh25 = ^setpos_abs_left | $boolean21 = true & $setposh25 = ^setpos_abs_right) {
         $int17 = calc($int17 + 35);
     } else if ($setposh25 = ^setpos_abs_centre) {
         if ($setposv4 = ^setpos_abs_bottom) {
@@ -298,7 +297,7 @@ if (testbit($int2, 15) = ^true & $boolean22 = true & $component38 ! null & if_ha
     }
 }
 $boolean30 = false;
-$component38 = enum(component, component, $enum23, interface_161:com5);
+$component38 = enum(component, component, $enum23, interface_161:com6);
 if (testbit($int2, 11) = ^true & $component38 ! null & if_hassub($component38) = true & if_gethide($component38) = false & $component1 ! null) {
     $int35, $int36 = ~buff_bar_max_buffs;
     if ($int35 > 0 & $int36 > 0) {
