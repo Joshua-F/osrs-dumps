@@ -1,7 +1,28 @@
 // 80
-[clientscript,chat_onsubchange](component $component0, boolean $boolean1)
-def_boolean $boolean2 = ~toplevel_chatbox_permittransparent;
-if ($boolean1 = true & $boolean2 = false | $boolean1 = false & $boolean2 = true) {
+[clientscript,chat_onsubchange](component $component0, int $windowmode1, boolean $boolean2, boolean $boolean3)
+def_int $int4 = 0;
+def_int $windowmode5 = getwindowmode;
+def_boolean $boolean6 = if_hassub(interface_162:com546);
+def_boolean $boolean7 = if_hassub(interface_162:com545);
+if ($windowmode5 ! $windowmode1) {
+    $int4 = 1;
+} else {
+    if ($boolean6 = true) {
+        if ($boolean2 = false) {
+            $int4 = 1;
+        }
+    } else if ($boolean2 = true) {
+        $int4 = 1;
+    }
+    if ($boolean7 = true) {
+        if ($boolean3 = false) {
+            $int4 = 1;
+        }
+    } else if ($boolean3 = true) {
+        $int4 = 1;
+    }
+}
+if ($int4 = 1) {
     ~script113;
-    if_setonsubchange("chat_onsubchange(event_com, $boolean2)", interface_162:com0);
+    if_setonsubchange("chat_onsubchange(event_com, $windowmode5, $boolean6, $boolean7)", interface_162:com0);
 }
