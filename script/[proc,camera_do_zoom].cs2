@@ -8,17 +8,16 @@ $int0 = ~max(195, $int0);
 $int1 = ~min(715, $int1);
 $int1 = ~max(175, $int1);
 viewport_setzoom($int0, $int1);
-%varclient_73, %varclient_74 = $int0, $int1;
-def_int $int2 = calc(715 - 175);
-def_int $int3 = calc(700 - 195);
-def_int $int4 = calc(if_getwidth(interface_261:com7) - if_getwidth(interface_261:com12) - 16);
-def_int $int5 = 0;
-def_int $int6 = 0;
-$int5, $int6 = viewport_geteffectivesize;
-def_int $int7 = 0;
-if ($int5 > 334) {
-    $int7 = calc(8 + (%varclient_74 - 175) * $int4 / $int2);
-} else {
-    $int7 = calc(8 + (%varclient_73 - 195) * $int4 / $int3);
+def_int $int2 = 0;
+def_int $int3 = 0;
+$int2, $int3 = viewport_geteffectivesize;
+def_int $int4 = calc($int3 - 334);
+if ($int4 < 0) {
+    $int4 = 0;
+} else if ($int4 > 100) {
+    $int4 = 100;
 }
-if_setposition($int7, 0, ^setpos_abs_left, ^setpos_abs_top, interface_261:com12);
+def_int $int5 = calc($int0 + ($int1 - $int0) * $int4 / 100);
+cam_setfollowheight(calc(25 + 25 * $int5 / 256));
+%varclient_73, %varclient_74 = $int0, $int1;
+~zoom_position_slider;
