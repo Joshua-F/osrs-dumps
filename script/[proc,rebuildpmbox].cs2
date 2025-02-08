@@ -47,16 +47,17 @@ if (%varplayer_287 = 1 & (%varclient_41 ! -1 | %varplayerbit_4089 = 0)) {
     while ($int7 ! -1 & $component5 ! null & calc($int2 - $int1) < 57) {
         $chattype9, $int8, $string1, $string2, $string0 = chat_gethistory_byuid($int7);
         if (~pm_filtertest($chattype9, $string1, $int8) = true) {
-            if ($chattype9 = ^chattype_privatechat | $chattype9 = ^chattype_modprivatechat) {
-                $int2 = calc($int2 + ~script203("From <$string1>:", $string0, $int4, $component5, interface_163:com0, $int3, 0, 13, $int2, ^setpos_abs_bottom, ^cyan, true));
-            } else if ($chattype9 = ^chattype_privatechatout) {
-                $int2 = calc($int2 + ~script203("To <$string1>:", $string0, $int4, $component5, interface_163:com0, $int3, 0, 13, $int2, ^setpos_abs_bottom, ^cyan, true));
-            } else {
-                $int2 = calc($int2 + ~script199($string0, $int4, $component5, interface_163:com0, $int3, 0, 13, $int2, ^setpos_abs_bottom, ^cyan, true));
-                if ($chattype9 = ^chattype_loginlogoutnotification & %varplayerbit_1627 = 0) {
-                    %varclient_65 = calc($int8 + 500 + 1);
-                    if_setontimer("script664(false)", interface_162:com0);
-                }
+            switch_int ($chattype9) {
+                case ^chattype_privatechat, ^chattype_modprivatechat :
+                    $int2 = calc($int2 + ~script203("From <$string1>:", $string0, $int4, $component5, interface_163:com0, $int3, 0, 13, $int2, ^setpos_abs_bottom, ^cyan, true));
+                case ^chattype_privatechatout :
+                    $int2 = calc($int2 + ~script203("To <$string1>:", $string0, $int4, $component5, interface_163:com0, $int3, 0, 13, $int2, ^setpos_abs_bottom, ^cyan, true));
+                case default :
+                    $int2 = calc($int2 + ~script199($string0, $int4, $component5, interface_163:com0, $int3, 0, 13, $int2, ^setpos_abs_bottom, ^cyan, true));
+                    if ($chattype9 = ^chattype_loginlogoutnotification & %varplayerbit_1627 = 0) {
+                        %varclient_65 = calc($int8 + 500 + 1);
+                        if_setontimer("script664(false)", interface_162:com0);
+                    }
             }
             if_clearops($component5);
             if ($chattype9 = ^chattype_privatechat | $chattype9 = ^chattype_privatechatout | $chattype9 = ^chattype_modprivatechat) {
