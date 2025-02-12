@@ -4,7 +4,7 @@ def_graphic $graphic0 = "report_button,0";
 def_int $int1 = 0;
 def_int $int2 = 0;
 ~toplevel_chatbox_background;
-if (%varplayerbit_542 = 1 & getwindowmode ! ^windowmode_small | ~toplevel_getcomponents = enum_1745 & (%varclient_1220 = 1 | %varclient_1221 = 1)) {
+if (%varplayerbit_542 = 1 & getwindowmode ! ^windowmode_small | ~toplevel_getcomponents = enum_1745 & (%varclient_1220 = 1 & %varplayerbit_16116 = 0 | %varclient_1221 = 1)) {
     if_sethide(true, interface_162:com_1);
 } else {
     if_sethide(false, interface_162:com_1);
@@ -19,6 +19,10 @@ if (~on_mobile = true) {
     ~mobile_chatbox_resize;
     if_sethide(true, interface_162:com_31);
     $int1 = 1;
+    if_setnoclickthrough(false, interface_162:com_1);
+    if_setnoclickthrough(false, interface_162:com_2);
+    if_setnoscrollthrough(false, interface_162:com_1);
+    if_setnoscrollthrough(false, interface_162:com_2);
 } else {
     if_setsize(519, 165, ^setsize_abs, ^setsize_abs, enum(component, component, ~toplevel_getcomponents, interface_161:com_96));
     if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, interface_162:com_55);
@@ -36,6 +40,10 @@ if (~on_mobile = true) {
     if_setonmouseover("graphic_swapper(interface_162:com_32, $graphic0)", interface_162:com_31);
     if_setposition(3, 0, ^setpos_abs_right, ^setpos_abs_centre, interface_162:com_31);
     $int1 = 82;
+    if_setnoclickthrough(true, interface_162:com_1);
+    if_setnoclickthrough(true, interface_162:com_2);
+    if_setnoscrollthrough(true, interface_162:com_1);
+    if_setnoscrollthrough(true, interface_162:com_2);
 }
 def_int $int3 = 0;
 def_int $int4 = 58;
