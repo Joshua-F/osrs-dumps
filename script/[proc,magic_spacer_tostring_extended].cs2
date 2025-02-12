@@ -3,40 +3,30 @@
 if ($int0 >= ^max_32bit_int) {
     return("Lots");
 }
+if ($int0 < 1000) {
+    return(tostring($int0));
+}
+def_int $int2 = 0;
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_string $string1 = "";
+def_int $int5 = 0;
 if ($int0 >= 1000000000) {
-    if ($int1 >= 3) {
-        return(append(append(append(tostring(calc($int0 / 1000000000)), $string0), tostring(calc(($int0 - $int0 / 1000000000 * 1000000000) / 1000000))), "B"));
-    }
-    if ($int1 = 2) {
-        return(append(append(append(tostring(calc($int0 / 1000000000)), $string0), tostring(calc(($int0 - $int0 / 1000000000 * 1000000000) / 10000000))), "B"));
-    }
-    if ($int1 = 1) {
-        return(append(append(append(tostring(calc($int0 / 1000000000)), $string0), tostring(calc(($int0 - $int0 / 1000000000 * 1000000000) / 100000000))), "B"));
-    }
-    return(append(~tostring_spacer(calc($int0 / 1000000000), $string0), "B"));
+    $int4 = 1000000000;
+    $string1 = "B";
+} else if ($int0 >= 1000000) {
+    $int4 = 1000000;
+    $string1 = "M";
+} else {
+    $int4 = 1000;
+    $string1 = "K";
 }
-if ($int0 >= 1000000) {
-    if ($int1 >= 3) {
-        return(append(append(append(tostring(calc($int0 / 1000000)), $string0), tostring(calc(($int0 - $int0 / 1000000 * 1000000) / 1000))), "M"));
-    }
-    if ($int1 = 2) {
-        return(append(append(append(tostring(calc($int0 / 1000000)), $string0), tostring(calc(($int0 - $int0 / 1000000 * 1000000) / 10000))), "M"));
-    }
-    if ($int1 = 1) {
-        return(append(append(append(tostring(calc($int0 / 1000000)), $string0), tostring(calc(($int0 - $int0 / 1000000 * 1000000) / 100000))), "M"));
-    }
-    return(append(~tostring_spacer(calc($int0 / 1000000), $string0), "M"));
+$int5 = calc($int4 / pow(10, $int1));
+$int2 = calc($int0 / $int4);
+$int3 = calc($int0 - $int2 * $int4);
+if ($int3 >= $int5) {
+    $string1 = "<~string_prependzero(tostring(calc($int3 / $int5)), $int1)><$string1>";
+    return("<tostring($int2)><$string0><$string1>");
+} else {
+    return("<tostring($int2)><$string1>");
 }
-if ($int0 >= 1000) {
-    if ($int1 >= 3) {
-        return(append(append(append(tostring(calc($int0 / 1000)), $string0), tostring(calc($int0 - $int0 / 1000 * 1000))), "K"));
-    }
-    if ($int1 = 2) {
-        return(append(append(append(tostring(calc($int0 / 1000)), $string0), tostring(calc(($int0 - $int0 / 1000 * 1000) / 10))), "K"));
-    }
-    if ($int1 = 1) {
-        return(append(append(append(tostring(calc($int0 / 1000)), $string0), tostring(calc(($int0 - $int0 / 1000 * 1000) / 100))), "K"));
-    }
-    return(append(~tostring_spacer(calc($int0 / 1000), $string0), "K"));
-}
-return(tostring($int0));
