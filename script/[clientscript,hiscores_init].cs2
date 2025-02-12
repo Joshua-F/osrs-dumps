@@ -1,7 +1,7 @@
 // 7469
-[clientscript,hiscores_init](component $com_6, int $int, component $com_14, component $com_16, component $com_13, component $com_20, component $com_11, component $com_12, component $com_7, component $com_8, component $com_9)
-~hiscores_dropdown_setup($com_14, $com_16, $com_13, $com_20, $com_11);
-~script7525($com_12);
+[clientscript,hiscores_init](component $com_6, int $int, component $com_10, component $com_20, component $com_14, component $com_24, component $com_12, component $com_13, component $com_7, component $com_8, component $com_9)
+~hiscores_dropdown_setup($com_10, $com_20, $com_14, $com_24, $com_12);
+~script7525($com_13);
 cc_input_setonsubmit("script7527(event_com, event_comsubid)");
 cc_input_setonfocuschanged("script7526(event_com, event_comsubid)");
 if (~hiscores_group_check = 1) {
@@ -15,6 +15,8 @@ if (~hiscores_group_check = 1) {
 }
 ~hiscores_content_position;
 if_setonresize("hiscores_content_position", $com_6);
-if (string_length(%varclient_1233) > 0) {
+if (hiscore_getstatus = 2) {
+    ~script6717;
+} else if (string_length(%varclient_1233) > 0) {
     if_setontimer("hiscores_queue_lookup(clientclock, $com_6)", $com_6);
 }
