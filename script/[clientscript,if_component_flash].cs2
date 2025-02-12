@@ -1,0 +1,17 @@
+// 6718
+[clientscript,if_component_flash](int $int0, int $int1, int $int2, component $component3, component $component4)
+def_int $int5 = 0;
+def_int $int6 = 0;
+def_int $int7 = calc($int2 / 2);
+if (if_find($component3) = ^true) {
+    $int5 = clientclock;
+    $int6 = calc($int5 - $int0);
+    if ($int6 >= $int1) {
+        if_sethide(false, $component3);
+        if_setontimer(null, $component4);
+    } else if (calc($int5 % $int2) >= $int7) {
+        if_sethide(false, $component3);
+    } else {
+        if_sethide(true, $component3);
+    }
+}
