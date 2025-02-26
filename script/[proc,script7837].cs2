@@ -1,0 +1,29 @@
+// 7837
+[proc,script7837](intarray $intarray0, int $int1, int $int2)
+def_int $int3 = calc(($int1 + $int2) / 2);
+def_int $int4 = $intarray0($int3);
+$intarray0($int3) = $intarray0($int2);
+$intarray0($int2) = $int4;
+def_int $int5 = $int1;
+def_int $int6 = $int1;
+def_int $int7 = -1;
+def_obj $obj8 = null;
+def_obj $obj9 = null;
+while ($int6 < $int2) {
+    $obj8, $obj9 = enum(int, namedobj, enum_5210, $intarray0($int6)), enum(int, namedobj, enum_5210, $int4);
+    if (compare(enum(obj, string, enum_5211, $obj8), enum(obj, string, enum_5211, $obj9)) <= 0) {
+        $int7 = $intarray0($int6);
+        $intarray0($int6) = $intarray0($int5);
+        $intarray0($int5) = $int7;
+        $int5 = calc($int5 + 1);
+    }
+    $int6 = calc($int6 + 1);
+}
+$intarray0($int2) = $intarray0($int5);
+$intarray0($int5) = $int4;
+if ($int1 < calc($int5 - 1)) {
+    ~script7837(intarray0, $int1, calc($int5 - 1));
+}
+if (calc($int5 + 1) < $int2) {
+    ~script7837(intarray0, calc($int5 + 1), $int2);
+}
