@@ -1,0 +1,96 @@
+// 7836
+[clientscript,poh_bookcase_init](component $component0, component $component1, component $component2)
+def_boolean $boolean3 = ~on_mobile;
+def_int $int4 = calc((if_getwidth($component1) - 3) / 2);
+def_int $int5 = calc($int4 + 3);
+def_int $int6 = calc(3 + 36 + 4);
+def_int $int7 = calc($int4 - $int6);
+def_int $int8 = calc((38 - 32) / 2);
+def_int $int9 = enum_getoutputcount(enum_5210);
+cc_deleteall($component1);
+def_obj $obj10 = null;
+def_int $intarray0($int9);
+def_int $int11 = 0;
+while ($int11 < $int9) {
+    cc_create($component1, ^iftype_graphic, $int11);
+    cc_sethide(true);
+    $intarray0($int11) = $int11;
+    $int11 = calc($int11 + 1);
+}
+if ($int9 >= 2) {
+    ~poh_bookcase_sort(intarray0, 0, calc($int9 - 1));
+}
+$int11 = 0;
+while ($int11 < $int9) {
+    cc_create($component1, ^iftype_text, calc($int9 + 2 * $int11));
+    cc_sethide(true);
+    cc_create($component1, ^iftype_graphic, calc($int9 + 2 * $int11 + 1));
+    cc_sethide(true);
+    $int11 = calc($int11 + 1);
+}
+def_int $int12 = 0;
+def_int $int13 = 0;
+def_int $int14 = 0;
+def_int $int15 = 0;
+def_int $int16 = 0;
+while ($int16 < $int9) {
+    $int11 = $intarray0($int16);
+    $obj10 = enum(int, namedobj, enum_5210, $int11);
+    if ($obj10 ! null & cc_find($component1, $int11) = ^true & .cc_find($component1, calc($int9 + 2 * $int11)) = ^true) {
+        if ($int14 = 1) {
+            $int15 = $int5;
+        } else {
+            $int15 = 0;
+        }
+        cc_sethide(false);
+        cc_setsize($int4, 38, ^setsize_abs, ^setsize_abs);
+        cc_setposition($int15, $int12, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setgraphic(tradebacking_light);
+        cc_settiling(true);
+        cc_setopbase("<col=ff9040><oc_name($obj10)></col>");
+        .cc_sethide(false);
+        .cc_setsize($int7, 38, ^setsize_abs, ^setsize_abs);
+        .cc_setposition(calc($int15 + $int6), $int12, ^setpos_abs_left, ^setpos_abs_top);
+        .cc_settextalign(^settextalign_left, ^settextalign_centre, 13);
+        .cc_settextshadow(true);
+        .cc_settextfont(p12_full);
+        .cc_settext(enum(obj, string, enum_236, $obj10));
+        ~script7841($boolean3, $component1);
+        if (.cc_find($component1, calc($int9 + 2 * $int11 + 1)) = ^true) {
+            .cc_sethide(false);
+            .cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+            .cc_setposition(calc($int15 + 3), calc($int12 + $int8), ^setpos_abs_left, ^setpos_abs_top);
+            .cc_setobject_nonum($obj10, 1);
+            .cc_setgraphicshadow(0x333333);
+            .cc_setoutline(1);
+            ~script7843($obj10);
+        }
+        if ($int14 = 1) {
+            if ($int16 < calc($int9 - 1)) {
+                $int12 = calc($int12 + 38 + 3);
+                .cc_create($component1, ^iftype_graphic, calc(3 * $int9 + $int13));
+                .cc_setsize(0, 20, ^setsize_minus, ^setsize_abs);
+                .cc_setposition(0, calc($int12 - 20), ^setpos_abs_centre, ^setpos_abs_top);
+                .cc_setgraphic("v2_borders_slim,8");
+                .cc_settiling(true);
+                $int13 = calc($int13 + 1);
+            } else {
+                $int12 = calc($int12 + 38);
+            }
+            $int14 = 0;
+        } else {
+            if ($int16 >= calc($int9 - 1)) {
+                $int12 = calc($int12 + 38);
+            }
+            $int14 = 1;
+        }
+    }
+    $int16 = calc($int16 + 1);
+}
+if_setonvartransmit("script7840($boolean3, event_com, $int9){varplayer_805, varplayer_261, varplayer_262, varplayer_263, varplayer_264, varplayer_265, varplayer_266, varplayer_1037}", $component1);
+if_setoninvtransmit("script7842(event_com, $int9){inv_93}", $component1);
+~scrollbar_vertical($component2, $component1, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+def_component $component17 = if_getlayer($component0);
+if ($component17 ! null) {
+    ~poh_bookcase_setsize($component17, $component0, $component1, $component2, $int12, if_getheight($component17));
+}
