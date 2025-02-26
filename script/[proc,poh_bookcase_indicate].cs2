@@ -1,0 +1,24 @@
+// 7841
+[proc,poh_bookcase_indicate](boolean $boolean0, component $component1)
+if (~poh_bookcase_getbit(cc_getid) = ^true) {
+    cc_settrans(70);
+    if ($boolean0 = true) {
+        cc_setonmouserepeat(null);
+        cc_setonmouseleave(null);
+    } else {
+        cc_setonmouserepeat("poh_bookcase_hover(true, event_com, event_comsubid)");
+        cc_setonmouseleave("poh_bookcase_hover(false, event_com, event_comsubid)");
+    }
+    cc_setop(1, "Take");
+    cc_setop(10, "Examine");
+    cc_setonop("poh_bookcase_op(event_op, event_com, event_comsubid, $boolean0)");
+    .cc_setcolour(0xff981f);
+} else {
+    cc_settrans(255);
+    cc_setonmouserepeat(null);
+    cc_setonmouseleave(null);
+    cc_setop(1, "Check");
+    cc_setop(10, "");
+    cc_setonop("opsound(event_op, 2)");
+    .cc_setcolour(0x9f9f9f);
+}
