@@ -1,0 +1,25 @@
+// 7854
+[proc,poh_trophy_side_drawitem](obj $obj0, int $int1, component $component2, int $int3)
+cc_clearops;
+cc_settargetverb("");
+cc_setopbase("");
+cc_setonmouserepeat(null);
+cc_setdragdeadtime(6);
+if ($obj0 ! null) {
+    cc_setobject($obj0, $int1);
+    cc_sethide(false);
+    cc_setop(1, "Mount");
+    cc_setop(10, "Examine");
+    cc_setopbase("<col=ff9040><oc_name($obj0)></col>");
+    if ($obj0 = oc_param($obj0, param_234)) {
+        cc_settrans(0);
+        cc_setonop("poh_costumes_opgraphic(event_op, event_com, event_comsubid, 120, 0)");
+    } else {
+        cc_settrans(100);
+        cc_setonop("poh_costumes_opgraphic(event_op, event_com, event_comsubid, 150, 100)");
+    }
+} else {
+    cc_sethide(true);
+    cc_setonop(null);
+}
+cc_setontimer(null);
