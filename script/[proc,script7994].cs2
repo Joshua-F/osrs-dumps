@@ -1,0 +1,33 @@
+// 7994
+[proc,script7994](component $component0, component $component1, int $int2, int $int3, int $int4, string $string0, int $int5, int $int6, int $rgb7, int $int8)(int)
+cc_create($component0, ^iftype_rectangle, $int8);
+cc_setsize(calc($int2 - 12), $int3, ^setsize_abs, ^setsize_abs);
+cc_setposition(6, $int4, ^setpos_abs_left, ^setpos_abs_top);
+cc_setcolour(^white);
+cc_setfill(true);
+if ($int6 = $int5) {
+    cc_settrans(235);
+} else {
+    cc_settrans(255);
+}
+$int8 = calc($int8 + 1);
+cc_create($component0, ^iftype_text, $int8);
+cc_setsize(calc($int2 - 12), $int3, ^setsize_abs, ^setsize_abs);
+cc_setposition(6, $int4, ^setpos_abs_left, ^setpos_abs_top);
+cc_settext($string0);
+cc_settextfont(p12_full);
+cc_settextshadow(true);
+if ($int6 = $int5) {
+    cc_setcolour(0xc8c8c8);
+    cc_settrans(200);
+} else {
+    cc_setcolour($rgb7);
+    if (~on_mobile = false) {
+        cc_setonmouseover("league_info_mouseover($component0, $int8)");
+        cc_setonmouseleave("league_info_mouseleave($component0, $int8, $rgb7)");
+    }
+}
+cc_setop(1, "View <$string0>");
+cc_setonop("script7996($component1, $component0, interface_917:com19, $int5)");
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 14);
+return(calc($int8 + 1));

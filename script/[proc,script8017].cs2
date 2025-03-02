@@ -1,0 +1,20 @@
+// 8017
+[proc,script8017](dbrow $dbrow0)(int, int)
+if (db_getrowtable($dbrow0) ! dbtable_127) {
+    ~error("Input table must be of type sailing_charting_sea_group.");
+    return(-1, -1);
+}
+def_int $int1 = db_find(dbtable_126:col2, $dbrow0);
+if ($int1 <= 0) {
+    ~error("Found no dbrows with this sea group set.");
+    return(-1, -1);
+}
+def_int $int2 = 0;
+def_dbrow $dbrow3 = db_findnext;
+while ($dbrow3 ! null) {
+    if (~script8025(db_getfield($dbrow3, dbtable_126:col0, 0)) = ^true) {
+        $int2 = calc($int2 + 1);
+    }
+    $dbrow3 = db_findnext;
+}
+return($int2, $int1);

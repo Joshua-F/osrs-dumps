@@ -1,0 +1,42 @@
+// 8092
+[clientscript,script8092](int $int0, dbrow $dbrow1, string $string0)
+def_dbrow $dbrow2 = db_getfield($dbrow1, dbtable_144:col3, 0);
+def_string $string1 = "";
+if ($dbrow2 ! null) {
+    $string1 = db_getfield($dbrow2, dbtable_144:col0, 0);
+}
+def_int $int3 = 0;
+def_int $int4 = db_getfieldcount($dbrow1, dbtable_144:col1);
+def_dbrow $dbrow5 = null;
+def_string $string2 = "";
+def_synth $synth6 = null;
+def_string $string3 = "";
+switch_int ($int0) {
+    case 0 :
+        if (compare($string1, $string0) = 0) {
+            ~script8091($dbrow2);
+        }
+    case default :
+        while ($int3 < $int4) {
+            $dbrow5 = db_getfield($dbrow1, dbtable_144:col1, $int3);
+            if ($dbrow5 ! null) {
+                $string2 = db_getfield($dbrow5, dbtable_144:col0, 0);
+                if (compare($string2, $string0) = 0) {
+                    ~script8091($dbrow5);
+                    return;
+                }
+            }
+            $int3 = calc($int3 + 1);
+        }
+        $int3 = 0;
+        $int4 = db_getfieldcount($dbrow1, dbtable_144:col2);
+        while ($int3 < $int4) {
+            $string3, $synth6 = db_getfield($dbrow1, dbtable_144:col2, $int3);
+            if ($synth6 ! null & compare($string3, $string0) = 0) {
+                sound_synth($synth6, 1, 0);
+                return;
+            }
+            $int3 = calc($int3 + 1);
+        }
+        mes("Error: Unknown string element clicked: <$string0>. Looked for subdir <$string2> or synth <$string3>.");
+}

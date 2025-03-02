@@ -1,0 +1,45 @@
+// 8044
+[proc,script8044](component $component0, dbrow $dbrow1)
+def_int $int2 = ~v2_stone_button_filled($component0);
+cc_create($component0, ^iftype_text, $int2);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(10, 4, ^setpos_abs_left, ^setpos_abs_top);
+cc_setcolour(0xff981f);
+cc_settextfont(b12_full);
+cc_settextshadow(true);
+cc_settext(db_getfield($dbrow1, dbtable_138:col1, 0));
+$int2 = calc($int2 + 1);
+cc_create($component0, ^iftype_text, $int2);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(10, 19, ^setpos_abs_left, ^setpos_abs_top);
+cc_setcolour(0x9f9f9f);
+cc_settextfont(p12_full);
+cc_settextshadow(true);
+cc_settext(db_getfield($dbrow1, dbtable_138:col2, 0));
+$int2 = calc($int2 + 1);
+cc_create($component0, ^iftype_graphic, $int2);
+cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+cc_setposition(7, 0, ^setpos_abs_right, ^setpos_abs_centre);
+cc_setobject_nonum(db_getfield($dbrow1, dbtable_138:col6, 0), 0);
+def_int $int3 = ~script8029($dbrow1);
+def_int $int4 = ~script8030($dbrow1);
+if ($int3 > 0) {
+    $int2 = calc($int2 + 1);
+    cc_create($component0, ^iftype_text, $int2);
+    cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+    cc_setposition(10, 3, ^setpos_abs_left, ^setpos_abs_bottom);
+    cc_settextalign(^settextalign_left, ^settextalign_bottom, 0);
+    cc_settextfont(p11_full);
+    cc_settextshadow(true);
+    if ($int4 = $int3) {
+        cc_settext("<col=0dc10d><tostring($int4)>/<tostring($int3)> tasks</col>");
+    } else {
+        cc_settext("<col=ffff00><tostring($int4)>/<tostring($int3)> tasks</col>");
+    }
+}
+if (~on_mobile = false) {
+    if_setonmouserepeat("v2_stone_button_change_in($component0, 0)", $component0);
+    if_setonmouseleave("v2_stone_button_change_out($component0, 0)", $component0);
+}
+if_setop(1, "Select activity", $component0);
+if_setonop("script8035($dbrow1)", $component0);

@@ -1,0 +1,97 @@
+// 7892
+[proc,script7892](dbrow $dbrow0, component $component1, boolean $boolean2)
+cc_deleteall(interface_913:com6);
+cc_deleteall(interface_913:com12);
+if_clearops(interface_913:com10);
+if ($dbrow0 = null) {
+    if_sethide(false, interface_913:com19);
+    if_sethide(true, interface_913:com3);
+    return;
+}
+~script7897;
+~script7899($component1, $boolean2);
+if_setmodel(~script7919($dbrow0, true), interface_913:com18);
+if_setmodelangle(~script7920($dbrow0, 1), interface_913:com18);
+if_setmodelanim(~script7921($dbrow0), interface_913:com18);
+if_settext(~script7916($dbrow0), interface_913:com17);
+def_int $int3 = 0;
+def_string $string0 = ~script7918($dbrow0);
+def_int $int4 = 0;
+def_int $int5 = calc(paraheight($string0, if_getwidth(interface_913:com6), p12_full) * 14);
+cc_create(interface_913:com6, ^iftype_text, $int3);
+cc_setsize(4, $int5, ^setsize_minus, ^setsize_abs);
+cc_setposition(2, $int4, ^setpos_abs_left, ^setpos_abs_top);
+cc_settext($string0);
+cc_setcolour(0xff981f);
+cc_settextfont(p12_full);
+cc_settextshadow(true);
+cc_settextalign(^settextalign_left, ^settextalign_centre, 14);
+$int4 = calc($int4 + $int5 + 10);
+$int3 = calc($int3 + 1);
+def_int $int6 = calc((if_getwidth(interface_913:com10) - 4 - 52 * 4) / 5);
+def_int $int7 = $int6;
+def_dbtable $dbtable8 = db_getrowtable($dbrow0);
+$int4 = 0;
+$int3 = 0;
+$int3 = ~script7895($dbtable8, $dbrow0, interface_913:com14, $int3, sailing, ~script7905(db_getrowtable($dbrow0), $dbrow0), $int7, $int4, 52, 31);
+$int7 = calc($int7 + $int6 + 52);
+$int3 = ~script7895($dbtable8, $dbrow0, interface_913:com14, $int3, construction, ~script7906(db_getrowtable($dbrow0), $dbrow0), $int7, $int4, 52, 31);
+$int7 = calc($int7 + $int6 + 52);
+def_int $int9 = ~script7907(db_getrowtable($dbrow0), $dbrow0);
+def_int $int10 = 0;
+def_stat $stat11 = null;
+def_int $int12 = 0;
+while ($int10 < $int9) {
+    $stat11, $int12 = ~script7908($dbtable8, $dbrow0, $int10);
+    $int3 = ~script7895($dbtable8, $dbrow0, interface_913:com14, $int3, $stat11, $int12, $int7, $int4, 52, 31);
+    $int7 = calc($int7 + $int6 + 52);
+    $int10 = calc($int10 + 1);
+}
+if_setsize($int7, if_getheight(interface_913:com14), ^setsize_abs, ^setsize_abs, interface_913:com14);
+$int9 = ~script7911(db_getrowtable($dbrow0), $dbrow0);
+$int10 = 0;
+$int3 = 0;
+$int6 = calc((if_getwidth(interface_913:com10) - 4 - (36 + 8) * 5) / 6);
+$int4 = 0;
+$int7 = $int6;
+def_string $string1 = "<~script7916($dbrow0)>: ";
+def_obj $obj13 = null;
+def_int $int14 = 0;
+def_boolean $boolean15 = false;
+def_string $string2 = "";
+$boolean15, $string2 = ~script7893($dbrow0);
+if ($boolean15 = true) {
+    $string1 = "<$string1><$string2>";
+    if_setsize(8, if_getheight(interface_913:com12), ^setsize_minus, ^setsize_abs, interface_913:com12);
+    cc_create(interface_913:com12, ^iftype_text, $int3);
+    cc_setsize(4, 4, ^setsize_minus, ^setsize_minus);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_settext($string2);
+    cc_setcolour(0xff981f);
+    cc_settextfont(p12_full);
+    cc_settextshadow(true);
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 14);
+} else {
+    if ($int9 <= 0) {
+        $string1 = "<$string1>None.";
+    } else {
+        while ($int10 < $int9) {
+            $obj13, $int14 = ~script7912(db_getrowtable($dbrow0), $dbrow0, $int10);
+            if ($int10 > 0) {
+                $string1 = append($string1, ", <tostring($int14)> x <oc_name($obj13)>");
+            } else {
+                $string1 = append($string1, "<tostring($int14)> x <oc_name($obj13)>");
+            }
+            $int3 = ~script7896(interface_913:com12, $int3, $obj13, $int14, $int7, $int4, calc(36 + 8), calc(32 + 8));
+            $int7 = calc($int7 + $int6 + (36 + 8));
+            $int10 = calc($int10 + 1);
+        }
+    }
+    if_setsize($int7, if_getheight(interface_913:com12), ^setsize_abs, ^setsize_abs, interface_913:com12);
+}
+if (~on_mobile = false) {
+    if_setonmouseover("cc_colour_swapper(interface_913:com10, 0, 12099970)", interface_913:com10);
+    if_setonmouseleave("cc_colour_swapper(interface_913:com10, 0, 7496785)", interface_913:com10);
+}
+if_setop(1, "Check materials", interface_913:com10);
+if_setonop("script7894($string1)", interface_913:com10);

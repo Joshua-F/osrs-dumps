@@ -1,0 +1,34 @@
+// 7953
+[proc,script7953](component $component0)
+def_int $int1 = %varplayerbit_16278;
+def_int $int2 = %varplayerbit_16282;
+def_int $int3 = calc(if_getwidth($component0) - 2);
+if (%varplayerbit_16244 = 0) {
+    $int3, $int2, $int1 = 0, 0, 0;
+} else {
+    $int3 = scale($int2, $int1, $int3);
+}
+cc_deleteall($component0);
+cc_create($component0, ^iftype_rectangle, 0);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+cc_setcolour(^black);
+cc_create($component0, ^iftype_rectangle, 1);
+cc_setsize(2, 2, ^setsize_minus, ^setsize_minus);
+cc_setposition(1, 1, ^setpos_abs_left, ^setpos_abs_top);
+cc_setcolour(0x29231d);
+cc_setfill(true);
+cc_create($component0, ^iftype_rectangle, 2);
+cc_setsize($int3, 2, ^setsize_abs, ^setsize_minus);
+cc_setposition(1, 1, ^setpos_abs_left, ^setpos_abs_top);
+cc_setcolour(0xdc10d);
+cc_setfill(true);
+cc_create($component0, ^iftype_text, 3);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 1, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_setcolour(^white);
+cc_settextshadow(true);
+cc_settext("<tostring($int2)>/<tostring($int1)>");
+cc_settextfont(p11_full);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+cc_setonvartransmit("script7952($component0){varplayer_4716, varplayer_4717}");

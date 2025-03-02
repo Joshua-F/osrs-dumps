@@ -1,0 +1,21 @@
+// 8070
+[clientscript,script8070](dbrow $dbrow0, dbrow $dbrow1, dbrow $dbrow2, dbrow $dbrow3, dbrow $dbrow4, dbrow $dbrow5, dbrow $dbrow6, dbrow $dbrow7)
+def_int $int8 = random(1);
+def_int $int9 = db_find(dbtable_142:col0, $int8);
+if ($int9 <= 0) {
+    ~debug_mes("ERROR: Attempting to build task board with layout ID = <tostring($int8)>, but we have no matching ID.");
+    return;
+}
+if ($int9 > 1) {
+    ~debug_mes("ERROR: Attempting to build task board with layout ID = <tostring($int8)>, but we found multiple layouts with that ID.");
+    return;
+}
+def_dbrow $dbrow10 = db_findnext;
+def_component $component11 = interface_922:com0;
+def_component $component12 = interface_922:com1;
+def_component $component13 = interface_922:com2;
+def_component $component14 = interface_922:com3;
+if_setontimer("script6110($component11, -1)", $component11);
+if_setonresize("script8071($component12, $component13, $component14, $dbrow10, $dbrow0, $dbrow1, $dbrow2, $dbrow3, $dbrow4, $dbrow5, $dbrow6, $dbrow7)", $component11);
+sound_synth(synth_2581, 1, 0);
+~script8072($component12, $component13, $component14, $dbrow10, $dbrow0, $dbrow1, $dbrow2, $dbrow3, $dbrow4, $dbrow5, $dbrow6, $dbrow7);

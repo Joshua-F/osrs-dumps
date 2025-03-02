@@ -1,0 +1,23 @@
+// 8007
+[proc,script8007](component $component0, component $component1, component $component2)
+def_component $component3 = interface_917:com27;
+def_int $int4 = db_listall(dbtable_127);
+def_int $int5 = $int4;
+$int4 = calc($int4 + 1);
+def_int $intarray0($int4);
+$intarray0(0) = -1;
+def_int $int6 = 1;
+def_int $int7 = 0;
+def_dbrow $dbrow8 = null;
+while ($int7 < $int5) {
+    db_find(dbtable_127:col0, $int7);
+    $dbrow8 = db_findnext;
+    $dbrow8 = db_getfield($dbrow8, dbtable_127:col2, 0);
+    if ($dbrow8 ! null & (%varclient_1258 = db_getfield($dbrow8, dbtable_127:col0, 0) | %varclient_1258 = -1)) {
+        $intarray0($int6) = $int7;
+        $int6 = calc($int6 + 1);
+    }
+    $int7 = calc($int7 + 1);
+}
+~script8010($component3, $int6, %varclient_1259, 16750623);
+if_setonop("script8008($component0, $component1, $component2, $component3, $int6, intarray0, 16750623)", $component3);

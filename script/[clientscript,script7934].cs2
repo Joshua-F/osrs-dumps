@@ -1,0 +1,132 @@
+// 7934
+[clientscript,script7934](int $int0, int $int1, int $int2, int $int3, int $int4, int $int5, int $int6, dbrow $dbrow7, int $int8, int $int9, int $int10, int $int11, int $int12)
+if_sethide(false, interface_915:com2);
+def_dbrow $dbrow13 = ~script7938($int2);
+if ($dbrow13 ! null) {
+    if_sethide(false, interface_915:com29);
+    if_settext(db_getfield($dbrow13, dbtable_122:col1, 0), interface_915:com29);
+} else {
+    if_sethide(true, interface_915:com29);
+    if_settext("Unknown Region", interface_915:com29);
+}
+if_sethide(true, interface_915:com28);
+if ($int1 = 1) {
+    if_setgraphic("staticons,10", interface_915:com27);
+} else if ($int1 = 2) {
+    if_setgraphic("fast_forward,1", interface_915:com27);
+} else if ($int3 = 1) {
+    if_setgraphic("staticons2,13", interface_915:com27);
+} else {
+    if_setgraphic(graphic_2244, interface_915:com27);
+    if ($int0 >= 0) {
+        if_sethide(false, interface_915:com28);
+        $int0 = calc(clientclock + $int0 * 30);
+        if ($int5 = 0 | $int4 = 0 | $int6 = 1) {
+            if_setontimer(null, interface_915:com28);
+        } else {
+            if_setontimer("script7936($int0)", interface_915:com28);
+        }
+        if ($int0 = 0) {
+            if_setgraphic("staticons,10", interface_915:com27);
+        }
+    }
+}
+if_sethide(true, interface_915:com24);
+if_settext("", interface_915:com33);
+def_int $int14 = 0;
+def_int $int15 = calc($int12 - %varplayer_4724);
+def_string $string0 = "";
+def_string $string1 = "";
+def_string $string2 = "";
+def_string $string3 = "";
+def_int $int16 = 0;
+def_graphic $graphic17 = null;
+def_graphic $graphic18 = null;
+def_graphic $graphic19 = null;
+def_int $int20 = 0;
+def_graphic $graphic21 = graphic_6425;
+def_graphic $graphic22 = graphic_6426;
+def_component $component23 = interface_915:com9;
+def_component $component24 = interface_915:com7;
+def_graphic $graphic25 = null;
+if ($dbrow7 ! null) {
+    if_sethide(false, interface_915:com4);
+    if ($int15 <= db_getfield($dbrow7, dbtable_125:col14, 0)) {
+        $int14 = db_getfield($dbrow7, dbtable_125:col14, 0);
+    } else if ($int15 <= db_getfield($dbrow7, dbtable_125:col10, 0)) {
+        $int14 = db_getfield($dbrow7, dbtable_125:col10, 0);
+    } else {
+        $int14 = db_getfield($dbrow7, dbtable_125:col6, 0);
+    }
+    if_settext(~script4159(calc($int14 * 60 / 100), 1), interface_915:com21);
+    if ($int15 > $int14) {
+        if_setcolour(0xaaaaaa, interface_915:com21);
+    } else {
+        if_setcolour(0xff981f, interface_915:com21);
+    }
+    $int15 = calc($int15 * 30 - clientclock);
+    if_setontimer("script7937($int15)", interface_915:com20);
+    $string1 = db_getfield($dbrow7, dbtable_125:col22, 0);
+    $string2 = db_getfield($dbrow7, dbtable_125:col27, 0);
+    $string3 = db_getfield($dbrow7, dbtable_125:col29, 0);
+    $graphic18 = db_getfield($dbrow7, dbtable_125:col23, 0);
+    $graphic19 = db_getfield($dbrow7, dbtable_125:col30, 0);
+    $string0 = db_getfield($dbrow7, dbtable_125:col1, 0);
+    if ($int11 = 1) {
+        $graphic25 = db_getfield($dbrow7, dbtable_125:col25, 0);
+    } else {
+        $graphic25 = db_getfield($dbrow7, dbtable_125:col24, 0);
+    }
+    if ($int10 >= db_getfield($dbrow7, dbtable_125:col11, 0)) {
+        $int16 = db_getfield($dbrow7, dbtable_125:col15, 0);
+        if ($int10 >= db_getfield($dbrow7, dbtable_125:col15, 0)) {
+            $graphic17 = graphic_6424;
+        } else {
+            $graphic17 = graphic_6423;
+        }
+    } else if ($int10 >= db_getfield($dbrow7, dbtable_125:col7, 0)) {
+        $int16 = db_getfield($dbrow7, dbtable_125:col11, 0);
+        $graphic17 = graphic_6422;
+    } else {
+        $int16 = db_getfield($dbrow7, dbtable_125:col7, 0);
+        $graphic17 = graphic_6421;
+    }
+    if (string_length($string1) > 0) {
+        if_settext("<tostring($int8)> / <tostring(db_getfield($dbrow7, dbtable_125:col21, 0))> <$string1>", interface_915:com18);
+    } else if (string_length($string2) > 0) {
+        if_settext("<tostring($int9)> / <tostring(db_getfield($dbrow7, dbtable_125:col26, 0))> <$string2>", interface_915:com18);
+    }
+    if (string_length($string3) > 0) {
+        if_settext("<tostring($int10)> / <tostring($int16)> <$string3>", interface_915:com19);
+    }
+    if_setgraphic($graphic18, interface_915:com16);
+    if_setgraphic($graphic19, interface_915:com17);
+    if_setgraphic($graphic17, interface_915:com15);
+    $int20 = 0;
+    cc_deleteall($component24);
+    $int20 = ~script8090($component24, $int20);
+    cc_create($component24, ^iftype_text, $int20);
+    cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_setcolour(^white);
+    cc_settextfont(b12_full);
+    cc_settextshadow(true);
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    cc_settext($string0);
+    $int20 = 0;
+    cc_deleteall($component23);
+    $int20 = ~script8090($component23, $int20);
+    cc_create($component23, ^iftype_graphic, $int20);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_setsize(22, 22, ^setsize_abs, ^setsize_abs);
+    cc_setgraphic($graphic21);
+    cc_settrans(0);
+    if_setonmouserepeat("script3440(event_com, cc_getid, $graphic22, null)", $component23);
+    if_setonmouseleave("script3440(event_com, cc_getid, $graphic21, null)", $component23);
+    if_setop(1, "Reset trial", interface_915:com10);
+    if_setop(2, "Quick reset trial", interface_915:com10);
+    if_setonclick("script7935", interface_915:com10);
+    if_setgraphic($graphic25, interface_915:com8);
+} else {
+    if_sethide(true, interface_915:com4);
+}

@@ -1,0 +1,47 @@
+// 8015
+[proc,script8015]()(string)
+def_string $string0 = "<col=b2b2b2>Sea Superset Completion:<br><col=b2b2b2>None selected</col>";
+def_int $int0 = -1;
+def_dbrow $dbrow1 = null;
+def_int $int2 = 0;
+def_int $int3 = 0;
+if (%varclient_1258 ! -1) {
+    $int0 = %varclient_1258;
+} else if (%varclient_1259 ! -1) {
+    db_find(dbtable_127:col0, %varclient_1259);
+    $dbrow1 = db_findnext;
+    if ($dbrow1 ! null) {
+        $dbrow1 = db_getfield($dbrow1, dbtable_127:col2, 0);
+    }
+    if ($dbrow1 ! null) {
+        $int0 = db_getfield($dbrow1, dbtable_127:col0, 0);
+    }
+} else if (%varclient_1262 ! -1) {
+    db_find(dbtable_126:col0, %varclient_1262);
+    $dbrow1 = db_findnext;
+    if ($dbrow1 ! null) {
+        $dbrow1 = db_getfield($dbrow1, dbtable_126:col2, 0);
+    }
+    if ($dbrow1 ! null) {
+        $dbrow1 = db_getfield($dbrow1, dbtable_127:col2, 0);
+    }
+    if ($dbrow1 ! null) {
+        $int0 = db_getfield($dbrow1, dbtable_127:col0, 0);
+    }
+}
+if ($int0 ! -1) {
+    db_find(dbtable_127:col0, $int0);
+    $dbrow1 = db_findnext;
+    if ($dbrow1 ! null) {
+        $int2, $int3 = ~script8026($int0);
+        $string0 = "<db_getfield($dbrow1, dbtable_127:col1, 0)>:<br>";
+        if ($int2 >= $int3) {
+            $string0 = "<col=00d800><$string0><col=00d800><tostring($int2)>/<tostring($int3)> (<~tostring_commas(calc(db_getfield($dbrow1, dbtable_127:col3, 0) / 10))> XP)</col>";
+        } else {
+            $string0 = "<$string0><tostring($int2)>/<tostring($int3)> (<~tostring_commas(calc(db_getfield($dbrow1, dbtable_127:col3, 0) / 10))> XP)</col>";
+        }
+    } else {
+        ~error("Dbrow for a specific ID not found. ID: <tostring($int0)>");
+    }
+}
+return($string0);

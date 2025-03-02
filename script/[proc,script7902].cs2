@@ -1,0 +1,49 @@
+// 7902
+[proc,script7902](intarray $intarray0, int $int1, int $int2, enum $enum3, int $int4)
+def_int $int5 = 1;
+def_int $int6 = -1;
+def_int $int7 = 0;
+def_int $int8 = 0;
+def_string $string0 = "";
+def_string $string1 = "";
+while ($int5 < $int4) {
+    if (cc_find(enum(int, component, $enum3, $intarray0($int5)), $int1) = ^true & .cc_find(enum(int, component, $enum3, $intarray0(calc($int5 - 1))), $int1) = ^true) {
+        if (cc_getgradientcolour = .cc_getgradientcolour) {
+            if ($int6 < 0) {
+                $int6 = calc($int5 - 1);
+            }
+            $int7 = $int5;
+        } else if ($int6 > -1) {
+            if (calc($int7 - $int6) = 1) {
+                if (cc_find(enum(int, component, $enum3, $intarray0($int6)), $int2) = ^true & .cc_find(enum(int, component, $enum3, $intarray0($int7)), $int2) = ^true) {
+                    $string0 = removetags(cc_gettext);
+                    $string1 = .removetags(.cc_gettext);
+                    if (compare($string0, $string1) <= 0) {
+                        $int8 = $intarray0($int6);
+                        $intarray0($int6) = $intarray0($int7);
+                        $intarray0($int7) = $int8;
+                    }
+                }
+            } else {
+                ~raids_partylist_sort(intarray0, $int6, $int7, $int2, $enum3);
+            }
+            $int6 = -1;
+        }
+    }
+    $int5 = calc($int5 + 1);
+}
+if ($int6 > -1) {
+    if (calc($int7 - $int6) = 1) {
+        if (cc_find(enum(int, component, $enum3, $intarray0($int6)), $int2) = ^true & .cc_find(enum(int, component, $enum3, $intarray0($int7)), $int2) = ^true) {
+            $string0 = removetags(cc_gettext);
+            $string1 = .removetags(.cc_gettext);
+            if (compare($string0, $string1) <= 0) {
+                $int8 = $intarray0($int6);
+                $intarray0($int6) = $intarray0($int7);
+                $intarray0($int7) = $int8;
+            }
+        }
+    } else {
+        ~raids_partylist_sort(intarray0, $int6, $int7, $int2, $enum3);
+    }
+}

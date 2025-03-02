@@ -1,0 +1,83 @@
+// 7959
+[proc,script7959](int $int0, int $int1, int $int2, int $int3, component $component4, component $component5, boolean $boolean6, boolean $boolean7, int $int8, int $int9)(int, int, int, boolean, boolean)
+def_dbrow $dbrow10 = ~script7980($int3, $int8, $int9);
+if ($dbrow10 = null) {
+    $int1 = ~script7960($int1, $component5);
+    return($int0, $int1, $int2, $boolean6, $boolean7);
+}
+if (db_getrowtable($dbrow10) ! dbtable_113) {
+    $int1 = ~script7960($int1, $component5);
+    return($int0, $int1, $int2, $boolean6, $boolean7);
+}
+def_dbrow $dbrow11 = db_getfield($dbrow10, dbtable_113:col2, 0);
+def_int $int12 = 0;
+def_int $int13 = db_getfieldcount($dbrow10, dbtable_113:col0);
+def_dbrow $dbrow14 = null;
+def_int $int15 = 6;
+def_int $int16 = calc($int2 + 2);
+def_graphic $graphic17 = ~script7962($int3, $dbrow10);
+if ($boolean6 = true) {
+    cc_create($component4, ^iftype_rectangle, $int0);
+    if ($dbrow11 ! null) {
+        cc_setsize(0, calc(34 * 2), ^setsize_minus, ^setsize_abs);
+    } else {
+        cc_setsize(0, 34, ^setsize_minus, ^setsize_abs);
+    }
+    cc_setposition(0, $int2, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setfill(true);
+    cc_setcolour(0x4e453a);
+    $int0 = calc($int0 + 1);
+}
+if ($dbrow11 = null) {
+    if ($boolean6 = true) {
+        $boolean6 = false;
+    } else {
+        $boolean6 = true;
+    }
+}
+def_int $int18 = 1;
+def_int $int19 = 0;
+while ($int12 < $int13) {
+    $dbrow14 = db_getfield($dbrow10, dbtable_113:col0, $int12);
+    $int18, $int19 = ~script7961($dbrow10, $dbrow14);
+    if ($dbrow14 ! null) {
+        switch_dbtable (db_getrowtable($dbrow14)) {
+            case dbtable_114 :
+                $int0, $int1, $int15 = ~script7963($int0, $int1, $int15, $int16, $dbrow14, $component4, $component5, $int18, $int19);
+            case dbtable_115 :
+                $int0, $int15 = ~script7964($int0, $int15, $int16, $dbrow14, $component4, $int18, $int19);
+            case dbtable_116 :
+                $int0, $int15 = ~script7965($int0, $int15, $int16, $dbrow14, $component4, $int18);
+            case dbtable_117 :
+                $int0, $int15 = ~script7966($int0, $int15, $int16, $dbrow14, $component4, $int18, $int19);
+        }
+    }
+    $int12 = calc($int12 + 1);
+}
+def_int $int20 = calc(4 - 1 - $int1 % 4);
+while ($int20 > 0) {
+    cc_create($component5, ^iftype_rectangle, $int1);
+    $int1 = calc($int1 + 1);
+    $int20 = calc(4 - 1 - $int1 % 4);
+}
+if ($boolean7 = true) {
+    $int0, $int1 = ~script7970($component4, $component5, $int0, $int1, 30, 30, 128, calc($int2 - 34 / 2), "", $graphic17, 18, 0xff981f, 0xff981f, 0, $int18, 1);
+    $boolean7 = false;
+    if ($int18 ! 1) {
+        cc_setop(1, "Assign");
+        cc_setonop("script7969(cc_getlayer, $int0)");
+    }
+} else if ($dbrow11 = null) {
+    $int0, $int1 = ~script7970($component4, $component5, $int0, $int1, 30, 30, 128, calc($int2 + 2), "", $graphic17, 18, 0xff981f, 0xff981f, 0, $int18, 1);
+    $boolean7 = false;
+    if ($int18 ! 1) {
+        cc_setop(1, "Assign");
+        cc_setonop("script7969(cc_getlayer, $int0)");
+    }
+} else {
+    cc_create($component5, ^iftype_rectangle, $int1);
+    $int1 = calc($int1 + 1);
+    $boolean7 = true;
+}
+$int2 = calc($int2 + 34);
+return($int0, $int1, $int2, $boolean6, $boolean7);

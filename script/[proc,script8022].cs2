@@ -1,0 +1,227 @@
+// 8022
+[proc,script8022](int $int0)
+%varclient_1262 = $int0;
+def_component $component1 = interface_917:com34;
+def_graphic $graphic2 = p12_full;
+def_graphic $graphic3 = p11_full;
+def_int $rgb4 = 0xff981f;
+def_int $rgb5 = ^white;
+def_int $int6 = 245;
+def_int $int7 = 230;
+def_int $int8 = 0;
+def_int $int9 = calc(if_getwidth($component1) / 2);
+def_int $int10 = calc(if_getwidth($component1) - $int9);
+def_dbrow $dbrow11 = null;
+def_dbrow $dbrow12 = null;
+def_string $string0 = "<col=b2b2b2>No hint selected. Choose one from the list above to display more information about it.";
+cc_deleteall($component1);
+if ($int0 ! -1) {
+    db_find(dbtable_126:col0, $int0);
+    $dbrow11 = db_findnext;
+    if ($dbrow11 = null) {
+        ~error("Invalid charting_core_dbrow found.");
+        return;
+    }
+    $string0 = db_getfield($dbrow11, dbtable_126:col1, 0);
+    if (compare($string0, "") = 0) {
+        ~error("Invalid hint found within charting_core_dbrow.");
+        return;
+    }
+    $string0 = "<col=f9f9f9><$string0>";
+}
+cc_create($component1, ^iftype_rectangle, $int8);
+cc_setsize(0, 40, ^setsize_minus, ^setsize_abs);
+cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+cc_setcolour($rgb5);
+cc_setfill(true);
+cc_settrans($int6);
+$int8 = calc($int8 + 1);
+cc_create($component1, ^iftype_rectangle, $int8);
+cc_setsize($int10, 20, ^setsize_abs, ^setsize_abs);
+cc_setposition(0, 41, ^setpos_abs_left, ^setpos_abs_top);
+cc_setcolour($rgb5);
+cc_setfill(true);
+cc_settrans($int6);
+$int8 = calc($int8 + 1);
+cc_create($component1, ^iftype_rectangle, $int8);
+cc_setsize($int9, 20, ^setsize_abs, ^setsize_abs);
+cc_setposition($int10, 41, ^setpos_abs_left, ^setpos_abs_top);
+cc_setcolour($rgb5);
+cc_setfill(true);
+cc_settrans($int7);
+$int8 = calc($int8 + 1);
+cc_create($component1, ^iftype_rectangle, $int8);
+cc_setsize($int10, 20, ^setsize_abs, ^setsize_abs);
+cc_setposition(0, 61, ^setpos_abs_left, ^setpos_abs_top);
+cc_setcolour($rgb5);
+cc_setfill(true);
+cc_settrans($int7);
+$int8 = calc($int8 + 1);
+cc_create($component1, ^iftype_rectangle, $int8);
+cc_setsize($int9, 20, ^setsize_abs, ^setsize_abs);
+cc_setposition($int10, 61, ^setpos_abs_left, ^setpos_abs_top);
+cc_setcolour($rgb5);
+cc_setfill(true);
+cc_settrans($int6);
+$int8 = calc($int8 + 1);
+cc_create($component1, ^iftype_rectangle, $int8);
+cc_setsize($int10, 20, ^setsize_abs, ^setsize_abs);
+cc_setposition(0, 81, ^setpos_abs_left, ^setpos_abs_top);
+cc_setcolour($rgb5);
+cc_setfill(true);
+cc_settrans($int6);
+$int8 = calc($int8 + 1);
+cc_create($component1, ^iftype_rectangle, $int8);
+cc_setsize($int9, 20, ^setsize_abs, ^setsize_abs);
+cc_setposition($int10, 81, ^setpos_abs_left, ^setpos_abs_top);
+cc_setcolour($rgb5);
+cc_setfill(true);
+cc_settrans($int7);
+$int8 = calc($int8 + 1);
+cc_create($component1, ^iftype_text, $int8);
+cc_setsize(24, 40, ^setsize_minus, ^setsize_abs);
+cc_setposition(12, 0, ^setpos_abs_left, ^setpos_abs_top);
+cc_settext($string0);
+cc_settextfont($graphic2);
+cc_setcolour($rgb4);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 14);
+cc_settextshadow(true);
+$int8 = calc($int8 + 1);
+$string0 = "<col=b2b2b2>Sea superset";
+if ($dbrow11 ! null) {
+    $dbrow12 = db_getfield($dbrow11, dbtable_126:col2, 0);
+    $dbrow12 = db_getfield($dbrow12, dbtable_127:col2, 0);
+    $string0 = "<col=f9f9f9><db_getfield($dbrow12, dbtable_127:col1, 0)>";
+}
+cc_create($component1, ^iftype_text, $int8);
+cc_setsize($int10, 20, ^setsize_abs, ^setsize_abs);
+cc_setposition(0, 41, ^setpos_abs_left, ^setpos_abs_top);
+cc_settext($string0);
+cc_settextfont($graphic3);
+cc_setcolour($rgb4);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 14);
+cc_settextshadow(true);
+$int8 = calc($int8 + 1);
+$string0 = "<col=b2b2b2>Sea group";
+if ($dbrow11 ! null) {
+    $dbrow12 = db_getfield($dbrow11, dbtable_126:col2, 0);
+    $string0 = "<col=f9f9f9><db_getfield($dbrow12, dbtable_127:col1, 0)>";
+}
+cc_create($component1, ^iftype_text, $int8);
+cc_setsize($int9, 20, ^setsize_abs, ^setsize_abs);
+cc_setposition($int10, 41, ^setpos_abs_left, ^setpos_abs_top);
+cc_settext($string0);
+cc_settextfont($graphic3);
+cc_setcolour($rgb4);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 14);
+cc_settextshadow(true);
+$int8 = calc($int8 + 1);
+$string0 = "<col=b2b2b2>Completion";
+if ($int0 ! -1) {
+    if (~script8025($int0) = ^true) {
+        $string0 = "<col=00d800>Complete";
+    } else {
+        $string0 = "<col=f9f9f9>Incomplete";
+    }
+}
+cc_create($component1, ^iftype_text, $int8);
+cc_setsize($int10, 20, ^setsize_abs, ^setsize_abs);
+cc_setposition(0, 61, ^setpos_abs_left, ^setpos_abs_top);
+cc_settext($string0);
+cc_settextfont($graphic3);
+cc_setcolour($rgb4);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 14);
+cc_settextshadow(true);
+$int8 = calc($int8 + 1);
+$string0 = "<col=b2b2b2>Sailing requirement";
+def_int $int13 = 1;
+if ($dbrow11 ! null) {
+    $int13 = db_getfield($dbrow11, dbtable_126:col5, 0);
+    if (stat_base(sailing) >= $int13) {
+        $string0 = "<col=00d800>Level <tostring($int13)> Sailing";
+    } else {
+        $string0 = "<col=f9f9f9>Level <tostring($int13)> Sailing";
+    }
+}
+cc_create($component1, ^iftype_text, $int8);
+cc_setsize($int9, 20, ^setsize_abs, ^setsize_abs);
+cc_setposition($int10, 61, ^setpos_abs_left, ^setpos_abs_top);
+cc_settext($string0);
+cc_settextfont($graphic3);
+cc_setcolour($rgb4);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 14);
+cc_settextshadow(true);
+$int8 = calc($int8 + 1);
+def_boolean $boolean14 = false;
+$string0 = "<col=b2b2b2>Tools needed";
+if ($dbrow11 ! null) {
+    if (db_find(dbtable_128:col0, $dbrow11) > 0) {
+        $string0 = "<col=f9f9f9>No tool needed";
+    } else if (db_find(dbtable_129:col0, $dbrow11) > 0) {
+        $string0 = "<col=f9f9f9>Spyglass needed";
+    } else if (db_find(dbtable_130:col0, $dbrow11) > 0) {
+        $string0 = "<col=f9f9f9>Current duck needed";
+    } else if (db_find(dbtable_131:col0, $dbrow11) > 0) {
+        $string0 = "<col=f9f9f9>Crowbar needed";
+    } else if (db_find(dbtable_132:col0, $dbrow11) > 0) {
+        $boolean14 = db_getfield(db_findnext, dbtable_132:col4, 0);
+        if ($boolean14 = true) {
+            $string0 = "<col=f9f9f9>Anti-rust tonic needed";
+        } else {
+            $string0 = "<col=f9f9f9>No tool needed";
+        }
+    } else if (db_find(dbtable_133:col0, $dbrow11) > 0) {
+        $boolean14 = db_getfield(db_findnext, dbtable_133:col2, 0);
+        if ($boolean14 = true) {
+            $string0 = "<col=f9f9f9>Deep sea equipment needed";
+        } else {
+            $string0 = "<col=f9f9f9>Diving equipment needed";
+        }
+    } else {
+        ~error("Charting_core_dbrow not assigned to a specific charting dbrow, or our list of dbrows is incomplete.");
+    }
+}
+cc_create($component1, ^iftype_text, $int8);
+cc_setsize($int10, 20, ^setsize_abs, ^setsize_abs);
+cc_setposition(0, 81, ^setpos_abs_left, ^setpos_abs_top);
+cc_settext($string0);
+cc_settextfont($graphic3);
+cc_setcolour($rgb4);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 14);
+cc_settextshadow(true);
+$int8 = calc($int8 + 1);
+$string0 = "<col=b2b2b2>Charting XP";
+def_int $int15 = 0;
+if ($dbrow11 ! null) {
+    if (~script8025($int0) = ^true) {
+        $int15 = calc(db_getfield($dbrow11, dbtable_126:col4, 0) / 10);
+        $string0 = "<col=f9f9f9>XP on repeat charting";
+        if ($int15 > 0) {
+            $string0 = "<col=f9f9f9><~tostring_commas($int15)> <$string0>";
+        } else {
+            $string0 = "<col=f9f9f9>No <$string0>";
+        }
+    } else {
+        $int15 = calc(db_getfield($dbrow11, dbtable_126:col3, 0) / 10);
+        $string0 = "<col=f9f9f9>XP on first charting";
+        if ($int15 > 0) {
+            $string0 = "<col=f9f9f9><~tostring_commas($int15)> <$string0>";
+        } else {
+            $string0 = "<col=f9f9f9>No <$string0>";
+        }
+    }
+}
+cc_create($component1, ^iftype_text, $int8);
+cc_setsize($int9, 20, ^setsize_abs, ^setsize_abs);
+cc_setposition($int10, 81, ^setpos_abs_left, ^setpos_abs_top);
+cc_settext($string0);
+cc_settextfont($graphic3);
+cc_setcolour($rgb4);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 14);
+cc_settextshadow(true);
+$int8 = calc($int8 + 1);
+cc_create($component1, ^iftype_line, $int8);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_abs);
+cc_setposition(0, 40, ^setpos_abs_left, ^setpos_abs_top);
+cc_setcolour(0x1);
+$int8 = calc($int8 + 1);

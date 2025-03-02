@@ -1,0 +1,23 @@
+// 8005
+[clientscript,script8005](component $component0, component $component1, component $component2, component $component3, int $int4, int $int5)
+sound_synth(synth_2266, 1, 0);
+~script8011($component0, $component1, $component2, $component3, $int4, $int5);
+def_int $int6 = 0;
+def_int $int7 = 0;
+db_listall(dbtable_127);
+def_dbrow $dbrow8 = db_findnext;
+while ($int6 < $int4) {
+    if (cc_find($component1, calc(1 + $int6 * 2)) = ^true) {
+        if ($int6 = 0) {
+            $int7 = -1;
+        } else {
+            while (db_getfield($dbrow8, dbtable_127:col2, 0) ! null) {
+                $dbrow8 = db_findnext;
+            }
+            $int7 = db_getfield($dbrow8, dbtable_127:col0, 0);
+            $dbrow8 = db_findnext;
+        }
+        cc_setonop("script8006($component0, $component3, $int4, $int7, $int5)");
+    }
+    $int6 = calc($int6 + 1);
+}

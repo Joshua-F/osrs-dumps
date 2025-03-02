@@ -1,34 +1,38 @@
 // 4199
-[proc,audio_menu_createentry_indexed](string $string0, component $component0, int $int1, int $int2, int $int3, enum $enum4, string $string1, enum $enum5, int $int6)(int, int)
-def_int $int7 = calc(paraheight($string0, $int1, p12_full) * 14 + 2);
+[proc,audio_menu_createentry_indexed](string $string0, component $component0, int $int1, int $int2, int $int3, dbrow $dbrow4, string $string1)(int, int)
+def_int $int5 = calc(paraheight($string0, $int1, p12_full) * 14 + 2);
 if (~on_mobile = true) {
-    $int7 = scale(4, 3, $int7);
+    $int5 = scale(4, 3, $int5);
 }
 cc_create($component0, ^iftype_text, $int2);
 cc_setposition(0, $int3, ^setpos_abs_centre, ^setpos_abs_top);
-cc_setsize(0, $int7, ^setsize_minus, ^setsize_abs);
+cc_setsize(0, $int5, ^setsize_minus, ^setsize_abs);
 cc_settextfont(p12_full);
-cc_setcolour(0x322805);
-cc_setonmouseover("cc_colour_swapper(event_com, event_comsubid, 5392421)");
-cc_setonmouseleave("cc_colour_swapper(event_com, event_comsubid, 3287045)");
-cc_settextalign(^settextalign_centre, ^settextalign_centre, 14);
-if ($enum4 = null & $enum5 = null) {
-    cc_setop(1, "Select");
-    cc_setonop("audio_category_select($int2)");
+def_int $int6 = 0;
+def_int $int7 = 3287045;
+if (compare($string1, "€") = 0) {
+    $int7 = 4147404;
+} else if (compare($string1, "$") = 0) {
+    $int7 = 16763150;
 } else {
-    switch_int ($int2) {
-        case 0 :
-            cc_setop(1, "Return");
-            cc_setonop("audio_tool(0)");
-        case 1 :
-            cc_setop(1, "Loop");
-            cc_setonop("audio_loop_click");
-        case default :
-            cc_setop(1, "Play");
-            cc_setonop("audio_synth_play($enum4, $int2, $string1, $enum5)");
-    }
+    $int6 = 1;
 }
+cc_setcolour($int7);
+cc_setonmouseover("cc_colour_swapper(event_com, event_comsubid, 5392421)");
+cc_setonmouseleave("cc_colour_swapper(event_com, event_comsubid, $int7)");
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 14);
+switch_int ($int2) {
+    case 0 :
+        cc_setop(1, "Return");
+    case default :
+        if ($int6 = 1) {
+            cc_setop(1, "Play");
+        } else {
+            cc_setop(1, "Open");
+        }
+}
+cc_setonop("script8092($int2, $dbrow4, $string0)");
 $string0 = append("<col=735a28><tostring($int2)></col>: ", $string0);
 cc_settext($string0);
 $int2 = calc($int2 + 1);
-return($int2, calc($int3 + $int7));
+return($int2, calc($int3 + $int5));

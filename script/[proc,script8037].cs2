@@ -1,0 +1,42 @@
+// 8037
+[proc,script8037](dbrow $dbrow0)
+if_sethide(false, interface_919:com4);
+if_sethide(true, interface_919:com5);
+if_sethide(true, interface_919:com3);
+def_int $int1 = 0;
+if_settext("Sailing Alpha - <db_getfield($dbrow0, dbtable_138:col1, 0)>", interface_919:com14);
+~script8038($dbrow0);
+~start_slideshow(interface_919:com30, ~script8031($dbrow0), 5, 4, 1);
+$int1 = ~v2_stone_button_filled(interface_919:com24);
+cc_create(interface_919:com24, ^iftype_text, $int1);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+if ($dbrow0 = dbrow_4855) {
+    cc_setcolour(^yellow);
+    cc_settext("Reset");
+} else {
+    cc_setcolour(0x53d93c);
+    cc_settext("Start!");
+}
+cc_settextfont(p12_full);
+cc_settextshadow(true);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+if_setop(1, "Start activity", interface_919:com24);
+if_setonop("script8042($dbrow0)", interface_919:com24);
+$int1 = ~v2_stone_button_filled(interface_919:com25);
+cc_create(interface_919:com25, ^iftype_text, $int1);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_setcolour(^white);
+cc_settext("Back");
+cc_settextfont(p12_full);
+cc_settextshadow(true);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+if_setop(1, "Back", interface_919:com25);
+if_setonop("script8033", interface_919:com25);
+if (~on_mobile = false) {
+    if_setonmouserepeat("v2_stone_button_change_in(interface_919:com24, 0)", interface_919:com24);
+    if_setonmouseleave("v2_stone_button_change_out(interface_919:com24, 0)", interface_919:com24);
+    if_setonmouserepeat("v2_stone_button_change_in(interface_919:com25, 0)", interface_919:com25);
+    if_setonmouseleave("v2_stone_button_change_out(interface_919:com25, 0)", interface_919:com25);
+}

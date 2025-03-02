@@ -1,0 +1,33 @@
+// 7904
+[proc,script7904](dbtable $dbtable0, dbrow $dbrow1, stat $stat2, int $int3)(boolean)
+def_int $int4 = 0;
+def_int $int5 = 0;
+def_int $int6 = 0;
+if ($stat2 = construction) {
+    $int4 = stat(construction);
+    $int5 = ~script7906($dbtable0, $dbrow1);
+    if ($int4 = -1 | $int5 = -1) {
+        return(false);
+    }
+    if (~script7886 = 9625) {
+        $int4 = calc($int4 + 3);
+    }
+    if ($int4 < $int5) {
+        return(false);
+    }
+    return(true);
+}
+if ($stat2 = sailing) {
+    $int6 = ~script7905($dbtable0, $dbrow1);
+    if ($int6 = -1) {
+        return(false);
+    }
+    if (stat(sailing) < $int6) {
+        return(false);
+    }
+    return(true);
+}
+if (stat($stat2) < $int3) {
+    return(false);
+}
+return(true);

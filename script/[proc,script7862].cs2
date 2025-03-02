@@ -1,0 +1,16 @@
+// 7862
+[proc,script7862](dbrow $dbrow0)(string)
+if ($dbrow0 = null) {
+    return("");
+}
+def_string $string0 = "";
+switch_dbtable (db_getrowtable($dbrow0)) {
+    case dbtable_112 :
+        $string0 = "Sailing level: <tostring(db_getfield($dbrow0, dbtable_112:col2, 0))><br>";
+        $string0 = append($string0, "Player capacity: <tostring(db_getfield($dbrow0, dbtable_112:col3, 0))><br>");
+        $string0 = append($string0, "Size: <db_getfield($dbrow0, dbtable_112:col5, 0)><br>");
+        $string0 = append($string0, "Speed: <enum(int, string, enum_5741, db_getfield($dbrow0, dbtable_112:col19, 0))><br>");
+        $string0 = append($string0, "Crew slots: <tostring(db_getfield($dbrow0, dbtable_112:col34, 0))><br>");
+        $string0 = append($string0, "Facilities slots: <tostring(db_getfield($dbrow0, dbtable_112:col33, 0))>");
+}
+return($string0);
