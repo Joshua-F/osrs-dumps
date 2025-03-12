@@ -15,20 +15,20 @@ switch_int ($int0) {
     case 0 :
         $string0 = "In Deadman mode, when you die <col=ffffff>unskulled</col> from <col=ffffff>PvM combat</col>, you lose only the items you are carrying at the time. Your 3 most valuable items are protected.<br><br>You may lose more if you are <col=ffffff>skulled</col> at the time.";
     case default :
-        if ($int6 = 3) {
-            $string0 = "In this Deadman event, dying in <col=ffffff>PvP combat</col> results in you losing <col=ffffff>all</col> of the items you're carrying and <col=ffffff>80%</col> from each of your <col=ffffff>10</col> most valuable item stacks in the bank.";
+        if ($int6 = 3 | $int6 = 1) {
+            $string0 = "In this Deadman event, dying in <col=ffffff>PvP combat</col> results in you losing <col=ffffff>all</col> of the items you're carrying and <col=ffffff>50%</col> from each of your <col=ffffff>10</col> most valuable item stacks in the bank.";
         } else {
             $string0 = "In Deadman mode, when you die from <col=ffffff>PvP combat</col>, you lose the <col=ffffff>10</col> most valuable stacks of items in your bank, as well as <col=ffffff>all</col> of the items you are carrying at the time.";
         }
     case 2 :
-        if ($int6 = 3) {
-            $string0 = "In this Deadman event, if you die whilst <col=ffffff>skulled</col>, you lose <col=ffffff>all</col> of the items you're carrying and <col=ffffff>80%</col> from each of your <col=ffffff>10</col> most valuable item stacks in the bank.";
+        if ($int6 = 3 | $int6 = 1) {
+            $string0 = "In this Deadman event, if you die whilst <col=ffffff>skulled</col>, you lose <col=ffffff>all</col> of the items you're carrying and <col=ffffff>50%</col> from each of your <col=ffffff>10</col> most valuable item stacks in the bank.";
         } else {
             $string0 = "In Deadman mode, if you die whilst <col=ffffff>skulled</col>, you lose the <col=ffffff>10</col> most valuable stacks of items in your bank, as well as <col=ffffff>all</col> of the items you are carrying at the time.";
         }
     case 3 :
-        if ($int6 = 3) {
-            $string0 = "In this Deadman event, if you die in a <col=ffffff>guarded</col> area whilst <col=ffffff>skulled</col>, you lose <col=ffffff>all</col> of the items you're carrying and <col=ffffff>80%</col> from each of your <col=ffffff>10</col> most valuable item stacks in the bank.";
+        if ($int6 = 3 | $int6 = 1) {
+            $string0 = "In this Deadman event, if you die in a <col=ffffff>guarded</col> area whilst <col=ffffff>skulled</col>, you lose <col=ffffff>all</col> of the items you're carrying and <col=ffffff>50%</col> from each of your <col=ffffff>10</col> most valuable item stacks in the bank.";
         } else {
             $string0 = "In Deadman mode, if you die in a <col=ffffff>guarded</col> area whilst <col=ffffff>skulled</col>, you lose the <col=ffffff>10</col> most valuable stacks of items in your bank, as well as <col=ffffff>all</col> of the items you are carrying at the time.";
         }
@@ -40,27 +40,21 @@ $int5 = calc((if_getwidth($component3) - $int7) / 2);
 def_int $int8 = 0;
 def_int $int9 = 0;
 def_int $int10 = 0;
-def_int $int11 = 0;
-if ($int6 = 3 | $int6 = 2) {
-    $int11 = 1;
-}
-def_obj $obj12 = null;
-def_int $int13 = 0;
+def_obj $obj11 = null;
+def_int $int12 = 0;
 if ($int0 ! 0) {
     $int8 = inv_size(inv_554);
     while ($int9 < $int8) {
         cc_create($component3, ^iftype_graphic, $int9);
-        $obj12, $int13 = inv_getobj(inv_554, $int9), inv_getnum(inv_554, $int9);
-        if ($int11 = 1) {
-            $int13 = ~min($int13, ~max(4, scale(8, 10, $int13)));
-        }
-        if ($obj12 ! null) {
+        $obj11, $int12 = inv_getobj(inv_554, $int9), inv_getnum(inv_554, $int9);
+        $int12 = ~min($int12, ~max(2, scale(5, 10, $int12)));
+        if ($obj11 ! null) {
             cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
             cc_setposition(calc($int5 + $int10 % 7 * (36 + 10)), calc(10 + $int10 / 7 * (32 + 10)), ^setpos_abs_left, ^setpos_abs_top);
             cc_setgraphicshadow(0x333333);
             cc_setoutline(1);
-            cc_setobject($obj12, $int13);
-            cc_setopbase("<col=ff9040><oc_name($obj12)>");
+            cc_setobject($obj11, $int12);
+            cc_setopbase("<col=ff9040><oc_name($obj11)>");
             cc_setop(1, "Examine");
             cc_setonop("cc_settrans_temporarily(event_com, cc_getid, 100, 0)");
             $int10 = calc($int10 + 1);
