@@ -1,0 +1,32 @@
+// 7864
+[proc,script7864](dbrow $dbrow0)
+def_string $string0 = "€No parent directory.";
+if ($dbrow0 = null) {
+    $dbrow0 = dbrow_4365;
+}
+def_dbrow $dbrow1 = db_getfield($dbrow0, dbtable_88:col3, 0);
+if ($dbrow1 ! null) {
+    $string0 = append("€", db_getfield($dbrow1, dbtable_88:col0, 0));
+}
+def_int $int2 = db_getfieldcount($dbrow0, dbtable_88:col1);
+def_int $int3 = 0;
+def_dbrow $dbrow4 = null;
+def_string $string1 = "";
+def_synth $synth5 = null;
+def_string $string2 = "";
+while ($int3 < $int2) {
+    $dbrow4 = db_getfield($dbrow0, dbtable_88:col1, $int3);
+    if ($dbrow4 ! null) {
+        $string1 = db_getfield($dbrow4, dbtable_88:col0, 0);
+        $string0 = append($string0, "|$<$string1>");
+    }
+    $int3 = calc($int3 + 1);
+}
+$int2 = db_getfieldcount($dbrow0, dbtable_88:col2);
+$int3 = 0;
+while ($int3 < $int2) {
+    $string2, $synth5 = db_getfield($dbrow0, dbtable_88:col2, $int3);
+    $string0 = append($string0, "|£<$string2>");
+    $int3 = calc($int3 + 1);
+}
+~audio_menu(db_getfield($dbrow0, dbtable_88:col0, 0), $string0, $dbrow0);
