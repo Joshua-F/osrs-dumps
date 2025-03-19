@@ -1,0 +1,15 @@
+// 4201
+[proc,xptracker_resize_scrollbar]
+if (%varclient_562 > if_getheight(interface_729:com_3)) {
+    if_setscrollsize(0, %varclient_562, interface_729:com_3);
+} else {
+    if_setscrollsize(0, 0, interface_729:com_3);
+}
+if_setscrollpos(0, max(0, %varclient_1255), interface_729:com_3);
+def_int $int0 = 0;
+if (%varclient_1255 > 0) {
+    $int0 = %varclient_1255;
+} else {
+    $int0 = if_getscrolly(interface_729:com_3);
+}
+~scrollbar_resize(interface_729:com_2, interface_729:com_3, $int0);
