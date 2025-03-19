@@ -1,5 +1,8 @@
 // 7511
 [proc,script7511]
+if (if_getheight(interface_894:com6) = 0) {
+    return;
+}
 def_int $int0 = 126;
 if (~script7487 = 1) {
     if_setposition(0, $int0, ^setpos_abs_left, ^setpos_abs_top, interface_894:com19);
@@ -75,12 +78,12 @@ if (~script7487 = 1) {
     if_setposition(0, $int0, ^setpos_abs_left, ^setpos_abs_top, interface_894:com9);
     if (%varclient_1230 = 1) {
         if_setsize(0, 43, ^setsize_minus, ^setsize_abs, interface_894:com9);
-        if (cc_find(interface_894:com9, 68) = ^true) {
+        if (cc_find(interface_894:com9, 69) = ^true) {
             cc_setgraphic(graphic_4918);
         }
     } else {
         if_setsize(0, if_getcolour(interface_894:com9), ^setsize_minus, ^setsize_abs, interface_894:com9);
-        if (cc_find(interface_894:com9, 68) = ^true) {
+        if (cc_find(interface_894:com9, 69) = ^true) {
             cc_setgraphic(graphic_4917);
         }
     }
@@ -91,5 +94,7 @@ if ($int0 > if_getheight(interface_894:com6)) {
 } else {
     if_setscrollsize(0, 0, interface_894:com6);
 }
-if_setscrollpos(0, 0, interface_894:com6);
 ~scrollbar_vertical(interface_894:com5, interface_894:com6, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+if (%varclient_1254 > 0) {
+    ~scrollbar_resize(interface_894:com5, interface_894:com6, %varclient_1254);
+}
