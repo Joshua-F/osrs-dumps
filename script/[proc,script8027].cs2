@@ -1,0 +1,124 @@
+// 8027
+[proc,script8027](component $component0, component $component1, component $component2, component $component3, int $int4, intarray $intarray0, int $int6)
+def_component $component7 = if_getlayer($component0);
+def_int $int8 = 14;
+if (~on_mobile = true) {
+    $int8 = 26;
+}
+def_int $int9 = if_getheight($component0);
+def_int $int10 = calc($int8 * $int4 + 4);
+def_int $int11 = 0;
+def_int $int12 = if_getheight($component3);
+if ($int10 > $int9) {
+    $int10 = $int9;
+    $int12 = 0;
+    if (~on_mobile = false) {
+        $int11 = 1;
+    }
+}
+def_int $int13 = 0;
+def_int $int14 = 0;
+def_int $int15 = if_getheight($component3);
+$int13, $int14 = ~script5774($component3, if_getlayer($component0));
+def_int $int16 = 1;
+if (calc($int14 + $int15 + $int10) > if_getheight(if_getlayer($component0))) {
+    $int16 = 0;
+}
+if_sethide(false, $component7);
+if_sethide(false, $component0);
+cc_deleteall($component0);
+cc_deleteall($component1);
+cc_deleteall($component2);
+def_int $int17 = 0;
+if ($int16 = 1) {
+    if_setposition($int13, $int14, ^setpos_abs_left, ^setpos_abs_top, $component0);
+    if_setposition(2, 2, ^setpos_abs_left, ^setpos_abs_bottom, $component1);
+    if_setposition(2, 2, ^setpos_abs_right, ^setpos_abs_bottom, $component2);
+    $int17 = calc($int15 - 1);
+} else {
+    if_setposition($int13, calc($int14 - $int10 + 1), ^setpos_abs_left, ^setpos_abs_top, $component0);
+    if_setposition(2, 2, ^setpos_abs_left, ^setpos_abs_top, $component1);
+    if_setposition(2, 2, ^setpos_abs_right, ^setpos_abs_top, $component2);
+}
+if ($int11 = 1) {
+    if_setsize(20, calc($int10 - 4), ^setsize_minus, ^setsize_abs, $component1);
+} else {
+    if_setsize(0, calc($int10 - 4), ^setsize_minus, ^setsize_abs, $component1);
+}
+if_setsize(if_getwidth($component3), calc($int10 + $int15 - 1), ^setsize_abs, ^setsize_abs, $component0);
+if_setsize(if_getwidth($component2), calc($int10 - 4), ^setsize_abs, ^setsize_abs, $component2);
+def_int $int18 = 0;
+def_int $int19 = 0;
+def_int $int20 = if_getwidth($component1);
+if (~on_mobile = true & calc($int8 * $int4) > if_getheight($component1)) {
+    if_setsize(calc(if_getwidth($component0) * 2), calc($int10 + $int15 - 1), ^setsize_abs, ^setsize_abs, $component0);
+}
+~create_graphic($component1, $int19, tradebacking, 0, 0, ^setpos_abs_left, ^setpos_abs_top, 0, 0, ^setsize_minus, ^setsize_minus, true);
+$int19 = calc($int19 + 1);
+$int18 = ~thinbox_specific($component0, $int18, 0, $int17, if_getwidth($component0), $int10, ^setpos_abs_left, ^setpos_abs_top);
+def_int $int21 = 0;
+def_int $int22 = 0;
+def_int $int23 = 0;
+def_dbrow $dbrow24 = null;
+while ($int23 < $int4) {
+    if ($int23 ! 0) {
+        db_find(dbtable_129:col0, $intarray0($int23));
+        $dbrow24 = db_findnext;
+        $int19, $int22 = ~script5773($component1, $int19, $int21, $int22, $int20, db_getfield($dbrow24, dbtable_129:col1, 0), $int6, $int8, $int12);
+    } else {
+        $int19, $int22 = ~script5773($component1, $int19, $int21, $int22, $int20, "All", $int6, $int8, $int12);
+    }
+    $int23 = calc($int23 + 1);
+    if (~on_mobile = true & calc($int22 + $int8) > if_getheight($component1)) {
+        $int21 = calc($int21 + $int20);
+        $int22 = 0;
+    }
+}
+if (~on_mobile = true) {
+    if_setonclick("comp_sethide(true, $component7)", $component7);
+} else {
+    if_setonmouserepeat("comp_sethide(true, $component7)", $component7);
+}
+cc_create($component0, ^iftype_rectangle, $int18);
+cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+if ($int16 = 0) {
+    cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_bottom);
+}
+cc_setsize(0, calc($int15 + 1), ^setsize_minus, ^setsize_abs);
+cc_setcolour(^white);
+cc_setfill(true);
+cc_settrans(255);
+cc_setnoclickthrough(true);
+cc_setop(1, "Close");
+cc_setonop("comp_sethide(true, $component0)");
+$int18 = calc($int18 + 1);
+def_int $int25 = calc((if_getheight($component3) - 16) / 2);
+if ($int16 = 1) {
+    if (~on_mobile = true) {
+        ~create_graphic($component0, $int18, tradebacking, calc($int20 - if_getheight($component3) + (if_getheight($component3) - 16) / 2), $int25, ^setpos_abs_left, ^setpos_abs_top, 16, 16, ^setsize_abs, ^setsize_abs, true);
+        $int18 = calc($int18 + 1);
+        ~create_graphic($component0, $int18, "scrollbar_v2,0", calc($int20 - if_getheight($component3) + (if_getheight($component3) - 16) / 2), $int25, ^setpos_abs_left, ^setpos_abs_top, 16, 16, ^setsize_abs, ^setsize_abs, true);
+    } else {
+        ~create_graphic($component0, $int18, tradebacking, $int25, $int25, ^setpos_abs_right, ^setpos_abs_top, 16, 16, ^setsize_abs, ^setsize_abs, true);
+        $int18 = calc($int18 + 1);
+        ~create_graphic($component0, $int18, "scrollbar_v2,0", $int25, $int25, ^setpos_abs_right, ^setpos_abs_top, 16, 16, ^setsize_abs, ^setsize_abs, true);
+    }
+} else if (~on_mobile = true) {
+    ~create_graphic($component0, $int18, tradebacking, calc($int20 - if_getheight($component3) + (if_getheight($component3) - 16) / 2), $int25, ^setpos_abs_left, ^setpos_abs_bottom, 16, 16, ^setsize_abs, ^setsize_abs, true);
+    $int18 = calc($int18 + 1);
+    ~create_graphic($component0, $int18, "scrollbar_v2,0", calc($int20 - if_getheight($component3) + (if_getheight($component3) - 16) / 2), $int25, ^setpos_abs_left, ^setpos_abs_bottom, 16, 16, ^setsize_abs, ^setsize_abs, true);
+} else {
+    ~create_graphic($component0, $int18, tradebacking, $int25, $int25, ^setpos_abs_right, ^setpos_abs_bottom, 16, 16, ^setsize_abs, ^setsize_abs, true);
+    $int18 = calc($int18 + 1);
+    ~create_graphic($component0, $int18, "scrollbar_v2,0", $int25, $int25, ^setpos_abs_right, ^setpos_abs_bottom, 16, 16, ^setsize_abs, ^setsize_abs, true);
+}
+if (~on_mobile = false & cc_find($component0, calc($int18 - 2)) = ^true) {
+    cc_setonmouseover("cc_settrans($component0, $int18, 125, null)");
+    cc_setonmouseleave("cc_settrans($component0, $int18, 0, null)");
+}
+$int18 = calc($int18 + 1);
+if_setscrollsize(0, $int22, $component1);
+if_setscrollpos(0, 0, $component1);
+if ($int11 = 1) {
+    ~scrollbar_vertical($component2, $component1, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+}

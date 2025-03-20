@@ -1,0 +1,72 @@
+// 7896
+[proc,script7896](dbrow $dbrow0, int $int1, int $int2, component $component3, dbrow $dbrow4)
+if_setsize($int1, $int2, ^setsize_abs, ^setsize_abs, $component3);
+def_int $int5 = 0;
+def_int $int6 = ~script7923($dbrow0);
+def_boolean $boolean7 = ~script7928($dbrow0);
+def_boolean $boolean8 = ~script7909($dbrow0);
+def_int $int9 = struct_param(struct_3712, param_1478);
+.cc_create($component3, ^iftype_rectangle, $int5);
+.cc_setposition(1, 1, ^setpos_abs_left, ^setpos_abs_top);
+.cc_setsize(calc($int1 - 2), calc($int2 - 2), ^setsize_abs, ^setsize_abs);
+.cc_setfill(true);
+.cc_setcolour(0x726451);
+.cc_setgradientcolour($int6);
+if ($boolean7 = true) {
+    if_setopbase("<col=ff9040><~script7922($dbrow0)>", $component3);
+    if_setop(1, "Select", $component3);
+    if_setop(2, "", $component3);
+    if_setonop("script7897($dbrow0, event_op, $component3, $boolean8)", $component3);
+    if (~on_mobile = false) {
+        if_setonmouseover("cc_colour_swapper($component3, 0, 12099970)", $component3);
+        if_setonmouseleave("cc_colour_swapper($component3, 0, 7496785)", $component3);
+    }
+} else {
+    if_clearops($component3);
+    if_setonmouseover(null, $component3);
+    if_setonmouseleave(null, $component3);
+}
+~create_graphic($component3, calc($int5 + 1), struct_param(struct_3712, param_1391), 4, 4, ^setpos_abs_left, ^setpos_abs_top, calc($int1 - 8), calc($int2 - 8), ^setsize_abs, ^setsize_abs, true);
+if ($boolean7 = false) {
+    cc_setgraphic(tradebacking_dark);
+}
+~create_graphic($component3, calc($int5 + 2), struct_param(struct_3712, param_1388), $int9, 0, ^setpos_abs_left, ^setpos_abs_top, calc($int1 - 2 * $int9), $int9, ^setsize_abs, ^setsize_abs, true);
+~create_graphic($component3, calc($int5 + 3), struct_param(struct_3712, param_1394), $int9, calc($int2 - $int9), ^setpos_abs_left, ^setpos_abs_top, calc($int1 - 2 * $int9), $int9, ^setsize_abs, ^setsize_abs, true);
+~create_graphic($component3, calc($int5 + 4), struct_param(struct_3712, param_1390), 0, $int9, ^setpos_abs_left, ^setpos_abs_top, $int9, calc($int2 - 2 * $int9), ^setsize_abs, ^setsize_abs, true);
+~create_graphic($component3, calc($int5 + 5), struct_param(struct_3712, param_1392), calc($int1 - $int9), $int9, ^setpos_abs_left, ^setpos_abs_top, $int9, calc($int2 - 2 * $int9), ^setsize_abs, ^setsize_abs, true);
+~create_graphic($component3, calc($int5 + 6), struct_param(struct_3712, param_1387), 0, 0, ^setpos_abs_left, ^setpos_abs_top, $int9, $int9, ^setsize_abs, ^setsize_abs, true);
+~create_graphic($component3, calc($int5 + 7), struct_param(struct_3712, param_1389), calc($int1 - $int9), 0, ^setpos_abs_left, ^setpos_abs_top, $int9, $int9, ^setsize_abs, ^setsize_abs, true);
+~create_graphic($component3, calc($int5 + 8), struct_param(struct_3712, param_1393), 0, calc($int2 - $int9), ^setpos_abs_left, ^setpos_abs_top, $int9, $int9, ^setsize_abs, ^setsize_abs, true);
+~create_graphic($component3, calc($int5 + 9), struct_param(struct_3712, param_1395), calc($int1 - $int9), calc($int2 - $int9), ^setpos_abs_left, ^setpos_abs_top, $int9, $int9, ^setsize_abs, ^setsize_abs, true);
+$int5 = calc($int5 + 10);
+def_int $rgb10 = 0xff981f;
+if ($dbrow0 = $dbrow4) {
+    $rgb10 = 0xdc10d;
+}
+if ($boolean8 = false) {
+    $rgb10 = 0x9f9f9f;
+}
+cc_create($component3, ^iftype_text, $int5);
+cc_setsize(calc($int1 - 62), calc($int2 - 6), ^setsize_abs, ^setsize_abs);
+cc_setposition(53, 3, ^setpos_abs_left, ^setpos_abs_top);
+if ($boolean7 = false) {
+    cc_settext("Unknown");
+    cc_setcolour(0x808080);
+} else {
+    if ($dbrow0 = $dbrow4) {
+        cc_settext("<~script7922($dbrow0)><br>Currently built");
+    } else {
+        cc_settext("<~script7922($dbrow0)><br>Level <tostring($int6)>");
+    }
+    cc_setcolour($rgb10);
+}
+cc_settextfont(p12_full);
+cc_settextshadow(true);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 15);
+$int5 = calc($int5 + 1);
+cc_create($component3, ^iftype_model, $int5);
+cc_setsize(50, calc(56 - 6), ^setsize_abs, ^setsize_abs);
+cc_setposition(3, 3, ^setpos_abs_left, ^setpos_abs_top);
+cc_setmodel(~script7925($dbrow0, $boolean7));
+cc_setmodelangle(~script7926($dbrow0, 0));
+cc_setmodelanim(~script7927($dbrow0));

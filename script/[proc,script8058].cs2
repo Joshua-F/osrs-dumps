@@ -1,0 +1,17 @@
+// 8058
+[proc,script8058](dbrow $dbrow0)(string)
+def_int $int1 = db_getfieldcount($dbrow0, dbtable_140:col5);
+def_int $int2 = 0;
+def_string $string0 = "Try out this content by completing the following tasks:<br><br>";
+def_dbrow $dbrow3 = null;
+while ($int1 ! $int2) {
+    $dbrow3 = db_getfield($dbrow0, dbtable_140:col5, $int2);
+    if (~script8044($dbrow3) = 1) {
+        $string0 = append($string0, "<str><col=0dc10d>- <db_getfield($dbrow3, dbtable_141:col0, 0)></col></str>");
+    } else {
+        $string0 = append($string0, "<col=ffff00>- <db_getfield($dbrow3, dbtable_141:col0, 0)></col>");
+    }
+    $string0 = append($string0, "<br>");
+    $int2 = calc($int2 + 1);
+}
+return($string0);

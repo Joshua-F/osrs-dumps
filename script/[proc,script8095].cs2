@@ -1,0 +1,137 @@
+// 8095
+[proc,script8095](component $component0, dbrow $dbrow1, dbrow $dbrow2, int $int3, int $int4, int $int5, int $int6, int $int7, int $int8, int $int9, graphic $graphic10, int $int11, int $int12, int $int13)(int, int, int, int)
+def_dbrow $dbrow14 = db_getfield($dbrow1, dbtable_142:col23, 0);
+def_model $model15 = db_getfield($dbrow14, dbtable_143:col5, 0);
+def_int $int16 = 0;
+def_int $int17 = 0;
+$int16, $int17 = db_getfield($dbrow2, dbtable_144:col1, $int4);
+def_int $int18 = 72;
+def_int $int19 = 100;
+def_int $int20 = 2150;
+if ($int3 = 1) {
+    $int18, $int19, $int20 = ~script8097;
+}
+def_component $component21 = null;
+def_int $int22 = db_getfield($dbrow1, dbtable_142:col2, 0);
+if ($component0 = interface_918:com11) {
+    $component21 = interface_918:com12;
+    $int18 = 85;
+    $int19 = 120;
+    $int20 = 1850;
+}
+cc_create($component0, ^iftype_model, $int5);
+cc_setmodel($model15);
+cc_setmodelangle(0, 0, 512, 0, 0, $int20);
+cc_setposition($int7, $int9, ^setpos_abs_left, ^setpos_abs_top);
+cc_setsize($int18, $int19, ^setsize_abs, ^setsize_abs);
+if ($component21 = null) {
+    cc_setop(1, "Select");
+    if ($int22 = 1) {
+        cc_setopbase("<col=ff9040>Bounty task</col>");
+    } else {
+        cc_setopbase("<col=ff9040>Courier task</col>");
+    }
+    cc_setonop("script8101($dbrow1)");
+} else {
+    cc_create($component21, ^iftype_rectangle, $int6);
+    cc_setposition($int7, $int9, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize($int18, $int19, ^setsize_abs, ^setsize_abs);
+    cc_settrans(255);
+    cc_setop(1, "Select");
+    cc_setonop("script8102($dbrow1)");
+    $int6 = calc($int6 + 1);
+}
+def_int $int23 = 0;
+def_int $int24 = 0;
+def_graphic $graphic25 = null;
+def_graphic $graphic26 = null;
+def_int $int27 = 37;
+if ($component0 ! interface_918:com11) {
+    $int23, $int24, $graphic25, $graphic26, $int27 = ~script8105;
+    $int5 = calc($int5 + 1);
+    cc_create($component0, ^iftype_graphic, $int5);
+    cc_setsize($int27, $int27, ^setsize_abs, ^setsize_abs);
+    cc_setposition(calc($int7 + $int23), calc($int9 + $int24), ^setpos_abs_left, ^setpos_abs_top);
+    cc_setgraphic($graphic26);
+    $int5 = calc($int5 + 1);
+    cc_create($component0, ^iftype_text, $int5);
+    cc_setsize($int27, $int27, ^setsize_abs, ^setsize_abs);
+    cc_setposition(calc($int7 + $int23), calc($int9 + $int24), ^setpos_abs_left, ^setpos_abs_top);
+    cc_settext(tostring(db_getfield($dbrow1, dbtable_142:col3, 0)));
+    cc_settextfont($graphic25);
+    cc_settextshadow(true);
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    cc_setcolour(^white);
+}
+$int5 = calc($int5 + 1);
+def_model $model28 = null;
+def_int $int29 = 5;
+def_int $int30 = 7;
+def_int $int31 = 20;
+def_int $int32 = 77;
+def_int $int33 = 2070;
+if ($component0 = interface_918:com11) {
+    $int29 = 5;
+    $int30 = 8;
+    $int31 = 22;
+    $int32 = 92;
+    $int33 = 1800;
+}
+if ($int3 = 1) {
+    $int31, $int32, $int33, $int29, $int30 = ~script8104;
+}
+if ($int22 = 1) {
+    $model28 = ~script8103(db_getfield($dbrow1, dbtable_142:col5, 0));
+} else {
+    $model28 = ~script8103(db_getfield($dbrow1, dbtable_142:col6, 0));
+    $int29 = 0;
+    $int30 = 0;
+}
+def_int $int34 = calc($int7 + $int31 + $int29);
+def_int $int35 = calc($int9 + $int32 + $int30);
+cc_create($component0, ^iftype_model, $int5);
+cc_setmodel($model28);
+cc_setmodelangle(0, 0, 512, 0, 0, $int33);
+cc_setposition($int34, $int35, ^setpos_abs_left, ^setpos_abs_top);
+cc_setsize(1, 1, ^setsize_abs, ^setsize_abs);
+$int5 = calc($int5 + 1);
+def_int $int36 = 0;
+def_int $int37 = db_getfield($dbrow2, dbtable_144:col2, 0);
+def_int $int38 = db_getfield($dbrow2, dbtable_144:col3, 0);
+if ($int4 = calc($int37 - 1)) {
+    $int9 = calc($int9 + $int19 + $int12);
+    $int36 = 1;
+    if ($int37 ! $int38) {
+        if ($int37 > $int38) {
+            $int12 = calc($int12 + $int18 / 2 * ($int37 - $int38));
+        } else {
+            $int12 = calc($int12 - $int18 / 2 * ($int38 - $int37));
+        }
+        $int37 = $int38;
+    }
+}
+def_int $int39 = 0;
+def_int $int40 = 0;
+def_int $int41 = 0;
+def_int $int42 = 0;
+def_int $int43 = 0;
+def_int $int44 = 0;
+if ($int36 = 1) {
+    $int16 = 0;
+} else {
+    $int16 = calc($int16 + 1);
+}
+if ($int4 >= calc($int37 - 1)) {
+    while ($int39 <= $int16) {
+        $int40, $int41 = db_getfield($dbrow2, dbtable_144:col1, $int39);
+        $int39 = calc($int39 + 1);
+    }
+    if ($int36 = 1) {
+        $int7 = $int8;
+    } else {
+        $int7 = calc($int7 + $int18 + $int12);
+    }
+} else {
+    $int7 = calc($int7 + $int18 + $int12);
+}
+return($int5, $int6, $int7, $int9);

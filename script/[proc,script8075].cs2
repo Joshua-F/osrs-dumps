@@ -1,0 +1,57 @@
+// 8075
+[proc,script8075](component $component0, component $component1, component $component2, component $component3)
+cc_deleteall($component0);
+def_int $int4 = 0;
+def_int $int5 = 0;
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_obj $obj8 = enum(int, obj, enum_3634, $int7);
+def_boolean $boolean9 = true;
+while ($obj8 ! null) {
+    cc_create($component0, ^iftype_graphic, $int7);
+    $int5 = invother_total(%varplayer_4777, $obj8);
+    if ($int5 > 0) {
+        cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+        $int6 = calc(4 + $int4 / 10 * (32 + 8));
+        cc_setposition(calc(7 + $int4 % 10 * (36 + 8)), $int6, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setoutline(1);
+        cc_settrans(0);
+        cc_setgraphicshadow(0x333333);
+        cc_setobject($obj8, $int5);
+        cc_setop(1, "Withdraw");
+        if (oc_param($obj8, param_2323) = false) {
+            cc_setop(2, "Withdraw-5");
+            cc_setop(3, "Withdraw-10");
+            cc_setop(4, "Withdraw-All");
+            cc_setop(5, "Withdraw-X");
+        }
+        cc_setop(10, "Examine");
+        cc_setopbase("<col=ff9040><oc_name($obj8)></col>");
+        cc_setonop("script8076(event_op, event_com, event_comsubid)");
+        $int4 = calc($int4 + 1);
+        $boolean9 = false;
+    } else {
+        cc_sethide(true);
+    }
+    $int7 = calc($int7 + 1);
+    $obj8 = enum(int, obj, enum_3634, $int7);
+}
+if_sethide(~script8115($boolean9), $component3);
+def_int $int10 = 0;
+$int6 = calc($int6 + 32);
+if ($int6 > if_getheight($component0)) {
+    $int10 = if_getscrolly($component0);
+    if_setscrollsize(0, $int6, $component0);
+} else {
+    if_setscrollsize(0, 0, $component0);
+}
+~scrollbar_resize($component1, $component0, $int10);
+$int4 = 0;
+$int7 = inv_size(%varplayer_4777);
+while ($int7 > 0) {
+    $int7 = calc($int7 - 1);
+    if (invother_getnum(%varplayer_4777, $int7) > 0) {
+        $int4 = calc($int4 + 1);
+    }
+}
+if_settext(tostring($int4), $component2);

@@ -1,0 +1,17 @@
+// 7871
+[clientscript,script7871](component $component0, int $int1, boolean $boolean2, int $int3, int $int4, int $int5, int $int6)
+if (cc_find($component0, $int1) = ^true) {
+    if ($boolean2 = true) {
+        $int3 = ~minmax($int4, $int5, calc($int3 - $int6));
+        if ($int3 <= $int4) {
+            $boolean2 = false;
+        }
+    } else {
+        $int3 = ~minmax($int4, $int5, calc($int3 + $int6));
+        if ($int3 >= $int5) {
+            $boolean2 = true;
+        }
+    }
+    cc_settrans(~minmax(0, 255, $int3));
+    cc_setontimer("script7871(event_com, event_comsubid, $boolean2, $int3, $int4, $int5, $int6)");
+}

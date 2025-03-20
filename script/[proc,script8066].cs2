@@ -1,0 +1,165 @@
+// 8066
+[proc,script8066](component $component0, dbrow $dbrow1)
+if ($dbrow1 = null) {
+    return;
+}
+def_component $component2 = interface_921:com0;
+def_int $int3 = 60358657;
+def_component $component4 = interface_921:com5;
+def_component $component5 = interface_921:com9;
+def_component $component6 = interface_921:com4;
+if_setontimer("script8065($component0, $dbrow1, if_getwidth($component0), if_getheight($component0))", $component2);
+def_graphic $graphic7 = p11_full;
+def_int $int8 = 0;
+def_int $int9 = 13;
+def_int $int10 = 100;
+$graphic7, $int8, $int9, $int10 = ~script8100;
+def_component $component11 = interface_921:com8;
+def_component $component12 = interface_921:com7;
+def_component $component13 = interface_921:com6;
+def_component $component14 = null;
+def_component $component15 = null;
+def_dbrow $dbrow16 = db_getfield($dbrow1, dbtable_142:col23, 0);
+def_model $model17 = db_getfield($dbrow16, dbtable_143:col5, 0);
+def_int $int18 = 0;
+def_int $int19 = 0;
+def_int $int20 = 0;
+if ($component0 = interface_923:com5) {
+    $int20 = 1;
+}
+if ($int20 = 1) {
+    ~stonebutton_init("<col=ff0000>Cancel</col>", $component12, $graphic7, 0);
+    if_setonop("script8067(0, interface_921:com1, interface_921:com2, interface_921:com3, $component0)", $component12);
+    ~stonebutton_init("<col=0dc10d>Select</col>", $component11, $graphic7, 0);
+    if_setonop("script8067(1, interface_921:com1, interface_921:com2, interface_921:com3, $component0)", $component11);
+    ~script4206(interface_921:com1, interface_921:com2, interface_921:com3, 0, $component0);
+} else {
+    $component13 = interface_918:com15;
+    $component14 = interface_918:com16;
+    $component12 = interface_918:com18;
+    $component15 = interface_918:com17;
+    ~stonebutton_init("Back", $component15, $graphic7, 0);
+    if_setonop("script8068($component0, $component12, $component15, $component13, $component14, $component4, $component6)", $component15);
+    if_setop(1, "Close task", $component15);
+    if (~script8069($dbrow1) = false) {
+        if_sethide(false, $component12);
+        ~stonebutton_init("<col=ff0000>Cancel task</col>", $component12, $graphic7, 0);
+        if_setonop("opsound(event_op, 2)", $component12);
+        if_setop(1, "Cancel task", $component12);
+        if_setposition(-60, 10, ^setpos_abs_centre, ^setpos_abs_bottom, $component15);
+    } else {
+        if_sethide(true, $component12);
+        if_setonop(null, $component12);
+        if_setop(1, "", $component12);
+        if_setposition(0, 10, ^setpos_abs_centre, ^setpos_abs_bottom, $component15);
+    }
+    $component4 = interface_918:com14;
+    if_sethide(false, $component0);
+}
+def_int $int21 = 2150;
+if ($int20 = 1) {
+    $int21 = ~script8070;
+}
+cc_create($component4, ^iftype_model, $int18);
+cc_setmodel(model_18166);
+if ($int20 = 1) {
+    cc_setmodelangle(0, 0, 512, 0, 0, $int21);
+} else {
+    cc_setmodelangle(0, 0, 512, 512, 0, 600);
+}
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_setsize(2, 2, ^setsize_abs, ^setsize_abs);
+$int18 = calc($int18 + 1);
+if ($int20 = 1) {
+    cc_create($component5, ^iftype_model, $int19);
+    cc_setmodel($model17);
+    cc_setmodelangle(0, 0, 512, 0, 0, $int21);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_setsize(2, 2, ^setsize_abs, ^setsize_abs);
+    $int19 = calc($int19 + 1);
+}
+def_model $model22 = null;
+def_int $int23 = 5;
+def_int $int24 = 7;
+def_int $int25 = 20;
+def_int $int26 = 77;
+def_int $int27 = 2070;
+def_int $int28 = 0;
+def_int $int29 = 0;
+if ($int20 = 1) {
+    $int25, $int26, $int27, $int23, $int24 = ~script8071;
+    if (db_getfield($dbrow1, dbtable_142:col2, 0) = 1) {
+        $model22 = ~script8103(db_getfield($dbrow1, dbtable_142:col5, 0));
+    } else {
+        $model22 = ~script8103(db_getfield($dbrow1, dbtable_142:col6, 0));
+        $int23 = 0;
+        $int24 = 0;
+    }
+    $int28 = calc($int25 + $int23);
+    $int29 = calc($int26 + $int24);
+    cc_create($component5, ^iftype_model, $int19);
+    cc_setmodel($model22);
+    cc_setmodelangle(0, 0, 512, 0, 0, $int27);
+    cc_setposition($int28, $int29, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(1, 1, ^setsize_abs, ^setsize_abs);
+    $int19 = calc($int19 + 1);
+}
+def_int $int30 = 35;
+def_int $int31 = 20;
+def_int $int32 = 45;
+def_int $int33 = 20;
+$int30, $int31, $int32, $int33 = ~script8072;
+if ($int20 = 1) {
+    if_setposition($int32, $int33, ^setpos_abs_centre, ^setpos_abs_bottom, $component11);
+    if_setposition(calc(0 - $int32), $int33, ^setpos_abs_centre, ^setpos_abs_bottom, $component12);
+}
+def_int $int34 = db_getfield($dbrow1, dbtable_142:col3, 0);
+def_dbrow $dbrow35 = null;
+def_string $string0 = "";
+def_dbrow $dbrow36 = db_getfield($dbrow1, dbtable_142:col7, 0);
+def_string $string1 = ~script7936($dbrow36);
+def_string $string2 = db_getfield($dbrow1, dbtable_142:col24, 0);
+def_string $string3 = "None";
+def_obj $obj37 = null;
+def_int $int38 = 0;
+def_int $int39 = 0;
+if ($int20 = 1) {
+    if_setposition($int30, $int31, ^setpos_abs_left, ^setpos_abs_top, $component13);
+} else {
+    if_setposition(20, 10, ^setpos_abs_left, ^setpos_abs_top, $component13);
+}
+if (db_getfield($dbrow1, dbtable_142:col14, 0) > 0) {
+    $string3 = "Required";
+} else if (db_getfield($dbrow1, dbtable_142:col13, 0) = true) {
+    $string3 = "Ship";
+} else if (db_getfield($dbrow1, dbtable_142:col15, 0) > 0) {
+    $string3 = "Recommended";
+}
+def_string $string4 = "";
+if (db_getfield($dbrow1, dbtable_142:col2, 0) = 0) {
+    $dbrow35 = db_getfield($dbrow1, dbtable_142:col6, 0);
+    $string0 = ~script7936($dbrow35);
+    $obj37, $int38 = db_getfield($dbrow1, dbtable_142:col17, 0);
+    $string4 = "Level: <tostring($int34)><br>Cargo Location: <$string0><br>Destination: <$string1><br>Combat: <$string3><br>Cargo: <oc_name($obj37)><br>Amount of cargo: <tostring($int38)>";
+    $int39 = 6;
+} else {
+    $string4 = "Level: <tostring($int34)><br>Destination: <$string1><br>Combat: <$string3>";
+    $int39 = 3;
+}
+if ($component14 = null) {
+    if_settext("<$string4><br><br><$string2>", $component13);
+    if_settextfont($graphic7, $component13);
+    if_settextalign(^settextalign_left, ^settextalign_top, $int8, $component13);
+} else {
+    if_settext($string4, $component13);
+    if_settext($string2, $component14);
+    if_settextfont($graphic7, $component13);
+    if_settextfont($graphic7, $component14);
+    if_settextalign(^settextalign_left, ^settextalign_top, $int8, $component13);
+    if_settextalign(^settextalign_left, ^settextalign_top, $int8, $component14);
+    if ($int20 = 1) {
+        if_setposition(0, calc(48 + $int39 * 16), ^setpos_abs_centre, ^setpos_abs_top, $component14);
+    } else {
+        if_setposition(0, calc(28 + $int39 * 16), ^setpos_abs_centre, ^setpos_abs_top, $component14);
+    }
+}

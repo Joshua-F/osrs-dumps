@@ -1,0 +1,17 @@
+// 8040
+[proc,script8040](int $int0)(int)
+if ($int0 < 0) {
+    ~error("Invalid ID given to completion var getter.");
+    return(null);
+}
+def_int $int1 = calc($int0 / 32);
+def_int $int2 = calc($int0 % 32);
+switch_int ($int1) {
+    case 0 :
+        return(testbit(%varplayer_4758, $int2));
+    case default :
+        ~error("Invalid ID var reached in completion var getter. May need to define new vars in the switch.");
+        return(null);
+}
+~error("Something has broken in the completion var getter.");
+return(null);

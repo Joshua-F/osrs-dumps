@@ -1,0 +1,23 @@
+// 7970
+[proc,script7970](int $int0, int $int1, int $int2, dbrow $dbrow3, component $component4, int $int5, int $int6)(int, int)
+def_graphic $graphic7 = null;
+def_int $int8 = 0;
+def_int $int9 = db_getfieldcount($dbrow3, dbtable_117:col0);
+if ($int6 < $int9) {
+    $graphic7, $int8 = db_getfield($dbrow3, dbtable_117:col0, $int6);
+} else {
+    $graphic7, $int8 = db_getfield($dbrow3, dbtable_117:col0, 0);
+}
+if ($graphic7 = null) {
+    return($int0, $int1);
+}
+def_int $int10 = calc($int1 + (30 / 2 - $int8 / 2));
+def_int $int11 = calc($int2 + (30 / 2 - $int8 / 2));
+$int0 = ~create_graphic($component4, $int0, $graphic7, $int10, $int11, ^setpos_abs_left, ^setpos_abs_top, $int8, $int8, ^setsize_abs, ^setsize_abs, true);
+if ($int5 = 1) {
+    cc_settrans(128);
+} else {
+    cc_settrans(0);
+}
+$int1 = calc($int1 + 30 + 8);
+return($int0, $int1);

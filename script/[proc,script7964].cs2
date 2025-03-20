@@ -1,0 +1,42 @@
+// 7964
+[proc,script7964](component $component0, component $component1, component $component2)
+if (%varplayerbit_16553 ! 0) {
+    return;
+}
+cc_deleteall($component1);
+if_setonvartransmit("script7963($component0, $component1, $component2){varplayer_4734, varplayer_4735, varplayer_4736, varplayer_4739, varplayer_4740, varplayer_4738}", $component1);
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_int $int5 = 2;
+def_boolean $boolean6 = false;
+def_boolean $boolean7 = false;
+$int3, $int4, $int5, $boolean6, $boolean7 = ~script7965($int3, $int4, $int5, %varplayerbit_16557, $component1, $component2, $boolean6, $boolean7, 1, -1);
+$int3, $int4, $int5, $boolean6, $boolean7 = ~script7965($int3, $int4, $int5, %varplayerbit_16558, $component1, $component2, $boolean6, $boolean7, 2, -1);
+if (%varplayerbit_16559 ! 0) {
+    $int3, $int4, $int5, $boolean6, $boolean7 = ~script7965($int3, $int4, $int5, %varplayerbit_16559, $component1, $component2, $boolean6, $boolean7, 0, 0);
+} else {
+    $int4 = ~script7966($int4, $component2);
+}
+if (%varplayerbit_16560 ! 0) {
+    $int3, $int4, $int5, $boolean6, $boolean7 = ~script7965($int3, $int4, $int5, %varplayerbit_16560, $component1, $component2, $boolean6, $boolean7, 0, 1);
+} else {
+    $int4 = ~script7966($int4, $component2);
+}
+if (%varplayerbit_16561 ! 0) {
+    $int3, $int4, $int5, $boolean6, $boolean7 = ~script7965($int3, $int4, $int5, %varplayerbit_16561, $component1, $component2, $boolean6, $boolean7, 0, 2);
+} else {
+    $int4 = ~script7966($int4, $component2);
+}
+if ($int5 > if_getheight($component1)) {
+    if_setscrollsize(0, $int5, $component1);
+} else {
+    if_setscrollsize(0, 0, $component1);
+    if ($boolean6 = true) {
+        cc_create($component1, ^iftype_rectangle, $int3);
+        cc_setsize(0, $int5, ^setsize_minus, ^setsize_minus);
+        cc_setposition(0, $int5, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setfill(true);
+        cc_setcolour(0x4e453a);
+    }
+}
+~scrollbar_resize($component0, $component1, 0);

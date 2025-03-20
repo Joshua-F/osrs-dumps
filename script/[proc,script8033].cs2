@@ -1,0 +1,106 @@
+// 8033
+[proc,script8033](int $int0)
+def_component $component1 = interface_918:com39;
+def_component $component2 = interface_918:com40;
+def_graphic $graphic3 = p12_full;
+def_int $rgb4 = 0xff981f;
+def_int $rgb5 = ^white;
+def_int $int6 = 40;
+def_int $int7 = 0;
+def_int $int8 = 245;
+def_int $int9 = 0;
+def_string $string0 = "";
+db_listall(dbtable_128);
+def_dbrow $dbrow10 = db_findnext;
+def_dbrow $dbrow11 = null;
+def_dbrow $dbrow12 = null;
+def_int $int13 = -1;
+def_int $int14 = -1;
+def_int $int15 = -1;
+def_boolean $boolean16 = ~on_mobile;
+cc_deleteall($component1);
+cc_deleteall($component2);
+while ($dbrow10 ! null) {
+    $dbrow11 = db_getfield($dbrow10, dbtable_128:col2, 0);
+    $dbrow12 = db_getfield($dbrow11, dbtable_129:col2, 0);
+    $int13 = db_getfield($dbrow11, dbtable_129:col0, 0);
+    if ($dbrow12 ! null) {
+        $int14 = db_getfield($dbrow12, dbtable_129:col0, 0);
+    }
+    $string0 = db_getfield($dbrow10, dbtable_128:col1, 0);
+    $int15 = db_getfield($dbrow10, dbtable_128:col0, 0);
+    if (~script8034($int15, $int13, $int14, $dbrow10) = true & compare("", $string0) ! 0) {
+        cc_create($component1, ^iftype_rectangle, $int9);
+        cc_setsize(0, $int6, ^setsize_minus, ^setsize_abs);
+        cc_setposition(0, $int7, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setcolour($rgb5);
+        cc_setfill(true);
+        if ($boolean16 = false) {
+            cc_setonmouserepeat("script8035(event_comsubid, $component1, 170)");
+        }
+        if (%varclient_1266 = $int15) {
+            $int8 = 200;
+            if ($boolean16 = false) {
+                cc_setonmouseleave("script8035(event_comsubid, $component1, 200)");
+            }
+        } else if (calc($int9 / 2 % 2) = 1) {
+            $int8 = 230;
+            if ($boolean16 = false) {
+                cc_setonmouseleave("script8035(event_comsubid, $component1, 230)");
+            }
+        } else {
+            $int8 = 245;
+            if ($boolean16 = false) {
+                cc_setonmouseleave("script8035(event_comsubid, $component1, 245)");
+            }
+        }
+        cc_settrans($int8);
+        cc_setop(1, "More Info");
+        cc_setonop("script8036($int15)");
+        $int9 = calc(1 + $int9);
+        cc_create($component1, ^iftype_text, $int9);
+        cc_setsize(10, $int6, ^setsize_minus, ^setsize_abs);
+        cc_setposition(5, $int7, ^setpos_abs_left, ^setpos_abs_top);
+        if (~script8040($int15) = ^true) {
+            $string0 = "<col=00d800><$string0>";
+        }
+        cc_settext($string0);
+        cc_settextfont($graphic3);
+        cc_setcolour($rgb4);
+        cc_settextalign(^settextalign_centre, ^settextalign_centre, 14);
+        cc_settextshadow(true);
+        $int7 = calc($int6 + $int7);
+        $int9 = calc(1 + $int9);
+    }
+    $dbrow10 = db_findnext;
+    $dbrow11 = null;
+    $dbrow12 = null;
+    $int13 = -1;
+    $int14 = -1;
+    $int15 = -1;
+    $string0 = "";
+}
+if ($int9 = 0) {
+    cc_create($component1, ^iftype_rectangle, $int9);
+    cc_setsize(0, $int6, ^setsize_minus, ^setsize_abs);
+    cc_setposition(0, $int7, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setcolour($rgb5);
+    cc_setfill(true);
+    cc_settrans($int8);
+    $int9 = calc(1 + $int9);
+    cc_create($component1, ^iftype_text, $int9);
+    cc_setsize(10, $int6, ^setsize_minus, ^setsize_abs);
+    cc_setposition(5, $int7, ^setpos_abs_left, ^setpos_abs_top);
+    cc_settext("There are no hints to display based on your current filters.");
+    cc_settextfont($graphic3);
+    cc_setcolour($rgb4);
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 14);
+    cc_settextshadow(true);
+}
+if_setscrollsize(0, $int7, $component1);
+if ($int0 = 1) {
+    %varclient_1267 = 0;
+}
+if_setscrollpos(0, %varclient_1267, $component1);
+~scrollbar_vertical($component2, $component1, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~scrollbar_vertical_rebuild($component2, $component1);

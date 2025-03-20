@@ -1,0 +1,24 @@
+// 8056
+[proc,script8056](dbrow $dbrow0)
+if_sethide(false, interface_920:com5);
+if_sethide(true, interface_920:com6);
+if_sethide(true, interface_920:com4);
+def_int $int1 = 0;
+if_settext("Sailing Alpha - <db_getfield($dbrow0, dbtable_140:col1, 0)>", interface_920:com17);
+~script8057($dbrow0);
+~start_slideshow(interface_920:com32, ~script8048($dbrow0), 5, 4, 1);
+$int1 = ~v2_stone_button_filled(interface_920:com27);
+cc_create(interface_920:com27, ^iftype_text, $int1);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_setcolour(^white);
+cc_settext("Back");
+cc_settextfont(p12_full);
+cc_settextshadow(true);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+if_setop(1, "Back", interface_920:com27);
+if_setonop("script8052", interface_920:com27);
+if (~on_mobile = false) {
+    if_setonmouserepeat("v2_stone_button_change_in(interface_920:com27, 0)", interface_920:com27);
+    if_setonmouseleave("v2_stone_button_change_out(interface_920:com27, 0)", interface_920:com27);
+}

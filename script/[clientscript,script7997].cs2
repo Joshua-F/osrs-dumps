@@ -1,0 +1,53 @@
+// 7997
+[clientscript,script7997]
+def_graphic $graphic0 = "close_buttons,0";
+def_graphic $graphic1 = "close_buttons,1";
+def_component $component2 = interface_918:com8;
+def_int $int3 = 3;
+def_int $int4 = 6;
+def_int $int5 = 26;
+def_int $int6 = 23;
+if (~on_mobile = true) {
+    $graphic0 = "steelborder_close_button,0";
+    $graphic1 = "steelborder_close_button,0";
+    $int3 = 1;
+    $int4 = 1;
+    $int5 = 33;
+    $int6 = 33;
+}
+if_setposition($int3, $int4, ^setpos_abs_right, ^setpos_abs_top, $component2);
+if_setsize($int5, $int6, ^setsize_abs, ^setsize_abs, $component2);
+~create_graphic($component2, 0, $graphic0, 0, 0, ^setpos_abs_centre, ^setpos_abs_centre, $int5, $int6, ^setsize_abs, ^setsize_abs, true);
+cc_setonmouseleave("cc_graphic_swapper(event_com, event_comsubid, $graphic0, null)");
+cc_setonmouseover("cc_graphic_swapper(event_com, event_comsubid, $graphic1, null)");
+if_setop(1, "Close", $component2);
+if (%varplayerbit_4681 = 1) {
+    if_setopkey(1, ^key_escape, 0, $component2);
+}
+def_component $component7 = interface_918:com0;
+def_component $component8 = interface_918:com1;
+def_component $component9 = interface_918:com6;
+def_enum $enum10 = ~toplevel_getcomponents;
+def_component $component11 = enum(component, component, $enum10, interface_161:com16);
+if (~on_mobile = true) {
+    if_setontimer("script3833($component7, $component8, 0)", $component7);
+} else {
+    if (%varclient_1270 < 0 | %varclient_1271 < 0 | %varclient_1268 <= 0 | %varclient_1269 <= 0) {
+        %varclient_1270 = if_getx($component11);
+        %varclient_1271 = if_gety($component11);
+        %varclient_1268 = if_getwidth($component11);
+        %varclient_1269 = if_getheight($component11);
+    }
+    if_setontimer("script6110($component7, -1)", $component7);
+}
+if_setonresize("script7998", $component7);
+if_sethide(false, $component8);
+if_sethide(true, $component9);
+if ($enum10 = enum_1132) {
+    if_setposition(6, 6, ^setpos_abs_centre, ^setpos_abs_centre, $component8);
+    if_setsize(12, 12, ^setsize_minus, ^setsize_minus, $component8);
+    ~script8012;
+    return;
+}
+~script8000($component7, $component8, $component9);
+~script8003(-1, -1, $component7, $component8);

@@ -3,90 +3,92 @@
 if_setonresize("script7797($int0, $component1, $component2, $component3, $component4, $struct5, $int6)", interface_621:com87);
 def_int $int7 = 0;
 def_boolean $boolean8 = ~on_mobile;
-if ($boolean8 = true | getwindowmode = ^windowmode_small | %varclient_1246 = 0) {
+if (~script7872 = false | %varclient_1246 = 0) {
     $int7 = 1;
 }
+def_enum $enum9 = ~toplevel_getcomponents;
+def_component $component10 = enum(component, component, $enum9, interface_161:com16);
 if ($int7 = 1) {
     ~steelborder(interface_621:com0, "Collection Log - <tostring(%varplayer_2943)>/<tostring(%varplayer_2944)>", 1);
 } else {
     ~steelborder(interface_621:com0, "Collection Log - <tostring(%varplayer_2943)>/<tostring(%varplayer_2944)>", 3);
 }
-def_int $int9 = 500;
-def_int $int10 = 314;
-def_int $int11 = 0;
-def_int $int12 = 0;
-def_int $int13 = if_getwidth(interface_621:com87);
-def_int $int14 = ~script1912;
-def_int $int15 = calc(if_getheight(interface_621:com87) - $int14);
+def_int $int11 = 500;
+def_int $int12 = 314;
+def_int $int13 = if_getx($component10);
+def_int $int14 = if_gety($component10);
+def_int $int15 = if_getwidth(interface_621:com87);
+def_int $int16 = ~script1912;
+def_int $int17 = calc(if_getheight(interface_621:com87) - $int16);
 if_sethide(false, interface_621:com88);
 if_sethide(true, interface_621:com89);
 if ($int7 = 0) {
-    $int9 = max(460, min(%varclient_1241, $int13));
-    $int10 = max(300, min(%varclient_1242, $int15));
-    $int11 = max(0, min(%varclient_1243, calc($int13 - $int9)));
-    $int12 = max($int14, min(%varclient_1244, calc($int14 + $int15 - $int10)));
+    $int11 = max(460, min(%varclient_1241, $int15));
+    $int12 = max(300, min(%varclient_1242, $int17));
+    $int13 = max(0, min(%varclient_1243, calc($int15 - $int11)));
+    $int14 = max($int16, min(%varclient_1244, calc($int16 + $int17 - $int12)));
 }
 if ($boolean8 = false) {
-    if_setposition($int11, $int12, ^setpos_abs_left, ^setpos_abs_top, interface_621:com88);
-    if_setsize($int9, $int10, ^setsize_abs, ^setsize_abs, interface_621:com88);
+    if_setposition($int13, $int14, ^setpos_abs_left, ^setpos_abs_top, interface_621:com88);
+    if_setsize($int11, $int12, ^setsize_abs, ^setsize_abs, interface_621:com88);
 }
 ~script1785(interface_621:com2);
-def_int $int16 = calc($int10 - 6 * 2);
-def_int $int17 = calc($int9 - 6 * 2);
-def_int $int18 = calc($int11 + $int9 - 6);
-def_int $int19 = calc($int12 + $int10 - 6);
+def_int $int18 = calc($int12 - 6 * 2);
+def_int $int19 = calc($int11 - 6 * 2);
+def_int $int20 = calc($int13 + $int11 - 6);
+def_int $int21 = calc($int14 + $int12 - 6);
 if ($int7 = 0) {
     if (cc_find(interface_621:com87, 0) = ^true) {
-        cc_setsize(calc($int17 - 120), calc(if_gety(interface_621:com2) - 2 * 6), ^setsize_abs, ^setsize_abs);
-        cc_setposition(calc($int11 + 6 + 98), calc($int12 + 6), ^setpos_abs_left, ^setpos_abs_top);
-        ~script2601($int14);
+        cc_setsize(calc($int19 - 120), calc(if_gety(interface_621:com2) - 2 * 6), ^setsize_abs, ^setsize_abs);
+        cc_setposition(calc($int13 + 6 + 98), calc($int14 + 6), ^setpos_abs_left, ^setpos_abs_top);
+        ~script2601($int16);
     }
     if (cc_find(interface_621:com87, 1) = ^true) {
-        cc_setsize(calc($int9 - 6 * 2), 6, ^setsize_abs, ^setsize_abs);
-        cc_setposition(calc($int11 + 6), calc($int12 + $int10 - 6), ^setpos_abs_left, ^setpos_abs_top);
-        ~script2601($int14);
+        cc_setsize(calc($int11 - 6 * 2), 6, ^setsize_abs, ^setsize_abs);
+        cc_setposition(calc($int13 + 6), calc($int14 + $int12 - 6), ^setpos_abs_left, ^setpos_abs_top);
+        ~script2601($int16);
     }
     if (cc_find(interface_621:com87, 2) = ^true) {
-        cc_setsize(6, calc($int10 - 6 * 2), ^setsize_abs, ^setsize_abs);
-        cc_setposition($int11, calc($int12 + 6), ^setpos_abs_left, ^setpos_abs_top);
-        ~script2601($int14);
+        cc_setsize(6, calc($int12 - 6 * 2), ^setsize_abs, ^setsize_abs);
+        cc_setposition($int13, calc($int14 + 6), ^setpos_abs_left, ^setpos_abs_top);
+        ~script2601($int16);
     }
     if (cc_find(interface_621:com87, 3) = ^true) {
-        cc_setsize(6, calc($int10 - 6 * 2), ^setsize_abs, ^setsize_abs);
-        cc_setposition(calc($int11 + $int9 - 6), calc($int12 + 6), ^setpos_abs_left, ^setpos_abs_top);
-        ~script2601($int14);
+        cc_setsize(6, calc($int12 - 6 * 2), ^setsize_abs, ^setsize_abs);
+        cc_setposition(calc($int13 + $int11 - 6), calc($int14 + 6), ^setpos_abs_left, ^setpos_abs_top);
+        ~script2601($int16);
     }
     if (cc_find(interface_621:com87, 4) = ^true) {
         cc_setsize(6, 6, ^setsize_abs, ^setsize_abs);
-        cc_setposition($int11, $int12, ^setpos_abs_left, ^setpos_abs_top);
-        ~script2601($int14);
+        cc_setposition($int13, $int14, ^setpos_abs_left, ^setpos_abs_top);
+        ~script2601($int16);
     }
     if (cc_find(interface_621:com87, 5) = ^true) {
         cc_setsize(6, 6, ^setsize_abs, ^setsize_abs);
-        cc_setposition(calc($int11 + $int9 - 6), $int12, ^setpos_abs_left, ^setpos_abs_top);
-        ~script2601($int14);
+        cc_setposition(calc($int13 + $int11 - 6), $int14, ^setpos_abs_left, ^setpos_abs_top);
+        ~script2601($int16);
     }
     if (cc_find(interface_621:com87, 6) = ^true) {
         cc_setsize(6, 6, ^setsize_abs, ^setsize_abs);
-        cc_setposition($int11, calc($int12 + $int10 - 6), ^setpos_abs_left, ^setpos_abs_top);
-        ~script2601($int14);
+        cc_setposition($int13, calc($int14 + $int12 - 6), ^setpos_abs_left, ^setpos_abs_top);
+        ~script2601($int16);
     }
     if (cc_find(interface_621:com87, 7) = ^true) {
         cc_setsize(6, 6, ^setsize_abs, ^setsize_abs);
-        cc_setposition(calc($int11 + $int9 - 6), calc($int12 + $int10 - 6), ^setpos_abs_left, ^setpos_abs_top);
-        ~script2601($int14);
+        cc_setposition(calc($int13 + $int11 - 6), calc($int14 + $int12 - 6), ^setpos_abs_left, ^setpos_abs_top);
+        ~script2601($int16);
     }
     if (cc_find(interface_621:com87, 8) = ^true) {
-        cc_setsize(calc($int9 - 28 - 6 * 2), 6, ^setsize_abs, ^setsize_abs);
-        cc_setposition(calc($int11 + 28 + 6), $int12, ^setpos_abs_left, ^setpos_abs_top);
-        ~script2601($int14);
+        cc_setsize(calc($int11 - 28 - 6 * 2), 6, ^setsize_abs, ^setsize_abs);
+        cc_setposition(calc($int13 + 28 + 6), $int14, ^setpos_abs_left, ^setpos_abs_top);
+        ~script2601($int16);
     }
 }
 ~collection_draw_tabs_all($int0);
 ~script7799;
 ~collection_toggle_search(true);
-def_int $int20 = 0;
+def_int $int22 = 0;
 if ($component1 ! null) {
-    $int20 = if_getscrolly($component1);
+    $int22 = if_getscrolly($component1);
 }
-~collection_draw_list($int0, $component1, $component2, $component3, $component4, $struct5, $int6, $int20);
+~collection_draw_list($int0, $component1, $component2, $component3, $component4, $struct5, $int6, $int22);

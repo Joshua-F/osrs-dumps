@@ -1,0 +1,59 @@
+// 7991
+[proc,script7991](dbrow $dbrow0, component $component1, component $component2, component $component3, component $component4, component $component5)
+cc_deleteall($component2);
+cc_deleteall($component3);
+def_string $string0 = db_getfield($dbrow0, dbtable_127:col1, 0);
+def_graphic $graphic6 = db_getfield($dbrow0, dbtable_127:col8, 0);
+def_graphic $graphic7 = db_getfield($dbrow0, dbtable_127:col9, 0);
+def_obj $obj8 = db_getfield($dbrow0, dbtable_127:col21, 0);
+def_obj $obj9 = db_getfield($dbrow0, dbtable_127:col22, 0);
+def_obj $obj10 = db_getfield($dbrow0, dbtable_127:col23, 0);
+def_int $int11 = 0;
+def_int $int12 = 0;
+def_int $int13 = 0;
+def_int $int14 = 0;
+def_int $int15 = 0;
+def_int $int16 = 0;
+$int11, $int12, $int13, $int14, $int15, $int16 = ~script7992($dbrow0);
+def_int $int17 = 0;
+def_int $int18 = 0;
+def_graphic $graphic19 = graphic_6581;
+def_graphic $graphic20 = graphic_6573;
+def_graphic $graphic21 = graphic_6573;
+def_graphic $graphic22 = graphic_6573;
+def_int $int23 = 0;
+def_int $rgb24 = 0x474745;
+if ($int13 > 0) {
+    $graphic19 = graphic_6584;
+    $graphic20 = graphic_6574;
+    $graphic21 = graphic_6575;
+    $graphic22 = graphic_6576;
+    $int23 = 3;
+    $rgb24 = 0xfce4a2;
+} else if ($int12 > 0) {
+    $graphic19 = graphic_6583;
+    $graphic20 = graphic_6574;
+    $graphic21 = graphic_6575;
+    $int23 = 2;
+    $rgb24 = 0xd2d9eb;
+} else if ($int11 > 0) {
+    $graphic19 = graphic_6582;
+    $graphic20 = graphic_6574;
+    $int23 = 1;
+    $rgb24 = 0xba9974;
+}
+$int17 = ~thinbox_specific($component2, $int17, 0, 0, if_getwidth($component2), if_getheight($component2), ^setpos_abs_left, ^setpos_abs_top);
+$int17 = ~create_text($component2, $int17, b12_full, 0, 7, ^setpos_abs_centre, ^setpos_abs_top, 100, 20, ^setsize_abs, ^setsize_abs, "Current Rank", true, 0xff981f, ^settextalign_centre, ^settextalign_centre, 0);
+$int17 = ~create_graphic($component2, $int17, $graphic19, 0, 37, ^setpos_abs_centre, ^setpos_abs_top, 64, 64, ^setsize_abs, ^setsize_abs, true);
+$int17 = ~script7770($component2, $int17, 0, 35, 68, 68, ^setpos_abs_centre, ^setpos_abs_top, 0xe0e0c, $rgb24);
+$int17 = ~script7993($component2, $int17, 128, $graphic20, $int11);
+$int17 = ~script7993($component2, $int17, 168, $graphic21, $int12);
+$int17 = ~script7993($component2, $int17, 208, $graphic22, $int13);
+$int17 = 0;
+$int17 = ~thinbox_specific($component3, $int17, 0, 0, if_getwidth($component3), 80, ^setpos_abs_left, ^setpos_abs_top);
+$int17 = ~create_text($component3, $int17, p11_full, 0, 0, ^setpos_abs_centre, ^setpos_abs_top, 4, 80, ^setsize_minus, ^setsize_abs, ~script7994($string0), true, 0xff981f, ^settextalign_centre, ^settextalign_centre, 0);
+$int17 = ~thinbox_specific($component3, $int17, 0, 79, if_getwidth($component3), calc(if_getheight($component3) - 59), ^setpos_abs_left, ^setpos_abs_top);
+$int17, $int18 = ~script7995($component3, $int17, $component4, $int18, $component5, 81, 230, $graphic6, $graphic7, graphic_6573, "Unranked", db_getfield($dbrow0, dbtable_127:col20, 0), null, 0, 0, $int23);
+$int17, $int18 = ~script7995($component3, $int17, $component4, $int18, $component5, 129, 210, $graphic6, $graphic7, graphic_6574, "Swordfish", db_getfield($dbrow0, dbtable_127:col20, 1), $obj8, $int14, 1, $int23);
+$int17, $int18 = ~script7995($component3, $int17, $component4, $int18, $component5, 177, 230, $graphic6, $graphic7, graphic_6575, "Shark", db_getfield($dbrow0, dbtable_127:col20, 2), $obj9, $int15, 2, $int23);
+$int17, $int18 = ~script7995($component3, $int17, $component4, $int18, $component5, 225, 210, $graphic6, $graphic7, graphic_6576, "Marlin", db_getfield($dbrow0, dbtable_127:col20, 3), $obj10, $int16, 3, $int23);

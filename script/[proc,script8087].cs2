@@ -1,0 +1,42 @@
+// 8087
+[proc,script8087](obj $obj0, int $int1)
+def_int $int2 = 0;
+def_int $int3 = 0;
+def_obj $obj4 = null;
+if ($obj0 ! null) {
+    cc_sethide(false);
+    cc_setobject($obj0, $int1);
+    cc_setopbase("<col=ff9040><oc_name($obj0)></col>");
+    $int2, $int3 = 0, 0;
+    $obj4 = enum(int, obj, enum_3634, $int3);
+    while ($int2 = 0 & $obj4 ! null) {
+        if ($obj4 = $obj0) {
+            $int2 = 1;
+        }
+        $int3 = calc($int3 + 1);
+        $obj4 = enum(int, obj, enum_3634, $int3);
+    }
+    if ($int2 = 1) {
+        cc_setop(1, "Deposit");
+        cc_setop(2, "Deposit-5");
+        cc_setop(3, "Deposit-10");
+        cc_setop(4, "Deposit-All");
+        cc_setop(5, "Deposit-X");
+        cc_setop(10, "Examine");
+        cc_settrans(0);
+        cc_setonop("script8076(event_op, event_com, event_comsubid)");
+    } else {
+        cc_setop(1, "Deposit");
+        cc_setop(10, "Examine");
+        cc_settrans(150);
+        cc_setonop(null);
+    }
+    cc_setdragdeadzone(5);
+    cc_setdragdeadtime(6);
+    cc_setondragcomplete("script8088(event_com, event_comsubid, event_comsubid2)");
+} else {
+    cc_clearops;
+    cc_settrans(255);
+    cc_setobject_nonum(obj_6512, 1);
+    cc_setondragcomplete(null);
+}

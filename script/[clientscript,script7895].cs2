@@ -1,0 +1,73 @@
+// 7895
+[clientscript,script7895](dbrow $dbrow0, int $int1, int $int2, int $int3)
+if ($dbrow0 = null) {
+    if_close;
+    return;
+}
+def_int $int4 = enum_getoutputcount(enum_3615);
+def_int $int5 = 0;
+def_component $component6 = null;
+while ($int5 < $int4) {
+    $component6 = enum(int, component, enum_3615, $int5);
+    if ($component6 ! null) {
+        cc_deleteall($component6);
+        if_sethide(true, $component6);
+    }
+    $int5 = calc($int5 + 1);
+}
+$int5 = 0;
+def_int $int7 = calc((if_getwidth(interface_913:com22) - 30) / 2);
+$int4 = ~script7919($dbrow0, $int2, $int3);
+if ($int4 > enum_getoutputcount(enum_3615)) {
+    ~debug_mes("Please add <tostring(calc($int4 - enum_getoutputcount(enum_3615)))> more layers to sailing_customisation_facility_layers.");
+}
+def_int $intarray0($int4);
+def_int $int8 = 0;
+def_dbrow $dbrow9 = null;
+def_dbrow $dbrow10 = ~script7920($int1, $dbrow0, $int2, $int3);
+~thinbox(interface_913:com20, 0);
+while ($int5 < $int4) {
+    $component6 = enum(int, component, enum_3615, $int5);
+    $dbrow9 = ~script7921($dbrow0, $int2, $int3, $int5);
+    if ($dbrow9 ! null) {
+        ~script7896($dbrow9, $int7, 56, $component6, $dbrow10);
+    }
+    $int5 = calc($int5 + 1);
+}
+$int5 = 0;
+while ($int5 < $int4) {
+    if (cc_find(enum(int, component, enum_3615, $int5), 0) = ^true) {
+        $intarray0($int8) = $int5;
+        $int8 = calc($int8 + 1);
+    }
+    $int5 = calc($int5 + 1);
+}
+if ($int8 >= 2) {
+    ~script7907(intarray0, 0, calc($int8 - 1), 0, enum_3615, $int4);
+    ~script7908(intarray0, 0, 10, enum_3615, $int4);
+}
+def_int $int11 = 0;
+def_int $int12 = 7;
+while ($int11 < $int8) {
+    $component6 = enum(int, component, enum_3615, $intarray0($int11));
+    if ($component6 ! null) {
+        if_sethide(false, $component6);
+        if (calc($int11 % 2) = 0) {
+            if_setposition(10, $int12, ^setpos_abs_left, ^setpos_abs_top, $component6);
+        } else {
+            if_setposition(10, $int12, ^setpos_abs_right, ^setpos_abs_top, $component6);
+            $int12 = calc($int12 + 56 + 10);
+        }
+    }
+    $int11 = calc($int11 + 1);
+}
+if (calc($int11 % 2) ! 0) {
+    $int12 = calc($int12 + 56 + 7);
+}
+if ($int12 > if_getheight(interface_913:com2)) {
+    if_setscrollsize(0, $int12, interface_913:com22);
+} else {
+    if_setscrollsize(0, 0, interface_913:com22);
+}
+if_setscrollpos(0, 0, interface_913:com22);
+~scrollbar_vertical(interface_913:com21, interface_913:com22, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");

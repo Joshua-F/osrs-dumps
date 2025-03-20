@@ -1,0 +1,26 @@
+// 8050
+[clientscript,script8050]
+~script8053;
+def_int $int0 = ~v2_stone_button_filled(interface_920:com3);
+cc_create(interface_920:com3, ^iftype_text, $int0);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_setcolour(^white);
+cc_settext("Feedback survey");
+cc_settextfont(p12_full);
+cc_settextshadow(true);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+if_setop(1, "Open Survey", interface_920:com3);
+if_setonop("script8051", interface_920:com3);
+if (~on_mobile = false) {
+    if_setonmouserepeat("v2_stone_button_change_in(interface_920:com3, 0)", interface_920:com3);
+    if_setonmouseleave("v2_stone_button_change_out(interface_920:com3, 0)", interface_920:com3);
+}
+if (%varplayerbit_16751 = 0) {
+    if_sethide(false, interface_920:com6);
+    ~steelborder(interface_920:com35, "Welcome to the Sailing Alpha!", 1);
+    if_setcolour(0x9f9f9f, interface_920:com36);
+    if_settext("Please note:<br><col=ff981f>- Gameplay and graphics are not final.</col> Sailing is heavily work-in-progress.<br>- XP rates and rewards are not yet balanced.<br>- You may experience flickering and other graphical issues in some areas.<br><br>To open this guide again, you can <col=ff981f>click the watermark</col> at the bottom left of your screen at any time!", interface_920:com36);
+    ~stonebutton_init("Understood!", interface_920:com37, p12_full, 0);
+    if_setonop("script8062", interface_920:com37);
+}

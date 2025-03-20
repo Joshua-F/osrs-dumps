@@ -1,0 +1,52 @@
+// 8057
+[proc,script8057](dbrow $dbrow0)
+cc_deleteall(interface_920:com25);
+cc_deleteall(interface_920:com20);
+def_component $component1 = interface_920:com20;
+~script5288($component1, 0, 0, 0, if_getwidth($component1), if_getheight($component1), struct_3712, 7496785);
+def_int $int2 = db_getfieldcount($dbrow0, dbtable_140:col5);
+def_int $int3 = db_getfieldcount($dbrow0, dbtable_140:col6);
+def_int $int4 = 1;
+def_int $int5 = -1;
+def_int $int6 = -1;
+if ($int2 > 0) {
+    $int4 = calc($int4 + 1);
+}
+if ($int3 > 0) {
+    $int4 = calc($int4 + 1);
+}
+def_int $int7 = calc(if_getwidth(interface_920:com25) / $int4);
+def_int $int8 = 0;
+def_int $int9 = ~script5293(interface_920:com25, $int9, $int8, $int7, 0, 0x726451, "Summary", p12_full, ^white, 0, null, 0, 0, 0, 0, ~is_equal(%varclient_1239, $int8));
+cc_setonop("script8060($int8, $dbrow0)");
+if ($int2 > 0) {
+    $int8 = calc($int8 + 1);
+    $int5 = $int8;
+    $int9 = ~script5293(interface_920:com25, $int9, $int8, $int7, 0, 0x726451, "Tasks", p12_full, ^white, 0, null, 0, 0, 0, 0, ~is_equal(%varclient_1239, $int8));
+    cc_setonop("script8060($int8, $dbrow0)");
+}
+if ($int3 > 0) {
+    $int8 = calc($int8 + 1);
+    $int6 = $int8;
+    $int9 = ~script5293(interface_920:com25, $int9, $int8, $int7, 0, 0x726451, "FAQ", p12_full, ^white, 0, null, 0, 0, 0, 0, ~is_equal(%varclient_1239, $int8));
+    cc_setonop("script8060($int8, $dbrow0)");
+}
+def_component $component10 = interface_920:com23;
+def_component $component11 = interface_920:com21;
+def_int $int12 = 0;
+cc_deleteall($component10);
+cc_deleteall($component11);
+if_setscrollpos(0, 0, $component11);
+def_component $component13 = interface_920:com22;
+if_settext("", $component13);
+if_setcolour(^white, $component13);
+if_settextfont(p12_full, $component13);
+if (%varclient_1239 = 0) {
+    $int12 = ~script7635(db_getfield($dbrow0, dbtable_140:col3, 0), $component13, $component11);
+} else if (%varclient_1239 = $int5) {
+    $int12 = ~script7635(~script8058($dbrow0), $component13, $component11);
+} else if (%varclient_1239 = $int6) {
+    if_setcolour(0x9f9f9f, $component13);
+    $int12 = ~script7635(~script8059($dbrow0), $component13, $component11);
+}
+~script7631($int12, $component10, $component11);

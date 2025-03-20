@@ -1,0 +1,21 @@
+// 8061
+[clientscript,script8061](dbrow $dbrow0)
+sound_synth(synth_2266, 1, 0);
+if_sethide(false, interface_920:com6);
+~steelborder(interface_920:com35, "Warning", 1);
+if_settext(db_getfield($dbrow0, dbtable_140:col9, 0), interface_920:com36);
+~stonebutton_init("Cancel", interface_920:com39, p12_full, 0);
+if_setonop("script8062", interface_920:com39);
+~stonebutton_init("Confirm", interface_920:com37, p12_full, 0);
+if_setop(1, "", interface_920:com37);
+def_int $int1 = 0;
+def_int $int2 = db_getfield($dbrow0, dbtable_140:col0, 0);
+while ($int1 < $int2) {
+    cc_create(interface_920:com38, ^iftype_rectangle, $int1);
+    $int1 = calc($int1 + 1);
+}
+cc_create(interface_920:com38, ^iftype_rectangle, $int1);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+cc_setop(1, "Confirm");
+cc_setonop("opsound(event_op, 2)");

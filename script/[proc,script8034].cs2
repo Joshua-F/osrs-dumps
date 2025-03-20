@@ -1,0 +1,27 @@
+// 8034
+[proc,script8034](int $int0, int $int1, int $int2, dbrow $dbrow3)(boolean)
+if ($int0 = -1) {
+    ~error("Invalid chartable object ID input");
+    return(false);
+}
+if ($dbrow3 = null | db_getrowtable($dbrow3) ! dbtable_128) {
+    ~error("Invalid $charting_core_dbrow input.");
+    return(false);
+}
+def_int $intbool4 = ^false;
+if (%varclient_1264 ! 0) {
+    $intbool4 = ~script8040($int0);
+    if (%varclient_1264 = 1 & $intbool4 = ^true | %varclient_1264 = 2 & $intbool4 = ^false) {
+        return(false);
+    }
+}
+if (%varclient_1265 = 0 & stat(sailing) < db_getfield($dbrow3, dbtable_128:col5, 0)) {
+    return(false);
+}
+if (%varclient_1262 ! -1 & %varclient_1262 ! $int2) {
+    return(false);
+}
+if (%varclient_1263 ! -1 & %varclient_1263 ! $int1) {
+    return(false);
+}
+return(true);

@@ -1,0 +1,35 @@
+// 7909
+[proc,script7909](dbrow $dbrow0)(boolean)
+if (~script7934 = false & $dbrow0 ! dbrow_5122) {
+    return(false);
+}
+def_dbtable $dbtable1 = db_getrowtable($dbrow0);
+def_int $int2 = ~script7913($dbtable1, $dbrow0);
+def_int $int3 = ~script7915($dbtable1, $dbrow0);
+if (~script7910($dbtable1, $dbrow0, sailing, -1) = false) {
+    return(false);
+}
+if (~script7910($dbtable1, $dbrow0, construction, -1) = false) {
+    return(false);
+}
+def_int $int4 = 0;
+def_stat $stat5 = null;
+def_int $int6 = -1;
+while ($int4 < $int2) {
+    $stat5, $int6 = ~script7914($dbtable1, $dbrow0, $int4);
+    if (~script7910($dbtable1, $dbrow0, $stat5, $int6) = false) {
+        return(false);
+    }
+    $int4 = calc($int4 + 1);
+}
+$int4 = 0;
+def_int $int7 = -1;
+def_dbrow $dbrow8 = null;
+while ($int4 < $int3) {
+    $dbrow8 = ~script7916($dbtable1, $dbrow0, $int4);
+    if (~quest_is_complete($dbrow8) = false) {
+        return(false);
+    }
+    $int4 = calc($int4 + 1);
+}
+return(true);
