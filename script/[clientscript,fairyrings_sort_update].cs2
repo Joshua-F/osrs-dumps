@@ -64,62 +64,67 @@ if ($boolean12 = false) {
 }
 if_sethide($boolean12, $component3);
 if_setsize(0, $int10, ^setsize_minus, ^setsize_abs, $component4);
-def_int $int13 = 0;
-def_component $component14 = null;
+def_component $component13 = null;
 def_component $componentarray0(64);
-def_int $int15 = 0;
+def_int $int14 = 0;
 def_string $string0 = "";
-while ($int13 < 64) {
-    $component14 = enum(int, component, enum_824, $int13);
-    if ($component14 ! null) {
-        $component6 = enum(component, component, enum_1296, $component14);
-        if (string_length(if_gettext($component14)) > 0) {
-            if_sethide(false, $component14);
+db_listall(dbtable_89);
+def_dbrow $dbrow15 = db_findnext;
+def_int $int16 = 0;
+while ($dbrow15 ! null) {
+    $component13 = db_getfield($dbrow15, dbtable_89:col4, 0);
+    if ($component13 ! null) {
+        $component6 = db_getfield($dbrow15, dbtable_89:col5, 0);
+        if (string_length(if_gettext($component13)) > 0) {
+            if_sethide(false, $component13);
             if ($component6 ! null) {
                 if_sethide(false, $component6);
             }
-            $componentarray0($int15) = $component14;
-            $int15 = calc($int15 + 1);
+            $componentarray0($int14) = $component13;
+            $int14 = calc($int14 + 1);
         } else {
-            if_sethide(true, $component14);
+            if_sethide(true, $component13);
             if ($component6 ! null) {
                 if_sethide(true, $component6);
             }
         }
     }
-    $int13 = calc($int13 + 1);
+    $dbrow15 = db_findnext;
 }
-if ($int15 > 0) {
+if ($int14 > 0) {
     if (%varclient_54 = 1) {
-        ~quicksort_componenttext(componentarray0, 0, calc($int15 - 1));
+        ~quicksort_componenttext(componentarray0, 0, calc($int14 - 1));
     } else {
-        ~quicksort_componentenum(componentarray0, 0, calc($int15 - 1), enum_823);
+        ~quicksort_componentenum(componentarray0, 0, calc($int14 - 1), enum_823);
     }
 }
-$int13 = 0;
 cc_deleteall($component0);
-while ($int13 < $int15) {
-    $component6 = enum(component, component, enum_1296, $componentarray0($int13));
-    $string0 = enum(component, string, enum_823, $componentarray0($int13));
-    $int9 = calc(paraheight(if_gettext($componentarray0($int13)), $int8, p12_full) * 12 + 5);
+while ($int16 < $int14) {
+    db_find(dbtable_89:col4, $componentarray0($int16));
+    $dbrow15 = db_findnext;
+    if ($dbrow15 ! null) {
+        $component6 = db_getfield($dbrow15, dbtable_89:col5, 0);
+        $string0 = db_getfield($dbrow15, dbtable_89:col3, 0);
+    }
+    $int9 = calc(paraheight(if_gettext($componentarray0($int16)), $int8, p12_full) * 12 + 5);
     if ($component6 ! null) {
         if_setposition(2, $int10, ^setpos_abs_left, ^setpos_abs_top, $component6);
     }
-    if_setsize($int8, $int9, ^setsize_abs, ^setsize_abs, $componentarray0($int13));
-    if_setposition(20, $int10, ^setpos_abs_left, ^setpos_abs_top, $componentarray0($int13));
-    cc_create($component0, ^iftype_text, $int13);
+    if_setsize($int8, $int9, ^setsize_abs, ^setsize_abs, $componentarray0($int16));
+    if_setposition(20, $int10, ^setpos_abs_left, ^setpos_abs_top, $componentarray0($int16));
+    cc_create($component0, ^iftype_text, $int16);
     cc_setsize($int8, $int9, ^setsize_abs, ^setsize_abs);
-    cc_setposition(20, if_gety($componentarray0($int13)), ^setpos_abs_left, ^setpos_abs_top);
+    cc_setposition(20, if_gety($componentarray0($int16)), ^setpos_abs_left, ^setpos_abs_top);
     cc_settextfont(p12_full);
     cc_setcolour(0xff3f3f);
     cc_settextshadow(true);
     cc_settextalign(^settextalign_left, ^settextalign_top, 0);
     cc_settext($string0);
-    if_setopbase("<col=ff981f><$string0></col>", $componentarray0($int13));
-    if_setonmouseover("cc_colour_swapper($component0, cc_getid, 16744319)", $componentarray0($int13));
-    if_setonmouseleave("cc_colour_swapper($component0, cc_getid, 16727871)", $componentarray0($int13));
+    if_setopbase("<col=ff981f><$string0></col>", $componentarray0($int16));
+    if_setonmouseover("cc_colour_swapper($component0, cc_getid, 16744319)", $componentarray0($int16));
+    if_setonmouseleave("cc_colour_swapper($component0, cc_getid, 16727871)", $componentarray0($int16));
     $int10 = calc($int10 + $int9 + 3);
-    $int13 = calc($int13 + 1);
+    $int16 = calc($int16 + 1);
 }
 $string0 = if_gettext(interface_381:com_139);
 if (string_length($string0) > 0) {
