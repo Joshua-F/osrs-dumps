@@ -1,0 +1,13 @@
+// 7317
+[proc,script7317](mapelement $mapelement)(string)
+db_find(dbtable_89:col6, $mapelement);
+def_dbrow $dbrow = db_findnext;
+if ($dbrow = null) {
+    return(enum(category, string, enum_1713, mec_category($mapelement)));
+}
+def_string $string = "Fairy ring";
+if (~script7866(db_getfield($dbrow, dbtable_89:col0, 0)) = 1) {
+    return(db_getfield($dbrow, dbtable_89:col7, 0));
+} else {
+    return($string);
+}
