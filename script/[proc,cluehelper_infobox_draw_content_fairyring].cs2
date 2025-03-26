@@ -7,15 +7,21 @@ if (%varplayerbit_14188 = 1) {
 }
 def_int $int2 = ~script6657(db_getfield($dbrow0, dbtable_10:col5, 0));
 def_dbrow $dbrow3 = db_getfield($dbrow0, dbtable_10:col5, $int2);
+db_find(dbtable_89:col0, db_getfield($dbrow0, dbtable_10:col3, 0));
+def_dbrow $dbrow4 = db_findnext;
+def_string $string0 = "";
+if ($dbrow4 ! null) {
+    $string0 = db_getfield($dbrow4, dbtable_89:col3, 0);
+}
 $int1 = ~helper_generic_add_title("Fairy Ring Code", 0);
-$int1 = ~helper_generic_add_text(enum(int, string, enum_1294, db_getfield($dbrow0, dbtable_10:col3, 0)));
-def_int $int4 = 0;
+$int1 = ~helper_generic_add_text($string0);
 def_int $int5 = 0;
 def_int $int6 = 0;
 def_int $int7 = 0;
-$int4, $int5, $int6, $int7 = db_getfield($dbrow0, dbtable_10:col4, 0);
+def_int $int8 = 0;
+$int5, $int6, $int7, $int8 = db_getfield($dbrow0, dbtable_10:col4, 0);
 $int1 = ~helper_generic_add_title("Steps from the Fairy Ring", 0);
-$int1 = ~helper_generic_add_text("<tostring($int4)>n <tostring($int5)>e <tostring($int6)>s <tostring($int7)>w");
+$int1 = ~helper_generic_add_text("<tostring($int5)>n <tostring($int6)>e <tostring($int7)>s <tostring($int8)>w");
 if (~cluehelper_is_dig($dbrow0, $dbrow3) = 1) {
     $int1 = ~helper_generic_add_text("...");
     if (cc_find(interface_711:com_5, $int1) = ^true) {
