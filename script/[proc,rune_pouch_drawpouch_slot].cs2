@@ -1,21 +1,50 @@
 // 667
-[proc,rune_pouch_drawpouch_slot](obj $obj0, int $int1)
+[proc,rune_pouch_drawpouch_slot](int $int0)
 cc_clearops;
 cc_setontimer(null);
-if ($obj0 ! null & $int1 > 0) {
-    cc_settrans(0);
-    cc_setobject($obj0, $int1);
-    cc_setopbase("<col=ff9040><oc_name($obj0)></col>");
-    cc_setop(1, "Withdraw-1");
-    cc_setop(2, "Withdraw-5");
-    cc_setop(3, "Withdraw-All");
-    cc_setop(4, "Withdraw-X");
-    cc_setop(10, "Examine");
-    cc_setonop("cc_settrans_temporarily(event_com, event_comsubid, 100, 0)");
-    cc_setondragcomplete("rune_pouch_pouchreorder(event_com, event_com2, event_comsubid, event_comsubid2)");
+def_obj $obj1 = null;
+def_int $int2 = 0;
+if (~script7869($int0) = true) {
+    cc_sethide(false);
+    $obj1, $int2 = ~rune_pouch_getslot($int0);
+    if ($obj1 ! null & $int2 > 0) {
+        cc_settrans(0);
+        cc_setobject($obj1, $int2);
+        cc_setopbase("<col=ff9040><oc_name($obj1)></col>");
+        switch_int (%varplayerbit_16201) {
+            case default :
+                cc_setop(1, "Withdraw-1");
+                cc_setop(3, "Withdraw-5");
+                cc_setop(4, "Withdraw-X");
+                cc_setop(5, "Withdraw-All");
+            case 1 :
+                cc_setop(1, "Withdraw-5");
+                cc_setop(2, "Withdraw-1");
+                cc_setop(4, "Withdraw-X");
+                cc_setop(5, "Withdraw-All");
+            case 3 :
+                cc_setop(1, "Withdraw-X");
+                cc_setop(2, "Withdraw-1");
+                cc_setop(3, "Withdraw-5");
+                cc_setop(5, "Withdraw-All");
+            case 2 :
+                cc_setop(1, "Withdraw-All");
+                cc_setop(2, "Withdraw-1");
+                cc_setop(3, "Withdraw-5");
+                cc_setop(4, "Withdraw-X");
+        }
+        cc_setop(10, "Examine");
+        cc_setonop("cc_settrans_temporarily(event_com, event_comsubid, 100, 0)");
+        cc_setondragcomplete("rune_pouch_pouchreorder(event_com, event_com2, event_comsubid, event_comsubid2)");
+        .cc_sethide(true);
+    } else {
+        cc_settrans(0);
+        cc_setobject(obj_6512, 1);
+        cc_setonop(null);
+        cc_setondragcomplete(null);
+        .cc_sethide(false);
+    }
 } else {
-    cc_settrans(0);
-    cc_setobject(obj_6512, 1);
-    cc_setonop(null);
-    cc_setondragcomplete(null);
+    cc_sethide(true);
+    .cc_sethide(true);
 }
