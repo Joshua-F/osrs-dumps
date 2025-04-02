@@ -1,55 +1,29 @@
 // 668
 [clientscript,rune_pouch_pouchreorder](component $component0, component $component1, int $int2, int $int3)
-def_int $int4 = 0;
-def_int $int5 = 0;
-if ($int2 = 0) {
-    $int4, $int5 = %varplayerbit_29, %varplayerbit_1624;
-} else if ($int2 = 1) {
-    $int4, $int5 = %varplayerbit_1622, %varplayerbit_1625;
-} else if ($int2 = 2) {
-    $int4, $int5 = %varplayerbit_1623, %varplayerbit_1626;
-} else if ($int2 = 3) {
-    $int4, $int5 = %varplayerbit_14285, %varplayerbit_14286;
-} else if ($int2 = 4) {
-    $int4, $int5 = %varplayerbit_15373, %varplayerbit_15375;
-} else if ($int2 = 5) {
-    $int4, $int5 = %varplayerbit_15374, %varplayerbit_15376;
-} else {
+def_int $int4 = calc($int2 + 1);
+if (~script7869($int4) = false) {
     return;
 }
-if ($int4 = 0) {
+def_int $int5 = calc($int3 + 1);
+if (~script7869($int5) = false) {
+    return;
+}
+def_obj $obj6 = null;
+def_int $int7 = 0;
+$obj6, $int7 = ~rune_pouch_getslot($int4);
+if ($obj6 = null) {
     return;
 }
 if ($component1 ! $component0) {
     if (cc_find($component0, $int2) = ^true) {
-        cc_settrans(255);
+        cc_settrans(200);
         cc_setontimer("cc_settrans_temporarily_end(event_com, event_comsubid, 0, calc(clientclock + 30))");
     }
     return;
 }
-if ($int2 = $int3) {
+if ($int4 = $int5) {
     return;
 }
-def_int $int6 = 0;
-def_int $int7 = 0;
-if ($int3 = 0) {
-    $int6, $int7 = %varplayerbit_29, %varplayerbit_1624;
-} else if ($int3 = 1) {
-    $int6, $int7 = %varplayerbit_1622, %varplayerbit_1625;
-} else if ($int3 = 2) {
-    $int6, $int7 = %varplayerbit_1623, %varplayerbit_1626;
-} else if ($int3 = 3) {
-    $int6, $int7 = %varplayerbit_14285, %varplayerbit_14286;
-} else if ($int3 = 4) {
-    $int6, $int7 = %varplayerbit_15373, %varplayerbit_15375;
-} else if ($int3 = 5) {
-    $int6, $int7 = %varplayerbit_15374, %varplayerbit_15376;
-} else {
-    return;
-}
-if (cc_find($component0, $int2) = ^true) {
-    ~rune_pouch_drawpouch_slot(enum(int, namedobj, enum_982, $int6), $int7);
-}
-if (cc_find($component0, $int3) = ^true) {
-    ~rune_pouch_drawpouch_slot(enum(int, namedobj, enum_982, $int4), $int5);
-}
+~rune_pouch_setslot($int4, ~rune_pouch_getslot($int5));
+~rune_pouch_setslot($int5, $obj6, $int7);
+~rune_pouch_drawpouch($component0);
