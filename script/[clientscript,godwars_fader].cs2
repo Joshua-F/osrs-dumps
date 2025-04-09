@@ -1,19 +1,19 @@
 // 344
-[clientscript,godwars_fader](component $component0, int $int1, int $int2, int $int3, int $int4)
+[clientscript,godwars_fader](component $component, int $int1, int $int2, int $int3, int $int4)
 def_int $int5 = calc(clientclock - $int1);
 if ($int5 < $int2) {
-    if_settrans(calc(255 - scale($int5, $int2, 255)), $component0);
+    if_settrans(calc(255 - scale($int5, $int2, 255)), $component);
     return;
 }
 def_int $int6 = calc($int2 + $int3);
 if ($int5 < $int6) {
-    if_settrans(0, $component0);
+    if_settrans(0, $component);
     return;
 }
 $int6 = calc($int6 + $int4);
 if ($int5 < $int6) {
-    if_settrans(calc(255 - scale(calc($int6 - $int5), $int4, 255)), $component0);
+    if_settrans(calc(255 - scale(calc($int6 - $int5), $int4, 255)), $component);
     return;
 }
-if_settrans(255, $component0);
-if_setontimer(null, $component0);
+if_settrans(255, $component);
+if_setontimer(null, $component);

@@ -1,6 +1,6 @@
 // 595
 [proc,clanwars_hud_info_update](component $component0, component $component1, int $int2)
-if (%varplayerbit_4287 <= 0 & %varplayerbit_4288 <= 0) {
+if (%clanwars_players_1 <= 0 & %clanwars_players_2 <= 0) {
     if_sethide(true, $component1);
     return;
 }
@@ -9,10 +9,10 @@ def_int $int3 = 0;
 def_string $string0 = "";
 def_string $string1 = "";
 def_string $string2 = "";
-if (%varplayerbit_4285 = 1) {
+if (%clanwars_accept = 1) {
     $int3 = 1;
     $string0 = " ";
-    if (%varplayerbit_12230 = 1) {
+    if (%clanwars_useclansystem = 1) {
         if (activeclansettings_find_affined(^clantype_clan) = true) {
             $string1 = activeclansettings_getclanname;
         } else {
@@ -33,10 +33,10 @@ if (string_length($string0) > 0) {
     $string0 = append($string0, "<br>");
 }
 $string0 = append($string0, $string4);
-if (%varplayerbit_4289 = 2) {
-    $string4 = ~tostring_spacer(%varplayerbit_4288, $string3);
+if (%clanwars_myteam = 2) {
+    $string4 = ~tostring_spacer(%clanwars_players_2, $string3);
 } else {
-    $string4 = ~tostring_spacer(%varplayerbit_4287, $string3);
+    $string4 = ~tostring_spacer(%clanwars_players_1, $string3);
 }
 if (string_length($string1) > 0) {
     $string1 = append($string1, "<br>");
@@ -46,10 +46,10 @@ $int4 = parawidth($string4, 512, p11_full);
 if ($int5 < $int4) {
     $int5 = $int4;
 }
-if (%varplayerbit_4289 = 2) {
-    $string4 = ~tostring_spacer(%varplayerbit_4287, $string3);
+if (%clanwars_myteam = 2) {
+    $string4 = ~tostring_spacer(%clanwars_players_1, $string3);
 } else {
-    $string4 = ~tostring_spacer(%varplayerbit_4288, $string3);
+    $string4 = ~tostring_spacer(%clanwars_players_2, $string3);
 }
 if (string_length($string2) > 0) {
     $string2 = append($string2, "<br>");
@@ -57,40 +57,40 @@ if (string_length($string2) > 0) {
 $string2 = append($string2, $string4);
 def_string $string5 = "";
 def_int $int6 = 0;
-def_int $int7 = enum(int, int, enum_376, %varplayerbit_4270);
-def_int $int8 = enum(int, int, enum_377, %varplayerbit_4270);
-def_int $int9 = enum(int, int, enum_1120, %varplayerbit_4270);
-def_int $int10 = enum(int, int, enum_1119, %varplayerbit_4270);
+def_int $int7 = enum(int, int, enum_376, %clanwars_wincondition);
+def_int $int8 = enum(int, int, enum_377, %clanwars_wincondition);
+def_int $int9 = enum(int, int, enum_1120, %clanwars_wincondition);
+def_int $int10 = enum(int, int, enum_1119, %clanwars_wincondition);
 if ($int7 > 0 | $int8 > 0 | $int9 > 0 | $int10 > 0) {
     $int3 = calc($int3 + 1);
     $string4 = "Kills:";
     $string0 = append($string0, append("<br>", $string4));
-    if (%varplayerbit_4289 = 2) {
-        if (%varplayerbit_4291 >= 65535) {
+    if (%clanwars_myteam = 2) {
+        if (%clanwars_kills_2 >= 65535) {
             $string4 = "Lots!";
         } else {
-            $string4 = ~tostring_spacer(%varplayerbit_4291, $string3);
+            $string4 = ~tostring_spacer(%clanwars_kills_2, $string3);
         }
-    } else if (%varplayerbit_4290 >= 65535) {
+    } else if (%clanwars_kills_1 >= 65535) {
         $string4 = "Lots!";
     } else {
-        $string4 = ~tostring_spacer(%varplayerbit_4290, $string3);
+        $string4 = ~tostring_spacer(%clanwars_kills_1, $string3);
     }
     $string1 = append($string1, append("<br>", $string4));
     $int4 = parawidth($string4, 512, p11_full);
     if ($int5 < $int4) {
         $int5 = $int4;
     }
-    if (%varplayerbit_4289 = 2) {
-        if (%varplayerbit_4290 >= 65535) {
+    if (%clanwars_myteam = 2) {
+        if (%clanwars_kills_1 >= 65535) {
             $string4 = "Lots!";
         } else {
-            $string4 = ~tostring_spacer(%varplayerbit_4290, $string3);
+            $string4 = ~tostring_spacer(%clanwars_kills_1, $string3);
         }
-    } else if (%varplayerbit_4291 >= 65535) {
+    } else if (%clanwars_kills_2 >= 65535) {
         $string4 = "Lots!";
     } else {
-        $string4 = ~tostring_spacer(%varplayerbit_4291, $string3);
+        $string4 = ~tostring_spacer(%clanwars_kills_2, $string3);
     }
     $string2 = append($string2, append("<br>", $string4));
     if ($int8 > 0 | $int9 > 0) {
@@ -103,20 +103,20 @@ if ($int7 > 0 | $int8 > 0 | $int9 > 0 | $int10 > 0) {
             $string4 = "Points:";
         }
         $string0 = append($string0, append("<br>", $string4));
-        if (%varplayerbit_4289 = 2) {
-            $string4 = ~tostring_spacer(%varplayerbit_4576, $string3);
+        if (%clanwars_myteam = 2) {
+            $string4 = ~tostring_spacer(%clanwars_points_2, $string3);
         } else {
-            $string4 = ~tostring_spacer(%varplayerbit_4575, $string3);
+            $string4 = ~tostring_spacer(%clanwars_points_1, $string3);
         }
         $string1 = append($string1, append("<br>", $string4));
         $int4 = parawidth($string4, 512, p11_full);
         if ($int5 < $int4) {
             $int5 = $int4;
         }
-        if (%varplayerbit_4289 = 2) {
-            $string4 = ~tostring_spacer(%varplayerbit_4575, $string3);
+        if (%clanwars_myteam = 2) {
+            $string4 = ~tostring_spacer(%clanwars_points_1, $string3);
         } else {
-            $string4 = ~tostring_spacer(%varplayerbit_4576, $string3);
+            $string4 = ~tostring_spacer(%clanwars_points_2, $string3);
         }
         $string2 = append($string2, append("<br>", $string4));
     }

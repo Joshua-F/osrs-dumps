@@ -1,16 +1,16 @@
 // 6628
-[proc,cluehelper_infobox_challenge_display](dbrow $dbrow0)
-def_string $string0 = null;
+[proc,cluehelper_infobox_challenge_display](dbrow $dbrow)
+def_string $string = null;
 def_int $int1 = 0;
 def_int $int2 = 0;
-if ($dbrow0 ! null) {
+if ($dbrow ! null) {
     $int2 = ~helper_generic_add_title("Challenge", 0);
-    switch_dbtable (db_getrowtable($dbrow0)) {
-        case dbtable_25 :
-            $string0, $int1 = db_getfield($dbrow0, dbtable_25:col0, ~script6656($dbrow0));
+    switch_dbtable (db_getrowtable($dbrow)) {
+        case cluehelper_challenge_question :
+            $string, $int1 = db_getfield($dbrow, cluehelper_challenge_question:question, ~script6656($dbrow));
             $int2 = ~helper_generic_add_text("Answer = <tostring($int1)>");
-        case dbtable_26 :
-            $string0 = db_getfield($dbrow0, dbtable_26:col0, 0);
-            $int2 = ~helper_generic_add_text($string0);
+        case cluehelper_challenge_box :
+            $string = db_getfield($dbrow, cluehelper_challenge_box:description, 0);
+            $int2 = ~helper_generic_add_text($string);
     }
 }

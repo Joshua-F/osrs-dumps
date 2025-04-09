@@ -1,5 +1,5 @@
 // 578
-[clientscript,clanwars_setup_smallbox_init](enum $enum0, component $component1, component $component2, component $component3, component $component4, component $component5)
+[clientscript,clanwars_setup_smallbox_init](enum $enum, component $component1, component $component2, component $dropdown_container, component $dropdown_box, component $tooltip)
 cc_deleteall($component2);
 def_int $int6 = 0;
 .cc_create($component2, ^iftype_graphic, $int6);
@@ -32,9 +32,9 @@ cc_setposition(2, 2, ^setpos_abs_left, ^setpos_abs_bottom);
 cc_settextfont(p11_full);
 cc_settextshadow(true);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-~clanwars_setup_smallbox_updatetext($enum0);
-if_setonvartransmit("clanwars_setup_smallbox_updatetext(event_com, $int7, $enum0){varplayer_92}", $component2);
-.cc_setonclick("clanwars_setup_smallbox_open($enum0, $component1, $component2, $int7, $component3, $component4, $component5)");
+~clanwars_setup_smallbox_updatetext($enum);
+if_setonvartransmit("clanwars_setup_smallbox_updatetext(event_com, $int7, $enum){prayer9}", $component2);
+.cc_setonclick("clanwars_setup_smallbox_open($enum, $component1, $component2, $int7, $dropdown_container, $dropdown_box, $tooltip)");
 cc_create($component2, ^iftype_graphic, $int6);
 $int6 = calc($int6 + 1);
 cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top);
@@ -45,7 +45,7 @@ cc_create($component2, ^iftype_graphic, $int6);
 $int6 = calc($int6 + 1);
 cc_setposition(1, 1, ^setpos_abs_left, ^setpos_abs_top);
 cc_setsize(25, 25, ^setsize_abs, ^setsize_abs);
-cc_setgraphic(enum(enum, graphic, enum_933, $enum0));
+cc_setgraphic(enum(enum, graphic, enum_933, $enum));
 cc_settiling(false);
 cc_create($component2, ^iftype_text, $int6);
 $int6 = calc($int6 + 1);
@@ -55,7 +55,7 @@ cc_setcolour(0xff981f);
 cc_settextshadow(true);
 cc_settextfont(b12_full);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-cc_settext(enum(int, string, $enum0, -1));
+cc_settext(enum(int, string, $enum, -1));
 ~xpdrops_setup_display_hoveroff($component2);
-if_setonmouserepeat("tooltip_mouserepeat(event_com, -1, $component5, enum(enum, string, enum_687, $enum0), 25, 512)", $component2);
-if_setonmouseleave("deltooltip($component5)", $component2);
+if_setonmouserepeat("tooltip_mouserepeat(event_com, -1, $tooltip, enum(enum, string, enum_687, $enum), 25, 512)", $component2);
+if_setonmouseleave("deltooltip($tooltip)", $component2);

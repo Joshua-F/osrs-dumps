@@ -1,7 +1,7 @@
 // 3087
 [proc,br_reward_shop_draw](int $int0, component $component1, component $component2, component $component3, component $component4)(int)
-if_setonvartransmit("br_reward_shop_draw($int0, $component1, $component2, $component3, $component4){varplayer_261, varplayer_262, varplayer_1141}", $component1);
-if_setoninvtransmit("br_reward_shop_draw($int0, $component1, $component2, $component3, $component4){inv_422}", $component1);
+if_setonvartransmit("br_reward_shop_draw($int0, $component1, $component2, $component3, $component4){if1, if2, item_redemption}", $component1);
+if_setoninvtransmit("br_reward_shop_draw($int0, $component1, $component2, $component3, $component4){skill_guide_strength_shortcuts}", $component1);
 cc_deleteall($component2);
 def_int $int5 = 0;
 def_int $int6 = 3;
@@ -117,12 +117,12 @@ $int6 = calc($int6 + 32 + 3);
 $int5 = ~br_reward_shop_itemdraw(66, $int6, 0, $int7, $component1, $component2, $component3, $component4, $int5, $int0);
 $int5 = ~br_reward_shop_itemdraw(67, $int6, $int7, $int7, $component1, $component2, $component3, $component4, $int5, $int0);
 $int6 = calc($int6 + 32 + 5);
-def_string $string0 = "";
+def_string $string = "";
 cc_deleteall($component3);
 $int5 = 0;
 if ($int0 ! -1) {
-    $string0 = enum(int, string, enum_2634, $int0);
-    ~pest_rewards_confirmdraw(false, $string0, $component4);
+    $string = enum(int, string, enum_2634, $int0);
+    ~pest_rewards_confirmdraw(false, $string, $component4);
     while ($int5 < $int0) {
         cc_create($component3, ^iftype_rectangle, $int5);
         cc_sethide(true);
@@ -133,8 +133,8 @@ if ($int0 ! -1) {
     cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
     cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
     cc_setop(1, "Confirm");
-    cc_setonmouserepeat("pest_rewards_confirmdraw(true, $string0, $component4)");
-    cc_setonmouseleave("pest_rewards_confirmdraw(false, $string0, $component4)");
+    cc_setonmouserepeat("pest_rewards_confirmdraw(true, $string, $component4)");
+    cc_setonmouseleave("pest_rewards_confirmdraw(false, $string, $component4)");
     cc_setonop("br_reward_shop_confirmop(event_op, $component1, $component2, $component3, $component4)");
 } else {
     $int5 = ~v2_stone_button_in_filled($component4);

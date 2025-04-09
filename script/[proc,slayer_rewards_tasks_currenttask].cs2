@@ -5,12 +5,12 @@ if (~league_relic_active(struct_1129) = 1) {
     $int9 = 1;
 }
 if ($int9 = 1) {
-    if (%varplayerbit_12442 = 1) {
+    if (%slayer_unlock_storage = 1) {
         if_settext("You may spend points to <col=ffffff>Cancel</col> or <col=ffffff>Block</col> your current task.<br>If you <col=ffffff>cancel</col> it, you may be assigned that target again in future. <col=06600c>(Free)</col><br>If you <col=ffffff>block</col> it, you will not get that assignment again. <col=06600c>(Free)</col><br>You may also <col=ffffff>store</col> your current task for later.", $component1);
     } else {
         if_settext("You may spend points to <col=ffffff>Cancel</col> or <col=ffffff>Block</col> your current task.<br>If you <col=ffffff>cancel</col> it, you may be assigned that target again in future. <col=06600c>(Free)</col><br>If you <col=ffffff>block</col> it, you will not get that assignment again. <col=06600c>(Free)</col><br><col=ffffff>Neither</col> option will reset your current tally of completed Slayer tasks.", $component1);
     }
-} else if (%varplayerbit_12442 = 1) {
+} else if (%slayer_unlock_storage = 1) {
     if_settext("You may spend points to <col=ffffff>Cancel</col> or <col=ffffff>Block</col> your current task.<br>If you <col=ffffff>cancel</col> it, you may be assigned that target again in future. <col=ff0000>(<tostring(30)> points)</col><br>If you <col=ffffff>block</col> it, you will not get that assignment again. <col=ff0000>(<tostring(100)> points)</col><br>You may also <col=ffffff>store</col> your current task for later.", $component1);
 } else {
     if_settext("You may spend points to <col=ffffff>Cancel</col> or <col=ffffff>Block</col> your current task.<br>If you <col=ffffff>cancel</col> it, you may be assigned that target again in future. <col=ff0000>(<tostring(30)> points)</col><br>If you <col=ffffff>block</col> it, you will not get that assignment again. <col=ff0000>(<tostring(100)> points)</col><br><col=ffffff>Neither</col> option will reset your current tally of completed Slayer tasks.", $component1);
@@ -19,40 +19,40 @@ cc_deleteall($component0);
 def_int $int10 = 0;
 def_int $int11 = 0;
 def_string $string0 = "Creature";
-if (%varplayer_262 = 98) {
-    if (%varplayer_261 > 0) {
-        $int11, $string0 = 1, struct_param(enum(int, struct, enum_5008, %varplayer_263), param_1801);
-        if_settext("<tostring(%varplayer_261)> x <$string0>", $component2);
-    } else if (%varplayer_261 = -1) {
-        $int11, $string0 = 1, struct_param(enum(int, struct, enum_5008, %varplayer_263), param_1801);
+if (%if2 = 98) {
+    if (%if1 > 0) {
+        $int11, $string0 = 1, struct_param(enum(int, struct, enum_5008, %if3), param_1801);
+        if_settext("<tostring(%if1)> x <$string0>", $component2);
+    } else if (%if1 = -1) {
+        $int11, $string0 = 1, struct_param(enum(int, struct, enum_5008, %if3), param_1801);
         if_settext($string0, $component2);
     } else {
         if_settext("None", $component2);
     }
-} else if (%varplayer_261 > 0 & %varplayer_262 ! 0) {
-    $int11, $string0 = 1, enum(int, string, enum_693, %varplayer_262);
-    if_settext("<tostring(%varplayer_261)> x <$string0>", $component2);
+} else if (%if1 > 0 & %if2 ! 0) {
+    $int11, $string0 = 1, enum(int, string, enum_693, %if2);
+    if_settext("<tostring(%if1)> x <$string0>", $component2);
 } else {
     if_settext("None", $component2);
 }
 def_int $int12 = 0;
 def_string $string1 = "Creature";
-if (%varplayer_265 = 98) {
-    if (%varplayer_264 > 0) {
-        $int12, $string1 = 1, struct_param(enum(int, struct, enum_5008, %varplayer_266), param_1801);
-        if_settext("<tostring(%varplayer_264)> x <$string1>", $component8);
+if (%if5 = 98) {
+    if (%if4 > 0) {
+        $int12, $string1 = 1, struct_param(enum(int, struct, enum_5008, %if6), param_1801);
+        if_settext("<tostring(%if4)> x <$string1>", $component8);
         if_setcolour(^white, $component8);
-    } else if (%varplayer_264 = -1) {
-        $int12, $string1 = 1, struct_param(enum(int, struct, enum_5008, %varplayer_266), param_1801);
+    } else if (%if4 = -1) {
+        $int12, $string1 = 1, struct_param(enum(int, struct, enum_5008, %if6), param_1801);
         if_settext($string1, $component8);
         if_setcolour(^white, $component8);
     } else {
         if_settext("No stored task", $component8);
         if_setcolour(0x9f9f9f, $component8);
     }
-} else if (%varplayer_264 > 0 & %varplayer_265 ! 0) {
-    $int12, $string1 = 1, enum(int, string, enum_693, %varplayer_265);
-    if_settext("<tostring(%varplayer_264)> x <$string1>", $component8);
+} else if (%if4 > 0 & %if5 ! 0) {
+    $int12, $string1 = 1, enum(int, string, enum_693, %if5);
+    if_settext("<tostring(%if4)> x <$string1>", $component8);
     if_setcolour(^white, $component8);
 } else {
     if_settext("No stored task", $component8);
@@ -93,7 +93,7 @@ cc_setgraphic("combatboxesmed,0");
 .cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
 .cc_settextshadow(true);
 .cc_settext("Block task");
-if ($int11 = 1 & %varplayer_262 ! 97 & %varplayer_262 ! 105 & %varplayer_262 ! 98) {
+if ($int11 = 1 & %if2 ! 97 & %if2 ! 105 & %if2 ! 98) {
     .cc_setcolour(0xff981f);
     cc_setonmouseover("cc_colour_swapper(event_com, .cc_getid, 16777215)");
     cc_setonmouseleave("cc_colour_swapper(event_com, .cc_getid, 16750623)");
@@ -121,7 +121,7 @@ if ($int12 = 1 & $int11 = 1) {
 } else {
     .cc_settext("Store task");
 }
-if (%varplayerbit_12442 = 1) {
+if (%slayer_unlock_storage = 1) {
     if ($int11 = 1 & $int12 = 1) {
         .cc_setcolour(0xff981f);
         cc_setonmouseover("cc_colour_swapper(event_com, .cc_getid, 16777215)");

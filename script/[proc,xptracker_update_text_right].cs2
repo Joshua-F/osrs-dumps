@@ -1,25 +1,25 @@
 // 5375
-[proc,xptracker_update_text_right](stat $stat0)
-def_int $int1 = ~xptracker_get_id($stat0);
-def_int $int2 = ~xptracker_get_startxp($stat0);
-def_int $int3 = ~xptracker_get_lastxp($stat0);
+[proc,xptracker_update_text_right](stat $stat)
+def_int $int1 = ~xptracker_get_id($stat);
+def_int $int2 = ~xptracker_get_startxp($stat);
+def_int $int3 = ~xptracker_get_lastxp($stat);
 def_string $string0 = ~xptracker_xp_to_string(calc($int3 - $int2));
 def_int $int4 = 0;
 def_int $int5 = 0;
 def_string $string1 = "Goal: ";
-$int4, $int5 = ~xpdrops_data_get($stat0);
-switch_int (~script5534($stat0)) {
+$int4, $int5 = ~xpdrops_data_get($stat);
+switch_int (~script5534($stat)) {
     case 0 :
         $string1 = "Lvl: ";
-        $int5 = enum(int, int, enum_256, calc(~script5536($stat0) + 1));
+        $int5 = enum(int, int, enum_256, calc(~script5536($stat) + 1));
     case 3 :
         $int5 = 200000000;
     case 1 :
-        $int4, $int5 = ~xpdrops_data_get($stat0);
+        $int4, $int5 = ~xpdrops_data_get($stat);
     case 2 :
         $int5 = 0;
 }
-def_int $int6 = ~script5380($stat0, $int5);
+def_int $int6 = ~script5380($stat, $int5);
 def_string $string2 = "  Acts>";
 if ($int6 >= 0) {
     $string2 = "  Kills>";
@@ -29,10 +29,10 @@ if ($int6 >= 0) {
     $string2 = "  Kills>";
 }
 def_string $string3 = append(append("  XP Gained: <br>", $string2), $string1);
-if (cc_find(interface_729:com_14, $int1) = true) {
+if (cc_find(xptracker:tracker_text_right_desc, $int1) = true) {
     cc_settext($string3);
 }
-def_int $int7 = ~script5379($stat0, $int5);
+def_int $int7 = ~script5379($stat, $int5);
 def_string $string4 = "Done!";
 if ($int6 >= 0) {
     $string4 = ~xptracker_xp_to_string($int6);
@@ -44,6 +44,6 @@ if ($int6 >= 0) {
     $string4 = "";
 }
 def_string $string5 = append(append($string0, "<br>"), $string4);
-if (cc_find(interface_729:com_15, $int1) = true) {
+if (cc_find(xptracker:tracker_text_right_data, $int1) = true) {
     cc_settext($string5);
 }

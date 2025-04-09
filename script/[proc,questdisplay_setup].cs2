@@ -1,34 +1,34 @@
 // 1412
-[proc,questdisplay_setup](string $string0, component $component0, int $int1)(int)
+[proc,questdisplay_setup](string $string, component $component, int $int1)(int)
 def_int $int2 = 0;
-cc_deleteall($component0);
-if_setposition(0, $int2, ^setpos_abs_centre, ^setpos_abs_top, $component0);
-def_int $int3 = string_length($string0);
+cc_deleteall($component);
+if_setposition(0, $int2, ^setpos_abs_centre, ^setpos_abs_top, $component);
+def_int $int3 = string_length($string);
 if ($int3 < $int1) {
     $int1 = $int3;
 }
 if ($int1 <= 0) {
-    if_setsize(0, 0, ^setsize_minus, ^setsize_abs, $component0);
+    if_setsize(0, 0, ^setsize_minus, ^setsize_abs, $component);
     return($int2);
 }
 def_int $int4 = 0;
-def_int $intarray0($int1);
+def_int $intarray($int1);
 def_int $int5 = 1;
-def_dbrow $dbrow6 = null;
-cc_create($component0, ^iftype_rectangle, 0);
+def_dbrow $dbrow = null;
+cc_create($component, ^iftype_rectangle, 0);
 cc_sethide(true);
 while ($int5 <= $int1) {
-    $dbrow6 = ~script6154($int5);
-    cc_create($component0, ^iftype_text, $int5);
-    if (~questdisplay_hide_quest($dbrow6) = true) {
+    $dbrow = ~script6154($int5);
+    cc_create($component, ^iftype_text, $int5);
+    if (~questdisplay_hide_quest($dbrow) = true) {
         cc_sethide(true);
     } else {
         cc_setsize(0, 18, ^setsize_minus, ^setsize_abs);
         cc_settextfont(p12_full);
         cc_settextshadow(true);
         cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-        cc_settext(~get_quest_name($dbrow6));
-        $int4 = string_indexof_string("<tostring(1)><tostring(0)><tostring(2)>", substring($string0, calc($int5 - 1), $int5), 0);
+        cc_settext(~get_quest_name($dbrow));
+        $int4 = string_indexof_string("<tostring(1)><tostring(0)><tostring(2)>", substring($string, calc($int5 - 1), $int5), 0);
         if ($int4 = 0) {
             cc_setcolour(^red);
         } else if ($int4 = 1) {
@@ -37,7 +37,7 @@ while ($int5 <= $int1) {
             cc_setcolour(0x0dc10d);
         }
     }
-    $intarray0(calc($int5 - 1)) = $int5;
+    $intarray(calc($int5 - 1)) = $int5;
     $int5 = calc($int5 + 1);
 }
 if ($int1 > 1) {
@@ -48,19 +48,19 @@ def_int $int8 = -10;
 def_int $int9 = -10;
 $int2 = -10;
 while ($int7 < $int1) {
-    $dbrow6 = ~script6154($intarray0($int7));
-    if (~questdisplay_hide_quest($dbrow6) = false) {
-        $int9 = ~script3236($dbrow6);
+    $dbrow = ~script6154($intarray($int7));
+    if (~questdisplay_hide_quest($dbrow) = false) {
+        $int9 = ~script3236($dbrow);
         if ($int9 ! $int8) {
-            $int5, $int2 = ~questdisplay_add_header(~script3237($dbrow6), $int5, $int2, $component0);
+            $int5, $int2 = ~questdisplay_add_header(~script3237($dbrow), $int5, $int2, $component);
             $int8 = $int9;
         }
-        if (cc_find($component0, $intarray0($int7)) = true) {
+        if (cc_find($component, $intarray($int7)) = true) {
             cc_setposition(0, $int2, ^setpos_abs_centre, ^setpos_abs_top);
         }
         $int2 = calc($int2 + 18);
     }
     $int7 = calc($int7 + 1);
 }
-if_setsize(0, $int2, ^setsize_minus, ^setsize_abs, $component0);
+if_setsize(0, $int2, ^setsize_minus, ^setsize_abs, $component);
 return(calc($int2 + 10));

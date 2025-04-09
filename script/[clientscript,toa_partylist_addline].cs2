@@ -1,6 +1,6 @@
 // 6601
 [clientscript,toa_partylist_addline](int $int0, string $string0)
-if (if_hassub(enum(component, component, ~toplevel_getcomponents, interface_161:com_16)) = false) {
+if (if_hassub(enum(component, component, ~toplevel_getcomponents, toplevel_osrs_stretch:mainmodal)) = false) {
     return;
 }
 def_component $component1 = enum(int, component, enum_4793, $int0);
@@ -39,7 +39,7 @@ if (string_length($string0) > 0) {
     $string13, $string0 = ~script632($string0);
     $string14, $string0 = ~script632($string0);
     $string15, $string0 = ~script632($string0);
-    if (%varplayerbit_14318 = 0 | compare($string2, chat_playername) = 0) {
+    if (%toa_partylist_filter = 0 | compare($string2, chat_playername) = 0) {
         ~toa_partylist_fillline($component1, $int0, $string1, $string10, $string11, $string12, $string13, $string14, $string15);
     } else if (~script5217($string2) = true) {
         ~toa_partylist_fillline($component1, $int0, $string1, $string10, $string11, $string12, $string13, $string14, $string15);
@@ -96,10 +96,10 @@ if ($int0 >= calc($int5 - 1)) {
     $int3 = calc(%varclient_178 * $int4);
     if ($int3 > if_getheight($component2)) {
         if_setscrollsize(0, $int3, $component2);
-        ~scrollbar_resize(interface_772:com_62, $component2, %varclient_1082);
+        ~scrollbar_resize(toa_partylist:scrollbar, $component2, %varclient_1082);
     } else {
         if_setscrollsize(0, 0, $component2);
-        ~scrollbar_resize(interface_772:com_62, $component2, 0);
+        ~scrollbar_resize(toa_partylist:scrollbar, $component2, 0);
         %varclient_1082 = 0;
     }
     if (%varclient_178 <= 0) {
@@ -110,13 +110,13 @@ if ($int0 >= calc($int5 - 1)) {
         cc_settextfont(p12_full);
         cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
         cc_settextshadow(true);
-        if (%varplayerbit_14318 = 0) {
+        if (%toa_partylist_filter = 0) {
             cc_settext("No parties are currently listed.");
         } else {
             cc_settext("You have no friends or clanmates in a party.");
         }
     }
-    if_sethide(false, interface_772:com_63);
-    if_sethide(false, interface_772:com_64);
-    if_sethide(false, interface_772:com_65);
+    if_sethide(false, toa_partylist:refresh);
+    if_sethide(false, toa_partylist:myparty);
+    if_sethide(false, toa_partylist:filter);
 }

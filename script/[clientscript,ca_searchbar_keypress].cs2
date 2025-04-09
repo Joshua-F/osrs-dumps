@@ -1,62 +1,62 @@
 // 4798
-[clientscript,ca_searchbar_keypress](int $key0, char $char1, component $component2, component $component3)
-def_component $component4 = interface_716:com_10;
-def_component $component5 = interface_716:com_13;
-def_component $component6 = interface_716:com_19;
-def_component $component7 = interface_716:com_14;
-def_component $component8 = interface_716:com_11;
-def_component $component9 = interface_716:com_12;
-def_component $component10 = interface_716:com_16;
-def_component $component11 = interface_716:com_17;
-def_component $component12 = interface_716:com_18;
-def_component $component13 = interface_716:com_20;
-def_component $component14 = interface_716:com_9;
-def_component $component15 = interface_716:com_15;
-if (%varplayerbit_12884 = 0) {
+[clientscript,ca_searchbar_keypress](int $key, char $char, component $component2, component $component3)
+def_component $bosses_list = ca_bosses:bosses_list;
+def_component $bosses_background = ca_bosses:bosses_background;
+def_component $bosses_progress = ca_bosses:bosses_progress;
+def_component $bosses_name = ca_bosses:bosses_name;
+def_component $bosses_button = ca_bosses:bosses_button;
+def_component $bosses_button_click = ca_bosses:bosses_button_click;
+def_component $bosses_monster = ca_bosses:bosses_monster;
+def_component $bosses_description = ca_bosses:bosses_description;
+def_component $bosses_icon = ca_bosses:bosses_icon;
+def_component $bosses_none = ca_bosses:bosses_none;
+def_component $bosses_scrollbar = ca_bosses:bosses_scrollbar;
+def_component $bosses_button_click_pause = ca_bosses:bosses_button_click_pause;
+if (%ca_bosses_is_searching = 0) {
     return;
 }
-if ($key0 = ^key_control_left) {
+if ($key = ^key_control_left) {
     %varclient_528 = 1;
     return;
-} else if ($key0 = ^key_backspace & %varclient_528 = 1) {
+} else if ($key = ^key_backspace & %varclient_528 = 1) {
     %varclient_527 = "";
     ~ca_searchbar_set_text($component3);
-    ~ca_bosses_draw_list($component2, $component4, $component5, $component6, $component7, $component8, $component9, $component10, $component11, $component12, $component13, $component14, $component15);
+    ~ca_bosses_draw_list($component2, $bosses_list, $bosses_background, $bosses_progress, $bosses_name, $bosses_button, $bosses_button_click, $bosses_monster, $bosses_description, $bosses_icon, $bosses_none, $bosses_scrollbar, $bosses_button_click_pause);
     return;
 } else {
     %varclient_528 = 0;
 }
-if ($key0 = ^key_del) {
+if ($key = ^key_del) {
     %varclient_527 = "";
     ~ca_searchbar_set_text($component3);
-    ~ca_bosses_draw_list($component2, $component4, $component5, $component6, $component7, $component8, $component9, $component10, $component11, $component12, $component13, $component14, $component15);
+    ~ca_bosses_draw_list($component2, $bosses_list, $bosses_background, $bosses_progress, $bosses_name, $bosses_button, $bosses_button_click, $bosses_monster, $bosses_description, $bosses_icon, $bosses_none, $bosses_scrollbar, $bosses_button_click_pause);
     return;
 }
-if ($key0 = ^key_return) {
+if ($key = ^key_return) {
     if (~on_mobile = true) {
         ~keyboard_hide;
     }
-    if (%varplayerbit_12884 = 1) {
+    if (%ca_bosses_is_searching = 1) {
         ~ca_boss_disable_search;
     }
     return;
 }
-def_string $string0 = %varclient_527;
-def_int $int16 = string_length($string0);
-if ($key0 = ^key_backspace) {
-    if ($int16 > 0) {
-        %varclient_527 = substring($string0, 0, calc($int16 - 1));
+def_string $string = %varclient_527;
+def_int $int = string_length($string);
+if ($key = ^key_backspace) {
+    if ($int > 0) {
+        %varclient_527 = substring($string, 0, calc($int - 1));
     }
     ~ca_searchbar_set_text($component3);
-    ~ca_bosses_draw_list($component2, $component4, $component5, $component6, $component7, $component8, $component9, $component10, $component11, $component12, $component13, $component14, $component15);
+    ~ca_bosses_draw_list($component2, $bosses_list, $bosses_background, $bosses_progress, $bosses_name, $bosses_button, $bosses_button_click, $bosses_monster, $bosses_description, $bosses_icon, $bosses_none, $bosses_scrollbar, $bosses_button_click_pause);
     return;
 }
-if (char_isalphanumeric($char1) = false & string_indexof_char("-'", $char1) = -1) {
+if (char_isalphanumeric($char) = false & string_indexof_char("-'", $char) = -1) {
     return;
 }
-if (string_length(append_char($string0, $char1)) > 50) {
+if (string_length(append_char($string, $char)) > 50) {
     return;
 }
-%varclient_527 = append_char($string0, $char1);
+%varclient_527 = append_char($string, $char);
 ~ca_searchbar_set_text($component3);
-~ca_bosses_draw_list($component2, $component4, $component5, $component6, $component7, $component8, $component9, $component10, $component11, $component12, $component13, $component14, $component15);
+~ca_bosses_draw_list($component2, $bosses_list, $bosses_background, $bosses_progress, $bosses_name, $bosses_button, $bosses_button_click, $bosses_monster, $bosses_description, $bosses_icon, $bosses_none, $bosses_scrollbar, $bosses_button_click_pause);
