@@ -1,28 +1,28 @@
 // 618
-[clientscript,poll_conclude](component $com_10, component $component1, component $component2, boolean $boolean)
-if (if_hassub(enum(component, component, ~toplevel_getcomponents, interface_161:com_16)) = false) {
+[clientscript,poll_conclude](component $questions, component $component1, component $component2, boolean $boolean)
+if (if_hassub(enum(component, component, ~toplevel_getcomponents, toplevel_osrs_stretch:mainmodal)) = false) {
     return;
 }
-if ($com_10 = interface_400:com_10) {
-    if_setposition(calc((if_getwidth(interface_400:com_10) - if_getwidth(interface_400:com_11)) / 2), %varclient_49, ^setpos_abs_left, ^setpos_abs_top, interface_400:com_11);
-    %varclient_49 = calc(%varclient_49 + if_getheight(interface_400:com_11));
+if ($questions = poll_voting:questions) {
+    if_setposition(calc((if_getwidth(poll_voting:questions) - if_getwidth(poll_voting:submit_container)) / 2), %varclient_49, ^setpos_abs_left, ^setpos_abs_top, poll_voting:submit_container);
+    %varclient_49 = calc(%varclient_49 + if_getheight(poll_voting:submit_container));
 }
-if (%varclient_49 > if_getheight($com_10)) {
-    if_setscrollsize(0, %varclient_49, $com_10);
+if (%varclient_49 > if_getheight($questions)) {
+    if_setscrollsize(0, %varclient_49, $questions);
 } else {
-    if_setscrollsize(0, 0, $com_10);
+    if_setscrollsize(0, 0, $questions);
 }
 cc_deleteall($component1);
 if ($boolean = true) {
-    if_setscrollpos(0, 0, $com_10);
+    if_setscrollpos(0, 0, $questions);
     %varclient_63 = 0;
-    ~scrollbar_vertical($component1, $com_10, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+    ~scrollbar_vertical($component1, $questions, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
 } else {
     if (%varclient_63 < 0) {
         %varclient_63 = 0;
     }
-    ~scrollbar_vertical($component1, $com_10, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-    ~scrollbar_resize($component1, $com_10, %varclient_63);
+    ~scrollbar_vertical($component1, $questions, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+    ~scrollbar_resize($component1, $questions, %varclient_63);
 }
-if_sethide(false, $com_10);
+if_sethide(false, $questions);
 if_sethide(true, $component2);

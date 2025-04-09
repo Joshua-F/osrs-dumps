@@ -1,34 +1,34 @@
 // 6820
-[clientscript,questjournal_overview_init](component $com_0, component $com_4, component $com_10, component $com_9, component $com_8, component $com_5, int $int6, component $com_7, component $com_1, component $com_3, component $com_2)
+[clientscript,questjournal_overview_init](component $universe, component $title, component $back, component $switch, component $close, component $content_outer, int $int6, component $scrollbar, component $inner, component $container, component $scroll)
 def_int $int11 = 0;
 if (~speedrunning_world = true) {
     $int11 = 1;
 }
 if ($int11 = 1) {
-    if_sethide(false, $com_10);
+    if_sethide(false, $back);
 } else {
-    if_sethide(true, $com_10);
+    if_sethide(true, $back);
 }
 def_int $int12 = 0;
-if (~quest_status_get(%varplayer_3679) ! 1) {
+if (~quest_status_get(%latest_quest_journal) ! 1) {
     $int12 = 1;
 }
 if ($int12 = 1) {
-    if_sethide(false, $com_9);
+    if_sethide(false, $switch);
 } else {
-    if_sethide(true, $com_9);
+    if_sethide(true, $switch);
 }
 if ($int11 = 1) {
-    if_setposition(29, 0, ^setpos_abs_left, ^setpos_abs_top, $com_9);
+    if_setposition(29, 0, ^setpos_abs_left, ^setpos_abs_top, $switch);
 } else {
-    if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top, $com_9);
+    if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top, $switch);
 }
-if_setopkey(1, ^key_escape, 0, $com_8);
+if_setopkey(1, ^key_escape, 0, $close);
 if ($int11 = 1 & $int12 = 1) {
-    if_setposition(63, 2, ^setpos_abs_left, ^setpos_abs_top, $com_4);
+    if_setposition(63, 2, ^setpos_abs_left, ^setpos_abs_top, $title);
 } else if ($int11 = 1 | $int12 = 1) {
-    if_setposition(34, 2, ^setpos_abs_left, ^setpos_abs_top, $com_4);
+    if_setposition(34, 2, ^setpos_abs_left, ^setpos_abs_top, $title);
 } else {
-    if_setposition(5, 2, ^setpos_abs_left, ^setpos_abs_top, $com_4);
+    if_setposition(5, 2, ^setpos_abs_left, ^setpos_abs_top, $title);
 }
-~quest_journal_size($com_0, $com_1, $com_3, $com_2, $com_7, $com_5);
+~quest_journal_size($universe, $inner, $container, $scroll, $scrollbar, $content_outer);

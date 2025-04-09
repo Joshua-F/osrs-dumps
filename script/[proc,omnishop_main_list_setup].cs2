@@ -1,20 +1,20 @@
 // 7143
 [proc,omnishop_main_list_setup](dbrow $dbrow, inv $inv, int $int2, int $int3)
-def_component $com_33 = interface_819:com_33;
-def_component $com_34 = interface_819:com_34;
-cc_deleteall($com_33);
+def_component $list = omnishop_main:list;
+def_component $list_scroller = omnishop_main:list_scroller;
+cc_deleteall($list);
 def_int $int6 = 0;
 def_int $int7 = 0;
 def_boolean $boolean = false;
 def_int $int9 = 0;
 def_int $int10 = 0;
 def_int $int11 = 0;
-def_int $int12 = db_getfieldcount($dbrow, dbtable_39:col5);
+def_int $int12 = db_getfieldcount($dbrow, omnishop_shop_data:omnishop_shop_stock);
 if ($int12 = 0) {
     $int12 = inv_size($inv);
 }
 while ($int6 < $int12) {
-    if ($int6 = $int2 & %varplayer_3871 = 0) {
+    if ($int6 = $int2 & %omnishop_view_expanded = 0) {
         $int9 = 1;
     } else {
         $int9 = 0;
@@ -26,11 +26,11 @@ while ($int6 < $int12) {
     }
     $int6 = calc($int6 + 1);
 }
-if_setscrollsize(if_getwidth($com_33), $int11, $com_33);
+if_setscrollsize(if_getwidth($list), $int11, $list);
 if ($int3 = 1) {
-    if_setscrollpos(0, 0, $com_33);
+    if_setscrollpos(0, 0, $list);
 } else {
-    if_setscrollpos(0, %varclient_1199, $com_33);
+    if_setscrollpos(0, %varclient_1199, $list);
 }
-~scrollbar_vertical($com_34, $com_33, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-~scrollbar_resize($com_34, $com_33, %varclient_1199);
+~scrollbar_vertical($list_scroller, $list, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~scrollbar_resize($list_scroller, $list, %varclient_1199);

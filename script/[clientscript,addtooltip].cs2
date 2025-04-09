@@ -1,10 +1,10 @@
 // 38
-[clientscript,addtooltip](component $component0, component $component1, string $string, int $int2, int $int3)
+[clientscript,addtooltip](component $component, component $tooltip, string $string, int $int2, int $int3)
 if (~on_mobile = true) {
     return;
 }
 if (~on_enhanced_any = true) {
-    ~mouseover_tooltip_setup($string, "", mouse_getx, mouse_gety, $component1, $component0, -1, 0, 0, 1);
+    ~mouseover_tooltip_setup($string, "", mouse_getx, mouse_gety, $tooltip, $component, -1, 0, 0, 1);
     return;
 }
 def_int $int4 = 0;
@@ -18,34 +18,34 @@ if (%varclient_1 < calc(clientclock + $int2)) {
 }
 %varclient_1 = calc(clientclock + $int2 + 10);
 if (%varclient_2 = 0) {
-    if ($int3 > if_getwidth(if_getlayer($component1))) {
-        $int3 = if_getwidth(if_getlayer($component1));
+    if ($int3 > if_getwidth(if_getlayer($tooltip))) {
+        $int3 = if_getwidth(if_getlayer($tooltip));
     }
     $int3 = calc($int3 - 4);
-    if_setsize(calc(4 + parawidth($string, $int3, p12_full)), calc(4 + 13 * paraheight($string, $int3, p12_full)), ^setsize_abs, ^setsize_abs, $component1);
-    $int4 = calc(if_getx($component0) + 5);
-    $int5 = calc(if_gety($component0) + if_getheight($component0) + 5);
-    if (if_getlayer($component1) ! null) {
-        if ($int4 > calc(if_getwidth(if_getlayer($component1)) - if_getwidth($component1))) {
-            $int4 = calc(if_getwidth(if_getlayer($component1)) - if_getwidth($component1));
+    if_setsize(calc(4 + parawidth($string, $int3, p12_full)), calc(4 + 13 * paraheight($string, $int3, p12_full)), ^setsize_abs, ^setsize_abs, $tooltip);
+    $int4 = calc(if_getx($component) + 5);
+    $int5 = calc(if_gety($component) + if_getheight($component) + 5);
+    if (if_getlayer($tooltip) ! null) {
+        if ($int4 > calc(if_getwidth(if_getlayer($tooltip)) - if_getwidth($tooltip))) {
+            $int4 = calc(if_getwidth(if_getlayer($tooltip)) - if_getwidth($tooltip));
         }
-        if ($int5 > calc(if_getheight(if_getlayer($component1)) - if_getheight($component1))) {
-            $int5 = calc(if_gety($component0) - if_getheight($component1) - 5);
+        if ($int5 > calc(if_getheight(if_getlayer($tooltip)) - if_getheight($tooltip))) {
+            $int5 = calc(if_gety($component) - if_getheight($tooltip) - 5);
         }
     }
-    if_setposition($int4, $int5, ^setpos_abs_left, ^setpos_abs_top, $component1);
-    cc_deleteall($component1);
-    cc_create($component1, ^iftype_rectangle, 0);
+    if_setposition($int4, $int5, ^setpos_abs_left, ^setpos_abs_top, $tooltip);
+    cc_deleteall($tooltip);
+    cc_create($tooltip, ^iftype_rectangle, 0);
     cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
     cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
     cc_setfill(true);
     cc_setcolour(0xffffa0);
-    cc_create($component1, ^iftype_rectangle, 1);
+    cc_create($tooltip, ^iftype_rectangle, 1);
     cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
     cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
     cc_setfill(false);
     cc_setcolour(^black);
-    cc_create($component1, ^iftype_text, 2);
+    cc_create($tooltip, ^iftype_text, 2);
     cc_setsize(4, 0, ^setsize_minus, ^setsize_minus);
     cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
     cc_settext($string);

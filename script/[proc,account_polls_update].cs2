@@ -1,25 +1,25 @@
 // 3270
 [proc,account_polls_update]
-def_component $com_59 = interface_109:com_59;
-def_component $com_61 = interface_109:com_61;
-def_component $com_65 = interface_109:com_65;
-def_component $com_66 = interface_109:com_66;
+def_component $polls_text = account:polls_text;
+def_component $poll_button = account:poll_button;
+def_component $poll_button_text = account:poll_button_text;
+def_component $poll_button_foreground = account:poll_button_foreground;
 def_string $string0 = "Current Poll: <col=ff0000>Inactive</col>";
 def_string $string1 = "View Poll";
-if (%varplayerbit_10065 = 1) {
+if (%poll_active = 1) {
     $string0 = "Current Poll: <col=00ff00>Active</col>";
-    if (%varplayerbit_4337 = 1) {
+    if (%poll_playershouldvote = 1) {
         $string1 = "Vote Now";
     }
-    if_setop(1, $string1, $com_61);
-    if_sethide(true, $com_66);
-    if_setonmouseover("text_colour_swapper($com_65, 12632256)", $com_65);
-    if_setonmouseleave("text_colour_swapper($com_65, 16249055)", $com_65);
+    if_setop(1, $string1, $poll_button);
+    if_sethide(true, $poll_button_foreground);
+    if_setonmouseover("text_colour_swapper($poll_button_text, 12632256)", $poll_button_text);
+    if_setonmouseleave("text_colour_swapper($poll_button_text, 16249055)", $poll_button_text);
 } else {
-    if_setop(1, "", $com_61);
-    if_sethide(false, $com_66);
-    if_setonmouseover("text_colour_swapper($com_65, 16249055)", $com_65);
-    if_setonmouseleave("text_colour_swapper($com_65, 16249055)", $com_65);
+    if_setop(1, "", $poll_button);
+    if_sethide(false, $poll_button_foreground);
+    if_setonmouseover("text_colour_swapper($poll_button_text, 16249055)", $poll_button_text);
+    if_setonmouseleave("text_colour_swapper($poll_button_text, 16249055)", $poll_button_text);
 }
-if_settext($string0, $com_59);
-if_settext($string1, $com_65);
+if_settext($string0, $polls_text);
+if_settext($string1, $poll_button_text);

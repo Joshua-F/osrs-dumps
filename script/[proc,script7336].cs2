@@ -1,27 +1,27 @@
 // 7336
 [proc,script7336](dbrow $dbrow, int $int1, int $int2, int $int3, intarray $intarray0)(int, int)
-def_component $com_4 = interface_885:com_4;
-def_string $string = db_getfield($dbrow, dbtable_76:col1, 0);
-def_int $int6 = db_getfield($dbrow, dbtable_76:col0, 0);
+def_component $list_content = chartering_menu_side:list_content;
+def_string $string = db_getfield($dbrow, chartering_destination_data:chartering_destination_name, 0);
+def_int $int6 = db_getfield($dbrow, chartering_destination_data:chartering_destination_id, 0);
 if (testbit($int3, $int6) = ^true) {
-    cc_create($com_4, ^iftype_rectangle, $int1);
+    cc_create($list_content, ^iftype_rectangle, $int1);
     cc_sethide(true);
     $int1 = calc($int1 + 1);
-    cc_create($com_4, ^iftype_rectangle, $int1);
+    cc_create($list_content, ^iftype_rectangle, $int1);
     cc_sethide(true);
     $int1 = calc($int1 + 1);
     return($int1, $int2);
 }
-if_setnoclickthrough(true, db_getfield($dbrow, dbtable_76:col2, 0));
-if_setnoclickthrough(true, db_getfield($dbrow, dbtable_76:col3, 0));
-~create_graphic($com_4, $int1, tradebacking, 0, calc($int2 * 20), ^setpos_abs_left, ^setpos_abs_top, 0, 20, ^setsize_minus, ^setsize_abs);
+if_setnoclickthrough(true, db_getfield($dbrow, chartering_destination_data:chartering_destination_ui_label, 0));
+if_setnoclickthrough(true, db_getfield($dbrow, chartering_destination_data:chartering_destination_ui_marker, 0));
+~create_graphic($list_content, $int1, tradebacking, 0, calc($int2 * 20), ^setpos_abs_left, ^setpos_abs_top, 0, 20, ^setsize_minus, ^setsize_abs);
 cc_setop(1, $string);
-cc_setonmouseover("chartering_hover(db_getfield($dbrow, dbtable_76:col0, 0), true)");
-cc_setonmouseleave("chartering_hover(db_getfield($dbrow, dbtable_76:col0, 0), false)");
+cc_setonmouseover("chartering_hover(db_getfield($dbrow, chartering_destination_data:chartering_destination_id, 0), true)");
+cc_setonmouseleave("chartering_hover(db_getfield($dbrow, chartering_destination_data:chartering_destination_id, 0), false)");
 cc_setonop("opsound(event_op, 2)");
 $int1 = calc($int1 + 1);
 $intarray0($int2) = $int1;
-cc_create($com_4, ^iftype_text, $int1);
+cc_create($list_content, ^iftype_text, $int1);
 cc_setposition(4, calc($int2 * 20), ^setpos_abs_left, ^setpos_abs_top);
 cc_setsize(calc(4 * 2), 20, ^setsize_minus, ^setsize_abs);
 cc_settextfont(p12_full);

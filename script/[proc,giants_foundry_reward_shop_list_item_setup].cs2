@@ -1,6 +1,6 @@
 // 6087
 [proc,giants_foundry_reward_shop_list_item_setup](int $int0, int $int1, int $int2, struct $struct3, int $int4)(int, boolean)
-def_component $com_22 = interface_753:com_22;
+def_component $list = giants_foundry_reward_shop:list;
 def_obj $obj = struct_param($struct3, param_1636);
 def_struct $struct7 = struct_param($struct3, param_1637);
 def_int $int8 = 0;
@@ -8,24 +8,24 @@ def_int $int9 = 0;
 if ($struct7 ! null & ~giants_foundry_mould_is_unlocked($struct7) = true) {
     $int9 = 1;
 }
-if (%varplayerbit_13915 = 1 & $obj = null) {
+if (%giants_foundry_reward_shop_filter = 1 & $obj = null) {
     $int9 = 1;
 }
-if (%varplayerbit_13915 = 2 & $struct7 = null) {
+if (%giants_foundry_reward_shop_filter = 2 & $struct7 = null) {
     $int9 = 1;
 }
-if (%varplayerbit_13915 = 3 & ($struct7 = null | struct_param($struct7, param_1628) ! enum_4373)) {
+if (%giants_foundry_reward_shop_filter = 3 & ($struct7 = null | struct_param($struct7, param_1628) ! enum_4373)) {
     $int9 = 1;
 }
-if (%varplayerbit_13915 = 4 & ($struct7 = null | struct_param($struct7, param_1628) ! enum_4374)) {
+if (%giants_foundry_reward_shop_filter = 4 & ($struct7 = null | struct_param($struct7, param_1628) ! enum_4374)) {
     $int9 = 1;
 }
-if (%varplayerbit_13915 = 5 & ($struct7 = null | struct_param($struct7, param_1628) ! enum_4375)) {
+if (%giants_foundry_reward_shop_filter = 5 & ($struct7 = null | struct_param($struct7, param_1628) ! enum_4375)) {
     $int9 = 1;
 }
 if ($int9 = 1) {
     while ($int8 < 13) {
-        cc_create($com_22, ^iftype_rectangle, $int0);
+        cc_create($list, ^iftype_rectangle, $int0);
         cc_sethide(true);
         $int0 = calc($int0 + 1);
         $int8 = calc($int8 + 1);
@@ -63,15 +63,15 @@ switch_int (%varclient_988) {
         $graphic15 = verdana_13pt_bold;
         $int16 = 2;
 }
-def_int $int17 = calc(if_getwidth($com_22) / $int13);
-def_int $int18 = calc((if_getwidth($com_22) - ($int17 + 1) * $int10) / $int17);
+def_int $int17 = calc(if_getwidth($list) / $int13);
+def_int $int18 = calc((if_getwidth($list) - ($int17 + 1) * $int10) / $int17);
 def_int $int19 = calc($int2 % $int17 * ($int18 + $int10) + $int10);
 def_int $int20 = calc($int2 / $int17 * ($int12 + $int10) + $int10);
 def_int $int21 = 7496785;
 if ($int4 = 1) {
     $int21 = 16750623;
 }
-$int0 = ~script5288($com_22, $int0, $int19, $int20, $int18, $int12, struct_3712, $int21);
+$int0 = ~script5288($list, $int0, $int19, $int20, $int18, $int12, struct_3712, $int21);
 cc_setop(1, "Select");
 if ($obj ! null) {
     cc_setopbase("<col=ff9040><oc_name($obj)></col>");
@@ -92,17 +92,17 @@ if ($int4 = 0) {
     cc_setonclick("giants_foundry_reward_shop_list_item_select(0)");
 }
 if ($obj ! null) {
-    cc_create($com_22, ^iftype_graphic, $int0);
+    cc_create($list, ^iftype_graphic, $int0);
     cc_setposition(calc($int19 + $int18 / 2 - 36 / 2), calc($int20 + $int11), ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
     cc_setobject($obj, -1);
     cc_setoutline(1);
     cc_setgraphicshadow(0x333333);
 } else {
-    ~create_graphic($com_22, $int0, struct_param($struct7, param_1623), calc($int19 + $int18 / 2 - 20), calc($int20 + $int11), ^setpos_abs_left, ^setpos_abs_top, 40, 30, ^setsize_abs, ^setsize_abs);
+    ~create_graphic($list, $int0, struct_param($struct7, param_1623), calc($int19 + $int18 / 2 - 20), calc($int20 + $int11), ^setpos_abs_left, ^setpos_abs_top, 40, 30, ^setsize_abs, ^setsize_abs);
 }
 $int0 = calc($int0 + 1);
-cc_create($com_22, ^iftype_text, $int0);
+cc_create($list, ^iftype_text, $int0);
 cc_setposition(calc($int19 + 7), calc($int20 + 27 + $int11 + $int16), ^setpos_abs_left, ^setpos_abs_top);
 cc_setsize(calc($int18 - 14), 40, ^setsize_abs, ^setsize_abs);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 16);
@@ -115,7 +115,7 @@ if ($obj ! null) {
     cc_settext(struct_param($struct7, param_1621));
 }
 $int0 = calc($int0 + 1);
-cc_create($com_22, ^iftype_text, $int0);
+cc_create($list, ^iftype_text, $int0);
 cc_setposition(calc($int19 + 5), calc($int20 + 60 + $int11 + $int16 * 2), ^setpos_abs_left, ^setpos_abs_top);
 cc_setsize(calc($int18 - 10), 20, ^setsize_abs, ^setsize_abs);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);

@@ -1,8 +1,8 @@
 // 2290
-[clientscript,raids_challenge_build_list](component $com_1, component $com_0, component $com_5, component $com_6)
+[clientscript,raids_challenge_build_list](component $list, component $backgrounds, component $scrolling, component $list_scrollbar)
 def_int $int4 = 20;
-cc_deleteall($com_1);
-cc_create($com_1, ^iftype_rectangle, 0);
+cc_deleteall($list);
+cc_create($list, ^iftype_rectangle, 0);
 cc_setsize(0, $int4, ^setsize_minus, ^setsize_abs);
 cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
 cc_setcolour(^white);
@@ -10,10 +10,10 @@ cc_setfill(true);
 cc_settrans(210);
 def_int $int5 = 1;
 def_int $int6 = -1;
-if_settext("World <tostring(map_world)>", interface_21:com_18);
+if_settext("World <tostring(map_world)>", raids_challenge:world);
 while ($int5 <= enum_getoutputcount(enum_1915)) {
     $int6 = enum(int, int, enum_1915, $int5);
-    cc_create($com_0, ^iftype_rectangle, calc($int5 - 1));
+    cc_create($backgrounds, ^iftype_rectangle, calc($int5 - 1));
     if (calc($int5 % 2) = 1) {
         cc_setsize(0, $int4, ^setsize_minus, ^setsize_abs);
         cc_setposition(0, calc($int5 * $int4 - $int4), ^setpos_abs_left, ^setpos_abs_top);
@@ -21,7 +21,7 @@ while ($int5 <= enum_getoutputcount(enum_1915)) {
         cc_setfill(true);
         cc_settrans(235);
     }
-    cc_create($com_1, ^iftype_text, $int5);
+    cc_create($list, ^iftype_text, $int5);
     cc_setsize(5, $int4, ^setsize_minus, ^setsize_abs);
     cc_setposition(5, calc($int5 * $int4 - $int4), ^setpos_abs_left, ^setpos_abs_top);
     cc_setcolour(0xff981f);
@@ -29,8 +29,8 @@ while ($int5 <= enum_getoutputcount(enum_1915)) {
     cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
     cc_settext(enum(int, string, enum_1914, $int6));
     cc_setop(1, "Select");
-    cc_setonop("raids_challenge_move_highlight($com_1, 0, cc_gety)");
+    cc_setonop("raids_challenge_move_highlight($list, 0, cc_gety)");
     $int5 = calc($int5 + 1);
 }
-if_setscrollsize(0, calc($int5 * $int4 - $int4), $com_5);
-~scrollbar_vertical($com_6, $com_5, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+if_setscrollsize(0, calc($int5 * $int4 - $int4), $scrolling);
+~scrollbar_vertical($list_scrollbar, $scrolling, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");

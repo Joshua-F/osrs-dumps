@@ -1,14 +1,14 @@
 // 123
-[clientscript,friend_init](component $com_0, component $com_1, component $com_3, component $com_5, component $com_7, component $com_8, component $com_9, component $com_10, component $com_11, component $com_12, component $com_13, component $com_18)
-~friends_appearance($com_1);
-if_settext("Friends List - World <tostring(map_world)>", $com_3);
-cc_deleteall($com_12);
-~scrollbar_vertical($com_12, $com_11, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+[clientscript,friend_init](component $universe, component $ignore, component $header, component $list_container, component $sort_name, component $sort_recent, component $sort_world, component $sort_legacy, component $list, component $scrollbar, component $loading, component $tooltip)
+~friends_appearance($ignore);
+if_settext("Friends List - World <tostring(map_world)>", $header);
+cc_deleteall($scrollbar);
+~scrollbar_vertical($scrollbar, $list, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
 switch_int (%varclient_183) {
     case 0, 1, 2, 3, 8, 9, 4, 5 :
     case default :
         %varclient_183 = 0;
 }
-~friend_update($com_5, $com_7, $com_8, $com_9, $com_10, $com_11, $com_12, $com_13, $com_18);
-if_setonfriendtransmit("friend_update($com_5, $com_7, $com_8, $com_9, $com_10, $com_11, $com_12, $com_13, $com_18)", $com_0);
-if_setonvartransmit("friend_update($com_5, $com_7, $com_8, $com_9, $com_10, $com_11, $com_12, $com_13, $com_18){varplayer_1737}", $com_0);
+~friend_update($list_container, $sort_name, $sort_recent, $sort_world, $sort_legacy, $list, $scrollbar, $loading, $tooltip);
+if_setonfriendtransmit("friend_update($list_container, $sort_name, $sort_recent, $sort_world, $sort_legacy, $list, $scrollbar, $loading, $tooltip)", $universe);
+if_setonvartransmit("friend_update($list_container, $sort_name, $sort_recent, $sort_world, $sort_legacy, $list, $scrollbar, $loading, $tooltip){tob_temp_transmit_2}", $universe);

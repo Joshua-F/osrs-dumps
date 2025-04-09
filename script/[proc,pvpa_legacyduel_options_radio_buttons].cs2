@@ -5,7 +5,7 @@ def_int $int = 0;
 while ($int <= 13) {
     $component = enum(int, component, enum_4209, $int);
     if ($component ! null & cc_find($component, 1) = true) {
-        if (testbit(%varplayer_286, $int) = ^true) {
+        if (testbit(%dueloptions, $int) = ^true) {
             cc_setgraphic("options_radio_buttons,2");
         } else {
             cc_setgraphic("options_radio_buttons,0");
@@ -13,20 +13,20 @@ while ($int <= 13) {
     }
     $int = calc($int + 1);
 }
-$int = inv_size(inv_94);
+$int = inv_size(worn);
 while ($int > 0) {
     $int = calc($int - 1);
     $component = enum(int, component, enum_4285, $int);
     if ($component ! null) {
-        if (testbit(%varplayerbit_642, $int) = ^true) {
+        if (testbit(%duelwornoptions, $int) = ^true) {
             if_sethide(false, $component);
-            if_setonmouserepeat("tooltip_mouserepeat(event_com, -1, interface_755:com_99, enum(int, string, enum_4388, $int), 25, 300)", $component);
-            if_setonmouseleave("deltooltip(interface_755:com_99)", $component);
+            if_setonmouserepeat("tooltip_mouserepeat(event_com, -1, pvp_arena_legacyduel_options:tooltip, enum(int, string, enum_4388, $int), 25, 300)", $component);
+            if_setonmouseleave("deltooltip(pvp_arena_legacyduel_options:tooltip)", $component);
         } else {
             if_sethide(true, $component);
             if_setonmouserepeat(null, $component);
             if_setonmouseleave(null, $component);
-            ~deltooltip_action(interface_755:com_99);
+            ~deltooltip_action(pvp_arena_legacyduel_options:tooltip);
         }
     }
 }

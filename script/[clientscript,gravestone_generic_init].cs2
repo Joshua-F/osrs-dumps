@@ -1,27 +1,27 @@
 // 3462
-[clientscript,gravestone_generic_init](component $com_0, component $com_2, component $com_3, component $com_1, component $com_19, component $com_4, component $com_6, component $com_7, component $com_8, component $com_9, component $com_10, component $com_12, component $com_13, component $com_14, component $com_15, component $com_16, int $int16, component $com_18)
-def_int $int18 = ~steelborder($com_2, ~gravestone_generic_title, 3);
-if (cc_find($com_2, $int18) = true) {
-    cc_setoninvtransmit("gravestone_generic_title(event_com, event_comsubid){inv_525}");
+[clientscript,gravestone_generic_init](component $universe, component $frame, component $close, component $content, component $resize_preview, component $free_container, component $freeitems, component $freescrollbar, component $freebutton, component $freebutton_gfx, component $pay_container, component $fee, component $payitems, component $payscrollbar, component $paybutton, component $paybutton_gfx, int $int16, component $info)
+def_int $int18 = ~steelborder($frame, ~gravestone_generic_title, 3);
+if (cc_find($frame, $int18) = true) {
+    cc_setoninvtransmit("gravestone_generic_title(event_com, event_comsubid){gravestone}");
 }
 def_int $int19 = 0;
 if (~on_mobile = true) {
     $int19 = calc(165 - (20 + 30));
 }
-~script4215($com_3, "Close");
-if_setonop("opsound(event_op, 2)", $com_3);
-if_setopkey(1, ^key_escape, 0, $com_3);
-if_setop(1, "Take-All", $com_8);
-~gravestone_generic_resetbutton($com_8, $com_9);
-~gravestone_generic_resetbutton($com_15, $com_16);
-~scrollbar_vertical($com_7, $com_6, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-~scrollbar_vertical($com_14, $com_13, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-cc_deleteall($com_6);
-cc_deleteall($com_13);
+~script4215($close, "Close");
+if_setonop("opsound(event_op, 2)", $close);
+if_setopkey(1, ^key_escape, 0, $close);
+if_setop(1, "Take-All", $freebutton);
+~gravestone_generic_resetbutton($freebutton, $freebutton_gfx);
+~gravestone_generic_resetbutton($paybutton, $paybutton_gfx);
+~scrollbar_vertical($freescrollbar, $freeitems, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~scrollbar_vertical($payscrollbar, $payitems, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+cc_deleteall($freeitems);
+cc_deleteall($payitems);
 $int18 = 0;
 while ($int18 < 120) {
-    cc_create($com_6, ^iftype_graphic, $int18);
-    .cc_create($com_13, ^iftype_graphic, $int18);
+    cc_create($freeitems, ^iftype_graphic, $int18);
+    .cc_create($payitems, ^iftype_graphic, $int18);
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
     .cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
     cc_sethide(true);
@@ -40,7 +40,7 @@ while ($int18 < 120) {
 }
 def_int $int20 = calc(120 * 2);
 while ($int18 < $int20) {
-    cc_create($com_13, ^iftype_text, $int18);
+    cc_create($payitems, ^iftype_text, $int18);
     cc_setsize(36, 12, ^setsize_abs, ^setsize_abs);
     cc_sethide(true);
     cc_setcolour(0xff981f);
@@ -49,27 +49,27 @@ while ($int18 < $int20) {
     cc_settextshadow(true);
     $int18 = calc($int18 + 1);
 }
-if_settext(~gravestone_generic_parsefee(-1), $com_12);
-if_settext(~gravestone_generic_parsecoffer(-1), $com_18);
-if_setontimer("gravestone_generic_resynchdata(-1, $com_12, -1, $com_18, $com_15, $com_16)", $com_18);
-cc_deleteall($com_0);
+if_settext(~gravestone_generic_parsefee(-1), $fee);
+if_settext(~gravestone_generic_parsecoffer(-1), $info);
+if_setontimer("gravestone_generic_resynchdata(-1, $fee, -1, $info, $paybutton, $paybutton_gfx)", $info);
+cc_deleteall($universe);
 $int18 = 0;
 while ($int18 < 8) {
-    cc_create($com_0, ^iftype_graphic, $int18);
+    cc_create($universe, ^iftype_graphic, $int18);
     cc_sethide(false);
     cc_settiling(true);
     cc_settrans(255);
     cc_setonmouserepeat("cc_settrans(event_com, event_comsubid, 200, null)");
     cc_setonmouseleave("cc_settrans(event_com, event_comsubid, 255, null)");
-    cc_setdraggable($com_0, -1);
+    cc_setdraggable($universe, -1);
     cc_setdragdeadzone(1);
     cc_setdragdeadtime(5);
     $int18 = calc($int18 + 1);
 }
-cc_deleteall($com_19);
+cc_deleteall($resize_preview);
 $int18 = 0;
 while ($int18 < 4) {
-    cc_create($com_19, ^iftype_rectangle, $int18);
+    cc_create($resize_preview, ^iftype_rectangle, $int18);
     cc_sethide(false);
     cc_setsize(calc($int18 * 2), calc($int18 * 2), ^setsize_minus, ^setsize_minus);
     cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
@@ -89,12 +89,12 @@ if (%varclient_396 < $int24) {
     %varclient_396 = scale(8, 9, 334);
 }
 if (%varclient_397 < 0) {
-    %varclient_397 = calc((if_getwidth($com_0) - %varclient_395) / 2);
+    %varclient_397 = calc((if_getwidth($universe) - %varclient_395) / 2);
 }
 if (%varclient_398 < $int19) {
-    %varclient_398 = ~max($int19, calc((if_getheight($com_0) - %varclient_396) / 2));
+    %varclient_398 = ~max($int19, calc((if_getheight($universe) - %varclient_396) / 2));
 }
-~gravestone_generic_window_set($com_0, $com_1, $com_19, $int19, $int21, $int24, $com_4, $int22, $com_10, $int23, $com_6, $com_7, $com_13, $com_14);
-if_setoninvtransmit("gravestone_generic_window_set($com_0, $com_1, $com_19, $int19, $int21, $int24, $com_4, $int22, $com_10, $int23, $com_6, $com_7, $com_13, $com_14){inv_525}", $com_0);
-if_setonvartransmit("gravestone_generic_window_set($com_0, $com_1, $com_19, $int19, $int21, $int24, $com_4, $int22, $com_10, $int23, $com_6, $com_7, $com_13, $com_14){varplayer_1574, varplayer_499}", $com_0);
-~gravestone_generic_size_handler($com_0, $com_1, $com_19, $int19, $int21, $int24, $com_4, $int22, $com_10, $int23, $com_6, $com_7, $com_13, $com_14, ^min_32bit_int, ^min_32bit_int);
+~gravestone_generic_window_set($universe, $content, $resize_preview, $int19, $int21, $int24, $free_container, $int22, $pay_container, $int23, $freeitems, $freescrollbar, $payitems, $payscrollbar);
+if_setoninvtransmit("gravestone_generic_window_set($universe, $content, $resize_preview, $int19, $int21, $int24, $free_container, $int22, $pay_container, $int23, $freeitems, $freescrollbar, $payitems, $payscrollbar){gravestone}", $universe);
+if_setonvartransmit("gravestone_generic_window_set($universe, $content, $resize_preview, $int19, $int21, $int24, $free_container, $int22, $pay_container, $int23, $freeitems, $freescrollbar, $payitems, $payscrollbar){inferno_temp_protect_transmit, magic_carpet_var}", $universe);
+~gravestone_generic_size_handler($universe, $content, $resize_preview, $int19, $int21, $int24, $free_container, $int22, $pay_container, $int23, $freeitems, $freescrollbar, $payitems, $payscrollbar, ^min_32bit_int, ^min_32bit_int);

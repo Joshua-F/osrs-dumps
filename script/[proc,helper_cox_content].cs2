@@ -1,17 +1,17 @@
 // 4657
 [proc,helper_cox_content](string $string0, boolean $boolean)
-def_component $com_1 = interface_710:com_1;
-def_component $com_3 = interface_710:com_3;
+def_component $safezone = helper_cox:safezone;
+def_component $content = helper_cox:content;
 def_int $int3 = 0;
 def_int $int4 = 0;
 def_string $string1 = "";
 def_int $int5 = 10;
 def_int $int6 = string_indexof_string($string0, "|", 0);
 def_string $string2 = "";
-if (%varplayerbit_12348 = 0 & $boolean = false) {
+if (%cox_helper_show_less = 0 & $boolean = false) {
     while ($int6 ! -1) {
         $string2 = substring($string0, 0, $int6);
-        cc_create($com_3, ^iftype_text, $int3);
+        cc_create($content, ^iftype_text, $int3);
         $int3 = calc($int3 + 1);
         cc_setsize(0, 12, ^setsize_minus, ^setsize_abs);
         cc_setposition(0, $int4, ^setpos_abs_left, ^setpos_abs_top);
@@ -23,7 +23,7 @@ if (%varplayerbit_12348 = 0 & $boolean = false) {
         $string0 = substring($string0, calc($int6 + 1), string_length($string0));
         $int6 = string_indexof_string($string0, "|", 0);
         $string2 = substring($string0, 0, $int6);
-        cc_create($com_3, ^iftype_text, $int3);
+        cc_create($content, ^iftype_text, $int3);
         $int3 = calc($int3 + 1);
         cc_setsize(0, 12, ^setsize_minus, ^setsize_abs);
         cc_setposition(0, $int4, ^setpos_abs_right, ^setpos_abs_top);
@@ -38,7 +38,7 @@ if (%varplayerbit_12348 = 0 & $boolean = false) {
     }
     $int4 = calc($int4 + 2);
 }
-.cc_create($com_3, ^iftype_text, $int3);
+.cc_create($content, ^iftype_text, $int3);
 def_int $int7 = $int3;
 $int3 = calc($int3 + 1);
 .cc_setsize(0, 24, ^setsize_minus, ^setsize_abs);
@@ -48,7 +48,7 @@ $int3 = calc($int3 + 1);
 .cc_settextshadow(true);
 .cc_settextalign(^settextalign_left, ^settextalign_centre, 12);
 $int4 = calc($int4 + 26);
-cc_create($com_3, ^iftype_text, $int3);
+cc_create($content, ^iftype_text, $int3);
 def_int $int8 = $int3;
 $int3 = calc($int3 + 1);
 cc_setsize(0, 12, ^setsize_minus, ^setsize_abs);
@@ -58,8 +58,8 @@ cc_settextfont(p11_full);
 cc_settextshadow(true);
 cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
 $int4 = calc($int4 + 12);
-~helper_cox_data($com_3, calc(30 * %varplayerbit_6386));
+~helper_cox_data($content, calc(30 * %raids_timer));
 $int4 = calc($int4 + $int5);
 %varclient_560 = 0;
-~helper_generic_set_size(calc(if_getwidth($com_3) + $int5), $int4);
-if_setonvartransmit("helper_cox_data($com_3, $int8, $int7){varplayer_1431, varplayer_1432, varplayer_1429}", $com_1);
+~helper_generic_set_size(calc(if_getwidth($content) + $int5), $int4);
+if_setonvartransmit("helper_cox_data($content, $int8, $int7){raids_temp_transmit2, raids_temp_transmit3, raids_perm_transmit}", $safezone);

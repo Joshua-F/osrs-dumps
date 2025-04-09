@@ -1,10 +1,10 @@
 // 781
-[clientscript,ge_offer_side_init](component $com_0, component $com_1)
-cc_deleteall($com_0);
+[clientscript,ge_offer_side_init](component $items, component $glow)
+cc_deleteall($items);
 def_int $int2 = 0;
-def_int $int3 = inv_size(inv_93);
+def_int $int3 = inv_size(inv);
 while ($int2 < $int3) {
-    cc_create($com_0, ^iftype_graphic, $int2);
+    cc_create($items, ^iftype_graphic, $int2);
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
     cc_setgraphicshadow(0x333333);
     cc_setoutline(1);
@@ -13,10 +13,10 @@ while ($int2 < $int3) {
     cc_sethide(false);
     $int2 = calc($int2 + 1);
 }
-cc_deleteall($com_1);
+cc_deleteall($glow);
 $int2 = 0;
 while ($int2 < 4) {
-    cc_create($com_1, ^iftype_rectangle, $int2);
+    cc_create($glow, ^iftype_rectangle, $int2);
     cc_sethide(true);
     cc_setposition($int2, $int2, ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize(calc(190 - $int2 * 2), calc(261 - $int2 * 2), ^setsize_abs, ^setsize_abs);
@@ -24,7 +24,7 @@ while ($int2 < 4) {
     cc_setfill(true);
     $int2 = calc($int2 + 1);
 }
-~ge_offer_side_draw($com_0, $com_1);
-if_setoninvtransmit("ge_offer_side_draw($com_0, $com_1){inv_93}", $com_0);
-if_setonvartransmit("ge_offer_side_draw($com_0, $com_1){varplayer_563, varplayer_375}", $com_0);
-if_setonstocktransmit("ge_offer_side_draw($com_0, $com_1)", $com_0);
+~ge_offer_side_draw($items, $glow);
+if_setoninvtransmit("ge_offer_side_draw($items, $glow){inv}", $items);
+if_setonvartransmit("ge_offer_side_draw($items, $glow){bankpin_2, armourhitsound}", $items);
+if_setonstocktransmit("ge_offer_side_draw($items, $glow)", $items);

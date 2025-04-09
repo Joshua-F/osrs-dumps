@@ -7,7 +7,7 @@ if (~on_mobile = true & %varclient_1220 = 1) {
 if ($int0 = %varclient_41 & $int1 = 0) {
     return;
 }
-if ($int0 = 3 & %varplayer_287 = 1 & (%varclient_41 ! 1337 | %varplayerbit_4089 = 0)) {
+if ($int0 = 3 & %option_pm = 1 & (%varclient_41 ! 1337 | %hide_pm_alongside_chatbox = 0)) {
     return;
 }
 if (~chat_alert_get($int0) > 24) {
@@ -15,7 +15,7 @@ if (~chat_alert_get($int0) > 24) {
 }
 ~chat_alert_set($int0, 249);
 if ($int1 = 1) {
-    if_setontimer("chat_alert_flash($int0)", interface_601:com_46);
+    if_setontimer("chat_alert_flash($int0)", toplevel_osm:chat_toggle);
 } else {
     if_setontimer("chat_alert_flash($int0)", enum(int, component, enum_683, $int0));
 }

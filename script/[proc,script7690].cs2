@@ -1,22 +1,22 @@
 // 7690
 [proc,script7690](int $rgb0)
-def_component $com_18 = interface_311:com_18;
-def_component $com_19 = interface_311:com_19;
-def_component $com_20 = interface_311:com_20;
-def_component $com_21 = interface_311:com_21;
+def_component $summary_passive_text = league_combat_mastery:summary_passive_text;
+def_component $summary_passive_frame = league_combat_mastery:summary_passive_frame;
+def_component $summary_passive_list = league_combat_mastery:summary_passive_list;
+def_component $summary_passive_scrollbar = league_combat_mastery:summary_passive_scrollbar;
 def_int $int5 = 0;
-cc_create($com_19, ^iftype_graphic, $int5);
+cc_create($summary_passive_frame, ^iftype_graphic, $int5);
 cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
 cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
 cc_setgraphic(tradebacking_dark);
 cc_settiling(true);
 $int5 = calc($int5 + 1);
-~thinbox_light($com_19, $int5);
-if_settextalign(^settextalign_centre, ^settextalign_centre, 20, $com_18);
-if_setcolour($rgb0, $com_18);
-if_settextfont(b12_full, $com_18);
-if_settextshadow(true, $com_18);
-if_settext("Passive Summary", $com_18);
+~thinbox_light($summary_passive_frame, $int5);
+if_settextalign(^settextalign_centre, ^settextalign_centre, 20, $summary_passive_text);
+if_setcolour($rgb0, $summary_passive_text);
+if_settextfont(b12_full, $summary_passive_text);
+if_settextshadow(true, $summary_passive_text);
+if_settext("Passive Summary", $summary_passive_text);
 def_graphic $graphic = p12_full;
 def_int $int7 = 55;
 def_int $rgb8 = ^black;
@@ -35,7 +35,7 @@ while ($int10 <= enum_getoutputcount(enum_5694)) {
     $struct = enum(int, struct, enum_5694, $int10);
     if (~league_combat_mastery_passive_active($struct) = 1) {
         $string = struct_param($struct, param_2028);
-        cc_create($com_20, ^iftype_rectangle, $int11);
+        cc_create($summary_passive_list, ^iftype_rectangle, $int11);
         cc_setsize(0, $int7, ^setsize_minus, ^setsize_abs);
         cc_setposition(0, $int12, ^setpos_abs_left, ^setpos_abs_top);
         cc_setcolour($rgb8);
@@ -46,7 +46,7 @@ while ($int10 <= enum_getoutputcount(enum_5694)) {
             cc_settrans(255);
         }
         $int11 = calc($int11 + 1);
-        cc_create($com_20, ^iftype_text, $int11);
+        cc_create($summary_passive_list, ^iftype_text, $int11);
         cc_setsize(7, $int7, ^setsize_minus, ^setsize_abs);
         cc_setposition(4, $int12, ^setpos_abs_left, ^setpos_abs_top);
         cc_settext($string);
@@ -61,7 +61,7 @@ while ($int10 <= enum_getoutputcount(enum_5694)) {
     $int10 = calc($int10 + 1);
 }
 if ($int13 <= 0) {
-    cc_create($com_20, ^iftype_text, 0);
+    cc_create($summary_passive_list, ^iftype_text, 0);
     cc_setsize(10, 0, ^setsize_minus, ^setsize_minus);
     cc_setposition(4, $int12, ^setpos_abs_centre, ^setpos_abs_centre);
     cc_settext("You have no passive effects active.");
@@ -69,9 +69,9 @@ if ($int13 <= 0) {
     cc_settextshadow(true);
     cc_setcolour($rgb0);
     cc_settextalign(^settextalign_centre, ^settextalign_centre, 15);
-} else if ($int12 < if_getheight($com_20)) {
-    cc_create($com_20, ^iftype_rectangle, $int11);
-    cc_setsize(0, calc(if_getheight($com_20) - $int12), ^setsize_minus, ^setsize_abs);
+} else if ($int12 < if_getheight($summary_passive_list)) {
+    cc_create($summary_passive_list, ^iftype_rectangle, $int11);
+    cc_setsize(0, calc(if_getheight($summary_passive_list) - $int12), ^setsize_minus, ^setsize_abs);
     cc_setposition(0, $int12, ^setpos_abs_left, ^setpos_abs_top);
     cc_setcolour($rgb8);
     cc_setfill(true);
@@ -82,7 +82,7 @@ if ($int13 <= 0) {
     }
     $int11 = calc($int11 + 1);
 }
-def_int $int15 = max($int12, if_getheight($com_20));
-if_setscrollsize(0, $int15, $com_20);
-if_setscrollpos(0, 0, $com_20);
-~scrollbar_vertical($com_21, $com_20, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+def_int $int15 = max($int12, if_getheight($summary_passive_list));
+if_setscrollsize(0, $int15, $summary_passive_list);
+if_setscrollpos(0, 0, $summary_passive_list);
+~scrollbar_vertical($summary_passive_scrollbar, $summary_passive_list, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");

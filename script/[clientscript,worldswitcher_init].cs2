@@ -1,11 +1,11 @@
 // 747
-[clientscript,worldswitcher_init](component $component0, component $com_3, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10, component $component11, component $component12, component $component13, component $component14, component $component15, component $component16, component $com_26)
-if_settext(~text_device("Right-click on worlds to<br>set them as Favourites.", "<"Long press"> on worlds to<br>set them as Favourites."), $component16);
+[clientscript,worldswitcher_init](component $universe, component $title, component $middle, component $scrollarea, component $scrollbar, component $info, component $buttons, component $sortarea, component $sort_member, component $sort_number, component $sort_country, component $sort_players, component $sort_theme, component $bottom, component $favourite_1, component $favourite_2, component $nofavourites, component $tooltip)
+if_settext(~text_device("Right-click on worlds to<br>set them as Favourites.", "<"Long press"> on worlds to<br>set them as Favourites."), $nofavourites);
 def_int $int18 = 10;
-if ($com_3 ! null) {
-    if_settext("<col=9f9f9f>Loading...</col>", $com_3);
-    if_setonvartransmit(null, $com_3);
-    if_setonsubchange(null, $com_3);
+if ($title ! null) {
+    if_settext("<col=9f9f9f>Loading...</col>", $title);
+    if_setonvartransmit(null, $title);
+    if_setonsubchange(null, $title);
     $int18 = 0;
 }
 def_int $int19 = 16;
@@ -14,21 +14,21 @@ def_int $int21 = 32;
 if (~on_mobile = true) {
     $int19, $int20, $int21 = 24, 21, 48;
 }
-if_setsize(calc($int18 * 2), $int21, ^setsize_minus, ^setsize_abs, $component13);
-if_setsize(calc($int18 * 2), calc(if_gety($component2) + $int21 + $int18), ^setsize_minus, ^setsize_minus, $component2);
-if_setscrollpos(0, 0, $component3);
-if_sethide(true, $component3);
-cc_deleteall($component4);
-~scrollbar_vertical($component4, $component3, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-if_sethide(true, $component8);
-if_sethide(true, $component9);
-if_sethide(true, $component10);
-if_sethide(true, $component11);
-if_sethide(true, $component12);
-cc_deleteall($component6);
+if_setsize(calc($int18 * 2), $int21, ^setsize_minus, ^setsize_abs, $bottom);
+if_setsize(calc($int18 * 2), calc(if_gety($middle) + $int21 + $int18), ^setsize_minus, ^setsize_minus, $middle);
+if_setscrollpos(0, 0, $scrollarea);
+if_sethide(true, $scrollarea);
+cc_deleteall($scrollbar);
+~scrollbar_vertical($scrollbar, $scrollarea, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+if_sethide(true, $sort_member);
+if_sethide(true, $sort_number);
+if_sethide(true, $sort_country);
+if_sethide(true, $sort_players);
+if_sethide(true, $sort_theme);
+cc_deleteall($buttons);
 def_int $int22 = 0;
 while ($int22 <= 600) {
-    cc_create($component6, ^iftype_graphic, $int22);
+    cc_create($buttons, ^iftype_graphic, $int22);
     cc_setsize(0, $int19, ^setsize_minus, ^setsize_abs);
     cc_setop(1, "Switch");
     cc_setop(2, "Favourite");
@@ -37,8 +37,8 @@ while ($int22 <= 600) {
     $int22 = calc($int22 + 1);
 }
 if (worldlist_fetch = true) {
-    ~worldswitcher_loaded($component0, $com_3, $component3, $component4, $component5, $component6, $int19, $int21, $int20, $component7, $component8, $component9, $component10, $component11, $component12, $component14, $component15, $component16, $com_26);
-    if_setontimer(null, $component0);
+    ~worldswitcher_loaded($universe, $title, $scrollarea, $scrollbar, $info, $buttons, $int19, $int21, $int20, $sortarea, $sort_member, $sort_number, $sort_country, $sort_players, $sort_theme, $favourite_1, $favourite_2, $nofavourites, $tooltip);
+    if_setontimer(null, $universe);
 } else {
-    if_setontimer("worldswitcher_loading($component0, $com_3, $component3, $component4, $component5, $component6, $int19, $int21, $int20, $component7, $component8, $component9, $component10, $component11, $component12, $component14, $component15, $component16, $com_26)", $component0);
+    if_setontimer("worldswitcher_loading($universe, $title, $scrollarea, $scrollbar, $info, $buttons, $int19, $int21, $int20, $sortarea, $sort_member, $sort_number, $sort_country, $sort_players, $sort_theme, $favourite_1, $favourite_2, $nofavourites, $tooltip)", $universe);
 }

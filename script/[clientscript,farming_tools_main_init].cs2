@@ -1,26 +1,26 @@
 // 1055
-[clientscript,farming_tools_main_init](component $com_0, component $com_8, component $com_9, component $com_10, component $com_11, component $com_12, component $com_13, component $com_14, component $com_16, component $com_17, component $com_18, component $com_19, component $com_15, component $com_3)
-~farming_tools_main_create($com_8, obj_5341, "Farming rake", enum(obj, int, enum_2193, obj_5341));
-~farming_tools_main_create($com_9, obj_5343, "Seed dibber", enum(obj, int, enum_2193, obj_5343));
-~farming_tools_main_create($com_10, obj_952, "Spade", enum(obj, int, enum_2193, obj_952));
-~farming_tools_main_create($com_11, obj_5329, "Secateurs", enum(obj, int, enum_2193, obj_5329));
-~farming_tools_main_create($com_12, obj_6797, "Watering Can", enum(obj, int, enum_2193, obj_6797));
-~farming_tools_main_create($com_13, obj_5325, "Gardening trowel", enum(obj, int, enum_2193, obj_5325));
-~farming_tools_main_create($com_14, obj_6036, "Plant Cure", enum(obj, int, enum_2193, obj_6036));
-~farming_tools_main_create($com_15, obj_22994, "Bottomless bucket", enum(obj, int, enum_2193, obj_22994));
-~farming_tools_main_create($com_16, obj_1925, "Empty buckets", enum(obj, int, enum_2193, obj_1925));
-~farming_tools_main_create($com_17, obj_6032, "Normal Compost", enum(obj, int, enum_2193, obj_6032));
-~farming_tools_main_create($com_18, obj_6034, "Supercompost", enum(obj, int, enum_2193, obj_6034));
-~farming_tools_main_create($com_19, obj_21483, "Ultracompost", enum(obj, int, enum_2193, obj_21483));
-cc_deleteall($com_3);
+[clientscript,farming_tools_main_init](component $universe, component $rake, component $dibber, component $spade, component $secateurs, component $wateringcan, component $trowel, component $plantcure, component $bucket, component $compost, component $supercompost, component $ultracompost, component $bottomless_bucket, component $quantity_selection)
+~farming_tools_main_create($rake, rake, "Farming rake", enum(obj, int, enum_2193, rake));
+~farming_tools_main_create($dibber, dibber, "Seed dibber", enum(obj, int, enum_2193, dibber));
+~farming_tools_main_create($spade, spade, "Spade", enum(obj, int, enum_2193, spade));
+~farming_tools_main_create($secateurs, secateurs, "Secateurs", enum(obj, int, enum_2193, secateurs));
+~farming_tools_main_create($wateringcan, watering_can_dummy, "Watering Can", enum(obj, int, enum_2193, watering_can_dummy));
+~farming_tools_main_create($trowel, gardening_trowel, "Gardening trowel", enum(obj, int, enum_2193, gardening_trowel));
+~farming_tools_main_create($plantcure, plant_cure, "Plant Cure", enum(obj, int, enum_2193, plant_cure));
+~farming_tools_main_create($bottomless_bucket, bottomless_compost_bucket, "Bottomless bucket", enum(obj, int, enum_2193, bottomless_compost_bucket));
+~farming_tools_main_create($bucket, bucket_empty, "Empty buckets", enum(obj, int, enum_2193, bucket_empty));
+~farming_tools_main_create($compost, bucket_compost, "Normal Compost", enum(obj, int, enum_2193, bucket_compost));
+~farming_tools_main_create($supercompost, bucket_supercompost, "Supercompost", enum(obj, int, enum_2193, bucket_supercompost));
+~farming_tools_main_create($ultracompost, bucket_ultracompost, "Ultracompost", enum(obj, int, enum_2193, bucket_ultracompost));
+cc_deleteall($quantity_selection);
 def_int $int = 0;
-cc_create($com_3, ^iftype_graphic, $int);
+cc_create($quantity_selection, ^iftype_graphic, $int);
 cc_setgraphic("steelborder2,0");
 cc_settiling(true);
 cc_setposition(0, -10, ^setpos_abs_centre, ^setpos_abs_top);
 cc_setsize(0, 20, ^setsize_minus, ^setsize_abs);
 $int = calc($int + 1);
-cc_create($com_3, ^iftype_text, $int);
+cc_create($quantity_selection, ^iftype_text, $int);
 cc_setposition(20, 5, ^setpos_rel_left, ^setpos_abs_centre);
 cc_setsize(140, 36, ^setsize_abs, ^setsize_abs);
 cc_setcolour(0xff981f);
@@ -29,4 +29,4 @@ cc_settextshadow(true);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
 cc_settext("Withdrawal / Storage<br>Quantity");
 $int = calc($int + 1);
-~script1648(enum_2193, interface_125:com_4, interface_125:com_5, null, interface_125:com_7, interface_125:com_6);
+~script1648(enum_2193, farming_tools:quantity_1, farming_tools:quantity_5, null, farming_tools:quantity_all, farming_tools:quantity_x);

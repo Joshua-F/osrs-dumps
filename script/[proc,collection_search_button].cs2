@@ -2,50 +2,50 @@
 [proc,collection_search_button](int $int0)
 def_int $int1 = 0;
 def_boolean $boolean = ~on_mobile;
-def_component $com_76 = interface_621:com_76;
-def_component $com_74 = interface_621:com_74;
-cc_deleteall($com_76);
-cc_deleteall($com_74);
+def_component $search_toggle = collection:search_toggle;
+def_component $search_toggle_clickzone = collection:search_toggle_clickzone;
+cc_deleteall($search_toggle);
+cc_deleteall($search_toggle_clickzone);
 $int1 = 0;
-if_setsize(71, 22, ^setsize_abs, ^setsize_abs, $com_76);
-if_setposition(33, 7, ^setpos_abs_left, ^setpos_abs_top, $com_76);
-$int1 = ~v2_stone_button_filled($com_76);
+if_setsize(71, 22, ^setsize_abs, ^setsize_abs, $search_toggle);
+if_setposition(33, 7, ^setpos_abs_left, ^setpos_abs_top, $search_toggle);
+$int1 = ~v2_stone_button_filled($search_toggle);
 if ($boolean = false) {
-    if_setonmouseover("v2_stone_button_change_in($com_76, 0)", $com_76);
-    if_setonmouseleave("v2_stone_button_change_out($com_76, 0)", $com_76);
+    if_setonmouseover("v2_stone_button_change_in($search_toggle, 0)", $search_toggle);
+    if_setonmouseleave("v2_stone_button_change_out($search_toggle, 0)", $search_toggle);
 } else {
-    if_setsize(71, 33, ^setsize_abs, ^setsize_abs, $com_74);
-    if_setposition(33, 0, ^setpos_abs_left, ^setpos_abs_top, $com_74);
+    if_setsize(71, 33, ^setsize_abs, ^setsize_abs, $search_toggle_clickzone);
+    if_setposition(33, 0, ^setpos_abs_left, ^setpos_abs_top, $search_toggle_clickzone);
 }
 if ($int0 = 1) {
-    if_setop(1, "Search", $com_76);
-    if_setonop("collection_toggle_search(false)", $com_76);
-    cc_create($com_76, ^iftype_graphic, $int1);
+    if_setop(1, "Search", $search_toggle);
+    if_setonop("collection_toggle_search(false)", $search_toggle);
+    cc_create($search_toggle, ^iftype_graphic, $int1);
     cc_setgraphic("bankbuttons,2");
     cc_setsize(16, 15, ^setsize_abs, ^setsize_abs);
     cc_setposition(8, 0, ^setpos_abs_left, ^setpos_abs_centre);
     $int1 = calc($int1 + 1);
-    cc_create($com_76, ^iftype_text, $int1);
+    cc_create($search_toggle, ^iftype_text, $int1);
     cc_setsize(30, 0, ^setsize_minus, ^setsize_minus);
     cc_setposition(25, 1, ^setpos_abs_left, ^setpos_abs_centre);
     cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
     cc_settextfont(p11_full);
     cc_settext("<col=d6d6d6>Search");
     if ($boolean = true) {
-        if_setop(1, "Search", $com_74);
-        if_setonop("collection_toggle_search(false)", $com_74);
+        if_setop(1, "Search", $search_toggle_clickzone);
+        if_setonop("collection_toggle_search(false)", $search_toggle_clickzone);
     }
 } else {
-    if_setop(1, "Back", $com_76);
-    if_setonop("collection_toggle_search(false)", $com_76);
-    cc_create($com_76, ^iftype_text, $int1);
+    if_setop(1, "Back", $search_toggle);
+    if_setonop("collection_toggle_search(false)", $search_toggle);
+    cc_create($search_toggle, ^iftype_text, $int1);
     cc_setsize(30, 0, ^setsize_minus, ^setsize_minus);
     cc_setposition(0, 1, ^setpos_abs_centre, ^setpos_abs_centre);
     cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
     cc_settextfont(p11_full);
     cc_settext("<col=d6d6d6>Back");
     if ($boolean = true) {
-        if_setop(1, "Back", $com_74);
-        if_setonop("collection_toggle_search(false)", $com_74);
+        if_setop(1, "Back", $search_toggle_clickzone);
+        if_setonop("collection_toggle_search(false)", $search_toggle_clickzone);
     }
 }

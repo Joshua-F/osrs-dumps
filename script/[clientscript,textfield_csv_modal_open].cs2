@@ -1,6 +1,6 @@
 // 7102
 [clientscript,textfield_csv_modal_open](component $component)
-def_struct $struct1 = enum(int, struct, enum_423, %varplayerbit_9656);
+def_struct $struct1 = enum(int, struct, enum_423, %settings_category);
 if ($struct1 = null) {
     return;
 }
@@ -19,7 +19,7 @@ while ($int7 < $int8) {
     if ($struct4 ! null) {
         $int5 = struct_param($struct4, param_1078);
         $int6 = struct_param($struct4, param_1077);
-        if ($int5 = 10 & $int6 = %varplayerbit_9657) {
+        if ($int5 = 10 & $int6 = %settings_selected_setting) {
             $struct3 = $struct4;
             $int8 = $int7;
         }
@@ -29,9 +29,9 @@ while ($int7 < $int8) {
 if ($struct3 = null) {
     return;
 }
-~script4206(interface_82:com_1, interface_82:com_2, interface_82:com_3, ^max_32bit_int, $component);
-~steelborder(interface_82:com_4, "Text Input - <struct_param($struct3, param_1086)>", 1);
-def_component $com_7 = interface_82:com_7;
+~script4206(textfield_csv:clamp, textfield_csv:fader, textfield_csv:window, ^max_32bit_int, $component);
+~steelborder(textfield_csv:frame, "Text Input - <struct_param($struct3, param_1086)>", 1);
+def_component $textfield_tab_content = textfield_csv:textfield_tab_content;
 def_int $int10 = 0;
 def_int $int11 = 0;
 def_int $setsize12 = ^setsize_minus;
@@ -41,14 +41,14 @@ def_int $int15 = 0;
 def_int $setposh = ^setpos_abs_centre;
 def_int $setposv = ^setpos_abs_centre;
 def_int $int18 = 0;
-cc_deleteall($com_7);
-cc_create($com_7, ^iftype_rectangle, $int18);
+cc_deleteall($textfield_tab_content);
+cc_create($textfield_tab_content, ^iftype_rectangle, $int18);
 $int18 = calc($int18 + 1);
 cc_setsize($int10, $int11, $setsize12, $setsize13);
 cc_setposition($int14, $int15, $setposh, $setposv);
 cc_setfill(true);
 cc_setcolour(0x372e22);
-cc_create($com_7, ^iftype_inputfield, $int18);
+cc_create($textfield_tab_content, ^iftype_inputfield, $int18);
 def_int $int19 = $int18;
 $int18 = calc($int18 + 1);
 cc_setsize(calc($int10 + 10), calc($int11 + 10), $setsize12, $setsize13);
@@ -67,7 +67,7 @@ def_string $string = ~script7105($struct3);
 cc_settext($string);
 cc_input_setfocus(true);
 cc_input_setcaret(string_length($string));
-~stonebutton_init("<col=ff981f>Cancel</col>", interface_82:com_9, p12_full, 0);
-if_setonop("script4208(0, interface_82:com_1, interface_82:com_2, interface_82:com_3, $component)", interface_82:com_9);
-~stonebutton_init("<col=0dc10d>Save</col>", interface_82:com_10, p12_full, 0);
-if_setonop("textfield_csv_modal_submit($component, $com_7, $int19)", interface_82:com_10);
+~stonebutton_init("<col=ff981f>Cancel</col>", textfield_csv:cancel, p12_full, 0);
+if_setonop("script4208(0, textfield_csv:clamp, textfield_csv:fader, textfield_csv:window, $component)", textfield_csv:cancel);
+~stonebutton_init("<col=0dc10d>Save</col>", textfield_csv:submit, p12_full, 0);
+if_setonop("textfield_csv_modal_submit($component, $textfield_tab_content, $int19)", textfield_csv:submit);

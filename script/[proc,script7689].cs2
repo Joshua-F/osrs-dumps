@@ -1,22 +1,22 @@
 // 7689
 [proc,script7689](int $rgb0)
-def_component $com_79 = interface_311:com_79;
-def_component $com_80 = interface_311:com_80;
-def_component $com_81 = interface_311:com_81;
-def_component $com_82 = interface_311:com_82;
+def_component $summary_mastery_text = league_combat_mastery:summary_mastery_text;
+def_component $summary_mastery_frame = league_combat_mastery:summary_mastery_frame;
+def_component $summary_mastery_list = league_combat_mastery:summary_mastery_list;
+def_component $summary_mastery_scrollbar = league_combat_mastery:summary_mastery_scrollbar;
 def_int $int5 = 0;
-cc_create($com_80, ^iftype_graphic, $int5);
+cc_create($summary_mastery_frame, ^iftype_graphic, $int5);
 cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
 cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
 cc_setgraphic(tradebacking_dark);
 cc_settiling(true);
 $int5 = calc($int5 + 1);
-~thinbox_light($com_80, $int5);
-if_settextalign(^settextalign_centre, ^settextalign_centre, 20, $com_79);
-if_setcolour($rgb0, $com_79);
-if_settextfont(b12_full, $com_79);
-if_settextshadow(true, $com_79);
-if_settext("Mastery Summary", $com_79);
+~thinbox_light($summary_mastery_frame, $int5);
+if_settextalign(^settextalign_centre, ^settextalign_centre, 20, $summary_mastery_text);
+if_setcolour($rgb0, $summary_mastery_text);
+if_settextfont(b12_full, $summary_mastery_text);
+if_settextshadow(true, $summary_mastery_text);
+if_settext("Mastery Summary", $summary_mastery_text);
 def_graphic $graphic = p12_full;
 def_int $int7 = 55;
 def_int $rgb8 = ^black;
@@ -42,7 +42,7 @@ while ($int10 < enum_getoutputcount(enum_5690)) {
             $struct = enum(int, struct, $enum, $int11);
             if (~league_combat_mastery_active($struct) = 1) {
                 $string = struct_param($struct, param_2028);
-                cc_create($com_81, ^iftype_rectangle, $int12);
+                cc_create($summary_mastery_list, ^iftype_rectangle, $int12);
                 cc_setsize(0, $int7, ^setsize_minus, ^setsize_abs);
                 cc_setposition(0, $int14, ^setpos_abs_left, ^setpos_abs_top);
                 cc_setcolour($rgb8);
@@ -53,7 +53,7 @@ while ($int10 < enum_getoutputcount(enum_5690)) {
                     cc_settrans(255);
                 }
                 $int12 = calc($int12 + 1);
-                cc_create($com_81, ^iftype_text, $int12);
+                cc_create($summary_mastery_list, ^iftype_text, $int12);
                 cc_setsize(10, $int7, ^setsize_minus, ^setsize_abs);
                 cc_setposition(4, $int14, ^setpos_abs_left, ^setpos_abs_top);
                 cc_settext($string);
@@ -71,7 +71,7 @@ while ($int10 < enum_getoutputcount(enum_5690)) {
     $int10 = calc($int10 + 1);
 }
 if ($int13 <= 0) {
-    cc_create($com_81, ^iftype_text, $int12);
+    cc_create($summary_mastery_list, ^iftype_text, $int12);
     cc_setsize(10, 0, ^setsize_minus, ^setsize_minus);
     cc_setposition(4, $int14, ^setpos_abs_centre, ^setpos_abs_centre);
     cc_settext("You have no mastery effects active.");
@@ -80,9 +80,9 @@ if ($int13 <= 0) {
     cc_setcolour($rgb0);
     cc_settextalign(^settextalign_centre, ^settextalign_centre, 15);
     $int12 = calc($int12 + 1);
-} else if ($int14 < if_getheight($com_81)) {
-    cc_create($com_81, ^iftype_rectangle, $int12);
-    cc_setsize(0, calc(if_getheight($com_81) - $int14), ^setsize_minus, ^setsize_abs);
+} else if ($int14 < if_getheight($summary_mastery_list)) {
+    cc_create($summary_mastery_list, ^iftype_rectangle, $int12);
+    cc_setsize(0, calc(if_getheight($summary_mastery_list) - $int14), ^setsize_minus, ^setsize_abs);
     cc_setposition(0, $int14, ^setpos_abs_left, ^setpos_abs_top);
     cc_setcolour($rgb8);
     cc_setfill(true);
@@ -93,7 +93,7 @@ if ($int13 <= 0) {
     }
     $int12 = calc($int12 + 1);
 }
-def_int $int18 = max($int14, if_getheight($com_81));
-if_setscrollsize(0, $int18, $com_81);
-if_setscrollpos(0, 0, $com_81);
-~scrollbar_vertical($com_82, $com_81, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+def_int $int18 = max($int14, if_getheight($summary_mastery_list));
+if_setscrollsize(0, $int18, $summary_mastery_list);
+if_setscrollpos(0, 0, $summary_mastery_list);
+~scrollbar_vertical($summary_mastery_scrollbar, $summary_mastery_list, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");

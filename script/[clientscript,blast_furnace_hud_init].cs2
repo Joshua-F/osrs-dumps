@@ -1,13 +1,13 @@
 // 1422
-[clientscript,blast_furnace_hud_init](component $com_0, component $com_1, component $com_2)
-~interface_dodger_init($com_1, $com_2, 36582, ^setpos_abs_right, ^setpos_abs_top, false);
-if_setposition(2, 2, ^setpos_abs_right, ^setpos_abs_top, $com_2);
+[clientscript,blast_furnace_hud_init](component $universe, component $dodger, component $display)
+~interface_dodger_init($dodger, $display, 36582, ^setpos_abs_right, ^setpos_abs_top, false);
+if_setposition(2, 2, ^setpos_abs_right, ^setpos_abs_top, $display);
 def_string $string = "Coffer";
-if_setsize(calc(parawidth($string, 512, p12_full) + 10), 58, ^setsize_abs, ^setsize_abs, $com_2);
-cc_deleteall($com_2);
-def_int $int = ~thinbox($com_2, 0);
-cc_create($com_2, ^iftype_text, $int);
-.cc_create($com_2, ^iftype_graphic, calc($int + 1));
+if_setsize(calc(parawidth($string, 512, p12_full) + 10), 58, ^setsize_abs, ^setsize_abs, $display);
+cc_deleteall($display);
+def_int $int = ~thinbox($display, 0);
+cc_create($display, ^iftype_text, $int);
+.cc_create($display, ^iftype_graphic, calc($int + 1));
 cc_setsize(0, 10, ^setsize_minus, ^setsize_minus);
 cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
 cc_setcolour(0xff981f);
@@ -19,6 +19,6 @@ cc_settext($string);
 .cc_setposition(0, 5, ^setpos_abs_centre, ^setpos_abs_bottom);
 .cc_setgraphicshadow(0x333333);
 .cc_setoutline(1);
-~blast_furnace_hud_update($com_2);
-if_setonsubchange("blast_furnace_hud_update($com_2, .cc_getid)", $com_0);
-if_setonvartransmit("blast_furnace_hud_update($com_2, .cc_getid){varplayer_795}", $com_0);
+~blast_furnace_hud_update($display);
+if_setonsubchange("blast_furnace_hud_update($display, .cc_getid)", $universe);
+if_setonvartransmit("blast_furnace_hud_update($display, .cc_getid){dttd_region}", $universe);

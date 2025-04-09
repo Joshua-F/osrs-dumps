@@ -1,8 +1,8 @@
 // 6086
 [proc,giants_foundry_reward_shop_list_setup](int $int0, boolean $boolean1)
-def_component $com_22 = interface_753:com_22;
-def_component $com_23 = interface_753:com_23;
-cc_deleteall($com_22);
+def_component $list = giants_foundry_reward_shop:list;
+def_component $list_scroller = giants_foundry_reward_shop:list_scroller;
+cc_deleteall($list);
 def_enum $enum = enum_4379;
 def_int $int5 = 1;
 def_int $int6 = 0;
@@ -39,11 +39,11 @@ switch_int (%varclient_988) {
         $int13 = 120;
         $int12 = 110;
 }
-def_int $int14 = calc(if_getwidth($com_22) / $int13);
+def_int $int14 = calc(if_getwidth($list) / $int13);
 def_int $int15 = calc(($int6 - 1) / $int14 + 1);
 if ($boolean1 = true) {
-    if_setscrollpos(0, 0, $com_22);
+    if_setscrollpos(0, 0, $list);
 }
-if_setscrollsize(if_getwidth($com_22), calc($int15 * ($int12 + $int11) + $int11), $com_22);
-~scrollbar_vertical($com_23, $com_22, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-~scrollbar_vertical_rebuild($com_23, $com_22);
+if_setscrollsize(if_getwidth($list), calc($int15 * ($int12 + $int11) + $int11), $list);
+~scrollbar_vertical($list_scroller, $list, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~scrollbar_vertical_rebuild($list_scroller, $list);

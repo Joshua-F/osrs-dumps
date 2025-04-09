@@ -1,32 +1,32 @@
 // 5886
-[clientscript,speedrunning_init](component $com_5, component $com_7, component $com_9, component $com_8, component $com_10, component $com_25, component $com_26, component $com_14, component $com_15, component $com_20, component $com_13, component $com_17, component $com_18, component $com_19, component $com_39, component $com_40, component $com_41, component $com_42, component $com_43, component $com_36, component $com_45, component $com_37, component $com_47, component $com_78, component $com_86, component $com_83, component $com_84, component $com_85, component $com_48, component $com_77, component $com_62, component $com_64, component $com_66, component $com_68, component $com_70, component $com_72, component $com_74, component $com_76)
-~questlist_draw($com_5, $com_7, $com_9, $com_8, $com_10, true);
-if (%varplayer_3373 ! null) {
-    if (~speedrunning_beta_quest(%varplayer_3373) = true) {
-        if_settext("<~get_quest_name(%varplayer_3373)> (Beta)", $com_20);
+[clientscript,speedrunning_init](component $list_layer, component $list_container, component $list_text_container, component $list_scrollbar, component $list, component $start_abandon_button, component $journal_button, component $info_button, component $stats_button, component $title, component $points, component $main_scrollbar, component $main_content, component $main_content_inner, component $bronze, component $silver, component $gold, component $platinum, component $diamond, component $unlocks, component $unlocks_content, component $items, component $items_content, component $info_overlay, component $info_overlay_close, component $info_overlay_scrollbar, component $info_overlay_text_layer, component $info_overlay_text, component $stats_overlay, component $stats_overlay_close, component $total_speedruns, component $total_points, component $total_trophies, component $total_bronze, component $total_silver, component $total_gold, component $total_platinum, component $total_diamond)
+~questlist_draw($list_layer, $list_container, $list_text_container, $list_scrollbar, $list, true);
+if (%latest_speedrun_panel ! null) {
+    if (~speedrunning_beta_quest(%latest_speedrun_panel) = true) {
+        if_settext("<~get_quest_name(%latest_speedrun_panel)> (Beta)", $title);
     } else {
-        if_settext(~get_quest_name(%varplayer_3373), $com_20);
+        if_settext(~get_quest_name(%latest_speedrun_panel), $title);
     }
 }
-~speedrunning_stats_update($com_13, $com_39, $com_40, $com_41, $com_42, $com_43, $com_62, $com_64, $com_66, $com_68, $com_70, $com_72, $com_74, $com_76);
-if_setonvartransmit("speedrunning_stats_update($com_13, $com_39, $com_40, $com_41, $com_42, $com_43, $com_62, $com_64, $com_66, $com_68, $com_70, $com_72, $com_74, $com_76){varplayer_3365, varplayer_3366, varplayer_3367, varplayer_3368, varplayer_3369, varplayer_3766}", $com_13);
-~script5909($com_36, $com_45, $com_37, $com_47, $com_19);
-if_sethide(true, $com_78);
-if_sethide(true, $com_48);
+~speedrunning_stats_update($points, $bronze, $silver, $gold, $platinum, $diamond, $total_speedruns, $total_points, $total_trophies, $total_bronze, $total_silver, $total_gold, $total_platinum, $total_diamond);
+if_setonvartransmit("speedrunning_stats_update($points, $bronze, $silver, $gold, $platinum, $diamond, $total_speedruns, $total_points, $total_trophies, $total_bronze, $total_silver, $total_gold, $total_platinum, $total_diamond){speedrun_points, speedrun_attempts, total_speedruns, speedrun_trophy_totals_1, speedrun_trophy_totals_2, speedrun_trophy_totals_3}", $points);
+~script5909($unlocks, $unlocks_content, $items, $items_content, $main_content_inner);
+if_sethide(true, $info_overlay);
+if_sethide(true, $stats_overlay);
 def_string $string = ~script5913;
-if_settext($string, $com_85);
-def_int $int = paraheight($string, if_getwidth($com_85), p12_full);
+if_settext($string, $info_overlay_text);
+def_int $int = paraheight($string, if_getwidth($info_overlay_text), p12_full);
 $int = calc($int * 14 + 9);
-if_setsize(12, $int, ^setsize_minus, ^setsize_abs, $com_85);
-if_setscrollsize(0, if_getheight($com_19), $com_18);
-if_setscrollpos(0, 0, $com_18);
-~scrollbar_vertical($com_17, $com_18, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-if_setscrollsize(0, $int, $com_84);
-if_setscrollpos(0, 0, $com_84);
-~scrollbar_vertical($com_83, $com_84, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-~script5896($com_25, "Set Up Speedrun", "Abandon Speedrun");
-~speedrunning_button_init($com_26, "Quest Journal");
-~script5897($com_14, "Info", $com_78);
-~script5897($com_15, "Stats", $com_48);
-~script5905($com_86, $com_78);
-~script5905($com_77, $com_48);
+if_setsize(12, $int, ^setsize_minus, ^setsize_abs, $info_overlay_text);
+if_setscrollsize(0, if_getheight($main_content_inner), $main_content);
+if_setscrollpos(0, 0, $main_content);
+~scrollbar_vertical($main_scrollbar, $main_content, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+if_setscrollsize(0, $int, $info_overlay_text_layer);
+if_setscrollpos(0, 0, $info_overlay_text_layer);
+~scrollbar_vertical($info_overlay_scrollbar, $info_overlay_text_layer, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~script5896($start_abandon_button, "Set Up Speedrun", "Abandon Speedrun");
+~speedrunning_button_init($journal_button, "Quest Journal");
+~script5897($info_button, "Info", $info_overlay);
+~script5897($stats_button, "Stats", $stats_overlay);
+~script5905($info_overlay_close, $info_overlay);
+~script5905($stats_overlay_close, $stats_overlay);

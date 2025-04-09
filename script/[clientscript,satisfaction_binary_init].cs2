@@ -1,8 +1,8 @@
 // 2166
-[clientscript,satisfaction_binary_init](component $com_15, component $com_16, component $com_17)
-if_setop(1, "Thumbs Up", $com_16);
-if_setop(1, "Thumbs Down", $com_17);
-if_setonop("satisfaction_binary_select(event_op, 2, $com_16, $com_17)", $com_16);
-if_setonop("satisfaction_binary_select(event_op, 1, $com_16, $com_17)", $com_17);
-~satisfaction_binary_update($com_16, $com_17);
-if_setonvartransmit("satisfaction_binary_update($com_16, $com_17){varplayer_1707}", $com_15);
+[clientscript,satisfaction_binary_init](component $satisfaction_binary, component $satisfaction_good, component $satisfaction_bad)
+if_setop(1, "Thumbs Up", $satisfaction_good);
+if_setop(1, "Thumbs Down", $satisfaction_bad);
+if_setonop("satisfaction_binary_select(event_op, 2, $satisfaction_good, $satisfaction_bad)", $satisfaction_good);
+if_setonop("satisfaction_binary_select(event_op, 1, $satisfaction_good, $satisfaction_bad)", $satisfaction_bad);
+~satisfaction_binary_update($satisfaction_good, $satisfaction_bad);
+if_setonvartransmit("satisfaction_binary_update($satisfaction_good, $satisfaction_bad){csat_temp}", $satisfaction_binary);

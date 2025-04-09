@@ -1,8 +1,8 @@
 // 321
-[clientscript,slayer_rewards_buy_init](component $com_22, component $com_23, component $com_24, component $com_25, component $com_11, component $com_2, component $com_4, component $com_8, component $com_5)
-cc_deleteall($com_23);
-cc_deleteall($com_24);
-def_int $int9 = if_getwidth($com_22);
+[clientscript,slayer_rewards_buy_init](component $buy_contents, component $buy_items, component $buy_prices, component $buy_scrollbar, component $main, component $confirm, component $confirm_info, component $confirm_button, component $back_button)
+cc_deleteall($buy_items);
+cc_deleteall($buy_prices);
+def_int $int9 = if_getwidth($buy_contents);
 def_int $int10 = calc($int9 / 5);
 def_int $int11 = calc(32 + 35);
 def_int $int12 = calc(($int10 - 36) / 2);
@@ -18,8 +18,8 @@ if (~league_relic_active(struct_1129) = 1) {
 }
 while ($obj ! null) {
     $int13, $int14 = calc($int17 % 5 * $int10), calc($int17 / 5 * $int11);
-    cc_create($com_23, ^iftype_graphic, $int17);
-    .cc_create($com_24, ^iftype_text, $int17);
+    cc_create($buy_items, ^iftype_graphic, $int17);
+    .cc_create($buy_prices, ^iftype_text, $int17);
     cc_setposition(calc($int13 + $int12), $int14, ^setpos_abs_left, ^setpos_abs_top);
     .cc_setposition($int13, calc($int14 + 32), ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
@@ -34,13 +34,13 @@ while ($obj ! null) {
     .cc_settextfont(p12_full);
     .cc_settextshadow(true);
     .cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-    if ($int19 = 1 & ($obj = obj_12791 | $obj = obj_11941 | $obj = obj_13226)) {
+    if ($int19 = 1 & ($obj = bh_rune_pouch | $obj = looting_bag | $obj = slayer_herb_sack)) {
         .cc_settext("Free");
     } else {
         .cc_settext(~tostring_spacer(enum(obj, int, enum_842, $obj), ","));
     }
     switch_obj ($obj) {
-        case obj_13226, obj_12791, obj_11941 :
+        case slayer_herb_sack, bh_rune_pouch, looting_bag :
             cc_setop(2, "Buy 1");
         case default :
             if ($int16 = 1) {
@@ -62,16 +62,16 @@ while ($obj ! null) {
     cc_setop(1, "Info");
     cc_setop(10, "Examine");
     cc_setopbase("<col=ff9040><oc_name($obj)></col>");
-    cc_setonop("slayer_rewards_buy_op(event_op, event_com, event_comsubid, $com_11, $com_2, $com_4, $com_8, $com_5)");
+    cc_setonop("slayer_rewards_buy_op(event_op, event_com, event_comsubid, $main, $confirm, $confirm_info, $confirm_button, $back_button)");
     $int17 = calc($int17 + 1);
     $obj = enum(int, namedobj, enum_840, $int17);
 }
-if_setscrollpos(0, 0, $com_22);
-if_setsize($int9, $int15, ^setsize_abs, ^setsize_abs, $com_23);
-if_setsize($int9, $int15, ^setsize_abs, ^setsize_abs, $com_24);
-if ($int15 > if_getheight($com_22)) {
-    if_setscrollsize(0, $int15, $com_22);
+if_setscrollpos(0, 0, $buy_contents);
+if_setsize($int9, $int15, ^setsize_abs, ^setsize_abs, $buy_items);
+if_setsize($int9, $int15, ^setsize_abs, ^setsize_abs, $buy_prices);
+if ($int15 > if_getheight($buy_contents)) {
+    if_setscrollsize(0, $int15, $buy_contents);
 } else {
-    if_setscrollsize(0, 0, $com_22);
+    if_setscrollsize(0, 0, $buy_contents);
 }
-~scrollbar_vertical($com_25, $com_22, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~scrollbar_vertical($buy_scrollbar, $buy_contents, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");

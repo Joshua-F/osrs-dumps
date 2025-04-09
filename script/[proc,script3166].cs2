@@ -1,16 +1,16 @@
 // 3166
 [proc,script3166](dbrow $dbrow0, int $int1, int $int2)
-def_component $com_10 = interface_819:com_10;
-def_component $com_40 = interface_819:com_40;
-def_component $com_41 = interface_819:com_41;
+def_component $points_layer_1 = omnishop_main:points_layer_1;
+def_component $points_title_1 = omnishop_main:points_title_1;
+def_component $points_value_1 = omnishop_main:points_value_1;
 if ($int1 < 1) {
     return;
 }
-cc_deleteall($com_10);
-if_settext("", $com_40);
-if_settextfont(b12_full, $com_40);
-if_settext("", $com_41);
-if_settextfont(q8_full, $com_41);
+cc_deleteall($points_layer_1);
+if_settext("", $points_title_1);
+if_settextfont(b12_full, $points_title_1);
+if_settext("", $points_value_1);
+if_settextfont(q8_full, $points_value_1);
 def_int $int6 = 0;
 def_int $int7 = 0;
 def_int $int8 = 2;
@@ -34,24 +34,24 @@ if ($int1 > 1) {
     }
 }
 while ($int6 < $int1) {
-    $dbrow13 = db_getfield($dbrow0, dbtable_39:col2, $int6);
+    $dbrow13 = db_getfield($dbrow0, omnishop_shop_data:omnishop_shop_currency, $int6);
     if ($dbrow13 ! null) {
-        $string = db_getfield($dbrow13, dbtable_41:col2, 0);
-        $graphic17, $graphic18 = db_getfield($dbrow13, dbtable_41:col3, 0);
+        $string = db_getfield($dbrow13, omnishop_currency_data:omnishop_currency_name_plural, 0);
+        $graphic17, $graphic18 = db_getfield($dbrow13, omnishop_currency_data:omnishop_currency_graphic, 0);
         $int14 = ~omnishop_var_getter($dbrow13);
         if ($graphic18 ! null) {
             $int12 = calc($int8 + scale(45, 100, $int10) - ($int19 + 11));
-            $int7 = ~omnishop_currency_draw_icon($graphic18, $com_10, $int7, $int12, $int9, $int19, $int19, ^setpos_abs_left, ^setpos_abs_top, 0, -1);
-            $int7 = ~omnishop_currency_clickbox($com_10, $int7, $int12, $int9, $int19, $int19, "You have <~tostring_spacer($int14, ",")> <$string> to spend in this shop.", $string);
+            $int7 = ~omnishop_currency_draw_icon($graphic18, $points_layer_1, $int7, $int12, $int9, $int19, $int19, ^setpos_abs_left, ^setpos_abs_top, 0, -1);
+            $int7 = ~omnishop_currency_clickbox($points_layer_1, $int7, $int12, $int9, $int19, $int19, "You have <~tostring_spacer($int14, ",")> <$string> to spend in this shop.", $string);
             $int11 = scale(45, 100, $int10);
             $int12 = calc($int8 + $int11 - 10);
-            $int7 = ~omnishop_currency_draw_value($int14, $int15, $int16, $com_10, $int7, $int12, $int9, ^setpos_abs_left, ^setpos_abs_top, 0, $int11, 18);
-            $int7 = ~omnishop_currency_clickbox($com_10, $int7, $int12, $int9, $int11, 18, "You have <~tostring_spacer($int14, ",")> <$string> to spend in this shop.", $string);
+            $int7 = ~omnishop_currency_draw_value($int14, $int15, $int16, $points_layer_1, $int7, $int12, $int9, ^setpos_abs_left, ^setpos_abs_top, 0, $int11, 18);
+            $int7 = ~omnishop_currency_clickbox($points_layer_1, $int7, $int12, $int9, $int11, 18, "You have <~tostring_spacer($int14, ",")> <$string> to spend in this shop.", $string);
         } else {
             $int11 = calc($int10 / 2);
-            $int7 = ~omnishop_currency_draw_title($string, $com_10, $int7, calc($int8 + 5), calc($int9 + 2), ^setpos_abs_left, ^setpos_abs_top, 0, $int11, 18);
-            $int7 = ~omnishop_currency_draw_value($int14, $int15, $int16, $com_10, $int7, calc($int8 + 5), calc($int9 + 2), ^setpos_abs_right, ^setpos_abs_top, 2, $int11, 18);
-            $int7 = ~omnishop_currency_clickbox($com_10, $int7, $int12, $int9, $int10, 18, "You have <~tostring_spacer($int14, ",")> <$string> to spend in this shop.", $string);
+            $int7 = ~omnishop_currency_draw_title($string, $points_layer_1, $int7, calc($int8 + 5), calc($int9 + 2), ^setpos_abs_left, ^setpos_abs_top, 0, $int11, 18);
+            $int7 = ~omnishop_currency_draw_value($int14, $int15, $int16, $points_layer_1, $int7, calc($int8 + 5), calc($int9 + 2), ^setpos_abs_right, ^setpos_abs_top, 2, $int11, 18);
+            $int7 = ~omnishop_currency_clickbox($points_layer_1, $int7, $int12, $int9, $int10, 18, "You have <~tostring_spacer($int14, ",")> <$string> to spend in this shop.", $string);
             return;
         }
         $int8 = calc($int8 + $int10);

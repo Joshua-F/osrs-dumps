@@ -1,20 +1,20 @@
 // 803
-[clientscript,ge_offers_init](component $com_0, component $com_2, component $com_3, component $com_4, component $com_5, component $com_6, component $com_15, component $com_17, component $com_23, component $com_24, component $com_25, component $com_27, component $com_29, component $com_32)
-def_int $int14 = ~steelborder($com_2, "", 0);
-~ge_offers_index_inittop($com_6);
+[clientscript,ge_offers_init](component $universe, component $frame, component $history, component $back, component $index, component $collectall, component $details, component $details_marketprice, component $details_status, component $details_collect, component $setup, component $setup_marketprice, component $setup_confirm, component $tooltip)
+def_int $int14 = ~steelborder($frame, "", 0);
+~ge_offers_index_inittop($collectall);
 def_int $int15 = 0;
 def_component $component = enum(int, component, enum_245, $int15);
 while ($component ! null) {
-    ~ge_offers_index_initslot($com_2, $int14, $com_4, $com_5, $com_15, $com_25, $component, $int15, $com_32);
+    ~ge_offers_index_initslot($frame, $int14, $back, $index, $details, $setup, $component, $int15, $tooltip);
     $int15 = calc($int15 + 1);
     $component = enum(int, component, enum_245, $int15);
 }
-~ge_offers_setup_init($com_25, $com_27, $com_29);
-~script819($com_15, $com_17, $com_23);
-if_setonvartransmit("ge_offers_reinit($com_25, $com_27, $com_29, $com_15, $com_17, $com_23){varplayer_499}", $com_2);
-~script816($com_24);
-~ge_offers_switchpanel($com_2, $int14, $com_4, $com_5, $com_15, $com_25, $com_32);
-if_setonvartransmit("ge_offers_switchpanel($com_2, $int14, $com_4, $com_5, $com_15, $com_25, $com_32){varplayer_375}", $com_0);
-if_setonstocktransmit("ge_offers_switchpanel($com_2, $int14, $com_4, $com_5, $com_15, $com_25, $com_32)", $com_0);
-if_setonop("script805(event_op, -1, -1, $com_2, $int14, $com_4, $com_5, $com_15, $com_25, $com_32)", $com_4);
-~ge_offers_bigbutton($com_3, "History", 0);
+~ge_offers_setup_init($setup, $setup_marketprice, $setup_confirm);
+~script819($details, $details_marketprice, $details_status);
+if_setonvartransmit("ge_offers_reinit($setup, $setup_marketprice, $setup_confirm, $details, $details_marketprice, $details_status){magic_carpet_var}", $frame);
+~script816($details_collect);
+~ge_offers_switchpanel($frame, $int14, $back, $index, $details, $setup, $tooltip);
+if_setonvartransmit("ge_offers_switchpanel($frame, $int14, $back, $index, $details, $setup, $tooltip){armourhitsound}", $universe);
+if_setonstocktransmit("ge_offers_switchpanel($frame, $int14, $back, $index, $details, $setup, $tooltip)", $universe);
+if_setonop("script805(event_op, -1, -1, $frame, $int14, $back, $index, $details, $setup, $tooltip)", $back);
+~ge_offers_bigbutton($history, "History", 0);

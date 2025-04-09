@@ -1,8 +1,8 @@
 // 4284
-[clientscript,clan_info_init](component $com_1, component $com_2, component $com_4, component $com_6, component $com_18, component $com_19, component $com_20, component $com_21, component $com_22, component $com_23, component $com_24, component $com_25, component $com_26)
-def_int $int13 = ~steelborder($com_2, "", 1);
-cc_deleteall($com_4);
-cc_create($com_4, ^iftype_text, 0);
+[clientscript,clan_info_init](component $universe, component $frame, component $contents, component $info_container, component $button_container, component $events, component $members, component $applications, component $hall, component $permissions, component $titles, component $banned, component $quit)
+def_int $int13 = ~steelborder($frame, "", 1);
+cc_deleteall($contents);
+cc_create($contents, ^iftype_text, 0);
 cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
 cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
 cc_setcolour(0xff981f);
@@ -11,15 +11,15 @@ cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
 cc_settextshadow(true);
 cc_settext("Loading...");
 def_int $int14 = cc_getid;
-~clan_info_draw($com_2, $int13, $com_4, $int14, $com_6, $com_18, $com_19, $com_20, $com_21, $com_22, $com_23, $com_25, $com_26);
-if_setonvartransmit("clan_info_draw($com_2, $int13, $com_4, $int14, $com_6, $com_18, $com_19, $com_20, $com_21, $com_22, $com_23, $com_25, $com_26){varplayer_3019}", $com_1);
-if_setonclansettingstransmit("clan_info_draw($com_2, $int13, $com_4, $int14, $com_6, $com_18, $com_19, $com_20, $com_21, $com_22, $com_23, $com_25, $com_26)", $com_1);
-~stonebutton_init("Titles", $com_24, p12_full, 0);
-if_setonop("opsound(event_op, 2)", $com_24);
-if_setonop("opsound(event_op, 2)", $com_19);
-if_setonop("opsound(event_op, 2)", $com_20);
-if_setonop("opsound(event_op, 2)", $com_21);
-if_setonop("opsound(event_op, 2)", $com_22);
-if_setonop("opsound(event_op, 2)", $com_23);
-if_setonop("opsound(event_op, 2)", $com_25);
-if_setonop("opsound(event_op, 2)", $com_26);
+~clan_info_draw($frame, $int13, $contents, $int14, $info_container, $button_container, $events, $members, $applications, $hall, $permissions, $banned, $quit);
+if_setonvartransmit("clan_info_draw($frame, $int13, $contents, $int14, $info_container, $button_container, $events, $members, $applications, $hall, $permissions, $banned, $quit){clan_temp_transmit_0}", $universe);
+if_setonclansettingstransmit("clan_info_draw($frame, $int13, $contents, $int14, $info_container, $button_container, $events, $members, $applications, $hall, $permissions, $banned, $quit)", $universe);
+~stonebutton_init("Titles", $titles, p12_full, 0);
+if_setonop("opsound(event_op, 2)", $titles);
+if_setonop("opsound(event_op, 2)", $events);
+if_setonop("opsound(event_op, 2)", $members);
+if_setonop("opsound(event_op, 2)", $applications);
+if_setonop("opsound(event_op, 2)", $hall);
+if_setonop("opsound(event_op, 2)", $permissions);
+if_setonop("opsound(event_op, 2)", $banned);
+if_setonop("opsound(event_op, 2)", $quit);

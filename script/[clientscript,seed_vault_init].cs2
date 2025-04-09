@@ -1,12 +1,12 @@
 // 2818
-[clientscript,seed_vault_init](component $com_15, component $com_16, component $com_13, component $com_14, component $com_11, component $com_10, component $com_12, component $com_24)
+[clientscript,seed_vault_init](component $obj_list, component $text_list, component $category_headers, component $category_lines, component $list, component $right_scroll, component $faves, component $search)
 def_int $int = %varclient_376;
 if (~seed_vault_searching = true) {
     ~meslayer_close(1, 1, 1);
 }
-~scrollbar_vertical($com_10, $com_11, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-~seed_vault_build($com_15, $com_16, $com_13, $com_14, $com_11, $com_10, $com_12);
-if_setonop("seed_vault_search_toggle($com_15, $com_16, $com_13, $com_14, $com_11, $com_10, $com_12, $com_24)", $com_24);
-if_setoninvtransmit("seed_vault_build($com_15, $com_16, $com_13, $com_14, $com_11, $com_10, $com_12){inv_626}", $com_11);
-if_setonvartransmit("seed_vault_build($com_15, $com_16, $com_13, $com_14, $com_11, $com_10, $com_12){varplayer_2195, varplayer_2196, varplayer_2197}", $com_11);
+~scrollbar_vertical($right_scroll, $list, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~seed_vault_build($obj_list, $text_list, $category_headers, $category_lines, $list, $right_scroll, $faves);
+if_setonop("seed_vault_search_toggle($obj_list, $text_list, $category_headers, $category_lines, $list, $right_scroll, $faves, $search)", $search);
+if_setoninvtransmit("seed_vault_build($obj_list, $text_list, $category_headers, $category_lines, $list, $right_scroll, $faves){seed_vault}", $list);
+if_setonvartransmit("seed_vault_build($obj_list, $text_list, $category_headers, $category_lines, $list, $right_scroll, $faves){seed_vault_selected_qty, seed_vault_favourites1, seed_vault_favourites2}", $list);
 %varclient_376 = $int;

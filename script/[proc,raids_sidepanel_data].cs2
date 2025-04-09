@@ -1,33 +1,33 @@
 // 1540
 [proc,raids_sidepanel_data](component $component0, component $component1)
-def_string $string0 = "Party size: <col=ffffff><tostring(%varplayerbit_5424)></col>  Combat level: <col=ffffff><tostring(%varplayerbit_12285)></col>";
-if (%varplayerbit_9540 > %varplayerbit_5424) {
-    $string0 = append($string0, "<br>Scaled party size: <col=ffffff><tostring(%varplayerbit_9540)></col>");
+def_string $string0 = "Party size: <col=ffffff><tostring(%raids_client_partysize)></col>  Combat level: <col=ffffff><tostring(%raids_client_highestcombat)></col>";
+if (%raids_client_partysize_scaled > %raids_client_partysize) {
+    $string0 = append($string0, "<br>Scaled party size: <col=ffffff><tostring(%raids_client_partysize_scaled)></col>");
 }
 cc_settext($string0);
-if (%varplayerbit_5425 = 0) {
-    if (%varplayerbit_5423 = 1) {
+if (%raids_client_progress = 0) {
+    if (%raids_client_isleader = 1) {
         .cc_settext("");
     } else {
         .cc_settext("Waiting for your leader to begin the raid...");
     }
-} else if (%varplayerbit_5425 = 1) {
+} else if (%raids_client_progress = 1) {
     .cc_settext("Your party is exploring the upper level...");
-} else if (%varplayerbit_5425 = 2) {
-    if (%varplayerbit_6385 = 1) {
+} else if (%raids_client_progress = 2) {
+    if (%raids_challenge_mode = 1) {
         .cc_settext("Your party has reached the middle level...");
     } else {
         .cc_settext("Your party has reached the lower level...");
     }
-} else if (%varplayerbit_5425 = 3) {
+} else if (%raids_client_progress = 3) {
     .cc_settext("Your party has reached the lower level...");
-} else if (%varplayerbit_5425 = 4) {
+} else if (%raids_client_progress = 4) {
     .cc_settext("Your party has reached the bottom...");
 } else {
     .cc_settext("Get out! Get out!<br>GET OUT!");
 }
 def_string $string1 = "Start raid";
-if (%varplayerbit_5423 = 1 & %varplayerbit_5425 = 0) {
+if (%raids_client_isleader = 1 & %raids_client_progress = 0) {
     if_setsize(calc(parawidth($string1, 190, p12_full) + 20), if_getheight($component1), ^setsize_abs, ^setsize_abs, $component1);
     if_sethide(false, $component1);
     ~raids_sidepanel_drawbutton(false, $string1, $component1);

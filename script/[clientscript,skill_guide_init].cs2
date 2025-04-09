@@ -1,10 +1,10 @@
 // 654
-[clientscript,skill_guide_init](component $com_1, component $com_7, component $com_8, component $com_10, component $com_29, component $com_11, component $com_5, component $com_4, component $com_6, component $com_12, component $com_0)
-~skill_guide_build($com_7, $com_8, $com_10, $com_29, $com_11, $com_5, $com_4, $com_6, $com_12, $com_0);
+[clientscript,skill_guide_init](component $universe, component $title, component $description, component $info, component $icons, component $scrollbar, component $scroll_top, component $scroll_middle, component $scroll_bottom, component $categories, component $infinity)
+~skill_guide_build($title, $description, $info, $icons, $scrollbar, $scroll_top, $scroll_middle, $scroll_bottom, $categories, $infinity);
 def_enum $enum = ~toplevel_getcomponents;
-def_component $component = enum(component, component, $enum, interface_161:com_16);
+def_component $component = enum(component, component, $enum, toplevel_osrs_stretch:mainmodal);
 if (~on_mobile = true) {
-    if_setontimer("script3833($com_0, $com_1, 0)", $com_0);
+    if_setontimer("script3833($infinity, $universe, 0)", $infinity);
 } else {
     if (%varclient_1170 = 0 & %varclient_1171 = 0 & %varclient_1168 = 0 & %varclient_1169 = 0) {
         %varclient_1168 = if_getwidth($component);
@@ -12,8 +12,8 @@ if (~on_mobile = true) {
         %varclient_1170 = if_getx($component);
         %varclient_1171 = if_gety($component);
     }
-    if_setontimer("responsive_interface_scaler($com_0, -1)", $com_0);
-    if_setonresize("skill_guide_rebuild", $com_0);
+    if_setontimer("responsive_interface_scaler($infinity, -1)", $infinity);
+    if_setonresize("skill_guide_rebuild", $infinity);
 }
-if_setonvartransmit("skill_guide_build($com_7, $com_8, $com_10, $com_29, $com_11, $com_5, $com_4, $com_6, $com_12, $com_0){varplayer_965}", $com_1);
-~skill_guide_v2_size_handler(-1, -1, $com_0, $com_1);
+if_setonvartransmit("skill_guide_build($title, $description, $info, $icons, $scrollbar, $scroll_top, $scroll_middle, $scroll_bottom, $categories, $infinity){skill_guide_v2}", $universe);
+~skill_guide_v2_size_handler(-1, -1, $infinity, $universe);

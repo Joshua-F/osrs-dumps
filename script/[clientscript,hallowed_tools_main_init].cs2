@@ -1,21 +1,21 @@
 // 3531
-[clientscript,hallowed_tools_main_init](component $com_0, component $com_8, component $com_3, component $com_4, component $com_5, component $com_6, component $com_7, component $com_9, component $com_10)
-~hallowed_tools_main_create($com_8, obj_24719, "Token", enum(obj, int, enum_342, obj_24719));
-~hallowed_tools_main_create($com_3, obj_24721, "Grapple", enum(obj, int, enum_342, obj_24721));
-~hallowed_tools_main_create($com_4, obj_24723, "Focus", enum(obj, int, enum_342, obj_24723));
-~hallowed_tools_main_create($com_5, obj_24725, "Symbol", enum(obj, int, enum_342, obj_24725));
-~hallowed_tools_main_create($com_6, obj_24727, "Hammer", enum(obj, int, enum_342, obj_24727));
-~hallowed_tools_main_create($com_7, obj_24731, "Ring", enum(obj, int, enum_342, obj_24731));
-~script3574($com_9, "Withdraw", false);
-cc_deleteall($com_10);
+[clientscript,hallowed_tools_main_init](component $universe, component $token, component $grapple, component $focus, component $symbol, component $hammer, component $ring, component $withdrawal_all, component $quantity_selection)
+~hallowed_tools_main_create($token, hallowed_token, "Token", enum(obj, int, enum_342, hallowed_token));
+~hallowed_tools_main_create($grapple, hallowed_grapple, "Grapple", enum(obj, int, enum_342, hallowed_grapple));
+~hallowed_tools_main_create($focus, hallowed_focus, "Focus", enum(obj, int, enum_342, hallowed_focus));
+~hallowed_tools_main_create($symbol, hallowed_symbol, "Symbol", enum(obj, int, enum_342, hallowed_symbol));
+~hallowed_tools_main_create($hammer, hallowed_hammer, "Hammer", enum(obj, int, enum_342, hallowed_hammer));
+~hallowed_tools_main_create($ring, hallowed_ring, "Ring", enum(obj, int, enum_342, hallowed_ring));
+~script3574($withdrawal_all, "Withdraw", false);
+cc_deleteall($quantity_selection);
 def_int $int = 0;
-cc_create($com_10, ^iftype_graphic, $int);
+cc_create($quantity_selection, ^iftype_graphic, $int);
 cc_setgraphic("steelborder2,0");
 cc_settiling(true);
 cc_setposition(0, -10, ^setpos_abs_centre, ^setpos_abs_top);
 cc_setsize(0, 20, ^setsize_minus, ^setsize_abs);
 $int = calc($int + 1);
-cc_create($com_10, ^iftype_text, $int);
+cc_create($quantity_selection, ^iftype_text, $int);
 cc_setposition(20, 5, ^setpos_rel_left, ^setpos_abs_centre);
 cc_setsize(140, 36, ^setsize_abs, ^setsize_abs);
 cc_setcolour(0xff981f);
@@ -24,4 +24,4 @@ cc_settextshadow(true);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
 cc_settext("Withdrawal / Storage<br>Quantity");
 $int = calc($int + 1);
-~script1648(enum_342, interface_666:com_11, interface_666:com_12, null, interface_666:com_14, interface_666:com_13);
+~script1648(enum_342, hallowed_tools:quantity_1, hallowed_tools:quantity_5, null, hallowed_tools:quantity_all, hallowed_tools:quantity_x);

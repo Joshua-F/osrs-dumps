@@ -1,16 +1,16 @@
 // 985
-[clientscript,keybind_open_menu](component $component0, component $com_108, component $com_107, component $com_111, int $int4, int $int5, component $component6)
-%varplayerbit_4690 = $int5;
-~keybind_build_dropdown($com_108, $com_107, $com_111, $int4);
+[clientscript,keybind_open_menu](component $component0, component $dropdown, component $dropdown_bounding_box, component $dropdown_list, int $int4, int $int5, component $component6)
+%keybinding_stone_selection = $int5;
+~keybind_build_dropdown($dropdown, $dropdown_bounding_box, $dropdown_list, $int4);
 def_component $component7 = if_getlayer($component0);
-if_setposition(calc(if_getx($component7) + 40), calc(if_gety($component7) + 22), ^setpos_abs_left, ^setpos_abs_top, $com_108);
-if (calc(if_gety($com_108) + if_getheight($com_108)) > if_getheight($com_107)) {
-    if_setposition(if_getx($com_108), calc(if_gety($component7) + 6 - if_getheight($com_108)), ^setpos_abs_left, ^setpos_abs_top, $com_108);
+if_setposition(calc(if_getx($component7) + 40), calc(if_gety($component7) + 22), ^setpos_abs_left, ^setpos_abs_top, $dropdown);
+if (calc(if_gety($dropdown) + if_getheight($dropdown)) > if_getheight($dropdown_bounding_box)) {
+    if_setposition(if_getx($dropdown), calc(if_gety($component7) + 6 - if_getheight($dropdown)), ^setpos_abs_left, ^setpos_abs_top, $dropdown);
 }
 if (~on_mobile = true) {
     if_setgraphic("mobile_stones,1", $component6);
 } else {
     if_setgraphic("pre_eoc_stones,1", $component6);
 }
-if_sethide(false, $com_107);
-if_setonclick("keybind_close_dropdown($com_107, $component6)", $com_107);
+if_sethide(false, $dropdown_bounding_box);
+if_setonclick("keybind_close_dropdown($dropdown_bounding_box, $component6)", $dropdown_bounding_box);

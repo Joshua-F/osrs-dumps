@@ -1,14 +1,14 @@
 // 6580
 [clientscript,toa_speedrun_time_update](int $int, boolean $boolean)
 if ($int = -1) {
-    if_setontimer(null, interface_481:com_46);
-    if_settext("-", interface_481:com_46);
+    if_setontimer(null, toa_hud:raid_timer);
+    if_settext("-", toa_hud:raid_timer);
 } else {
     $int = calc($int * 30 - clientclock);
     if ($boolean = true) {
-        ~toa_time_update_timer(interface_481:com_46, $int, %varplayerbit_11866, %varplayerbit_11890);
-        if_setontimer(null, interface_481:com_46);
+        ~toa_time_update_timer(toa_hud:raid_timer, $int, %option_precise_timing, %option_separate_hours);
+        if_setontimer(null, toa_hud:raid_timer);
     } else {
-        if_setontimer("toa_time_update_timer(interface_481:com_46, $int, %varplayerbit_11866, %varplayerbit_11890)", interface_481:com_46);
+        if_setontimer("toa_time_update_timer(toa_hud:raid_timer, $int, %option_precise_timing, %option_separate_hours)", toa_hud:raid_timer);
     }
 }

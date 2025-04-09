@@ -1,5 +1,5 @@
 // 6206
-[clientscript,script6206](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $com_143, component $component7, enum $enum)
+[clientscript,script6206](component $opponent, component $component1, component $component2, component $component3, component $component4, component $component5, component $opponent_confirm, component $component7, enum $enum)
 cc_deleteall($component2);
 def_int $int = 0;
 cc_create($component2, ^iftype_graphic, $int);
@@ -23,16 +23,16 @@ cc_settextshadow(true);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
 cc_settext("---");
 ~script6208($component1, $component3, $component4, $enum);
-if_setonvartransmit("script6207($component1, $component3, $component4, $enum){varplayer_3465, varplayer_3533}", $component0);
-if_setoninvtransmit("script6207($component1, $component3, $component4, $enum){inv_207}", $component0);
+if_setonvartransmit("script6207($component1, $component3, $component4, $enum){pvpa_temp_transmit_1, pvpa_unrankedduel_transmit_opponentrunepouch}", $opponent);
+if_setoninvtransmit("script6207($component1, $component3, $component4, $enum){trail_puzzlehintinv}", $opponent);
 def_string $string = "";
-if ($com_143 ! null) {
-    if_sethide(false, $com_143);
-    ~script6210($component5, $com_143, $component7);
-    if_setonvartransmit("script6209($component5, $com_143, $component7){varplayer_3465}", $component5);
+if ($opponent_confirm ! null) {
+    if_sethide(false, $opponent_confirm);
+    ~script6210($component5, $opponent_confirm, $component7);
+    if_setonvartransmit("script6209($component5, $opponent_confirm, $component7){pvpa_temp_transmit_1}", $component5);
 } else {
     ~script6708($component5);
-    if_setonvartransmit("script6707($component5){varplayer_3465}", $component5);
+    if_setonvartransmit("script6707($component5){pvpa_temp_transmit_1}", $component5);
     $string = "<col=0dc10d>Copy Load-out</col>";
     ~stonebutton_init($string, $component7, p12_full, 0);
     if_setonop("script6709(event_op, $string, $component7, p12_full)", $component7);

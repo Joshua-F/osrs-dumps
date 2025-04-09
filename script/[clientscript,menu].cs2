@@ -1,31 +1,31 @@
 // 217
 [clientscript,menu](string $string0, string $string1, boolean $boolean)
-def_component $com_0 = interface_187:com_0;
-def_component $com_3 = interface_187:com_3;
-def_component $com_2 = interface_187:com_2;
-def_component $com_1 = interface_187:com_1;
+def_component $lj_layer2 = menu:lj_layer2;
+def_component $lj_layer1 = menu:lj_layer1;
+def_component $lj_scroll_bar = menu:lj_scroll_bar;
+def_component $keylisteners = menu:keylisteners;
 if (~on_mobile = true) {
     $boolean = false;
 }
 if ($boolean = true) {
     ~chatdefault_stopinput;
 }
-~script219($com_0, $com_3, $com_2, $string0, 33);
-cc_deleteall($com_1);
-def_int $int5 = if_getwidth($com_3);
+~script219($lj_layer2, $lj_layer1, $lj_scroll_bar, $string0, 33);
+cc_deleteall($keylisteners);
+def_int $int5 = if_getwidth($lj_layer1);
 def_int $int6 = 0;
 def_int $int7 = 0;
 def_int $int8 = string_indexof_string($string1, "|", 0);
 def_string $string2 = "";
 while ($int8 ! -1) {
     $string2 = substring($string1, 0, $int8);
-    $int6, $int7 = ~menu_createentry($string2, $com_3, $com_1, $int5, $int6, $int7, $boolean);
+    $int6, $int7 = ~menu_createentry($string2, $lj_layer1, $keylisteners, $int5, $int6, $int7, $boolean);
     $string1 = substring($string1, calc($int8 + 1), string_length($string1));
     $int8 = string_indexof_string($string1, "|", 0);
 }
-$int6, $int7 = ~menu_createentry($string1, $com_3, $com_1, $int5, $int6, $int7, $boolean);
-if_setscrollsize(0, $int7, $com_3);
-if_setscrollpos(0, 0, $com_3);
-if ($int7 > if_getheight($com_3)) {
-    ~scrollbar_vertical($com_2, $com_3, "scrollbar_parchment_dragger_v2,3", "scrollbar_parchment_dragger_v2,0", "scrollbar_parchment_dragger_v2,1", "scrollbar_parchment_dragger_v2,2", "scrollbar_parchment_v2,0", "scrollbar_parchment_v2,1");
+$int6, $int7 = ~menu_createentry($string1, $lj_layer1, $keylisteners, $int5, $int6, $int7, $boolean);
+if_setscrollsize(0, $int7, $lj_layer1);
+if_setscrollpos(0, 0, $lj_layer1);
+if ($int7 > if_getheight($lj_layer1)) {
+    ~scrollbar_vertical($lj_scroll_bar, $lj_layer1, "scrollbar_parchment_dragger_v2,3", "scrollbar_parchment_dragger_v2,0", "scrollbar_parchment_dragger_v2,1", "scrollbar_parchment_dragger_v2,2", "scrollbar_parchment_v2,0", "scrollbar_parchment_v2,1");
 }

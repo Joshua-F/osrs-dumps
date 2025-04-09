@@ -1,31 +1,31 @@
 // 7099
-[clientscript,script7099](component $com_85, component $com_96, component $com_97, component $com_43, component $com_84)
-cc_deleteall($com_96);
+[clientscript,script7099](component $master_icon, component $master_bobble_container, component $master_slider_bobble, component $tooltip, component $master_holder)
+cc_deleteall($master_bobble_container);
 if (~on_enhanced_any = false) {
-    if_sethide(true, $com_84);
+    if_sethide(true, $master_holder);
     return;
 }
 def_int $int5 = struct_param(struct_2753, param_1101);
 def_int $int6 = 0;
-def_int $int7 = if_getwidth($com_96);
+def_int $int7 = if_getwidth($master_bobble_container);
 def_graphic $graphic = "options_icons,58";
 def_int $int9 = ~settings_get_slider(319);
 ~settings_set_slider(319, $int9);
 def_string $string0 = "Mute Master";
 def_string $string1 = "Unmute Master";
-~settings_create_icon($int9, 319, $com_97, $com_96, $int5, $graphic, $com_85, $string0, $string1, $com_43);
-if_setonvartransmit("script3939(319, $com_97, $com_96, $int5, $graphic, $com_85, $string0, $string1, $com_43){varplayer_3796}", $com_97);
-if_setnoclickthrough(true, $com_97);
-if_setonclick("opsound(0, 0)", $com_97);
+~settings_create_icon($int9, 319, $master_slider_bobble, $master_bobble_container, $int5, $graphic, $master_icon, $string0, $string1, $tooltip);
+if_setonvartransmit("script3939(319, $master_slider_bobble, $master_bobble_container, $int5, $graphic, $master_icon, $string0, $string1, $tooltip){option_master_volume}", $master_slider_bobble);
+if_setnoclickthrough(true, $master_slider_bobble);
+if_setonclick("opsound(0, 0)", $master_slider_bobble);
 while ($int6 <= $int5) {
-    cc_create($com_96, ^iftype_rectangle, $int6);
+    cc_create($master_bobble_container, ^iftype_rectangle, $int6);
     cc_setop(1, "Adjust Master Volume");
     cc_setposition(scale($int6, $int5, $int7), 0, ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize(calc(scale(calc(1 + $int6), $int5, $int7) - scale($int6, $int5, $int7)), 0, ^setsize_abs, ^setsize_minus);
     cc_setfill(true);
     cc_setcolour(^white);
     cc_settrans(255);
-    cc_setonop("settings_side_notch_op(319, $int6, $com_97, $com_96, $int5, $graphic, $com_85, $string0, $string1, $com_43)");
+    cc_setonop("settings_side_notch_op(319, $int6, $master_slider_bobble, $master_bobble_container, $int5, $graphic, $master_icon, $string0, $string1, $tooltip)");
     $int6 = calc($int6 + 1);
 }
-~script3941($int9, $com_97, $com_96, $int5);
+~script3941($int9, $master_slider_bobble, $master_bobble_container, $int5);

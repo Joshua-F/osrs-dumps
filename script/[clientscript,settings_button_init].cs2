@@ -1,7 +1,7 @@
 // 3903
-[clientscript,settings_button_init](component $com_32, component $com_43)
-def_int $int = ~v2_stone_button_filled($com_32);
-cc_create($com_32, ^iftype_text, $int);
+[clientscript,settings_button_init](component $settings_open, component $tooltip)
+def_int $int = ~v2_stone_button_filled($settings_open);
+cc_create($settings_open, ^iftype_text, $int);
 cc_setsize(10, 10, ^setsize_minus, ^setsize_minus);
 cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
 cc_settext("All Settings");
@@ -10,7 +10,7 @@ cc_settextshadow(true);
 cc_setcolour(0xff981f);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 14);
 if (~on_mobile = false) {
-    if_setonmouserepeat("settings_button_repeat($com_32, $com_43)", $com_32);
-    if_setonmouseleave("settings_button_leave($com_32, $com_43)", $com_32);
+    if_setonmouserepeat("settings_button_repeat($settings_open, $tooltip)", $settings_open);
+    if_setonmouseleave("settings_button_leave($settings_open, $tooltip)", $settings_open);
 }
-if_setonop("settings_side_op_sound", $com_32);
+if_setonop("settings_side_op_sound", $settings_open);

@@ -2,16 +2,16 @@
 [proc,script5990](dbrow $dbrow)(boolean)
 def_stat $stat = null;
 def_int $int2 = -1;
-def_int $int3 = db_getfieldcount($dbrow, dbtable_0:col24);
+def_int $int3 = db_getfieldcount($dbrow, quest:recommended_stats);
 def_int $int4 = 0;
 while ($int4 < $int3) {
-    $stat, $int2 = db_getfield($dbrow, dbtable_0:col24, $int4);
+    $stat, $int2 = db_getfield($dbrow, quest:recommended_stats, $int4);
     if (~quest_requirement_check_skill($stat, $int2) = false) {
         return(false);
     }
     $int4 = calc($int4 + 1);
 }
-if (%varclient_52 < db_getfield($dbrow, dbtable_0:col28, 0)) {
+if (%varclient_52 < db_getfield($dbrow, quest:recommended_combat, 0)) {
     return(false);
 }
 return(true);

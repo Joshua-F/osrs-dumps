@@ -1,7 +1,7 @@
 // 2010
-[clientscript,fossil_volcanic_shop_init](component $com_0, component $com_3, component $com_4, component $com_5)
-def_int $int4 = calc(if_getwidth($com_3) / 2);
-cc_deleteall($com_3);
+[clientscript,fossil_volcanic_shop_init](component $universe, component $items, component $scrollbar, component $points)
+def_int $int4 = calc(if_getwidth($items) / 2);
+cc_deleteall($items);
 def_int $int5 = 0;
 def_int $int6 = 0;
 def_int $int7 = 0;
@@ -9,7 +9,7 @@ def_int $int8 = 0;
 def_int $int9 = 0;
 def_obj $obj = enum(int, namedobj, enum_1779, $int9);
 while ($obj ! null) {
-    cc_create($com_3, ^iftype_rectangle, $int5);
+    cc_create($items, ^iftype_rectangle, $int5);
     $int5 = calc($int5 + 1);
     cc_setcolour(^white);
     cc_setfill(true);
@@ -38,9 +38,9 @@ while ($obj ! null) {
     cc_setonmouseleave("cc_settrans(event_com, event_comsubid, $int8, null)");
     cc_setop(1, "Value");
     cc_setop(10, "Examine");
-    if ($obj = obj_21539) {
+    if ($obj = fossil_mine_water_container) {
         cc_setop(2, "Unlock");
-    } else if ($obj = obj_21697) {
+    } else if ($obj = fossil_mine_ultrasoil_book) {
         cc_setop(2, "Buy");
     } else if (oc_param($obj, param_142) > 0) {
         cc_setop(2, "Buy");
@@ -53,7 +53,7 @@ while ($obj ! null) {
         }
         cc_setop(6, "Buy-X");
     }
-    if ($obj = obj_21539) {
+    if ($obj = fossil_mine_water_container) {
         cc_setopbase("<col=ff9040>Large water container</col>");
     }
     cc_setopbase("<col=ff9040><oc_name($obj)></col>");
@@ -63,7 +63,7 @@ while ($obj ! null) {
 }
 if ($int9 > 0) {
     if (calc($int9 % 2) = 1) {
-        cc_create($com_3, ^iftype_rectangle, $int5);
+        cc_create($items, ^iftype_rectangle, $int5);
         $int5 = calc($int5 + 1);
         cc_setsize($int4, 40, ^setsize_minus, ^setsize_abs);
         cc_setposition(0, $int7, ^setpos_abs_right, ^setpos_abs_top);
@@ -77,12 +77,12 @@ if ($int9 > 0) {
     }
     $int7 = calc($int7 + 40);
 }
-if_setscrollpos(0, 0, $com_3);
-if ($int7 > if_getheight($com_3)) {
-    if_setscrollsize(0, $int7, $com_3);
+if_setscrollpos(0, 0, $items);
+if ($int7 > if_getheight($items)) {
+    if_setscrollsize(0, $int7, $items);
 } else {
-    if_setscrollsize(0, 0, $com_3);
-    cc_create($com_3, ^iftype_rectangle, $int5);
+    if_setscrollsize(0, 0, $items);
+    cc_create($items, ^iftype_rectangle, $int5);
     $int5 = calc($int5 + 1);
     cc_setsize(0, $int7, ^setsize_minus, ^setsize_minus);
     cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_bottom);
@@ -90,23 +90,23 @@ if ($int7 > if_getheight($com_3)) {
     cc_setfill(true);
     cc_settrans(245);
 }
-~scrollbar_vertical($com_4, $com_3, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~scrollbar_vertical($scrollbar, $items, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
 def_int $int11 = calc((40 - 32) / 2);
 def_int $int12 = calc(3 + 36 + 3);
 def_int $int13 = calc($int4 - $int12);
 def_int $int14 = 0;
 while ($int9 > 0) {
     $int9 = calc($int9 - 1);
-    if (cc_find($com_3, $int9) = true) {
+    if (cc_find($items, $int9) = true) {
         $obj = enum(int, namedobj, enum_1779, $int9);
-        .cc_create($com_3, ^iftype_graphic, $int5);
+        .cc_create($items, ^iftype_graphic, $int5);
         $int5 = calc($int5 + 1);
         .cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
         .cc_setposition(calc(cc_getx + 3), calc(cc_gety + $int11), ^setpos_abs_left, ^setpos_abs_top);
         .cc_setobject_nonum(oc_uncert($obj), 1);
         .cc_setoutline(1);
         .cc_setgraphicshadow(0x333333);
-        .cc_create($com_3, ^iftype_text, $int5);
+        .cc_create($items, ^iftype_text, $int5);
         $int5 = calc($int5 + 1);
         .cc_setsize($int13, 27, ^setsize_abs, ^setsize_abs);
         .cc_setposition(calc(cc_getx + $int12), cc_gety, ^setpos_abs_left, ^setpos_abs_top);
@@ -114,14 +114,14 @@ while ($int9 > 0) {
         .cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
         .cc_settextshadow(true);
         .cc_settextfont(p12_full);
-        if ($obj = obj_21539) {
+        if ($obj = fossil_mine_water_container) {
             .cc_settext("Large water container");
-        } else if ($obj = obj_21697) {
+        } else if ($obj = fossil_mine_ultrasoil_book) {
             .cc_settext("Ultra-fertile soil spell");
         } else {
             .cc_settext(oc_name($obj));
         }
-        .cc_create($com_3, ^iftype_text, $int5);
+        .cc_create($items, ^iftype_text, $int5);
         $int5 = calc($int5 + 1);
         .cc_setsize($int13, calc(40 - 27), ^setsize_abs, ^setsize_abs);
         .cc_setposition(calc(cc_getx + $int12), calc(cc_gety + 27), ^setpos_abs_left, ^setpos_abs_top);
@@ -130,10 +130,10 @@ while ($int9 > 0) {
         .cc_settextshadow(true);
         .cc_settextfont(p11_full);
         $int14 = enum(obj, int, enum_1780, $obj);
-        if ($obj = obj_21539 & %varplayerbit_5959 = 1) {
+        if ($obj = fossil_mine_water_container & %fossil_mine_unlocked_morewater = 1) {
             .cc_settext("<col=ff0000>Already unlocked</col>");
             .cc_settextshadow(false);
-        } else if ($obj = obj_21697 & %varplayerbit_5960 = 1) {
+        } else if ($obj = fossil_mine_ultrasoil_book & %fossil_mine_unlocked_ultrafertilesoil = 1) {
             .cc_settext("<col=ff0000>Already unlocked</col>");
             .cc_settextshadow(false);
         } else if ($int14 > 1) {
@@ -147,5 +147,5 @@ while ($int9 > 0) {
         }
     }
 }
-~fossil_volcanic_shop_points($com_5, 0);
-if_setonvartransmit("fossil_volcanic_shop_points($com_5){varplayer_261}", $com_5);
+~fossil_volcanic_shop_points($points, 0);
+if_setonvartransmit("fossil_volcanic_shop_points($points){if1}", $points);

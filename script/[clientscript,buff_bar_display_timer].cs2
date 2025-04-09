@@ -1,7 +1,7 @@
 // 5939
 [clientscript,buff_bar_display_timer]
-def_component $com_4 = interface_651:com_4;
-def_component $com_2 = interface_651:com_2;
+def_component $buff_display = buff_bar:buff_display;
+def_component $buff_listeners = buff_bar:buff_listeners;
 def_int $int2 = 0;
 def_int $int3 = 0;
 def_struct $struct = null;
@@ -12,18 +12,18 @@ def_int $int8 = 0;
 def_string $string0 = "0";
 def_string $string1 = "0";
 if (calc(clientclock % 10) = 0) {
-    while (cc_find($com_4, $int2) = true) {
+    while (cc_find($buff_display, $int2) = true) {
         $int5 = cc_getcolour;
         $struct = enum(int, struct, enum_4213, $int5);
         $int5 = struct_param($struct, param_1275);
-        if ($struct ! null & cc_find($com_2, $int5) = true) {
+        if ($struct ! null & cc_find($buff_listeners, $int5) = true) {
             $string0 = cc_gettext;
             $string1 = cc_getopbase;
             if (~buff_bar_buff_displays_value($struct) = true) {
-                if (cc_find($com_4, calc($int2 + 11 - 3)) = true) {
+                if (cc_find($buff_display, calc($int2 + 11 - 3)) = true) {
                     cc_settext($string0);
                 }
-                if (struct_param($struct, param_1553) = true & cc_find($com_4, calc($int2 + 11 - 2)) = true) {
+                if (struct_param($struct, param_1553) = true & cc_find($buff_display, calc($int2 + 11 - 2)) = true) {
                     cc_settext($string1);
                 }
             }

@@ -1,14 +1,14 @@
 // 739
 [proc,inferno_hud_update](component $component0, component $component1)
-def_string $string = "<tostring(%varplayerbit_5653)> / <tostring(%varplayerbit_5654)>";
+def_string $string = "<tostring(%inferno_zuk_hp)> / <tostring(%inferno_zuk_base_hp)>";
 if_settext($string, $component0);
-def_int $int = if_getwidth(interface_596:com_7);
-%varplayerbit_5654 = ~max(%varplayerbit_5654, 1);
-$int = scale(%varplayerbit_5653, %varplayerbit_5654, $int);
-if ($int = 0 & %varplayerbit_5653 > 0) {
+def_int $int = if_getwidth(inferno_hp_hud:health_bar_back);
+%inferno_zuk_base_hp = ~max(%inferno_zuk_base_hp, 1);
+$int = scale(%inferno_zuk_hp, %inferno_zuk_base_hp, $int);
+if ($int = 0 & %inferno_zuk_hp > 0) {
     $int = 1;
 }
-if ($int = if_getwidth(interface_596:com_7) & %varplayerbit_5653 < %varplayerbit_5654) {
+if ($int = if_getwidth(inferno_hp_hud:health_bar_back) & %inferno_zuk_hp < %inferno_zuk_base_hp) {
     $int = calc($int - 1);
 }
 if_setsize($int, if_getheight($component1), ^setsize_abs, ^setsize_abs, $component1);

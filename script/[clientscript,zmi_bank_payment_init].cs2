@@ -1,13 +1,13 @@
 // 1454
 [clientscript,zmi_bank_payment_init](boolean $boolean, string $string0, string $string1)
-def_component $com_1 = interface_106:com_1;
-def_component $com_2 = interface_106:com_2;
-def_component $com_17 = interface_106:com_17;
-~steelborder($com_1, $string0, 0);
-if_setonvartransmit("bank_payment_draw($com_2, -1, $boolean){varplayer_1139, varplayer_1140, varplayer_3574, varplayer_4017, varplayer_2606, varplayer_2632}", $com_2);
-if_setoninvtransmit("bank_payment_draw($com_2, -1, $boolean){inv_93}", $com_2);
-~bank_payment_draw($com_2, -1, $boolean);
-cc_create($com_17, ^iftype_text, 0);
+def_component $frame = zmi_bank_payment:frame;
+def_component $buttons_layer = zmi_bank_payment:buttons_layer;
+def_component $info_text_layer = zmi_bank_payment:info_text_layer;
+~steelborder($frame, $string0, 0);
+if_setonvartransmit("bank_payment_draw($buttons_layer, -1, $boolean){rune_pouch_a, rune_pouch_b, rune_pouch_c, rune_pouch_d, league_general, league_relics}", $buttons_layer);
+if_setoninvtransmit("bank_payment_draw($buttons_layer, -1, $boolean){inv}", $buttons_layer);
+~bank_payment_draw($buttons_layer, -1, $boolean);
+cc_create($info_text_layer, ^iftype_text, 0);
 cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
 cc_setposition(0, 0, ^setpos_rel_centre, ^setpos_rel_centre);
 cc_settext($string1);

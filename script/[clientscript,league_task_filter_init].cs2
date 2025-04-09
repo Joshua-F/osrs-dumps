@@ -1,13 +1,13 @@
 // 3207
-[clientscript,league_task_filter_init](enum $enum, component $component1, component $component2, component $com_32, component $com_33)
+[clientscript,league_task_filter_init](enum $enum, component $component1, component $component2, component $dropdown_container, component $dropdown_box)
 cc_deleteall($component2);
-def_struct $struct = enum(int, struct, enum_2670, %varplayerbit_10032);
+def_struct $struct = enum(int, struct, enum_2670, %league_type);
 if ($struct = null) {
     return;
 }
 def_int $rgb = struct_param($struct, param_1027);
-if_setcolour($rgb, interface_657:com_25);
-if_setcolour($rgb, interface_657:com_26);
+if_setcolour($rgb, league_tasks:tasks_none);
+if_setcolour($rgb, league_tasks:filter_title);
 def_int $int7 = 0;
 .cc_create($component2, ^iftype_graphic, $int7);
 $int7 = calc($int7 + 1);
@@ -40,8 +40,8 @@ cc_settextfont(p11_full);
 cc_settextshadow(true);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
 ~league_task_updatetext($enum);
-if_setonvartransmit("league_task_updatetext(event_com, $int8, $enum){varplayer_2606, varplayer_2805}", $component2);
-.cc_setonclick("league_task_filter_open($enum, $component1, $component2, $int8, $com_32, $com_33, $rgb)");
+if_setonvartransmit("league_task_updatetext(event_com, $int8, $enum){league_general, league_general_2}", $component2);
+.cc_setonclick("league_task_filter_open($enum, $component1, $component2, $int8, $dropdown_container, $dropdown_box, $rgb)");
 cc_create($component2, ^iftype_text, $int7);
 $int7 = calc($int7 + 1);
 cc_setposition(2, 0, ^setpos_abs_left, ^setpos_abs_top);

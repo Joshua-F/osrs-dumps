@@ -1,19 +1,19 @@
 // 453
-[clientscript,rune_pouch_init](component $com_0, component $com_1, component $com_3, component $com_4, component $com_7, component $com_11, component $com_12, component $com_13, component $com_14)
-cc_deleteall($com_7);
+[clientscript,rune_pouch_init](component $universe, component $frame, component $top, component $pouch, component $inventory, component $1, component $5, component $x, component $all)
+cc_deleteall($inventory);
 def_int $int9 = 0;
-def_int $int10 = inv_size(inv_93);
+def_int $int10 = inv_size(inv);
 def_int $int11 = max(1, calc($int10 / 4));
-def_int $int12 = calc((if_getwidth($com_7) - (2 + $int11 * 36 + 2)) / ($int11 + 1));
-def_int $int13 = calc(if_getheight($com_7) - 22);
+def_int $int12 = calc((if_getwidth($inventory) - (2 + $int11 * 36 + 2)) / ($int11 + 1));
+def_int $int13 = calc(if_getheight($inventory) - 22);
 def_int $int14 = calc(($int13 - 4 * 32) / (4 + 1));
 def_int $int15 = calc($int11 * 36 + ($int11 - 1) * $int12);
 def_int $int16 = calc(4 * 32 + (4 - 1) * $int14);
-def_int $int17 = calc((if_getwidth($com_7) + 1 - $int15) / 2);
+def_int $int17 = calc((if_getwidth($inventory) + 1 - $int15) / 2);
 def_int $int18 = calc(($int13 - $int16) / 2 + 20);
 $int12, $int14 = calc($int12 + 36), calc($int14 + 32);
 while ($int9 < $int10) {
-    cc_create($com_7, ^iftype_graphic, $int9);
+    cc_create($inventory, ^iftype_graphic, $int9);
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
     cc_setposition(calc($int17 + $int9 % $int11 * $int12), calc($int18 + $int9 / $int11 * $int14), ^setpos_abs_left, ^setpos_abs_top);
     cc_setgraphicshadow(0x333333);
@@ -22,14 +22,14 @@ while ($int9 < $int10) {
     cc_setdragdeadtime(5);
     $int9 = calc($int9 + 1);
 }
-$int9 = ~thinstonebox($com_7, $int9);
-~rune_pouch_drawinventory_all($com_7, $int10);
-if_setoninvtransmit("rune_pouch_drawinventory_all($com_7, $int10){inv_93}", $com_7);
-if_setonvartransmit("rune_pouch_drawinventory_all($com_7, $int10){varplayer_695, varplayer_415}", $com_7);
-cc_deleteall($com_4);
+$int9 = ~thinstonebox($inventory, $int9);
+~rune_pouch_drawinventory_all($inventory, $int10);
+if_setoninvtransmit("rune_pouch_drawinventory_all($inventory, $int10){inv}", $inventory);
+if_setonvartransmit("rune_pouch_drawinventory_all($inventory, $int10){millcheck_multi, roving_update_ilfeen_chant}", $inventory);
+cc_deleteall($pouch);
 $int9 = 0;
 while ($int9 < 6) {
-    cc_create($com_4, ^iftype_graphic, $int9);
+    cc_create($pouch, ^iftype_graphic, $int9);
     $int9 = calc($int9 + 1);
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
     cc_setgraphicshadow(0x333333);
@@ -39,28 +39,28 @@ while ($int9 < 6) {
 }
 def_int $int19 = 0;
 while ($int19 < 6) {
-    cc_create($com_4, ^iftype_graphic, $int9);
+    cc_create($pouch, ^iftype_graphic, $int9);
     $int9 = calc($int9 + 1);
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
-    cc_setobject_nonum(obj_11526, 1);
+    cc_setobject_nonum(pattern_lime_dummy, 1);
     cc_settrans(120);
     cc_setgraphicshadow(0x333333);
     cc_setoutline(1);
     $int19 = calc($int19 + 1);
 }
-$int9 = ~thinstonebox($com_4, $int9);
-~script7875($com_11, $com_12, $com_13, $com_14);
-if_setonvartransmit("script7874($com_11, $com_12, $com_13, $com_14){varplayer_695, varplayer_415}", $com_11);
-def_int $int20 = ~steelborder($com_1, "", 0);
-cc_deleteall($com_3);
+$int9 = ~thinstonebox($pouch, $int9);
+~script7875($1, $5, $x, $all);
+if_setonvartransmit("script7874($1, $5, $x, $all){millcheck_multi, roving_update_ilfeen_chant}", $1);
+def_int $int20 = ~steelborder($frame, "", 0);
+cc_deleteall($top);
 $int9 = 0;
-cc_create($com_3, ^iftype_model, $int9);
+cc_create($top, ^iftype_model, $int9);
 def_int $int21 = $int9;
 $int9 = calc($int9 + 1);
-cc_create($com_3, ^iftype_model, $int9);
+cc_create($top, ^iftype_model, $int9);
 def_int $int22 = $int9;
 $int9 = calc($int9 + 1);
-~rune_pouch_toplayout($com_1, $int20, $com_3, $int21, $int22, $com_4);
-if_setonvartransmit("rune_pouch_toplayout($com_1, $int20, $com_3, $int21, $int22, $com_4){varplayer_261, varplayer_2606, varplayer_2632}", $com_1);
-~rune_pouch_drawpouch($com_4);
-if_setonvartransmit("rune_pouch_drawpouch($com_4){varplayer_261, varplayer_2606, varplayer_2632, varplayer_695, varplayer_415, varplayer_1139, varplayer_1140, varplayer_3574, varplayer_4017}", $com_0);
+~rune_pouch_toplayout($frame, $int20, $top, $int21, $int22, $pouch);
+if_setonvartransmit("rune_pouch_toplayout($frame, $int20, $top, $int21, $int22, $pouch){if1, league_general, league_relics}", $frame);
+~rune_pouch_drawpouch($pouch);
+if_setonvartransmit("rune_pouch_drawpouch($pouch){if1, league_general, league_relics, millcheck_multi, roving_update_ilfeen_chant, rune_pouch_a, rune_pouch_b, rune_pouch_c, rune_pouch_d}", $universe);

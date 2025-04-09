@@ -1,18 +1,18 @@
 // 3195
-[clientscript,nps_init](component $com_0, component $com_2, component $com_15, component $com_16)
-cc_deleteall($com_2);
-cc_create($com_2, ^iftype_graphic, 0);
+[clientscript,nps_init](component $universe, component $close, component $hint_no, component $hint_yes)
+cc_deleteall($close);
+cc_create($close, ^iftype_graphic, 0);
 cc_setsize(26, 23, ^setsize_abs, ^setsize_abs);
 cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
 def_graphic $graphic = "close_buttons,6";
 cc_setgraphic($graphic);
-if_setonmouseleave("script3440(event_com, cc_getid, $graphic, null)", $com_2);
+if_setonmouseleave("script3440(event_com, cc_getid, $graphic, null)", $close);
 $graphic = "close_buttons,7";
-if_setonmouseover("script3440(event_com, cc_getid, $graphic, null)", $com_2);
-if_setop(1, "Close", $com_2);
-if_setonop("closebutton_click_sound", $com_2);
-if (%varplayerbit_4681 = 1) {
-    if_setopkey(1, ^key_escape, 0, $com_2);
+if_setonmouseover("script3440(event_com, cc_getid, $graphic, null)", $close);
+if_setop(1, "Close", $close);
+if_setonop("closebutton_click_sound", $close);
+if (%keybinding_esc_to_close = 1) {
+    if_setopkey(1, ^key_escape, 0, $close);
 }
 def_component $component = null;
 def_string $string = "";
@@ -38,9 +38,9 @@ while ($int9 <= 10) {
 def_int $int10 = 0;
 if ($int7 ! ^min_32bit_int & $int8 ! ^max_32bit_int) {
     $int10 = calc($int8 - $int7);
-    if_setsize($int10, if_getheight($com_15), ^setsize_abs, ^setsize_abs, $com_15);
-    if_setsize($int10, if_getheight($com_16), ^setsize_abs, ^setsize_abs, $com_16);
+    if_setsize($int10, if_getheight($hint_no), ^setsize_abs, ^setsize_abs, $hint_no);
+    if_setsize($int10, if_getheight($hint_yes), ^setsize_abs, ^setsize_abs, $hint_yes);
 } else {
-    if_setsize(0, if_getheight($com_15), ^setsize_minus, ^setsize_abs, $com_15);
-    if_setsize(0, if_getheight($com_16), ^setsize_minus, ^setsize_abs, $com_16);
+    if_setsize(0, if_getheight($hint_no), ^setsize_minus, ^setsize_abs, $hint_no);
+    if_setsize(0, if_getheight($hint_yes), ^setsize_minus, ^setsize_abs, $hint_yes);
 }

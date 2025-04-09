@@ -1,18 +1,18 @@
 // 7836
-[clientscript,poh_bookcase_init](component $com_1, component $com_5, component $com_6)
+[clientscript,poh_bookcase_init](component $universe, component $books, component $scrollbar)
 def_boolean $boolean = ~on_mobile;
-def_int $int4 = calc((if_getwidth($com_5) - 3) / 2);
+def_int $int4 = calc((if_getwidth($books) - 3) / 2);
 def_int $int5 = calc($int4 + 3);
 def_int $int6 = calc(3 + 36 + 4);
 def_int $int7 = calc($int4 - $int6);
 def_int $int8 = calc((38 - 32) / 2);
 def_int $int9 = enum_getoutputcount(enum_5210);
-cc_deleteall($com_5);
+cc_deleteall($books);
 def_obj $obj = null;
 def_int $intarray($int9);
 def_int $int11 = 0;
 while ($int11 < $int9) {
-    cc_create($com_5, ^iftype_graphic, $int11);
+    cc_create($books, ^iftype_graphic, $int11);
     cc_sethide(true);
     $intarray($int11) = $int11;
     $int11 = calc($int11 + 1);
@@ -22,9 +22,9 @@ if ($int9 >= 2) {
 }
 $int11 = 0;
 while ($int11 < $int9) {
-    cc_create($com_5, ^iftype_text, calc($int9 + 2 * $int11));
+    cc_create($books, ^iftype_text, calc($int9 + 2 * $int11));
     cc_sethide(true);
-    cc_create($com_5, ^iftype_graphic, calc($int9 + 2 * $int11 + 1));
+    cc_create($books, ^iftype_graphic, calc($int9 + 2 * $int11 + 1));
     cc_sethide(true);
     $int11 = calc($int11 + 1);
 }
@@ -36,7 +36,7 @@ def_int $int16 = 0;
 while ($int16 < $int9) {
     $int11 = $intarray($int16);
     $obj = enum(int, namedobj, enum_5210, $int11);
-    if ($obj ! null & cc_find($com_5, $int11) = true & .cc_find($com_5, calc($int9 + 2 * $int11)) = true) {
+    if ($obj ! null & cc_find($books, $int11) = true & .cc_find($books, calc($int9 + 2 * $int11)) = true) {
         if ($int14 = 1) {
             $int15 = $int5;
         } else {
@@ -55,8 +55,8 @@ while ($int16 < $int9) {
         .cc_settextshadow(true);
         .cc_settextfont(p12_full);
         .cc_settext(enum(obj, string, enum_236, $obj));
-        ~poh_bookcase_indicate($boolean, $com_5);
-        if (.cc_find($com_5, calc($int9 + 2 * $int11 + 1)) = true) {
+        ~poh_bookcase_indicate($boolean, $books);
+        if (.cc_find($books, calc($int9 + 2 * $int11 + 1)) = true) {
             .cc_sethide(false);
             .cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
             .cc_setposition(calc($int15 + 3), calc($int12 + $int8), ^setpos_abs_left, ^setpos_abs_top);
@@ -68,7 +68,7 @@ while ($int16 < $int9) {
         if ($int14 = 1) {
             if ($int16 < calc($int9 - 1)) {
                 $int12 = calc($int12 + 38 + 3);
-                .cc_create($com_5, ^iftype_graphic, calc(3 * $int9 + $int13));
+                .cc_create($books, ^iftype_graphic, calc(3 * $int9 + $int13));
                 .cc_setsize(0, 20, ^setsize_minus, ^setsize_abs);
                 .cc_setposition(0, calc($int12 - 20), ^setpos_abs_centre, ^setpos_abs_top);
                 .cc_setgraphic("v2_borders_slim,8");
@@ -87,10 +87,10 @@ while ($int16 < $int9) {
     }
     $int16 = calc($int16 + 1);
 }
-if_setonvartransmit("poh_bookcase_indicate($boolean, event_com, $int9){varplayer_805, varplayer_261, varplayer_262, varplayer_263, varplayer_264, varplayer_265, varplayer_266, varplayer_1037}", $com_5);
-if_setoninvtransmit("script7842(event_com, $int9){inv_93}", $com_5);
-~scrollbar_vertical($com_6, $com_5, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-def_component $component = if_getlayer($com_1);
+if_setonvartransmit("poh_bookcase_indicate($boolean, event_com, $int9){macro_bee_pos_1, if1, if2, if3, if4, if5, if6, pattern_varp}", $books);
+if_setoninvtransmit("script7842(event_com, $int9){inv}", $books);
+~scrollbar_vertical($scrollbar, $books, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+def_component $component = if_getlayer($universe);
 if ($component ! null) {
-    ~poh_bookcase_setsize($component, $com_1, $com_5, $com_6, $int12, if_getheight($component));
+    ~poh_bookcase_setsize($component, $universe, $books, $scrollbar, $int12, if_getheight($component));
 }

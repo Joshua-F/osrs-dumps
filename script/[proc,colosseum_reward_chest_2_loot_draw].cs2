@@ -1,29 +1,29 @@
 // 4928
 [proc,colosseum_reward_chest_2_loot_draw]
-def_component $com_16 = interface_864:com_16;
-def_component $com_17 = interface_864:com_17;
-def_component $com_13 = interface_864:com_13;
-def_component $com_14 = interface_864:com_14;
-def_component $com_15 = interface_864:com_15;
-cc_deleteall($com_16);
-cc_deleteall($com_17);
+def_component $tab_content_2_back = colosseum_reward_chest_2:tab_content_2_back;
+def_component $tab_content_2_content = colosseum_reward_chest_2:tab_content_2_content;
+def_component $tab_content_2_button_1 = colosseum_reward_chest_2:tab_content_2_button_1;
+def_component $tab_content_2_button_2 = colosseum_reward_chest_2:tab_content_2_button_2;
+def_component $tab_content_2_button_3 = colosseum_reward_chest_2:tab_content_2_button_3;
+cc_deleteall($tab_content_2_back);
+cc_deleteall($tab_content_2_content);
 def_int $int5 = 0;
-cc_create($com_16, ^iftype_rectangle, $int5);
+cc_create($tab_content_2_back, ^iftype_rectangle, $int5);
 cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top);
 cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
 cc_setcolour(^black);
 cc_settrans(200);
 cc_setfill(true);
 $int5 = calc($int5 + 1);
-$int5 = ~thinbox($com_16, $int5);
+$int5 = ~thinbox($tab_content_2_back, $int5);
 $int5 = 0;
 def_obj $obj = null;
 def_int $int7 = 0;
 def_int $int8 = 0;
-while ($int7 < inv_size(inv_843)) {
-    $obj = inv_getobj(inv_843, $int7);
+while ($int7 < inv_size(colosseum_rewards)) {
+    $obj = inv_getobj(colosseum_rewards, $int7);
     if ($obj ! null) {
-        $int5 = ~colosseum_intermission_2_item_draw($com_17, $int5, $obj, inv_getnum(inv_843, $int7), $int8, 5);
+        $int5 = ~colosseum_intermission_2_item_draw($tab_content_2_content, $int5, $obj, inv_getnum(colosseum_rewards, $int7), $int8, 5);
         cc_setop(1, "Take");
         cc_setop(2, "Take-5");
         cc_setop(3, "Take-All");
@@ -34,9 +34,9 @@ while ($int7 < inv_size(inv_843)) {
     $int7 = calc($int7 + 1);
 }
 if ($int8 = 0) {
-    ~create_text($com_17, $int5, p12_full, 0, -20, ^setpos_abs_centre, ^setpos_abs_centre, 40, 40, ^setsize_minus, ^setsize_minus, "You do not have any more loot.", true, 0xff981f, ^settextalign_centre, ^settextalign_centre, 0);
+    ~create_text($tab_content_2_content, $int5, p12_full, 0, -20, ^setpos_abs_centre, ^setpos_abs_centre, 40, 40, ^setsize_minus, ^setsize_minus, "You do not have any more loot.", true, 0xff981f, ^settextalign_centre, ^settextalign_centre, 0);
     $int5 = calc($int5 + 1);
 }
-~stonebutton_icon_init($com_13, 0, "bankbuttons,6", 29, 22, "");
-~stonebutton_icon_init($com_14, 0, "bankbuttons,4", 29, 22, "Take-all");
-~stonebutton_icon_init($com_15, 0, "bankbuttons,5", 29, 22, "");
+~stonebutton_icon_init($tab_content_2_button_1, 0, "bankbuttons,6", 29, 22, "");
+~stonebutton_icon_init($tab_content_2_button_2, 0, "bankbuttons,4", 29, 22, "Take-all");
+~stonebutton_icon_init($tab_content_2_button_3, 0, "bankbuttons,5", 29, 22, "");

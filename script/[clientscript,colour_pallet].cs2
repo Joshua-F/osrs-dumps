@@ -1,8 +1,8 @@
 // 4185
 [clientscript,colour_pallet](component $component0, int $int1)
-~script4206(interface_288:com_1, interface_288:com_2, interface_288:com_3, ^max_32bit_int, $component0);
+~script4206(colour_pallet:clamp, colour_pallet:fader, colour_pallet:window, ^max_32bit_int, $component0);
 %varclient_459 = $int1;
-def_struct $struct2 = enum(int, struct, enum_423, %varplayerbit_9656);
+def_struct $struct2 = enum(int, struct, enum_423, %settings_category);
 def_enum $enum = null;
 if ($struct2 = null) {
     return;
@@ -25,7 +25,7 @@ while ($int5 < $int6) {
         $int8 = struct_param($struct4, param_1078);
         $int9 = struct_param($struct4, param_1077);
         if ($int8 = 9) {
-            if ($int9 = %varplayerbit_9657) {
+            if ($int9 = %settings_selected_setting) {
                 $int6 = $int5;
             } else {
                 $int7 = calc($int7 + 1);
@@ -34,18 +34,18 @@ while ($int5 < $int6) {
     }
     $int5 = calc($int5 + 1);
 }
-~steelborder(interface_288:com_4, "Colour picker - <struct_param($struct4, param_1086)>", 1);
-def_component $com_6 = interface_288:com_6;
-def_component $com_7 = interface_288:com_7;
-def_component $com_8 = interface_288:com_8;
-def_component $component14 = interface_288:com_9;
-def_component $component15 = interface_288:com_11;
-def_component $com_10 = interface_288:com_10;
+~steelborder(colour_pallet:frame, "Colour picker - <struct_param($struct4, param_1086)>", 1);
+def_component $info = colour_pallet:info;
+def_component $pallet_custom = colour_pallet:pallet_custom;
+def_component $pallet_custom_clickzone = colour_pallet:pallet_custom_clickzone;
+def_component $component14 = colour_pallet:pallet;
+def_component $component15 = colour_pallet:pallet_colours;
+def_component $scrollbar = colour_pallet:scrollbar;
 cc_deleteall($component14);
 cc_deleteall($component15);
-cc_deleteall($com_10);
+cc_deleteall($scrollbar);
 def_int $int17 = 0;
-cc_create($com_6, ^iftype_text, $int17);
+cc_create($info, ^iftype_text, $int17);
 cc_settext("Current colour");
 cc_settextfont(b12_full);
 cc_settextshadow(true);
@@ -58,14 +58,14 @@ def_int $int18 = 45;
 if (%varclient_459 = -1) {
     %varclient_459 = struct_param($struct4, param_1230);
 }
-cc_create($com_6, ^iftype_rectangle, $int17);
+cc_create($info, ^iftype_rectangle, $int17);
 cc_setsize($int18, $int18, ^setsize_abs, ^setsize_abs);
 cc_setposition(45, 22, ^setpos_abs_left, ^setpos_abs_top);
 cc_setcolour(%varclient_459);
 cc_setfill(true);
 $int17 = calc($int17 + 1);
-$int17 = ~thinbox_specific($com_6, $int17, 45, 22, $int18, $int18, ^setpos_abs_left, ^setpos_abs_top);
-cc_create($com_6, ^iftype_text, $int17);
+$int17 = ~thinbox_specific($info, $int17, 45, 22, $int18, $int18, ^setpos_abs_left, ^setpos_abs_top);
+cc_create($info, ^iftype_text, $int17);
 cc_settext(append($string0, ~colour_to_string(%varclient_459)));
 cc_settextfont(p11_full);
 cc_settextshadow(true);
@@ -74,7 +74,7 @@ cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
 cc_setsize(80, 18, ^setsize_abs, ^setsize_abs);
 cc_setposition(27, 2, ^setpos_abs_left, ^setpos_abs_bottom);
 $int17 = calc($int17 + 1);
-cc_create($com_6, ^iftype_text, $int17);
+cc_create($info, ^iftype_text, $int17);
 cc_settext("New colour");
 cc_settextfont(b12_full);
 cc_settextshadow(true);
@@ -83,16 +83,16 @@ cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
 cc_setsize(100, 18, ^setsize_abs, ^setsize_abs);
 cc_setposition(137, 2, ^setpos_abs_left, ^setpos_abs_top);
 $int17 = calc($int17 + 1);
-cc_create($com_6, ^iftype_rectangle, $int17);
+cc_create($info, ^iftype_rectangle, $int17);
 cc_setsize($int18, $int18, ^setsize_abs, ^setsize_abs);
 cc_setposition(164, 22, ^setpos_abs_left, ^setpos_abs_top);
 cc_setcolour(%varclient_459);
 cc_setfill(true);
 def_int $int19 = $int17;
 $int17 = calc($int17 + 1);
-$int17 = ~thinbox_specific($com_6, $int17, 164, 22, $int18, $int18, ^setpos_abs_left, ^setpos_abs_top);
+$int17 = ~thinbox_specific($info, $int17, 164, 22, $int18, $int18, ^setpos_abs_left, ^setpos_abs_top);
 def_string $string1 = append($string0, ~colour_to_string(%varclient_459));
-cc_create($com_6, ^iftype_text, $int17);
+cc_create($info, ^iftype_text, $int17);
 cc_settext($string1);
 cc_settextfont(p11_full);
 cc_settextshadow(true);
@@ -111,23 +111,23 @@ def_int $int26 = 0;
 def_int $int27 = 0;
 def_int $int28 = 0;
 $int26, $int27, $int28 = ~hex_to_rgb(%varclient_459);
-$int17, $int21, $int22 = ~create_colour_pallet_input($com_7, $int17, $com_8, $int21, $string1, 20, 33, 80, 18, "Hexadecimal");
-$int17, $int21, $int23 = ~create_colour_pallet_input($com_7, $int17, $com_8, $int21, tostring($int26), 7, 67, 32, 18, "Red");
-$int17, $int21, $int24 = ~create_colour_pallet_input($com_7, $int17, $com_8, $int21, tostring($int27), 44, 67, 32, 18, "Green");
-$int17, $int21, $int25 = ~create_colour_pallet_input($com_7, $int17, $com_8, $int21, tostring($int28), 81, 67, 32, 18, "Blue");
-if (cc_find($com_8, 0) = true) {
-    cc_setonop("colour_pallet_input_op(0, $component0, $com_6, $int19, $int20, $struct4, $com_7, $int22, $int23, $int24, $int25)");
+$int17, $int21, $int22 = ~create_colour_pallet_input($pallet_custom, $int17, $pallet_custom_clickzone, $int21, $string1, 20, 33, 80, 18, "Hexadecimal");
+$int17, $int21, $int23 = ~create_colour_pallet_input($pallet_custom, $int17, $pallet_custom_clickzone, $int21, tostring($int26), 7, 67, 32, 18, "Red");
+$int17, $int21, $int24 = ~create_colour_pallet_input($pallet_custom, $int17, $pallet_custom_clickzone, $int21, tostring($int27), 44, 67, 32, 18, "Green");
+$int17, $int21, $int25 = ~create_colour_pallet_input($pallet_custom, $int17, $pallet_custom_clickzone, $int21, tostring($int28), 81, 67, 32, 18, "Blue");
+if (cc_find($pallet_custom_clickzone, 0) = true) {
+    cc_setonop("colour_pallet_input_op(0, $component0, $info, $int19, $int20, $struct4, $pallet_custom, $int22, $int23, $int24, $int25)");
 }
-if (cc_find($com_8, 1) = true) {
-    cc_setonop("colour_pallet_input_op(1, $component0, $com_6, $int19, $int20, $struct4, $com_7, $int22, $int23, $int24, $int25)");
+if (cc_find($pallet_custom_clickzone, 1) = true) {
+    cc_setonop("colour_pallet_input_op(1, $component0, $info, $int19, $int20, $struct4, $pallet_custom, $int22, $int23, $int24, $int25)");
 }
-if (cc_find($com_8, 2) = true) {
-    cc_setonop("colour_pallet_input_op(2, $component0, $com_6, $int19, $int20, $struct4, $com_7, $int22, $int23, $int24, $int25)");
+if (cc_find($pallet_custom_clickzone, 2) = true) {
+    cc_setonop("colour_pallet_input_op(2, $component0, $info, $int19, $int20, $struct4, $pallet_custom, $int22, $int23, $int24, $int25)");
 }
-if (cc_find($com_8, 3) = true) {
-    cc_setonop("colour_pallet_input_op(3, $component0, $com_6, $int19, $int20, $struct4, $com_7, $int22, $int23, $int24, $int25)");
+if (cc_find($pallet_custom_clickzone, 3) = true) {
+    cc_setonop("colour_pallet_input_op(3, $component0, $info, $int19, $int20, $struct4, $pallet_custom, $int22, $int23, $int24, $int25)");
 }
-cc_create($com_7, ^iftype_text, $int17);
+cc_create($pallet_custom, ^iftype_text, $int17);
 cc_settext("Custom input");
 cc_settextfont(b12_full);
 cc_settextshadow(true);
@@ -151,8 +151,8 @@ if ($int36 > 0) {
 }
 if ($int37 > $int33) {
     if_setsize(16, 0, ^setsize_minus, ^setsize_minus, $component15);
-    if_sethide(false, $com_10);
-    ~scrollbar_vertical($com_10, $component15, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+    if_sethide(false, $scrollbar);
+    ~scrollbar_vertical($scrollbar, $component15, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
     $component14 = $component15;
     $int34 = calc(if_getwidth($component14) / ($int31 + $int30));
     $int35 = calc($int29 / $int34);
@@ -164,7 +164,7 @@ if ($int37 > $int33) {
     }
 } else {
     if_setsize(0, 0, ^setsize_minus, ^setsize_minus, $component15);
-    if_sethide(true, $com_10);
+    if_sethide(true, $scrollbar);
 }
 $int17 = 0;
 def_int $int38 = 0;
@@ -195,7 +195,7 @@ while ($int40 < $int37) {
         cc_setposition($int42, $int43, ^setpos_abs_left, ^setpos_abs_top);
         cc_setcolour($int41);
         cc_setfill(true);
-        cc_setonop("colour_pallet_op(event_op, event_com, event_comsubid, $component0, $int41, $com_6, $int19, $int20, $struct4, $com_7, $int22, $int23, $int24, $int25)");
+        cc_setonop("colour_pallet_op(event_op, event_com, event_comsubid, $component0, $int41, $info, $int19, $int20, $struct4, $pallet_custom, $int22, $int23, $int24, $int25)");
         cc_setop(1, "Select colour");
         $int17 = calc($int17 + 1);
         if ($boolean = false) {
@@ -225,9 +225,9 @@ while ($int40 < $int37) {
 }
 if ($int37 > $int33) {
     if_setscrollsize(0, $int43, $component14);
-    ~scrollbar_resize($com_10, $component14, if_getscrolly($component14));
+    ~scrollbar_resize($scrollbar, $component14, if_getscrolly($component14));
 }
-~stonebutton_init("<col=ff981f>Cancel</col>", interface_288:com_12, p12_full, 0);
-if_setonop("script4208(^max_32bit_int, interface_288:com_1, interface_288:com_2, interface_288:com_3, $component0)", interface_288:com_12);
-~stonebutton_init("<col=0dc10d>Save</col>", interface_288:com_13, p12_full, 0);
-if_setonop("script4208(%varclient_459, interface_288:com_1, interface_288:com_2, interface_288:com_3, $component0)", interface_288:com_13);
+~stonebutton_init("<col=ff981f>Cancel</col>", colour_pallet:cancel, p12_full, 0);
+if_setonop("script4208(^max_32bit_int, colour_pallet:clamp, colour_pallet:fader, colour_pallet:window, $component0)", colour_pallet:cancel);
+~stonebutton_init("<col=0dc10d>Save</col>", colour_pallet:submit, p12_full, 0);
+if_setonop("script4208(%varclient_459, colour_pallet:clamp, colour_pallet:fader, colour_pallet:window, $component0)", colour_pallet:submit);

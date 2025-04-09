@@ -1,0 +1,270 @@
+// 367:0
+[universal]
+type=layer
+width=470
+height=290
+xmode=abs_centre
+ymode=abs_centre
+
+// 367:1
+[template]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=universal
+onload=stoneborder(event_com, "Trawler Catch", 1)
+
+// 367:2
+[content]
+type=layer
+height=40
+widthmode=minus
+heightmode=minus
+ymode=abs_bottom
+layer=universal
+
+// 367:3
+[buttons]
+type=layer
+width=370
+height=200
+widthmode=minus
+heightmode=minus
+xmode=abs_right
+ymode=abs_bottom
+layer=content
+
+// 367:4
+[reward_inv]
+type=layer
+y=15
+width=90
+height=110
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+layer=content
+
+// 367:5
+[noclick]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=universal
+hide=yes
+noclickthrough=yes
+
+// 367:6
+[confirmation]
+type=layer
+y=6
+width=12
+height=40
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_bottom
+layer=universal
+hide=yes
+
+// 367:7
+[overlay]
+type=rectangle
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=confirmation
+colour=0x232323
+fill=yes
+trans=50
+
+// 367:8
+[text_main]
+type=text
+y=30
+width=128
+height=20
+xmode=abs_centre
+layer=confirmation
+textfont=b12_full
+text=Discard all items?
+textalignh=centre
+textalignv=centre
+textshadow=yes
+colour=0xff981f
+
+// 367:9
+[text_sub]
+type=text
+y=50
+width=220
+height=15
+xmode=abs_centre
+layer=confirmation
+textfont=p11_full
+text=All items will be dropped on the floor.
+textalignh=centre
+textalignv=top
+textshadow=yes
+colour=0xff981f
+
+// 367:10
+[confirm_buttons]
+type=layer
+y=90
+width=175
+height=95
+xmode=abs_centre
+layer=confirmation
+
+// 367:11
+[yes]
+type=layer
+y=5
+width=100
+height=40
+xmode=abs_centre
+layer=confirm_buttons
+events=2
+op1=Yes
+
+// 367:12
+[yes_template]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=yes
+onload=v2_stone_button(event_com)
+
+// 367:13
+[yes_template_bg]
+type=graphic
+widthmode=minus
+heightmode=minus
+layer=yes_template
+graphic=tradebacking
+onmouseover=settrans(event_com, 75)
+onmouseleave=settrans(event_com, 0)
+
+// 367:14
+[yes_text]
+type=text
+width=32
+height=25
+xmode=abs_centre
+ymode=abs_centre
+layer=yes
+textfont=p12_full
+text=Yes
+textalignh=centre
+textalignv=centre
+textshadow=yes
+colour=0xff981f
+
+// 367:15
+[no]
+type=layer
+y=50
+width=100
+height=40
+xmode=abs_centre
+layer=confirm_buttons
+events=2
+op1=No
+onop=trawler_cancel_confirmation(event_com, event_op)
+
+// 367:16
+[no_template]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=no
+onload=v2_stone_button(event_com)
+
+// 367:17
+[no_template_bg]
+type=graphic
+widthmode=minus
+heightmode=minus
+layer=no_template
+graphic=tradebacking
+onmouseover=settrans(event_com, 75)
+onmouseleave=settrans(event_com, 0)
+
+// 367:18
+[no_text]
+type=text
+width=32
+height=25
+xmode=abs_centre
+ymode=abs_centre
+layer=no
+textfont=p12_full
+text=No
+textalignh=centre
+textalignv=centre
+textshadow=yes
+colour=0xff981f
+
+// 367:19
+[bank_all]
+type=layer
+x=2
+width=40
+height=40
+layer=buttons
+events=2
+op1=Bank-all
+
+// 367:20
+[discard_all]
+type=layer
+x=47
+width=40
+height=40
+layer=buttons
+events=2
+op1=Discard-all
+onop=script1236(event_com, event_op)
+
+// 367:21
+[bank_all_bg]
+type=graphic
+width=40
+height=40
+layer=bank_all
+graphic="options_boxes,0"
+onmouseover=settrans(event_com, 75)
+onmouseleave=settrans(event_com, 0)
+
+// 367:22
+[bank_all_graphic]
+type=graphic
+width=29
+height=22
+xmode=abs_centre
+ymode=abs_centre
+layer=bank_all
+graphic="bankbuttons,5"
+
+// 367:23
+[drop_all_bg]
+type=graphic
+width=40
+height=40
+layer=discard_all
+graphic="options_boxes,0"
+onmouseover=settrans(event_com, 75)
+onmouseleave=settrans(event_com, 0)
+
+// 367:24
+[drop_all_graphic]
+type=graphic
+width=29
+height=22
+xmode=abs_centre
+ymode=abs_centre
+layer=discard_all
+graphic="bankbuttons,6"
+

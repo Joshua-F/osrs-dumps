@@ -1,22 +1,22 @@
 // 4223
-[clientscript,clan_members_init](component $com_1, component $com_2, component $com_21, component $com_22, component $com_23, component $com_24, component $com_9, component $com_14, component $com_15, component $com_16, component $com_18, component $com_25, component $com_10, component $com_7, component $com_11, component $com_19, component $com_8, component $com_13, component $com_20)
-~scrollbar_vertical($com_14, $com_9, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-~stonebutton_init("<col=ff0000>Back</col>", $com_25, p12_full, 0);
-if_setonop("opsound(event_op, 2)", $com_25);
-def_int $int19 = ~steelborder($com_2, "", 0);
-if_sethide(true, $com_15);
+[clientscript,clan_members_init](component $universe, component $frame, component $filters_container, component $search, component $minrank, component $maxrank, component $scrollcontents, component $scrollbar, component $dropdown_container, component $dropdown_box, component $dropdown_scrollbar, component $exit, component $name, component $header1, component $column1, component $options1, component $header2, component $column2, component $options2)
+~scrollbar_vertical($scrollbar, $scrollcontents, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~stonebutton_init("<col=ff0000>Back</col>", $exit, p12_full, 0);
+if_setonop("opsound(event_op, 2)", $exit);
+def_int $int19 = ~steelborder($frame, "", 0);
+if_sethide(true, $dropdown_container);
 if (~clan_members_searching = true) {
     ~meslayer_close(1, 1, 1);
 } else if (%varclient_5 <= 0) {
     %varclient_359 = "";
 }
-~clan_members_header_init($com_7, $com_19, $com_1, $com_2, $int19, $com_22, $com_9, $com_14, $com_15, $com_16, $com_18, $com_10, $com_7, $com_11, $com_19, $com_8, $com_13, $com_20);
-~clan_members_header_init($com_8, $com_20, $com_1, $com_2, $int19, $com_22, $com_9, $com_14, $com_15, $com_16, $com_18, $com_10, $com_7, $com_11, $com_19, $com_8, $com_13, $com_20);
-if_setnoclickthrough(true, $com_15);
-if_setonclick("clan_members_header_close($com_15, $com_7, $com_8)", $com_15);
-~clan_members_draw($com_1, $com_2, $int19, $com_9, $com_14, $com_10, $com_7, $com_11, $com_8, $com_13);
-if_setonvartransmit("clan_members_draw($com_1, $com_2, $int19, $com_9, $com_14, $com_10, $com_7, $com_11, $com_8, $com_13){varplayer_3019, varplayer_3021}", $com_1);
-if_setonclansettingstransmit("clan_members_draw($com_1, $com_2, $int19, $com_9, $com_14, $com_10, $com_7, $com_11, $com_8, $com_13)", $com_1);
+~clan_members_header_init($header1, $options1, $universe, $frame, $int19, $search, $scrollcontents, $scrollbar, $dropdown_container, $dropdown_box, $dropdown_scrollbar, $name, $header1, $column1, $options1, $header2, $column2, $options2);
+~clan_members_header_init($header2, $options2, $universe, $frame, $int19, $search, $scrollcontents, $scrollbar, $dropdown_container, $dropdown_box, $dropdown_scrollbar, $name, $header1, $column1, $options1, $header2, $column2, $options2);
+if_setnoclickthrough(true, $dropdown_container);
+if_setonclick("clan_members_header_close($dropdown_container, $header1, $header2)", $dropdown_container);
+~clan_members_draw($universe, $frame, $int19, $scrollcontents, $scrollbar, $name, $header1, $column1, $header2, $column2);
+if_setonvartransmit("clan_members_draw($universe, $frame, $int19, $scrollcontents, $scrollbar, $name, $header1, $column1, $header2, $column2){clan_temp_transmit_0, clan_perm_transmit_0}", $universe);
+if_setonclansettingstransmit("clan_members_draw($universe, $frame, $int19, $scrollcontents, $scrollbar, $name, $header1, $column1, $header2, $column2)", $universe);
 def_int $int20 = 0;
 def_int $int21 = 265;
 while ($int21 > 0) {
@@ -24,11 +24,11 @@ while ($int21 > 0) {
     $int21 = calc($int21 - 1);
 }
 def_int $int22 = calc(2 * (6 + 13 + 6 + $int20 / 2));
-if_setsize($int22, 0, ^setsize_abs, ^setsize_minus, $com_23);
-if_setsize($int22, 0, ^setsize_abs, ^setsize_minus, $com_24);
-cc_deleteall($com_21);
-cc_create($com_21, ^iftype_text, 0);
-.cc_create($com_21, ^iftype_text, 1);
+if_setsize($int22, 0, ^setsize_abs, ^setsize_minus, $minrank);
+if_setsize($int22, 0, ^setsize_abs, ^setsize_minus, $maxrank);
+cc_deleteall($filters_container);
+cc_create($filters_container, ^iftype_text, 0);
+.cc_create($filters_container, ^iftype_text, 1);
 cc_setcolour(0xff981f);
 .cc_setcolour(0xff981f);
 cc_settextfont(p12_full);
@@ -37,7 +37,7 @@ cc_settextshadow(true);
 .cc_settextshadow(true);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
 .cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-if_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_centre, $com_24);
+if_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_centre, $maxrank);
 def_int $int23 = calc($int22 + 5);
 def_string $string = "to:";
 $int20 = parawidth($string, 512, p12_full);
@@ -45,7 +45,7 @@ cc_setposition($int23, 0, ^setpos_abs_right, ^setpos_abs_centre);
 cc_setsize($int20, 0, ^setsize_abs, ^setsize_minus);
 cc_settext($string);
 $int23 = calc($int23 + $int20 + 5);
-if_setposition($int23, 0, ^setpos_abs_right, ^setpos_abs_centre, $com_23);
+if_setposition($int23, 0, ^setpos_abs_right, ^setpos_abs_centre, $minrank);
 $int23 = calc($int23 + $int22 + 5);
 $string = "Show ranks from:";
 $int20 = parawidth($string, 512, p12_full);
@@ -53,9 +53,9 @@ $int20 = parawidth($string, 512, p12_full);
 .cc_setsize($int20, 0, ^setsize_abs, ^setsize_minus);
 .cc_settext($string);
 $int23 = calc($int23 + $int20 + 5);
-if_setsize($int23, 0, ^setsize_minus, ^setsize_minus, $com_22);
-if_setonop("clan_members_search_toggle(event_op, $com_1, $com_2, $int19, $com_22, $com_9, $com_14, $com_10, $com_7, $com_11, $com_8, $com_13)", $com_22);
-if_setop(1, "Search", $com_22);
-~clan_members_search_setbutton($com_1, $com_2, $int19, $com_22, $com_9, $com_14, $com_10, $com_7, $com_11, $com_8, $com_13);
-~clan_members_filter_init($com_23, "Minimum rank", $com_23, $com_24);
-~clan_members_filter_init($com_24, "Maximum rank", $com_23, $com_24);
+if_setsize($int23, 0, ^setsize_minus, ^setsize_minus, $search);
+if_setonop("clan_members_search_toggle(event_op, $universe, $frame, $int19, $search, $scrollcontents, $scrollbar, $name, $header1, $column1, $header2, $column2)", $search);
+if_setop(1, "Search", $search);
+~clan_members_search_setbutton($universe, $frame, $int19, $search, $scrollcontents, $scrollbar, $name, $header1, $column1, $header2, $column2);
+~clan_members_filter_init($minrank, "Minimum rank", $minrank, $maxrank);
+~clan_members_filter_init($maxrank, "Maximum rank", $minrank, $maxrank);

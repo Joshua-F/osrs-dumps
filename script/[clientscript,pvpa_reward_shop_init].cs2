@@ -1,12 +1,12 @@
 // 6336
-[clientscript,pvpa_reward_shop_init](component $com_0, component $com_6, component $com_3, component $com_4, component $com_7, component $com_8)
-~pvpa_reward_shop_showpoints($com_6);
-if_setonvartransmit("pvpa_reward_shop_showpoints($com_6){varplayer_261, varplayer_1141}", $com_6);
-def_int $int = ~pvpa_reward_shop_draw(-1, $com_0, $com_3, $com_7, $com_8);
-if_setscrollpos(0, 0, $com_3);
-if ($int >= if_getheight($com_3)) {
-    if_setscrollsize(0, $int, $com_3);
+[clientscript,pvpa_reward_shop_init](component $universe, component $total, component $options, component $scrollbar, component $confirm, component $buttongfx)
+~pvpa_reward_shop_showpoints($total);
+if_setonvartransmit("pvpa_reward_shop_showpoints($total){if1, item_redemption}", $total);
+def_int $int = ~pvpa_reward_shop_draw(-1, $universe, $options, $confirm, $buttongfx);
+if_setscrollpos(0, 0, $options);
+if ($int >= if_getheight($options)) {
+    if_setscrollsize(0, $int, $options);
 } else {
-    if_setscrollsize(0, 0, $com_3);
+    if_setscrollsize(0, 0, $options);
 }
-~scrollbar_vertical($com_4, $com_3, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~scrollbar_vertical($scrollbar, $options, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");

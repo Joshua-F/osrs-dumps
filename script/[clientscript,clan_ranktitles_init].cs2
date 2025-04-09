@@ -1,11 +1,11 @@
 // 4307
-[clientscript,clan_ranktitles_init](component $com_1, component $com_2, component $com_3, component $com_6, component $com_7, component $com_9, component $com_11, component $com_12, component $com_13, component $com_14)
-~clan_interfacetitle($com_2, "Rank Titles");
+[clientscript,clan_ranktitles_init](component $universe, component $frame, component $contents, component $tiers_list, component $tiers_scrollbar, component $titles_container, component $titles_list, component $titles_scrollbar, component $cancel, component $save)
+~clan_interfacetitle($frame, "Rank Titles");
 def_string $string0 = "<col=ffb83f>Drag</col> titles from this list into the clan hierarchy, or <col=ffb83f>drag</col> existing titles to rearrange them.";
 def_string $string1 = "Authorised members of the clan may assign titles to the ranks within the clan hierarchy.";
 def_int $int10 = 0;
 def_int $int11 = 0;
-def_component $component = if_getlayer($com_9);
+def_component $component = if_getlayer($titles_container);
 if ($component ! null) {
     cc_deleteall($component);
     cc_create($component, ^iftype_text, 0);
@@ -18,20 +18,20 @@ if ($component ! null) {
     cc_settextfont(p12_full);
     cc_settextalign(^settextalign_left, ^settextalign_centre, 15);
     ~script174($string0, $string1);
-    cc_setonvartransmit("script173(event_com, event_comsubid, $string0, $string1){varplayer_3026}");
+    cc_setonvartransmit("script173(event_com, event_comsubid, $string0, $string1){clan_editing_3}");
 }
 $int11 = calc($int11 + 40);
-if_setsize(0, $int11, ^setsize_minus, ^setsize_minus, $com_9);
+if_setsize(0, $int11, ^setsize_minus, ^setsize_minus, $titles_container);
 $int11 = calc($int11 + 4);
 def_int $int13 = 25;
 if (~on_mobile = true) {
     $int13 = 35;
 }
 def_int $intarray(265);
-cc_deleteall($com_11);
+cc_deleteall($titles_list);
 def_int $int14 = 0;
 while ($int14 < 265) {
-    cc_create($com_11, ^iftype_graphic, $int14);
+    cc_create($titles_list, ^iftype_graphic, $int14);
     cc_setsize(0, $int13, ^setsize_minus, ^setsize_abs);
     cc_settiling(true);
     cc_settrans(255);
@@ -40,17 +40,17 @@ while ($int14 < 265) {
 }
 def_int $int15 = 0;
 while ($int15 < 265) {
-    cc_create($com_11, ^iftype_rectangle, $int14);
+    cc_create($titles_list, ^iftype_rectangle, $int14);
     $int14 = calc($int14 + 1);
     cc_setsize(0, $int13, ^setsize_minus, ^setsize_abs);
     cc_setfill(true);
-    cc_create($com_11, ^iftype_text, $int14);
+    cc_create($titles_list, ^iftype_text, $int14);
     $int14 = calc($int14 + 1);
     cc_setsize(calc(13 + 5), $int13, ^setsize_minus, ^setsize_abs);
     cc_settextshadow(true);
     cc_settextfont(p12_full);
     cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
-    cc_create($com_11, ^iftype_graphic, $int14);
+    cc_create($titles_list, ^iftype_graphic, $int14);
     $int14 = calc($int14 + 1);
     cc_setsize(13, 13, ^setsize_abs, ^setsize_abs);
     $int15 = calc($int15 + 1);
@@ -64,11 +64,11 @@ def_int $int18 = 0;
 $int15 = 0;
 while ($int15 < 265) {
     $int16 = calc($int15 * $int13);
-    if (cc_find($com_11, calc($intarray($int15) - 1)) = true) {
+    if (cc_find($titles_list, calc($intarray($int15) - 1)) = true) {
         cc_setposition(0, $int16, ^setpos_abs_centre, ^setpos_abs_top);
     }
     $int18 = calc(265 + ($intarray($int15) - 1) * 3);
-    if (cc_find($com_11, $int18) = true & .cc_find($com_11, calc($int18 + 1)) = true) {
+    if (cc_find($titles_list, $int18) = true & .cc_find($titles_list, calc($int18 + 1)) = true) {
         cc_setposition(0, $int16, ^setpos_abs_centre, ^setpos_abs_top);
         if (calc($int15 % 2) = 0) {
             cc_setcolour(^white);
@@ -77,7 +77,7 @@ while ($int15 < 265) {
         }
         .cc_setposition(0, $int16, ^setpos_abs_right, ^setpos_abs_top);
         .cc_settext(enum(int, string, enum_3797, $intarray($int15)));
-        if (.cc_find($com_11, calc($int18 + 2)) = true) {
+        if (.cc_find($titles_list, calc($int18 + 2)) = true) {
             .cc_setposition(2, calc($int16 + $int17), ^setpos_abs_left, ^setpos_abs_top);
             .cc_setgraphic(enum(int, graphic, enum_3798, $intarray($int15)));
         }
@@ -85,12 +85,12 @@ while ($int15 < 265) {
     $int15 = calc($int15 + 1);
 }
 def_int $int19 = calc($int15 * $int13);
-~scrollbar_vertical($com_12, $com_11, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~scrollbar_vertical($titles_scrollbar, $titles_list, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
 def_int $int20 = calc(enum_getoutputcount(enum_3795) - 2);
-cc_deleteall($com_6);
+cc_deleteall($tiers_list);
 $int14 = 0;
 while ($int14 < $int20) {
-    cc_create($com_6, ^iftype_graphic, $int14);
+    cc_create($tiers_list, ^iftype_graphic, $int14);
     cc_setsize(0, 40, ^setsize_minus, ^setsize_abs);
     cc_setposition(0, calc($int14 * 40), ^setpos_abs_centre, ^setpos_abs_bottom);
     cc_settiling(true);
@@ -101,7 +101,7 @@ def_int $int21 = 0;
 $int15, $int17 = 0, calc((40 - 15 - 13) / 2);
 while ($int15 < $int20) {
     $int21, $int16 = enum(int, int, enum_3795, $int15), calc($int15 * 40);
-    cc_create($com_6, ^iftype_rectangle, $int14);
+    cc_create($tiers_list, ^iftype_rectangle, $int14);
     $int14 = calc($int14 + 1);
     cc_setsize(0, 40, ^setsize_minus, ^setsize_abs);
     cc_setposition(0, $int16, ^setpos_abs_centre, ^setpos_abs_bottom);
@@ -111,7 +111,7 @@ while ($int15 < $int20) {
     } else {
         cc_setcolour(0xbfbfbf);
     }
-    cc_create($com_6, ^iftype_text, $int14);
+    cc_create($tiers_list, ^iftype_text, $int14);
     $int14 = calc($int14 + 1);
     cc_setsize(0, calc(40 - 15), ^setsize_minus, ^setsize_abs);
     cc_setposition(0, $int16, ^setpos_abs_centre, ^setpos_abs_bottom);
@@ -119,11 +119,11 @@ while ($int15 < $int20) {
     cc_settextshadow(true);
     cc_settextfont(p12_full);
     cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-    cc_create($com_6, ^iftype_graphic, $int14);
+    cc_create($tiers_list, ^iftype_graphic, $int14);
     $int14 = calc($int14 + 1);
     cc_setsize(13, 13, ^setsize_abs, ^setsize_abs);
     cc_setposition(0, calc($int16 + $int17), ^setpos_abs_centre, ^setpos_abs_bottom);
-    cc_create($com_6, ^iftype_text, $int14);
+    cc_create($tiers_list, ^iftype_text, $int14);
     $int14 = calc($int14 + 1);
     cc_setsize(2, 15, ^setsize_minus, ^setsize_abs);
     cc_setposition(0, calc($int16 + 40 - 15), ^setpos_abs_centre, ^setpos_abs_bottom);
@@ -141,10 +141,10 @@ while ($int15 < $int20) {
     $int15 = calc($int15 + 1);
 }
 def_int $int22 = calc($int20 * 40);
-~scrollbar_vertical($com_7, $com_6, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~scrollbar_vertical($tiers_scrollbar, $tiers_list, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
 def_int $int23 = 54;
 $int11 = calc($int11 + 50);
 def_int $int24 = ~min(calc($int23 + $int22), calc($int11 + $int19));
-~clan_ranktitles_setsize($int22, $int23, $com_6, $com_7, $int19, $int11, $com_11, $com_12, $int24, $com_1, if_getheight(if_getlayer($com_1)));
-~clan_ranktitles_draw($int20, $com_3, $com_6, $com_7, $com_11, $com_13, $com_14);
-if_setonvartransmit("clan_ranktitles_draw($int20, $com_3, $com_6, $com_7, $com_11, $com_13, $com_14){varplayer_3023, varplayer_3024, varplayer_3025, varplayer_3026, varplayer_3027, varplayer_733, varplayer_736, varplayer_737}", $com_1);
+~clan_ranktitles_setsize($int22, $int23, $tiers_list, $tiers_scrollbar, $int19, $int11, $titles_list, $titles_scrollbar, $int24, $universe, if_getheight(if_getlayer($universe)));
+~clan_ranktitles_draw($int20, $contents, $tiers_list, $tiers_scrollbar, $titles_list, $cancel, $save);
+if_setonvartransmit("clan_ranktitles_draw($int20, $contents, $tiers_list, $tiers_scrollbar, $titles_list, $cancel, $save){clan_editing_0, clan_editing_1, clan_editing_2, clan_editing_3, clan_editing_4, royal_signy_uid, royal_beigarth_uid, royal_reinn_uid}", $universe);

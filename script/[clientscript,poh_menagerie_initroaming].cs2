@@ -1,20 +1,20 @@
 // 643
-[clientscript,poh_menagerie_initroaming](component $com_9)
-def_int $int1 = if_getwidth($com_9);
-def_int $int2 = calc(if_getheight($com_9) - 17);
-cc_deleteall($com_9);
-cc_create($com_9, ^iftype_graphic, 0);
+[clientscript,poh_menagerie_initroaming](component $roaming)
+def_int $int1 = if_getwidth($roaming);
+def_int $int2 = calc(if_getheight($roaming) - 17);
+cc_deleteall($roaming);
+cc_create($roaming, ^iftype_graphic, 0);
 cc_setsize(17, 17, ^setsize_abs, ^setsize_abs);
 cc_setposition(0, $int2, ^setpos_abs_left, ^setpos_abs_top);
-.cc_create($com_9, ^iftype_text, 1);
+.cc_create($roaming, ^iftype_text, 1);
 .cc_setsize(calc($int1 - 22), 17, ^setsize_abs, ^setsize_abs);
 .cc_setposition(22, $int2, ^setpos_abs_left, ^setpos_abs_top);
 .cc_setcolour(0xff981f);
 .cc_settextfont(p12_full);
 .cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
 .cc_settext("Allow pets to roam");
-if_setonmouseover("cc_colour_swapper(event_com, .cc_getid, 16777215)", $com_9);
-if_setonmouseleave("cc_colour_swapper(event_com, .cc_getid, 16750623)", $com_9);
-~poh_menagerie_setroaming($com_9);
-if_setonvartransmit("poh_menagerie_setroaming(event_com, cc_getid, 0){varplayer_661}", $com_9);
-if_setonop("poh_menagerie_toggleroaming(event_op, event_com, cc_getid)", $com_9);
+if_setonmouseover("cc_colour_swapper(event_com, .cc_getid, 16777215)", $roaming);
+if_setonmouseleave("cc_colour_swapper(event_com, .cc_getid, 16750623)", $roaming);
+~poh_menagerie_setroaming($roaming);
+if_setonvartransmit("poh_menagerie_setroaming(event_com, cc_getid, 0){slayer_killerwatt_var}", $roaming);
+if_setonop("poh_menagerie_toggleroaming(event_op, event_com, cc_getid)", $roaming);

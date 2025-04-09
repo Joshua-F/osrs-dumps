@@ -1,34 +1,34 @@
 // 4088
 [proc,collection_searchbar_setup_op](int $int0, component $component1, component $component2)
-def_component $com_78 = interface_621:com_78;
-def_component $com_79 = interface_621:com_79;
-def_component $com_85 = interface_621:com_85;
-def_component $com_82 = interface_621:com_82;
-def_component $com_86 = interface_621:com_86;
+def_component $searchbar_image = collection:searchbar_image;
+def_component $search_text = collection:search_text;
+def_component $search_results = collection:search_results;
+def_component $search_scrollbar = collection:search_scrollbar;
+def_component $search_results_clickzone = collection:search_results_clickzone;
 def_int $int8 = 0;
-if (%varplayerbit_16073 = 0) {
-    if_setop(1, "Search", $com_78);
-    if_setonop("collection_searchbar_op($component1, $component2)", $com_78);
-    if_setonmouseover("collection_searchbar_mouseover($com_79)", $com_79);
-    if_setonmouseleave("collection_searchbar_mouseleave($com_79)", $com_79);
-    if_settext("*", $com_79);
-    if_setcolour(0xff981f, $com_79);
+if (%floater_is_searching = 0) {
+    if_setop(1, "Search", $searchbar_image);
+    if_setonop("collection_searchbar_op($component1, $component2)", $searchbar_image);
+    if_setonmouseover("collection_searchbar_mouseover($search_text)", $search_text);
+    if_setonmouseleave("collection_searchbar_mouseleave($search_text)", $search_text);
+    if_settext("*", $search_text);
+    if_setcolour(0xff981f, $search_text);
     if ($int0 = 1) {
         %varclient_417 = "";
     }
-    if_setonkey(null, $com_79);
+    if_setonkey(null, $search_text);
 } else {
     if (~on_mobile = false) {
-        if_setop(1, "", $com_78);
-        if_setonop(null, $com_78);
+        if_setop(1, "", $searchbar_image);
+        if_setonop(null, $searchbar_image);
     } else {
-        if_setop(1, "Show keyboard", $com_78);
-        if_setonop("settings_show_keyboard", $com_78);
+        if_setop(1, "Show keyboard", $searchbar_image);
+        if_setonop("settings_show_keyboard", $searchbar_image);
     }
-    if_setonmouseover(null, $com_79);
-    if_setonmouseleave(null, $com_79);
-    if_settext(append(%varclient_417, "<col=f4f4f4>*</col>"), $com_79);
-    if_setonkey("collection_searchbar_keypress(event_keycode, event_keychar, $com_79, $com_86, $com_85, $com_82, $component1, $component2)", $com_79);
+    if_setonmouseover(null, $search_text);
+    if_setonmouseleave(null, $search_text);
+    if_settext(append(%varclient_417, "<col=f4f4f4>*</col>"), $search_text);
+    if_setonkey("collection_searchbar_keypress(event_keycode, event_keychar, $search_text, $search_results_clickzone, $search_results, $search_scrollbar, $component1, $component2)", $search_text);
     ~collection_search_keyboard_listener;
 }
 ~collection_populate_search_results(1);
