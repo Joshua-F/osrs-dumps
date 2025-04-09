@@ -6,7 +6,7 @@ if_setopbase("", $component0);
 if ($int3 = 1) {
     $int2 = 0;
 }
-def_struct $struct4 = enum(int, struct, enum_2670, %varplayerbit_10032);
+def_struct $struct4 = enum(int, struct, enum_2670, %league_type);
 def_enum $enum5 = null;
 def_struct $struct6 = null;
 def_int $int7 = 0;
@@ -137,7 +137,7 @@ if ($int3 = 0) {
 def_int $int18 = calc($int13 - 4);
 def_int $int19 = $int18;
 if ($int12 ! -1 & $int12 > 0) {
-    $int19 = scale(%varplayerbit_10046, $int12, $int18);
+    $int19 = scale(%league_total_tasks_completed, $int12, $int18);
 }
 if ($int19 > $int18) {
     $int19 = $int18;
@@ -155,8 +155,8 @@ if (cc_find($component0, 2) = ^true) {
 def_int $int20 = -1;
 if ($int10 ! -1 & cc_find($component0, $int10) = ^true) {
     if ($int3 = 0 & $int12 ! -1) {
-        if (%varplayerbit_10046 >= $int12) {
-            if (%varplayerbit_10037 < 7) {
+        if (%league_total_tasks_completed >= $int12) {
+            if (%league_tutorial_completed < 7) {
                 cc_settext("You have completed enough tasks to unlock your next area!");
             } else {
                 cc_settext("<~text_device("Click", "Tap")> here to select your next area!");
@@ -164,21 +164,21 @@ if ($int10 ! -1 & cc_find($component0, $int10) = ^true) {
                 if_setopbase("<col=ff981f>Areas</col>", $component0);
             }
         } else {
-            $int20 = calc($int12 - %varplayerbit_10046);
+            $int20 = calc($int12 - %league_total_tasks_completed);
             if ($int20 = 1) {
                 cc_settext("<tostring($int20)> task until your next area.");
             } else {
                 cc_settext("<tostring($int20)> tasks until your next area.");
             }
         }
-    } else if (%varplayerbit_10046 = 1) {
-        cc_settext("<tostring(%varplayerbit_10046)> task completed");
+    } else if (%league_total_tasks_completed = 1) {
+        cc_settext("<tostring(%league_total_tasks_completed)> task completed");
     } else {
-        cc_settext("<tostring(%varplayerbit_10046)> tasks completed");
+        cc_settext("<tostring(%league_total_tasks_completed)> tasks completed");
     }
 }
 if ($int3 = 0 & cc_find($component0, 5) = ^true) {
-    if (%varplayerbit_10046 >= $int12) {
+    if (%league_total_tasks_completed >= $int12) {
         cc_setgraphic($graphic16);
     } else {
         cc_setgraphic($graphic17);

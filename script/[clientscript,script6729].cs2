@@ -1,19 +1,19 @@
 // 6729
 [clientscript,script6729](int $int0, int $int1, int $int2, int $int3, int $int4, int $int5, int $int6, int $int7)
-if (if_hassub(enum(component, component, ~toplevel_getcomponents, interface_161:com_16)) = false) {
+if (if_hassub(enum(component, component, ~toplevel_getcomponents, toplevel_osrs_stretch:mainmodal)) = false) {
     return;
 }
-if_settext("Raid Level: <tostring($int3)> <col=ffffff>(<tostring($int2)>)</col>", interface_774:com_73);
+if_settext("Raid Level: <tostring($int3)> <col=ffffff>(<tostring($int2)>)</col>", toa_partydetails:raid_level);
 if ($int3 >= 300) {
-    if_settext("Mode: <col=ffffff>Expert</col>", interface_774:com_74);
+    if_settext("Mode: <col=ffffff>Expert</col>", toa_partydetails:raid_mode);
 } else if ($int3 >= 150) {
-    if_settext("Mode: <col=ffffff>Normal</col>", interface_774:com_74);
+    if_settext("Mode: <col=ffffff>Normal</col>", toa_partydetails:raid_mode);
 } else {
-    if_settext("Mode: <col=ffffff>Entry</col>", interface_774:com_74);
+    if_settext("Mode: <col=ffffff>Entry</col>", toa_partydetails:raid_mode);
 }
-cc_deleteall(interface_774:com_16);
-if_sethide(false, interface_774:com_19);
-if_sethide(false, interface_774:com_35);
+cc_deleteall(toa_partydetails:main);
+if_sethide(false, toa_partydetails:members_header);
+if_sethide(false, toa_partydetails:applicants_header);
 ~script6768;
 def_int $int8 = calc(%varclient_178 - 8);
 switch_int (%varclient_181) {
@@ -23,7 +23,7 @@ switch_int (%varclient_181) {
 }
 ~toa_partydetails_setsort($int0, $int8);
 if ($int8 <= 0) {
-    cc_create(interface_774:com_48, ^iftype_text, 0);
+    cc_create(toa_partydetails:applicants_list, ^iftype_text, 0);
     cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
     cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
     cc_setcolour(0xff981f);
@@ -32,26 +32,26 @@ if ($int8 <= 0) {
     cc_settextshadow(true);
     cc_settext("No current applicants.");
 }
-if_sethide(false, interface_774:com_6);
-if_sethide(false, interface_774:com_7);
-if_sethide(false, interface_774:com_8);
-if_sethide(false, interface_774:com_9);
-if_sethide(true, interface_774:com_57);
-if_sethide(true, interface_774:com_75);
-if_sethide(true, interface_774:com_76);
+if_sethide(false, toa_partydetails:members_tab);
+if_sethide(false, toa_partydetails:applicants_tab);
+if_sethide(false, toa_partydetails:invocations_tab);
+if_sethide(false, toa_partydetails:summary_tab);
+if_sethide(true, toa_partydetails:invocations_sidepanel);
+if_sethide(true, toa_partydetails:invocations_loot_content);
+if_sethide(true, toa_partydetails:invocations_presets_content);
 def_int $int9 = 0;
 def_int $int10 = 0;
 def_int $int11 = 0;
 def_int $int12 = 0;
 if ($int4 = 0) {
     $int9 = 1;
-    if_sethide(false, interface_774:com_17);
+    if_sethide(false, toa_partydetails:members);
 } else if ($int4 = 1) {
     $int10 = 1;
-    if_sethide(false, interface_774:com_33);
+    if_sethide(false, toa_partydetails:applicants);
 } else if ($int4 = 2) {
     $int11 = 1;
-    if_sethide(false, interface_774:com_49);
+    if_sethide(false, toa_partydetails:invocations);
     if (%varclient_1086 = 1 & $int0 ! 2) {
         %varclient_1086 = 0;
     }
@@ -62,12 +62,12 @@ if ($int4 = 0) {
     } else {
         ~toa_invocations_layout_setup(0, 0);
     }
-    ~script1558(interface_774:com_83, "Load", interface_774:com_1, enum_4792, -1);
-    ~script1558(interface_774:com_84, "Save", interface_774:com_1, enum_4792, -1);
+    ~script1558(toa_partydetails:btn_presets_load, "Load", toa_partydetails:pausebuttons, enum_4792, -1);
+    ~script1558(toa_partydetails:btn_presets_save, "Save", toa_partydetails:pausebuttons, enum_4792, -1);
     ~script6839;
 } else {
     $int12 = 1;
-    if_sethide(false, interface_774:com_53);
+    if_sethide(false, toa_partydetails:summary);
 }
 def_string $string0 = "";
 if (%varclient_1087 > 0) {
@@ -77,16 +77,16 @@ def_string $string1 = "";
 if ($int8 > 0) {
     $string1 = " (<tostring($int8)>)";
 }
-~script6736(interface_774:com_6, $int9, "Members", $string0, interface_774:com_1, enum_4792, -1);
-~script6736(interface_774:com_7, $int10, "Applicants", $string1, interface_774:com_1, enum_4792, -1);
-~script6736(interface_774:com_8, $int11, "Invocations", "", interface_774:com_1, enum_4792, -1);
-~script6736(interface_774:com_9, $int12, "Summary", "", interface_774:com_1, enum_4792, -1);
-if_sethide(false, interface_774:com_4);
-~toa_partydetails_back_button(interface_774:com_4, "Back", interface_774:com_1, enum_4792, -1);
-~script6749(interface_774:com_52, interface_774:com_51, $int5, $int6, $int7, $int0, interface_774:com_68);
-~toa_partydetails_summary(interface_774:com_56, interface_774:com_55, $int5, $int6, $int7, $int3);
+~script6736(toa_partydetails:members_tab, $int9, "Members", $string0, toa_partydetails:pausebuttons, enum_4792, -1);
+~script6736(toa_partydetails:applicants_tab, $int10, "Applicants", $string1, toa_partydetails:pausebuttons, enum_4792, -1);
+~script6736(toa_partydetails:invocations_tab, $int11, "Invocations", "", toa_partydetails:pausebuttons, enum_4792, -1);
+~script6736(toa_partydetails:summary_tab, $int12, "Summary", "", toa_partydetails:pausebuttons, enum_4792, -1);
+if_sethide(false, toa_partydetails:back);
+~toa_partydetails_back_button(toa_partydetails:back, "Back", toa_partydetails:pausebuttons, enum_4792, -1);
+~script6749(toa_partydetails:invocations_content, toa_partydetails:invocations_scrollbar, $int5, $int6, $int7, $int0, toa_partydetails:tooltip);
+~toa_partydetails_summary(toa_partydetails:summary_content, toa_partydetails:summary_scrollbar, $int5, $int6, $int7, $int3);
 ~script6730($int4, $int0, $int1, $int5, $int6, $int7);
 if ($int4 = 0 | $int4 = 1) {
-    if_setontimer("toa_partydetails_autorefresh(interface_774:com_0, interface_774:com_1, interface_774:com_62, clientclock)", interface_774:com_0);
+    if_setontimer("toa_partydetails_autorefresh(toa_partydetails:universe, toa_partydetails:pausebuttons, toa_partydetails:refresh, clientclock)", toa_partydetails:universe);
 }
-~toa_invocations_side_panel_update(interface_774:com_95, interface_774:com_87, interface_774:com_93, interface_774:com_96, $int3, $int2, interface_774:com_68);
+~toa_invocations_side_panel_update(toa_partydetails:raid_level_bar, toa_partydetails:raid_loot_potential, toa_partydetails:raid_difficulty_gfx, toa_partydetails:raid_level_info, $int3, $int2, toa_partydetails:tooltip);

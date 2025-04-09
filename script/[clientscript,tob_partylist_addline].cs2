@@ -1,6 +1,6 @@
 // 2340
 [clientscript,tob_partylist_addline](int $int0, string $string0)
-if (if_hassub(enum(component, component, ~toplevel_getcomponents, interface_161:com_16)) = false) {
+if (if_hassub(enum(component, component, ~toplevel_getcomponents, toplevel_osrs_stretch:mainmodal)) = false) {
     return;
 }
 def_component $component1 = enum(int, component, enum_1937, $int0);
@@ -37,7 +37,7 @@ if (string_length($string0) > 0) {
     $string11, $string0 = ~script632($string0);
     $string12, $string0 = ~script632($string0);
     $string14, $string0 = ~script632($string0);
-    if (%varplayerbit_12988 = 0 | compare($string2, chat_playername) = 0) {
+    if (%tob_lobby_friends_filter = 0 | compare($string2, chat_playername) = 0) {
         ~tob_partylist_fillline($component1, $int0, $string1, $string7, $string8, $string11, $string12, $string14);
     } else if (~script5217($string2) = true) {
         ~tob_partylist_fillline($component1, $int0, $string1, $string7, $string8, $string11, $string12, $string14);
@@ -76,10 +76,10 @@ if ($int0 >= calc($int7 - 1)) {
     $int6 = calc(%varclient_178 * 18);
     if ($int6 > if_getheight($component5)) {
         if_setscrollsize(0, $int6, $component5);
-        ~scrollbar_resize(interface_364:com_63, $component5, %varclient_179);
+        ~scrollbar_resize(tob_partylist:scrollbar, $component5, %varclient_179);
     } else {
         if_setscrollsize(0, 0, $component5);
-        ~scrollbar_resize(interface_364:com_63, $component5, 0);
+        ~scrollbar_resize(tob_partylist:scrollbar, $component5, 0);
         %varclient_179 = 0;
     }
     cc_deleteall($component5);
@@ -98,13 +98,13 @@ if ($int0 >= calc($int7 - 1)) {
         cc_settextfont(p12_full);
         cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
         cc_settextshadow(true);
-        if (%varplayerbit_12988 = 0) {
+        if (%tob_lobby_friends_filter = 0) {
             cc_settext("No parties are currently listed.");
         } else {
             cc_settext("You have no friends or clanmates in a party.");
         }
     }
-    if_sethide(false, interface_364:com_64);
-    if_sethide(false, interface_364:com_66);
-    if_sethide(false, interface_364:com_67);
+    if_sethide(false, tob_partylist:refresh);
+    if_sethide(false, tob_partylist:myparty);
+    if_sethide(false, tob_partylist:filter);
 }

@@ -1,15 +1,15 @@
 // 1261
 [proc,deadman_tournament_fogcolour]
-def_int $int0 = if_getcolour(interface_90:com_1);
-def_int $int1 = if_gettrans(interface_90:com_1);
-if (enum(int, boolean, enum_1904, %varplayer_1676) = false) {
+def_int $int0 = if_getcolour(pvp_icons:deadman_fog);
+def_int $int1 = if_gettrans(pvp_icons:deadman_fog);
+if (enum(int, boolean, enum_1904, %deadman_tournament_mode_pl) = false) {
     if ($int0 ! 16742195) {
-        if_setcolour(0xff7733, interface_90:com_1);
+        if_setcolour(0xff7733, pvp_icons:deadman_fog);
     }
     if ($int1 ! 255) {
-        if_settrans(255, interface_90:com_1);
+        if_settrans(255, pvp_icons:deadman_fog);
     }
-    if_setgradienttrans(255, interface_90:com_1);
+    if_setgradienttrans(255, pvp_icons:deadman_fog);
     return;
 }
 def_int $int2 = 0;
@@ -30,9 +30,9 @@ def_int $int14 = 0;
 def_int $int15 = 0;
 def_int $int16 = 0;
 $int14, $int15, $int16 = ~hex_to_rgb($int0);
-if (%varplayerbit_4991 = 2) {
+if (%deadman_tournament_forcefog = 2) {
     $int2, $int3, $int4, $int13 = $int8, $int9, $int10, $int11;
-} else if (%varplayerbit_4991 = 1) {
+} else if (%deadman_tournament_forcefog = 1) {
     $int2, $int3, $int4, $int13 = $int5, $int6, $int7, $int11;
 } else {
     $int2, $int3, $int4, $int13 = $int14, $int15, $int16, $int12;
@@ -52,12 +52,12 @@ if ($int16 < $int4) {
 } else if ($int16 > $int4) {
     $int16 = calc($int16 - 1);
 }
-if_setcolour(~rgb_to_hex($int14, $int15, $int16), interface_90:com_1);
-if_setgradientcolour(~rgb_to_hex($int14, $int15, $int16), interface_90:com_1);
+if_setcolour(~rgb_to_hex($int14, $int15, $int16), pvp_icons:deadman_fog);
+if_setgradientcolour(~rgb_to_hex($int14, $int15, $int16), pvp_icons:deadman_fog);
 if ($int1 < $int13) {
     $int1 = calc($int1 + 1);
 } else if ($int1 > $int13) {
     $int1 = calc($int1 - 1);
 }
-if_settrans($int1, interface_90:com_1);
-if_setgradienttrans(255, interface_90:com_1);
+if_settrans($int1, pvp_icons:deadman_fog);
+if_setgradienttrans(255, pvp_icons:deadman_fog);

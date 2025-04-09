@@ -16,16 +16,16 @@ def_int $int17 = 0;
 def_int $int18 = 0;
 while ($int18 < 120) {
     if (cc_find($component0, $int18) = ^true) {
-        $obj14 = inv_getobj(inv_636, $int18);
+        $obj14 = inv_getobj(death_permanent, $int18);
         if ($obj14 ! null) {
             cc_sethide(false);
-            cc_setobject($obj14, inv_getnum(inv_636, $int18));
+            cc_setobject($obj14, inv_getnum(death_permanent, $int18));
             cc_setopbase("<col=ff9040><oc_name($obj14)></col>");
             $int13 = calc($int15 / $int9 * (32 + 10));
             cc_setposition(calc($int12 + $int15 % $int9 * (36 + $int10)), $int13, ^setpos_abs_left, ^setpos_abs_top);
-            if (%varplayer_262 = $int18) {
+            if (%if2 = $int18) {
                 cc_setoutline(2);
-                $obj16, $int17 = $obj14, inv_total(inv_636, $obj14);
+                $obj16, $int17 = $obj14, inv_total(death_permanent, $obj14);
             } else {
                 cc_setoutline(1);
             }
@@ -55,20 +55,20 @@ if ($obj16 ! null) {
     if_setsize(if_getx($component2), 0, ^setsize_abs, ^setsize_minus, $component7);
     if_settextfont(p11_full, $component7);
     if ($int17 > 1) {
-        if (%varplayer_263 ! 1) {
-            if (calc(^max_32bit_int / $int17) < %varplayer_263) {
-                $string0 = "Fee: <col=ffffff><~tostring_spacer(%varplayer_263, $string1)> coins</col> each";
+        if (%if3 ! 1) {
+            if (calc(^max_32bit_int / $int17) < %if3) {
+                $string0 = "Fee: <col=ffffff><~tostring_spacer(%if3, $string1)> coins</col> each";
             } else {
-                $string0 = "Fee: <col=ffffff><~tostring_spacer(%varplayer_263, $string1)> coins</col> each (<col=ffffff><~tostring_spacer(calc($int17 * %varplayer_263), $string1)></col>)";
+                $string0 = "Fee: <col=ffffff><~tostring_spacer(%if3, $string1)> coins</col> each (<col=ffffff><~tostring_spacer(calc($int17 * %if3), $string1)></col>)";
             }
-            if_settext("<~tostring_spacer($int17, $string1)> x <oc_name($obj16)>:<br><$string0><br>Death's Coffer: <col=ffffff><~tostring_spacer(%varplayer_261, $string1)> coins</col>", $component7);
+            if_settext("<~tostring_spacer($int17, $string1)> x <oc_name($obj16)>:<br><$string0><br>Death's Coffer: <col=ffffff><~tostring_spacer(%if1, $string1)> coins</col>", $component7);
         } else {
-            if_settext("<~tostring_spacer($int17, $string1)> x <oc_name($obj16)>:<br>Fee: <col=ffffff>1 coin</col> each<br>Death's Coffer: <col=ffffff><~tostring_spacer(%varplayer_261, $string1)> coins</col>", $component7);
+            if_settext("<~tostring_spacer($int17, $string1)> x <oc_name($obj16)>:<br>Fee: <col=ffffff>1 coin</col> each<br>Death's Coffer: <col=ffffff><~tostring_spacer(%if1, $string1)> coins</col>", $component7);
         }
-    } else if (%varplayer_263 ! 1) {
-        if_settext("<oc_name($obj16)>:<br>Fee: <col=ffffff><~tostring_spacer(%varplayer_263, $string1)> coins</col><br>Death's Coffer: <col=ffffff><~tostring_spacer(%varplayer_261, $string1)> coins</col>", $component7);
+    } else if (%if3 ! 1) {
+        if_settext("<oc_name($obj16)>:<br>Fee: <col=ffffff><~tostring_spacer(%if3, $string1)> coins</col><br>Death's Coffer: <col=ffffff><~tostring_spacer(%if1, $string1)> coins</col>", $component7);
     } else {
-        if_settext("<oc_name($obj16)>:<br>Fee: <col=ffffff>1 coin</col><br>Death's Coffer: <col=ffffff><~tostring_spacer(%varplayer_261, $string1)> coins</col>", $component7);
+        if_settext("<oc_name($obj16)>:<br>Fee: <col=ffffff>1 coin</col><br>Death's Coffer: <col=ffffff><~tostring_spacer(%if1, $string1)> coins</col>", $component7);
     }
 } else {
     if_sethide(true, $component2);
@@ -77,5 +77,5 @@ if ($obj16 ! null) {
     if_sethide(true, $component5);
     if_setsize(if_getx($component6), 0, ^setsize_abs, ^setsize_minus, $component7);
     if_settextfont(p12_full, $component7);
-    if_settext("Select an item to retrieve.<br>Death's Coffer: <col=ffffff><~tostring_spacer(%varplayer_261, $string1)></col>", $component7);
+    if_settext("Select an item to retrieve.<br>Death's Coffer: <col=ffffff><~tostring_spacer(%if1, $string1)></col>", $component7);
 }

@@ -13,20 +13,20 @@ def_string $string3 = "";
 while ($int3 < $int1) {
     $dbrow2 = enum(int, dbrow, enum_5624, $int3);
     if ($dbrow2 ! null) {
-        $string1 = db_getfield($dbrow2, dbtable_79:col0, 0);
-        $int4 = db_getfield($dbrow2, dbtable_79:col1, 0);
+        $string1 = db_getfield($dbrow2, hiscores_skill_info:skillname, 0);
+        $int4 = db_getfield($dbrow2, hiscores_skill_info:skillid, 0);
         $string0 = ~tostring_spacer(hiscore_getmembercontributedxp_byname(lowercase($string1)), $string2);
-        if (cc_find(interface_894:com_21, $int0) = ^true) {
+        if (cc_find(hiscores:hiscores_group_xp, $int0) = ^true) {
             cc_settext($string0);
         }
         $string3 = $string1;
-        if (cc_find(interface_894:com_21, $int3) = ^true) {
+        if (cc_find(hiscores:hiscores_group_xp, $int3) = ^true) {
             ~script7516($string3, 0, 0);
         }
         $int0 = calc($int0 + 2);
     }
     $int3 = calc($int3 + 1);
 }
-if (cc_find(interface_894:com_21, $int0) = ^true) {
+if (cc_find(hiscores:hiscores_group_xp, $int0) = ^true) {
     cc_settext(~tostring_spacer(hiscore_getgrouptotalxp, $string2));
 }

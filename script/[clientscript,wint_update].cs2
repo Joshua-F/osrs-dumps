@@ -1,70 +1,70 @@
 // 1421
 [clientscript,wint_update](int $int0, int $int1, int $int2, int $int3, int $int4, int $int5, int $int6, int $int7, int $int8, int $int9)
 if ($int1 = 0) {
-    if_setsize(0, 0, ^setsize_abs, ^setsize_minus, interface_396:com_24);
-    if_settext("Wintertodt's Energy: 0%", interface_396:com_26);
+    if_setsize(0, 0, ^setsize_abs, ^setsize_minus, wint_status:energy_bar);
+    if_settext("Wintertodt's Energy: 0%", wint_status:energy_title);
 } else if ($int1 ! -1) {
-    if_setsize(interpolate(1, 16384, 0, 3500, $int1), 0, ^setsize_proportion, ^setsize_minus, interface_396:com_24);
-    if_settext("Wintertodt's Energy: <tostring(interpolate(1, 100, 0, 3500, $int1))>%", interface_396:com_26);
+    if_setsize(interpolate(1, 16384, 0, 3500, $int1), 0, ^setsize_proportion, ^setsize_minus, wint_status:energy_bar);
+    if_settext("Wintertodt's Energy: <tostring(interpolate(1, 100, 0, 3500, $int1))>%", wint_status:energy_title);
 }
-if (%varplayerbit_11434 = 0) {
-    if_setsize(0, 0, ^setsize_abs, ^setsize_minus, interface_396:com_18);
-    if_settext("Your Warmth: 0%", interface_396:com_20);
-} else if (%varplayerbit_11434 ! -1) {
-    if_setsize(interpolate(1, 16384, 0, 1000, %varplayerbit_11434), 0, ^setsize_proportion, ^setsize_minus, interface_396:com_18);
-    if_settext("Your Warmth: <tostring(interpolate(1, 100, 0, 1000, %varplayerbit_11434))>%", interface_396:com_20);
+if (%wint_warmth = 0) {
+    if_setsize(0, 0, ^setsize_abs, ^setsize_minus, wint_status:warmth_bar);
+    if_settext("Your Warmth: 0%", wint_status:warmth_title);
+} else if (%wint_warmth ! -1) {
+    if_setsize(interpolate(1, 16384, 0, 1000, %wint_warmth), 0, ^setsize_proportion, ^setsize_minus, wint_status:warmth_bar);
+    if_settext("Your Warmth: <tostring(interpolate(1, 100, 0, 1000, %wint_warmth))>%", wint_status:warmth_title);
 }
-if_settext("Points<br><tostring($int0)>", interface_396:com_6);
+if_settext("Points<br><tostring($int0)>", wint_status:points);
 if ($int0 < 500) {
-    if_setcolour(^red, interface_396:com_6);
+    if_setcolour(^red, wint_status:points);
 } else {
-    if_setcolour(^white, interface_396:com_6);
+    if_setcolour(^white, wint_status:points);
 }
 if ($int2 = 1) {
-    if_setgraphic(null, interface_396:com_7);
+    if_setgraphic(null, wint_status:pyro1);
 } else {
-    if_setgraphic("wint_icons,3", interface_396:com_7);
+    if_setgraphic("wint_icons,3", wint_status:pyro1);
 }
 if ($int3 = 1) {
-    if_setgraphic(null, interface_396:com_8);
+    if_setgraphic(null, wint_status:pyro2);
 } else {
-    if_setgraphic("wint_icons,3", interface_396:com_8);
+    if_setgraphic("wint_icons,3", wint_status:pyro2);
 }
 if ($int4 = 1) {
-    if_setgraphic(null, interface_396:com_9);
+    if_setgraphic(null, wint_status:pyro3);
 } else {
-    if_setgraphic("wint_icons,3", interface_396:com_9);
+    if_setgraphic("wint_icons,3", wint_status:pyro3);
 }
 if ($int5 = 1) {
-    if_setgraphic(null, interface_396:com_10);
+    if_setgraphic(null, wint_status:pyro4);
 } else {
-    if_setgraphic("wint_icons,3", interface_396:com_10);
+    if_setgraphic("wint_icons,3", wint_status:pyro4);
 }
 if ($int6 = 0) {
-    if_setgraphic("wint_icons,0", interface_396:com_11);
+    if_setgraphic("wint_icons,0", wint_status:brazier1);
 } else if ($int6 = 1) {
-    if_setgraphic("wint_icons,1", interface_396:com_11);
+    if_setgraphic("wint_icons,1", wint_status:brazier1);
 } else if ($int6 = 2) {
-    if_setgraphic("wint_icons,2", interface_396:com_11);
+    if_setgraphic("wint_icons,2", wint_status:brazier1);
 }
 if ($int7 = 0) {
-    if_setgraphic("wint_icons,0", interface_396:com_12);
+    if_setgraphic("wint_icons,0", wint_status:brazier2);
 } else if ($int7 = 1) {
-    if_setgraphic("wint_icons,1", interface_396:com_12);
+    if_setgraphic("wint_icons,1", wint_status:brazier2);
 } else if ($int7 = 2) {
-    if_setgraphic("wint_icons,2", interface_396:com_12);
+    if_setgraphic("wint_icons,2", wint_status:brazier2);
 }
 if ($int8 = 0) {
-    if_setgraphic("wint_icons,0", interface_396:com_13);
+    if_setgraphic("wint_icons,0", wint_status:brazier3);
 } else if ($int8 = 1) {
-    if_setgraphic("wint_icons,1", interface_396:com_13);
+    if_setgraphic("wint_icons,1", wint_status:brazier3);
 } else if ($int8 = 2) {
-    if_setgraphic("wint_icons,2", interface_396:com_13);
+    if_setgraphic("wint_icons,2", wint_status:brazier3);
 }
 if ($int9 = 0) {
-    if_setgraphic("wint_icons,0", interface_396:com_14);
+    if_setgraphic("wint_icons,0", wint_status:brazier4);
 } else if ($int9 = 1) {
-    if_setgraphic("wint_icons,1", interface_396:com_14);
+    if_setgraphic("wint_icons,1", wint_status:brazier4);
 } else if ($int9 = 2) {
-    if_setgraphic("wint_icons,2", interface_396:com_14);
+    if_setgraphic("wint_icons,2", wint_status:brazier4);
 }

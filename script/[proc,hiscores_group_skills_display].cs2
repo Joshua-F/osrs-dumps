@@ -13,21 +13,21 @@ def_string $string1 = "";
 while ($int3 < $int1) {
     $dbrow2 = enum(int, dbrow, enum_5624, $int3);
     if ($dbrow2 ! null) {
-        $string0 = db_getfield($dbrow2, dbtable_79:col0, 0);
-        $int4 = db_getfield($dbrow2, dbtable_79:col1, 0);
+        $string0 = db_getfield($dbrow2, hiscores_skill_info:skillname, 0);
+        $int4 = db_getfield($dbrow2, hiscores_skill_info:skillid, 0);
         $int6 = hiscore_getmemberlevel(lowercase($string0));
         $int7 = calc($int7 + $int6);
-        if (cc_find(interface_894:com_19, $int0) = ^true) {
+        if (cc_find(hiscores:hiscores_group_skills, $int0) = ^true) {
             cc_settext(tostring($int6));
         }
         $string1 = $string0;
-        if (cc_find(interface_894:com_19, $int3) = ^true) {
+        if (cc_find(hiscores:hiscores_group_skills, $int3) = ^true) {
             ~script7516($string1, 0, 0);
         }
         $int0 = calc($int0 + 2);
     }
     $int3 = calc($int3 + 1);
 }
-if (cc_find(interface_894:com_19, $int0) = ^true) {
+if (cc_find(hiscores:hiscores_group_skills, $int0) = ^true) {
     cc_settext(tostring($int7));
 }

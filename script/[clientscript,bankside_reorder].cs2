@@ -1,6 +1,6 @@
 // 298
 [clientscript,bankside_reorder](component $component0, component $component1, int $int2, int $int3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10)
-def_int $int11 = inv_size(inv_93);
+def_int $int11 = inv_size(inv);
 if ($int2 < 0 | $int2 >= $int11) {
     return;
 }
@@ -10,23 +10,23 @@ if ($int3 < 0 | $int3 >= $int11) {
 if ($component0 ! $component1) {
     return;
 }
-def_obj $obj12 = inv_getobj(inv_93, $int2);
+def_obj $obj12 = inv_getobj(inv, $int2);
 if ($obj12 = null) {
     return;
 }
-def_obj $obj13 = inv_getobj(inv_93, $int3);
+def_obj $obj13 = inv_getobj(inv, $int3);
 if (cc_find($component0, $int3) = ^true) {
-    ~bankside_drawitem($obj12, inv_getnum(inv_93, $int2), $int2, $component0, $component4, 0, $component5, $component6, $component7, $component8, $component9, $component10, ~script7796($int3));
+    ~bankside_drawitem($obj12, inv_getnum(inv, $int2), $int2, $component0, $component4, 0, $component5, $component6, $component7, $component8, $component9, $component10, ~script7796($int3));
 }
 if (cc_find($component0, $int2) = ^true) {
-    ~bankside_drawitem($obj13, inv_getnum(inv_93, $int3), $int3, $component0, $component4, 0, $component5, $component6, $component7, $component8, $component9, $component10, ~script7796($int2));
+    ~bankside_drawitem($obj13, inv_getnum(inv, $int3), $int3, $component0, $component4, 0, $component5, $component6, $component7, $component8, $component9, $component10, ~script7796($int2));
 }
 switch_obj ($obj12) {
-    case obj_11941, obj_22586, obj_25106, obj_25108, obj_12791, obj_24416, obj_27281, obj_27509 :
+    case looting_bag, looting_bag_open, league_second_inventory, league_second_inventory_open, bh_rune_pouch, bh_rune_pouch_trouver, divine_rune_pouch, divine_rune_pouch_trouver :
         cc_deleteall($component4);
     case default :
         switch_obj ($obj13) {
-            case obj_11941, obj_22586, obj_25106, obj_25108, obj_12791, obj_24416, obj_27281, obj_27509 :
+            case looting_bag, looting_bag_open, league_second_inventory, league_second_inventory_open, bh_rune_pouch, bh_rune_pouch_trouver, divine_rune_pouch, divine_rune_pouch_trouver :
                 cc_deleteall($component4);
         }
 }

@@ -9,7 +9,7 @@ def_string $string1 = ",";
 def_string $string2 = "<$string0> XP:";
 def_string $string3 = ~tostring_spacer($int5, $string1);
 def_int $int6 = 0;
-if (%varplayerbit_4181 = 0) {
+if (%option_hidexptolevel = 0) {
     if ($int4 < 99) {
         $int6 = enum(int, int, enum_256, calc($int4 + 1));
         $string2 = append($string2, "|Next level at:|Remaining XP:");
@@ -37,7 +37,7 @@ if (~deadman_world ! 0) {
             $int8 = 1;
         }
     }
-    if ($int8 = 0 & %varplayer_1588 > 0) {
+    if ($int8 = 0 & %deadman_xp_to_cap > 0) {
         switch_stat ($stat0) {
             case attack, strength, magic :
                 $int10 = ~script2031(20);

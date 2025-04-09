@@ -6,9 +6,9 @@ def_string $string0 = enum(int, string, enum_108, $int2);
 def_boolean $boolean6 = enum(stat, boolean, enum_1497, $stat4);
 cc_deleteall($component0);
 cc_create($component0, ^iftype_graphic, 0);
-if (~league_world = true & %varplayerbit_10032 = 3) {
+if (~league_world = true & %league_type = 3) {
     $int5 = ~script5830($stat4);
-    cc_setonvartransmit("stats_init($component0, $component1, $int2, $int3){varplayer_3278}");
+    cc_setonvartransmit("stats_init($component0, $component1, $int2, $int3){league_reusable_protected_1}");
 }
 cc_setposition(-2, -2, ^setpos_abs_left, ^setpos_abs_top);
 cc_setsize(36, 36, ^setsize_abs, ^setsize_abs);
@@ -44,14 +44,14 @@ if (~on_mobile = true) {
     if_setonmouseleave("deltooltip($component1)", $component0);
 }
 if_setonstattransmit("stats_setlevels($stat4, $component0, $string0, cc_getid, .cc_getid, $component1){$stat4, attack, strength, defence, ranged, magic}", $component0);
-if_setonvartransmit("stats_setlevels($stat4, $component0, $string0, cc_getid, .cc_getid, $component1){varplayer_427, varplayer_1588, varplayer_1437, varplayer_1438, varplayer_1439, varplayer_1436, varplayer_1435, varplayer_1440, varplayer_1453, varplayer_1447, varplayer_1452, varplayer_1443, varplayer_1449, varplayer_1441, varplayer_1442, varplayer_1444, varplayer_1450, varplayer_1457, varplayer_1445, varplayer_1446, varplayer_1454, varplayer_1455, varplayer_1456, varplayer_1451, varplayer_1448}", $component0);
+if_setonvartransmit("stats_setlevels($stat4, $component0, $string0, cc_getid, .cc_getid, $component1){option_aid, deadman_xp_to_cap, deadman_xp_ranged, deadman_xp_magic, deadman_xp_defence, deadman_xp_strength, deadman_xp_attack, deadman_xp_hitpoints, deadman_xp_fletching, deadman_xp_mining, deadman_xp_woodcutting, deadman_xp_herblore, deadman_xp_fishing, deadman_xp_prayer, deadman_xp_agility, deadman_xp_thieving, deadman_xp_cooking, deadman_xp_hunter, deadman_xp_crafting, deadman_xp_runecraft, deadman_xp_slayer, deadman_xp_farming, deadman_xp_construction, deadman_xp_firemaking, deadman_xp_smithing}", $component0);
 ~stats_setlevels($stat4, $component0, $string0, $component1);
 if (~league_world = false & ($boolean6 = false | map_members = true | %varclient_103 = 1)) {
     return;
 }
-if (%varplayerbit_10032 ! 3) {
+if (%league_type ! 3) {
     return;
-} else if (%varplayerbit_10032 = 3 & $int5 = 1) {
+} else if (%league_type = 3 & $int5 = 1) {
     return;
 }
 cc_create($component0, ^iftype_graphic, 6);

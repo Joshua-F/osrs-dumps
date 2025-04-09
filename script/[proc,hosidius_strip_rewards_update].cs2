@@ -1,9 +1,9 @@
 // 1198
 [proc,hosidius_strip_rewards_update](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10, component $component11, component $component12, component $component13, component $component14, component $component15, component $component16, component $component17, component $component18, component $component19, component $component20, component $component21, component $component22, component $component23, component $component24)
-if_settext("Points: <~tostring_spacer(%varplayerbit_4893, ",")>", $component0);
+if_settext("Points: <~tostring_spacer(%hosidius_tithe_rewardpoints, ",")>", $component0);
 def_int $int25 = 0;
-if (%varplayer_262 > 0) {
-    $int25 = calc(20 - interpolate(0, %varplayer_261, 0, 1000, 20));
+if (%if2 > 0) {
+    $int25 = calc(20 - interpolate(0, %if1, 0, 1000, 20));
     if_settext("Recharge can: <tostring($int25)>", $component2);
     if_setop(6, "Recharge", $component1);
 } else {
@@ -12,12 +12,12 @@ if (%varplayer_262 > 0) {
     if_setop(6, "Buy", $component1);
 }
 if_setonop("opsound(event_op, 2)", $component1);
-if (%varplayerbit_4893 < $int25) {
+if (%hosidius_tithe_rewardpoints < $int25) {
     if_setcolour(^red, $component2);
 } else {
     if_setcolour(^white, $component2);
 }
-if (%varplayer_263 > 0) {
+if (%if3 > 0) {
     if_setop(6, "Buy", $component5);
     if_settext("Already owned", $component6);
 } else {
@@ -26,12 +26,12 @@ if (%varplayer_263 > 0) {
     if_settext("Buy seed box: <tostring($int25)>", $component6);
 }
 if_setonop("opsound(event_op, 2)", $component5);
-if (%varplayerbit_4893 < $int25 | %varplayer_263 > 0) {
+if (%hosidius_tithe_rewardpoints < $int25 | %if3 > 0) {
     if_setcolour(^red, $component6);
 } else {
     if_setcolour(^white, $component6);
 }
-if (%varplayer_265 > 0) {
+if (%if5 > 0) {
     if_setop(6, "Buy", $component7);
     if_settext("Already owned", $component8);
 } else {
@@ -40,21 +40,21 @@ if (%varplayer_265 > 0) {
     if_settext("Buy herb sack: <tostring($int25)>", $component8);
 }
 if_setonop("opsound(event_op, 2)", $component7);
-if (%varplayerbit_4893 < $int25 | %varplayer_265 > 0 | stat_base(herblore) < 58) {
+if (%hosidius_tithe_rewardpoints < $int25 | %if5 > 0 | stat_base(herblore) < 58) {
     if_setcolour(^red, $component8);
 } else {
     if_setcolour(^white, $component8);
 }
-if (%varplayerbit_5557 = 0) {
+if (%farming_blockweeds = 0) {
     if_sethide(true, $component24);
     if_setop(6, "Buy", $component21);
     if_settext("Buy Auto-weed: 50", $component22);
-    if (%varplayerbit_4893 < 50) {
+    if (%hosidius_tithe_rewardpoints < 50) {
         if_setcolour(^red, $component22);
     } else {
         if_setcolour(^white, $component22);
     }
-} else if (%varplayerbit_5557 = 1) {
+} else if (%farming_blockweeds = 1) {
     if_sethide(false, $component24);
     if_setgraphic("cross_interface,5", $component24);
     if_setop(6, "Activate", $component21);
@@ -68,58 +68,58 @@ if (%varplayerbit_5557 = 0) {
     if_setcolour(^white, $component22);
 }
 if_setonop("opsound(event_op, 2)", $component21);
-if_setobject_nonum(obj_6055, 1, $component23);
-if (%varplayer_264 = 1) {
-    if_setobject(obj_13647, 1, $component11);
-    if_setopbase("<col=ff9040><oc_name(obj_13647)></col>", $component9);
-    if_setobject(obj_13643, 1, $component14);
-    if_setopbase("<col=ff9040><oc_name(obj_13643)></col>", $component12);
-    if_setobject(obj_13641, 1, $component17);
-    if_setopbase("<col=ff9040><oc_name(obj_13641)></col>", $component15);
-    if_setobject(obj_13645, 1, $component20);
-    if_setopbase("<col=ff9040><oc_name(obj_13645)></col>", $component18);
+if_setobject_nonum(weeds, 1, $component23);
+if (%if4 = 1) {
+    if_setobject(tithe_reward_hat_female, 1, $component11);
+    if_setopbase("<col=ff9040><oc_name(tithe_reward_hat_female)></col>", $component9);
+    if_setobject(tithe_reward_torso_female, 1, $component14);
+    if_setopbase("<col=ff9040><oc_name(tithe_reward_torso_female)></col>", $component12);
+    if_setobject(tithe_reward_legs_female, 1, $component17);
+    if_setopbase("<col=ff9040><oc_name(tithe_reward_legs_female)></col>", $component15);
+    if_setobject(tithe_reward_feet_female, 1, $component20);
+    if_setopbase("<col=ff9040><oc_name(tithe_reward_feet_female)></col>", $component18);
 } else {
-    if_setobject(obj_13646, 1, $component11);
-    if_setopbase("<col=ff9040><oc_name(obj_13646)></col>", $component9);
-    if_setobject(obj_13642, 1, $component14);
-    if_setopbase("<col=ff9040><oc_name(obj_13642)></col>", $component12);
-    if_setobject(obj_13640, 1, $component17);
-    if_setopbase("<col=ff9040><oc_name(obj_13640)></col>", $component15);
-    if_setobject(obj_13644, 1, $component20);
-    if_setopbase("<col=ff9040><oc_name(obj_13644)></col>", $component18);
+    if_setobject(tithe_reward_hat_male, 1, $component11);
+    if_setopbase("<col=ff9040><oc_name(tithe_reward_hat_male)></col>", $component9);
+    if_setobject(tithe_reward_torso_male, 1, $component14);
+    if_setopbase("<col=ff9040><oc_name(tithe_reward_torso_male)></col>", $component12);
+    if_setobject(tithe_reward_legs_male, 1, $component17);
+    if_setopbase("<col=ff9040><oc_name(tithe_reward_legs_male)></col>", $component15);
+    if_setobject(tithe_reward_feet_male, 1, $component20);
+    if_setopbase("<col=ff9040><oc_name(tithe_reward_feet_male)></col>", $component18);
 }
-$int25 = enum(obj, int, enum_1262, obj_13647);
+$int25 = enum(obj, int, enum_1262, tithe_reward_hat_female);
 if_settext("Buy hat: <tostring($int25)>", $component10);
 if_setop(6, "Buy", $component9);
 if_setonop("opsound(event_op, 2)", $component9);
-if (%varplayerbit_4893 < $int25) {
+if (%hosidius_tithe_rewardpoints < $int25) {
     if_setcolour(^red, $component10);
 } else {
     if_setcolour(^white, $component10);
 }
-$int25 = enum(obj, int, enum_1262, obj_13643);
+$int25 = enum(obj, int, enum_1262, tithe_reward_torso_female);
 if_settext("Buy jacket: <tostring($int25)>", $component13);
 if_setop(6, "Buy", $component12);
 if_setonop("opsound(event_op, 2)", $component12);
-if (%varplayerbit_4893 < $int25) {
+if (%hosidius_tithe_rewardpoints < $int25) {
     if_setcolour(^red, $component13);
 } else {
     if_setcolour(^white, $component13);
 }
-$int25 = enum(obj, int, enum_1262, obj_13641);
+$int25 = enum(obj, int, enum_1262, tithe_reward_legs_female);
 if_settext("Buy legs: <tostring($int25)>", $component16);
 if_setop(6, "Buy", $component15);
 if_setonop("opsound(event_op, 2)", $component15);
-if (%varplayerbit_4893 < $int25) {
+if (%hosidius_tithe_rewardpoints < $int25) {
     if_setcolour(^red, $component16);
 } else {
     if_setcolour(^white, $component16);
 }
-$int25 = enum(obj, int, enum_1262, obj_13645);
+$int25 = enum(obj, int, enum_1262, tithe_reward_feet_female);
 if_settext("Buy boots: <tostring($int25)>", $component19);
 if_setop(6, "Buy", $component18);
 if_setonop("opsound(event_op, 2)", $component18);
-if (%varplayerbit_4893 < $int25) {
+if (%hosidius_tithe_rewardpoints < $int25) {
     if_setcolour(^red, $component19);
 } else {
     if_setcolour(^white, $component19);
@@ -136,7 +136,7 @@ def_obj $obj32 = enum(int, namedobj, enum_1261, $int31);
 while ($obj32 ! null) {
     cc_create($component3, ^iftype_graphic, $int31);
     .cc_create($component4, ^iftype_text, $int31);
-    if ($obj32 ! obj_20747) {
+    if ($obj32 ! grape_blessing) {
         cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
         cc_setgraphicshadow(0x333333);
         cc_setoutline(1);
@@ -157,7 +157,7 @@ while ($obj32 ! null) {
         .cc_settextalign(^settextalign_centre, ^settextalign_top, 0);
         $int25 = enum(obj, int, enum_1262, $obj32);
         .cc_settext(tostring($int25));
-        if (%varplayerbit_4893 < $int25) {
+        if (%hosidius_tithe_rewardpoints < $int25) {
             .cc_setcolour(^red);
         } else {
             .cc_setcolour(^white);
@@ -174,7 +174,7 @@ while ($obj32 ! null) {
             $int29 = calc($int29 + $int27);
         }
         $int30 = calc($int30 + 1);
-    } else if (%varplayerbit_5370 >= 2) {
+    } else if (%hosidius_evilgrapes >= 2) {
         cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
         cc_setgraphicshadow(0x333333);
         cc_setoutline(1);
@@ -195,7 +195,7 @@ while ($obj32 ! null) {
         .cc_settextalign(^settextalign_centre, ^settextalign_top, 0);
         $int25 = enum(obj, int, enum_1262, $obj32);
         .cc_settext("<tostring($int25)> for <tostring(20)>");
-        if (%varplayerbit_4893 < $int25) {
+        if (%hosidius_tithe_rewardpoints < $int25) {
             .cc_setcolour(^red);
         } else {
             .cc_setcolour(^white);

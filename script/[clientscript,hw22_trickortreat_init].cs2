@@ -1,15 +1,15 @@
 // 6919
 [clientscript,hw22_trickortreat_init](int $int0, string $string0)
 if ($int0 = 1) {
-    if_sethide(true, interface_790:com_1);
-    if_sethide(false, interface_790:com_2);
-    ~steelborder(interface_790:com_3, "Trick-or-Treat!", 1);
-    if_settext("<col=ffffff><$string0></col> looks at you, trying to decide whether to trick or treat.", interface_790:com_8);
-    if_setontimer("script6920(clientclock, event_com)", interface_790:com_5);
+    if_sethide(true, hw22_trickortreat:target_window);
+    if_sethide(false, hw22_trickortreat:initiator_window);
+    ~steelborder(hw22_trickortreat:initiator_frame, "Trick-or-Treat!", 1);
+    if_settext("<col=ffffff><$string0></col> looks at you, trying to decide whether to trick or treat.", hw22_trickortreat:initiator_text);
+    if_setontimer("script6920(clientclock, event_com)", hw22_trickortreat:initiator_timer);
 } else {
-    if_sethide(false, interface_790:com_1);
-    if_sethide(true, interface_790:com_2);
-    ~steelborder(interface_790:com_12, "Trick-or-Treat!", 1);
-    if_settext("<col=ffffff><$string0></col> has Trick-or-Treated you!<br>What will you give them?", interface_790:com_23);
-    if_setontimer("script6920(clientclock, event_com)", interface_790:com_14);
+    if_sethide(false, hw22_trickortreat:target_window);
+    if_sethide(true, hw22_trickortreat:initiator_window);
+    ~steelborder(hw22_trickortreat:target_frame, "Trick-or-Treat!", 1);
+    if_settext("<col=ffffff><$string0></col> has Trick-or-Treated you!<br>What will you give them?", hw22_trickortreat:target_text);
+    if_setontimer("script6920(clientclock, event_com)", hw22_trickortreat:target_timer);
 }

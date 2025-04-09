@@ -1,10 +1,10 @@
 // 6504
 [clientscript,cluehelper_overlay_dig_transmit](dbrow $dbrow0, coord $coord1, obj $obj2, int $int3, npc_uid $npc_uid4, npc_uid $npc_uid5, npc_uid $npc_uid6, dbrow $dbrow7, int $int8, int $int9)
 if (tile_find($coord1) = true) {
-    if ($int3 = %varplayerbit_14189 & $dbrow0 = %varplayer_3546 & $npc_uid4 = %varplayer_3548 & $npc_uid5 = %varplayer_3549 & $npc_uid6 = %varplayer_3550 & $dbrow7 = %varplayer_3547 & %varplayerbit_14182 = $int8 & %varplayerbit_14184 = $int9) {
+    if ($int3 = %option_cluehelper_overlay_enabled & $dbrow0 = %cluehelper_infobox_clue & $npc_uid4 = %cluehelper_npc_id & $npc_uid5 = %cluehelper_npc_id2 & $npc_uid6 = %cluehelper_npc_id3 & $dbrow7 = %cluehelper_npc_current_clue & %option_cluehelper_enabled = $int8 & %option_cluehelper_target_highlight_enabled = $int9) {
         return;
     }
-    if (%varplayer_3546 ! $dbrow0 | %varplayerbit_14182 = 0) {
+    if (%cluehelper_infobox_clue ! $dbrow0 | %option_cluehelper_enabled = 0) {
         entityoverlay_delete_coord($coord1, 7);
         highlight_tile_off($coord1, 9, 1);
     } else {

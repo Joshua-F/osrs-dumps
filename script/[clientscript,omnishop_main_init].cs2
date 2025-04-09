@@ -1,15 +1,15 @@
 // 7140
 [clientscript,omnishop_main_init](dbrow $dbrow0, inv $inv1)
-if (%varplayer_3874 ! $dbrow0) {
-    %varplayer_3869 = -1;
-    %varplayer_3870 = -1;
-    %varplayer_3872 = 0;
+if (%omnishop_lastshop ! $dbrow0) {
+    %omnishop_selected_id = -1;
+    %omnishop_selected_side_id = -1;
+    %omnishop_filter = 0;
 }
-def_component $component2 = interface_819:com_0;
+def_component $component2 = omnishop_main:infinity;
 if_setontimer("script6110($component2, -1)", $component2);
 if_setonresize("omnishop_main_setup($dbrow0, $inv1, true)", $component2);
 if ($inv1 ! null) {
     if_setoninvtransmit("omnishop_main_setup($dbrow0, $inv1, true){$inv1}", $component2);
 }
-if_setonvartransmit("omnishop_main_setup($dbrow0, $inv1, false){varplayer_4271}", $component2);
-~omnishop_main_info_setup($dbrow0, $inv1, %varplayer_3869, 0, 0, 0, null, "", true);
+if_setonvartransmit("omnishop_main_setup($dbrow0, $inv1, false){omnishop_redraw}", $component2);
+~omnishop_main_info_setup($dbrow0, $inv1, %omnishop_selected_id, 0, 0, 0, null, "", true);

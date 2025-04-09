@@ -1,19 +1,19 @@
 // 974
 [proc,deathkeep_left_redraw](int $int0, int $int1, int $int2, int $int3, int $int4, obj $obj5, obj $obj6, obj $obj7, obj $obj8)
-cc_deleteall(interface_4:com_6);
+cc_deleteall(deathkeep:kept);
 def_int $int9 = 0;
 def_int $int10 = 0;
 def_int $int11 = 0;
-cc_deleteall(interface_4:com_7);
+cc_deleteall(deathkeep:grave);
 def_int $int12 = 0;
 def_int $int13 = 0;
-cc_deleteall(interface_4:com_8);
+cc_deleteall(deathkeep:pker);
 def_int $int14 = 0;
 def_int $int15 = 0;
-cc_deleteall(interface_4:com_9);
+cc_deleteall(deathkeep:coins);
 def_int $int16 = 0;
 def_int $int17 = 0;
-cc_deleteall(interface_4:com_10);
+cc_deleteall(deathkeep:deleted);
 def_int $int18 = 0;
 def_int $int19 = 0;
 if ($int4 > 0) {
@@ -31,7 +31,7 @@ if ($int4 > 0) {
     }
 }
 def_int $int20 = 500000;
-if (%varplayerbit_1777 ! 0) {
+if (%ironman ! 0) {
     $int20 = calc($int20 / 2);
 }
 def_int $int21 = 0;
@@ -40,48 +40,48 @@ def_obj $obj23 = null;
 def_obj $obj24 = null;
 def_int $int25 = 0;
 while ($int25 < 50) {
-    $obj23 = inv_getobj(inv_584, $int25);
+    $obj23 = inv_getobj(deathkeep_items, $int25);
     if ($obj23 ! null) {
-        $obj24 = inv_getobj(inv_468, $int25);
+        $obj24 = inv_getobj(diango_hols_sack, $int25);
         switch_obj ($obj24) {
-            case obj_323, obj_343, obj_7532 :
-                $int9, $int10, $int11 = ~deathkeep_left_keepitem($obj23, inv_getnum(inv_584, $int25), $obj24, $int1, $int2, $int3, $int9, $int11);
+            case burntfish1, burntfish2, hundred_pirate_mudskipper_hide :
+                $int9, $int10, $int11 = ~deathkeep_left_keepitem($obj23, inv_getnum(deathkeep_items, $int25), $obj24, $int1, $int2, $int3, $int9, $int11);
             case default :
-                $int18, $int19 = ~deathkeep_left_deleteditem($obj23, inv_getnum(inv_584, $int25), $int1, $int2, $int3, $int18);
-            case obj_367, obj_369 :
-                $int12, $int13, $int21 = ~deathkeep_left_graveitem($obj23, inv_getnum(inv_584, $int25), $obj24, calc(inv_getnum(inv_468, $int25) - 1), $int20, $int1, $int2, $int3, $int12);
+                $int18, $int19 = ~deathkeep_left_deleteditem($obj23, inv_getnum(deathkeep_items, $int25), $int1, $int2, $int3, $int18);
+            case burntfish4, burntfish5 :
+                $int12, $int13, $int21 = ~deathkeep_left_graveitem($obj23, inv_getnum(deathkeep_items, $int25), $obj24, calc(inv_getnum(diango_hols_sack, $int25) - 1), $int20, $int1, $int2, $int3, $int12);
                 $int22 = ~min($int20, calc($int22 + ~min($int20, $int21)));
-            case obj_7531 :
-                $int16, $int17 = ~deathkeep_left_coinsitem($obj23, inv_getnum(inv_584, $int25), calc(inv_getnum(inv_468, $int25) - 1), $int1, $int2, $int3, $int16);
-            case obj_1991 :
-                $int14, $int15 = ~script1695($obj23, inv_getnum(inv_584, $int25), $int1, $int2, $int3, $int14);
+            case hundred_pirate_burned_fishcake :
+                $int16, $int17 = ~deathkeep_left_coinsitem($obj23, inv_getnum(deathkeep_items, $int25), calc(inv_getnum(diango_hols_sack, $int25) - 1), $int1, $int2, $int3, $int16);
+            case jug_bad_wine :
+                $int14, $int15 = ~script1695($obj23, inv_getnum(deathkeep_items, $int25), $int1, $int2, $int3, $int14);
         }
     }
     $int25 = calc($int25 + 1);
 }
-$int25 = inv_total(inv_93, obj_13190);
+$int25 = inv_total(inv, osrs_bond);
 while ($int25 > 0) {
-    $int9, $int10, $int11 = ~deathkeep_left_keepitem(obj_13190, 1, obj_323, $int1, $int2, $int3, $int9, $int11);
+    $int9, $int10, $int11 = ~deathkeep_left_keepitem(osrs_bond, 1, burntfish1, $int1, $int2, $int3, $int9, $int11);
     $int25 = calc($int25 - 1);
 }
-$int25 = inv_total(inv_93, obj_13192);
+$int25 = inv_total(inv, osrs_bond_untradeable);
 while ($int25 > 0) {
-    $int9, $int10, $int11 = ~deathkeep_left_keepitem(obj_13192, 1, obj_323, $int1, $int2, $int3, $int9, $int11);
+    $int9, $int10, $int11 = ~deathkeep_left_keepitem(osrs_bond_untradeable, 1, burntfish1, $int1, $int2, $int3, $int9, $int11);
     $int25 = calc($int25 - 1);
 }
-if (~script5027 = true | ~script5028(inv_93) = true) {
+if (~script5027 = true | ~script5028(inv) = true) {
     if ($int0 = 1) {
-        $int14, $int15 = ~script4906(%varplayer_4142, %varplayer_4141, $int1, $int2, $int3, $int14, "Dizana's quiver");
+        $int14, $int15 = ~script4906(%dizanas_quiver_temp_ammo, %dizanas_quiver_temp_ammo_amount, $int1, $int2, $int3, $int14, "Dizana's quiver");
     } else {
-        $int12, $int13 = ~script4905(%varplayer_4142, %varplayer_4141, $int1, $int2, $int3, $int12, "Dizana's quiver");
+        $int12, $int13 = ~script4905(%dizanas_quiver_temp_ammo, %dizanas_quiver_temp_ammo_amount, $int1, $int2, $int3, $int12, "Dizana's quiver");
     }
 }
-cc_deleteall(interface_4:com_5);
+cc_deleteall(deathkeep:items);
 def_int $int26 = 0;
 def_int $int27 = 0;
 def_string $string0 = "";
-$int26, $int27 = ~deathkeep_left_setsection("Items that are <col=ffffff>KEPT</col>:", interface_4:com_6, $int9, $int10, $int26, $int27);
-if (%varplayerbit_1777 = 2) {
+$int26, $int27 = ~deathkeep_left_setsection("Items that are <col=ffffff>KEPT</col>:", deathkeep:kept, $int9, $int10, $int26, $int27);
+if (%ironman = 2) {
     $string0 = "Items <col=ff0000>DROPPED</col> near where you die:";
 } else if ($int22 > 1) {
     $string0 = "Items that go to your <col=ffffff>GRAVESTONE</col>: <col=ffffff>(Fee: <~tostring_spacer($int22, ",")> coins)</col>";
@@ -90,26 +90,26 @@ if (%varplayerbit_1777 = 2) {
 } else {
     $string0 = "Items that go to your <col=ffffff>GRAVESTONE</col>: <col=ffffff>(Fee: None)</col>";
 }
-$int26, $int27 = ~deathkeep_left_setsection($string0, interface_4:com_7, $int12, $int13, $int26, $int27);
+$int26, $int27 = ~deathkeep_left_setsection($string0, deathkeep:grave, $int12, $int13, $int26, $int27);
 if ($int0 = 1) {
-    $int26, $int27 = ~deathkeep_left_setsection("Items <col=ff0000>LOST</col> to the player who kills you:", interface_4:com_8, $int14, $int15, $int26, $int27);
+    $int26, $int27 = ~deathkeep_left_setsection("Items <col=ff0000>LOST</col> to the player who kills you:", deathkeep:pker, $int14, $int15, $int26, $int27);
 } else {
-    $int26, $int27 = ~deathkeep_left_setsection("Items <col=ff0000>DROPPED</col> near where you die:", interface_4:com_8, $int14, $int15, $int26, $int27);
+    $int26, $int27 = ~deathkeep_left_setsection("Items <col=ff0000>DROPPED</col> near where you die:", deathkeep:pker, $int14, $int15, $int26, $int27);
 }
-if (%varplayerbit_1777 = 2) {
+if (%ironman = 2) {
     $string0 = "Items <col=ff0000>DROPPED</col> as coins:";
 } else {
     $string0 = "Items that go to your <col=ffffff>GRAVESTONE</col> as coins:";
 }
-$int26, $int27 = ~deathkeep_left_setsection($string0, interface_4:com_9, $int16, $int17, $int26, $int27);
-$int26, $int27 = ~deathkeep_left_setsection("Items that are <col=ff0000>DELETED</col>:", interface_4:com_10, $int18, $int19, $int26, $int27);
+$int26, $int27 = ~deathkeep_left_setsection($string0, deathkeep:coins, $int16, $int17, $int26, $int27);
+$int26, $int27 = ~deathkeep_left_setsection("Items that are <col=ff0000>DELETED</col>:", deathkeep:deleted, $int18, $int19, $int26, $int27);
 if ($int27 > 0) {
     $int27 = calc($int27 + 3);
 }
-if_setscrollpos(0, 0, interface_4:com_5);
-if (if_getheight(interface_4:com_5) < $int27) {
-    if_setscrollsize(0, $int27, interface_4:com_5);
+if_setscrollpos(0, 0, deathkeep:items);
+if (if_getheight(deathkeep:items) < $int27) {
+    if_setscrollsize(0, $int27, deathkeep:items);
 } else {
-    if_setscrollsize(0, 0, interface_4:com_5);
+    if_setscrollsize(0, 0, deathkeep:items);
 }
-~scrollbar_vertical(interface_4:com_11, interface_4:com_5, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~scrollbar_vertical(deathkeep:scrollbar, deathkeep:items, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");

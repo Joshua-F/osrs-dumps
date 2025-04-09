@@ -5,11 +5,11 @@ def_int $int3 = 0;
 def_int $int4 = ~private_event_world;
 def_int $int5 = 0;
 if ($stat0 = slayer) {
-    $int5 = %varplayerbit_13669;
+    $int5 = %xptracker_slayer_multiplier;
     if ($int4 = 3) {
         $int5 = calc($int5 * 10);
     }
-    $int3 = calc(scale(%varplayerbit_13670, 100, ~max(100, $int5)) / 10);
+    $int3 = calc(scale(%xptracker_slayer_lastkillxp, 100, ~max(100, $int5)) / 10);
     if ($int3 ! 0 & abs(calc(~xptracker_get_slayer_xp(0) - $int3)) <= 1) {
         return(calc(($int1 - $int2 - 1) / $int3 + 1));
     }
@@ -18,25 +18,25 @@ if ($stat0 = slayer) {
 if (~xptracker_iscombat($stat0) = false) {
     return(-1);
 }
-if (%varclient_568 ! %varplayerbit_6100 & %varplayerbit_6100 ! 0) {
-    %varclient_568 = %varplayerbit_6100;
+if (%varclient_568 ! %hpbar_hud_basehp & %hpbar_hud_basehp ! 0) {
+    %varclient_568 = %hpbar_hud_basehp;
 }
-def_enum $enum6 = enum(int, enum, enum_3908, %varplayerbit_357);
-def_int $int7 = %varplayer_43;
-if ($int7 = 4 & %varplayerbit_2668 = 1) {
+def_enum $enum6 = enum(int, enum, enum_3908, %combat_weapon_category);
+def_int $int7 = %com_mode;
+if ($int7 = 4 & %autocast_defmode = 1) {
     $int7 = 5;
 }
 def_struct $struct8 = enum(int, struct, $enum6, $int7);
 def_int $int9 = 0;
-if (%varplayerbit_357 = 24 | %varplayerbit_357 = 29) {
+if (%combat_weapon_category = 24 | %combat_weapon_category = 29) {
     $int9 = 1;
 }
 def_int $int10 = 0;
 def_int $int11 = 0;
 def_int $int12 = 0;
-if (($int9 = 1 & %varplayer_43 = 3 | %varplayerbit_2668 = 1) & $stat0 = defence) {
+if (($int9 = 1 & %com_mode = 3 | %autocast_defmode = 1) & $stat0 = defence) {
     $int3 = %varclient_568;
-    $int10 = %varplayerbit_13094;
+    $int10 = %xptracker_defence_multiplier;
     if ($int4 = 3) {
         $int10 = calc($int10 * 10);
     }
@@ -45,31 +45,31 @@ if (($int9 = 1 & %varplayer_43 = 3 | %varplayerbit_2668 = 1) & $stat0 = defence)
     switch_stat ($stat0) {
         case attack :
             $int11 = struct_param($struct8, param_1401);
-            $int10 = %varplayerbit_13092;
+            $int10 = %xptracker_attack_multiplier;
             if ($int4 = 3) {
                 $int10 = calc($int10 * 10);
             }
         case strength :
             $int11 = struct_param($struct8, param_1402);
-            $int10 = %varplayerbit_13093;
+            $int10 = %xptracker_strength_multiplier;
             if ($int4 = 3) {
                 $int10 = calc($int10 * 10);
             }
         case ranged :
             $int11 = struct_param($struct8, param_1405);
-            $int10 = %varplayerbit_13091;
+            $int10 = %xptracker_ranged_multiplier;
             if ($int4 = 3) {
                 $int10 = calc($int10 * 10);
             }
         case defence :
             $int11 = struct_param($struct8, param_1403);
-            $int10 = %varplayerbit_13094;
+            $int10 = %xptracker_defence_multiplier;
             if ($int4 = 3) {
                 $int10 = calc($int10 * 10);
             }
         case hitpoints :
             $int11 = struct_param($struct8, param_1404);
-            $int10 = %varplayerbit_13095;
+            $int10 = %xptracker_hitpoints_multiplier;
             if ($int4 = 3) {
                 $int10 = calc($int10 * 10);
             }

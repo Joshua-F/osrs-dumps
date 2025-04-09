@@ -13,7 +13,7 @@ def_obj $obj9 = null;
 def_int $int10 = 50;
 def_int $int11 = 40;
 while ($int8 < 93) {
-    $obj9 = inv_getobj(inv_626, $int8);
+    $obj9 = inv_getobj(seed_vault, $int8);
     cc_create($component0, ^iftype_graphic, $int8);
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
     .cc_create($component1, ^iftype_text, $int8);
@@ -29,17 +29,17 @@ while ($int8 < 93) {
             cc_setop(8, "Remove-Placeholder");
             cc_setop(9, "Remove-All-Placeholders");
         } else {
-            cc_setobject($obj9, inv_total(inv_626, $obj9));
-            if (%varplayer_2195 = ^max_32bit_int) {
+            cc_setobject($obj9, inv_total(seed_vault, $obj9));
+            if (%seed_vault_selected_qty = ^max_32bit_int) {
                 cc_setop(1, "Withdraw-All");
-            } else if (%varplayer_2195 > 1) {
-                cc_setop(1, "Withdraw-<tostring(%varplayer_2195)>");
+            } else if (%seed_vault_selected_qty > 1) {
+                cc_setop(1, "Withdraw-<tostring(%seed_vault_selected_qty)>");
             }
             cc_setop(2, "Withdraw-1");
             cc_setop(3, "Withdraw-5");
             cc_setop(4, "Withdraw-10");
-            if (%varplayer_3197 > 1) {
-                cc_setop(5, "Withdraw-<tostring(%varplayer_3197)>");
+            if (%seed_vault_requested_qty > 1) {
+                cc_setop(5, "Withdraw-<tostring(%seed_vault_requested_qty)>");
             }
             cc_setop(6, "Withdraw-X");
             cc_setop(7, "Withdraw-All");
@@ -58,16 +58,16 @@ while ($int8 < 93) {
             .cc_setop(8, "Remove-Placeholder");
             .cc_setop(9, "Remove-All-Placeholders");
         } else {
-            if (%varplayer_2195 = ^max_32bit_int) {
+            if (%seed_vault_selected_qty = ^max_32bit_int) {
                 .cc_setop(1, "Withdraw-All");
-            } else if (%varplayer_2195 > 1) {
-                .cc_setop(1, "Withdraw-<tostring(%varplayer_2195)>");
+            } else if (%seed_vault_selected_qty > 1) {
+                .cc_setop(1, "Withdraw-<tostring(%seed_vault_selected_qty)>");
             }
             .cc_setop(2, "Withdraw-1");
             .cc_setop(3, "Withdraw-5");
             .cc_setop(4, "Withdraw-10");
-            if (%varplayer_3197 > 1) {
-                .cc_setop(5, "Withdraw-<tostring(%varplayer_3197)>");
+            if (%seed_vault_requested_qty > 1) {
+                .cc_setop(5, "Withdraw-<tostring(%seed_vault_requested_qty)>");
             }
             .cc_setop(6, "Withdraw-X");
             .cc_setop(7, "Withdraw-All");
@@ -157,7 +157,7 @@ def_int $int18 = 0;
 $int14 = 0;
 def_int $int19 = -1;
 while ($int8 < 93) {
-    $obj9 = inv_getobj(inv_626, $int8);
+    $obj9 = inv_getobj(seed_vault, $int8);
     if ($obj9 ! null & ~seed_vault_filteritem($obj9) = true) {
         $int19 = oc_param(oc_unplaceholder($obj9), param_709);
         if (~seed_vault_searching = true & ~seed_vault_filteritem($obj9) = true) {
@@ -202,7 +202,7 @@ while ($int8 < 93) {
 if (~seed_vault_searching = false) {
     cc_create($component0, ^iftype_graphic, $int8);
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
-    cc_setobject_nonum(obj_6117, 0);
+    cc_setobject_nonum(kelda_hop_seed_5, 0);
     cc_settrans(120);
     .cc_create($component1, ^iftype_text, $int8);
     .cc_setsize($int10, 30, ^setsize_abs, ^setsize_abs);

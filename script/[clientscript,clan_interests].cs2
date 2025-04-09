@@ -1,13 +1,13 @@
 // 4263
 [clientscript,clan_interests](component $component0)
-~script4206(interface_691:com_1, interface_691:com_2, interface_691:com_3, 0, $component0);
-~steelborder(interface_691:com_4, "Clan Interests", 1);
-~scrollbar_vertical(interface_691:com_8, interface_691:com_7, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~script4206(clans_interests:clamp, clans_interests:fader, clans_interests:window, 0, $component0);
+~steelborder(clans_interests:frame, "Clan Interests", 1);
+~scrollbar_vertical(clans_interests:scrollbar, clans_interests:list, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
 def_int $int1 = 0;
 def_string $string0 = "";
 def_string $string1 = "";
 def_string $string2 = "";
-cc_deleteall(interface_691:com_7);
+cc_deleteall(clans_interests:list);
 def_boolean $booleanarray0(calc(15 + 1));
 def_int $int2 = 0;
 while ($int2 <= 15) {
@@ -21,7 +21,7 @@ while ($int2 <= 15) {
         }
         $int1 = calc($int1 + 1);
     }
-    cc_create(interface_691:com_7, ^iftype_rectangle, $int2);
+    cc_create(clans_interests:list, ^iftype_rectangle, $int2);
     cc_sethide(true);
     $int2 = calc($int2 + 1);
 }
@@ -41,7 +41,7 @@ def_int $int11 = 0;
 $int1 = 0;
 def_int $int12 = 0;
 while ($int12 <= 15) {
-    if ($booleanarray0($int12) = true & cc_find(interface_691:com_7, $int12) = ^true) {
+    if ($booleanarray0($int12) = true & cc_find(clans_interests:list, $int12) = ^true) {
         cc_sethide(false);
         $int11 = calc($int1 / 2 * $int8);
         if (calc($int1 % 2) = 0) {
@@ -62,10 +62,10 @@ while ($int12 <= 15) {
         $string3 = enum(int, string, enum_3792, $int12);
         cc_setopbase("<col=ff9040><$string3></col>");
         cc_setonop("clan_interests_op(event_op, event_com, event_comsubid, $int12, $int2, calc($int2 + 1))");
-        cc_setonvartransmit("clan_interests_synch(event_com, $int12, $int2, calc($int2 + 1)){varplayer_3023}");
-        cc_create(interface_691:com_7, ^iftype_graphic, $int2);
+        cc_setonvartransmit("clan_interests_synch(event_com, $int12, $int2, calc($int2 + 1)){clan_editing_0}");
+        cc_create(clans_interests:list, ^iftype_graphic, $int2);
         $int2 = calc($int2 + 1);
-        .cc_create(interface_691:com_7, ^iftype_text, $int2);
+        .cc_create(clans_interests:list, ^iftype_text, $int2);
         $int2 = calc($int2 + 1);
         if (calc($int1 % 2) = 0) {
             cc_setposition(0, calc($int11 + $int10), ^setpos_abs_left, ^setpos_abs_top);
@@ -87,8 +87,8 @@ while ($int12 <= 15) {
     $int12 = calc($int12 + 1);
 }
 $int11 = calc($int11 + $int8);
-~clan_interests_setsize(~max(180, calc(23 + $int7 + $int6 + 3 + 16)), $int11, if_getheight(interface_691:com_1));
-~stonebutton_init("<col=ff0000>Cancel</col>", interface_691:com_9, p12_full, 0);
-if_setonop("script4208(0, interface_691:com_1, interface_691:com_2, interface_691:com_3, $component0)", interface_691:com_9);
-~stonebutton_init("<col=0dc10d>Save</col>", interface_691:com_10, p12_full, 0);
-if_setonop("script4208(1, interface_691:com_1, interface_691:com_2, interface_691:com_3, $component0)", interface_691:com_10);
+~clan_interests_setsize(~max(180, calc(23 + $int7 + $int6 + 3 + 16)), $int11, if_getheight(clans_interests:clamp));
+~stonebutton_init("<col=ff0000>Cancel</col>", clans_interests:cancel, p12_full, 0);
+if_setonop("script4208(0, clans_interests:clamp, clans_interests:fader, clans_interests:window, $component0)", clans_interests:cancel);
+~stonebutton_init("<col=0dc10d>Save</col>", clans_interests:submit, p12_full, 0);
+if_setonop("script4208(1, clans_interests:clamp, clans_interests:fader, clans_interests:window, $component0)", clans_interests:submit);

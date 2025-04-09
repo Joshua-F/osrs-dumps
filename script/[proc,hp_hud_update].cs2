@@ -1,13 +1,13 @@
 // 2103
 [proc,hp_hud_update](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10, boolean $boolean11)
-if (if_gethide(interface_303:com_5) = true) {
+if (if_gethide(hpbar_hud:hp) = true) {
     return;
 }
 def_string $string0 = "";
-if (%varplayer_1683 ! null) {
-    $string0 = nc_param(%varplayer_1683, param_510);
+if (%hpbar_hud_npc ! null) {
+    $string0 = nc_param(%hpbar_hud_npc, param_510);
     if (compare($string0, "") = 0) {
-        $string0 = nc_name(%varplayer_1683);
+        $string0 = nc_name(%hpbar_hud_npc);
     }
 } else {
     $string0 = if_gettext($component6);
@@ -15,7 +15,7 @@ if (%varplayer_1683 ! null) {
 def_int $int12 = 0;
 def_int $int13 = if_getwidth($component2);
 def_int $int14 = parawidth($string0, calc($int13 - 4), p11_full);
-if (compare($string0, "") = 0 | %varplayerbit_14706 = 1) {
+if (compare($string0, "") = 0 | %hpbar_hud_boss_name_disabled = 1) {
     $int12 = 27;
     if_sethide(true, $component5);
     if_setsize(if_getwidth($component0), $int12, ^setsize_abs, ^setsize_abs, $component0);
@@ -29,48 +29,48 @@ if (compare($string0, "") = 0 | %varplayerbit_14706 = 1) {
     if_setsize(if_getwidth($component0), $int12, ^setsize_abs, ^setsize_abs, $component0);
     if_settext($string0, $component6);
 }
-def_string $string1 = "<tostring(%varplayerbit_6099)> / <tostring(%varplayerbit_6100)>";
+def_string $string1 = "<tostring(%hpbar_hud_hp)> / <tostring(%hpbar_hud_basehp)>";
 def_int $int15 = 0;
-%varplayerbit_6100 = ~max(%varplayerbit_6100, 1);
-if (%varplayerbit_14708 = 1) {
-    $int15 = ~minmax(0, 100, scale(%varplayerbit_6099, %varplayerbit_6100, 100));
+%hpbar_hud_basehp = ~max(%hpbar_hud_basehp, 1);
+if (%hpbar_hud_boss_percentage_enabled = 1) {
+    $int15 = ~minmax(0, 100, scale(%hpbar_hud_hp, %hpbar_hud_basehp, 100));
     $string1 = "<tostring($int15)>%";
 }
 if_settext($string1, $component1);
 def_int $int16 = $int13;
-def_int $int17 = calc(%varplayerbit_6100 + 1);
-$int16 = scale(%varplayerbit_6099, %varplayerbit_6100, $int16);
-if (%varplayerbit_10338 > 0 & %varplayerbit_10338 <= $int17) {
+def_int $int17 = calc(%hpbar_hud_basehp + 1);
+$int16 = scale(%hpbar_hud_hp, %hpbar_hud_basehp, $int16);
+if (%hpbar_hud_lower_threshold > 0 & %hpbar_hud_lower_threshold <= $int17) {
     if_sethide(false, $component7);
-    if_setposition(scale(calc(%varplayerbit_10338 - 1), %varplayerbit_6100, $int13), 0, ^setpos_abs_left, ^setpos_abs_centre, $component7);
+    if_setposition(scale(calc(%hpbar_hud_lower_threshold - 1), %hpbar_hud_basehp, $int13), 0, ^setpos_abs_left, ^setpos_abs_centre, $component7);
 } else {
     if_sethide(true, $component7);
 }
-if (%varplayerbit_10339 > 0 & %varplayerbit_10339 <= $int17) {
+if (%hpbar_hud_upper_threshold > 0 & %hpbar_hud_upper_threshold <= $int17) {
     if_sethide(false, $component8);
-    if_setposition(calc($int13 - scale(calc(%varplayerbit_10339 - 1), %varplayerbit_6100, $int13)), 0, ^setpos_abs_right, ^setpos_abs_centre, $component8);
+    if_setposition(calc($int13 - scale(calc(%hpbar_hud_upper_threshold - 1), %hpbar_hud_basehp, $int13)), 0, ^setpos_abs_right, ^setpos_abs_centre, $component8);
 } else {
     if_sethide(true, $component8);
 }
-if (%varplayerbit_10340 > 0 & %varplayerbit_10340 <= $int17) {
+if (%hpbar_hud_hp_1 > 0 & %hpbar_hud_hp_1 <= $int17) {
     if_sethide(false, $component9);
-    if_setposition(scale(calc(%varplayerbit_10340 - 1), %varplayerbit_6100, $int13), 0, ^setpos_abs_left, ^setpos_abs_centre, $component9);
+    if_setposition(scale(calc(%hpbar_hud_hp_1 - 1), %hpbar_hud_basehp, $int13), 0, ^setpos_abs_left, ^setpos_abs_centre, $component9);
 } else {
     if_sethide(true, $component9);
 }
-if (%varplayerbit_10341 > 0 & %varplayerbit_10341 <= $int17) {
+if (%hpbar_hud_hp_2 > 0 & %hpbar_hud_hp_2 <= $int17) {
     if_sethide(false, $component10);
-    if_setposition(scale(calc(%varplayerbit_10341 - 1), %varplayerbit_6100, $int13), 0, ^setpos_abs_left, ^setpos_abs_centre, $component10);
+    if_setposition(scale(calc(%hpbar_hud_hp_2 - 1), %hpbar_hud_basehp, $int13), 0, ^setpos_abs_left, ^setpos_abs_centre, $component10);
 } else {
     if_sethide(true, $component10);
 }
-if ($int16 = 0 & %varplayerbit_6099 > 0) {
+if ($int16 = 0 & %hpbar_hud_hp > 0) {
     $int16 = 1;
 }
-if ($int16 = if_getwidth($component2) & %varplayerbit_6099 < %varplayerbit_6100) {
+if ($int16 = if_getwidth($component2) & %hpbar_hud_hp < %hpbar_hud_basehp) {
     $int16 = calc($int16 - 1);
 }
-if (nc_param(%varplayer_1683, param_1398) = true & if_getwidth($component4) = 0 & $int16 > 0) {
+if (nc_param(%hpbar_hud_npc, param_1398) = true & if_getwidth($component4) = 0 & $int16 > 0) {
     if_setsize(1, if_getheight($component4), ^setsize_abs, ^setsize_abs, $component4);
     if_setsize(1, if_getheight($component3), ^setsize_abs, ^setsize_abs, $component3);
 }

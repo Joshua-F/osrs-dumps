@@ -5,12 +5,12 @@ def_int $int1 = enum_getoutputcount(enum_4067);
 def_int $int2 = 0;
 def_struct $struct3 = null;
 while ($int0 < $int1) {
-    cc_create(interface_728:com_6, ^iftype_graphic, $int0);
+    cc_create(popout:buttons, ^iftype_graphic, $int0);
     $int0 = calc($int0 + 1);
     if (~popout_available_inner($int0) = true) {
         $struct3 = enum(int, struct, enum_4067, $int0);
         cc_setopbase("<col=ff9040><struct_param($struct3, param_1413)></col>");
-        if (%varplayerbit_13090 = $int0) {
+        if (%popout_open = $int0) {
             cc_setop(1, "Close");
         } else {
             cc_setop(1, "Open");
@@ -22,8 +22,8 @@ while ($int0 < $int1) {
         cc_setonmouseleave("cc_settrans(event_com, event_comsubid, 0, null)");
         switch_struct ($struct3) {
             case struct_3742 :
-                if_setonstattransmit("xptracker_stattransmit", interface_728:com_3);
-                if_setontimer("xptracker_set_xph(event_comsubid)", interface_728:com_3);
+                if_setonstattransmit("xptracker_stattransmit", popout:event_listeners_xp_tracker);
+                if_setontimer("xptracker_set_xph(event_comsubid)", popout:event_listeners_xp_tracker);
         }
         $int2 = calc($int2 + 36);
     }

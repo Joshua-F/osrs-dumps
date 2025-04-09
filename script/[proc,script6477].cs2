@@ -1,10 +1,10 @@
 // 6477
 [proc,script6477](int $int0)
-if (%varplayer_3546 = null | db_getrowtable(%varplayer_3546) ! dbtable_9 | %varplayerbit_14182 = 0 | %varplayerbit_14186 = 0) {
-    cc_deleteall(interface_216:com_3);
+if (%cluehelper_infobox_clue = null | db_getrowtable(%cluehelper_infobox_clue) ! cluehelper_clue_emote | %option_cluehelper_enabled = 0 | %option_cluehelper_menu_highlight_enabled = 0) {
+    cc_deleteall(emote:overlay);
     return;
 }
-def_int $int1 = db_getfieldcount(%varplayer_3546, dbtable_9:col4);
+def_int $int1 = db_getfieldcount(%cluehelper_infobox_clue, cluehelper_clue_emote:emote);
 def_int $int2 = -1;
 def_int $int3 = 0;
 def_int $int4 = -1;
@@ -17,11 +17,11 @@ def_int $int10 = 0;
 if ($int1 <= 0) {
     return;
 }
-cc_deleteall(interface_216:com_3);
+cc_deleteall(emote:overlay);
 def_int $int11 = 0;
 while ($int3 < $int1) {
-    $int2 = db_getfield(%varplayer_3546, dbtable_9:col4, $int3);
-    if (cc_find(interface_216:com_2, $int2) = ^true) {
+    $int2 = db_getfield(%cluehelper_infobox_clue, cluehelper_clue_emote:emote, $int3);
+    if (cc_find(emote:contents, $int2) = ^true) {
         $int6 = cc_gety;
         $int7 = calc($int6 + cc_getheight);
         if ($int6 < $int4 | $int4 = -1) {
@@ -31,20 +31,20 @@ while ($int3 < $int1) {
             $int5 = $int7;
         }
         $int8, $int9, $int10 = cc_getx, cc_getwidth, cc_getheight;
-        .cc_create(interface_216:com_3, ^iftype_rectangle, $int11);
+        .cc_create(emote:overlay, ^iftype_rectangle, $int11);
         .cc_setposition($int8, $int6, ^setpos_abs_left, ^setpos_abs_top);
         .cc_setsize($int9, $int10, ^setsize_abs, ^setsize_abs);
         .cc_setfill(true);
         .cc_setcolour(^white);
         .cc_settrans(225);
         $int11 = calc($int11 + 1);
-        .cc_create(interface_216:com_3, ^iftype_graphic, $int11);
+        .cc_create(emote:overlay, ^iftype_graphic, $int11);
         .cc_setposition(calc($int8 + $int9 - 14), calc($int6 + $int10 - 14), ^setpos_abs_left, ^setpos_abs_top);
         .cc_setsize(14, 14, ^setsize_abs, ^setsize_abs);
         .cc_setgraphic("worldmap_marker_mini,2");
         $int11 = calc($int11 + 1);
         if ($int1 > 1) {
-            .cc_create(interface_216:com_3, ^iftype_text, $int11);
+            .cc_create(emote:overlay, ^iftype_text, $int11);
             .cc_setposition($int8, $int6, ^setpos_abs_left, ^setpos_abs_top);
             .cc_setsize($int9, $int10, ^setsize_abs, ^setsize_abs);
             .cc_setcolour(^white);
@@ -63,10 +63,10 @@ if ($int0 = 1) {
         return;
     }
     $int12 = calc(($int4 + $int5) / 2);
-    $int12 = calc($int12 - if_getheight(interface_216:com_1) / 2);
+    $int12 = calc($int12 - if_getheight(emote:scrollable) / 2);
     if ($int12 < 0) {
         $int12 = 0;
     }
-    if_setscrollpos(0, $int12, interface_216:com_1);
-    ~scrollbar_vertical_rebuild(interface_216:com_4, interface_216:com_1);
+    if_setscrollpos(0, $int12, emote:scrollable);
+    ~scrollbar_vertical_rebuild(emote:scrollbar, emote:scrollable);
 }

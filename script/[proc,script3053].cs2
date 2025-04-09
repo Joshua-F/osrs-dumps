@@ -1,14 +1,14 @@
 // 3053
 [proc,script3053](component $component0, component $component1, component $component2)
 def_string $string0 = "";
-def_int $int3 = ~min(4000, scale(%varplayerbit_9346, 1000, interpolate(1000, 1500, 100, 255, %varplayerbit_3377)));
-if (calc(%varplayerbit_12120 + %varplayerbit_12121) > 0) {
+def_int $int3 = ~min(4000, scale(%trawler_catchinfo, 1000, interpolate(1000, 1500, 100, 255, %trawler_activity)));
+if (calc(%tentacle_port + %tentacle_starboard) > 0) {
     if_settext("Net: <col=dd0000>Kraken attack!</col>", $component0);
 } else {
-    if (%varplayerbit_12123 ! 0 | %varplayerbit_12124 ! 0) {
+    if (%shiprail_port ! 0 | %shiprail_starboard ! 0) {
         $string0 = " - Rail: <col=dd0000>Broken!</col>";
     }
-    if (%varplayerbit_9344 = 1) {
+    if (%trawler_netinfo = 1) {
         if_settext("Net: <col=dd0000>Ripped!</col><$string0>", $component0);
     } else {
         if_settext("Net: <col=00ff00>OK</col><$string0>", $component0);
@@ -16,7 +16,7 @@ if (calc(%varplayerbit_12120 + %varplayerbit_12121) > 0) {
 }
 def_string $string1 = ",";
 def_string $string2 = "<col=dd0000>";
-if (%varplayerbit_3377 >= 50) {
+if (%trawler_activity >= 50) {
     $string2 = "<col=ffffff>";
 }
 if ($int3 <= 0) {
@@ -26,10 +26,10 @@ if ($int3 <= 0) {
 } else {
     if_settext("Catch: Lots!", $component1);
 }
-if (%varplayerbit_9345 <= 0) {
+if (%trawler_timeinfo <= 0) {
     if_settext("Time left: Under 1 min", $component2);
-} else if (%varplayerbit_9345 = 1) {
+} else if (%trawler_timeinfo = 1) {
     if_settext("Time left: 1 min", $component2);
 } else {
-    if_settext("Time left: <tostring(%varplayerbit_9345)> mins", $component2);
+    if_settext("Time left: <tostring(%trawler_timeinfo)> mins", $component2);
 }

@@ -30,7 +30,7 @@ if ($int3 = 2) {
     cc_setcolour(0xff981f);
 }
 cc_settextalign(^settextalign_left, ^settextalign_centre, 16);
-if (%varclient_103 = 0 & db_getfield($dbrow4, dbtable_0:col5, 0) = false) {
+if (%varclient_103 = 0 & db_getfield($dbrow4, quest:members, 0) = false) {
     cc_create($component9, ^iftype_graphic, $int7);
     $int7 = calc($int7 + 1);
     $int15, $int18 = ~script6400(16, 16, 3, $int15, $int8);
@@ -50,10 +50,10 @@ def_int $int28 = 0;
 def_boolean $boolean29 = true;
 def_int $int30 = 0;
 if ($int3 = 2) {
-    $int22 = db_getfieldcount($dbrow4, dbtable_0:col23);
+    $int22 = db_getfieldcount($dbrow4, quest:requirement_stats);
     $int26 = 0;
     while ($int26 < $int22) {
-        $stat23, $int24 = db_getfield($dbrow4, dbtable_0:col23, $int26);
+        $stat23, $int24 = db_getfield($dbrow4, quest:requirement_stats, $int26);
         $int25 = 0;
         if ($stat23 ! null) {
             $int25 = calc($int24 - stat_base($stat23));
@@ -64,25 +64,25 @@ if ($int3 = 2) {
         }
         $int26 = calc($int26 + 1);
     }
-    $int24 = db_getfield($dbrow4, dbtable_0:col27, 0);
-    $int25 = calc($int24 - %varplayerbit_13027);
+    $int24 = db_getfield($dbrow4, quest:requirement_combat, 0);
+    $int25 = calc($int24 - %combatlevel_transmit);
     if ($int25 > 0) {
         $int7, $int15, $int21, $int18, $boolean29, $int28 = ~cr_quests_ui_create_requirement("Requirements: ", $boolean29, $int28, tostring($int24), $int25, "account_icons,0", 18, 18, 0, $boolean6, $int21, $int30, $int8, $int7, $int15, $int18, $component9);
         $int27 = calc($int27 + 1);
     }
-    $int24 = db_getfield($dbrow4, dbtable_0:col26, 0);
-    $int25 = calc($int24 - %varplayer_101);
+    $int24 = db_getfield($dbrow4, quest:requirement_questpoints, 0);
+    $int25 = calc($int24 - %qp);
     if ($int25 > 0) {
         $int7, $int15, $int21, $int18, $boolean29, $int28 = ~cr_quests_ui_create_requirement("Requirements: ", $boolean29, $int28, "<tostring($int24)> QP", $int25, "clan_rank_icons,262", 13, 13, 0, $boolean6, $int21, $int30, $int8, $int7, $int15, $int18, $component9);
         $int27 = calc($int27 + 1);
     }
-    $int22 = db_getfieldcount($dbrow4, dbtable_0:col25);
+    $int22 = db_getfieldcount($dbrow4, quest:requirement_quests);
     $int24 = 0;
     $int25 = 0;
     $int26 = 0;
     while ($int26 < $int22) {
         $int24 = calc($int24 + 1);
-        if (~quest_requirement_check_quest(db_getfield($dbrow4, dbtable_0:col25, $int26)) = false) {
+        if (~quest_requirement_check_quest(db_getfield($dbrow4, quest:requirement_quests, $int26)) = false) {
             $int25 = calc($int25 + 1);
         }
         $int26 = calc($int26 + 1);
@@ -97,10 +97,10 @@ if ($int3 = 2) {
     }
     $boolean29 = true;
     $int30 = 0;
-    $int22 = db_getfieldcount($dbrow4, dbtable_0:col24);
+    $int22 = db_getfieldcount($dbrow4, quest:recommended_stats);
     $int26 = 0;
     while ($int26 < $int22) {
-        $stat23, $int24 = db_getfield($dbrow4, dbtable_0:col24, $int26);
+        $stat23, $int24 = db_getfield($dbrow4, quest:recommended_stats, $int26);
         $int25 = 0;
         if ($stat23 ! null) {
             $int25 = calc($int24 - stat_base($stat23));
@@ -114,8 +114,8 @@ if ($int3 = 2) {
         }
         $int26 = calc($int26 + 1);
     }
-    $int24 = db_getfield($dbrow4, dbtable_0:col28, 0);
-    $int25 = calc($int24 - %varplayerbit_13027);
+    $int24 = db_getfield($dbrow4, quest:recommended_combat, 0);
+    $int25 = calc($int24 - %combatlevel_transmit);
     if ($int25 > 0) {
         if ($boolean29 = true & $int27 > 0) {
             $int30 = 1;
@@ -165,10 +165,10 @@ $int7, $int15, $int21, $int18 = ~script6409(~script2491($dbrow4, $int5), ^white,
 $int21 = calc($int21 + 1);
 $int15 = 0;
 if ($boolean6 = true) {
-    $int7, $int15, $int21, $int18 = ~script6409("<$string2>Location: </col><enum(int, string, enum_2096, db_getfield($dbrow4, dbtable_0:col8, 0))>", ^white, $int21, 0, $boolean6, $int7, $int15, $int18, $int8, $component9);
+    $int7, $int15, $int21, $int18 = ~script6409("<$string2>Location: </col><enum(int, string, enum_2096, db_getfield($dbrow4, quest:location, 0))>", ^white, $int21, 0, $boolean6, $int7, $int15, $int18, $int8, $component9);
     $int21 = calc($int21 + 1);
     $int15 = 0;
-    if (%varclient_103 = 0 & db_getfield($dbrow4, dbtable_0:col5, 0) = true) {
+    if (%varclient_103 = 0 & db_getfield($dbrow4, quest:members, 0) = true) {
         $string0 = ~script3739(16776960, "col");
         $string0 = "<$string0>Requires membership</col>";
         $int7, $int15, $int21, $int18 = ~script6409($string0, ^white, $int21, 0, $boolean6, $int7, $int15, $int18, $int8, $component9);
@@ -179,7 +179,7 @@ if ($boolean6 = true) {
 $int15 = 0;
 def_int $int31 = 0;
 def_int $int32 = -1;
-def_int $int33 = db_getfield($dbrow4, dbtable_0:col0, 0);
+def_int $int33 = db_getfield($dbrow4, quest:id, 0);
 def_int $int34 = -1;
 $int7, $int31, $int32, $int33, $int34 = ~script6410($int1, $string1, $boolean6, $int7, $int8, $int18, $int19, $int20, $component9, $boolean6, "View journal", $int33, $component10, $component11, $component12);
 if (cc_find($component9, $int32) = ^true) {

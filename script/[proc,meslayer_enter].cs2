@@ -27,7 +27,7 @@ if ($int1 > 0) {
             } else if (%varclient_5 = 3) {
                 friend_del(%varclient_359);
             } else if (%varclient_5 = 6) {
-                if (%varplayerbit_8119 = 0) {
+                if (%has_displayname_transmitter = 0) {
                     ~meslayer_close(1, 1, 1);
                     mes("You must set a name before you can chat.");
                     return;
@@ -39,7 +39,7 @@ if ($int1 > 0) {
                     ~rebuildchatbox($int0);
                     ~rebuildpmbox($int0);
                 }
-                if (%varplayerbit_4394 = 1) {
+                if (%chat_stfu = 1) {
                     friend_del(%varclient_360);
                 } else {
                     chat_sendprivate(%varclient_360, %varclient_359);
@@ -76,7 +76,7 @@ if ($int1 > 0) {
             resume_stringdialog(%varclient_359);
             %varclient_5 = 0;
         case 10 :
-            if (%varplayerbit_8119 = 0) {
+            if (%has_displayname_transmitter = 0) {
                 ~meslayer_close(1, 1, 1);
                 mes("You must set a name before you can chat.");
                 return;
@@ -92,14 +92,14 @@ if ($int1 > 0) {
             chat_setmessagefilter(lowercase($string0));
             ~rebuildchatbox(~script553);
         case 13 :
-            if (%varplayerbit_8119 = 0) {
+            if (%has_displayname_transmitter = 0) {
                 ~meslayer_close(1, 1, 1);
                 mes("You must set a name before you can chat.");
                 return;
             }
             %varclient_358, %varclient_62 = %varclient_359, 0;
             ~chat_autotyper_updateop;
-            if_setontimer("chat_autotyper(event_com, true)", interface_162:com_11);
+            if_setontimer("chat_autotyper(event_com, true)", chatbox:chat_public);
         case 11, 18 :
             ~meslayer_close(0, 1, 1);
             return;

@@ -1,7 +1,7 @@
 // 2940
 [proc,silver_crafting_jewellery_draw](component $component0, obj $obj1, int $int2, obj $obj3, string $string0, obj $obj4, obj $obj5)
 cc_deleteall($component0);
-if (inv_total(inv_93, $obj3) <= 0) {
+if (inv_total(inv, $obj3) <= 0) {
     if_clearops($component0);
     if_setonmouserepeat(null, $component0);
     if_setonmouseleave(null, $component0);
@@ -11,10 +11,10 @@ def_int $int6 = 0;
 if_setop(1, "Craft", $component0);
 if_setopbase("<col=ff9040><$string0></col>", $component0);
 def_int $int7 = 0;
-if (inv_total(inv_93, $obj4) > 0 & stat(crafting) >= $int2 & (map_members = true | oc_members($obj1) = 0)) {
+if (inv_total(inv, $obj4) > 0 & stat(crafting) >= $int2 & (map_members = true | oc_members($obj1) = 0)) {
     $int7 = 1;
 }
-if (%varplayerbit_13893 = enum(component, int, enum_4319, $component0) & %varplayerbit_13893 ! 0 & $int7 = 1) {
+if (%crafting_silver_item_lasttype = enum(component, int, enum_4319, $component0) & %crafting_silver_item_lasttype ! 0 & $int7 = 1) {
     cc_create($component0, ^iftype_rectangle, $int6);
     $int6 = calc($int6 + 1);
     cc_setcolour(^white);

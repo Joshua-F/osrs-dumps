@@ -1,18 +1,18 @@
 // 7725
 [proc,league_summary_masteries]
-def_component $component0 = interface_529:com_14;
-def_component $component1 = interface_529:com_15;
+def_component $component0 = league_summary:masteries_backing;
+def_component $component1 = league_summary:masteries_content;
 ~thinbox_light($component0, 0);
 def_int $int2 = ~script7733($component1, $int2, "Masteries");
 def_int $int3 = 40;
 def_int $int4 = 0;
-if (%varplayerbit_11580 > 0) {
+if (%league_combat_mastery_melee_progress > 0) {
     $int4 = calc($int4 + 1);
 }
-if (%varplayerbit_11581 > 0) {
+if (%league_combat_mastery_ranged_progress > 0) {
     $int4 = calc($int4 + 1);
 }
-if (%varplayerbit_11582 > 0) {
+if (%league_combat_mastery_magic_progress > 0) {
     $int4 = calc($int4 + 1);
 }
 def_boolean $boolean5 = ~int_to_bool($int4);
@@ -35,15 +35,15 @@ if ($boolean5 = false) {
     $int9 = calc($int9 + $int3 + $int8);
     return;
 }
-if (%varplayerbit_11580 > 0) {
-    $int2 = ~script7726($component1, $int2, ~script7683(enum_5691, %varplayerbit_11580), $int9, $int10, %varplayerbit_11580, "Melee");
+if (%league_combat_mastery_melee_progress > 0) {
+    $int2 = ~script7726($component1, $int2, ~script7683(enum_5691, %league_combat_mastery_melee_progress), $int9, $int10, %league_combat_mastery_melee_progress, "Melee");
     $int9 = calc($int9 + $int3 + $int8);
 }
-if (%varplayerbit_11581 > 0) {
-    $int2 = ~script7726($component1, $int2, ~script7683(enum_5692, %varplayerbit_11581), $int9, $int10, %varplayerbit_11581, "Ranged");
+if (%league_combat_mastery_ranged_progress > 0) {
+    $int2 = ~script7726($component1, $int2, ~script7683(enum_5692, %league_combat_mastery_ranged_progress), $int9, $int10, %league_combat_mastery_ranged_progress, "Ranged");
     $int9 = calc($int9 + $int3 + $int8);
 }
-if (%varplayerbit_11582 > 0) {
-    $int2 = ~script7726($component1, $int2, ~script7683(enum_5693, %varplayerbit_11582), $int9, $int10, %varplayerbit_11582, "Magic");
+if (%league_combat_mastery_magic_progress > 0) {
+    $int2 = ~script7726($component1, $int2, ~script7683(enum_5693, %league_combat_mastery_magic_progress), $int9, $int10, %league_combat_mastery_magic_progress, "Magic");
     $int9 = calc($int9 + $int3 + $int8);
 }

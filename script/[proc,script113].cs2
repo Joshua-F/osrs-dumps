@@ -4,46 +4,46 @@ def_graphic $graphic0 = "report_button,0";
 def_int $int1 = 0;
 def_int $int2 = 0;
 ~toplevel_chatbox_background;
-if (%varplayerbit_542 = 1 & getwindowmode ! ^windowmode_small | ~toplevel_getcomponents = enum_1745 & (%varclient_1220 = 1 & %varplayerbit_16116 = 0 | %varclient_1221 = 1)) {
-    if_sethide(true, interface_162:com_1);
+if (%cutscene_status = 1 & getwindowmode ! ^windowmode_small | ~toplevel_getcomponents = enum_1745 & (%varclient_1220 = 1 & %settings_mobile_show_filter_stones_enabled = 0 | %varclient_1221 = 1)) {
+    if_sethide(true, chatbox:controls);
 } else {
-    if_sethide(false, interface_162:com_1);
+    if_sethide(false, chatbox:controls);
 }
 if (~on_mobile = true) {
     $int2, %varclient_42 = 1, -1;
-    if_setsize(519, calc(165 - 20), ^setsize_abs, ^setsize_abs, enum(component, component, ~toplevel_getcomponents, interface_161:com_96));
-    if_setposition(0, 2, ^setpos_abs_right, ^setpos_abs_top, interface_162:com_1);
-    if_setsize(calc(519 - 58), calc(30 - 2), ^setsize_abs, ^setsize_abs, interface_162:com_1);
-    if_setposition(2, 0, ^setpos_abs_right, ^setpos_abs_top, interface_162:com_55);
-    if_setsize(calc(519 - 58 - 4), 0, ^setsize_abs, ^setsize_minus, interface_162:com_55);
+    if_setsize(519, calc(165 - 20), ^setsize_abs, ^setsize_abs, enum(component, component, ~toplevel_getcomponents, toplevel_osrs_stretch:chat_container));
+    if_setposition(0, 2, ^setpos_abs_right, ^setpos_abs_top, chatbox:controls);
+    if_setsize(calc(519 - 58), calc(30 - 2), ^setsize_abs, ^setsize_abs, chatbox:controls);
+    if_setposition(2, 0, ^setpos_abs_right, ^setpos_abs_top, chatbox:chatdisplay);
+    if_setsize(calc(519 - 58 - 4), 0, ^setsize_abs, ^setsize_minus, chatbox:chatdisplay);
     ~mobile_chatbox_resize;
-    if_sethide(true, interface_162:com_31);
+    if_sethide(true, chatbox:reportabuse);
     $int1 = 1;
-    if_setnoclickthrough(false, interface_162:com_1);
-    if_setnoclickthrough(false, interface_162:com_2);
-    if_setnoscrollthrough(false, interface_162:com_1);
-    if_setnoscrollthrough(false, interface_162:com_2);
+    if_setnoclickthrough(false, chatbox:controls);
+    if_setnoclickthrough(false, chatbox:controls_background);
+    if_setnoscrollthrough(false, chatbox:controls);
+    if_setnoscrollthrough(false, chatbox:controls_background);
 } else {
-    if_setsize(519, 165, ^setsize_abs, ^setsize_abs, enum(component, component, ~toplevel_getcomponents, interface_161:com_96));
-    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, interface_162:com_55);
-    if_setsize(14, 12, ^setsize_minus, ^setsize_minus, interface_162:com_55);
-    if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_bottom, interface_162:com_1);
-    if_setsize(519, 23, ^setsize_abs, ^setsize_abs, interface_162:com_1);
-    if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top, interface_162:com_34);
-    if_setsize(519, 23, ^setsize_abs, ^setsize_minus, interface_162:com_34);
-    if_sethide(false, interface_162:com_31);
-    if_setop(1, "", interface_162:com_31);
-    if_setsize(79, 0, ^setsize_abs, ^setsize_minus, interface_162:com_31);
-    if_setgraphic($graphic0, interface_162:com_32);
-    if_setonmouseleave("graphic_swapper(interface_162:com_32, $graphic0)", interface_162:com_31);
+    if_setsize(519, 165, ^setsize_abs, ^setsize_abs, enum(component, component, ~toplevel_getcomponents, toplevel_osrs_stretch:chat_container));
+    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, chatbox:chatdisplay);
+    if_setsize(14, 12, ^setsize_minus, ^setsize_minus, chatbox:chatdisplay);
+    if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_bottom, chatbox:controls);
+    if_setsize(519, 23, ^setsize_abs, ^setsize_abs, chatbox:controls);
+    if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top, chatbox:chatarea);
+    if_setsize(519, 23, ^setsize_abs, ^setsize_minus, chatbox:chatarea);
+    if_sethide(false, chatbox:reportabuse);
+    if_setop(1, "", chatbox:reportabuse);
+    if_setsize(79, 0, ^setsize_abs, ^setsize_minus, chatbox:reportabuse);
+    if_setgraphic($graphic0, chatbox:reportabuse_graphic);
+    if_setonmouseleave("graphic_swapper(chatbox:reportabuse_graphic, $graphic0)", chatbox:reportabuse);
     $graphic0 = "report_button,1";
-    if_setonmouseover("graphic_swapper(interface_162:com_32, $graphic0)", interface_162:com_31);
-    if_setposition(3, 0, ^setpos_abs_right, ^setpos_abs_centre, interface_162:com_31);
+    if_setonmouseover("graphic_swapper(chatbox:reportabuse_graphic, $graphic0)", chatbox:reportabuse);
+    if_setposition(3, 0, ^setpos_abs_right, ^setpos_abs_centre, chatbox:reportabuse);
     $int1 = 82;
-    if_setnoclickthrough(true, interface_162:com_1);
-    if_setnoclickthrough(true, interface_162:com_2);
-    if_setnoscrollthrough(true, interface_162:com_1);
-    if_setnoscrollthrough(true, interface_162:com_2);
+    if_setnoclickthrough(true, chatbox:controls);
+    if_setnoclickthrough(true, chatbox:controls_background);
+    if_setnoscrollthrough(true, chatbox:controls);
+    if_setnoscrollthrough(true, chatbox:controls_background);
 }
 def_int $int3 = 0;
 def_int $int4 = 58;
@@ -73,15 +73,15 @@ while ($int6 >= 0) {
     }
     $int1, $int6 = calc($int1 + $int4), calc($int6 - 1);
 }
-if (%varplayerbit_10670 = 1 & if_hassub(interface_162:com_566) = true) {
-    if_setsize(0, 0, ^setsize_minus, ^setsize_minus, interface_162:com_566);
+if (%chatmodal_unclamp = 1 & if_hassub(chatbox:chatmodal) = true) {
+    if_setsize(0, 0, ^setsize_minus, ^setsize_minus, chatbox:chatmodal);
 } else {
-    if_setsize(479, 96, ^setsize_abs, ^setsize_abs, interface_162:com_566);
+    if_setsize(479, 96, ^setsize_abs, ^setsize_abs, chatbox:chatmodal);
 }
-if (%varplayerbit_10689 = 1 & if_hassub(interface_162:com_565) = true) {
-    if_setsize(0, 0, ^setsize_minus, ^setsize_minus, interface_162:com_565);
+if (%chatoverlay_unclamp = 1 & if_hassub(chatbox:chatoverlay) = true) {
+    if_setsize(0, 0, ^setsize_minus, ^setsize_minus, chatbox:chatoverlay);
 } else {
-    if_setsize(479, 96, ^setsize_abs, ^setsize_abs, interface_162:com_565);
+    if_setsize(479, 96, ^setsize_abs, ^setsize_abs, chatbox:chatoverlay);
 }
 ~redraw_chat_buttons;
 def_int $int7 = ~script553;

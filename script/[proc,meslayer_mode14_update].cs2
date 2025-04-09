@@ -1,12 +1,12 @@
 // 752
 [proc,meslayer_mode14_update](boolean $boolean0, enum $enum1, boolean $boolean2)
 %varclient_66 = 0;
-cc_deleteall(interface_162:com_51);
-if_sethide(true, interface_162:com_53);
-def_int $int3 = if_getwidth(interface_162:com_51);
-def_int $int4 = if_getheight(interface_162:com_51);
+cc_deleteall(chatbox:mes_layer_scrollcontents);
+if_sethide(true, chatbox:mes_layer_toggle);
+def_int $int3 = if_getwidth(chatbox:mes_layer_scrollcontents);
+def_int $int4 = if_getheight(chatbox:mes_layer_scrollcontents);
 if (string_length(%varclient_359) <= 0) {
-    if (%varplayerbit_10295 = 0 & $boolean2 = true & %varplayer_2674 ! null & ~script3362($boolean0, $enum1) = true) {
+    if (%disable_last_searched = 0 & $boolean2 = true & %ge_last_searched ! null & ~script3362($boolean0, $enum1) = true) {
         return;
     }
     ~script753($int3, $int4, "Start typing the name of an item to search for it.", $boolean2);
@@ -46,7 +46,7 @@ while ($obj20 ! null) {
         } else {
             $int16, $int17 = $int8, $int12;
         }
-        cc_create(interface_162:com_51, ^iftype_rectangle, $int7);
+        cc_create(chatbox:mes_layer_scrollcontents, ^iftype_rectangle, $int7);
         if ($int7 = 0) {
             cc_setonkey("meslayer_mode14_select($obj20, event_keycode)");
         }
@@ -61,7 +61,7 @@ while ($obj20 ! null) {
         cc_setopbase("<col=ff9040><oc_name($obj20)></col>");
         cc_setop(1, "Select");
         cc_setonop("meslayer_mode14_select($obj20, ^key_return)");
-        cc_create(interface_162:com_51, ^iftype_text, $int7);
+        cc_create(chatbox:mes_layer_scrollcontents, ^iftype_text, $int7);
         $int7 = calc($int7 + 1);
         cc_setsize($int11, 32, ^setsize_abs, ^setsize_abs);
         cc_setposition($int17, $int18, ^setpos_abs_left, ^setpos_abs_top);
@@ -70,7 +70,7 @@ while ($obj20 ! null) {
         cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
         cc_setcolour(^black);
         cc_settext(oc_name($obj20));
-        cc_create(interface_162:com_51, ^iftype_graphic, $int7);
+        cc_create(chatbox:mes_layer_scrollcontents, ^iftype_graphic, $int7);
         $int7 = calc($int7 + 1);
         cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
         cc_setposition($int16, $int18, ^setpos_abs_left, ^setpos_abs_top);
@@ -96,9 +96,9 @@ if ($int15 < 2) {
     $int18 = calc($int18 + 32);
 }
 if ($int18 > $int4) {
-    if_setscrollsize(0, $int18, interface_162:com_51);
+    if_setscrollsize(0, $int18, chatbox:mes_layer_scrollcontents);
 } else {
-    if_setscrollpos(0, 0, interface_162:com_51);
-    if_setscrollsize(0, 0, interface_162:com_51);
+    if_setscrollpos(0, 0, chatbox:mes_layer_scrollcontents);
+    if_setscrollsize(0, 0, chatbox:mes_layer_scrollcontents);
 }
-~scrollbar_resize(interface_162:com_52, interface_162:com_51, if_getscrolly(interface_162:com_51));
+~scrollbar_resize(chatbox:mes_layer_scrollbar, chatbox:mes_layer_scrollcontents, if_getscrolly(chatbox:mes_layer_scrollcontents));

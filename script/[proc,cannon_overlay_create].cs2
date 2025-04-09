@@ -1,19 +1,19 @@
 // 6676
 [proc,cannon_overlay_create](entityoverlay $entityoverlay0, coord $coord1)
 cc_deleteall_entityoverlay($entityoverlay0);
-if (%varplayer_3551 ! $coord1) {
+if (%ownedmcannon_temp ! $coord1) {
     entityoverlay_delete_coord($coord1, 6);
     return;
 }
-if (%varplayerbit_14174 = 1 | %varplayerbit_13672 = 1) {
+if (%cannon_hud_disabled = 1 | %mcannon_decayed = 1) {
     return;
 }
 cc_create_entityoverlay($entityoverlay0, ^iftype_text, 0);
 cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
 cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
-if (%varplayer_3 <= 5) {
+if (%rockthrower <= 5) {
     cc_setcolour(^red);
-} else if (%varplayer_3 <= 15) {
+} else if (%rockthrower <= 15) {
     cc_setcolour(0xffb71e);
 } else {
     cc_setcolour(^green);
@@ -21,5 +21,5 @@ if (%varplayer_3 <= 5) {
 cc_settextfont(p12_full);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
 cc_settextshadow(true);
-cc_settext(tostring(%varplayer_3));
-cc_setonvartransmit("script6677($entityoverlay0, $coord1, %varplayer_3){varplayer_3}");
+cc_settext(tostring(%rockthrower));
+cc_setonvartransmit("script6677($entityoverlay0, $coord1, %rockthrower){rockthrower}");

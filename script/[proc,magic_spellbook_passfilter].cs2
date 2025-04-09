@@ -2,26 +2,26 @@
 [proc,magic_spellbook_passfilter](obj $obj0)(boolean)
 def_int $int1 = oc_param($obj0, param_605);
 if ($int1 = 0) {
-    if (%varplayerbit_6605 = 1) {
+    if (%magic_filter_blockcombat = 1) {
         return(false);
     }
 } else if ($int1 = 1) {
-    if (%varplayerbit_6606 = 1) {
+    if (%magic_filter_blockutility = 1) {
         return(false);
     }
-} else if ($int1 = 2 & %varplayerbit_6609 = 1) {
+} else if ($int1 = 2 & %magic_filter_blockteleport = 1) {
     return(false);
 }
-if (%varplayerbit_6607 = 1) {
+if (%magic_filter_blocklacklevel = 1) {
     $int1 = oc_param($obj0, param_604);
     if (stat_base(magic) < $int1 & stat(magic) < $int1) {
         return(false);
     }
 }
-if (%varplayerbit_6608 = 1 & ~magic_spellbook_hasrunes($obj0, inv_getobj(inv_94, 3), inv_getobj(inv_94, 5)) = false) {
+if (%magic_filter_blocklackrunes = 1 & ~magic_spellbook_hasrunes($obj0, inv_getobj(worn, 3), inv_getobj(worn, 5)) = false) {
     return(false);
 }
-if (%varplayerbit_12137 = 1 & ~magic_spellbook_unlocked($obj0) = false) {
+if (%magic_filter_blocklocked = 1 & ~magic_spellbook_unlocked($obj0) = false) {
     return(false);
 }
 return(true);

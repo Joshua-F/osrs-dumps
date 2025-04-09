@@ -1,8 +1,8 @@
 // 2346
 [clientscript,tob_midway_stores_init](component $component0, component $component1, component $component2)
-if_settext("Points Available: <col=ffffff><tostring(%varplayerbit_6460)></col>", $component0);
-if_setonvartransmit("script2349($component0){varplayer_1746}", $component0);
-if_setoninvtransmit("script2347($component2){inv_612}", $component2);
+if_settext("Points Available: <col=ffffff><tostring(%tob_midwaychest_points)></col>", $component0);
+if_setonvartransmit("script2349($component0){tob_perm_transmit_1}", $component0);
+if_setoninvtransmit("script2347($component2){tob_chests}", $component2);
 ~script2348($component2);
 cc_deleteall($component1);
 def_int $int3 = 14;
@@ -14,15 +14,15 @@ def_int $int8 = 0;
 def_string $string0 = "";
 while ($int5 < $int6) {
     $namedobj7 = enum(int, namedobj, enum_1952, $int5);
-    if ($namedobj7 = obj_12625) {
+    if ($namedobj7 = 4dosestamina) {
         cc_create($component1, ^iftype_graphic, $int8);
-        cc_setonvartransmit("script4488($component1, $int8, $namedobj7){varplayer_1746}");
+        cc_setonvartransmit("script4488($component1, $int8, $namedobj7){tob_perm_transmit_1}");
         $int8 = calc($int8 + 1);
         cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
         cc_setposition(calc((36 + $int3) * ($int5 % 4)), calc($int5 / 4 * (32 + $int4)), ^setpos_abs_left, ^setpos_abs_top);
         $string0 = "<col=ff981f><oc_name($namedobj7)>";
-        cc_setobject_alwaysnum($namedobj7, %varplayerbit_12271);
-        if (%varplayerbit_12271 = 0) {
+        cc_setobject_alwaysnum($namedobj7, %tob_midwaychest_staminapot);
+        if (%tob_midwaychest_staminapot = 0) {
             cc_settrans(128);
         }
         cc_setopbase($string0);
@@ -33,7 +33,7 @@ while ($int5 < $int6) {
         cc_setoutline(1);
     } else if ($namedobj7 ! null) {
         cc_create($component1, ^iftype_graphic, $int8);
-        cc_setonvartransmit("script4489($component1, $int8, $namedobj7){varplayer_1746}");
+        cc_setonvartransmit("script4489($component1, $int8, $namedobj7){tob_perm_transmit_1}");
         $int8 = calc($int8 + 1);
         cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
         cc_setposition(calc((36 + $int3) * ($int5 % 4)), calc($int5 / 4 * (32 + $int4)), ^setpos_abs_left, ^setpos_abs_top);
@@ -42,8 +42,8 @@ while ($int5 < $int6) {
         cc_setopbase($string0);
         cc_setop(1, "Value");
         cc_setop(2, "Buy-1");
-        if (%varplayerbit_12272 ! 0) {
-            cc_setop(3, "Buy-<tostring(%varplayerbit_12272)>");
+        if (%tob_midwaychest_last_x ! 0) {
+            cc_setop(3, "Buy-<tostring(%tob_midwaychest_last_x)>");
         }
         cc_setop(4, "Buy-All");
         cc_setop(5, "Buy-X");

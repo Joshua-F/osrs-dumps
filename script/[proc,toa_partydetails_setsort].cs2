@@ -1,20 +1,20 @@
 // 6759
 [proc,toa_partydetails_setsort](int $int0, int $int1)
-~toa_partydetails_sortbutton_draw(interface_774:com_37, 0, 1, "Sort by player name", $int0, $int1, "toa_grouping_icons,1");
-~toa_partydetails_sortbutton_draw(interface_774:com_38, 2, 3, "Sort by Combat level", $int0, $int1, "toa_grouping_icons,6");
-~toa_partydetails_sortbutton_draw(interface_774:com_39, 8, 9, "Sort by Attack level", $int0, $int1, "toa_grouping_icons,7");
-~toa_partydetails_sortbutton_draw(interface_774:com_40, 10, 11, "Sort by Strength level", $int0, $int1, "toa_grouping_icons,8");
-~toa_partydetails_sortbutton_draw(interface_774:com_41, 12, 13, "Sort by Ranged level", $int0, $int1, "toa_grouping_icons,9");
-~toa_partydetails_sortbutton_draw(interface_774:com_42, 14, 15, "Sort by Magic level", $int0, $int1, "toa_grouping_icons,10");
-~toa_partydetails_sortbutton_draw(interface_774:com_43, 16, 17, "Sort by Defence level", $int0, $int1, "toa_grouping_icons,11");
-~toa_partydetails_sortbutton_draw(interface_774:com_44, 18, 19, "Sort by Hitpoints level", $int0, $int1, "toa_grouping_icons,12");
-~toa_partydetails_sortbutton_draw(interface_774:com_45, 20, 21, "Sort by Prayer level", $int0, $int1, "toa_grouping_icons,13");
-~toa_partydetails_sortbutton_draw(interface_774:com_46, 6, 7, "Sort by total completions", $int0, $int1, "toa_grouping_icons,2");
+~toa_partydetails_sortbutton_draw(toa_partydetails:applicants_name, 0, 1, "Sort by player name", $int0, $int1, "toa_grouping_icons,1");
+~toa_partydetails_sortbutton_draw(toa_partydetails:applicants_comlevel, 2, 3, "Sort by Combat level", $int0, $int1, "toa_grouping_icons,6");
+~toa_partydetails_sortbutton_draw(toa_partydetails:applicants_attack, 8, 9, "Sort by Attack level", $int0, $int1, "toa_grouping_icons,7");
+~toa_partydetails_sortbutton_draw(toa_partydetails:applicants_strength, 10, 11, "Sort by Strength level", $int0, $int1, "toa_grouping_icons,8");
+~toa_partydetails_sortbutton_draw(toa_partydetails:applicants_ranged, 12, 13, "Sort by Ranged level", $int0, $int1, "toa_grouping_icons,9");
+~toa_partydetails_sortbutton_draw(toa_partydetails:applicants_magic, 14, 15, "Sort by Magic level", $int0, $int1, "toa_grouping_icons,10");
+~toa_partydetails_sortbutton_draw(toa_partydetails:applicants_defence, 16, 17, "Sort by Defence level", $int0, $int1, "toa_grouping_icons,11");
+~toa_partydetails_sortbutton_draw(toa_partydetails:applicants_hitpoints, 18, 19, "Sort by Hitpoints level", $int0, $int1, "toa_grouping_icons,12");
+~toa_partydetails_sortbutton_draw(toa_partydetails:applicants_prayer, 20, 21, "Sort by Prayer level", $int0, $int1, "toa_grouping_icons,13");
+~toa_partydetails_sortbutton_draw(toa_partydetails:applicants_completions, 6, 7, "Sort by total completions", $int0, $int1, "toa_grouping_icons,2");
 def_int $intarray0($int1);
 def_int $int2 = 0;
 def_int $int3 = 0;
 while ($int3 = 0 & $int2 < $int1) {
-    if (cc_find(interface_774:com_48, calc($int2 * 20)) = ^true) {
+    if (cc_find(toa_partydetails:applicants_list, calc($int2 * 20)) = ^true) {
         $intarray0($int2) = $int2;
         $int2 = calc($int2 + 1);
     } else {
@@ -55,7 +55,7 @@ switch_int (%varclient_181) {
         $int4 = $int2;
         while ($int4 > 0) {
             $int4 = calc($int4 - 1);
-            if (cc_find(interface_774:com_48, calc($intarray0($int4) * 20)) = ^true & .cc_find(interface_774:com_48, calc($intarray0($int4) * 20 + 1)) = ^true) {
+            if (cc_find(toa_partydetails:applicants_list, calc($intarray0($int4) * 20)) = ^true & .cc_find(toa_partydetails:applicants_list, calc($intarray0($int4) * 20 + 1)) = ^true) {
                 if (calc($int4 % 2) = 0) {
                     $int7 = 242;
                 } else {
@@ -75,38 +75,38 @@ switch_int (%varclient_181) {
                     cc_setonop("script6746(event_op, $intarray0($int4), event_com, event_comsubid, .cc_gettext, $int7)");
                 }
             }
-            if (cc_find(interface_774:com_48, calc($intarray0($int4) * 20 + 2)) = ^true) {
+            if (cc_find(toa_partydetails:applicants_list, calc($intarray0($int4) * 20 + 2)) = ^true) {
                 cc_setposition(cc_getx, $int5, ^setpos_abs_left, ^setpos_abs_top);
             }
-            if (cc_find(interface_774:com_48, calc($intarray0($int4) * 20 + 4)) = ^true) {
+            if (cc_find(toa_partydetails:applicants_list, calc($intarray0($int4) * 20 + 4)) = ^true) {
                 cc_setposition(cc_getx, $int5, ^setpos_abs_left, ^setpos_abs_top);
             }
-            if (cc_find(interface_774:com_48, calc($intarray0($int4) * 20 + 6)) = ^true) {
+            if (cc_find(toa_partydetails:applicants_list, calc($intarray0($int4) * 20 + 6)) = ^true) {
                 cc_setposition(cc_getx, $int5, ^setpos_abs_left, ^setpos_abs_top);
             }
-            if (cc_find(interface_774:com_48, calc($intarray0($int4) * 20 + 8)) = ^true) {
+            if (cc_find(toa_partydetails:applicants_list, calc($intarray0($int4) * 20 + 8)) = ^true) {
                 cc_setposition(cc_getx, $int5, ^setpos_abs_left, ^setpos_abs_top);
             }
-            if (cc_find(interface_774:com_48, calc($intarray0($int4) * 20 + 10)) = ^true) {
+            if (cc_find(toa_partydetails:applicants_list, calc($intarray0($int4) * 20 + 10)) = ^true) {
                 cc_setposition(cc_getx, $int5, ^setpos_abs_left, ^setpos_abs_top);
             }
-            if (cc_find(interface_774:com_48, calc($intarray0($int4) * 20 + 12)) = ^true) {
+            if (cc_find(toa_partydetails:applicants_list, calc($intarray0($int4) * 20 + 12)) = ^true) {
                 cc_setposition(cc_getx, $int5, ^setpos_abs_left, ^setpos_abs_top);
             }
-            if (cc_find(interface_774:com_48, calc($intarray0($int4) * 20 + 14)) = ^true) {
+            if (cc_find(toa_partydetails:applicants_list, calc($intarray0($int4) * 20 + 14)) = ^true) {
                 cc_setposition(cc_getx, $int5, ^setpos_abs_left, ^setpos_abs_top);
             }
-            if (cc_find(interface_774:com_48, calc($intarray0($int4) * 20 + 16)) = ^true) {
+            if (cc_find(toa_partydetails:applicants_list, calc($intarray0($int4) * 20 + 16)) = ^true) {
                 cc_setposition(cc_getx, $int5, ^setpos_abs_left, ^setpos_abs_top);
             }
-            if (cc_find(interface_774:com_48, calc($intarray0($int4) * 20 + 18)) = ^true) {
+            if (cc_find(toa_partydetails:applicants_list, calc($intarray0($int4) * 20 + 18)) = ^true) {
                 cc_setposition(cc_getx, $int5, ^setpos_abs_left, ^setpos_abs_top);
             }
             $int5 = calc($int5 + $int6);
         }
     case default :
         while ($int4 < $int2) {
-            if (cc_find(interface_774:com_48, calc($intarray0($int4) * 20)) = ^true & .cc_find(interface_774:com_48, calc($intarray0($int4) * 20 + 1)) = ^true) {
+            if (cc_find(toa_partydetails:applicants_list, calc($intarray0($int4) * 20)) = ^true & .cc_find(toa_partydetails:applicants_list, calc($intarray0($int4) * 20 + 1)) = ^true) {
                 if (calc($int4 % 2) = 0) {
                     $int7 = 242;
                 } else {
@@ -126,31 +126,31 @@ switch_int (%varclient_181) {
                     cc_setonop("script6746(event_op, $intarray0($int4), event_com, event_comsubid, .cc_gettext, $int7)");
                 }
             }
-            if (cc_find(interface_774:com_48, calc($intarray0($int4) * 20 + 2)) = ^true) {
+            if (cc_find(toa_partydetails:applicants_list, calc($intarray0($int4) * 20 + 2)) = ^true) {
                 cc_setposition(cc_getx, $int5, ^setpos_abs_left, ^setpos_abs_top);
             }
-            if (cc_find(interface_774:com_48, calc($intarray0($int4) * 20 + 4)) = ^true) {
+            if (cc_find(toa_partydetails:applicants_list, calc($intarray0($int4) * 20 + 4)) = ^true) {
                 cc_setposition(cc_getx, $int5, ^setpos_abs_left, ^setpos_abs_top);
             }
-            if (cc_find(interface_774:com_48, calc($intarray0($int4) * 20 + 6)) = ^true) {
+            if (cc_find(toa_partydetails:applicants_list, calc($intarray0($int4) * 20 + 6)) = ^true) {
                 cc_setposition(cc_getx, $int5, ^setpos_abs_left, ^setpos_abs_top);
             }
-            if (cc_find(interface_774:com_48, calc($intarray0($int4) * 20 + 8)) = ^true) {
+            if (cc_find(toa_partydetails:applicants_list, calc($intarray0($int4) * 20 + 8)) = ^true) {
                 cc_setposition(cc_getx, $int5, ^setpos_abs_left, ^setpos_abs_top);
             }
-            if (cc_find(interface_774:com_48, calc($intarray0($int4) * 20 + 10)) = ^true) {
+            if (cc_find(toa_partydetails:applicants_list, calc($intarray0($int4) * 20 + 10)) = ^true) {
                 cc_setposition(cc_getx, $int5, ^setpos_abs_left, ^setpos_abs_top);
             }
-            if (cc_find(interface_774:com_48, calc($intarray0($int4) * 20 + 12)) = ^true) {
+            if (cc_find(toa_partydetails:applicants_list, calc($intarray0($int4) * 20 + 12)) = ^true) {
                 cc_setposition(cc_getx, $int5, ^setpos_abs_left, ^setpos_abs_top);
             }
-            if (cc_find(interface_774:com_48, calc($intarray0($int4) * 20 + 14)) = ^true) {
+            if (cc_find(toa_partydetails:applicants_list, calc($intarray0($int4) * 20 + 14)) = ^true) {
                 cc_setposition(cc_getx, $int5, ^setpos_abs_left, ^setpos_abs_top);
             }
-            if (cc_find(interface_774:com_48, calc($intarray0($int4) * 20 + 16)) = ^true) {
+            if (cc_find(toa_partydetails:applicants_list, calc($intarray0($int4) * 20 + 16)) = ^true) {
                 cc_setposition(cc_getx, $int5, ^setpos_abs_left, ^setpos_abs_top);
             }
-            if (cc_find(interface_774:com_48, calc($intarray0($int4) * 20 + 18)) = ^true) {
+            if (cc_find(toa_partydetails:applicants_list, calc($intarray0($int4) * 20 + 18)) = ^true) {
                 cc_setposition(cc_getx, $int5, ^setpos_abs_left, ^setpos_abs_top);
             }
             $int5 = calc($int5 + $int6);

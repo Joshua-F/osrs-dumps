@@ -1,13 +1,13 @@
 // 6421
 [clientscript,pvp_arena_runepouch_init](component $component0, int $int1, int $int2, obj $obj3, obj $obj4)
-~script4206(interface_389:com_1, interface_389:com_2, interface_389:com_3, 0, $component0);
-~stonebutton_init("<col=0dc10d>Okay</col>", interface_389:com_10, p12_full, 0);
-if_setonop("script4208(1, interface_389:com_1, interface_389:com_2, interface_389:com_3, $component0)", interface_389:com_10);
+~script4206(pvp_arena_runepouch:clamp, pvp_arena_runepouch:fader, pvp_arena_runepouch:window, 0, $component0);
+~stonebutton_init("<col=0dc10d>Okay</col>", pvp_arena_runepouch:submit, p12_full, 0);
+if_setonop("script4208(1, pvp_arena_runepouch:clamp, pvp_arena_runepouch:fader, pvp_arena_runepouch:window, $component0)", pvp_arena_runepouch:submit);
 def_int $int5 = ~max(1, calc((22 + (6 - 1)) / 6));
-def_int $int6 = calc(if_getwidth(interface_389:com_6) - 4);
+def_int $int6 = calc(if_getwidth(pvp_arena_runepouch:runes) - 4);
 def_int $int7 = calc($int6 / 6);
 def_int $int8 = calc(2 + ($int6 - $int7 * 6) / 2);
-$int6 = calc(if_getheight(interface_389:com_6) - 4);
+$int6 = calc(if_getheight(pvp_arena_runepouch:runes) - 4);
 def_int $int9 = calc($int6 / $int5);
 def_int $int10 = calc(2 + ($int6 - $int9 * $int5) / 2);
 def_int $int11 = 17;
@@ -21,10 +21,10 @@ def_int $int14 = calc($int12 - 17);
 def_int $int15 = ~min($int12, calc($int7 - 6));
 def_int $int16 = calc(($int7 - $int15) / 2);
 def_int $int17 = calc(($int12 - $int15) / 2);
-cc_deleteall(interface_389:com_6);
+cc_deleteall(pvp_arena_runepouch:runes);
 def_int $int18 = 0;
 while ($int18 <= 22) {
-    cc_create(interface_389:com_6, ^iftype_rectangle, $int18);
+    cc_create(pvp_arena_runepouch:runes, ^iftype_rectangle, $int18);
     $int18 = calc($int18 + 1);
     cc_sethide(true);
 }
@@ -39,14 +39,14 @@ while ($int24 <= 22) {
     if ($obj23 ! null) {
         $int20 = calc($int8 + $int19 % 6 * $int7);
         $int21 = calc($int10 + $int19 / 6 * $int9);
-        if (cc_find(interface_389:com_6, $int24) = ^true) {
+        if (cc_find(pvp_arena_runepouch:runes, $int24) = ^true) {
             cc_sethide(false);
             cc_setsize($int7, $int9, ^setsize_abs, ^setsize_abs);
             cc_setposition($int20, $int21, ^setpos_abs_left, ^setpos_abs_top);
             cc_setcolour(^white);
             cc_setfill(true);
             cc_settrans(255);
-            if (%varplayerbit_14161 <= 1) {
+            if (%pvpa_transmit_viewingrunepouch <= 1) {
                 if ($boolean22 = false) {
                     cc_setonmouserepeat("cc_settrans(event_com, event_comsubid, 235, null)");
                 }
@@ -55,12 +55,12 @@ while ($int24 <= 22) {
                 cc_setonop("pvp_arena_runepouch_op(event_op, $int24)");
             }
         }
-        cc_create(interface_389:com_6, ^iftype_model, $int18);
+        cc_create(pvp_arena_runepouch:runes, ^iftype_model, $int18);
         $int18 = calc($int18 + 1);
         cc_setsize($int15, $int15, ^setsize_abs, ^setsize_abs);
         cc_setposition(calc($int20 + $int16), calc($int21 + $int17), ^setpos_abs_left, ^setpos_abs_top);
         cc_setobject_nonum($obj23, 1);
-        cc_create(interface_389:com_6, ^iftype_text, $int18);
+        cc_create(pvp_arena_runepouch:runes, ^iftype_text, $int18);
         $int18 = calc($int18 + 1);
         cc_setsize($int7, $int11, ^setsize_abs, ^setsize_abs);
         cc_setposition($int20, calc($int21 + $int12), ^setpos_abs_left, ^setpos_abs_top);
@@ -68,7 +68,7 @@ while ($int24 <= 22) {
         cc_settextfont(p11_full);
         cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
         cc_settext(enum(int, string, enum_4594, $int24));
-        cc_create(interface_389:com_6, ^iftype_graphic, $int18);
+        cc_create(pvp_arena_runepouch:runes, ^iftype_graphic, $int18);
         $int18 = calc($int18 + 1);
         cc_setposition(calc($int20 + $int13), calc($int21 + $int14), ^setpos_abs_left, ^setpos_abs_top);
         $int19 = calc($int19 + 1);
@@ -76,8 +76,8 @@ while ($int24 <= 22) {
     $int24 = calc($int24 + 1);
 }
 ~script6424;
-if_setonvartransmit("script6423{varplayer_3450}", interface_389:com_6);
-$int18 = ~thinbox(interface_389:com_6, $int18);
+if_setonvartransmit("script6423{pvpa_editing}", pvp_arena_runepouch:runes);
+$int18 = ~thinbox(pvp_arena_runepouch:runes, $int18);
 %varclient_225 = null;
 ~script6427($boolean22, $int1, $int2, $obj3, $obj4);
-if_setonvartransmit("script6426($boolean22, $int1, $int2, $obj3, $obj4){varplayer_3450}", interface_389:com_8);
+if_setonvartransmit("script6426($boolean22, $int1, $int2, $obj3, $obj4){pvpa_editing}", pvp_arena_runepouch:spells);
