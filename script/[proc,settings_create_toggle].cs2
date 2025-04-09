@@ -1,16 +1,16 @@
 // 3846
-[proc,settings_create_toggle](int $int0, int $int1, int $int2, int $int3, int $int4, struct $struct5, component $component6, component $component7, component $component8)(int, int, int, int)
+[proc,settings_create_toggle](int $int0, int $int1, int $int2, int $int3, int $int4, struct $struct, component $component6, component $component7, component $component8)(int, int, int, int)
 def_boolean $boolean9 = ~on_mobile;
-def_string $string0 = struct_param($struct5, param_1086);
-if ($boolean9 = true & string_length(struct_param($struct5, param_1087)) > 0) {
-    $string0 = struct_param($struct5, param_1087);
+def_string $string0 = struct_param($struct, param_1086);
+if ($boolean9 = true & string_length(struct_param($struct, param_1087)) > 0) {
+    $string0 = struct_param($struct, param_1087);
 }
-def_string $string1 = struct_param($struct5, param_1096);
+def_string $string1 = struct_param($struct, param_1096);
 def_int $int10 = 0;
-def_int $int11 = %varplayerbit_9665;
-def_boolean $boolean12 = struct_param($struct5, param_1119);
-if ($boolean9 = true & string_length(struct_param($struct5, param_1097)) > 0) {
-    $string1 = struct_param($struct5, param_1097);
+def_int $int11 = %settings_disable_tooltip_in_interface;
+def_boolean $boolean12 = struct_param($struct, param_1119);
+if ($boolean9 = true & string_length(struct_param($struct, param_1097)) > 0) {
+    $string1 = struct_param($struct, param_1097);
 }
 if (string_length($string1) > 0) {
     $int10 = calc(paraheight($string1, calc(if_getwidth($component7) - 45), p12_full) * 14);
@@ -19,10 +19,10 @@ $int1 = calc($int1 + $int10);
 if ($boolean12 = true | $int11 = 1) {
     $int10 = 0;
 }
-def_int $int13 = struct_param($struct5, param_1077);
-def_boolean $boolean14 = struct_param($struct5, param_1085);
-def_boolean $boolean15 = ~settings_dependency_checker($struct5);
-def_boolean $boolean16 = struct_param($struct5, param_1084);
+def_int $int13 = struct_param($struct, param_1077);
+def_boolean $boolean14 = struct_param($struct, param_1085);
+def_boolean $boolean15 = ~settings_dependency_checker($struct);
+def_boolean $boolean16 = struct_param($struct, param_1084);
 def_int $int17 = calc(paraheight($string0, calc(if_getwidth($component7) - 45), b12_full) * 14);
 if ($boolean9 = true & $int17 < 20) {
     $int17 = 20;
@@ -33,7 +33,7 @@ cc_setsize(10, $int18, ^setsize_minus, ^setsize_abs);
 cc_setposition(0, $int0, ^setpos_abs_centre, ^setpos_abs_top);
 cc_setfill(true);
 cc_setop(1, "Toggle");
-cc_setonop("settings_toggle_op($struct5, $int13, $component7, calc($int2 + 2), $boolean16, $boolean14)");
+cc_setonop("settings_toggle_op($struct, $int13, $component7, calc($int2 + 2), $boolean16, $boolean14)");
 cc_setcolour(^white);
 cc_settrans(255);
 if ($boolean9 = false & $int11 = 1 & string_length($string1) > 0) {
@@ -48,7 +48,7 @@ cc_setfill(true);
 cc_setcolour(^black);
 cc_settrans($int4);
 if ($boolean14 = true) {
-    ~settings_toggle_choose_transmit($component7, calc($int2 + 2), $boolean16, $int13, $struct5, $int4);
+    ~settings_toggle_choose_transmit($component7, calc($int2 + 2), $boolean16, $int13, $struct, $int4);
 }
 if ($boolean9 = false & $boolean15 = true) {
     cc_setonmouseover("cc_settrans($component7, $int2, 240, null)");

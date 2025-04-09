@@ -1,15 +1,15 @@
 // 6041
-[clientscript,bcs_burner_meter_change](component $component0, component $component1, component $component2, component $component3, component $component4, int $int5, int $int6, int $int7, int $int8, boolean $boolean9)
+[clientscript,bcs_burner_meter_change](component $component0, component $component1, component $component2, component $component3, component $component4, int $int5, int $int6, int $int7, int $int8, boolean $boolean)
 if (~bcs_burner_meter_check = true) {
     ~bcs_burner_update($component0, $component1, $component2, $component3, $component4);
     return;
 }
-if (~bcs_burner_meter_get($int8) <= 0 & $boolean9 = false | ~bcs_burner_meter_get($int8) >= 45 & $boolean9 = true) {
+if (~bcs_burner_meter_get($int8) <= 0 & $boolean = false | ~bcs_burner_meter_get($int8) >= 45 & $boolean = true) {
     sound_synth(synth_5598, 1, 0);
     return;
 }
-%varplayerbit_13863 = ~minmax(0, 45, calc(%varplayerbit_13863 + $int5));
-%varplayerbit_13864 = ~minmax(0, 45, calc(%varplayerbit_13864 + $int6));
-%varplayerbit_13865 = ~minmax(0, 45, calc(%varplayerbit_13865 + $int7));
+%bcs_burner_1 = ~minmax(0, 45, calc(%bcs_burner_1 + $int5));
+%bcs_burner_2 = ~minmax(0, 45, calc(%bcs_burner_2 + $int6));
+%bcs_burner_3 = ~minmax(0, 45, calc(%bcs_burner_3 + $int7));
 sound_synth(synth_2595, 1, 0);
 ~bcs_burner_update($component0, $component1, $component2, $component3, $component4);

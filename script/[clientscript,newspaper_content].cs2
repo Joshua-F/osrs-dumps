@@ -1,31 +1,31 @@
 // 3330
 [clientscript,newspaper_content](string $string0, string $string1)
 def_int $int0 = 15;
-def_int $int1 = calc(paraheight($string0, if_getwidth(interface_659:com_4), q8_full) * $int0 + 10);
-def_int $int2 = calc(paraheight($string1, if_getwidth(interface_659:com_6), q8_full) * $int0 + 10);
-cc_create(interface_659:com_4, ^iftype_text, 0);
+def_int $int1 = calc(paraheight($string0, if_getwidth(newspaper:left_content), q8_full) * $int0 + 10);
+def_int $int2 = calc(paraheight($string1, if_getwidth(newspaper:right_content), q8_full) * $int0 + 10);
+cc_create(newspaper:left_content, ^iftype_text, 0);
 cc_setsize(0, $int1, ^setsize_minus, ^setsize_abs);
 cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
 cc_settext($string0);
 cc_settextfont(q8_full);
 cc_setcolour(0x1b1b1b);
 cc_settextalign(^settextalign_left, ^settextalign_top, $int0);
-cc_create(interface_659:com_6, ^iftype_text, 0);
+cc_create(newspaper:right_content, ^iftype_text, 0);
 cc_setsize(0, $int2, ^setsize_minus, ^setsize_abs);
 cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
 cc_settext($string1);
 cc_settextfont(q8_full);
 cc_setcolour(0x1b1b1b);
 cc_settextalign(^settextalign_left, ^settextalign_top, $int0);
-if ($int1 > if_getheight(interface_659:com_4)) {
-    if_setscrollsize(0, $int1, interface_659:com_4);
+if ($int1 > if_getheight(newspaper:left_content)) {
+    if_setscrollsize(0, $int1, newspaper:left_content);
 } else {
-    if_setscrollsize(0, 0, interface_659:com_4);
+    if_setscrollsize(0, 0, newspaper:left_content);
 }
-~scrollbar_vertical(interface_659:com_5, interface_659:com_4, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-if ($int2 > if_getheight(interface_659:com_6)) {
-    if_setscrollsize(0, $int2, interface_659:com_6);
+~scrollbar_vertical(newspaper:left_scroll, newspaper:left_content, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+if ($int2 > if_getheight(newspaper:right_content)) {
+    if_setscrollsize(0, $int2, newspaper:right_content);
 } else {
-    if_setscrollsize(0, 0, interface_659:com_6);
+    if_setscrollsize(0, 0, newspaper:right_content);
 }
-~scrollbar_vertical(interface_659:com_7, interface_659:com_6, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~scrollbar_vertical(newspaper:right_scroll, newspaper:right_content, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");

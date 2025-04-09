@@ -1,5 +1,5 @@
 // 960
-[proc,worldswitcher_entry_draw](component $component0, int $int1, int $int2, component $component3, int $int4, int $int5, int $int6, string $string0, int $int7, int $int8, int $int9, graphic $graphic10, fontmetrics $fontmetrics11, int $int12, int $int13, int $int14, int $int15, int $int16, int $int17, int $int18, int $int19, component $component20)(int)
+[proc,worldswitcher_entry_draw](component $component0, int $int1, int $int2, component $component3, int $int4, int $int5, int $int6, string $string0, int $int7, int $int8, int $int9, graphic $graphic, fontmetrics $fontmetrics, int $int12, int $int13, int $int14, int $int15, int $int16, int $int17, int $int18, int $int19, component $component20)(int)
 def_int $int21 = 0;
 def_int $int22 = 0;
 if (map_world = $int5) {
@@ -114,7 +114,7 @@ if ($int21 = 0) {
 } else {
     cc_setcolour(0x7f7f7f);
 }
-cc_settextfont($graphic10);
+cc_settextfont($graphic);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
 cc_settextshadow(true);
 cc_settext(tostring(~max($int8, 0)));
@@ -124,11 +124,11 @@ def_int $int25 = string_length($string0);
 if ($int25 <= 0) {
     $string0, $int25 = "-", 1;
 }
-if ($int25 > 0 & parawidth($string0, 512, $fontmetrics11) > $int17) {
+if ($int25 > 0 & parawidth($string0, 512, $fontmetrics) > $int17) {
     while ($int25 > 1 & $int24 = 0) {
         $int25 = calc($int25 - 1);
         $string1 = append(substring($string0, 0, $int25), "...");
-        if (parawidth($string1, 512, $fontmetrics11) <= $int17) {
+        if (parawidth($string1, 512, $fontmetrics) <= $int17) {
             $string0, $int24 = $string1, 1;
         }
     }
@@ -144,7 +144,7 @@ if ($int21 = 1) {
 } else {
     cc_setcolour(0xff981f);
 }
-cc_settextfont($graphic10);
+cc_settextfont($graphic);
 cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
 cc_settextshadow(true);
 cc_settext($string0);

@@ -1,9 +1,9 @@
 // 2709
 [proc,1v1arena_review_draw](component $component0)
 def_component $component1 = null;
-def_obj $obj2 = null;
+def_obj $obj = null;
 def_int $int3 = 0;
-def_int $int4 = inv_size(inv_94);
+def_int $int4 = inv_size(worn);
 while ($int3 < $int4) {
     $component1 = enum(int, component, enum_1379, $int3);
     if ($component1 ! null) {
@@ -13,18 +13,18 @@ while ($int3 < $int4) {
         cc_setsize(36, 36, ^setsize_abs, ^setsize_abs);
         cc_setgraphic("miscgraphics,0");
         cc_create($component1, ^iftype_graphic, 1);
-        $obj2 = inv_getobj(inv_207, $int3);
-        if ($obj2 ! null) {
+        $obj = inv_getobj(trail_puzzlehintinv, $int3);
+        if ($obj ! null) {
             cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
             cc_setposition(2, 0, ^setpos_abs_centre, ^setpos_abs_centre);
             cc_setgraphicshadow(0x333333);
-            if (enum(obj, boolean, enum_679, $obj2) = true) {
+            if (enum(obj, boolean, enum_679, $obj) = true) {
                 cc_setoutline(2);
             } else {
                 cc_setoutline(1);
             }
-            cc_setobject($obj2, inv_getnum(inv_207, $int3));
-            if_setopbase("<col=ff9040><oc_name($obj2)></col>", $component1);
+            cc_setobject($obj, inv_getnum(trail_puzzlehintinv, $int3));
+            if_setopbase("<col=ff9040><oc_name($obj)></col>", $component1);
             if_setop(10, "Examine", $component1);
             if_setonop("cc_settrans_temporarily(event_com, cc_getid, 100, 0)", $component1);
         } else {
@@ -41,22 +41,22 @@ cc_deleteall($component0);
 def_int $int5 = calc((if_getwidth($component0) - 4 - 4 * 36) / 3 + 36);
 def_int $int6 = calc((if_getheight($component0) - 4 - 7 * 32) / 6 + 32);
 def_int $int7 = 0;
-def_int $int8 = inv_size(inv_93);
+def_int $int8 = inv_size(inv);
 while ($int7 < $int8) {
-    $obj2 = inv_getobj(inv_207, $int3);
+    $obj = inv_getobj(trail_puzzlehintinv, $int3);
     cc_create($component0, ^iftype_graphic, $int7);
-    if ($obj2 ! null) {
+    if ($obj ! null) {
         cc_sethide(false);
         cc_setposition(calc(2 + $int5 * ($int7 % 4)), calc(2 + $int6 * ($int7 / 4)), ^setpos_abs_left, ^setpos_abs_top);
         cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
         cc_setgraphicshadow(0x333333);
-        if (enum(obj, boolean, enum_679, $obj2) = true) {
+        if (enum(obj, boolean, enum_679, $obj) = true) {
             cc_setoutline(2);
         } else {
             cc_setoutline(1);
         }
-        cc_setobject($obj2, inv_getnum(inv_207, $int3));
-        cc_setopbase("<col=ff9040><oc_name($obj2)></col>");
+        cc_setobject($obj, inv_getnum(trail_puzzlehintinv, $int3));
+        cc_setopbase("<col=ff9040><oc_name($obj)></col>");
         cc_setop(10, "Examine");
     } else {
         cc_sethide(true);

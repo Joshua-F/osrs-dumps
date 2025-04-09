@@ -1,21 +1,21 @@
 // 3509
-[proc,adventurepath_voucher_init](int $int0, string $string0)
+[proc,adventurepath_voucher_init](int $int0, string $string)
 def_enum $enum1 = enum(int, enum, enum_2621, $int0);
 if ($enum1 = null) {
     if_close;
     mes("The voucher has already been used.");
     return;
 }
-def_component $component2 = interface_643:com_4;
-def_component $component3 = interface_643:com_3;
-def_component $component4 = interface_643:com_0;
-if_setsize(500, 334, ^setsize_abs, ^setsize_abs, $component4);
-if_setposition(6, 0, ^setpos_abs_left, ^setpos_abs_top, $component4);
-cc_deleteall($component2);
-cc_deleteall($component3);
-cc_deleteall($component4);
-def_int $int5 = if_getwidth($component3);
-def_int $int6 = if_getheight($component3);
+def_component $scrollbar = adventurepath_reward:scrollbar;
+def_component $item_holder = adventurepath_reward:item_holder;
+def_component $universe = adventurepath_reward:universe;
+if_setsize(500, 334, ^setsize_abs, ^setsize_abs, $universe);
+if_setposition(6, 0, ^setpos_abs_left, ^setpos_abs_top, $universe);
+cc_deleteall($scrollbar);
+cc_deleteall($item_holder);
+cc_deleteall($universe);
+def_int $int5 = if_getwidth($item_holder);
+def_int $int6 = if_getheight($item_holder);
 def_int $int7 = calc($int5 - 64 - 36 * 2);
 def_int $int8 = 0;
 def_int $int9 = enum_getoutputcount($enum1);
@@ -24,7 +24,7 @@ if ($int9 = 0) {
     return;
 }
 def_int $int10 = 0;
-def_struct $structarray0($int9);
+def_struct $structarray($int9);
 def_enum $enum11 = null;
 def_enum $enum12 = null;
 def_int $int13 = 0;
@@ -33,13 +33,13 @@ def_int $int15 = 0;
 def_int $int16 = 0;
 def_int $int17 = 0;
 while ($int13 < $int9) {
-    $structarray0($int13) = enum(int, struct, $enum1, $int13);
-    if ($structarray0($int13) ! null) {
-        $enum11 = struct_param($structarray0($int13), param_838);
-        $enum12 = struct_param($structarray0($int13), param_840);
+    $structarray($int13) = enum(int, struct, $enum1, $int13);
+    if ($structarray($int13) ! null) {
+        $enum11 = struct_param($structarray($int13), param_838);
+        $enum12 = struct_param($structarray($int13), param_840);
         if ($enum11 ! null & $enum12 ! null) {
             if ($int14 = 0) {
-                cc_create($component3, ^iftype_text, $int10);
+                cc_create($item_holder, ^iftype_text, $int10);
                 cc_setsize(calc(16 + $int5), 40, ^setsize_abs, ^setsize_abs);
                 cc_setposition(0, $int17, ^setpos_abs_left, ^setpos_abs_top);
                 cc_settext("<u=ff981f>Free to play rewards</u>");
@@ -51,7 +51,7 @@ while ($int13 < $int9) {
                 $int10 = calc($int10 + 1);
                 $int17 = calc($int17 + 40);
             }
-            $int10, $int16 = ~adventurepath_voucher_entry($int17, $component3, $int7, $int10, $enum11, $enum12, struct_param($structarray0($int13), param_842), struct_param($structarray0($int13), param_837), $int16, struct_param($structarray0($int13), param_844));
+            $int10, $int16 = ~adventurepath_voucher_entry($int17, $item_holder, $int7, $int10, $enum11, $enum12, struct_param($structarray($int13), param_842), struct_param($structarray($int13), param_837), $int16, struct_param($structarray($int13), param_844));
             $int17 = calc($int17 + 88);
         }
     }
@@ -59,12 +59,12 @@ while ($int13 < $int9) {
 }
 $int13 = 0;
 while ($int13 < $int9) {
-    if ($structarray0($int13) ! null) {
-        $enum11 = struct_param($structarray0($int13), param_839);
-        $enum12 = struct_param($structarray0($int13), param_841);
+    if ($structarray($int13) ! null) {
+        $enum11 = struct_param($structarray($int13), param_839);
+        $enum12 = struct_param($structarray($int13), param_841);
         if ($enum11 ! null & $enum12 ! null) {
             if ($int15 = 0) {
-                cc_create($component3, ^iftype_text, $int10);
+                cc_create($item_holder, ^iftype_text, $int10);
                 cc_setsize(calc(16 + $int5), 40, ^setsize_abs, ^setsize_abs);
                 cc_setposition(0, $int17, ^setpos_abs_left, ^setpos_abs_top);
                 cc_settext("<u=ff981f>Member rewards</u>");
@@ -76,21 +76,21 @@ while ($int13 < $int9) {
                 $int10 = calc($int10 + 1);
                 $int17 = calc($int17 + 40);
             }
-            $int10, $int16 = ~adventurepath_voucher_entry($int17, $component3, $int7, $int10, $enum11, $enum12, struct_param($structarray0($int13), param_843), struct_param($structarray0($int13), param_837), $int16, struct_param($structarray0($int13), param_845));
+            $int10, $int16 = ~adventurepath_voucher_entry($int17, $item_holder, $int7, $int10, $enum11, $enum12, struct_param($structarray($int13), param_843), struct_param($structarray($int13), param_837), $int16, struct_param($structarray($int13), param_845));
             $int17 = calc($int17 + 88);
         }
     }
     $int13 = calc($int13 + 1);
 }
-$int6 = if_getheight($component4);
-def_int $int18 = calc($int6 - if_getheight($component3));
+$int6 = if_getheight($universe);
+def_int $int18 = calc($int6 - if_getheight($item_holder));
 if ($int17 > $int6) {
-    if_setscrollsize(0, $int17, $component3);
-    ~scrollbar_vertical($component2, $component3, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-    if_sethide(false, $component2);
+    if_setscrollsize(0, $int17, $item_holder);
+    ~scrollbar_vertical($scrollbar, $item_holder, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+    if_sethide(false, $scrollbar);
 } else {
-    if_setsize(if_getwidth($component4), calc($int18 + $int17), ^setsize_abs, ^setsize_abs, $component4);
-    if_setposition(if_getx($component4), calc($int8 / 2), ^setpos_abs_left, ^setpos_abs_top, $component4);
-    if_sethide(true, $component2);
+    if_setsize(if_getwidth($universe), calc($int18 + $int17), ^setsize_abs, ^setsize_abs, $universe);
+    if_setposition(if_getx($universe), calc($int8 / 2), ^setpos_abs_left, ^setpos_abs_top, $universe);
+    if_sethide(true, $scrollbar);
 }
-~stoneborder(interface_643:com_1, $string0, 0);
+~stoneborder(adventurepath_reward:frame, $string, 0);

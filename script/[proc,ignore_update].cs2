@@ -9,10 +9,10 @@ def_string $string0 = "";
 def_string $string1 = "";
 def_int $int9 = 0;
 def_int $int10 = 15;
-def_boolean $boolean11 = null;
+def_boolean $boolean = null;
 def_int $int12 = ignore_count;
 if ($int12 < 0) {
-    if (%varplayerbit_8119 = 1) {
+    if (%has_displayname_transmitter = 1) {
         if_settext("Loading ignore list<br>Please wait...", $component5);
     } else {
         if_settext("You must set a name<br>before using this.", $component5);
@@ -22,8 +22,8 @@ if ($int12 < 0) {
     if_settext("You may ignore users by using the button below, or by <~text_device("right-clicking", "long pressing")> on a message from them and selecting to add them to your ignore list.", $component5);
     if_sethide(true, $component0);
 } else {
-    $boolean11 = ~on_mobile;
-    if ($boolean11 = true) {
+    $boolean = ~on_mobile;
+    if ($boolean = true) {
         $int10 = scale(8, 5, $int10);
     }
     if_settext("", $component5);
@@ -58,7 +58,7 @@ if ($int12 < 0) {
         .cc_setgraphic(friends_changed_name);
         .cc_setgraphicshadow(0x333333);
         if (string_length($string1) > 0) {
-            if ($boolean11 = true) {
+            if ($boolean = true) {
                 cc_setop(10, "Reveal previous name");
                 cc_setonop("ignore_op(event_op, event_opbase, event_com, cc_getid, .cc_getid, $string1, $string0)");
             } else {

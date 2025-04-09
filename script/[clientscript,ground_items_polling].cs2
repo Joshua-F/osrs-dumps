@@ -1,5 +1,5 @@
 // 7231
-[clientscript,ground_items_polling](entityoverlay $entityoverlay0, coord $coord1, int $int2, int $int3)
+[clientscript,ground_items_polling](entityoverlay $entityoverlay, coord $coord, int $int2, int $int3)
 def_int $int4 = 0;
 def_int $int5 = clientclock;
 if (%varclient_1154 >= $int5) {
@@ -13,14 +13,14 @@ if ($int4 = 0) {
 }
 def_int $int6 = 0;
 def_int $int7 = 0;
-if (if_find_entityoverlay($entityoverlay0) = true) {
+if (if_find_entityoverlay($entityoverlay) = true) {
     cc_setontimer(null);
     if ($int3 ! -1) {
-        $int6, $int7 = stockmarket_value(obj_1965);
+        $int6, $int7 = stockmarket_value(cabbage);
         if ($int6 ! 2) {
-            cc_setontimer("ground_items_polling($entityoverlay0, $coord1, $int5, $int3)");
+            cc_setontimer("ground_items_polling($entityoverlay, $coord, $int5, $int3)");
             return;
         }
     }
-    ~ground_items_setup($coord1);
+    ~ground_items_setup($coord);
 }

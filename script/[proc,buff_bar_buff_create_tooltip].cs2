@@ -1,12 +1,12 @@
 // 3169
-[proc,buff_bar_buff_create_tooltip](struct $struct0, component $component1, int $int2, component $component3, int $int4, int $int5)
+[proc,buff_bar_buff_create_tooltip](struct $struct, component $component1, int $int2, component $component3, int $int4, int $int5)
 cc_create($component1, ^iftype_rectangle, $int2);
 cc_setposition($int4, $int5, ^setpos_abs_left, ^setpos_abs_bottom);
 cc_setsize(calc(37 - 3), calc(37 - 3), ^setsize_abs, ^setsize_abs);
 cc_setcolour(^black);
 cc_settrans(255);
-def_boolean $boolean6 = struct_param($struct0, param_1482);
-if ($boolean6 = false & string_length(struct_param($struct0, param_1279)) <= 0 | %varplayerbit_9529 = 1 | %varplayerbit_9528 = 1) {
+def_boolean $boolean = struct_param($struct, param_1482);
+if ($boolean = false & string_length(struct_param($struct, param_1279)) <= 0 | %buff_bar_tooltips_hidden = 1 | %buff_bar_hidden = 1) {
     cc_setonclick(null);
     cc_setnoclickthrough(false);
     cc_setonmouserepeat(null);
@@ -17,10 +17,10 @@ if ($boolean6 = false & string_length(struct_param($struct0, param_1279)) <= 0 |
     return;
 }
 if (~on_mobile = true) {
-    if ($boolean6 = true) {
-        cc_setonclick("buff_bar_show_dynamic_tooltip($struct0, $component1, $int2, $component3, 512)");
+    if ($boolean = true) {
+        cc_setonclick("buff_bar_show_dynamic_tooltip($struct, $component1, $int2, $component3, 512)");
     } else {
-        cc_setonclick("buff_bar_mobile_tooltip($component1, $int2, $component3, struct_param($struct0, param_1279), 512)");
+        cc_setonclick("buff_bar_mobile_tooltip($component1, $int2, $component3, struct_param($struct, param_1279), 512)");
     }
     cc_setnoclickthrough(true);
     cc_setonmouserepeat(null);
@@ -28,10 +28,10 @@ if (~on_mobile = true) {
 } else {
     cc_setonclick(null);
     cc_setnoclickthrough(false);
-    if ($boolean6 = true) {
-        cc_setonmouserepeat("buff_bar_show_dynamic_tooltip($struct0, $component1, $int2, $component3, 512)");
+    if ($boolean = true) {
+        cc_setonmouserepeat("buff_bar_show_dynamic_tooltip($struct, $component1, $int2, $component3, 512)");
     } else {
-        cc_setonmouserepeat("tooltip_mouserepeat($component1, $int2, $component3, struct_param($struct0, param_1279), 0, 512)");
+        cc_setonmouserepeat("tooltip_mouserepeat($component1, $int2, $component3, struct_param($struct, param_1279), 0, 512)");
     }
     cc_setonmouseleave("deltooltip($component3)");
     if_setontimer(null, $component1);

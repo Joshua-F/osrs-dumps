@@ -1,181 +1,181 @@
 // 4465
-[proc,clan_permissions_buttonresynch](component $component0, int $int1, int $int2, int $int3, int $int4, struct $struct5)
+[proc,clan_permissions_buttonresynch](component $component, int $int1, int $int2, int $int3, int $int4, struct $struct)
 def_int $int6 = 126;
 def_int $int7 = -1;
 def_int $int8 = 0;
-def_string $string0 = "...";
-def_graphic $graphic9 = null;
+def_string $string = "...";
+def_graphic $graphic = null;
 def_int $int10 = 0;
 def_int $int11 = -1;
-if (%varplayerbit_12165 = 1 & %varplayerbit_12164 = 3 & activeclansettings_find_listened = true | %varplayerbit_12165 = 0 & %varplayerbit_933 = 3 & activeclansettings_find_affined(^clantype_clan) = true) {
+if (%clan_transmit_loadasguest = 1 & %clan_guest_affinitystatus = 3 & activeclansettings_find_listened = true | %clan_transmit_loadasguest = 0 & %clan_affinitystatus = 3 & activeclansettings_find_affined(^clantype_clan) = true) {
     $int7 = activeclansettings_getaffinedslot(removetags(chat_playername));
-    if (struct_param($struct5, param_1255) = true) {
+    if (struct_param($struct, param_1255) = true) {
         $int6 = -1;
-        switch_struct ($struct5) {
+        switch_struct ($struct) {
             case struct_2957 :
                 if (activeclansettings_getallowunaffined = true) {
-                    $string0 = "Permitted";
+                    $string = "Permitted";
                 } else {
-                    $string0 = "Blocked";
+                    $string = "Blocked";
                 }
             case struct_2958 :
                 if (activeclansettings_getallowunaffined = true) {
                     $int8 = getbit_range(%varclansetting_26, 0, 6);
                     if ($int8 > 0 & %varclansetting_26 ! -1) {
-                        $string0 = tostring($int8);
+                        $string = tostring($int8);
                     } else {
-                        $string0 = "None";
+                        $string = "None";
                     }
                 } else {
-                    $string0 = "<col=9f9f9f>N/A</col>";
+                    $string = "<col=9f9f9f>N/A</col>";
                 }
             case struct_2959 :
                 if (activeclansettings_getallowunaffined = true) {
                     $int8 = getbit_range(%varclansetting_26, 7, 18);
                     if ($int8 > 0 & %varclansetting_26 ! -1) {
-                        $string0 = ~tostring_spacer($int8, ",");
+                        $string = ~tostring_spacer($int8, ",");
                     } else {
-                        $string0 = "None";
+                        $string = "None";
                     }
                 } else {
-                    $string0 = "<col=9f9f9f>N/A</col>";
+                    $string = "<col=9f9f9f>N/A</col>";
                 }
             case struct_2960 :
                 if (activeclansettings_getallowunaffined = true) {
                     $int8 = getbit_range(%varclansetting_26, 19, 29);
                     if ($int8 > 0 & %varclansetting_26 ! -1) {
-                        $string0 = tostring($int8);
+                        $string = tostring($int8);
                     } else {
-                        $string0 = "None";
+                        $string = "None";
                     }
                 } else {
-                    $string0 = "<col=9f9f9f>N/A</col>";
+                    $string = "<col=9f9f9f>N/A</col>";
                 }
             case struct_2961 :
                 if (activeclansettings_getallowunaffined = true) {
                     if (%varclansetting_26 ! -1) {
-                        $string0 = enum(int, string, enum_3828, getbit_range(%varclansetting_26, 30, 31));
+                        $string = enum(int, string, enum_3828, getbit_range(%varclansetting_26, 30, 31));
                     } else {
-                        $string0 = enum(int, string, enum_3828, 0);
+                        $string = enum(int, string, enum_3828, 0);
                     }
                 } else {
-                    $string0 = "<col=9f9f9f>N/A</col>";
+                    $string = "<col=9f9f9f>N/A</col>";
                 }
             case struct_3109 :
                 if (~clan_permission_get(struct_4243) ! 128) {
                     if (%varclansetting_31 > 1) {
-                        $string0 = "<~tostring_spacer(%varclansetting_31, ",")> coins";
+                        $string = "<~tostring_spacer(%varclansetting_31, ",")> coins";
                     } else if (%varclansetting_31 = 1) {
-                        $string0 = "1 coin";
+                        $string = "1 coin";
                     } else {
-                        $string0 = "No minimum";
+                        $string = "No minimum";
                     }
                 } else {
-                    $string0 = "<col=9f9f9f>N/A</col>";
+                    $string = "<col=9f9f9f>N/A</col>";
                 }
             case struct_854 :
                 if (~clan_permission_get(struct_853) ! 128) {
                     if (%varclansetting_101 = -1) {
-                        $string0 = "All";
+                        $string = "All";
                     } else {
-                        $string0 = enum(int, string, enum_3967, %varclansetting_101);
+                        $string = enum(int, string, enum_3967, %varclansetting_101);
                     }
                 } else {
-                    $string0 = "<col=9f9f9f>N/A</col>";
+                    $string = "<col=9f9f9f>N/A</col>";
                 }
             case struct_4247 :
                 if (~clan_permission_get(struct_4246) ! 128) {
                     if (%varclansetting_65 > 1) {
-                        $string0 = "<~tostring_spacer(%varclansetting_65, ",")> coins";
+                        $string = "<~tostring_spacer(%varclansetting_65, ",")> coins";
                     } else if (%varclansetting_65 = 1) {
-                        $string0 = "1 coin";
+                        $string = "1 coin";
                     } else {
-                        $string0 = "No minimum";
+                        $string = "No minimum";
                     }
                 } else {
-                    $string0 = "<col=9f9f9f>N/A</col>";
+                    $string = "<col=9f9f9f>N/A</col>";
                 }
             case struct_4678 :
                 if (~clan_permission_get(struct_4677) ! 128) {
                     if (%varclansetting_98 > 1) {
-                        $string0 = "<~tostring_spacer(%varclansetting_98, ",")> coins";
+                        $string = "<~tostring_spacer(%varclansetting_98, ",")> coins";
                     } else if (%varclansetting_98 = 1) {
-                        $string0 = "1 coin";
+                        $string = "1 coin";
                     } else {
-                        $string0 = "No minimum";
+                        $string = "No minimum";
                     }
                 } else {
-                    $string0 = "<col=9f9f9f>N/A</col>";
+                    $string = "<col=9f9f9f>N/A</col>";
                 }
             case struct_4239 :
                 if (~clan_permission_get(struct_4236) ! 128) {
                     if (%varclansetting_66 > 0) {
-                        $string0 = "Level <tostring(%varclansetting_66)>";
+                        $string = "Level <tostring(%varclansetting_66)>";
                     } else {
-                        $string0 = "No minimum";
+                        $string = "No minimum";
                     }
                 } else {
-                    $string0 = "<col=9f9f9f>N/A</col>";
+                    $string = "<col=9f9f9f>N/A</col>";
                 }
             case struct_4240 :
                 if (~clan_permission_get(struct_4236) ! 128) {
                     if (%varclansetting_67 > 0) {
-                        $string0 = "Level <tostring(%varclansetting_67)>";
+                        $string = "Level <tostring(%varclansetting_67)>";
                     } else {
-                        $string0 = "No minimum";
+                        $string = "No minimum";
                     }
                 } else {
-                    $string0 = "<col=9f9f9f>N/A</col>";
+                    $string = "<col=9f9f9f>N/A</col>";
                 }
             case struct_4241 :
                 if (~clan_permission_get(struct_4236) ! 128) {
                     if (%varclansetting_68 > 0) {
-                        $string0 = "Level <tostring(%varclansetting_68)>";
+                        $string = "Level <tostring(%varclansetting_68)>";
                     } else {
-                        $string0 = "No minimum";
+                        $string = "No minimum";
                     }
                 } else {
-                    $string0 = "<col=9f9f9f>N/A</col>";
+                    $string = "<col=9f9f9f>N/A</col>";
                 }
             case struct_4238 :
                 if (~clan_permission_get(struct_4237) ! 128) {
                     if (%varclansetting_69 > 0) {
-                        $string0 = "<tostring(%varclansetting_69)> million XP";
+                        $string = "<tostring(%varclansetting_69)> million XP";
                     } else {
-                        $string0 = "No interval set";
+                        $string = "No interval set";
                     }
                 } else {
-                    $string0 = "<col=9f9f9f>N/A</col>";
+                    $string = "<col=9f9f9f>N/A</col>";
                 }
         }
     } else {
-        $int6 = ~clan_permission_get($struct5);
-        $string0, $graphic9 = ~script4302($int6);
+        $int6 = ~clan_permission_get($struct);
+        $string, $graphic = ~script4302($int6);
     }
     if ($int7 ! -1) {
         $int11 = activeclansettings_getaffinedrank($int7);
         if ($int6 = 128) {
-            $string0 = "<col=9f9f9f><$string0></col>";
+            $string = "<col=9f9f9f><$string></col>";
             if ($int11 >= ~clan_permission_get(struct_2943)) {
                 $int10 = 1;
             }
         } else if ($int11 < $int6) {
-            $string0 = "<col=ff0000><$string0></col>";
+            $string = "<col=ff0000><$string></col>";
         } else if ($int11 >= ~clan_permission_get(struct_2943)) {
             $int10 = 1;
         }
     }
-    if (cc_find($component0, $int3) = true) {
-        cc_settext($string0);
+    if (cc_find($component, $int3) = true) {
+        cc_settext($string);
     }
-    if (cc_find($component0, $int4) = true) {
-        cc_setgraphic($graphic9);
+    if (cc_find($component, $int4) = true) {
+        cc_setgraphic($graphic);
     }
     if ($int10 = 1) {
-        if (cc_find($component0, $int2) = true) {
+        if (cc_find($component, $int2) = true) {
             cc_setgraphic(tradebacking);
         }
-        if (cc_find($component0, $int1) = true) {
+        if (cc_find($component, $int1) = true) {
             cc_settrans(245);
         }
         if (~on_mobile = false) {
@@ -187,16 +187,16 @@ if (%varplayerbit_12165 = 1 & %varplayerbit_12164 = 3 & activeclansettings_find_
         return;
     }
 }
-if (cc_find($component0, $int3) = true) {
-    cc_settext($string0);
+if (cc_find($component, $int3) = true) {
+    cc_settext($string);
 }
-if (cc_find($component0, $int4) = true) {
-    cc_setgraphic($graphic9);
+if (cc_find($component, $int4) = true) {
+    cc_setgraphic($graphic);
 }
-if (cc_find($component0, $int2) = true) {
+if (cc_find($component, $int2) = true) {
     cc_setgraphic(tradebacking_dark);
 }
-if (cc_find($component0, $int1) = true) {
+if (cc_find($component, $int1) = true) {
     cc_settrans(255);
 }
 .cc_setonmouserepeat(null);

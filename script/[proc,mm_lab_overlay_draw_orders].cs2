@@ -8,22 +8,22 @@ def_int $int8 = scale(15, 100, $int6);
 def_int $int9 = 1;
 def_int $int10 = 0;
 def_int $int11 = 20;
-def_string $string0 = "";
-def_obj $obj12 = null;
-def_graphic $graphic13 = null;
+def_string $string = "";
+def_obj $obj = null;
+def_graphic $graphic = null;
 def_int $int14 = 0;
 while ($int9 <= 3) {
     $int5 = calc($int5 - $int4);
     switch_int ($int9) {
         case 1 :
-            $string0, $obj12, $graphic13 = ~script7171(%varplayerbit_11315, %varplayerbit_11316);
+            $string, $obj, $graphic = ~script7171(%mm_lab_order_1_type, %mm_lab_order_1_modifier);
         case 2 :
-            $string0, $obj12, $graphic13 = ~script7171(%varplayerbit_11317, %varplayerbit_11318);
+            $string, $obj, $graphic = ~script7171(%mm_lab_order_2_type, %mm_lab_order_2_modifier);
         case 3 :
-            $string0, $obj12, $graphic13 = ~script7171(%varplayerbit_11319, %varplayerbit_11320);
+            $string, $obj, $graphic = ~script7171(%mm_lab_order_3_type, %mm_lab_order_3_modifier);
     }
-    if ($obj12 ! null) {
-        if (stat_base(herblore) < enum(obj, int, enum_5548, $obj12)) {
+    if ($obj ! null) {
+        if (stat_base(herblore) < enum(obj, int, enum_5548, $obj)) {
             $int14 = 0;
             cc_create($component0, ^iftype_rectangle, $int1);
             cc_setposition($int10, $int11, ^setpos_abs_left, ^setpos_abs_top);
@@ -31,18 +31,18 @@ while ($int9 <= 3) {
             cc_setfill(false);
             cc_setcolour(^black);
             cc_settrans(255);
-            ~mm_lab_tooltip($component2, "You need level <tostring(enum(obj, int, enum_5548, $obj12))> Herblore for this order", "Info", "Order");
+            ~mm_lab_tooltip($component2, "You need level <tostring(enum(obj, int, enum_5548, $obj))> Herblore for this order", "Info", "Order");
             $int1 = calc($int1 + 1);
         } else {
             $int14 = 1;
         }
-        if ($graphic13 ! null) {
+        if ($graphic ! null) {
             cc_create($component0, ^iftype_graphic, $int1);
             cc_setposition(calc($int10 + 3), calc($int11 + 3), ^setpos_abs_left, ^setpos_abs_top);
             cc_setsize(20, 20, ^setsize_abs, ^setsize_abs);
-            cc_setgraphic($graphic13);
+            cc_setgraphic($graphic);
             if ($int14 = 1) {
-                ~mm_lab_tooltip($component2, $string0, "Info", "Potion modifier");
+                ~mm_lab_tooltip($component2, $string, "Info", "Potion modifier");
                 cc_settrans(0);
             } else {
                 cc_settrans(100);
@@ -54,10 +54,10 @@ while ($int9 <= 3) {
         cc_setsize($int7, $int4, ^setsize_abs, ^setsize_abs);
         if ($int14 = 0) {
             cc_setcolour(0x9f9f9f);
-            cc_settext("<str><oc_name($obj12)></str>");
+            cc_settext("<str><oc_name($obj)></str>");
         } else {
             cc_setcolour(0xeeeeee);
-            cc_settext(oc_name($obj12));
+            cc_settext(oc_name($obj));
         }
         cc_settextfont(p12_full);
         cc_settextshadow(true);
