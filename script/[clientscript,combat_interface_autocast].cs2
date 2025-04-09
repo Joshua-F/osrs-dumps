@@ -5,8 +5,15 @@ def_int $int4 = 36;
 def_int $int5 = 0;
 def_graphic $graphic6 = "sideicons_interface,6";
 def_obj $obj7 = enum(int, obj, enum_1986, %varplayerbit_276);
+def_obj $obj8 = inv_getobj(inv_94, 3);
+def_obj $obj9 = inv_getobj(inv_94, 5);
 if ($obj7 ! null) {
     $graphic6 = oc_param($obj7, param_597);
+    if (~magic_spellbook_hasrunes($obj7, $obj8, $obj9) = true & stat(magic) >= oc_param($obj7, param_604)) {
+        $graphic6 = oc_param($obj7, param_597);
+    } else {
+        $graphic6 = oc_param($obj7, param_598);
+    }
     if ($graphic6 ! null) {
         $int3, $int4 = 24, 24;
     } else {
