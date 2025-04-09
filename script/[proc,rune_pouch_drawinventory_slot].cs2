@@ -11,24 +11,35 @@ if ($obj0 ! null) {
             case default :
                 cc_setop(1, "Store-1");
                 cc_setop(3, "Store-5");
-                cc_setop(4, "Store-X");
-                cc_setop(5, "Store-All");
+                if (%varplayerbit_16206 > 0) {
+                    cc_setop(4, "Store-<~tostring_spacer(%varplayerbit_16206, ",")>");
+                }
+                cc_setop(6, "Store-All");
             case 1 :
                 cc_setop(1, "Store-5");
                 cc_setop(2, "Store-1");
-                cc_setop(4, "Store-X");
-                cc_setop(5, "Store-All");
+                if (%varplayerbit_16206 > 0) {
+                    cc_setop(4, "Store-<~tostring_spacer(%varplayerbit_16206, ",")>");
+                }
+                cc_setop(6, "Store-All");
             case 3 :
-                cc_setop(1, "Store-X");
+                if (%varplayerbit_16206 > 0) {
+                    cc_setop(1, "Store-<~tostring_spacer(%varplayerbit_16206, ",")>");
+                } else {
+                    cc_setop(1, "Store-X");
+                }
                 cc_setop(2, "Store-1");
                 cc_setop(3, "Store-5");
-                cc_setop(5, "Store-All");
+                cc_setop(6, "Store-All");
             case 2 :
                 cc_setop(1, "Store-All");
                 cc_setop(2, "Store-1");
                 cc_setop(3, "Store-5");
-                cc_setop(4, "Store-X");
+                if (%varplayerbit_16206 > 0) {
+                    cc_setop(4, "Store-<~tostring_spacer(%varplayerbit_16206, ",")>");
+                }
         }
+        cc_setop(5, "Store-X");
         cc_setop(10, "Examine");
         cc_setonop("cc_settrans_temporarily(event_com, event_comsubid, 100, 0)");
         cc_setondragcomplete("rune_pouch_inventoryreorder(event_com, event_com2, event_comsubid, event_comsubid2, 200, 0, $int2)");
