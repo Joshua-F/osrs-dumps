@@ -6,20 +6,20 @@ if (%varclient_11 = 1) {
 if ($boolean1 = true) {
     %varclient_370 = $string0;
 }
-~beige_stone_button_init(interface_875:com_5, "Next", p12_full, 15);
-if_setop(1, "Next", interface_875:com_5);
-if_setonop("script5088(true)", interface_875:com_5);
-~beige_stone_button_init(interface_875:com_14, "Check Name", p12_full, 15);
-if_setop(1, "Check Name", interface_875:com_14);
-if_setonop("script5088(false)", interface_875:com_14);
-if_setonclick("script5088(false)", interface_875:com_12);
-~beige_stone_button_init(interface_875:com_6, "Law-breaking content", p12_full, 13);
-if_setop(1, "Law-breaking content", interface_875:com_6);
-if_setonop("script5094", interface_875:com_6);
-~beige_stone_button_init(interface_875:com_22, "Law-breaking content", p12_full, 15);
-if_setop(1, "Law-breaking content", interface_875:com_22);
-if_setonop("script5094", interface_875:com_22);
-if_setonkey("reportabuse_onkey(event_keycode, event_keychar)", interface_875:com_4);
+~beige_stone_button_init(reportabuse:next, "Next", p12_full, 15);
+if_setop(1, "Next", reportabuse:next);
+if_setonop("script5088(true)", reportabuse:next);
+~beige_stone_button_init(reportabuse:back, "Check Name", p12_full, 15);
+if_setop(1, "Check Name", reportabuse:back);
+if_setonop("script5088(false)", reportabuse:back);
+if_setonclick("script5088(false)", reportabuse:name2);
+~beige_stone_button_init(reportabuse:illegal1, "Law-breaking content", p12_full, 13);
+if_setop(1, "Law-breaking content", reportabuse:illegal1);
+if_setonop("script5094", reportabuse:illegal1);
+~beige_stone_button_init(reportabuse:illegal2, "Law-breaking content", p12_full, 15);
+if_setop(1, "Law-breaking content", reportabuse:illegal2);
+if_setonop("script5094", reportabuse:illegal2);
+if_setonkey("reportabuse_onkey(event_keycode, event_keychar)", reportabuse:name1);
 ~script5090;
 %varclient_224 = $boolean0;
 ~script5095(0);
@@ -33,23 +33,23 @@ if (%varclient_140 = true | %varclient_140 = false) {
     %varclient_140 = true;
 }
 %varclient_6 = false;
-~script5098(interface_875:com_11, "Add player to Ignore list", true);
+~script5098(reportabuse:ignore, "Add player to Ignore list", true);
 if (playermod = 1 | staffmodlevel > 0) {
-    if_setposition(5, 24, ^setpos_abs_left, ^setpos_abs_top, interface_875:com_11);
-    ~script5098(interface_875:com_10, "Mute player", false);
+    if_setposition(5, 24, ^setpos_abs_left, ^setpos_abs_top, reportabuse:ignore);
+    ~script5098(reportabuse:mute, "Mute player", false);
 } else {
-    if_setposition(5, 13, ^setpos_abs_left, ^setpos_abs_top, interface_875:com_11);
-    if_sethide(true, interface_875:com_10);
-    if_setonop(null, interface_875:com_10);
-    if_setontimer(null, interface_875:com_10);
+    if_setposition(5, 13, ^setpos_abs_left, ^setpos_abs_top, reportabuse:ignore);
+    if_sethide(true, reportabuse:mute);
+    if_setonop(null, reportabuse:mute);
+    if_setontimer(null, reportabuse:mute);
 }
 def_int $int2 = 19;
 if (~on_mobile = true) {
     $int2 = 25;
 }
-cc_deleteall(interface_875:com_19);
+cc_deleteall(reportabuse:rules);
 def_int $int3 = 0;
-cc_deleteall(interface_875:com_9);
+cc_deleteall(reportabuse:page2);
 def_int $int4 = 0;
 $int3, $int4 = ~script5103("Macroing or use of bots", 7, $int3, $int4, $int2);
 $int3, $int4 = ~script5103("Seriously offensive language", 16, $int3, $int4, $int2);
@@ -72,15 +72,15 @@ if (~deadman_world = 3) {
     $int3, $int4 = ~script5103("Boxing in the Deadman Tournament", 8, $int3, $int4, $int2);
     $int3, $int4 = ~script5103("Muling in the Deadman Tournament", 12, $int3, $int4, $int2);
 }
-def_int $int5 = if_getheight(interface_875:com_19);
+def_int $int5 = if_getheight(reportabuse:rules);
 $int2 = calc($int4 * $int2);
 if ($int2 > $int5) {
-    if_setscrollsize(0, $int2, interface_875:com_19);
-    ~scrollbar_vertical(interface_875:com_20, interface_875:com_19, "scrollbar_parchment_dragger_v2,3", "scrollbar_parchment_dragger_v2,0", "scrollbar_parchment_dragger_v2,1", "scrollbar_parchment_dragger_v2,2", "scrollbar_parchment_v2,0", "scrollbar_parchment_v2,1");
+    if_setscrollsize(0, $int2, reportabuse:rules);
+    ~scrollbar_vertical(reportabuse:scrollbar, reportabuse:rules, "scrollbar_parchment_dragger_v2,3", "scrollbar_parchment_dragger_v2,0", "scrollbar_parchment_dragger_v2,1", "scrollbar_parchment_dragger_v2,2", "scrollbar_parchment_v2,0", "scrollbar_parchment_v2,1");
     %varclient_67 = ~minmax(0, calc($int2 - $int5), %varclient_67);
-    ~scrollbar_resize(interface_875:com_20, interface_875:com_19, %varclient_67);
+    ~scrollbar_resize(reportabuse:scrollbar, reportabuse:rules, %varclient_67);
 } else {
-    if_setscrollsize(0, 0, interface_875:com_19);
+    if_setscrollsize(0, 0, reportabuse:rules);
     %varclient_67 = 0;
-    ~scrollbar_vertical(interface_875:com_20, interface_875:com_19, "scrollbar_parchment_dragger_v2,3", "scrollbar_parchment_dragger_v2,0", "scrollbar_parchment_dragger_v2,1", "scrollbar_parchment_dragger_v2,2", "scrollbar_parchment_v2,0", "scrollbar_parchment_v2,1");
+    ~scrollbar_vertical(reportabuse:scrollbar, reportabuse:rules, "scrollbar_parchment_dragger_v2,3", "scrollbar_parchment_dragger_v2,0", "scrollbar_parchment_dragger_v2,1", "scrollbar_parchment_dragger_v2,2", "scrollbar_parchment_v2,0", "scrollbar_parchment_v2,1");
 }

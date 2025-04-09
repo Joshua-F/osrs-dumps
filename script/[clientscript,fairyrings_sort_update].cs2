@@ -68,13 +68,13 @@ def_component $component13 = null;
 def_component $componentarray0(64);
 def_int $int14 = 0;
 def_string $string0 = "";
-db_listall(dbtable_89);
+db_listall(fairyring);
 def_dbrow $dbrow15 = db_findnext;
 def_int $int16 = 0;
 while ($dbrow15 ! null) {
-    $component13 = db_getfield($dbrow15, dbtable_89:col4, 0);
+    $component13 = db_getfield($dbrow15, fairyring:text_component, 0);
     if ($component13 ! null) {
-        $component6 = db_getfield($dbrow15, dbtable_89:col5, 0);
+        $component6 = db_getfield($dbrow15, fairyring:fave_icon_component, 0);
         if (string_length(if_gettext($component13)) > 0) {
             if_sethide(false, $component13);
             if ($component6 ! null) {
@@ -100,11 +100,11 @@ if ($int14 > 0) {
 }
 cc_deleteall($component0);
 while ($int16 < $int14) {
-    db_find(dbtable_89:col4, $componentarray0($int16));
+    db_find(fairyring:text_component, $componentarray0($int16));
     $dbrow15 = db_findnext;
     if ($dbrow15 ! null) {
-        $component6 = db_getfield($dbrow15, dbtable_89:col5, 0);
-        $string0 = db_getfield($dbrow15, dbtable_89:col3, 0);
+        $component6 = db_getfield($dbrow15, fairyring:fave_icon_component, 0);
+        $string0 = db_getfield($dbrow15, fairyring:code, 0);
     }
     $int9 = calc(paraheight(if_gettext($componentarray0($int16)), $int8, p12_full) * 12 + 5);
     if ($component6 ! null) {
@@ -126,18 +126,18 @@ while ($int16 < $int14) {
     $int10 = calc($int10 + $int9 + 3);
     $int16 = calc($int16 + 1);
 }
-$string0 = if_gettext(interface_381:com_139);
+$string0 = if_gettext(fairyrings_log:hideout);
 if (string_length($string0) > 0) {
-    if_sethide(false, interface_381:com_139);
+    if_sethide(false, fairyrings_log:hideout);
     $int9 = calc(paraheight($string0, $int8, p12_full) * 12 + 5);
-    if_setsize($int8, $int9, ^setsize_abs, ^setsize_abs, interface_381:com_139);
-    if_setposition(20, $int10, ^setpos_abs_left, ^setpos_abs_top, interface_381:com_139);
-    if_setcolour(0xff3f3f, interface_381:com_139);
-    if_setonmouseover("text_colour_swapper(event_com, 16744319)", interface_381:com_139);
-    if_setonmouseleave("text_colour_swapper(event_com, 16727871)", interface_381:com_139);
+    if_setsize($int8, $int9, ^setsize_abs, ^setsize_abs, fairyrings_log:hideout);
+    if_setposition(20, $int10, ^setpos_abs_left, ^setpos_abs_top, fairyrings_log:hideout);
+    if_setcolour(0xff3f3f, fairyrings_log:hideout);
+    if_setonmouseover("text_colour_swapper(event_com, 16744319)", fairyrings_log:hideout);
+    if_setonmouseleave("text_colour_swapper(event_com, 16727871)", fairyrings_log:hideout);
     $int10 = calc($int10 + $int9 + 3);
 } else {
-    if_sethide(true, interface_381:com_139);
+    if_sethide(true, fairyrings_log:hideout);
 }
 if ($int10 > 0) {
     $int10 = calc($int10 - 3);

@@ -1,8 +1,8 @@
 // 4185
 [clientscript,colour_pallet](component $component0, int $int1)
-~script4206(interface_288:com_1, interface_288:com_2, interface_288:com_3, ^max_32bit_int, $component0);
+~script4206(colour_pallet:clamp, colour_pallet:fader, colour_pallet:window, ^max_32bit_int, $component0);
 %varclient_459 = $int1;
-def_struct $struct2 = enum(int, struct, enum_423, %varplayerbit_9656);
+def_struct $struct2 = enum(int, struct, enum_423, %settings_category);
 def_enum $enum3 = null;
 if ($struct2 = null) {
     return;
@@ -25,7 +25,7 @@ while ($int5 < $int6) {
         $int8 = struct_param($struct4, param_1078);
         $int9 = struct_param($struct4, param_1077);
         if ($int8 = 9) {
-            if ($int9 = %varplayerbit_9657) {
+            if ($int9 = %settings_selected_setting) {
                 $int6 = $int5;
             } else {
                 $int7 = calc($int7 + 1);
@@ -34,13 +34,13 @@ while ($int5 < $int6) {
     }
     $int5 = calc($int5 + 1);
 }
-~steelborder(interface_288:com_4, "Colour picker - <struct_param($struct4, param_1086)>", 1);
-def_component $component11 = interface_288:com_6;
-def_component $component12 = interface_288:com_7;
-def_component $component13 = interface_288:com_8;
-def_component $component14 = interface_288:com_9;
-def_component $component15 = interface_288:com_11;
-def_component $component16 = interface_288:com_10;
+~steelborder(colour_pallet:frame, "Colour picker - <struct_param($struct4, param_1086)>", 1);
+def_component $component11 = colour_pallet:info;
+def_component $component12 = colour_pallet:pallet_custom;
+def_component $component13 = colour_pallet:pallet_custom_clickzone;
+def_component $component14 = colour_pallet:pallet;
+def_component $component15 = colour_pallet:pallet_colours;
+def_component $component16 = colour_pallet:scrollbar;
 cc_deleteall($component14);
 cc_deleteall($component15);
 cc_deleteall($component16);
@@ -227,7 +227,7 @@ if ($int37 > $int33) {
     if_setscrollsize(0, $int43, $component14);
     ~scrollbar_resize($component16, $component14, if_getscrolly($component14));
 }
-~stonebutton_init("<col=ff981f>Cancel</col>", interface_288:com_12, p12_full, 0);
-if_setonop("script4208(^max_32bit_int, interface_288:com_1, interface_288:com_2, interface_288:com_3, $component0)", interface_288:com_12);
-~stonebutton_init("<col=0dc10d>Save</col>", interface_288:com_13, p12_full, 0);
-if_setonop("script4208(%varclient_459, interface_288:com_1, interface_288:com_2, interface_288:com_3, $component0)", interface_288:com_13);
+~stonebutton_init("<col=ff981f>Cancel</col>", colour_pallet:cancel, p12_full, 0);
+if_setonop("script4208(^max_32bit_int, colour_pallet:clamp, colour_pallet:fader, colour_pallet:window, $component0)", colour_pallet:cancel);
+~stonebutton_init("<col=0dc10d>Save</col>", colour_pallet:submit, p12_full, 0);
+if_setonop("script4208(%varclient_459, colour_pallet:clamp, colour_pallet:fader, colour_pallet:window, $component0)", colour_pallet:submit);

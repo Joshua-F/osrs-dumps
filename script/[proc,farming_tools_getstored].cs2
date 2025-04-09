@@ -1,41 +1,41 @@
 // 1063
 [proc,farming_tools_getstored](obj $obj0)(int, obj)
 switch_obj ($obj0) {
-    case obj_5341 :
-        return(calc(pow(2, 1) * %varplayerbit_8357 + %varplayerbit_1435), obj_5341);
-    case obj_5343 :
-        return(calc(pow(2, 1) * %varplayerbit_8358 + %varplayerbit_1436), obj_5343);
-    case obj_952 :
-        return(calc(pow(2, 1) * %varplayerbit_8361 + %varplayerbit_1437), obj_952);
-    case obj_5329 :
-        if (%varplayerbit_1848 = 1) {
-            return(calc(pow(2, 1) * %varplayerbit_8359 + %varplayerbit_1438), obj_7409);
+    case rake :
+        return(calc(pow(2, 1) * %farming_tools_extrarakes + %farming_tools_rake), rake);
+    case dibber :
+        return(calc(pow(2, 1) * %farming_tools_extradibbers + %farming_tools_dibber), dibber);
+    case spade :
+        return(calc(pow(2, 1) * %farming_tools_extraspades + %farming_tools_spade), spade);
+    case secateurs :
+        if (%farming_tools_fairysecateurs = 1) {
+            return(calc(pow(2, 1) * %farming_tools_extrasecateurs + %farming_tools_secateurs), fairy_enchanted_secateurs);
         }
-        return(calc(pow(2, 1) * %varplayerbit_8359 + %varplayerbit_1438), obj_5329);
-    case obj_6797 :
-        if (%varplayerbit_1439 <= 0) {
+        return(calc(pow(2, 1) * %farming_tools_extrasecateurs + %farming_tools_secateurs), secateurs);
+    case watering_can_dummy :
+        if (%farming_tools_wateringcan <= 0) {
             return(0, null);
         }
-        return(1, enum(int, namedobj, enum_136, %varplayerbit_1439));
-    case obj_5325 :
-        return(calc(pow(2, 1) * %varplayerbit_8360 + %varplayerbit_1440), obj_5325);
-    case obj_6036 :
-        return(%varplayerbit_6268, obj_6036);
-    case obj_22994 :
-        if (%varplayerbit_7915 = 1) {
-            return(1, obj_22994);
-        } else if (%varplayerbit_7915 > 1) {
-            return(1, obj_22997);
+        return(1, enum(int, namedobj, enum_136, %farming_tools_wateringcan));
+    case gardening_trowel :
+        return(calc(pow(2, 1) * %farming_tools_extratrowels + %farming_tools_trowel), gardening_trowel);
+    case plant_cure :
+        return(%farming_tools_plantcure, plant_cure);
+    case bottomless_compost_bucket :
+        if (%farming_tools_bottomless_bucket_type = 1) {
+            return(1, bottomless_compost_bucket);
+        } else if (%farming_tools_bottomless_bucket_type > 1) {
+            return(1, bottomless_compost_bucket_filled);
         } else {
-            return(0, obj_22994);
+            return(0, bottomless_compost_bucket);
         }
-    case obj_1925 :
-        return(calc(pow(2, 8) * %varplayerbit_6265 + pow(2, 5) * %varplayerbit_4731 + %varplayerbit_1441), obj_1925);
-    case obj_6032 :
-        return(calc(pow(2, 8) * %varplayerbit_6266 + %varplayerbit_1442), obj_6032);
-    case obj_6034 :
-        return(calc(pow(2, 8) * %varplayerbit_6267 + %varplayerbit_1443), obj_6034);
-    case obj_21483 :
-        return(%varplayerbit_5732, obj_21483);
+    case bucket_empty :
+        return(calc(pow(2, 8) * %farming_tools_extra2buckets + pow(2, 5) * %farming_tools_extrabuckets + %farming_tools_buckets), bucket_empty);
+    case bucket_compost :
+        return(calc(pow(2, 8) * %farming_tools_extracompost + %farming_tools_compost), bucket_compost);
+    case bucket_supercompost :
+        return(calc(pow(2, 8) * %farming_tools_extrasupercompost + %farming_tools_supercompost), bucket_supercompost);
+    case bucket_ultracompost :
+        return(%farming_tools_ultracompost, bucket_ultracompost);
 }
 return(0, null);

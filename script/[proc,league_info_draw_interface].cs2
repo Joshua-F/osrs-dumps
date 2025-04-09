@@ -1,7 +1,7 @@
 // 3218
 [proc,league_info_draw_interface](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10, int $int11, int $int12, int $int13)
-def_component $component14 = interface_654:com_1;
-def_component $component15 = interface_654:com_3;
+def_component $component14 = league_info:universe;
+def_component $component15 = league_info:content_outer;
 ~script6109($component14, $component15);
 cc_deleteall($component0);
 cc_deleteall($component1);
@@ -9,18 +9,18 @@ cc_deleteall($component4);
 cc_deleteall($component5);
 cc_deleteall($component8);
 cc_deleteall($component9);
-def_struct $struct16 = enum(int, struct, enum_2670, %varplayerbit_10032);
+def_struct $struct16 = enum(int, struct, enum_2670, %league_type);
 if ($struct16 = null) {
     return;
 }
-def_struct $struct17 = struct_param(enum(int, struct, enum_2670, %varplayerbit_10032), param_1434);
+def_struct $struct17 = struct_param(enum(int, struct, enum_2670, %league_type), param_1434);
 def_int $rgb18 = 0xff981f;
-if (%varplayerbit_10032 = 3) {
+if (%league_type = 3) {
     $rgb18 = ^white;
 } else {
     $rgb18 = struct_param($struct16, param_1027);
 }
-if (cc_find(interface_654:com_2, $int13) = ^true) {
+if (cc_find(league_info:frame, $int13) = ^true) {
     cc_setcolour($rgb18);
 } else {
     ~debug_mes("Couldn't find the frame.");
@@ -30,15 +30,15 @@ if_setsize(calc($int19 / 2 + 3), 23, ^setsize_minus, ^setsize_abs, $component0);
 if_setsize(calc($int19 / 2 + 3), 23, ^setsize_minus, ^setsize_abs, $component1);
 switch_int (%varclient_988) {
     case 0 :
-        if_setposition(0, 45, ^setpos_rel_centre, ^setpos_abs_top, interface_654:com_13);
+        if_setposition(0, 45, ^setpos_rel_centre, ^setpos_abs_top, league_info:divider);
         if_setsize(calc($int19 / 2 + 3), 31, ^setsize_minus, ^setsize_minus, $component2);
         if_setsize(calc($int19 / 2 + 3), 31, ^setsize_minus, ^setsize_minus, $component3);
     case 1, 2 :
-        if_setposition(0, 49, ^setpos_rel_centre, ^setpos_abs_top, interface_654:com_13);
+        if_setposition(0, 49, ^setpos_rel_centre, ^setpos_abs_top, league_info:divider);
         if_setsize(calc($int19 / 2 + 3), 33, ^setsize_minus, ^setsize_minus, $component2);
         if_setsize(calc($int19 / 2 + 3), 33, ^setsize_minus, ^setsize_minus, $component3);
     case 3 :
-        if_setposition(0, 53, ^setpos_rel_centre, ^setpos_abs_top, interface_654:com_13);
+        if_setposition(0, 53, ^setpos_rel_centre, ^setpos_abs_top, league_info:divider);
         if_setsize(calc($int19 / 2 + 3), 35, ^setsize_minus, ^setsize_minus, $component2);
         if_setsize(calc($int19 / 2 + 3), 35, ^setsize_minus, ^setsize_minus, $component3);
 }
@@ -63,7 +63,7 @@ def_enum $enum21 = struct_param($struct17, param_887);
 def_enum $enum22 = struct_param($struct16, param_888);
 def_enum $enum23 = struct_param($struct16, param_889);
 def_int $int24 = struct_param($struct16, param_872);
-def_int $int25 = calc(1 + ($int24 - %varplayerbit_9535));
+def_int $int25 = calc(1 + ($int24 - %current_runeday));
 def_graphic $graphic26 = p12_full;
 def_fontmetrics $fontmetrics27 = p12_full;
 def_boolean $boolean28 = ~on_ios;
