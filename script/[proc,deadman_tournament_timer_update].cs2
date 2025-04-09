@@ -1,7 +1,7 @@
 // 1640
 [proc,deadman_tournament_timer_update](component $component0, int $int1)
-if (%varplayerbit_6462 = 1) {
-    if_setontimer("deadman_tournament_timer_update($component0, %varplayerbit_4164)", $component0);
+if (%deadman_tournament_paused_pl = 1) {
+    if_setontimer("deadman_tournament_timer_update($component0, %deadman_tournament_timer)", $component0);
     return;
 }
 $int1 = calc($int1 - clientclock);
@@ -20,7 +20,7 @@ $int1 = ~max($int1, 0);
 def_int $int2 = calc($int1 / 60);
 def_int $int3 = calc($int1 % 60);
 if ($int3 < 10) {
-    if_settext("<tostring($int2)>:0<tostring($int3)>", interface_90:com_36);
+    if_settext("<tostring($int2)>:0<tostring($int3)>", pvp_icons:deadman_countdown);
 } else {
-    if_settext("<tostring($int2)>:<tostring($int3)>", interface_90:com_36);
+    if_settext("<tostring($int2)>:<tostring($int3)>", pvp_icons:deadman_countdown);
 }

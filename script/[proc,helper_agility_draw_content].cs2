@@ -1,9 +1,9 @@
 // 5182
 [proc,helper_agility_draw_content]
-def_string $string0 = enum(int, string, enum_3507, %varplayerbit_12633);
+def_string $string0 = enum(int, string, enum_3507, %helper_agility_current_course);
 def_string $string1 = "Laps Completed";
 def_string $string2 = "Laps";
-if (%varplayerbit_12633 = 2) {
+if (%helper_agility_current_course = 2) {
     $string1 = "Tickets Gained";
     $string2 = "Tickets";
 }
@@ -11,24 +11,24 @@ def_int $int0 = 0;
 def_int $int1 = 0;
 ~helper_generic_setup(1, 1, 1);
 $int0 = ~helper_generic_add_title($string0, 0);
-if (cc_find(interface_711:com_5, $int1) = ^true) {
-    cc_setonvartransmit("helper_agility_update_title($int0){varplayer_3153}");
+if (cc_find(helper_generic:content, $int1) = ^true) {
+    cc_setonvartransmit("helper_agility_update_title($int0){helper_agility_vars}");
 }
 $int0, $int1 = ~helper_generic_add_data("<$string1>: ", "...");
-if (cc_find(interface_711:com_5, $int1) = ^true) {
-    cc_setonvartransmit("helper_agility_update_laps_completed($int1){varplayer_3153}");
+if (cc_find(helper_generic:content, $int1) = ^true) {
+    cc_setonvartransmit("helper_agility_update_laps_completed($int1){helper_agility_vars}");
 }
 $int0, $int1 = ~helper_generic_add_data("<$string2> Per Hour: ", "...");
-if (cc_find(interface_711:com_5, $int1) = ^true) {
-    cc_setonvartransmit("script5179($int1){varplayer_3153}");
+if (cc_find(helper_generic:content, $int1) = ^true) {
+    cc_setonvartransmit("script5179($int1){helper_agility_vars}");
 }
-if (%varclient_538 <= 99 & %varplayerbit_12633 ! 2) {
+if (%varclient_538 <= 99 & %helper_agility_current_course ! 2) {
     $int0, $int1 = ~helper_generic_add_data("Laps Until Level <tostring(%varclient_538)>: ", "...");
-    if (cc_find(interface_711:com_5, $int0) = ^true) {
-        cc_setonvartransmit("helper_agility_update_next_level($int0){varplayer_3153}");
+    if (cc_find(helper_generic:content, $int0) = ^true) {
+        cc_setonvartransmit("helper_agility_update_next_level($int0){helper_agility_vars}");
     }
-    if (cc_find(interface_711:com_5, $int1) = ^true) {
-        cc_setonvartransmit("script5180($int1){varplayer_3153}");
+    if (cc_find(helper_generic:content, $int1) = ^true) {
+        cc_setonvartransmit("script5180($int1){helper_agility_vars}");
     }
 }
 ~helper_generic_build_ui;

@@ -3,18 +3,18 @@
 def_int $int3 = 0;
 def_int $intarray0(7);
 $intarray0(0) = 0;
-$intarray0(1) = %varplayerbit_4132;
-$intarray0(2) = %varplayerbit_10660;
-$intarray0(3) = %varplayerbit_10661;
-$intarray0(4) = %varplayerbit_14812;
-$intarray0(5) = %varplayerbit_14813;
-$intarray0(6) = %varplayerbit_14814;
+$intarray0(1) = %ca_threshold_easy;
+$intarray0(2) = %ca_threshold_medium;
+$intarray0(3) = %ca_threshold_hard;
+$intarray0(4) = %ca_threshold_elite;
+$intarray0(5) = %ca_threshold_master;
+$intarray0(6) = %ca_threshold_grandmaster;
 def_int $int4 = 0;
 def_int $int5 = 0;
 def_int $int6 = 0;
 while ($int4 < 6 & $int5 = 0) {
-    if (%varplayerbit_14815 < $intarray0(calc(1 + $int4))) {
-        $int6 = calc($intarray0(calc(1 + $int4)) - %varplayerbit_14815);
+    if (%ca_points < $intarray0(calc(1 + $int4))) {
+        $int6 = calc($intarray0(calc(1 + $int4)) - %ca_points);
         $int5 = 1;
     } else {
         $int3 = calc($int3 + 1);
@@ -53,21 +53,21 @@ def_string $string1 = "";
 def_graphic $graphic23 = p12_full;
 if ($int7 = 1) {
     $graphic23 = b12_full;
-    if (%varplayerbit_10792 ! 0) {
+    if (%wgs_hero_part_2_vis ! 0) {
         $string1 = "You have rewards to collect from Laidee Gnonock!";
     } else {
         $string1 = "You have rewards to collect from Ghommal!";
     }
 } else if ($int3 >= 6) {
-    $string1 = "Total Points: <tostring(%varplayerbit_14815)>";
+    $string1 = "Total Points: <tostring(%ca_points)>";
 } else {
-    $string1 = "Total Points: <tostring(%varplayerbit_14815)> - Next unlock in <tostring($int6)> points";
+    $string1 = "Total Points: <tostring(%ca_points)> - Next unlock in <tostring($int6)> points";
 }
 if ($int2 = 2) {
-    $int15 = scale(~min(%varplayerbit_14815, $int8), $int8, $int14);
+    $int15 = scale(~min(%ca_points, $int8), $int8, $int14);
 } else if ($int2 = 1) {
-    $int17 = ~ca_tasks_boss_total(%varplayerbit_12862);
-    $int18 = ~ca_specific_taskcount(%varplayerbit_12862);
+    $int17 = ~ca_tasks_boss_total(%ca_boss_selected);
+    $int18 = ~ca_specific_taskcount(%ca_boss_selected);
     if ($int18 > $int17) {
         $int18 = $int17;
     }
@@ -82,7 +82,7 @@ if ($int2 = 2) {
 } else {
     $int21 = $intarray0($int3);
     $int22 = $intarray0(calc(1 + $int3));
-    $int15 = scale(~max(0, calc(%varplayerbit_14815 - $int21)), ~max(1, calc($int22 - $int21)), $int14);
+    $int15 = scale(~max(0, calc(%ca_points - $int21)), ~max(1, calc($int22 - $int21)), $int14);
 }
 if ($int15 > $int14) {
     $int15 = $int14;

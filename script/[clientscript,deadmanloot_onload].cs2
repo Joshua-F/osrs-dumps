@@ -1,10 +1,10 @@
 // 1163
 [clientscript,deadmanloot_onload]
-cc_deleteall(interface_234:com_14);
-cc_deleteall(interface_234:com_15);
+cc_deleteall(deadmanloot:tabs);
+cc_deleteall(deadmanloot:items);
 def_int $int0 = 0;
 while ($int0 < 5) {
-    cc_create(interface_234:com_14, ^iftype_graphic, $int0);
+    cc_create(deadmanloot:tabs, ^iftype_graphic, $int0);
     cc_setsize(41, 40, ^setsize_abs, ^setsize_abs);
     cc_setposition(calc($int0 * 40), 0, ^setpos_abs_left, ^setpos_abs_top);
     cc_setopbase(tostring($int0));
@@ -13,17 +13,17 @@ while ($int0 < 5) {
 }
 $int0 = 0;
 while ($int0 < 5) {
-    cc_create(interface_234:com_14, ^iftype_graphic, calc(5 + $int0));
+    cc_create(deadmanloot:tabs, ^iftype_graphic, calc(5 + $int0));
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
     cc_setposition(calc($int0 * 40 + 3), 4, ^setpos_abs_left, ^setpos_abs_top);
-    cc_setobject_nonum(obj_13302, 1);
+    cc_setobject_nonum(deadman_loot_key0, 1);
     cc_setgraphicshadow(0x111111);
     cc_setoutline(1);
     $int0 = calc($int0 + 1);
 }
 $int0 = 0;
 while ($int0 < 5) {
-    cc_create(interface_234:com_14, ^iftype_text, calc(5 * 2 + $int0));
+    cc_create(deadmanloot:tabs, ^iftype_text, calc(5 * 2 + $int0));
     cc_setsize(41, 38, ^setsize_abs, ^setsize_abs);
     cc_setposition(calc($int0 * 40), 0, ^setpos_abs_left, ^setpos_abs_top);
     cc_settextfont(p11_full);
@@ -36,7 +36,7 @@ def_int $int1 = 0;
 def_int $int2 = 0;
 while ($int1 < 5) {
     while ($int2 < 28) {
-        cc_create(interface_234:com_15, ^iftype_graphic, calc($int1 * 28 + $int2));
+        cc_create(deadmanloot:items, ^iftype_graphic, calc($int1 * 28 + $int2));
         cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
         cc_setposition(calc($int2 % 7 * 39), calc($int2 / 7 * 38), ^setpos_abs_left, ^setpos_abs_top);
         cc_setgraphicshadow(0x111111);
@@ -58,6 +58,6 @@ while ($int1 < 5) {
 }
 ~deadmanloot_inv_switch;
 ~deadmanloot_itemnote_update;
-if_setonvartransmit("deadmanloot_itemnote_transmit{varplayer_1299}", interface_234:com_25);
-if_setonvartransmit("deadmanloot_tab_transmit{varplayer_1299}", interface_234:com_15);
-if_setoninvtransmit("deadmanloot_inv_transmit{inv_558, inv_559, inv_560, inv_561, inv_562}", interface_234:com_15);
+if_setonvartransmit("deadmanloot_itemnote_transmit{deadman_loot}", deadmanloot:withdraw_as);
+if_setonvartransmit("deadmanloot_tab_transmit{deadman_loot}", deadmanloot:items);
+if_setoninvtransmit("deadmanloot_inv_transmit{deadman_loot_inv0, deadman_loot_inv1, deadman_loot_inv2, deadman_loot_inv3, deadman_loot_inv4}", deadmanloot:items);

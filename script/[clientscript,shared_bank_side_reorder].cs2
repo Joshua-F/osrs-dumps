@@ -1,6 +1,6 @@
 // 5282
 [clientscript,shared_bank_side_reorder](component $component0, component $component1, int $int2, int $int3)
-def_int $int4 = inv_size(inv_660);
+def_int $int4 = inv_size(inv_player_temp);
 if ($int2 < 0 | $int2 >= $int4) {
     return;
 }
@@ -10,14 +10,14 @@ if ($int3 < 0 | $int3 >= $int4) {
 if ($component0 ! $component1) {
     return;
 }
-def_obj $obj5 = inv_getobj(inv_660, $int2);
+def_obj $obj5 = inv_getobj(inv_player_temp, $int2);
 if ($obj5 = null) {
     return;
 }
-def_obj $obj6 = inv_getobj(inv_660, $int3);
+def_obj $obj6 = inv_getobj(inv_player_temp, $int3);
 if (cc_find($component0, $int3) = ^true) {
-    ~shared_bank_side_drawitem($obj5, inv_getnum(inv_660, $int2), $component0);
+    ~shared_bank_side_drawitem($obj5, inv_getnum(inv_player_temp, $int2), $component0);
 }
 if (cc_find($component0, $int2) = ^true) {
-    ~shared_bank_side_drawitem($obj6, inv_getnum(inv_660, $int3), $component0);
+    ~shared_bank_side_drawitem($obj6, inv_getnum(inv_player_temp, $int3), $component0);
 }

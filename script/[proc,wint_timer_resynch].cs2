@@ -1,9 +1,9 @@
 // 2755
 [proc,wint_timer_resynch](component $component0)
-if (%varplayerbit_7980 <= 0) {
+if (%wint_transmit_respawndelay <= 0) {
     if_setontimer(null, $component0);
     return;
 }
-def_int $int1 = calc(clientclock + %varplayerbit_7980 * 30);
+def_int $int1 = calc(clientclock + %wint_transmit_respawndelay * 30);
 ~wint_timer_countdown($component0, $int1);
 if_setontimer("wint_timer_countdown($component0, $int1)", $component0);

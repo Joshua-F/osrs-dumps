@@ -2,7 +2,7 @@
 [proc,cluehelper_infobox_draw_content_hotcold](dbrow $dbrow0)
 def_int $int1 = 0;
 $int1 = ~helper_generic_add_title("Hot/Cold Clue", 1);
-if (%varplayerbit_14188 = 1) {
+if (%option_cluehelper_infobox_show_clue_text = 1) {
     $int1 = ~helper_generic_add_text("Use the orb to show how far away the target location is. As you do, potential locations will be eliminated from the list.");
 }
 def_int $int2 = ~cluehelper_clue_difficulty($dbrow0);
@@ -14,10 +14,10 @@ def_dbrow $dbrow7 = null;
 def_int $int8 = 0;
 def_int $int9 = 10;
 $int1 = ~helper_generic_add_title("Locations", 0);
-if ($dbrow0 = dbrow_2297) {
+if ($dbrow0 = cluehelper_hotcold_cluequest_3) {
     $int3 = enum_getoutputcount(enum_4816);
     while ($int4 < $int3 & $int8 < $int9) {
-        if (cc_find(interface_711:com_3, $int4) = ^true & cc_getcolour = ^black) {
+        if (cc_find(helper_generic:listeners, $int4) = ^true & cc_getcolour = ^black) {
             $dbrow5 = enum(int, dbrow, enum_4816, $int4);
             $dbrow7 = ~cluehelper_clue_target($dbrow5);
             $int1 = ~helper_generic_add_text(~cluehelper_get_target_description_short($dbrow7));
@@ -28,10 +28,10 @@ if ($dbrow0 = dbrow_2297) {
 } else {
     switch_int ($int2) {
         case 0 :
-            $int3 = db_getfieldcount(dbrow_684, dbtable_3:col2);
+            $int3 = db_getfieldcount(cluehelper_cluetype_hotcold, cluehelper_cluetype:beginner_clues);
             while ($int4 < $int3 & $int8 < $int9) {
-                if (cc_find(interface_711:com_3, $int4) = ^true & cc_getcolour = ^black) {
-                    $dbrow5 = db_getfield(dbrow_684, dbtable_3:col2, $int4);
+                if (cc_find(helper_generic:listeners, $int4) = ^true & cc_getcolour = ^black) {
+                    $dbrow5 = db_getfield(cluehelper_cluetype_hotcold, cluehelper_cluetype:beginner_clues, $int4);
                     $dbrow7 = ~cluehelper_clue_target($dbrow5);
                     $int1 = ~helper_generic_add_text(~cluehelper_get_target_description_short($dbrow7));
                     $int8 = calc($int8 + 1);
@@ -39,10 +39,10 @@ if ($dbrow0 = dbrow_2297) {
                 $int4 = calc($int4 + 1);
             }
         case 5 :
-            $int3 = db_getfieldcount(dbrow_684, dbtable_3:col7);
+            $int3 = db_getfieldcount(cluehelper_cluetype_hotcold, cluehelper_cluetype:master_clues);
             while ($int4 < $int3 & $int8 < $int9) {
-                if (cc_find(interface_711:com_3, $int4) = ^true & cc_getcolour = ^black) {
-                    $dbrow5 = db_getfield(dbrow_684, dbtable_3:col7, $int4);
+                if (cc_find(helper_generic:listeners, $int4) = ^true & cc_getcolour = ^black) {
+                    $dbrow5 = db_getfield(cluehelper_cluetype_hotcold, cluehelper_cluetype:master_clues, $int4);
                     $dbrow7 = ~cluehelper_clue_target($dbrow5);
                     $int1 = ~helper_generic_add_text(~cluehelper_get_target_description_short($dbrow7));
                     $int8 = calc($int8 + 1);
@@ -54,7 +54,7 @@ if ($dbrow0 = dbrow_2297) {
 if ($int8 >= $int9) {
     $int4 = 0;
     while ($int4 < $int3) {
-        if (cc_find(interface_711:com_3, $int4) = ^true & cc_getcolour = ^black) {
+        if (cc_find(helper_generic:listeners, $int4) = ^true & cc_getcolour = ^black) {
             $int6 = calc($int6 + 1);
         }
         $int4 = calc($int4 + 1);
@@ -66,7 +66,7 @@ if ($int8 >= $int9) {
 }
 if (~cluehelper_is_dig($dbrow0, $dbrow7) = 1) {
     $int1 = ~helper_generic_add_text("...");
-    if (cc_find(interface_711:com_5, $int1) = ^true) {
-        cc_setoninvtransmit("script6623($int1){inv_93}");
+    if (cc_find(helper_generic:content, $int1) = ^true) {
+        cc_setoninvtransmit("script6623($int1){inv}");
     }
 }

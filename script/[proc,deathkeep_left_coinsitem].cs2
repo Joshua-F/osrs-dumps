@@ -1,6 +1,6 @@
 // 980
 [proc,deathkeep_left_coinsitem](obj $obj0, int $int1, int $int2, int $int3, int $int4, int $int5, int $int6)(int, int)
-cc_create(interface_4:com_9, ^iftype_graphic, $int6);
+cc_create(deathkeep:coins, ^iftype_graphic, $int6);
 cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
 def_int $int7 = calc(17 + $int6 / $int3 * (32 + $int4));
 cc_setposition(calc($int5 + $int6 % $int3 * (36 + $int4)), $int7, ^setpos_abs_left, ^setpos_abs_top);
@@ -11,12 +11,12 @@ cc_setop(1, "Check");
 cc_setopbase("<col=ff9040><oc_name($obj0)></col>");
 def_string $string0 = "";
 if ($int1 > 1) {
-    if (%varplayerbit_1777 = 2) {
+    if (%ironman = 2) {
         $string0 = "<~tostring_spacer($int1, ",")> x <oc_name($obj0)>: These items will be dropped as coins (<~tostring_spacer($int2, ",")>).";
     } else {
         $string0 = "<~tostring_spacer($int1, ",")> x <oc_name($obj0)>: These items will be sent to your gravestone as coins (<~tostring_spacer($int2, ",")>).";
     }
-} else if (%varplayerbit_1777 = 2) {
+} else if (%ironman = 2) {
     $string0 = "<oc_name($obj0)>: This item will be dropped as coins (<~tostring_spacer($int2, ",")>).";
 } else {
     $string0 = "<oc_name($obj0)>: This item will be sent to your gravestone as coins (<~tostring_spacer($int2, ",")>).";
