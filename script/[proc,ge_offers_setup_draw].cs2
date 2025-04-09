@@ -1,6 +1,6 @@
 // 779
 [proc,ge_offers_setup_draw](boolean $boolean0, component $component1, int $int2, int $int3, int $int4, int $int5, int $int6, int $int7, int $int8, int $int9, int $int10, int $int11, int $int12, int $int13, component $component14, int $int15, int $int16)
-if (%varplayerbit_4397 = 1) {
+if (%ge_newoffer_type = 1) {
     if (cc_find($component1, $int2) = ^true) {
         cc_sethide(true);
     }
@@ -78,36 +78,36 @@ def_string $string0 = ",";
 def_int $int17 = 0;
 def_int $int18 = 0;
 def_int $int19 = 0;
-if (%varplayer_1151 ! null) {
+if (%tradingpost_search ! null) {
     if (cc_find($component1, $int8) = ^true) {
-        cc_setobject_nonum(%varplayer_1151, %varplayerbit_4396);
+        cc_setobject_nonum(%tradingpost_search, %ge_newoffer_quantity);
     }
     if (cc_find($component1, $int9) = ^true) {
-        cc_settext(oc_name(%varplayer_1151));
+        cc_settext(oc_name(%tradingpost_search));
     }
     if (cc_find($component1, $int10) = ^true) {
-        cc_settext(~tostring_spacer(%varplayerbit_4396, $string0));
+        cc_settext(~tostring_spacer(%ge_newoffer_quantity, $string0));
     }
     if (cc_find($component1, $int11) = ^true) {
-        if (%varplayerbit_4398 = 1) {
+        if (%ge_newoffer_price = 1) {
             cc_settext("1 coin");
         } else {
-            cc_settext("<~tostring_spacer(%varplayerbit_4398, $string0)> coins");
+            cc_settext("<~tostring_spacer(%ge_newoffer_price, $string0)> coins");
         }
     }
-    if (%varplayerbit_4396 > 0 & calc(^max_32bit_int / %varplayerbit_4396) < %varplayerbit_4398) {
+    if (%ge_newoffer_quantity > 0 & calc(^max_32bit_int / %ge_newoffer_quantity) < %ge_newoffer_price) {
         if (cc_find($component1, $int12) = ^true) {
             cc_settextfont(b12_full);
             cc_settext("<col=ff0000>Too much money!</col>");
         }
         ~ge_offers_setup_draw_disableconfirm($component1, $int15, $component14);
     } else {
-        $int17 = calc(%varplayerbit_4396 * %varplayerbit_4398);
+        $int17 = calc(%ge_newoffer_quantity * %ge_newoffer_price);
         if (cc_find($component1, $int12) = ^true) {
-            if (%varplayerbit_4397 = 1 & %varplayerbit_13139 > 0) {
-                $int18 = ~min(5000000, scale(%varplayerbit_13139, 1000, %varplayerbit_4398));
+            if (%ge_newoffer_type = 1 & %ge_transmit_taxrate > 0) {
+                $int18 = ~min(5000000, scale(%ge_transmit_taxrate, 1000, %ge_newoffer_price));
                 if ($int18 > 0) {
-                    $int19 = calc($int17 - %varplayerbit_4396 * $int18);
+                    $int19 = calc($int17 - %ge_newoffer_quantity * $int18);
                     if ($int18 < 5000000) {
                         cc_settextfont(b12_full);
                         if ($int19 = 1) {
@@ -154,7 +154,7 @@ if (%varplayer_1151 ! null) {
     }
 } else {
     if (cc_find($component1, $int8) = ^true) {
-        cc_setobject_nonum(obj_6512, 1);
+        cc_setobject_nonum(blankobject, 1);
     }
     if (cc_find($component1, $int9) = ^true) {
         cc_settext("Choose an item...");

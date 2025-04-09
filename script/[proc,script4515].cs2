@@ -11,7 +11,7 @@ cc_setgraphic(tradebacking);
 cc_settrans(100);
 cc_settiling(true);
 def_string $string0 = null;
-if (%varplayerbit_12374 = 0) {
+if (%stat_boosts_hud_tooltips_hidden = 0) {
     $string0 = "<enum(stat, string, enum_680, $stat2)>: <tostring(stat($stat2))>/<tostring(stat_base($stat2))>";
     if (~on_enhanced_desktop = true) {
         cc_setonmouserepeat("tooltip_mouserepeat($component0, cc_getid, $component1, $string0, 0, 512)");
@@ -62,10 +62,10 @@ cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
 def_string $string1 = "";
 def_int $int18 = 0;
 def_int $int19 = stat($stat2);
-if (%varplayerbit_17573 > 0) {
+if (%last_stand_fakelevel > 0) {
     $int19 = ~last_stand_get_level($stat2);
 }
-if (%varplayerbit_12376 = 1) {
+if (%stat_boosts_hud_display_relative = 1) {
     $int18 = calc($int19 - stat_base($stat2));
     if ($int18 > 0) {
         $string1 = "+";

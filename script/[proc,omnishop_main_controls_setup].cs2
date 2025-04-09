@@ -1,13 +1,13 @@
 // 7153
 [proc,omnishop_main_controls_setup](dbrow $dbrow0, inv $inv1)
-def_component $component2 = interface_819:com_7;
-def_component $component3 = interface_819:com_8;
-def_component $component4 = interface_819:com_9;
-def_component $component5 = interface_819:com_35;
-def_component $component6 = interface_819:com_36;
-def_component $component7 = interface_819:com_37;
+def_component $component2 = omnishop_main:view_toggle_layer;
+def_component $component3 = omnishop_main:help_button_layer;
+def_component $component4 = omnishop_main:filter_layer;
+def_component $component5 = omnishop_main:dropdown;
+def_component $component6 = omnishop_main:dropdown_content;
+def_component $component7 = omnishop_main:dropdown_scroller;
 def_graphic $graphic8 = "directional_lock_arrows,1";
-if (%varplayer_3871 = 1) {
+if (%omnishop_view_expanded = 1) {
     $graphic8 = "directional_lock_arrows,3";
 }
 ~create_graphic($component2, 0, $graphic8, 2, 2, ^setpos_abs_left, ^setpos_abs_top, 16, 16, ^setsize_abs, ^setsize_abs);
@@ -21,9 +21,9 @@ if (~on_mobile = false) {
     if_setonmouseleave("cc_graphic_swapper(event_com, 0, $graphic9, null)", $component3);
 }
 if_setonop("omnishop_main_help($dbrow0, $inv1, event_op)", $component3);
-def_enum $enum10 = db_getfield($dbrow0, dbtable_39:col3, 0);
+def_enum $enum10 = db_getfield($dbrow0, omnishop_shop_data:omnishop_shop_filter_titles, 0);
 if ($enum10 ! null) {
-    ~script5771($component4, $enum10, %varplayer_3872, 16750623);
+    ~script5771($component4, $enum10, %omnishop_filter, 16750623);
     if_setonop("script7156($component5, $component6, $component7, $component4, $enum10, 16750623)", $component4);
 } else {
     ~script5771($component4, enum_4988, 0, 10461087);

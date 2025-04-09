@@ -2,20 +2,20 @@
 [proc,script4850]
 def_graphic $graphic0 = null;
 def_string $string0 = "";
-switch_int (%varplayerbit_9607) {
+switch_int (%option_loottracker_display_group_mode) {
     case 0 :
         $graphic0 = "icon_tracker_loot01_30x30,4";
         $string0 = "Drop view";
-        if_sethide(false, interface_650:com_46);
-        if_sethide(true, interface_650:com_35);
+        if_sethide(false, loottools:loottracker_display_sources);
+        if_sethide(true, loottools:loottracker_display_drops);
     case 1 :
         $graphic0 = "icon_tracker_loot01_30x30,5";
         $string0 = "Source view";
-        if_sethide(true, interface_650:com_46);
-        if_sethide(false, interface_650:com_35);
+        if_sethide(true, loottools:loottracker_display_sources);
+        if_sethide(false, loottools:loottracker_display_drops);
     case default :
         $graphic0, $string0 = "icon_tracker_loot01_30x30,5", "Drop view";
 }
-if_setopbase("<col=ff9040><$string0></col>", interface_650:com_62);
-if_setgraphic($graphic0, interface_650:com_62);
+if_setopbase("<col=ff9040><$string0></col>", loottools:loottracker_display_overview_icon);
+if_setgraphic($graphic0, loottools:loottracker_display_overview_icon);
 ~loottracker_ui_redraw_display_full;

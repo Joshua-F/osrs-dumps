@@ -5,32 +5,32 @@ if (~on_mobile = true | getwindowmode = ^windowmode_small | %varclient_1249 = 0)
     $int13 = 1;
 }
 if ($int13 = 1) {
-    ~steelborder(interface_908:com_3, "Collection Log - Overview for <chat_playername>", 1);
+    ~steelborder(collection_overview:frame, "Collection Log - Overview for <chat_playername>", 1);
 } else {
-    ~steelborder(interface_908:com_3, "Collection Log - Overview for <chat_playername>", 1);
+    ~steelborder(collection_overview:frame, "Collection Log - Overview for <chat_playername>", 1);
 }
 def_int $int14 = 500;
 def_int $int15 = 300;
 def_int $int16 = 0;
 def_int $int17 = 0;
-def_int $int18 = if_getwidth(interface_908:com_0);
+def_int $int18 = if_getwidth(collection_overview:infinity);
 def_int $int19 = ~script1912;
-def_int $int20 = calc(if_getheight(interface_908:com_0) - $int19);
-if_sethide(false, interface_908:com_1);
-if_sethide(true, interface_908:com_2);
+def_int $int20 = calc(if_getheight(collection_overview:infinity) - $int19);
+if_sethide(false, collection_overview:universe);
+if_sethide(true, collection_overview:resize_preview);
 if ($int13 = 0) {
     $int16 = max(0, min(%varclient_1247, calc($int18 - $int14)));
     $int17 = max($int19, min(%varclient_1248, calc($int19 + $int20 - $int15)));
 }
 if (~on_mobile = false) {
-    if_setposition($int16, $int17, ^setpos_abs_left, ^setpos_abs_top, interface_908:com_1);
+    if_setposition($int16, $int17, ^setpos_abs_left, ^setpos_abs_top, collection_overview:universe);
 }
-if_setsize($int14, $int15, ^setsize_abs, ^setsize_abs, interface_908:com_1);
-def_int $int21 = calc(if_gety(interface_908:com_4) - 2 * 6);
+if_setsize($int14, $int15, ^setsize_abs, ^setsize_abs, collection_overview:universe);
+def_int $int21 = calc(if_gety(collection_overview:content) - 2 * 6);
 def_int $int22 = calc($int14 - 6 * 2);
 def_int $int23 = calc($int16 + $int14 - 6);
 def_int $int24 = calc($int17 + $int15 - 6);
-if ($int13 = 0 & ~on_mobile = false & cc_find(interface_908:com_0, 0) = ^true) {
+if ($int13 = 0 & ~on_mobile = false & cc_find(collection_overview:infinity, 0) = ^true) {
     cc_setsize(calc($int22 - 44), $int21, ^setsize_abs, ^setsize_abs);
     cc_setposition(calc($int16 + 6 + 22), calc($int17 + 6), ^setpos_abs_left, ^setpos_abs_top);
     ~collection_overview_reset_handle($int19);
@@ -79,7 +79,7 @@ while ($int27 < $int26) {
     cc_setcolour(^black);
     cc_settrans(200);
     cc_setopbase("<col=ff981f><$string0></col>");
-    cc_create(interface_908:com_25, ^iftype_text, $int28);
+    cc_create(collection_overview:subsection_name, ^iftype_text, $int28);
     cc_setsize($int33, 12, ^setsize_abs, ^setsize_abs);
     cc_setposition($int35, calc($int37 + 5), ^setpos_abs_left, ^setpos_abs_top);
     cc_settext($string0);
@@ -87,7 +87,7 @@ while ($int27 < $int26) {
     cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
     cc_settextshadow(true);
     cc_setcolour(0xff9933);
-    cc_create(interface_908:com_26, ^iftype_graphic, $int28);
+    cc_create(collection_overview:subsection_icon, ^iftype_graphic, $int28);
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
     cc_setposition(calc($int35 + $int33 / 2 - 36 / 2), calc($int37 + 19), ^setpos_abs_left, ^setpos_abs_top);
     cc_setobject_nonum($obj30, 1);
@@ -143,9 +143,9 @@ if (cc_find($component4, 0) = ^false) {
     cc_settextshadow(true);
     cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
     if ($struct43 = null) {
-        cc_settext("Collections Logged: <tostring(%varplayer_2943)>");
+        cc_settext("Collections Logged: <tostring(%collection_count)>");
     } else {
-        cc_settext("Collections Logged: <tostring(~min(%varplayer_2943, $int45))>/<tostring($int45)>");
+        cc_settext("Collections Logged: <tostring(~min(%collection_count, $int45))>/<tostring($int45)>");
     }
     $int28 = calc($int28 + 1);
     cc_create($component4, ^iftype_rectangle, $int28);
@@ -164,7 +164,7 @@ if (cc_find($component4, 0) = ^false) {
 def_int $int47 = calc($int46 - 4);
 $int46 = $int47;
 if ($int45 ! -1 & $int45 > 0) {
-    $int46 = scale(calc(%varplayer_2943 - $int44), calc($int45 - $int44), $int47);
+    $int46 = scale(calc(%collection_count - $int44), calc($int45 - $int44), $int47);
 }
 if ($int46 > $int47) {
     $int46 = $int47;
@@ -234,29 +234,29 @@ $int35 = calc((if_getwidth($component9) - 36 * $int26) % ($int26 - 1) / 2);
 while ($int27 < $int26) {
     switch_int ($int27) {
         case 0 :
-            $obj48, $int49 = %varplayer_4623, %varplayer_4624;
+            $obj48, $int49 = %collection_overview_last_item0, %collection_overview_last_item0_date;
         case 1 :
-            $obj48, $int49 = %varplayer_4625, %varplayer_4626;
+            $obj48, $int49 = %collection_overview_last_item1, %collection_overview_last_item1_date;
         case 2 :
-            $obj48, $int49 = %varplayer_4627, %varplayer_4628;
+            $obj48, $int49 = %collection_overview_last_item2, %collection_overview_last_item2_date;
         case 3 :
-            $obj48, $int49 = %varplayer_4629, %varplayer_4630;
+            $obj48, $int49 = %collection_overview_last_item3, %collection_overview_last_item3_date;
         case 4 :
-            $obj48, $int49 = %varplayer_4631, %varplayer_4632;
+            $obj48, $int49 = %collection_overview_last_item4, %collection_overview_last_item4_date;
         case 5 :
-            $obj48, $int49 = %varplayer_4633, %varplayer_4634;
+            $obj48, $int49 = %collection_overview_last_item5, %collection_overview_last_item5_date;
         case 6 :
-            $obj48, $int49 = %varplayer_4635, %varplayer_4636;
+            $obj48, $int49 = %collection_overview_last_item6, %collection_overview_last_item6_date;
         case 7 :
-            $obj48, $int49 = %varplayer_4637, %varplayer_4638;
+            $obj48, $int49 = %collection_overview_last_item7, %collection_overview_last_item7_date;
         case 8 :
-            $obj48, $int49 = %varplayer_4639, %varplayer_4640;
+            $obj48, $int49 = %collection_overview_last_item8, %collection_overview_last_item8_date;
         case 9 :
-            $obj48, $int49 = %varplayer_4641, %varplayer_4642;
+            $obj48, $int49 = %collection_overview_last_item9, %collection_overview_last_item9_date;
         case 10 :
-            $obj48, $int49 = %varplayer_4643, %varplayer_4644;
+            $obj48, $int49 = %collection_overview_last_item10, %collection_overview_last_item10_date;
         case 11 :
-            $obj48, $int49 = %varplayer_4645, %varplayer_4646;
+            $obj48, $int49 = %collection_overview_last_item11, %collection_overview_last_item11_date;
         case default :
             $obj48 = null;
     }

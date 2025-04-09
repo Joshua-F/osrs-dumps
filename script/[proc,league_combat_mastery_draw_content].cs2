@@ -1,34 +1,34 @@
 // 7662
 [proc,league_combat_mastery_draw_content](int $int0, int $int1)
-def_struct $struct2 = enum(int, struct, enum_2670, %varplayerbit_10032);
+def_struct $struct2 = enum(int, struct, enum_2670, %league_type);
 def_int $rgb3 = 0xff981f;
 if ($struct2 ! null) {
     $rgb3 = struct_param($struct2, param_1027);
 }
-def_component $component4 = interface_311:com_28;
-def_component $component5 = interface_311:com_29;
-def_component $component6 = interface_311:com_33;
-def_component $component7 = interface_311:com_35;
-def_component $component8 = interface_311:com_32;
-def_component $component9 = interface_311:com_34;
-def_component $component10 = interface_311:com_36;
-def_component $component11 = interface_311:com_31;
-def_component $component12 = interface_311:com_30;
-def_component $component13 = interface_311:com_8;
-def_component $component14 = interface_311:com_27;
-def_component $component15 = interface_311:com_14;
-def_component $component16 = interface_311:com_9;
-def_component $component17 = interface_311:com_27;
-def_component $component18 = interface_311:com_11;
-def_component $component19 = interface_311:com_13;
-def_component $component20 = interface_311:com_10;
-def_component $component21 = interface_311:com_77;
-def_component $component22 = interface_311:com_78;
-def_component $component23 = interface_311:com_66;
-def_component $component24 = interface_311:com_5;
-def_component $component25 = interface_311:com_2;
-def_component $component26 = interface_311:com_73;
-def_component $component27 = interface_311:com_12;
+def_component $component4 = league_combat_mastery:backgrounds;
+def_component $component5 = league_combat_mastery:tutorial;
+def_component $component6 = league_combat_mastery:icons;
+def_component $component7 = league_combat_mastery:sparks;
+def_component $component8 = league_combat_mastery:outlines;
+def_component $component9 = league_combat_mastery:tier_icons;
+def_component $component10 = league_combat_mastery:clickzones;
+def_component $component11 = league_combat_mastery:lines;
+def_component $component12 = league_combat_mastery:lines_background;
+def_component $component13 = league_combat_mastery:view_all;
+def_component $component14 = league_combat_mastery:masteries_tab;
+def_component $component15 = league_combat_mastery:view_all_frame;
+def_component $component16 = league_combat_mastery:view_all_scrollbar;
+def_component $component17 = league_combat_mastery:masteries_tab;
+def_component $component18 = league_combat_mastery:view_one;
+def_component $component19 = league_combat_mastery:confirm;
+def_component $component20 = league_combat_mastery:loading;
+def_component $component21 = league_combat_mastery:league_btn_menu;
+def_component $component22 = league_combat_mastery:league_menu_frame;
+def_component $component23 = league_combat_mastery:league_menu_overlay;
+def_component $component24 = league_combat_mastery:progress_bar;
+def_component $component25 = league_combat_mastery:tooltip;
+def_component $component26 = league_combat_mastery:combat_mastery_tabs;
+def_component $component27 = league_combat_mastery:extra_info;
 cc_deleteall($component4);
 cc_deleteall($component5);
 cc_deleteall($component6);
@@ -57,7 +57,7 @@ if (~in_league_tutorial = false) {
     ~leagues_menu_button($component21, $int28, $component22, $component23);
 }
 ~league_create_dropdown($component21, $component22, $component23, $int28, 5);
-if (cc_find(interface_311:com_3, 1) = ^true) {
+if (cc_find(league_combat_mastery:frame, 1) = ^true) {
     cc_setcolour($rgb3);
 }
 def_int $int29 = -1;
@@ -79,7 +79,7 @@ switch_int (%varclient_988) {
 ~league_combat_mastery_bar($component24, $component25);
 def_int $int32 = ~league_combat_mastery_tabs_draw($component13, $rgb3);
 def_int $int33 = 0;
-if ($int30 < $int1 & %varplayerbit_11596 = 0) {
+if ($int30 < $int1 & %league_combat_mastery_tab = 0) {
     if_setsize(0, calc(17 + $int32), ^setsize_minus, ^setsize_minus, $component13);
     if_setposition(0, $int32, ^setpos_abs_centre, ^setpos_abs_top, $component13);
     $int33 = 1;
@@ -88,7 +88,7 @@ if ($int30 < $int1 & %varplayerbit_11596 = 0) {
     if_setposition(0, $int32, ^setpos_abs_centre, ^setpos_abs_top, $component13);
 }
 ~script5288($component15, 0, 0, 0, if_getwidth($component13), if_getheight($component13), struct_3712, 7496785);
-switch_int (%varplayerbit_11596) {
+switch_int (%league_combat_mastery_tab) {
     case 0 :
         ~league_combat_mastery_draw_masteries($component13, $component11, $component12, $component9, $component6, $component8, $component4, $component7, $component5, $component10, $component20, $component25, $component16, $component17, $int30, $int0, $int33, $rgb3, $int31, $int29);
     case 1 :

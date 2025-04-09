@@ -1,768 +1,947 @@
 // 0
-[dbtable_0]
-column=col0,int,REQUIRED,INDEXED,CLIENTSIDE
-column=col1,string,REQUIRED,CLIENTSIDE
-column=col2,string,REQUIRED,CLIENTSIDE
-column=col3,boolean,CLIENTSIDE
-default=col3,false
-column=col4,int,REQUIRED,INDEXED,CLIENTSIDE
-column=col5,boolean,REQUIRED,INDEXED,CLIENTSIDE
-column=col6,int,REQUIRED,INDEXED,CLIENTSIDE
-column=col7,int,REQUIRED,INDEXED,CLIENTSIDE
-column=col8,int,REQUIRED,CLIENTSIDE
-column=col9,int,int,int,CLIENTSIDE
-default=col9,-1,-1,-1
-column=col10,int,INDEXED,CLIENTSIDE
-default=col10,-1
-column=col11,int,INDEXED,CLIENTSIDE
-default=col11,0
-column=col12,boolean,string,CLIENTSIDE
-default=col12,false,
-column=col13,coord,CLIENTSIDE
-default=col13,0_0_0_0_0
-column=col14,npc,LIST,CLIENTSIDE
-column=col15,loc,CLIENTSIDE
-column=col16,mapelement,INDEXED,CLIENTSIDE
-column=col17,int,REQUIRED,CLIENTSIDE
-column=col18,int,CLIENTSIDE
-default=col18,0
-column=col19,int,REQUIRED,CLIENTSIDE
-column=col20
-column=col21,dbrow,INDEXED,CLIENTSIDE
-column=col22,boolean,CLIENTSIDE
-default=col22,false
-column=col23,stat,int,LIST,CLIENTSIDE
-column=col24,stat,int,LIST,CLIENTSIDE
-column=col25,dbrow,LIST,CLIENTSIDE
-column=col26,int,CLIENTSIDE
-default=col26,0
-column=col27,int,CLIENTSIDE
-default=col27,3
-column=col28,int,CLIENTSIDE
-default=col28,3
-column=col29,boolean,CLIENTSIDE
-default=col29,true
-column=col30,boolean,CLIENTSIDE
-default=col30,false
-column=col31,dbrow,CLIENTSIDE
-column=col32
-column=col33,int,CLIENTSIDE
-default=col33,0
-column=col34,int,CLIENTSIDE
-default=col34,0
-column=col35,boolean,CLIENTSIDE
-default=col35,false
-column=col36,int,INDEXED,CLIENTSIDE
-default=col36,0
-column=col37,string,CLIENTSIDE
-default=col37,
-column=col38,boolean,CLIENTSIDE
-default=col38,false
+[quest]
+column=id,int,REQUIRED,INDEXED,CLIENTSIDE
+column=sortname,string,REQUIRED,CLIENTSIDE
+column=displayname,string,REQUIRED,CLIENTSIDE
+column=in_prerelease,boolean,CLIENTSIDE
+default=in_prerelease,false
+column=type,int,REQUIRED,INDEXED,CLIENTSIDE
+column=members,boolean,REQUIRED,INDEXED,CLIENTSIDE
+column=difficulty,int,REQUIRED,INDEXED,CLIENTSIDE
+column=length,int,REQUIRED,INDEXED,CLIENTSIDE
+column=location,int,REQUIRED,CLIENTSIDE
+column=releasedate,int,int,int,CLIENTSIDE
+default=releasedate,-1,-1,-1
+column=series,int,INDEXED,CLIENTSIDE
+default=series,-1
+column=seriesno,int,INDEXED,CLIENTSIDE
+default=seriesno,0
+column=seriesno_override,boolean,string,CLIENTSIDE
+default=seriesno_override,false,
+column=startcoord,coord,CLIENTSIDE
+default=startcoord,0_0_0_0_0
+column=startnpc,npc,LIST,CLIENTSIDE
+column=startloc,loc,CLIENTSIDE
+column=mapelement,mapelement,INDEXED,CLIENTSIDE
+column=questpoints,int,REQUIRED,CLIENTSIDE
+column=unstartedstate,int,CLIENTSIDE
+default=unstartedstate,0
+column=endstate,int,REQUIRED,CLIENTSIDE
+column=version
+column=parent_quest,dbrow,INDEXED,CLIENTSIDE
+column=has_subquests,boolean,CLIENTSIDE
+default=has_subquests,false
+column=requirement_stats,stat,int,LIST,CLIENTSIDE
+column=recommended_stats,stat,int,LIST,CLIENTSIDE
+column=requirement_quests,dbrow,LIST,CLIENTSIDE
+column=requirement_questpoints,int,CLIENTSIDE
+default=requirement_questpoints,0
+column=requirement_combat,int,CLIENTSIDE
+default=requirement_combat,3
+column=recommended_combat,int,CLIENTSIDE
+default=recommended_combat,3
+column=requirement_check_skills_on_start,boolean,CLIENTSIDE
+default=requirement_check_skills_on_start,true
+column=requirements_boostable,boolean,CLIENTSIDE
+default=requirements_boostable,false
+column=speedrun,dbrow,CLIENTSIDE
+column=total_xp_awarded
+column=prerequisite_direct,int,CLIENTSIDE
+default=prerequisite_direct,0
+column=prerequisite_indirect,int,CLIENTSIDE
+default=prerequisite_indirect,0
+column=cr_can_recommend,boolean,CLIENTSIDE
+default=cr_can_recommend,false
+column=cr_experience_profile,int,INDEXED,CLIENTSIDE
+default=cr_experience_profile,0
+column=cr_recommendation_reason,string,CLIENTSIDE
+default=cr_recommendation_reason,
+column=cr_recommendation_reason_is_primary,boolean,CLIENTSIDE
+default=cr_recommendation_reason_is_primary,false
+column=cr_points_skill
+column=cr_points_transport
+column=cr_points_equipment
+column=cr_points_area
+column=cr_points_xp_type
+column=cr_starter
+column=fsw_world_first_id
 
 // 1
-[dbtable_1]
+[events]
+column=name
+column=year_of_release
+column=type
+column=identifier_obj
+column=reward_name
+column=reward_obj
+column=finished_state
+column=farewell_message
+column=reward_usesystem
 
 // 2
-[dbtable_2]
-column=col0,string,REQUIRED,CLIENTSIDE
-column=col1,graphic,int,int,REQUIRED,CLIENTSIDE
-column=col2,int,int,CLIENTSIDE
-default=col2,0,0
-column=col3,component,REQUIRED,CLIENTSIDE
+[cr_module]
+column=displayname,string,REQUIRED,CLIENTSIDE
+column=icon,graphic,int,int,REQUIRED,CLIENTSIDE
+column=icon_offset,int,int,CLIENTSIDE
+default=icon_offset,0,0
+column=content_container,component,REQUIRED,CLIENTSIDE
 
 // 3
-[dbtable_3]
-column=col0,string,REQUIRED,CLIENTSIDE
-column=col1,dbrow,REQUIRED,LIST,CLIENTSIDE
-column=col2,dbrow,REQUIRED,LIST,CLIENTSIDE
-column=col3,dbrow,LIST,CLIENTSIDE
-column=col4,dbrow,LIST,CLIENTSIDE
-column=col5,dbrow,LIST,CLIENTSIDE
-column=col6,dbrow,LIST,CLIENTSIDE
-column=col7,dbrow,LIST,CLIENTSIDE
+[cluehelper_cluetype]
+column=name,string,REQUIRED,CLIENTSIDE
+column=quest_clues,dbrow,REQUIRED,LIST,CLIENTSIDE
+column=beginner_clues,dbrow,REQUIRED,LIST,CLIENTSIDE
+column=easy_clues,dbrow,LIST,CLIENTSIDE
+column=medium_clues,dbrow,LIST,CLIENTSIDE
+column=hard_clues,dbrow,LIST,CLIENTSIDE
+column=elite_clues,dbrow,LIST,CLIENTSIDE
+column=master_clues,dbrow,LIST,CLIENTSIDE
 
 // 4
-[dbtable_4]
-column=col0,int,REQUIRED,INDEXED,CLIENTSIDE
-column=col1,int,REQUIRED,CLIENTSIDE
-column=col2,string,REQUIRED,CLIENTSIDE
-column=col3,dbrow,REQUIRED,LIST,CLIENTSIDE
-column=col4,dbrow,CLIENTSIDE
-column=col5,int,REQUIRED,LIST,CLIENTSIDE
-column=col6,dbrow,CLIENTSIDE
-column=col7,boolean,CLIENTSIDE
-default=col7,true
+[cluehelper_clue_anagram]
+column=id,int,REQUIRED,INDEXED,CLIENTSIDE
+column=difficulty,int,REQUIRED,CLIENTSIDE
+column=clue_text,string,REQUIRED,CLIENTSIDE
+column=target,dbrow,REQUIRED,LIST,CLIENTSIDE
+column=challenge,dbrow,CLIENTSIDE
+column=region,int,REQUIRED,LIST,CLIENTSIDE
+column=requirements,dbrow,CLIENTSIDE
+column=allregions,boolean,CLIENTSIDE
+default=allregions,true
 
 // 5
-[dbtable_5]
-column=col0,int,REQUIRED,INDEXED,CLIENTSIDE
-column=col1,int,REQUIRED,CLIENTSIDE
-column=col2,dbrow,REQUIRED,CLIENTSIDE
-column=col3,dbrow,LIST,CLIENTSIDE
-column=col4,int,REQUIRED,CLIENTSIDE
-column=col5,boolean,CLIENTSIDE
-default=col5,true
+[cluehelper_clue_map]
+column=id,int,REQUIRED,INDEXED,CLIENTSIDE
+column=difficulty,int,REQUIRED,CLIENTSIDE
+column=target,dbrow,REQUIRED,CLIENTSIDE
+column=requirements,dbrow,LIST,CLIENTSIDE
+column=region,int,REQUIRED,CLIENTSIDE
+column=allregions,boolean,CLIENTSIDE
+default=allregions,true
 
 // 6
-[dbtable_6]
-column=col0,int,REQUIRED,INDEXED,CLIENTSIDE
-column=col1,int,REQUIRED,CLIENTSIDE
-column=col2,string,REQUIRED,CLIENTSIDE
-column=col3,dbrow,REQUIRED,LIST,CLIENTSIDE
-column=col4,dbrow,CLIENTSIDE
-column=col5,dbrow,CLIENTSIDE
-column=col6,int,REQUIRED,LIST,CLIENTSIDE
-column=col7,boolean,CLIENTSIDE
-default=col7,true
+[cluehelper_clue_cipher]
+column=id,int,REQUIRED,INDEXED,CLIENTSIDE
+column=difficulty,int,REQUIRED,CLIENTSIDE
+column=clue_text,string,REQUIRED,CLIENTSIDE
+column=target,dbrow,REQUIRED,LIST,CLIENTSIDE
+column=challenge,dbrow,CLIENTSIDE
+column=requirements,dbrow,CLIENTSIDE
+column=region,int,REQUIRED,LIST,CLIENTSIDE
+column=allregions,boolean,CLIENTSIDE
+default=allregions,true
 
 // 7
-[dbtable_7]
-column=col0,int,REQUIRED,INDEXED,CLIENTSIDE
-column=col1,int,REQUIRED,CLIENTSIDE
-column=col2,string,REQUIRED,CLIENTSIDE
-column=col3,dbrow,REQUIRED,CLIENTSIDE
-column=col4,dbrow,LIST,CLIENTSIDE
-column=col5,dbrow,LIST,CLIENTSIDE
-column=col6,int,REQUIRED,LIST,CLIENTSIDE
-column=col7,boolean,CLIENTSIDE
-default=col7,true
+[cluehelper_clue_coordinate]
+column=id,int,REQUIRED,INDEXED,CLIENTSIDE
+column=difficulty,int,REQUIRED,CLIENTSIDE
+column=clue_text,string,REQUIRED,CLIENTSIDE
+column=target,dbrow,REQUIRED,CLIENTSIDE
+column=requirements,dbrow,LIST,CLIENTSIDE
+column=combat_encounter,dbrow,LIST,CLIENTSIDE
+column=region,int,REQUIRED,LIST,CLIENTSIDE
+column=allregions,boolean,CLIENTSIDE
+default=allregions,true
 
 // 8
-[dbtable_8]
-column=col0,int,REQUIRED,INDEXED,CLIENTSIDE
-column=col1,int,REQUIRED,CLIENTSIDE
-column=col2,string,REQUIRED,CLIENTSIDE
-column=col3,dbrow,REQUIRED,LIST,CLIENTSIDE
-column=col4,dbrow,LIST,CLIENTSIDE
-column=col5,dbrow,CLIENTSIDE
-column=col6,string,CLIENTSIDE
-column=col7,dbrow,CLIENTSIDE
-column=col8,loc,CLIENTSIDE
-column=col9,coord,CLIENTSIDE
-column=col10,int,REQUIRED,LIST,CLIENTSIDE
-column=col11,boolean,CLIENTSIDE
-default=col11,true
+[cluehelper_clue_cryptic]
+column=id,int,REQUIRED,INDEXED,CLIENTSIDE
+column=difficulty,int,REQUIRED,CLIENTSIDE
+column=clue_text,string,REQUIRED,CLIENTSIDE
+column=target,dbrow,REQUIRED,LIST,CLIENTSIDE
+column=requirements,dbrow,LIST,CLIENTSIDE
+column=challenge,dbrow,CLIENTSIDE
+column=outfit_text_fallback,string,CLIENTSIDE
+column=outfit,dbrow,CLIENTSIDE
+column=hidey_hole_loc,loc,CLIENTSIDE
+column=hidey_hole_coord,coord,CLIENTSIDE
+column=region,int,REQUIRED,LIST,CLIENTSIDE
+column=allregions,boolean,CLIENTSIDE
+default=allregions,true
 
 // 9
-[dbtable_9]
-column=col0,int,REQUIRED,INDEXED,CLIENTSIDE
-column=col1,int,REQUIRED,CLIENTSIDE
-column=col2,string,REQUIRED,CLIENTSIDE
-column=col3,dbrow,REQUIRED,CLIENTSIDE
-column=col4,int,REQUIRED,LIST,CLIENTSIDE
-column=col5,string,CLIENTSIDE
-column=col6,dbrow,LIST,CLIENTSIDE
-column=col7,loc,CLIENTSIDE
-column=col8,coord,CLIENTSIDE
-column=col9,dbrow,CLIENTSIDE
-column=col10,dbrow,CLIENTSIDE
-column=col11,int,REQUIRED,LIST,CLIENTSIDE
-column=col12,boolean,CLIENTSIDE
-default=col12,true
+[cluehelper_clue_emote]
+column=id,int,REQUIRED,INDEXED,CLIENTSIDE
+column=difficulty,int,REQUIRED,CLIENTSIDE
+column=clue_text,string,REQUIRED,CLIENTSIDE
+column=target,dbrow,REQUIRED,CLIENTSIDE
+column=emote,int,REQUIRED,LIST,CLIENTSIDE
+column=outfit_text_fallback,string,CLIENTSIDE
+column=outfit,dbrow,LIST,CLIENTSIDE
+column=hidey_hole_loc,loc,CLIENTSIDE
+column=hidey_hole_coord,coord,CLIENTSIDE
+column=combat_encounter,dbrow,CLIENTSIDE
+column=requirements,dbrow,CLIENTSIDE
+column=region,int,REQUIRED,LIST,CLIENTSIDE
+column=allregions,boolean,CLIENTSIDE
+default=allregions,true
 
 // 10
-[dbtable_10]
-column=col0,int,REQUIRED,INDEXED,CLIENTSIDE
-column=col1,int,REQUIRED,CLIENTSIDE
-column=col2,string,REQUIRED,CLIENTSIDE
-column=col3,int,REQUIRED,CLIENTSIDE
-column=col4,int,int,int,int,REQUIRED,CLIENTSIDE
-column=col5,dbrow,REQUIRED,CLIENTSIDE
-column=col6,dbrow,CLIENTSIDE
-column=col7,int,REQUIRED,LIST,CLIENTSIDE
-column=col8,boolean,CLIENTSIDE
-default=col8,true
+[cluehelper_clue_fairyring]
+column=id,int,REQUIRED,INDEXED,CLIENTSIDE
+column=difficulty,int,REQUIRED,CLIENTSIDE
+column=clue_text,string,REQUIRED,CLIENTSIDE
+column=fairyring,int,REQUIRED,CLIENTSIDE
+column=steps,int,int,int,int,REQUIRED,CLIENTSIDE
+column=target,dbrow,REQUIRED,CLIENTSIDE
+column=requirements,dbrow,CLIENTSIDE
+column=region,int,REQUIRED,LIST,CLIENTSIDE
+column=allregions,boolean,CLIENTSIDE
+default=allregions,true
 
 // 11
-[dbtable_11]
-column=col0,int,REQUIRED,INDEXED,CLIENTSIDE
-column=col1,int,REQUIRED,CLIENTSIDE
-column=col2,string,REQUIRED,CLIENTSIDE
-column=col3,dbrow,REQUIRED,CLIENTSIDE
-column=col4,dbrow,REQUIRED,CLIENTSIDE
-column=col5,int,REQUIRED,LIST,CLIENTSIDE
-column=col6,boolean,CLIENTSIDE
-default=col6,false
+[cluehelper_clue_falobard]
+column=id,int,REQUIRED,INDEXED,CLIENTSIDE
+column=difficulty,int,REQUIRED,CLIENTSIDE
+column=clue_text,string,REQUIRED,CLIENTSIDE
+column=target,dbrow,REQUIRED,CLIENTSIDE
+column=requirements,dbrow,REQUIRED,CLIENTSIDE
+column=region,int,REQUIRED,LIST,CLIENTSIDE
+column=allregions,boolean,CLIENTSIDE
+default=allregions,false
 
 // 12
-[dbtable_12]
-column=col0,int,REQUIRED,INDEXED,CLIENTSIDE
-column=col1,int,REQUIRED,CLIENTSIDE
-column=col2,dbrow,REQUIRED,CLIENTSIDE
-column=col3,dbrow,CLIENTSIDE
-column=col4,dbrow,LIST,CLIENTSIDE
-column=col5,int,REQUIRED,LIST,CLIENTSIDE
-column=col6,boolean,CLIENTSIDE
-default=col6,true
+[cluehelper_clue_hotcold]
+column=id,int,REQUIRED,INDEXED,CLIENTSIDE
+column=difficulty,int,REQUIRED,CLIENTSIDE
+column=target,dbrow,REQUIRED,CLIENTSIDE
+column=requirements,dbrow,CLIENTSIDE
+column=combat_encounter,dbrow,LIST,CLIENTSIDE
+column=region,int,REQUIRED,LIST,CLIENTSIDE
+column=allregions,boolean,CLIENTSIDE
+default=allregions,true
 
 // 13
-[dbtable_13]
-column=col0,int,REQUIRED,INDEXED,CLIENTSIDE
-column=col1,int,REQUIRED,CLIENTSIDE
-column=col2,dbrow,REQUIRED,CLIENTSIDE
-column=col3,string,REQUIRED,CLIENTSIDE
-column=col4,dbrow,REQUIRED,CLIENTSIDE
-column=col5,dbrow,CLIENTSIDE
-column=col6,int,CLIENTSIDE
-default=col6,22
-column=col7,boolean,CLIENTSIDE
-default=col7,true
+[cluehelper_clue_music]
+column=id,int,REQUIRED,INDEXED,CLIENTSIDE
+column=difficulty,int,REQUIRED,CLIENTSIDE
+column=music,dbrow,REQUIRED,CLIENTSIDE
+column=unlock_text,string,REQUIRED,CLIENTSIDE
+column=target,dbrow,REQUIRED,CLIENTSIDE
+column=requirements,dbrow,CLIENTSIDE
+column=region,int,CLIENTSIDE
+default=region,22
+column=allregions,boolean,CLIENTSIDE
+default=allregions,true
 
 // 14
-[dbtable_14]
-column=col0,int,REQUIRED,INDEXED,CLIENTSIDE
-column=col1,int,REQUIRED,CLIENTSIDE
-column=col2,string,REQUIRED,CLIENTSIDE
-column=col3,dbrow,LIST,CLIENTSIDE
-column=col4,dbrow,CLIENTSIDE
-column=col5,int,LIST,CLIENTSIDE
-default=col5,22
-column=col6,boolean,CLIENTSIDE
-default=col6,false
+[cluehelper_clue_skillchallenge]
+column=id,int,REQUIRED,INDEXED,CLIENTSIDE
+column=difficulty,int,REQUIRED,CLIENTSIDE
+column=clue_text,string,REQUIRED,CLIENTSIDE
+column=requirements,dbrow,LIST,CLIENTSIDE
+column=target,dbrow,CLIENTSIDE
+column=region,int,LIST,CLIENTSIDE
+default=region,22
+column=allregions,boolean,CLIENTSIDE
+default=allregions,false
 
 // 15
-[dbtable_15]
-column=col0,npc,REQUIRED,CLIENTSIDE
-column=col1,npc,CLIENTSIDE
-column=col2,coord,REQUIRED,CLIENTSIDE
-column=col3,string,REQUIRED,CLIENTSIDE
+[cluehelper_target_npc]
+column=npc,npc,REQUIRED,CLIENTSIDE
+column=fallback_npc,npc,CLIENTSIDE
+column=coord,coord,REQUIRED,CLIENTSIDE
+column=description,string,REQUIRED,CLIENTSIDE
+column=teleport_coord
+column=teleport_restriction_quest
+column=teleport_restriction_skill
+column=teleport_restriction_custom
 
 // 16
-[dbtable_16]
-column=col0,loc,REQUIRED,CLIENTSIDE
-column=col1,loc,CLIENTSIDE
-column=col2,coord,REQUIRED,CLIENTSIDE
-column=col3,string,REQUIRED,CLIENTSIDE
+[cluehelper_target_loc]
+column=loc,loc,REQUIRED,CLIENTSIDE
+column=fallback_loc,loc,CLIENTSIDE
+column=coord,coord,REQUIRED,CLIENTSIDE
+column=description,string,REQUIRED,CLIENTSIDE
+column=teleport_coord
+column=teleport_restriction_quest
+column=teleport_restriction_skill
+column=teleport_restriction_custom
 
 // 17
-[dbtable_17]
-column=col0,coord,REQUIRED,CLIENTSIDE
-column=col1,coord,REQUIRED,CLIENTSIDE
-column=col2,string,REQUIRED,CLIENTSIDE
+[cluehelper_target_mapzone]
+column=coord_sw,coord,REQUIRED,CLIENTSIDE
+column=coord_ne,coord,REQUIRED,CLIENTSIDE
+column=description,string,REQUIRED,CLIENTSIDE
+column=teleport_coord
+column=teleport_restriction_quest
+column=teleport_restriction_skill
+column=teleport_restriction_custom
 
 // 18
-[dbtable_18]
-column=col0,coord,REQUIRED,CLIENTSIDE
-column=col1,string,REQUIRED,CLIENTSIDE
-column=col2,string,CLIENTSIDE
+[cluehelper_target_coord]
+column=coord,coord,REQUIRED,CLIENTSIDE
+column=description,string,REQUIRED,CLIENTSIDE
+column=description_short,string,CLIENTSIDE
+column=teleport_coord
+column=teleport_restriction_quest
+column=teleport_restriction_skill
+column=teleport_restriction_custom
 
 // 19
-[dbtable_19]
-column=col0,loc,REQUIRED,CLIENTSIDE
-column=col1,coord,REQUIRED,CLIENTSIDE
-column=col2,npc,REQUIRED,LIST,CLIENTSIDE
-column=col3,obj,REQUIRED,CLIENTSIDE
-column=col4,coord,REQUIRED,CLIENTSIDE
-column=col5,inv,CLIENTSIDE
-default=col5,inv_93
-column=col6,int,CLIENTSIDE
-default=col6,1
-column=col7,string,REQUIRED,CLIENTSIDE
+[cluehelper_target_key]
+column=loc,loc,REQUIRED,CLIENTSIDE
+column=loc_coord,coord,REQUIRED,CLIENTSIDE
+column=npcs,npc,REQUIRED,LIST,CLIENTSIDE
+column=key,obj,REQUIRED,CLIENTSIDE
+column=key_coord,coord,REQUIRED,CLIENTSIDE
+column=inv,inv,CLIENTSIDE
+default=inv,inv
+column=count,int,CLIENTSIDE
+default=count,1
+column=description,string,REQUIRED,CLIENTSIDE
+column=teleport_coord
+column=teleport_restriction_quest
+column=teleport_restriction_skill
+column=teleport_restriction_custom
 
 // 20
-[dbtable_20]
-column=col0,npc,REQUIRED,LIST,CLIENTSIDE
-column=col1,coord,CLIENTSIDE
-column=col2,string,REQUIRED,CLIENTSIDE
+[cluehelper_target_kill]
+column=npcs,npc,REQUIRED,LIST,CLIENTSIDE
+column=coord,coord,CLIENTSIDE
+column=description,string,REQUIRED,CLIENTSIDE
+column=teleport_coord
+column=teleport_restriction_quest
+column=teleport_restriction_skill
+column=teleport_restriction_custom
 
 // 21
-[dbtable_21]
-column=col0,string,REQUIRED,CLIENTSIDE
-column=col1,obj,REQUIRED,LIST,CLIENTSIDE
-column=col2,inv,CLIENTSIDE
-default=col2,inv_93
-column=col3,int,CLIENTSIDE
-default=col3,1
+[cluehelper_requirement_obj]
+column=description,string,REQUIRED,CLIENTSIDE
+column=item,obj,REQUIRED,LIST,CLIENTSIDE
+column=inv,inv,CLIENTSIDE
+default=inv,inv
+column=count,int,CLIENTSIDE
+default=count,1
 
 // 22
-[dbtable_22]
-column=col0,string,REQUIRED,CLIENTSIDE
-column=col1,int,REQUIRED,CLIENTSIDE
+[cluehelper_requirement_obj_param_trail_item]
+column=description,string,REQUIRED,CLIENTSIDE
+column=item_group,int,REQUIRED,CLIENTSIDE
 
 // 23
-[dbtable_23]
-column=col0,string,REQUIRED,CLIENTSIDE
-column=col1,dbrow,REQUIRED,CLIENTSIDE
-column=col2,int,REQUIRED,CLIENTSIDE
+[cluehelper_requirement_quest]
+column=description,string,REQUIRED,CLIENTSIDE
+column=quest,dbrow,REQUIRED,CLIENTSIDE
+column=varstate,int,REQUIRED,CLIENTSIDE
 
 // 24
-[dbtable_24]
-column=col0,stat,REQUIRED,CLIENTSIDE
-column=col1,int,REQUIRED,CLIENTSIDE
+[cluehelper_requirement_stat]
+column=stat,stat,REQUIRED,CLIENTSIDE
+column=level,int,REQUIRED,CLIENTSIDE
 
 // 25
-[dbtable_25]
-column=col0,string,int,REQUIRED,LIST,CLIENTSIDE
+[cluehelper_challenge_question]
+column=question,string,int,REQUIRED,LIST,CLIENTSIDE
 
 // 26
-[dbtable_26]
-column=col0,string,REQUIRED,CLIENTSIDE
+[cluehelper_challenge_box]
+column=description,string,REQUIRED,CLIENTSIDE
 
 // 27
-[dbtable_27]
-column=col0,string,REQUIRED,CLIENTSIDE
-column=col1,npc,REQUIRED,LIST,CLIENTSIDE
+[cluehelper_combat_encounter]
+column=description,string,REQUIRED,CLIENTSIDE
+column=npcs,npc,REQUIRED,LIST,CLIENTSIDE
 
 // 28
-[dbtable_28]
-column=col0,string,REQUIRED,CLIENTSIDE
-column=col1,obj,LIST,CLIENTSIDE
-column=col2,obj,LIST,CLIENTSIDE
-column=col3,obj,LIST,CLIENTSIDE
-column=col4,obj,LIST,CLIENTSIDE
-column=col5,obj,LIST,CLIENTSIDE
-column=col6,obj,LIST,CLIENTSIDE
-column=col7,obj,LIST,CLIENTSIDE
-column=col8,obj,LIST,CLIENTSIDE
-column=col9,obj,CLIENTSIDE
-column=col10,obj,LIST,CLIENTSIDE
-column=col11,obj,CLIENTSIDE
-column=col12,int,CLIENTSIDE
-column=col13,int,CLIENTSIDE
-column=col14,int,CLIENTSIDE
-column=col15,int,CLIENTSIDE
-column=col16,int,CLIENTSIDE
-column=col17,int,CLIENTSIDE
-column=col18,int,CLIENTSIDE
-column=col19,int,CLIENTSIDE
-column=col20,int,CLIENTSIDE
-column=col21,int,CLIENTSIDE
-column=col22,int,CLIENTSIDE
-column=col23,int,CLIENTSIDE
+[cluehelper_outfit]
+column=description,string,REQUIRED,CLIENTSIDE
+column=wearpos_hat,obj,LIST,CLIENTSIDE
+column=wearpos_back,obj,LIST,CLIENTSIDE
+column=wearpos_front,obj,LIST,CLIENTSIDE
+column=wearpos_rhand,obj,LIST,CLIENTSIDE
+column=wearpos_torso,obj,LIST,CLIENTSIDE
+column=wearpos_lhand,obj,LIST,CLIENTSIDE
+column=wearpos_legs,obj,LIST,CLIENTSIDE
+column=wearpos_hands,obj,LIST,CLIENTSIDE
+column=wearpos_feet,obj,CLIENTSIDE
+column=wearpos_ring,obj,LIST,CLIENTSIDE
+column=wearpos_quiver,obj,CLIENTSIDE
+column=wearpos_param_hat,int,CLIENTSIDE
+column=wearpos_param_back,int,CLIENTSIDE
+column=wearpos_param_front,int,CLIENTSIDE
+column=wearpos_param_rhand,int,CLIENTSIDE
+column=wearpos_param_torso,int,CLIENTSIDE
+column=wearpos_param_lhand,int,CLIENTSIDE
+column=wearpos_param_legs,int,CLIENTSIDE
+column=wearpos_param_hands,int,CLIENTSIDE
+column=wearpos_param_feet,int,CLIENTSIDE
+column=wearpos_param_ring,int,CLIENTSIDE
+column=wearpos_param_quiver,int,CLIENTSIDE
+column=wearpos_param_any,int,CLIENTSIDE
 
 // 29
-[dbtable_29]
+[dbg_dummy_table]
+column=id
 
 // 30
-[dbtable_30]
-column=col0,string,string,string,REQUIRED,LIST,CLIENTSIDE
+[fsw_info_fresh_table]
+column=info,string,string,string,REQUIRED,LIST,CLIENTSIDE
 
 // 31
-[dbtable_31]
-column=col0,string,string,string,REQUIRED,LIST,CLIENTSIDE
+[fsw_info_normal_table]
+column=info,string,string,string,REQUIRED,LIST,CLIENTSIDE
 
 // 32
-[dbtable_32]
-column=col0,graphic,int,int,int,string,string,string,REQUIRED,LIST,CLIENTSIDE
+[fsw_points_info_table]
+column=info,graphic,int,int,int,string,string,string,REQUIRED,LIST,CLIENTSIDE
 
 // 33
-[dbtable_33]
-column=col0,graphic,string,int,REQUIRED,LIST,CLIENTSIDE
+[fsw_points_boss_info_table]
+column=info,graphic,string,int,REQUIRED,LIST,CLIENTSIDE
 
 // 34
-[dbtable_34]
-column=col0,int,REQUIRED,INDEXED,CLIENTSIDE
-column=col1,int,REQUIRED,INDEXED,CLIENTSIDE
-column=col2,namedobj,REQUIRED,INDEXED,CLIENTSIDE
-column=col3,string,CLIENTSIDE
-default=col3,
-column=col4,string,CLIENTSIDE
-default=col4,
-column=col5,string,CLIENTSIDE
-default=col5,
+[item_transmog]
+column=group,int,REQUIRED,INDEXED,CLIENTSIDE
+column=group_id,int,REQUIRED,INDEXED,CLIENTSIDE
+column=namedobj,namedobj,REQUIRED,INDEXED,CLIENTSIDE
+column=ui_name,string,CLIENTSIDE
+default=ui_name,
+column=ui_examine,string,CLIENTSIDE
+default=ui_examine,
+column=ui_op_name,string,CLIENTSIDE
+default=ui_op_name,
 
 // 35
-[dbtable_35]
-column=col0,int,REQUIRED,CLIENTSIDE
-column=col1,int,REQUIRED,CLIENTSIDE
-column=col2,int,REQUIRED,CLIENTSIDE
-column=col3,dbrow,REQUIRED,LIST,CLIENTSIDE
-column=col4,boolean,CLIENTSIDE
-default=col4,false
+[combination_lock_dataset]
+column=min_length,int,REQUIRED,CLIENTSIDE
+column=max_length,int,REQUIRED,CLIENTSIDE
+column=value_type,int,REQUIRED,CLIENTSIDE
+column=values,dbrow,REQUIRED,LIST,CLIENTSIDE
+column=randomise_start,boolean,CLIENTSIDE
+default=randomise_start,false
 
 // 36
-[dbtable_36]
-column=col0,string,LIST,CLIENTSIDE
-column=col1,graphic,LIST,CLIENTSIDE
+[combination_lock_values]
+column=string_value,string,LIST,CLIENTSIDE
+column=graphic_value,graphic,LIST,CLIENTSIDE
 
 // 37
-[dbtable_37]
-column=col0,string,REQUIRED,CLIENTSIDE
-column=col1,idkit,REQUIRED,CLIENTSIDE
-column=col2,idkit,REQUIRED,CLIENTSIDE
-column=col3,model,CLIENTSIDE
-default=col3,model_47771
-column=col4,idkit,CLIENTSIDE
-column=col5,idkit,CLIENTSIDE
+[hair_styles]
+column=name,string,REQUIRED,CLIENTSIDE
+column=player_kit_id_type_a,idkit,REQUIRED,CLIENTSIDE
+column=player_kit_id_type_b,idkit,REQUIRED,CLIENTSIDE
+column=head_model,model,CLIENTSIDE
+default=head_model,model_47771
+column=updo_variant_type_a,idkit,CLIENTSIDE
+column=updo_variant_type_b,idkit,CLIENTSIDE
 
 // 38
-[dbtable_38]
-column=col0,string,REQUIRED,CLIENTSIDE
-column=col1,idkit,REQUIRED,CLIENTSIDE
-column=col2,idkit,REQUIRED,CLIENTSIDE
-column=col3,model,CLIENTSIDE
-default=col3,model_81
+[facial_hair_styles]
+column=name,string,REQUIRED,CLIENTSIDE
+column=player_kit_id_type_a,idkit,REQUIRED,CLIENTSIDE
+column=player_kit_id_type_b,idkit,REQUIRED,CLIENTSIDE
+column=chat_head,model,CLIENTSIDE
+default=chat_head,model_81
 
 // 39
-[dbtable_39]
-column=col0,string,REQUIRED,CLIENTSIDE
-column=col1,inv,CLIENTSIDE
-column=col2,dbrow,LIST,CLIENTSIDE
-column=col3,enum,CLIENTSIDE
-column=col4
-column=col5,dbrow,LIST,CLIENTSIDE
-column=col6,int,CLIENTSIDE
-default=col6,1000
-column=col7,int,CLIENTSIDE
-default=col7,400
-column=col8,int,CLIENTSIDE
-default=col8,0
-column=col9,dbrow,CLIENTSIDE
-default=col9,dbrow_2467
-column=col10,string,REQUIRED,CLIENTSIDE
-column=col11,string,CLIENTSIDE
-default=col11,Feel free to peruse our stock.
-column=col12,string,CLIENTSIDE
-column=col13,string,CLIENTSIDE
-default=col13,Buy
-column=col14,string,CLIENTSIDE
-default=col14,Sell
+[omnishop_shop_data]
+column=omnishop_shop_name,string,REQUIRED,CLIENTSIDE
+column=omnishop_shop_inv,inv,CLIENTSIDE
+column=omnishop_shop_currency,dbrow,LIST,CLIENTSIDE
+column=omnishop_shop_filter_titles,enum,CLIENTSIDE
+column=omnishop_shop_purse
+column=omnishop_shop_stock,dbrow,LIST,CLIENTSIDE
+column=omnishop_shop_cost_mod_buy,int,CLIENTSIDE
+default=omnishop_shop_cost_mod_buy,1000
+column=omnishop_shop_cost_mod_sell,int,CLIENTSIDE
+default=omnishop_shop_cost_mod_sell,400
+column=omnishop_shop_cost_mod_haggle,int,CLIENTSIDE
+default=omnishop_shop_cost_mod_haggle,0
+column=omnishop_shop_cost_currency,dbrow,CLIENTSIDE
+default=omnishop_shop_cost_currency,currency_coins
+column=omnishop_shop_info_title,string,REQUIRED,CLIENTSIDE
+column=omnishop_shop_info_intro_desc,string,CLIENTSIDE
+default=omnishop_shop_info_intro_desc,Feel free to peruse our stock.
+column=omnishop_shop_info_instructions,string,CLIENTSIDE
+column=omnishop_shop_main_op_text,string,CLIENTSIDE
+default=omnishop_shop_main_op_text,Buy
+column=omnishop_shop_side_op_text,string,CLIENTSIDE
+default=omnishop_shop_side_op_text,Sell
 
 // 40
-[dbtable_40]
-column=col0,namedobj,REQUIRED,CLIENTSIDE
-column=col1,namedobj,CLIENTSIDE
-column=col2
-column=col3
-column=col4
-column=col5,int,LIST,CLIENTSIDE
-column=col6,dbrow,int,LIST,CLIENTSIDE
-column=col7,int,CLIENTSIDE
-default=col7,^min_32bit_int
-column=col8,int,CLIENTSIDE
-default=col8,^min_32bit_int
-column=col9,int,CLIENTSIDE
-default=col9,^min_32bit_int
-column=col10,int,CLIENTSIDE
-default=col10,1
-column=col11,int,CLIENTSIDE
-default=col11,0
-column=col12,int,CLIENTSIDE
-default=col12,0
-column=col13,int,CLIENTSIDE
-default=col13,0
-column=col14,boolean,CLIENTSIDE
-default=col14,true
-column=col15,boolean,CLIENTSIDE
-default=col15,false
-column=col16,boolean,CLIENTSIDE
-default=col16,false
-column=col17,boolean,CLIENTSIDE
-default=col17,false
+[omnishop_stock_data]
+column=omnishop_stock_obj,namedobj,REQUIRED,CLIENTSIDE
+column=omnishop_stock_alternateobj,namedobj,CLIENTSIDE
+column=omnishop_stock_toggle_var
+column=omnishop_stock_toggle_var_owned_state
+column=omnishop_stock_reclaimable
+column=omnishop_stock_filter_id,int,LIST,CLIENTSIDE
+column=omnishop_stock_cost,dbrow,int,LIST,CLIENTSIDE
+column=omnishop_stock_cost_mod_buy,int,CLIENTSIDE
+default=omnishop_stock_cost_mod_buy,^min_32bit_int
+column=omnishop_stock_cost_mod_sell,int,CLIENTSIDE
+default=omnishop_stock_cost_mod_sell,^min_32bit_int
+column=omnishop_stock_cost_mod_haggle,int,CLIENTSIDE
+default=omnishop_stock_cost_mod_haggle,^min_32bit_int
+column=omnishop_stock_transaction_multiplier,int,CLIENTSIDE
+default=omnishop_stock_transaction_multiplier,1
+column=omnishop_stock_restricted,int,CLIENTSIDE
+default=omnishop_stock_restricted,0
+column=omnishop_stock_restricted_category,int,CLIENTSIDE
+default=omnishop_stock_restricted_category,0
+column=omnishop_stock_restricted_uim,int,CLIENTSIDE
+default=omnishop_stock_restricted_uim,0
+column=omnishop_stock_buyable,boolean,CLIENTSIDE
+default=omnishop_stock_buyable,true
+column=omnishop_stock_sellable,boolean,CLIENTSIDE
+default=omnishop_stock_sellable,false
+column=omnishop_stock_sold_noted,boolean,CLIENTSIDE
+default=omnishop_stock_sold_noted,false
+column=omnishop_stock_view_only,boolean,CLIENTSIDE
+default=omnishop_stock_view_only,false
 
 // 41
-[dbtable_41]
-column=col0,namedobj,LIST,CLIENTSIDE
-column=col1,string,REQUIRED,CLIENTSIDE
-column=col2,string,REQUIRED,CLIENTSIDE
-column=col3,graphic,graphic,CLIENTSIDE
+[omnishop_currency_data]
+column=omnishop_currency_obj,namedobj,LIST,CLIENTSIDE
+column=omnishop_currency_name_singular,string,REQUIRED,CLIENTSIDE
+column=omnishop_currency_name_plural,string,REQUIRED,CLIENTSIDE
+column=omnishop_currency_graphic,graphic,graphic,CLIENTSIDE
 
 // 42
-[dbtable_42]
+[omnishop_purse_data]
+column=omnishop_purse_inv
+column=omnishop_purse_obj
 
 // 43
-[dbtable_43]
+[whisperer_seed_spawns]
+column=id
+column=timelimit
+column=timelimit_awakened
+column=weak_seed
+column=danger_seed
 
 // 44
-[dbtable_44]
-column=col0,string,REQUIRED,CLIENTSIDE
-column=col1,string,REQUIRED,CLIENTSIDE
-column=col2,string,CLIENTSIDE
-default=col2,somewhere.
-column=col3,int,REQUIRED,CLIENTSIDE
-column=col4,midi,REQUIRED,CLIENTSIDE
-column=col5,int,int,CLIENTSIDE
-default=col5,-1,-1
-column=col6,int,INDEXED,CLIENTSIDE
-column=col7,int,INDEXED,CLIENTSIDE
-column=col8,boolean,INDEXED,CLIENTSIDE
-default=col8,false
-column=col9,int,INDEXED,CLIENTSIDE
-default=col9,-1
-column=col10,dbrow,CLIENTSIDE
+[music]
+column=sortname,string,REQUIRED,CLIENTSIDE
+column=displayname,string,REQUIRED,CLIENTSIDE
+column=unlockhint,string,CLIENTSIDE
+default=unlockhint,somewhere.
+column=duration,int,REQUIRED,CLIENTSIDE
+column=midi,midi,REQUIRED,CLIENTSIDE
+column=variable,int,int,CLIENTSIDE
+default=variable,-1,-1
+column=area,int,INDEXED,CLIENTSIDE
+column=area_default,int,INDEXED,CLIENTSIDE
+column=hidden,boolean,INDEXED,CLIENTSIDE
+default=hidden,false
+column=holiday,int,INDEXED,CLIENTSIDE
+default=holiday,-1
+column=secondary_track,dbrow,CLIENTSIDE
 
 // 45
-[dbtable_45]
+[woodcutting_resource]
+column=stat_requirement
+column=action_delay
+column=base_gather_chance
+column=axe_gather_chance
+column=chop_anim_enum
+column=gather_sound
+column=track_last_resource
+column=group_gathering_config
+column=group_level_boost_cap
+column=group_xp_scalar_cap
+column=behaviour_data
 
 // 46
-[dbtable_46]
+[woodcutting_basic_resource_data]
+column=is_farming_patch
+column=gather_xp
+column=cluenest_chance
+column=birdsnest_chance
+column=skillpet
+column=skillpet_chance
+column=gather_obj
+column=leaves_obj
+column=deplete_chance
+column=respawn_time_range
 
 // 47
-[dbtable_47]
+[gathering_event_sapling_loc]
+column=loc
+column=width
+column=length
 
 // 48
-[dbtable_48]
+[group_gathering_resource]
+column=lifetime_range
+column=respawn_time_range
+column=buff_player_cap
+column=buff_id
+column=gathering_stat
+column=weakqueue_action_delay
+column=gathering_event_chance_data
 
 // 49
-[dbtable_49]
+[gathering_event_chance_data]
+column=event_low_chance
+column=event_high_chance
+column=event_chance_player_cap
+column=event_start_time_buffer
+column=event_end_time_buffer
+column=events_list
 
 // 50
-[dbtable_50]
+[gathering_event_events_list]
+column=event
 
 // 51
-[dbtable_51]
+[misc_woodcutting_resource_data]
+column=owning_npc
+column=owning_npc_name
+column=resource_name
+column=gather_xp
+column=misc_quest_var_requirement
+column=royal_quest_var_requirement
+column=approval_chance
+column=approval_amount
 
 // 52
-[dbtable_52]
+[dt2_lassar_barrier]
+column=tier
+column=id
+column=coord
 
 // 53
-[dbtable_53]
+[dt2_lassar_remnant]
+column=id
+column=coord
+column=empowered
+column=quest_stage
 
 // 54
-[dbtable_54]
+[dt2_lassar_door]
+column=lock_id
+column=left_coord
+column=right_coord
+column=rotation
+column=braziers_required
+column=key_obj
+column=key_namedobj
+column=instant_unlock
 
 // 55
-[dbtable_55]
+[dt2_lassar_chest]
+column=lock_id
+column=coord
+column=base_chest
+column=rotation
+column=loc_shape
+column=braziers_required
+column=key_obj
+column=key_namedobj
+column=item_to_give
+column=give_string
+column=instant_unlock
 
 // 56
-[dbtable_56]
+[dt2_lassar_ghosts]
+column=ghost
 
 // 57
-[dbtable_57]
+[dt2_lassar_npcs]
+column=npc
 
 // 58
-[dbtable_58]
+[dt2_lassar_items]
+column=item
 
 // 59
-[dbtable_59]
+[dt2_lassar_braziers]
+column=id
+column=coord
 
 // 60
-[dbtable_60]
+[dt2_scar_maze]
+column=id
+column=source
+column=entry_coord
+column=boat_room_coord
 
 // 61
-[dbtable_61]
-column=col0,dbrow,REQUIRED,CLIENTSIDE
-column=col1,int,INDEXED,CLIENTSIDE
-default=col1,0
-column=col2,int,int,LIST,CLIENTSIDE
-default=col2,0,0
-column=col3,inv,namedobj,int,REQUIRED,LIST,CLIENTSIDE
-column=col4,dbrow,LIST,CLIENTSIDE
-column=col5,stat,int,REQUIRED,LIST,CLIENTSIDE
-column=col6,int,CLIENTSIDE
-default=col6,1
-column=col7,int,CLIENTSIDE
-default=col7,-1
+[speedrun]
+column=quest,dbrow,REQUIRED,CLIENTSIDE
+column=speedrun_state,int,INDEXED,CLIENTSIDE
+default=speedrun_state,0
+column=speedrun_trophy_times,int,int,LIST,CLIENTSIDE
+default=speedrun_trophy_times,0,0
+column=speedrun_item_unlocks,inv,namedobj,int,REQUIRED,LIST,CLIENTSIDE
+column=speedrun_quest_unlocks,dbrow,LIST,CLIENTSIDE
+column=speedrun_stat_unlocks,stat,int,REQUIRED,LIST,CLIENTSIDE
+column=speedrun_combat_stats_unlock,int,CLIENTSIDE
+default=speedrun_combat_stats_unlock,1
+column=speedrun_poh_location,int,CLIENTSIDE
+default=speedrun_poh_location,-1
 
 // 62
-[dbtable_62]
-column=col0,string,REQUIRED,CLIENTSIDE
-column=col1,int,string,graphic,REQUIRED,LIST,CLIENTSIDE
-column=col2,int,CLIENTSIDE
-default=col2,25
-column=col3,int,CLIENTSIDE
-default=col3,40
-column=col4,int,CLIENTSIDE
-default=col4,13
+[clan_setting_options_list]
+column=clan_setting_title,string,REQUIRED,CLIENTSIDE
+column=clan_setting_option,int,string,graphic,REQUIRED,LIST,CLIENTSIDE
+column=clan_setting_entry_height,int,CLIENTSIDE
+default=clan_setting_entry_height,25
+column=clan_setting_mobile_entry_height,int,CLIENTSIDE
+default=clan_setting_mobile_entry_height,40
+column=clan_setting_icon_size,int,CLIENTSIDE
+default=clan_setting_icon_size,13
 
 // 63
-[dbtable_63]
+[varlamore_thieving_house]
+column=id
+column=house_coord
+column=outside_door_coord
+column=inside_door_coord
+column=wander_coord
+column=window_outside_coord
+column=house_name
+column=house_name_pronoun
+column=house_area
+column=house_lootable
+column=house_door_rotation_open
+column=house_door_rotation_closed
 
 // 64
-[dbtable_64]
-column=col0,int,REQUIRED,INDEXED,CLIENTSIDE
-column=col1,string,REQUIRED,CLIENTSIDE
-column=col2,coord,REQUIRED,CLIENTSIDE
-column=col3,model,REQUIRED,CLIENTSIDE
-column=col4,int,CLIENTSIDE
-default=col4,0
-column=col5,int,CLIENTSIDE
-default=col5,0
-column=col6,boolean,REQUIRED,CLIENTSIDE
+[quetzal]
+column=id,int,REQUIRED,INDEXED,CLIENTSIDE
+column=name,string,REQUIRED,CLIENTSIDE
+column=coord,coord,REQUIRED,CLIENTSIDE
+column=if_model,model,REQUIRED,CLIENTSIDE
+column=if_x_pos,int,CLIENTSIDE
+default=if_x_pos,0
+column=if_y_pos,int,CLIENTSIDE
+default=if_y_pos,0
+column=auto_unlocked,boolean,REQUIRED,CLIENTSIDE
+column=npc
+column=loc
 
 // 65
-[dbtable_65]
-column=col0,string,REQUIRED,CLIENTSIDE
-column=col1,idkit,REQUIRED,CLIENTSIDE
-column=col2,idkit,REQUIRED,CLIENTSIDE
-column=col3,model,CLIENTSIDE
-default=col3,model_28515
-column=col4,model,CLIENTSIDE
-column=col5,model,CLIENTSIDE
-default=col5,model_18554
-column=col6,model,CLIENTSIDE
+[torso_styles]
+column=name,string,REQUIRED,CLIENTSIDE
+column=player_kit_id_type_a,idkit,REQUIRED,CLIENTSIDE
+column=player_kit_id_type_b,idkit,REQUIRED,CLIENTSIDE
+column=torso_model_type_a_1,model,CLIENTSIDE
+default=torso_model_type_a_1,model_28515
+column=torso_model_type_a_2,model,CLIENTSIDE
+column=torso_model_type_b_1,model,CLIENTSIDE
+default=torso_model_type_b_1,model_18554
+column=torso_model_type_b_2,model,CLIENTSIDE
 
 // 66
-[dbtable_66]
-column=col0,string,REQUIRED,CLIENTSIDE
-column=col1,idkit,REQUIRED,CLIENTSIDE
-column=col2,idkit,REQUIRED,CLIENTSIDE
-column=col3,model,CLIENTSIDE
-default=col3,model_26632
-column=col4,model,CLIENTSIDE
-default=col4,model_3476
+[sleeve_styles]
+column=name,string,REQUIRED,CLIENTSIDE
+column=player_kit_id_type_a,idkit,REQUIRED,CLIENTSIDE
+column=player_kit_id_type_b,idkit,REQUIRED,CLIENTSIDE
+column=sleeve_model_type_a,model,CLIENTSIDE
+default=sleeve_model_type_a,model_26632
+column=sleeve_model_type_b,model,CLIENTSIDE
+default=sleeve_model_type_b,model_3476
 
 // 67
-[dbtable_67]
-column=col0,string,REQUIRED,CLIENTSIDE
-column=col1,idkit,REQUIRED,CLIENTSIDE
-column=col2,idkit,REQUIRED,CLIENTSIDE
-column=col3,model,CLIENTSIDE
-default=col3,model_28285
-column=col4,model,CLIENTSIDE
-default=col4,model_14423
+[legging_styles]
+column=name,string,REQUIRED,CLIENTSIDE
+column=player_kit_id_type_a,idkit,REQUIRED,CLIENTSIDE
+column=player_kit_id_type_b,idkit,REQUIRED,CLIENTSIDE
+column=legging_model_type_a,model,CLIENTSIDE
+default=legging_model_type_a,model_28285
+column=legging_model_type_b,model,CLIENTSIDE
+default=legging_model_type_b,model_14423
 
 // 68
-[dbtable_68]
-column=col0,string,REQUIRED,CLIENTSIDE
-column=col1,idkit,REQUIRED,CLIENTSIDE
-column=col2,idkit,REQUIRED,CLIENTSIDE
-column=col3,model,CLIENTSIDE
-default=col3,model_43879
-column=col4,model,CLIENTSIDE
-default=col4,model_43877
+[shoe_styles]
+column=name,string,REQUIRED,CLIENTSIDE
+column=player_kit_id_type_a,idkit,REQUIRED,CLIENTSIDE
+column=player_kit_id_type_b,idkit,REQUIRED,CLIENTSIDE
+column=shoe_model_type_a,model,CLIENTSIDE
+default=shoe_model_type_a,model_43879
+column=shoe_model_type_b,model,CLIENTSIDE
+default=shoe_model_type_b,model_43877
 
 // 69
-[dbtable_69]
-column=col0,string,REQUIRED,CLIENTSIDE
-column=col1,idkit,REQUIRED,CLIENTSIDE
-column=col2,idkit,REQUIRED,CLIENTSIDE
-column=col3,model,CLIENTSIDE
-default=col3,model_176
-column=col4,model,CLIENTSIDE
-default=col4,model_353
+[hand_styles]
+column=name,string,REQUIRED,CLIENTSIDE
+column=player_kit_id_type_a,idkit,REQUIRED,CLIENTSIDE
+column=player_kit_id_type_b,idkit,REQUIRED,CLIENTSIDE
+column=hand_model_type_a,model,CLIENTSIDE
+default=hand_model_type_a,model_176
+column=hand_model_type_b,model,CLIENTSIDE
+default=hand_model_type_b,model_353
 
 // 70
-[dbtable_70]
+[vmq3_tower_trial_3]
+column=suspect_id
+column=suspect_npc
+column=name
+column=response
+column=response_wrong
 
 // 71
-[dbtable_71]
+[vmq3_tower_trial_4_cone]
+column=direction
+column=tile_data
 
 // 72
-[dbtable_72]
-column=col0,int,REQUIRED,INDEXED,CLIENTSIDE
-column=col1,string,REQUIRED,CLIENTSIDE
-column=col2,coord,REQUIRED,CLIENTSIDE
-column=col3,component,REQUIRED,CLIENTSIDE
+[pendant_of_ates_teleports]
+column=id,int,REQUIRED,INDEXED,CLIENTSIDE
+column=teleport_name,string,REQUIRED,CLIENTSIDE
+column=teleport_coord,coord,REQUIRED,CLIENTSIDE
+column=teleport_if_layer,component,REQUIRED,CLIENTSIDE
 
 // 73
-[dbtable_73]
+[eaa_shame_game]
+column=id
+column=option
 
 // 74
-[dbtable_74]
+[varlamore_wyrm_agility_route]
+column=name_lowercase
+column=name_capitalised
+column=agility_level
+column=pet_rate
+column=completion_xp
+column=route_length
+column=obstacles_enum
+column=termite_obstacle_ids
 
 // 75
-[dbtable_75]
+[huey_special_attack]
+column=phase
+column=cd
+column=attacks
 
 // 76
-[dbtable_76]
-column=col0,int,REQUIRED,CLIENTSIDE
-column=col1,string,REQUIRED,CLIENTSIDE
-column=col2,component,REQUIRED,CLIENTSIDE
-column=col3,component,REQUIRED,CLIENTSIDE
+[chartering_destination_data]
+column=chartering_destination_id,int,REQUIRED,CLIENTSIDE
+column=chartering_destination_name,string,REQUIRED,CLIENTSIDE
+column=chartering_destination_ui_label,component,REQUIRED,CLIENTSIDE
+column=chartering_destination_ui_marker,component,REQUIRED,CLIENTSIDE
+column=chartering_destination_port_coord
 
 // 77
-[dbtable_77]
-column=col0,int,REQUIRED,INDEXED,CLIENTSIDE
-column=col1,component,REQUIRED,CLIENTSIDE
-column=col2,component,REQUIRED,INDEXED,CLIENTSIDE
-column=col3,component,REQUIRED,CLIENTSIDE
-column=col4,component,REQUIRED,CLIENTSIDE
+[prepot_device_loadout_ui]
+column=loadout_id,int,REQUIRED,INDEXED,CLIENTSIDE
+column=container_com,component,REQUIRED,CLIENTSIDE
+column=contents_com,component,REQUIRED,INDEXED,CLIENTSIDE
+column=load_btn_com,component,REQUIRED,CLIENTSIDE
+column=save_btn_com,component,REQUIRED,CLIENTSIDE
 
 // 78
-[dbtable_78]
-column=col0,int,REQUIRED,INDEXED,CLIENTSIDE
-column=col1,int,string,string,graphic,REQUIRED,LIST,CLIENTSIDE
+[combat_interface_weapon_category]
+column=id,int,REQUIRED,INDEXED,CLIENTSIDE
+column=button,int,string,string,graphic,REQUIRED,LIST,CLIENTSIDE
 
 // 79
-[dbtable_79]
-column=col0,string,REQUIRED,CLIENTSIDE
-column=col1,int,REQUIRED,CLIENTSIDE
-column=col2,graphic,REQUIRED,CLIENTSIDE
+[hiscores_skill_info]
+column=skillname,string,REQUIRED,CLIENTSIDE
+column=skillid,int,REQUIRED,CLIENTSIDE
+column=skillicon,graphic,REQUIRED,CLIENTSIDE
 
 // 80
-[dbtable_80]
-column=col0,varp,REQUIRED,CLIENTSIDE
-column=col1,string,REQUIRED,CLIENTSIDE
-column=col2,graphic,REQUIRED,CLIENTSIDE
+[hiscores_activity_info]
+column=activityvarp,varp,REQUIRED,CLIENTSIDE
+column=activityname,string,REQUIRED,CLIENTSIDE
+column=activityicon,graphic,REQUIRED,CLIENTSIDE
 
 // 81
-[dbtable_81]
-column=col0,string,REQUIRED,CLIENTSIDE
-column=col1,graphic,REQUIRED,CLIENTSIDE
-column=col2,varp,REQUIRED,CLIENTSIDE
+[hiscores_bosses_info]
+column=bossname,string,REQUIRED,CLIENTSIDE
+column=bossicon,graphic,REQUIRED,CLIENTSIDE
+column=bossvarp,varp,REQUIRED,CLIENTSIDE
 
 // 82
-[dbtable_82]
-column=col0,int,REQUIRED,INDEXED,CLIENTSIDE
-column=col1,string,REQUIRED,CLIENTSIDE
-column=col2,graphic,CLIENTSIDE
-column=col3,component,CLIENTSIDE
-column=col4,graphic,CLIENTSIDE
-column=col5,graphic,CLIENTSIDE
-column=col6,graphic,CLIENTSIDE
-column=col7,graphic,CLIENTSIDE
-column=col8,graphic,CLIENTSIDE
-column=col9,enum,CLIENTSIDE
-column=col10,struct,CLIENTSIDE
-column=col11,coord,CLIENTSIDE
+[region_data]
+column=region_id,int,REQUIRED,INDEXED,CLIENTSIDE
+column=name,string,REQUIRED,CLIENTSIDE
+column=map_graphic,graphic,CLIENTSIDE
+column=map_component,component,CLIENTSIDE
+column=map_shield_sprite,graphic,CLIENTSIDE
+column=map_shield_sprite_highlighted,graphic,CLIENTSIDE
+column=map_shield_sprite_small,graphic,CLIENTSIDE
+column=map_name_sprite,graphic,CLIENTSIDE
+column=map_name_sprite_highlighted,graphic,CLIENTSIDE
+column=map_slideshow,enum,CLIENTSIDE
+column=area_info,struct,CLIENTSIDE
+column=area_teleport_coord,coord,CLIENTSIDE
 
 // 83
-[dbtable_83]
-column=col0,string,REQUIRED,CLIENTSIDE
-column=col1,string,obj,REQUIRED,LIST,CLIENTSIDE
-column=col2,boolean,REQUIRED,CLIENTSIDE
+[toggle_list_interface]
+column=title,string,REQUIRED,CLIENTSIDE
+column=info,string,obj,REQUIRED,LIST,CLIENTSIDE
+column=disable_on_leagues,boolean,REQUIRED,CLIENTSIDE
 
 // 84
-[dbtable_84]
-column=col0
-column=col1,int,CLIENTSIDE
-default=col1,0
-column=col2,int,stat,LIST,CLIENTSIDE
-column=col3,int,stat,LIST,CLIENTSIDE
-column=col4,int,CLIENTSIDE
-default=col4,0
-column=col5,int,CLIENTSIDE
-default=col5,126
-column=col6
-column=col7
-column=col8,int,REQUIRED,LIST,INDEXED,CLIENTSIDE
-column=col9,string,REQUIRED,CLIENTSIDE
-column=col10,string,REQUIRED,CLIENTSIDE
-column=col11
-column=col12,npc,int,int,int,INDEXED,CLIENTSIDE
+[league_slayer_task_data]
+column=task_id
+column=min_comlevel,int,CLIENTSIDE
+default=min_comlevel,0
+column=min_stat_requirement_all,int,stat,LIST,CLIENTSIDE
+column=min_stat_requirement_any,int,stat,LIST,CLIENTSIDE
+column=leagues_min_comlevel,int,CLIENTSIDE
+default=leagues_min_comlevel,0
+column=leagues_max_comlevel,int,CLIENTSIDE
+default=leagues_max_comlevel,126
+column=quests_required_all
+column=quests_required_any
+column=regions,int,REQUIRED,LIST,INDEXED,CLIENTSIDE
+column=name_lowercase,string,REQUIRED,CLIENTSIDE
+column=name_uppercase,string,REQUIRED,CLIENTSIDE
+column=slayer_tip
+column=master_weight_minamount_maxamount,npc,int,int,int,INDEXED,CLIENTSIDE
 
 // 85
-[dbtable_85]
-column=col0,int,REQUIRED,CLIENTSIDE
-column=col1,namedobj,REQUIRED,CLIENTSIDE
-column=col2,namedobj,REQUIRED,LIST,CLIENTSIDE
-column=col3,int,REQUIRED,LIST,CLIENTSIDE
-column=col4,struct,REQUIRED,CLIENTSIDE
-column=col5,string,REQUIRED,CLIENTSIDE
-column=col6,int,REQUIRED,CLIENTSIDE
-column=col7,int,REQUIRED,INDEXED,CLIENTSIDE
-column=col8,string,REQUIRED,CLIENTSIDE
-column=col9,string,CLIENTSIDE
+[leagues_echo_bosses]
+column=echo_orb_droprate,int,REQUIRED,CLIENTSIDE
+column=echo_orb_object,namedobj,REQUIRED,CLIENTSIDE
+column=unique_drop,namedobj,REQUIRED,LIST,CLIENTSIDE
+column=unique_drop_rate,int,REQUIRED,LIST,CLIENTSIDE
+column=ca_data,struct,REQUIRED,CLIENTSIDE
+column=description,string,REQUIRED,CLIENTSIDE
+column=difficulty,int,REQUIRED,CLIENTSIDE
+column=region,int,REQUIRED,INDEXED,CLIENTSIDE
+column=name,string,REQUIRED,CLIENTSIDE
+column=requirements,string,CLIENTSIDE
 
 // 86
-[dbtable_86]
+[magic_enchant]
+column=base
+column=output
+column=spell
+column=members
+column=castxp
+column=anim
+column=spotanim
+column=sound
+column=special
+column=failmes
 
 // 87
-[dbtable_87]
+[charges]
+column=max_charges
+column=charge_item_and_quantity
+column=charges_granted
+column=charges_type
+column=charges_quantity_bits_and_varp
 
 // 88
-[dbtable_88]
-column=col0,string,REQUIRED,CLIENTSIDE
-column=col1,dbrow,LIST,CLIENTSIDE
-column=col2,string,synth,LIST,CLIENTSIDE
-column=col3,dbrow,CLIENTSIDE
+[synth]
+column=name,string,REQUIRED,CLIENTSIDE
+column=sub_menu,dbrow,LIST,CLIENTSIDE
+column=synth,string,synth,LIST,CLIENTSIDE
+column=parent_directory,dbrow,CLIENTSIDE
 
 // 89
-[dbtable_89]
-column=col0,int,REQUIRED,INDEXED,CLIENTSIDE
-column=col1,int,REQUIRED,CLIENTSIDE
-column=col2,coord,REQUIRED,INDEXED,CLIENTSIDE
-column=col3,string,REQUIRED,CLIENTSIDE
-column=col4,component,REQUIRED,INDEXED,CLIENTSIDE
-column=col5,component,REQUIRED,CLIENTSIDE
-column=col6,mapelement,REQUIRED,INDEXED,CLIENTSIDE
-column=col7,string,REQUIRED,CLIENTSIDE
-column=col8,string,CLIENTSIDE
-default=col8,
-column=col9,npc,CLIENTSIDE
-column=col10,boolean,CLIENTSIDE
-default=col10,true
-column=col11,boolean,CLIENTSIDE
-default=col11,false
+[fairyring]
+column=id,int,REQUIRED,INDEXED,CLIENTSIDE
+column=multiloc_state,int,REQUIRED,CLIENTSIDE
+column=dest_coord,coord,REQUIRED,INDEXED,CLIENTSIDE
+column=code,string,REQUIRED,CLIENTSIDE
+column=text_component,component,REQUIRED,INDEXED,CLIENTSIDE
+column=fave_icon_component,component,REQUIRED,CLIENTSIDE
+column=mapelement,mapelement,REQUIRED,INDEXED,CLIENTSIDE
+column=mapelement_tooltip,string,REQUIRED,CLIENTSIDE
+column=desc,string,CLIENTSIDE
+default=desc,
+column=apparition_npc,npc,CLIENTSIDE
+column=show_apparition,boolean,CLIENTSIDE
+default=show_apparition,true
+column=no_staff_return,boolean,CLIENTSIDE
+default=no_staff_return,false
 

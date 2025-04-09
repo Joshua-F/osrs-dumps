@@ -10,13 +10,13 @@ if (%varclient_386 = true) {
     if_sethide(true, $component1);
     if_sethide(true, $component2);
     if_sethide(false, $component3);
-    $int12 = inv_size(inv_93);
+    $int12 = inv_size(inv);
     while ($int12 > 0) {
         $int12 = calc($int12 - 1);
         if (cc_find($component3, $int12) = ^true) {
             cc_clearops;
             cc_setposition(calc($int9 + $int12 % 4 * 42), calc($int10 + $int12 / 4 * 36), ^setpos_abs_left, ^setpos_abs_top);
-            ~bankside_worn_drawitem(inv_getobj(inv_93, $int12), inv_getnum(inv_93, $int12), $int12);
+            ~bankside_worn_drawitem(inv_getobj(inv, $int12), inv_getnum(inv, $int12), $int12);
             cc_setontimer(null);
         }
     }
@@ -26,10 +26,10 @@ if_sethide(false, $component1);
 if_sethide(false, $component2);
 if_sethide(true, $component3);
 def_int $int13 = 0;
-$int12 = inv_size(inv_516);
+$int12 = inv_size(looting_bag);
 while ($int12 > 0 & $int13 = 0) {
     $int12 = calc($int12 - 1);
-    if (inv_getobj(inv_516, $int12) ! null) {
+    if (inv_getobj(looting_bag, $int12) ! null) {
         $int13 = 1;
     }
 }
@@ -38,20 +38,20 @@ def_boolean $boolean15 = ~script7794(93);
 def_int $int16 = 0;
 def_int $int17 = 0;
 def_boolean $boolean18 = false;
-$int12 = inv_size(inv_93);
+$int12 = inv_size(inv);
 while ($int12 > 0) {
     $int12 = calc($int12 - 1);
     if (cc_find($component1, $int12) = ^true) {
-        $obj11 = inv_getobj(inv_93, $int12);
+        $obj11 = inv_getobj(inv, $int12);
         $boolean18 = ~bank_side_locked_slot($int12);
-        ~bankside_drawitem($obj11, inv_getnum(inv_93, $int12), $int12, $component1, $component2, $int13, $component0, $component4, $component5, $component6, $component7, $component8, $boolean18);
+        ~bankside_drawitem($obj11, inv_getnum(inv, $int12), $int12, $component1, $component2, $int13, $component0, $component4, $component5, $component6, $component7, $component8, $boolean18);
         $int16, $int17 = calc($int9 + $int12 % 4 * 42), calc($int10 + $int12 / 4 * 36);
         cc_setposition($int16, $int17, ^setpos_abs_left, ^setpos_abs_top);
         if ($boolean15 = true) {
             $int14 = ~script7783($component2, $int16, $int17, $boolean18, $int14);
         }
         switch_obj ($obj11) {
-            case obj_11941, obj_22586 :
+            case looting_bag, looting_bag_open :
                 if ($int13 = 1) {
                     .cc_create($component2, ^iftype_graphic, $int14);
                     $int14 = calc($int14 + 1);
@@ -60,7 +60,7 @@ while ($int12 > 0) {
                     .cc_setgraphic("prayerglow,0");
                     .cc_settrans(180);
                 }
-            case obj_25106, obj_25108, obj_12791, obj_24416, obj_27281, obj_27509 :
+            case league_second_inventory, league_second_inventory_open, bh_rune_pouch, bh_rune_pouch_trouver, divine_rune_pouch, divine_rune_pouch_trouver :
                 .cc_create($component2, ^iftype_graphic, $int14);
                 $int14 = calc($int14 + 1);
                 .cc_setsize(34, 34, ^setsize_abs, ^setsize_abs);

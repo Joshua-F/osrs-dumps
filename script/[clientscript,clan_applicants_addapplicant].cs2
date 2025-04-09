@@ -1,6 +1,6 @@
 // 4376
 [clientscript,clan_applicants_addapplicant](int $int0, string $string0)
-if (if_hassub(enum(component, component, ~toplevel_getcomponents, interface_161:com_16)) = false) {
+if (if_hassub(enum(component, component, ~toplevel_getcomponents, toplevel_osrs_stretch:mainmodal)) = false) {
     return;
 }
 def_component $component1 = enum(int, component, enum_3805, $int0);
@@ -17,7 +17,7 @@ if (string_length($string0) > 0) {
     cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
     cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
     cc_setfill(true);
-    ~clan_applicants_entry_init(%varclient_43, $component1, $int0, $string0, interface_699:com_11);
+    ~clan_applicants_entry_init(%varclient_43, $component1, $int0, $string0, clans_applicants:list);
     cc_create($component1, ^iftype_text, 1);
     cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
     cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
@@ -42,19 +42,19 @@ def_int $int4 = 0;
 def_int $int5 = 0;
 def_int $int6 = 0;
 if ($int0 >= calc(20 - 1)) {
-    cc_deleteall(interface_699:com_11);
+    cc_deleteall(clans_applicants:list);
     $int0 = 0;
     while ($int0 < 20) {
         $component1 = enum(int, component, enum_3805, $int0);
         if ($component1 ! null) {
             if_sethide(false, $component1);
         }
-        cc_create(interface_699:com_11, ^iftype_rectangle, $int0);
+        cc_create(clans_applicants:list, ^iftype_rectangle, $int0);
         cc_sethide(true);
         $int0 = calc($int0 + 1);
     }
     if (%varclient_43 <= 0) {
-        cc_create(interface_699:com_11, ^iftype_text, $int0);
+        cc_create(clans_applicants:list, ^iftype_text, $int0);
         cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
         cc_setsize(5, 5, ^setsize_minus, ^setsize_minus);
         cc_setcolour(0xff981f);
@@ -63,15 +63,15 @@ if ($int0 >= calc(20 - 1)) {
         cc_settextshadow(true);
         cc_settext("There are no applicants to view at the moment.");
     }
-    $int4, $int3 = calc(50 + if_getheight(interface_699:com_3) + 5 + 4 + 35), calc(%varclient_43 * $int2);
-    $int5 = calc(50 + if_getheight(interface_699:com_3) + 5 + if_getheight(interface_699:com_35));
+    $int4, $int3 = calc(50 + if_getheight(clans_applicants:top) + 5 + 4 + 35), calc(%varclient_43 * $int2);
+    $int5 = calc(50 + if_getheight(clans_applicants:top) + 5 + if_getheight(clans_applicants:right));
     $int6 = ~max(calc($int4 + $int3), $int5);
-    ~clan_applicants_setsize($int6, $int4, $int3, $int5, interface_699:com_11, interface_699:com_32, interface_699:com_1, if_getheight(if_getlayer(interface_699:com_1)));
-    if_sethide(false, interface_699:com_33);
-    if_sethide(false, interface_699:com_34);
-    if_sethide(false, interface_699:com_40);
-    if_sethide(false, interface_699:com_39);
-    if_sethide(false, interface_699:com_4);
-    if_sethide(false, interface_699:com_5);
-    if_sethide(false, interface_699:com_6);
+    ~clan_applicants_setsize($int6, $int4, $int3, $int5, clans_applicants:list, clans_applicants:scrollbar, clans_applicants:universe, if_getheight(if_getlayer(clans_applicants:universe)));
+    if_sethide(false, clans_applicants:exit);
+    if_sethide(false, clans_applicants:refresh);
+    if_sethide(false, clans_applicants:accept);
+    if_sethide(false, clans_applicants:reject);
+    if_sethide(false, clans_applicants:recruit);
+    if_sethide(false, clans_applicants:combatlevel);
+    if_sethide(false, clans_applicants:skilltotal);
 }

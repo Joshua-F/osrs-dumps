@@ -12,39 +12,39 @@ def_int $int7 = 0;
 while ($int3 < $int1) {
     $dbrow2 = enum(int, dbrow, enum_5625, $int3);
     if ($dbrow2 ! null) {
-        $varp6 = db_getfield($dbrow2, dbtable_80:col0, 0);
+        $varp6 = db_getfield($dbrow2, hiscores_activity_info:activityvarp, 0);
         $int4 = ~max(0, hiscore_getbosskills($varp6));
         $int5 = ~max(0, calc(hiscore_getbossrank($varp6) + 1));
-        if (cc_find(interface_894:com_8, $int0) = ^true) {
+        if (cc_find(hiscores:hiscores_activities, $int0) = ^true) {
             cc_settext(~hiscores_tostring($int4));
         }
         switch_dbrow ($dbrow2) {
-            case dbrow_3997 :
+            case hiscores_activity_clue :
                 if ($int5 > 0) {
-                    $string0 = "<db_getfield($dbrow2, dbtable_80:col1, 0)><br>All: <~tostring_spacer(~min($int4, ^max_32bit_int), ",")> Rank: <~tostring_spacer($int5, ",")>";
-                    $int7 = calc(hiscore_getbossrank(varplayer_2201) + 1);
-                    $string0 = append($string0, "<br>Beginner: <~tostring_spacer(~max(0, hiscore_getbosskills(varplayer_2201)), ",")> Rank: <~tostring_spacer(~max(0, $int7), ",")>");
-                    $int7 = calc(hiscore_getbossrank(varplayer_1111) + 1);
-                    $string0 = append($string0, "<br>Easy: <~tostring_spacer(~max(0, hiscore_getbosskills(varplayer_1111)), ",")> Rank: <~tostring_spacer(~max(0, $int7), ",")>");
-                    $int7 = calc(hiscore_getbossrank(varplayer_1112) + 1);
-                    $string0 = append($string0, "<br>Medium: <~tostring_spacer(~max(0, hiscore_getbosskills(varplayer_1112)), ",")> Rank: <~tostring_spacer(~max(0, $int7), ",")>");
-                    $int7 = calc(hiscore_getbossrank(varplayer_1354) + 1);
-                    $string0 = append($string0, "<br>Hard: <~tostring_spacer(~max(0, hiscore_getbosskills(varplayer_1354)), ",")> Rank: <~tostring_spacer(~max(0, $int7), ",")>");
-                    $int7 = calc(hiscore_getbossrank(varplayer_1533) + 1);
-                    $string0 = append($string0, "<br>Elite: <~tostring_spacer(~max(0, hiscore_getbosskills(varplayer_1533)), ",")> Rank: <~tostring_spacer(~max(0, $int7), ",")>");
-                    $int7 = calc(hiscore_getbossrank(varplayer_1534) + 1);
-                    $string0 = append($string0, "<br>Master: <~tostring_spacer(~max(0, hiscore_getbosskills(varplayer_1534)), ",")> Rank: <~tostring_spacer(~max(0, $int7), ",")>");
+                    $string0 = "<db_getfield($dbrow2, hiscores_activity_info:activityname, 0)><br>All: <~tostring_spacer(~min($int4, ^max_32bit_int), ",")> Rank: <~tostring_spacer($int5, ",")>";
+                    $int7 = calc(hiscore_getbossrank(completed_clues5) + 1);
+                    $string0 = append($string0, "<br>Beginner: <~tostring_spacer(~max(0, hiscore_getbosskills(completed_clues5)), ",")> Rank: <~tostring_spacer(~max(0, $int7), ",")>");
+                    $int7 = calc(hiscore_getbossrank(completed_clues) + 1);
+                    $string0 = append($string0, "<br>Easy: <~tostring_spacer(~max(0, hiscore_getbosskills(completed_clues)), ",")> Rank: <~tostring_spacer(~max(0, $int7), ",")>");
+                    $int7 = calc(hiscore_getbossrank(completed_clues1) + 1);
+                    $string0 = append($string0, "<br>Medium: <~tostring_spacer(~max(0, hiscore_getbosskills(completed_clues1)), ",")> Rank: <~tostring_spacer(~max(0, $int7), ",")>");
+                    $int7 = calc(hiscore_getbossrank(completed_clues2) + 1);
+                    $string0 = append($string0, "<br>Hard: <~tostring_spacer(~max(0, hiscore_getbosskills(completed_clues2)), ",")> Rank: <~tostring_spacer(~max(0, $int7), ",")>");
+                    $int7 = calc(hiscore_getbossrank(completed_clues3) + 1);
+                    $string0 = append($string0, "<br>Elite: <~tostring_spacer(~max(0, hiscore_getbosskills(completed_clues3)), ",")> Rank: <~tostring_spacer(~max(0, $int7), ",")>");
+                    $int7 = calc(hiscore_getbossrank(completed_clues4) + 1);
+                    $string0 = append($string0, "<br>Master: <~tostring_spacer(~max(0, hiscore_getbosskills(completed_clues4)), ",")> Rank: <~tostring_spacer(~max(0, $int7), ",")>");
                 } else {
-                    $string0 = "<db_getfield($dbrow2, dbtable_80:col1, 0)><br>Rank: Unranked";
+                    $string0 = "<db_getfield($dbrow2, hiscores_activity_info:activityname, 0)><br>Rank: Unranked";
                 }
             case default :
                 if ($int5 > 0) {
-                    $string0 = "<db_getfield($dbrow2, dbtable_80:col1, 0)><br>Rank: <~tostring_spacer($int5, ",")><br>Score: <~tostring_spacer($int4, ",")>";
+                    $string0 = "<db_getfield($dbrow2, hiscores_activity_info:activityname, 0)><br>Rank: <~tostring_spacer($int5, ",")><br>Score: <~tostring_spacer($int4, ",")>";
                 } else {
-                    $string0 = "<db_getfield($dbrow2, dbtable_80:col1, 0)><br>Rank: Unranked";
+                    $string0 = "<db_getfield($dbrow2, hiscores_activity_info:activityname, 0)><br>Rank: Unranked";
                 }
         }
-        if (cc_find(interface_894:com_8, $int3) = ^true) {
+        if (cc_find(hiscores:hiscores_activities, $int3) = ^true) {
             ~hiscores_set_tooltip($string0, 0, 0);
         }
         $int0 = calc($int0 + 2);

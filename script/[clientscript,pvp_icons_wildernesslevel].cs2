@@ -2,18 +2,18 @@
 [clientscript,pvp_icons_wildernesslevel](component $component0)
 def_int $int1 = ~wilderness_level;
 if (~deadman_world ! 0) {
-    if (%varplayerbit_1463 = 1) {
+    if (%spectator_toplevel_enabled = 1) {
         if_settext("", $component0);
-    } else if (%varplayer_1676 > 4) {
-        if ($int1 > 0 & %varplayerbit_5954 = 1) {
+    } else if (%deadman_tournament_mode_pl > 4) {
+        if ($int1 > 0 & %deadman_inwilderness = 1) {
             if_settext("Level: <tostring($int1)>", $component0);
         } else {
             if_settext("Deadman", $component0);
         }
-    } else if (%varplayerbit_4965 > 0) {
+    } else if (%deadman_protection_left > 0) {
         if_settext("Protection", $component0);
         if_setposition(0, 25, ^setpos_abs_centre, ^setpos_abs_bottom, $component0);
-    } else if ($int1 > 0 & %varplayerbit_5954 = 1) {
+    } else if ($int1 > 0 & %deadman_inwilderness = 1) {
         if_settext("Level: <tostring($int1)>", $component0);
     } else if (%varclient_78 = 1) {
         if_settext("Guarded", $component0);
@@ -22,7 +22,7 @@ if (~deadman_world ! 0) {
     } else {
         if_settext("Deadman", $component0);
     }
-} else if (%varplayerbit_10530 = 1) {
+} else if (%wildy_hub_buffer = 1) {
     if_settext("Level: --", $component0);
 } else if ($int1 > 0) {
     if_settext("Level: <tostring($int1)>", $component0);

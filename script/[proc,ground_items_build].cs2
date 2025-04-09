@@ -1,13 +1,13 @@
 // 7206
 [proc,ground_items_build]
-~script7213(interface_650:com_74, stringvector_4);
-~script7213(interface_650:com_77, stringvector_3);
+~script7213(loottools:ground_items_highlights_list, stringvector_4);
+~script7213(loottools:ground_items_filter_list, stringvector_3);
 def_boolean $boolean0 = ~on_mobile;
 def_string $string0 = struct_param(struct_4510, param_1086);
 def_int $int1 = 20;
 def_int $int2 = 0;
 def_int $int3 = 0;
-cc_create(interface_650:com_70, ^iftype_rectangle, $int3);
+cc_create(loottools:ground_items_top, ^iftype_rectangle, $int3);
 cc_setsize(0, $int1, ^setsize_minus, ^setsize_abs);
 cc_setposition(0, $int2, ^setpos_abs_centre, ^setpos_abs_top);
 cc_setfill(true);
@@ -15,7 +15,7 @@ cc_setop(1, "Toggle");
 cc_setcolour(^white);
 cc_settrans(255);
 $int3 = calc($int3 + 1);
-.cc_create(interface_650:com_70, ^iftype_text, $int3);
+.cc_create(loottools:ground_items_top, ^iftype_text, $int3);
 .cc_setsize(25, $int1, ^setsize_minus, ^setsize_abs);
 .cc_setposition(0, $int2, ^setpos_abs_left, ^setpos_abs_top);
 .cc_settext($string0);
@@ -24,15 +24,15 @@ $int3 = calc($int3 + 1);
 .cc_setcolour(0xff981f);
 .cc_settextalign(^settextalign_left, ^settextalign_centre, 14);
 $int3 = calc($int3 + 1);
-.cc_create(interface_650:com_70, ^iftype_graphic, $int3);
+.cc_create(loottools:ground_items_top, ^iftype_graphic, $int3);
 .cc_setsize(18, 18, ^setsize_abs, ^setsize_abs);
 .cc_setposition(0, calc($int2 + ($int1 / 2 - 9)), ^setpos_abs_right, ^setpos_abs_top);
-if (%varplayerbit_14869 = 1) {
+if (%ground_items_enabled = 1) {
     .cc_setgraphic("toggle_box,1");
 } else {
     .cc_setgraphic("toggle_box,0");
 }
 cc_setonop("ground_items_toggle_op(event_com, .cc_getid)");
-cc_setonvartransmit("ground_items_toggle_transmit(event_com, .cc_getid){varplayer_3539}");
+cc_setonvartransmit("ground_items_toggle_transmit(event_com, .cc_getid){settings_varp_ehc_4}");
 $int3 = calc($int3 + 1);
-~loottracker_ui_resize_area(if_getheight(interface_650:com_34));
+~loottracker_ui_resize_area(if_getheight(loottools:loottracker_content_scroll_area_inner));

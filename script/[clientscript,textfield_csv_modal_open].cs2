@@ -1,6 +1,6 @@
 // 7102
 [clientscript,textfield_csv_modal_open](component $component0)
-def_struct $struct1 = enum(int, struct, enum_423, %varplayerbit_9656);
+def_struct $struct1 = enum(int, struct, enum_423, %settings_category);
 if ($struct1 = null) {
     return;
 }
@@ -19,7 +19,7 @@ while ($int7 < $int8) {
     if ($struct4 ! null) {
         $int5 = struct_param($struct4, param_1078);
         $int6 = struct_param($struct4, param_1077);
-        if ($int5 = 10 & $int6 = %varplayerbit_9657) {
+        if ($int5 = 10 & $int6 = %settings_selected_setting) {
             $struct3 = $struct4;
             $int8 = $int7;
         }
@@ -29,9 +29,9 @@ while ($int7 < $int8) {
 if ($struct3 = null) {
     return;
 }
-~script4206(interface_82:com_1, interface_82:com_2, interface_82:com_3, ^max_32bit_int, $component0);
-~steelborder(interface_82:com_4, "Text Input - <struct_param($struct3, param_1086)>", 1);
-def_component $component9 = interface_82:com_7;
+~script4206(textfield_csv:clamp, textfield_csv:fader, textfield_csv:window, ^max_32bit_int, $component0);
+~steelborder(textfield_csv:frame, "Text Input - <struct_param($struct3, param_1086)>", 1);
+def_component $component9 = textfield_csv:textfield_tab_content;
 def_int $int10 = 0;
 def_int $int11 = 0;
 def_int $setsize12 = ^setsize_minus;
@@ -67,7 +67,7 @@ def_string $string0 = ~script7105($struct3);
 cc_settext($string0);
 cc_input_setfocus(true);
 cc_input_setcaret(string_length($string0));
-~stonebutton_init("<col=ff981f>Cancel</col>", interface_82:com_9, p12_full, 0);
-if_setonop("script4208(0, interface_82:com_1, interface_82:com_2, interface_82:com_3, $component0)", interface_82:com_9);
-~stonebutton_init("<col=0dc10d>Save</col>", interface_82:com_10, p12_full, 0);
-if_setonop("textfield_csv_modal_submit($component0, $component9, $int19)", interface_82:com_10);
+~stonebutton_init("<col=ff981f>Cancel</col>", textfield_csv:cancel, p12_full, 0);
+if_setonop("script4208(0, textfield_csv:clamp, textfield_csv:fader, textfield_csv:window, $component0)", textfield_csv:cancel);
+~stonebutton_init("<col=0dc10d>Save</col>", textfield_csv:submit, p12_full, 0);
+if_setonop("textfield_csv_modal_submit($component0, $component9, $int19)", textfield_csv:submit);

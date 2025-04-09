@@ -1,10 +1,10 @@
 // 2633
 [proc,questlist_draw](component $component0, component $component1, component $component2, component $component3, component $component4, boolean $boolean5)
 def_int $int6 = -3;
-if (%varplayerbit_13889 = 1) {
+if (%questlist_disable_headers = 1) {
     $int6 = 2;
 }
-def_int $int7 = db_listall(dbtable_0);
+def_int $int7 = db_listall(quest);
 def_int $int8 = 1;
 def_graphic $graphic9 = p11_full;
 def_fontmetrics $fontmetrics10 = p11_full;
@@ -13,7 +13,7 @@ def_int $int12 = 5;
 if (~on_mobile = true) {
     $int12 = 11;
 }
-if (%varplayerbit_13780 = 1) {
+if (%questlist_larger_text = 1) {
     $graphic9 = p12_full;
     $fontmetrics10 = p12_full;
     $int11 = 13;
@@ -32,7 +32,7 @@ while ($int8 <= $int7) {
     cc_create($component4, ^iftype_text, $int8);
     cc_setsize(0, $int11, ^setsize_minus, ^setsize_abs);
     cc_settextfont($graphic9);
-    if (%varplayerbit_13781 = 1) {
+    if (%questlist_disable_text_shadow = 1) {
         cc_settextshadow(false);
     } else {
         cc_settextshadow(true);
@@ -40,7 +40,7 @@ while ($int8 <= $int7) {
     cc_settextalign(^settextalign_left, ^settextalign_centre, $int11);
     $string0 = ~get_quest_name($dbrow13);
     cc_setopbase("<col=ff9040><$string0></col>");
-    if (~script4026($dbrow13, %varplayerbit_13772) = true) {
+    if (~script4026($dbrow13, %questlist_sort_type) = true) {
         $string0 = "MQ: <$string0>";
     }
     if (~speedrunning_world = true & ~speedrunning_beta_quest($dbrow13) = true) {
@@ -54,12 +54,12 @@ while ($int8 <= $int7) {
         cc_setop(1, "");
     }
     cc_setop(2, "Read journal:");
-    if (db_getfield($dbrow13, dbtable_0:col13, 0) ! null & db_getfield($dbrow13, dbtable_0:col13, 0) ! 0_0_0_0_0) {
+    if (db_getfield($dbrow13, quest:startcoord, 0) ! null & db_getfield($dbrow13, quest:startcoord, 0) ! 0_0_0_0_0) {
         cc_setop(3, "Show on map:");
     } else {
         cc_setop(3, "");
     }
-    if (db_getfield($dbrow13, dbtable_0:col3, 0) = false) {
+    if (db_getfield($dbrow13, quest:in_prerelease, 0) = false) {
         cc_setop(4, "Open wiki guide:");
         cc_setop(5, "Open wiki quick guide:");
     } else {
@@ -72,7 +72,7 @@ while ($int8 <= $int7) {
     $int8 = calc($int8 + 1);
 }
 if ($int7 > 1) {
-    ~questlist_sort(intarray0, 0, calc($int7 - 1), %varplayerbit_13772, $int15);
+    ~questlist_sort(intarray0, 0, calc($int7 - 1), %questlist_sort_type, $int15);
 }
 def_int $int16 = 0;
 def_int $int17 = 0;
@@ -88,15 +88,15 @@ while ($int16 < $int7) {
     $dbrow13 = ~script6154($int17);
     $boolean19 = ~quest_requirement_check($dbrow13);
     $boolean20 = ~script5990($dbrow13);
-    $string2 = ~script2265($dbrow13, $int14, %varplayerbit_13772);
+    $string2 = ~script2265($dbrow13, $int14, %questlist_sort_type);
     $boolean21 = ~script4028($dbrow13, $int14, $boolean19, $boolean20);
     if (~questlist_hide_quest($dbrow13, $int14, $boolean19, $boolean20, $boolean21) = false) {
-        if (compare($string2, $string1) ! 0 & %varplayerbit_13889 = 0) {
+        if (compare($string2, $string1) ! 0 & %questlist_disable_headers = 0) {
             $int8, $int6 = ~questlist_add_header($string2, $int8, $int6, $component4);
             $string1 = $string2;
         }
         if (cc_find($component4, $int17) = ^true) {
-            if (db_getfield($dbrow13, dbtable_0:col21, 0) ! null) {
+            if (db_getfield($dbrow13, quest:parent_quest, 0) ! null) {
                 cc_sethide(true);
             } else {
                 cc_sethide(false);

@@ -4,7 +4,7 @@ def_component $component0 = null;
 def_component $component1 = null;
 def_int $int2 = 42598457;
 def_int $int3 = 42598480;
-def_component $component4 = interface_650:com_32;
+def_component $component4 = loottools:loot_tracking_content;
 if_setsize(22, 4, ^setsize_minus, ^setsize_minus, $component4);
 def_int $int5 = 0;
 def_int $int6 = 0;
@@ -41,7 +41,7 @@ def_string $string1 = null;
 ~script7188;
 ~script7185;
 ~script7182(-1);
-switch_int (%varplayerbit_9607) {
+switch_int (%option_loottracker_display_group_mode) {
     case 0 :
         $int7 = 10;
         $int9 = 0;
@@ -68,16 +68,16 @@ while ($int8 < $int7) {
     $int32 = 0;
     $int27 = 0;
     $boolean25 = stringvector_contains(stringvector_1, $string0, true, false);
-    if (($boolean25 = false | %varplayerbit_14880 = 1) & $int11 ! 0) {
+    if (($boolean25 = false | %option_loottracker_display_ignored_entries = 1) & $int11 ! 0) {
         $int27, $int26, $int28, $int29, $int30 = ~script2907($component1, $int8, $string0, $int12, $boolean25, $rgb13, $int23, $int27, $int26);
         while ($int16 < $int15) {
             if (cc_find($component0, $int16) = ^true) {
                 $obj17, $int18, $int19, $int21, $int20, $int22, $int24 = ~script7173($component0, $int16);
-                if ($int24 = 0 | %varplayerbit_14880 = 1) {
+                if ($int24 = 0 | %option_loottracker_display_ignored_entries = 1) {
                     if ($rgb13 = 0x000001) {
                         $int27, $int26, $int31, $int32, $int23 = ~script3042($component4, $component1, $int8, $int16, $obj17, $int18, $int19, $int21, $int20, $int22, $int24, $int27, $int26, $int31, $int32, $int23);
                     }
-                    if (%varplayerbit_14881 = 0) {
+                    if (%option_loottracker_display_value_mode = 0) {
                         if ($int22 >= 0) {
                             $int14 = ~script1226($int14, $int22);
                         } else {
@@ -114,7 +114,7 @@ while ($int8 < $int7) {
         if (cc_find($component1, 4) = ^true) {
             cc_settext("<~magic_spacer_tostring_extended($int14, ".", 1)> gp");
         }
-        if (%varplayerbit_9607 = 0) {
+        if (%option_loottracker_display_group_mode = 0) {
             $int5 = ~script1226($int5, $int12);
         } else {
             $int5 = ~script1226($int5, 1);

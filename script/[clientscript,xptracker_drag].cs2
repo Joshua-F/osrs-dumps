@@ -1,12 +1,12 @@
 // 5445
 [clientscript,xptracker_drag](int $int0, int $int1, int $int2, stat $stat3)
 def_int $int4 = 0;
-def_int $int5 = if_getscrolly(interface_729:com_3);
-def_int $int6 = if_getheight(interface_729:com_3);
-def_int $int7 = if_getscrollheight(interface_729:com_3);
+def_int $int5 = if_getscrolly(xptracker:tracker_container);
+def_int $int6 = if_getheight(xptracker:tracker_container);
+def_int $int7 = if_getscrollheight(xptracker:tracker_container);
 ~script5447($int1, $int0, $stat3);
 $int0 = calc($int0 - $int5);
-if (cc_find(interface_729:com_5, $int1) = ^true) {
+if (cc_find(xptracker:tracker_border, $int1) = ^true) {
     if ($int0 < 5) {
         $int4 = -5;
     } else if ($int0 < 15) {
@@ -24,5 +24,5 @@ if (cc_find(interface_729:com_5, $int1) = ^true) {
     }
     cc_setondrag("xptracker_drag(event_mousey, $int1, calc($int2 + 1), $stat3)");
     $int0 = ~min(calc($int7 - $int6), ~max(0, calc($int5 + $int4)));
-    ~scrollbar_resize(interface_729:com_2, interface_729:com_3, $int0);
+    ~scrollbar_resize(xptracker:tracker_scrollbar, xptracker:tracker_container, $int0);
 }

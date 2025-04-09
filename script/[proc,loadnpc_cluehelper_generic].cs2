@@ -9,37 +9,37 @@ def_dbrow $dbrow4 = ~cluehelper_clue_target($dbrow1);
 def_npc $npc5 = null;
 def_int $int6 = 0;
 def_int $int7 = 0;
-if (db_getrowtable($dbrow4) = dbtable_15) {
-    $npc5 = db_getfield($dbrow4, dbtable_15:col0, 0);
-    if ($npc5 = npc_13646 & %varplayerbit_10792 ! 0) {
-        $npc5 = npc_13647;
+if (db_getrowtable($dbrow4) = cluehelper_target_npc) {
+    $npc5 = db_getfield($dbrow4, cluehelper_target_npc:npc, 0);
+    if ($npc5 = warguild_ghommal & %wgs_hero_part_2_vis ! 0) {
+        $npc5 = warguild_laidee_multi;
     }
     if (npc_type = $npc5) {
         switch_dbtable (db_getrowtable($dbrow1)) {
-            case dbtable_13 :
+            case cluehelper_clue_music :
                 ~loadnpc_cluehelper_music_overlay($entityoverlay0, $npc_uid2, $int3);
-            case dbtable_11 :
+            case cluehelper_clue_falobard :
                 ~loadnpc_cluehelper_bard_overlay($entityoverlay0, $npc_uid2, $int3);
-            case dbtable_14 :
+            case cluehelper_clue_skillchallenge :
                 ~loadnpc_cluehelper_skill_challenge_overlay($entityoverlay0, $npc_uid2, $int3);
-            case dbtable_4, dbtable_6, dbtable_8 :
+            case cluehelper_clue_anagram, cluehelper_clue_cipher, cluehelper_clue_cryptic :
                 ~loadnpc_cluehelper_talkto_overlay($entityoverlay0, $npc_uid2, $int3);
         }
     }
-} else if (db_getrowtable($dbrow4) = dbtable_20) {
-    $int7 = db_getfieldcount($dbrow4, dbtable_20:col0);
+} else if (db_getrowtable($dbrow4) = cluehelper_target_kill) {
+    $int7 = db_getfieldcount($dbrow4, cluehelper_target_kill:npcs);
     while ($int6 < $int7) {
-        $npc5 = db_getfield($dbrow4, dbtable_20:col0, $int6);
+        $npc5 = db_getfield($dbrow4, cluehelper_target_kill:npcs, $int6);
         if (npc_type = $npc5) {
             ~loadnpc_cluehelper_kill_target_overlay($entityoverlay0, $npc_uid2, $int3);
             return;
         }
         $int6 = calc($int6 + 1);
     }
-} else if (db_getrowtable($dbrow4) = dbtable_19) {
-    $int7 = db_getfieldcount($dbrow4, dbtable_19:col2);
+} else if (db_getrowtable($dbrow4) = cluehelper_target_key) {
+    $int7 = db_getfieldcount($dbrow4, cluehelper_target_key:npcs);
     while ($int6 < $int7) {
-        $npc5 = db_getfield($dbrow4, dbtable_19:col2, $int6);
+        $npc5 = db_getfield($dbrow4, cluehelper_target_key:npcs, $int6);
         if (npc_type = $npc5) {
             ~cluehelper_key_npc($dbrow1, $dbrow4, $entityoverlay0, $npc_uid2, $int3);
             return;

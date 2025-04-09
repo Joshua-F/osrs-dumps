@@ -3,12 +3,12 @@
 highlight_npctype_clear(13);
 highlight_loctype_clear(16);
 def_dbrow $dbrow0 = null;
-if (%varplayerbit_9619 = 1) {
-    if (%varplayer_3679 ! null) {
-        ~quest_highlight_entity(%varplayer_3679);
+if (%quest_start_highlight = 1) {
+    if (%latest_quest_journal ! null) {
+        ~quest_highlight_entity(%latest_quest_journal);
     }
-} else if (%varplayerbit_9619 = 2) {
-    db_listall(dbtable_0);
+} else if (%quest_start_highlight = 2) {
+    db_listall(quest);
     $dbrow0 = db_findnext;
     while ($dbrow0 ! null) {
         ~quest_highlight_entity($dbrow0);

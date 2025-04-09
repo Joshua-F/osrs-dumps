@@ -4,7 +4,7 @@ def_boolean $boolean1 = ~ground_items_edit_mode;
 def_boolean $boolean2 = ~ground_items_display_despawn_time;
 def_boolean $boolean3 = ~ground_items_display_visibility_time;
 def_int $int4 = objstack_size($coord0);
-def_int $int5 = %varplayerbit_15021;
+def_int $int5 = %ground_items_max_lines;
 def_int $int6 = $int5;
 def_entityoverlay $entityoverlay7 = entityoverlay_get_coord($coord0, 0);
 if ($entityoverlay7 = null) {
@@ -34,7 +34,7 @@ def_int $int16 = 0;
 def_int $int17 = 0;
 def_boolean $boolean18 = true;
 def_int $int19 = 0;
-if (%varplayerbit_14869 = 1) {
+if (%ground_items_enabled = 1) {
     while ($int10 > 0) {
         $int10 = calc($int10 - 1);
         $obj11 = $obj12;
@@ -97,22 +97,22 @@ if (if_find_entityoverlay($entityoverlay7) = ^true) {
 def_int $int23 = 6;
 def_int $int24 = -1;
 def_int $int25 = -1;
-if (%varplayerbit_14869 = 1) {
+if (%ground_items_enabled = 1) {
     while ($int23 >= 0) {
         $int10 = 0;
         switch_int ($int23) {
             case 6 :
                 $int24, $int25 = ~settings_get_colour_or_default(327), -1;
             case 5 :
-                $int24, $int25 = ~settings_get_colour_or_default(322), %varplayer_3800;
+                $int24, $int25 = ~settings_get_colour_or_default(322), %ground_items_t5_threshold;
             case 4 :
-                $int24, $int25 = ~settings_get_colour_or_default(323), %varplayer_3801;
+                $int24, $int25 = ~settings_get_colour_or_default(323), %ground_items_t4_threshold;
             case 3 :
-                $int24, $int25 = ~settings_get_colour_or_default(324), %varplayer_3802;
+                $int24, $int25 = ~settings_get_colour_or_default(324), %ground_items_t3_threshold;
             case 2 :
-                $int24, $int25 = ~settings_get_colour_or_default(325), %varplayer_3803;
+                $int24, $int25 = ~settings_get_colour_or_default(325), %ground_items_t2_threshold;
             case 1 :
-                $int24, $int25 = ~settings_get_colour_or_default(326), %varplayer_3804;
+                $int24, $int25 = ~settings_get_colour_or_default(326), %ground_items_t1_threshold;
             case 0 :
                 $int24, $int25 = 16777215, 0;
         }
@@ -156,5 +156,5 @@ if (if_find_entityoverlay($entityoverlay7) = ^true) {
     }
     cc_setonkeydown("ground_items_key(event_keycode, $coord0)");
     cc_setonkeyup("ground_items_key(event_keycode, $coord0)");
-    cc_setonvartransmit("ground_items_transmit($coord0){varplayer_3539, varplayer_3795, varplayer_3800, varplayer_3801, varplayer_3802, varplayer_3803, varplayer_3804, varplayer_3805, varplayer_3806, varplayer_3807, varplayer_3808, varplayer_3809, varplayer_3810}");
+    cc_setonvartransmit("ground_items_transmit($coord0){settings_varp_ehc_4, settings_varp_ehc_5, ground_items_t5_threshold, ground_items_t4_threshold, ground_items_t3_threshold, ground_items_t2_threshold, ground_items_t1_threshold, ground_items_t5_colour, ground_items_t4_colour, ground_items_t3_colour, ground_items_t2_colour, ground_items_t1_colour, ground_items_custom_colour}");
 }

@@ -4,50 +4,50 @@ def_int $int1 = 0;
 def_npc $npc2 = null;
 def_loc $loc3 = null;
 switch_dbtable (db_getrowtable($dbrow0)) {
-    case dbtable_15 :
+    case cluehelper_target_npc :
         $int1 = ~helper_generic_add_title("Talk-to", 0);
-        $npc2 = db_getfield($dbrow0, dbtable_15:col1, 0);
-        if ($npc2 = npc_11876 & %varplayerbit_334 < 28) {
+        $npc2 = db_getfield($dbrow0, cluehelper_target_npc:fallback_npc, 0);
+        if ($npc2 = feud_kebabman_postquest & %feud_var < 28) {
             $npc2 = null;
         }
-        if ($npc2 = npc_13618 & %varplayerbit_10782 ! 0) {
-            $npc2 = npc_13619;
+        if ($npc2 = slayer_master_1_tureal & %wgs_hero_part_1_vis ! 0) {
+            $npc2 = slayer_master_1_aya;
         }
-        if ($npc2 = npc_13613 & %varplayerbit_10792 ! 0) {
-            $npc2 = npc_13614;
+        if ($npc2 = warguild_ghommal_npc & %wgs_hero_part_2_vis ! 0) {
+            $npc2 = warguild_laidee;
         }
         if ($npc2 ! null) {
             $int1 = ~helper_generic_add_text(nc_name($npc2));
         } else {
-            $int1 = ~helper_generic_add_text(nc_name(db_getfield($dbrow0, dbtable_15:col0, 0)));
+            $int1 = ~helper_generic_add_text(nc_name(db_getfield($dbrow0, cluehelper_target_npc:npc, 0)));
         }
         $int1 = ~helper_generic_add_title("Location", 0);
         $int1 = ~helper_generic_add_text(~cluehelper_get_target_description($dbrow0));
-    case dbtable_16 :
+    case cluehelper_target_loc :
         $int1 = ~helper_generic_add_title("Goal", 0);
-        $loc3 = db_getfield($dbrow0, dbtable_16:col1, 0);
+        $loc3 = db_getfield($dbrow0, cluehelper_target_loc:fallback_loc, 0);
         if ($loc3 ! null) {
             $int1 = ~helper_generic_add_text(lc_name($loc3));
         } else {
-            $int1 = ~helper_generic_add_text(lc_name(db_getfield($dbrow0, dbtable_16:col0, 0)));
+            $int1 = ~helper_generic_add_text(lc_name(db_getfield($dbrow0, cluehelper_target_loc:loc, 0)));
         }
         $int1 = ~helper_generic_add_title("Location", 0);
         $int1 = ~helper_generic_add_text(~cluehelper_get_target_description($dbrow0));
-    case dbtable_17 :
+    case cluehelper_target_mapzone :
         $int1 = ~helper_generic_add_title("Location", 0);
         $int1 = ~helper_generic_add_text(~cluehelper_get_target_description($dbrow0));
-    case dbtable_18 :
+    case cluehelper_target_coord :
         $int1 = ~helper_generic_add_title("Location ", 0);
         $int1 = ~helper_generic_add_text(~cluehelper_get_target_description($dbrow0));
-    case dbtable_19 :
+    case cluehelper_target_key :
         $int1 = ~helper_generic_add_text(~cluehelper_get_target_description($dbrow0));
         $int1 = ~helper_generic_add_title("Kill", 0);
-        $int1 = ~helper_generic_add_text(nc_name(db_getfield($dbrow0, dbtable_19:col2, 0)));
+        $int1 = ~helper_generic_add_text(nc_name(db_getfield($dbrow0, cluehelper_target_key:npcs, 0)));
         $int1 = ~helper_generic_add_title("Key", 0);
-        $int1 = ~helper_generic_add_text(oc_name(db_getfield($dbrow0, dbtable_19:col3, 0)));
+        $int1 = ~helper_generic_add_text(oc_name(db_getfield($dbrow0, cluehelper_target_key:key, 0)));
         $int1 = ~helper_generic_add_title("Search", 0);
-        $int1 = ~helper_generic_add_text(lc_name(db_getfield($dbrow0, dbtable_19:col0, 0)));
-    case dbtable_20 :
+        $int1 = ~helper_generic_add_text(lc_name(db_getfield($dbrow0, cluehelper_target_key:loc, 0)));
+    case cluehelper_target_kill :
         $int1 = ~helper_generic_add_title("Kill", 0);
         $int1 = ~helper_generic_add_text(~cluehelper_get_target_description($dbrow0));
 }

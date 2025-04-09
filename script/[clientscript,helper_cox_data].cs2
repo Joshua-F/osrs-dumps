@@ -1,12 +1,12 @@
 // 4658
 [clientscript,helper_cox_data](component $component0, int $int1, int $int2)
-def_int $int3 = calc(30 * %varplayerbit_6386);
+def_int $int3 = calc(30 * %raids_timer);
 if (cc_find($component0, $int1) = ^true & .cc_find($component0, $int2) = ^true) {
     ~helper_cox_data($component0, $int3);
-    if (%varplayerbit_6386 > 0 & %varplayerbit_5425 < 5) {
+    if (%raids_timer > 0 & %raids_client_progress < 5) {
         cc_setontimer("helper_cox_timer($component0, $int1, $int2, $int3)");
     }
-    if (%varplayerbit_5425 >= 5) {
+    if (%raids_client_progress >= 5) {
         cc_setontimer(null);
     }
 }

@@ -1,6 +1,6 @@
 // 6722
 [clientscript,toa_partydetails_addmember](int $int0, string $string0)
-if (if_hassub(enum(component, component, ~toplevel_getcomponents, interface_161:com_16)) = false) {
+if (if_hassub(enum(component, component, ~toplevel_getcomponents, toplevel_osrs_stretch:mainmodal)) = false) {
     return;
 }
 def_string $string1 = "";
@@ -8,9 +8,9 @@ def_string $string2 = "";
 $string1, $string2 = ~script632($string0);
 if (%varclient_178 = 0) {
     if (string_length($string1) > 0) {
-        ~steelborder(interface_774:com_3, "Party of <$string1>", 0);
+        ~steelborder(toa_partydetails:frame, "Party of <$string1>", 0);
     } else {
-        ~steelborder(interface_774:com_3, "Party Details", 0);
+        ~steelborder(toa_partydetails:frame, "Party Details", 0);
     }
 }
 def_int $rgb1 = 0xff981f;
@@ -20,7 +20,7 @@ if (compare(lowercase($string1), lowercase(removetags(chat_playername))) = 0) {
 def_int $int2 = calc(~max(0, %varclient_178) * 13);
 def_int $int3 = 22;
 def_int $int4 = calc(%varclient_178 * $int3);
-cc_create(interface_774:com_32, ^iftype_rectangle, $int2);
+cc_create(toa_partydetails:members_list, ^iftype_rectangle, $int2);
 cc_setsize(0, $int3, ^setsize_minus, ^setsize_abs);
 cc_setposition(0, $int4, ^setpos_abs_centre, ^setpos_abs_top);
 cc_setfill(true);
@@ -46,18 +46,18 @@ if ($int0 = 2 & string_length($string1) > 0) {
     cc_setonop("toa_partydetails_kickmember(event_op, %varclient_178, event_com, event_comsubid, $string1, $int5)");
 }
 def_int $int7 = 0;
-$string0, $int7 = ~script6724(1, interface_774:com_21, $string0, $int2, $int7, $int4, $rgb1);
-$string0, $int7 = ~script6724(2, interface_774:com_22, $string0, $int2, $int7, $int4, $rgb1);
-$string0, $int7 = ~script6724(3, interface_774:com_23, $string0, $int2, $int7, $int4, $rgb1);
-$string0, $int7 = ~script6724(4, interface_774:com_24, $string0, $int2, $int7, $int4, $rgb1);
-$string0, $int7 = ~script6724(5, interface_774:com_25, $string0, $int2, $int7, $int4, $rgb1);
-$string0, $int7 = ~script6724(6, interface_774:com_26, $string0, $int2, $int7, $int4, $rgb1);
-$string0, $int7 = ~script6724(7, interface_774:com_27, $string0, $int2, $int7, $int4, $rgb1);
-$string0, $int7 = ~script6724(8, interface_774:com_28, $string0, $int2, $int7, $int4, $rgb1);
-$string0, $int7 = ~script6724(9, interface_774:com_29, $string0, $int2, $int7, $int4, $rgb1);
-$string0, $int7 = ~script6724(10, interface_774:com_30, $string0, $int2, $int7, $int4, $rgb1);
-cc_create(interface_774:com_32, ^iftype_graphic, calc($int2 + 11));
-.cc_create(interface_774:com_32, ^iftype_graphic, calc($int2 + 12));
+$string0, $int7 = ~script6724(1, toa_partydetails:members_name, $string0, $int2, $int7, $int4, $rgb1);
+$string0, $int7 = ~script6724(2, toa_partydetails:members_comlevel, $string0, $int2, $int7, $int4, $rgb1);
+$string0, $int7 = ~script6724(3, toa_partydetails:members_attack, $string0, $int2, $int7, $int4, $rgb1);
+$string0, $int7 = ~script6724(4, toa_partydetails:members_strength, $string0, $int2, $int7, $int4, $rgb1);
+$string0, $int7 = ~script6724(5, toa_partydetails:members_ranged, $string0, $int2, $int7, $int4, $rgb1);
+$string0, $int7 = ~script6724(6, toa_partydetails:members_magic, $string0, $int2, $int7, $int4, $rgb1);
+$string0, $int7 = ~script6724(7, toa_partydetails:members_defence, $string0, $int2, $int7, $int4, $rgb1);
+$string0, $int7 = ~script6724(8, toa_partydetails:members_hitpoints, $string0, $int2, $int7, $int4, $rgb1);
+$string0, $int7 = ~script6724(9, toa_partydetails:members_prayer, $string0, $int2, $int7, $int4, $rgb1);
+$string0, $int7 = ~script6724(10, toa_partydetails:members_completions, $string0, $int2, $int7, $int4, $rgb1);
+cc_create(toa_partydetails:members_list, ^iftype_graphic, calc($int2 + 11));
+.cc_create(toa_partydetails:members_list, ^iftype_graphic, calc($int2 + 12));
 if ($int6 = 1) {
     cc_sethide(false);
     .cc_sethide(false);

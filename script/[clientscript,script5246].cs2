@@ -1,21 +1,21 @@
 // 5246
 [clientscript,script5246](struct $struct0, component $component1)
-if_setsize(0, 0, ^setsize_abs, ^setsize_abs, interface_891:com_33);
-if_sethide(true, interface_891:com_33);
+if_setsize(0, 0, ^setsize_abs, ^setsize_abs, hotkey_settings_new:dragging_slot);
+if_sethide(true, hotkey_settings_new:dragging_slot);
 def_int $int2 = -1;
 switch_component ($component1) {
-    case interface_891:com_15 :
+    case hotkey_settings_new:slot1_clickzone :
         $int2 = 0;
-    case interface_891:com_39 :
+    case hotkey_settings_new:slot2_clickzone :
         $int2 = 1;
-    case interface_891:com_43 :
+    case hotkey_settings_new:slot3_clickzone :
         $int2 = 2;
-    case interface_891:com_47 :
+    case hotkey_settings_new:slot4_clickzone :
         $int2 = 3;
-    case interface_891:com_50 :
+    case hotkey_settings_new:slot5_clickzone :
         $int2 = 4;
 }
-def_struct $struct3 = enum(int, struct, enum_5607, ~osm_hotkeys_get_slot(%varplayerbit_11539, $int2));
+def_struct $struct3 = enum(int, struct, enum_5607, ~osm_hotkeys_get_slot(%osm_hotkey_settings_loadout_viewed, $int2));
 if (~script7444($struct3, 0) = 1) {
     mes("You cannot remove the <struct_param($struct3, param_1991)> hotkey right now");
     return;
@@ -24,7 +24,7 @@ if (~script7444($struct0, 1) = 1) {
     mes("You cannot assign the <struct_param($struct0, param_1991)> hotkey right now");
     return;
 }
-def_string $string0 = enum(int, string, enum_5612, %varplayerbit_11539);
+def_string $string0 = enum(int, string, enum_5612, %osm_hotkey_settings_loadout_viewed);
 def_int $int4 = struct_param($struct0, param_1986);
-~osm_hotkeys_set_slot(%varplayerbit_11539, $int2, $int4);
+~osm_hotkeys_set_slot(%osm_hotkey_settings_loadout_viewed, $int2, $int4);
 ~script2118;

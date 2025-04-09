@@ -1,12 +1,12 @@
 // 7865
 [clientscript,script7865](int $int0, dbrow $dbrow1, string $string0)
-def_dbrow $dbrow2 = db_getfield($dbrow1, dbtable_88:col3, 0);
+def_dbrow $dbrow2 = db_getfield($dbrow1, synth:parent_directory, 0);
 def_string $string1 = "";
 if ($dbrow2 ! null) {
-    $string1 = db_getfield($dbrow2, dbtable_88:col0, 0);
+    $string1 = db_getfield($dbrow2, synth:name, 0);
 }
 def_int $int3 = 0;
-def_int $int4 = db_getfieldcount($dbrow1, dbtable_88:col1);
+def_int $int4 = db_getfieldcount($dbrow1, synth:sub_menu);
 def_dbrow $dbrow5 = null;
 def_string $string2 = "";
 def_synth $synth6 = null;
@@ -18,9 +18,9 @@ switch_int ($int0) {
         }
     case default :
         while ($int3 < $int4) {
-            $dbrow5 = db_getfield($dbrow1, dbtable_88:col1, $int3);
+            $dbrow5 = db_getfield($dbrow1, synth:sub_menu, $int3);
             if ($dbrow5 ! null) {
-                $string2 = db_getfield($dbrow5, dbtable_88:col0, 0);
+                $string2 = db_getfield($dbrow5, synth:name, 0);
                 if (compare($string2, $string0) = 0) {
                     ~script7864($dbrow5);
                     return;
@@ -29,9 +29,9 @@ switch_int ($int0) {
             $int3 = calc($int3 + 1);
         }
         $int3 = 0;
-        $int4 = db_getfieldcount($dbrow1, dbtable_88:col2);
+        $int4 = db_getfieldcount($dbrow1, synth:synth);
         while ($int3 < $int4) {
-            $string3, $synth6 = db_getfield($dbrow1, dbtable_88:col2, $int3);
+            $string3, $synth6 = db_getfield($dbrow1, synth:synth, $int3);
             if ($synth6 ! null & compare($string3, $string0) = 0) {
                 sound_synth($synth6, 1, 0);
                 return;

@@ -2,15 +2,15 @@
 [clientscript,league_3_unlocks_quest_info_open]
 def_int $int0 = ~league_get_league_colour(3);
 sound_synth(synth_2266, 1, 0);
-if_sethide(false, interface_733:com_25);
-def_struct $struct1 = enum(int, struct, enum_4131, calc(%varplayer_3344 - 1));
+if_sethide(false, league_3_unlocks:info_overlay);
+def_struct $struct1 = enum(int, struct, enum_4131, calc(%league_3_unlocks_current_selection - 1));
 def_string $string0 = "";
 def_int $int2 = 0;
 $string0, $int2 = ~script5834($struct1);
-cc_deleteall(interface_733:com_26);
+cc_deleteall(league_3_unlocks:info_overlay_panel);
 def_int $int3 = 0;
-$int3 = ~steelbox(interface_733:com_26, $int3, 1);
-cc_create(interface_733:com_26, ^iftype_text, $int3);
+$int3 = ~steelbox(league_3_unlocks:info_overlay_panel, $int3, 1);
+cc_create(league_3_unlocks:info_overlay_panel, ^iftype_text, $int3);
 cc_setposition(10, 13, ^setpos_abs_left, ^setpos_abs_top);
 cc_setsize(228, 20, ^setsize_abs, ^setsize_abs);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 15);
@@ -19,15 +19,15 @@ cc_settextfont(b12_full);
 cc_setcolour($int0);
 cc_settext("<struct_param($struct1, param_1437)> - Quest List");
 $int3 = calc($int3 + 1);
-if_settext("Full list of everything that will be <col=29ffbd>auto-completed.</col> Anything <col=9f9f9f>already completed</col> will reduce the cost.", interface_733:com_29);
-cc_deleteall(interface_733:com_35);
+if_settext("Full list of everything that will be <col=29ffbd>auto-completed.</col> Anything <col=9f9f9f>already completed</col> will reduce the cost.", league_3_unlocks:misc_panel_text);
+cc_deleteall(league_3_unlocks:quest_panel_scroll_area);
 $int3 = 0;
 def_int $int4 = 0;
 def_int $int5 = 0;
 def_int $int6 = 20;
 def_int $int7 = string_indexof_string($string0, "br>", $int5);
 while ($int7 ! -1) {
-    cc_create(interface_733:com_35, ^iftype_rectangle, $int3);
+    cc_create(league_3_unlocks:quest_panel_scroll_area, ^iftype_rectangle, $int3);
     cc_setposition(0, calc($int4 * $int6), ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize(0, $int6, ^setsize_minus, ^setsize_abs);
     cc_setfill(true);
@@ -38,7 +38,7 @@ while ($int7 ! -1) {
         cc_settrans(220);
     }
     $int3 = calc($int3 + 1);
-    cc_create(interface_733:com_35, ^iftype_text, $int3);
+    cc_create(league_3_unlocks:quest_panel_scroll_area, ^iftype_text, $int3);
     cc_setposition(5, calc($int4 * $int6), ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize(5, $int6, ^setsize_minus, ^setsize_abs);
     cc_settextalign(^settextalign_left, ^settextalign_centre, $int6);
@@ -51,13 +51,13 @@ while ($int7 ! -1) {
     $int5 = $int7;
     $int7 = string_indexof_string($string0, "br>", $int5);
 }
-cc_deleteall(interface_733:com_33);
-if_setscrollpos(0, 0, interface_733:com_35);
+cc_deleteall(league_3_unlocks:quest_scroller);
+if_setscrollpos(0, 0, league_3_unlocks:quest_panel_scroll_area);
 if ($int2 > 8) {
-    if_setscrollsize(0, calc($int2 * $int6), interface_733:com_35);
+    if_setscrollsize(0, calc($int2 * $int6), league_3_unlocks:quest_panel_scroll_area);
 } else {
-    if_setscrollsize(0, 0, interface_733:com_35);
-    cc_create(interface_733:com_35, ^iftype_rectangle, $int3);
+    if_setscrollsize(0, 0, league_3_unlocks:quest_panel_scroll_area);
+    cc_create(league_3_unlocks:quest_panel_scroll_area, ^iftype_rectangle, $int3);
     cc_setposition(0, calc($int6 * $int4), ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize(0, calc($int6 * $int4), ^setsize_minus, ^setsize_minus);
     cc_setfill(true);
@@ -68,13 +68,13 @@ if ($int2 > 8) {
         cc_settrans(220);
     }
 }
-~scrollbar_vertical(interface_733:com_33, interface_733:com_35, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-if (cc_find(interface_733:com_33, 1) = ^true) {
-    ~scrollbar_vertical_setdragger(interface_733:com_33, interface_733:com_35);
+~scrollbar_vertical(league_3_unlocks:quest_scroller, league_3_unlocks:quest_panel_scroll_area, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+if (cc_find(league_3_unlocks:quest_scroller, 1) = ^true) {
+    ~scrollbar_vertical_setdragger(league_3_unlocks:quest_scroller, league_3_unlocks:quest_panel_scroll_area);
 }
-if_settext(struct_param($struct1, param_1446), interface_733:com_32);
-~script5820(interface_733:com_36, 0, 0, 0, if_getwidth(interface_733:com_36), if_getheight(interface_733:com_36), struct_3927);
+if_settext(struct_param($struct1, param_1446), league_3_unlocks:content_panel_text);
+~script5820(league_3_unlocks:info_overlay_close, 0, 0, 0, if_getwidth(league_3_unlocks:info_overlay_close), if_getheight(league_3_unlocks:info_overlay_close), struct_3927);
 if (~on_mobile = false) {
-    if_setonmouseover("script5821(interface_733:com_36, 0, struct_3929)", interface_733:com_36);
-    if_setonmouseleave("script5821(interface_733:com_36, 0, struct_3927)", interface_733:com_36);
+    if_setonmouseover("script5821(league_3_unlocks:info_overlay_close, 0, struct_3929)", league_3_unlocks:info_overlay_close);
+    if_setonmouseleave("script5821(league_3_unlocks:info_overlay_close, 0, struct_3927)", league_3_unlocks:info_overlay_close);
 }

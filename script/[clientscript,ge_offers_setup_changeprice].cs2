@@ -1,39 +1,39 @@
 // 778
 [clientscript,ge_offers_setup_changeprice](boolean $boolean0, int $int1, int $int2, component $component3, int $int4, int $int5, int $int6, int $int7, int $int8, int $int9, int $int10, int $int11, int $int12, int $int13, int $int14, int $int15, component $component16, int $int17, int $int18)
-if ($int2 ! 1 | %varplayer_1151 = null) {
+if ($int2 ! 1 | %tradingpost_search = null) {
     return;
 }
 def_int $int19 = 0;
 if ($int1 = 1) {
-    if (%varplayerbit_4398 < ^max_32bit_int) {
-        %varplayerbit_4398 = calc(%varplayerbit_4398 + 1);
+    if (%ge_newoffer_price < ^max_32bit_int) {
+        %ge_newoffer_price = calc(%ge_newoffer_price + 1);
     }
     sound_synth(synth_3929, 1, 0);
 } else if ($int1 = -1) {
-    if (%varplayerbit_4398 > 1) {
-        %varplayerbit_4398 = calc(%varplayerbit_4398 - 1);
+    if (%ge_newoffer_price > 1) {
+        %ge_newoffer_price = calc(%ge_newoffer_price - 1);
     }
     sound_synth(synth_3930, 1, 0);
 } else if ($int1 = 5) {
-    $int19 = calc(%varplayerbit_4398 / 20);
+    $int19 = calc(%ge_newoffer_price / 20);
     if ($int19 <= 0) {
         $int19 = 1;
     }
-    if (calc(^max_32bit_int - $int19) < %varplayerbit_4398) {
-        %varplayerbit_4398 = ^max_32bit_int;
+    if (calc(^max_32bit_int - $int19) < %ge_newoffer_price) {
+        %ge_newoffer_price = ^max_32bit_int;
     } else {
-        %varplayerbit_4398 = calc(%varplayerbit_4398 + $int19);
+        %ge_newoffer_price = calc(%ge_newoffer_price + $int19);
     }
     sound_synth(synth_3929, 1, 0);
 } else if ($int1 = -5) {
-    $int19 = calc(%varplayerbit_4398 / 20);
+    $int19 = calc(%ge_newoffer_price / 20);
     if ($int19 <= 0) {
         $int19 = 1;
     }
-    if ($int19 >= %varplayerbit_4398) {
-        %varplayerbit_4398 = 1;
+    if ($int19 >= %ge_newoffer_price) {
+        %ge_newoffer_price = 1;
     } else {
-        %varplayerbit_4398 = calc(%varplayerbit_4398 - $int19);
+        %ge_newoffer_price = calc(%ge_newoffer_price - $int19);
     }
     sound_synth(synth_3930, 1, 0);
 }

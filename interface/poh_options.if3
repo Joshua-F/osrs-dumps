@@ -1,0 +1,335 @@
+[com_0]
+type=text
+y=3
+width=190
+height=18
+textfont=b12_full
+text=House Options
+textalignh=centre
+textalignv=top
+textshadow=yes
+colour=0xff981f
+
+[viewer]
+type=layer
+x=10
+y=25
+width=105
+height=40
+events=2
+op1=Viewer
+onload=poh_options_viewer_init(event_com)
+
+[com_2]
+type=text
+x=34
+y=53
+width=20
+height=15
+xmode=abs_right
+textfont=p11_full
+text=On
+textalignh=centre
+textalignv=centre
+textshadow=yes
+colour=0xff981f
+
+[com_3]
+type=text
+x=4
+y=53
+width=30
+height=15
+xmode=abs_right
+textfont=p11_full
+text=Off
+textalignh=centre
+textalignv=centre
+textshadow=yes
+colour=0xff981f
+
+[com_4]
+type=text
+y=68
+width=20
+height=17
+widthmode=minus
+xmode=abs_centre
+textfont=p12_full
+text=Building Mode
+textalignh=left
+textalignv=top
+textshadow=yes
+colour=0xff981f
+onmouseleave=deltooltip(poh_options:tooltip)
+onmouserepeat=addtooltip(event_com, poh_options:tooltip, "Toggle Building mode on and off, allowing construction within your house.", 25, 140)
+
+[build_mode_on]
+type=graphic
+x=138
+y=68
+width=17
+height=17
+graphic="options_radio_buttons,2"
+events=2
+op1=On
+onload=poh_options_buildmode(event_com, poh_options:build_mode_off)
+onvartransmit=poh_options_buildmode(event_com, poh_options:build_mode_off){poh_debug}
+
+[build_mode_off]
+type=graphic
+x=10
+y=68
+width=17
+height=17
+xmode=abs_right
+graphic="options_radio_buttons,0"
+events=2
+op1=Off
+
+[com_7]
+type=text
+y=87
+width=20
+height=17
+widthmode=minus
+xmode=abs_centre
+textfont=p12_full
+text=Teleport Inside
+textalignh=left
+textalignv=top
+textshadow=yes
+colour=0xff981f
+onmouseleave=deltooltip(poh_options:tooltip)
+onmouserepeat=addtooltip(event_com, poh_options:tooltip, "Toggle teleport location inside (on) or outside (off) of the house.", 25, 140)
+
+[tele_on]
+type=graphic
+x=138
+y=87
+width=17
+height=17
+graphic="options_radio_buttons,2"
+events=2
+op1=On
+onload=poh_options_tele(event_com, poh_options:tele_off)
+onvartransmit=poh_options_tele(event_com, poh_options:tele_off){cws_var_3}
+onop=poh_options_tele_onop(event_com, poh_options:tele_off, 0)
+
+[tele_off]
+type=graphic
+x=10
+y=87
+width=17
+height=17
+xmode=abs_right
+graphic="options_radio_buttons,0"
+events=2
+op1=Off
+onop=poh_options_tele_onop(event_com, poh_options:tele_on, 1)
+
+[com_10]
+type=text
+y=106
+width=20
+height=17
+widthmode=minus
+xmode=abs_centre
+textfont=p12_full
+text=Default Building Mode
+textalignh=left
+textalignv=top
+textshadow=yes
+colour=0xff981f
+onmouseleave=deltooltip(poh_options:tooltip)
+onmouserepeat=addtooltip(event_com, poh_options:tooltip, "Toggle Building mode by default when teleport inside the house.", 25, 140)
+
+[default_build_mode_on]
+type=graphic
+x=138
+y=106
+width=17
+height=17
+graphic="options_radio_buttons,2"
+events=2
+op1=On
+onload=script6926(event_com, poh_options:default_build_mode_off)
+onvartransmit=script6926(event_com, poh_options:default_build_mode_off){poh_leaguehall_1}
+onop=script6927(event_com, poh_options:default_build_mode_off, 1)
+
+[default_build_mode_off]
+type=graphic
+x=10
+y=106
+width=17
+height=17
+xmode=abs_right
+graphic="options_radio_buttons,0"
+events=2
+op1=Off
+onop=poh_options_tele_onop(event_com, poh_options:default_build_mode_on, 0)
+
+[com_13]
+type=text
+y=128
+width=20
+height=17
+widthmode=minus
+xmode=abs_centre
+textfont=p12_full
+text=Doors
+textalignh=left
+textalignv=top
+textshadow=yes
+colour=0xff981f
+
+[doors_closed]
+type=graphic
+x=70
+y=131
+width=17
+height=17
+graphic="options_radio_buttons,2"
+events=2
+op1=Select
+onload=poh_options_doors(poh_options:doors_closed, poh_options:doors_open, poh_options:doors_none)
+onmouseleave=deltooltip(poh_options:tooltip)
+onvartransmit=poh_options_doors(poh_options:doors_closed, poh_options:doors_open, poh_options:doors_none){cws_var_3}
+onop=poh_options_doors_onop(0, poh_options:doors_closed, poh_options:doors_open, poh_options:doors_none)
+onmouserepeat=addtooltip(event_com, poh_options:tooltip, "Render house doors as initially closed.", 25, 140)
+
+[icon_doors_closed]
+type=graphic
+x=50
+y=123
+width=19
+height=30
+graphic="poh_doors,0"
+events=2
+op1=Select
+onmouseleave=deltooltip(poh_options:tooltip)
+onop=poh_options_doors_onop(0, poh_options:doors_closed, poh_options:doors_open, poh_options:doors_none)
+onmouserepeat=addtooltip(event_com, poh_options:tooltip, "Render house doors as initially closed.", 25, 140)
+
+[icon_doors_open]
+type=graphic
+x=97
+y=123
+width=19
+height=30
+graphic="poh_doors,1"
+events=2
+op1=Select
+onmouseleave=deltooltip(poh_options:tooltip)
+onop=poh_options_doors_onop(1, poh_options:doors_closed, poh_options:doors_open, poh_options:doors_none)
+onmouserepeat=addtooltip(event_com, poh_options:tooltip, "Render house doors as initially open.", 25, 140)
+
+[doors_open]
+type=graphic
+x=117
+y=131
+width=17
+height=17
+graphic="options_radio_buttons,0"
+events=2
+op1=Select
+onmouseleave=deltooltip(poh_options:tooltip)
+onop=poh_options_doors_onop(1, poh_options:doors_closed, poh_options:doors_open, poh_options:doors_none)
+onmouserepeat=addtooltip(event_com, poh_options:tooltip, "Render house doors as initially open.", 25, 140)
+
+[icon_doors_none]
+type=graphic
+x=143
+y=123
+width=19
+height=30
+graphic="poh_doors,2"
+events=2
+op1=Select
+onmouseleave=deltooltip(poh_options:tooltip)
+onop=poh_options_doors_onop(2, poh_options:doors_closed, poh_options:doors_open, poh_options:doors_none)
+onmouserepeat=addtooltip(event_com, poh_options:tooltip, "Do not render doors.", 25, 140)
+
+[doors_none]
+type=graphic
+x=163
+y=131
+width=17
+height=17
+graphic="options_radio_buttons,0"
+events=2
+op1=Select
+onmouseleave=deltooltip(poh_options:tooltip)
+onop=poh_options_doors_onop(2, poh_options:doors_closed, poh_options:doors_open, poh_options:doors_none)
+onmouserepeat=addtooltip(event_com, poh_options:tooltip, "Do not render doors.", 25, 140)
+
+[expel_guests]
+type=layer
+y=155
+width=20
+height=27
+widthmode=minus
+xmode=abs_centre
+events=2
+op1=Expel Guests
+onload=poh_options_drawbutton(event_com)
+
+[leave_house]
+type=layer
+y=213
+width=20
+height=27
+widthmode=minus
+xmode=abs_centre
+events=2
+op1=Leave House
+onload=poh_options_drawbutton(event_com)
+
+[call_servant]
+type=layer
+y=184
+width=20
+height=27
+widthmode=minus
+xmode=abs_centre
+events=2
+op1=Call Servant
+onload=poh_options_drawbutton(event_com)
+
+[roomcount]
+type=text
+y=241
+width=190
+height=16
+textfont=p12_full
+textalignh=centre
+textalignv=top
+textshadow=yes
+colour=0xff981f
+
+[com_24]
+type=graphic
+x=163
+y=7
+width=26
+height=23
+graphic="close_buttons,0"
+events=2
+op1=Close
+onmouseover=graphic_swapper(event_com, "close_buttons,1")
+onmouseleave=graphic_swapper(event_com, "close_buttons,0")
+onop=closebutton_click
+
+[tooltip_bounds]
+type=layer
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+
+[tooltip]
+type=layer
+width=1
+height=1
+layer=tooltip_bounds
+

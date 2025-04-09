@@ -2,7 +2,7 @@
 [clientscript,osm_hotkey_toggle_op](int $int0)
 switch_int ($int0) {
     case 1 :
-        if (%varplayerbit_11555 = 1) {
+        if (%osm_hotkey_accordion_locked = 1) {
             return;
         }
     case 2 :
@@ -21,15 +21,15 @@ if (%varclient_1224 = 1) {
 } else {
     %varclient_1224 = 1;
 }
-if (cc_find(interface_892:com_16, 0) = ^true & .cc_find(interface_892:com_16, 1) = ^true) {
+if (cc_find(osm_hotkeys:master_toggle, 0) = ^true & .cc_find(osm_hotkeys:master_toggle, 1) = ^true) {
     if (%varclient_1224 = 1) {
         cc_setgraphic("tli_button01_accordion_58x43,0");
         .cc_setgraphic("side_icons,49");
-        if_setop(1, "Show", interface_892:com_16);
+        if_setop(1, "Show", osm_hotkeys:master_toggle);
     } else {
         cc_setgraphic("tli_button01_accordion_58x43,1");
         .cc_setgraphic("side_icons,48");
-        if_setop(1, "Hide", interface_892:com_16);
+        if_setop(1, "Hide", osm_hotkeys:master_toggle);
     }
 }
 ~osm_hotkeys_setup;

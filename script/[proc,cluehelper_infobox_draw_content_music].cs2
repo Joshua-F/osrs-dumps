@@ -2,14 +2,14 @@
 [proc,cluehelper_infobox_draw_content_music](dbrow $dbrow0)
 def_int $int1 = 0;
 $int1 = ~helper_generic_add_title("Music Clue", 1);
-if (%varplayerbit_14188 = 1) {
+if (%option_cluehelper_infobox_show_clue_text = 1) {
     $int1 = ~helper_generic_add_text("Travel to the marked destination and near the NPC play the song in the music player.");
 }
-def_int $int2 = ~script6657(db_getfield($dbrow0, dbtable_13:col4, 0));
-~cluehelper_infobox_target_display(db_getfield($dbrow0, dbtable_13:col4, $int2));
+def_int $int2 = ~script6657(db_getfield($dbrow0, cluehelper_clue_music:target, 0));
+~cluehelper_infobox_target_display(db_getfield($dbrow0, cluehelper_clue_music:target, $int2));
 $int1 = ~helper_generic_add_title("Song", 0);
-def_dbrow $dbrow3 = db_getfield($dbrow0, dbtable_13:col2, 0);
+def_dbrow $dbrow3 = db_getfield($dbrow0, cluehelper_clue_music:music, 0);
 $int1 = ~helper_generic_add_text("...");
-if (cc_find(interface_711:com_5, $int1) = ^true) {
+if (cc_find(helper_generic:content, $int1) = ^true) {
     ~cluehelper_music_vartransmit_setup($int1, $dbrow3);
 }

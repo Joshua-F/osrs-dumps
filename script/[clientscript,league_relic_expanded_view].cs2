@@ -1,6 +1,6 @@
 // 3193
 [clientscript,league_relic_expanded_view](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10, component $component11, component $component12, component $component13, component $component14, component $component15, component $component16, component $component17, int $int18, struct $struct19, struct $struct20)
-def_struct $struct21 = enum(int, struct, enum_2670, %varplayerbit_10032);
+def_struct $struct21 = enum(int, struct, enum_2670, %league_type);
 if ($struct21 = null) {
     return;
 }
@@ -25,56 +25,56 @@ if ($obj24 ! null) {
 }
 def_string $string3 = struct_param($struct20, param_1020);
 def_int $int25 = struct_param($struct19, param_885);
-def_int $int26 = if_getwidth(interface_655:com_37);
+def_int $int26 = if_getwidth(league_relics:description_holder);
 if_sethide(true, $component3);
 if_sethide(true, $component0);
 if_sethide(true, $component1);
 if_sethide(false, $component2);
 if_sethide(true, $component17);
-if_sethide(true, interface_655:com_28);
+if_sethide(true, league_relics:extra_info);
 if_setgraphic(struct_param($struct19, param_884), $component4);
 if_settext("<$string0><struct_param($struct19, param_879)></u>", $component5);
 if_settext("Relic Effect:", $component6);
 def_int $int27 = calc(paraheight($string2, $int26, p12_full) * 15);
-def_int $int28 = calc(paraheight($string3, if_getwidth(interface_655:com_56), p12_full) * 15);
+def_int $int28 = calc(paraheight($string3, if_getwidth(league_relics:passive_description), p12_full) * 15);
 if_settext($string2, $component7);
 if_setsize(0, $int27, ^setsize_minus, ^setsize_abs, $component7);
 def_int $int29 = calc($int27 + 12 + if_getheight($component6));
 def_string $string4 = "Passive Effects";
 def_int $int30 = calc(if_getheight($component2) - 41);
 if ($int29 > calc($int30 - 53)) {
-    if_setsize(148, 96, ^setsize_minus, ^setsize_minus, interface_655:com_34);
-    if_setposition(8, 33, ^setpos_abs_left, ^setpos_abs_top, interface_655:com_34);
-    if_setsize(148, 53, ^setsize_minus, ^setsize_abs, interface_655:com_41);
-    if_setposition(8, 8, ^setpos_abs_left, ^setpos_abs_bottom, interface_655:com_41);
+    if_setsize(148, 96, ^setsize_minus, ^setsize_minus, league_relics:description_relic);
+    if_setposition(8, 33, ^setpos_abs_left, ^setpos_abs_top, league_relics:description_relic);
+    if_setsize(148, 53, ^setsize_minus, ^setsize_abs, league_relics:description_passive);
+    if_setposition(8, 8, ^setpos_abs_left, ^setpos_abs_bottom, league_relics:description_passive);
 } else {
-    if_setsize(148, calc($int29 + 6), ^setsize_minus, ^setsize_abs, interface_655:com_34);
-    if_setposition(8, 33, ^setpos_abs_left, ^setpos_abs_top, interface_655:com_34);
-    if_setsize(148, calc($int30 - $int29 - 8), ^setsize_minus, ^setsize_abs, interface_655:com_41);
-    if_setposition(8, calc($int29 + 41), ^setpos_abs_left, ^setpos_abs_top, interface_655:com_41);
+    if_setsize(148, calc($int29 + 6), ^setsize_minus, ^setsize_abs, league_relics:description_relic);
+    if_setposition(8, 33, ^setpos_abs_left, ^setpos_abs_top, league_relics:description_relic);
+    if_setsize(148, calc($int30 - $int29 - 8), ^setsize_minus, ^setsize_abs, league_relics:description_passive);
+    if_setposition(8, calc($int29 + 41), ^setpos_abs_left, ^setpos_abs_top, league_relics:description_passive);
 }
-cc_deleteall(interface_655:com_40);
-if ($int29 > if_getheight(interface_655:com_37)) {
-    if_setscrollsize(0, $int29, interface_655:com_37);
+cc_deleteall(league_relics:description_scrollbar);
+if ($int29 > if_getheight(league_relics:description_holder)) {
+    if_setscrollsize(0, $int29, league_relics:description_holder);
 } else {
-    if_setscrollsize(0, 0, interface_655:com_37);
+    if_setscrollsize(0, 0, league_relics:description_holder);
 }
-if_setscrollpos(0, 0, interface_655:com_37);
-~scrollbar_vertical(interface_655:com_40, interface_655:com_37, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-if_sethide(false, interface_655:com_40);
+if_setscrollpos(0, 0, league_relics:description_holder);
+~scrollbar_vertical(league_relics:description_scrollbar, league_relics:description_holder, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+if_sethide(false, league_relics:description_scrollbar);
 if ($struct20 ! null) {
-    if ($int28 > if_getheight(interface_655:com_56)) {
+    if ($int28 > if_getheight(league_relics:passive_description)) {
         if_settext("<~text_device("Click", "Tap")> to expand...", $component16);
-        if_setop(1, "Expand", interface_655:com_57);
-        if_setonop("league_relics_extra_info($string4, $string3, $int22)", interface_655:com_57);
-        if_sethide(false, interface_655:com_57);
-        if_setsize(148, 53, ^setsize_minus, ^setsize_abs, interface_655:com_41);
+        if_setop(1, "Expand", league_relics:passive_clickzone);
+        if_setonop("league_relics_extra_info($string4, $string3, $int22)", league_relics:passive_clickzone);
+        if_sethide(false, league_relics:passive_clickzone);
+        if_setsize(148, 53, ^setsize_minus, ^setsize_abs, league_relics:description_passive);
     } else {
         if_settext($string3, $component16);
-        if_setop(1, "", interface_655:com_57);
-        if_setonop(null, interface_655:com_57);
-        if_sethide(true, interface_655:com_57);
-        if_setsize(148, calc(33 + $int28), ^setsize_minus, ^setsize_abs, interface_655:com_41);
+        if_setop(1, "", league_relics:passive_clickzone);
+        if_setonop(null, league_relics:passive_clickzone);
+        if_sethide(true, league_relics:passive_clickzone);
+        if_setsize(148, calc(33 + $int28), ^setsize_minus, ^setsize_abs, league_relics:description_passive);
     }
     if_settext("Passive Effect:", $component15);
     if_sethide(false, $component16);
@@ -85,11 +85,11 @@ if ($struct20 ! null) {
     if_sethide(true, $component16);
     if_sethide(true, $component15);
 }
-$int30 = calc(if_getheight(interface_655:com_34) + if_getheight(interface_655:com_41) + 2);
+$int30 = calc(if_getheight(league_relics:description_relic) + if_getheight(league_relics:description_passive) + 2);
 if ($int30 > 192) {
-    if_setsize(if_getwidth(interface_655:com_1), min(calc($int30 + 41 + 94), if_getheight(interface_655:com_1)), ^setsize_abs, ^setsize_abs, interface_655:com_1);
+    if_setsize(if_getwidth(league_relics:universe), min(calc($int30 + 41 + 94), if_getheight(league_relics:universe)), ^setsize_abs, ^setsize_abs, league_relics:universe);
 } else {
-    if_setsize(if_getwidth(interface_655:com_1), 320, ^setsize_abs, ^setsize_abs, interface_655:com_1);
+    if_setsize(if_getwidth(league_relics:universe), 320, ^setsize_abs, ^setsize_abs, league_relics:universe);
 }
 if ($int18 = 2 | $int18 = 5) {
     $int23 = ~v2_stone_button($component8);

@@ -3,32 +3,32 @@
 if ($component0 ! null) {
     if_setnoclickthrough(true, $component7);
     if_setonstattransmit("orbs_update_health(null, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9){hitpoints}", $component0);
-    if_setonvartransmit("orbs_update_health(null, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9){varplayer_102, varplayer_456, varplayer_2648, varplayer_2898, varplayer_1377}", $component0);
+    if_setonvartransmit("orbs_update_health(null, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9){poison, disease, nightmare_temp, worn_item_bonus2, br_temp_1}", $component0);
     if_setonsubchange("orbs_update_health(null, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9)", $component0);
 }
 def_int $int10 = stat_base(hitpoints);
-if (%varplayerbit_5314 = 1) {
+if (%br_ingame = 1) {
     $int10 = 99;
 }
 ~orbs_update($component1, $component2, stat(hitpoints), $int10);
-if (%varplayer_102 > 0 | %varplayer_456 > 0 | %varplayerbit_10151 > 0) {
+if (%poison > 0 | %disease > 0 | %parasite > 0) {
     if_settrans(100, $component3);
 } else {
     if_settrans(0, $component3);
 }
-if (%varplayerbit_10151 > 0) {
+if (%parasite > 0) {
     if_setgraphic("orb_filler,12", $component4);
-} else if (%varplayer_456 > 0) {
+} else if (%disease > 0) {
     if_setgraphic("orb_filler,3", $component4);
-} else if (%varplayer_102 >= 1000000) {
+} else if (%poison >= 1000000) {
     if_setgraphic("orb_filler,8", $component4);
-} else if (%varplayer_102 > 0) {
+} else if (%poison > 0) {
     if_setgraphic("orb_filler,2", $component4);
 } else {
     if_setgraphic("orb_filler,1", $component4);
 }
-if (%varplayer_102 > 0) {
-    if (%varplayer_102 >= 1000000) {
+if (%poison > 0) {
+    if (%poison >= 1000000) {
         if_setgraphic("orb_filler,8", $component6);
     } else {
         if_setgraphic("orb_filler,2", $component6);
@@ -38,7 +38,7 @@ if (%varplayer_102 > 0) {
     if_sethide(true, $component5);
 }
 def_graphic $graphic11 = ~graphic_device("orb_frame,1", "tli_button01_orbinfo_65x34,1");
-if ((%varplayer_102 > 0 | %varplayer_456 > 0 | %varplayerbit_10151 > 0) & ~toplevel_check_sidepanel(3) = true) {
+if ((%poison > 0 | %disease > 0 | %parasite > 0) & ~toplevel_check_sidepanel(3) = true) {
     if_setonmouserepeat("graphic_swapper($component7, $graphic11)", $component8);
     $graphic11 = ~graphic_device("orb_frame,0", "tli_button01_orbinfo_65x34,0");
     if_setonmouseleave("graphic_swapper($component7, $graphic11)", $component8);

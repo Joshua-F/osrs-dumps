@@ -1,7 +1,7 @@
 // 7754
 [proc,script7754](int $int0)(string)
-db_find(dbtable_84:col8, $int0);
-db_find_refine(dbtable_84:col12:0, npc_14144);
+db_find(league_slayer_task_data:regions, $int0);
+db_find_refine(league_slayer_task_data:master_weight_minamount_maxamount:0, league_sage);
 def_dbrow $dbrow1 = db_findnext;
 def_int $int2 = -1;
 def_int $int3 = 0;
@@ -13,21 +13,21 @@ def_int $int6 = -1;
 def_int $int7 = 1;
 while ($dbrow1 ! null) {
     $int7 = 1;
-    $string1 = db_getfield($dbrow1, dbtable_84:col10, 0);
-    $int4 = max(db_getfield($dbrow1, dbtable_84:col4, 0), db_getfield($dbrow1, dbtable_84:col1, 0));
+    $string1 = db_getfield($dbrow1, league_slayer_task_data:name_uppercase, 0);
+    $int4 = max(db_getfield($dbrow1, league_slayer_task_data:leagues_min_comlevel, 0), db_getfield($dbrow1, league_slayer_task_data:min_comlevel, 0));
     $int4 = max($int4, 3);
-    $int5 = db_getfield($dbrow1, dbtable_84:col5, 0);
+    $int5 = db_getfield($dbrow1, league_slayer_task_data:leagues_max_comlevel, 0);
     if ($int0 ! 1 & $int0 ! 2) {
-        $int6 = calc(db_getfieldcount($dbrow1, dbtable_84:col8) - 1);
+        $int6 = calc(db_getfieldcount($dbrow1, league_slayer_task_data:regions) - 1);
         while ($int6 >= 0 & $int7 = 1) {
-            if (db_getfield($dbrow1, dbtable_84:col8, $int6) = 1) {
+            if (db_getfield($dbrow1, league_slayer_task_data:regions, $int6) = 1) {
                 $int7 = 0;
             }
             $int6 = calc($int6 - 1);
         }
-        $int6 = calc(db_getfieldcount($dbrow1, dbtable_84:col8) - 1);
+        $int6 = calc(db_getfieldcount($dbrow1, league_slayer_task_data:regions) - 1);
         while ($int6 >= 0 & $int7 = 1) {
-            if (db_getfield($dbrow1, dbtable_84:col8, $int6) = 2) {
+            if (db_getfield($dbrow1, league_slayer_task_data:regions, $int6) = 2) {
                 $int7 = 0;
             }
             $int6 = calc($int6 - 1);

@@ -9,13 +9,13 @@ if (tile_find($coord1) = true) {
         cc_deleteall_entityoverlay($entityoverlay3);
     }
     if (if_find_entityoverlay($entityoverlay3) = ^true) {
-        cc_setonvartransmit("cluehelper_overlay_dig_transmit($dbrow0, $coord1, $obj2, %varplayerbit_14189, %varplayer_3548, %varplayer_3549, %varplayer_3550, %varplayer_3547, %varplayerbit_14182, %varplayerbit_14184){varplayer_3546, varplayer_3543, varplayer_3548, varplayer_3549, varplayer_3550, varplayer_3547}");
+        cc_setonvartransmit("cluehelper_overlay_dig_transmit($dbrow0, $coord1, $obj2, %option_cluehelper_overlay_enabled, %cluehelper_npc_id, %cluehelper_npc_id2, %cluehelper_npc_id3, %cluehelper_npc_current_clue, %option_cluehelper_enabled, %option_cluehelper_target_highlight_enabled){cluehelper_infobox_clue, option_cluehelper, cluehelper_npc_id, cluehelper_npc_id2, cluehelper_npc_id3, cluehelper_npc_current_clue}");
     }
-    if (%varplayerbit_14182 = 0 | ~cluehelper_overlay_npc_active = 1) {
+    if (%option_cluehelper_enabled = 0 | ~cluehelper_overlay_npc_active = 1) {
         highlight_tile_off($coord1, 9, 1);
         return;
     }
-    if (%varplayerbit_14189 = 1) {
+    if (%option_cluehelper_overlay_enabled = 1) {
         cc_create_entityoverlay($entityoverlay3, ^iftype_graphic, 0);
         cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
         cc_setposition(8, 3, ^setpos_abs_centre, ^setpos_abs_centre);
@@ -24,10 +24,10 @@ if (tile_find($coord1) = true) {
         cc_create_entityoverlay($entityoverlay3, ^iftype_graphic, 1);
         cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
         cc_setposition(-8, -3, ^setpos_abs_centre, ^setpos_abs_centre);
-        cc_setobject_nonum(obj_952, 1);
+        cc_setobject_nonum(spade, 1);
         cc_setoutline(1);
     }
-    if (%varplayerbit_14184 = 1) {
+    if (%option_cluehelper_target_highlight_enabled = 1) {
         highlight_tile_on($coord1, 9, 1);
     }
 }

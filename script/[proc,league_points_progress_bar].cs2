@@ -6,7 +6,7 @@ if_setopbase("", $component0);
 if ($boolean3 = true) {
     $boolean2 = false;
 }
-def_struct $struct4 = enum(int, struct, enum_2670, %varplayerbit_10032);
+def_struct $struct4 = enum(int, struct, enum_2670, %league_type);
 def_enum $enum5 = null;
 def_struct $struct6 = null;
 def_int $int7 = 0;
@@ -181,7 +181,7 @@ if ($boolean3 = false) {
 def_int $int18 = calc($int13 - 4);
 def_int $int19 = calc($int18 - 2);
 if ($int12 ! -1 & $int12 > 0) {
-    $int19 = scale(%varplayer_2615, $int12, $int18);
+    $int19 = scale(%league_points_claimed, $int12, $int18);
 }
 if ($int19 > $int18) {
     $int19 = calc($int18 - 1);
@@ -199,8 +199,8 @@ if (cc_find($component0, 2) = ^true) {
 def_int $int20 = -1;
 if ($int10 ! -1 & cc_find($component0, $int10) = ^true) {
     if ($boolean3 = false & $int12 ! -1) {
-        if (%varplayer_2615 >= $int12) {
-            if (%varplayerbit_10037 < 9) {
+        if (%league_points_claimed >= $int12) {
+            if (%league_tutorial_completed < 9) {
                 cc_settext("You have enough points to unlock your next Relic!");
             } else {
                 cc_settext("<~text_device("Click", "Tap")> here to select your next Relic!");
@@ -208,7 +208,7 @@ if ($int10 ! -1 & cc_find($component0, $int10) = ^true) {
                 if_setopbase("<col=ff981f>Relics</col>", $component0);
             }
         } else {
-            $int20 = calc($int12 - %varplayer_2615);
+            $int20 = calc($int12 - %league_points_claimed);
             if ($struct4 = struct_3771) {
                 if ($int20 = 1) {
                     cc_settext("<tostring($int20)> league point until your next Fragment Slot.");
@@ -221,14 +221,14 @@ if ($int10 ! -1 & cc_find($component0, $int10) = ^true) {
                 cc_settext("<tostring($int20)> points until your next Relic.");
             }
         }
-    } else if (%varplayer_2615 = 1) {
-        cc_settext("<tostring(%varplayer_2615)> point earned");
+    } else if (%league_points_claimed = 1) {
+        cc_settext("<tostring(%league_points_claimed)> point earned");
     } else {
-        cc_settext("<tostring(%varplayer_2615)> points earned");
+        cc_settext("<tostring(%league_points_claimed)> points earned");
     }
 }
 if ($boolean3 = false & cc_find($component0, 6) = ^true) {
-    if (%varplayer_2615 >= $int12) {
+    if (%league_points_claimed >= $int12) {
         cc_setgraphic($graphic16);
     } else {
         cc_setgraphic($graphic17);

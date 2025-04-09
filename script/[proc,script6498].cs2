@@ -9,14 +9,14 @@ if (loc_find($coord3, $loc1) = true) {
         cc_deleteall_entityoverlay($entityoverlay5);
     }
     if (if_find_entityoverlay($entityoverlay5) = ^true) {
-        cc_setonvartransmit("script6499($entityoverlay5, $dbrow0, $loc1, $obj2, $coord3, $obj4, %varplayerbit_14189, %varplayerbit_14184, %varplayerbit_14182){varplayer_3546, varplayer_3543}");
+        cc_setonvartransmit("script6499($entityoverlay5, $dbrow0, $loc1, $obj2, $coord3, $obj4, %option_cluehelper_overlay_enabled, %option_cluehelper_target_highlight_enabled, %option_cluehelper_enabled){cluehelper_infobox_clue, option_cluehelper}");
     }
-    if (%varplayerbit_14182 = 0) {
+    if (%option_cluehelper_enabled = 0) {
         highlight_loc_off($loc1, $coord3, 9, 1);
         return;
     }
-    if (inv_total(inv_93, $obj2) > 0) {
-        if (%varplayerbit_14189 = 1) {
+    if (inv_total(inv, $obj2) > 0) {
+        if (%option_cluehelper_overlay_enabled = 1) {
             cc_create_entityoverlay($entityoverlay5, ^iftype_graphic, 0);
             cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
             cc_setposition(4, 4, ^setpos_abs_centre, ^setpos_abs_centre);
@@ -25,19 +25,19 @@ if (loc_find($coord3, $loc1) = true) {
             cc_create_entityoverlay($entityoverlay5, ^iftype_graphic, 1);
             cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
             cc_setposition(-4, -4, ^setpos_abs_centre, ^setpos_abs_centre);
-            cc_setobject_nonum(obj_7297, 1);
+            cc_setobject_nonum(trail_clue_medium_riddle011_key, 1);
             cc_setoutline(1);
         }
-        if (%varplayerbit_14184 = 1) {
+        if (%option_cluehelper_target_highlight_enabled = 1) {
             highlight_loc_on($loc1, $coord3, 9, 1);
         }
         if (if_find_entityoverlay($entityoverlay5) = ^true) {
-            cc_setoninvtransmit("script6500($dbrow0, $loc1, $obj2, $coord3, $obj4, 1){inv_93}");
+            cc_setoninvtransmit("script6500($dbrow0, $loc1, $obj2, $coord3, $obj4, 1){inv}");
         }
     } else {
         highlight_loc_off($loc1, $coord3, 9, 1);
         if (if_find_entityoverlay($entityoverlay5) = ^true) {
-            cc_setoninvtransmit("script6500($dbrow0, $loc1, $obj2, $coord3, $obj4, 0){inv_93}");
+            cc_setoninvtransmit("script6500($dbrow0, $loc1, $obj2, $coord3, $obj4, 0){inv}");
         }
     }
     highlight_loc_setup(9, ^green, 2, 30, 1);

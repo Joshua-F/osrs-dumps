@@ -2,25 +2,25 @@
 [clientscript,kill_log_show_confirm](component $component0, int $int1)
 def_int $int2 = 0;
 def_int $int3 = 0;
-if (cc_find($component0, $int1) = ^true & .cc_find(interface_549:com_13, $int1) = ^true) {
+if (cc_find($component0, $int1) = ^true & .cc_find(kill_log:name, $int1) = ^true) {
     if (string_indexof_string(.cc_gettext, "(Awakened)", 0) ! -1) {
         sound_synth(synth_2277, 1, 0);
         mes("The Awakened version of a boss shares its streak with the standard version.");
         return;
     }
     sound_synth(synth_2266, 1, 0);
-    if_settext("Reset streak:<br><.cc_gettext>", interface_549:com_24);
-    if_setsize(calc(parawidth(if_gettext(interface_549:com_24), 75, p11_full) + 10), 50, ^setsize_abs, ^setsize_abs, interface_549:com_19);
-    if (paraheight(if_gettext(interface_549:com_24), if_getwidth(interface_549:com_24), p11_full) > 4) {
-        if_setsize(if_getwidth(interface_549:com_19), 80, ^setsize_abs, ^setsize_abs, interface_549:com_19);
-    } else if (paraheight(if_gettext(interface_549:com_24), if_getwidth(interface_549:com_24), p11_full) > 3) {
-        if_setsize(if_getwidth(interface_549:com_19), 70, ^setsize_abs, ^setsize_abs, interface_549:com_19);
-    } else if (paraheight(if_gettext(interface_549:com_24), if_getwidth(interface_549:com_24), p11_full) > 2) {
-        if_setsize(if_getwidth(interface_549:com_19), 60, ^setsize_abs, ^setsize_abs, interface_549:com_19);
+    if_settext("Reset streak:<br><.cc_gettext>", kill_log:reset_text);
+    if_setsize(calc(parawidth(if_gettext(kill_log:reset_text), 75, p11_full) + 10), 50, ^setsize_abs, ^setsize_abs, kill_log:confirmation_layer);
+    if (paraheight(if_gettext(kill_log:reset_text), if_getwidth(kill_log:reset_text), p11_full) > 4) {
+        if_setsize(if_getwidth(kill_log:confirmation_layer), 80, ^setsize_abs, ^setsize_abs, kill_log:confirmation_layer);
+    } else if (paraheight(if_gettext(kill_log:reset_text), if_getwidth(kill_log:reset_text), p11_full) > 3) {
+        if_setsize(if_getwidth(kill_log:confirmation_layer), 70, ^setsize_abs, ^setsize_abs, kill_log:confirmation_layer);
+    } else if (paraheight(if_gettext(kill_log:reset_text), if_getwidth(kill_log:reset_text), p11_full) > 2) {
+        if_setsize(if_getwidth(kill_log:confirmation_layer), 60, ^setsize_abs, ^setsize_abs, kill_log:confirmation_layer);
     }
-    $int2 = if_getscrolly(interface_549:com_5);
-    $int3 = calc(if_getscrolly(interface_549:com_5) + if_getheight(interface_549:com_5) - if_getheight(interface_549:com_19));
-    if_sethide(false, interface_549:com_17);
-    if_sethide(false, interface_549:com_19);
-    if_setposition(12, ~minmax($int2, $int3, calc(18 * $int1 + 5)), ^setpos_abs_right, ^setpos_abs_top, interface_549:com_19);
+    $int2 = if_getscrolly(kill_log:scrolling);
+    $int3 = calc(if_getscrolly(kill_log:scrolling) + if_getheight(kill_log:scrolling) - if_getheight(kill_log:confirmation_layer));
+    if_sethide(false, kill_log:noclick);
+    if_sethide(false, kill_log:confirmation_layer);
+    if_setposition(12, ~minmax($int2, $int3, calc(18 * $int1 + 5)), ^setpos_abs_right, ^setpos_abs_top, kill_log:confirmation_layer);
 }

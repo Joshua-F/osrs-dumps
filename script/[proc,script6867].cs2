@@ -1,9 +1,9 @@
 // 6867
 [proc,script6867](int $int0, int $int1, string $string0)
-if_settext("<col=ffffff>Opt Out from <col=ff981f>Fresh Start Worlds</col>", interface_786:com_16);
-def_component $component2 = interface_786:com_11;
-def_component $component3 = interface_786:com_13;
-def_component $component4 = interface_786:com_12;
+if_settext("<col=ffffff>Opt Out from <col=ff981f>Fresh Start Worlds</col>", fsw_sp_optout:title);
+def_component $component2 = fsw_sp_optout:content_description;
+def_component $component3 = fsw_sp_optout:content_status_background;
+def_component $component4 = fsw_sp_optout:content_status;
 def_int $int5 = 0;
 def_int $int6 = 50;
 def_string $string1 = "<col=e6dbca>Opting out will move your account to the main game. There will be a <col=ff981f>three day countdown<col=e6dbca> before you're transfered, during which you can change your mind. After the countdown ends you will be transfered to the main game.";
@@ -44,18 +44,18 @@ if_setsize(calc($int9 * 2), 7372, ^setsize_minus, ^setsize_rel, $component2);
 if_setposition(0, $int9, ^setpos_rel_centre, ^setpos_abs_top, $component2);
 if_setsize(calc($int9 * 2), 5734, ^setsize_minus, ^setsize_rel, $component4);
 if_setposition(0, $int9, ^setpos_rel_centre, ^setpos_abs_bottom, $component4);
-if_setposition(0, $int16, ^setpos_rel_centre, ^setpos_abs_top, interface_786:com_15);
-if_setposition(0, $int16, ^setpos_rel_centre, ^setpos_abs_top, interface_786:com_14);
-if (%varplayerbit_14580 = 1) {
-    if_sethide(true, interface_786:com_15);
-    if_sethide(false, interface_786:com_14);
+if_setposition(0, $int16, ^setpos_rel_centre, ^setpos_abs_top, fsw_sp_optout:optout_button_select);
+if_setposition(0, $int16, ^setpos_rel_centre, ^setpos_abs_top, fsw_sp_optout:optout_button_cancel);
+if (%fsw_opting_out = 1) {
+    if_sethide(true, fsw_sp_optout:optout_button_select);
+    if_sethide(false, fsw_sp_optout:optout_button_cancel);
 } else {
-    if_sethide(false, interface_786:com_15);
-    if_sethide(true, interface_786:com_14);
+    if_sethide(false, fsw_sp_optout:optout_button_select);
+    if_sethide(true, fsw_sp_optout:optout_button_cancel);
     if ($int0 ! 0) {
-        if_sethide(true, interface_786:com_15);
+        if_sethide(true, fsw_sp_optout:optout_button_select);
     } else {
-        if_sethide(false, interface_786:com_15);
+        if_sethide(false, fsw_sp_optout:optout_button_select);
     }
 }
 cc_create($component2, ^iftype_text, $int5);
@@ -87,7 +87,7 @@ cc_setcolour(^white);
 cc_settrans(235);
 def_string $string3 = "";
 def_int $int19 = 0;
-if (%varplayerbit_14580 = 0) {
+if (%fsw_opting_out = 0) {
     if ($int0 = 0) {
         cc_create($component4, ^iftype_text, $int19);
         $int19 = calc($int19 + 1);
@@ -150,6 +150,6 @@ if (%varplayerbit_14580 = 0) {
         cc_settext("<col=ffff00>You have opted out<br><br><col=ffff00>Please relog to complete the transfer");
         cc_setposition(0, 0, ^setpos_rel_centre, ^setpos_abs_top);
         cc_settextalign(^settextalign_centre, ^settextalign_centre, 12);
-        if_sethide(true, interface_786:com_14);
+        if_sethide(true, fsw_sp_optout:optout_button_cancel);
     }
 }

@@ -1,13 +1,13 @@
 // 5909
 [proc,script5909](component $component0, component $component1, component $component2, component $component3, component $component4)
-if (%varplayer_3373 = null) {
+if (%latest_speedrun_panel = null) {
     if_sethide(true, $component0);
     if_sethide(true, $component2);
     if_setsize(0, 377, ^setsize_minus, ^setsize_abs, $component4);
     return;
 }
-def_dbrow $dbrow5 = ~script4865(%varplayer_3373);
-if ($dbrow5 = null | db_getrowtable($dbrow5) ! dbtable_61) {
+def_dbrow $dbrow5 = ~script4865(%latest_speedrun_panel);
+if ($dbrow5 = null | db_getrowtable($dbrow5) ! speedrun) {
     if_sethide(true, $component0);
     if_sethide(true, $component2);
     if_setsize(0, 377, ^setsize_minus, ^setsize_abs, $component4);
@@ -31,29 +31,29 @@ def_int $int8 = -1;
 def_int $int9 = calc(if_getwidth($component1) - 2);
 def_int $int10 = 0;
 def_dbrow $dbrow11 = null;
-def_int $int12 = db_getfieldcount(%varplayer_3373, dbtable_0:col25);
+def_int $int12 = db_getfieldcount(%latest_speedrun_panel, quest:requirement_quests);
 def_int $int13 = 0;
 while ($int13 < $int12) {
     $int10 = 1;
-    $dbrow11 = db_getfield(%varplayer_3373, dbtable_0:col25, $int13);
-    $int7, $int6 = ~script5912($component1, $int7, $int6, db_getfield($dbrow11, dbtable_0:col2, 0));
+    $dbrow11 = db_getfield(%latest_speedrun_panel, quest:requirement_quests, $int13);
+    $int7, $int6 = ~script5912($component1, $int7, $int6, db_getfield($dbrow11, quest:displayname, 0));
     $int13 = calc($int13 + 1);
 }
-$int12 = db_getfieldcount($dbrow5, dbtable_61:col4);
+$int12 = db_getfieldcount($dbrow5, speedrun:speedrun_quest_unlocks);
 $int13 = 0;
 while ($int13 < $int12) {
     $int10 = 1;
-    $dbrow11 = db_getfield($dbrow5, dbtable_61:col4, $int13);
-    $int7, $int6 = ~script5912($component1, $int7, $int6, db_getfield($dbrow11, dbtable_0:col2, 0));
+    $dbrow11 = db_getfield($dbrow5, speedrun:speedrun_quest_unlocks, $int13);
+    $int7, $int6 = ~script5912($component1, $int7, $int6, db_getfield($dbrow11, quest:displayname, 0));
     $int13 = calc($int13 + 1);
 }
-def_int $int14 = ~max(db_getfield(%varplayer_3373, dbtable_0:col27, 0), db_getfield(%varplayer_3373, dbtable_0:col28, 0));
+def_int $int14 = ~max(db_getfield(%latest_speedrun_panel, quest:requirement_combat, 0), db_getfield(%latest_speedrun_panel, quest:recommended_combat, 0));
 def_int $int15 = ~minmax(3, 99, calc(scale(4, 5, $int14) + 15));
-if (db_getfield($dbrow5, dbtable_61:col6, 0) > 1) {
-    $int15 = db_getfield($dbrow5, dbtable_61:col6, 0);
+if (db_getfield($dbrow5, speedrun:speedrun_combat_stats_unlock, 0) > 1) {
+    $int15 = db_getfield($dbrow5, speedrun:speedrun_combat_stats_unlock, 0);
 }
 def_int $int16 = calc($int15 % 5);
-if ($int14 > 3 | db_getfield($dbrow5, dbtable_61:col6, 0) > 1) {
+if ($int14 > 3 | db_getfield($dbrow5, speedrun:speedrun_combat_stats_unlock, 0) > 1) {
     if ($int16 < 3) {
         $int15 = calc($int15 - $int16);
     } else {
@@ -65,31 +65,31 @@ if ($int14 > 3 | db_getfield($dbrow5, dbtable_61:col6, 0) > 1) {
 }
 def_stat $stat17 = null;
 def_int $int18 = 1;
-def_int $int19 = db_getfieldcount(%varplayer_3373, dbtable_0:col23);
+def_int $int19 = db_getfieldcount(%latest_speedrun_panel, quest:requirement_stats);
 $int13 = 0;
 while ($int13 < $int19) {
-    $stat17, $int18 = db_getfield(%varplayer_3373, dbtable_0:col23, $int13);
-    $stat17, $int18 = ~script5911(%varplayer_3373, $dbrow5, $stat17, $int18, $int15);
+    $stat17, $int18 = db_getfield(%latest_speedrun_panel, quest:requirement_stats, $int13);
+    $stat17, $int18 = ~script5911(%latest_speedrun_panel, $dbrow5, $stat17, $int18, $int15);
     if ($stat17 ! null & $int18 > 1) {
         $int7, $int6 = ~script5912($component1, $int7, $int6, "<tostring($int18)> <enum(stat, string, enum_680, $stat17)>");
     }
     $int13 = calc($int13 + 1);
 }
-$int19 = db_getfieldcount(%varplayer_3373, dbtable_0:col24);
+$int19 = db_getfieldcount(%latest_speedrun_panel, quest:recommended_stats);
 $int13 = 0;
 while ($int13 < $int19) {
-    $stat17, $int18 = db_getfield(%varplayer_3373, dbtable_0:col24, $int13);
-    $stat17, $int18 = ~script5994(%varplayer_3373, $dbrow5, $stat17, $int18, $int15);
+    $stat17, $int18 = db_getfield(%latest_speedrun_panel, quest:recommended_stats, $int13);
+    $stat17, $int18 = ~script5994(%latest_speedrun_panel, $dbrow5, $stat17, $int18, $int15);
     if ($stat17 ! null & $int18 > 1) {
         $int7, $int6 = ~script5912($component1, $int7, $int6, "<tostring($int18)> <enum(stat, string, enum_680, $stat17)>");
     }
     $int13 = calc($int13 + 1);
 }
-$int19 = db_getfieldcount($dbrow5, dbtable_61:col5);
+$int19 = db_getfieldcount($dbrow5, speedrun:speedrun_stat_unlocks);
 $int13 = 0;
 while ($int13 < $int19) {
-    $stat17, $int18 = db_getfield($dbrow5, dbtable_61:col5, $int13);
-    $stat17, $int18 = ~script6809(%varplayer_3373, $dbrow5, $stat17, $int18, $int15);
+    $stat17, $int18 = db_getfield($dbrow5, speedrun:speedrun_stat_unlocks, $int13);
+    $stat17, $int18 = ~script6809(%latest_speedrun_panel, $dbrow5, $stat17, $int18, $int15);
     if ($stat17 ! null & $int18 > 1) {
         $int7, $int6 = ~script5912($component1, $int7, $int6, "<tostring($int18)> <enum(stat, string, enum_680, $stat17)>");
     }
@@ -98,10 +98,10 @@ while ($int13 < $int19) {
 if ($int15 > 1) {
     $int7, $int6 = ~script5912($component1, $int7, $int6, "Level <tostring($int15)> in all combat stats");
 }
-if (db_getfield($dbrow5, dbtable_61:col7, 0) > 0) {
-    $int7, $int6 = ~script5912($component1, $int7, $int6, "<enum(int, string, enum_252, db_getfield($dbrow5, dbtable_61:col7, 0))> Player Owned House");
+if (db_getfield($dbrow5, speedrun:speedrun_poh_location, 0) > 0) {
+    $int7, $int6 = ~script5912($component1, $int7, $int6, "<enum(int, string, enum_252, db_getfield($dbrow5, speedrun:speedrun_poh_location, 0))> Player Owned House");
 }
-$int7, $int6 = ~speedrunning_misc_unlocks(%varplayer_3373, $component1, $int7, $int6);
+$int7, $int6 = ~speedrunning_misc_unlocks(%latest_speedrun_panel, $component1, $int7, $int6);
 if ($int10 = 1) {
     $int7, $int6 = ~script5912($component1, $int7, $int6, "Any requirements for the other quests unlocked");
 }
@@ -122,12 +122,12 @@ cc_settext("Items");
 cc_settextshadow(true);
 $int6 = 23;
 $int7 = calc($int7 + 1);
-$int7, $int6 = ~script5910($component3, $dbrow5, inv_94, $int7, $int6);
-$int7, $int6 = ~script5910($component3, $dbrow5, inv_93, $int7, $int6);
+$int7, $int6 = ~script5910($component3, $dbrow5, worn, $int7, $int6);
+$int7, $int6 = ~script5910($component3, $dbrow5, inv, $int7, $int6);
 if ($int6 = 23) {
     $int7, $int6 = ~script5912($component3, $int7, $int6, "None");
 }
-if (~script6808($dbrow5, inv_95) > 0) {
+if (~script6808($dbrow5, bank) > 0) {
     $int6 = calc($int6 + 3);
     cc_create($component3, ^iftype_text, $int7);
     cc_setsize(6, 20, ^setsize_minus, ^setsize_abs);
@@ -139,7 +139,7 @@ if (~script6808($dbrow5, inv_95) > 0) {
     cc_settextshadow(true);
     $int6 = calc($int6 + 22);
     $int7 = calc($int7 + 1);
-    $int7, $int6 = ~script5910($component3, $dbrow5, inv_95, $int7, $int6);
+    $int7, $int6 = ~script5910($component3, $dbrow5, bank, $int7, $int6);
 }
 $int6 = calc($int6 + 3);
 if ($int6 > $int20) {

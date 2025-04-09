@@ -3,27 +3,27 @@
 def_int $int6 = max(~script3750($enum3), 0);
 def_int $int7 = ~script4818($enum3);
 def_obj $obj8 = enum(int, namedobj, $enum3, $int7);
-def_int $int9 = calc(if_getwidth(interface_12:com_52) / 2);
+def_int $int9 = calc(if_getwidth(bankmain:potionstore_items) / 2);
 def_int $int10 = 36;
 def_int $int11 = 1;
 def_int $int12 = 0;
-if ($int1 = 1 & calc(if_getwidth(interface_12:com_52) % 2) > 0) {
+if ($int1 = 1 & calc(if_getwidth(bankmain:potionstore_items) % 2) > 0) {
     $int12 = calc($int9 + 1);
 }
 if ($int6 < 1 & $int4 = 0) {
-    cc_create(interface_12:com_52, ^iftype_rectangle, $int0);
+    cc_create(bankmain:potionstore_items, ^iftype_rectangle, $int0);
     cc_sethide(true);
     $int0 = calc($int0 + 1);
-    cc_create(interface_12:com_52, ^iftype_rectangle, $int0);
+    cc_create(bankmain:potionstore_items, ^iftype_rectangle, $int0);
     cc_sethide(true);
     $int0 = calc($int0 + 1);
-    cc_create(interface_12:com_52, ^iftype_rectangle, $int0);
+    cc_create(bankmain:potionstore_items, ^iftype_rectangle, $int0);
     cc_sethide(true);
     $int0 = calc($int0 + 1);
-    cc_create(interface_12:com_52, ^iftype_rectangle, $int0);
+    cc_create(bankmain:potionstore_items, ^iftype_rectangle, $int0);
     cc_sethide(true);
     $int0 = calc($int0 + 1);
-    cc_create(interface_12:com_52, ^iftype_rectangle, $int0);
+    cc_create(bankmain:potionstore_items, ^iftype_rectangle, $int0);
     cc_sethide(true);
     $int0 = calc($int0 + 1);
     return(false, $int0, $int1, $int2);
@@ -32,21 +32,21 @@ def_graphic $graphic13 = tradebacking;
 if (calc($int5 / 2 % 2) = 0) {
     $graphic13 = tradebacking_dark;
 }
-~create_graphic(interface_12:com_52, $int0, $graphic13, $int12, calc($int2 * $int10), ^setpos_abs_left, ^setpos_abs_top, $int9, $int10, ^setsize_abs, ^setsize_abs);
+~create_graphic(bankmain:potionstore_items, $int0, $graphic13, $int12, calc($int2 * $int10), ^setpos_abs_left, ^setpos_abs_top, $int9, $int10, ^setsize_abs, ^setsize_abs);
 cc_setop(1, "Withdraw-<~script2579>");
-if (%varplayerbit_6590 ! 0) {
+if (%bank_quantity_type ! 0) {
     cc_setop(2, "Withdraw-1");
 }
 cc_setop(3, "Withdraw-5");
 cc_setop(4, "Withdraw-10");
-if (%varplayerbit_3960 > 0) {
-    cc_setop(5, "Withdraw-<tostring(%varplayerbit_3960)>");
+if (%bank_requestedquantity > 0) {
+    cc_setop(5, "Withdraw-<tostring(%bank_requestedquantity)>");
 }
 cc_setop(6, "Withdraw-X");
 cc_setop(7, "Withdraw-All");
 cc_setop(8, "Withdraw-All-but-1");
 $int0 = calc($int0 + 1);
-cc_create(interface_12:com_52, ^iftype_graphic, $int0);
+cc_create(bankmain:potionstore_items, ^iftype_graphic, $int0);
 cc_setposition(calc($int12 + $int11), calc($int2 * $int10 + 2), ^setpos_abs_left, ^setpos_abs_top);
 cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
 cc_setobject($obj8, -1);
@@ -64,10 +64,10 @@ if (enum(int, namedobj, $enum3, 3) ! null) {
 if (enum(int, namedobj, $enum3, 4) ! null) {
     cc_setop(9, "4 Dose");
 }
-cc_setonvartransmit("potionstore_vile_size_update(event_com, event_comsubid, $enum3){varplayer_4272, varplayer_4273, varplayer_4274, varplayer_4275, varplayer_4276, varplayer_4277}");
-cc_setonscrollwheel("scrollbar_vertical_wheel(interface_12:com_53, interface_12:com_52, event_mousey)");
+cc_setonvartransmit("potionstore_vile_size_update(event_com, event_comsubid, $enum3){potionstore_base_var_1, potionstore_base_var_2, potionstore_base_var_3, potionstore_base_var_4, potionstore_base_var_5, potionstore_base_var_6}");
+cc_setonscrollwheel("scrollbar_vertical_wheel(bankmain:potionstore_scrollbar, bankmain:potionstore_items, event_mousey)");
 $int0 = calc($int0 + 1);
-cc_create(interface_12:com_52, ^iftype_text, $int0);
+cc_create(bankmain:potionstore_items, ^iftype_text, $int0);
 cc_setposition(calc($int12 + 36 + $int11 + $int11), calc($int2 * $int10 + 2), ^setpos_abs_left, ^setpos_abs_top);
 cc_setsize($int9, $int10, ^setsize_abs, ^setsize_abs);
 cc_settextfont(p12_full);
@@ -81,7 +81,7 @@ if (string_length($string0) = 0) {
 }
 cc_settext($string0);
 $int0 = calc($int0 + 1);
-cc_create(interface_12:com_52, ^iftype_text, $int0);
+cc_create(bankmain:potionstore_items, ^iftype_text, $int0);
 cc_setposition(calc($int12 + 36 + $int11 + $int11), calc($int2 * $int10 + $int10 / 2 + 3), ^setpos_abs_left, ^setpos_abs_top);
 cc_setsize($int9, $int10, ^setsize_abs, ^setsize_abs);
 cc_settextfont(p11_full);
@@ -94,17 +94,17 @@ if (enum(int, namedobj, $enum3, 2) = null) {
 cc_settext("<$string0> <tostring($int6)>");
 $int0 = calc($int0 + 1);
 if ($int4 = 1) {
-    ~create_graphic(interface_12:com_52, $int0, "favourite_icons,0", calc($int12 + $int9 - 16), calc($int2 * $int10 + 21), ^setpos_abs_left, ^setpos_abs_top, 13, 12, ^setsize_abs, ^setsize_abs);
+    ~create_graphic(bankmain:potionstore_items, $int0, "favourite_icons,0", calc($int12 + $int9 - 16), calc($int2 * $int10 + 21), ^setpos_abs_left, ^setpos_abs_top, 13, 12, ^setsize_abs, ^setsize_abs);
     cc_setop(1, "Remove Favourite");
 } else {
-    ~create_graphic(interface_12:com_52, $int0, "favourite_icons,1", calc($int12 + $int9 - 16), calc($int2 * $int10 + 21), ^setpos_abs_left, ^setpos_abs_top, 13, 12, ^setsize_abs, ^setsize_abs);
+    ~create_graphic(bankmain:potionstore_items, $int0, "favourite_icons,1", calc($int12 + $int9 - 16), calc($int2 * $int10 + 21), ^setpos_abs_left, ^setpos_abs_top, 13, 12, ^setsize_abs, ^setsize_abs);
     cc_setop(1, "Add Favourite");
     if (~script6075 = 8) {
         cc_sethide(true);
     }
 }
 cc_setonop("potionstore_favourite_button(calc($int0 / 5))");
-cc_setonscrollwheel("scrollbar_vertical_wheel(interface_12:com_53, interface_12:com_52, event_mousey)");
+cc_setonscrollwheel("scrollbar_vertical_wheel(bankmain:potionstore_scrollbar, bankmain:potionstore_items, event_mousey)");
 cc_setnoclickthrough(true);
 $int0 = calc($int0 + 1);
 $int1, $int2 = ~script6556($int1, $int2);
