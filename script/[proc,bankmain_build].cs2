@@ -1,18 +1,18 @@
 // 277
 [proc,bankmain_build](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10, component $component11, component $component12, component $component13, component $component14, component $component15, component $component16)
-if (%varplayerbit_5102 = 1) {
+if (%bank_showincinerator = 1) {
     if_sethide(false, $component9);
 } else {
     if_sethide(true, $component9);
     ~deltooltip_action($component11);
 }
 def_boolean $boolean17 = false;
-if (%varplayerbit_5364 = 1) {
+if (%bank_hidedepositworn = 1) {
     $boolean17 = true;
 }
 if_sethide($boolean17, $component14);
 if_sethide($boolean17, $component15);
-if (%varplayerbit_8352 = 1) {
+if (%bank_hidedepositinv = 1) {
     $boolean17 = true;
 } else {
     $boolean17 = false;
@@ -20,16 +20,16 @@ if (%varplayerbit_8352 = 1) {
 if_sethide($boolean17, $component12);
 if_sethide($boolean17, $component13);
 ~script3369($component16);
-if_setonvartransmit("script3368($component16){varplayer_1141}", $component16);
+if_setonvartransmit("script3368($component16){item_redemption}", $component16);
 if_setposition(441, 0, ^setpos_abs_left, ^setpos_abs_top, $component14);
 if_setposition(444, 7, ^setpos_abs_left, ^setpos_abs_top, $component15);
-if (%varplayerbit_8352 = 1 & %varplayerbit_5364 = 0) {
+if (%bank_hidedepositinv = 1 & %bank_hidedepositworn = 0) {
     if_setposition(if_getx($component12), if_gety($component12), ^setpos_abs_left, ^setpos_abs_top, $component14);
     if_setposition(if_getx($component13), if_gety($component13), ^setpos_abs_left, ^setpos_abs_top, $component15);
     if_setsize(37, 37, ^setsize_minus, ^setsize_abs, $component4);
-} else if (%varplayerbit_8352 = 0 & %varplayerbit_5364 = 1) {
+} else if (%bank_hidedepositinv = 0 & %bank_hidedepositworn = 1) {
     if_setsize(37, 37, ^setsize_minus, ^setsize_abs, $component4);
-} else if (%varplayerbit_8352 = 1 & %varplayerbit_5364 = 1) {
+} else if (%bank_hidedepositinv = 1 & %bank_hidedepositworn = 1) {
     if_setsize(74, 37, ^setsize_minus, ^setsize_abs, $component4);
 } else {
     if_setsize(0, 37, ^setsize_minus, ^setsize_abs, $component4);
@@ -37,8 +37,8 @@ if (%varplayerbit_8352 = 1 & %varplayerbit_5364 = 0) {
 if_sethide(true, $component10);
 cc_deleteall($component10);
 def_int $int18 = 0;
-if (%varplayerbit_4170 = 3) {
-    if (%varplayerbit_4171 > 0 | %varplayerbit_4172 > 0 | %varplayerbit_4173 > 0 | %varplayerbit_4174 > 0 | %varplayerbit_4175 > 0 | %varplayerbit_4176 > 0 | %varplayerbit_4177 > 0 | %varplayerbit_4178 > 0 | %varplayerbit_4179 > 0) {
+if (%bank_tab_display = 3) {
+    if (%bank_tab_1 > 0 | %bank_tab_2 > 0 | %bank_tab_3 > 0 | %bank_tab_4 > 0 | %bank_tab_5 > 0 | %bank_tab_6 > 0 | %bank_tab_7 > 0 | %bank_tab_8 > 0 | %bank_tab_9 > 0) {
         $int18 = 0;
     } else {
         $int18 = 1;
@@ -50,20 +50,20 @@ if ($int18 = 1) {
     $int19 = 2;
     if_setsize(460, 39, ^setsize_abs, ^setsize_minus, $component2);
     if_setsize(16, 39, ^setsize_abs, ^setsize_minus, $component3);
-    if_setsize(53, 39, ^setsize_minus, ^setsize_minus, interface_12:com_15);
+    if_setsize(53, 39, ^setsize_minus, ^setsize_minus, bankmain:potionstore_container);
     if_setposition(28, 42, ^setpos_abs_right, ^setpos_abs_top, $component1);
 } else {
     if_sethide(false, $component8);
     if_setsize(460, 81, ^setsize_abs, ^setsize_minus, $component2);
     if_setsize(16, 81, ^setsize_abs, ^setsize_minus, $component3);
-    if_setsize(53, 81, ^setsize_minus, ^setsize_minus, interface_12:com_15);
+    if_setsize(53, 81, ^setsize_minus, ^setsize_minus, bankmain:potionstore_container);
     if_setposition(12, 42, ^setpos_abs_right, ^setpos_abs_top, $component1);
 }
-if (%varplayerbit_4150 = 15) {
-    if_sethide(false, interface_12:com_15);
+if (%bank_currenttab = 15) {
+    if_sethide(false, bankmain:potionstore_container);
     ~script6080;
 } else {
-    if_sethide(true, interface_12:com_15);
+    if_sethide(true, bankmain:potionstore_container);
 }
 ~scrollbar_vertical_rebuild($component3, $component2);
 def_int $int20 = 1220;
@@ -86,88 +86,88 @@ def_int $int29 = 0;
 def_int $int30 = -1;
 def_int $int31 = 0;
 def_string $string0 = "";
-if ((%varplayerbit_4150 <= 0 | %varplayerbit_4150 > 9) & %varplayerbit_4150 ! 15) {
+if ((%bank_currenttab <= 0 | %bank_currenttab > 9) & %bank_currenttab ! 15) {
     while ($int20 < 1220) {
         if (cc_find($component2, $int20) = ^true) {
             cc_sethide(true);
         }
-        if (inv_getobj(inv_95, $int20) ! null) {
+        if (inv_getobj(bank, $int20) ! null) {
             $int29, $int30 = calc($int29 + 1), $int20;
         }
         $int20 = calc($int20 + 1);
     }
-    $int31 = calc(%varplayerbit_4171 + %varplayerbit_4172 + %varplayerbit_4173 + %varplayerbit_4174 + %varplayerbit_4175 + %varplayerbit_4176 + %varplayerbit_4177 + %varplayerbit_4178 + %varplayerbit_4179);
+    $int31 = calc(%bank_tab_1 + %bank_tab_2 + %bank_tab_3 + %bank_tab_4 + %bank_tab_5 + %bank_tab_6 + %bank_tab_7 + %bank_tab_8 + %bank_tab_9);
     if ($int31 <= 0) {
         $int30 = calc(1220 - 1);
     }
     $int28, $int26 = ~script509($int31, calc($int30 + 1), 0, $component2, $component3, $component9, $component10, $component11, $int19, $int24, $int22, $int18);
     $int27 = calc($int27 + $int26);
     $int20 = 0;
-    if (%varplayerbit_4171 > 0) {
+    if (%bank_tab_1 > 0) {
         $int19 = ~script510(1, $component2, $int28);
-        $int28, $int26 = ~script509($int20, calc($int20 + %varplayerbit_4171), 1, $component2, $component3, $component9, $component10, $component11, $int19, $int24, $int22, $int18);
+        $int28, $int26 = ~script509($int20, calc($int20 + %bank_tab_1), 1, $component2, $component3, $component9, $component10, $component11, $int19, $int24, $int22, $int18);
         $int27 = calc($int27 + $int26);
-        $int20 = calc($int20 + %varplayerbit_4171);
+        $int20 = calc($int20 + %bank_tab_1);
     }
-    if (%varplayerbit_4172 > 0) {
+    if (%bank_tab_2 > 0) {
         $int19 = ~script510(2, $component2, $int28);
-        $int28, $int26 = ~script509($int20, calc($int20 + %varplayerbit_4172), 2, $component2, $component3, $component9, $component10, $component11, $int19, $int24, $int22, $int18);
+        $int28, $int26 = ~script509($int20, calc($int20 + %bank_tab_2), 2, $component2, $component3, $component9, $component10, $component11, $int19, $int24, $int22, $int18);
         $int27 = calc($int27 + $int26);
-        $int20 = calc($int20 + %varplayerbit_4172);
+        $int20 = calc($int20 + %bank_tab_2);
     }
-    if (%varplayerbit_4173 > 0) {
+    if (%bank_tab_3 > 0) {
         $int19 = ~script510(3, $component2, $int28);
-        $int28, $int26 = ~script509($int20, calc($int20 + %varplayerbit_4173), 3, $component2, $component3, $component9, $component10, $component11, $int19, $int24, $int22, $int18);
+        $int28, $int26 = ~script509($int20, calc($int20 + %bank_tab_3), 3, $component2, $component3, $component9, $component10, $component11, $int19, $int24, $int22, $int18);
         $int27 = calc($int27 + $int26);
-        $int20 = calc($int20 + %varplayerbit_4173);
+        $int20 = calc($int20 + %bank_tab_3);
     }
-    if (%varplayerbit_4174 > 0) {
+    if (%bank_tab_4 > 0) {
         $int19 = ~script510(4, $component2, $int28);
-        $int28, $int26 = ~script509($int20, calc($int20 + %varplayerbit_4174), 4, $component2, $component3, $component9, $component10, $component11, $int19, $int24, $int22, $int18);
+        $int28, $int26 = ~script509($int20, calc($int20 + %bank_tab_4), 4, $component2, $component3, $component9, $component10, $component11, $int19, $int24, $int22, $int18);
         $int27 = calc($int27 + $int26);
-        $int20 = calc($int20 + %varplayerbit_4174);
+        $int20 = calc($int20 + %bank_tab_4);
     }
-    if (%varplayerbit_4175 > 0) {
+    if (%bank_tab_5 > 0) {
         $int19 = ~script510(5, $component2, $int28);
-        $int28, $int26 = ~script509($int20, calc($int20 + %varplayerbit_4175), 5, $component2, $component3, $component9, $component10, $component11, $int19, $int24, $int22, $int18);
+        $int28, $int26 = ~script509($int20, calc($int20 + %bank_tab_5), 5, $component2, $component3, $component9, $component10, $component11, $int19, $int24, $int22, $int18);
         $int27 = calc($int27 + $int26);
-        $int20 = calc($int20 + %varplayerbit_4175);
+        $int20 = calc($int20 + %bank_tab_5);
     }
-    if (%varplayerbit_4176 > 0) {
+    if (%bank_tab_6 > 0) {
         $int19 = ~script510(6, $component2, $int28);
-        $int28, $int26 = ~script509($int20, calc($int20 + %varplayerbit_4176), 6, $component2, $component3, $component9, $component10, $component11, $int19, $int24, $int22, $int18);
+        $int28, $int26 = ~script509($int20, calc($int20 + %bank_tab_6), 6, $component2, $component3, $component9, $component10, $component11, $int19, $int24, $int22, $int18);
         $int27 = calc($int27 + $int26);
-        $int20 = calc($int20 + %varplayerbit_4176);
+        $int20 = calc($int20 + %bank_tab_6);
     }
-    if (%varplayerbit_4177 > 0) {
+    if (%bank_tab_7 > 0) {
         $int19 = ~script510(7, $component2, $int28);
-        $int28, $int26 = ~script509($int20, calc($int20 + %varplayerbit_4177), 7, $component2, $component3, $component9, $component10, $component11, $int19, $int24, $int22, $int18);
+        $int28, $int26 = ~script509($int20, calc($int20 + %bank_tab_7), 7, $component2, $component3, $component9, $component10, $component11, $int19, $int24, $int22, $int18);
         $int27 = calc($int27 + $int26);
-        $int20 = calc($int20 + %varplayerbit_4177);
+        $int20 = calc($int20 + %bank_tab_7);
     }
-    if (%varplayerbit_4178 > 0) {
+    if (%bank_tab_8 > 0) {
         $int19 = ~script510(8, $component2, $int28);
-        $int28, $int26 = ~script509($int20, calc($int20 + %varplayerbit_4178), 8, $component2, $component3, $component9, $component10, $component11, $int19, $int24, $int22, $int18);
+        $int28, $int26 = ~script509($int20, calc($int20 + %bank_tab_8), 8, $component2, $component3, $component9, $component10, $component11, $int19, $int24, $int22, $int18);
         $int27 = calc($int27 + $int26);
-        $int20 = calc($int20 + %varplayerbit_4178);
+        $int20 = calc($int20 + %bank_tab_8);
     }
-    if (%varplayerbit_4179 > 0) {
+    if (%bank_tab_9 > 0) {
         $int19 = ~script510(9, $component2, $int28);
-        $int28, $int26 = ~script509($int20, calc($int20 + %varplayerbit_4179), 9, $component2, $component3, $component9, $component10, $component11, $int19, $int24, $int22, $int18);
+        $int28, $int26 = ~script509($int20, calc($int20 + %bank_tab_9), 9, $component2, $component3, $component9, $component10, $component11, $int19, $int24, $int22, $int18);
         $int27 = calc($int27 + $int26);
-        $int20 = calc($int20 + %varplayerbit_4179);
+        $int20 = calc($int20 + %bank_tab_9);
     }
     if (~bankmain_searching = true) {
         $string0 = ~bankmain_filterstring;
         if (string_length($string0) > 0) {
             if_settext("Showing items: <col=ff0000><$string0></col>", $component5);
             if (%varclient_5 = 11) {
-                if_settext("Show items whose names contain the following text: (<tostring($int27)> found)", interface_162:com_42);
+                if_settext("Show items whose names contain the following text: (<tostring($int27)> found)", chatbox:mes_text);
             }
         } else {
             if_settext("Showing items: <col=ff0000>*</col>", $component5);
             if (%varclient_5 = 11) {
-                if_settext("Show items whose names contain the following text:", interface_162:com_42);
+                if_settext("Show items whose names contain the following text:", chatbox:mes_text);
             }
         }
     } else {
@@ -181,18 +181,18 @@ if (~bankmain_searching = true) {
 }
 def_int $int32 = -1;
 def_int $int33 = -1;
-$int32, $int33 = ~bank_gettabrange(%varplayerbit_4150);
+$int32, $int33 = ~bank_gettabrange(%bank_currenttab);
 def_int $int34 = 0;
 def_int $int35 = 0;
 while ($int20 < 1220) {
     if (cc_find($component2, $int20) = ^true) {
-        $obj25 = inv_getobj(inv_95, $int20);
+        $obj25 = inv_getobj(bank, $int20);
         if ($obj25 ! null) {
             $int29 = calc($int29 + 1);
         }
         if ($int20 >= $int32 & $int20 < $int33) {
             cc_sethide(false);
-            ~bankmain_drawitem($obj25, inv_getnum(inv_95, $int20), $component2, $component3, $component9, $component10, $component11);
+            ~bankmain_drawitem($obj25, inv_getnum(bank, $int20), $component2, $component3, $component9, $component10, $component11);
             $int28 = calc($int35 * 36);
             cc_setposition(calc(51 + $int34 * (36 + $int24)), $int28, ^setpos_abs_left, ^setpos_abs_top);
             $int28 = calc($int28 + 32);
@@ -207,13 +207,13 @@ while ($int20 < 1220) {
     }
     $int20 = calc($int20 + 1);
 }
-if_sethide(true, interface_12:com_15);
-if (%varplayerbit_4150 = 15) {
+if_sethide(true, bankmain:potionstore_container);
+if (%bank_currenttab = 15) {
     if_settext("Potion store", $component5);
-    if_sethide(false, interface_12:com_15);
-} else if (%varplayerbit_4170 = 2) {
-    if_settext("Tab <enum(int, string, enum_207, %varplayerbit_4150)>", $component5);
+    if_sethide(false, bankmain:potionstore_container);
+} else if (%bank_tab_display = 2) {
+    if_settext("Tab <enum(int, string, enum_207, %bank_currenttab)>", $component5);
 } else {
-    if_settext("Tab <tostring(%varplayerbit_4150)>", $component5);
+    if_settext("Tab <tostring(%bank_currenttab)>", $component5);
 }
 ~bankmain_finishbuilding($component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10, $component11, $int28, $int29, $component12, $component13, $component14, $component15, $component16);

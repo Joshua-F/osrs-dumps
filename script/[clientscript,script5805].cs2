@@ -1,7 +1,7 @@
 // 5805
 [clientscript,script5805]
-if (%varplayer_3345 < 1) {
-    if_sethide(true, interface_737:com_20);
+if (%league_3_class_current_selection < 1) {
+    if_sethide(true, league_3_select_class:confirmation_overlay);
     return;
 }
 def_int $int0 = ~league_get_league_colour(3);
@@ -10,19 +10,19 @@ def_string $string0 = "";
 def_string $string1 = "";
 def_string $string2 = "";
 def_int $int2 = 0;
-if (%varplayer_3345 = 1) {
+if (%league_3_class_current_selection = 1) {
     $string0, $string1, $string2, $graphic1 = "Unwavering Warrior", "Unholy Warrior", "Improved Melee Accuracy<br><col=cfcfcf>on 0 Prayer", "icon_stat_50x50,0";
 }
-if (%varplayer_3345 = 2) {
+if (%league_3_class_current_selection = 2) {
     $string0, $string1, $string2, $graphic1 = "Focused Ranger", "Bottomless Quiver", "Chance to save Ammo and Ranged Weapon Charges.", "icon_stat_50x50,3";
 }
-if (%varplayer_3345 = 3) {
+if (%league_3_class_current_selection = 3) {
     $string0, $string1, $string2, $graphic1 = "Masterful Wizard", "Arcane Conduit", "Chance to save Runes and Magic Weapon Charges.", "icon_stat_50x50,5";
 }
-if_sethide(false, interface_737:com_20);
-cc_deleteall(interface_737:com_22);
-$int2 = ~steelbox(interface_737:com_22, $int2, 1);
-cc_create(interface_737:com_22, ^iftype_text, $int2);
+if_sethide(false, league_3_select_class:confirmation_overlay);
+cc_deleteall(league_3_select_class:confirmation_message);
+$int2 = ~steelbox(league_3_select_class:confirmation_message, $int2, 1);
+cc_create(league_3_select_class:confirmation_message, ^iftype_text, $int2);
 cc_setposition(16, 16, ^setpos_abs_left, ^setpos_abs_top);
 cc_setsize(32, 40, ^setsize_minus, ^setsize_abs);
 cc_settextalign(^settextalign_centre, ^settextalign_top, 20);
@@ -31,9 +31,9 @@ cc_settextfont(b12_full);
 cc_setcolour($int0);
 cc_settext("<col=cfcfcf>Are you sure you wish to become a:<br><$string0><br><col=cfcfcf>Other combat skills and Fragments may still be unlocked later.");
 $int2 = calc($int2 + 1);
-~create_graphic(interface_737:com_22, $int2, $graphic1, 0, -15, ^setpos_abs_centre, ^setpos_abs_centre, 50, 50, ^setsize_abs, ^setsize_abs);
+~create_graphic(league_3_select_class:confirmation_message, $int2, $graphic1, 0, -15, ^setpos_abs_centre, ^setpos_abs_centre, 50, 50, ^setsize_abs, ^setsize_abs);
 $int2 = calc($int2 + 1);
-cc_create(interface_737:com_22, ^iftype_text, $int2);
+cc_create(league_3_select_class:confirmation_message, ^iftype_text, $int2);
 cc_setposition(16, 165, ^setpos_abs_left, ^setpos_abs_top);
 cc_setsize(32, 40, ^setsize_minus, ^setsize_abs);
 cc_settextalign(^settextalign_centre, ^settextalign_top, 20);
@@ -42,11 +42,11 @@ cc_settextfont(b12_full);
 cc_setcolour($int0);
 cc_settext("<$string1> Fragment:<br><col=cfcfcf><$string2>");
 $int2 = calc($int2 + 1);
-~script5820(interface_737:com_23, 0, 0, 0, if_getwidth(interface_737:com_23), if_getheight(interface_737:com_23), struct_3927);
-~script5820(interface_737:com_26, 0, 0, 0, if_getwidth(interface_737:com_26), if_getheight(interface_737:com_26), struct_3924);
+~script5820(league_3_select_class:confirmation_cancel, 0, 0, 0, if_getwidth(league_3_select_class:confirmation_cancel), if_getheight(league_3_select_class:confirmation_cancel), struct_3927);
+~script5820(league_3_select_class:confirmation_accept, 0, 0, 0, if_getwidth(league_3_select_class:confirmation_accept), if_getheight(league_3_select_class:confirmation_accept), struct_3924);
 if (~on_mobile = false) {
-    if_setonmouseover("script5821(interface_737:com_23, 0, struct_3929)", interface_737:com_23);
-    if_setonmouseover("script5821(interface_737:com_26, 0, struct_3926)", interface_737:com_26);
-    if_setonmouseleave("script5821(interface_737:com_23, 0, struct_3927)", interface_737:com_23);
-    if_setonmouseleave("script5821(interface_737:com_26, 0, struct_3924)", interface_737:com_26);
+    if_setonmouseover("script5821(league_3_select_class:confirmation_cancel, 0, struct_3929)", league_3_select_class:confirmation_cancel);
+    if_setonmouseover("script5821(league_3_select_class:confirmation_accept, 0, struct_3926)", league_3_select_class:confirmation_accept);
+    if_setonmouseleave("script5821(league_3_select_class:confirmation_cancel, 0, struct_3927)", league_3_select_class:confirmation_cancel);
+    if_setonmouseleave("script5821(league_3_select_class:confirmation_accept, 0, struct_3924)", league_3_select_class:confirmation_accept);
 }

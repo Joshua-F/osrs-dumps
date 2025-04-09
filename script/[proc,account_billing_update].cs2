@@ -1,35 +1,35 @@
 // 2503
 [proc,account_billing_update]
-def_component $component0 = interface_109:com_31;
-def_component $component1 = interface_109:com_32;
-def_component $component2 = interface_109:com_36;
-def_component $component3 = interface_109:com_34;
-def_component $component4 = interface_109:com_35;
-def_component $component5 = interface_109:com_41;
-def_component $component6 = interface_109:com_39;
-def_component $component7 = interface_109:com_40;
+def_component $component0 = account:billing_text;
+def_component $component1 = account:store_button;
+def_component $component2 = account:store_button_text;
+def_component $component3 = account:store_button_icon_left;
+def_component $component4 = account:store_button_icon_right;
+def_component $component5 = account:bond_button_text;
+def_component $component6 = account:bond_button_icon_left;
+def_component $component7 = account:bond_button_icon_right;
 def_string $string0 = "Membership: <col=ff0000>None</col>";
 def_string $string1 = "Upgrade Now";
 def_graphic $graphic8 = "acc_man_icons,6";
 def_string $string2 = "Bond Pouch";
 def_graphic $graphic9 = "acc_man_icons,1";
-if (%varclient_103 = 1 & %varplayer_1780 > 0) {
-    if (%varplayer_1780 > 99999) {
+if (%varclient_103 = 1 & %account_credit > 0) {
+    if (%account_credit > 99999) {
         $string0 = "Membership: 99999+ days left";
-    } else if (%varplayer_1780 = 1) {
+    } else if (%account_credit = 1) {
         if (%varclient_226 = false) {
             $string0 = "Membership: <col=ff0000>1 day left</col>";
         } else {
             $string0 = "Membership: 1 day left";
         }
-    } else if (%varplayer_1780 <= 3 & %varclient_226 = false) {
-        $string0 = "Membership: <col=ff0000><tostring(%varplayer_1780)> days left</col>";
+    } else if (%account_credit <= 3 & %varclient_226 = false) {
+        $string0 = "Membership: <col=ff0000><tostring(%account_credit)> days left</col>";
     } else {
-        $string0 = "Membership: <tostring(%varplayer_1780)> days left";
+        $string0 = "Membership: <tostring(%account_credit)> days left";
     }
     $string1 = "Open Store";
     $graphic8 = "acc_man_icons,0";
-} else if (%varplayerbit_6713 = 0) {
+} else if (%has_bonds = 0) {
     $string2 = "View Benefits";
     $graphic9 = "acc_man_icons,5";
 }

@@ -1,30 +1,30 @@
 // 3238
 [proc,questlist_hide_quest](dbrow $dbrow0, int $int1, boolean $boolean2, boolean $boolean3, boolean $boolean4)(boolean)
-if (db_getfield($dbrow0, dbtable_0:col4, 0) = 1 & ~questlist_hide_miniquests = true) {
+if (db_getfield($dbrow0, quest:type, 0) = 1 & ~questlist_hide_miniquests = true) {
     return(true);
 }
-if (db_getfield($dbrow0, dbtable_0:col4, 0) = 0 & %varplayerbit_13774 = 1) {
+if (db_getfield($dbrow0, quest:type, 0) = 0 & %questlist_hide_quests = 1) {
     return(true);
 }
-if ($boolean4 = true & %varplayerbit_13890 = 1) {
+if ($boolean4 = true & %questlist_hide_unavailable = 1) {
     return(true);
 }
 if (~quest_is_subquest($dbrow0) = true) {
     return(true);
 }
-if ($int1 = 0 & %varplayerbit_13775 = 1) {
+if ($int1 = 0 & %questlist_hide_in_progress = 1) {
     return(true);
 }
-if ($int1 = 1 & %varplayerbit_13776 = 1) {
+if ($int1 = 1 & %questlist_hide_not_started = 1) {
     return(true);
 }
-if ($int1 = 2 & %varplayerbit_13777 = 1) {
+if ($int1 = 2 & %questlist_hide_completed = 1) {
     return(true);
 }
-if ($int1 = 1 & %varplayerbit_13778 = 2 & $boolean2 = false) {
+if ($int1 = 1 & %questlist_hide_lackreqs = 2 & $boolean2 = false) {
     return(true);
 }
-if ($int1 = 1 & %varplayerbit_13779 = 2 & $boolean3 = false) {
+if ($int1 = 1 & %questlist_hide_lackrecs = 2 & $boolean3 = false) {
     return(true);
 }
 return(false);
