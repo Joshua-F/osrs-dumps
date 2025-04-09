@@ -25,7 +25,7 @@ def_int $int19 = 0;
 def_string $string2 = "";
 def_graphic $graphic20 = null;
 if ($boolean0 = true) {
-    $int7, $int8 = %varplayerbit_12164, 2;
+    $int7, $int8 = %clan_guest_affinitystatus, 2;
     if ($int7 = 3 & activeclansettings_find_listened = true) {
         switch_int (%varclansetting_33) {
             case 1 :
@@ -134,8 +134,8 @@ if ($boolean0 = true) {
             cc_create($component1, ^iftype_text, $int10);
             cc_setsize(24, 20, ^setsize_abs, ^setsize_abs);
             cc_setposition(89, 17, ^setpos_abs_left, ^setpos_abs_top);
-            if (%varplayerbit_12168 > 0) {
-                cc_settext(tostring(%varplayerbit_12168));
+            if (%clan_transmit_guest_homeworld > 0) {
+                cc_settext(tostring(%clan_transmit_guest_homeworld));
             } else {
                 cc_settext("---");
             }
@@ -166,7 +166,7 @@ if ($boolean0 = true) {
             if_setonop(null, $component4);
             $string0 = "You have currently loaded a <col=ffb93f>PvP Arena</col> group.<br><br>You can see its details via the <col=ffb93f>Grouping</col> tab.";
         } else if (activeclanchannel_find_listened = true) {
-            if (%varplayerbit_12169 = 1) {
+            if (%clan_transmit_guest_timeout = 1) {
                 ~stonebutton_draw(true, "<col=9f9f9f>---</col>", p12_full, 0, $component4);
                 if_setonmouserepeat(null, $component4);
                 if_setonmouseleave(null, $component4);
@@ -195,7 +195,7 @@ if ($boolean0 = true) {
             }
             $string0 = "No-one is currently chatting in this clan's channel.";
         } else {
-            if (%varplayerbit_12169 = 1) {
+            if (%clan_transmit_guest_timeout = 1) {
                 ~stonebutton_draw(true, "<col=9f9f9f>---</col>", p12_full, 0, $component4);
                 if_setonmouserepeat(null, $component4);
                 if_setonmouseleave(null, $component4);
@@ -233,8 +233,8 @@ if ($boolean0 = true) {
         if_setonop("opsound(event_op, 2)", $component6);
     }
 } else {
-    $int7 = %varplayerbit_933;
-    if (%varplayerbit_933 = 3 & activeclansettings_find_affined(^clantype_clan) = true) {
+    $int7 = %clan_affinitystatus;
+    if (%clan_affinitystatus = 3 & activeclansettings_find_affined(^clantype_clan) = true) {
         $string1 = activeclansettings_getclanname;
         $int14 = parawidth($string1, 150, b12_full);
         cc_create($component1, ^iftype_text, $int10);
@@ -267,8 +267,8 @@ if ($boolean0 = true) {
         cc_create($component1, ^iftype_text, $int10);
         cc_setsize(24, 20, ^setsize_abs, ^setsize_abs);
         cc_setposition(89, 17, ^setpos_abs_left, ^setpos_abs_top);
-        if (%varplayerbit_12167 > 0) {
-            cc_settext(tostring(%varplayerbit_12167));
+        if (%clan_transmit_homeworld > 0) {
+            cc_settext(tostring(%clan_transmit_homeworld));
         } else {
             cc_settext("---");
         }
@@ -281,7 +281,7 @@ if ($boolean0 = true) {
         if_setonop("opsound(event_op, 2)", $component5);
         if_sethide(false, $component3);
         if (activeclanchannel_find_affined(^clantype_clan) = true) {
-            if (%varplayerbit_13806 = 1) {
+            if (%clan_transmit_affined_timeout = 1) {
                 ~stonebutton_draw(true, "<col=9f9f9f>---</col>", p12_full, 0, $component4);
                 if_setonmouserepeat(null, $component4);
                 if_setonmouseleave(null, $component4);
@@ -310,7 +310,7 @@ if ($boolean0 = true) {
             $string0 = "No-one is currently chatting in this clan's channel.";
         } else {
             $string0 = "You are not currently chatting in this clan's channel.";
-            if (%varplayerbit_13806 = 1) {
+            if (%clan_transmit_affined_timeout = 1) {
                 ~stonebutton_draw(true, "<col=9f9f9f>---</col>", p12_full, 0, $component4);
                 if_setonmouserepeat(null, $component4);
                 if_setonmouseleave(null, $component4);

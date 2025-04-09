@@ -25,15 +25,15 @@ def_int $int24 = 0;
 def_int $int25 = -1;
 def_int $int26 = 0;
 def_int $int27 = -1;
-def_int $int28 = calc(%varplayerbit_10472 - 1);
+def_int $int28 = calc(%gravestone_feethreshold_under100k - 1);
 if ($int28 = -1) {
     $int28 = ^max_32bit_int;
 }
-def_int $int29 = calc(%varplayerbit_10473 - 1);
+def_int $int29 = calc(%gravestone_feethreshold_under1m - 1);
 if ($int29 = -1) {
     $int29 = ^max_32bit_int;
 }
-def_int $int30 = calc(%varplayerbit_10474 - 1);
+def_int $int30 = calc(%gravestone_feethreshold_under10m - 1);
 if ($int30 = -1) {
     $int30 = ^max_32bit_int;
 }
@@ -44,10 +44,10 @@ def_int $int33 = 0;
 while ($int33 < 120) {
     if (cc_find($component10, $int33) = ^true) {
         if ($int33 >= $int28) {
-            $obj23 = inv_getobj(inv_525, $int33);
+            $obj23 = inv_getobj(gravestone, $int33);
             if ($obj23 ! null) {
                 cc_sethide(false);
-                cc_setobject($obj23, inv_getnum(inv_525, $int33));
+                cc_setobject($obj23, inv_getnum(gravestone, $int33));
                 cc_setopbase("<col=ff9040><oc_name($obj23)></col>");
                 $int25 = calc($int24 / $int19 * (32 + 4));
                 cc_setposition(calc($int22 + $int24 % $int19 * (36 + $int20)), $int25, ^setpos_abs_left, ^setpos_abs_top);
@@ -61,28 +61,28 @@ while ($int33 < 120) {
     }
     if (cc_find($component12, $int33) = ^true & .cc_find($component12, calc($int33 + 120)) = ^true) {
         if ($int33 < $int28) {
-            $obj23 = inv_getobj(inv_525, $int33);
+            $obj23 = inv_getobj(gravestone, $int33);
             if ($obj23 ! null) {
                 cc_sethide(false);
                 .cc_sethide(false);
-                cc_setobject($obj23, inv_getnum(inv_525, $int33));
+                cc_setobject($obj23, inv_getnum(gravestone, $int33));
                 cc_setopbase("<col=ff9040><oc_name($obj23)></col>");
                 if ($int33 >= $int29) {
-                    if (calc(^max_32bit_int / 1000) < inv_getnum(inv_525, $int33)) {
+                    if (calc(^max_32bit_int / 1000) < inv_getnum(gravestone, $int33)) {
                         $int31 = ^max_32bit_int;
                     } else {
-                        $int31 = calc(1000 * inv_getnum(inv_525, $int33));
+                        $int31 = calc(1000 * inv_getnum(gravestone, $int33));
                     }
                 } else if ($int33 >= $int30) {
-                    if (calc(^max_32bit_int / 10000) < inv_getnum(inv_525, $int33)) {
+                    if (calc(^max_32bit_int / 10000) < inv_getnum(gravestone, $int33)) {
                         $int31 = ^max_32bit_int;
                     } else {
-                        $int31 = calc(10000 * inv_getnum(inv_525, $int33));
+                        $int31 = calc(10000 * inv_getnum(gravestone, $int33));
                     }
-                } else if (calc(^max_32bit_int / 100000) < inv_getnum(inv_525, $int33)) {
+                } else if (calc(^max_32bit_int / 100000) < inv_getnum(gravestone, $int33)) {
                     $int31 = ^max_32bit_int;
                 } else {
-                    $int31 = calc(100000 * inv_getnum(inv_525, $int33));
+                    $int31 = calc(100000 * inv_getnum(gravestone, $int33));
                 }
                 $int31 = ~script1797($int31);
                 $int31 = ~min($int32, $int31);

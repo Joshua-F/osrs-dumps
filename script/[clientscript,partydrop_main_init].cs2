@@ -1,7 +1,7 @@
 // 3607
 [clientscript,partydrop_main_init](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9)
-def_int $int10 = inv_size(inv_91);
-if ($component0 = interface_783:com_0) {
+def_int $int10 = inv_size(partyroom_dropinv);
+if ($component0 = clan_hall_partydrop_main:universe) {
     $int10 = 216;
 }
 def_int $int11 = calc(if_getwidth($component5) / 9 - 36);
@@ -28,14 +28,14 @@ if ($int13 > if_getheight($component5)) {
     if_setscrollsize(0, $int13, $component5);
 }
 ~scrollbar_vertical($component6, $component5, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-if ($component0 = interface_783:com_0) {
+if ($component0 = clan_hall_partydrop_main:universe) {
     ~clan_hall_partydrop_main_chestitems($int10, $component5, $component9);
-    if_setoninvtransmit("clan_hall_partydrop_main_chestitems($int10, $component5, $component9){inv_916}", $component5);
+    if_setoninvtransmit("clan_hall_partydrop_main_chestitems($int10, $component5, $component9){clan_hall_partychest}", $component5);
 } else {
     ~partydrop_main_chestitems($int10, $component5, $component9);
-    if_setoninvtransmit("partydrop_main_chestitems($int10, $component5, $component9){inv_91}", $component5);
+    if_setoninvtransmit("partydrop_main_chestitems($int10, $component5, $component9){partyroom_dropinv}", $component5);
 }
-$int10, $int14 = ~max(1, inv_size(inv_92)), 0;
+$int10, $int14 = ~max(1, inv_size(partyroom_tempinv)), 0;
 $int11 = ~min($int11, calc(if_getwidth($component7) / $int10 - 36));
 $int12 = calc($int11 / 2);
 cc_deleteall($component7);
@@ -57,5 +57,5 @@ if_setonop("partydrop_quantity_op(event_op, 3, $int10, $component7, $component1,
 if_setop(1, "All", $component4);
 if_setonop("partydrop_quantity_op(event_op, 2, $int10, $component7, $component1, $component2, $component3, $component4, $component8)", $component4);
 ~partydrop_main_offeritems($int10, $component7, $component1, $component2, $component3, $component4, $component8);
-if_setonvartransmit("partydrop_main_offeritems($int10, $component7, $component1, $component2, $component3, $component4, $component8){varplayer_675}", $component0);
-if_setoninvtransmit("partydrop_main_offeritems($int10, $component7, $component1, $component2, $component3, $component4, $component8){inv_92}", $component0);
+if_setonvartransmit("partydrop_main_offeritems($int10, $component7, $component1, $component2, $component3, $component4, $component8){canoeing_menu}", $component0);
+if_setoninvtransmit("partydrop_main_offeritems($int10, $component7, $component1, $component2, $component3, $component4, $component8){partyroom_tempinv}", $component0);

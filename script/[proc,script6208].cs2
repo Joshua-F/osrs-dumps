@@ -8,7 +8,7 @@ def_int $int8 = -1;
 def_obj $obj9 = null;
 def_component $component10 = null;
 def_int $int11 = 0;
-def_int $int12 = inv_size(inv_94);
+def_int $int12 = inv_size(worn);
 while ($int11 < $int12) {
     $component10 = enum(int, component, $enum3, $int11);
     if ($component10 ! null) {
@@ -20,12 +20,12 @@ while ($int11 < $int12) {
         cc_create($component10, ^iftype_graphic, 1);
         cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
         cc_setposition(2, 0, ^setpos_abs_centre, ^setpos_abs_centre);
-        $obj9 = inv_getobj(inv_207, $int11);
+        $obj9 = inv_getobj(trail_puzzlehintinv, $int11);
         if ($obj9 ! null) {
             cc_settrans(0);
             cc_setgraphicshadow(0x333333);
             cc_setoutline(1);
-            cc_setobject($obj9, inv_getnum(inv_207, $int11));
+            cc_setobject($obj9, inv_getnum(trail_puzzlehintinv, $int11));
             cc_setopbase("<col=ff9040><oc_name($obj9)></col>");
             cc_setop(10, "Examine");
             cc_setonop("cc_settrans_temporarily(event_com, cc_getid, 100, 0)");
@@ -59,9 +59,9 @@ def_int $int13 = calc((if_getwidth($component0) - 6 - 4 * 36) / 3 + 36);
 def_int $int14 = calc((if_getheight($component0) - 6 - 7 * 32) / 6 + 32);
 $int11 = 0;
 def_int $int15 = $int12;
-def_int $int16 = inv_size(inv_93);
+def_int $int16 = inv_size(inv);
 while ($int11 < $int16) {
-    $obj9 = inv_getobj(inv_207, $int15);
+    $obj9 = inv_getobj(trail_puzzlehintinv, $int15);
     cc_create($component0, ^iftype_graphic, $int11);
     cc_setposition(calc(4 + $int13 * ($int11 % 4)), calc(3 + $int14 * ($int11 / 4)), ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
@@ -69,9 +69,9 @@ while ($int11 < $int16) {
         cc_settrans(0);
         cc_setgraphicshadow(0x333333);
         cc_setoutline(1);
-        cc_setobject($obj9, inv_getnum(inv_207, $int15));
+        cc_setobject($obj9, inv_getnum(trail_puzzlehintinv, $int15));
         cc_setopbase("<col=ff9040><oc_name($obj9)></col>");
-        if ($obj9 = obj_27086) {
+        if ($obj9 = pvpa_rune_replacement) {
             cc_setop(1, "Check");
         }
         cc_setop(10, "Examine");
@@ -126,7 +126,7 @@ cc_settextfont(p12_full);
 cc_settextshadow(true);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
 cc_setcolour(0xff981f);
-cc_settext(enum(int, string, enum_4208, %varplayerbit_14031));
+cc_settext(enum(int, string, enum_4208, %pvpa_unrankedduel_transmit_opponentspellbook));
 def_int $int19 = 0;
 def_int $int20 = 0;
 def_int $int21 = 0;
@@ -139,7 +139,7 @@ def_int $int27 = 0;
 def_int $int28 = 0;
 def_int $int29 = 0;
 def_int $int30 = 0;
-$int23, $int24, $int25, $int26, $int27, $int28, $int29, $int30 = ~script6335(%varplayerbit_14024);
+$int23, $int24, $int25, $int26, $int27, $int28, $int29, $int30 = ~script6335(%pvpa_transmit_build);
 def_int $intarray0(calc(23 + 1));
 def_int $int31 = 23;
 while ($int31 > 0) {
@@ -174,7 +174,7 @@ def_int $int35 = ^max_32bit_int;
 while ($int11 > 0) {
     $obj9 = enum(int, namedobj, enum_4390, $int11);
     if ($obj9 ! null) {
-        $intarray1($int11) = inv_total(inv_207, $obj9);
+        $intarray1($int11) = inv_total(trail_puzzlehintinv, $obj9);
         $int35 = enum(obj, int, enum_4392, $obj9);
         if ($int35 < ^max_32bit_int) {
             $int34 = $int33;
@@ -194,15 +194,15 @@ while ($int11 > 0) {
 }
 def_int $int36 = 0;
 def_int $int37 = 0;
-if (%varplayerbit_14031 ! ~script6325(%varplayerbit_14024)) {
+if (%pvpa_unrankedduel_transmit_opponentspellbook ! ~script6325(%pvpa_transmit_build)) {
     $int37 = 1;
-} else if (%varplayer_3533 ! ~script6432(%varplayerbit_14024) & inv_total(inv_207, obj_27086) > 0) {
+} else if (%pvpa_unrankedduel_transmit_opponentrunepouch ! ~script6432(%pvpa_transmit_build) & inv_total(trail_puzzlehintinv, pvpa_rune_replacement) > 0) {
     $int37 = 1;
 }
 $int11 = $int12;
 while ($int11 > 0) {
     $int11 = calc($int11 - 1);
-    $int36 = ~script6322(%varplayerbit_14024, $int11);
+    $int36 = ~script6322(%pvpa_transmit_build, $int11);
     $obj9 = enum(int, namedobj, enum_4390, $int36);
     if ($obj9 ! null) {
         if (oc_stackable($obj9) = true) {
@@ -214,7 +214,7 @@ while ($int11 > 0) {
             $int37 = 1;
         }
     }
-    $obj9 = inv_getobj(inv_207, $int11);
+    $obj9 = inv_getobj(trail_puzzlehintinv, $int11);
     if ($obj9 ! null) {
         $int19 = 0;
         $int35 = enum(obj, int, enum_4392, $obj9);
@@ -273,7 +273,7 @@ while ($int11 > 0) {
 }
 $int11 = 0;
 while ($int11 < $int16) {
-    $int36 = ~script6321(%varplayerbit_14024, $int11);
+    $int36 = ~script6321(%pvpa_transmit_build, $int11);
     $obj9 = enum(int, namedobj, enum_4390, $int36);
     if ($obj9 ! null) {
         if (oc_stackable($obj9) = true) {
@@ -287,7 +287,7 @@ while ($int11 < $int16) {
     }
     cc_create($component0, ^iftype_model, $int17);
     $int17 = calc($int17 + 1);
-    $obj9 = inv_getobj(inv_207, calc($int11 + $int12));
+    $obj9 = inv_getobj(trail_puzzlehintinv, calc($int11 + $int12));
     if ($obj9 ! null) {
         $int19 = 0;
         $int35 = enum(obj, int, enum_4392, $obj9);

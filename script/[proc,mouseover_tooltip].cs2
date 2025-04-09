@@ -2,16 +2,16 @@
 [proc,mouseover_tooltip](int $int0, component $component1, string $string0, int $menuentrytype2, int $int3, enum $enum4)(int)
 def_int $int5 = 1;
 def_int $int6 = 1;
-if (%varplayerbit_12344 = 1 | enum(int, boolean, enum_3903, $menuentrytype2) = false | ~on_mobile = true) {
+if (%mouseover_tooltips_disabled = 1 | enum(int, boolean, enum_3903, $menuentrytype2) = false | ~on_mobile = true) {
     $int5 = 0;
 } else if ($menuentrytype2 = ^menuentrytype_component & minimenu_findcomponent = true) {
     switch_component (cc_getlayer) {
-        case interface_218:com_3 :
+        case magic_spellbook:spelllayer :
             $int5 = 0;
-        case interface_216:com_2 :
+        case emote:contents :
             $int6 = 0;
     }
-    if (cc_getlayer = interface_218:com_3) {
+    if (cc_getlayer = magic_spellbook:spelllayer) {
         $int5 = 0;
     }
 }
@@ -26,7 +26,7 @@ def_int $int9 = 0;
 def_int $int10 = 0;
 def_int $int11 = 0;
 def_int $int12 = 0;
-if (%varplayerbit_13133 = 0 & $int3 > 1 & $int5 = 1) {
+if (%mouseover_tooltips_hide_opcount = 0 & $int3 > 1 & $int5 = 1) {
     $string1 = "+<tostring(calc($int3 - 1))> option";
     if ($int3 > 2) {
         $string1 = "<$string1>s";
@@ -118,8 +118,8 @@ if ($boolean27 = true & %varclient_1016 >= 0 & %varclient_1017 >= 0) {
     $int26 = %varclient_1017;
 }
 if ($enum4 = enum_1745) {
-    $int25 = calc($int25 - if_getx(interface_601:com_19));
-    $int26 = calc($int26 - if_gety(interface_601:com_19));
+    $int25 = calc($int25 - if_getx(toplevel_osm:safezone));
+    $int26 = calc($int26 - if_gety(toplevel_osm:safezone));
 }
 if ($boolean27 = true) {
     $int25 = ~max(calc($int25 - 0 - $int24), 0);
@@ -228,7 +228,7 @@ if (string_length($string4) > 0) {
     }
     $int26 = calc($int26 + $int19 - 1);
 }
-if (%varplayerbit_13133 = 0 & $int3 > 1 & $int5 = 1) {
+if (%mouseover_tooltips_hide_opcount = 0 & $int3 > 1 & $int5 = 1) {
     $int11 = calc($int25 + ($int24 - $int9));
     cc_create($component1, ^iftype_rectangle, $int0);
     cc_setposition($int11, $int26, ^setpos_abs_left, ^setpos_abs_top);

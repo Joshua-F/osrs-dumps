@@ -1,9 +1,9 @@
 // 5257
 [proc,gim_sidepanel_draw](component $component0, int $int1, int $int2, component $component3, int $int4, int $int5, int $int6, int $int7, component $component8, component $component9, component $component10)
-if (%varplayerbit_13063 = 1) {
+if (%gim_invitationstatus = 1) {
     ~stonebutton_init("<col=0dc10d>Inviting</col>", $component9, p12_full, 0);
     if_setonop("opsound(event_op, 2)", $component9);
-} else if (%varplayerbit_13063 = 2) {
+} else if (%gim_invitationstatus = 2) {
     ~stonebutton_init("<col=ff0000>Not inviting</col>", $component9, p12_full, 0);
     if_setonop("opsound(event_op, 2)", $component9);
 } else {
@@ -32,7 +32,7 @@ def_int $int22 = -1;
 def_int $int23 = 0;
 def_string $string0 = "";
 def_int $int24 = 0;
-if (%varplayerbit_13060 = 3 & activeclansettings_find_affined(^clantype_gim) = true) {
+if (%gim_affinitystatus = 3 & activeclansettings_find_affined(^clantype_gim) = true) {
     if (cc_find($component0, $int1) = ^true & .cc_find($component0, $int2) = ^true) {
         $string0 = activeclansettings_getclanname;
         cc_settext($string0);
@@ -203,13 +203,13 @@ if (%varplayerbit_13060 = 3 & activeclansettings_find_affined(^clantype_gim) = t
     }
 } else {
     if (cc_find($component0, $int1) = ^true & .cc_find($component0, $int2) = ^true) {
-        cc_settext("<col=808080><enum(int, string, enum_3839, %varplayerbit_13071)></col>");
+        cc_settext("<col=808080><enum(int, string, enum_3839, %side_channels_tab_selected)></col>");
         cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
         .cc_setgraphic(null);
         cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
     }
     if (cc_find($component3, $int4) = ^true & .cc_find($component3, $int5) = ^true) {
-        cc_settext("<col=808080><~script2357(%varplayerbit_13060)></col>");
+        cc_settext("<col=808080><~script2357(%gim_affinitystatus)></col>");
         cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
         cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
         .cc_setgraphic(null);
