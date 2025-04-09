@@ -15,24 +15,35 @@ if (~script7869($int0) = true) {
             case default :
                 cc_setop(1, "Withdraw-1");
                 cc_setop(3, "Withdraw-5");
-                cc_setop(4, "Withdraw-X");
-                cc_setop(5, "Withdraw-All");
+                if (%varplayerbit_16206 > 0) {
+                    cc_setop(4, "Withdraw-<~tostring_spacer(%varplayerbit_16206, ",")>");
+                }
+                cc_setop(6, "Withdraw-All");
             case 1 :
                 cc_setop(1, "Withdraw-5");
                 cc_setop(2, "Withdraw-1");
-                cc_setop(4, "Withdraw-X");
-                cc_setop(5, "Withdraw-All");
+                if (%varplayerbit_16206 > 0) {
+                    cc_setop(4, "Withdraw-<~tostring_spacer(%varplayerbit_16206, ",")>");
+                }
+                cc_setop(6, "Withdraw-All");
             case 3 :
-                cc_setop(1, "Withdraw-X");
+                if (%varplayerbit_16206 > 0) {
+                    cc_setop(1, "Withdraw-<~tostring_spacer(%varplayerbit_16206, ",")>");
+                } else {
+                    cc_setop(1, "Withdraw-X");
+                }
                 cc_setop(2, "Withdraw-1");
                 cc_setop(3, "Withdraw-5");
-                cc_setop(5, "Withdraw-All");
+                cc_setop(6, "Withdraw-All");
             case 2 :
                 cc_setop(1, "Withdraw-All");
                 cc_setop(2, "Withdraw-1");
                 cc_setop(3, "Withdraw-5");
-                cc_setop(4, "Withdraw-X");
+                if (%varplayerbit_16206 > 0) {
+                    cc_setop(4, "Withdraw-<~tostring_spacer(%varplayerbit_16206, ",")>");
+                }
         }
+        cc_setop(5, "Withdraw-X");
         cc_setop(10, "Examine");
         cc_setonop("cc_settrans_temporarily(event_com, event_comsubid, 100, 0)");
         cc_setondragcomplete("rune_pouch_pouchreorder(event_com, event_com2, event_comsubid, event_comsubid2)");
