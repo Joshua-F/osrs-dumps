@@ -25,21 +25,21 @@ if (~on_mobile = false) {
     if_setonmouseleave("league_side_panel_button_hover($component3, 0)", $component3);
     if_setonmouseover("league_side_panel_button_hover($component3, 1)", $component3);
 }
-def_struct $struct5 = enum(int, struct, enum_2670, %varplayerbit_10032);
+def_struct $struct5 = enum(int, struct, enum_2670, %league_type);
 def_int $int6 = 16750623;
 if ($struct5 ! null) {
-    if_setgraphic(struct_param($struct5, param_1024), interface_736:com_10);
-    if_setgraphic(struct_param($struct5, param_1025), interface_736:com_9);
+    if_setgraphic(struct_param($struct5, param_1024), league_3_side_panel:fill);
+    if_setgraphic(struct_param($struct5, param_1025), league_3_side_panel:bkg);
     $int6 = struct_param($struct5, param_1027);
 }
-if_setcolour($int6, interface_736:com_2);
-if_setcolour($int6, interface_736:com_6);
-if_setcolour($int6, interface_736:com_12);
-if_setcolour($int6, interface_736:com_14);
-if_setcolour($int6, interface_736:com_16);
+if_setcolour($int6, league_3_side_panel:header);
+if_setcolour($int6, league_3_side_panel:points_next_relic);
+if_setcolour($int6, league_3_side_panel:total_tasks_text);
+if_setcolour($int6, league_3_side_panel:total_points_text);
+if_setcolour($int6, league_3_side_panel:unlock_points_text);
 def_string $string0 = "Display Fragments";
-def_component $component7 = interface_736:com_33;
-def_component $component8 = interface_736:com_32;
+def_component $component7 = league_3_side_panel:tooltip;
+def_component $component8 = league_3_side_panel:hud;
 if_setopbase("<col=ff9040><$string0></col>", $component8);
 if_setsize(calc(parawidth($string0, 190, p11_full) + 20), if_getheight($component8), ^setsize_abs, ^setsize_abs, $component8);
 cc_create($component8, ^iftype_graphic, 0);
@@ -59,7 +59,7 @@ if (~on_mobile = false) {
     if_setonmouseleave("cc_colour_swapper(event_com, .cc_getid, $int6)", $component8);
 }
 ~league_side_panel_hudtoggle($component8, $component7);
-if_setonvartransmit("league_side_panel_hudtoggle($component8, cc_getid, .cc_getid, $component7){varplayer_1734}", $component8);
+if_setonvartransmit("league_side_panel_hudtoggle($component8, cc_getid, .cc_getid, $component7){options_mobile}", $component8);
 if_setonop("league_side_panel_hudop(event_op, $component8, cc_getid, .cc_getid, $component7)", $component8);
-~league_3_side_panel_update_bar(interface_736:com_10, %varplayer_2615);
-if_setonvartransmit("script5799(interface_736:com_10){varplayer_2615, varplayer_3276}", interface_736:com_9);
+~league_3_side_panel_update_bar(league_3_side_panel:fill, %league_points_claimed);
+if_setonvartransmit("script5799(league_3_side_panel:fill){league_points_claimed, league_unlock_points}", league_3_side_panel:bkg);

@@ -2,20 +2,20 @@
 [proc,xpdrops_setbar](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6)
 %varclient_2 = 0;
 def_stat $stat7 = null;
-if (%varplayerbit_4697 = 31) {
+if (%xpdrops_counter_type = 31) {
     $stat7 = %varclient_72;
-} else if (%varplayerbit_4697 = 30) {
+} else if (%xpdrops_counter_type = 30) {
     $stat7 = null;
 } else {
-    $stat7 = enum(int, stat, enum_681, %varplayerbit_4697);
+    $stat7 = enum(int, stat, enum_681, %xpdrops_counter_type);
 }
 def_stat $stat8 = null;
-if (%varplayerbit_4698 = 31) {
+if (%xpdrops_progress_type = 31) {
     $stat8 = %varclient_72;
-} else if (%varplayerbit_4698 = 30) {
+} else if (%xpdrops_progress_type = 30) {
     $stat8 = null;
 } else {
-    $stat8 = enum(int, stat, enum_681, %varplayerbit_4698);
+    $stat8 = enum(int, stat, enum_681, %xpdrops_progress_type);
 }
 def_boolean $boolean9 = false;
 def_string $string0 = ",";
@@ -60,7 +60,7 @@ if ($stat7 ! null) {
             $string2 = $string3;
         }
     }
-} else if (%varplayerbit_4697 = 30) {
+} else if (%xpdrops_counter_type = 30) {
     if_setgraphic(null, $component1);
     if_settext("", $component2);
     $string1, $string2 = "", "";
@@ -69,24 +69,24 @@ if ($stat7 ! null) {
     $boolean9 = true;
     if_setgraphic("staticons2,7", $component1);
     $int17, $int16 = ~stats_totalxp;
-    if (%varplayer_1252 = -1) {
+    if (%xpdrops_total_end = -1) {
         $int15 = calc($int16 % 1000);
         $int18 = calc($int17 * pow(10, 6) + $int16 / 1000);
-        if ($int18 > %varplayer_1228) {
-            $string3 = "<~tostring_spacer(calc($int18 - %varplayer_1228), $string0)><$string0><~script47($int15)>";
+        if ($int18 > %xpdrops_total_start) {
+            $string3 = "<~tostring_spacer(calc($int18 - %xpdrops_total_start), $string0)><$string0><~script47($int15)>";
             if_settext("+<$string3>", $component2);
             $string1 = "Total XP tracker:|Tracking from:|Total XP:";
-            if (%varplayer_1228 > 0) {
-                $string2 = "<$string3>|<~tostring_spacer(%varplayer_1228, $string0)><$string0>000|<~stats_tostring_totalxp($int17, $int16)>";
+            if (%xpdrops_total_start > 0) {
+                $string2 = "<$string3>|<~tostring_spacer(%xpdrops_total_start, $string0)><$string0>000|<~stats_tostring_totalxp($int17, $int16)>";
             } else {
                 $string2 = "<$string3>|0|<~stats_tostring_totalxp($int17, $int16)>";
             }
-        } else if ($int18 = %varplayer_1228 & $int15 >= 0) {
+        } else if ($int18 = %xpdrops_total_start & $int15 >= 0) {
             $string3 = tostring($int15);
             if_settext("+<$string3>", $component2);
             $string1 = "Total XP tracker:|Tracking from:|Total XP:";
-            if (%varplayer_1228 > 0) {
-                $string2 = "<$string3>|<~tostring_spacer(%varplayer_1228, $string0)><$string0>000|<~stats_tostring_totalxp($int17, $int16)>";
+            if (%xpdrops_total_start > 0) {
+                $string2 = "<$string3>|<~tostring_spacer(%xpdrops_total_start, $string0)><$string0>000|<~stats_tostring_totalxp($int17, $int16)>";
             } else {
                 $string2 = "<$string3>|0|<~stats_tostring_totalxp($int17, $int16)>";
             }
@@ -143,18 +143,18 @@ if ($stat8 ! null) {
             $string2 = ~tostring_spacer($int12, $string0);
         }
     }
-} else if (%varplayerbit_4698 = 30) {
+} else if (%xpdrops_progress_type = 30) {
     $boolean20 = true;
     $int17, $int16 = ~stats_totalxp;
-    if (%varplayer_1252 ! -1 & %varplayer_1252 > %varplayer_1228) {
-        if ($int17 < 2 & %varplayer_1252 <= calc(^max_32bit_int / 1000)) {
-            $int21 = ~xpdrops_setbar_progress($component4, calc(%varplayer_1228 * 1000), calc($int17 * pow(10, 9) + $int16), calc(%varplayer_1252 * 1000), 1);
-            $int24 = calc(%varplayer_1252 * 1000 - ($int17 * pow(10, 9) + $int16));
+    if (%xpdrops_total_end ! -1 & %xpdrops_total_end > %xpdrops_total_start) {
+        if ($int17 < 2 & %xpdrops_total_end <= calc(^max_32bit_int / 1000)) {
+            $int21 = ~xpdrops_setbar_progress($component4, calc(%xpdrops_total_start * 1000), calc($int17 * pow(10, 9) + $int16), calc(%xpdrops_total_end * 1000), 1);
+            $int24 = calc(%xpdrops_total_end * 1000 - ($int17 * pow(10, 9) + $int16));
         } else {
             $int25 = calc($int17 * pow(10, 6) + $int16 / 1000);
-            $int21 = ~xpdrops_setbar_progress($component4, %varplayer_1228, $int25, %varplayer_1252, 1);
-            if ($int25 < %varplayer_1252) {
-                $int24 = calc(%varplayer_1252 - $int25);
+            $int21 = ~xpdrops_setbar_progress($component4, %xpdrops_total_start, $int25, %xpdrops_total_end, 1);
+            if ($int25 < %xpdrops_total_end) {
+                $int24 = calc(%xpdrops_total_end - $int25);
                 $int26 = calc($int16 % 1000);
                 if ($int26 > 0) {
                     $int24 = calc($int24 - 1);
@@ -168,10 +168,10 @@ if ($stat8 ! null) {
             }
         }
         $string1 = "Total XP goal|<~text_client("<col=7f7f7f>", "<col=adadad>")>Start:</col>|Current:|<~text_client("<col=7f7f7f>", "<col=adadad>")>End:</col>";
-        if (%varplayer_1228 > 0) {
-            $string2 = "<~xpdrops_percentage_tostring($int21)>|<~text_client("<col=7f7f7f>", "<col=adadad>")><~tostring_spacer(%varplayer_1228, $string0)><$string0>000</col>|<~stats_tostring_totalxp($int17, $int16)>|<~text_client("<col=7f7f7f>", "<col=adadad>")><~tostring_spacer(%varplayer_1252, $string0)><$string0>000</col>";
+        if (%xpdrops_total_start > 0) {
+            $string2 = "<~xpdrops_percentage_tostring($int21)>|<~text_client("<col=7f7f7f>", "<col=adadad>")><~tostring_spacer(%xpdrops_total_start, $string0)><$string0>000</col>|<~stats_tostring_totalxp($int17, $int16)>|<~text_client("<col=7f7f7f>", "<col=adadad>")><~tostring_spacer(%xpdrops_total_end, $string0)><$string0>000</col>";
         } else {
-            $string2 = "<~xpdrops_percentage_tostring($int21)>|<~text_client("<col=7f7f7f>", "<col=adadad>")>0</col>|<~stats_tostring_totalxp($int17, $int16)>|<~text_client("<col=7f7f7f>", "<col=adadad>")><~tostring_spacer(%varplayer_1252, $string0)><$string0>000</col>";
+            $string2 = "<~xpdrops_percentage_tostring($int21)>|<~text_client("<col=7f7f7f>", "<col=adadad>")>0</col>|<~stats_tostring_totalxp($int17, $int16)>|<~text_client("<col=7f7f7f>", "<col=adadad>")><~tostring_spacer(%xpdrops_total_end, $string0)><$string0>000</col>";
         }
         if ($int23 > 0 | $int24 > 0) {
             $string1 = append($string1, "|Remaining:");

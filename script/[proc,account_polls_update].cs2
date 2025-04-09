@@ -1,14 +1,14 @@
 // 3270
 [proc,account_polls_update]
-def_component $component0 = interface_109:com_59;
-def_component $component1 = interface_109:com_61;
-def_component $component2 = interface_109:com_65;
-def_component $component3 = interface_109:com_66;
+def_component $component0 = account:polls_text;
+def_component $component1 = account:poll_button;
+def_component $component2 = account:poll_button_text;
+def_component $component3 = account:poll_button_foreground;
 def_string $string0 = "Current Poll: <col=ff0000>Inactive</col>";
 def_string $string1 = "View Poll";
-if (%varplayerbit_10065 = 1) {
+if (%poll_active = 1) {
     $string0 = "Current Poll: <col=00ff00>Active</col>";
-    if (%varplayerbit_4337 = 1) {
+    if (%poll_playershouldvote = 1) {
         $string1 = "Vote Now";
     }
     if_setop(1, $string1, $component1);

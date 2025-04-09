@@ -1,16 +1,16 @@
 // 7542
 [clientopplayer,script7542]
-if (~on_enhanced_desktop = true & %varplayerbit_13982 = 1) {
+if (~on_enhanced_desktop = true & %popout_panel_desktop_disabled = 1) {
     return;
-} else if (~on_enhanced_mobile = true & %varplayerbit_13981 = 0) {
+} else if (~on_enhanced_mobile = true & %popout_panel_mobile_enabled = 0) {
     return;
 }
 def_string $string0 = p_name;
 if (string_length($string0) <= 0) {
     return;
 }
-if (%varplayerbit_13090 ! 3) {
-    if (cc_find(interface_728:com_6, calc(3 - 1)) = ^true | cc_find(interface_728:com_37, calc(3 * 2 - 2)) = ^true) {
+if (%popout_open ! 3) {
+    if (cc_find(popout:buttons, calc(3 - 1)) = ^true | cc_find(popout:osm_buttons, calc(3 * 2 - 2)) = ^true) {
         %varclient_1233 = $string0;
         cc_triggerop(1);
     }

@@ -1,13 +1,13 @@
 // 3901
 [clientscript,settings_zoom_trans_timer](int $int0)
-if ($int0 = 0 & cc_find(interface_134:com_3, 0) = ^true) {
-    if_setonscrollwheel(null, interface_134:com_13);
+if ($int0 = 0 & cc_find(settings:frame, 0) = ^true) {
+    if_setonscrollwheel(null, settings:settings);
     cc_settrans(150);
 } else if ($int0 = 10) {
-    if_setonscrollwheel("scrollbar_vertical_wheel(interface_134:com_20, interface_134:com_13, event_mousey)", interface_134:com_13);
-} else if ($int0 > 24 & cc_find(interface_134:com_3, 0) = ^true) {
+    if_setonscrollwheel("scrollbar_vertical_wheel(settings:scrollbar, settings:settings, event_mousey)", settings:settings);
+} else if ($int0 > 24 & cc_find(settings:frame, 0) = ^true) {
     cc_settrans(0);
-    if_setontimer(null, interface_134:com_3);
+    if_setontimer(null, settings:frame);
 }
 $int0 = calc($int0 + 1);
-if_setontimer("settings_zoom_trans_timer($int0)", interface_134:com_3);
+if_setontimer("settings_zoom_trans_timer($int0)", settings:frame);

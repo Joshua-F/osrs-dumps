@@ -1,16 +1,16 @@
 // 5365
 [proc,xptracker_create_progressbar](int $int0, stat $stat1, int $int2)
-cc_create(interface_729:com_7, ^iftype_rectangle, $int0);
-cc_create(interface_729:com_8, ^iftype_rectangle, $int0);
-cc_create(interface_729:com_9, ^iftype_text, $int0);
-cc_create(interface_729:com_10, ^iftype_text, $int0);
-cc_create(interface_729:com_11, ^iftype_text, $int0);
+cc_create(xptracker:tracker_progress_backing, ^iftype_rectangle, $int0);
+cc_create(xptracker:tracker_progress, ^iftype_rectangle, $int0);
+cc_create(xptracker:tracker_progress_text, ^iftype_text, $int0);
+cc_create(xptracker:tracker_progress_lvl_left, ^iftype_text, $int0);
+cc_create(xptracker:tracker_progress_lvl_right, ^iftype_text, $int0);
 if ($int2 = 1) {
     return;
 }
 def_int $int3 = stat_base($stat1);
 def_int $int4 = calc(%varclient_562 + 25 + 2);
-if (cc_find(interface_729:com_7, $int0) = ^true) {
+if (cc_find(xptracker:tracker_progress_backing, $int0) = ^true) {
     cc_setcolour(0x2200);
     cc_setfill(true);
     cc_setposition(0, $int4, ^setpos_abs_left, ^setpos_abs_top);
@@ -22,13 +22,13 @@ if (cc_find(interface_729:com_7, $int0) = ^true) {
         cc_setonclick("script5535(cc_getlayer, cc_getid, $stat1)");
     }
 }
-if (cc_find(interface_729:com_8, $int0) = ^true) {
+if (cc_find(xptracker:tracker_progress, $int0) = ^true) {
     cc_setcolour(0x6600);
     cc_setfill(true);
     cc_setposition(0, $int4, ^setpos_abs_left, ^setpos_abs_top);
     ~xptracker_update_progress_bar($stat1);
 }
-if (cc_find(interface_729:com_9, $int0) = ^true) {
+if (cc_find(xptracker:tracker_progress_text, $int0) = ^true) {
     cc_setcolour(^white);
     cc_settextshadow(true);
     cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
@@ -37,7 +37,7 @@ if (cc_find(interface_729:com_9, $int0) = ^true) {
     cc_setsize(0, 15, ^setsize_minus, ^setsize_abs);
     ~script5371($stat1);
 }
-if (cc_find(interface_729:com_10, $int0) = ^true) {
+if (cc_find(xptracker:tracker_progress_lvl_left, $int0) = ^true) {
     cc_setcolour(0xcccccc);
     cc_settextshadow(true);
     cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
@@ -46,7 +46,7 @@ if (cc_find(interface_729:com_10, $int0) = ^true) {
     cc_setsize(0, 15, ^setsize_minus, ^setsize_abs);
     ~script5372($stat1);
 }
-if (cc_find(interface_729:com_11, $int0) = ^true) {
+if (cc_find(xptracker:tracker_progress_lvl_right, $int0) = ^true) {
     cc_setcolour(0xcccccc);
     cc_settextshadow(true);
     cc_settextalign(^settextalign_right, ^settextalign_centre, 0);

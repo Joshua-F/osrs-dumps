@@ -10,7 +10,7 @@ def_obj $obj13 = null;
 def_int $int14 = 0;
 while ($int14 < $int3) {
     if (cc_find($component1, $int14) = ^true) {
-        $obj13 = inv_getobj(inv_659, $int14);
+        $obj13 = inv_getobj(inv_group_temp, $int14);
         if ($obj13 ! null) {
             $int11 = calc($int11 + 1);
         }
@@ -18,7 +18,7 @@ while ($int14 < $int3) {
             if ($obj13 ! null & ~bankmain_filteritem($obj13) = true) {
                 cc_sethide(false);
                 cc_setposition(calc($int10 % 8 * $int7), calc($int10 / 8 * $int7), ^setpos_abs_left, ^setpos_abs_top);
-                ~shared_bank_drawitem($obj13, inv_getnum(inv_659, $int14), $int3, $component0, $component1, $component2);
+                ~shared_bank_drawitem($obj13, inv_getnum(inv_group_temp, $int14), $int3, $component0, $component1, $component2);
                 $int10, $int8, $int9 = calc($int10 + 1), cc_gety, cc_gety;
             } else {
                 cc_sethide(true);
@@ -26,7 +26,7 @@ while ($int14 < $int3) {
         } else {
             cc_sethide(false);
             cc_setposition(calc($int14 % 8 * $int7), calc($int14 / 8 * $int7), ^setpos_abs_left, ^setpos_abs_top);
-            if (~shared_bank_drawitem($obj13, inv_getnum(inv_659, $int14), $int3, $component0, $component1, $component2) = true) {
+            if (~shared_bank_drawitem($obj13, inv_getnum(inv_group_temp, $int14), $int3, $component0, $component1, $component2) = true) {
                 $int8 = cc_gety;
             }
             $int9 = cc_gety;
@@ -43,14 +43,14 @@ if ($boolean12 = true) {
             cc_settext("Showing items: <col=ff0000><$string0></col>");
         }
         if (%varclient_5 = 11) {
-            if_settext("Show items whose names contain the following text: (<~tostring_spacer($int10, ",")> found)", interface_162:com_42);
+            if_settext("Show items whose names contain the following text: (<~tostring_spacer($int10, ",")> found)", chatbox:mes_text);
         }
     } else {
         if (cc_find($component4, $int5) = ^true) {
             cc_settext("Showing items: <col=ff0000>*</col>");
         }
         if (%varclient_5 = 11) {
-            if_settext("Show items whose names contain the following text:", interface_162:com_42);
+            if_settext("Show items whose names contain the following text:", chatbox:mes_text);
         }
     }
 } else if (cc_find($component4, $int5) = ^true) {

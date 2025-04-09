@@ -1,6 +1,6 @@
 // 6250
 [proc,pvpa_hud_drawinfo](component $component0)
-if (%varplayerbit_14018 = 0 | %varplayerbit_14017 = 1 & %varplayerbit_14016 > 0) {
+if (%pvpa_battlearea_showinfobutton = 0 | %pvpa_battlearea_status = 1 & %pvpa_battlearea_timeremaining > 0) {
     cc_deleteall($component0);
     if_clearops($component0);
     if_setonmouserepeat(null, $component0);
@@ -13,7 +13,7 @@ def_component $component1 = null;
 def_boolean $boolean2 = false;
 def_enum $enum3 = ~toplevel_getcomponents;
 if ($enum3 ! null) {
-    $component1 = enum(component, component, $enum3, interface_161:com_18);
+    $component1 = enum(component, component, $enum3, toplevel_osrs_stretch:floater);
     if ($component1 ! null) {
         $boolean2 = if_hassub($component1);
     }
