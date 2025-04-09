@@ -1,23 +1,23 @@
 // 1185
 [proc,clancup_hud_update](component $component0, component $component1)
 def_string $string = "";
-if (%varplayerbit_4820 > %varplayerbit_4821) {
-    $string = "<col=ffffff><~tostring_spacer(%varplayerbit_4820, ",")></col><br><~tostring_spacer(%varplayerbit_4821, ",")>";
-} else if (%varplayerbit_4820 < %varplayerbit_4821) {
-    $string = "<~tostring_spacer(%varplayerbit_4820, ",")><br><col=ffffff><~tostring_spacer(%varplayerbit_4821, ",")></col>";
+if (%clancup_score_me > %clancup_score_them) {
+    $string = "<col=ffffff><~tostring_spacer(%clancup_score_me, ",")></col><br><~tostring_spacer(%clancup_score_them, ",")>";
+} else if (%clancup_score_me < %clancup_score_them) {
+    $string = "<~tostring_spacer(%clancup_score_me, ",")><br><col=ffffff><~tostring_spacer(%clancup_score_them, ",")></col>";
 } else {
-    $string = "<~tostring_spacer(%varplayerbit_4820, ",")><br><~tostring_spacer(%varplayerbit_4821, ",")>";
+    $string = "<~tostring_spacer(%clancup_score_me, ",")><br><~tostring_spacer(%clancup_score_them, ",")>";
 }
-if (%varplayerbit_4822 >= ^max_32bit_int) {
+if (%clancup_time_remaining >= ^max_32bit_int) {
     if_settext("Your team:<br>Opponents:<br>Starting soon...", $component0);
     $string = append($string, "<br>");
-} else if (%varplayerbit_4822 > 1) {
+} else if (%clancup_time_remaining > 1) {
     if_settext("Your team:<br>Opponents:<br>Time:", $component0);
-    $string = append($string, "<br><tostring(%varplayerbit_4822)> mins");
-} else if (%varplayerbit_4822 = 1) {
+    $string = append($string, "<br><tostring(%clancup_time_remaining)> mins");
+} else if (%clancup_time_remaining = 1) {
     if_settext("Your team:<br>Opponents:<br>Time:", $component0);
     $string = append($string, "<br>1 min");
-} else if (%varplayerbit_4820 = %varplayerbit_4821) {
+} else if (%clancup_score_me = %clancup_score_them) {
     if_settext("Your team:<br>Opponents:<br>", $component0);
     $string = append($string, "<br>Next kill wins!");
 } else {

@@ -1,29 +1,29 @@
 // 6473
 [clientscript,cluehelper_hotcold_update](coord $coord0, coord $coord1, int $int2, int $int3)
-def_dbrow $dbrow4 = %varplayer_3546;
+def_dbrow $dbrow4 = %cluehelper_infobox_clue;
 if ($dbrow4 = null) {
     return;
 }
-if (db_getrowtable($dbrow4) ! dbtable_12) {
+if (db_getrowtable($dbrow4) ! cluehelper_clue_hotcold) {
     return;
 }
-if ($coord0 = $coord1 & %varplayerbit_14190 = 1) {
+if ($coord0 = $coord1 & %cluehelper_hotcold_list_stored = 1) {
     return;
 }
-def_component $com_3 = interface_711:com_3;
-def_int $int6 = db_getfield($dbrow4, dbtable_12:col1, 0);
+def_component $listeners = helper_generic:listeners;
+def_int $int6 = db_getfield($dbrow4, cluehelper_clue_hotcold:difficulty, 0);
 def_int $int7 = 0;
 switch_int ($int6) {
     case 0 :
-        $int7 = db_getfieldcount(dbrow_684, dbtable_3:col2);
+        $int7 = db_getfieldcount(cluehelper_cluetype_hotcold, cluehelper_cluetype:beginner_clues);
     case 5 :
-        $int7 = db_getfieldcount(dbrow_684, dbtable_3:col7);
+        $int7 = db_getfieldcount(cluehelper_cluetype_hotcold, cluehelper_cluetype:master_clues);
 }
-if ($dbrow4 = dbrow_2297) {
+if ($dbrow4 = cluehelper_hotcold_cluequest_3) {
     $int7 = enum_getoutputcount(enum_4816);
 }
-if (%varplayerbit_14190 = 0) {
-    ~script6474($com_3, $int7);
+if (%cluehelper_hotcold_list_stored = 0) {
+    ~script6474($listeners, $int7);
 }
 def_int $int8 = 0;
 def_dbrow $dbrow9 = null;
@@ -37,14 +37,14 @@ if ($int2 < $int3) {
 def_int $int12 = 0;
 def_int $int13 = 0;
 while ($int8 < $int7) {
-    if (cc_find($com_3, $int8) = true & cc_getcolour = ^black) {
+    if (cc_find($listeners, $int8) = true & cc_getcolour = ^black) {
         switch_int ($int6) {
             case 0 :
-                $dbrow9 = db_getfield(dbrow_684, dbtable_3:col2, $int8);
+                $dbrow9 = db_getfield(cluehelper_cluetype_hotcold, cluehelper_cluetype:beginner_clues, $int8);
             case 5 :
-                $dbrow9 = db_getfield(dbrow_684, dbtable_3:col7, $int8);
+                $dbrow9 = db_getfield(cluehelper_cluetype_hotcold, cluehelper_cluetype:master_clues, $int8);
         }
-        if ($dbrow4 = dbrow_2297) {
+        if ($dbrow4 = cluehelper_hotcold_cluequest_3) {
             $dbrow9 = enum(int, dbrow, enum_4816, $int8);
         }
         $coord10 = ~script6653(~cluehelper_clue_target($dbrow9));

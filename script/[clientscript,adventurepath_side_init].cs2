@@ -1,23 +1,23 @@
 // 3018
-[clientscript,adventurepath_side_init](component $com_7, component $com_0, component $com_12, component $com_16, component $com_17, component $com_9, component $com_11, component $com_13, component $com_1, component $com_5, component $com_4, component $com_3, component $com_6, component $com_14, component $com_15)
-cc_deleteall($com_12);
-cc_deleteall($com_16);
-cc_deleteall($com_17);
-cc_deleteall($com_11);
-cc_deleteall($com_9);
-cc_deleteall($com_13);
-cc_deleteall($com_14);
-cc_deleteall($com_15);
-if (%varplayerbit_9327 = 1) {
-    if_sethide(true, $com_7);
-    if_sethide(false, $com_1);
+[clientscript,adventurepath_side_init](component $main, component $universe, component $settings, component $path_name, component $path_icon, component $task_name, component $task_description, component $progress_bar, component $settings_tab, component $settings_title, component $toggles, component $settings_scrollbar, component $settings_back, component $hint, component $open_interface)
+cc_deleteall($settings);
+cc_deleteall($path_name);
+cc_deleteall($path_icon);
+cc_deleteall($task_description);
+cc_deleteall($task_name);
+cc_deleteall($progress_bar);
+cc_deleteall($hint);
+cc_deleteall($open_interface);
+if (%adventurepath_settings_selected = 1) {
+    if_sethide(true, $main);
+    if_sethide(false, $settings_tab);
 } else {
-    if_sethide(false, $com_7);
-    if_sethide(true, $com_1);
+    if_sethide(false, $main);
+    if_sethide(true, $settings_tab);
 }
-~adventurepath_side_info($com_16, $com_17, $com_9, $com_11, $com_13, $com_6, $com_14, $com_15);
-if_setonvartransmit("adventurepath_side_info_transmit($com_16, $com_17, $com_9, $com_11, $com_13, $com_6, $com_14, $com_15){varplayer_2359, varplayer_2358}", $com_0);
-if_setonstattransmit("adventurepath_side_info_transmit($com_16, $com_17, $com_9, $com_11, $com_13, $com_6, $com_14, $com_15){attack, strength, defence, magic, ranged, mining, woodcutting, fishing}", $com_0);
-if_setonvartransmit("adventurepath_side_layer($com_7, $com_1){varplayer_2370}", $com_7);
-~adventurepath_side_settings($com_12, $com_7, $com_1);
-~adventurepath_side_settings_content($com_7, $com_1, $com_5, $com_4, $com_3, $com_6, 1);
+~adventurepath_side_info($path_name, $path_icon, $task_name, $task_description, $progress_bar, $settings_back, $hint, $open_interface);
+if_setonvartransmit("adventurepath_side_info_transmit($path_name, $path_icon, $task_name, $task_description, $progress_bar, $settings_back, $hint, $open_interface){adventurepath_in_focus, adventurepath_selected_task}", $universe);
+if_setonstattransmit("adventurepath_side_info_transmit($path_name, $path_icon, $task_name, $task_description, $progress_bar, $settings_back, $hint, $open_interface){attack, strength, defence, magic, ranged, mining, woodcutting, fishing}", $universe);
+if_setonvartransmit("adventurepath_side_layer($main, $settings_tab){adventurepath_filters}", $main);
+~adventurepath_side_settings($settings, $main, $settings_tab);
+~adventurepath_side_settings_content($main, $settings_tab, $settings_title, $toggles, $settings_scrollbar, $settings_back, 1);

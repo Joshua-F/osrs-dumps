@@ -1,13 +1,13 @@
 // 699
-[clientscript,emote_init](component $com_0, component $com_2, component $com_1, component $com_4, component $com_5)
-cc_deleteall($com_2);
-cc_deleteall($com_4);
+[clientscript,emote_init](component $universe, component $contents, component $scrollable, component $scrollbar, component $tooltip)
+cc_deleteall($contents);
+cc_deleteall($scrollbar);
 def_int $int5 = 0;
 def_int $int6 = 0;
 def_int $int7 = 0;
-def_int $int8 = calc(if_getwidth($com_2) / 4);
+def_int $int8 = calc(if_getwidth($contents) / 4);
 while ($int7 <= 54) {
-    cc_create($com_2, ^iftype_rectangle, $int7);
+    cc_create($contents, ^iftype_rectangle, $int7);
     if (enum(int, graphic, enum_1001, $int7) ! null) {
         cc_sethide(false);
         cc_setcolour(^black);
@@ -15,8 +15,8 @@ while ($int7 <= 54) {
         cc_setsize($int8, 48, ^setsize_abs, ^setsize_abs);
         $int6 = calc($int5 / 4 * 49 + 6);
         cc_setposition(calc($int5 % 4 * $int8), $int6, ^setpos_abs_left, ^setpos_abs_top);
-        cc_setonmouserepeat("tooltip_mouserepeat(event_com, event_comsubid, $com_5, ~emote_get_name($int7), 25, 120)");
-        cc_setonmouseleave("deltooltip($com_5)");
+        cc_setonmouserepeat("tooltip_mouserepeat(event_com, event_comsubid, $tooltip, ~emote_get_name($int7), 25, 120)");
+        cc_setonmouseleave("deltooltip($tooltip)");
         $int5 = calc($int5 + 1);
     } else {
         cc_sethide(true);
@@ -27,7 +27,7 @@ $int7 = 0;
 $int6 = 0;
 $int5 = 0;
 while ($int7 <= 54) {
-    cc_create($com_2, ^iftype_graphic, calc(54 + $int7 + 1));
+    cc_create($contents, ^iftype_graphic, calc(54 + $int7 + 1));
     if (enum(int, graphic, enum_1001, $int7) ! null) {
         cc_sethide(false);
         cc_setsize(48, 48, ^setsize_abs, ^setsize_abs);
@@ -42,13 +42,13 @@ while ($int7 <= 54) {
 if ($int5 > 0) {
     $int6 = calc($int6 + 48);
 }
-if_setscrollpos(0, 0, $com_1);
-if ($int6 > if_getheight($com_1)) {
-    if_setscrollsize(0, $int6, $com_1);
+if_setscrollpos(0, 0, $scrollable);
+if ($int6 > if_getheight($scrollable)) {
+    if_setscrollsize(0, $int6, $scrollable);
 } else {
-    if_setscrollsize(0, 0, $com_1);
+    if_setscrollsize(0, 0, $scrollable);
 }
-~scrollbar_vertical($com_4, $com_1, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-~emote_update($com_2, $com_5);
-if_setonvartransmit("emote_update($com_2, $com_5){varplayer_313, varplayer_802, varplayer_465, varplayer_101, varplayer_904, varplayer_1336, varplayer_2886, varplayer_4130}", $com_0);
-if_setonstattransmit("emote_update($com_2, $com_5)", $com_0);
+~scrollbar_vertical($scrollbar, $scrollable, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~emote_update($contents, $tooltip);
+if_setonvartransmit("emote_update($contents, $tooltip){emote_access, sos_emote, lost_tribe, qp, qp_total, eoc_bits, poh_leaguehall_2, colosseum_glory}", $universe);
+if_setonstattransmit("emote_update($contents, $tooltip)", $universe);

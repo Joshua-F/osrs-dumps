@@ -1,11 +1,11 @@
 // 7246
 [clientscript,omnishop_side_init](dbrow $dbrow)
-def_component $com_0 = interface_806:com_0;
-cc_deleteall($com_0);
-def_int $int2 = inv_size(inv_93);
+def_component $items = omnishop_side:items;
+cc_deleteall($items);
+def_int $int2 = inv_size(inv);
 def_int $int3 = 0;
 while ($int3 < $int2) {
-    cc_create($com_0, ^iftype_graphic, $int3);
+    cc_create($items, ^iftype_graphic, $int3);
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
     cc_setgraphicshadow(0x333333);
     cc_setoutline(1);
@@ -14,4 +14,4 @@ while ($int3 < $int2) {
     $int3 = calc($int3 + 1);
 }
 ~omnishop_side_draw($dbrow);
-if_setoninvtransmit("omnishop_side_draw($dbrow){inv_93}", $com_0);
+if_setoninvtransmit("omnishop_side_draw($dbrow){inv}", $items);

@@ -1,26 +1,26 @@
 // 3791
-[clientscript,eyeglo_unlock](component $com_3, component $com_4, component $com_5, component $com_6, component $com_7, component $com_15)
-if_setmodel(enum(int, model, enum_1551, calc(%varplayerbit_2510 / 10)), $com_3);
-if_setmodel(enum(int, model, enum_1551, calc(%varplayerbit_2510 % 10)), $com_4);
-if_setobject_nonum(%varplayer_849, 1, $com_15);
-if (%varplayerbit_2539 = 0) {
-    if_setmodel(model_17219, $com_6);
-    if_setmodel(null, $com_5);
-    if_setmodel(null, $com_7);
+[clientscript,eyeglo_unlock](component $tens, component $units, component $arrow_up, component $arrow_middle, component $arrow_down, component $unlock_inserted_coin)
+if_setmodel(enum(int, model, enum_1551, calc(%eyeglo_coin_value_1 / 10)), $tens);
+if_setmodel(enum(int, model, enum_1551, calc(%eyeglo_coin_value_1 % 10)), $units);
+if_setobject_nonum(%eyeglo_unlock_a, 1, $unlock_inserted_coin);
+if (%eyeglo_unlock_val = 0) {
+    if_setmodel(model_17219, $arrow_middle);
+    if_setmodel(null, $arrow_up);
+    if_setmodel(null, $arrow_down);
     return;
 }
-if (%varplayerbit_2539 > %varplayerbit_2510) {
-    if_setmodel(model_17219, $com_6);
-    if_setmodel(model_17221, $com_5);
-    if_setmodel(model_17217, $com_7);
+if (%eyeglo_unlock_val > %eyeglo_coin_value_1) {
+    if_setmodel(model_17219, $arrow_middle);
+    if_setmodel(model_17221, $arrow_up);
+    if_setmodel(model_17217, $arrow_down);
     return;
 }
-if (%varplayerbit_2539 < %varplayerbit_2510) {
-    if_setmodel(model_17219, $com_6);
-    if_setmodel(model_17220, $com_5);
-    if_setmodel(model_17218, $com_7);
+if (%eyeglo_unlock_val < %eyeglo_coin_value_1) {
+    if_setmodel(model_17219, $arrow_middle);
+    if_setmodel(model_17220, $arrow_up);
+    if_setmodel(model_17218, $arrow_down);
     return;
 }
-if_setmodel(model_17216, $com_6);
-if_setmodel(null, $com_5);
-if_setmodel(null, $com_7);
+if_setmodel(model_17216, $arrow_middle);
+if_setmodel(null, $arrow_up);
+if_setmodel(null, $arrow_down);

@@ -1,35 +1,35 @@
 // 6377
-[clientscript,cr_ui_init](component $com_0, component $com_1, component $com_3, component $com_4, component $com_6, component $com_7, component $com_2)
+[clientscript,cr_ui_init](component $universe, component $window, component $frame, component $btn_close, component $tabs_container, component $module_content_container, component $resize_preview)
 %varclient_1007 = 1;
 if (~script6391 = false) {
-    if_sethide(true, $com_6);
-    if_setsize(calc(if_getwidth($com_1) - if_getwidth($com_6)), if_getheight($com_1), ^setsize_abs, ^setsize_abs, $com_1);
-    if_setsize(0, calc(if_getheight(if_getlayer($com_7)) - if_getheight($com_7)), ^setsize_minus, ^setsize_minus, $com_7);
+    if_sethide(true, $tabs_container);
+    if_setsize(calc(if_getwidth($window) - if_getwidth($tabs_container)), if_getheight($window), ^setsize_abs, ^setsize_abs, $window);
+    if_setsize(0, calc(if_getheight(if_getlayer($module_content_container)) - if_getheight($module_content_container)), ^setsize_minus, ^setsize_minus, $module_content_container);
 }
-~steelborder($com_3, "Activity Adviser", 3);
-~script4215($com_4, "Close");
-if_setonop("opsound(event_op, 2)", $com_4);
-if_setop(2, "", $com_4);
-if_setopkey(2, ^key_escape, 0, $com_4);
-def_int $int7 = calc((if_gety(if_getlayer($com_7)) - if_getheight($com_4)) / 2);
-if_setposition($int7, $int7, ^setpos_abs_right, ^setpos_abs_top, $com_4);
-cc_deleteall($com_0);
+~steelborder($frame, "Activity Adviser", 3);
+~script4215($btn_close, "Close");
+if_setonop("opsound(event_op, 2)", $btn_close);
+if_setop(2, "", $btn_close);
+if_setopkey(2, ^key_escape, 0, $btn_close);
+def_int $int7 = calc((if_gety(if_getlayer($module_content_container)) - if_getheight($btn_close)) / 2);
+if_setposition($int7, $int7, ^setpos_abs_right, ^setpos_abs_top, $btn_close);
+cc_deleteall($universe);
 def_int $int8 = 0;
 while ($int8 < 8) {
-    cc_create($com_0, ^iftype_graphic, $int8);
+    cc_create($universe, ^iftype_graphic, $int8);
     cc_settiling(true);
     cc_settrans(255);
     cc_setonmouserepeat("cc_settrans(event_com, event_comsubid, 200, null)");
     cc_setonmouseleave("cc_settrans(event_com, event_comsubid, 255, null)");
-    cc_setdraggable($com_0, -1);
+    cc_setdraggable($universe, -1);
     cc_setdragdeadzone(1);
     cc_setdragdeadtime(5);
     $int8 = calc($int8 + 1);
 }
-cc_deleteall($com_2);
+cc_deleteall($resize_preview);
 $int8 = 0;
 while ($int8 < 4) {
-    cc_create($com_2, ^iftype_rectangle, $int8);
+    cc_create($resize_preview, ^iftype_rectangle, $int8);
     cc_setsize(calc($int8 * 2), calc($int8 * 2), ^setsize_minus, ^setsize_minus);
     cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
     cc_setcolour(0x9f9f9f);
@@ -48,15 +48,15 @@ if (%varclient_1012 < ~cr_ui_min_height) {
     %varclient_1012 = ~cr_ui_default_height;
 }
 if (%varclient_1009 < 0) {
-    %varclient_1009 = calc((if_getwidth($com_0) - %varclient_1011) / 2);
+    %varclient_1009 = calc((if_getwidth($universe) - %varclient_1011) / 2);
 }
 if (%varclient_1010 < $int9) {
-    %varclient_1010 = ~max($int9, calc((if_getheight($com_0) - %varclient_1012) / 2));
+    %varclient_1010 = ~max($int9, calc((if_getheight($universe) - %varclient_1012) / 2));
 }
-~cr_ui_rebuild_window(1, $int9, $com_0, $com_1, $com_2);
-~cr_ui_size_handler(1, $int9, ^min_32bit_int, ^min_32bit_int, $com_0, $com_1, $com_2);
+~cr_ui_rebuild_window(1, $int9, $universe, $window, $resize_preview);
+~cr_ui_size_handler(1, $int9, ^min_32bit_int, ^min_32bit_int, $universe, $window, $resize_preview);
 if (%varclient_1008 = null) {
     %varclient_1008 = enum(int, dbrow, enum_4593, 0);
 }
-~cr_ui_activate_module(%varclient_1008, $com_6);
+~cr_ui_activate_module(%varclient_1008, $tabs_container);
 ~script2482;

@@ -1,12 +1,12 @@
 // 4814
 [proc,script4814](mapelement $mapelement)(string)
-db_find(dbtable_0:col16, $mapelement);
+db_find(quest:mapelement, $mapelement);
 def_dbrow $dbrow = db_findnext;
 if ($dbrow = null) {
     return(enum(category, string, enum_1713, mec_category($mapelement)));
 }
 def_string $string = "Quest: <~get_quest_name($dbrow)>";
-if (map_members = false & db_getfield($dbrow, dbtable_0:col5, 0) = true) {
+if (map_members = false & db_getfield($dbrow, quest:members, 0) = true) {
     return("<col=ff0000><$string> (Members Only)</col>");
 }
 def_int $int = ~quest_status_get($dbrow);

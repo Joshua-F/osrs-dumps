@@ -1,9 +1,9 @@
 // 1460
-[clientscript,lumbridge_alchemy_init](component $com_0, component $com_1, component $com_2, component $com_3, component $com_7, component $com_8)
-def_int $int6 = inv_size(inv_93);
+[clientscript,lumbridge_alchemy_init](component $universe, component $low, component $high, component $title, component $items, component $charges)
+def_int $int6 = inv_size(inv);
 def_int $int7 = 0;
 while ($int7 < $int6) {
-    cc_create($com_7, ^iftype_graphic, $int7);
+    cc_create($items, ^iftype_graphic, $int7);
     cc_sethide(true);
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
     cc_setposition(calc($int7 % 4 * (36 + 8)), calc($int7 / 4 * 32), ^setpos_abs_left, ^setpos_abs_top);
@@ -13,7 +13,7 @@ while ($int7 < $int6) {
     cc_setonop("cc_settrans_temporarily(event_com, event_comsubid, 100, 0)");
     $int7 = calc($int7 + 1);
 }
-~lumbridge_alchemy_invtransmit($com_7, $int6);
-if_setoninvtransmit("lumbridge_alchemy_invtransmit($com_7, $int6){inv_93}", $com_0);
-~lumbridge_alchemy_vartransmit($com_1, $com_2, $com_3, $com_7, $com_8, $int6);
-if_setonvartransmit("lumbridge_alchemy_vartransmit($com_1, $com_2, $com_3, $com_7, $com_8, $int6){varplayer_318, varplayer_925}", $com_0);
+~lumbridge_alchemy_invtransmit($items, $int6);
+if_setoninvtransmit("lumbridge_alchemy_invtransmit($items, $int6){inv}", $universe);
+~lumbridge_alchemy_vartransmit($low, $high, $title, $items, $charges, $int6);
+if_setonvartransmit("lumbridge_alchemy_vartransmit($low, $high, $title, $items, $charges, $int6){troll_varbit, hunting_trail_basevar7}", $universe);

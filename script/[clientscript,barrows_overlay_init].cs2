@@ -1,30 +1,30 @@
 // 132
-[clientscript,barrows_overlay_init](component $com_0, component $com_1, component $com_2, component $com_3, component $com_6, component $com_7, component $com_8, component $com_9, component $com_10, component $com_11, component $com_5, component $com_4)
-~interface_dodger_init($com_1, $com_2, setbit(0, 13), ^setpos_abs_centre, ^setpos_abs_centre, false);
-~barrows_overlay_reward($com_5);
-if_setonvartransmit("barrows_overlay_reward($com_5){varplayer_453, varplayer_1697}", $com_0);
-cc_deleteall($com_4);
-def_int $int12 = ~barrows_overlay_createbrother("Ahrim", 0, $com_4);
-def_int $int13 = ~barrows_overlay_createbrother("Dharok", 1, $com_4);
+[clientscript,barrows_overlay_init](component $universe, component $dodger, component $content, component $hud, component $ahrim, component $dharok, component $guthan, component $karil, component $torag, component $verac, component $killcount, component $brothers)
+~interface_dodger_init($dodger, $content, setbit(0, 13), ^setpos_abs_centre, ^setpos_abs_centre, false);
+~barrows_overlay_reward($killcount);
+if_setonvartransmit("barrows_overlay_reward($killcount){barrows_kills, gravestone_varp}", $universe);
+cc_deleteall($brothers);
+def_int $int12 = ~barrows_overlay_createbrother("Ahrim", 0, $brothers);
+def_int $int13 = ~barrows_overlay_createbrother("Dharok", 1, $brothers);
 if ($int13 > $int12) {
     $int12 = $int13;
 }
-$int13 = ~barrows_overlay_createbrother("Guthan", 2, $com_4);
+$int13 = ~barrows_overlay_createbrother("Guthan", 2, $brothers);
 if ($int13 > $int12) {
     $int12 = $int13;
 }
-$int13 = ~barrows_overlay_createbrother("Karil", 3, $com_4);
+$int13 = ~barrows_overlay_createbrother("Karil", 3, $brothers);
 if ($int13 > $int12) {
     $int12 = $int13;
 }
-$int13 = ~barrows_overlay_createbrother("Torag", 4, $com_4);
+$int13 = ~barrows_overlay_createbrother("Torag", 4, $brothers);
 if ($int13 > $int12) {
     $int12 = $int13;
 }
-$int13 = ~barrows_overlay_createbrother("Verac", 5, $com_4);
+$int13 = ~barrows_overlay_createbrother("Verac", 5, $brothers);
 if ($int13 > $int12) {
     $int12 = $int13;
 }
-if_setsize(calc($int12 + 20), 102, ^setsize_abs, ^setsize_abs, $com_4);
-~barrows_overlay_size($com_0, $com_3, $com_6, $com_7, $com_8, $com_9, $com_10, $com_11, $com_5, $com_4, ^min_32bit_int);
-if_setonsubchange("barrows_overlay_size($com_0, $com_3, $com_6, $com_7, $com_8, $com_9, $com_10, $com_11, $com_5, $com_4, ^min_32bit_int)", $com_0);
+if_setsize(calc($int12 + 20), 102, ^setsize_abs, ^setsize_abs, $brothers);
+~barrows_overlay_size($universe, $hud, $ahrim, $dharok, $guthan, $karil, $torag, $verac, $killcount, $brothers, ^min_32bit_int);
+if_setonsubchange("barrows_overlay_size($universe, $hud, $ahrim, $dharok, $guthan, $karil, $torag, $verac, $killcount, $brothers, ^min_32bit_int)", $universe);

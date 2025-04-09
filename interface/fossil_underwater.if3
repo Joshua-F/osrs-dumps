@@ -1,0 +1,109 @@
+// 609:0
+[universe]
+type=layer
+widthmode=minus
+heightmode=minus
+onload=fossil_init(fossil_underwater:dodger, fossil_underwater:oxygen_layer)
+
+// 609:1
+[oxygen_layer]
+type=layer
+y=2
+width=200
+height=20
+xmode=abs_centre
+layer=dodger
+
+// 609:2
+[water_overlay]
+type=layer
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=universe
+
+// 609:3
+[background]
+type=rectangle
+widthmode=minus
+heightmode=minus
+ymode=abs_centre
+layer=oxygen_layer
+colour=0xff0000
+fill=yes
+
+// 609:4
+[oxygen_bar]
+type=rectangle
+x=1
+y=1
+width=100
+height=2
+widthmode=minus
+heightmode=minus
+layer=oxygen_layer
+colour=0x66cc00
+fill=yes
+
+// 609:5
+[border]
+type=rectangle
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=oxygen_layer
+colour=0x000000
+
+// 609:6
+[oxygen_level]
+type=text
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=oxygen_layer
+textfont=b12_full
+text=Oxygen Level: 
+textalignh=centre
+textalignv=centre
+colour=0x000000
+onload=fossil_oxygen_level(fossil_underwater:oxygen_bar, fossil_underwater:oxygen_level, fossil_underwater:warning_layer)
+onvartransmit=fossil_oxygen_level(fossil_underwater:oxygen_bar, fossil_underwater:oxygen_level, fossil_underwater:warning_layer){fossil_perm_transmit_noprotect}
+
+// 609:7
+[dodger]
+type=layer
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=universe
+
+// 609:8
+[warning_layer]
+type=rectangle
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=universe
+hide=yes
+colour=0xff0000
+fill=yes
+trans=255
+
+// 609:9
+[fade]
+type=rectangle
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=universe
+hide=yes
+colour=0x000000
+fill=yes
+trans=255
+

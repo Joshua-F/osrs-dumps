@@ -59,7 +59,7 @@ cc_settextalign(^settextalign_centre, ^settextalign_top, 0);
 cc_setcolour(0xff981f);
 cc_settextshadow(true);
 def_string $string = "";
-if ($obj = obj_1925 | $obj = obj_6055) {
+if ($obj = bucket_empty | $obj = weeds) {
     $string = enum(int, string, enum_1234, $int0);
 } else {
     $string = enum(obj, string, enum_1238, $obj);
@@ -98,9 +98,9 @@ if ($int7 > 0) {
         cc_setcolour(0x00cf00);
         .cc_setcolour(0x00cf00);
     }
-} else if ($obj = obj_1925) {
+} else if ($obj = bucket_empty) {
     $string = append($string, " (empty)");
-} else if ($obj = obj_6055) {
+} else if ($obj = weeds) {
     $string = append($string, " (weeds)");
 }
 if (testbit($int3, 2) = ^true) {
@@ -124,7 +124,7 @@ if (testbit($int3, 2) = ^true) {
     cc_setposition(0, 20, ^setpos_abs_centre, ^setpos_abs_bottom);
     cc_setgraphicshadow(0x333333);
     cc_setoutline(1);
-    cc_setobject_nonum(obj_2472, 1);
+    cc_setobject_nonum(flowers_waterfall_quest_mixed, 1);
     $string = append($string, "<br>A nearby flower patch is providing protection.");
 }
 if (testbit($int3, 4) = ^true | coordy($coord) = 1) {
@@ -135,10 +135,10 @@ if (testbit($int3, 4) = ^true | coordy($coord) = 1) {
     cc_setgraphicshadow(0x333333);
     cc_setoutline(1);
     if (coordy($coord) = 1) {
-        cc_setobject_nonum(obj_5340, 1);
+        cc_setobject_nonum(watering_can_8, 1);
         $string = append($string, "<br>The patch has been watered.");
     } else {
-        cc_setobject_nonum(obj_5331, 1);
+        cc_setobject_nonum(watering_can_0, 1);
         cc_settrans(125);
         $string = append($string, "<br>The patch is dry.");
     }
@@ -151,13 +151,13 @@ if (testbit($int3, 6) = ^true | testbit($int3, 5) = ^true | testbit($int3, 7) = 
     cc_setgraphicshadow(0x333333);
     cc_setoutline(1);
     if (testbit($int3, 7) = ^true) {
-        cc_setobject_nonum(obj_21483, 1);
+        cc_setobject_nonum(bucket_ultracompost, 1);
         $string = append($string, "<br>The patch has been treated with ultracompost.");
     } else if (testbit($int3, 6) = ^true) {
-        cc_setobject_nonum(obj_6034, 1);
+        cc_setobject_nonum(bucket_supercompost, 1);
         $string = append($string, "<br>The patch has been treated with supercompost.");
     } else {
-        cc_setobject_nonum(obj_6032, 1);
+        cc_setobject_nonum(bucket_compost, 1);
         $string = append($string, "<br>The patch has been treated with compost.");
     }
 }
@@ -173,5 +173,5 @@ if ($int9 > 0) {
     cc_settext(tostring($int9));
     $string = append($string, "<br>Minimum yield: <tostring($int9)>");
 }
-if_setonmouserepeat("tooltip_mouserepeat(event_com, -1, interface_179:com_301, $string, 25, 512)", $component6);
-if_setonmouseleave("deltooltip(interface_179:com_301)", $component6);
+if_setonmouserepeat("tooltip_mouserepeat(event_com, -1, farming_view:tooltip, $string, 25, 512)", $component6);
+if_setonmouseleave("deltooltip(farming_view:tooltip)", $component6);

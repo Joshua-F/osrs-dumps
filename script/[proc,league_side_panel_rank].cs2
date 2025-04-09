@@ -1,20 +1,20 @@
 // 2452
 [proc,league_side_panel_rank](component $component, int $rgb)
-def_component $com_15 = interface_656:com_15;
-def_component $com_14 = interface_656:com_14;
-def_component $com_10 = interface_656:com_10;
-def_component $com_11 = interface_656:com_11;
-if_setcolour($rgb, $com_14);
-if_setop(1, "Show <col=ff9040>Ranks</col>", $com_10);
-if_setgraphic(enum(int, graphic, enum_5199, ~league_current_rank), $com_15);
-if_setonvartransmit("league_side_panel_rank_transmit($com_15){varplayer_2614}", $com_10);
+def_component $rank_trophy = league_side_panel:rank_trophy;
+def_component $rank_text = league_side_panel:rank_text;
+def_component $rank = league_side_panel:rank;
+def_component $rank_backing = league_side_panel:rank_backing;
+if_setcolour($rgb, $rank_text);
+if_setop(1, "Show <col=ff9040>Ranks</col>", $rank);
+if_setgraphic(enum(int, graphic, enum_5199, ~league_current_rank), $rank_trophy);
+if_setonvartransmit("league_side_panel_rank_transmit($rank_trophy){league_points_completed}", $rank);
 if (~on_mobile = false) {
-    if_setonmouserepeat("league_side_panel_misc_hover(true, $com_14, $rgb)", $com_10);
-    if_setonmouseleave("league_side_panel_misc_hover(false, $com_14, $rgb)", $com_10);
+    if_setonmouserepeat("league_side_panel_misc_hover(true, $rank_text, $rgb)", $rank);
+    if_setonmouseleave("league_side_panel_misc_hover(false, $rank_text, $rgb)", $rank);
 }
 def_string $string = "Open the rank interface";
 if (~on_mobile = false) {
-    if_setonmouserepeat("tooltip_mouserepeat($com_10, 0, $component, $string, 25, 190)", $com_11);
-    if_setonmouseleave("deltooltip($component)", $com_11);
+    if_setonmouserepeat("tooltip_mouserepeat($rank, 0, $component, $string, 25, 190)", $rank_backing);
+    if_setonmouseleave("deltooltip($component)", $rank_backing);
 }
-def_int $int = ~script3953($com_11, $int, 24, if_getwidth($com_11), 0, 0, 0);
+def_int $int = ~script3953($rank_backing, $int, 24, if_getwidth($rank_backing), 0, 0, 0);

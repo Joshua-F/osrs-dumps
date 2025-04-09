@@ -1,8 +1,8 @@
 // 6089
 [proc,giants_foundry_reward_shop_info_setup](int $int0, boolean $boolean)
-def_component $com_19 = interface_753:com_19;
-def_component $com_20 = interface_753:com_20;
-cc_deleteall($com_19);
+def_component $info = giants_foundry_reward_shop:info;
+def_component $info_scroller = giants_foundry_reward_shop:info_scroller;
+cc_deleteall($info);
 def_struct $struct4 = enum(int, struct, enum_4379, $int0);
 def_obj $obj = null;
 def_struct $struct6 = null;
@@ -45,7 +45,7 @@ switch_int (%varclient_988) {
 }
 def_int $int15 = 0;
 def_int $int16 = 0;
-def_int $int17 = if_getwidth($com_19);
+def_int $int17 = if_getwidth($info);
 def_string $string = "Welcome to the Giants' Foundry Reward Shop.";
 if ($obj ! null) {
     $string = oc_name($obj);
@@ -53,7 +53,7 @@ if ($obj ! null) {
     $string = struct_param($struct6, param_1621);
 }
 def_int $int18 = calc(paraheight($string, calc($int17 - $int12 * 2), $fontmetrics9) * $int14);
-cc_create($com_19, ^iftype_text, $int15);
+cc_create($info, ^iftype_text, $int15);
 cc_setposition($int12, $int12, ^setpos_abs_left, ^setpos_abs_top);
 cc_setsize(calc($int17 - $int12 * 2), $int18, ^setsize_abs, ^setsize_abs);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, $int14);
@@ -64,7 +64,7 @@ cc_settext($string);
 $int15 = calc($int15 + 1);
 $int16 = calc($int16 + $int12 + $int18 + $int13);
 if ($obj ! null) {
-    cc_create($com_19, ^iftype_graphic, $int15);
+    cc_create($info, ^iftype_graphic, $int15);
     cc_setposition(calc($int17 / 2 - 36 / 2), $int16, ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
     cc_setobject($obj, -1);
@@ -73,7 +73,7 @@ if ($obj ! null) {
     $int16 = calc($int16 + 32 + $int13);
     $int15 = calc($int15 + 1);
 } else if ($struct6 ! null) {
-    ~create_graphic($com_19, $int15, struct_param($struct6, param_1623), calc($int17 / 2 - 20), $int16, ^setpos_abs_left, ^setpos_abs_top, 40, 30, ^setsize_abs, ^setsize_abs);
+    ~create_graphic($info, $int15, struct_param($struct6, param_1623), calc($int17 / 2 - 20), $int16, ^setpos_abs_left, ^setpos_abs_top, 40, 30, ^setsize_abs, ^setsize_abs);
     $int16 = calc($int16 + 32 + $int13);
     $int15 = calc($int15 + 1);
 }
@@ -81,7 +81,7 @@ if ($obj ! null | $struct6 ! null) {
     $int7 = struct_param($struct4, param_1638);
     $string = "Cost: <tostring($int7)>";
     $int18 = calc(paraheight($string, calc($int17 - $int12 * 2), $fontmetrics11) * $int14);
-    cc_create($com_19, ^iftype_text, $int15);
+    cc_create($info, ^iftype_text, $int15);
     cc_setposition($int12, $int16, ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize(calc($int17 - $int12 * 2), $int18, ^setsize_abs, ^setsize_abs);
     cc_settextalign(^settextalign_centre, ^settextalign_centre, $int14);
@@ -97,7 +97,7 @@ if ($obj ! null | $struct6 ! null) {
     $string = struct_param($struct4, param_1639);
 }
 $int18 = calc(paraheight($string, calc($int17 - $int12 * 2), $fontmetrics11) * $int14);
-cc_create($com_19, ^iftype_text, $int15);
+cc_create($info, ^iftype_text, $int15);
 cc_setposition($int12, $int16, ^setpos_abs_left, ^setpos_abs_top);
 cc_setsize(calc($int17 - $int12 * 2), $int18, ^setsize_abs, ^setsize_abs);
 cc_settextalign(^settextalign_left, ^settextalign_top, $int14);
@@ -110,7 +110,7 @@ $int16 = calc($int16 + $int18 + $int13);
 def_int $int19 = 0;
 if ($struct6 ! null) {
     $int18 = $int14;
-    cc_create($com_19, ^iftype_text, $int15);
+    cc_create($info, ^iftype_text, $int15);
     cc_setposition($int12, $int16, ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize(calc($int17 - $int12 * 2), $int18, ^setsize_abs, ^setsize_abs);
     cc_settextalign(^settextalign_left, ^settextalign_top, $int14);
@@ -120,7 +120,7 @@ if ($struct6 ! null) {
     cc_settext("Smithing Level: <tostring(struct_param($struct6, param_1622))>");
     $int15 = calc($int15 + 1);
     $int16 = calc($int16 + $int18);
-    cc_create($com_19, ^iftype_text, $int15);
+    cc_create($info, ^iftype_text, $int15);
     cc_setposition($int12, $int16, ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize(calc($int17 - $int12 * 2), $int18, ^setsize_abs, ^setsize_abs);
     cc_settextalign(^settextalign_left, ^settextalign_top, $int14);
@@ -141,7 +141,7 @@ if ($struct6 ! null) {
     if ($int19 < 0) {
         $int19 = calc(0 - $int19);
     }
-    cc_create($com_19, ^iftype_text, $int15);
+    cc_create($info, ^iftype_text, $int15);
     cc_setposition($int12, $int16, ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize(calc($int17 - $int12 * 2), $int18, ^setsize_abs, ^setsize_abs);
     cc_settextalign(^settextalign_left, ^settextalign_top, $int14);
@@ -156,7 +156,7 @@ if ($struct6 ! null) {
     if ($int19 < 0) {
         $int19 = calc(0 - $int19);
     }
-    cc_create($com_19, ^iftype_text, $int15);
+    cc_create($info, ^iftype_text, $int15);
     cc_setposition($int12, $int16, ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize(calc($int17 - $int12 * 2), $int18, ^setsize_abs, ^setsize_abs);
     cc_settextalign(^settextalign_left, ^settextalign_top, $int14);
@@ -171,7 +171,7 @@ if ($struct6 ! null) {
     if ($int19 < 0) {
         $int19 = calc(0 - $int19);
     }
-    cc_create($com_19, ^iftype_text, $int15);
+    cc_create($info, ^iftype_text, $int15);
     cc_setposition($int12, $int16, ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize(calc($int17 - $int12 * 2), $int18, ^setsize_abs, ^setsize_abs);
     cc_settextalign(^settextalign_left, ^settextalign_top, $int14);
@@ -183,29 +183,29 @@ if ($struct6 ! null) {
     $int16 = calc($int16 + $int18 + $int13);
 }
 if ($boolean = true) {
-    if_setscrollpos(0, 0, $com_19);
+    if_setscrollpos(0, 0, $info);
 }
-if_setscrollsize(if_getwidth($com_19), $int16, $com_19);
-~scrollbar_vertical($com_20, $com_19, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-~scrollbar_vertical_rebuild($com_20, $com_19);
-def_component $com_16 = interface_753:com_16;
-def_component $com_17 = interface_753:com_17;
-if_settextfont($graphic8, $com_17);
+if_setscrollsize(if_getwidth($info), $int16, $info);
+~scrollbar_vertical($info_scroller, $info, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~scrollbar_vertical_rebuild($info_scroller, $info);
+def_component $buy_button_border = giants_foundry_reward_shop:buy_button_border;
+def_component $buy_button_text = giants_foundry_reward_shop:buy_button_text;
+if_settextfont($graphic8, $buy_button_text);
 if ($struct6 ! null) {
-    if_settext("Unlock", $com_17);
+    if_settext("Unlock", $buy_button_text);
 } else {
-    if_settext("Buy", $com_17);
+    if_settext("Buy", $buy_button_text);
 }
-if ($int7 > 0 & $int7 <= %varplayer_3436) {
-    $int15 = ~v2_stone_button($com_16);
-    if_setcolour(0xff981f, $com_17);
+if ($int7 > 0 & $int7 <= %giants_foundry_reward_shop_points) {
+    $int15 = ~v2_stone_button($buy_button_border);
+    if_setcolour(0xff981f, $buy_button_text);
     if (~on_mobile = false) {
-        if_setonmouseover("v2_stone_button_in_filled($com_16)", $com_16);
-        if_setonmouseleave("v2_stone_button($com_16)", $com_16);
+        if_setonmouseover("v2_stone_button_in_filled($buy_button_border)", $buy_button_border);
+        if_setonmouseleave("v2_stone_button($buy_button_border)", $buy_button_border);
     }
 } else {
-    $int15 = ~v2_stone_button_in_filled($com_16);
-    if_setcolour(0x9f9f9f, $com_17);
-    if_setonmouseover(null, $com_16);
-    if_setonmouseleave(null, $com_16);
+    $int15 = ~v2_stone_button_in_filled($buy_button_border);
+    if_setcolour(0x9f9f9f, $buy_button_text);
+    if_setonmouseover(null, $buy_button_border);
+    if_setonmouseleave(null, $buy_button_border);
 }

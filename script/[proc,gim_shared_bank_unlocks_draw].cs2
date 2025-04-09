@@ -1,22 +1,22 @@
 // 5183
 [proc,gim_shared_bank_unlocks_draw](component $component0, component $component1, int $int2)
-def_component $com_6 = interface_743:com_6;
-def_component $com_15 = interface_743:com_15;
-def_component $com_16 = interface_743:com_16;
-def_component $com_14 = interface_743:com_14;
-def_component $com_12 = interface_743:com_12;
-def_component $com_7 = interface_743:com_7;
-cc_deleteall($com_6);
-cc_deleteall($com_15);
-cc_deleteall($com_16);
-cc_deleteall($com_14);
-cc_deleteall($com_7);
-~scrollbar_vertical($com_14, $com_12, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-def_int $int9 = %varplayer_261;
-def_int $int10 = %varplayer_262;
-def_int $int11 = %varplayer_263;
-def_int $int12 = %varplayer_264;
-def_int $int13 = %varplayer_265;
+def_component $index_contents = gim_shared_bank_unlocks:index_contents;
+def_component $list_content = gim_shared_bank_unlocks:list_content;
+def_component $list_borders = gim_shared_bank_unlocks:list_borders;
+def_component $list_scrollbar = gim_shared_bank_unlocks:list_scrollbar;
+def_component $list_contents = gim_shared_bank_unlocks:list_contents;
+def_component $completed_toggle = gim_shared_bank_unlocks:completed_toggle;
+cc_deleteall($index_contents);
+cc_deleteall($list_content);
+cc_deleteall($list_borders);
+cc_deleteall($list_scrollbar);
+cc_deleteall($completed_toggle);
+~scrollbar_vertical($list_scrollbar, $list_contents, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+def_int $int9 = %if1;
+def_int $int10 = %if2;
+def_int $int11 = %if3;
+def_int $int12 = %if4;
+def_int $int13 = %if5;
 def_int $int14 = 0;
 def_int $int15 = enum_getoutputcount(enum_4216);
 def_struct $struct = null;
@@ -33,41 +33,41 @@ def_int $int25 = 0;
 def_int $int26 = calc($int21 + 13);
 def_int $int27 = 0;
 def_int $int28 = 0;
-def_int $int29 = calc(if_getwidth($com_15) - $int26 - 8);
+def_int $int29 = calc(if_getwidth($list_content) - $int26 - 8);
 def_int $int30 = 0;
 def_int $int31 = calc($int22 + 6);
 def_int $int32 = 0;
-if_settext("Storage Space:<br> <tostring($int11)>/<tostring($int12)>", interface_743:com_9);
+if_settext("Storage Space:<br> <tostring($int11)>/<tostring($int12)>", gim_shared_bank_unlocks:storage_unlocked);
 if ($int11 >= $int12) {
-    if_setcolour(0x0dc10d, interface_743:com_9);
+    if_setcolour(0x0dc10d, gim_shared_bank_unlocks:storage_unlocked);
 } else {
-    if_setcolour(0xff981f, interface_743:com_9);
+    if_setcolour(0xff981f, gim_shared_bank_unlocks:storage_unlocked);
 }
 if ($int13 <= 0) {
-    if_settext("You are eligible to unlock group storage slots for your group", interface_743:com_10);
-    if_setcolour(0x0dc10d, interface_743:com_10);
+    if_settext("You are eligible to unlock group storage slots for your group", gim_shared_bank_unlocks:storage_eligibility);
+    if_setcolour(0x0dc10d, gim_shared_bank_unlocks:storage_eligibility);
 } else {
     if ($int13 = 1) {
-        if_settext("You will be eligible to unlock group storage slots in 1 week<br>", interface_743:com_10);
+        if_settext("You will be eligible to unlock group storage slots in 1 week<br>", gim_shared_bank_unlocks:storage_eligibility);
     } else {
-        if_settext("You will be eligible to unlock group storage slots in <tostring($int13)> weeks<br>", interface_743:com_10);
+        if_settext("You will be eligible to unlock group storage slots in <tostring($int13)> weeks<br>", gim_shared_bank_unlocks:storage_eligibility);
     }
-    if_setcolour(^red, interface_743:com_10);
+    if_setcolour(^red, gim_shared_bank_unlocks:storage_eligibility);
 }
-cc_create($com_7, ^iftype_graphic, $int23);
+cc_create($completed_toggle, ^iftype_graphic, $int23);
 cc_setsize(16, 16, ^setsize_abs, ^setsize_abs);
 cc_setposition(2, 4, ^setpos_abs_left, ^setpos_abs_top);
-if_setop(1, "Toggle", $com_7);
-if_setopbase("completed unlocks", $com_7);
+if_setop(1, "Toggle", $completed_toggle);
+if_setopbase("completed unlocks", $completed_toggle);
 if ($int2 = 1) {
     cc_setgraphic("checkbox,2");
-    if_setonop("gim_shared_bank_unlocks_draw($component0, $component1, 0)", $com_7);
+    if_setonop("gim_shared_bank_unlocks_draw($component0, $component1, 0)", $completed_toggle);
 } else {
     cc_setgraphic("checkbox,1");
-    if_setonop("gim_shared_bank_unlocks_draw($component0, $component1, 1)", $com_7);
+    if_setonop("gim_shared_bank_unlocks_draw($component0, $component1, 1)", $completed_toggle);
 }
 $int23 = calc($int23 + 1);
-cc_create($com_7, ^iftype_text, $int23);
+cc_create($completed_toggle, ^iftype_text, $int23);
 cc_setsize(84, 20, ^setsize_abs, ^setsize_abs);
 cc_setposition(20, 2, ^setpos_abs_left, ^setpos_abs_top);
 cc_settext("Show Completed");
@@ -75,8 +75,8 @@ cc_settextfont(p11_full);
 cc_settextshadow(true);
 cc_setcolour(0xff981f);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 15);
-if_setonmouserepeat("gim_shared_bank_unlocks_mouseover($com_7, $int23)", $com_7);
-if_setonmouseleave("gim_shared_bank_unlocks_mouseleave($com_7, $int23)", $com_7);
+if_setonmouserepeat("gim_shared_bank_unlocks_mouseover($completed_toggle, $int23)", $completed_toggle);
+if_setonmouseleave("gim_shared_bank_unlocks_mouseleave($completed_toggle, $int23)", $completed_toggle);
 $int23 = 0;
 while ($int14 < $int15) {
     $struct = enum(int, struct, enum_4216, $int14);
@@ -89,7 +89,7 @@ while ($int14 < $int15) {
         if ($int2 = 0 & $intbool = ^false | $int2 = 1) {
             $int27 = $int25;
             $int28 = ~max(calc($int22 + 20), calc(paraheight($string, calc($int29 - 10), p11_full) * 15 + 8));
-            cc_create($com_15, ^iftype_rectangle, $int23);
+            cc_create($list_content, ^iftype_rectangle, $int23);
             cc_setsize($int29, $int28, ^setsize_abs, ^setsize_abs);
             cc_setposition($int26, $int25, ^setpos_abs_left, ^setpos_abs_top);
             cc_setcolour(^white);
@@ -100,7 +100,7 @@ while ($int14 < $int15) {
                 cc_settrans(230);
             }
             $int23 = calc($int23 + 1);
-            cc_create($com_15, ^iftype_text, $int23);
+            cc_create($list_content, ^iftype_text, $int23);
             cc_setsize(calc($int29 - 10), calc($int28 - 4), ^setsize_abs, ^setsize_abs);
             cc_setposition(calc($int26 + 5), calc($int25 + 2), ^setpos_abs_left, ^setpos_abs_top);
             cc_settext($string);
@@ -116,16 +116,16 @@ while ($int14 < $int15) {
             $int25 = calc($int25 + $int28);
             $int30 = calc($int30 + $int28);
             $int25 = $int27;
-            $int24 = ~thinbox_specific($com_16, $int24, $int26, $int25, $int29, $int30, ^setpos_abs_left, ^setpos_abs_top);
+            $int24 = ~thinbox_specific($list_borders, $int24, $int26, $int25, $int29, $int30, ^setpos_abs_left, ^setpos_abs_top);
             $int26 = 0;
-            cc_create($com_15, ^iftype_rectangle, $int23);
+            cc_create($list_content, ^iftype_rectangle, $int23);
             cc_setsize(calc($int21 + 14), $int28, ^setsize_abs, ^setsize_abs);
             cc_setposition($int26, $int25, ^setpos_abs_left, ^setpos_abs_top);
             cc_setcolour(^white);
             cc_setfill(true);
             cc_settrans(230);
             $int23 = calc($int23 + 1);
-            cc_create($com_15, ^iftype_graphic, $int23);
+            cc_create($list_content, ^iftype_graphic, $int23);
             if ($obj ! null) {
                 cc_setobject($obj, 1);
                 cc_setsize($int21, $int22, ^setsize_abs, ^setsize_abs);
@@ -138,7 +138,7 @@ while ($int14 < $int15) {
             cc_setgraphicshadow(0x333333);
             cc_setoutline(1);
             $int23 = calc($int23 + 1);
-            cc_create($com_15, ^iftype_text, $int23);
+            cc_create($list_content, ^iftype_text, $int23);
             cc_setsize($int21, 14, ^setsize_abs, ^setsize_abs);
             cc_setposition(calc($int26 + 5), calc($int25 + $int28 - 15), ^setpos_abs_left, ^setpos_abs_top);
             cc_settext("Slots: <tostring($int17)>");
@@ -151,7 +151,7 @@ while ($int14 < $int15) {
             }
             cc_settextalign(^settextalign_left, ^settextalign_centre, 15);
             $int23 = calc($int23 + 1);
-            $int24 = ~thinbox_specific($com_16, $int24, $int26, $int25, calc($int21 + 14), $int30, ^setpos_abs_left, ^setpos_abs_top);
+            $int24 = ~thinbox_specific($list_borders, $int24, $int26, $int25, calc($int21 + 14), $int30, ^setpos_abs_left, ^setpos_abs_top);
             $int25 = calc($int25 + $int30 - 1);
             $int26 = calc($int21 + 13);
             $int30 = 0;
@@ -160,8 +160,8 @@ while ($int14 < $int15) {
     $int14 = calc($int14 + 1);
 }
 $int25 = calc($int25 + 9);
-if ($int25 > if_getheight($com_12)) {
-    if_setscrollsize(0, $int25, $com_12);
-    ~scrollbar_resize($com_14, $com_12, if_getscrolly($com_12));
+if ($int25 > if_getheight($list_contents)) {
+    if_setscrollsize(0, $int25, $list_contents);
+    ~scrollbar_resize($list_scrollbar, $list_contents, if_getscrolly($list_contents));
 }
-~gim_shared_bank_unlocks_setsize(if_getwidth(interface_743:com_3), $int25, interface_743:com_12, interface_743:com_14, if_getheight(interface_743:com_1));
+~gim_shared_bank_unlocks_setsize(if_getwidth(gim_shared_bank_unlocks:window), $int25, gim_shared_bank_unlocks:list_contents, gim_shared_bank_unlocks:list_scrollbar, if_getheight(gim_shared_bank_unlocks:clamp));

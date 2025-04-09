@@ -1,7 +1,7 @@
 // 2851
-[clientscript,script2851](int $int0, component $com_5, component $com_4)
-cc_deleteall($com_4);
-cc_create($com_4, ^iftype_graphic, 0);
+[clientscript,script2851](int $int0, component $items, component $close_button)
+cc_deleteall($close_button);
+cc_create($close_button, ^iftype_graphic, 0);
 cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
 cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
 cc_setgraphic("close_buttons,6");
@@ -11,11 +11,11 @@ cc_setop(1, "Close");
 cc_setonmouserepeat("cc_graphic_swapper(event_com, event_comsubid, $graphic3, null)");
 cc_setonmouseleave("cc_graphic_swapper(event_com, event_comsubid, $graphic4, null)");
 cc_setonop("closebutton_click");
-cc_deleteall($com_5);
+cc_deleteall($items);
 def_int $int5 = 0;
-def_int $int6 = inv_size(inv_93);
+def_int $int6 = inv_size(inv);
 while ($int5 < $int6) {
-    cc_create($com_5, ^iftype_graphic, $int5);
+    cc_create($items, ^iftype_graphic, $int5);
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
     cc_setgraphicshadow(0x333333);
     cc_setoutline(1);
@@ -24,5 +24,5 @@ while ($int5 < $int6) {
     cc_setdragdeadtime(5);
     $int5 = calc($int5 + 1);
 }
-~script2854($com_5);
-if_setoninvtransmit("script2853($com_5){inv_93}", $com_5);
+~script2854($items);
+if_setoninvtransmit("script2853($items){inv}", $items);

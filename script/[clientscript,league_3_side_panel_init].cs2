@@ -1,51 +1,51 @@
 // 5798
-[clientscript,league_3_side_panel_init](component $com_21, component $com_25, component $com_30, component $com_35, int $int4)
-cc_deleteall($com_21);
-cc_deleteall($com_25);
-cc_deleteall($com_30);
-~v2_stone_button_filled($com_21);
+[clientscript,league_3_side_panel_init](component $info_button, component $tasks_button, component $relics_button, component $unlocks_button, int $int4)
+cc_deleteall($info_button);
+cc_deleteall($tasks_button);
+cc_deleteall($relics_button);
+~v2_stone_button_filled($info_button);
 if (~on_mobile = false) {
-    if_setonmouseleave("league_side_panel_button_hover($com_21, 0)", $com_21);
-    if_setonmouseover("league_side_panel_button_hover($com_21, 1)", $com_21);
+    if_setonmouseleave("league_side_panel_button_hover($info_button, 0)", $info_button);
+    if_setonmouseover("league_side_panel_button_hover($info_button, 1)", $info_button);
 }
-if_setonop("button_select_sound", $com_21);
-~v2_stone_button_filled($com_25);
+if_setonop("button_select_sound", $info_button);
+~v2_stone_button_filled($tasks_button);
 if (~on_mobile = false) {
-    if_setonmouseleave("league_side_panel_button_hover($com_25, 0)", $com_25);
-    if_setonmouseover("league_side_panel_button_hover($com_25, 1)", $com_25);
+    if_setonmouseleave("league_side_panel_button_hover($tasks_button, 0)", $tasks_button);
+    if_setonmouseover("league_side_panel_button_hover($tasks_button, 1)", $tasks_button);
 }
-if_setonop("button_select_sound", $com_25);
-~v2_stone_button_filled($com_30);
+if_setonop("button_select_sound", $tasks_button);
+~v2_stone_button_filled($relics_button);
 if (~on_mobile = false) {
-    if_setonmouseleave("league_side_panel_button_hover($com_30, 0)", $com_30);
-    if_setonmouseover("league_side_panel_button_hover($com_30, 1)", $com_30);
+    if_setonmouseleave("league_side_panel_button_hover($relics_button, 0)", $relics_button);
+    if_setonmouseover("league_side_panel_button_hover($relics_button, 1)", $relics_button);
 }
-~v2_stone_button_filled($com_35);
+~v2_stone_button_filled($unlocks_button);
 if (~on_mobile = false) {
-    if_setonmouseleave("league_side_panel_button_hover($com_35, 0)", $com_35);
-    if_setonmouseover("league_side_panel_button_hover($com_35, 1)", $com_35);
+    if_setonmouseleave("league_side_panel_button_hover($unlocks_button, 0)", $unlocks_button);
+    if_setonmouseover("league_side_panel_button_hover($unlocks_button, 1)", $unlocks_button);
 }
-def_struct $struct = enum(int, struct, enum_2670, %varplayerbit_10032);
+def_struct $struct = enum(int, struct, enum_2670, %league_type);
 def_int $int6 = 16750623;
 if ($struct ! null) {
-    if_setgraphic(struct_param($struct, param_1024), interface_736:com_10);
-    if_setgraphic(struct_param($struct, param_1025), interface_736:com_9);
+    if_setgraphic(struct_param($struct, param_1024), league_3_side_panel:fill);
+    if_setgraphic(struct_param($struct, param_1025), league_3_side_panel:bkg);
     $int6 = struct_param($struct, param_1027);
 }
-if_setcolour($int6, interface_736:com_2);
-if_setcolour($int6, interface_736:com_6);
-if_setcolour($int6, interface_736:com_12);
-if_setcolour($int6, interface_736:com_14);
-if_setcolour($int6, interface_736:com_16);
+if_setcolour($int6, league_3_side_panel:header);
+if_setcolour($int6, league_3_side_panel:points_next_relic);
+if_setcolour($int6, league_3_side_panel:total_tasks_text);
+if_setcolour($int6, league_3_side_panel:total_points_text);
+if_setcolour($int6, league_3_side_panel:unlock_points_text);
 def_string $string = "Display Fragments";
-def_component $com_33 = interface_736:com_33;
-def_component $com_32 = interface_736:com_32;
-if_setopbase("<col=ff9040><$string></col>", $com_32);
-if_setsize(calc(parawidth($string, 190, p11_full) + 20), if_getheight($com_32), ^setsize_abs, ^setsize_abs, $com_32);
-cc_create($com_32, ^iftype_graphic, 0);
+def_component $tooltip = league_3_side_panel:tooltip;
+def_component $hud = league_3_side_panel:hud;
+if_setopbase("<col=ff9040><$string></col>", $hud);
+if_setsize(calc(parawidth($string, 190, p11_full) + 20), if_getheight($hud), ^setsize_abs, ^setsize_abs, $hud);
+cc_create($hud, ^iftype_graphic, 0);
 cc_setsize(17, 17, ^setsize_abs, ^setsize_abs);
 cc_setposition(0, 5, ^setpos_abs_left, ^setpos_abs_top);
-.cc_create($com_32, ^iftype_text, 1);
+.cc_create($hud, ^iftype_text, 1);
 .cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
 .cc_setposition(0, 1, ^setpos_abs_centre, ^setpos_abs_top);
 .cc_setcolour($int6);
@@ -53,13 +53,13 @@ cc_setposition(0, 5, ^setpos_abs_left, ^setpos_abs_top);
 .cc_settextshadow(true);
 .cc_settextalign(^settextalign_right, ^settextalign_centre, 0);
 .cc_settext($string);
-.cc_setonmouseleave("deltooltip($com_33)");
+.cc_setonmouseleave("deltooltip($tooltip)");
 if (~on_mobile = false) {
-    if_setonmouseover("cc_colour_swapper(event_com, .cc_getid, 16777215)", $com_32);
-    if_setonmouseleave("cc_colour_swapper(event_com, .cc_getid, $int6)", $com_32);
+    if_setonmouseover("cc_colour_swapper(event_com, .cc_getid, 16777215)", $hud);
+    if_setonmouseleave("cc_colour_swapper(event_com, .cc_getid, $int6)", $hud);
 }
-~league_side_panel_hudtoggle($com_32, $com_33);
-if_setonvartransmit("league_side_panel_hudtoggle($com_32, cc_getid, .cc_getid, $com_33){varplayer_1734}", $com_32);
-if_setonop("league_side_panel_hudop(event_op, $com_32, cc_getid, .cc_getid, $com_33)", $com_32);
-~league_3_side_panel_update_bar(interface_736:com_10, %varplayer_2615);
-if_setonvartransmit("script5799(interface_736:com_10){varplayer_2615, varplayer_3276}", interface_736:com_9);
+~league_side_panel_hudtoggle($hud, $tooltip);
+if_setonvartransmit("league_side_panel_hudtoggle($hud, cc_getid, .cc_getid, $tooltip){options_mobile}", $hud);
+if_setonop("league_side_panel_hudop(event_op, $hud, cc_getid, .cc_getid, $tooltip)", $hud);
+~league_3_side_panel_update_bar(league_3_side_panel:fill, %league_points_claimed);
+if_setonvartransmit("script5799(league_3_side_panel:fill){league_points_claimed, league_unlock_points}", league_3_side_panel:bkg);

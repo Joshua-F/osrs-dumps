@@ -1,10 +1,10 @@
 // 1760
 [proc,forestry_kit_main_list_item_setup](int $int0, int $int1, int $int2, obj $obj, int $int4, int $int5)(int, boolean, int)
 def_int $int6 = 0;
-if (oc_param($obj, param_1793) = true & inv_total(inv_814, $obj) < 1) {
+if (oc_param($obj, param_1793) = true & inv_total(forestry_kit, $obj) < 1) {
     $int6 = 1;
 }
-def_component $com_21 = interface_823:com_21;
+def_component $list = forestry_kit_main:list;
 def_int $int8 = 3;
 def_int $int9 = 7;
 def_int $int10 = 74;
@@ -36,14 +36,14 @@ switch_int (%varclient_988) {
         $int13 = 1446;
         $int14 = 2;
 }
-def_int $int15 = calc(if_getwidth($com_21) / $int11);
-def_int $int16 = calc((if_getwidth($com_21) - ($int15 + 1) * $int8) / $int15);
+def_int $int15 = calc(if_getwidth($list) / $int11);
+def_int $int16 = calc((if_getwidth($list) - ($int15 + 1) * $int8) / $int15);
 def_int $int17 = calc($int2 % $int15 * ($int16 + $int8) + $int8);
 def_int $int18 = calc($int2 / $int15 * ($int10 + $int8) + $int8);
 def_int $int19 = 0;
 if ($int6 = 1) {
     while ($int19 < 12) {
-        cc_create($com_21, ^iftype_rectangle, $int0);
+        cc_create($list, ^iftype_rectangle, $int0);
         cc_sethide(true);
         $int0 = calc($int0 + 1);
         $int19 = calc($int19 + 1);
@@ -57,9 +57,9 @@ def_int $int20 = 7496785;
 if ($int5 = 1) {
     $int20 = 16750623;
 }
-$int0 = ~script5288($com_21, $int0, $int17, $int18, $int16, $int10, struct_3712, $int20);
+$int0 = ~script5288($list, $int0, $int17, $int18, $int16, $int10, struct_3712, $int20);
 cc_setop(1, "Select");
-switch_int (%varplayerbit_14985) {
+switch_int (%forestry_kit_selectedquantity) {
     case default :
         cc_setop(2, "Withdraw-1");
         cc_setop(4, "Withdraw-5");
@@ -92,14 +92,14 @@ if ($int5 = 0) {
 } else {
     cc_setonop("forestry_kit_main_list_item_select(-1, event_op)");
 }
-cc_create($com_21, ^iftype_graphic, $int0);
+cc_create($list, ^iftype_graphic, $int0);
 cc_setposition(calc($int17 + $int16 / 2 - 36 / 2), calc($int18 + $int9), ^setpos_abs_left, ^setpos_abs_top);
 cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
 cc_setobject($obj, $int4);
 cc_setoutline(1);
 cc_setgraphicshadow(0x333333);
 $int0 = calc($int0 + 1);
-cc_create($com_21, ^iftype_text, $int0);
+cc_create($list, ^iftype_text, $int0);
 cc_setposition(calc($int17 + 7), calc($int18 + 27 + $int9 + $int14), ^setpos_abs_left, ^setpos_abs_top);
 cc_setsize(calc($int16 - 14), 40, ^setsize_abs, ^setsize_abs);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 16);

@@ -3,76 +3,76 @@
 if ($int0 = 0) {
     return;
 }
-def_component $com_32 = interface_650:com_32;
-def_component $com_34 = interface_650:com_34;
-def_component $com_33 = interface_650:com_33;
-def_component $com_31 = interface_650:com_31;
-def_component $com_67 = interface_650:com_67;
-def_component $com_69 = interface_650:com_69;
-def_component $com_68 = interface_650:com_68;
-def_component $com_66 = interface_650:com_66;
-def_component $com_78 = interface_650:com_78;
-def_component $com_71 = interface_650:com_71;
+def_component $loot_tracking_content = loottools:loot_tracking_content;
+def_component $loottracker_content_scroll_area_inner = loottools:loottracker_content_scroll_area_inner;
+def_component $loottracker_content_scroll_area_outer = loottools:loottracker_content_scroll_area_outer;
+def_component $loot_tracking_scrollbar = loottools:loot_tracking_scrollbar;
+def_component $ground_items_content = loottools:ground_items_content;
+def_component $ground_items_content_scroll_area_inner = loottools:ground_items_content_scroll_area_inner;
+def_component $ground_items_content_scroll_area_outer = loottools:ground_items_content_scroll_area_outer;
+def_component $ground_items_scrollbar = loottools:ground_items_scrollbar;
+def_component $ground_items_bottom = loottools:ground_items_bottom;
+def_component $ground_items_lists = loottools:ground_items_lists;
 def_int $int11 = 0;
-if_setsize(0, 20, ^setsize_minus, ^setsize_abs, interface_650:com_70);
+if_setsize(0, 20, ^setsize_minus, ^setsize_abs, loottools:ground_items_top);
 if (~on_mobile = true & %varclient_1223 = 2) {
-    if_sethide(true, interface_650:com_26);
-    if_setsize(0, 0, ^setsize_minus, ^setsize_minus, interface_650:com_29);
-    if_sethide(true, interface_650:com_81);
+    if_sethide(true, loottools:header_container);
+    if_setsize(0, 0, ^setsize_minus, ^setsize_minus, loottools:categories_container);
+    if_sethide(true, loottools:dropdown_container);
 } else {
-    if_sethide(false, interface_650:com_26);
-    if_setsize(0, 33, ^setsize_minus, ^setsize_minus, interface_650:com_29);
+    if_sethide(false, loottools:header_container);
+    if_setsize(0, 33, ^setsize_minus, ^setsize_minus, loottools:categories_container);
 }
-if (if_getheight($com_67) < 500) {
-    if_setsize(22, 4, ^setsize_minus, ^setsize_minus, $com_67);
-    if_setsize(0, calc(500 + 20), ^setsize_minus, ^setsize_abs, $com_69);
-    if_sethide(false, $com_66);
-    if_setscrollsize(0, calc(500 + 20), $com_68);
-    if_setsize(0, 106, ^setsize_minus, ^setsize_abs, $com_78);
-    if_setsize(0, 128, ^setsize_minus, ^setsize_minus, $com_71);
-    if_setposition(0, 108, ^setpos_abs_left, ^setpos_abs_bottom, $com_71);
-    if (cc_find($com_31, 0) = true) {
+if (if_getheight($ground_items_content) < 500) {
+    if_setsize(22, 4, ^setsize_minus, ^setsize_minus, $ground_items_content);
+    if_setsize(0, calc(500 + 20), ^setsize_minus, ^setsize_abs, $ground_items_content_scroll_area_inner);
+    if_sethide(false, $ground_items_scrollbar);
+    if_setscrollsize(0, calc(500 + 20), $ground_items_content_scroll_area_outer);
+    if_setsize(0, 106, ^setsize_minus, ^setsize_abs, $ground_items_bottom);
+    if_setsize(0, 128, ^setsize_minus, ^setsize_minus, $ground_items_lists);
+    if_setposition(0, 108, ^setpos_abs_left, ^setpos_abs_bottom, $ground_items_lists);
+    if (cc_find($loot_tracking_scrollbar, 0) = true) {
         if (%varclient_1257 > 0) {
             $int11 = %varclient_1257;
         } else {
-            $int11 = if_getscrolly($com_68);
+            $int11 = if_getscrolly($ground_items_content_scroll_area_outer);
         }
-        ~scrollbar_resize($com_66, $com_68, $int11);
+        ~scrollbar_resize($ground_items_scrollbar, $ground_items_content_scroll_area_outer, $int11);
     } else {
-        ~scrollbar_vertical($com_66, $com_68, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+        ~scrollbar_vertical($ground_items_scrollbar, $ground_items_content_scroll_area_outer, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
         if (%varclient_1257 > 0) {
-            ~scrollbar_resize($com_66, $com_68, %varclient_1257);
+            ~scrollbar_resize($ground_items_scrollbar, $ground_items_content_scroll_area_outer, %varclient_1257);
         }
     }
 } else {
-    if_setsize(4, 4, ^setsize_minus, ^setsize_minus, $com_67);
-    if_setsize(0, 0, ^setsize_minus, ^setsize_minus, $com_69);
-    if_setsize(0, 96, ^setsize_minus, ^setsize_abs, $com_78);
-    if_setsize(0, 118, ^setsize_minus, ^setsize_minus, $com_71);
-    if_setposition(0, 98, ^setpos_abs_left, ^setpos_abs_bottom, $com_71);
-    cc_deleteall($com_66);
-    if_sethide(true, $com_66);
-    if_setscrollsize(0, 0, $com_68);
-    if_setscrollpos(0, 0, $com_68);
+    if_setsize(4, 4, ^setsize_minus, ^setsize_minus, $ground_items_content);
+    if_setsize(0, 0, ^setsize_minus, ^setsize_minus, $ground_items_content_scroll_area_inner);
+    if_setsize(0, 96, ^setsize_minus, ^setsize_abs, $ground_items_bottom);
+    if_setsize(0, 118, ^setsize_minus, ^setsize_minus, $ground_items_lists);
+    if_setposition(0, 98, ^setpos_abs_left, ^setpos_abs_bottom, $ground_items_lists);
+    cc_deleteall($ground_items_scrollbar);
+    if_sethide(true, $ground_items_scrollbar);
+    if_setscrollsize(0, 0, $ground_items_content_scroll_area_outer);
+    if_setscrollpos(0, 0, $ground_items_content_scroll_area_outer);
 }
-if ($int0 > if_getheight($com_32)) {
-    if_setsize(22, 4, ^setsize_minus, ^setsize_minus, $com_32);
-    if_setsize(0, $int0, ^setsize_minus, ^setsize_abs, $com_34);
-    if_sethide(false, $com_31);
-    if_setscrollsize(0, $int0, $com_33);
+if ($int0 > if_getheight($loot_tracking_content)) {
+    if_setsize(22, 4, ^setsize_minus, ^setsize_minus, $loot_tracking_content);
+    if_setsize(0, $int0, ^setsize_minus, ^setsize_abs, $loottracker_content_scroll_area_inner);
+    if_sethide(false, $loot_tracking_scrollbar);
+    if_setscrollsize(0, $int0, $loottracker_content_scroll_area_outer);
 } else {
-    if_setsize(4, 4, ^setsize_minus, ^setsize_minus, $com_32);
-    if_setsize(0, $int0, ^setsize_minus, ^setsize_abs, $com_34);
-    cc_deleteall($com_31);
-    if_sethide(true, $com_31);
-    if_setscrollsize(0, 0, $com_33);
-    if_setscrollpos(0, 0, $com_33);
+    if_setsize(4, 4, ^setsize_minus, ^setsize_minus, $loot_tracking_content);
+    if_setsize(0, $int0, ^setsize_minus, ^setsize_abs, $loottracker_content_scroll_area_inner);
+    cc_deleteall($loot_tracking_scrollbar);
+    if_sethide(true, $loot_tracking_scrollbar);
+    if_setscrollsize(0, 0, $loottracker_content_scroll_area_outer);
+    if_setscrollpos(0, 0, $loottracker_content_scroll_area_outer);
 }
 def_component $component = null;
 def_int $int13 = 0;
 def_int $int14 = 0;
 def_int $int15 = 0;
-def_int $int16 = calc((if_getwidth($com_32) - 212) / 4);
+def_int $int16 = calc((if_getwidth($loot_tracking_content) - 212) / 4);
 while ($int13 < 10) {
     $component = ~script7167($int13);
     $int14 = 0;
@@ -104,21 +104,21 @@ while ($int13 < 10) {
     }
     $int13 = calc($int13 + 1);
 }
-if (cc_find($com_31, 0) = true) {
+if (cc_find($loot_tracking_scrollbar, 0) = true) {
     if (%varclient_1256 > 0) {
         $int11 = %varclient_1256;
     } else {
-        $int11 = if_getscrolly($com_33);
+        $int11 = if_getscrolly($loottracker_content_scroll_area_outer);
     }
-    ~scrollbar_resize($com_31, $com_33, $int11);
+    ~scrollbar_resize($loot_tracking_scrollbar, $loottracker_content_scroll_area_outer, $int11);
 } else {
-    if ($int0 > if_getheight($com_33)) {
-        if_setscrollsize(0, $int0, $com_33);
+    if ($int0 > if_getheight($loottracker_content_scroll_area_outer)) {
+        if_setscrollsize(0, $int0, $loottracker_content_scroll_area_outer);
     } else {
-        if_setscrollsize(0, 0, $com_33);
+        if_setscrollsize(0, 0, $loottracker_content_scroll_area_outer);
     }
-    ~scrollbar_vertical($com_31, $com_33, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+    ~scrollbar_vertical($loot_tracking_scrollbar, $loottracker_content_scroll_area_outer, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
     if (%varclient_1256 > 0) {
-        ~scrollbar_resize($com_31, $com_33, %varclient_1256);
+        ~scrollbar_resize($loot_tracking_scrollbar, $loottracker_content_scroll_area_outer, %varclient_1256);
     }
 }

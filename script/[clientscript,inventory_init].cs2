@@ -1,10 +1,10 @@
 // 6007
-[clientscript,inventory_init](component $com_0, boolean $boolean)
-cc_deleteall($com_0);
+[clientscript,inventory_init](component $items, boolean $boolean)
+cc_deleteall($items);
 def_int $int2 = 0;
-def_int $int3 = inv_size(inv_93);
+def_int $int3 = inv_size(inv);
 while ($int2 < $int3) {
-    cc_create($com_0, ^iftype_graphic, $int2);
+    cc_create($items, ^iftype_graphic, $int2);
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
     cc_setgraphicshadow(0x333333);
     cc_setoutline(1);
@@ -13,8 +13,8 @@ while ($int2 < $int3) {
     cc_sethide(false);
     $int2 = calc($int2 + 1);
 }
-~inventory_build($com_0, $int3, $boolean, null);
-if_setoninvtransmit("inventory_build($com_0, $int3, $boolean, null){inv_93}", $com_0);
-if_setonvartransmit("inventory_build($com_0, $int3, $boolean, null){varplayer_1432, varplayer_3150, varplayer_486, varplayer_3393}", $com_0);
-if_setonkeydown("inventory_key($com_0, $int3, $boolean, event_keycode, true)", $com_0);
-if_setonkeyup("inventory_key($com_0, $int3, $boolean, event_keycode, false)", $com_0);
+~inventory_build($items, $int3, $boolean, null);
+if_setoninvtransmit("inventory_build($items, $int3, $boolean, null){inv}", $items);
+if_setonvartransmit("inventory_build($items, $int3, $boolean, null){raids_temp_transmit3, nightmare_killtime_4, abyssal_pouches1, abyssal_pouches3}", $items);
+if_setonkeydown("inventory_key($items, $int3, $boolean, event_keycode, true)", $items);
+if_setonkeyup("inventory_key($items, $int3, $boolean, event_keycode, false)", $items);

@@ -1,34 +1,34 @@
 // 3935
-[clientscript,script3935](component $com_128, component $com_139, component $com_140, component $com_43, component $com_126)
-cc_deleteall($com_139);
+[clientscript,script3935](component $areasound_icon, component $areasounds_bobble_container, component $areasounds_slider_bobble, component $tooltip, component $areasounds_holder)
+cc_deleteall($areasounds_bobble_container);
 if (~on_enhanced_any = false) {
-    if_setposition(0, 91, ^setpos_abs_centre, ^setpos_abs_top, $com_126);
+    if_setposition(0, 91, ^setpos_abs_centre, ^setpos_abs_top, $areasounds_holder);
 } else {
-    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_bottom, $com_126);
-    if_setonvartransmit("script7100($com_140){varplayer_3796}", $com_139);
-    ~script7101($com_140);
+    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_bottom, $areasounds_holder);
+    if_setonvartransmit("script7100($areasounds_slider_bobble){option_master_volume}", $areasounds_bobble_container);
+    ~script7101($areasounds_slider_bobble);
 }
 def_int $int5 = struct_param(struct_2755, param_1101);
 def_int $int6 = 0;
-def_int $int7 = if_getwidth($com_139);
+def_int $int7 = if_getwidth($areasounds_bobble_container);
 def_graphic $graphic = "options_icons,14";
 def_int $int9 = ~settings_get_slider(32);
 ~settings_set_slider(32, $int9);
 def_string $string0 = "Mute Area Sound";
 def_string $string1 = "Unmute Area Sound";
-~settings_create_icon($int9, 32, $com_140, $com_139, $int5, $graphic, $com_128, $string0, $string1, $com_43);
-if_setonvartransmit("script3939(32, $com_140, $com_139, $int5, $graphic, $com_128, $string0, $string1, $com_43){varplayer_872}", $com_140);
-if_setnoclickthrough(true, $com_140);
-if_setonclick("settings_side_op_sound", $com_140);
+~settings_create_icon($int9, 32, $areasounds_slider_bobble, $areasounds_bobble_container, $int5, $graphic, $areasound_icon, $string0, $string1, $tooltip);
+if_setonvartransmit("script3939(32, $areasounds_slider_bobble, $areasounds_bobble_container, $int5, $graphic, $areasound_icon, $string0, $string1, $tooltip){option_areasounds}", $areasounds_slider_bobble);
+if_setnoclickthrough(true, $areasounds_slider_bobble);
+if_setonclick("settings_side_op_sound", $areasounds_slider_bobble);
 while ($int6 <= $int5) {
-    cc_create($com_139, ^iftype_rectangle, $int6);
+    cc_create($areasounds_bobble_container, ^iftype_rectangle, $int6);
     cc_setop(1, "Adjust Area Sound Volume");
     cc_setposition(scale($int6, $int5, $int7), 0, ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize(calc(scale(calc(1 + $int6), $int5, $int7) - scale($int6, $int5, $int7)), 0, ^setsize_abs, ^setsize_minus);
     cc_setfill(true);
     cc_setcolour(^white);
     cc_settrans(255);
-    cc_setonop("settings_side_notch_op(32, $int6, $com_140, $com_139, $int5, $graphic, $com_128, $string0, $string1, $com_43)");
+    cc_setonop("settings_side_notch_op(32, $int6, $areasounds_slider_bobble, $areasounds_bobble_container, $int5, $graphic, $areasound_icon, $string0, $string1, $tooltip)");
     $int6 = calc($int6 + 1);
 }
-~script3941($int9, $com_140, $com_139, $int5);
+~script3941($int9, $areasounds_slider_bobble, $areasounds_bobble_container, $int5);

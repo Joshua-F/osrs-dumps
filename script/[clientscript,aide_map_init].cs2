@@ -1,22 +1,22 @@
 // 2039
-[clientscript,aide_map_init](component $com_0, component $com_14, component $com_18)
-cc_deleteall($com_18);
-cc_create($com_18, ^iftype_text, 0);
+[clientscript,aide_map_init](component $universe, component $tutors, component $toggle)
+cc_deleteall($toggle);
+cc_create($toggle, ^iftype_text, 0);
 cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top);
 cc_setsize(0, 32, ^setsize_minus, ^setsize_minus);
 cc_settextfont(p12_full);
 cc_settextalign(^settextalign_centre, ^settextalign_top, 0);
 cc_settextshadow(false);
 cc_setcolour(0xaba346);
-if_setonmouserepeat("cc_colour_swapper(event_com, cc_getid, 13353846)", $com_18);
-if_setonmouseleave("cc_colour_swapper(event_com, cc_getid, 11248454)", $com_18);
-if_setopbase("<col=ff9040>Tutors</col>", $com_18);
-~aide_map_tutors(true, $com_14, $com_18);
-cc_deleteall($com_0);
-cc_create($com_0, ^iftype_model, 0);
+if_setonmouserepeat("cc_colour_swapper(event_com, cc_getid, 13353846)", $toggle);
+if_setonmouseleave("cc_colour_swapper(event_com, cc_getid, 11248454)", $toggle);
+if_setopbase("<col=ff9040>Tutors</col>", $toggle);
+~aide_map_tutors(true, $tutors, $toggle);
+cc_deleteall($universe);
+cc_create($universe, ^iftype_model, 0);
 cc_setsize(32, 32, ^setsize_abs, ^setsize_abs);
 cc_setmodel(model_3062);
 cc_setmodelangle(0, 0, 512, 68, 0, 1526);
-cc_setmodelanim(seq_646);
-~aide_map_marker($com_0);
-if_setontimer("aide_map_marker($com_0, cc_getid)", $com_0);
+cc_setmodelanim(x_mark);
+~aide_map_marker($universe);
+if_setontimer("aide_map_marker($universe, cc_getid)", $universe);

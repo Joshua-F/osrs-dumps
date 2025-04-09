@@ -1,34 +1,34 @@
 // 3933
-[clientscript,script3933](component $com_99, component $com_110, component $com_111, component $com_43, component $com_98)
-cc_deleteall($com_110);
+[clientscript,script3933](component $music_icon, component $music_bobble_container, component $music_slider_bobble, component $tooltip, component $music_holder)
+cc_deleteall($music_bobble_container);
 if (~on_enhanced_any = false) {
-    if_setposition(0, 5, ^setpos_abs_centre, ^setpos_abs_top, $com_98);
+    if_setposition(0, 5, ^setpos_abs_centre, ^setpos_abs_top, $music_holder);
 } else {
-    if_setposition(0, 42, ^setpos_abs_centre, ^setpos_abs_top, $com_98);
-    if_setonvartransmit("script7100($com_111){varplayer_3796}", $com_110);
-    ~script7101($com_111);
+    if_setposition(0, 42, ^setpos_abs_centre, ^setpos_abs_top, $music_holder);
+    if_setonvartransmit("script7100($music_slider_bobble){option_master_volume}", $music_bobble_container);
+    ~script7101($music_slider_bobble);
 }
 def_int $int5 = struct_param(struct_2753, param_1101);
 def_int $int6 = 0;
-def_int $int7 = if_getwidth($com_110);
+def_int $int7 = if_getwidth($music_bobble_container);
 def_graphic $graphic = "options_icons,1";
 def_int $int9 = ~settings_get_slider(30);
 ~settings_set_slider(30, $int9);
 def_string $string0 = "Mute Music";
 def_string $string1 = "Unmute Music";
-~settings_create_icon($int9, 30, $com_111, $com_110, $int5, $graphic, $com_99, $string0, $string1, $com_43);
-if_setonvartransmit("script3939(30, $com_111, $com_110, $int5, $graphic, $com_99, $string0, $string1, $com_43){varplayer_168}", $com_111);
-if_setnoclickthrough(true, $com_111);
-if_setonclick("opsound(0, 0)", $com_111);
+~settings_create_icon($int9, 30, $music_slider_bobble, $music_bobble_container, $int5, $graphic, $music_icon, $string0, $string1, $tooltip);
+if_setonvartransmit("script3939(30, $music_slider_bobble, $music_bobble_container, $int5, $graphic, $music_icon, $string0, $string1, $tooltip){option_music}", $music_slider_bobble);
+if_setnoclickthrough(true, $music_slider_bobble);
+if_setonclick("opsound(0, 0)", $music_slider_bobble);
 while ($int6 <= $int5) {
-    cc_create($com_110, ^iftype_rectangle, $int6);
+    cc_create($music_bobble_container, ^iftype_rectangle, $int6);
     cc_setop(1, "Adjust Music Volume");
     cc_setposition(scale($int6, $int5, $int7), 0, ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize(calc(scale(calc(1 + $int6), $int5, $int7) - scale($int6, $int5, $int7)), 0, ^setsize_abs, ^setsize_minus);
     cc_setfill(true);
     cc_setcolour(^white);
     cc_settrans(255);
-    cc_setonop("settings_side_notch_op(30, $int6, $com_111, $com_110, $int5, $graphic, $com_99, $string0, $string1, $com_43)");
+    cc_setonop("settings_side_notch_op(30, $int6, $music_slider_bobble, $music_bobble_container, $int5, $graphic, $music_icon, $string0, $string1, $tooltip)");
     $int6 = calc($int6 + 1);
 }
-~script3941($int9, $com_111, $com_110, $int5);
+~script3941($int9, $music_slider_bobble, $music_bobble_container, $int5);

@@ -1,6 +1,6 @@
 // 6219
-[clientscript,pvpa_board_init](component $com_1, component $com_6, component $com_7, int $int3, component $com_19, component $com_67, component $com_69, component $com_70, component $com_11, component $com_71)
-if (if_hassub(interface_767:com_4) = true) {
+[clientscript,pvpa_board_init](component $universe, component $filters, component $filter_scrollbar, int $int3, component $list, component $list_scrollbar, component $mygroup, component $refresh, component $reset, component $options)
+if (if_hassub(pvp_arena_board:popout) = true) {
     return;
 }
 def_int $int10 = 0;
@@ -8,16 +8,16 @@ while ($int10 < 47) {
     if_sethide(true, enum(int, component, enum_4403, $int10));
     $int10 = calc($int10 + 1);
 }
-if_setsize(500, calc(334 - 10), ^setsize_abs, ^setsize_abs, $com_1);
-if_setscrollsize(0, 0, $com_6);
-if_setscrollpos(0, 0, $com_6);
-if_setscrollsize(0, 0, $com_19);
-if_setscrollpos(0, 0, $com_19);
-~scrollbar_vertical($com_7, $com_6, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-~scrollbar_vertical($com_67, $com_19, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+if_setsize(500, calc(334 - 10), ^setsize_abs, ^setsize_abs, $universe);
+if_setscrollsize(0, 0, $filters);
+if_setscrollpos(0, 0, $filters);
+if_setscrollsize(0, 0, $list);
+if_setscrollpos(0, 0, $list);
+~scrollbar_vertical($filter_scrollbar, $filters, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~scrollbar_vertical($list_scrollbar, $list, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
 %varclient_43, %varclient_49 = 0, 0;
-cc_deleteall($com_19);
-cc_create($com_19, ^iftype_text, 0);
+cc_deleteall($list);
+cc_create($list, ^iftype_text, 0);
 cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
 cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
 cc_setcolour(0x808080);
@@ -25,39 +25,39 @@ cc_settextfont(p12_full);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
 cc_settextshadow(true);
 cc_settext("Loading...");
-if_sethide(true, $com_69);
-if_sethide(true, $com_70);
-if_sethide(true, $com_11);
-if_sethide(true, $com_71);
-cc_deleteall($com_1);
-cc_create($com_1, ^iftype_rectangle, enum(component, int, enum_4404, $com_69));
+if_sethide(true, $mygroup);
+if_sethide(true, $refresh);
+if_sethide(true, $reset);
+if_sethide(true, $options);
+cc_deleteall($universe);
+cc_create($universe, ^iftype_rectangle, enum(component, int, enum_4404, $mygroup));
 cc_sethide(true);
-cc_create($com_1, ^iftype_rectangle, enum(component, int, enum_4404, $com_70));
+cc_create($universe, ^iftype_rectangle, enum(component, int, enum_4404, $refresh));
 cc_sethide(true);
-cc_create($com_1, ^iftype_rectangle, enum(component, int, enum_4404, $com_11));
+cc_create($universe, ^iftype_rectangle, enum(component, int, enum_4404, $reset));
 cc_sethide(true);
-cc_create($com_1, ^iftype_rectangle, enum(component, int, enum_4404, $com_71));
+cc_create($universe, ^iftype_rectangle, enum(component, int, enum_4404, $options));
 cc_sethide(true);
 def_string $string0 = "Create a group";
 def_string $string1 = "List your group";
 def_string $string2 = "View applications";
 def_int $int11 = calc(20 + ~max(parawidth($string1, 512, p12_full), parawidth($string2, 512, p12_full)));
-if_setsize($int11, 10, ^setsize_abs, ^setsize_minus, $com_69);
-~script6221($com_1, $com_69, enum_4404, $string1, $string2, $string0);
-if_setonvartransmit("script6220(event_com, $com_69, enum_4404, $string1, $string2, $string0){varplayer_261}", $com_1);
+if_setsize($int11, 10, ^setsize_abs, ^setsize_minus, $mygroup);
+~script6221($universe, $mygroup, enum_4404, $string1, $string2, $string0);
+if_setonvartransmit("script6220(event_com, $mygroup, enum_4404, $string1, $string2, $string0){if1}", $universe);
 $string1 = "<col=0dc10d>Refresh</col>";
 def_int $int12 = calc(20 + parawidth($string1, 512, p12_full));
-if_setsize($int12, 10, ^setsize_abs, ^setsize_minus, $com_70);
-~script1558($com_70, $string1, $com_1, enum_4404, -1);
+if_setsize($int12, 10, ^setsize_abs, ^setsize_minus, $refresh);
+~script1558($refresh, $string1, $universe, enum_4404, -1);
 $string1 = "<col=0dc10d>Options</col>";
 def_int $int13 = calc(20 + parawidth($string1, 512, p12_full));
-if_setsize($int13, 10, ^setsize_abs, ^setsize_minus, $com_71);
-~script1558($com_71, $string1, $com_1, enum_4404, -1);
-def_int $int14 = calc((if_getwidth(if_getlayer($com_69)) - 4 - ($int11 + $int12 + $int13)) / 4);
+if_setsize($int13, 10, ^setsize_abs, ^setsize_minus, $options);
+~script1558($options, $string1, $universe, enum_4404, -1);
+def_int $int14 = calc((if_getwidth(if_getlayer($mygroup)) - 4 - ($int11 + $int12 + $int13)) / 4);
 def_int $int15 = calc(2 + $int14);
-if_setposition($int15, 0, ^setpos_abs_left, ^setpos_abs_centre, $com_69);
+if_setposition($int15, 0, ^setpos_abs_left, ^setpos_abs_centre, $mygroup);
 $int15 = calc($int15 + $int11 + $int14);
-if_setposition($int15, 0, ^setpos_abs_left, ^setpos_abs_centre, $com_71);
+if_setposition($int15, 0, ^setpos_abs_left, ^setpos_abs_centre, $options);
 $int15 = calc($int15 + $int13 + $int14);
-if_setposition($int15, 0, ^setpos_abs_left, ^setpos_abs_centre, $com_70);
-~script1558($com_11, "<col=0dc10d>Reset</col>", $com_1, enum_4404, -1);
+if_setposition($int15, 0, ^setpos_abs_left, ^setpos_abs_centre, $refresh);
+~script1558($reset, "<col=0dc10d>Reset</col>", $universe, enum_4404, -1);

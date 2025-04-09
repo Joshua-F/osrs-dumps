@@ -1,16 +1,16 @@
 // 3607
-[clientscript,partydrop_main_init](component $com_0, component $com_7, component $com_8, component $com_9, component $com_10, component $com_11, component $com_12, component $com_16, component $com_17, component $component)
-def_int $int10 = inv_size(inv_91);
-if ($com_0 = interface_783:com_0) {
+[clientscript,partydrop_main_init](component $universe, component $1, component $5, component $x, component $all, component $chest_items, component $scrollbar, component $offer_items, component $confirm, component $occupiedslots)
+def_int $int10 = inv_size(partyroom_dropinv);
+if ($universe = clan_hall_partydrop_main:universe) {
     $int10 = 216;
 }
-def_int $int11 = calc(if_getwidth($com_11) / 9 - 36);
+def_int $int11 = calc(if_getwidth($chest_items) / 9 - 36);
 def_int $int12 = calc($int11 / 2);
 def_int $int13 = 0;
-cc_deleteall($com_11);
+cc_deleteall($chest_items);
 def_int $int14 = 0;
 while ($int14 < $int10) {
-    cc_create($com_11, ^iftype_graphic, $int14);
+    cc_create($chest_items, ^iftype_graphic, $int14);
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
     $int13 = calc($int14 / 9 * (32 + $int11));
     cc_setposition(calc($int12 + $int14 % 9 * (36 + $int11)), $int13, ^setpos_abs_left, ^setpos_abs_top);
@@ -23,24 +23,24 @@ while ($int14 < $int10) {
 if ($int13 ! 0) {
     $int13 = calc($int13 + 32);
 }
-if_setscrollpos(0, 0, $com_11);
-if ($int13 > if_getheight($com_11)) {
-    if_setscrollsize(0, $int13, $com_11);
+if_setscrollpos(0, 0, $chest_items);
+if ($int13 > if_getheight($chest_items)) {
+    if_setscrollsize(0, $int13, $chest_items);
 }
-~scrollbar_vertical($com_12, $com_11, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-if ($com_0 = interface_783:com_0) {
-    ~clan_hall_partydrop_main_chestitems($int10, $com_11, $component);
-    if_setoninvtransmit("clan_hall_partydrop_main_chestitems($int10, $com_11, $component){inv_916}", $com_11);
+~scrollbar_vertical($scrollbar, $chest_items, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+if ($universe = clan_hall_partydrop_main:universe) {
+    ~clan_hall_partydrop_main_chestitems($int10, $chest_items, $occupiedslots);
+    if_setoninvtransmit("clan_hall_partydrop_main_chestitems($int10, $chest_items, $occupiedslots){clan_hall_partychest}", $chest_items);
 } else {
-    ~partydrop_main_chestitems($int10, $com_11, $component);
-    if_setoninvtransmit("partydrop_main_chestitems($int10, $com_11, $component){inv_91}", $com_11);
+    ~partydrop_main_chestitems($int10, $chest_items, $occupiedslots);
+    if_setoninvtransmit("partydrop_main_chestitems($int10, $chest_items, $occupiedslots){partyroom_dropinv}", $chest_items);
 }
-$int10, $int14 = ~max(1, inv_size(inv_92)), 0;
-$int11 = ~min($int11, calc(if_getwidth($com_16) / $int10 - 36));
+$int10, $int14 = ~max(1, inv_size(partyroom_tempinv)), 0;
+$int11 = ~min($int11, calc(if_getwidth($offer_items) / $int10 - 36));
 $int12 = calc($int11 / 2);
-cc_deleteall($com_16);
+cc_deleteall($offer_items);
 while ($int14 < $int10) {
-    cc_create($com_16, ^iftype_graphic, $int14);
+    cc_create($offer_items, ^iftype_graphic, $int14);
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
     cc_setposition(calc($int12 + $int14 * (36 + $int11)), 0, ^setpos_abs_left, ^setpos_abs_centre);
     cc_setgraphicshadow(0x333333);
@@ -48,14 +48,14 @@ while ($int14 < $int10) {
     cc_setonop("cc_settrans_temporarily(event_com, event_comsubid, 125, 0)");
     $int14 = calc($int14 + 1);
 }
-if_setop(1, "1", $com_7);
-if_setonop("partydrop_quantity_op(event_op, 0, $int10, $com_16, $com_7, $com_8, $com_9, $com_10, $com_17)", $com_7);
-if_setop(1, "5", $com_8);
-if_setonop("partydrop_quantity_op(event_op, 1, $int10, $com_16, $com_7, $com_8, $com_9, $com_10, $com_17)", $com_8);
-if_setop(1, "X", $com_9);
-if_setonop("partydrop_quantity_op(event_op, 3, $int10, $com_16, $com_7, $com_8, $com_9, $com_10, $com_17)", $com_9);
-if_setop(1, "All", $com_10);
-if_setonop("partydrop_quantity_op(event_op, 2, $int10, $com_16, $com_7, $com_8, $com_9, $com_10, $com_17)", $com_10);
-~partydrop_main_offeritems($int10, $com_16, $com_7, $com_8, $com_9, $com_10, $com_17);
-if_setonvartransmit("partydrop_main_offeritems($int10, $com_16, $com_7, $com_8, $com_9, $com_10, $com_17){varplayer_675}", $com_0);
-if_setoninvtransmit("partydrop_main_offeritems($int10, $com_16, $com_7, $com_8, $com_9, $com_10, $com_17){inv_92}", $com_0);
+if_setop(1, "1", $1);
+if_setonop("partydrop_quantity_op(event_op, 0, $int10, $offer_items, $1, $5, $x, $all, $confirm)", $1);
+if_setop(1, "5", $5);
+if_setonop("partydrop_quantity_op(event_op, 1, $int10, $offer_items, $1, $5, $x, $all, $confirm)", $5);
+if_setop(1, "X", $x);
+if_setonop("partydrop_quantity_op(event_op, 3, $int10, $offer_items, $1, $5, $x, $all, $confirm)", $x);
+if_setop(1, "All", $all);
+if_setonop("partydrop_quantity_op(event_op, 2, $int10, $offer_items, $1, $5, $x, $all, $confirm)", $all);
+~partydrop_main_offeritems($int10, $offer_items, $1, $5, $x, $all, $confirm);
+if_setonvartransmit("partydrop_main_offeritems($int10, $offer_items, $1, $5, $x, $all, $confirm){canoeing_menu}", $universe);
+if_setoninvtransmit("partydrop_main_offeritems($int10, $offer_items, $1, $5, $x, $all, $confirm){partyroom_tempinv}", $universe);

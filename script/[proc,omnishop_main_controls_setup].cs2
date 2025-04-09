@@ -1,30 +1,30 @@
 // 7153
 [proc,omnishop_main_controls_setup](dbrow $dbrow, inv $inv)
-def_component $com_7 = interface_819:com_7;
-def_component $com_8 = interface_819:com_8;
-def_component $com_9 = interface_819:com_9;
-def_component $com_35 = interface_819:com_35;
-def_component $com_36 = interface_819:com_36;
-def_component $com_37 = interface_819:com_37;
+def_component $view_toggle_layer = omnishop_main:view_toggle_layer;
+def_component $help_button_layer = omnishop_main:help_button_layer;
+def_component $filter_layer = omnishop_main:filter_layer;
+def_component $dropdown = omnishop_main:dropdown;
+def_component $dropdown_content = omnishop_main:dropdown_content;
+def_component $dropdown_scroller = omnishop_main:dropdown_scroller;
 def_graphic $graphic8 = "directional_lock_arrows,1";
-if (%varplayer_3871 = 1) {
+if (%omnishop_view_expanded = 1) {
     $graphic8 = "directional_lock_arrows,3";
 }
-~create_graphic($com_7, 0, $graphic8, 2, 2, ^setpos_abs_left, ^setpos_abs_top, 16, 16, ^setsize_abs, ^setsize_abs);
-if_setonclick("omnishop_main_view_toggle($dbrow, $inv)", $com_7);
-~create_graphic($com_8, 0, "menu_buttons,2", 0, 0, ^setpos_abs_left, ^setpos_abs_top, 21, 21, ^setsize_abs, ^setsize_abs);
+~create_graphic($view_toggle_layer, 0, $graphic8, 2, 2, ^setpos_abs_left, ^setpos_abs_top, 16, 16, ^setsize_abs, ^setsize_abs);
+if_setonclick("omnishop_main_view_toggle($dbrow, $inv)", $view_toggle_layer);
+~create_graphic($help_button_layer, 0, "menu_buttons,2", 0, 0, ^setpos_abs_left, ^setpos_abs_top, 21, 21, ^setsize_abs, ^setsize_abs);
 def_graphic $graphic9 = null;
 if (~on_mobile = false) {
     $graphic9 = "menu_buttons,3";
-    if_setonmouseover("cc_graphic_swapper(event_com, 0, $graphic9, null)", $com_8);
+    if_setonmouseover("cc_graphic_swapper(event_com, 0, $graphic9, null)", $help_button_layer);
     $graphic9 = "menu_buttons,2";
-    if_setonmouseleave("cc_graphic_swapper(event_com, 0, $graphic9, null)", $com_8);
+    if_setonmouseleave("cc_graphic_swapper(event_com, 0, $graphic9, null)", $help_button_layer);
 }
-if_setonop("omnishop_main_help($dbrow, $inv, event_op)", $com_8);
-def_enum $enum = db_getfield($dbrow, dbtable_39:col3, 0);
+if_setonop("omnishop_main_help($dbrow, $inv, event_op)", $help_button_layer);
+def_enum $enum = db_getfield($dbrow, omnishop_shop_data:omnishop_shop_filter_titles, 0);
 if ($enum ! null) {
-    ~script5771($com_9, $enum, %varplayer_3872, 16750623);
-    if_setonop("script7156($com_35, $com_36, $com_37, $com_9, $enum, 16750623)", $com_9);
+    ~script5771($filter_layer, $enum, %omnishop_filter, 16750623);
+    if_setonop("script7156($dropdown, $dropdown_content, $dropdown_scroller, $filter_layer, $enum, 16750623)", $filter_layer);
 } else {
-    ~script5771($com_9, enum_4988, 0, 10461087);
+    ~script5771($filter_layer, enum_4988, 0, 10461087);
 }

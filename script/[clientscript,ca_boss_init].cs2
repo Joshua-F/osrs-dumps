@@ -1,18 +1,18 @@
 // 4835
-[clientscript,ca_boss_init](component $com_2, component $com_3, component $com_5, component $com_6, component $com_9, component $com_10, component $com_13, component $com_14, component $com_21, component $com_22, component $com_23, component $com_25, component $com_27, component $com_26)
-~script4767($com_25, $com_27, $com_26, -1);
-def_struct $struct = enum(int, struct, enum_3987, %varplayerbit_12862);
+[clientscript,ca_boss_init](component $frame, component $boss_name, component $wiki, component $wiki_click_layer, component $map, component $map_click_layer, component $collection, component $collection_click_layer, component $ca_boss_information, component $ca_boss_stats, component $ca_boss_stats_click, component $burger_btn_menu, component $burger_menu_frame, component $burger_menu_overlay)
+~script4767($burger_btn_menu, $burger_menu_frame, $burger_menu_overlay, -1);
+def_struct $struct = enum(int, struct, enum_3987, %ca_boss_selected);
 def_string $string = struct_param($struct, param_1313);
 def_int $int = 0;
 if ($struct ! null) {
-    ~steelborder($com_2, "Combat Achievements - <$string>", 0);
+    ~steelborder($frame, "Combat Achievements - <$string>", 0);
 } else {
-    ~steelborder($com_2, "Combat Achievements - Boss", 0);
+    ~steelborder($frame, "Combat Achievements - Boss", 0);
 }
-~ca_boss_set_name($com_3, $string);
-~ca_boss_init_wiki($com_5, $com_6, $struct, $string);
-~ca_boss_init_map($com_9, $com_10, $string);
-~ca_boss_init_collection($com_13, $com_14, $string);
-~ca_boss_init_image($com_21, $struct);
-$int = ~ca_boss_init_stats($com_22, $struct);
-~ca_boss_init_buttons($com_22, $com_23, $int, $struct);
+~ca_boss_set_name($boss_name, $string);
+~ca_boss_init_wiki($wiki, $wiki_click_layer, $struct, $string);
+~ca_boss_init_map($map, $map_click_layer, $string);
+~ca_boss_init_collection($collection, $collection_click_layer, $string);
+~ca_boss_init_image($ca_boss_information, $struct);
+$int = ~ca_boss_init_stats($ca_boss_stats, $struct);
+~ca_boss_init_buttons($ca_boss_stats, $ca_boss_stats_click, $int, $struct);

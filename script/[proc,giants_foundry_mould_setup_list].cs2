@@ -1,15 +1,15 @@
 // 6096
 [proc,giants_foundry_mould_setup_list]
-def_component $com_9 = interface_718:com_9;
-def_component $com_11 = interface_718:com_11;
-cc_deleteall($com_9);
-cc_deleteall($com_11);
+def_component $content = giants_foundry_mould:content;
+def_component $content_scroller = giants_foundry_mould:content_scroller;
+cc_deleteall($content);
+cc_deleteall($content_scroller);
 def_int $int2 = 0;
 def_int $int3 = 0;
 def_int $int4 = 0;
 def_int $int5 = -1;
 def_enum $enum = null;
-switch_int (%varplayerbit_13909) {
+switch_int (%giants_foundry_mould_current_tab) {
     case 0 :
         $enum = enum_4373;
     case 1 :
@@ -21,24 +21,24 @@ def_struct $struct = enum(int, struct, $enum, calc($int3 + 1));
 def_int $int8 = 0;
 while ($struct ! null) {
     $int8 = 0;
-    switch_int (%varplayerbit_13909) {
+    switch_int (%giants_foundry_mould_current_tab) {
         case 0 :
-            if (%varplayerbit_13910 = calc($int3 + 1)) {
+            if (%giants_foundry_mould_selected_ricasso = calc($int3 + 1)) {
                 $int8 = 1;
             }
         case 1 :
-            if (%varplayerbit_13911 = calc($int3 + 1)) {
+            if (%giants_foundry_mould_selected_blade = calc($int3 + 1)) {
                 $int8 = 1;
             }
         case 2 :
-            if (%varplayerbit_13912 = calc($int3 + 1)) {
+            if (%giants_foundry_mould_selected_tip = calc($int3 + 1)) {
                 $int8 = 1;
             }
     }
     if ($int8 = 1) {
         $int5 = $int4;
     }
-    $int2, $int4 = ~giants_foundry_mould_setup_list_item($com_9, $struct, $int8, $int4, $int2);
+    $int2, $int4 = ~giants_foundry_mould_setup_list_item($content, $struct, $int8, $int4, $int2);
     $int3 = calc($int3 + 1);
     $struct = enum(int, struct, $enum, calc($int3 + 1));
 }
@@ -51,7 +51,7 @@ switch_int (%varclient_988) {
     case 3 :
         $int9 = 48;
 }
-cc_create($com_9, ^iftype_rectangle, $int2);
+cc_create($content, ^iftype_rectangle, $int2);
 cc_setposition(0, $int4, ^setpos_abs_left, ^setpos_abs_top);
 cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
 cc_setfill(true);
@@ -63,27 +63,27 @@ if (calc($int4 / $int9 % 2) = 0) {
 }
 $int2 = calc($int2 + 1);
 if ($int5 >= 0) {
-    cc_create($com_9, ^iftype_rectangle, $int2);
+    cc_create($content, ^iftype_rectangle, $int2);
     cc_setposition(1, calc($int5 + 1), ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize(2, calc($int9 - 2), ^setsize_minus, ^setsize_abs);
     cc_setfill(false);
     cc_setcolour(0xff981f);
     cc_settrans(200);
     $int2 = calc($int2 + 1);
-    cc_create($com_9, ^iftype_rectangle, $int2);
+    cc_create($content, ^iftype_rectangle, $int2);
     cc_setposition(0, $int5, ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize(0, $int9, ^setsize_minus, ^setsize_abs);
     cc_setfill(false);
     cc_setcolour(0xff981f);
     $int2 = calc($int2 + 1);
 }
-$int4 = ~max(if_getheight($com_9), $int4);
-if_setscrollsize(if_getwidth($com_9), $int4, $com_9);
-if (if_getscrolly($com_9) > ~max($int5, 0) | calc(if_getscrolly($com_9) + if_getheight($com_9)) < calc(~max($int5, 0) + $int9)) {
-    if_setscrollpos(0, ~min($int5, calc(if_getscrollheight($com_9) - if_getheight($com_9))), $com_9);
+$int4 = ~max(if_getheight($content), $int4);
+if_setscrollsize(if_getwidth($content), $int4, $content);
+if (if_getscrolly($content) > ~max($int5, 0) | calc(if_getscrolly($content) + if_getheight($content)) < calc(~max($int5, 0) + $int9)) {
+    if_setscrollpos(0, ~min($int5, calc(if_getscrollheight($content) - if_getheight($content))), $content);
 }
-if (calc(if_getscrolly($com_9) + if_getheight($com_9)) > $int4) {
-    if_setscrollpos(0, ~min($int5, calc(if_getscrollheight($com_9) - if_getheight($com_9))), $com_9);
+if (calc(if_getscrolly($content) + if_getheight($content)) > $int4) {
+    if_setscrollpos(0, ~min($int5, calc(if_getscrollheight($content) - if_getheight($content))), $content);
 }
-~scrollbar_vertical($com_11, $com_9, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-~scrollbar_vertical_rebuild($com_11, $com_9);
+~scrollbar_vertical($content_scroller, $content, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~scrollbar_vertical_rebuild($content_scroller, $content);

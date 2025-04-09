@@ -1,5 +1,5 @@
 // 396
-[clientscript,stats_skilltotal](component $com_27, component $com_28)
+[clientscript,stats_skilltotal](component $com_27, component $tooltip)
 def_int $int = ~stat_totallevel;
 if_settext("Total level:<br><tostring($int)>", $com_27);
 if_clearops($com_27);
@@ -18,12 +18,12 @@ if (~league_relic_active(struct_1736) = 1) {
 }
 if (~on_mobile = true) {
     if_setop(1, "Toggle Total XP", $com_27);
-    if_setonop("stats_op(event_op, event_com, -1, $com_28, $string0, $string1, p12_full)", $com_27);
+    if_setonop("stats_op(event_op, event_com, -1, $tooltip, $string0, $string1, p12_full)", $com_27);
     if (%varclient_218 = $com_27 & %varclient_217 = -1) {
-        ~script2344($com_27, -1, $com_28, $string0, $string1, p12_full);
+        ~script2344($com_27, -1, $tooltip, $string0, $string1, p12_full);
     }
 } else {
-    if_setonmouserepeat("script992(event_com, -1, $com_28, $string0, $string1, p12_full, calc(25 / 5))", $com_27);
-    if_setonmouseleave("deltooltip($com_28)", $com_27);
+    if_setonmouserepeat("script992(event_com, -1, $tooltip, $string0, $string1, p12_full, calc(25 / 5))", $com_27);
+    if_setonmouseleave("deltooltip($tooltip)", $com_27);
     %varclient_2 = 0;
 }

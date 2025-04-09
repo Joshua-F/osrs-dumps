@@ -1,50 +1,50 @@
 // 6107
 [proc,giants_foundry_mould_setup_buttons]
-def_component $com_5 = interface_718:com_5;
-def_component $com_6 = interface_718:com_6;
-def_component $com_32 = interface_718:com_32;
-def_component $com_34 = interface_718:com_34;
+def_component $reset_button = giants_foundry_mould:reset_button;
+def_component $set_button = giants_foundry_mould:set_button;
+def_component $reset_text = giants_foundry_mould:reset_text;
+def_component $set_text = giants_foundry_mould:set_text;
 def_graphic $graphic = b12_full;
 if (%varclient_988 >= 1) {
     $graphic = verdana_13pt_bold;
 }
-if_settextfont($graphic, $com_32);
-if_settextfont($graphic, $com_34);
-cc_deleteall($com_5);
-cc_deleteall($com_6);
-if (%varplayerbit_13910 ! 0 | %varplayerbit_13911 ! 0 | %varplayerbit_13912 ! 0) {
-    ~v2_stone_button($com_5);
-    if_setcolour(0xff981f, $com_32);
+if_settextfont($graphic, $reset_text);
+if_settextfont($graphic, $set_text);
+cc_deleteall($reset_button);
+cc_deleteall($set_button);
+if (%giants_foundry_mould_selected_ricasso ! 0 | %giants_foundry_mould_selected_blade ! 0 | %giants_foundry_mould_selected_tip ! 0) {
+    ~v2_stone_button($reset_button);
+    if_setcolour(0xff981f, $reset_text);
     if (~on_mobile = false) {
-        if_setonmouseover("v2_stone_button_in(event_com)", $com_5);
-        if_setonmouseleave("v2_stone_button(event_com)", $com_5);
+        if_setonmouseover("v2_stone_button_in(event_com)", $reset_button);
+        if_setonmouseleave("v2_stone_button(event_com)", $reset_button);
     }
-    if_setopbase("<col=ff9040>Mould", $com_5);
-    if_setop(1, "Reset", $com_5);
-    if_setonclick("giants_foundry_mould_setup_reset_select", $com_5);
+    if_setopbase("<col=ff9040>Mould", $reset_button);
+    if_setop(1, "Reset", $reset_button);
+    if_setonclick("giants_foundry_mould_setup_reset_select", $reset_button);
 } else {
-    ~v2_stone_button_in($com_5);
-    if_setcolour(0x9f9f9f, $com_32);
-    if_setonmouseover(null, $com_5);
-    if_setonmouseleave(null, $com_5);
-    if_setopbase("", $com_5);
-    if_setop(1, "", $com_5);
-    if_setonclick(null, $com_5);
+    ~v2_stone_button_in($reset_button);
+    if_setcolour(0x9f9f9f, $reset_text);
+    if_setonmouseover(null, $reset_button);
+    if_setonmouseleave(null, $reset_button);
+    if_setopbase("", $reset_button);
+    if_setop(1, "", $reset_button);
+    if_setonclick(null, $reset_button);
 }
-if (%varplayerbit_13910 ! 0 & %varplayerbit_13911 ! 0 & %varplayerbit_13912 ! 0) {
-    ~v2_stone_button($com_6);
-    if_setcolour(0xff981f, $com_34);
+if (%giants_foundry_mould_selected_ricasso ! 0 & %giants_foundry_mould_selected_blade ! 0 & %giants_foundry_mould_selected_tip ! 0) {
+    ~v2_stone_button($set_button);
+    if_setcolour(0xff981f, $set_text);
     if (~on_mobile = false) {
-        if_setonmouseover("v2_stone_button_in(event_com)", $com_6);
-        if_setonmouseleave("v2_stone_button(event_com)", $com_6);
+        if_setonmouseover("v2_stone_button_in(event_com)", $set_button);
+        if_setonmouseleave("v2_stone_button(event_com)", $set_button);
     }
-    if_setopbase("<col=ff9040>Mould", $com_6);
-    if_setop(1, "Set", $com_6);
+    if_setopbase("<col=ff9040>Mould", $set_button);
+    if_setop(1, "Set", $set_button);
 } else {
-    ~v2_stone_button_in($com_6);
-    if_setcolour(0x9f9f9f, $com_34);
-    if_setonmouseover(null, $com_6);
-    if_setonmouseleave(null, $com_6);
-    if_setopbase("", $com_6);
-    if_setop(1, "", $com_6);
+    ~v2_stone_button_in($set_button);
+    if_setcolour(0x9f9f9f, $set_text);
+    if_setonmouseover(null, $set_button);
+    if_setonmouseleave(null, $set_button);
+    if_setopbase("", $set_button);
+    if_setop(1, "", $set_button);
 }

@@ -1,21 +1,21 @@
 // 4269
-[clientscript,clan_banned_init](component $com_1, component $com_2, component $com_6, component $com_8, component $com_9, component $com_13, component $com_14, component $com_12, component $com_11)
-~scrollbar_vertical($com_8, $com_6, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-~stonebutton_init("<col=0dc10d>Add</col>", $com_14, p12_full, 0);
-if_setonop("opsound(event_op, 2)", $com_14);
-~stonebutton_init("<col=ff0000>Back</col>", $com_11, p12_full, 0);
-if_setonop("opsound(event_op, 2)", $com_11);
-def_int $int9 = ~steelborder($com_2, "", 0);
+[clientscript,clan_banned_init](component $universe, component $frame, component $list_contents, component $list_scrollbar, component $list_blocker, component $search, component $add, component $hint, component $exit)
+~scrollbar_vertical($list_scrollbar, $list_contents, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~stonebutton_init("<col=0dc10d>Add</col>", $add, p12_full, 0);
+if_setonop("opsound(event_op, 2)", $add);
+~stonebutton_init("<col=ff0000>Back</col>", $exit, p12_full, 0);
+if_setonop("opsound(event_op, 2)", $exit);
+def_int $int9 = ~steelborder($frame, "", 0);
 def_int $int10 = calc(16384 / 3);
 def_int $int11 = 25;
 if (~on_mobile = true) {
     $int11 = scale(25, 20, $int11);
 }
-cc_deleteall($com_6);
+cc_deleteall($list_contents);
 def_int $int12 = 0;
 def_int $int13 = 0;
 while ($int13 < 500) {
-    cc_create($com_6, ^iftype_rectangle, $int12);
+    cc_create($list_contents, ^iftype_rectangle, $int12);
     $int12 = calc($int12 + 1);
     cc_sethide(true);
     cc_setsize($int10, $int11, ^setsize_rel, ^setsize_abs);
@@ -26,7 +26,7 @@ while ($int13 < 500) {
 }
 $int13 = 0;
 while ($int13 < 500) {
-    cc_create($com_6, ^iftype_text, $int12);
+    cc_create($list_contents, ^iftype_text, $int12);
     $int12 = calc($int12 + 1);
     cc_sethide(true);
     cc_setsize($int10, $int11, ^setsize_rel, ^setsize_abs);
@@ -36,7 +36,7 @@ while ($int13 < 500) {
     cc_settextshadow(true);
     $int13 = calc($int13 + 1);
 }
-cc_create($com_6, ^iftype_text, $int12);
+cc_create($list_contents, ^iftype_text, $int12);
 $int12 = calc($int12 + 1);
 cc_sethide(true);
 cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
@@ -44,10 +44,10 @@ cc_setcolour(0xffb83f);
 cc_settextfont(p12_full);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
 cc_settextshadow(true);
-if_sethide(true, $com_9);
-cc_deleteall($com_9);
-cc_create($com_9, ^iftype_rectangle, 0);
-.cc_create($com_9, ^iftype_text, 1);
+if_sethide(true, $list_blocker);
+cc_deleteall($list_blocker);
+cc_create($list_blocker, ^iftype_rectangle, 0);
+.cc_create($list_blocker, ^iftype_text, 1);
 cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
 .cc_setsize(0, calc(16384 / 2), ^setsize_minus, ^setsize_rel);
 cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
@@ -62,15 +62,15 @@ cc_settrans(255);
 .cc_settext("");
 def_int $int14 = cc_getid;
 def_int $int15 = .cc_getid;
-if_setontimer("clan_banned_blocker($com_9, $int14, $int15)", $com_9);
+if_setontimer("clan_banned_blocker($list_blocker, $int14, $int15)", $list_blocker);
 if (~clan_members_searching = true) {
     ~meslayer_close(1, 1, 1);
 } else if (%varclient_5 <= 0) {
     %varclient_359 = "";
 }
-if_setonop("clan_banned_search_toggle(event_op, $com_1, $com_2, $int9, $com_13, $com_6, $com_8, $com_9, $int14, $int15, $com_12, $int11)", $com_13);
-if_setop(1, "Search", $com_13);
-~clan_banned_search_setbutton($com_1, $com_2, $int9, $com_13, $com_6, $com_8, $com_9, $int14, $int15, $com_12, $int11);
-~clan_banned_draw($com_1, $com_2, $int9, $com_6, $com_8, $com_9, $int14, $int15, $com_12, $int11);
-if_setonvartransmit("clan_banned_draw($com_1, $com_2, $int9, $com_6, $com_8, $com_9, $int14, $int15, $com_12, $int11){varplayer_3019, varplayer_3026}", $com_1);
-if_setonclansettingstransmit("clan_banned_draw($com_1, $com_2, $int9, $com_6, $com_8, $com_9, $int14, $int15, $com_12, $int11)", $com_1);
+if_setonop("clan_banned_search_toggle(event_op, $universe, $frame, $int9, $search, $list_contents, $list_scrollbar, $list_blocker, $int14, $int15, $hint, $int11)", $search);
+if_setop(1, "Search", $search);
+~clan_banned_search_setbutton($universe, $frame, $int9, $search, $list_contents, $list_scrollbar, $list_blocker, $int14, $int15, $hint, $int11);
+~clan_banned_draw($universe, $frame, $int9, $list_contents, $list_scrollbar, $list_blocker, $int14, $int15, $hint, $int11);
+if_setonvartransmit("clan_banned_draw($universe, $frame, $int9, $list_contents, $list_scrollbar, $list_blocker, $int14, $int15, $hint, $int11){clan_temp_transmit_0, clan_editing_3}", $universe);
+if_setonclansettingstransmit("clan_banned_draw($universe, $frame, $int9, $list_contents, $list_scrollbar, $list_blocker, $int14, $int15, $hint, $int11)", $universe);

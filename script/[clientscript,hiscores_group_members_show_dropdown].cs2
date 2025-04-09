@@ -1,18 +1,18 @@
 // 7506
 [clientscript,hiscores_group_members_show_dropdown](int $int0, int $int1)
-def_component $com_25 = interface_894:com_25;
-def_component $com_28 = interface_894:com_28;
-def_component $com_26 = interface_894:com_26;
-def_component $com_30 = interface_894:com_30;
-def_component $com_27 = interface_894:com_27;
+def_component $hiscores_group_members_dropdown = hiscores:hiscores_group_members_dropdown;
+def_component $hiscores_group_members_dropdown_panel = hiscores:hiscores_group_members_dropdown_panel;
+def_component $hiscores_group_members_dropdown_close = hiscores:hiscores_group_members_dropdown_close;
+def_component $hiscores_group_members_dropdown_buttons = hiscores:hiscores_group_members_dropdown_buttons;
+def_component $hiscores_group_members_dropdown_container = hiscores:hiscores_group_members_dropdown_container;
 if (%varclient_1234 = 0) {
     return;
 }
-cc_deleteall($com_28);
-cc_deleteall($com_26);
-cc_deleteall($com_30);
-cc_deleteall($com_27);
-if_setonop("hiscores_dropdown_entry_close($com_28, $com_26, $com_30, $com_27, $com_25, $int0)", $com_26);
+cc_deleteall($hiscores_group_members_dropdown_panel);
+cc_deleteall($hiscores_group_members_dropdown_close);
+cc_deleteall($hiscores_group_members_dropdown_buttons);
+cc_deleteall($hiscores_group_members_dropdown_container);
+if_setonop("hiscores_dropdown_entry_close($hiscores_group_members_dropdown_panel, $hiscores_group_members_dropdown_close, $hiscores_group_members_dropdown_buttons, $hiscores_group_members_dropdown_container, $hiscores_group_members_dropdown, $int0)", $hiscores_group_members_dropdown_close);
 def_int $int7 = 0;
 def_int $int8 = 5;
 def_int $int9 = 0;
@@ -24,18 +24,18 @@ def_int $int13 = 0;
 while ($int7 < $int8) {
     $string = stringvector_get(stringvector_5, $int7);
     if (string_length($string) > 0) {
-        cc_create($com_30, ^iftype_rectangle, $int9);
+        cc_create($hiscores_group_members_dropdown_buttons, ^iftype_rectangle, $int9);
         cc_setsize(0, $int10, ^setsize_minus, ^setsize_abs);
         cc_setposition(0, $int11, ^setpos_abs_left, ^setpos_abs_top);
         cc_setfill(true);
         cc_setcolour(^black);
         cc_settrans($int12);
         if (~on_mobile = false) {
-            cc_setonmouseover("cc_settrans($com_30, $int9, 240, null)");
-            cc_setonmouseleave("cc_settrans($com_30, $int9, $int12, null)");
+            cc_setonmouseover("cc_settrans($hiscores_group_members_dropdown_buttons, $int9, 240, null)");
+            cc_setonmouseleave("cc_settrans($hiscores_group_members_dropdown_buttons, $int9, $int12, null)");
         }
         $int9 = calc($int9 + 1);
-        cc_create($com_30, ^iftype_text, $int9);
+        cc_create($hiscores_group_members_dropdown_buttons, ^iftype_text, $int9);
         $int13 = parawidth($string, 500, p12_full);
         cc_settext($string);
         cc_settextfont(p12_full);
@@ -45,7 +45,7 @@ while ($int7 < $int8) {
         cc_setsize(0, $int10, ^setsize_minus, ^setsize_abs);
         cc_setposition(calc(2 + 13 / 2), $int11, ^setpos_abs_centre, ^setpos_abs_top);
         $int9 = calc($int9 + 1);
-        cc_create($com_30, ^iftype_rectangle, $int9);
+        cc_create($hiscores_group_members_dropdown_buttons, ^iftype_rectangle, $int9);
         cc_setsize(0, $int10, ^setsize_minus, ^setsize_abs);
         cc_setposition(0, $int11, ^setpos_abs_left, ^setpos_abs_top);
         cc_setfill(true);
@@ -53,7 +53,7 @@ while ($int7 < $int8) {
         cc_settrans(255);
         cc_setop(1, "Select");
         cc_setonop(null);
-        cc_setonop("hiscores_group_member_dropdown_entry_selected($com_28, $com_26, $com_30, $com_27, $com_25, $int0, $int1, $int7)");
+        cc_setonop("hiscores_group_member_dropdown_entry_selected($hiscores_group_members_dropdown_panel, $hiscores_group_members_dropdown_close, $hiscores_group_members_dropdown_buttons, $hiscores_group_members_dropdown_container, $hiscores_group_members_dropdown, $int0, $int1, $int7)");
         $int9 = calc($int9 + 1);
         $int11 = calc($int11 + $int10);
     }
@@ -64,9 +64,9 @@ while ($int7 < $int8) {
         $int12 = 220;
     }
 }
-if_setsize(if_getwidth($com_25), calc($int11 + 4), ^setsize_abs, ^setsize_abs, $com_28);
-if_setposition(if_getx($com_25), calc(if_gety($com_25) + if_getheight($com_25)), ^setpos_abs_left, ^setpos_abs_top, $com_28);
-if_sethide(false, $com_27);
-if (cc_find($com_25, $int0) = true) {
+if_setsize(if_getwidth($hiscores_group_members_dropdown), calc($int11 + 4), ^setsize_abs, ^setsize_abs, $hiscores_group_members_dropdown_panel);
+if_setposition(if_getx($hiscores_group_members_dropdown), calc(if_gety($hiscores_group_members_dropdown) + if_getheight($hiscores_group_members_dropdown)), ^setpos_abs_left, ^setpos_abs_top, $hiscores_group_members_dropdown_panel);
+if_sethide(false, $hiscores_group_members_dropdown_container);
+if (cc_find($hiscores_group_members_dropdown, $int0) = true) {
     cc_setgraphic("scrollbar_v2,0");
 }

@@ -1,16 +1,16 @@
 // 1538
-[clientscript,raids_sidepanel_init](component $com_0, component $com_10, component $com_11, component $com_2, component $com_5, component $com_6, component $com_12, component $com_14)
-~raids_sidepanel_refresheffect(0, $com_0, $com_10, $com_11, $com_2, $com_5, $com_6);
-if_setonop("raids_sidepanel_refresh(event_op, $com_0, $com_10, $com_11, $com_2, $com_5, $com_6)", $com_2);
-cc_deleteall($com_10);
-if_setscrollsize(0, 0, $com_10);
-if_setscrollpos(0, 0, $com_10);
-~scrollbar_vertical($com_11, $com_10, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+[clientscript,raids_sidepanel_init](component $universe, component $list, component $scrollbar, component $refresh, component $loading, component $sortlayer, component $bottom, component $start)
+~raids_sidepanel_refresheffect(0, $universe, $list, $scrollbar, $refresh, $loading, $sortlayer);
+if_setonop("raids_sidepanel_refresh(event_op, $universe, $list, $scrollbar, $refresh, $loading, $sortlayer)", $refresh);
+cc_deleteall($list);
+if_setscrollsize(0, 0, $list);
+if_setscrollpos(0, 0, $list);
+~scrollbar_vertical($scrollbar, $list, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
 %varclient_179 = 0;
-cc_deleteall($com_10);
-cc_deleteall($com_12);
-def_int $int = ~thinbox($com_12, 0);
-cc_create($com_12, ^iftype_text, $int);
+cc_deleteall($list);
+cc_deleteall($bottom);
+def_int $int = ~thinbox($bottom, 0);
+cc_create($bottom, ^iftype_text, $int);
 $int = calc($int + 1);
 cc_setsize(6, 23, ^setsize_minus, ^setsize_abs);
 cc_setposition(0, 2, ^setpos_abs_centre, ^setpos_abs_top);
@@ -18,7 +18,7 @@ cc_setcolour(0xff981f);
 cc_settextfont(p11_full);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
 cc_settextshadow(true);
-.cc_create($com_12, ^iftype_text, $int);
+.cc_create($bottom, ^iftype_text, $int);
 $int = calc($int + 1);
 .cc_setsize(6, 24, ^setsize_minus, ^setsize_minus);
 .cc_setposition(0, 2, ^setpos_abs_centre, ^setpos_abs_bottom);
@@ -26,5 +26,5 @@ $int = calc($int + 1);
 .cc_settextfont(p12_full);
 .cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
 .cc_settextshadow(true);
-if_setonvartransmit("raids_sidepanel_data($com_12, cc_getid, .cc_getid, $com_14){varplayer_1430, varplayer_1429}", $com_0);
-~raids_sidepanel_data($com_12, $com_14);
+if_setonvartransmit("raids_sidepanel_data($bottom, cc_getid, .cc_getid, $start){raids_temp_transmit1, raids_perm_transmit}", $universe);
+~raids_sidepanel_data($bottom, $start);

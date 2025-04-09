@@ -1,9 +1,9 @@
 // 3093
-[clientscript,canoe_init](component $com_0, component $com_9, component $com_10, component $com_20, component $com_21, component $com_18, component $com_19, component $com_12, component $com_17, component $com_11, component $com_22)
-cc_deleteall($com_9);
-cc_deleteall($com_10);
+[clientscript,canoe_init](component $universe, component $close, component $question, component $log, component $log_model, component $dugout, component $dugout_model, component $stable_dugout, component $stable_dugout_model, component $waka, component $waka_model)
+cc_deleteall($close);
+cc_deleteall($question);
 def_int $int = 0;
-cc_create($com_10, ^iftype_text, 0);
+cc_create($question, ^iftype_text, 0);
 cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
 cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
 cc_setcolour(^white);
@@ -11,13 +11,13 @@ cc_settextshadow(true);
 cc_settextfont(b12_full);
 cc_settext("WHAT SORT OF CANOE WOULD YOU LIKE TO MAKE ?");
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-cc_create($com_9, ^iftype_graphic, 0);
+cc_create($close, ^iftype_graphic, 0);
 cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
 cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
 cc_setgraphic("close_buttons,4");
-if_setonmouserepeat("close_mouse_interact($com_9, true, 0)", $com_9);
-if_setonmouseleave("close_mouse_interact($com_9, false, 0)", $com_9);
-if_setop(1, "Close", $com_9);
-if_setonop("canoe_close", $com_9);
-~canoe_setup($com_20, $com_21, $com_18, $com_19, $com_12, $com_17, $com_11, $com_22);
-if_setonstattransmit("canoe_remake($com_20, $com_21, $com_18, $com_19, $com_12, $com_17, $com_11, $com_22){woodcutting}", $com_0);
+if_setonmouserepeat("close_mouse_interact($close, true, 0)", $close);
+if_setonmouseleave("close_mouse_interact($close, false, 0)", $close);
+if_setop(1, "Close", $close);
+if_setonop("canoe_close", $close);
+~canoe_setup($log, $log_model, $dugout, $dugout_model, $stable_dugout, $stable_dugout_model, $waka, $waka_model);
+if_setonstattransmit("canoe_remake($log, $log_model, $dugout, $dugout_model, $stable_dugout, $stable_dugout_model, $waka, $waka_model){woodcutting}", $universe);

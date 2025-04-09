@@ -1,12 +1,12 @@
 // 709
-[clientscript,build_achievement_list](component $com_2, component $com_4, int $int2)
-cc_deleteall($com_2);
-cc_deleteall($com_4);
+[clientscript,build_achievement_list](component $taskbox, component $scrollbar, int $int2)
+cc_deleteall($taskbox);
+cc_deleteall($scrollbar);
 def_int $intarray(12);
 def_int $int3 = 0;
 def_int $int4 = 0;
 while ($int3 < 12) {
-    cc_create($com_2, ^iftype_rectangle, $int4);
+    cc_create($taskbox, ^iftype_rectangle, $int4);
     $int4 = calc($int4 + 1);
     cc_setop(1, "Open <col=ff9040><enum(int, string, enum_595, $int3)> Journal</col>");
     cc_setop(2, "Wiki <col=ff9040><enum(int, string, enum_595, $int3)> Journal</col>");
@@ -21,17 +21,17 @@ while ($int3 < 12) {
 def_int $int5 = 8;
 $int3 = 0;
 while ($int3 < 12) {
-    if (cc_find($com_2, $intarray($int3)) = true) {
+    if (cc_find($taskbox, $intarray($int3)) = true) {
         cc_setposition(0, $int5, ^setpos_abs_centre, ^setpos_abs_top);
     }
-    $int4 = ~setup_diary_entry($com_2, $intarray($int3), $int4, $int5);
+    $int4 = ~setup_diary_entry($taskbox, $intarray($int3), $int4, $int5);
     $int3, $int5 = calc($int3 + 1), calc($int5 + 28);
 }
 $int5 = calc($int5 + 8);
-if_setscrollpos(0, 0, $com_2);
-if ($int5 > if_getheight($com_2)) {
-    if_setscrollsize(0, $int5, $com_2);
+if_setscrollpos(0, 0, $taskbox);
+if ($int5 > if_getheight($taskbox)) {
+    if_setscrollsize(0, $int5, $taskbox);
 } else {
-    if_setscrollsize(0, 0, $com_2);
+    if_setscrollsize(0, 0, $taskbox);
 }
-~scrollbar_vertical($com_4, $com_2, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~scrollbar_vertical($scrollbar, $taskbox, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");

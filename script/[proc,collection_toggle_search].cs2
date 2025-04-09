@@ -1,27 +1,27 @@
 // 4085
 [proc,collection_toggle_search](boolean $boolean)
-def_component $com_2 = interface_621:com_2;
-def_component $com_71 = interface_621:com_71;
-def_component $com_75 = interface_621:com_75;
-if (if_gethide($com_71) = false | $boolean = true) {
-    if_sethide(true, $com_71);
-    if_sethide(true, $com_75);
-    if_sethide(false, $com_2);
+def_component $content = collection:content;
+def_component $content_search = collection:content_search;
+def_component $search_button = collection:search_button;
+if (if_gethide($content_search) = false | $boolean = true) {
+    if_sethide(true, $content_search);
+    if_sethide(true, $search_button);
+    if_sethide(false, $content);
     ~chatdefault_restoreinput;
-    %varplayerbit_16073 = 0;
-    %varplayerbit_16074 = 0;
-    %varplayerbit_17310 = 0;
-    %varplayerbit_17311 = 0;
+    %floater_is_searching = 0;
+    %floater_search_listen_for_keyboard = 0;
+    %league_tasks_is_searching = 0;
+    %league_tasks_search_listen_for_keyboard = 0;
     if (~on_mobile = true) {
         ~keyboard_hide;
     }
     ~collection_search_button(1);
 } else {
-    if_sethide(true, $com_2);
-    if_sethide(false, $com_71);
-    if_sethide(false, $com_75);
+    if_sethide(true, $content);
+    if_sethide(false, $content_search);
+    if_sethide(false, $search_button);
     ~collection_search_button(0);
     %varclient_417 = "";
-    ~collection_searchbar_set_text(interface_621:com_79);
-    ~collection_searchbar_op(interface_621:com_81, interface_621:com_76);
+    ~collection_searchbar_set_text(collection:search_text);
+    ~collection_searchbar_op(collection:search_container, collection:search_toggle);
 }

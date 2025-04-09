@@ -1,10 +1,10 @@
 // 5278
-[clientscript,shared_bank_side_init](component $com_0)
-cc_deleteall($com_0);
+[clientscript,shared_bank_side_init](component $items)
+cc_deleteall($items);
 def_int $int1 = 0;
-def_int $int2 = inv_size(inv_660);
+def_int $int2 = inv_size(inv_player_temp);
 while ($int1 < $int2) {
-    cc_create($com_0, ^iftype_graphic, $int1);
+    cc_create($items, ^iftype_graphic, $int1);
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
     cc_setgraphicshadow(0x333333);
     cc_setoutline(1);
@@ -13,6 +13,6 @@ while ($int1 < $int2) {
     cc_sethide(false);
     $int1 = calc($int1 + 1);
 }
-~shared_bank_side_build($com_0);
-if_setoninvtransmit("shared_bank_side_build(event_com){inv_660}", $com_0);
-if_setonvartransmit("shared_bank_side_build(event_com){varplayer_304, varplayer_1666}", $com_0);
+~shared_bank_side_build($items);
+if_setoninvtransmit("shared_bank_side_build(event_com){inv_player_temp}", $items);
+if_setonvartransmit("shared_bank_side_build(event_com){bankinsert, gargboss_perm_transmit}", $items);

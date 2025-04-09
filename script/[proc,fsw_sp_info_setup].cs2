@@ -1,23 +1,23 @@
 // 6882
 [proc,fsw_sp_info_setup]
-if_setonresize("script6881", interface_785:com_0);
-~responsive_interface_resize_fsw(interface_785:com_1, interface_785:com_6);
-def_component $com_5 = interface_785:com_5;
-~script5288($com_5, 0, 0, 0, if_getwidth($com_5), if_getheight($com_5), struct_3712, 11965282);
-def_component $com_6 = interface_785:com_6;
-def_int $int2 = calc(if_getwidth($com_5) - 40);
-if_setposition(0, 45, ^setpos_rel_centre, ^setpos_abs_top, $com_6);
-if_setsize($int2, 95, ^setsize_abs, ^setsize_minus, $com_6);
+if_setonresize("script6881", fsw_sp_info:infinity);
+~responsive_interface_resize_fsw(fsw_sp_info:universe, fsw_sp_info:content);
+def_component $background = fsw_sp_info:background;
+~script5288($background, 0, 0, 0, if_getwidth($background), if_getheight($background), struct_3712, 11965282);
+def_component $content = fsw_sp_info:content;
+def_int $int2 = calc(if_getwidth($background) - 40);
+if_setposition(0, 45, ^setpos_rel_centre, ^setpos_abs_top, $content);
+if_setsize($int2, 95, ^setsize_abs, ^setsize_minus, $content);
 def_int $int3 = 0;
-$int3 = ~script5288($com_6, $int3, 0, 0, if_getwidth($com_6), if_getheight($com_6), struct_3712, 11965282);
-cc_create($com_6, ^iftype_rectangle, $int3);
+$int3 = ~script5288($content, $int3, 0, 0, if_getwidth($content), if_getheight($content), struct_3712, 11965282);
+cc_create($content, ^iftype_rectangle, $int3);
 $int3 = calc($int3 + 1);
 cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
 cc_setsize(2, 2, ^setsize_minus, ^setsize_minus);
 cc_setfill(true);
 cc_setcolour(^black);
 cc_settrans(235);
-~script6873(interface_785:com_9, "Select", "Close", 0xef1020, 0, 0);
+~script6873(fsw_sp_info:close_button, "Select", "Close", 0xef1020, 0, 0);
 def_int $int4 = 10;
 def_int $int5 = 10;
 def_int $int6 = 11;
@@ -45,13 +45,13 @@ switch_int (%varclient_988) {
         $int5 = 21;
         $int11 = 25;
 }
-def_int $int12 = calc(if_getwidth($com_6) - $int4 * 2);
+def_int $int12 = calc(if_getwidth($content) - $int4 * 2);
 def_int $int13 = 0;
-def_int $int14 = db_getfieldcount(dbrow_170, dbtable_30:col0);
+def_int $int14 = db_getfieldcount(fsw_info_fresh, fsw_info_fresh_table:info);
 while ($int13 < $int14) {
-    $string0, $string1, $string2 = db_getfield(dbrow_170, dbtable_30:col0, $int13);
+    $string0, $string1, $string2 = db_getfield(fsw_info_fresh, fsw_info_fresh_table:info, $int13);
     $int10 = calc(paraheight($string2, $int12, $fontmetrics) * $int6);
-    cc_create($com_6, ^iftype_text, $int3);
+    cc_create($content, ^iftype_text, $int3);
     $int3 = calc($int3 + 1);
     cc_setposition($int4, $int11, ^setpos_abs_left, ^setpos_abs_top);
     cc_settextfont($graphic);

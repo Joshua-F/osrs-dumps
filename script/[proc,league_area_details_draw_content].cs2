@@ -1,17 +1,17 @@
 // 7630
 [proc,league_area_details_draw_content]
-def_component $com_79 = interface_512:com_79;
-def_component $com_74 = interface_512:com_74;
-def_component $com_62 = interface_512:com_62;
-def_component $com_70 = interface_512:com_70;
-def_component $com_64 = interface_512:com_64;
-def_component $com_89 = interface_512:com_89;
-cc_deleteall($com_79);
-cc_deleteall($com_62);
-cc_deleteall($com_70);
-cc_deleteall($com_74);
-def_struct $struct6 = enum(int, struct, enum_2670, %varplayerbit_10032);
-def_int $int7 = %varplayerbit_11693;
+def_component $league_tab_layer = trailblazer_areas:league_tab_layer;
+def_component $league_sub_tab_layer = trailblazer_areas:league_sub_tab_layer;
+def_component $league_tab_infolayer = trailblazer_areas:league_tab_infolayer;
+def_component $league_sub_tab_frame = trailblazer_areas:league_sub_tab_frame;
+def_component $league_info_background = trailblazer_areas:league_info_background;
+def_component $league_area_icon = trailblazer_areas:league_area_icon;
+cc_deleteall($league_tab_layer);
+cc_deleteall($league_tab_infolayer);
+cc_deleteall($league_sub_tab_frame);
+cc_deleteall($league_sub_tab_layer);
+def_struct $struct6 = enum(int, struct, enum_2670, %league_type);
+def_int $int7 = %league_area_last_viewed;
 if ($struct6 = null) {
     return;
 }
@@ -19,8 +19,8 @@ def_int $rgb = struct_param($struct6, param_1027);
 def_graphic $graphic = p12_full;
 def_int $int10 = 0;
 def_int $int11 = 0;
-~script5288($com_64, 0, 0, 0, if_getwidth($com_64), if_getheight($com_64), struct_3712, 7496785);
-def_int $int12 = calc(if_getwidth($com_79) / 3);
+~script5288($league_info_background, 0, 0, 0, if_getwidth($league_info_background), if_getheight($league_info_background), struct_3712, 7496785);
+def_int $int12 = calc(if_getwidth($league_tab_layer) / 3);
 switch_int (%varclient_988) {
     case 1 :
         $int10, $int11 = calc($int12 / 2 - 33), calc($int12 / 2 - 33);
@@ -32,12 +32,12 @@ switch_int (%varclient_988) {
         $graphic, $int10, $int11 = p12_full, calc($int12 / 2 - 35), calc($int12 / 2 - 35);
 }
 def_int $int13 = 0;
-$int13 = ~script5293($com_79, $int13, 0, $int12, 0, 0x726451, "Overview", $graphic, $rgb, 0, null, 0, 0, 0, 0, ~is_equal(%varclient_1239, 0));
+$int13 = ~script5293($league_tab_layer, $int13, 0, $int12, 0, 0x726451, "Overview", $graphic, $rgb, 0, null, 0, 0, 0, 0, ~is_equal(%varclient_1239, 0));
 cc_setonop("script7632(0)");
-$int13 = ~script5293($com_79, $int13, 1, $int12, 0, 0x726451, "Information", $graphic, $rgb, 0, null, 0, 0, 0, 0, ~is_equal(%varclient_1239, 1));
+$int13 = ~script5293($league_tab_layer, $int13, 1, $int12, 0, 0x726451, "Information", $graphic, $rgb, 0, null, 0, 0, 0, 0, ~is_equal(%varclient_1239, 1));
 cc_setonop("script7632(1)");
 if (~script7659 = true & $int7 ! 1 & $int7 ! 2) {
-    $int13 = ~script5293($com_79, $int13, 2, $int12, 0, 0x726451, "Echoes", $graphic, 0xed00ed, $int11, "league_tiny_relic,4", 19, 19, $int10, -1, ~is_equal(%varclient_1239, 2));
+    $int13 = ~script5293($league_tab_layer, $int13, 2, $int12, 0, 0x726451, "Echoes", $graphic, 0xed00ed, $int11, "league_tiny_relic,4", 19, 19, $int10, -1, ~is_equal(%varclient_1239, 2));
     cc_setonop("script7632(2)");
 }
 def_struct $struct14 = ~script7625($int7);
@@ -49,54 +49,54 @@ def_string $string1 = struct_param($struct14, param_2021);
 def_string $string2 = struct_param($struct14, param_2022);
 def_string $string3 = struct_param($struct14, param_2023);
 $string2 = "<$string2>This region will add the following tasks to your slayer list (Combat level where they are enabled):<br><br><~script7754($int7)>";
-def_component $com_78 = interface_512:com_78;
-def_component $com_104 = interface_512:com_104;
-if_settext("", $com_78);
-if_settext("", $com_104);
-if_setcolour($rgb, $com_78);
-if_setcolour($rgb, $com_104);
-if_settextfont($graphic, $com_78);
-if_settextfont($graphic, $com_104);
-def_component $com_66 = interface_512:com_66;
-def_component $com_65 = interface_512:com_65;
-def_component $com_72 = interface_512:com_72;
-def_component $com_76 = interface_512:com_76;
+def_component $description = trailblazer_areas:description;
+def_component $description_sub_tab = trailblazer_areas:description_sub_tab;
+if_settext("", $description);
+if_settext("", $description_sub_tab);
+if_setcolour($rgb, $description);
+if_setcolour($rgb, $description_sub_tab);
+if_settextfont($graphic, $description);
+if_settextfont($graphic, $description_sub_tab);
+def_component $league_tab_info_scrollbar = trailblazer_areas:league_tab_info_scrollbar;
+def_component $league_tab_info_content = trailblazer_areas:league_tab_info_content;
+def_component $league_sub_tab_info_scrollbar = trailblazer_areas:league_sub_tab_info_scrollbar;
+def_component $league_sub_tab_info_content = trailblazer_areas:league_sub_tab_info_content;
 def_int $int21 = 0;
-cc_deleteall($com_66);
-cc_deleteall($com_72);
-cc_deleteall($com_65);
-cc_deleteall($com_76);
-if_setscrollpos(0, 0, $com_76);
-if_setscrollpos(0, 0, $com_65);
+cc_deleteall($league_tab_info_scrollbar);
+cc_deleteall($league_sub_tab_info_scrollbar);
+cc_deleteall($league_tab_info_content);
+cc_deleteall($league_sub_tab_info_content);
+if_setscrollpos(0, 0, $league_sub_tab_info_content);
+if_setscrollpos(0, 0, $league_tab_info_content);
 switch_int (%varclient_1239) {
     case 0 :
-        $int21 = ~script7635($string0, $com_78, $com_65);
-        ~league_area_details_draw_scrollbar($int21, $com_66, $com_65);
+        $int21 = ~script7635($string0, $description, $league_tab_info_content);
+        ~league_area_details_draw_scrollbar($int21, $league_tab_info_scrollbar, $league_tab_info_content);
     case 1 :
-        ~league_area_details_draw_sub_tab($com_70, $com_74, $graphic, $rgb, "Key Info", "Unlocks", "Drops", 3);
+        ~league_area_details_draw_sub_tab($league_sub_tab_frame, $league_sub_tab_layer, $graphic, $rgb, "Key Info", "Unlocks", "Drops", 3);
         switch_int (%varclient_1240) {
             case 0 :
-                $int21 = ~script7635($string1, $com_104, $com_76);
+                $int21 = ~script7635($string1, $description_sub_tab, $league_sub_tab_info_content);
             case 1 :
-                $int21 = ~script7635($string2, $com_104, $com_76);
+                $int21 = ~script7635($string2, $description_sub_tab, $league_sub_tab_info_content);
             case 2 :
-                $int21 = ~script7635($string3, $com_104, $com_76);
+                $int21 = ~script7635($string3, $description_sub_tab, $league_sub_tab_info_content);
         }
-        ~league_area_details_draw_scrollbar($int21, $com_72, $com_76);
+        ~league_area_details_draw_scrollbar($int21, $league_sub_tab_info_scrollbar, $league_sub_tab_info_content);
     case 2 :
-        ~league_area_details_draw_sub_tab($com_70, $com_74, $graphic, $rgb, "Boss", "Items", "", 2);
-        ~script7636($int7, $com_89);
+        ~league_area_details_draw_sub_tab($league_sub_tab_frame, $league_sub_tab_layer, $graphic, $rgb, "Boss", "Items", "", 2);
+        ~script7636($int7, $league_area_icon);
         ~script7645(0, $int7);
         switch_int (%varclient_1240) {
             case 0 :
-                $int21 = ~script7637($com_76, $int7, $rgb, $graphic);
+                $int21 = ~script7637($league_sub_tab_info_content, $int7, $rgb, $graphic);
             case 1 :
-                $int21 = ~script7640($com_76, $int7, $rgb, $graphic);
+                $int21 = ~script7640($league_sub_tab_info_content, $int7, $rgb, $graphic);
         }
-        ~league_area_details_draw_scrollbar($int21, $com_72, $com_76);
+        ~league_area_details_draw_scrollbar($int21, $league_sub_tab_info_scrollbar, $league_sub_tab_info_content);
         return;
 }
 ~script7645(1, $int7);
-if (cc_find($com_89, 1) = false) {
-    ~start_slideshow($com_89, ~script7624($int7), 5, 4, 1);
+if (cc_find($league_area_icon, 1) = false) {
+    ~start_slideshow($league_area_icon, ~script7624($int7), 5, 4, 1);
 }

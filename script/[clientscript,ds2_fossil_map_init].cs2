@@ -1,9 +1,9 @@
 // 2104
-[clientscript,ds2_fossil_map_init](component $com_0, component $com_2)
-cc_deleteall($com_2);
+[clientscript,ds2_fossil_map_init](component $universe, component $grid)
+cc_deleteall($grid);
 def_int $int = 0;
 while ($int < 36) {
-    cc_create($com_2, ^iftype_model, $int);
+    cc_create($grid, ^iftype_model, $int);
     cc_setposition(calc(50 * ($int % 6)), calc(50 * ($int / 6)), ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize(50, 50, ^setsize_abs, ^setsize_abs);
     switch_int ($int) {
@@ -42,5 +42,5 @@ while ($int < 36) {
     }
     $int = calc($int + 1);
 }
-~ds2_fossil_map_redraw($com_2);
-if_setonvartransmit("ds2_fossil_map_redraw($com_2){varplayer_831, varplayer_832, varplayer_833, varplayer_858, varplayer_859, varplayer_860, varplayer_861}", $com_0);
+~ds2_fossil_map_redraw($grid);
+if_setonvartransmit("ds2_fossil_map_redraw($grid){xbows_int, xbows_obj1, xbows_obj2, skill_int1, skill_int2, skill_obj1, skill_obj2}", $universe);

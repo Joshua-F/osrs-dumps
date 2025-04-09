@@ -1,10 +1,10 @@
 // 7851
-[clientscript,poh_trophy_side_init](component $com_0)
-cc_deleteall($com_0);
+[clientscript,poh_trophy_side_init](component $items)
+cc_deleteall($items);
 def_int $int1 = 0;
-def_int $int2 = inv_size(inv_93);
+def_int $int2 = inv_size(inv);
 while ($int1 < $int2) {
-    cc_create($com_0, ^iftype_graphic, $int1);
+    cc_create($items, ^iftype_graphic, $int1);
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
     cc_setgraphicshadow(0x333333);
     cc_setoutline(1);
@@ -13,5 +13,5 @@ while ($int1 < $int2) {
     cc_sethide(false);
     $int1 = calc($int1 + 1);
 }
-~poh_trophy_side_build($com_0, $int2);
-if_setoninvtransmit("poh_trophy_side_build($com_0, $int2){inv_93}", $com_0);
+~poh_trophy_side_build($items, $int2);
+if_setoninvtransmit("poh_trophy_side_build($items, $int2){inv}", $items);

@@ -1,12 +1,12 @@
 // 3445
 [proc,hallowed_timer_text](int $int0)
-def_component $com_4 = interface_668:com_4;
+def_component $timer_text = hallowed_overlay:timer_text;
 $int0 = calc($int0 - clientclock);
-if (%varplayerbit_10413 = 1) {
-    if_setontimer(null, interface_668:com_3);
-    if (string_indexof_string(if_gettext($com_4), "(Paused)", 0) = -1) {
-        if_settext(append(if_gettext($com_4), " (Paused)"), $com_4);
-        if_setcolour(0x69a3fb, $com_4);
+if (%hallowed_block_climbover = 1) {
+    if_setontimer(null, hallowed_overlay:timer);
+    if (string_indexof_string(if_gettext($timer_text), "(Paused)", 0) = -1) {
+        if_settext(append(if_gettext($timer_text), " (Paused)"), $timer_text);
+        if_setcolour(0x69a3fb, $timer_text);
     }
     return;
 }
@@ -19,9 +19,9 @@ if ($int4 >= 10) {
 } else {
     $string = append($string, "<tostring($int3)>:0<tostring($int4)>");
 }
-if_settext($string, $com_4);
+if_settext($string, $timer_text);
 if (calc(clientclock % 20) < 10 & $int2 <= 10) {
-    if_setcolour(0xfc0000, $com_4);
+    if_setcolour(0xfc0000, $timer_text);
 } else {
-    if_setcolour(0xfcfce7, $com_4);
+    if_setcolour(0xfcfce7, $timer_text);
 }

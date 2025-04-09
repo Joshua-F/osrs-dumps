@@ -1,55 +1,55 @@
 // 3225
-[clientscript,league_side_panel_init](component $com_32, component $com_36, component $com_44, component $com_40, component $com_4, component $com_2)
-cc_deleteall($com_32);
-cc_deleteall($com_36);
-cc_deleteall($com_44);
-cc_deleteall($com_40);
-if_settext(~league_get_league_name_short, $com_4);
-~v2_stone_button_filled($com_32);
+[clientscript,league_side_panel_init](component $mastery_button, component $tasks_button, component $relics_button, component $areas_button, component $header, component $info)
+cc_deleteall($mastery_button);
+cc_deleteall($tasks_button);
+cc_deleteall($relics_button);
+cc_deleteall($areas_button);
+if_settext(~league_get_league_name_short, $header);
+~v2_stone_button_filled($mastery_button);
 if (~on_mobile = false) {
-    if_setonmouseleave("league_side_panel_button_hover($com_32, 0)", $com_32);
-    if_setonmouseover("league_side_panel_button_hover($com_32, 1)", $com_32);
+    if_setonmouseleave("league_side_panel_button_hover($mastery_button, 0)", $mastery_button);
+    if_setonmouseover("league_side_panel_button_hover($mastery_button, 1)", $mastery_button);
 }
-if_setonop("button_select_sound", $com_32);
-~v2_stone_button_filled($com_36);
+if_setonop("button_select_sound", $mastery_button);
+~v2_stone_button_filled($tasks_button);
 if (~on_mobile = false) {
-    if_setonmouseleave("league_side_panel_button_hover($com_36, 0)", $com_36);
-    if_setonmouseover("league_side_panel_button_hover($com_36, 1)", $com_36);
+    if_setonmouseleave("league_side_panel_button_hover($tasks_button, 0)", $tasks_button);
+    if_setonmouseover("league_side_panel_button_hover($tasks_button, 1)", $tasks_button);
 }
-if_setonop("button_select_sound", $com_36);
-~v2_stone_button_filled($com_44);
+if_setonop("button_select_sound", $tasks_button);
+~v2_stone_button_filled($relics_button);
 if (~on_mobile = false) {
-    if_setonmouseleave("league_side_panel_button_hover($com_44, 0)", $com_44);
-    if_setonmouseover("league_side_panel_button_hover($com_44, 1)", $com_44);
+    if_setonmouseleave("league_side_panel_button_hover($relics_button, 0)", $relics_button);
+    if_setonmouseover("league_side_panel_button_hover($relics_button, 1)", $relics_button);
 }
-if_setonop("button_select_sound", $com_44);
-~v2_stone_button_filled($com_40);
+if_setonop("button_select_sound", $relics_button);
+~v2_stone_button_filled($areas_button);
 if (~on_mobile = false) {
-    if_setonmouseleave("league_side_panel_button_hover($com_40, 0)", $com_40);
-    if_setonmouseover("league_side_panel_button_hover($com_40, 1)", $com_40);
+    if_setonmouseleave("league_side_panel_button_hover($areas_button, 0)", $areas_button);
+    if_setonmouseover("league_side_panel_button_hover($areas_button, 1)", $areas_button);
 }
-if_setonop("button_select_sound", $com_40);
-def_struct $struct = enum(int, struct, enum_2670, %varplayerbit_10032);
+if_setonop("button_select_sound", $areas_button);
+def_struct $struct = enum(int, struct, enum_2670, %league_type);
 def_int $rgb = 0xff981f;
 if ($struct ! null) {
-    if_setgraphic(struct_param($struct, param_1024), interface_656:com_23);
-    if_setgraphic(struct_param($struct, param_1025), interface_656:com_22);
-    if_setgraphic(struct_param($struct, param_2055), interface_656:com_24);
+    if_setgraphic(struct_param($struct, param_1024), league_side_panel:fill);
+    if_setgraphic(struct_param($struct, param_1025), league_side_panel:bkg);
+    if_setgraphic(struct_param($struct, param_2055), league_side_panel:relic);
     $rgb = struct_param($struct, param_1027);
 }
-if_setcolour($rgb, interface_656:com_4);
-if_setcolour($rgb, interface_656:com_18);
-if_setcolour($rgb, interface_656:com_19);
-if_setcolour($rgb, interface_656:com_25);
-if_setcolour($rgb, interface_656:com_27);
-def_component $com_46 = interface_656:com_46;
-~league_side_panel_rank($com_46, $rgb);
-~league_side_panel_summary($com_46, $rgb);
+if_setcolour($rgb, league_side_panel:header);
+if_setcolour($rgb, league_side_panel:points_next_area);
+if_setcolour($rgb, league_side_panel:points_next_relic);
+if_setcolour($rgb, league_side_panel:total_tasks_text);
+if_setcolour($rgb, league_side_panel:total_points_text);
+def_component $tooltip = league_side_panel:tooltip;
+~league_side_panel_rank($tooltip, $rgb);
+~league_side_panel_summary($tooltip, $rgb);
 def_string $string = "Open League Info";
 if (~on_mobile = false) {
-    if_setonmouserepeat("tooltip_mouserepeat($com_2, 0, $com_46, $string, 25, 190)", $com_2);
-    if_setonmouseleave("deltooltip($com_46)", $com_2);
+    if_setonmouserepeat("tooltip_mouserepeat($info, 0, $tooltip, $string, 25, 190)", $info);
+    if_setonmouseleave("deltooltip($tooltip)", $info);
 }
-if_setonop("league_interface_op_sound", $com_2);
-if_setopbase("<col=ff981f>League Info</col>", $com_2);
-~league_side_panel_update_bar(interface_656:com_23, %varplayer_2615);
+if_setonop("league_interface_op_sound", $info);
+if_setopbase("<col=ff981f>League Info</col>", $info);
+~league_side_panel_update_bar(league_side_panel:fill, %league_points_claimed);

@@ -1,24 +1,24 @@
 // 5249
-[clientscript,gim_leaving_init](component $com_1, int $int1, component $com_10, component $com_18, component $com_8, component $com_5, component $com_6, component $com_7, component $com_14, component $com_13, component $com_15)
-~steelborder($com_1, "Choose your Gamemode", 0);
-cc_deleteall($com_15);
-~scrollbar_vertical($com_15, $com_14, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-~gim_leave_text($com_13, 0);
-~gim_buttons_init($com_10, $com_18, $com_8, 0);
-if_setonop("gim_buttons_click($com_13, $com_10, $com_18, $com_8, 1)", $com_10);
-if_setop(1, "Select", $com_10);
+[clientscript,gim_leaving_init](component $frame, int $int1, component $gim_button, component $gim_competitive_button, component $main_button, component $option_gim, component $option_gim_competitive, component $option_main, component $text, component $text_container, component $scrollbar)
+~steelborder($frame, "Choose your Gamemode", 0);
+cc_deleteall($scrollbar);
+~scrollbar_vertical($scrollbar, $text, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~gim_leave_text($text_container, 0);
+~gim_buttons_init($gim_button, $gim_competitive_button, $main_button, 0);
+if_setonop("gim_buttons_click($text_container, $gim_button, $gim_competitive_button, $main_button, 1)", $gim_button);
+if_setop(1, "Select", $gim_button);
 def_int $int11 = 0;
-if (%varplayerbit_1777 = 6) {
-    if_sethide(true, $com_6);
-    $int11 = calc(if_getwidth($com_1) / 2);
-    if_setsize($int11, 0, ^setsize_abs, ^setsize_minus, $com_5);
-    if_setsize($int11, 0, ^setsize_abs, ^setsize_minus, $com_7);
-    if_setgraphic("iron_icons,5", interface_722:com_11);
-    if_setsize(64, 64, ^setsize_abs, ^setsize_abs, interface_722:com_11);
+if (%ironman = 6) {
+    if_sethide(true, $option_gim_competitive);
+    $int11 = calc(if_getwidth($frame) / 2);
+    if_setsize($int11, 0, ^setsize_abs, ^setsize_minus, $option_gim);
+    if_setsize($int11, 0, ^setsize_abs, ^setsize_minus, $option_main);
+    if_setgraphic("iron_icons,5", gim_leaving:gim_icon);
+    if_setsize(64, 64, ^setsize_abs, ^setsize_abs, gim_leaving:gim_icon);
 } else {
-    if_sethide(false, $com_6);
-    if_setonop("gim_buttons_click($com_13, $com_10, $com_18, $com_8, 2)", $com_18);
-    if_setop(1, "Select", $com_18);
+    if_sethide(false, $option_gim_competitive);
+    if_setonop("gim_buttons_click($text_container, $gim_button, $gim_competitive_button, $main_button, 2)", $gim_competitive_button);
+    if_setop(1, "Select", $gim_competitive_button);
 }
-if_setonop("gim_buttons_click($com_13, $com_10, $com_18, $com_8, 3)", $com_8);
-if_setop(1, "Select", $com_8);
+if_setonop("gim_buttons_click($text_container, $gim_button, $gim_competitive_button, $main_button, 3)", $main_button);
+if_setop(1, "Select", $main_button);

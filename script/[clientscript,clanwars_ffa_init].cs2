@@ -1,17 +1,17 @@
 // 569
-[clientscript,clanwars_ffa_init](component $com_0, component $com_1, component $com_2)
-~interface_dodger_init($com_1, $com_2, 52968, ^setpos_abs_centre, ^setpos_abs_top, false);
-cc_deleteall($com_2);
+[clientscript,clanwars_ffa_init](component $universe, component $dodger, component $hint)
+~interface_dodger_init($dodger, $hint, 52968, ^setpos_abs_centre, ^setpos_abs_top, false);
+cc_deleteall($hint);
 def_string $string = "Step over the line to fight!";
 def_int $int = calc(parawidth($string, 512, quill_oblique_large) + 15);
-if_setsize($int, 40, ^setsize_abs, ^setsize_abs, $com_2);
-cc_create($com_2, ^iftype_graphic, 0);
+if_setsize($int, 40, ^setsize_abs, ^setsize_abs, $hint);
+cc_create($hint, ^iftype_graphic, 0);
 cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
 cc_setsize($int, 40, ^setsize_abs, ^setsize_abs);
 cc_setgraphic(tradebacking_dark);
 cc_settiling(true);
 cc_settrans(100);
-cc_create($com_2, ^iftype_text, ~thinbox($com_2, 1));
+cc_create($hint, ^iftype_text, ~thinbox($hint, 1));
 cc_setposition(0, 3, ^setpos_abs_left, ^setpos_abs_top);
 cc_setsize($int, 34, ^setsize_abs, ^setsize_abs);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
@@ -19,4 +19,4 @@ cc_settextfont(quill_oblique_large);
 cc_settextshadow(true);
 cc_setcolour(0xffffa0);
 cc_settext($string);
-if_setontimer("clanwars_ffa_hint($com_2)", $com_0);
+if_setontimer("clanwars_ffa_hint($hint)", $universe);

@@ -1,32 +1,32 @@
 // 6819
-[clientscript,questjournal_init](component $com_0, component $com_4, component $com_9, component $com_8, component $com_7, component $com_1, component $com_3, component $com_2, component $com_6, component $com_5)
+[clientscript,questjournal_init](component $universe, component $title, component $back, component $switch, component $close, component $inner, component $container, component $scroll, component $scrollbar, component $textlayer)
 def_int $int10 = 0;
 if (~speedrunning_world = true) {
     $int10 = 1;
 }
 if ($int10 = 1) {
-    if_sethide(false, $com_9);
+    if_sethide(false, $back);
 } else {
-    if_sethide(true, $com_9);
+    if_sethide(true, $back);
 }
 def_int $int11 = 1;
 if ($int11 = 1) {
-    if_sethide(false, $com_8);
+    if_sethide(false, $switch);
 } else {
-    if_sethide(true, $com_8);
+    if_sethide(true, $switch);
 }
 if ($int10 = 1) {
-    if_setposition(29, 0, ^setpos_abs_left, ^setpos_abs_top, $com_8);
+    if_setposition(29, 0, ^setpos_abs_left, ^setpos_abs_top, $switch);
 } else {
-    if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top, $com_8);
+    if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top, $switch);
 }
-if_setopkey(1, ^key_escape, 0, $com_7);
+if_setopkey(1, ^key_escape, 0, $close);
 if ($int10 = 1 & $int11 = 1) {
-    if_setposition(63, 2, ^setpos_abs_left, ^setpos_abs_top, $com_4);
+    if_setposition(63, 2, ^setpos_abs_left, ^setpos_abs_top, $title);
 } else if ($int10 = 1 | $int11 = 1) {
-    if_setposition(34, 2, ^setpos_abs_left, ^setpos_abs_top, $com_4);
+    if_setposition(34, 2, ^setpos_abs_left, ^setpos_abs_top, $title);
 } else {
-    if_setposition(5, 2, ^setpos_abs_left, ^setpos_abs_top, $com_4);
+    if_setposition(5, 2, ^setpos_abs_left, ^setpos_abs_top, $title);
 }
-~quest_journal_size($com_0, $com_1, $com_3, $com_2, $com_6, $com_5);
-if_setontimer("quest_journal_size($com_0, $com_1, $com_3, $com_2, $com_6, $com_5)", $com_0);
+~quest_journal_size($universe, $inner, $container, $scroll, $scrollbar, $textlayer);
+if_setontimer("quest_journal_size($universe, $inner, $container, $scroll, $scrollbar, $textlayer)", $universe);

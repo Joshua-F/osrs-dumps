@@ -1,14 +1,14 @@
 // 3942
-[clientscript,zoom_mouse_transmit](component $com_46, component $com_44, component $com_43)
+[clientscript,zoom_mouse_transmit](component $mouse_zoom_disable, component $zoom_toggle, component $tooltip)
 %varclient_2 = 0;
 def_string $string = "<~text_device("Click", "Tap")> here to enable zooming using <~text_device("the mouse scroll wheel", "the pinch gesture")>.";
-if (%varplayerbit_6357 = 0) {
-    if_sethide(true, $com_46);
-    if_setop(1, "Disable", $com_44);
+if (%camera_zoom_mouse_disabled = 0) {
+    if_sethide(true, $mouse_zoom_disable);
+    if_setop(1, "Disable", $zoom_toggle);
     $string = "<~text_device("Click", "Tap")> here to disable zooming using <~text_device("the mouse scroll wheel", "the pinch gesture")>.";
-} else if (%varplayerbit_6357 = 1) {
-    if_sethide(false, $com_46);
-    if_setop(1, "Enable", $com_44);
+} else if (%camera_zoom_mouse_disabled = 1) {
+    if_sethide(false, $mouse_zoom_disable);
+    if_setop(1, "Enable", $zoom_toggle);
 }
-if_setonmouserepeat("tooltip_mouserepeat($com_44, -1, $com_43, $string, 25, 190)", $com_44);
-if_setonmouseleave("deltooltip($com_43)", $com_44);
+if_setonmouserepeat("tooltip_mouserepeat($zoom_toggle, -1, $tooltip, $string, 25, 190)", $zoom_toggle);
+if_setonmouseleave("deltooltip($tooltip)", $zoom_toggle);

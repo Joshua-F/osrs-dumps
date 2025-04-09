@@ -1,28 +1,28 @@
 // 4431
 [clientscript,clan_outfit](component $component0)
-~script4206(interface_694:com_1, interface_694:com_2, interface_694:com_3, 0, $component0);
-~steelborder(interface_694:com_4, "Icon customisation", 1);
-def_component $com_8 = interface_694:com_8;
-def_component $com_7 = interface_694:com_7;
-def_component $component3 = interface_694:com_13;
-def_component $component4 = interface_694:com_15;
-def_component $com_14 = interface_694:com_14;
-def_component $com_9 = interface_694:com_9;
-def_component $com_10 = interface_694:com_10;
-def_component $com_12 = interface_694:com_12;
-def_component $com_11 = interface_694:com_11;
-~clan_outfit_draw_arrow($com_9, leftarrow, leftarrow_highlight, 0);
-~clan_outfit_draw_arrow($com_10, rightarrow, rightarrow_highlight, 1);
-~clan_outfit_draw_arrow($com_12, leftarrow, leftarrow_highlight, 2);
-~clan_outfit_draw_arrow($com_11, rightarrow, rightarrow_highlight, 3);
-~stonebutton_init("<col=ff0000>Cancel</col>", $com_7, p12_full, 0);
-if_setonop("script4208(0, interface_694:com_1, interface_694:com_2, interface_694:com_3, $component0)", $com_7);
-~stonebutton_init("<col=0dc10d>Save</col>", $com_8, p12_full, 0);
-if_setonop("script4432(interface_694:com_1, interface_694:com_2, interface_694:com_3, $component0)", $com_8);
+~script4206(clans_outfit:clamp, clans_outfit:fader, clans_outfit:window, 0, $component0);
+~steelborder(clans_outfit:frame, "Icon customisation", 1);
+def_component $save = clans_outfit:save;
+def_component $cancel = clans_outfit:cancel;
+def_component $component3 = clans_outfit:colour_picker;
+def_component $component4 = clans_outfit:colour_list;
+def_component $scrollbar = clans_outfit:scrollbar;
+def_component $arrow_top_left = clans_outfit:arrow_top_left;
+def_component $arrow_top_right = clans_outfit:arrow_top_right;
+def_component $arrow_bottom_left = clans_outfit:arrow_bottom_left;
+def_component $arrow_bottom_right = clans_outfit:arrow_bottom_right;
+~clan_outfit_draw_arrow($arrow_top_left, leftarrow, leftarrow_highlight, 0);
+~clan_outfit_draw_arrow($arrow_top_right, rightarrow, rightarrow_highlight, 1);
+~clan_outfit_draw_arrow($arrow_bottom_left, leftarrow, leftarrow_highlight, 2);
+~clan_outfit_draw_arrow($arrow_bottom_right, rightarrow, rightarrow_highlight, 3);
+~stonebutton_init("<col=ff0000>Cancel</col>", $cancel, p12_full, 0);
+if_setonop("script4208(0, clans_outfit:clamp, clans_outfit:fader, clans_outfit:window, $component0)", $cancel);
+~stonebutton_init("<col=0dc10d>Save</col>", $save, p12_full, 0);
+if_setonop("script4432(clans_outfit:clamp, clans_outfit:fader, clans_outfit:window, $component0)", $save);
 ~clan_outfit_draw_colour_icons;
 cc_deleteall($component3);
 cc_deleteall($component4);
-cc_deleteall($com_14);
+cc_deleteall($scrollbar);
 def_int $int10 = enum_getoutputcount(enum_3819);
 def_int $int11 = 26;
 def_int $int12 = 1;
@@ -36,7 +36,7 @@ if ($int17 > 0) {
     $int18 = calc($int16 + 1);
 }
 if ($int18 > $int14) {
-    ~scrollbar_vertical($com_14, $component4, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+    ~scrollbar_vertical($scrollbar, $component4, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
     $component3 = $component4;
     $int15 = calc(if_getwidth($component3) / ($int12 + $int11));
     $int16 = calc($int10 / $int15);
@@ -94,5 +94,5 @@ while ($int22 < $int18) {
 }
 if ($int18 > $int14) {
     if_setscrollsize(0, $int25, $component3);
-    ~scrollbar_resize($com_14, $component3, if_getscrolly($component3));
+    ~scrollbar_resize($scrollbar, $component3, if_getscrolly($component3));
 }

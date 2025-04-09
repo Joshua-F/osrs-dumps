@@ -1,9 +1,9 @@
 // 648
-[clientscript,poh_add_room_init](component $com_4, component $com_67)
-cc_deleteall($com_4);
+[clientscript,poh_add_room_init](component $list, component $scrollbar)
+cc_deleteall($list);
 def_int $int2 = 0;
 while ($int2 <= 29) {
-    cc_create($com_4, ^iftype_rectangle, $int2);
+    cc_create($list, ^iftype_rectangle, $int2);
     cc_sethide(true);
     $int2 = calc($int2 + 1);
 }
@@ -35,11 +35,11 @@ $int3 = ~poh_add_room_initbutton($int3, 19, "Dungeon - Stairs", 70);
 $int3 = ~poh_add_room_initbutton($int3, 28, "Portal Nexus", 72);
 $int3 = ~poh_add_room_initbutton($int3, 20, "Treasure room", 75);
 $int3 = ~poh_add_room_initbutton($int3, 27, "Achievement gallery", 80);
-cc_deleteall($com_67);
-if ($int3 > if_getheight($com_4)) {
-    if_setscrollsize(0, $int3, $com_4);
+cc_deleteall($scrollbar);
+if ($int3 > if_getheight($list)) {
+    if_setscrollsize(0, $int3, $list);
 } else {
-    if_setscrollsize(0, 0, $com_4);
+    if_setscrollsize(0, 0, $list);
 }
-if_setscrollpos(0, 0, $com_4);
-~scrollbar_vertical($com_67, $com_4, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+if_setscrollpos(0, 0, $list);
+~scrollbar_vertical($scrollbar, $list, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");

@@ -1,32 +1,32 @@
 // 388
-[clientscript,pvp_icons_wildernesslevel](component $com_50)
+[clientscript,pvp_icons_wildernesslevel](component $wildernesslevel)
 def_int $int = ~wilderness_level;
 if (~deadman_world ! 0) {
-    if (%varplayerbit_1463 = 1) {
-        if_settext("", $com_50);
-    } else if (%varplayer_1676 > 4) {
-        if ($int > 0 & %varplayerbit_5954 = 1) {
-            if_settext("Level: <tostring($int)>", $com_50);
+    if (%spectator_toplevel_enabled = 1) {
+        if_settext("", $wildernesslevel);
+    } else if (%deadman_tournament_mode_pl > 4) {
+        if ($int > 0 & %deadman_inwilderness = 1) {
+            if_settext("Level: <tostring($int)>", $wildernesslevel);
         } else {
-            if_settext("Deadman", $com_50);
+            if_settext("Deadman", $wildernesslevel);
         }
-    } else if (%varplayerbit_4965 > 0) {
-        if_settext("Protection", $com_50);
-        if_setposition(0, 25, ^setpos_abs_centre, ^setpos_abs_bottom, $com_50);
-    } else if ($int > 0 & %varplayerbit_5954 = 1) {
-        if_settext("Level: <tostring($int)>", $com_50);
+    } else if (%deadman_protection_left > 0) {
+        if_settext("Protection", $wildernesslevel);
+        if_setposition(0, 25, ^setpos_abs_centre, ^setpos_abs_bottom, $wildernesslevel);
+    } else if ($int > 0 & %deadman_inwilderness = 1) {
+        if_settext("Level: <tostring($int)>", $wildernesslevel);
     } else if (%varclient_78 = 1) {
-        if_settext("Guarded", $com_50);
+        if_settext("Guarded", $wildernesslevel);
     } else if (%varclient_78 = 2) {
-        if_settext("No PvP", $com_50);
+        if_settext("No PvP", $wildernesslevel);
     } else {
-        if_settext("Deadman", $com_50);
+        if_settext("Deadman", $wildernesslevel);
     }
-} else if (%varplayerbit_10530 = 1) {
-    if_settext("Level: --", $com_50);
+} else if (%wildy_hub_buffer = 1) {
+    if_settext("Level: --", $wildernesslevel);
 } else if ($int > 0) {
-    if_settext("Level: <tostring($int)>", $com_50);
+    if_settext("Level: <tostring($int)>", $wildernesslevel);
 } else {
-    if_settext("", $com_50);
+    if_settext("", $wildernesslevel);
 }
 ~pvp_icons_comlevelrange($int);

@@ -1,0 +1,566 @@
+// 234:0
+[universe]
+type=layer
+width=512
+height=334
+onload=deadmanloot_onload
+
+// 234:1
+[dropshadow]
+type=rectangle
+x=4
+y=4
+width=308
+height=320
+xmode=abs_centre
+ymode=abs_centre
+layer=universe
+colour=0x000000
+fill=yes
+trans=128
+
+// 234:2
+[contents]
+type=layer
+width=308
+height=320
+xmode=abs_centre
+ymode=abs_centre
+layer=universe
+
+// 234:3
+[confirm_layer]
+type=layer
+width=308
+height=320
+xmode=abs_centre
+ymode=abs_centre
+layer=universe
+hide=yes
+noclickthrough=yes
+
+// 234:4
+[greyout]
+type=rectangle
+width=2
+height=2
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=confirm_layer
+colour=0x000000
+fill=yes
+trans=120
+
+// 234:5
+[confirm_title]
+type=text
+y=100
+width=29
+height=32
+widthmode=minus
+xmode=abs_centre
+layer=confirm_layer
+textfont=q8_full
+text=Are you SURE you want to destroy the contents of this inventory?
+textalignh=centre
+textalignv=centre
+textshadow=yes
+colour=0xff0000
+
+// 234:6
+[confirm_body]
+type=text
+y=132
+width=80
+height=65
+widthmode=minus
+xmode=abs_centre
+layer=confirm_layer
+textfont=p11_full
+text=All items will be destroyed.<br>This action cannot be undone.
+textlineheight=12
+textalignh=centre
+textalignv=centre
+textshadow=yes
+colour=0xff981f
+
+// 234:7
+[confirm_buttons]
+type=layer
+y=198
+width=160
+height=46
+xmode=abs_centre
+layer=confirm_layer
+
+// 234:8
+[destroy_confirm]
+type=graphic
+width=70
+height=46
+layer=confirm_buttons
+graphic="combatboxes_large,0"
+events=2
+op1=Confirm Destroy
+onmouseover=text_colour_swapper(deadmanloot:destroy_confirm_text, 16777215)
+onmouseleave=text_colour_swapper(deadmanloot:destroy_confirm_text, 16750623)
+onop=script1178(deadmanloot:confirm_layer, deadmanloot:confirm_buttons)
+
+// 234:9
+[destroy_cancel]
+type=graphic
+width=70
+height=46
+xmode=abs_right
+layer=confirm_buttons
+graphic="combatboxes_large,0"
+events=2
+op1=Cancel
+onmouseover=text_colour_swapper(deadmanloot:destroy_cancel_text, 16777215)
+onmouseleave=text_colour_swapper(deadmanloot:destroy_cancel_text, 16750623)
+onop=script1178(deadmanloot:confirm_layer, deadmanloot:confirm_buttons)
+
+// 234:10
+[destroy_confirm_text]
+type=text
+width=70
+height=46
+layer=confirm_buttons
+textfont=q8_full
+text=Destroy
+textalignh=centre
+textalignv=centre
+textshadow=yes
+colour=0xff981f
+
+// 234:11
+[destroy_cancel_text]
+type=text
+width=70
+height=46
+xmode=abs_right
+layer=confirm_buttons
+textfont=q8_full
+text=Cancel
+textalignh=centre
+textalignv=centre
+textshadow=yes
+colour=0xff981f
+
+// 234:12
+[frame]
+type=layer
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=contents
+onload=stoneborder(event_com, "Bank Raid", 0)
+
+// 234:13
+[tab_divider]
+type=line
+y=84
+width=12
+widthmode=minus
+xmode=abs_centre
+layer=contents
+colour=0x2e2b23
+
+// 234:14
+[tabs]
+type=layer
+x=12
+y=45
+width=24
+height=40
+widthmode=minus
+layer=contents
+
+// 234:15
+[items]
+type=layer
+y=93
+width=270
+height=152
+xmode=abs_centre
+layer=contents
+
+// 234:16
+[items_empty]
+type=layer
+y=93
+width=270
+height=152
+xmode=abs_centre
+layer=contents
+hide=yes
+
+// 234:17
+[items_empty_text]
+type=text
+widthmode=minus
+heightmode=minus
+layer=items_empty
+textfont=p12_full
+text=This chest is now empty.
+textalignh=centre
+textalignv=centre
+textshadow=yes
+colour=0xff981f
+
+// 234:18
+[divider_h1]
+type=graphic
+y=248
+width=32
+height=32
+layer=contents
+graphic="v2_stone_borders,9"
+
+// 234:19
+[divider_h2]
+type=graphic
+x=11
+y=246
+width=20
+height=32
+widthmode=minus
+layer=contents
+graphic="v2_stone_borders,8"
+tiling=yes
+
+// 234:20
+[divider_h3]
+type=graphic
+x=1
+y=248
+width=27
+height=32
+xmode=abs_right
+layer=contents
+graphic="v2_stone_borders,10"
+
+// 234:21
+[destroy_layer]
+type=layer
+x=12
+y=271
+width=36
+height=36
+xmode=abs_right
+layer=contents
+
+// 234:22
+[destroy]
+type=graphic
+width=36
+height=36
+xmode=abs_centre
+ymode=abs_centre
+layer=destroy_layer
+graphic="miscgraphics,0"
+events=2
+op1=Destroy
+onmouseover=settrans(event_com, 75)
+onmouseleave=settrans(event_com, 0)
+onop=script1177(deadmanloot:confirm_layer, deadmanloot:confirm_buttons)
+
+// 234:23
+[destroy_graphic]
+type=graphic
+width=29
+height=22
+xmode=abs_centre
+ymode=abs_centre
+layer=destroy_layer
+graphic="bankbuttons,6"
+
+// 234:24
+[destroy_divider]
+type=line
+x=54
+y=8
+height=46
+xmode=abs_right
+ymode=abs_bottom
+layer=contents
+colour=0x2e2b23
+
+// 234:25
+[withdraw_as]
+type=text
+x=11
+y=271
+width=124
+height=15
+layer=contents
+textfont=p12_full
+text=Withdraw as:
+textalignh=centre
+textalignv=centre
+textshadow=yes
+colour=0xff981f
+
+// 234:26
+[withdrawitem]
+type=layer
+x=11
+y=286
+width=62
+height=22
+layer=contents
+events=2
+op1=Item
+onmouseover=text_colour_swapper(deadmanloot:withdrawitem_text, 16777215)
+onmouseleave=text_colour_swapper(deadmanloot:withdrawitem_text, 16750623)
+onop=deadmanloot_itemnote_switch(0)
+
+// 234:27
+[withdrawitemgfx1]
+type=graphic
+width=6
+height=22
+layer=withdrawitem
+graphic="combatboxes_split,0"
+
+// 234:28
+[withdrawitemgfx2]
+type=graphic
+width=12
+height=22
+widthmode=minus
+xmode=abs_centre
+layer=withdrawitem
+graphic="combatboxes_split,1"
+tiling=yes
+
+// 234:29
+[withdrawitemgfx3]
+type=graphic
+width=6
+height=22
+xmode=abs_right
+layer=withdrawitem
+graphic="combatboxes_split,2"
+
+// 234:30
+[withdrawitem_text]
+type=text
+width=85
+height=22
+xmode=abs_centre
+layer=withdrawitem
+textfont=p12_full
+text=Item
+textalignh=centre
+textalignv=centre
+textshadow=yes
+colour=0xff981f
+
+// 234:31
+[withdrawnote]
+type=layer
+x=173
+y=286
+width=62
+height=22
+xmode=abs_right
+layer=contents
+events=2
+op1=Note
+onop=deadmanloot_itemnote_switch(1)
+
+// 234:32
+[withdrawnotegfx1]
+type=graphic
+width=6
+height=22
+layer=withdrawnote
+graphic="combatboxes_split,0"
+onmouseover=text_colour_swapper(deadmanloot:withdrawnote_text, 16777215)
+onmouseleave=text_colour_swapper(deadmanloot:withdrawnote_text, 16750623)
+
+// 234:33
+[withdrawnotegfx2]
+type=graphic
+width=12
+height=22
+widthmode=minus
+xmode=abs_centre
+layer=withdrawnote
+graphic="combatboxes_split,1"
+tiling=yes
+onmouseover=text_colour_swapper(deadmanloot:withdrawnote_text, 16777215)
+onmouseleave=text_colour_swapper(deadmanloot:withdrawnote_text, 16750623)
+
+// 234:34
+[withdrawnotegfx3]
+type=graphic
+width=6
+height=22
+xmode=abs_right
+layer=withdrawnote
+graphic="combatboxes_split,2"
+onmouseover=text_colour_swapper(deadmanloot:withdrawnote_text, 16777215)
+onmouseleave=text_colour_swapper(deadmanloot:withdrawnote_text, 16750623)
+
+// 234:35
+[withdrawnote_text]
+type=text
+height=22
+widthmode=minus
+xmode=abs_centre
+layer=withdrawnote
+textfont=p12_full
+text=Note
+textalignh=centre
+textalignv=centre
+textshadow=yes
+colour=0xff981f
+
+// 234:36
+[withdrawinv_layer]
+type=layer
+x=136
+y=271
+width=36
+height=36
+layer=contents
+
+// 234:37
+[withdrawinv]
+type=graphic
+width=36
+height=36
+layer=withdrawinv_layer
+graphic="miscgraphics,0"
+events=2
+opbase=inventory
+op1=Withdraw all to
+onmouseover=settrans(event_com, 75)
+onmouseleave=settrans(event_com, 0)
+onop=deadman_lootall(event_com, "miscgraphics,9", "miscgraphics,0", event_op)
+
+// 234:38
+[withdrawinv_graphic]
+type=graphic
+x=2
+y=7
+width=29
+height=22
+layer=withdrawinv_layer
+graphic="bankbuttons,4"
+graphicshadow=3355443
+
+// 234:39
+[withdraw_divider]
+type=line
+x=131
+y=8
+height=46
+xmode=abs_right
+ymode=abs_bottom
+layer=contents
+colour=0x2e2b23
+
+// 234:40
+[occupiedslots]
+type=text
+x=96
+y=277
+width=32
+height=24
+xmode=abs_right
+layer=contents
+textfont=p11_full
+textalignh=centre
+textalignv=top
+textshadow=yes
+colour=0xff981f
+
+// 234:41
+[occupied_divider]
+type=line
+x=107
+y=288
+width=12
+xmode=abs_right
+layer=contents
+colour=0xff981f
+
+// 234:42
+[capacity]
+type=text
+x=96
+y=277
+width=32
+height=24
+xmode=abs_right
+layer=contents
+textfont=p11_full
+textalignh=centre
+textalignv=bottom
+textshadow=yes
+colour=0xff981f
+
+// 234:43
+[withdrawbank_layer]
+type=layer
+x=59
+y=271
+width=36
+height=36
+xmode=abs_right
+layer=contents
+
+// 234:44
+[withdrawbank]
+type=graphic
+width=36
+height=36
+xmode=abs_centre
+ymode=abs_centre
+layer=withdrawbank_layer
+graphic="miscgraphics,0"
+events=2
+opbase=bank
+op1=Withdraw all to
+onmouseover=settrans(event_com, 75)
+onmouseleave=settrans(event_com, 0)
+onop=deadman_lootall(event_com, "miscgraphics,9", "miscgraphics,0", event_op)
+
+// 234:45
+[withdrawbank_graphic]
+type=graphic
+width=29
+height=22
+xmode=abs_centre
+ymode=abs_centre
+layer=withdrawbank_layer
+graphic="bankbuttons,5"
+graphicshadow=3355443
+
+// 234:46
+[controls_greyout_layer]
+type=layer
+x=7
+y=266
+width=13
+height=47
+widthmode=minus
+layer=contents
+hide=yes
+
+// 234:47
+[controls_greyout]
+type=rectangle
+widthmode=minus
+heightmode=minus
+layer=controls_greyout_layer
+colour=0x000000
+fill=yes
+trans=120
+

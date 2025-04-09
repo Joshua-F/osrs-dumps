@@ -1,8 +1,8 @@
 // 5502
-[clientscript,gim_settings_init](component $com_1, component $com_2, component $com_4, component $com_6, component $com_15, component $com_16, component $com_17, component $com_18, component $com_19, component $com_20)
-def_int $int10 = ~steelborder($com_2, "", 1);
-cc_deleteall($com_4);
-cc_create($com_4, ^iftype_text, 0);
+[clientscript,gim_settings_init](component $universe, component $frame, component $contents, component $info_container, component $button_container, component $hiscores, component $storage_unlocks, component $options, component $raffle, component $quit)
+def_int $int10 = ~steelborder($frame, "", 1);
+cc_deleteall($contents);
+cc_create($contents, ^iftype_text, 0);
 cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
 cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
 cc_setcolour(0xff981f);
@@ -11,11 +11,11 @@ cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
 cc_settextshadow(true);
 cc_settext("Loading...");
 def_int $int11 = cc_getid;
-~gim_settings_draw($com_2, $int10, $com_4, $int11, $com_6, $com_15, $com_16, $com_17, $com_18, $com_19, $com_20);
-if_setonvartransmit("gim_settings_draw($com_2, $int10, $com_4, $int11, $com_6, $com_15, $com_16, $com_17, $com_18, $com_19, $com_20){varplayer_3172}", $com_1);
-if_setonclansettingstransmit("gim_settings_draw($com_2, $int10, $com_4, $int11, $com_6, $com_15, $com_16, $com_17, $com_18, $com_19, $com_20)", $com_1);
-if_setonop("opsound(event_op, 2)", $com_16);
-if_setonop("opsound(event_op, 2)", $com_17);
-if_setonop("opsound(event_op, 2)", $com_18);
-if_setonop("opsound(event_op, 2)", $com_19);
-if_setonop("opsound(event_op, 2)", $com_20);
+~gim_settings_draw($frame, $int10, $contents, $int11, $info_container, $button_container, $hiscores, $storage_unlocks, $options, $raffle, $quit);
+if_setonvartransmit("gim_settings_draw($frame, $int10, $contents, $int11, $info_container, $button_container, $hiscores, $storage_unlocks, $options, $raffle, $quit){gim_temp_1}", $universe);
+if_setonclansettingstransmit("gim_settings_draw($frame, $int10, $contents, $int11, $info_container, $button_container, $hiscores, $storage_unlocks, $options, $raffle, $quit)", $universe);
+if_setonop("opsound(event_op, 2)", $hiscores);
+if_setonop("opsound(event_op, 2)", $storage_unlocks);
+if_setonop("opsound(event_op, 2)", $options);
+if_setonop("opsound(event_op, 2)", $raffle);
+if_setonop("opsound(event_op, 2)", $quit);

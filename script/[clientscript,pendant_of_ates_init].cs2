@@ -1,16 +1,16 @@
 // 6561
 [clientscript,pendant_of_ates_init]
 ~chatdefault_stopinput;
-cc_deleteall(interface_879:com_0);
-def_int $int0 = db_listall(dbtable_72);
+cc_deleteall(pendant_of_ates:universe);
+def_int $int0 = db_listall(pendant_of_ates_teleports);
 def_int $int1 = 1;
 def_dbrow $dbrow = null;
 def_component $component = null;
 while ($int1 <= $int0) {
-    db_find(dbtable_72:col0, $int1);
+    db_find(pendant_of_ates_teleports:id, $int1);
     $dbrow = db_findnext;
     if ($dbrow ! null) {
-        $component = db_getfield($dbrow, dbtable_72:col3, 0);
+        $component = db_getfield($dbrow, pendant_of_ates_teleports:teleport_if_layer, 0);
         ~script6562($component, $dbrow);
     }
     $int1 = calc($int1 + 1);

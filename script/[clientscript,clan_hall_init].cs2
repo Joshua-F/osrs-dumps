@@ -1,15 +1,15 @@
 // 4330
-[clientscript,clan_hall_init](component $com_3, component $com_6, component $com_7, component $com_10, component $com_11, int $int5, component $com_9, component $com_5, component $com_4)
-def_int $int9 = ~steelborder($com_3, "Clan hall settings", 0);
-cc_deleteall($com_6);
-if (%varplayerbit_12200 = 1) {
-    ~stonebutton_init("<col=0dc10d>Save</col>", $com_5, p12_full, 0);
-    if_setonop("opsound(event_op, 2)", $com_5);
+[clientscript,clan_hall_init](component $frame, component $container, component $list, component $radio_buttons, component $number_fields, int $int5, component $scrollbar, component $save, component $back)
+def_int $int9 = ~steelborder($frame, "Clan hall settings", 0);
+cc_deleteall($container);
+if (%clan_editing_permitted = 1) {
+    ~stonebutton_init("<col=0dc10d>Save</col>", $save, p12_full, 0);
+    if_setonop("opsound(event_op, 2)", $save);
 } else {
-    ~stonebutton_init("<col=808080>Save</col>", $com_5, p12_full, 0);
+    ~stonebutton_init("<col=808080>Save</col>", $save, p12_full, 0);
 }
-~stonebutton_init("<col=ff0000>Back</col>", $com_4, p12_full, 0);
-if_setonop("opsound(event_op, 2)", $com_4);
+~stonebutton_init("<col=ff0000>Back</col>", $back, p12_full, 0);
+if_setonop("opsound(event_op, 2)", $back);
 def_int $int10 = 0;
 def_int $int11 = 0;
 def_int $int12 = 0;
@@ -17,13 +17,13 @@ def_int $int13 = 0;
 def_int $int14 = 0;
 def_int $int15 = 0;
 while ($int11 < enum_getoutputcount(enum_3800)) {
-    $int10, $int12, $int13, $int14, $int15 = ~script4331($int10, $int11, $com_7, $com_10, $com_11, $int5, $int12, $int13, $int14, $int15);
+    $int10, $int12, $int13, $int14, $int15 = ~script4331($int10, $int11, $list, $radio_buttons, $number_fields, $int5, $int12, $int13, $int14, $int15);
     $int11 = calc($int11 + 1);
 }
-if_setscrollpos(0, 0, $com_7);
-if ($int12 > if_getheight($com_7)) {
-    if_setscrollsize(0, $int12, $com_7);
+if_setscrollpos(0, 0, $list);
+if ($int12 > if_getheight($list)) {
+    if_setscrollsize(0, $int12, $list);
 } else {
-    if_setscrollsize(0, 0, $com_7);
+    if_setscrollsize(0, 0, $list);
 }
-~scrollbar_vertical($com_9, $com_7, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~scrollbar_vertical($scrollbar, $list, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
