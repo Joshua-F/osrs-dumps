@@ -1,6 +1,6 @@
 // 1566
 [clientscript,raids_partylist_addline](int $int0, string $string0)
-if (if_hassub(enum(component, component, ~toplevel_getcomponents, interface_161:com_16)) = false) {
+if (if_hassub(enum(component, component, ~toplevel_getcomponents, toplevel_osrs_stretch:mainmodal)) = false) {
     return;
 }
 def_component $component1 = enum(int, component, enum_1537, $int0);
@@ -27,13 +27,13 @@ if (string_length($string0) > 0) {
     cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
     cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
     cc_setfill(true);
-    ~raids_partylist_entry_init(%varclient_178, $component1, $int0, $string1, interface_499:com_15);
+    ~raids_partylist_entry_init(%varclient_178, $component1, $int0, $string1, raids_lobby_partylist:list);
     if_setop(1, "View party:", $component1);
     if_setopbase("<col=ff9040><removetags($string1)></col>", $component1);
     $string2, $string0 = ~script632($string0);
     $string3, $string0 = ~script632($string0);
     $string4, $string5 = ~string_prependzero($string2, 3), ~string_prependzero($string3, 3);
-    $int3 = if_getwidth(interface_499:com_7);
+    $int3 = if_getwidth(raids_lobby_partylist:sort_members);
     cc_create($component1, ^iftype_text, 1);
     cc_setposition($int2, 0, ^setpos_abs_left, ^setpos_abs_centre);
     cc_setsize($int3, 0, ^setsize_abs, ^setsize_minus);
@@ -42,7 +42,7 @@ if (string_length($string0) > 0) {
     cc_settextshadow(true);
     cc_settext($string2);
     $int2 = calc($int2 + $int3);
-    $int3 = if_getwidth(interface_499:com_8);
+    $int3 = if_getwidth(raids_lobby_partylist:sort_targetsize);
     .cc_create($component1, ^iftype_text, 2);
     .cc_setposition($int2, 0, ^setpos_abs_left, ^setpos_abs_centre);
     .cc_setsize($int3, 0, ^setsize_abs, ^setsize_minus);
@@ -64,7 +64,7 @@ if (string_length($string0) > 0) {
         .cc_settext("<col=9f9f9f>-</col>");
     }
     $int2 = calc($int2 + $int3);
-    $int3 = if_getwidth(interface_499:com_9);
+    $int3 = if_getwidth(raids_lobby_partylist:sort_name);
     cc_create($component1, ^iftype_text, 3);
     cc_setposition($int2, 0, ^setpos_abs_left, ^setpos_abs_centre);
     cc_setsize($int3, 0, ^setsize_abs, ^setsize_minus);
@@ -75,7 +75,7 @@ if (string_length($string0) > 0) {
     cc_settext($string1);
     $int2 = calc($int2 + $int3);
     $string7, $string0 = ~script632($string0);
-    $int3 = if_getwidth(interface_499:com_10);
+    $int3 = if_getwidth(raids_lobby_partylist:sort_comlevel);
     cc_create($component1, ^iftype_text, 4);
     cc_setposition($int2, 0, ^setpos_abs_left, ^setpos_abs_centre);
     cc_setsize($int3, 0, ^setsize_abs, ^setsize_minus);
@@ -90,7 +90,7 @@ if (string_length($string0) > 0) {
     }
     $int2 = calc($int2 + $int3);
     $string8, $string0 = ~script632($string0);
-    $int3 = if_getwidth(interface_499:com_11);
+    $int3 = if_getwidth(raids_lobby_partylist:sort_skilltotal);
     cc_create($component1, ^iftype_text, 5);
     cc_setposition($int2, 0, ^setpos_abs_left, ^setpos_abs_centre);
     cc_setsize($int3, 0, ^setsize_abs, ^setsize_minus);
@@ -106,7 +106,7 @@ if (string_length($string0) > 0) {
     $int2 = calc($int2 + $int3);
     $string9, $string0 = ~script632($string0);
     $string6 = ~string_prependzero($string3, 3);
-    $int3 = if_getwidth(interface_499:com_12);
+    $int3 = if_getwidth(raids_lobby_partylist:sort_scaling);
     cc_create($component1, ^iftype_text, 6);
     cc_setposition($int2, 0, ^setpos_abs_left, ^setpos_abs_centre);
     cc_setsize($int3, 0, ^setsize_abs, ^setsize_minus);
@@ -121,7 +121,7 @@ if (string_length($string0) > 0) {
     }
     $int2 = calc($int2 + $int3);
     $string10, $string0 = ~script632($string0);
-    $int3 = if_getwidth(interface_499:com_13);
+    $int3 = if_getwidth(raids_lobby_partylist:sort_challenge);
     cc_create($component1, ^iftype_graphic, 7);
     cc_setposition(calc($int2 + 2), 2, ^setpos_abs_left, ^setpos_abs_centre);
     cc_setsize(16, 16, ^setsize_abs, ^setsize_abs);
@@ -210,10 +210,10 @@ if ($int0 >= calc(40 - 1)) {
     $int5 = calc(%varclient_178 * 18);
     if ($int5 > if_getheight($component4)) {
         if_setscrollsize(0, $int5, $component4);
-        ~scrollbar_resize(interface_499:com_56, $component4, %varclient_179);
+        ~scrollbar_resize(raids_lobby_partylist:scrollbar, $component4, %varclient_179);
     } else {
         if_setscrollsize(0, 0, $component4);
-        ~scrollbar_resize(interface_499:com_56, $component4, 0);
+        ~scrollbar_resize(raids_lobby_partylist:scrollbar, $component4, 0);
         %varclient_179 = 0;
     }
     cc_deleteall($component4);
@@ -234,6 +234,6 @@ if ($int0 >= calc(40 - 1)) {
         cc_settextshadow(true);
         cc_settext("No parties are currently listed.");
     }
-    if_sethide(false, interface_499:com_57);
-    if_sethide(false, interface_499:com_59);
+    if_sethide(false, raids_lobby_partylist:refresh);
+    if_sethide(false, raids_lobby_partylist:myparty);
 }

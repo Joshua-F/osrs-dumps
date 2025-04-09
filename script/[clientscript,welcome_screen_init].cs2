@@ -1,14 +1,14 @@
 // 312
-[clientscript,welcome_screen_init](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, int $int10)
-~interface_dodger_init($component1, $component0, setbit(setbit(0, 12), 4), ^setpos_abs_centre, ^setpos_abs_top, false);
-~welcome_screen_lastlogin($component3);
-if_setonvartransmit("welcome_screen_lastlogin($component3){varplayer_261}", $component3);
-~welcome_screen_messages($component5, $component6, $component7);
-if_setonvartransmit("welcome_screen_messages($component5, $component6, $component7){varplayer_1781, varplayer_1226}", $component6);
-~welcome_screen_credit($component4, $component8, $component9);
-if_setonvartransmit("welcome_screen_credit($component4, $component8, $component9){varplayer_1780, varplayer_1226}", $component8);
+[clientscript,welcome_screen_init](component $content, component $dodger, component $clickhere_text, component $lastlogin, component $membership_area, component $messages_area, component $messages, component $messages_highlight, component $credit, component $membership_highlight, int $int)
+~interface_dodger_init($dodger, $content, setbit(setbit(0, 12), 4), ^setpos_abs_centre, ^setpos_abs_top, false);
+~welcome_screen_lastlogin($lastlogin);
+if_setonvartransmit("welcome_screen_lastlogin($lastlogin){if1}", $lastlogin);
+~welcome_screen_messages($messages_area, $messages, $messages_highlight);
+if_setonvartransmit("welcome_screen_messages($messages_area, $messages, $messages_highlight){account_messages, sidestone_keybindings_3}", $messages);
+~welcome_screen_credit($membership_area, $credit, $membership_highlight);
+if_setonvartransmit("welcome_screen_credit($membership_area, $credit, $membership_highlight){account_credit, sidestone_keybindings_3}", $credit);
 ~script2218;
-if_setonvartransmit("script2217{varplayer_264}", $component0);
-if_settext(~text_device("CLICK HERE TO PLAY", "TAP HERE TO PLAY"), $component2);
+if_setonvartransmit("script2217{if4}", $content);
+if_settext(~text_device("CLICK HERE TO PLAY", "TAP HERE TO PLAY"), $clickhere_text);
 ~script1188(struct_781);
-if_setopkey(1, ^key_escape, 0, interface_378:com_3);
+if_setopkey(1, ^key_escape, 0, welcome_screen:esckey);

@@ -1,9 +1,9 @@
 // 1051
-[clientscript,spinmodel](int $int0, int $int1, int $int2, int $int3, int $int4, component $component5, int $int6)
+[clientscript,spinmodel](int $int0, int $int1, int $int2, int $int3, int $int4, component $component, int $int6)
 def_int $int7 = 0;
 def_int $int8 = 0;
 def_int $int9 = 0;
-if ($int6 ! -1 & cc_find($component5, $int6) = true) {
+if ($int6 ! -1 & cc_find($component, $int6) = true) {
     $int7 = calc((cc_getmodelangle_x + $int2) % 2048);
     if ($int7 < 0) {
         $int7 = calc($int7 + 2048);
@@ -18,17 +18,17 @@ if ($int6 ! -1 & cc_find($component5, $int6) = true) {
     }
     cc_setmodelangle($int0, $int1, $int7, $int8, $int9, cc_getmodelzoom);
 } else if ($int6 = -1) {
-    $int7 = calc((if_getmodelangle_x($component5) + $int2) % 2048);
+    $int7 = calc((if_getmodelangle_x($component) + $int2) % 2048);
     if ($int7 < 0) {
         $int7 = calc($int7 + 2048);
     }
-    $int8 = calc((if_getmodelangle_y($component5) + $int3) % 2048);
+    $int8 = calc((if_getmodelangle_y($component) + $int3) % 2048);
     if ($int8 < 0) {
         $int8 = calc($int8 + 2048);
     }
-    $int9 = calc((if_getmodelangle_z($component5) + $int4) % 2048);
+    $int9 = calc((if_getmodelangle_z($component) + $int4) % 2048);
     if ($int9 < 0) {
         $int9 = calc($int9 + 2048);
     }
-    if_setmodelangle($int0, $int1, $int7, $int8, $int9, if_getmodelzoom($component5), $component5);
+    if_setmodelangle($int0, $int1, $int7, $int8, $int9, if_getmodelzoom($component), $component);
 }
