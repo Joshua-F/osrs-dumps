@@ -1,14 +1,14 @@
 // 243
-[proc,autocast_spellpos](int $int0, obj $obj1)(int, int)
-switch_obj ($obj1) {
+[proc,autocast_spellpos](int $int, obj $obj)(int, int)
+switch_obj ($obj) {
     case null :
-        return(~standard_autocast_spellpos($int0));
-    case obj_9013 :
-        return(~arceuus_autocast_spellpos($int0));
-    case obj_4675 :
-        return(~ancient_autocast_spellpos($int0));
-    case obj_4170 :
-        switch_int ($int0) {
+        return(~standard_autocast_spellpos($int));
+    case sos_skull_sceptre :
+        return(~arceuus_autocast_spellpos($int));
+    case staff_of_zaros :
+        return(~ancient_autocast_spellpos($int));
+    case slayer_staff :
+        switch_int ($int) {
             case 17 :
                 return(-33, -52);
             case 18 :
@@ -30,8 +30,8 @@ switch_obj ($obj1) {
             case 51 :
                 return(60, 52);
         }
-    case obj_8841 :
-        switch_int ($int0) {
+    case pest_void_knight_mace :
+        switch_int ($int) {
             case 17 :
                 return(-33, -52);
             case 19 :
@@ -53,8 +53,8 @@ switch_obj ($obj1) {
             case 51 :
                 return(60, 52);
         }
-    case obj_1409 :
-        switch_int ($int0) {
+    case ibanstaff :
+        switch_int ($int) {
             case 1 :
                 return(-60, -66);
             case 2 :
@@ -98,8 +98,8 @@ switch_obj ($obj1) {
             case 47 :
                 return(-60, 64);
         }
-    case obj_11791, obj_22296, obj_24144 :
-        switch_int ($int0) {
+    case sotd, staff_of_light, staff_of_balance :
+        switch_int ($int) {
             case 1 :
                 return(-60, -66);
             case 2 :
@@ -145,20 +145,20 @@ switch_obj ($obj1) {
             case 18 :
                 return(-20, 64);
             case 20 :
-                if ($obj1 = obj_11791) {
+                if ($obj = sotd) {
                     return(20, 64);
                 }
             case 52 :
-                if ($obj1 = obj_22296) {
+                if ($obj = staff_of_light) {
                     return(20, 64);
                 }
             case 19 :
-                if ($obj1 = obj_24144) {
+                if ($obj = staff_of_balance) {
                     return(20, 64);
                 }
         }
-    case obj_27785, obj_27788, obj_27676, obj_27679 :
-        switch_int ($int0) {
+    case wild_cave_sceptre_uncharged_recol, wild_cave_sceptre_charged_recol, wild_cave_accursed_uncharged_recol, wild_cave_accursed_charged_recol :
+        switch_int ($int) {
             case 1 :
                 return(-60, -66);
             case 2 :
@@ -202,13 +202,13 @@ switch_obj ($obj1) {
             case 20 :
                 return(-60, 64);
         }
-    case obj_21006 :
-        return(~arceuus_autocast_spellpos($int0));
-    case obj_4710 :
-        if (%varplayerbit_4070 = 3) {
-            return(~arceuus_autocast_spellpos($int0));
+    case kodai_wand :
+        return(~arceuus_autocast_spellpos($int));
+    case barrows_ahrim_weapon :
+        if (%spellbook = 3) {
+            return(~arceuus_autocast_spellpos($int));
         } else {
-            switch_int ($int0) {
+            switch_int ($int) {
                 case 1 :
                     return(-60, -62);
                 case 2 :
@@ -251,13 +251,13 @@ switch_obj ($obj1) {
                     return(60, 61);
             }
         }
-    case obj_21276 :
-        if (%varplayerbit_4070 = 0) {
-            if ($int0 = 17) {
+    case sos_skull_sceptre_imbued :
+        if (%spellbook = 0) {
+            if ($int = 17) {
                 return(0, 0);
             }
-        } else if (%varplayerbit_4070 = 3) {
-            return(~arceuus_autocast_spellpos($int0));
+        } else if (%spellbook = 3) {
+            return(~arceuus_autocast_spellpos($int));
         }
 }
 return(-1, -1);

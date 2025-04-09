@@ -1,19 +1,19 @@
 // 1076
-[proc,shop_main_update](component $component0, int $int1, inv $inv2, obj $obj3, int $int4)
+[proc,shop_main_update](component $component, int $int1, inv $inv, obj $obj3, int $int4)
 def_obj $obj5 = null;
 def_int $int6 = -1;
 def_int $int7 = 0;
 while ($int7 < $int1) {
-    if (cc_find($component0, calc($int7 + 1)) = true) {
-        $obj5 = inv_getobj($inv2, $int7);
+    if (cc_find($component, calc($int7 + 1)) = true) {
+        $obj5 = inv_getobj($inv, $int7);
         if ($obj5 ! null) {
             cc_sethide(false);
-            if (~script5022($inv2) = true) {
+            if (~script5022($inv) = true) {
                 cc_setobject($obj5, 1);
             } else {
-                cc_setobject($obj5, inv_getnum($inv2, $int7));
+                cc_setobject($obj5, inv_getnum($inv, $int7));
             }
-            if (~on_mobile = true & %varplayerbit_6348 > 0) {
+            if (~on_mobile = true & %shop_quantity > 0) {
                 cc_setop(1, ~script2228);
                 cc_setop(6, "Value");
             } else {
@@ -26,7 +26,7 @@ while ($int7 < $int1) {
                 } else {
                     cc_setop(9, "");
                 }
-                if (.cc_find(interface_300:com_16, 0) = true) {
+                if (.cc_find(shopmain:items, 0) = true) {
                     .cc_setsize(34, 34, ^setsize_abs, ^setsize_abs);
                     .cc_setposition(cc_getx, cc_gety, ^setpos_abs_left, ^setpos_abs_top);
                     .cc_setgraphic("prayerglow,0");
@@ -39,7 +39,7 @@ while ($int7 < $int1) {
             $int6 = cc_gety;
         } else {
             cc_sethide(true);
-            cc_setobject_nonum(obj_6512, 1);
+            cc_setobject_nonum(blankobject, 1);
             cc_setopbase("");
             cc_settrans(0);
             cc_setontimer(null);
@@ -52,13 +52,13 @@ if ($int6 ! -1) {
 } else {
     $int6 = 0;
 }
-if ($int6 > if_getheight($component0)) {
-    if_setscrollsize(0, $int6, $component0);
-    ~scrollbar_resize(interface_300:com_18, $component0, if_getscrolly($component0));
-    if_sethide(false, interface_300:com_18);
+if ($int6 > if_getheight($component)) {
+    if_setscrollsize(0, $int6, $component);
+    ~scrollbar_resize(shopmain:scrollbar, $component, if_getscrolly($component));
+    if_sethide(false, shopmain:scrollbar);
 } else {
-    if_setscrollpos(0, 0, interface_300:com_16);
-    if_setscrollsize(0, 0, interface_300:com_16);
-    ~scrollbar_resize(interface_300:com_18, $component0, 0);
-    if_sethide(true, interface_300:com_18);
+    if_setscrollpos(0, 0, shopmain:items);
+    if_setscrollsize(0, 0, shopmain:items);
+    ~scrollbar_resize(shopmain:scrollbar, $component, 0);
+    if_sethide(true, shopmain:scrollbar);
 }

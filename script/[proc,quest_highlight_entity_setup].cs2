@@ -2,16 +2,16 @@
 [proc,quest_highlight_entity_setup]
 highlight_npctype_clear(13);
 highlight_loctype_clear(16);
-def_dbrow $dbrow0 = null;
-if (%varplayerbit_9619 = 1) {
-    if (%varplayer_3679 ! null) {
-        ~quest_highlight_entity(%varplayer_3679);
+def_dbrow $dbrow = null;
+if (%quest_start_highlight = 1) {
+    if (%latest_quest_journal ! null) {
+        ~quest_highlight_entity(%latest_quest_journal);
     }
-} else if (%varplayerbit_9619 = 2) {
-    db_listall(dbtable_0);
-    $dbrow0 = db_findnext;
-    while ($dbrow0 ! null) {
-        ~quest_highlight_entity($dbrow0);
-        $dbrow0 = db_findnext;
+} else if (%quest_start_highlight = 2) {
+    db_listall(quest);
+    $dbrow = db_findnext;
+    while ($dbrow ! null) {
+        ~quest_highlight_entity($dbrow);
+        $dbrow = db_findnext;
     }
 }

@@ -1,20 +1,20 @@
 // 818
-[proc,script818](component $component0)
+[proc,script818](component $component)
 cc_clearops;
 .cc_clearops;
-def_inv $inv1 = enum(int, inv, enum_150, calc(%varplayerbit_4439 - 1));
-if ($inv1 = null) {
+def_inv $inv = enum(int, inv, enum_150, calc(%ge_selectedslot - 1));
+if ($inv = null) {
     cc_sethide(true);
     .cc_sethide(true);
     return;
 }
-def_obj $obj2 = inv_getobj($inv1, 0);
-def_int $int3 = 0;
-if ($obj2 ! null) {
-    $int3 = inv_getnum($inv1, 0);
+def_obj $obj = inv_getobj($inv, 0);
+def_int $int = 0;
+if ($obj ! null) {
+    $int = inv_getnum($inv, 0);
     cc_sethide(false);
-    if (oc_cert($obj2) ! $obj2) {
-        if ($int3 = 1) {
+    if (oc_cert($obj) ! $obj) {
+        if ($int = 1) {
             cc_setop(1, "Collect-item");
             cc_setop(2, "Collect-note");
         } else {
@@ -26,17 +26,17 @@ if ($obj2 ! null) {
     }
     cc_setop(3, "Bank");
     cc_setop(10, "Examine");
-    cc_setobject($obj2, $int3);
-    cc_setopbase("<col=ff9040><oc_name($obj2)></col>");
+    cc_setobject($obj, $int);
+    cc_setopbase("<col=ff9040><oc_name($obj)></col>");
 } else {
     cc_sethide(true);
 }
-$obj2 = inv_getobj($inv1, 1);
-if ($obj2 ! null) {
-    $int3 = inv_getnum($inv1, 1);
+$obj = inv_getobj($inv, 1);
+if ($obj ! null) {
+    $int = inv_getnum($inv, 1);
     .cc_sethide(false);
-    if (oc_cert($obj2) ! $obj2) {
-        if ($int3 = 1) {
+    if (oc_cert($obj) ! $obj) {
+        if ($int = 1) {
             .cc_setop(1, "Collect-item");
             .cc_setop(2, "Collect-note");
         } else {
@@ -48,8 +48,8 @@ if ($obj2 ! null) {
     }
     .cc_setop(3, "Bank");
     .cc_setop(10, "Examine");
-    .cc_setobject($obj2, $int3);
-    .cc_setopbase("<col=ff9040><oc_name($obj2)></col>");
+    .cc_setobject($obj, $int);
+    .cc_setopbase("<col=ff9040><oc_name($obj)></col>");
 } else {
     .cc_sethide(true);
 }

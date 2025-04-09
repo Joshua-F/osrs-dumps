@@ -1,11 +1,11 @@
 // 154
-[proc,interface_inv_draw_slot_big](inv $inv0, int $int1, component $component2, int $int3, int $int4, component $component5, string $string0, string $string1, string $string2, string $string3, string $string4, string $string5, string $string6, string $string7, string $string8)
-def_obj $obj6 = null;
+[proc,interface_inv_draw_slot_big](inv $inv, int $int1, component $component2, int $int3, int $int4, component $component5, string $string0, string $string1, string $string2, string $string3, string $string4, string $string5, string $string6, string $string7, string $string8)
+def_obj $obj = null;
 if (cc_find($component2, $int3) = true) {
-    $obj6 = inv_getobj($inv0, $int1);
-    if ($obj6 ! null) {
-        cc_setobject($obj6, inv_getnum($inv0, $int1));
-        cc_setopbase("<col=ff9040><oc_name($obj6)></col>");
+    $obj = inv_getobj($inv, $int1);
+    if ($obj ! null) {
+        cc_setobject($obj, inv_getnum($inv, $int1));
+        cc_setopbase("<col=ff9040><oc_name($obj)></col>");
         cc_setop(1, $string0);
         cc_setop(2, $string1);
         cc_setop(3, $string2);
@@ -21,9 +21,9 @@ if (cc_find($component2, $int3) = true) {
             cc_setdragdeadtime(5);
         }
         if ($int4 = 1) {
-            cc_setondragcomplete("interface_inv_dragcomplete_swap_big($inv0, event_comsubid, event_comsubid2, event_com, $int4, $component5, $string0, $string1, $string2, $string3, $string4, $string5, $string6, $string7, $string8)");
+            cc_setondragcomplete("interface_inv_dragcomplete_swap_big($inv, event_comsubid, event_comsubid2, event_com, $int4, $component5, $string0, $string1, $string2, $string3, $string4, $string5, $string6, $string7, $string8)");
         } else if ($int4 = 2) {
-            cc_setondragcomplete("interface_inv_dragcomplete_shuffle_big($inv0, event_comsubid, event_comsubid2, event_com, $int4, $component5, $string0, $string1, $string2, $string3, $string4, $string5, $string6, $string7, $string8)");
+            cc_setondragcomplete("interface_inv_dragcomplete_shuffle_big($inv, event_comsubid, event_comsubid2, event_com, $int4, $component5, $string0, $string1, $string2, $string3, $string4, $string5, $string6, $string7, $string8)");
         }
         if ($int4 ! 0 & $component5 ! null) {
             cc_setondrag("interface_inv_drag_slot($int1, $component2, $component5, event_mousey)");

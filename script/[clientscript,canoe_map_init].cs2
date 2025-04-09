@@ -1,14 +1,14 @@
 // 3099
-[clientscript,canoe_map_init](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7)
-cc_deleteall($component0);
-cc_deleteall($component1);
-cc_deleteall($component2);
-cc_deleteall($component3);
-cc_deleteall($component4);
-cc_deleteall($component5);
-cc_deleteall($component6);
-cc_deleteall($component7);
-cc_create($component0, ^iftype_text, 0);
+[clientscript,canoe_map_init](component $where_to_go_text, component $close, component $lumbridge, component $champions, component $barbarian, component $edgeville, component $wilderness, component $sanctuary)
+cc_deleteall($where_to_go_text);
+cc_deleteall($close);
+cc_deleteall($lumbridge);
+cc_deleteall($champions);
+cc_deleteall($barbarian);
+cc_deleteall($edgeville);
+cc_deleteall($wilderness);
+cc_deleteall($sanctuary);
+cc_create($where_to_go_text, ^iftype_text, 0);
 cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
 cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
 cc_setcolour(0xc8d1db);
@@ -16,16 +16,16 @@ cc_settextshadow(true);
 cc_settextfont(q8_full);
 cc_settext("Please Select <br>Your Destination");
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-cc_create($component1, ^iftype_graphic, 0);
+cc_create($close, ^iftype_graphic, 0);
 cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
 cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
 cc_setgraphic("close_buttons,4");
 if (~on_mobile = false) {
-    if_setonmouserepeat("close_mouse_interact($component1, true, 0)", $component1);
-    if_setonmouseleave("close_mouse_interact($component1, false, 0)", $component1);
+    if_setonmouserepeat("close_mouse_interact($close, true, 0)", $close);
+    if_setonmouseleave("close_mouse_interact($close, false, 0)", $close);
 }
-if_setop(1, "Close", $component1);
-if_setonop("canoe_close", $component1);
+if_setop(1, "Close", $close);
+if_setonop("canoe_close", $close);
 def_int $int8 = 1;
 def_int $int9 = 1;
 def_int $int10 = 1;
@@ -34,32 +34,32 @@ def_int $int12 = 1;
 def_int $int13 = 1;
 $int8, $int9, $int10, $int11, $int12, $int13 = ~canoe_return_locations;
 if ($int8 ! 1) {
-    ~canoe_location_setup($component2, "Lumbridge", false, model_12103, model_12104, "Travel to<col=ff9040> Lumbridge", 0, 15);
+    ~canoe_location_setup($lumbridge, "Lumbridge", false, model_12103, model_12104, "Travel to<col=ff9040> Lumbridge", 0, 15);
 }
 if ($int9 ! 1) {
-    ~canoe_location_setup($component3, "Champions <br>Guild", false, model_12103, model_12104, "Travel to<col=ff9040> Champions Guild", -20, 0);
+    ~canoe_location_setup($champions, "Champions <br>Guild", false, model_12103, model_12104, "Travel to<col=ff9040> Champions Guild", -20, 0);
 }
 if ($int10 ! 1) {
-    ~canoe_location_setup($component4, "Barbarian <br> Village", false, model_12103, model_12104, "Travel to<col=ff9040> Barbarian Village", -10, 20);
+    ~canoe_location_setup($barbarian, "Barbarian <br> Village", false, model_12103, model_12104, "Travel to<col=ff9040> Barbarian Village", -10, 20);
 }
 if ($int11 ! 1) {
-    ~canoe_location_setup($component5, "Edgeville", false, model_12103, model_12104, "Travel to<col=ff9040> Edgeville", -10, 25);
+    ~canoe_location_setup($edgeville, "Edgeville", false, model_12103, model_12104, "Travel to<col=ff9040> Edgeville", -10, 25);
 }
 if ($int12 ! 1) {
-    ~canoe_location_setup($component6, "Wilderness Pond - <br>No canoe trees here.", true, null, null, "Travel to<col=ff9040> Wilderness Pond", 0, 0);
+    ~canoe_location_setup($wilderness, "Wilderness Pond - <br>No canoe trees here.", true, null, null, "Travel to<col=ff9040> Wilderness Pond", 0, 0);
 }
 if ($int13 ! 1) {
-    ~canoe_location_setup($component7, "Ferox <br> Enclave", false, model_12103, model_12104, "Travel to<col=ff9040> Ferox Enclave", -15, 35);
+    ~canoe_location_setup($sanctuary, "Ferox <br> Enclave", false, model_12103, model_12104, "Travel to<col=ff9040> Ferox Enclave", -15, 35);
 }
-switch_int (%varplayerbit_1846) {
+switch_int (%canoe_startfrom) {
     case 3 :
-        ~canoe_location_you_are_here($component4);
+        ~canoe_location_you_are_here($barbarian);
     case 2 :
-        ~canoe_location_you_are_here($component3);
+        ~canoe_location_you_are_here($champions);
     case 4 :
-        ~canoe_location_you_are_here($component5);
+        ~canoe_location_you_are_here($edgeville);
     case 1 :
-        ~canoe_location_you_are_here($component2);
+        ~canoe_location_you_are_here($lumbridge);
     case 5 :
-        ~canoe_location_you_are_here($component7);
+        ~canoe_location_you_are_here($sanctuary);
 }

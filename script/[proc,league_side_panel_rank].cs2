@@ -1,20 +1,20 @@
 // 2452
-[proc,league_side_panel_rank](component $component0, int $rgb1)
-def_component $component2 = interface_656:com_15;
-def_component $component3 = interface_656:com_14;
-def_component $component4 = interface_656:com_10;
-def_component $component5 = interface_656:com_11;
-if_setcolour($rgb1, $component3);
-if_setop(1, "Show <col=ff9040>Ranks</col>", $component4);
-if_setgraphic(enum(int, graphic, enum_5199, ~league_current_rank), $component2);
-if_setonvartransmit("league_side_panel_rank_transmit($component2){varplayer_2614}", $component4);
+[proc,league_side_panel_rank](component $component, int $rgb)
+def_component $rank_trophy = league_side_panel:rank_trophy;
+def_component $rank_text = league_side_panel:rank_text;
+def_component $rank = league_side_panel:rank;
+def_component $rank_backing = league_side_panel:rank_backing;
+if_setcolour($rgb, $rank_text);
+if_setop(1, "Show <col=ff9040>Ranks</col>", $rank);
+if_setgraphic(enum(int, graphic, enum_5199, ~league_current_rank), $rank_trophy);
+if_setonvartransmit("league_side_panel_rank_transmit($rank_trophy){league_points_completed}", $rank);
 if (~on_mobile = false) {
-    if_setonmouserepeat("league_side_panel_misc_hover(true, $component3, $rgb1)", $component4);
-    if_setonmouseleave("league_side_panel_misc_hover(false, $component3, $rgb1)", $component4);
+    if_setonmouserepeat("league_side_panel_misc_hover(true, $rank_text, $rgb)", $rank);
+    if_setonmouseleave("league_side_panel_misc_hover(false, $rank_text, $rgb)", $rank);
 }
-def_string $string0 = "Open the rank interface";
+def_string $string = "Open the rank interface";
 if (~on_mobile = false) {
-    if_setonmouserepeat("tooltip_mouserepeat($component4, 0, $component0, $string0, 25, 190)", $component5);
-    if_setonmouseleave("deltooltip($component0)", $component5);
+    if_setonmouserepeat("tooltip_mouserepeat($rank, 0, $component, $string, 25, 190)", $rank_backing);
+    if_setonmouseleave("deltooltip($component)", $rank_backing);
 }
-def_int $int6 = ~script3953($component5, $int6, 24, if_getwidth($component5), 0, 0, 0);
+def_int $int = ~script3953($rank_backing, $int, 24, if_getwidth($rank_backing), 0, 0, 0);
