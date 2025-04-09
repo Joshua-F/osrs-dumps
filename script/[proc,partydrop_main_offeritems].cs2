@@ -7,12 +7,12 @@ while ($int9 > 0) {
     $int9 = calc($int9 - 1);
     if (cc_find($component1, $int9) = ^true) {
         cc_clearops;
-        $obj8 = inv_getobj(inv_92, $int9);
+        $obj8 = inv_getobj(partyroom_tempinv, $int9);
         if ($obj8 ! null) {
             $int7 = 1;
             cc_sethide(false);
-            cc_setobject($obj8, inv_getnum(inv_92, $int9));
-            switch_int (%varplayerbit_7792) {
+            cc_setobject($obj8, inv_getnum(partyroom_tempinv, $int9));
+            switch_int (%farming_tools_selectedquantity) {
                 case default :
                     cc_setop(1, "Withdraw 1");
                     cc_setop(3, "Withdraw 5");
@@ -52,7 +52,7 @@ if ($int7 = 1) {
     if_setonop("opsound(event_op, 2)", $component6);
 }
 if_setontimer(null, $component6);
-switch_int (%varplayerbit_7792) {
+switch_int (%farming_tools_selectedquantity) {
     case default :
         ~partydrop_main_quantitybutton(true, null, $component2, "1");
         ~partydrop_main_quantitybutton(false, false, $component3, "5");

@@ -11,18 +11,18 @@ def_string $string0 = "";
 while ($int3 < $int1) {
     $dbrow2 = enum(int, dbrow, enum_5626, $int3);
     if ($dbrow2 ! null) {
-        $varp6 = db_getfield($dbrow2, dbtable_81:col2, 0);
+        $varp6 = db_getfield($dbrow2, hiscores_bosses_info:bossvarp, 0);
         $int4 = ~max(0, hiscore_getbosskills($varp6));
         $int5 = ~max(0, calc(hiscore_getbossrank($varp6) + 1));
-        if (cc_find(interface_894:com_9, $int0) = ^true) {
+        if (cc_find(hiscores:hiscores_bosses, $int0) = ^true) {
             cc_settext(~hiscores_tostring($int4));
         }
         if ($int5 > 0) {
-            $string0 = "Boss: <db_getfield($dbrow2, dbtable_81:col0, 0)><br>Rank: <~tostring_spacer($int5, ",")><br>Score: <~tostring_spacer($int4, ",")>";
+            $string0 = "Boss: <db_getfield($dbrow2, hiscores_bosses_info:bossname, 0)><br>Rank: <~tostring_spacer($int5, ",")><br>Score: <~tostring_spacer($int4, ",")>";
         } else {
-            $string0 = "Boss: <db_getfield($dbrow2, dbtable_81:col0, 0)><br>Rank: Unranked";
+            $string0 = "Boss: <db_getfield($dbrow2, hiscores_bosses_info:bossname, 0)><br>Rank: Unranked";
         }
-        if (cc_find(interface_894:com_9, $int3) = ^true) {
+        if (cc_find(hiscores:hiscores_bosses, $int3) = ^true) {
             ~script7516($string0, 0, 0);
         }
         $int0 = calc($int0 + 2);

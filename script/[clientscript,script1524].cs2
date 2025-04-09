@@ -1,17 +1,17 @@
 // 1524
 [clientscript,script1524](string $string0, int $int0, boolean $boolean1, int $int2)
-if (if_hassub(enum(component, component, ~toplevel_getcomponents, interface_161:com_16)) = false) {
+if (if_hassub(enum(component, component, ~toplevel_getcomponents, toplevel_osrs_stretch:mainmodal)) = false) {
     return;
 }
-if_sethide(false, interface_507:com_11);
+if_sethide(false, raids_lobby_partydetails:list);
 def_int $int3 = calc(%varclient_178 * 14);
-if ($int3 > if_getheight(interface_507:com_11)) {
-    if_setscrollsize(0, $int3, interface_507:com_11);
-    ~scrollbar_resize(interface_507:com_12, interface_507:com_11, %varclient_179);
+if ($int3 > if_getheight(raids_lobby_partydetails:list)) {
+    if_setscrollsize(0, $int3, raids_lobby_partydetails:list);
+    ~scrollbar_resize(raids_lobby_partydetails:scrollbar, raids_lobby_partydetails:list, %varclient_179);
 } else {
-    if_setscrollsize(0, 0, interface_507:com_11);
+    if_setscrollsize(0, 0, raids_lobby_partydetails:list);
     %varclient_179 = 0;
-    ~scrollbar_resize(interface_507:com_12, interface_507:com_11, 0);
+    ~scrollbar_resize(raids_lobby_partydetails:scrollbar, raids_lobby_partydetails:list, 0);
 }
 if (%varclient_181 ! 0 & %varclient_181 ! 1 & %varclient_181 ! 2 & %varclient_181 ! 3 & %varclient_181 ! 4 & %varclient_181 ! 5 & %varclient_181 ! 6 & %varclient_181 ! 7) {
     %varclient_181 = 0;
@@ -19,8 +19,8 @@ if (%varclient_181 ! 0 & %varclient_181 ! 1 & %varclient_181 ! 2 & %varclient_18
 ~raids_partydetails_setsort(-1);
 ~raids_partydetails_closestats;
 ~script1537;
-if_setonvartransmit("script1536{varplayer_1430}", interface_507:com_11);
-~steelborder(interface_507:com_2, $string0, 0);
+if_setonvartransmit("script1536{raids_temp_transmit1}", raids_lobby_partydetails:list);
+~steelborder(raids_lobby_partydetails:frame, $string0, 0);
 def_string $string1 = "";
 if ($int0 = 2) {
     if ($boolean1 = true) {
@@ -30,24 +30,24 @@ if ($int0 = 2) {
     } else {
         $string1 = "<col=7f7f7f>Advertise (0)</col>";
     }
-    ~script1558(interface_507:com_32, $string1, interface_507:com_3, enum_1539, -1);
-    if_sethide(false, interface_507:com_32);
-    ~script1558(interface_507:com_33, "<col=ff0000>Disband</col>", interface_507:com_3, enum_1539, -1);
-    if_sethide(false, interface_507:com_33);
+    ~script1558(raids_lobby_partydetails:advertise, $string1, raids_lobby_partydetails:contents, enum_1539, -1);
+    if_sethide(false, raids_lobby_partydetails:advertise);
+    ~script1558(raids_lobby_partydetails:disband, "<col=ff0000>Disband</col>", raids_lobby_partydetails:contents, enum_1539, -1);
+    if_sethide(false, raids_lobby_partydetails:disband);
 } else if ($int0 = 1) {
-    ~script1558(interface_507:com_34, "<col=ff0000>Leave</col>", interface_507:com_3, enum_1539, -1);
-    if_sethide(false, interface_507:com_34);
+    ~script1558(raids_lobby_partydetails:join, "<col=ff0000>Leave</col>", raids_lobby_partydetails:contents, enum_1539, -1);
+    if_sethide(false, raids_lobby_partydetails:join);
 } else {
-    ~script1558(interface_507:com_34, "<col=00ff00>Join</col>", interface_507:com_3, enum_1539, -1);
-    if_sethide(false, interface_507:com_34);
+    ~script1558(raids_lobby_partydetails:join, "<col=00ff00>Join</col>", raids_lobby_partydetails:contents, enum_1539, -1);
+    if_sethide(false, raids_lobby_partydetails:join);
 }
-~script1558(interface_507:com_35, "Back", interface_507:com_3, enum_1539, -1);
-if_sethide(false, interface_507:com_35);
-~script1558(interface_507:com_36, "Refresh", interface_507:com_3, enum_1539, -1);
-if_sethide(false, interface_507:com_36);
-~script1530(interface_507:com_13, "Preferred party size", $int0);
-~script1530(interface_507:com_17, "Preferred combat level", $int0);
-~script1530(interface_507:com_21, "Preferred skill total", $int0);
-~script1530(interface_507:com_22, "Scaling", $int0);
-~script1530(interface_507:com_23, "Challenge mode", $int0);
-~script1530(interface_507:com_24, "Large Raids", $int0);
+~script1558(raids_lobby_partydetails:back, "Back", raids_lobby_partydetails:contents, enum_1539, -1);
+if_sethide(false, raids_lobby_partydetails:back);
+~script1558(raids_lobby_partydetails:refresh, "Refresh", raids_lobby_partydetails:contents, enum_1539, -1);
+if_sethide(false, raids_lobby_partydetails:refresh);
+~script1530(raids_lobby_partydetails:preferred_size, "Preferred party size", $int0);
+~script1530(raids_lobby_partydetails:preferred_comlevel, "Preferred combat level", $int0);
+~script1530(raids_lobby_partydetails:preferred_skilltotal, "Preferred skill total", $int0);
+~script1530(raids_lobby_partydetails:scaling_layer, "Scaling", $int0);
+~script1530(raids_lobby_partydetails:challenge_layer, "Challenge mode", $int0);
+~script1530(raids_lobby_partydetails:mappool_layer, "Large Raids", $int0);

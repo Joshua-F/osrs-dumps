@@ -1,16 +1,16 @@
 // 1142
 [proc,bond_convert_setup](int $int0, component $component1, component $component2, component $component3, component $component4, component $component5, int $int6, int $int7, int $int8, int $int9, component $component10, component $component11, component $component12, component $component13, component $component14, component $component15, component $component16, int $int17)
-def_int $int18 = inv_total(inv_93, obj_13192);
-def_int $int19 = inv_total(inv_93, obj_995);
+def_int $int18 = inv_total(inv, osrs_bond_untradeable);
+def_int $int19 = inv_total(inv, coins);
 if (cc_find($component5, $int6) = ^true) {
-    cc_setobject_alwaysnum(obj_13192, $int18);
+    cc_setobject_alwaysnum(osrs_bond_untradeable, $int18);
 }
 if (cc_find($component5, $int7) = ^true) {
-    cc_setobject_alwaysnum(obj_995, $int19);
+    cc_setobject_alwaysnum(coins, $int19);
 }
 def_int $int20 = 0;
-if (%varplayer_263 > 0) {
-    $int20 = calc($int19 / %varplayer_263);
+if (%if3 > 0) {
+    $int20 = calc($int19 / %if3);
 }
 def_int $int21 = min($int18, $int20);
 $int0 = max(0, min($int0, $int21));
@@ -18,11 +18,11 @@ if (cc_find($component5, $int8) = ^true) {
     cc_settext(tostring($int0));
 }
 if_setonop("script4208($int0, $component1, $component2, $component3, $component4)", $component16);
-if_setonvartransmit("bond_convert_setup($int0, $component1, $component2, $component3, $component4, $component5, $int6, $int7, $int8, $int9, $component10, $component11, $component12, $component13, $component14, $component15, $component16, $int17){varplayer_263}", $component5);
-if_setoninvtransmit("bond_convert_setup($int0, $component1, $component2, $component3, $component4, $component5, $int6, $int7, $int8, $int9, $component10, $component11, $component12, $component13, $component14, $component15, $component16, $int17){inv_93}", $component5);
+if_setonvartransmit("bond_convert_setup($int0, $component1, $component2, $component3, $component4, $component5, $int6, $int7, $int8, $int9, $component10, $component11, $component12, $component13, $component14, $component15, $component16, $int17){if3}", $component5);
+if_setoninvtransmit("bond_convert_setup($int0, $component1, $component2, $component3, $component4, $component5, $int6, $int7, $int8, $int9, $component10, $component11, $component12, $component13, $component14, $component15, $component16, $int17){inv}", $component5);
 if ($int0 > 0) {
     if (cc_find($component5, $int9) = ^true) {
-        cc_settext("<~tostring_spacer(calc($int0 * %varplayer_263), ",")> coins");
+        cc_settext("<~tostring_spacer(calc($int0 * %if3), ",")> coins");
     }
     if_sethide(false, $component16);
     if_setposition($int17, 0, ^setpos_abs_left, ^setpos_abs_bottom, $component15);
@@ -43,7 +43,7 @@ if_setonop("bond_convert_setquantity($int22, $component1, $component2, $componen
 $int22 = max(0, calc($int0 - 1));
 if_setonop("bond_convert_setquantity($int22, $component1, $component2, $component3, $component4, $component5, $int6, $int7, $int8, $int9, $component10, $component11, $component12, $component13, $component14, $component15, $component16, $int17)", $component11);
 $int22 = calc($int0 + 1);
-if (%varplayer_263 <= 0) {
+if (%if3 <= 0) {
     if_setonop("bond_convert_setquantity($int0, $component1, $component2, $component3, $component4, $component5, $int6, $int7, $int8, $int9, $component10, $component11, $component12, $component13, $component14, $component15, $component16, $int17)", $component12);
     if_setonop("bond_convert_setquantity($int0, $component1, $component2, $component3, $component4, $component5, $int6, $int7, $int8, $int9, $component10, $component11, $component12, $component13, $component14, $component15, $component16, $int17)", $component13);
 } else if ($int22 > $int18) {

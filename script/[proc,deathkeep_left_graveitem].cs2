@@ -1,6 +1,6 @@
 // 979
 [proc,deathkeep_left_graveitem](obj $obj0, int $int1, obj $obj2, int $int3, int $int4, int $int5, int $int6, int $int7, int $int8)(int, int, int)
-cc_create(interface_4:com_7, ^iftype_graphic, $int8);
+cc_create(deathkeep:grave, ^iftype_graphic, $int8);
 cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
 def_int $int9 = calc(17 + $int8 / $int5 * (32 + $int6));
 cc_setposition(calc($int7 + $int8 % $int5 * (36 + $int6)), $int9, ^setpos_abs_left, ^setpos_abs_top);
@@ -17,14 +17,14 @@ if ($int3 > 1) {
 } else {
     $string1 = "<br>Expected fee: <col=ff0000>None</col>";
 }
-if ($obj2 = obj_369) {
+if ($obj2 = burntfish5) {
     if ($int1 > 1) {
-        if (%varplayerbit_1777 = 2) {
+        if (%ironman = 2) {
             $string0 = "<~tostring_spacer($int1, ",")> x <oc_name($obj0)>: A downgraded version of these items will drop on the ground.";
         } else {
             $string0 = "<~tostring_spacer($int1, ",")> x <oc_name($obj0)>: A downgraded version of these items will be sent to your gravestone.<$string1>";
         }
-    } else if (%varplayerbit_1777 = 2) {
+    } else if (%ironman = 2) {
         $string0 = "<oc_name($obj0)>: A downgraded version of this item will drop on the ground.";
     } else {
         $string0 = "<oc_name($obj0)>: A downgraded version of this item will be sent to your gravestone.<$string1>";
@@ -32,12 +32,12 @@ if ($obj2 = obj_369) {
     cc_setoutline(2);
 } else {
     if ($int1 > 1) {
-        if (%varplayerbit_1777 = 2) {
+        if (%ironman = 2) {
             $string0 = "<~tostring_spacer($int1, ",")> x <oc_name($obj0)>: These items will drop on the ground.";
         } else {
             $string0 = "<~tostring_spacer($int1, ",")> x <oc_name($obj0)>: These items will be sent to your gravestone.<$string1>";
         }
-    } else if (%varplayerbit_1777 = 2) {
+    } else if (%ironman = 2) {
         $string0 = "<oc_name($obj0)>: This item will drop on the ground.";
     } else {
         $string0 = "<oc_name($obj0)>: This item will be sent to your gravestone.<$string1>";

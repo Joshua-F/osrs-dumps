@@ -1,15 +1,15 @@
 // 6080
 [proc,script6080]
-cc_deleteall(interface_12:com_52);
-cc_deleteall(interface_12:com_53);
-cc_deleteall(interface_12:com_16);
-if (%varplayerbit_4150 = 15) {
-    if_sethide(false, interface_12:com_15);
+cc_deleteall(bankmain:potionstore_items);
+cc_deleteall(bankmain:potionstore_scrollbar);
+cc_deleteall(bankmain:potionstore_background);
+if (%bank_currenttab = 15) {
+    if_sethide(false, bankmain:potionstore_container);
 } else {
-    if_sethide(true, interface_12:com_15);
+    if_sethide(true, bankmain:potionstore_container);
     return;
 }
-~create_graphic(interface_12:com_16, 0, tradebacking, 0, 0, ^setpos_abs_left, ^setpos_abs_bottom, 0, 0, ^setsize_minus, ^setsize_minus);
+~create_graphic(bankmain:potionstore_background, 0, tradebacking, 0, 0, ^setpos_abs_left, ^setpos_abs_bottom, 0, 0, ^setsize_minus, ^setsize_minus);
 def_int $int0 = 0;
 def_int $int1 = 0;
 def_int $int2 = 0;
@@ -33,35 +33,35 @@ def_int $int17 = 0;
 def_int $int18 = 0;
 def_int $int19 = $int2;
 def_int $int20 = $int3;
-if (%varplayer_4278 ! null) {
+if (%potionstore_favourite_1 ! null) {
     $int2, $int3 = ~script6556($int2, $int3);
     $int8 = 1;
 }
-if (%varplayer_4279 ! null) {
+if (%potionstore_favourite_2 ! null) {
     $int2, $int3 = ~script6556($int2, $int3);
     $int8 = 1;
 }
-if (%varplayer_4280 ! null) {
+if (%potionstore_favourite_3 ! null) {
     $int2, $int3 = ~script6556($int2, $int3);
     $int8 = 1;
 }
-if (%varplayer_4281 ! null) {
+if (%potionstore_favourite_4 ! null) {
     $int2, $int3 = ~script6556($int2, $int3);
     $int8 = 1;
 }
-if (%varplayer_4282 ! null) {
+if (%potionstore_favourite_5 ! null) {
     $int2, $int3 = ~script6556($int2, $int3);
     $int8 = 1;
 }
-if (%varplayer_4283 ! null) {
+if (%potionstore_favourite_6 ! null) {
     $int2, $int3 = ~script6556($int2, $int3);
     $int8 = 1;
 }
-if (%varplayer_4284 ! null) {
+if (%potionstore_favourite_7 ! null) {
     $int2, $int3 = ~script6556($int2, $int3);
     $int8 = 1;
 }
-if (%varplayer_4285 ! null) {
+if (%potionstore_favourite_8 ! null) {
     $int2, $int3 = ~script6556($int2, $int3);
     $int8 = 1;
 }
@@ -128,31 +128,31 @@ if (calc($int3 - 1) ! $int6) {
     $int3 = calc($int3 - 1);
 }
 $int7 = $int3;
-def_int $int21 = calc(if_getwidth(interface_12:com_52) / 2);
+def_int $int21 = calc(if_getwidth(bankmain:potionstore_items) / 2);
 def_int $int22 = calc($int21 + 1);
 if ($int8 = 1) {
     if ($int19 > 0 & calc($int20 % 2) ! 0) {
-        ~create_graphic(interface_12:com_52, $int1, tradebacking_dark, $int22, calc($int20 * 36), ^setpos_abs_left, ^setpos_abs_top, $int21, 36, ^setsize_abs, ^setsize_abs);
+        ~create_graphic(bankmain:potionstore_items, $int1, tradebacking_dark, $int22, calc($int20 * 36), ^setpos_abs_left, ^setpos_abs_top, $int21, 36, ^setsize_abs, ^setsize_abs);
         $int1 = calc($int1 + 1);
     }
     $int1 = ~script6081($int1, $int4, "Favourites <tostring(~script6075)>/<tostring(8)>", calc(($int4 + 1) * 36), calc(($int5 - ($int4 + 1)) * 36));
 }
 if ($int9 = 1) {
     if ($int15 > 0 & calc($int16 / 2 % 2) = 0) {
-        ~create_graphic(interface_12:com_52, $int1, tradebacking_dark, $int22, calc(($int6 - 1) * 36), ^setpos_abs_left, ^setpos_abs_top, $int21, 36, ^setsize_abs, ^setsize_abs);
+        ~create_graphic(bankmain:potionstore_items, $int1, tradebacking_dark, $int22, calc(($int6 - 1) * 36), ^setpos_abs_left, ^setpos_abs_top, $int21, 36, ^setsize_abs, ^setsize_abs);
         $int1 = calc($int1 + 1);
     }
     $int1 = ~script6081($int1, $int5, "Potions", calc(($int5 + 1) * 36), calc(($int6 - ($int5 + 1)) * 36));
 }
 if ($int10 = 1) {
     if ($int17 > 0 & calc($int18 / 2 % 2) = 0) {
-        ~create_graphic(interface_12:com_52, $int1, tradebacking_dark, $int22, calc(($int7 - 1) * 36), ^setpos_abs_left, ^setpos_abs_top, $int21, 36, ^setsize_abs, ^setsize_abs);
+        ~create_graphic(bankmain:potionstore_items, $int1, tradebacking_dark, $int22, calc(($int7 - 1) * 36), ^setpos_abs_left, ^setpos_abs_top, $int21, 36, ^setsize_abs, ^setsize_abs);
         $int1 = calc($int1 + 1);
     }
     $int1 = ~script6081($int1, $int6, "Unfinished Potions", calc(($int6 + 1) * 36), calc(($int7 - ($int6 + 1)) * 36));
 }
 if ($int8 = 0 & $int9 = 0 & $int10 = 0) {
-    cc_create(interface_12:com_52, ^iftype_text, $int1);
+    cc_create(bankmain:potionstore_items, ^iftype_text, $int1);
     cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
     cc_setsize(20, 40, ^setsize_minus, ^setsize_minus);
     cc_settextfont(p12_full);
@@ -162,9 +162,9 @@ if ($int8 = 0 & $int9 = 0 & $int10 = 0) {
     cc_settext("In this potion storage space, you can store your potions, including unfinished ones.<br><br>When you deposit potions, their vials will be stored here, and you can deposit empty vials too. The vials will be needed when you withdraw your potions again.<br><br>The <img=53> icon allows you to mark up to 8 potions as your favourites. These will appear at the top of the list.");
     $int1 = calc($int1 + 1);
 }
-def_int $int23 = min(if_getscrolly(interface_12:com_52), calc(if_getscrollheight(interface_12:com_52) - if_getheight(interface_12:com_52)));
-if_setscrollsize(0, max(if_getheight(interface_12:com_52), calc($int3 * 36)), interface_12:com_52);
-if_setscrollpos(0, $int23, interface_12:com_52);
-~scrollbar_vertical(interface_12:com_53, interface_12:com_52, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-if_setonresize("script6557($int3)", interface_12:com_52);
-~scrollbar_vertical_rebuild(interface_12:com_53, interface_12:com_52);
+def_int $int23 = min(if_getscrolly(bankmain:potionstore_items), calc(if_getscrollheight(bankmain:potionstore_items) - if_getheight(bankmain:potionstore_items)));
+if_setscrollsize(0, max(if_getheight(bankmain:potionstore_items), calc($int3 * 36)), bankmain:potionstore_items);
+if_setscrollpos(0, $int23, bankmain:potionstore_items);
+~scrollbar_vertical(bankmain:potionstore_scrollbar, bankmain:potionstore_items, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+if_setonresize("script6557($int3)", bankmain:potionstore_items);
+~scrollbar_vertical_rebuild(bankmain:potionstore_scrollbar, bankmain:potionstore_items);
