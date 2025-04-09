@@ -1,6 +1,6 @@
 // 1317
 [proc,script1317](int $int0, component $component1, component $component2, component $component3, component $component4)
-def_obj $obj5 = inv_getobj(inv_95, $int0);
+def_obj $obj5 = inv_getobj(bank, $int0);
 if ($obj5 = null) {
     return;
 }
@@ -16,7 +16,7 @@ if (.cc_find($component2, 1) = ^true) {
 if_sethide(false, $component3);
 cc_deleteall($component3);
 def_int $int6 = 0;
-def_int $int7 = inv_getnum(inv_95, $int0);
+def_int $int7 = inv_getnum(bank, $int0);
 def_string $string0 = "<~tostring_spacer($int7, ",")> <col=ffffff>x</col> <oc_name($obj5)>";
 def_string $string1 = "Are you <col=ffffff>sure</col> you<br>want to destroy it?";
 if ($int7 > 1) {
@@ -96,12 +96,12 @@ cc_setmodel(model_9037);
 .cc_setmodel(model_9056);
 cc_setmodelangle(15, 400, 141, 220, 0, 2500);
 .cc_setmodelangle(15, 400, 141, 220, 0, 2500);
-.cc_setmodelanim(seq_2439);
+.cc_setmodelanim(blast_furnace_smoke);
 cc_create($component3, ^iftype_model, $int6);
 $int6 = calc($int6 + 1);
 cc_setsize(40, 40, ^setsize_abs, ^setsize_abs);
 cc_setposition(calc(0 - ($int8 / 2 - 42)), 0, ^setpos_abs_centre, ^setpos_abs_centre);
-if (($obj5 = obj_995 | $obj5 = obj_10476) & $int7 > 10) {
+if (($obj5 = coins | $obj5 = trail_sweets) & $int7 > 10) {
     cc_setobject($obj5, 10);
 } else {
     cc_setobject(oc_uncert($obj5), $int7);

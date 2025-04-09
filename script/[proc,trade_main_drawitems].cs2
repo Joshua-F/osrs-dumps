@@ -1,11 +1,11 @@
 // 763
 [proc,trade_main_drawitems](int $int0, int $int1, component $component2, component $component3, component $component4, component $component5, component $component6)
-if (%varplayerbit_4374 = 1) {
+if (%trade_this_player_removed = 1) {
     if_settext("Trade modified", $component3);
 } else {
     if_settext("", $component3);
 }
-if (%varplayerbit_4375 = 1) {
+if (%trade_other_player_removed = 1) {
     if_settext("Trade modified", $component5);
 } else {
     if_settext("", $component5);
@@ -59,9 +59,9 @@ def_int $int15 = 0;
 def_int $int16 = 0;
 while ($int16 < $int0) {
     if (cc_find($component2, $int16) = ^true & .cc_find($component2, calc($int0 + $int16)) = ^true) {
-        $obj10 = inv_getobj(inv_90, $int16);
+        $obj10 = inv_getobj(tradeoffer, $int16);
         if ($obj10 ! null) {
-            $int11 = inv_getnum(inv_90, $int16);
+            $int11 = inv_getnum(tradeoffer, $int16);
             cc_sethide(false);
             cc_setobject($obj10, $int11);
             cc_setop(1, "Remove");
@@ -71,7 +71,7 @@ while ($int16 < $int0) {
             cc_setop(5, "Remove-X");
             cc_setop(10, "Examine");
             cc_setopbase("<col=ff9040><oc_name($obj10)></col>");
-            ~trade_tooltip($int11, $intarray1($int16), interface_335:com_32);
+            ~trade_tooltip($int11, $intarray1($int16), trademain:tooltip);
         } else {
             cc_sethide(true);
             cc_clearops;
@@ -122,14 +122,14 @@ $intarray1(27) = %varclient_137;
 $int16 = 0;
 while ($int16 < $int0) {
     if (cc_find($component4, $int16) = ^true & .cc_find($component4, calc($int0 + $int16)) = ^true) {
-        $obj10 = invother_getobj(inv_90, $int16);
+        $obj10 = invother_getobj(tradeoffer, $int16);
         if ($obj10 ! null) {
-            $int11 = invother_getnum(inv_90, $int16);
+            $int11 = invother_getnum(tradeoffer, $int16);
             cc_sethide(false);
             cc_setobject($obj10, $int11);
             cc_setop(10, "Examine");
             cc_setopbase("<col=ff9040><oc_name($obj10)></col>");
-            ~trade_tooltip($int11, $intarray1($int16), interface_335:com_32);
+            ~trade_tooltip($int11, $intarray1($int16), trademain:tooltip);
         } else {
             cc_sethide(true);
             cc_clearops;
@@ -145,12 +145,12 @@ while ($int16 < $int0) {
     $int16 = calc($int16 + 1);
 }
 def_int $int17 = 0;
-if (%varplayerbit_13141 > 0) {
-    $int17 = ~min(3, ~time_convert_seconds(%varplayerbit_13141));
+if (%trade_accept_delay > 0) {
+    $int17 = ~min(3, ~time_convert_seconds(%trade_accept_delay));
     if_settext("Check offer!<br><tostring($int17)>...", $component6);
     if_setcolour(0x666666, $component6);
 } else {
     if_settext("Accept", $component6);
     if_setcolour(0xc000, $component6);
-    if_setonop(null, interface_335:com_10);
+    if_setonop(null, trademain:accept);
 }

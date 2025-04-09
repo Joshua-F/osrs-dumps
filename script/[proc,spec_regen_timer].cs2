@@ -3,23 +3,23 @@
 if (~on_enhanced_any = false) {
     return;
 }
-def_component $component2 = interface_160:com_40;
-if (~on_enhanced_desktop = true & ~toplevel_getcomponents ! enum_1129 & %varplayerbit_12986 = 1) {
-    $component2 = interface_895:com_37;
-} else if (~on_mobile = true & %varplayerbit_6254 = 0) {
-    $component2 = interface_897:com_36;
-} else if (~on_mobile = true & %varplayerbit_6254 = 1) {
-    $component2 = interface_898:com_37;
+def_component $component2 = orbs:spec_regen;
+if (~on_enhanced_desktop = true & ~toplevel_getcomponents ! enum_1129 & %minimap_toggle = 1) {
+    $component2 = orbs_nomap:spec_regen;
+} else if (~on_mobile = true & %osm_minimap_toggle = 0) {
+    $component2 = orbs_osm:spec_regen;
+} else if (~on_mobile = true & %osm_minimap_toggle = 1) {
+    $component2 = orbs_osm_nomap:spec_regen;
 }
 cc_deleteall($component2);
-if_setonvartransmit("spec_regen_vartransmit($component2, %varplayerbit_12346, %varplayer_300){varplayer_2856, varplayer_300}", $component2);
-if (%varplayerbit_4084 = 1) {
+if_setonvartransmit("spec_regen_vartransmit($component2, %regen_indicator_disabled, %sa_energy){settings_varp_1, sa_energy}", $component2);
+if (%orbs_disabled = 1) {
     return;
 }
-if (%varplayerbit_12346 = 1) {
+if (%regen_indicator_disabled = 1) {
     return;
 }
-if (%varplayer_300 >= 1000) {
+if (%sa_energy >= 1000) {
     return;
 }
 $int0 = calc($int0 * 30);

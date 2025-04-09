@@ -1,11 +1,11 @@
 // 6720
 [clientscript,loadnpc_cluehelper_generic_transmit](entityoverlay $entityoverlay0, dbrow $dbrow1, npc_uid $npc_uid2, int $int3, int $int4)
-if (%varplayerbit_14189 = $int4 & $dbrow1 = %varplayer_3546) {
+if (%option_cluehelper_overlay_enabled = $int4 & $dbrow1 = %cluehelper_infobox_clue) {
     return;
 }
 if (if_find_entityoverlay($entityoverlay0) = ^true) {
-    cc_setonvartransmit("loadnpc_cluehelper_generic_transmit($entityoverlay0, %varplayer_3546, $npc_uid2, $int3, %varplayerbit_14189){varplayer_3546, varplayer_3543}");
+    cc_setonvartransmit("loadnpc_cluehelper_generic_transmit($entityoverlay0, %cluehelper_infobox_clue, $npc_uid2, $int3, %option_cluehelper_overlay_enabled){cluehelper_infobox_clue, option_cluehelper}");
 }
 if (npc_finduid($npc_uid2) = true) {
-    ~loadnpc_cluehelper_generic($entityoverlay0, %varplayer_3546, $npc_uid2, $int3);
+    ~loadnpc_cluehelper_generic($entityoverlay0, %cluehelper_infobox_clue, $npc_uid2, $int3);
 }

@@ -1,6 +1,6 @@
 // 3513
 [clientscript,teleblock_timer_tooltip](component $component0, component $component1, boolean $boolean2)
-def_int $int3 = calc(clientclock + (%varplayerbit_4163 - 100) * 30);
+def_int $int3 = calc(clientclock + (%teleblock_cycles - 100) * 30);
 $int3 = calc(($int3 - clientclock) / 50);
 def_int $int4 = calc($int3 / 60);
 def_int $int5 = calc($int3 % 60);
@@ -10,13 +10,13 @@ if ($int5 < 10) {
 }
 if ($boolean2 = true) {
     ~tooltip_build($component0, -1, $component1, $string0, 512);
-    if_setonop("teleblock_timer_tooltip(interface_90:com_46, interface_90:com_54, false)", interface_90:com_46);
-    if_setontimer("teleblock_timer($component0, $component1, $int5)", interface_90:com_46);
-    if_setonmouseleave("teleblock_toggle_onmouseleave($component1)", interface_90:com_46);
-    %varplayerbit_10531 = 1;
+    if_setonop("teleblock_timer_tooltip(pvp_icons:pvp, pvp_icons:tooltip, false)", pvp_icons:pvp);
+    if_setontimer("teleblock_timer($component0, $component1, $int5)", pvp_icons:pvp);
+    if_setonmouseleave("teleblock_toggle_onmouseleave($component1)", pvp_icons:pvp);
+    %teleblock_tooltip = 1;
 } else {
-    if_setonop("teleblock_timer_tooltip(interface_90:com_46, interface_90:com_54, true)", interface_90:com_46);
-    if_setontimer(null, interface_90:com_46);
+    if_setonop("teleblock_timer_tooltip(pvp_icons:pvp, pvp_icons:tooltip, true)", pvp_icons:pvp);
+    if_setontimer(null, pvp_icons:pvp);
     ~deltooltip_action($component1);
-    %varplayerbit_10531 = 0;
+    %teleblock_tooltip = 0;
 }

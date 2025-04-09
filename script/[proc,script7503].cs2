@@ -24,39 +24,39 @@ def_string $string1 = "";
 while ($int4 < $int2) {
     $dbrow3 = enum(int, dbrow, enum_5624, $int4);
     if ($dbrow3 ! null) {
-        $string0 = lowercase(db_getfield($dbrow3, dbtable_79:col0, 0));
-        $int5 = db_getfield($dbrow3, dbtable_79:col1, 0);
+        $string0 = lowercase(db_getfield($dbrow3, hiscores_skill_info:skillname, 0));
+        $int5 = db_getfield($dbrow3, hiscores_skill_info:skillid, 0);
         $int6 = hiscore_getskillxp($int5);
         $int9 = calc(hiscore_getskillrank($int5) + 1);
         $int7 = calc($int7 + $int6);
         $int8 = ~script7514($int6);
         $int10 = calc($int10 + $int8);
         switch_dbrow ($dbrow3) {
-            case dbrow_3986 :
+            case hiscores_skill_prayer :
                 $int13 = $int8;
-            case dbrow_3975 :
+            case hiscores_skill_hitpoints :
                 $int14 = $int8;
-            case dbrow_3980 :
+            case hiscores_skill_defence :
                 $int15 = $int8;
-            case dbrow_3974 :
+            case hiscores_skill_attack :
                 $int16 = $int8;
-            case dbrow_3977 :
+            case hiscores_skill_strength :
                 $int17 = $int8;
-            case dbrow_3989 :
+            case hiscores_skill_magic :
                 $int11 = $int8;
-            case dbrow_3983 :
+            case hiscores_skill_ranged :
                 $int12 = $int8;
         }
-        if (cc_find(interface_894:com_23, $int1) = ^true) {
+        if (cc_find(hiscores:hiscores_group_members, $int1) = ^true) {
             cc_settext(tostring($int8));
         }
         $int18, $int19 = ~script7515($int6);
         if ($int18 = 0 & $int19 = 0) {
-            $string1 = "Skill: <db_getfield($dbrow3, dbtable_79:col0, 0)><br>Rank: <~tostring_spacer($int9, ",")><br>Experience: <~tostring_spacer($int6, ",")>";
+            $string1 = "Skill: <db_getfield($dbrow3, hiscores_skill_info:skillname, 0)><br>Rank: <~tostring_spacer($int9, ",")><br>Experience: <~tostring_spacer($int6, ",")>";
         } else {
-            $string1 = "Skill: <db_getfield($dbrow3, dbtable_79:col0, 0)><br>Rank: <~tostring_spacer($int9, ",")><br>Experience: <~tostring_spacer($int6, ",")><br>Remaining XP: <~tostring_spacer(calc($int19 - $int18), ",")>";
+            $string1 = "Skill: <db_getfield($dbrow3, hiscores_skill_info:skillname, 0)><br>Rank: <~tostring_spacer($int9, ",")><br>Experience: <~tostring_spacer($int6, ",")><br>Remaining XP: <~tostring_spacer(calc($int19 - $int18), ",")>";
         }
-        if (cc_find(interface_894:com_23, $int4) = ^true) {
+        if (cc_find(hiscores:hiscores_group_members, $int4) = ^true) {
             ~script7516($string1, 0, 0);
         }
         $int1 = calc($int1 + 2);
@@ -66,16 +66,16 @@ while ($int4 < $int2) {
 def_string $string2 = "0";
 def_string $string3 = "0";
 $string2, $string3 = ~script7474($int13, $int14, $int15, $int16, $int17, $int12, $int11);
-if (cc_find(interface_894:com_23, $int1) = ^true) {
+if (cc_find(hiscores:hiscores_group_members, $int1) = ^true) {
     cc_settext($string2);
 }
-if (cc_find(interface_894:com_23, $int2) = ^true) {
+if (cc_find(hiscores:hiscores_group_members, $int2) = ^true) {
     ~script7516("Combat<br>Exact Combat Level: <$string2>.<$string3>", 0, 0);
 }
 $int1 = calc($int1 + 2);
-if (cc_find(interface_894:com_23, $int1) = ^true) {
+if (cc_find(hiscores:hiscores_group_members, $int1) = ^true) {
     cc_settext(tostring($int10));
 }
-if (cc_find(interface_894:com_23, calc($int2 + 1)) = ^true) {
+if (cc_find(hiscores:hiscores_group_members, calc($int2 + 1)) = ^true) {
     ~script7516("Skill total", 0, 0);
 }
