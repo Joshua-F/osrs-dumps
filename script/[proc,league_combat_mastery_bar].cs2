@@ -6,7 +6,7 @@ if_setopbase("", $component0);
 def_int $int2 = 0;
 def_int $int3 = 0;
 def_int $int4 = if_getwidth($component0);
-def_struct $struct5 = enum(int, struct, enum_2670, %varplayerbit_10032);
+def_struct $struct5 = enum(int, struct, enum_2670, %league_type);
 def_string $string0 = "";
 cc_create($component0, ^iftype_rectangle, $int3);
 cc_setsize(calc($int4 - 4), 29, ^setsize_abs, ^setsize_abs);
@@ -21,7 +21,7 @@ cc_setgraphic(struct_param($struct5, param_1025));
 cc_settiling(true);
 $int3 = calc($int3 + 1);
 cc_create($component0, ^iftype_graphic, $int3);
-cc_setsize(scale(%varplayerbit_11584, enum_getoutputcount(enum_5695), $int4), 27, ^setsize_abs, ^setsize_abs);
+cc_setsize(scale(%league_combat_mastery_points_earned, enum_getoutputcount(enum_5695), $int4), 27, ^setsize_abs, ^setsize_abs);
 cc_setposition(3, 3, ^setpos_abs_left, ^setpos_abs_top);
 cc_setgraphic(struct_param($struct5, param_1024));
 cc_settiling(true);
@@ -33,12 +33,12 @@ cc_settextfont(struct_param($struct5, param_1032));
 cc_setcolour(struct_param($struct5, param_1029));
 cc_settextshadow(struct_param($struct5, param_1030));
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-if (%varplayerbit_11583 > 0) {
-    cc_settext("You have <tostring(%varplayerbit_11583)> Combat Mastery <~text_plural(%varplayerbit_11583, "point", "points")> to use!");
-} else if (%varplayerbit_11584 >= enum_getoutputcount(enum_5695)) {
+if (%league_combat_mastery_points_to_spend > 0) {
+    cc_settext("You have <tostring(%league_combat_mastery_points_to_spend)> Combat Mastery <~text_plural(%league_combat_mastery_points_to_spend, "point", "points")> to use!");
+} else if (%league_combat_mastery_points_earned >= enum_getoutputcount(enum_5695)) {
     cc_settext("You have earned all Combat Mastery points!");
 } else {
-    cc_settext("Combat mastery points <tostring(%varplayerbit_11584)> / <tostring(enum_getoutputcount(enum_5695))>");
+    cc_settext("Combat mastery points <tostring(%league_combat_mastery_points_earned)> / <tostring(enum_getoutputcount(enum_5695))>");
 }
 $int3 = calc($int3 + 1);
 cc_create($component0, ^iftype_rectangle, $int3);

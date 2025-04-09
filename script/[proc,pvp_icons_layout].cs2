@@ -8,274 +8,274 @@ def_enum $enum4 = ~toplevel_getcomponents;
 def_int $int5 = 15;
 def_int $int6 = 0;
 def_int $int7 = ~wilderness_level;
-if (~deadman_world ! 0 & if_gettop = toplevelinterface_80) {
-    if_sethide(true, interface_90:com_0);
+if (~deadman_world ! 0 & if_gettop = toplevel_spectator) {
+    if_sethide(true, pvp_icons:universe);
     return;
 } else {
-    if_sethide(false, interface_90:com_0);
+    if_sethide(false, pvp_icons:universe);
 }
 if (~pvp_world = true) {
-    if_setsize(78, 73, ^setsize_abs, ^setsize_abs, interface_90:com_44);
+    if_setsize(78, 73, ^setsize_abs, ^setsize_abs, pvp_icons:icons);
     if (%varclient_53 = true) {
         $int5 = 0;
     }
-    if_setposition(0, 31, ^setpos_abs_centre, ^setpos_abs_bottom, interface_90:com_50);
-    if_setcolour(0xff981f, interface_90:com_50);
-    if_sethide(false, interface_90:com_49);
-    if_setposition(0, 18, ^setpos_abs_centre, ^setpos_abs_bottom, interface_90:com_49);
-    if_setgraphic("pvpw_icons,0", interface_90:com_46);
+    if_setposition(0, 31, ^setpos_abs_centre, ^setpos_abs_bottom, pvp_icons:wildernesslevel);
+    if_setcolour(0xff981f, pvp_icons:wildernesslevel);
+    if_sethide(false, pvp_icons:comlevelrange);
+    if_setposition(0, 18, ^setpos_abs_centre, ^setpos_abs_bottom, pvp_icons:comlevelrange);
+    if_setgraphic("pvpw_icons,0", pvp_icons:pvp);
     ~pvp_icons_comlevelrange($int7);
     ~pvp_icons_toggletargetsystem(true);
-    if_sethide(true, interface_90:com_51);
-    if_sethide(true, interface_90:com_1);
-    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_bottom, interface_90:com_53);
-} else if (%varplayerbit_5314 = 1) {
-    if_setsize(78, 73, ^setsize_abs, ^setsize_abs, interface_90:com_44);
-    if (%varplayerbit_5320 > 0 & %varplayerbit_5316 > 0) {
-        if_sethide(false, interface_328:com_1);
-        if_setgradientmode(^gradientmode_colourtrans, interface_328:com_1);
-        if_setontimer("br_fogcolour", interface_328:com_1);
+    if_sethide(true, pvp_icons:skullduration);
+    if_sethide(true, pvp_icons:deadman_fog);
+    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_bottom, pvp_icons:attackstyle);
+} else if (%br_ingame = 1) {
+    if_setsize(78, 73, ^setsize_abs, ^setsize_abs, pvp_icons:icons);
+    if (%br_safecoord_x > 0 & %br_safecoord_z > 0) {
+        if_sethide(false, br_overlay:deadman_fog);
+        if_setgradientmode(^gradientmode_colourtrans, br_overlay:deadman_fog);
+        if_setontimer("br_fogcolour", br_overlay:deadman_fog);
         ~br_fogcolour;
     } else {
-        if_setontimer(null, interface_328:com_1);
-        if_sethide(true, interface_328:com_1);
+        if_setontimer(null, br_overlay:deadman_fog);
+        if_sethide(true, br_overlay:deadman_fog);
     }
-    if_setgraphic("pvpw_icons,0", interface_90:com_46);
+    if_setgraphic("pvpw_icons,0", pvp_icons:pvp);
     ~pvp_icons_toggletargetsystem(true);
-    if (if_gethide(interface_90:com_50) = false) {
-        if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_bottom, interface_90:com_53);
-    } else if (%varplayerbit_4605 = 1 | %varplayerbit_5961 = 1 | %varplayerbit_10960 > 0 | %varplayerbit_10465 > 0) {
-        if_setposition(0, 12, ^setpos_abs_centre, ^setpos_abs_bottom, interface_90:com_53);
+    if (if_gethide(pvp_icons:wildernesslevel) = false) {
+        if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_bottom, pvp_icons:attackstyle);
+    } else if (%multiway_indicator = 1 | %singleway_plus_indicator = 1 | %td_multiway_indicator > 0 | %gravestone_duration > 0) {
+        if_setposition(0, 12, ^setpos_abs_centre, ^setpos_abs_bottom, pvp_icons:attackstyle);
     } else {
-        if_setposition(0, 24, ^setpos_abs_centre, ^setpos_abs_bottom, interface_90:com_53);
+        if_setposition(0, 24, ^setpos_abs_centre, ^setpos_abs_bottom, pvp_icons:attackstyle);
     }
 } else if (~deadman_world ! 0) {
     $int5 = 0;
-    if_setcolour(0xff981f, interface_90:com_50);
-    if (if_gettop = toplevelinterface_80) {
-        if_sethide(true, interface_90:com_44);
+    if_setcolour(0xff981f, pvp_icons:wildernesslevel);
+    if (if_gettop = toplevel_spectator) {
+        if_sethide(true, pvp_icons:icons);
     } else {
-        if_sethide(false, interface_90:com_44);
+        if_sethide(false, pvp_icons:icons);
     }
-    if (%varplayer_1676 >= 4) {
+    if (%deadman_tournament_mode_pl >= 4) {
         $int6 = 12;
         if (~private_event_world = 4) {
             $int6 = 2;
         } else if (~private_event_world = 1) {
             $int6 = 8;
-        } else if (%varplayerbit_1497 = 2) {
+        } else if (%deadman_tournament_finalarea = 2) {
             $int6 = 13;
         }
-        if (if_gettop = toplevelinterface_80) {
-            if_sethide(true, interface_90:com_28);
-        } else if (%varplayer_1676 > 6 | %varplayerbit_4989 = $int6) {
+        if (if_gettop = toplevel_spectator) {
+            if_sethide(true, pvp_icons:deadman_final);
+        } else if (%deadman_tournament_mode_pl > 6 | %deadman_tournament_saferadius = $int6) {
             ~script1434(false, $enum4, true);
-            if_sethide(true, interface_90:com_38);
-        } else if (%varplayer_1676 = 5 | %varplayer_1676 = 6) {
+            if_sethide(true, pvp_icons:deadman_finallocation);
+        } else if (%deadman_tournament_mode_pl = 5 | %deadman_tournament_mode_pl = 6) {
             ~script1434(false, $enum4, false);
-            if_sethide(false, interface_90:com_38);
+            if_sethide(false, pvp_icons:deadman_finallocation);
         }
-        if_sethide(false, interface_90:com_1);
-        if_setgradientmode(^gradientmode_colourtrans, interface_90:com_1);
-        if_setontimer("deadman_tournament_fogcolour", interface_90:com_1);
+        if_sethide(false, pvp_icons:deadman_fog);
+        if_setgradientmode(^gradientmode_colourtrans, pvp_icons:deadman_fog);
+        if_setontimer("deadman_tournament_fogcolour", pvp_icons:deadman_fog);
         ~deadman_tournament_fogcolour;
     } else {
-        if_setontimer(null, interface_90:com_1);
-        if_sethide(true, interface_90:com_1);
+        if_setontimer(null, pvp_icons:deadman_fog);
+        if_sethide(true, pvp_icons:deadman_fog);
     }
     if (~deadman_world = 3) {
-        if (%varplayerbit_1463 = 1) {
-            if_setgraphic(null, interface_90:com_46);
+        if (%spectator_toplevel_enabled = 1) {
+            if_setgraphic(null, pvp_icons:pvp);
         } else if (~private_event_world ! 0) {
-            if_setgraphic(enum(int, graphic, enum_4042, -1), interface_90:com_46);
+            if_setgraphic(enum(int, graphic, enum_4042, -1), pvp_icons:pvp);
         } else {
-            if_setgraphic(enum(int, graphic, enum_4042, -1), interface_90:com_46);
+            if_setgraphic(enum(int, graphic, enum_4042, -1), pvp_icons:pvp);
         }
     } else {
-        if_setgraphic("pvpw_icons,0", interface_90:com_46);
+        if_setgraphic("pvpw_icons,0", pvp_icons:pvp);
     }
-    if (%varplayerbit_4965 > 0) {
-        if_setsize(78, 73, ^setsize_abs, ^setsize_abs, interface_90:com_44);
-        if_sethide(true, interface_90:com_49);
-        if_setposition(0, 30, ^setpos_abs_centre, ^setpos_abs_bottom, interface_90:com_49);
-        if_sethide(false, interface_90:com_51);
-        if (%varplayerbit_4965 >= 60) {
-            if_settext("<tostring(calc(%varplayerbit_4965 / 60))>h <tostring(calc(%varplayerbit_4965 % 60))>m", interface_90:com_51);
+    if (%deadman_protection_left > 0) {
+        if_setsize(78, 73, ^setsize_abs, ^setsize_abs, pvp_icons:icons);
+        if_sethide(true, pvp_icons:comlevelrange);
+        if_setposition(0, 30, ^setpos_abs_centre, ^setpos_abs_bottom, pvp_icons:comlevelrange);
+        if_sethide(false, pvp_icons:skullduration);
+        if (%deadman_protection_left >= 60) {
+            if_settext("<tostring(calc(%deadman_protection_left / 60))>h <tostring(calc(%deadman_protection_left % 60))>m", pvp_icons:skullduration);
         } else {
-            if_settext("<tostring(calc(%varplayerbit_4965 % 60))>min", interface_90:com_51);
+            if_settext("<tostring(calc(%deadman_protection_left % 60))>min", pvp_icons:skullduration);
         }
     } else if (%varclient_78 ! 2) {
-        if (%varplayerbit_4854 > 0) {
-            if_setsize(78, 84, ^setsize_abs, ^setsize_abs, interface_90:com_44);
-            if_setposition(0, 43, ^setpos_abs_centre, ^setpos_abs_bottom, interface_90:com_50);
-            if_sethide(false, interface_90:com_49);
-            if_setposition(0, 30, ^setpos_abs_centre, ^setpos_abs_bottom, interface_90:com_49);
+        if (%deadman_skullduration > 0) {
+            if_setsize(78, 84, ^setsize_abs, ^setsize_abs, pvp_icons:icons);
+            if_setposition(0, 43, ^setpos_abs_centre, ^setpos_abs_bottom, pvp_icons:wildernesslevel);
+            if_sethide(false, pvp_icons:comlevelrange);
+            if_setposition(0, 30, ^setpos_abs_centre, ^setpos_abs_bottom, pvp_icons:comlevelrange);
             ~pvp_icons_comlevelrange($int7);
-            if_sethide(false, interface_90:com_51);
-            if_settext(~deadman_skullduration, interface_90:com_51);
-            if_setposition(0, 18, ^setpos_abs_centre, ^setpos_abs_bottom, interface_90:com_51);
+            if_sethide(false, pvp_icons:skullduration);
+            if_settext(~deadman_skullduration, pvp_icons:skullduration);
+            if_setposition(0, 18, ^setpos_abs_centre, ^setpos_abs_bottom, pvp_icons:skullduration);
         } else {
-            if_setsize(78, 73, ^setsize_abs, ^setsize_abs, interface_90:com_44);
-            if_setposition(0, 31, ^setpos_abs_centre, ^setpos_abs_bottom, interface_90:com_50);
-            if_sethide(false, interface_90:com_49);
-            if_setposition(0, 18, ^setpos_abs_centre, ^setpos_abs_bottom, interface_90:com_49);
+            if_setsize(78, 73, ^setsize_abs, ^setsize_abs, pvp_icons:icons);
+            if_setposition(0, 31, ^setpos_abs_centre, ^setpos_abs_bottom, pvp_icons:wildernesslevel);
+            if_sethide(false, pvp_icons:comlevelrange);
+            if_setposition(0, 18, ^setpos_abs_centre, ^setpos_abs_bottom, pvp_icons:comlevelrange);
             ~pvp_icons_comlevelrange($int7);
-            if_sethide(true, interface_90:com_51);
+            if_sethide(true, pvp_icons:skullduration);
         }
-    } else if (%varplayerbit_4854 > 0) {
-        if_setsize(78, 73, ^setsize_abs, ^setsize_abs, interface_90:com_44);
-        if_setposition(0, 31, ^setpos_abs_centre, ^setpos_abs_bottom, interface_90:com_50);
-        if_sethide(true, interface_90:com_49);
-        if_sethide(false, interface_90:com_51);
-        if_settext(~deadman_skullduration, interface_90:com_51);
+    } else if (%deadman_skullduration > 0) {
+        if_setsize(78, 73, ^setsize_abs, ^setsize_abs, pvp_icons:icons);
+        if_setposition(0, 31, ^setpos_abs_centre, ^setpos_abs_bottom, pvp_icons:wildernesslevel);
+        if_sethide(true, pvp_icons:comlevelrange);
+        if_sethide(false, pvp_icons:skullduration);
+        if_settext(~deadman_skullduration, pvp_icons:skullduration);
     } else {
-        if_setsize(78, 73, ^setsize_abs, ^setsize_abs, interface_90:com_44);
-        if_setposition(0, 31, ^setpos_abs_centre, ^setpos_abs_bottom, interface_90:com_50);
-        if_sethide(true, interface_90:com_49);
-        if_sethide(true, interface_90:com_51);
+        if_setsize(78, 73, ^setsize_abs, ^setsize_abs, pvp_icons:icons);
+        if_setposition(0, 31, ^setpos_abs_centre, ^setpos_abs_bottom, pvp_icons:wildernesslevel);
+        if_sethide(true, pvp_icons:comlevelrange);
+        if_sethide(true, pvp_icons:skullduration);
     }
     ~pvp_icons_toggletargetsystem(true);
-    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_bottom, interface_90:com_53);
-} else if (%varplayerbit_14022 = 1 | ~pvpa_world = true) {
-    if_setsize(78, 73, ^setsize_abs, ^setsize_abs, interface_90:com_44);
+    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_bottom, pvp_icons:attackstyle);
+} else if (%pvpa_transmit_challengeorbattlearea = 1 | ~pvpa_world = true) {
+    if_setsize(78, 73, ^setsize_abs, ^setsize_abs, pvp_icons:icons);
     $int5 = 15;
-    if_sethide(true, interface_90:com_49);
-    if (%varplayerbit_14017 ! 0) {
-        if (%varplayerbit_14017 = 1) {
-            if_setgraphic("pvpw_icons,0", interface_90:com_46);
+    if_sethide(true, pvp_icons:comlevelrange);
+    if (%pvpa_battlearea_status ! 0) {
+        if (%pvpa_battlearea_status = 1) {
+            if_setgraphic("pvpw_icons,0", pvp_icons:pvp);
         } else {
-            if_setgraphic(overlay_duel, interface_90:com_46);
+            if_setgraphic(overlay_duel, pvp_icons:pvp);
         }
-        if_sethide(false, interface_90:com_1);
-        if_setgradientmode(^gradientmode_colourtrans, interface_90:com_1);
-        ~script6247(interface_90:com_1);
-        if_setontimer("script6246(event_com)", interface_90:com_1);
+        if_sethide(false, pvp_icons:deadman_fog);
+        if_setgradientmode(^gradientmode_colourtrans, pvp_icons:deadman_fog);
+        ~script6247(pvp_icons:deadman_fog);
+        if_setontimer("script6246(event_com)", pvp_icons:deadman_fog);
     } else {
-        if_setgraphic(overlay_duel, interface_90:com_46);
-        if_setontimer(null, interface_90:com_1);
-        if_sethide(true, interface_90:com_1);
+        if_setgraphic(overlay_duel, pvp_icons:pvp);
+        if_setontimer(null, pvp_icons:deadman_fog);
+        if_sethide(true, pvp_icons:deadman_fog);
     }
     ~pvp_icons_toggletargetsystem(true);
-    if (if_gethide(interface_90:com_50) = false) {
-        if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_bottom, interface_90:com_53);
-    } else if (%varplayerbit_4605 = 1 | %varplayerbit_5961 = 1 | %varplayerbit_10960 > 0 | %varplayerbit_10465 > 0) {
-        if_setposition(0, 12, ^setpos_abs_centre, ^setpos_abs_bottom, interface_90:com_53);
+    if (if_gethide(pvp_icons:wildernesslevel) = false) {
+        if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_bottom, pvp_icons:attackstyle);
+    } else if (%multiway_indicator = 1 | %singleway_plus_indicator = 1 | %td_multiway_indicator > 0 | %gravestone_duration > 0) {
+        if_setposition(0, 12, ^setpos_abs_centre, ^setpos_abs_bottom, pvp_icons:attackstyle);
     } else {
-        if_setposition(0, 24, ^setpos_abs_centre, ^setpos_abs_bottom, interface_90:com_53);
+        if_setposition(0, 24, ^setpos_abs_centre, ^setpos_abs_bottom, pvp_icons:attackstyle);
     }
 } else if (~wildwars_world = true) {
-    if_setsize(78, 73, ^setsize_abs, ^setsize_abs, interface_90:com_44);
+    if_setsize(78, 73, ^setsize_abs, ^setsize_abs, pvp_icons:icons);
     $int5 = 13;
-    if_setposition(0, 18, ^setpos_abs_centre, ^setpos_abs_bottom, interface_90:com_50);
-    if_setcolour(^yellow, interface_90:com_50);
-    if_sethide(true, interface_90:com_49);
-    if_setgraphic("pvpw_icons,0", interface_90:com_46);
-    if (%varplayerbit_5701 >= 1) {
-        if (%varplayerbit_5701 > 2) {
+    if_setposition(0, 18, ^setpos_abs_centre, ^setpos_abs_bottom, pvp_icons:wildernesslevel);
+    if_setcolour(^yellow, pvp_icons:wildernesslevel);
+    if_sethide(true, pvp_icons:comlevelrange);
+    if_setgraphic("pvpw_icons,0", pvp_icons:pvp);
+    if (%wildwars_mode_pl >= 1) {
+        if (%wildwars_mode_pl > 2) {
             ~script1434(false, $enum4, true);
-            if_sethide(true, interface_90:com_38);
-        } else if (%varplayerbit_5701 = 2) {
+            if_sethide(true, pvp_icons:deadman_finallocation);
+        } else if (%wildwars_mode_pl = 2) {
             ~script1434(false, $enum4, false);
-            if_sethide(false, interface_90:com_38);
+            if_sethide(false, pvp_icons:deadman_finallocation);
         }
-        if_sethide(false, interface_90:com_1);
-        if_setgradientmode(^gradientmode_colourtrans, interface_90:com_1);
-        if_setontimer("wildwars_fogcolour", interface_90:com_1);
+        if_sethide(false, pvp_icons:deadman_fog);
+        if_setgradientmode(^gradientmode_colourtrans, pvp_icons:deadman_fog);
+        if_setontimer("wildwars_fogcolour", pvp_icons:deadman_fog);
         ~wildwars_fogcolour;
     } else {
-        if_setontimer(null, interface_90:com_1);
-        if_sethide(true, interface_90:com_1);
+        if_setontimer(null, pvp_icons:deadman_fog);
+        if_sethide(true, pvp_icons:deadman_fog);
     }
     ~pvp_icons_toggletargetsystem(true);
-    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_bottom, interface_90:com_53);
+    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_bottom, pvp_icons:attackstyle);
 } else {
-    if_setsize(78, 73, ^setsize_abs, ^setsize_abs, interface_90:com_44);
-    if_setcolour(^yellow, interface_90:com_50);
+    if_setsize(78, 73, ^setsize_abs, ^setsize_abs, pvp_icons:icons);
+    if_setcolour(^yellow, pvp_icons:wildernesslevel);
     if (~on_enhanced_any = true & %varclient_53 = true) {
-        if_sethide(false, interface_90:com_49);
+        if_sethide(false, pvp_icons:comlevelrange);
         ~pvp_icons_comlevelrange($int7);
-        if_setcolour(^yellow, interface_90:com_49);
+        if_setcolour(^yellow, pvp_icons:comlevelrange);
         $int5 = 0;
-        if_setposition(0, 16, ^setpos_abs_centre, ^setpos_abs_bottom, interface_90:com_49);
-        if_setposition(0, 31, ^setpos_abs_centre, ^setpos_abs_bottom, interface_90:com_50);
+        if_setposition(0, 16, ^setpos_abs_centre, ^setpos_abs_bottom, pvp_icons:comlevelrange);
+        if_setposition(0, 31, ^setpos_abs_centre, ^setpos_abs_bottom, pvp_icons:wildernesslevel);
     } else {
-        if_sethide(true, interface_90:com_49);
+        if_sethide(true, pvp_icons:comlevelrange);
         $int5 = 13;
-        if_setposition(0, 16, ^setpos_abs_centre, ^setpos_abs_bottom, interface_90:com_50);
+        if_setposition(0, 16, ^setpos_abs_centre, ^setpos_abs_bottom, pvp_icons:wildernesslevel);
     }
     if (~clanwars_ffa_arena(coord) = true) {
-        if_setgraphic("pvpw_icons,0", interface_90:com_46);
+        if_setgraphic("pvpw_icons,0", pvp_icons:pvp);
         if (~inzone(0_51_74_0_0, 3_52_74_63_23, coord) = true) {
-            if_settrans(0, interface_90:com_47);
+            if_settrans(0, pvp_icons:pvpw_safe);
         } else {
-            if_settrans(255, interface_90:com_47);
+            if_settrans(255, pvp_icons:pvpw_safe);
         }
         ~pvp_icons_toggletargetsystem(true);
     } else {
-        if_settrans(0, interface_90:com_47);
-        if (%varplayerbit_4163 > 100) {
-            if_setgraphic("pvpw_icons,3", interface_90:com_46);
-            if_setop(1, "Show time remaining", interface_90:com_46);
-            if (%varplayerbit_10531 = 0) {
-                if_setonop("teleblock_timer_tooltip(interface_90:com_46, interface_90:com_54, true)", interface_90:com_46);
+        if_settrans(0, pvp_icons:pvpw_safe);
+        if (%teleblock_cycles > 100) {
+            if_setgraphic("pvpw_icons,3", pvp_icons:pvp);
+            if_setop(1, "Show time remaining", pvp_icons:pvp);
+            if (%teleblock_tooltip = 0) {
+                if_setonop("teleblock_timer_tooltip(pvp_icons:pvp, pvp_icons:tooltip, true)", pvp_icons:pvp);
             }
         } else {
-            if_setgraphic("pvpw_icons,0", interface_90:com_46);
-            if_setonop(null, interface_90:com_46);
-            %varplayerbit_10531 = 0;
+            if_setgraphic("pvpw_icons,0", pvp_icons:pvp);
+            if_setonop(null, pvp_icons:pvp);
+            %teleblock_tooltip = 0;
         }
-        if (~target_world = true & %varplayerbit_14887 = 1) {
+        if (~target_world = true & %bh_in_bh = 1) {
             ~pvp_icons_toggletargetsystem(false);
         } else {
             ~pvp_icons_toggletargetsystem(true);
         }
     }
-    if_sethide(true, interface_90:com_51);
-    if_sethide(true, interface_90:com_1);
+    if_sethide(true, pvp_icons:skullduration);
+    if_sethide(true, pvp_icons:deadman_fog);
     if (~kots_world = true) {
         $int3 = ~kots_remaining_time;
         $int5 = 0;
         if ($int3 > 0) {
-            if_setposition(0, 18, ^setpos_abs_centre, ^setpos_abs_bottom, interface_90:com_49);
-            if_setposition(0, 30, ^setpos_abs_centre, ^setpos_abs_bottom, interface_90:com_50);
-            if_sethide(false, interface_90:com_51);
-            if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_bottom, interface_90:com_51);
+            if_setposition(0, 18, ^setpos_abs_centre, ^setpos_abs_bottom, pvp_icons:comlevelrange);
+            if_setposition(0, 30, ^setpos_abs_centre, ^setpos_abs_bottom, pvp_icons:wildernesslevel);
+            if_sethide(false, pvp_icons:skullduration);
+            if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_bottom, pvp_icons:skullduration);
             if ($int3 >= 6000) {
                 $int3 = calc(100 + ~kots_remaining_time);
-                if_settext("<tostring(calc($int3 / 6000))>h <tostring(calc($int3 % 6000 / 100))>m", interface_90:com_51);
+                if_settext("<tostring(calc($int3 / 6000))>h <tostring(calc($int3 % 6000 / 100))>m", pvp_icons:skullduration);
             } else if ($int3 > 100) {
                 $int3 = calc(100 + ~kots_remaining_time);
-                if_settext("<tostring(~max(1, calc($int3 % 6000 / 100)))>min", interface_90:com_51);
+                if_settext("<tostring(~max(1, calc($int3 % 6000 / 100)))>min", pvp_icons:skullduration);
             } else {
-                if_settext("1min", interface_90:com_51);
+                if_settext("1min", pvp_icons:skullduration);
             }
         }
     }
-    if (if_gethide(interface_90:com_50) = false) {
-        if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_bottom, interface_90:com_53);
-    } else if (%varplayerbit_4605 = 1 | %varplayerbit_5961 = 1 | %varplayerbit_10960 > 0 | %varplayerbit_10465 > 0) {
-        if_setposition(0, 12, ^setpos_abs_centre, ^setpos_abs_bottom, interface_90:com_53);
+    if (if_gethide(pvp_icons:wildernesslevel) = false) {
+        if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_bottom, pvp_icons:attackstyle);
+    } else if (%multiway_indicator = 1 | %singleway_plus_indicator = 1 | %td_multiway_indicator > 0 | %gravestone_duration > 0) {
+        if_setposition(0, 12, ^setpos_abs_centre, ^setpos_abs_bottom, pvp_icons:attackstyle);
     } else {
-        if_setposition(0, 24, ^setpos_abs_centre, ^setpos_abs_bottom, interface_90:com_53);
+        if_setposition(0, 24, ^setpos_abs_centre, ^setpos_abs_bottom, pvp_icons:attackstyle);
     }
 }
 if (~on_enhanced_any = true) {
-    if_sethide(false, interface_90:com_53);
+    if_sethide(false, pvp_icons:attackstyle);
 } else {
-    if_sethide(true, interface_90:com_53);
+    if_sethide(true, pvp_icons:attackstyle);
 }
-if_setposition(0, $int5, ^setpos_abs_centre, ^setpos_abs_top, interface_90:com_45);
+if_setposition(0, $int5, ^setpos_abs_centre, ^setpos_abs_top, pvp_icons:icon_container);
 def_int $int8 = enum(enum, int, enum_1135, $enum4);
 if (~on_mobile = true) {
-    if_setposition(40, 0, ^setpos_abs_right, ^setpos_abs_bottom, interface_90:com_44);
+    if_setposition(40, 0, ^setpos_abs_right, ^setpos_abs_bottom, pvp_icons:icons);
 } else if ($int8 > 0) {
-    if_setposition(29, calc(170 - $int5), ^setpos_abs_right, ^setpos_abs_top, interface_90:com_44);
+    if_setposition(29, calc(170 - $int5), ^setpos_abs_right, ^setpos_abs_top, pvp_icons:icons);
 } else {
-    if_setposition(0, 40, ^setpos_abs_right, ^setpos_abs_bottom, interface_90:com_44);
+    if_setposition(0, 40, ^setpos_abs_right, ^setpos_abs_bottom, pvp_icons:icons);
 }
-if (%varplayerbit_542 = 1) {
-    if_sethide(true, interface_90:com_44);
+if (%cutscene_status = 1) {
+    if_sethide(true, pvp_icons:icons);
 } else {
-    if_sethide(false, interface_90:com_44);
+    if_sethide(false, pvp_icons:icons);
 }
 ~script2806;

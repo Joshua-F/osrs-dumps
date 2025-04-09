@@ -47,11 +47,11 @@ if (cc_find($component0, $int8) = ^true) {
 }
 $int7 = 52;
 if (~speedrunning_world = true) {
-    $int2, $int3, $int5, $int4, $int11, $int8, $int9 = ~script3950($component0, $component1, $int5, $int4, $int6, $int7, "Speedrun Points:", "Quest List", "achievement_diary_icons,0", "<col=0dc10d><~tostring_spacer(~min(%varplayer_3365, 800000), $string0)></col>", $int2, $int3, 0);
-} else if (%varplayer_101 = %varplayerbit_1782) {
-    $int2, $int3, $int5, $int4, $int11, $int8, $int9 = ~script3950($component0, $component1, $int5, $int4, $int6, $int7, "Quests Completed:", "Quest List", "achievement_diary_icons,0", "<col=0dc10d><tostring(%varplayerbit_6347)>/<tostring(%varplayerbit_11877)></col>", $int2, $int3, 0);
+    $int2, $int3, $int5, $int4, $int11, $int8, $int9 = ~script3950($component0, $component1, $int5, $int4, $int6, $int7, "Speedrun Points:", "Quest List", "achievement_diary_icons,0", "<col=0dc10d><~tostring_spacer(~min(%speedrun_points, 800000), $string0)></col>", $int2, $int3, 0);
+} else if (%qp = %qp_max) {
+    $int2, $int3, $int5, $int4, $int11, $int8, $int9 = ~script3950($component0, $component1, $int5, $int4, $int6, $int7, "Quests Completed:", "Quest List", "achievement_diary_icons,0", "<col=0dc10d><tostring(%quests_completed_count)>/<tostring(%quests_total_count)></col>", $int2, $int3, 0);
 } else {
-    $int2, $int3, $int5, $int4, $int11, $int8, $int9 = ~script3950($component0, $component1, $int5, $int4, $int6, $int7, "Quests Completed:", "Quest List", "achievement_diary_icons,0", "<col=0dc10d><tostring(%varplayerbit_6347)>/<tostring(%varplayerbit_11877)></col>", $int2, $int3, 0);
+    $int2, $int3, $int5, $int4, $int11, $int8, $int9 = ~script3950($component0, $component1, $int5, $int4, $int6, $int7, "Quests Completed:", "Quest List", "achievement_diary_icons,0", "<col=0dc10d><tostring(%quests_completed_count)>/<tostring(%quests_total_count)></col>", $int2, $int3, 0);
 }
 if ($int15 = $int16) {
     $int2, $int3, $int5, $int4, $int11, $int8, $int9 = ~script3950($component0, $component1, $int5, $int4, $int6, $int7, "Achievements Completed:", "Achievement Diaries", "achievement_diary_icons,1", "<col=0dc10d><tostring($int15)>/<tostring($int16)></col>", $int2, $int3, 1);
@@ -65,7 +65,7 @@ if (cc_find($component1, calc($int3 - 1)) = ^true) {
     cc_setop(3, "Tasks");
     cc_setop(4, "Rewards");
 }
-$int2, $int3, $int5, $int4, $int11, $int8, $int9 = ~script3950($component0, $component1, $int5, $int4, $int6, $int7, "Collections Logged:", "Collection Log", "account_icons,4", "<col=0dc10d><tostring(%varplayer_4612)>/<tostring(%varplayer_2944)></col>", $int2, $int3, 1);
+$int2, $int3, $int5, $int4, $int11, $int8, $int9 = ~script3950($component0, $component1, $int5, $int4, $int6, $int7, "Collections Logged:", "Collection Log", "account_icons,4", "<col=0dc10d><tostring(%collection_count_highscores)>/<tostring(%collection_count_max)></col>", $int2, $int3, 1);
 if (cc_find($component1, calc($int3 - 1)) = ^true) {
     cc_setop(2, "Collection Overview");
 }
@@ -74,7 +74,7 @@ def_string $string1 = "Time Played:";
 if (~league_world = true) {
     $string1 = "Account Age:";
 }
-if (%varplayerbit_12933 = 1) {
+if (%account_summary_display_playtime = 1) {
     $int2, $int3, $int5, $int8, $int9 = ~script3949($component0, $component1, $int5, $int6, $int7, null, "<$string1> <col=0dc10d><~tostring_minutes(%varclient_526, 1)></col>", "Hide", $int2, $int3, p11_full, p11_full);
 } else if (~on_mobile = true) {
     $int2, $int3, $int5, $int8, $int9 = ~script3949($component0, $component1, $int5, $int6, $int7, null, "<$string1> Tap to reveal.", "Reveal", $int2, $int3, p11_full, p11_full);

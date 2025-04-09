@@ -1,16 +1,16 @@
 // 787
 [proc,ge_pricechecker_redraw]
-def_int $int0 = if_getwidth(interface_464:com_2);
+def_int $int0 = if_getwidth(ge_pricechecker:items);
 def_int $int1 = calc($int0 / 5);
 def_int $int2 = calc(($int0 - 5 * $int1) / 4 + $int1);
 def_int $int3 = calc(32 + 35);
 def_int $int4 = calc(($int1 - 36) / 2);
-cc_deleteall(interface_464:com_2);
+cc_deleteall(ge_pricechecker:items);
 def_int $int5 = -1;
 def_int $int6 = 0;
 def_int $int7 = 0;
 def_obj $obj8 = null;
-def_int $int9 = inv_size(inv_90);
+def_int $int9 = inv_size(tradeoffer);
 def_int $intarray0($int9);
 $intarray0(0) = %varclient_81;
 $intarray0(1) = %varclient_82;
@@ -42,8 +42,8 @@ $intarray0(26) = %varclient_108;
 $intarray0(27) = %varclient_109;
 def_int $int10 = 0;
 while ($int10 < $int9) {
-    cc_create(interface_464:com_2, ^iftype_graphic, $int10);
-    $obj8 = inv_getobj(inv_90, $int10);
+    cc_create(ge_pricechecker:items, ^iftype_graphic, $int10);
+    $obj8 = inv_getobj(tradeoffer, $int10);
     if ($obj8 ! null) {
         $int6, $int7 = calc($int10 % 5 * $int2), calc($int10 / 5 * $int3);
         $int5 = $int7;
@@ -52,7 +52,7 @@ while ($int10 < $int9) {
         cc_setposition(calc($int6 + $int4), $int7, ^setpos_abs_left, ^setpos_abs_top);
         cc_setgraphicshadow(0x333333);
         cc_setoutline(1);
-        cc_setobject($obj8, inv_getnum(inv_90, $int10));
+        cc_setobject($obj8, inv_getnum(tradeoffer, $int10));
         cc_setop(1, "Remove");
         cc_setop(2, "Remove-5");
         cc_setop(3, "Remove-10");
@@ -72,10 +72,10 @@ def_string $string0 = ",";
 def_int $int13 = $int10;
 $int10 = 0;
 while ($int10 < $int9) {
-    $obj8, $int11 = inv_getobj(inv_90, $int10), inv_getnum(inv_90, $int10);
+    $obj8, $int11 = inv_getobj(tradeoffer, $int10), inv_getnum(tradeoffer, $int10);
     if ($obj8 ! null & $int11 > 0) {
         $int6, $int7 = calc($int10 % 5 * $int2), calc($int10 / 5 * $int3);
-        cc_create(interface_464:com_2, ^iftype_text, $int13);
+        cc_create(ge_pricechecker:items, ^iftype_text, $int13);
         $int13 = calc($int13 + 1);
         cc_sethide(false);
         cc_setsize($int1, 35, ^setsize_abs, ^setsize_abs);
@@ -105,13 +105,13 @@ def_int $int14 = 0;
 if ($int5 >= 0) {
     $int14 = calc($int5 + $int3);
 }
-def_int $int15 = if_getscrolly(interface_464:com_2);
+def_int $int15 = if_getscrolly(ge_pricechecker:items);
 if ($int15 > $int5) {
     $int15 = $int5;
 }
-if ($int14 > if_getheight(interface_464:com_2)) {
-    if_setscrollsize(0, $int14, interface_464:com_2);
+if ($int14 > if_getheight(ge_pricechecker:items)) {
+    if_setscrollsize(0, $int14, ge_pricechecker:items);
 } else {
-    if_setscrollsize(0, 0, interface_464:com_2);
+    if_setscrollsize(0, 0, ge_pricechecker:items);
 }
-~scrollbar_resize(interface_464:com_3, interface_464:com_2, $int15);
+~scrollbar_resize(ge_pricechecker:scrollbar, ge_pricechecker:items, $int15);

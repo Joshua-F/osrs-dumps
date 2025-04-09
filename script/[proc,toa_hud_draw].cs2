@@ -1,15 +1,15 @@
 // 6579
 [proc,toa_hud_draw](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10, component $component11, component $component12, component $component13, component $component14, component $component15, component $component16, component $component17, component $component18, component $component19, component $component20, component $component21, component $component22, component $component23, component $component24, component $component25, component $component26, component $component27, component $component28, component $component29)
 def_int $int30 = 0;
-$int30 = calc($int30 + ~toa_hud_statusrefresh(0, %varplayerbit_14346, %varplayerbit_14362, %varclient_1099, $component12, $component13, $component28));
-$int30 = calc($int30 + ~toa_hud_statusrefresh(1, %varplayerbit_14347, %varplayerbit_14363, %varclient_1100, $component14, $component15, $component28));
-$int30 = calc($int30 + ~toa_hud_statusrefresh(2, %varplayerbit_14348, %varplayerbit_14364, %varclient_1101, $component16, $component17, $component28));
-$int30 = calc($int30 + ~toa_hud_statusrefresh(3, %varplayerbit_14349, %varplayerbit_14365, %varclient_1102, $component18, $component19, $component28));
-$int30 = calc($int30 + ~toa_hud_statusrefresh(4, %varplayerbit_14350, %varplayerbit_14366, %varclient_1103, $component20, $component21, $component28));
-$int30 = calc($int30 + ~toa_hud_statusrefresh(5, %varplayerbit_14351, %varplayerbit_14367, %varclient_1104, $component22, $component23, $component28));
-$int30 = calc($int30 + ~toa_hud_statusrefresh(6, %varplayerbit_14352, %varplayerbit_14368, %varclient_1105, $component24, $component25, $component28));
-$int30 = calc($int30 + ~toa_hud_statusrefresh(7, %varplayerbit_14353, %varplayerbit_14369, %varclient_1106, $component26, $component27, $component28));
-if (%varplayerbit_14355 = 1) {
+$int30 = calc($int30 + ~toa_hud_statusrefresh(0, %toa_client_p0, %toa_client_primary0, %varclient_1099, $component12, $component13, $component28));
+$int30 = calc($int30 + ~toa_hud_statusrefresh(1, %toa_client_p1, %toa_client_primary1, %varclient_1100, $component14, $component15, $component28));
+$int30 = calc($int30 + ~toa_hud_statusrefresh(2, %toa_client_p2, %toa_client_primary2, %varclient_1101, $component16, $component17, $component28));
+$int30 = calc($int30 + ~toa_hud_statusrefresh(3, %toa_client_p3, %toa_client_primary3, %varclient_1102, $component18, $component19, $component28));
+$int30 = calc($int30 + ~toa_hud_statusrefresh(4, %toa_client_p4, %toa_client_primary4, %varclient_1103, $component20, $component21, $component28));
+$int30 = calc($int30 + ~toa_hud_statusrefresh(5, %toa_client_p5, %toa_client_primary5, %varclient_1104, $component22, $component23, $component28));
+$int30 = calc($int30 + ~toa_hud_statusrefresh(6, %toa_client_p6, %toa_client_primary6, %varclient_1105, $component24, $component25, $component28));
+$int30 = calc($int30 + ~toa_hud_statusrefresh(7, %toa_client_p7, %toa_client_primary7, %varclient_1106, $component26, $component27, $component28));
+if (%toa_client_hideplayers = 1) {
     if_sethide(true, $component1);
     if_setsize(0, 0, ^setsize_abs, ^setsize_abs, $component1);
 } else {
@@ -17,49 +17,49 @@ if (%varplayerbit_14355 = 1) {
     $int30 = ~max(calc(($int30 * 10 / 2 + 5) / 10), 1);
     if_setsize(69, calc($int30 * 34 + ($int30 - 1)), ^setsize_abs, ^setsize_abs, $component1);
 }
-if (%varplayerbit_14380 >= 300) {
+if (%toa_client_raid_level >= 300) {
     if_setgraphic("toa_difficulty_icons,2", $component4);
-} else if (%varplayerbit_14380 >= 150) {
+} else if (%toa_client_raid_level >= 150) {
     if_setgraphic("toa_difficulty_icons,1", $component4);
 } else {
     if_setgraphic("toa_difficulty_icons,0", $component4);
 }
-if_settext("Level: <tostring(%varplayerbit_14380)>", $component5);
+if_settext("Level: <tostring(%toa_client_raid_level)>", $component5);
 def_int $int31 = 0;
-switch_int (%varplayerbit_14381) {
+switch_int (%toa_client_current_path) {
     case 0 :
         if_sethide(true, $component2);
         if_sethide(false, $component3);
-        if_settext(tostring(%varplayerbit_14377), $component8);
-        if_settext(tostring(%varplayerbit_14378), $component9);
-        if_settext(tostring(%varplayerbit_14379), $component10);
-        if_settext(tostring(%varplayerbit_14376), $component11);
+        if_settext(tostring(%toa_client_scabaras_level), $component8);
+        if_settext(tostring(%toa_client_het_level), $component9);
+        if_settext(tostring(%toa_client_apmeken_level), $component10);
+        if_settext(tostring(%toa_client_crondis_level), $component11);
         $int31 = 1;
     case 1 :
         if_sethide(false, $component2);
         if_sethide(true, $component3);
         if_setgraphic("toa_invocation_icons_small,4", $component6);
-        if_settext(tostring(%varplayerbit_14377), $component7);
+        if_settext(tostring(%toa_client_scabaras_level), $component7);
     case 2 :
         if_sethide(false, $component2);
         if_sethide(true, $component3);
         if_setgraphic("toa_invocation_icons_small,5", $component6);
-        if_settext(tostring(%varplayerbit_14378), $component7);
+        if_settext(tostring(%toa_client_het_level), $component7);
     case 3 :
         if_sethide(false, $component2);
         if_sethide(true, $component3);
         if_setgraphic("toa_invocation_icons_small,6", $component6);
-        if_settext(tostring(%varplayerbit_14379), $component7);
+        if_settext(tostring(%toa_client_apmeken_level), $component7);
     case 4 :
         if_sethide(false, $component2);
         if_sethide(true, $component3);
         if_setgraphic("toa_invocation_icons_small,7", $component6);
-        if_settext(tostring(%varplayerbit_14376), $component7);
+        if_settext(tostring(%toa_client_crondis_level), $component7);
     case 5, 6 :
         if_sethide(true, $component2);
         if_sethide(true, $component3);
 }
-if (%varplayerbit_14381 = 5 | %varplayerbit_14381 = 6) {
+if (%toa_client_current_path = 5 | %toa_client_current_path = 6) {
     if_setsize(120, 43, ^setsize_abs, ^setsize_abs, $component29);
 } else if ($int31 = 0) {
     if_setsize(120, 70, ^setsize_abs, ^setsize_abs, $component29);

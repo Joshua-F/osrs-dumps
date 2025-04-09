@@ -3,8 +3,8 @@
 def_int $int1 = 0;
 def_int $int2 = ~cluehelper_clue_difficulty($dbrow0);
 $int1 = ~helper_generic_add_title("Skill Challenge", 1);
-$int1 = ~helper_generic_add_text(db_getfield($dbrow0, dbtable_14:col2, 0));
-if (%varplayerbit_14188 = 1) {
+$int1 = ~helper_generic_add_text(db_getfield($dbrow0, cluehelper_clue_skillchallenge:clue_text, 0));
+if (%option_cluehelper_infobox_show_clue_text = 1) {
     switch_int ($int2) {
         case 0 :
             $int1 = ~helper_generic_add_text("Firstly, talk to Charlie, then bring the requested item.");
@@ -12,14 +12,14 @@ if (%varplayerbit_14188 = 1) {
             $int1 = ~helper_generic_add_text("Firstly, talk to Sherlock, then bring the requested item.");
     }
 }
-def_int $int3 = db_getfieldcount($dbrow0, dbtable_14:col3);
+def_int $int3 = db_getfieldcount($dbrow0, cluehelper_clue_skillchallenge:requirements);
 if ($int3 > 0) {
     $int1 = ~helper_generic_add_title("Requirements", 0);
 }
 def_int $int4 = 0;
 def_dbrow $dbrow5 = null;
 while ($int4 < $int3) {
-    $dbrow5 = db_getfield($dbrow0, dbtable_14:col3, $int4);
+    $dbrow5 = db_getfield($dbrow0, cluehelper_clue_skillchallenge:requirements, $int4);
     $int1 = ~helper_generic_add_text(~script6649($dbrow5));
     $int4 = calc($int4 + 1);
 }

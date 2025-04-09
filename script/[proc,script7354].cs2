@@ -1,8 +1,8 @@
 // 7354
 [proc,script7354](int $int0)
-cc_deleteall(interface_15:com_50);
+cc_deleteall(bankside:prepot_device_contents);
 def_int $int1 = 0;
-cc_create(interface_15:com_49, ^iftype_rectangle, $int1);
+cc_create(bankside:prepot_device_contents_bg, ^iftype_rectangle, $int1);
 $int1 = calc($int1 + 1);
 cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
 cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
@@ -10,11 +10,11 @@ cc_setcolour(^black);
 cc_setfill(true);
 cc_settrans(220);
 def_int $int2 = 36;
-def_int $int3 = calc((if_getwidth(interface_15:com_50) - $int2 * $int0) / $int0);
+def_int $int3 = calc((if_getwidth(bankside:prepot_device_contents) - $int2 * $int0) / $int0);
 def_int $int4 = calc($int3 / 2);
 $int1 = 0;
 while ($int1 < $int0) {
-    cc_create(interface_15:com_50, ^iftype_graphic, $int1);
+    cc_create(bankside:prepot_device_contents, ^iftype_graphic, $int1);
     cc_setsize($int2, 32, ^setsize_abs, ^setsize_abs);
     cc_setposition($int4, 0, ^setpos_abs_left, ^setpos_proportion_centre);
     cc_setgraphicshadow(0x333333);
@@ -25,6 +25,6 @@ while ($int1 < $int0) {
     $int1 = calc($int1 + 1);
     $int4 = calc($int4 + $int2 + $int3);
 }
-if_setonvartransmit("script7355($int0){varplayer_115, varplayer_304, varplayer_1666}", interface_15:com_50);
-if_setoninvtransmit("script7355($int0){inv_911}", interface_15:com_50);
+if_setonvartransmit("script7355($int0){bankcert, bankinsert, gargboss_perm_transmit}", bankside:prepot_device_contents);
+if_setoninvtransmit("script7355($int0){prepot_device_inv}", bankside:prepot_device_contents);
 ~script7356($int0);
