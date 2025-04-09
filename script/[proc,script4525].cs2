@@ -1,16 +1,16 @@
 // 4525
 [proc,script4525]
-if (%varplayerbit_12352 = 0) {
-    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_bottom, interface_90:com_53);
-    if_settext("", interface_90:com_53);
+if (%attack_style_enabled = 0) {
+    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_bottom, pvp_icons:attackstyle);
+    if_settext("", pvp_icons:attackstyle);
     return;
 }
 def_string $string0 = "<img=31> ";
-def_enum $enum0 = enum(int, enum, enum_3908, %varplayerbit_357);
-def_int $int1 = %varplayer_43;
-if ($int1 = 4 & %varplayerbit_2668 = 1) {
+def_enum $enum0 = enum(int, enum, enum_3908, %combat_weapon_category);
+def_int $int1 = %com_mode;
+if ($int1 = 4 & %autocast_defmode = 1) {
     $int1 = 5;
 }
 def_struct $struct2 = enum(int, struct, $enum0, $int1);
 $string0 = "<$string0><col=ffffff><struct_param($struct2, param_1407)></col>";
-if_settext($string0, interface_90:com_53);
+if_settext($string0, pvp_icons:attackstyle);

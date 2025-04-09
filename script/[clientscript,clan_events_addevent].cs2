@@ -1,6 +1,6 @@
 // 4407
 [clientscript,clan_events_addevent](int $int0, int $int1, int $int2, int $int3, string $string0)
-if (if_hassub(enum(component, component, ~toplevel_getcomponents, interface_161:com_16)) = false) {
+if (if_hassub(enum(component, component, ~toplevel_getcomponents, toplevel_osrs_stretch:mainmodal)) = false) {
     return;
 }
 def_string $string1 = "";
@@ -32,10 +32,10 @@ def_int $int18 = 120;
 def_string $string12 = null;
 def_graphic $graphic19 = null;
 def_int $int20 = 1;
-def_component $component21 = if_getlayer(interface_703:com_1);
+def_component $component21 = if_getlayer(clans_events:universe);
 if (string_length($string0) > 0) {
-    if (cc_find(interface_703:com_9, $int0) = ^true & .cc_find(interface_703:com_9, calc($int0 + 10)) = ^true) {
-        if (%varplayerbit_12165 = 1 & %varplayerbit_12164 = 3 & activeclansettings_find_listened = true | %varplayerbit_12165 = 0 & %varplayerbit_933 = 3 & activeclansettings_find_affined(^clantype_clan) = true) {
+    if (cc_find(clans_events:list_contents, $int0) = ^true & .cc_find(clans_events:list_contents, calc($int0 + 10)) = ^true) {
+        if (%clan_transmit_loadasguest = 1 & %clan_guest_affinitystatus = 3 & activeclansettings_find_listened = true | %clan_transmit_loadasguest = 0 & %clan_affinitystatus = 3 & activeclansettings_find_affined(^clantype_clan) = true) {
             $string12, $graphic19 = ~script4302($int2);
         }
         $int15 = cc_getwidth;
@@ -59,7 +59,7 @@ if (string_length($string0) > 0) {
         } else {
             cc_settrans(245);
         }
-        if (%varplayerbit_12200 = 1 & ~on_mobile = false) {
+        if (%clan_editing_permitted = 1 & ~on_mobile = false) {
             cc_setonmouserepeat("clan_members_hover(true, event_com, event_comsubid, cc_gettrans)");
             cc_setonmouseleave("clan_members_hover(false, event_com, event_comsubid, cc_gettrans)");
         }
@@ -77,53 +77,53 @@ if (string_length($string0) > 0) {
             $string11 = "N/A";
         }
         $int6 = .cc_gety;
-        $int14, $int17 = ~clan_events_create_text_component(interface_703:com_12, "", $string3, $int7, $int6, $int18, $int13, $int5, "<col=ffffff>", b12_full, ^settextalign_centre);
+        $int14, $int17 = ~clan_events_create_text_component(clans_events:list_contents_date, "", $string3, $int7, $int6, $int18, $int13, $int5, "<col=ffffff>", b12_full, ^settextalign_centre);
         $int6 = calc($int6 + $int13);
-        $int14, $int17 = ~clan_events_create_text_component(interface_703:com_13, "", $string4, $int7, $int6, $int18, $int13, $int5, "<col=ffffff>", b12_full, ^settextalign_centre);
+        $int14, $int17 = ~clan_events_create_text_component(clans_events:list_contents_time, "", $string4, $int7, $int6, $int18, $int13, $int5, "<col=ffffff>", b12_full, ^settextalign_centre);
         $int6 = calc($int6 + $int13);
-        $int14, $int17 = ~clan_events_create_text_component(interface_703:com_18, "By", $string11, $int7, $int6, $int18, $int13, $int5, "<col=ffb83f>", p11_full, ^settextalign_centre);
+        $int14, $int17 = ~clan_events_create_text_component(clans_events:list_contents_creator, "By", $string11, $int7, $int6, $int18, $int13, $int5, "<col=ffb83f>", p11_full, ^settextalign_centre);
         $int6, $int7 = .cc_gety, calc($int18 + 10);
-        cc_create(interface_703:com_10, ^iftype_rectangle, calc($int5 * 4));
+        cc_create(clans_events:list_contents_separator, ^iftype_rectangle, calc($int5 * 4));
         cc_setsize(calc($int15 - 2 - 1 - $int18 - 4), calc($int12 + $int20), ^setsize_abs, ^setsize_abs);
         cc_setposition(calc(1 + $int18 + 4), $int6, ^setpos_abs_left, ^setpos_abs_top);
         cc_setfill(false);
         cc_setcolour(0x0e0e0c);
-        cc_create(interface_703:com_10, ^iftype_rectangle, calc($int5 * 4 + 1));
+        cc_create(clans_events:list_contents_separator, ^iftype_rectangle, calc($int5 * 4 + 1));
         cc_setsize(calc($int18 + 5), calc($int12 + $int20), ^setsize_abs, ^setsize_abs);
         cc_setposition(1, $int6, ^setpos_abs_left, ^setpos_abs_top);
         cc_setfill(false);
         cc_setcolour(0x0e0e0c);
-        cc_create(interface_703:com_10, ^iftype_rectangle, calc($int5 * 4 + 2));
+        cc_create(clans_events:list_contents_separator, ^iftype_rectangle, calc($int5 * 4 + 2));
         cc_setsize(calc($int15 - 2 - 1 - $int18 - 4 - 2), calc($int12 - 1), ^setsize_abs, ^setsize_abs);
         cc_setposition(calc(1 + $int18 + 4 + 1), calc($int6 + 1), ^setpos_abs_left, ^setpos_abs_top);
         cc_setfill(false);
         cc_setcolour(0x474745);
-        cc_create(interface_703:com_10, ^iftype_rectangle, calc($int5 * 4 + 3));
+        cc_create(clans_events:list_contents_separator, ^iftype_rectangle, calc($int5 * 4 + 3));
         cc_setsize(calc($int18 + 3), calc($int12 - 1), ^setsize_abs, ^setsize_abs);
         cc_setposition(2, calc($int6 + 1), ^setpos_abs_left, ^setpos_abs_top);
         cc_setfill(false);
         cc_setcolour(0x474745);
-        $int14, $int17 = ~clan_events_create_text_component(interface_703:com_16, "", $string8, $int7, $int6, 0, $int13, $int5, "<col=ffb83f>", b12_full, ^settextalign_left);
+        $int14, $int17 = ~clan_events_create_text_component(clans_events:list_contents_activity, "", $string8, $int7, $int6, 0, $int13, $int5, "<col=ffb83f>", b12_full, ^settextalign_left);
         $int6 = calc($int6 + $int13);
-        $int14, $int17 = ~clan_events_create_text_component(interface_703:com_15, "Type", $string7, $int7, $int6, 0, $int13, $int5, "<col=ffb83f>", p11_full, ^settextalign_left);
+        $int14, $int17 = ~clan_events_create_text_component(clans_events:list_contents_type, "Type", $string7, $int7, $int6, 0, $int13, $int5, "<col=ffb83f>", p11_full, ^settextalign_left);
         $int7 = calc($int7 + $int17 + $int16);
-        $int14, $int17 = ~clan_events_create_text_component(interface_703:com_17, "Sub Type", $string9, $int7, $int6, 0, $int13, $int5, "<col=ffb83f>", p11_full, ^settextalign_left);
+        $int14, $int17 = ~clan_events_create_text_component(clans_events:list_contents_subtype, "Sub Type", $string9, $int7, $int6, 0, $int13, $int5, "<col=ffb83f>", p11_full, ^settextalign_left);
         $int6, $int7 = calc($int6 + $int13), calc($int18 + 10);
-        $int14, $int17 = ~clan_events_create_text_component(interface_703:com_14, "Days", $string5, $int7, $int6, 0, $int13, $int5, "<col=ffb83f>", p11_full, ^settextalign_left);
+        $int14, $int17 = ~clan_events_create_text_component(clans_events:list_contents_duration, "Days", $string5, $int7, $int6, 0, $int13, $int5, "<col=ffb83f>", p11_full, ^settextalign_left);
         $int7 = calc($int7 + $int17 + $int16);
-        $int14, $int17 = ~clan_events_create_text_component(interface_703:com_11, "World", $string6, $int7, $int6, 0, $int13, $int5, "<col=ffb83f>", p11_full, ^settextalign_left);
+        $int14, $int17 = ~clan_events_create_text_component(clans_events:list_contents_world, "World", $string6, $int7, $int6, 0, $int13, $int5, "<col=ffb83f>", p11_full, ^settextalign_left);
         $int7 = calc($int7 + $int17 + $int16);
-        $int14, $int17 = ~clan_events_create_text_component(interface_703:com_19, "Rank", $string10, $int7, $int6, calc(if_getwidth(interface_703:com_19) - $int7 - 13 - 4), $int13, $int5, "<col=ffb83f>", p11_full, ^settextalign_left);
+        $int14, $int17 = ~clan_events_create_text_component(clans_events:list_contents_rank_to_view, "Rank", $string10, $int7, $int6, calc(if_getwidth(clans_events:list_contents_rank_to_view) - $int7 - 13 - 4), $int13, $int5, "<col=ffb83f>", p11_full, ^settextalign_left);
         $int7, $int6 = calc($int7 + $int17 + 4), calc($int6 + 13 / 4);
-        cc_create(interface_703:com_20, ^iftype_graphic, $int5);
+        cc_create(clans_events:list_contents_rank_to_view_icon, ^iftype_graphic, $int5);
         cc_setsize(13, 13, ^setsize_abs, ^setsize_abs);
         cc_setposition($int7, $int6, ^setpos_abs_left, ^setpos_abs_top);
         cc_setgraphic($graphic19);
-        if (.cc_find(interface_703:com_9, calc(10 * 2)) = ^true) {
+        if (.cc_find(clans_events:list_contents, calc(10 * 2)) = ^true) {
             .cc_sethide(true);
         }
         if ($component21 ! null) {
-            ~clan_events_setsize($component21, interface_703:com_1, interface_703:com_9, interface_703:com_23, ~max(181, calc($int1 * ($int12 + $int20) + (1 - $int5 % 2))), if_getheight($component21));
+            ~clan_events_setsize($component21, clans_events:universe, clans_events:list_contents, clans_events:list_scrollbar, ~max(181, calc($int1 * ($int12 + $int20) + (1 - $int5 % 2))), if_getheight($component21));
         }
     } else {
         mes("Couldn't find component");

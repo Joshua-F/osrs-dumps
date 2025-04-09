@@ -1,88 +1,88 @@
 // 187
 [proc,combat_interface_sp_redraw](component $component0)
 def_int $int1 = 0;
-def_obj $obj2 = inv_getobj(inv_94, 3);
+def_obj $obj2 = inv_getobj(worn, 3);
 def_int $int3 = 0;
-if (map_members = true | %varplayerbit_5314 = 1) {
+if (map_members = true | %br_ingame = 1) {
     $int1 = ~script3648($obj2);
 }
 if ($int1 <= 0) {
-    if_sethide(true, interface_593:com_37);
-    if_setsize(190, 28, ^setsize_abs, ^setsize_abs, interface_593:com_3);
+    if_sethide(true, combat_interface:sp_attackbar);
+    if_setsize(190, 28, ^setsize_abs, ^setsize_abs, combat_interface:category);
     ~script7602;
     return;
 }
 if (~on_mobile = true) {
-    if_setsize(190, 16, ^setsize_abs, ^setsize_abs, interface_593:com_3);
+    if_setsize(190, 16, ^setsize_abs, ^setsize_abs, combat_interface:category);
 }
 def_int $int4 = 0;
-if (if_gethide(interface_593:com_37) = true) {
+if (if_gethide(combat_interface:sp_attackbar) = true) {
     $int4 = 1;
 }
-if_sethide(false, interface_593:com_37);
-if (%varplayer_301 > 0) {
-    if_setcolour(^yellow, interface_593:com_42);
+if_sethide(false, combat_interface:sp_attackbar);
+if (%sa_attack > 0) {
+    if_setcolour(^yellow, combat_interface:sp_indicator);
 } else {
-    if_setcolour(0x000010, interface_593:com_42);
+    if_setcolour(0x000010, combat_interface:sp_indicator);
 }
-def_int $int5 = %varplayer_300;
+def_int $int5 = %sa_energy;
 def_int $int6 = 1000;
 def_int $int7 = $int1;
 def_int $int8 = 0;
 if ($int5 < 0) {
     $int5 = 0;
 }
-if ($obj2 = obj_28338) {
-    $int5, $int6 = %varplayer_3784, 5;
+if ($obj2 = soulreaper) {
+    $int5, $int6 = %soulreaper_stacks, 5;
     if ($int5 > 0) {
         $int3 = 1;
     }
-    if_settext("Special Attack: <tostring($int5)>/5", interface_593:com_42);
-} else if ($obj2 = obj_30369) {
-    $int5, $int6 = %varplayer_4600, 20;
-    if_settext("Special Attack: <tostring($int5)>/<tostring(20)>", interface_593:com_42);
+    if_settext("Special Attack: <tostring($int5)>/5", combat_interface:sp_indicator);
+} else if ($obj2 = weapon_of_sol) {
+    $int5, $int6 = %weapon_of_sol_stacks, 20;
+    if_settext("Special Attack: <tostring($int5)>/<tostring(20)>", combat_interface:sp_indicator);
 } else if (~league_relic_active(struct_4721) = 1 & $int5 < $int7 & stat(hitpoints) > 25) {
     $int5 = calc((stat(hitpoints) - 1) / 25);
     $int6 = calc((stat_base(hitpoints) - 1) / 25);
     $int8 = 1;
-    if_settext("Special Attack: <tostring($int5)>/<tostring($int6)>", interface_593:com_42);
+    if_settext("Special Attack: <tostring($int5)>/<tostring($int6)>", combat_interface:sp_indicator);
 } else {
-    if_settext("Special Attack: <tostring(calc($int5 / 10))>%", interface_593:com_42);
+    if_settext("Special Attack: <tostring(calc($int5 / 10))>%", combat_interface:sp_indicator);
 }
 ~combat_interface_sp_updatebar($component0, $int5, $int6, $int4);
 if ($int5 >= $int1 | $int8 = 1) {
     $int3 = 1;
 }
 if ($int3 = 1) {
-    if_setcolour(0x397d3b, interface_593:com_41);
+    if_setcolour(0x397d3b, combat_interface:currentenergy_colour);
 } else {
-    if_setcolour(0x00326b, interface_593:com_41);
+    if_setcolour(0x00326b, combat_interface:currentenergy_colour);
 }
-~options_button_off(interface_593:com_38, 0);
+~options_button_off(combat_interface:special_attack, 0);
 def_string $string0 = "<enum(obj, string, enum_1739, $obj2)> (<tostring(calc($int7 / 10))>%)";
 switch_obj ($obj2) {
-    case obj_22731, obj_22734, obj_22737, obj_22740, obj_22743 :
+    case brut_dragon_spear, brut_dragon_spear_p, "brut_dragon_spear_p+", "brut_dragon_spear_p++", brut_dragon_spear_kp :
         $string0 = "<enum(obj, string, enum_1739, $obj2)> 5-100% ";
-    case obj_28338 :
+    case soulreaper :
         $string0 = "<enum(obj, string, enum_1739, $obj2)> 0-5";
-    case obj_30369 :
+    case weapon_of_sol :
         $string0 = "<enum(obj, string, enum_1739, $obj2)> (<tostring($int5)> / <tostring(20)>)";
 }
-def_obj $obj9 = inv_getobj(inv_94, 13);
-def_obj $obj10 = inv_getobj(inv_94, 1);
+def_obj $obj9 = inv_getobj(worn, 13);
+def_obj $obj10 = inv_getobj(worn, 1);
 if ($obj9 = null & $obj10 ! null & oc_param($obj10, param_1910) = 1) {
-    $obj9 = inv_getobj(inv_879, 0);
+    $obj9 = inv_getobj(dizanas_quiver_ammo, 0);
 }
-if (%varplayerbit_5712 = 0) {
-    if (($obj2 = obj_11235 | $obj2 = obj_20408 | $obj2 = obj_12765 | $obj2 = obj_12768 | $obj2 = obj_12767 | $obj2 = obj_29599) & ($obj9 = obj_11212 | $obj9 = obj_11227 | $obj9 = obj_11228 | $obj9 = obj_11229)) {
+if (%option_satooltips = 0) {
+    if (($obj2 = darkbow | $obj2 = br_darkbow | $obj2 = darkbow_green | $obj2 = darkbow_white | $obj2 = darkbow_yellow | $obj2 = deadman_blighted_dark_bow) & ($obj9 = dragon_arrow | $obj9 = dragon_arrow_p | $obj9 = "dragon_arrow_p+" | $obj9 = "dragon_arrow_p++")) {
         $string0 = "Descent of Dragons: Deal a double attack with dragon arrows that inflicts up to 50% more damage (minimum damage of 8 per hit). (<tostring(calc(~script3648($obj2) / 10))>%)";
     }
-    if ($obj2 = obj_27853 & ($obj9 = obj_11212 | $obj9 = obj_11227 | $obj9 = obj_11228 | $obj9 = obj_11229)) {
+    if ($obj2 = bh_darkbow_imbue & ($obj9 = dragon_arrow | $obj9 = dragon_arrow_p | $obj9 = "dragon_arrow_p+" | $obj9 = "dragon_arrow_p++")) {
         $string0 = "Descent of Dragons: Deal a double attack with dragon arrows that inflicts up to 50% more damage (minimum damage of 10 per hit). (<tostring(calc(~script3648($obj2) / 10))>%)";
     }
-    if_setonmouserepeat("tooltip_mouserepeat(event_com, -1, interface_593:com_44, $string0, 25, 160)", interface_593:com_37);
-    if_setonmouseleave("deltooltip(interface_593:com_44)", interface_593:com_37);
+    if_setonmouserepeat("tooltip_mouserepeat(event_com, -1, combat_interface:tooltip, $string0, 25, 160)", combat_interface:sp_attackbar);
+    if_setonmouseleave("deltooltip(combat_interface:tooltip)", combat_interface:sp_attackbar);
 } else {
-    if_setonmouserepeat(null, interface_593:com_37);
+    if_setonmouserepeat(null, combat_interface:sp_attackbar);
 }
 ~script7602;

@@ -1,6 +1,6 @@
 // 3189
 [proc,league_relics_draw_selections](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10, component $component11, component $component12, component $component13, component $component14, int $int15, int $int16, component $component17, component $component18)
-~league_interface_resize(interface_655:com_1, interface_655:com_3);
+~league_interface_resize(league_relics:universe, league_relics:content_outer);
 ~league_points_progress_bar($component17, $component18, false, true);
 cc_deleteall($component2);
 cc_deleteall($component3);
@@ -12,8 +12,8 @@ cc_deleteall($component1);
 cc_deleteall($component12);
 cc_deleteall($component13);
 cc_deleteall($component8);
-cc_deleteall(interface_655:com_16);
-def_struct $struct19 = enum(int, struct, enum_2670, %varplayerbit_10032);
+cc_deleteall(league_relics:tutorial);
+def_struct $struct19 = enum(int, struct, enum_2670, %league_type);
 def_int $rgb20 = 0xff981f;
 def_enum $enum21 = null;
 def_struct $struct22 = null;
@@ -33,7 +33,7 @@ if_sethide(false, $component1);
 if_sethide(true, $component9);
 if_sethide(true, $component11);
 if_sethide(true, $component10);
-if_sethide(true, interface_655:com_28);
+if_sethide(true, league_relics:extra_info);
 if ($enum21 ! null) {
     $int23 = enum_getoutputcount($enum21);
 }
@@ -43,7 +43,7 @@ if (~in_league_tutorial = false) {
 }
 $int25 = 0;
 ~league_create_dropdown($component12, $component13, $component14, $int25, 2);
-if (cc_find(interface_655:com_2, $int15) = ^true) {
+if (cc_find(league_relics:frame, $int15) = ^true) {
     cc_setcolour($rgb20);
 }
 def_int $int26 = 0;
@@ -90,7 +90,7 @@ while ($int45 < $int23) {
     $struct22 = enum(int, struct, $enum21, $int45);
     $enum24 = struct_param($struct22, param_878);
     if ($int45 > 0) {
-        cc_create(interface_655:com_20, ^iftype_line, calc($int45 - 1));
+        cc_create(league_relics:dividers, ^iftype_line, calc($int45 - 1));
         cc_setlinewid(1);
         cc_setsize(0, 0, ^setsize_abs, ^setsize_minus);
         cc_setposition($int29, 0, ^setpos_abs_left, ^setpos_abs_top);
@@ -114,7 +114,7 @@ while ($int45 < $int23) {
             cc_settiling(true);
             $int32, $string0, $int33, $int34, $int40, $rgb36, $rgb38 = 255, "", 1, 0, 1, 0xaaaaaa, 0xdddddd;
         }
-    } else if ($int30 = 0 & $enum24 ! null & %varplayer_2615 >= struct_param($struct22, param_877)) {
+    } else if ($int30 = 0 & $enum24 ! null & %league_points_claimed >= struct_param($struct22, param_877)) {
         cc_create($component2, ^iftype_graphic, $int45);
         cc_setsize($int26, 0, ^setsize_abs, ^setsize_minus);
         cc_setposition($int29, 0, ^setpos_abs_left, ^setpos_abs_top);
@@ -249,12 +249,12 @@ while ($int45 < $int23) {
     $int29 = calc($int29 + $int26);
     $int45 = calc($int45 + 1);
 }
-cc_create(interface_655:com_16, ^iftype_rectangle, 0);
+cc_create(league_relics:tutorial, ^iftype_rectangle, 0);
 cc_setsize($int26, 0, ^setsize_abs, ^setsize_minus);
 cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
 cc_setfill(false);
 cc_settrans(255);
-cc_create(interface_655:com_16, ^iftype_rectangle, 1);
+cc_create(league_relics:tutorial, ^iftype_rectangle, 1);
 cc_setsize($int26, $int27, ^setsize_abs, ^setsize_abs);
 cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
 cc_setfill(false);

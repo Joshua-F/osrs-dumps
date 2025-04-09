@@ -1,22 +1,22 @@
 // 5183
 [proc,gim_shared_bank_unlocks_draw](component $component0, component $component1, int $int2)
-def_component $component3 = interface_743:com_6;
-def_component $component4 = interface_743:com_15;
-def_component $component5 = interface_743:com_16;
-def_component $component6 = interface_743:com_14;
-def_component $component7 = interface_743:com_12;
-def_component $component8 = interface_743:com_7;
+def_component $component3 = gim_shared_bank_unlocks:index_contents;
+def_component $component4 = gim_shared_bank_unlocks:list_content;
+def_component $component5 = gim_shared_bank_unlocks:list_borders;
+def_component $component6 = gim_shared_bank_unlocks:list_scrollbar;
+def_component $component7 = gim_shared_bank_unlocks:list_contents;
+def_component $component8 = gim_shared_bank_unlocks:completed_toggle;
 cc_deleteall($component3);
 cc_deleteall($component4);
 cc_deleteall($component5);
 cc_deleteall($component6);
 cc_deleteall($component8);
 ~scrollbar_vertical($component6, $component7, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-def_int $int9 = %varplayer_261;
-def_int $int10 = %varplayer_262;
-def_int $int11 = %varplayer_263;
-def_int $int12 = %varplayer_264;
-def_int $int13 = %varplayer_265;
+def_int $int9 = %if1;
+def_int $int10 = %if2;
+def_int $int11 = %if3;
+def_int $int12 = %if4;
+def_int $int13 = %if5;
 def_int $int14 = 0;
 def_int $int15 = enum_getoutputcount(enum_4216);
 def_struct $struct16 = null;
@@ -37,22 +37,22 @@ def_int $int29 = calc(if_getwidth($component4) - $int26 - 8);
 def_int $int30 = 0;
 def_int $int31 = calc($int22 + 6);
 def_int $int32 = 0;
-if_settext("Storage Space:<br> <tostring($int11)>/<tostring($int12)>", interface_743:com_9);
+if_settext("Storage Space:<br> <tostring($int11)>/<tostring($int12)>", gim_shared_bank_unlocks:storage_unlocked);
 if ($int11 >= $int12) {
-    if_setcolour(0x0dc10d, interface_743:com_9);
+    if_setcolour(0x0dc10d, gim_shared_bank_unlocks:storage_unlocked);
 } else {
-    if_setcolour(0xff981f, interface_743:com_9);
+    if_setcolour(0xff981f, gim_shared_bank_unlocks:storage_unlocked);
 }
 if ($int13 <= 0) {
-    if_settext("You are eligible to unlock group storage slots for your group", interface_743:com_10);
-    if_setcolour(0x0dc10d, interface_743:com_10);
+    if_settext("You are eligible to unlock group storage slots for your group", gim_shared_bank_unlocks:storage_eligibility);
+    if_setcolour(0x0dc10d, gim_shared_bank_unlocks:storage_eligibility);
 } else {
     if ($int13 = 1) {
-        if_settext("You will be eligible to unlock group storage slots in 1 week<br>", interface_743:com_10);
+        if_settext("You will be eligible to unlock group storage slots in 1 week<br>", gim_shared_bank_unlocks:storage_eligibility);
     } else {
-        if_settext("You will be eligible to unlock group storage slots in <tostring($int13)> weeks<br>", interface_743:com_10);
+        if_settext("You will be eligible to unlock group storage slots in <tostring($int13)> weeks<br>", gim_shared_bank_unlocks:storage_eligibility);
     }
-    if_setcolour(^red, interface_743:com_10);
+    if_setcolour(^red, gim_shared_bank_unlocks:storage_eligibility);
 }
 cc_create($component8, ^iftype_graphic, $int23);
 cc_setsize(16, 16, ^setsize_abs, ^setsize_abs);
@@ -164,4 +164,4 @@ if ($int25 > if_getheight($component7)) {
     if_setscrollsize(0, $int25, $component7);
     ~scrollbar_resize($component6, $component7, if_getscrolly($component7));
 }
-~gim_shared_bank_unlocks_setsize(if_getwidth(interface_743:com_3), $int25, interface_743:com_12, interface_743:com_14, if_getheight(interface_743:com_1));
+~gim_shared_bank_unlocks_setsize(if_getwidth(gim_shared_bank_unlocks:window), $int25, gim_shared_bank_unlocks:list_contents, gim_shared_bank_unlocks:list_scrollbar, if_getheight(gim_shared_bank_unlocks:clamp));

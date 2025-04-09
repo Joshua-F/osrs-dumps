@@ -1,22 +1,22 @@
 // 690
 [proc,trail_slidepuzzle_synch](component $component0, int $int1, int $int2, int $int3, int $int4, component $component5, component $component6, component $component7)
-def_inv $inv8 = inv_140;
-if (%varplayer_261 = 8) {
-    $inv8 = inv_222;
-} else if (%varplayer_261 = 7) {
-    $inv8 = inv_221;
+def_inv $inv8 = trail_puzzleinv;
+if (%if1 = 8) {
+    $inv8 = reinitialisation_inv_inactive;
+} else if (%if1 = 7) {
+    $inv8 = reinitialisation_inv;
 }
 def_enum $enum9 = null;
 def_enum $enum10 = null;
-$enum9, $enum10 = enum(int, enum, enum_1864, %varplayer_261), enum(int, enum, enum_1865, %varplayer_261);
-if (%varplayer_261 = 7 | %varplayer_261 = 8) {
+$enum9, $enum10 = enum(int, enum, enum_1864, %if1), enum(int, enum, enum_1865, %if1);
+if (%if1 = 7 | %if1 = 8) {
     if_sethide(true, $component5);
     if_sethide(false, $component6);
 } else {
     if_sethide(false, $component5);
     if_sethide(true, $component6);
 }
-switch_int (%varplayer_261) {
+switch_int (%if1) {
     case 9 :
         if_setcolour(0x492e04, $component7);
     case default :
@@ -29,7 +29,7 @@ while ($int12 < $int1) {
         $obj11 = inv_getobj($inv8, $int12);
         ~trail_slidepuzzle_setint($int12, enum(obj, int, $enum10, $obj11));
         if (cc_find($component0, $int12) = ^true) {
-            if (%varplayer_261 = 8) {
+            if (%if1 = 8) {
                 cc_clearops;
                 cc_setonop(null);
             } else {

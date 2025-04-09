@@ -1,14 +1,14 @@
 // 7416
 [clientscript,osm_hotkeys_hide_transmit](int $int0)
-if ($int0 = %varplayerbit_11557) {
+if ($int0 = %osm_hide_hotkeys) {
     return;
 }
-if (%varplayerbit_11557 = 1) {
-    if_sethide(true, interface_892:com_1);
+if (%osm_hide_hotkeys = 1) {
+    if_sethide(true, osm_hotkeys:content);
 } else {
-    if_sethide(false, interface_892:com_1);
+    if_sethide(false, osm_hotkeys:content);
     ~osm_hotkeys_setup;
 }
 ~script7432(4);
 ~script7432(5);
-if_setonvartransmit("osm_hotkeys_hide_transmit(%varplayerbit_11557){varplayer_3053}", interface_892:com_2);
+if_setonvartransmit("osm_hotkeys_hide_transmit(%osm_hide_hotkeys){chat_filter_assist_2}", osm_hotkeys:hide_on_transmit);

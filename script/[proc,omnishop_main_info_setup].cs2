@@ -1,14 +1,14 @@
 // 7147
 [proc,omnishop_main_info_setup](dbrow $dbrow0, inv $inv1, int $int2, int $int3, int $int4, int $int5, dbrow $dbrow6, string $string0, boolean $boolean7)
-def_component $component8 = interface_819:com_30;
-def_component $component9 = interface_819:com_31;
+def_component $component8 = omnishop_main:info;
+def_component $component9 = omnishop_main:info_scroller;
 def_int $int10 = 53673989;
-def_component $component11 = interface_819:com_16;
-def_component $component12 = interface_819:com_14;
+def_component $component11 = omnishop_main:r_col_border;
+def_component $component12 = omnishop_main:r_col_back;
 if_setonresize("omnishop_main_info_setup($dbrow0, $inv1, $int2, $int3, $int4, $int5, $dbrow6, $string0, $boolean7)", $component8);
 cc_deleteall($component8);
 cc_deleteall($component11);
-if (%varplayer_3871 = 1) {
+if (%omnishop_view_expanded = 1) {
     if ($int2 = -1) {
         ~steelborder($component11, "Help", 16);
     } else {
@@ -63,14 +63,14 @@ if ($int2 ! -1 & string_length($string0) = 0) {
     ~loading_icon_init_extended($component8, null, enum_3787, 10, 1000, 3000, 512, 1024, 0, 3, "", 0, 30);
     $int21 = enum_getoutputcount(enum_3787);
 }
-def_string $string1 = db_getfield($dbrow0, dbtable_39:col10, 0);
+def_string $string1 = db_getfield($dbrow0, omnishop_shop_data:omnishop_shop_info_title, 0);
 def_int $int24 = 1;
 if ($int2 ! -1) {
     $string1 = oc_param($obj20, param_1733);
     if (string_length($string1) = 0) {
         $string1 = oc_name($obj20);
     }
-    $int24 = db_getfield(db_getfield($dbrow0, dbtable_39:col5, $int2), dbtable_40:col10, 0);
+    $int24 = db_getfield(db_getfield($dbrow0, omnishop_shop_data:omnishop_shop_stock, $int2), omnishop_stock_data:omnishop_stock_transaction_multiplier, 0);
     if ($int24 > 1) {
         $string1 = "<$string1> (x<tostring($int24)>)";
     }
@@ -108,8 +108,8 @@ if (string_length($string0) > 0) {
     if ($int3 = -1) {
         $string2 = "Unlimited stock";
     }
-    $dbrow30 = db_getfield($dbrow0, dbtable_39:col5, $int2);
-    if (db_getfield($dbrow30, dbtable_40:col17, 0) = true) {
+    $dbrow30 = db_getfield($dbrow0, omnishop_shop_data:omnishop_shop_stock, $int2);
+    if (db_getfield($dbrow30, omnishop_stock_data:omnishop_stock_view_only, 0) = true) {
         $string2 = "Currently unavailable";
     }
     cc_create($component8, ^iftype_text, $int21);
@@ -134,16 +134,16 @@ if (string_length($string0) > 0) {
     $int22 = calc($int22 + 22);
     $dbrow26, $int5 = ~omnishop_cost($dbrow0, $inv1, $int2, $int27, 1);
     while ($dbrow26 ! null) {
-        $graphic28, $graphic29 = db_getfield($dbrow26, dbtable_41:col3, 0);
+        $graphic28, $graphic29 = db_getfield($dbrow26, omnishop_currency_data:omnishop_currency_graphic, 0);
         if ($graphic28 ! null) {
             $int21 = ~omnishop_currency_draw_info($component8, $graphic28, $graphic13, $int5, -25, 6, $int22, $int21);
             $int22 = calc($int22 + 24);
         } else {
             $string3 = ~tostring_spacer($int5, $string4);
             if ($int5 = 1) {
-                $string3 = "<$string3> <db_getfield($dbrow26, dbtable_41:col1, 0)>";
+                $string3 = "<$string3> <db_getfield($dbrow26, omnishop_currency_data:omnishop_currency_name_singular, 0)>";
             } else {
-                $string3 = "<$string3> <db_getfield($dbrow26, dbtable_41:col2, 0)>";
+                $string3 = "<$string3> <db_getfield($dbrow26, omnishop_currency_data:omnishop_currency_name_plural, 0)>";
             }
             cc_create($component8, ^iftype_text, $int21);
             cc_setposition(0, $int22, ^setpos_abs_centre, ^setpos_abs_top);
@@ -152,8 +152,8 @@ if (string_length($string0) > 0) {
             cc_settextshadow(true);
             cc_settextfont($graphic13);
             cc_setcolour(0xefefef);
-            if ($dbrow26 = dbrow_3353) {
-                $string3 = db_getfield($dbrow26, dbtable_41:col1, 0);
+            if ($dbrow26 = currency_free) {
+                $string3 = db_getfield($dbrow26, omnishop_currency_data:omnishop_currency_name_singular, 0);
             }
             cc_settext($string3);
             $int21 = calc($int21 + 1);
@@ -167,8 +167,8 @@ if (string_length($string0) > 0) {
 $string1 = "";
 def_string $string5 = "";
 if ($int2 = -1) {
-    $string1 = db_getfield($dbrow0, dbtable_39:col11, 0);
-    $string5 = db_getfield($dbrow0, dbtable_39:col12, 0);
+    $string1 = db_getfield($dbrow0, omnishop_shop_data:omnishop_shop_info_intro_desc, 0);
+    $string5 = db_getfield($dbrow0, omnishop_shop_data:omnishop_shop_info_instructions, 0);
     if (string_length($string5) > 0) {
         $string1 = "<$string1><br><br><$string5>";
     } else {
@@ -199,5 +199,5 @@ if ($boolean7 = true) {
 if_setscrollsize(if_getwidth($component8), $int22, $component8);
 ~scrollbar_vertical($component9, $component8, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
 ~scrollbar_vertical_rebuild($component9, $component8);
-def_string $string6 = db_getfield($dbrow0, dbtable_39:col13, 0);
+def_string $string6 = db_getfield($dbrow0, omnishop_shop_data:omnishop_shop_main_op_text, 0);
 ~omnishop_main_buttons_setup($int3, $string6);

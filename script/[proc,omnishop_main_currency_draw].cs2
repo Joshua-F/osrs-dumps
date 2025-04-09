@@ -1,8 +1,8 @@
 // 3165
 [proc,omnishop_main_currency_draw](dbrow $dbrow0, int $int1, int $int2)(boolean)
-def_component $component3 = interface_819:com_18;
-def_component $component4 = interface_819:com_22;
-def_component $component5 = interface_819:com_23;
+def_component $component3 = omnishop_main:points_layer;
+def_component $component4 = omnishop_main:points_title;
+def_component $component5 = omnishop_main:points_value;
 cc_deleteall($component3);
 if_settext("", $component4);
 if_settextfont(b12_full, $component4);
@@ -26,10 +26,10 @@ if ($int1 > 1) {
     $int13, $int14 = 100000, 10000000;
 }
 while ($int6 < $int1) {
-    $dbrow11 = db_getfield($dbrow0, dbtable_39:col2, $int6);
+    $dbrow11 = db_getfield($dbrow0, omnishop_shop_data:omnishop_shop_currency, $int6);
     if ($dbrow11 ! null) {
-        $string0 = db_getfield($dbrow11, dbtable_41:col2, 0);
-        $graphic15, $graphic16 = db_getfield($dbrow11, dbtable_41:col3, 0);
+        $string0 = db_getfield($dbrow11, omnishop_currency_data:omnishop_currency_name_plural, 0);
+        $graphic15, $graphic16 = db_getfield($dbrow11, omnishop_currency_data:omnishop_currency_graphic, 0);
         $int12 = ~omnishop_var_getter($dbrow11);
         $int7 = ~omnishop_currency_clickbox($component3, $int7, $int8, $int9, $int10, 40, "You have <~tostring_spacer($int12, ",")> <$string0> to spend in this shop.", $string0);
         if ($graphic15 ! null) {

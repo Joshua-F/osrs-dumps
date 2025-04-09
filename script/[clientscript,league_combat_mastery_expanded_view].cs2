@@ -1,6 +1,6 @@
 // 7674
 [clientscript,league_combat_mastery_expanded_view](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10, component $component11, component $component12, component $component13, component $component14, component $component15, component $component16, struct $struct17, struct $struct18)
-def_struct $struct19 = enum(int, struct, enum_2670, %varplayerbit_10032);
+def_struct $struct19 = enum(int, struct, enum_2670, %league_type);
 if ($struct19 = null) {
     return;
 }
@@ -22,56 +22,56 @@ def_int $int22 = -1;
 def_string $string1 = "";
 def_string $string2 = struct_param($struct17, param_2028);
 def_string $string3 = struct_param($struct18, param_2028);
-def_int $int23 = if_getwidth(interface_311:com_43);
+def_int $int23 = if_getwidth(league_combat_mastery:description_holder);
 if_sethide(true, $component3);
 if_sethide(true, $component0);
 if_sethide(true, $component1);
 if_sethide(false, $component2);
-if_sethide(true, interface_311:com_73);
-if_sethide(true, interface_311:com_12);
+if_sethide(true, league_combat_mastery:combat_mastery_tabs);
+if_sethide(true, league_combat_mastery:extra_info);
 if_setgraphic(struct_param($struct17, param_2035), $component4);
 if_settext("<$string0><struct_param($struct17, param_2026)></u>", $component5);
 if_settext("Combat Mastery Effect:", $component6);
 def_int $int24 = calc(paraheight($string2, $int23, p12_full) * 15);
-def_int $int25 = calc(paraheight($string3, if_getwidth(interface_311:com_51), p12_full) * 15);
+def_int $int25 = calc(paraheight($string3, if_getwidth(league_combat_mastery:passive_description), p12_full) * 15);
 if_settext($string2, $component7);
 if_setsize(0, $int24, ^setsize_minus, ^setsize_abs, $component7);
 def_int $int26 = calc($int24 + 12 + if_getheight($component6));
 def_string $string4 = "Passive Effects";
 def_int $int27 = calc(if_getheight($component2) - 41);
 if ($int26 > calc($int27 - 53)) {
-    if_setsize(148, 96, ^setsize_minus, ^setsize_minus, interface_311:com_40);
-    if_setposition(8, 33, ^setpos_abs_left, ^setpos_abs_top, interface_311:com_40);
-    if_setsize(148, 53, ^setsize_minus, ^setsize_abs, interface_311:com_47);
-    if_setposition(8, 8, ^setpos_abs_left, ^setpos_abs_bottom, interface_311:com_47);
+    if_setsize(148, 96, ^setsize_minus, ^setsize_minus, league_combat_mastery:description_combat_mastery);
+    if_setposition(8, 33, ^setpos_abs_left, ^setpos_abs_top, league_combat_mastery:description_combat_mastery);
+    if_setsize(148, 53, ^setsize_minus, ^setsize_abs, league_combat_mastery:description_passive);
+    if_setposition(8, 8, ^setpos_abs_left, ^setpos_abs_bottom, league_combat_mastery:description_passive);
 } else {
-    if_setsize(148, calc($int26 + 6), ^setsize_minus, ^setsize_abs, interface_311:com_40);
-    if_setposition(8, 33, ^setpos_abs_left, ^setpos_abs_top, interface_311:com_40);
-    if_setsize(148, calc($int27 - $int26 - 8), ^setsize_minus, ^setsize_abs, interface_311:com_47);
-    if_setposition(8, calc($int26 + 41), ^setpos_abs_left, ^setpos_abs_top, interface_311:com_47);
+    if_setsize(148, calc($int26 + 6), ^setsize_minus, ^setsize_abs, league_combat_mastery:description_combat_mastery);
+    if_setposition(8, 33, ^setpos_abs_left, ^setpos_abs_top, league_combat_mastery:description_combat_mastery);
+    if_setsize(148, calc($int27 - $int26 - 8), ^setsize_minus, ^setsize_abs, league_combat_mastery:description_passive);
+    if_setposition(8, calc($int26 + 41), ^setpos_abs_left, ^setpos_abs_top, league_combat_mastery:description_passive);
 }
-cc_deleteall(interface_311:com_46);
-if ($int26 > if_getheight(interface_311:com_43)) {
-    if_setscrollsize(0, $int26, interface_311:com_43);
+cc_deleteall(league_combat_mastery:description_scrollbar);
+if ($int26 > if_getheight(league_combat_mastery:description_holder)) {
+    if_setscrollsize(0, $int26, league_combat_mastery:description_holder);
 } else {
-    if_setscrollsize(0, 0, interface_311:com_43);
+    if_setscrollsize(0, 0, league_combat_mastery:description_holder);
 }
-if_setscrollpos(0, 0, interface_311:com_43);
-~scrollbar_vertical(interface_311:com_46, interface_311:com_43, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-if_sethide(false, interface_311:com_46);
+if_setscrollpos(0, 0, league_combat_mastery:description_holder);
+~scrollbar_vertical(league_combat_mastery:description_scrollbar, league_combat_mastery:description_holder, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+if_sethide(false, league_combat_mastery:description_scrollbar);
 if ($struct18 ! null) {
-    if ($int25 > if_getheight(interface_311:com_51)) {
+    if ($int25 > if_getheight(league_combat_mastery:passive_description)) {
         if_settext("<~text_device("Click", "Tap")> to expand...", $component16);
-        if_setop(1, "Expand", interface_311:com_52);
-        if_setonop("league_combat_mastery_passive_info($string4, $string3, $int20)", interface_311:com_52);
-        if_sethide(false, interface_311:com_52);
-        if_setsize(148, 53, ^setsize_minus, ^setsize_abs, interface_311:com_47);
+        if_setop(1, "Expand", league_combat_mastery:passive_clickzone);
+        if_setonop("league_combat_mastery_passive_info($string4, $string3, $int20)", league_combat_mastery:passive_clickzone);
+        if_sethide(false, league_combat_mastery:passive_clickzone);
+        if_setsize(148, 53, ^setsize_minus, ^setsize_abs, league_combat_mastery:description_passive);
     } else {
         if_settext($string3, $component16);
-        if_setop(1, "", interface_311:com_52);
-        if_setonop(null, interface_311:com_52);
-        if_sethide(true, interface_311:com_52);
-        if_setsize(148, calc(33 + $int25), ^setsize_minus, ^setsize_abs, interface_311:com_47);
+        if_setop(1, "", league_combat_mastery:passive_clickzone);
+        if_setonop(null, league_combat_mastery:passive_clickzone);
+        if_sethide(true, league_combat_mastery:passive_clickzone);
+        if_setsize(148, calc(33 + $int25), ^setsize_minus, ^setsize_abs, league_combat_mastery:description_passive);
     }
     if_settext("Passive Effect:", $component15);
     if_sethide(false, $component16);
@@ -82,11 +82,11 @@ if ($struct18 ! null) {
     if_sethide(true, $component16);
     if_sethide(true, $component15);
 }
-$int27 = calc(if_getheight(interface_311:com_40) + if_getheight(interface_311:com_47) + 2);
+$int27 = calc(if_getheight(league_combat_mastery:description_combat_mastery) + if_getheight(league_combat_mastery:description_passive) + 2);
 if ($int27 > 192) {
-    if_setsize(if_getwidth(interface_311:com_1), if_getheight(interface_311:com_1), ^setsize_abs, ^setsize_abs, interface_311:com_1);
+    if_setsize(if_getwidth(league_combat_mastery:universe), if_getheight(league_combat_mastery:universe), ^setsize_abs, ^setsize_abs, league_combat_mastery:universe);
 } else {
-    if_setsize(if_getwidth(interface_311:com_1), 320, ^setsize_abs, ^setsize_abs, interface_311:com_1);
+    if_setsize(if_getwidth(league_combat_mastery:universe), 320, ^setsize_abs, ^setsize_abs, league_combat_mastery:universe);
 }
 if ($int21 = 1) {
     $int22 = ~v2_stone_button($component8);

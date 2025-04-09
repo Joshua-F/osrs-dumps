@@ -1,19 +1,19 @@
 // 5827
 [proc,league_3_unlocks_confirmation_open](component $component0)
 def_int $int1 = ~league_get_league_colour(3);
-if_sethide(false, interface_733:com_40);
+if_sethide(false, league_3_unlocks:confirmation_overlay);
 def_struct $struct2 = null;
 def_graphic $graphic3 = null;
 def_int $int4 = 0;
-if (%varplayer_3343 = 0) {
-    $struct2 = enum(int, struct, enum_4129, calc(%varplayer_3344 - 1));
-} else if (%varplayer_3343 = 1) {
-    $struct2 = enum(int, struct, enum_4130, calc(%varplayer_3344 - 1));
+if (%league_3_unlocks_current_tab = 0) {
+    $struct2 = enum(int, struct, enum_4129, calc(%league_3_unlocks_current_selection - 1));
+} else if (%league_3_unlocks_current_tab = 1) {
+    $struct2 = enum(int, struct, enum_4130, calc(%league_3_unlocks_current_selection - 1));
 } else {
-    $struct2 = enum(int, struct, enum_4131, calc(%varplayer_3344 - 1));
+    $struct2 = enum(int, struct, enum_4131, calc(%league_3_unlocks_current_selection - 1));
 }
 def_string $string0 = struct_param($struct2, param_1437);
-if (%varplayer_3343 = 2) {
+if (%league_3_unlocks_current_tab = 2) {
     $graphic3 = "side_icons,2";
     $int4 = ~league_3_quest_get_cost(struct_param($struct2, param_1444));
 } else {
@@ -21,24 +21,24 @@ if (%varplayer_3343 = 2) {
     $int4 = struct_param($struct2, param_1442);
 }
 ~league_3_unlocks_buy_button($component0, 1, $int1, $int4);
-cc_deleteall(interface_733:com_43);
+cc_deleteall(league_3_unlocks:confirmation_message);
 def_int $int5 = 0;
-$int5 = ~steelbox(interface_733:com_43, $int5, 1);
-cc_create(interface_733:com_43, ^iftype_text, $int5);
+$int5 = ~steelbox(league_3_unlocks:confirmation_message, $int5, 1);
+cc_create(league_3_unlocks:confirmation_message, ^iftype_text, $int5);
 cc_setposition(16, 16, ^setpos_abs_left, ^setpos_abs_top);
 cc_setsize(32, 40, ^setsize_minus, ^setsize_abs);
 cc_settextalign(^settextalign_centre, ^settextalign_top, 20);
 cc_settextshadow(true);
 cc_settextfont(b12_full);
 cc_setcolour($int1);
-if (%varplayer_3343 = 2) {
+if (%league_3_unlocks_current_tab = 2) {
     cc_settext("<col=cfcfcf>Are you sure you wish to complete:<br><$string0>");
 } else {
     cc_settext("<col=cfcfcf>Are you sure you wish to unlock:<br><$string0>");
 }
 $int5 = calc($int5 + 1);
-if (%varplayer_3343 = 2) {
-    cc_create(interface_733:com_43, ^iftype_text, $int5);
+if (%league_3_unlocks_current_tab = 2) {
+    cc_create(league_3_unlocks:confirmation_message, ^iftype_text, $int5);
     cc_setposition(16, 70, ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize(32, 40, ^setsize_minus, ^setsize_abs);
     cc_settextalign(^settextalign_centre, ^settextalign_top, 20);
@@ -47,11 +47,11 @@ if (%varplayer_3343 = 2) {
     cc_setcolour(0xcfcfcf);
     cc_settext("You will <col=c46820>NOT</col> receive any<br>quest reward XP.");
 } else {
-    ~create_graphic(interface_733:com_43, $int5, $graphic3, 0, -10, ^setpos_abs_centre, ^setpos_abs_centre, 50, 50, ^setsize_abs, ^setsize_abs);
+    ~create_graphic(league_3_unlocks:confirmation_message, $int5, $graphic3, 0, -10, ^setpos_abs_centre, ^setpos_abs_centre, 50, 50, ^setsize_abs, ^setsize_abs);
 }
 cc_settiling(false);
 $int5 = calc($int5 + 1);
-cc_create(interface_733:com_43, ^iftype_text, $int5);
+cc_create(league_3_unlocks:confirmation_message, ^iftype_text, $int5);
 cc_setposition(16, 125, ^setpos_abs_left, ^setpos_abs_top);
 cc_setsize(32, 40, ^setsize_minus, ^setsize_abs);
 cc_settextalign(^settextalign_centre, ^settextalign_top, 20);
@@ -60,11 +60,11 @@ cc_settextfont(b12_full);
 cc_setcolour(0xcfcfcf);
 cc_settext("This process is irreversible.");
 $int5 = calc($int5 + 1);
-~script5820(interface_733:com_44, 0, 0, 0, if_getwidth(interface_733:com_44), if_getheight(interface_733:com_44), struct_3927);
-~script5820(interface_733:com_47, 0, 0, 0, if_getwidth(interface_733:com_47), if_getheight(interface_733:com_47), struct_3924);
+~script5820(league_3_unlocks:confirmation_cancel, 0, 0, 0, if_getwidth(league_3_unlocks:confirmation_cancel), if_getheight(league_3_unlocks:confirmation_cancel), struct_3927);
+~script5820(league_3_unlocks:confirmation_accept, 0, 0, 0, if_getwidth(league_3_unlocks:confirmation_accept), if_getheight(league_3_unlocks:confirmation_accept), struct_3924);
 if (~on_mobile = false) {
-    if_setonmouseover("script5821(interface_733:com_44, 0, struct_3929)", interface_733:com_44);
-    if_setonmouseover("script5821(interface_733:com_47, 0, struct_3926)", interface_733:com_47);
-    if_setonmouseleave("script5821(interface_733:com_44, 0, struct_3927)", interface_733:com_44);
-    if_setonmouseleave("script5821(interface_733:com_47, 0, struct_3924)", interface_733:com_47);
+    if_setonmouseover("script5821(league_3_unlocks:confirmation_cancel, 0, struct_3929)", league_3_unlocks:confirmation_cancel);
+    if_setonmouseover("script5821(league_3_unlocks:confirmation_accept, 0, struct_3926)", league_3_unlocks:confirmation_accept);
+    if_setonmouseleave("script5821(league_3_unlocks:confirmation_cancel, 0, struct_3927)", league_3_unlocks:confirmation_cancel);
+    if_setonmouseleave("script5821(league_3_unlocks:confirmation_accept, 0, struct_3924)", league_3_unlocks:confirmation_accept);
 }

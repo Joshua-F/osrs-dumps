@@ -1,8 +1,8 @@
 // 226
 [clientscript,lost_property_init](int $int0, int $int1, int $int2)
-cc_deleteall(interface_557:com_2);
-cc_deleteall(interface_557:com_3);
-def_int $int3 = calc((if_getwidth(interface_557:com_2) - 20 - 6 * 36) / 5);
+cc_deleteall(lost_property:list);
+cc_deleteall(lost_property:scrollbar);
+def_int $int3 = calc((if_getwidth(lost_property:list) - 20 - 6 * 36) / 5);
 def_int $int4 = calc(32 + 36);
 def_int $int5 = 0;
 def_int $int6 = 0;
@@ -10,8 +10,8 @@ def_int $intbool7 = ^false;
 def_int $int8 = 0;
 def_obj $obj9 = null;
 while ($int5 <= 49) {
-    cc_create(interface_557:com_2, ^iftype_graphic, calc($int5 * 2));
-    .cc_create(interface_557:com_2, ^iftype_text, calc($int5 * 2 + 1));
+    cc_create(lost_property:list, ^iftype_graphic, calc($int5 * 2));
+    .cc_create(lost_property:list, ^iftype_text, calc($int5 * 2 + 1));
     if ($int5 < 32) {
         $intbool7 = testbit($int0, $int5);
     } else {
@@ -48,11 +48,11 @@ if (calc($int6 % 6) > 0) {
     $int10 = calc($int10 + 1);
 }
 $int10 = calc($int10 * $int4);
-if ($int10 > if_getheight(interface_557:com_2)) {
-    if_setscrollsize(0, $int10, interface_557:com_2);
-    ~scrollbar_vertical(interface_557:com_3, interface_557:com_2, "scrollbar_parchment_dragger_v2,3", "scrollbar_parchment_dragger_v2,0", "scrollbar_parchment_dragger_v2,1", "scrollbar_parchment_dragger_v2,2", "scrollbar_parchment_v2,0", "scrollbar_parchment_v2,1");
-    ~scrollbar_resize(interface_557:com_3, interface_557:com_2, $int8);
+if ($int10 > if_getheight(lost_property:list)) {
+    if_setscrollsize(0, $int10, lost_property:list);
+    ~scrollbar_vertical(lost_property:scrollbar, lost_property:list, "scrollbar_parchment_dragger_v2,3", "scrollbar_parchment_dragger_v2,0", "scrollbar_parchment_dragger_v2,1", "scrollbar_parchment_dragger_v2,2", "scrollbar_parchment_v2,0", "scrollbar_parchment_v2,1");
+    ~scrollbar_resize(lost_property:scrollbar, lost_property:list, $int8);
 } else {
-    if_setscrollsize(0, 0, interface_557:com_2);
-    if_setscrollpos(0, 0, interface_557:com_2);
+    if_setscrollsize(0, 0, lost_property:list);
+    if_setscrollpos(0, 0, lost_property:list);
 }

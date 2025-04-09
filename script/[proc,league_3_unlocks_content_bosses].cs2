@@ -18,7 +18,7 @@ def_struct $struct12 = enum(int, struct, enum_4130, $int11);
 def_int $int13 = 0;
 def_int $int14 = 0;
 while ($struct12 ! null) {
-    if (calc($int11 + 1) = %varplayer_3344) {
+    if (calc($int11 + 1) = %league_3_unlocks_current_selection) {
         $int13 = 1;
     } else {
         $int13 = 0;
@@ -29,17 +29,17 @@ while ($struct12 ! null) {
     $struct12 = enum(int, struct, enum_4130, $int11);
 }
 if_setscrollsize(if_getwidth($component0), calc($int11 * 32), $component0);
-if ($int9 ! if_getscrollheight($component0) | %varplayer_3344 = 0) {
+if ($int9 ! if_getscrollheight($component0) | %league_3_unlocks_current_selection = 0) {
     if_setscrollpos(0, 0, $component0);
 }
 ~scrollbar_vertical($component1, $component0, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
 if (cc_find($component1, 1) = ^true) {
     ~scrollbar_vertical_setdragger($component1, $component0);
 }
-$struct12 = enum(int, struct, enum_4130, calc(%varplayer_3344 - 1));
+$struct12 = enum(int, struct, enum_4130, calc(%league_3_unlocks_current_selection - 1));
 def_string $string0 = struct_param($struct12, param_1437);
 def_int $int15 = struct_param($struct12, param_1442);
-if (%varplayer_3344 ! 0) {
+if (%league_3_unlocks_current_selection ! 0) {
     ~v2_stone_button($component5);
     ~v2_stone_button($component6);
     if (~on_mobile = false) {
@@ -56,7 +56,7 @@ if (%varplayer_3344 ! 0) {
     if (~league_3_boss_is_unlocked(struct_param($struct12, param_1436)) = 1) {
         ~league_3_unlocks_buy_button($component4, 4, $int8, 0);
         $string0 = "<struct_param($struct12, param_1437)> - Unlocked";
-    } else if ($int15 > %varplayer_3276) {
+    } else if ($int15 > %league_unlock_points) {
         ~league_3_unlocks_buy_button($component4, 3, $int8, $int15);
     } else {
         ~league_3_unlocks_buy_button($component4, 1, $int8, $int15);

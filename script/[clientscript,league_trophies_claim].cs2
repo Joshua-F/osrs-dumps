@@ -1,9 +1,9 @@
 // 1128
 [clientscript,league_trophies_claim](int $int0, int $int1, int $int2, int $int3, int $int4, string $string0)
-~steelborder(interface_447:com_2, "League Trophies", 0);
-cc_deleteall(interface_447:com_3);
-cc_deleteall(interface_447:com_4);
-def_int $int5 = calc((if_getwidth(interface_447:com_3) - 10 * 36) / 9 + 36);
+~steelborder(league_trophies:frame, "League Trophies", 0);
+cc_deleteall(league_trophies:items);
+cc_deleteall(league_trophies:scrollbar);
+def_int $int5 = calc((if_getwidth(league_trophies:items) - 10 * 36) / 9 + 36);
 def_int $int6 = 0;
 def_int $int7 = 0;
 def_int $int8 = 1;
@@ -83,7 +83,7 @@ while ($int15 <= enum_getoutputcount($enum17)) {
         }
         $int10 = calc($int10 + 1);
     }
-    cc_create(interface_447:com_3, ^iftype_graphic, $int15);
+    cc_create(league_trophies:items, ^iftype_graphic, $int15);
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
     cc_setposition(calc($int7 * $int5 + 10), $int6, ^setpos_abs_left, ^setpos_abs_top);
     cc_setgraphicshadow(0x333333);
@@ -108,13 +108,13 @@ if ($int7 > 0) {
 } else if ($int6 > 0) {
     $int6 = calc($int6 - 15);
 }
-if ($int6 <= if_getheight(interface_447:com_3)) {
-    if_setscrollsize(0, 0, interface_447:com_3);
+if ($int6 <= if_getheight(league_trophies:items)) {
+    if_setscrollsize(0, 0, league_trophies:items);
 } else {
-    if_setscrollsize(0, $int6, interface_447:com_3);
+    if_setscrollsize(0, $int6, league_trophies:items);
 }
-if_setscrollpos(0, 0, interface_447:com_3);
-~scrollbar_vertical(interface_447:com_4, interface_447:com_3, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+if_setscrollpos(0, 0, league_trophies:items);
+~scrollbar_vertical(league_trophies:scrollbar, league_trophies:items, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
 $int6 = 0;
 def_struct $struct21 = struct_723;
 def_int $int22 = 0;
@@ -130,7 +130,7 @@ while ($int11 < $int10) {
     if ($intarray0(calc($int11 + 1)) = 0) {
         $int22 = 1;
         $struct21 = enum(int, struct, enum_2670, calc($int11 + 1));
-        cc_create(interface_447:com_3, ^iftype_text, $int15);
+        cc_create(league_trophies:items, ^iftype_text, $int15);
         cc_setsize(20, 15, ^setsize_minus, ^setsize_abs);
         cc_setposition(10, calc($int6 + 5), ^setpos_abs_left, ^setpos_abs_top);
         cc_setcolour(0xff981f);
@@ -139,7 +139,7 @@ while ($int11 < $int10) {
         cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
         cc_settext(struct_param($struct21, param_858));
         $int15 = calc($int15 + 1);
-        cc_create(interface_447:com_3, ^iftype_line, $int15);
+        cc_create(league_trophies:items, ^iftype_line, $int15);
         cc_setsize(20, 0, ^setsize_minus, ^setsize_abs);
         cc_setposition(10, calc($int6 + 25), ^setpos_abs_left, ^setpos_abs_top);
         $int15 = calc($int15 + 1);
