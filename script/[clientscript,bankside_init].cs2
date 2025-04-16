@@ -1,13 +1,13 @@
 // 294
-[clientscript,bankside_init](component $universe, component $items_container, component $items_background, component $items, component $wornops, component $lootingbag_container, component $lootingbag_items, component $lootingbag_dismiss, component $league_secondinv_container, component $league_secondinv_items, component $league_secondinv_dismiss, component $runepouch_container, component $runepouch_select_container, component $runepouch_dismiss, component $prepot_device_container, component $prepot_device_dismiss)
+[clientscript,bankside_init](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10, component $component11, component $component12, component $component13, component $component14, component $component15)
 %varclient_1201 = null;
-cc_deleteall($items);
-cc_deleteall($wornops);
+cc_deleteall($component3);
+cc_deleteall($component4);
 def_int $int16 = 0;
 def_int $int17 = inv_size(inv);
 while ($int16 < $int17) {
-    cc_create($items, ^iftype_graphic, $int16);
-    .cc_create($wornops, ^iftype_graphic, $int16);
+    cc_create($component3, ^iftype_graphic, $int16);
+    .cc_create($component4, ^iftype_graphic, $int16);
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
     .cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
     cc_setgraphicshadow(0x333333);
@@ -22,18 +22,18 @@ while ($int16 < $int17) {
     .cc_sethide(false);
     $int16 = calc($int16 + 1);
 }
-~bankside_build($items_container, $items, $items_background, $wornops, $lootingbag_container, $league_secondinv_container, $runepouch_container, $runepouch_select_container, $prepot_device_container);
-if_setoninvtransmit("bankside_build($items_container, $items, $items_background, $wornops, $lootingbag_container, $league_secondinv_container, $runepouch_container, $runepouch_select_container, $prepot_device_container){inv, looting_bag, league_secondinv}", $items_container);
-if_setonvartransmit("bankside_build($items_container, $items, $items_background, $wornops, $lootingbag_container, $league_secondinv_container, $runepouch_container, $runepouch_select_container, $prepot_device_container){bankinsert, gargboss_perm_transmit, item_redemption, if1, if2, if3, bank_locked_slots}", $items_container);
-~bankside_bag_draw($lootingbag_items, looting_bag);
-if_setoninvtransmit("bankside_bag_draw($lootingbag_items, looting_bag){looting_bag}", $lootingbag_container);
-if_setonvartransmit("bankside_bag_draw($lootingbag_items, looting_bag){bankinsert, gargboss_perm_transmit}", $lootingbag_container);
-~bankside_bag_draw($league_secondinv_items, league_secondinv);
-if_setoninvtransmit("bankside_bag_draw($league_secondinv_items, league_secondinv){league_secondinv}", $league_secondinv_container);
-if_setonvartransmit("bankside_bag_draw($league_secondinv_items, league_secondinv){bankinsert, gargboss_perm_transmit}", $league_secondinv_container);
-~bankside_switchview($items_container, $lootingbag_container, $league_secondinv_container, $runepouch_container, $runepouch_select_container, $prepot_device_container);
-if_setonvartransmit("bankside_switchview(-1, null, $items_container, $lootingbag_container, $league_secondinv_container, $runepouch_container, $runepouch_select_container, $prepot_device_container, -1){bankcert, bank_viewcontainer_obj}", $universe);
-if_setonop("bankside_switchview(event_op, null, $items_container, $lootingbag_container, $league_secondinv_container, $runepouch_container, $runepouch_select_container, $prepot_device_container, 0)", $lootingbag_dismiss);
-if_setonop("bankside_switchview(event_op, null, $items_container, $lootingbag_container, $league_secondinv_container, $runepouch_container, $runepouch_select_container, $prepot_device_container, 0)", $league_secondinv_dismiss);
-if_setonop("bankside_switchview(event_op, null, $items_container, $lootingbag_container, $league_secondinv_container, $runepouch_container, $runepouch_select_container, $prepot_device_container, 0)", $runepouch_dismiss);
-if_setonop("bankside_switchview(event_op, null, $items_container, $lootingbag_container, $league_secondinv_container, $runepouch_container, $runepouch_select_container, $prepot_device_container, 0)", $prepot_device_dismiss);
+~bankside_build($component1, $component3, $component2, $component4, $component5, $component8, $component11, $component12, $component14);
+if_setoninvtransmit("bankside_build($component1, $component3, $component2, $component4, $component5, $component8, $component11, $component12, $component14){inv, looting_bag, league_secondinv}", $component1);
+if_setonvartransmit("bankside_build($component1, $component3, $component2, $component4, $component5, $component8, $component11, $component12, $component14){bankinsert, gargboss_perm_transmit, item_redemption, if1, if2, if3, bank_locked_slots}", $component1);
+~bankside_bag_draw($component6, looting_bag);
+if_setoninvtransmit("bankside_bag_draw($component6, looting_bag){looting_bag}", $component5);
+if_setonvartransmit("bankside_bag_draw($component6, looting_bag){bankinsert, gargboss_perm_transmit}", $component5);
+~bankside_bag_draw($component9, league_secondinv);
+if_setoninvtransmit("bankside_bag_draw($component9, league_secondinv){league_secondinv}", $component8);
+if_setonvartransmit("bankside_bag_draw($component9, league_secondinv){bankinsert, gargboss_perm_transmit}", $component8);
+~bankside_switchview($component1, $component5, $component8, $component11, $component12, $component14);
+if_setonvartransmit("bankside_switchview(-1, null, $component1, $component5, $component8, $component11, $component12, $component14, -1){bankcert, bank_viewcontainer_obj}", $component0);
+if_setonop("bankside_switchview(event_op, null, $component1, $component5, $component8, $component11, $component12, $component14, 0)", $component7);
+if_setonop("bankside_switchview(event_op, null, $component1, $component5, $component8, $component11, $component12, $component14, 0)", $component10);
+if_setonop("bankside_switchview(event_op, null, $component1, $component5, $component8, $component11, $component12, $component14, 0)", $component13);
+if_setonop("bankside_switchview(event_op, null, $component1, $component5, $component8, $component11, $component12, $component14, 0)", $component15);

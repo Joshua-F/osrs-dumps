@@ -1,7 +1,7 @@
 // 255
-[clientscript,nzone_game_overlay](coord $coord, string $string)
+[clientscript,nzone_game_overlay](coord $coord0, string $string0)
 if_sethide(false, nzone_game:universe);
-if_setontimer("nzone_game_hide(nzone_game:universe, $coord)", nzone_game:control);
+if_setontimer("nzone_game_hide(nzone_game:universe, $coord0)", nzone_game:control);
 cc_deleteall(nzone_game:content_right);
 cc_create(nzone_game:content_right, ^iftype_rectangle, 0);
 cc_setcolour(0x7f460f);
@@ -56,7 +56,7 @@ cc_settextfont(quill_oblique_large);
 cc_settextshadow(true);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
 ~nzone_game_absorption_set(nzone_game:content_left, %nzone_absorb_potion_effects);
-if (string_length($string) <= 0) {
+if (string_length($string0) <= 0) {
     return;
 }
 cc_create(nzone_game:content_mid, ^iftype_rectangle, 0);
@@ -72,5 +72,5 @@ cc_settrans(255);
 .cc_settextshadow(true);
 .cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
 .cc_settextfont(quill_oblique_large);
-.cc_settext($string);
+.cc_settext($string0);
 cc_setontimer("nzone_game_subtitle(event_com, cc_getid, .cc_getid, clientclock)");

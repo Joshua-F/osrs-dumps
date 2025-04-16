@@ -1,14 +1,14 @@
 // 4445
-[clientscript,clan_create_side_init](component $universe, component $title, component $contents_title, component $contents, component $name, component $cancel, component $invite, component $confirm, int $int8, string $string0)
+[clientscript,clan_create_side_init](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, int $int8, string $string0)
 def_int $int9 = 0;
 if (%gim_i_am_leader = 1 | %gim_i_am_member = 1) {
     $int9 = 1;
-    if_settext("<col=ff981f>Create a <$string0></col>", $title);
+    if_settext("<col=ff981f>Create a <$string0></col>", $component1);
 } else {
-    if_settext("<col=ff981f>Form a <$string0></col>", $title);
+    if_settext("<col=ff981f>Form a <$string0></col>", $component1);
 }
-cc_deleteall($contents_title);
-cc_create($contents_title, ^iftype_text, 0);
+cc_deleteall($component2);
+cc_create($component2, ^iftype_text, 0);
 cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
 cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
 cc_setcolour(0xffb83f);
@@ -16,39 +16,39 @@ cc_settextfont(p11_full);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
 cc_settextshadow(true);
 cc_settext("<$string0> members");
-cc_deleteall($universe);
-def_enum $enum = enum_3824;
+cc_deleteall($component0);
+def_enum $enum10 = enum_3824;
 def_int $int11 = 0;
 if ($int9 = 1) {
-    $enum = enum_4053;
+    $enum10 = enum_4053;
     $int11 = 1;
 }
-cc_create($universe, ^iftype_rectangle, enum(component, int, $enum, $name));
-cc_create($universe, ^iftype_rectangle, enum(component, int, $enum, $cancel));
-cc_create($universe, ^iftype_rectangle, enum(component, int, $enum, $invite));
-cc_create($universe, ^iftype_rectangle, enum(component, int, $enum, $confirm));
+cc_create($component0, ^iftype_rectangle, enum(component, int, $enum10, $component4));
+cc_create($component0, ^iftype_rectangle, enum(component, int, $enum10, $component5));
+cc_create($component0, ^iftype_rectangle, enum(component, int, $enum10, $component6));
+cc_create($component0, ^iftype_rectangle, enum(component, int, $enum10, $component7));
 def_string $string1 = "<col=ff981f><$string0> name</col>";
 if (string_length(%varclient_458) > 0) {
     $string1 = %varclient_458;
 }
-if_setop(1, "<$string0> name", $name);
-if_setop(1, "Cancel", $cancel);
-if_setop(1, "Invite", $invite);
-if_setop(1, "Confirm", $confirm);
+if_setop(1, "<$string0> name", $component4);
+if_setop(1, "Cancel", $component5);
+if_setop(1, "Invite", $component6);
+if_setop(1, "Confirm", $component7);
 if (%gim_i_am_leader = 1 | %clan_i_am_founder = 1) {
-    ~stonebutton_init($string1, $name, p12_full, 0);
-    ~stonebutton_init("<col=ff0000>Cancel</col>", $cancel, p12_full, 0);
-    ~script2432("<col=ff981f>Invite</col>", $invite, p12_full);
-    ~stonebutton_init("<col=0dc10d>Confirm</col>", $confirm, p12_full, 0);
+    ~stonebutton_init($string1, $component4, p12_full, 0);
+    ~stonebutton_init("<col=ff0000>Cancel</col>", $component5, p12_full, 0);
+    ~script2432("<col=ff981f>Invite</col>", $component6, p12_full);
+    ~stonebutton_init("<col=0dc10d>Confirm</col>", $component7, p12_full, 0);
 } else {
     if ($int11 = 0) {
-        if_setonop("clan_create_member_invite", $invite);
+        if_setonop("clan_create_member_invite", $component6);
     } else {
-        if_setonop("clan_create_member_invite_group", $invite);
+        if_setonop("clan_create_member_invite_group", $component6);
     }
-    ~stonebutton_draw(false, "<col=808080><$string0> name</col>", p12_full, 0, $name);
-    ~stonebutton_init("<col=ff0000>Cancel</col>", $cancel, p12_full, 0);
-    ~stonebutton_draw(false, "<col=808080>Invite</col>", p12_full, 0, $invite);
-    ~stonebutton_draw(false, "<col=808080>Confirm</col>", p12_full, 0, $confirm);
+    ~stonebutton_draw(false, "<col=808080><$string0> name</col>", p12_full, 0, $component4);
+    ~stonebutton_init("<col=ff0000>Cancel</col>", $component5, p12_full, 0);
+    ~stonebutton_draw(false, "<col=808080>Invite</col>", p12_full, 0, $component6);
+    ~stonebutton_draw(false, "<col=808080>Confirm</col>", p12_full, 0, $component7);
 }
-~clan_create_side_list_players($contents, "", "", "", "", "", "");
+~clan_create_side_list_players($component3, "", "", "", "", "", "");

@@ -1,22 +1,22 @@
 // 6839
 [proc,script6839]
-def_component $invocations_presets_inner = toa_partydetails:invocations_presets_inner;
-def_component $invocations_presets_buttons = toa_partydetails:invocations_presets_buttons;
-def_component $invocations_presets_scrollbar = toa_partydetails:invocations_presets_scrollbar;
-def_component $presets_background = toa_partydetails:presets_background;
-def_component $presets_name = toa_partydetails:presets_name;
-def_component $presets_button = toa_partydetails:presets_button;
-def_component $presets_button_click = toa_partydetails:presets_button_click;
-def_component $presets_button_click_pause = toa_partydetails:presets_button_click_pause;
-def_component $btn_presets_load = toa_partydetails:btn_presets_load;
-def_component $btn_presets_save = toa_partydetails:btn_presets_save;
-cc_deleteall($presets_background);
-cc_deleteall($presets_name);
-cc_deleteall($presets_button);
-cc_deleteall($presets_button_click);
-cc_deleteall($presets_button_click_pause);
+def_component $component0 = toa_partydetails:invocations_presets_inner;
+def_component $component1 = toa_partydetails:invocations_presets_buttons;
+def_component $component2 = toa_partydetails:invocations_presets_scrollbar;
+def_component $component3 = toa_partydetails:presets_background;
+def_component $component4 = toa_partydetails:presets_name;
+def_component $component5 = toa_partydetails:presets_button;
+def_component $component6 = toa_partydetails:presets_button_click;
+def_component $component7 = toa_partydetails:presets_button_click_pause;
+def_component $component8 = toa_partydetails:btn_presets_load;
+def_component $component9 = toa_partydetails:btn_presets_save;
+cc_deleteall($component3);
+cc_deleteall($component4);
+cc_deleteall($component5);
+cc_deleteall($component6);
+cc_deleteall($component7);
 def_int $int10 = 0;
-def_int $rgb = 0xff981f;
+def_int $rgb11 = 0xff981f;
 def_int $int12 = 5;
 def_int $int13 = 0;
 def_int $int14 = 5;
@@ -26,14 +26,14 @@ def_int $int17 = 5;
 def_int $int18 = 5;
 def_int $int19 = 114;
 def_int $int20 = 0;
-def_string $string = "";
+def_string $string0 = "";
 def_int $int21 = 0;
 def_int $int22 = 0;
 def_int $int23 = 0;
 def_int $int24 = 0;
 def_int $int25 = 0;
 while ($int13 < $int12) {
-    cc_create($presets_button_click_pause, ^iftype_rectangle, $int13);
+    cc_create($component7, ^iftype_rectangle, $int13);
     cc_setsize(0, 0, ^setsize_abs, ^setsize_abs);
     cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
     $int13 = calc($int13 + 1);
@@ -55,52 +55,52 @@ while ($int13 < $int12) {
     }
     $int24 = ~toa_raid_level($int21, $int22, $int23);
     if ($int24 = 0) {
-        $string = "Empty";
+        $string0 = "Empty";
     } else if ($int24 < 150) {
-        $string = "Entry - <tostring($int24)>";
+        $string0 = "Entry - <tostring($int24)>";
     } else if ($int24 < 300) {
-        $string = "Normal - <tostring($int24)>";
+        $string0 = "Normal - <tostring($int24)>";
     } else {
-        $string = "Expert - <tostring($int24)>";
+        $string0 = "Expert - <tostring($int24)>";
     }
     if (%toa_preset_selected = calc($int10 + 1)) {
         $int26 = 1;
-        $rgb = ^white;
+        $rgb11 = ^white;
     }
     if ($int10 > 0) {
         $int14 = calc($int14 + $int16 + $int17);
     }
-    cc_create($presets_background, ^iftype_rectangle, $int10);
+    cc_create($component3, ^iftype_rectangle, $int10);
     cc_setsize($int19, $int16, ^setsize_abs, ^setsize_abs);
     cc_setposition($int15, $int14, ^setpos_abs_left, ^setpos_abs_top);
     cc_setcolour(^black);
     cc_setfill(false);
     cc_settrans(255);
-    cc_setopbase("<col=ff981f><$string></col>");
-    cc_create($presets_name, ^iftype_text, $int10);
+    cc_setopbase("<col=ff981f><$string0></col>");
+    cc_create($component4, ^iftype_text, $int10);
     cc_setsize(calc($int19 - 6), 24, ^setsize_abs, ^setsize_abs);
     cc_setposition(calc($int15 + 3), $int14, ^setpos_abs_left, ^setpos_abs_top);
-    cc_settext($string);
+    cc_settext($string0);
     cc_settextfont(p12_full);
     cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
     cc_settextshadow(true);
-    cc_setcolour($rgb);
+    cc_setcolour($rgb11);
     if ($int26 = 1) {
-        $int20 = ~dynamic_stone_button_filled($presets_button, $presets_button_click, "", $int15, $int14, $int19, $int16, $int20, $int10, 1, 1);
+        $int20 = ~dynamic_stone_button_filled($component5, $component6, "", $int15, $int14, $int19, $int16, $int20, $int10, 1, 1);
     } else {
-        $int20 = ~dynamic_stone_button_filled($presets_button, $presets_button_click, "", $int15, $int14, $int19, $int16, $int20, $int10, 1, 0);
+        $int20 = ~dynamic_stone_button_filled($component5, $component6, "", $int15, $int14, $int19, $int16, $int20, $int10, 1, 0);
     }
-    if (cc_find($presets_button_click, $int10) = true) {
+    if (cc_find($component6, $int10) = true) {
         cc_setop(1, "Select");
         cc_setop(2, "Clear");
-        cc_setopbase("<col=ff9040><$string></col>");
+        cc_setopbase("<col=ff9040><$string0></col>");
         cc_setonop("script6843");
     }
     $int10 = calc($int10 + 1);
     $int13 = calc($int13 + 1);
     $int26 = 0;
-    $rgb = 0xff981f;
+    $rgb11 = 0xff981f;
 }
 $int14 = calc($int14 + $int16 + $int17);
-~scrollbar_vertical($invocations_presets_scrollbar, $invocations_presets_buttons, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-~script6841($int14, if_getlayer($invocations_presets_inner), $invocations_presets_inner, $invocations_presets_buttons, $invocations_presets_scrollbar, $btn_presets_load, $btn_presets_save);
+~scrollbar_vertical($component2, $component1, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~script6841($int14, if_getlayer($component0), $component0, $component1, $component2, $component8, $component9);

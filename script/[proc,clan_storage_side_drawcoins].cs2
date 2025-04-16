@@ -2,12 +2,12 @@
 [proc,clan_storage_side_drawcoins]
 def_string $string0 = "Eligible members of the clan may deposit coins via the quantity buttons.";
 def_string $string1 = "There are no coins in your inventory.";
-def_int $int = inv_total(inv, coins);
-if ($int > 0) {
+def_int $int0 = inv_total(inv, coins);
+if ($int0 > 0) {
     cc_settrans(0);
-    $string1 = "<~tostring_spacer($int, ",")> x <oc_name(coins)>.";
+    $string1 = "<~tostring_spacer($int0, ",")> x <oc_name(coins)>.";
     cc_setonop("clan_storage_opitem(event_op, event_com, event_comsubid, $string0, $string1, 100, 0)");
-    cc_setobject(coins, $int);
+    cc_setobject(coins, $int0);
 } else {
     cc_settrans(125);
     $string0 = "If you had some coins in your inventory, you could deposit them.";
