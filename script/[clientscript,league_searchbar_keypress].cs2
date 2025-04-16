@@ -1,5 +1,5 @@
 // 2443
-[clientscript,league_searchbar_keypress](int $key, char $char, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10, component $component11, component $component12, component $component13, component $component14, component $component15, component $component16, component $component17, component $component18, component $component19)
+[clientscript,league_searchbar_keypress](int $key0, char $char1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10, component $component11, component $component12, component $component13, component $component14, component $component15, component $component16, component $component17, component $component18, component $component19)
 if (~keypress_permit(null, settings) = false) {
     return;
 }
@@ -9,7 +9,7 @@ if (%league_tasks_search_listen_for_keyboard = 0) {
 if (%league_tasks_is_searching = 0) {
     return;
 }
-if ($key = ^key_del) {
+if ($key0 = ^key_del) {
     if (compare("", %varclient_1180) = 0) {
         return;
     }
@@ -19,7 +19,7 @@ if ($key = ^key_del) {
     if_setontimer("league_search_update(%varclient_1180, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10, $component11, $component12, $component13, $component14, $component15, $component16, $component17, $component18, $component19)", $component19);
     return;
 }
-if ($key = ^key_return) {
+if ($key0 = ^key_return) {
     if (~on_mobile = true) {
         ~keyboard_hide;
         return;
@@ -32,20 +32,20 @@ if ($key = ^key_return) {
     if_setontimer("league_search_update(%varclient_1180, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10, $component11, $component12, $component13, $component14, $component15, $component16, $component17, $component18, $component19)", $component19);
     return;
 }
-def_string $string = %varclient_1180;
-def_int $int = string_length($string);
-if ($key = ^key_backspace) {
-    if ($int > 0) {
-        %varclient_1180 = substring($string, 0, calc($int - 1));
+def_string $string0 = %varclient_1180;
+def_int $int20 = string_length($string0);
+if ($key0 = ^key_backspace) {
+    if ($int20 > 0) {
+        %varclient_1180 = substring($string0, 0, calc($int20 - 1));
     }
     ~league_searchbar_set_text($component19);
     return;
 }
-if (char_isalphanumeric($char) = false & string_indexof_char(" -/,", $char) = -1) {
+if (char_isalphanumeric($char1) = false & string_indexof_char(" -/,", $char1) = -1) {
     return;
 }
-if (string_length(append_char($string, $char)) > 50) {
+if (string_length(append_char($string0, $char1)) > 50) {
     return;
 }
-%varclient_1180 = append_char($string, $char);
+%varclient_1180 = append_char($string0, $char1);
 ~league_searchbar_set_text($component19);
