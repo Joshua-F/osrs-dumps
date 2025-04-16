@@ -1,23 +1,23 @@
 // 4182
-[proc,settings_create_colour_input](int $int0, int $int1, int $int2, int $int3, int $int4, struct $struct, component $component6, component $component7, component $component8)(int, int, int, int)
+[proc,settings_create_colour_input](int $int0, int $int1, int $int2, int $int3, int $int4, struct $struct5, component $component6, component $component7, component $component8)(int, int, int, int)
 def_boolean $boolean9 = ~on_mobile;
-if ($struct = null) {
+if ($struct5 = null) {
     cc_create($component6, ^iftype_rectangle, $int3);
     cc_sethide(true);
     $int3 = calc($int3 + 1);
     return($int0, $int1, $int2, $int3);
 }
-def_string $string0 = struct_param($struct, param_1086);
+def_string $string0 = struct_param($struct5, param_1086);
 def_int $int10 = 50;
-if ($boolean9 = true & string_length(struct_param($struct, param_1087)) > 0) {
-    $string0 = struct_param($struct, param_1087);
+if ($boolean9 = true & string_length(struct_param($struct5, param_1087)) > 0) {
+    $string0 = struct_param($struct5, param_1087);
 }
-def_string $string1 = struct_param($struct, param_1096);
+def_string $string1 = struct_param($struct5, param_1096);
 def_int $int11 = 0;
 def_int $int12 = %settings_disable_tooltip_in_interface;
-def_boolean $boolean13 = struct_param($struct, param_1119);
-if ($boolean9 = true & string_length(struct_param($struct, param_1097)) > 0) {
-    $string1 = struct_param($struct, param_1097);
+def_boolean $boolean13 = struct_param($struct5, param_1119);
+if ($boolean9 = true & string_length(struct_param($struct5, param_1097)) > 0) {
+    $string1 = struct_param($struct5, param_1097);
 }
 if (string_length($string1) > 0) {
     $int11 = calc(paraheight($string1, calc(if_getwidth($component7) - ($int10 + 25)), p12_full) * 14);
@@ -31,7 +31,7 @@ if ($boolean9 = true & $int14 < 20) {
     $int14 = 20;
 }
 def_int $int15 = calc($int14 + 12 + $int11);
-def_boolean $boolean16 = ~settings_dependency_checker($struct);
+def_boolean $boolean16 = ~settings_dependency_checker($struct5);
 cc_create($component7, ^iftype_rectangle, $int2);
 cc_setsize(10, $int15, ^setsize_minus, ^setsize_abs);
 cc_setposition(0, $int0, ^setpos_abs_centre, ^setpos_abs_top);
@@ -56,8 +56,8 @@ if ($boolean9 = false & $int12 = 1 & string_length($string1) > 0) {
 }
 cc_settextalign(^settextalign_left, ^settextalign_centre, 14);
 $int2 = calc($int2 + 1);
-def_int $int17 = struct_param($struct, param_1077);
-def_int $int18 = struct_param($struct, param_1230);
+def_int $int17 = struct_param($struct5, param_1077);
+def_int $int18 = struct_param($struct5, param_1230);
 if (~settings_get_colour($int17) ! -1) {
     $int18 = ~settings_get_colour($int17);
 }
@@ -66,13 +66,13 @@ cc_setsize($int10, 20, ^setsize_abs, ^setsize_abs);
 cc_setposition(10, calc($int0 + ($int15 / 2 - 10)), ^setpos_abs_right, ^setpos_abs_top);
 cc_setcolour($int18);
 cc_setfill(true);
-~settings_colour_choose_transmit($component7, $int2, $struct, $int17, $component6, $int3);
+~settings_colour_choose_transmit($component7, $int2, $struct5, $int17, $component6, $int3);
 $int2 = calc($int2 + 1);
 cc_create($component6, ^iftype_rectangle, $int3);
 cc_setsize($int10, 20, ^setsize_abs, ^setsize_abs);
 cc_setposition(10, calc($int0 + ($int15 / 2 - 10)), ^setpos_abs_right, ^setpos_abs_top);
 cc_setop(1, "Select");
-cc_setonop("settings_colour_input_click($struct)");
+cc_setonop("settings_colour_input_click($struct5)");
 $int3 = calc($int3 + 1);
 if ($boolean9 = false) {
     cc_create($component7, ^iftype_rectangle, $int2);

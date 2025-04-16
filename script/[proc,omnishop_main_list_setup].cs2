@@ -1,17 +1,17 @@
 // 7143
-[proc,omnishop_main_list_setup](dbrow $dbrow, inv $inv, int $int2, int $int3)
-def_component $list = omnishop_main:list;
-def_component $list_scroller = omnishop_main:list_scroller;
-cc_deleteall($list);
+[proc,omnishop_main_list_setup](dbrow $dbrow0, inv $inv1, int $int2, int $int3)
+def_component $component4 = omnishop_main:list;
+def_component $component5 = omnishop_main:list_scroller;
+cc_deleteall($component4);
 def_int $int6 = 0;
 def_int $int7 = 0;
-def_boolean $boolean = false;
+def_boolean $boolean8 = false;
 def_int $int9 = 0;
 def_int $int10 = 0;
 def_int $int11 = 0;
-def_int $int12 = db_getfieldcount($dbrow, omnishop_shop_data:omnishop_shop_stock);
+def_int $int12 = db_getfieldcount($dbrow0, omnishop_shop_data:omnishop_shop_stock);
 if ($int12 = 0) {
-    $int12 = inv_size($inv);
+    $int12 = inv_size($inv1);
 }
 while ($int6 < $int12) {
     if ($int6 = $int2 & %omnishop_view_expanded = 0) {
@@ -19,18 +19,18 @@ while ($int6 < $int12) {
     } else {
         $int9 = 0;
     }
-    $boolean, $int10 = ~omnishop_main_list_item_setup($int6, $int7, $dbrow, $inv, $int9);
-    if ($boolean = true) {
+    $boolean8, $int10 = ~omnishop_main_list_item_setup($int6, $int7, $dbrow0, $inv1, $int9);
+    if ($boolean8 = true) {
         $int7 = calc($int7 + 1);
         $int11 = $int10;
     }
     $int6 = calc($int6 + 1);
 }
-if_setscrollsize(if_getwidth($list), $int11, $list);
+if_setscrollsize(if_getwidth($component4), $int11, $component4);
 if ($int3 = 1) {
-    if_setscrollpos(0, 0, $list);
+    if_setscrollpos(0, 0, $component4);
 } else {
-    if_setscrollpos(0, %varclient_1199, $list);
+    if_setscrollpos(0, %varclient_1199, $component4);
 }
-~scrollbar_vertical($list_scroller, $list, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-~scrollbar_resize($list_scroller, $list, %varclient_1199);
+~scrollbar_vertical($component5, $component4, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~scrollbar_resize($component5, $component4, %varclient_1199);

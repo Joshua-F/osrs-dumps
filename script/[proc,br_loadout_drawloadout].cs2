@@ -1,9 +1,9 @@
 // 3067
 [proc,br_loadout_drawloadout](int $int0, enum $enum1, enum $enum2, component $component3, component $component4, component $component5, component $component6)
-def_int $intarray(calc(enum_getoutputcount($enum1) + 1));
+def_int $intarray0(calc(enum_getoutputcount($enum1) + 1));
 def_component $component7 = null;
 def_int $int8 = 0;
-def_obj $obj = null;
+def_obj $obj9 = null;
 def_int $int10 = 0;
 def_int $int11 = inv_size(worn);
 while ($int10 < $int11) {
@@ -18,18 +18,18 @@ while ($int10 < $int11) {
         cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
         cc_setposition(2, 0, ^setpos_abs_centre, ^setpos_abs_centre);
         $int8 = ~br_loadout_get_worn($int0, $int10);
-        $obj = enum(int, namedobj, $enum1, $int8);
-        if ($obj ! null) {
+        $obj9 = enum(int, namedobj, $enum1, $int8);
+        if ($obj9 ! null) {
             cc_settrans(0);
             cc_setgraphicshadow(0x333333);
             cc_setoutline(1);
-            if (oc_stackable($obj) = true) {
-                cc_setobject($obj, 5000);
+            if (oc_stackable($obj9) = true) {
+                cc_setobject($obj9, 5000);
             } else {
-                cc_setobject($obj, 1);
+                cc_setobject($obj9, 1);
             }
-            $intarray($int8) = ~min(calc($intarray($int8) + 1), enum(obj, int, enum_2631, $obj));
-            cc_setopbase("<col=ff9040><oc_name($obj)></col>");
+            $intarray0($int8) = ~min(calc($intarray0($int8) + 1), enum(obj, int, enum_2631, $obj9));
+            cc_setopbase("<col=ff9040><oc_name($obj9)></col>");
             cc_setop(1, "Discard");
             cc_setop(10, "Examine");
             cc_setonop("cc_settrans_temporarily(event_com, cc_getid, 100, 0)");
@@ -56,21 +56,21 @@ $int10 = 0;
 def_int $int14 = inv_size(inv);
 while ($int10 < $int14) {
     $int8 = ~br_loadout_get_inv($int0, $int10);
-    $obj = enum(int, namedobj, $enum1, $int8);
+    $obj9 = enum(int, namedobj, $enum1, $int8);
     cc_create($component4, ^iftype_graphic, $int10);
     cc_setposition(calc(4 + $int12 * ($int10 % 4)), calc(3 + $int13 * ($int10 / 4)), ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
-    if ($obj ! null) {
+    if ($obj9 ! null) {
         cc_settrans(0);
         cc_setgraphicshadow(0x333333);
         cc_setoutline(1);
-        if (oc_stackable($obj) = true) {
-            cc_setobject($obj, 5000);
+        if (oc_stackable($obj9) = true) {
+            cc_setobject($obj9, 5000);
         } else {
-            cc_setobject($obj, 1);
+            cc_setobject($obj9, 1);
         }
-        $intarray($int8) = ~min(calc($intarray($int8) + 1), enum(obj, int, enum_2631, $obj));
-        cc_setopbase("<col=ff9040><oc_name($obj)></col>");
+        $intarray0($int8) = ~min(calc($intarray0($int8) + 1), enum(obj, int, enum_2631, $obj9));
+        cc_setopbase("<col=ff9040><oc_name($obj9)></col>");
         cc_setop(1, "Discard");
         cc_setop(10, "Examine");
         cc_setonop("cc_settrans_temporarily(event_com, cc_getid, 100, 0)");
@@ -93,10 +93,10 @@ while ($int10 > 0) {
     $component7 = enum(int, component, $enum2, $int10);
     if ($component7 ! null) {
         $int8 = ~br_loadout_get_worn($int0, $int10);
-        $obj = enum(int, namedobj, $enum1, $int8);
-        if ($obj ! null) {
-            if ($intarray($int8) > 0) {
-                $intarray($int8) = calc($intarray($int8) - 1);
+        $obj9 = enum(int, namedobj, $enum1, $int8);
+        if ($obj9 ! null) {
+            if ($intarray0($int8) > 0) {
+                $intarray0($int8) = calc($intarray0($int8) - 1);
             } else {
                 cc_create($component7, ^iftype_model, 2);
                 cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
@@ -113,10 +113,10 @@ while ($int10 < $int14) {
     cc_create($component4, ^iftype_model, $int15);
     $int15 = calc($int15 + 1);
     $int8 = ~br_loadout_get_inv($int0, $int10);
-    $obj = enum(int, namedobj, $enum1, $int8);
-    if ($obj ! null) {
-        if ($intarray($int8) > 0) {
-            $intarray($int8) = calc($intarray($int8) - 1);
+    $obj9 = enum(int, namedobj, $enum1, $int8);
+    if ($obj9 ! null) {
+        if ($intarray0($int8) > 0) {
+            $intarray0($int8) = calc($intarray0($int8) - 1);
             cc_sethide(true);
         } else {
             cc_sethide(false);

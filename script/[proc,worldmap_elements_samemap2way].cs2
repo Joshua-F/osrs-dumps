@@ -1,15 +1,15 @@
 // 1753
-[proc,worldmap_elements_samemap2way](coord $coord0, coord $coord1, boolean $boolean2, int $int3, component $component, int $int5, int $int6, int $int7, int $int8, int $int9)(int)
+[proc,worldmap_elements_samemap2way](coord $coord0, coord $coord1, boolean $boolean2, int $int3, component $component4, int $int5, int $int6, int $int7, int $int8, int $int9)(int)
 def_int $int10 = calc($int9 + 1);
 def_int $int11 = calc($int9 + 2);
 def_int $int12 = calc($int9 + 3);
 def_int $int13 = calc($int9 + 4);
 def_int $int14 = 0;
 def_int $int15 = 0;
-$int14, $int15 = ~worldmap_elements_chooseposition($coord0, $boolean2, $component, $int5, $int6, $int7, $int8);
+$int14, $int15 = ~worldmap_elements_chooseposition($coord0, $boolean2, $component4, $int5, $int6, $int7, $int8);
 def_int $int16 = 0;
 def_int $int17 = 0;
-$int16, $int17 = ~worldmap_elements_chooseposition($coord1, $boolean2, $component, $int5, $int6, $int7, $int8);
+$int16, $int17 = ~worldmap_elements_chooseposition($coord1, $boolean2, $component4, $int5, $int6, $int7, $int8);
 def_int $int18 = calc($int14 + ($int16 - $int14) / 2);
 def_int $int19 = calc($int15 + ($int17 - $int15) / 2);
 def_int $int20 = calc($int16 - $int14);
@@ -27,7 +27,7 @@ if ($int20 < 0) {
     $int21 = calc(0 - $int21);
     $boolean22 = true;
 }
-if (cc_find($component, $int9) = true & .cc_find($component, $int10) = true) {
+if (cc_find($component4, $int9) = true & .cc_find($component4, $int10) = true) {
     if (testbit(%worldmap_toggles, 1) = ^true) {
         cc_sethide(true);
         .cc_sethide(true);
@@ -38,8 +38,8 @@ if (cc_find($component, $int9) = true & .cc_find($component, $int10) = true) {
     cc_setposition(calc($int14 + 1), calc($int15 + 1), ^setpos_abs_centre, ^setpos_abs_centre);
     .cc_setposition(calc($int16 + 1), calc($int17 + 1), ^setpos_abs_centre, ^setpos_abs_centre);
 } else {
-    cc_create($component, ^iftype_rectangle, $int9);
-    .cc_create($component, ^iftype_rectangle, $int10);
+    cc_create($component4, ^iftype_rectangle, $int9);
+    .cc_create($component4, ^iftype_rectangle, $int10);
     if (testbit(%worldmap_toggles, 1) = ^true) {
         cc_sethide(true);
         .cc_sethide(true);
@@ -60,7 +60,7 @@ def_int $int23 = 0;
 def_int $int24 = 0;
 def_int $int25 = 0;
 def_int $int26 = 0;
-if (cc_find($component, $int11) = true & .cc_find($component, $int12) = true) {
+if (cc_find($component4, $int11) = true & .cc_find($component4, $int12) = true) {
     if (testbit(%worldmap_toggles, 1) = ^true) {
         cc_sethide(true);
         .cc_sethide(true);
@@ -74,8 +74,8 @@ if (cc_find($component, $int11) = true & .cc_find($component, $int12) = true) {
     $int23, $int24, $int25 = ~hex_to_rgb(16776960);
     $int23, $int24, $int25 = ~max(calc($int23 - 48), 0), ~max(calc($int24 - 48), 0), ~max(calc($int25 - 48), 0);
     $int26 = ~rgb_to_hex($int23, $int24, $int25);
-    cc_create($component, ^iftype_rectangle, $int11);
-    .cc_create($component, ^iftype_rectangle, $int12);
+    cc_create($component4, ^iftype_rectangle, $int11);
+    .cc_create($component4, ^iftype_rectangle, $int12);
     if (testbit(%worldmap_toggles, 1) = ^true) {
         cc_sethide(true);
         .cc_sethide(true);
@@ -91,20 +91,20 @@ if (cc_find($component, $int11) = true & .cc_find($component, $int12) = true) {
     .cc_setcolour($int26);
     cc_setfill(true);
     .cc_setfill(true);
-    cc_setonmouseover("worldmap_elements_samemap_mouseeffect(true, $component, $int11, $int12, $int13, 16776960)");
-    .cc_setonmouseover("worldmap_elements_samemap_mouseeffect(true, $component, $int11, $int12, $int13, 16776960)");
-    cc_setonmouseleave("worldmap_elements_samemap_mouseeffect(false, $component, $int11, $int12, $int13, $int26)");
-    .cc_setonmouseleave("worldmap_elements_samemap_mouseeffect(false, $component, $int11, $int12, $int13, $int26)");
+    cc_setonmouseover("worldmap_elements_samemap_mouseeffect(true, $component4, $int11, $int12, $int13, 16776960)");
+    .cc_setonmouseover("worldmap_elements_samemap_mouseeffect(true, $component4, $int11, $int12, $int13, 16776960)");
+    cc_setonmouseleave("worldmap_elements_samemap_mouseeffect(false, $component4, $int11, $int12, $int13, $int26)");
+    .cc_setonmouseleave("worldmap_elements_samemap_mouseeffect(false, $component4, $int11, $int12, $int13, $int26)");
     cc_setop(1, "Scroll map");
     .cc_setop(1, "Scroll map");
     cc_setonop("worldmap_elements_samemap_op(event_op, $coord1, $boolean2)");
     .cc_setonop("worldmap_elements_samemap_op(event_op, $coord0, $boolean2)");
 }
-if (cc_find($component, $int13) = true) {
+if (cc_find($component4, $int13) = true) {
     cc_setposition($int18, $int19, ^setpos_abs_centre, ^setpos_abs_centre);
     cc_setsize($int20, $int21, ^setsize_abs, ^setsize_abs);
 } else {
-    cc_create($component, ^iftype_line, $int13);
+    cc_create($component4, ^iftype_line, $int13);
     cc_setposition($int18, $int19, ^setpos_abs_centre, ^setpos_abs_centre);
     cc_setsize($int20, $int21, ^setsize_abs, ^setsize_abs);
     cc_setlinedirection($boolean22);

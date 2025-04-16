@@ -25,8 +25,16 @@ switch_obj ($obj12) {
     case looting_bag, looting_bag_open, league_second_inventory, league_second_inventory_open, bh_rune_pouch, bh_rune_pouch_trouver, divine_rune_pouch, divine_rune_pouch_trouver :
         cc_deleteall($component4);
     case default :
-        switch_obj ($obj13) {
-            case looting_bag, looting_bag_open, league_second_inventory, league_second_inventory_open, bh_rune_pouch, bh_rune_pouch_trouver, divine_rune_pouch, divine_rune_pouch_trouver :
-                cc_deleteall($component4);
+        if (~is_prepot_device($obj12) = true) {
+            cc_deleteall($component4);
+        } else {
+            switch_obj ($obj13) {
+                case looting_bag, looting_bag_open, league_second_inventory, league_second_inventory_open, bh_rune_pouch, bh_rune_pouch_trouver, divine_rune_pouch, divine_rune_pouch_trouver :
+                    cc_deleteall($component4);
+                case default :
+                    if (~is_prepot_device($obj13) = true) {
+                        cc_deleteall($component4);
+                    }
+            }
         }
 }

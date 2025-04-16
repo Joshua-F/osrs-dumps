@@ -1,15 +1,15 @@
 // 404
-[clientscript,raids_storage_private_init](component $universe, component $items, component $scrollbar, component $occupiedslots, component $withdraw, component $bank, component $prompt, component $shared)
-~raids_storage_drawbutton("Withdraw all", $withdraw, p12_full);
-def_int $int = -1;
+[clientscript,raids_storage_private_init](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7)
+~raids_storage_drawbutton("Withdraw all", $component4, p12_full);
+def_int $int8 = -1;
 if (%raids_client_indungeon = 1) {
-    $int = ~raids_storage_drawbutton("Deposit all", $bank, p12_full);
+    $int8 = ~raids_storage_drawbutton("Deposit all", $component5, p12_full);
 } else {
-    $int = ~raids_storage_drawbutton("Bank all", $bank, p12_full);
+    $int8 = ~raids_storage_drawbutton("Bank all", $component5, p12_full);
 }
-~raids_storage_drawbutton("Shared", $shared, p11_full);
-~raids_storage_private_prompt($withdraw, $bank, $prompt, $int);
-if_setonvartransmit("raids_storage_private_prompt($withdraw, $bank, $prompt, $int){raids_temp_transmit2}", $prompt);
-~scrollbar_vertical($scrollbar, $items, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-~raids_storage_private_items($items, $scrollbar, $occupiedslots);
-if_setoninvtransmit("raids_storage_private_items($items, $scrollbar, $occupiedslots){raids_privatestorage}", $universe);
+~raids_storage_drawbutton("Shared", $component7, p11_full);
+~raids_storage_private_prompt($component4, $component5, $component6, $int8);
+if_setonvartransmit("raids_storage_private_prompt($component4, $component5, $component6, $int8){raids_temp_transmit2}", $component6);
+~scrollbar_vertical($component2, $component1, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~raids_storage_private_items($component1, $component2, $component3);
+if_setoninvtransmit("raids_storage_private_items($component1, $component2, $component3){raids_privatestorage}", $component0);

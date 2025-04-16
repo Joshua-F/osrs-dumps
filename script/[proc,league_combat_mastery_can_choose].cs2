@@ -1,32 +1,32 @@
 // 7657
-[proc,league_combat_mastery_can_choose](struct $struct)(int)
+[proc,league_combat_mastery_can_choose](struct $struct0)(int)
 if (~league_world = false) {
     return(0);
 }
-if ($struct = null) {
+if ($struct0 = null) {
     return(0);
 }
 if (%league_combat_mastery_points_to_spend <= 0) {
     return(0);
 }
-def_enum $enum = null;
+def_enum $enum1 = null;
 def_int $int2 = -1;
-switch_int (struct_param($struct, param_2027)) {
+switch_int (struct_param($struct0, param_2027)) {
     case 3 :
-        $enum, $int2 = enum_5691, %league_combat_mastery_melee_progress;
+        $enum1, $int2 = enum_5691, %league_combat_mastery_melee_progress;
     case 4 :
-        $enum, $int2 = enum_5692, %league_combat_mastery_ranged_progress;
+        $enum1, $int2 = enum_5692, %league_combat_mastery_ranged_progress;
     case 5 :
-        $enum, $int2 = enum_5693, %league_combat_mastery_magic_progress;
+        $enum1, $int2 = enum_5693, %league_combat_mastery_magic_progress;
 }
-if ($enum = null) {
+if ($enum1 = null) {
     return(0);
 }
 def_int $int3 = 1;
 def_int $int4 = -1;
 def_int $int5 = 0;
-while ($int3 <= enum_getoutputcount($enum) & $int5 = 0) {
-    if (enum(int, struct, $enum, $int3) = $struct) {
+while ($int3 <= enum_getoutputcount($enum1) & $int5 = 0) {
+    if (enum(int, struct, $enum1, $int3) = $struct0) {
         $int5, $int4 = 1, $int3;
     } else {
         $int3 = calc($int3 + 1);
