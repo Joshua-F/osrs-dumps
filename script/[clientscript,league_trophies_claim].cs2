@@ -1,5 +1,5 @@
 // 1128
-[clientscript,league_trophies_claim](int $int0, int $int1, int $int2, int $int3, int $int4, string $string)
+[clientscript,league_trophies_claim](int $int0, int $int1, int $int2, int $int3, int $int4, string $string0)
 ~steelborder(league_trophies:frame, "League Trophies", 0);
 cc_deleteall(league_trophies:items);
 cc_deleteall(league_trophies:scrollbar);
@@ -12,22 +12,22 @@ def_int $int10 = 0;
 def_int $int11 = 0;
 def_int $int12 = 45;
 def_int $int13 = 0;
-def_obj $obj = null;
+def_obj $obj14 = null;
 def_int $int15 = 0;
-def_int $intarray(30);
+def_int $intarray0(30);
 def_int $int16 = 0;
-def_enum $enum = enum_2778;
-def_boolean $boolean = ~league_world;
+def_enum $enum17 = enum_2778;
+def_boolean $boolean18 = ~league_world;
 def_int $int19 = 0;
 def_struct $struct20 = enum(int, struct, enum_2670, ~league_current_league);
-if ($boolean = true & struct_param($struct20, param_2041) ! null) {
-    $enum = struct_param($struct20, param_2041);
+if ($boolean18 = true & struct_param($struct20, param_2041) ! null) {
+    $enum17 = struct_param($struct20, param_2041);
 }
 while ($int16 < 30) {
-    $intarray($int16) = 1;
+    $intarray0($int16) = 1;
     $int16 = calc($int16 + 1);
 }
-while ($int15 <= enum_getoutputcount($enum)) {
+while ($int15 <= enum_getoutputcount($enum17)) {
     if ($int15 < 32) {
         if (testbit($int0, $int15) = ^true) {
             $int13 = 1;
@@ -61,24 +61,24 @@ while ($int15 <= enum_getoutputcount($enum)) {
     } else {
         $int13 = 0;
     }
-    $obj = enum(int, namedobj, $enum, $int15);
-    $int8 = oc_param($obj, param_916);
-    if ($int8 ! $int9 & enum(int, namedobj, $enum, calc($int15 + 1)) ! null) {
+    $obj14 = enum(int, namedobj, $enum17, $int15);
+    $int8 = oc_param($obj14, param_916);
+    if ($int8 ! $int9 & enum(int, namedobj, $enum17, calc($int15 + 1)) ! null) {
         $int7 = 0;
         $int9 = $int8;
-        if (oc_param($obj, param_918) = 1) {
-            if (~script1129($obj) = true) {
-                if ($boolean = true) {
+        if (oc_param($obj14, param_918) = 1) {
+            if (~script1129($obj14) = true) {
+                if ($boolean18 = true) {
                     $int19 = 1;
                 }
-                $intarray($int8) = 0;
+                $intarray0($int8) = 0;
                 if ($int6 = 0) {
                     $int6 = calc($int6 + $int12 - 10);
                 } else {
                     $int6 = calc($int6 + 32 + $int12);
                 }
             } else {
-                $intarray($int8) = 1;
+                $intarray0($int8) = 1;
             }
         }
         $int10 = calc($int10 + 1);
@@ -88,10 +88,10 @@ while ($int15 <= enum_getoutputcount($enum)) {
     cc_setposition(calc($int7 * $int5 + 10), $int6, ^setpos_abs_left, ^setpos_abs_top);
     cc_setgraphicshadow(0x333333);
     cc_setoutline(1);
-    cc_setobject($obj, 1);
-    cc_setopbase("<col=ff9040><oc_name($obj)>");
+    cc_setobject($obj14, 1);
+    cc_setopbase("<col=ff9040><oc_name($obj14)>");
     cc_setop(10, "Examine");
-    if ($obj = null | ~script1129($obj) = false) {
+    if ($obj14 = null | ~script1129($obj14) = false) {
         cc_sethide(true);
     } else if ($int13 = 1) {
         cc_setop(1, "Take");
@@ -118,7 +118,7 @@ if_setscrollpos(0, 0, league_trophies:items);
 $int6 = 0;
 def_struct $struct21 = struct_723;
 def_int $int22 = 0;
-if ($boolean = true) {
+if ($boolean18 = true) {
     if ($int19 = 1) {
         ~script2451($int15);
     } else {
@@ -127,7 +127,7 @@ if ($boolean = true) {
     return;
 }
 while ($int11 < $int10) {
-    if ($intarray(calc($int11 + 1)) = 0) {
+    if ($intarray0(calc($int11 + 1)) = 0) {
         $int22 = 1;
         $struct21 = enum(int, struct, enum_2670, calc($int11 + 1));
         cc_create(league_trophies:items, ^iftype_text, $int15);

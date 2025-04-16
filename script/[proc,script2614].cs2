@@ -1,33 +1,33 @@
 // 2614
-[proc,script2614](obj $obj, component $component, int $int)(boolean, graphic)
-switch_obj ($obj) {
+[proc,script2614](obj $obj0, component $component1, int $int2)(boolean, graphic)
+switch_obj ($obj0) {
     case 55_high_alchemy, 21_low_alchemy :
         if (~league_relic_active(struct_1131) = 1) {
             return(true, null);
         }
 }
-if (stat(magic) < oc_param($obj, param_604)) {
-    if_settrans(0, $component);
+if (stat(magic) < oc_param($obj0, param_604)) {
+    if_settrans(0, $component1);
     return(false, null);
 }
-switch_component ($component) {
+switch_component ($component1) {
     case magic_spellbook:vengeance, magic_spellbook:vengeance_other :
         if (%vengeance_timelimit = 1) {
-            if_settrans(150, $component);
+            if_settrans(150, $component1);
         } else {
-            if_settrans(0, $component);
+            if_settrans(0, $component1);
         }
     case magic_spellbook:heal_group :
         if (%heal_group_timelimit = 1) {
-            if_settrans(150, $component);
+            if_settrans(150, $component1);
         } else {
-            if_settrans(0, $component);
+            if_settrans(0, $component1);
         }
     case magic_spellbook:magic_imbue :
         if (%magic_imbue_active > 0) {
-            if_settrans(150, $component);
+            if_settrans(150, $component1);
         } else {
-            if_settrans(0, $component);
+            if_settrans(0, $component1);
         }
     case magic_spellbook:low_alchemy :
         if ((inv_total(inv, lumbridge_ring_easy) > 0 | inv_total(inv, lumbridge_ring_medium) > 0 | inv_total(inv, lumbridge_ring_hard) > 0 | inv_total(worn, lumbridge_ring_easy) > 0 | inv_total(worn, lumbridge_ring_medium) > 0 | inv_total(worn, lumbridge_ring_hard) > 0 | inv_total(inv, lumbridge_ring_elite) > 0 | inv_total(worn, lumbridge_ring_elite) > 0) & map_members = true & %lumbridge_free_alchs < 30) {
@@ -39,79 +39,79 @@ switch_component ($component) {
         }
     case magic_spellbook:lesser_corruption, magic_spellbook:greater_corruption :
         if (%arceuus_corruption_cooldown = 1) {
-            if_settrans(150, $component);
+            if_settrans(150, $component1);
         } else {
-            if_settrans(0, $component);
+            if_settrans(0, $component1);
         }
     case magic_spellbook:dark_lure :
         if (%arceuus_dark_lure_cooldown = 1) {
-            if_settrans(150, $component);
+            if_settrans(150, $component1);
         } else {
-            if_settrans(0, $component);
+            if_settrans(0, $component1);
         }
     case magic_spellbook:death_charge :
         if (%arceuus_death_charge_cooldown = 1) {
-            if_settrans(150, $component);
+            if_settrans(150, $component1);
         } else {
-            if_settrans(0, $component);
+            if_settrans(0, $component1);
         }
     case magic_spellbook:resurrect_lesser_ghost, magic_spellbook:resurrect_lesser_skeleton, magic_spellbook:resurrect_lesser_zombie, magic_spellbook:resurrect_superior_ghost, magic_spellbook:resurrect_superior_skeleton, magic_spellbook:resurrect_superior_zombie, magic_spellbook:resurrect_greater_ghost, magic_spellbook:resurrect_greater_skeleton, magic_spellbook:resurrect_greater_zombie :
         if (%arceuus_resurrection_cooldown = 1) {
-            if_settrans(150, $component);
+            if_settrans(150, $component1);
         } else {
-            if_settrans(0, $component);
+            if_settrans(0, $component1);
         }
     case magic_spellbook:shadow_veil :
         if (%arceuus_shadow_veil_cooldown = 1) {
-            if_settrans(150, $component);
+            if_settrans(150, $component1);
         } else {
-            if_settrans(0, $component);
+            if_settrans(0, $component1);
         }
     case magic_spellbook:vile_vigour :
         if (%arceuus_vile_vigour_cooldown = 1) {
-            if_settrans(150, $component);
+            if_settrans(150, $component1);
         } else {
-            if_settrans(0, $component);
+            if_settrans(0, $component1);
         }
     case magic_spellbook:ward_of_arceuus :
         if (%arceuus_ward_cooldown = 1) {
-            if_settrans(150, $component);
+            if_settrans(150, $component1);
         } else {
-            if_settrans(0, $component);
+            if_settrans(0, $component1);
         }
     case magic_spellbook:demonic_offering, magic_spellbook:sinister_offering :
         if (%arceuus_offering_cooldown = 1) {
-            if_settrans(150, $component);
+            if_settrans(150, $component1);
         } else {
-            if_settrans(0, $component);
+            if_settrans(0, $component1);
         }
 }
-if (~magic_spellbook_hasrunes($obj, inv_getobj(worn, 3), inv_getobj(worn, 5)) = false) {
+if (~magic_spellbook_hasrunes($obj0, inv_getobj(worn, 3), inv_getobj(worn, 5)) = false) {
     return(false, null);
 }
-if (~script5556($obj) = false) {
-    if ($int >= 40) {
+if (~script5556($obj0) = false) {
+    if ($int2 >= 40) {
         return(false, "2x_magic_spell_padlocks,2");
     } else {
         return(false, "magic_spell_padlocks,2");
     }
 }
-if (~script4510($obj) = false) {
-    if ($int >= 40) {
+if (~script4510($obj0) = false) {
+    if ($int2 >= 40) {
         return(false, "2x_magic_spell_padlocks,3");
     } else {
         return(false, "magic_spell_padlocks,3");
     }
 }
-if (~script4128($obj) = false) {
-    if ($int >= 40) {
+if (~script4128($obj0) = false) {
+    if ($int2 >= 40) {
         return(false, "2x_magic_spell_padlocks,1");
     } else {
         return(false, "magic_spell_padlocks,1");
     }
 }
-if (~script4129($obj) = false) {
-    if ($int >= 40) {
+if (~script4129($obj0) = false) {
+    if ($int2 >= 40) {
         return(false, "2x_magic_spell_padlocks,0");
     } else {
         return(false, "magic_spell_padlocks,0");

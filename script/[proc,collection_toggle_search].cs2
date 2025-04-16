@@ -1,12 +1,12 @@
 // 4085
-[proc,collection_toggle_search](boolean $boolean)
-def_component $content = collection:content;
-def_component $content_search = collection:content_search;
-def_component $search_button = collection:search_button;
-if (if_gethide($content_search) = false | $boolean = true) {
-    if_sethide(true, $content_search);
-    if_sethide(true, $search_button);
-    if_sethide(false, $content);
+[proc,collection_toggle_search](boolean $boolean0)
+def_component $component1 = collection:content;
+def_component $component2 = collection:content_search;
+def_component $component3 = collection:search_button;
+if (if_gethide($component2) = false | $boolean0 = true) {
+    if_sethide(true, $component2);
+    if_sethide(true, $component3);
+    if_sethide(false, $component1);
     ~chatdefault_restoreinput;
     %floater_is_searching = 0;
     %floater_search_listen_for_keyboard = 0;
@@ -17,9 +17,9 @@ if (if_gethide($content_search) = false | $boolean = true) {
     }
     ~collection_search_button(1);
 } else {
-    if_sethide(true, $content);
-    if_sethide(false, $content_search);
-    if_sethide(false, $search_button);
+    if_sethide(true, $component1);
+    if_sethide(false, $component2);
+    if_sethide(false, $component3);
     ~collection_search_button(0);
     %varclient_417 = "";
     ~collection_searchbar_set_text(collection:search_text);

@@ -55,25 +55,25 @@ cc_setcolour(0xff981f);
 cc_settextfont(p12_full);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
 cc_settextshadow(true);
-def_int $int = -1;
+def_int $int8 = -1;
 switch_int (%pvpa_affinitystatus) {
     case 0, 2 :
-        $int = %pvpa_affinitystatus;
+        $int8 = %pvpa_affinitystatus;
     case 1 :
         if (%clan_guest_affinitystatus = 1) {
             cc_settext(~text_device("Click <col=ffb83f>Find</col> to find a PvP Arena group.<br><br>Once you've found a suitable group, <col=ffb83f>sign up</col> to be invited to its fights.", "<"Tap"> <col=ffb83f>Find</col> to find a PvP Arena group.<br><br>Once you've found a suitable group, <col=ffb83f>sign up</col> to be invited to its fights."));
             return;
         }
         if (%clan_guest_affinitystatus = 3) {
-            $int = %pvpa_affinitystatus;
+            $int8 = %pvpa_affinitystatus;
         } else {
-            $int = %clan_guest_affinitystatus;
+            $int8 = %clan_guest_affinitystatus;
         }
     case default :
         if (%clan_guest_affinitystatus = 3) {
-            $int = %pvpa_affinitystatus;
+            $int8 = %pvpa_affinitystatus;
         } else {
-            $int = %clan_guest_affinitystatus;
+            $int8 = %clan_guest_affinitystatus;
         }
 }
-cc_settext(~script2357($int));
+cc_settext(~script2357($int8));
