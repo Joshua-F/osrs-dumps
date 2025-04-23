@@ -1,18 +1,18 @@
 // 3332
-[clientscript,script3332](component $component0, coord $coord1, mapelement $mapelement2, int $int3, int $int4, int $int5)
+[clientscript,script3332](component $component, coord $coord, mapelement $mapelement, int $int3, int $int4, int $int5)
 def_int $int6 = -1;
 def_int $int7 = -1;
 $int6, $int7 = worldmap_getdisplayposition;
 switch_int ($int3) {
     case 60 :
-        worldmap_jumptosourcecoord($coord1);
+        worldmap_jumptosourcecoord($coord);
     case 61 :
         if ($int6 = $int4 & $int7 = $int5) {
             $int3 = calc($int3 + 1);
         }
-        if_setontimer("script3332($component0, $coord1, $mapelement2, $int3, $int6, $int7)", $component0);
+        if_setontimer("script3332($component, $coord, $mapelement, $int3, $int6, $int7)", $component);
         $int6, $int7 = worldmap_getsourceposition;
-        if ($int6 ! coordx($coord1) | $int7 ! coordz($coord1)) {
+        if ($int6 ! coordx($coord) | $int7 ! coordz($coord)) {
             return;
         }
     case 62 :
@@ -21,11 +21,11 @@ switch_int ($int3) {
         if (worldmap_getzoom ! 200) {
             return;
         }
-        if ($mapelement2 ! null) {
-            worldmap_flashelement($mapelement2);
+        if ($mapelement ! null) {
+            worldmap_flashelement($mapelement);
         }
-        if_setontimer(null, $component0);
-        if_sethide(true, $component0);
+        if_setontimer(null, $component);
+        if_sethide(true, $component);
         return;
 }
-if_setontimer("script3332($component0, $coord1, $mapelement2, calc($int3 + 1), $int6, $int7)", $component0);
+if_setontimer("script3332($component, $coord, $mapelement, calc($int3 + 1), $int6, $int7)", $component);

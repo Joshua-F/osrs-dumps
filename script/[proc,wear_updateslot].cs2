@@ -1,55 +1,55 @@
 // 546
-[proc,wear_updateslot](component $component0, int $int1, boolean $boolean2)
-if_clearops($component0);
-def_obj $obj3 = inv_getobj(worn, $int1);
-if ($obj3 = null) {
+[proc,wear_updateslot](component $component, int $int, boolean $boolean)
+if_clearops($component);
+def_obj $obj = inv_getobj(worn, $int);
+if ($obj = null) {
     cc_sethide(true);
     .cc_sethide(false);
-    if_setonop(null, $component0);
-    if_setonvartransmit(null, $component0);
+    if_setonop(null, $component);
+    if_setonvartransmit(null, $component);
     return;
 }
 cc_sethide(false);
 .cc_sethide(true);
-cc_setobject($obj3, inv_getnum(worn, $int1));
-if_setopbase("<col=ff9040><~inventory_name_override($obj3)></col>", $component0);
+cc_setobject($obj, inv_getnum(worn, $int));
+if_setopbase("<col=ff9040><~inventory_name_override($obj)></col>", $component);
 if (%colosseum_sol_grapple_pending = 1) {
-    if_setop(1, "Defend", $component0);
-    if_setoutline(2, $component0);
+    if_setop(1, "Defend", $component);
+    if_setoutline(2, $component);
 } else {
-    if_setop(1, "Remove", $component0);
-    if_setoutline(0, $component0);
+    if_setop(1, "Remove", $component);
+    if_setoutline(0, $component);
 }
-if ($boolean2 = true) {
-    if (map_members = true | oc_members($obj3) = 0) {
-        ~script7777($component0, $obj3, 1);
-        ~script7777($component0, $obj3, 2);
-        ~script7777($component0, $obj3, 3);
-        ~script7777($component0, $obj3, 4);
-        ~script7777($component0, $obj3, 5);
-        ~script7777($component0, $obj3, 6);
-        ~script7777($component0, $obj3, 7);
-        ~script7777($component0, $obj3, 8);
-        switch_obj ($obj3) {
+if ($boolean = true) {
+    if (map_members = true | oc_members($obj) = 0) {
+        ~script7777($component, $obj, 1);
+        ~script7777($component, $obj, 2);
+        ~script7777($component, $obj, 3);
+        ~script7777($component, $obj, 4);
+        ~script7777($component, $obj, 5);
+        ~script7777($component, $obj, 6);
+        ~script7777($component, $obj, 7);
+        ~script7777($component, $obj, 8);
+        switch_obj ($obj) {
             case camulet :
                 if (%desert_hard_reward = 1 | %desert_elite_reward = 1) {
-                    if_setop(3, "Temple", $component0);
-                    if_setop(4, "Surface", $component0);
+                    if_setop(3, "Temple", $component);
+                    if_setop(4, "Surface", $component);
                 }
-                if_setonvartransmit("wear_updateslot($component0, $int1, $boolean2, cc_getid, .cc_getid){achievement_diary_rewards}", $component0);
+                if_setonvartransmit("wear_updateslot($component, $int, $boolean, cc_getid, .cc_getid){achievement_diary_rewards}", $component);
             case tob_teleport :
-                if_setop(4, ~inventory_op_override($obj3, 3), $component0);
-                if_setonvartransmit("wear_updateslot($component0, $int1, $boolean2, cc_getid, .cc_getid){nightmare_killtime_4}", $component0);
+                if_setop(4, ~inventory_op_override($obj, 3), $component);
+                if_setonvartransmit("wear_updateslot($component, $int, $boolean, cc_getid, .cc_getid){nightmare_killtime_4}", $component);
             case default :
-                if_setonvartransmit(null, $component0);
+                if_setonvartransmit(null, $component);
         }
     } else {
-        if_setonvartransmit(null, $component0);
+        if_setonvartransmit(null, $component);
     }
 } else {
-    if_setonvartransmit(null, $component0);
-    if_setop(2, "Bank", $component0);
+    if_setonvartransmit(null, $component);
+    if_setop(2, "Bank", $component);
 }
-if_setonvartransmit("wear_updateslot($component0, $int1, $boolean2, cc_getid, .cc_getid){colosseum_int_temp_transmit_2}", $component0);
-if_setop(10, "Examine", $component0);
-if_setonop("cc_settrans_temporarily($component0, cc_getid, 100, 0)", $component0);
+if_setonvartransmit("wear_updateslot($component, $int, $boolean, cc_getid, .cc_getid){colosseum_int_temp_transmit_2}", $component);
+if_setop(10, "Examine", $component);
+if_setonop("cc_settrans_temporarily($component, cc_getid, 100, 0)", $component);

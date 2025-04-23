@@ -6,21 +6,21 @@ if (%questlist_disable_headers = 1) {
 }
 def_int $int7 = db_listall(quest);
 def_int $int8 = 1;
-def_graphic $graphic9 = p11_full;
-def_fontmetrics $fontmetrics10 = p11_full;
+def_graphic $graphic = p11_full;
+def_fontmetrics $fontmetrics = p11_full;
 def_int $int11 = 11;
 def_int $int12 = 5;
 if (~on_mobile = true) {
     $int12 = 11;
 }
 if (%questlist_larger_text = 1) {
-    $graphic9 = p12_full;
-    $fontmetrics10 = p12_full;
+    $graphic = p12_full;
+    $fontmetrics = p12_full;
     $int11 = 13;
     $int12 = calc($int12 + 2);
 }
-def_int $intarray0($int7);
-def_dbrow $dbrow13 = null;
+def_int $intarray($int7);
+def_dbrow $dbrow = null;
 def_string $string0 = "";
 def_int $int14 = 0;
 def_int $int15 = pow(2, 16);
@@ -28,46 +28,46 @@ cc_deleteall($component4);
 cc_create($component4, ^iftype_rectangle, 0);
 cc_sethide(true);
 while ($int8 <= $int7) {
-    $dbrow13 = ~script6154($int8);
+    $dbrow = ~script6154($int8);
     cc_create($component4, ^iftype_text, $int8);
     cc_setsize(0, $int11, ^setsize_minus, ^setsize_abs);
-    cc_settextfont($graphic9);
+    cc_settextfont($graphic);
     if (%questlist_disable_text_shadow = 1) {
         cc_settextshadow(false);
     } else {
         cc_settextshadow(true);
     }
     cc_settextalign(^settextalign_left, ^settextalign_centre, $int11);
-    $string0 = ~get_quest_name($dbrow13);
+    $string0 = ~get_quest_name($dbrow);
     cc_setopbase("<col=ff9040><$string0></col>");
-    if (~script4026($dbrow13, %questlist_sort_type) = true) {
+    if (~script4026($dbrow, %questlist_sort_type) = true) {
         $string0 = "MQ: <$string0>";
     }
-    if (~speedrunning_world = true & ~speedrunning_beta_quest($dbrow13) = true) {
+    if (~speedrunning_world = true & ~speedrunning_beta_quest($dbrow) = true) {
         $string0 = "<$string0> (Beta)";
     }
     cc_settext($string0);
-    cc_setsize(0, calc($int11 * paraheight($string0, cc_getwidth, $fontmetrics10) + $int12), ^setsize_minus, ^setsize_abs);
+    cc_setsize(0, calc($int11 * paraheight($string0, cc_getwidth, $fontmetrics) + $int12), ^setsize_minus, ^setsize_abs);
     if (~speedrunning_world = true) {
         cc_setop(1, "View info:");
     } else {
         cc_setop(1, "");
     }
     cc_setop(2, "Read journal:");
-    if (db_getfield($dbrow13, quest:startcoord, 0) ! null & db_getfield($dbrow13, quest:startcoord, 0) ! 0_0_0_0_0) {
+    if (db_getfield($dbrow, quest:startcoord, 0) ! null & db_getfield($dbrow, quest:startcoord, 0) ! 0_0_0_0_0) {
         cc_setop(3, "Show on map:");
     } else {
         cc_setop(3, "");
     }
-    if (db_getfield($dbrow13, quest:in_prerelease, 0) = false) {
+    if (db_getfield($dbrow, quest:in_prerelease, 0) = false) {
         cc_setop(4, "Open wiki guide:");
         cc_setop(5, "Open wiki quick guide:");
     } else {
         cc_setop(4, "");
         cc_setop(5, "");
     }
-    $int14 = ~quest_status_get($dbrow13);
-    $intarray0(calc($int8 - 1)) = calc($int14 * $int15 + $int8);
+    $int14 = ~quest_status_get($dbrow);
+    $intarray(calc($int8 - 1)) = calc($int14 * $int15 + $int8);
     cc_sethide(true);
     $int8 = calc($int8 + 1);
 }
@@ -83,20 +83,20 @@ def_boolean $boolean21 = false;
 def_string $string1 = "************";
 def_string $string2 = "************";
 while ($int16 < $int7) {
-    $int17 = calc($intarray0($int16) % $int15);
-    $int14 = calc($intarray0($int16) / $int15);
-    $dbrow13 = ~script6154($int17);
-    $boolean19 = ~quest_requirement_check($dbrow13);
-    $boolean20 = ~script5990($dbrow13);
-    $string2 = ~script2265($dbrow13, $int14, %questlist_sort_type);
-    $boolean21 = ~script4028($dbrow13, $int14, $boolean19, $boolean20);
-    if (~questlist_hide_quest($dbrow13, $int14, $boolean19, $boolean20, $boolean21) = false) {
+    $int17 = calc($intarray($int16) % $int15);
+    $int14 = calc($intarray($int16) / $int15);
+    $dbrow = ~script6154($int17);
+    $boolean19 = ~quest_requirement_check($dbrow);
+    $boolean20 = ~script5990($dbrow);
+    $string2 = ~script2265($dbrow, $int14, %questlist_sort_type);
+    $boolean21 = ~script4028($dbrow, $int14, $boolean19, $boolean20);
+    if (~questlist_hide_quest($dbrow, $int14, $boolean19, $boolean20, $boolean21) = false) {
         if (compare($string2, $string1) ! 0 & %questlist_disable_headers = 0) {
             $int8, $int6 = ~questlist_add_header($string2, $int8, $int6, $component4);
             $string1 = $string2;
         }
         if (cc_find($component4, $int17) = true) {
-            if (db_getfield($dbrow13, quest:parent_quest, 0) ! null) {
+            if (db_getfield($dbrow, quest:parent_quest, 0) ! null) {
                 cc_sethide(true);
             } else {
                 cc_sethide(false);

@@ -79,29 +79,29 @@ if (~dizanas_quiver_equipped = true | ~dizanas_quiver_in_inventory(inv) = true) 
 cc_deleteall(deathkeep:items);
 def_int $int26 = 0;
 def_int $int27 = 0;
-def_string $string0 = "";
+def_string $string = "";
 $int26, $int27 = ~deathkeep_left_setsection("Items that are <col=ffffff>KEPT</col>:", deathkeep:kept, $int9, $int10, $int26, $int27);
 if (%ironman = 2) {
-    $string0 = "Items <col=ff0000>DROPPED</col> near where you die:";
+    $string = "Items <col=ff0000>DROPPED</col> near where you die:";
 } else if ($int22 > 1) {
-    $string0 = "Items that go to your <col=ffffff>GRAVESTONE</col>: <col=ffffff>(Fee: <~tostring_spacer($int22, ",")> coins)</col>";
+    $string = "Items that go to your <col=ffffff>GRAVESTONE</col>: <col=ffffff>(Fee: <~tostring_spacer($int22, ",")> coins)</col>";
 } else if ($int22 = 1) {
-    $string0 = "Items that go to your <col=ffffff>GRAVESTONE</col>: <col=ffffff>(Fee: 1 coin)</col>";
+    $string = "Items that go to your <col=ffffff>GRAVESTONE</col>: <col=ffffff>(Fee: 1 coin)</col>";
 } else {
-    $string0 = "Items that go to your <col=ffffff>GRAVESTONE</col>: <col=ffffff>(Fee: None)</col>";
+    $string = "Items that go to your <col=ffffff>GRAVESTONE</col>: <col=ffffff>(Fee: None)</col>";
 }
-$int26, $int27 = ~deathkeep_left_setsection($string0, deathkeep:grave, $int12, $int13, $int26, $int27);
+$int26, $int27 = ~deathkeep_left_setsection($string, deathkeep:grave, $int12, $int13, $int26, $int27);
 if ($int0 = 1) {
     $int26, $int27 = ~deathkeep_left_setsection("Items <col=ff0000>LOST</col> to the player who kills you:", deathkeep:pker, $int14, $int15, $int26, $int27);
 } else {
     $int26, $int27 = ~deathkeep_left_setsection("Items <col=ff0000>DROPPED</col> near where you die:", deathkeep:pker, $int14, $int15, $int26, $int27);
 }
 if (%ironman = 2) {
-    $string0 = "Items <col=ff0000>DROPPED</col> as coins:";
+    $string = "Items <col=ff0000>DROPPED</col> as coins:";
 } else {
-    $string0 = "Items that go to your <col=ffffff>GRAVESTONE</col> as coins:";
+    $string = "Items that go to your <col=ffffff>GRAVESTONE</col> as coins:";
 }
-$int26, $int27 = ~deathkeep_left_setsection($string0, deathkeep:coins, $int16, $int17, $int26, $int27);
+$int26, $int27 = ~deathkeep_left_setsection($string, deathkeep:coins, $int16, $int17, $int26, $int27);
 $int26, $int27 = ~deathkeep_left_setsection("Items that are <col=ff0000>DELETED</col>:", deathkeep:deleted, $int18, $int19, $int26, $int27);
 if ($int27 > 0) {
     $int27 = calc($int27 + 3);

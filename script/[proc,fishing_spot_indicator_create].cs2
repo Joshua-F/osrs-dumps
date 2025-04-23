@@ -1,40 +1,40 @@
 // 4553
-[proc,fishing_spot_indicator_create](entityoverlay $entityoverlay0, struct $struct1, npc_uid $npc_uid2, int $int3, loc $loc4, coord $coord5)
-cc_deleteall_entityoverlay($entityoverlay0);
-if (if_find_entityoverlay($entityoverlay0) = true) {
+[proc,fishing_spot_indicator_create](entityoverlay $entityoverlay, struct $struct, npc_uid $npc_uid, int $int3, loc $loc, coord $coord)
+cc_deleteall_entityoverlay($entityoverlay);
+if (if_find_entityoverlay($entityoverlay) = true) {
     cc_setonmouseleave(null);
     cc_setonmouseover(null);
 }
 if (%fishing_spot_indicator_disabled = 1) {
-    if ($npc_uid2 ! null & $int3 ! -1) {
-        highlight_npc_off($npc_uid2, $int3, 11);
+    if ($npc_uid ! null & $int3 ! -1) {
+        highlight_npc_off($npc_uid, $int3, 11);
     }
-    if ($loc4 ! null & $coord5 ! null) {
-        highlight_loc_off($loc4, $coord5, 15, 1);
+    if ($loc ! null & $coord ! null) {
+        highlight_loc_off($loc, $coord, 15, 1);
     }
     return;
 }
-def_obj $obj6 = struct_param($struct1, param_1265);
-def_obj $obj7 = struct_param($struct1, param_1268);
+def_obj $obj6 = struct_param($struct, param_1265);
+def_obj $obj7 = struct_param($struct, param_1268);
 def_boolean $boolean8 = ~fishing_spot_indicator_tools_check($obj6);
 def_boolean $boolean9 = ~fishing_spot_indicator_tools_check($obj7);
 if (%fishing_spot_indicator_all_fish_disabled = 0 & $boolean8 = false & $boolean9 = false) {
-    if ($npc_uid2 ! null & $int3 ! -1) {
-        highlight_npc_off($npc_uid2, $int3, 11);
+    if ($npc_uid ! null & $int3 ! -1) {
+        highlight_npc_off($npc_uid, $int3, 11);
     }
-    if ($loc4 ! null & $coord5 ! null) {
-        highlight_loc_off($loc4, $coord5, 15, 1);
+    if ($loc ! null & $coord ! null) {
+        highlight_loc_off($loc, $coord, 15, 1);
     }
     return;
 }
-def_enum $enum10 = struct_param($struct1, param_1266);
-def_enum $enum11 = struct_param($struct1, param_1269);
+def_enum $enum10 = struct_param($struct, param_1266);
+def_enum $enum11 = struct_param($struct, param_1269);
 if ($enum10 = null & $enum11 = null) {
-    if ($npc_uid2 ! null & $int3 ! -1) {
-        highlight_npc_off($npc_uid2, $int3, 11);
+    if ($npc_uid ! null & $int3 ! -1) {
+        highlight_npc_off($npc_uid, $int3, 11);
     }
-    if ($loc4 ! null & $coord5 ! null) {
-        highlight_loc_off($loc4, $coord5, 15, 1);
+    if ($loc ! null & $coord ! null) {
+        highlight_loc_off($loc, $coord, 15, 1);
     }
     return;
 }
@@ -43,14 +43,14 @@ def_obj $obj13 = ~script4556($enum11);
 def_obj $obj14 = null;
 def_int $int15 = 0;
 if ($obj12 = null & $obj13 = null) {
-    $obj14 = struct_param($struct1, param_1270);
+    $obj14 = struct_param($struct, param_1270);
     $int15 = 100;
     if ($obj14 = null) {
-        if ($npc_uid2 ! null & $int3 ! -1) {
-            highlight_npc_off($npc_uid2, $int3, 11);
+        if ($npc_uid ! null & $int3 ! -1) {
+            highlight_npc_off($npc_uid, $int3, 11);
         }
-        if ($loc4 ! null & $coord5 ! null) {
-            highlight_loc_off($loc4, $coord5, 15, 1);
+        if ($loc ! null & $coord ! null) {
+            highlight_loc_off($loc, $coord, 15, 1);
         }
         return;
     }
@@ -85,30 +85,30 @@ if ($obj14 = null) {
     }
 }
 if ($obj14 = null) {
-    if ($npc_uid2 ! null & $int3 ! -1) {
-        highlight_npc_off($npc_uid2, $int3, 11);
+    if ($npc_uid ! null & $int3 ! -1) {
+        highlight_npc_off($npc_uid, $int3, 11);
     }
-    if ($loc4 ! null & $coord5 ! null) {
-        highlight_loc_off($loc4, $coord5, 15, 1);
+    if ($loc ! null & $coord ! null) {
+        highlight_loc_off($loc, $coord, 15, 1);
     }
     return;
 }
-cc_create_entityoverlay($entityoverlay0, ^iftype_graphic, 0);
+cc_create_entityoverlay($entityoverlay, ^iftype_graphic, 0);
 cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
 cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
 cc_setobject_nonum($obj14, 1);
 cc_setoutline(1);
 cc_settrans($int15);
-if ($npc_uid2 ! null & $int3 ! -1) {
-    highlight_npc_on($npc_uid2, $int3, 11);
+if ($npc_uid ! null & $int3 ! -1) {
+    highlight_npc_on($npc_uid, $int3, 11);
 }
-if ($loc4 ! null & $coord5 ! null) {
-    highlight_loc_on($loc4, $coord5, 15, 1);
+if ($loc ! null & $coord ! null) {
+    highlight_loc_on($loc, $coord, 15, 1);
 }
-if (if_find_entityoverlay($entityoverlay0) = true) {
+if (if_find_entityoverlay($entityoverlay) = true) {
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
     if (%fishing_spot_indicator_more_info_disabled = 0 & ~on_mobile = false) {
-        cc_setonmouseleave("fishing_spot_indicator_mouseleave($entityoverlay0, $struct1, $npc_uid2, $int3, $loc4, $coord5)");
-        cc_setonmouseover("fishing_spot_indicator_mouseover($entityoverlay0, $struct1)");
+        cc_setonmouseleave("fishing_spot_indicator_mouseleave($entityoverlay, $struct, $npc_uid, $int3, $loc, $coord)");
+        cc_setonmouseover("fishing_spot_indicator_mouseover($entityoverlay, $struct)");
     }
 }

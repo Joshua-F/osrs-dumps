@@ -1,12 +1,12 @@
 // 671
-[proc,rune_pouch_drawinventory_slot](obj $obj0, int $int1, int $int2)
+[proc,rune_pouch_drawinventory_slot](obj $obj, int $int1, int $int2)
 cc_clearops;
 cc_setontimer(null);
-if ($obj0 ! null) {
-    if (enum(obj, int, enum_55, $obj0) ! 0) {
+if ($obj ! null) {
+    if (enum(obj, int, enum_55, $obj) ! 0) {
         cc_settrans(0);
-        cc_setobject($obj0, $int1);
-        cc_setopbase("<col=ff9040><oc_name($obj0)></col>");
+        cc_setobject($obj, $int1);
+        cc_setopbase("<col=ff9040><oc_name($obj)></col>");
         switch_int (%rune_pouch_selectedquantity) {
             case default :
                 cc_setop(1, "Store-1");
@@ -45,8 +45,8 @@ if ($obj0 ! null) {
         cc_setondragcomplete("rune_pouch_inventoryreorder(event_com, event_com2, event_comsubid, event_comsubid2, 200, 0, $int2)");
     } else {
         cc_settrans(150);
-        cc_setobject($obj0, $int1);
-        cc_setopbase("<col=ff9040><oc_name($obj0)></col>");
+        cc_setobject($obj, $int1);
+        cc_setopbase("<col=ff9040><oc_name($obj)></col>");
         cc_setop(1, "Store");
         cc_setop(10, "Examine");
         cc_setonop("cc_settrans_temporarily(event_com, event_comsubid, 175, 150)");

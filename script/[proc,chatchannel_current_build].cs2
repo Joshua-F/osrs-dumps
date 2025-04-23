@@ -128,7 +128,7 @@ if (%chatchannel_blocked = 1) {
     if_setop(1, "Setup", $component12);
     if_setonop("opsound(event_op, 1)", $component12);
 }
-def_string $string0 = "";
+def_string $string = "";
 def_int $int16 = -1;
 def_int $int17 = -1;
 def_int $int18 = friendschat_getchatrank;
@@ -137,20 +137,20 @@ def_int $int20 = if_getwidth($component3);
 def_int $int21 = 0;
 def_int $int22 = 0;
 def_int $int23 = 15;
-def_boolean $boolean24 = ~on_enhanced_any;
+def_boolean $boolean = ~on_enhanced_any;
 if (~on_mobile = true) {
     $int23 = scale(8, 5, $int23);
 }
 def_int $int25 = 0;
 while ($int25 < $int15) {
-    $string0, $int16, $int17 = friendschat_getchatusername($int25), friendschat_getchatuserworld($int25), friendschat_getchatuserrank($int25);
+    $string, $int16, $int17 = friendschat_getchatusername($int25), friendschat_getchatuserworld($int25), friendschat_getchatuserrank($int25);
     cc_create($component8, ^iftype_text, $int21);
     $int21 = calc($int21 + 1);
     cc_setsize($int20, $int23, ^setsize_minus, ^setsize_abs);
     cc_setposition(0, $int22, ^setpos_abs_right, ^setpos_abs_top);
     cc_settextfont(p11_full);
     cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
-    cc_settext($string0);
+    cc_settext($string);
     cc_setcolour(^white);
     cc_settextshadow(false);
     .cc_create($component8, ^iftype_text, $int21);
@@ -184,7 +184,7 @@ while ($int25 < $int15) {
             cc_setop(8, "Add ignore");
             .cc_setop(8, "Add ignore");
         }
-        if ($boolean24 = true) {
+        if ($boolean = true) {
             cc_setop(5, "Switch world");
             .cc_setop(5, "Switch world");
         }
@@ -193,8 +193,8 @@ while ($int25 < $int15) {
         cc_setop(6, "Kick user");
         .cc_setop(6, "Kick user");
     }
-    cc_setopbase("<col=ff9040><$string0></col>");
-    .cc_setopbase("<col=ff9040><$string0></col>");
+    cc_setopbase("<col=ff9040><$string></col>");
+    .cc_setopbase("<col=ff9040><$string></col>");
     cc_setonop("friendschat_op(event_opbase, event_op, $int16)");
     .cc_setonop("friendschat_op(event_opbase, event_op, $int16)");
     $int25, $int22 = calc($int25 + 1), calc($int22 + $int23);

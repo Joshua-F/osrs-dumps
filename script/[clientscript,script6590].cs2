@@ -1,33 +1,33 @@
 // 6590
-[clientscript,script6590](string $string0, int $int0, int $int1, int $int2, struct $struct3, struct $struct4, int $int5, int $int6, boolean $boolean7)
+[clientscript,script6590](string $string0, int $int0, int $int1, int $int2, struct $struct3, struct $struct4, int $int5, int $int6, boolean $boolean)
 def_int $int8 = if_getheight(toa_raid_summary:name_column);
 def_int $int9 = if_getwidth(toa_raid_summary:name_column);
 def_string $string1 = null;
-def_component $component10 = toa_raid_summary:tooltip;
+def_component $tooltip = toa_raid_summary:tooltip;
 def_int $int11 = calc(176 / $int6);
 if (~on_mobile = true) {
     $string1 = "Damage taken";
     if_setop(1, "Damage taken", toa_raid_summary:damage_taken_graphic);
-    if_setonop("toa_raid_summary_mobile_tooltip(event_com, -1, $component10, $string1, 512)", toa_raid_summary:damage_taken_graphic);
+    if_setonop("toa_raid_summary_mobile_tooltip(event_com, -1, $tooltip, $string1, 512)", toa_raid_summary:damage_taken_graphic);
     $string1 = "Damage dealt";
     if_setop(1, "Damage dealt", toa_raid_summary:damage_dealt_graphic);
-    if_setonop("toa_raid_summary_mobile_tooltip(event_com, -1, $component10, $string1, 512)", toa_raid_summary:damage_dealt_graphic);
+    if_setonop("toa_raid_summary_mobile_tooltip(event_com, -1, $tooltip, $string1, 512)", toa_raid_summary:damage_dealt_graphic);
     $string1 = "Deaths";
     if_setop(1, "Deaths", toa_raid_summary:deaths_graphic);
-    if_setonop("toa_raid_summary_mobile_tooltip(event_com, -1, $component10, $string1, 512)", toa_raid_summary:deaths_graphic);
+    if_setonop("toa_raid_summary_mobile_tooltip(event_com, -1, $tooltip, $string1, 512)", toa_raid_summary:deaths_graphic);
 } else {
     $string1 = "Damage taken";
-    if_setonmouserepeat("toa_raid_summary_selectedborder(event_com, -1, $component10, $string1)", toa_raid_summary:damage_taken_graphic);
-    if_setonmouseleave("script6592(event_com, -1, $component10)", toa_raid_summary:damage_taken_graphic);
+    if_setonmouserepeat("toa_raid_summary_selectedborder(event_com, -1, $tooltip, $string1)", toa_raid_summary:damage_taken_graphic);
+    if_setonmouseleave("script6592(event_com, -1, $tooltip)", toa_raid_summary:damage_taken_graphic);
     $string1 = "Damage dealt";
-    if_setonmouserepeat("toa_raid_summary_selectedborder(event_com, -1, $component10, $string1)", toa_raid_summary:damage_dealt_graphic);
-    if_setonmouseleave("script6592(event_com, -1, $component10)", toa_raid_summary:damage_dealt_graphic);
+    if_setonmouserepeat("toa_raid_summary_selectedborder(event_com, -1, $tooltip, $string1)", toa_raid_summary:damage_dealt_graphic);
+    if_setonmouseleave("script6592(event_com, -1, $tooltip)", toa_raid_summary:damage_dealt_graphic);
     $string1 = "Deaths";
-    if_setonmouserepeat("toa_raid_summary_selectedborder(event_com, -1, $component10, $string1)", toa_raid_summary:deaths_graphic);
-    if_setonmouseleave("script6592(event_com, -1, $component10)", toa_raid_summary:deaths_graphic);
+    if_setonmouserepeat("toa_raid_summary_selectedborder(event_com, -1, $tooltip, $string1)", toa_raid_summary:deaths_graphic);
+    if_setonmouseleave("script6592(event_com, -1, $tooltip)", toa_raid_summary:deaths_graphic);
 }
 if_setsize($int9, calc($int8 + $int11), ^setsize_abs, ^setsize_abs, toa_raid_summary:name_column);
-if ($boolean7 = true) {
+if ($boolean = true) {
     cc_create(toa_raid_summary:mvp_container, ^iftype_graphic, 0);
     cc_setposition(3, calc($int8 + 5 + $int11 / 2 - 13), ^setpos_abs_left, ^setpos_abs_top);
     cc_setgraphic("clan_rank_icons,42");
@@ -101,10 +101,10 @@ if ($struct3 = null) {
     $string1 = struct_param($struct3, param_1526);
     if (~on_mobile = true) {
         cc_setop(1, "Show Description");
-        cc_setonop("toa_raid_summary_mobile_tooltip(event_com, event_comsubid, $component10, $string1, 512)");
+        cc_setonop("toa_raid_summary_mobile_tooltip(event_com, event_comsubid, $tooltip, $string1, 512)");
     } else {
-        cc_setonmouserepeat("toa_raid_summary_selectedborder(event_com, event_comsubid, $component10, $string1)");
-        cc_setonmouseleave("script6592(event_com, event_comsubid, $component10)");
+        cc_setonmouserepeat("toa_raid_summary_selectedborder(event_com, event_comsubid, $tooltip, $string1)");
+        cc_setonmouseleave("script6592(event_com, event_comsubid, $tooltip)");
     }
 }
 cc_create(toa_raid_summary:stats_background_container, ^iftype_rectangle, $int5);

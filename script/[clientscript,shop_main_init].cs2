@@ -1,11 +1,11 @@
 // 1074
-[clientscript,shop_main_init](inv $inv0, string $string0, obj $obj1, int $int2, boolean $boolean3)
+[clientscript,shop_main_init](inv $inv, string $string, obj $obj, int $int2, boolean $boolean)
 cc_deleteall(shopmain:frame);
 cc_deleteall(shopmain:items);
 cc_deleteall(shopmain:scrollbar);
-~steelborder(shopmain:frame, $string0, 0);
+~steelborder(shopmain:frame, $string, 0);
 def_int $int4 = calc((if_getwidth(shopmain:items) - 8 * 36) / 7 + 36);
-def_int $int5 = inv_size($inv0);
+def_int $int5 = inv_size($inv);
 def_int $int6 = 0;
 cc_create(shopmain:items, ^iftype_graphic, 0);
 while ($int6 < $int5) {
@@ -17,7 +17,7 @@ while ($int6 < $int5) {
     cc_setop(2, "Buy 1");
     cc_setop(3, "Buy 5");
     cc_setop(4, "Buy 10");
-    if ($boolean3 = true) {
+    if ($boolean = true) {
         cc_setop(5, "Buy 50");
     }
     cc_setop(10, "Examine");
@@ -25,8 +25,8 @@ while ($int6 < $int5) {
     $int6 = calc($int6 + 1);
 }
 ~scrollbar_vertical(shopmain:scrollbar, shopmain:items, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-~shop_main_update(shopmain:items, $int5, $inv0, $obj1, $int2);
-if_setoninvtransmit("shop_main_update(event_com, $int5, $inv0, $obj1, $int2){$inv0}", shopmain:items);
+~shop_main_update(shopmain:items, $int5, $inv, $obj, $int2);
+if_setoninvtransmit("shop_main_update(event_com, $int5, $inv, $obj, $int2){$inv}", shopmain:items);
 if (~script2288 = true) {
     ~script2461(shopmain:note_button, false);
     if_setposition(calc(if_getx(shopmain:desktop_instructions) - 30), if_gety(shopmain:desktop_instructions), ^setpos_abs_centre, ^setpos_abs_top, shopmain:desktop_instructions);

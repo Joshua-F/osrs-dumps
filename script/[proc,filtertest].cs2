@@ -1,13 +1,13 @@
 // 90
-[proc,filtertest](int $chattype0, string $string0, string $string1, string $string2, int $int1, int $int2, string $string3, int $int3)(boolean)
-if ($chattype0 = null) {
+[proc,filtertest](int $chattype, string $string0, string $string1, string $string2, int $int1, int $int2, string $string3, int $int3)(boolean)
+if ($chattype = null) {
     return(false);
 }
 if ($int1 < %varclient_383) {
     return(false);
 }
-if (enum(int, boolean, enum_892, $chattype0) = true & $chattype0 ! ^chattype_playerrelated) {
-    switch_int ($chattype0) {
+if (enum(int, boolean, enum_892, $chattype) = true & $chattype ! ^chattype_playerrelated) {
+    switch_int ($chattype) {
         case ^chattype_spam :
             if (%game_filter = 1) {
                 return(false);
@@ -23,11 +23,11 @@ if (enum(int, boolean, enum_892, $chattype0) = true & $chattype0 ! ^chattype_pla
     }
     return(true);
 }
-def_int $chatfilter4 = null;
+def_int $chatfilter = null;
 def_string $string4 = "";
 def_int $int5 = -1;
 def_int $int6 = ~loginlogout_setting_get;
-switch_int ($chattype0) {
+switch_int ($chattype) {
     case ^chattype_publicchat, ^chattype_modchat :
         if ($int1 < %varclient_199) {
             return(false);
@@ -38,14 +38,14 @@ switch_int ($chattype0) {
         if ($int3 = 2) {
             return(false);
         }
-        $chatfilter4 = chat_getfilter_public;
-        if ($chatfilter4 = ^chatfilter_off | $chatfilter4 = ^chatfilter_hide) {
+        $chatfilter = chat_getfilter_public;
+        if ($chatfilter = ^chatfilter_off | $chatfilter = ^chatfilter_hide) {
             return(false);
         }
         if (string_length(chat_getmessagefilter) > 0 & string_indexof_string(lowercase($string1), chat_getmessagefilter, 0) = -1) {
             return(false);
         }
-        if ($chatfilter4 = ^chatfilter_friends) {
+        if ($chatfilter = ^chatfilter_friends) {
             if ($int3 = 1) {
                 return(true);
             }
@@ -76,7 +76,7 @@ switch_int ($chattype0) {
         if ($int3 = 2) {
             return(false);
         }
-        if (%option_pm = 1 & $int2 = 0 & ~trade_partner_check($chattype0, $string0, $int3) = false) {
+        if (%option_pm = 1 & $int2 = 0 & ~trade_partner_check($chattype, $string0, $int3) = false) {
             return(false);
         }
         if (chat_getfilter_private = ^chatfilter_on) {
@@ -101,14 +101,14 @@ switch_int ($chattype0) {
         if ($int1 < %varclient_175) {
             return(false);
         }
-        if ($chattype0 = ^chattype_loginlogoutnotification) {
+        if ($chattype = ^chattype_loginlogoutnotification) {
             if ($int6 = 2) {
                 return(false);
             } else if ($int6 = 0 & calc(clientclock - $int1) >= 500) {
                 return(false);
             }
         }
-        if (%option_pm = 1 & $int2 = 0 & ~trade_partner_check($chattype0, $string0, $int3) = false) {
+        if (%option_pm = 1 & $int2 = 0 & ~trade_partner_check($chattype, $string0, $int3) = false) {
             return(false);
         }
         if (chat_getfilter_private ! ^chatfilter_off) {
@@ -141,7 +141,7 @@ switch_int ($chattype0) {
         }
         return(false);
     case ^chattype_clanchat, ^chattype_clanguestchat, ^chattype_clanmessage, ^chattype_clanguestmessage, ^chattype_clancreationinvitation, ^chattype_chalreq_clanchat, 111, 112 :
-        if ($chattype0 = ^chattype_clanmessage & (~gim_notification_message($string2) = true | ~pvpa_notification_message($string2) = true)) {
+        if ($chattype = ^chattype_clanmessage & (~gim_notification_message($string2) = true | ~pvpa_notification_message($string2) = true)) {
             if ($int1 < %varclient_946) {
                 return(false);
             }
@@ -150,7 +150,7 @@ switch_int ($chattype0) {
             }
             return(true);
         }
-        if ($chattype0 = ^chattype_clanchat & ~script5501($string2) = true) {
+        if ($chattype = ^chattype_clanchat & ~script5501($string2) = true) {
             if ($int1 < %varclient_946) {
                 return(false);
             }

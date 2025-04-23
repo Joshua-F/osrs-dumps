@@ -1,8 +1,8 @@
 // 4731
-[proc,interface_dodger_review](component $component0, component $component1, int $int2, int $setposh3, int $setposv4, boolean $boolean5, int $int6, int $int7, int $int8, int $int9, int $int10)
-def_int $int11 = if_getwidth($component0);
-def_int $int12 = if_getheight($component0);
-def_component $component13 = if_getlayer($component0);
+[proc,interface_dodger_review](component $safezone, component $component1, int $int2, int $setposh3, int $setposv, boolean $boolean5, int $int6, int $int7, int $int8, int $int9, int $int10)
+def_int $int11 = if_getwidth($safezone);
+def_int $int12 = if_getheight($safezone);
+def_component $component13 = if_getlayer($safezone);
 if ($component13 ! null) {
     $int11 = if_getwidth($component13);
     $int12 = if_getheight($component13);
@@ -21,7 +21,7 @@ def_int $int21 = 0;
 def_int $int22 = 0;
 def_boolean $boolean23 = ~on_mobile;
 def_boolean $boolean24 = ~on_enhanced_any;
-def_enum $enum25 = ~toplevel_getcomponents;
+def_enum $enum = ~toplevel_getcomponents;
 def_int $int26 = 0;
 def_int $setposh27 = $setposh3;
 def_int $int28 = 0;
@@ -45,9 +45,9 @@ if (testbit($int2, 13) = ^true) {
 } else if (testbit($int2, 4) = ^true) {
     $int43 = 2;
 }
-if ($component0 ! toplevel_osm:safezone) {
-    if_setposition(0, 0, $setposh27, $setposv4, $component0);
-    if_setsize(0, 0, ^setsize_minus, ^setsize_minus, $component0);
+if ($safezone ! toplevel_osm:safezone) {
+    if_setposition(0, 0, $setposh27, $setposv, $safezone);
+    if_setsize(0, 0, ^setsize_minus, ^setsize_minus, $safezone);
 }
 if ($boolean23 = true & $int43 > 0 & $component13 ! null) {
     if ($int43 = 2) {
@@ -60,7 +60,7 @@ if ($boolean23 = true & $int43 > 0 & $component13 ! null) {
     $int16 = ~min(safearea_getmaxx, calc($int11 - $int32));
     $int17 = safearea_getmaxy;
     $component39 = null;
-    if ($component0 = toplevel_osm:safezone) {
+    if ($safezone = toplevel_osm:safezone) {
         if (.cc_find(toplevel_osm:safezone_noclick, 0) = true) {
             .cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top);
             .cc_setsize(0, $int19, ^setsize_minus, ^setsize_abs);
@@ -105,12 +105,12 @@ if ($boolean23 = true & $int43 > 0 & $component13 ! null) {
         if ($component39 ! null) {
             ~script3506($component39);
         }
-        if_setposition($int18, $int19, ^setpos_abs_left, ^setpos_abs_top, $component0);
-        if_setsize(calc($int11 - max(680, calc($int16 - $int18))), calc($int12 - ($int17 - $int19)), ^setsize_minus, ^setsize_minus, $component0);
-        if_setonvartransmit("interface_dodger_review($component0, $component1, $int2, $setposh3, $setposv4, $boolean5, $int11, $int12, %varclient_381, %varclient_222, %varclient_384){option_pm, settings_varp_2, chat_filter_assist, chat_filter_clan, xpdrops_options}", $component0);
-        if_setonsubchange("interface_dodger_review($component0, $component1, $int2, $setposh3, $setposv4, $boolean5, $int11, $int12, %varclient_381, %varclient_222, %varclient_384)", $component0);
-        if_setontimer("interface_dodger_review($component0, $component1, $int2, $setposh3, $setposv4, $boolean5, $int11, $int12, %varclient_381, %varclient_222, %varclient_384)", $component0);
-        if_setonresize("interface_dodger_review($component0, $component1, $int2, $setposh3, $setposv4, $boolean5, $int11, $int12, %varclient_381, %varclient_222, %varclient_384)", $component0);
+        if_setposition($int18, $int19, ^setpos_abs_left, ^setpos_abs_top, $safezone);
+        if_setsize(calc($int11 - max(680, calc($int16 - $int18))), calc($int12 - ($int17 - $int19)), ^setsize_minus, ^setsize_minus, $safezone);
+        if_setonvartransmit("interface_dodger_review($safezone, $component1, $int2, $setposh3, $setposv, $boolean5, $int11, $int12, %varclient_381, %varclient_222, %varclient_384){option_pm, settings_varp_2, chat_filter_assist, chat_filter_clan, xpdrops_options}", $safezone);
+        if_setonsubchange("interface_dodger_review($safezone, $component1, $int2, $setposh3, $setposv, $boolean5, $int11, $int12, %varclient_381, %varclient_222, %varclient_384)", $safezone);
+        if_setontimer("interface_dodger_review($safezone, $component1, $int2, $setposh3, $setposv, $boolean5, $int11, $int12, %varclient_381, %varclient_222, %varclient_384)", $safezone);
+        if_setonresize("interface_dodger_review($safezone, $component1, $int2, $setposh3, $setposv, $boolean5, $int11, $int12, %varclient_381, %varclient_222, %varclient_384)", $safezone);
         return;
     }
     $int15 = calc($int15 + $int18);
@@ -122,7 +122,7 @@ if ($boolean23 = true & $int43 > 0 & $component13 ! null) {
 }
 $int36 = 0;
 $int37 = 0;
-if ($boolean23 = true & $enum25 = enum_1745) {
+if ($boolean23 = true & $enum = enum_1745) {
     if (testbit($int2, 1) = ^true) {
         $int30 = ~script2519;
     }
@@ -130,18 +130,18 @@ if ($boolean23 = true & $enum25 = enum_1745) {
         $int28 = 1;
     }
     if ($int30 = 2) {
-        $int36 = calc($int36 + ~max(0, calc(if_getwidth(toplevel_osm:side_right_tabs) - enum(enum, int, enum_1135, $enum25))));
+        $int36 = calc($int36 + ~max(0, calc(if_getwidth(toplevel_osm:side_right_tabs) - enum(enum, int, enum_1135, $enum))));
     } else if ($int30 = 3 | $int30 = 4) {
         if (~script7830 = 1) {
-            $int36 = calc($int36 + ~max(0, calc(if_getwidth(toplevel_osm:side_right_tabs) - enum(enum, int, enum_1135, $enum25))));
+            $int36 = calc($int36 + ~max(0, calc(if_getwidth(toplevel_osm:side_right_tabs) - enum(enum, int, enum_1135, $enum))));
         } else {
-            $int36 = calc($int36 + ~max(0, calc(if_getwidth(toplevel_osm:side_right_tabs) + if_getwidth(enum(component, component, $enum25, toplevel_pre_eoc:side_container)) - enum(enum, int, enum_1135, $enum25))));
+            $int36 = calc($int36 + ~max(0, calc(if_getwidth(toplevel_osm:side_right_tabs) + if_getwidth(enum(component, component, $enum, toplevel_pre_eoc:side_container)) - enum(enum, int, enum_1135, $enum))));
         }
     } else if ($boolean5 = true) {
         if ($int30 = 2) {
-            $int37 = calc($int37 + ~max(0, calc(if_getwidth(toplevel_osm:side_right_tabs) - enum(enum, int, enum_1135, $enum25))));
+            $int37 = calc($int37 + ~max(0, calc(if_getwidth(toplevel_osm:side_right_tabs) - enum(enum, int, enum_1135, $enum))));
         } else if ($int30 = 3 | $int30 = 4) {
-            $int37 = calc($int37 + ~max(0, calc(if_getwidth(toplevel_osm:side_right_tabs) + if_getwidth(enum(component, component, $enum25, toplevel_pre_eoc:side_container)) - enum(enum, int, enum_1135, $enum25))));
+            $int37 = calc($int37 + ~max(0, calc(if_getwidth(toplevel_osm:side_right_tabs) + if_getwidth(enum(component, component, $enum, toplevel_pre_eoc:side_container)) - enum(enum, int, enum_1135, $enum))));
         }
     }
     if ($int28 = 1) {
@@ -171,13 +171,13 @@ if ($boolean23 = true & $enum25 = enum_1745) {
     $int16 = calc($int16 + $int36);
     $int22 = calc($int22 + $int37);
 }
-if (testbit($int2, 12) = ^true & $component13 ! null & $enum25 ! null) {
-    $int15 = calc($int15 + enum(enum, int, enum_1960, $enum25));
-    $int14 = calc($int14 + enum(enum, int, enum_1961, $enum25));
-    $int20 = calc($int20 + enum(enum, int, enum_1961, $enum25));
-    $int16 = calc($int16 + enum(enum, int, enum_1135, $enum25));
-    $int17 = calc($int17 + enum(enum, int, enum_1136, $enum25));
-    $int21 = calc($int21 + enum(enum, int, enum_1136, $enum25));
+if (testbit($int2, 12) = ^true & $component13 ! null & $enum ! null) {
+    $int15 = calc($int15 + enum(enum, int, enum_1960, $enum));
+    $int14 = calc($int14 + enum(enum, int, enum_1961, $enum));
+    $int20 = calc($int20 + enum(enum, int, enum_1961, $enum));
+    $int16 = calc($int16 + enum(enum, int, enum_1135, $enum));
+    $int17 = calc($int17 + enum(enum, int, enum_1136, $enum));
+    $int21 = calc($int21 + enum(enum, int, enum_1136, $enum));
 }
 if (testbit($int2, 10) = ^true & $boolean23 = false & ($setposh27 = ^setpos_abs_left | $setposh27 = ^setpos_abs_centre) & ($boolean24 = false | %mouseover_text_enabled = 1)) {
     $int14 = calc($int14 + 23);
@@ -198,7 +198,7 @@ if (testbit($int2, 18) = ^true & getwindowmode = ^windowmode_small & %attack_sty
         $int21 = calc($int21 + 80 - $int36);
     }
 }
-$component39 = enum(component, component, $enum25, toplevel_osrs_stretch:hpbar_hud);
+$component39 = enum(component, component, $enum, toplevel_osrs_stretch:hpbar_hud);
 if (testbit($int2, 5) = ^true & testbit($int2, 16) = ^false & $component39 ! null & if_hassub($component39) = true & if_gethide(hpbar_hud:hp) = false) {
     if ($boolean24 = true & %hpbar_hud_standard_disabled = 0 & %hpbar_hud_boss = 0) {
         $int40 = setbit($int40, 5);
@@ -215,7 +215,7 @@ if (testbit($int2, 5) = ^true & testbit($int2, 16) = ^false & $component39 ! nul
         $int14 = calc($int14 + if_getheight(hpbar_hud:hp) + 2);
     }
 }
-$component39 = enum(component, component, $enum25, toplevel_osrs_stretch:helper_content);
+$component39 = enum(component, component, $enum, toplevel_osrs_stretch:helper_content);
 if (testbit($int2, 6) = ^true & testbit($int2, 16) = ^false & $component39 ! null & if_hassub($component39) = true) {
     $int40 = setbit($int40, 6);
     if (~dodger_tracker_check(1) = false) {
@@ -295,13 +295,13 @@ if (testbit($int2, 14) = ^true) {
         $int21 = calc($int21 + $int36);
     }
 }
-$component39 = enum(component, component, $enum25, toplevel_osrs_stretch:stat_boosts_hud);
+$component39 = enum(component, component, $enum, toplevel_osrs_stretch:stat_boosts_hud);
 $boolean31 = false;
 if (testbit($int2, 15) = ^true & $boolean24 = true & $component39 ! null & if_hassub($component39) = true & if_gethide(stat_boosts_hud:content) = false & ~script6263 = true) {
     if ($boolean23 = false & $setposh27 = ^setpos_abs_left | $boolean23 = true & $setposh27 = ^setpos_abs_right) {
         $int17 = calc($int17 + 35);
     } else if ($setposh27 = ^setpos_abs_centre) {
-        if ($setposv4 = ^setpos_abs_bottom) {
+        if ($setposv = ^setpos_abs_bottom) {
             $boolean31 = ~if_component_overlap($component1, $int15, calc(0 - $int17), stat_boosts_hud:content, ~script4735($component39));
         } else {
             $boolean31 = ~if_component_overlap($component1, $int15, $int14, stat_boosts_hud:content, ~script4735($component39));
@@ -315,7 +315,7 @@ if (testbit($int2, 15) = ^true & $boolean24 = true & $component39 ! null & if_ha
     }
 }
 $boolean31 = false;
-$component39 = enum(component, component, $enum25, toplevel_osrs_stretch:buff_bar);
+$component39 = enum(component, component, $enum, toplevel_osrs_stretch:buff_bar);
 if (testbit($int2, 11) = ^true & $component39 ! null & if_hassub($component39) = true & if_gethide($component39) = false & $component1 ! null) {
     $int36, $int37 = ~buff_bar_max_buffs;
     if ($int36 > 0 & $int37 > 0) {
@@ -368,24 +368,24 @@ if (testbit($int2, 17) = ^true & %varclient_490 ! null & if_find(%varclient_490)
 if ($boolean5 = true & $component1 ! null & $setposh27 ! ^setpos_abs_right) {
     $int36 = if_getwidth($component1);
     $int37 = if_getheight($component1);
-    $int14 = calc($int14 + ~script2250($int2, $int40, $enum25, $setposh27, $component1, $int14));
-    $int20 = calc($int20 + ~script2250($int2, $int40, $enum25, ^setpos_abs_right, $component1, $int20));
+    $int14 = calc($int14 + ~script2250($int2, $int40, $enum, $setposh27, $component1, $int14));
+    $int20 = calc($int20 + ~script2250($int2, $int40, $enum, ^setpos_abs_right, $component1, $int20));
     if ($int36 <= calc($int11 - ($int15 + $int16)) & $int37 <= calc($int12 - ($int14 + $int17))) {
-        if_setposition($int15, $int14, ^setpos_abs_left, ^setpos_abs_top, $component0);
-        if_setsize(calc($int15 + $int16), calc($int14 + $int17), ^setsize_minus, ^setsize_minus, $component0);
-        ~script4734($component0, $int2);
+        if_setposition($int15, $int14, ^setpos_abs_left, ^setpos_abs_top, $safezone);
+        if_setsize(calc($int15 + $int16), calc($int14 + $int17), ^setsize_minus, ^setsize_minus, $safezone);
+        ~script4734($safezone, $int2);
     } else {
         $int15 = calc($int11 - $int36 - $int16 - $int22 - 2 * 2);
-        if_setposition($int15, calc($int20 + 2), ^setpos_abs_left, ^setpos_abs_top, $component0);
-        if_setsize(calc($int15 + ($int16 + $int22)), calc($int20 + $int21), ^setsize_minus, ^setsize_minus, $component0);
-        ~script4733($component0, $int2);
+        if_setposition($int15, calc($int20 + 2), ^setpos_abs_left, ^setpos_abs_top, $safezone);
+        if_setsize(calc($int15 + ($int16 + $int22)), calc($int20 + $int21), ^setsize_minus, ^setsize_minus, $safezone);
+        ~script4733($safezone, $int2);
     }
 } else {
-    $int14 = calc($int14 + ~script2250($int2, $int40, $enum25, $setposh27, $component1, $int14));
-    if_setposition($int15, $int14, ^setpos_abs_left, ^setpos_abs_top, $component0);
-    if_setsize(calc($int15 + $int16), calc($int14 + $int17), ^setsize_minus, ^setsize_minus, $component0);
+    $int14 = calc($int14 + ~script2250($int2, $int40, $enum, $setposh27, $component1, $int14));
+    if_setposition($int15, $int14, ^setpos_abs_left, ^setpos_abs_top, $safezone);
+    if_setsize(calc($int15 + $int16), calc($int14 + $int17), ^setsize_minus, ^setsize_minus, $safezone);
 }
-if_setonvartransmit("interface_dodger_review($component0, $component1, $int2, $setposh3, $setposv4, $boolean5, $int11, $int12, %varclient_381, %varclient_222, %varclient_384){option_pm, settings_varp_2, chat_filter_assist, chat_filter_clan, xpdrops_options}", $component0);
-if_setonsubchange("interface_dodger_review($component0, $component1, $int2, $setposh3, $setposv4, $boolean5, $int11, $int12, %varclient_381, %varclient_222, %varclient_384)", $component0);
-if_setontimer("interface_dodger_review($component0, $component1, $int2, $setposh3, $setposv4, $boolean5, $int11, $int12, %varclient_381, %varclient_222, %varclient_384)", $component0);
-if_setonresize("interface_dodger_review($component0, $component1, $int2, $setposh3, $setposv4, $boolean5, $int11, $int12, %varclient_381, %varclient_222, %varclient_384)", $component0);
+if_setonvartransmit("interface_dodger_review($safezone, $component1, $int2, $setposh3, $setposv, $boolean5, $int11, $int12, %varclient_381, %varclient_222, %varclient_384){option_pm, settings_varp_2, chat_filter_assist, chat_filter_clan, xpdrops_options}", $safezone);
+if_setonsubchange("interface_dodger_review($safezone, $component1, $int2, $setposh3, $setposv, $boolean5, $int11, $int12, %varclient_381, %varclient_222, %varclient_384)", $safezone);
+if_setontimer("interface_dodger_review($safezone, $component1, $int2, $setposh3, $setposv, $boolean5, $int11, $int12, %varclient_381, %varclient_222, %varclient_384)", $safezone);
+if_setonresize("interface_dodger_review($safezone, $component1, $int2, $setposh3, $setposv, $boolean5, $int11, $int12, %varclient_381, %varclient_222, %varclient_384)", $safezone);

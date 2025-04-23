@@ -7,12 +7,12 @@
 ~tob_partylist_sortbutton_draw(tob_partylist:sort_mode, 14, 15, "Sort by mode");
 ~tob_partylist_sortbutton_draw(tob_partylist:sort_age, 12, 13, "Sort by age");
 def_int $int0 = enum_getoutputcount(enum_1937);
-def_int $intarray0($int0);
+def_int $intarray($int0);
 def_int $int1 = 0;
 def_int $int2 = 0;
 while ($int2 < $int0) {
     if (cc_find(enum(int, component, enum_1937, $int2), 0) = true) {
-        $intarray0($int1) = $int2;
+        $intarray($int1) = $int2;
         $int1 = calc($int1 + 1);
     }
     $int2 = calc($int2 + 1);
@@ -36,29 +36,29 @@ if ($int1 >= 2) {
 }
 def_int $int3 = 0;
 def_int $int4 = 0;
-def_component $component5 = null;
+def_component $component = null;
 def_string $string1 = "";
 switch_int (%varclient_180) {
     case 1, 3, 5, 7, 13, 15 :
         $int3 = $int1;
         while ($int3 > 0) {
             $int3 = calc($int3 - 1);
-            $component5 = enum(int, component, enum_1937, $intarray0($int3));
-            if ($component5 ! null) {
-                if_setposition(0, $int4, ^setpos_abs_centre, ^setpos_abs_top, $component5);
-                if (cc_find($component5, 0) = true & .cc_find($component5, 3) = true) {
-                    ~raids_partylist_entry_init($int3, $component5, $intarray0($int3), .cc_gettext, tob_partylist:list);
+            $component = enum(int, component, enum_1937, $intarray($int3));
+            if ($component ! null) {
+                if_setposition(0, $int4, ^setpos_abs_centre, ^setpos_abs_top, $component);
+                if (cc_find($component, 0) = true & .cc_find($component, 3) = true) {
+                    ~raids_partylist_entry_init($int3, $component, $intarray($int3), .cc_gettext, tob_partylist:list);
                 }
             }
             $int4 = calc($int4 + 18);
         }
     case default :
         while ($int3 < $int1) {
-            $component5 = enum(int, component, enum_1937, $intarray0($int3));
-            if ($component5 ! null) {
-                if_setposition(0, $int4, ^setpos_abs_centre, ^setpos_abs_top, $component5);
-                if (cc_find($component5, 0) = true & .cc_find($component5, 3) = true) {
-                    ~raids_partylist_entry_init($int3, $component5, $intarray0($int3), .cc_gettext, tob_partylist:list);
+            $component = enum(int, component, enum_1937, $intarray($int3));
+            if ($component ! null) {
+                if_setposition(0, $int4, ^setpos_abs_centre, ^setpos_abs_top, $component);
+                if (cc_find($component, 0) = true & .cc_find($component, 3) = true) {
+                    ~raids_partylist_entry_init($int3, $component, $intarray($int3), .cc_gettext, tob_partylist:list);
                 }
             }
             $int4, $int3 = calc($int4 + 18), calc($int3 + 1);

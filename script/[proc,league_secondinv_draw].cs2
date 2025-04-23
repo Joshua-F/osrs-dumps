@@ -1,25 +1,25 @@
 // 3706
-[proc,league_secondinv_draw](inv $inv0)
+[proc,league_secondinv_draw](inv $inv)
 cc_deleteall(league_secondinv:items);
-def_int $int1 = inv_size($inv0);
-def_obj $obj2 = null;
+def_int $int1 = inv_size($inv);
+def_obj $obj = null;
 def_int $int3 = 0;
 def_int $int4 = 0;
-def_string $string0 = "Invalid item.";
+def_string $string = "Invalid item.";
 def_int $int5 = 0;
 while ($int5 < $int1) {
     cc_create(league_secondinv:items, ^iftype_graphic, $int5);
-    $obj2 = inv_getobj($inv0, $int5);
-    if ($obj2 ! null) {
-        $int3, $int4 = inv_getnum($inv0, $int5), calc($int4 + 1);
+    $obj = inv_getobj($inv, $int5);
+    if ($obj ! null) {
+        $int3, $int4 = inv_getnum($inv, $int5), calc($int4 + 1);
         cc_sethide(false);
         cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
         cc_setposition(calc($int5 % 4 * (36 + 8)), calc($int5 / 4 * 32), ^setpos_abs_left, ^setpos_abs_top);
         cc_setoutline(1);
         cc_setgraphicshadow(0x333333);
-        cc_setobject($obj2, $int3);
-        if ($inv0 = inv) {
-            if ($obj2 = league_second_inventory | $obj2 = league_second_inventory_open) {
+        cc_setobject($obj, $int3);
+        if ($inv = inv) {
+            if ($obj = league_second_inventory | $obj = league_second_inventory_open) {
                 cc_settrans(150);
                 cc_setonmouserepeat(null);
                 cc_setonmouseleave(null);
@@ -41,13 +41,13 @@ while ($int5 < $int1) {
             cc_setop(8, "Withdraw-X");
             cc_setop(10, "Examine");
         }
-        cc_setopbase("<col=ff9040><oc_name($obj2)>");
+        cc_setopbase("<col=ff9040><oc_name($obj)>");
     } else {
         cc_sethide(true);
     }
     $int5 = calc($int5 + 1);
 }
-if ($inv0 = league_secondinv & $int4 <= 0) {
+if ($inv = league_secondinv & $int4 <= 0) {
     cc_create(league_secondinv:items, ^iftype_text, $int5);
     cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize(if_getwidth(league_secondinv:items), if_getheight(league_secondinv:items), ^setsize_abs, ^setsize_abs);

@@ -1,20 +1,20 @@
 // 6427
-[proc,script6427](boolean $boolean0, int $int1, int $int2, obj $obj3, obj $obj4)
+[proc,script6427](boolean $boolean, int $int1, int $int2, obj $obj3, obj $obj4)
 cc_deleteall(pvp_arena_runepouch:spells);
-def_enum $enum5 = enum(int, enum, enum_1981, $int2);
-if ($enum5 = null) {
+def_enum $enum = enum(int, enum, enum_1981, $int2);
+if ($enum = null) {
     return;
 }
-def_int $int6 = enum_getoutputcount($enum5);
-def_int $intarray0($int6);
+def_int $int6 = enum_getoutputcount($enum);
+def_int $intarray($int6);
 def_int $int7 = 0;
 while ($int7 < $int6) {
-    $intarray0($int7) = $int7;
+    $intarray($int7) = $int7;
     $int7 = calc($int7 + 1);
 }
 def_int $int8 = 0;
 if ($int7 >= 2) {
-    ~magic_spellbook_sort(intarray0, 0, calc($int7 - 1), $enum5);
+    ~magic_spellbook_sort(intarray0, 0, calc($int7 - 1), $enum);
 } else if ($int7 <= 0) {
     cc_create(pvp_arena_runepouch:spells, ^iftype_text, $int8);
     $int8 = calc($int8 + 1);
@@ -48,7 +48,7 @@ $int15, $int16, $int17, $int18, $int19, $int20, $int21, $int22 = ~script6335($in
 def_obj $obj23 = null;
 $int7 = 0;
 while ($int7 < $int6) {
-    $obj23 = enum(int, obj, $enum5, $intarray0($int7));
+    $obj23 = enum(int, obj, $enum, $intarray($int7));
     cc_create(pvp_arena_runepouch:spells, ^iftype_graphic, $int8);
     $int8 = calc($int8 + 1);
     cc_setsize(24, 24, ^setsize_abs, ^setsize_abs);
@@ -58,7 +58,7 @@ while ($int7 < $int6) {
     } else {
         cc_setgraphic(oc_param($obj23, param_598));
     }
-    if ($boolean0 = true) {
+    if ($boolean = true) {
         cc_setonclick("script6428(event_com, event_comsubid, $obj23, $obj3, $obj4)");
         cc_setontimer("script6430(event_com, event_comsubid, $obj23)");
     } else {

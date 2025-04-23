@@ -1,6 +1,6 @@
 // 4263
-[clientscript,clan_interests](component $component0)
-~script4206(clans_interests:clamp, clans_interests:fader, clans_interests:window, 0, $component0);
+[clientscript,clan_interests](component $component)
+~script4206(clans_interests:clamp, clans_interests:fader, clans_interests:window, 0, $component);
 ~steelborder(clans_interests:frame, "Clan Interests", 1);
 ~scrollbar_vertical(clans_interests:scrollbar, clans_interests:list, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
 def_int $int1 = 0;
@@ -8,12 +8,12 @@ def_string $string0 = "";
 def_string $string1 = "";
 def_string $string2 = "";
 cc_deleteall(clans_interests:list);
-def_boolean $booleanarray0(calc(15 + 1));
+def_boolean $booleanarray(calc(15 + 1));
 def_int $int2 = 0;
 while ($int2 <= 15) {
     $string2 = enum(int, string, enum_3792, $int2);
     if (string_length($string2) > 0) {
-        $booleanarray0($int2) = true;
+        $booleanarray($int2) = true;
         if (calc($int1 % 2) = 0) {
             $string0 = append($string0, "<br><$string2>");
         } else {
@@ -41,7 +41,7 @@ def_int $int11 = 0;
 $int1 = 0;
 def_int $int12 = 0;
 while ($int12 <= 15) {
-    if ($booleanarray0($int12) = true & cc_find(clans_interests:list, $int12) = true) {
+    if ($booleanarray($int12) = true & cc_find(clans_interests:list, $int12) = true) {
         cc_sethide(false);
         $int11 = calc($int1 / 2 * $int8);
         if (calc($int1 % 2) = 0) {
@@ -89,6 +89,6 @@ while ($int12 <= 15) {
 $int11 = calc($int11 + $int8);
 ~clan_interests_setsize(~max(180, calc(23 + $int7 + $int6 + 3 + 16)), $int11, if_getheight(clans_interests:clamp));
 ~stonebutton_init("<col=ff0000>Cancel</col>", clans_interests:cancel, p12_full, 0);
-if_setonop("script4208(0, clans_interests:clamp, clans_interests:fader, clans_interests:window, $component0)", clans_interests:cancel);
+if_setonop("script4208(0, clans_interests:clamp, clans_interests:fader, clans_interests:window, $component)", clans_interests:cancel);
 ~stonebutton_init("<col=0dc10d>Save</col>", clans_interests:submit, p12_full, 0);
-if_setonop("script4208(1, clans_interests:clamp, clans_interests:fader, clans_interests:window, $component0)", clans_interests:submit);
+if_setonop("script4208(1, clans_interests:clamp, clans_interests:fader, clans_interests:window, $component)", clans_interests:submit);

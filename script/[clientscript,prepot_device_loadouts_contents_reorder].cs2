@@ -8,7 +8,7 @@ def_int $int6 = inv_total(prepot_device_inv, $obj5);
 def_obj $obj7 = null;
 def_int $int8 = 0;
 def_int $int9 = -1;
-def_dbrow $dbrow10 = null;
+def_dbrow $dbrow = null;
 if ($component2 = $component1) {
     $obj7 = inv_getobj(prepot_device_inv, $int4);
     $int8 = inv_total(prepot_device_inv, $obj7);
@@ -20,12 +20,12 @@ if ($component2 = $component1) {
     }
 } else {
     db_find(prepot_device_loadout_ui:contents_com, $component2);
-    $dbrow10 = db_findnext;
-    if ($dbrow10 ! null) {
-        $int9 = db_getfield($dbrow10, prepot_device_loadout_ui:loadout_id, 0);
+    $dbrow = db_findnext;
+    if ($dbrow ! null) {
+        $int9 = db_getfield($dbrow, prepot_device_loadout_ui:loadout_id, 0);
     }
     if ($int9 >= 0) {
         ~prepot_device_loadouts_set_slot($int9, $int4, $obj5, $int6);
-        ~prepot_device_loadouts_draw_loadout($dbrow10, $int0);
+        ~prepot_device_loadouts_draw_loadout($dbrow, $int0);
     }
 }

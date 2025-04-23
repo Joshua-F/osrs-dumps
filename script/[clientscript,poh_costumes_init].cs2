@@ -1,5 +1,5 @@
 // 3532
-[clientscript,poh_costumes_init](enum $enum0, boolean $boolean1, boolean $boolean2)
+[clientscript,poh_costumes_init](enum $enum, boolean $boolean1, boolean $boolean2)
 if ($boolean2 = true) {
     %varclient_58 = 0;
 }
@@ -9,24 +9,24 @@ def_int $int4 = calc(4 + 38);
 def_int $int5 = 0;
 def_int $int6 = 0;
 cc_deleteall(poh_costumes:items);
-def_obj $obj7 = null;
-def_string $string0 = "";
+def_obj $obj = null;
+def_string $string = "";
 def_int $int8 = calc(if_getwidth(poh_costumes:items) / 2);
 def_int $int9 = calc($int8 - 20);
-def_graphic $graphic10 = p12_full;
+def_graphic $graphic = p12_full;
 def_int $int11 = 0;
-def_int $int12 = enum_getoutputcount($enum0);
+def_int $int12 = enum_getoutputcount($enum);
 def_int $int13 = 0;
 while ($int13 < $int12) {
-    $obj7 = enum(int, namedobj, $enum0, $int13);
-    $string0 = enum(obj, string, enum_3302, $obj7);
-    if ($graphic10 = p12_full & parawidth($string0, 512, p12_full) > $int9) {
-        $graphic10 = p11_full;
+    $obj = enum(int, namedobj, $enum, $int13);
+    $string = enum(obj, string, enum_3302, $obj);
+    if ($graphic = p12_full & parawidth($string, 512, p12_full) > $int9) {
+        $graphic = p11_full;
     }
     cc_create(poh_costumes:items, ^iftype_graphic, $int6);
     $int5, $int6 = calc($int5 + 1), calc($int6 + 1);
     cc_settiling(true);
-    cc_setopbase("<col=ff9040><$string0></col>");
+    cc_setopbase("<col=ff9040><$string></col>");
     cc_create(poh_costumes:items, ^iftype_graphic, $int6);
     $int5, $int6 = calc($int5 + 1), calc($int6 + 1);
     cc_setsize(12, 10, ^setsize_abs, ^setsize_abs);
@@ -41,7 +41,7 @@ while ($int13 < $int12) {
     $int5, $int6 = calc($int5 + 1), calc($int6 + 1);
     cc_settextshadow(true);
     cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
-    cc_settext($string0);
+    cc_settext($string);
     while ($int5 < $int4) {
         cc_create(poh_costumes:items, ^iftype_graphic, $int6);
         $int5, $int6 = calc($int5 + 1), calc($int6 + 1);
@@ -49,14 +49,14 @@ while ($int13 < $int12) {
         cc_setgraphicshadow(0x333333);
         cc_setoutline(1);
     }
-    if (enum(obj, enum, enum_3077, $obj7) ! null | enum(obj, namedobj, enum_3303, $obj7) ! null | enum(obj, enum, enum_3304, $obj7) ! null) {
+    if (enum(obj, enum, enum_3077, $obj) ! null | enum(obj, namedobj, enum_3303, $obj) ! null | enum(obj, enum, enum_3304, $obj) ! null) {
         $int11 = 1;
     }
     $int5, $int13 = 0, calc($int13 + 1);
 }
-~poh_costumes_build($enum0, $int12, $int4, $int6, $boolean1, poh_costumes:items, poh_costumes:scrollbar, $int8, $graphic10, poh_costumes:frame, $int3);
-if_setoninvtransmit("poh_costumes_build($enum0, $int12, $int4, $int6, $boolean1, event_com, poh_costumes:scrollbar, $int8, $graphic10, poh_costumes:frame, $int3){poh_costumes}", poh_costumes:items);
-~poh_costumes_buttons_search_reset($enum0, poh_costumes:search, "bankbuttons,2");
+~poh_costumes_build($enum, $int12, $int4, $int6, $boolean1, poh_costumes:items, poh_costumes:scrollbar, $int8, $graphic, poh_costumes:frame, $int3);
+if_setoninvtransmit("poh_costumes_build($enum, $int12, $int4, $int6, $boolean1, event_com, poh_costumes:scrollbar, $int8, $graphic, poh_costumes:frame, $int3){poh_costumes}", poh_costumes:items);
+~poh_costumes_buttons_search_reset($enum, poh_costumes:search, "bankbuttons,2");
 if ($boolean1 = true & $int11 = 1) {
     if_sethide(false, poh_costumes:mode);
     if_setop(1, "Deposit mode", poh_costumes:mode);

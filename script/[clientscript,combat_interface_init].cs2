@@ -1,20 +1,20 @@
 // 7592
 [clientscript,combat_interface_init]
-def_component $component0 = combat_interface:infobutton;
-def_component $component1 = combat_interface:glow;
-def_int $int2 = 0;
+def_component $infobutton = combat_interface:infobutton;
+def_component $glow = combat_interface:glow;
+def_int $int = 0;
 if (~on_mobile = true) {
-    while ($int2 < 4) {
-        cc_create($component1, ^iftype_rectangle, $int2);
+    while ($int < 4) {
+        cc_create($glow, ^iftype_rectangle, $int);
         cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
-        cc_setsize(calc($int2 * 2), calc($int2 * 2), ^setsize_minus, ^setsize_minus);
+        cc_setsize(calc($int * 2), calc($int * 2), ^setsize_minus, ^setsize_minus);
         cc_setcolour(^white);
         cc_setfill(true);
         cc_settrans(220);
-        $int2 = calc($int2 + 1);
+        $int = calc($int + 1);
     }
     ~combat_interface_info_toggle(false);
 } else {
-    if_sethide(true, $component0);
+    if_sethide(true, $infobutton);
 }
 ~combat_interface_setup;

@@ -2,19 +2,19 @@
 [proc,poh_board_redraw]
 %varclient_377 = 0;
 def_int $int0 = 0;
-def_string $string0 = "";
+def_string $string = "";
 def_int $int1 = 0;
 def_int $int2 = 0;
 def_int $int3 = 255;
 def_int $int4 = 25;
-def_int $intarray0(200);
+def_int $intarray(200);
 def_int $int5 = 0;
 def_int $int6 = 0;
 $int0 = 0;
 while ($int6 = 0 & $int0 <= 200) {
     if (cc_find(poh_board:name, $int0) = true) {
         if (string_length(cc_gettext) > 0) {
-            $intarray0($int5) = $int0;
+            $intarray($int5) = $int0;
             $int5 = calc($int5 + 1);
         }
     } else {
@@ -48,80 +48,80 @@ if ($int5 >= 2) {
 if (~on_mobile = true) {
     $int4 = 35;
 }
-def_boolean $boolean7 = false;
+def_boolean $boolean = false;
 switch_int (%varclient_379) {
     case 1, 3, 5, 7, 9, 11, 13, 15 :
         $int1 = $int5;
         while ($int1 > 0) {
             $int1 = calc($int1 - 1);
-            if (cc_find(poh_board:name, $intarray0($int1)) = true & .cc_find(poh_board:location, $intarray0($int1)) = true) {
+            if (cc_find(poh_board:name, $intarray($int1)) = true & .cc_find(poh_board:location, $intarray($int1)) = true) {
                 if (string_length(cc_gettext) = 0 | %poh_board_filtered = 1 & compare(~poh_board_loc(tostring(%poh_board_last_loc)), .cc_gettext) ! 0) {
-                    $boolean7 = true;
+                    $boolean = true;
                 } else {
-                    $boolean7 = false;
+                    $boolean = false;
                     %varclient_377 = calc(%varclient_377 + 1);
                 }
             }
-            if (cc_find(poh_board:name, $intarray0($int1)) = true) {
+            if (cc_find(poh_board:name, $intarray($int1)) = true) {
                 cc_setposition(cc_getx, $int2, ^setpos_abs_left, ^setpos_abs_top);
-                cc_sethide($boolean7);
+                cc_sethide($boolean);
             }
-            if (cc_find(poh_board:level, $intarray0($int1)) = true) {
+            if (cc_find(poh_board:level, $intarray($int1)) = true) {
                 cc_setposition(cc_getx, $int2, ^setpos_abs_left, ^setpos_abs_top);
-                cc_sethide($boolean7);
+                cc_sethide($boolean);
             }
-            if (cc_find(poh_board:altar, $intarray0($int1)) = true) {
+            if (cc_find(poh_board:altar, $intarray($int1)) = true) {
                 cc_setposition(cc_getx, $int2, ^setpos_abs_left, ^setpos_abs_top);
-                cc_sethide($boolean7);
+                cc_sethide($boolean);
             }
-            if (cc_find(poh_board:nexus, $intarray0($int1)) = true) {
+            if (cc_find(poh_board:nexus, $intarray($int1)) = true) {
                 cc_setposition(cc_getx, $int2, ^setpos_abs_left, ^setpos_abs_top);
-                cc_sethide($boolean7);
+                cc_sethide($boolean);
             }
-            if (cc_find(poh_board:glory, $intarray0($int1)) = true) {
+            if (cc_find(poh_board:glory, $intarray($int1)) = true) {
                 cc_setposition(cc_getx, $int2, ^setpos_abs_left, ^setpos_abs_top);
-                cc_sethide($boolean7);
+                cc_sethide($boolean);
             }
-            if (cc_find(poh_board:pool, $intarray0($int1)) = true) {
+            if (cc_find(poh_board:pool, $intarray($int1)) = true) {
                 cc_setposition(cc_getx, $int2, ^setpos_abs_left, ^setpos_abs_top);
-                cc_sethide($boolean7);
+                cc_sethide($boolean);
             }
-            if (cc_find(poh_board:spellbook, $intarray0($int1)) = true) {
+            if (cc_find(poh_board:spellbook, $intarray($int1)) = true) {
                 cc_setposition(cc_getx, $int2, ^setpos_abs_left, ^setpos_abs_top);
-                cc_sethide($boolean7);
+                cc_sethide($boolean);
             }
-            if (cc_find(poh_board:armour, $intarray0($int1)) = true) {
+            if (cc_find(poh_board:armour, $intarray($int1)) = true) {
                 cc_setposition(cc_getx, $int2, ^setpos_abs_left, ^setpos_abs_top);
-                cc_sethide($boolean7);
+                cc_sethide($boolean);
             }
-            if (cc_find(poh_board:altar_search, $intarray0($int1)) = true) {
-                cc_setposition(cc_getx, $int2, ^setpos_abs_left, ^setpos_abs_top);
-                cc_sethide(true);
-            }
-            if (cc_find(poh_board:nexus_search, $intarray0($int1)) = true) {
+            if (cc_find(poh_board:altar_search, $intarray($int1)) = true) {
                 cc_setposition(cc_getx, $int2, ^setpos_abs_left, ^setpos_abs_top);
                 cc_sethide(true);
             }
-            if (cc_find(poh_board:glory_search, $intarray0($int1)) = true) {
+            if (cc_find(poh_board:nexus_search, $intarray($int1)) = true) {
                 cc_setposition(cc_getx, $int2, ^setpos_abs_left, ^setpos_abs_top);
                 cc_sethide(true);
             }
-            if (cc_find(poh_board:pool_search, $intarray0($int1)) = true) {
+            if (cc_find(poh_board:glory_search, $intarray($int1)) = true) {
                 cc_setposition(cc_getx, $int2, ^setpos_abs_left, ^setpos_abs_top);
                 cc_sethide(true);
             }
-            if (cc_find(poh_board:spellbook_search, $intarray0($int1)) = true) {
+            if (cc_find(poh_board:pool_search, $intarray($int1)) = true) {
                 cc_setposition(cc_getx, $int2, ^setpos_abs_left, ^setpos_abs_top);
                 cc_sethide(true);
             }
-            if (cc_find(poh_board:armour_search, $intarray0($int1)) = true) {
+            if (cc_find(poh_board:spellbook_search, $intarray($int1)) = true) {
                 cc_setposition(cc_getx, $int2, ^setpos_abs_left, ^setpos_abs_top);
                 cc_sethide(true);
             }
-            if (cc_find(poh_board:button, $intarray0($int1)) = true & .cc_find(poh_board:location, $intarray0($int1)) = true) {
+            if (cc_find(poh_board:armour_search, $intarray($int1)) = true) {
+                cc_setposition(cc_getx, $int2, ^setpos_abs_left, ^setpos_abs_top);
+                cc_sethide(true);
+            }
+            if (cc_find(poh_board:button, $intarray($int1)) = true & .cc_find(poh_board:location, $intarray($int1)) = true) {
                 cc_setposition(cc_getx, calc($int2 + 2), ^setpos_abs_left, ^setpos_abs_top);
                 .cc_setposition(cc_getx, $int2, ^setpos_abs_left, ^setpos_abs_top);
-                if ($boolean7 = true) {
+                if ($boolean = true) {
                     cc_sethide(true);
                     .cc_sethide(true);
                 } else if (compare(~poh_board_loc(tostring(%poh_board_last_loc)), .cc_gettext) = 0) {
@@ -132,80 +132,80 @@ switch_int (%varclient_379) {
                     .cc_sethide(false);
                 }
             }
-            if ($boolean7 = false) {
+            if ($boolean = false) {
                 $int2 = calc($int2 + $int4);
             }
         }
     case default :
         while ($int1 < $int5) {
-            if (cc_find(poh_board:name, $intarray0($int1)) = true & .cc_find(poh_board:location, $intarray0($int1)) = true) {
+            if (cc_find(poh_board:name, $intarray($int1)) = true & .cc_find(poh_board:location, $intarray($int1)) = true) {
                 if (string_length(cc_gettext) = 0 | %poh_board_filtered = 1 & compare(~poh_board_loc(tostring(%poh_board_last_loc)), .cc_gettext) ! 0) {
-                    $boolean7 = true;
+                    $boolean = true;
                 } else {
-                    $boolean7 = false;
+                    $boolean = false;
                     %varclient_377 = calc(%varclient_377 + 1);
                 }
             }
-            if (cc_find(poh_board:name, $intarray0($int1)) = true) {
+            if (cc_find(poh_board:name, $intarray($int1)) = true) {
                 cc_setposition(cc_getx, $int2, ^setpos_abs_left, ^setpos_abs_top);
-                cc_sethide($boolean7);
+                cc_sethide($boolean);
             }
-            if (cc_find(poh_board:level, $intarray0($int1)) = true) {
+            if (cc_find(poh_board:level, $intarray($int1)) = true) {
                 cc_setposition(cc_getx, $int2, ^setpos_abs_left, ^setpos_abs_top);
-                cc_sethide($boolean7);
+                cc_sethide($boolean);
             }
-            if (cc_find(poh_board:altar, $intarray0($int1)) = true) {
+            if (cc_find(poh_board:altar, $intarray($int1)) = true) {
                 cc_setposition(cc_getx, $int2, ^setpos_abs_left, ^setpos_abs_top);
-                cc_sethide($boolean7);
+                cc_sethide($boolean);
             }
-            if (cc_find(poh_board:nexus, $intarray0($int1)) = true) {
+            if (cc_find(poh_board:nexus, $intarray($int1)) = true) {
                 cc_setposition(cc_getx, $int2, ^setpos_abs_left, ^setpos_abs_top);
-                cc_sethide($boolean7);
+                cc_sethide($boolean);
             }
-            if (cc_find(poh_board:glory, $intarray0($int1)) = true) {
+            if (cc_find(poh_board:glory, $intarray($int1)) = true) {
                 cc_setposition(cc_getx, $int2, ^setpos_abs_left, ^setpos_abs_top);
-                cc_sethide($boolean7);
+                cc_sethide($boolean);
             }
-            if (cc_find(poh_board:pool, $intarray0($int1)) = true) {
+            if (cc_find(poh_board:pool, $intarray($int1)) = true) {
                 cc_setposition(cc_getx, $int2, ^setpos_abs_left, ^setpos_abs_top);
-                cc_sethide($boolean7);
+                cc_sethide($boolean);
             }
-            if (cc_find(poh_board:spellbook, $intarray0($int1)) = true) {
+            if (cc_find(poh_board:spellbook, $intarray($int1)) = true) {
                 cc_setposition(cc_getx, $int2, ^setpos_abs_left, ^setpos_abs_top);
-                cc_sethide($boolean7);
+                cc_sethide($boolean);
             }
-            if (cc_find(poh_board:armour, $intarray0($int1)) = true) {
+            if (cc_find(poh_board:armour, $intarray($int1)) = true) {
                 cc_setposition(cc_getx, $int2, ^setpos_abs_left, ^setpos_abs_top);
-                cc_sethide($boolean7);
+                cc_sethide($boolean);
             }
-            if (cc_find(poh_board:altar_search, $intarray0($int1)) = true) {
-                cc_setposition(cc_getx, $int2, ^setpos_abs_left, ^setpos_abs_top);
-                cc_sethide(true);
-            }
-            if (cc_find(poh_board:nexus_search, $intarray0($int1)) = true) {
+            if (cc_find(poh_board:altar_search, $intarray($int1)) = true) {
                 cc_setposition(cc_getx, $int2, ^setpos_abs_left, ^setpos_abs_top);
                 cc_sethide(true);
             }
-            if (cc_find(poh_board:glory_search, $intarray0($int1)) = true) {
+            if (cc_find(poh_board:nexus_search, $intarray($int1)) = true) {
                 cc_setposition(cc_getx, $int2, ^setpos_abs_left, ^setpos_abs_top);
                 cc_sethide(true);
             }
-            if (cc_find(poh_board:pool_search, $intarray0($int1)) = true) {
+            if (cc_find(poh_board:glory_search, $intarray($int1)) = true) {
                 cc_setposition(cc_getx, $int2, ^setpos_abs_left, ^setpos_abs_top);
                 cc_sethide(true);
             }
-            if (cc_find(poh_board:spellbook_search, $intarray0($int1)) = true) {
+            if (cc_find(poh_board:pool_search, $intarray($int1)) = true) {
                 cc_setposition(cc_getx, $int2, ^setpos_abs_left, ^setpos_abs_top);
                 cc_sethide(true);
             }
-            if (cc_find(poh_board:armour_search, $intarray0($int1)) = true) {
+            if (cc_find(poh_board:spellbook_search, $intarray($int1)) = true) {
                 cc_setposition(cc_getx, $int2, ^setpos_abs_left, ^setpos_abs_top);
                 cc_sethide(true);
             }
-            if (cc_find(poh_board:button, $intarray0($int1)) = true & .cc_find(poh_board:location, $intarray0($int1)) = true) {
+            if (cc_find(poh_board:armour_search, $intarray($int1)) = true) {
+                cc_setposition(cc_getx, $int2, ^setpos_abs_left, ^setpos_abs_top);
+                cc_sethide(true);
+            }
+            if (cc_find(poh_board:button, $intarray($int1)) = true & .cc_find(poh_board:location, $intarray($int1)) = true) {
                 cc_setposition(cc_getx, calc($int2 + 2), ^setpos_abs_left, ^setpos_abs_top);
                 .cc_setposition(cc_getx, $int2, ^setpos_abs_left, ^setpos_abs_top);
-                if ($boolean7 = true) {
+                if ($boolean = true) {
                     cc_sethide(true);
                     .cc_sethide(true);
                 } else if (compare(~poh_board_loc(tostring(%poh_board_last_loc)), .cc_gettext) = 0) {
@@ -216,7 +216,7 @@ switch_int (%varclient_379) {
                     .cc_sethide(false);
                 }
             }
-            if ($boolean7 = false) {
+            if ($boolean = false) {
                 $int2 = calc($int2 + $int4);
             }
             $int1 = calc($int1 + 1);

@@ -20,12 +20,12 @@ while ($int3 < $int2) {
 }
 def_int $int5 = ~script6657(db_getfield($dbrow0, cluehelper_clue_emote:target, 0));
 ~cluehelper_infobox_target_display(db_getfield($dbrow0, cluehelper_clue_emote:target, $int5));
-def_loc $loc6 = db_getfield($dbrow0, cluehelper_clue_emote:hidey_hole_loc, 0);
-if ($loc6 ! null) {
+def_loc $loc = db_getfield($dbrow0, cluehelper_clue_emote:hidey_hole_loc, 0);
+if ($loc ! null) {
     $int1 = ~helper_generic_add_title("S.T.A.S.H", 0);
     $int1 = ~helper_generic_add_text("...");
     if (cc_find(helper_generic:content, $int1) = true) {
-        cc_setonvartransmit("script6624($int1, $loc6){settings_tracking, hh_constructed_easy, hh_constructed_medium, hh_constructed_hard, hh_constructed_elite, hh_constructed_master, hh_constructed_beginner}");
+        cc_setonvartransmit("script6624($int1, $loc){settings_tracking, hh_constructed_easy, hh_constructed_medium, hh_constructed_hard, hh_constructed_elite, hh_constructed_master, hh_constructed_beginner}");
     }
 }
 def_dbrow $dbrow7 = db_getfield($dbrow0, cluehelper_clue_emote:outfit, 0);
@@ -34,14 +34,14 @@ def_int $int9 = 0;
 def_int $int10 = 0;
 def_int $int11 = -1;
 def_int $int12 = -1;
-def_string $string0 = null;
+def_string $string = null;
 if ($dbrow7 ! null) {
     $int1 = ~helper_generic_add_title("Equip", 0);
     if (~league_relic_active(struct_1128) = 1) {
         $int1 = ~helper_generic_add_text("Anything");
     } else {
-        $string0 = db_getfield($dbrow0, cluehelper_clue_emote:outfit_text_fallback, 0);
-        if (string_length($string0) > 0) {
+        $string = db_getfield($dbrow0, cluehelper_clue_emote:outfit_text_fallback, 0);
+        if (string_length($string) > 0) {
             $int1 = ~helper_generic_add_text("...");
             if (cc_find(helper_generic:content, $int1) = true) {
                 cc_setoninvtransmit("script6483($int1, $dbrow0){inv, worn}");

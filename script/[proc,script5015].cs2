@@ -1,10 +1,10 @@
 // 5015
-[proc,script5015](dbrow $dbrow0)(boolean)
-if (db_getfield($dbrow0, quetzal:auto_unlocked, 0) = true) {
+[proc,script5015](dbrow $dbrow)(boolean)
+if (db_getfield($dbrow, quetzal:auto_unlocked, 0) = true) {
     return(true);
 }
-def_int $int1 = db_getfield($dbrow0, quetzal:id, 0);
-if ($int1 > 30) {
+def_int $int = db_getfield($dbrow, quetzal:id, 0);
+if ($int > 30) {
     return(false);
 }
-return(~int_to_bool(testbit(%quetzals_unlocked, $int1)));
+return(~int_to_bool(testbit(%quetzals_unlocked, $int)));

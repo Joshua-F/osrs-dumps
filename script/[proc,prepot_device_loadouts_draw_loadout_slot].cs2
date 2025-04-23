@@ -1,36 +1,36 @@
 // 7364
-[proc,prepot_device_loadouts_draw_loadout_slot](int $int0, obj $obj1, int $int2, int $int3)
-def_enum $enum4 = null;
+[proc,prepot_device_loadouts_draw_loadout_slot](int $int0, obj $obj, int $int2, int $int3)
+def_enum $enum = null;
 def_int $int5 = 0;
 def_int $int6 = 0;
-def_boolean $boolean7 = false;
+def_boolean $boolean = false;
 def_int $int8 = inv_size(bank);
 def_int $int9 = inv_size(inv);
 def_int $int10 = 0;
 if ($int2 <= 0) {
     $int2 = 100;
 }
-if (~script7347($obj1, $int2, 1) = true) {
-    $enum4, $int5, $int6 = ~script7370($obj1);
-    if (inv_total(prepot_device_inv, $obj1) > 0) {
-        $boolean7 = true;
-    } else if (%bank_currenttab = 15 & ~script3750($enum4) > 0) {
-        $boolean7 = true;
+if (~script7347($obj, $int2, 1) = true) {
+    $enum, $int5, $int6 = ~script7370($obj);
+    if (inv_total(prepot_device_inv, $obj) > 0) {
+        $boolean = true;
+    } else if (%bank_currenttab = 15 & ~script3750($enum) > 0) {
+        $boolean = true;
     } else {
         $int10 = 1;
-        while ($int10 <= $int6 & $boolean7 = false) {
-            if (%bank_currenttab ! 15 & inv_total(bank, enum(int, namedobj, $enum4, $int10)) > 0) {
-                $boolean7 = true;
-            } else if (inv_total(inv, enum(int, namedobj, $enum4, $int10)) > 0) {
-                $boolean7 = true;
+        while ($int10 <= $int6 & $boolean = false) {
+            if (%bank_currenttab ! 15 & inv_total(bank, enum(int, namedobj, $enum, $int10)) > 0) {
+                $boolean = true;
+            } else if (inv_total(inv, enum(int, namedobj, $enum, $int10)) > 0) {
+                $boolean = true;
             }
             $int10 = calc($int10 + 1);
         }
     }
     if (.cc_find(cc_getlayer, calc(cc_getid + $int3)) = true) {
-        .cc_sethide($boolean7);
+        .cc_sethide($boolean);
     }
-    if ($boolean7 = true) {
+    if ($boolean = true) {
         cc_settrans(0);
     } else {
         cc_settrans(120);

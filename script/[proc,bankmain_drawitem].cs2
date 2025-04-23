@@ -1,26 +1,26 @@
 // 278
-[proc,bankmain_drawitem](obj $obj0, int $int1, component $component2, component $component3, component $component4, component $component5, component $component6)
-if ($obj0 ! null) {
+[proc,bankmain_drawitem](obj $obj, int $int, component $component2, component $component3, component $component4, component $component5, component $component6)
+if ($obj ! null) {
     cc_clearops;
-    if ($obj0 = bank_filler) {
-        cc_setobject($obj0, -1);
+    if ($obj = bank_filler) {
+        cc_setobject($obj, -1);
         cc_setop(7, "Clear");
         cc_setop(8, "Clear-All");
         cc_settrans(0);
         cc_setondragcomplete("bankmain_reorder(event_com, event_comsubid, event_com2, event_comsubid2, 0, $component3, $component4, $component5, $component6)");
-    } else if (oc_unplaceholder($obj0) ! $obj0) {
-        cc_setobject($obj0, 0);
+    } else if (oc_unplaceholder($obj) ! $obj) {
+        cc_setobject($obj, 0);
         cc_setop(8, "Release");
         cc_settrans(120);
         cc_setondragcomplete("bankmain_reorder(event_com, event_comsubid, event_com2, event_comsubid2, 120, $component3, $component4, $component5, $component6)");
     } else {
-        cc_setobject($obj0, $int1);
-        ~script669($obj0);
+        cc_setobject($obj, $int);
+        ~script669($obj);
         cc_settrans(0);
         cc_setondragcomplete("bankmain_reorder(event_com, event_comsubid, event_com2, event_comsubid2, 0, $component3, $component4, $component5, $component6)");
     }
     cc_setop(10, "Examine");
-    cc_setopbase("<col=ff9040><oc_name($obj0)></col>");
+    cc_setopbase("<col=ff9040><oc_name($obj)></col>");
     cc_setondrag("bankmain_dragscroll(event_com, event_comsubid, event_mousex, event_mousey, $component3, 0)");
 } else {
     cc_settrans(255);

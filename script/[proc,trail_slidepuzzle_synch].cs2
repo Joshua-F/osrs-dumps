@@ -1,10 +1,10 @@
 // 690
 [proc,trail_slidepuzzle_synch](component $component0, int $int1, int $int2, int $int3, int $int4, component $component5, component $component6, component $component7)
-def_inv $inv8 = trail_puzzleinv;
+def_inv $inv = trail_puzzleinv;
 if (%if1 = 8) {
-    $inv8 = reinitialisation_inv_inactive;
+    $inv = reinitialisation_inv_inactive;
 } else if (%if1 = 7) {
-    $inv8 = reinitialisation_inv;
+    $inv = reinitialisation_inv;
 }
 def_enum $enum9 = null;
 def_enum $enum10 = null;
@@ -22,12 +22,12 @@ switch_int (%if1) {
     case default :
         if_setcolour(0x371c00, $component7);
 }
-def_obj $obj11 = null;
+def_obj $obj = null;
 def_int $int12 = 0;
 while ($int12 < $int1) {
     if ($enum9 ! null & $enum10 ! null) {
-        $obj11 = inv_getobj($inv8, $int12);
-        ~trail_slidepuzzle_setint($int12, enum(obj, int, $enum10, $obj11));
+        $obj = inv_getobj($inv, $int12);
+        ~trail_slidepuzzle_setint($int12, enum(obj, int, $enum10, $obj));
         if (cc_find($component0, $int12) = true) {
             if (%if1 = 8) {
                 cc_clearops;
@@ -38,9 +38,9 @@ while ($int12 < $int1) {
             }
         }
         if ($int12 < $int2 & cc_find($component0, calc($int1 + $int12)) = true) {
-            $obj11 = enum(int, namedobj, $enum9, $int12);
-            if ($obj11 ! null) {
-                cc_setmodel(oc_param($obj11, param_186));
+            $obj = enum(int, namedobj, $enum9, $int12);
+            if ($obj ! null) {
+                cc_setmodel(oc_param($obj, param_186));
             } else {
                 cc_setmodel(null);
             }

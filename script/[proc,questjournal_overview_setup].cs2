@@ -1,47 +1,47 @@
 // 6822
-[proc,questjournal_overview_setup](dbrow $dbrow0, string $string0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, int $int8)
+[proc,questjournal_overview_setup](dbrow $dbrow, string $string0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, int $int8)
 %varclient_52 = $int8;
 cc_deleteall($component2);
 def_string $string1 = "quest";
-if (db_getfield($dbrow0, quest:type, 0) = 1) {
+if (db_getfield($dbrow, quest:type, 0) = 1) {
     $string1 = "miniquest";
 }
-def_int $int9 = ~quest_status_get($dbrow0);
+def_int $int9 = ~quest_status_get($dbrow);
 def_string $string2 = "I can start this <$string1> by ";
 if ($int9 ! 1) {
     $string2 = "I started this <$string1> by ";
 }
-if (db_getfield($dbrow0, quest:in_prerelease, 0) = true) {
+if (db_getfield($dbrow, quest:in_prerelease, 0) = true) {
     $string2 = "This <$string1> is coming soon...<br>When it releases, I can start it by ";
 }
 $string2 = "<$string2><$string0>";
-def_string $string3 = enum(int, string, enum_2094, db_getfield($dbrow0, quest:difficulty, 0));
-def_string $string4 = enum(int, string, enum_2095, db_getfield($dbrow0, quest:length, 0));
-def_string $string5 = enum(int, string, enum_2097, db_getfield($dbrow0, quest:series, 0));
-def_boolean $boolean10 = false;
+def_string $string3 = enum(int, string, enum_2094, db_getfield($dbrow, quest:difficulty, 0));
+def_string $string4 = enum(int, string, enum_2095, db_getfield($dbrow, quest:length, 0));
+def_string $string5 = enum(int, string, enum_2097, db_getfield($dbrow, quest:series, 0));
+def_boolean $boolean = false;
 def_string $string6 = "";
-$boolean10, $string6 = db_getfield($dbrow0, quest:seriesno_override, 0);
-if (db_getfield($dbrow0, quest:series, 0) >= 0) {
-    if ($boolean10 = true) {
+$boolean, $string6 = db_getfield($dbrow, quest:seriesno_override, 0);
+if (db_getfield($dbrow, quest:series, 0) >= 0) {
+    if ($boolean = true) {
         if (string_length($string6) > 0) {
             $string5 = "<$string5> #<$string6>";
         }
     } else {
-        $string5 = "<$string5> #<tostring(db_getfield($dbrow0, quest:seriesno, 0))>";
+        $string5 = "<$string5> #<tostring(db_getfield($dbrow, quest:seriesno, 0))>";
     }
 }
 def_string $string7 = "Unknown Year";
 def_int $int11 = 0;
 def_int $int12 = 0;
 def_int $int13 = 0;
-$int13, $int12, $int11 = db_getfield($dbrow0, quest:releasedate, 0);
+$int13, $int12, $int11 = db_getfield($dbrow, quest:releasedate, 0);
 if ($int11 >= 2001) {
     $string7 = tostring($int11);
 }
 def_string $string8 = "";
 def_string $string9 = "";
-$string8, $string9 = ~script6825($dbrow0, $component2);
-def_string $string10 = ~script6828($dbrow0);
+$string8, $string9 = ~script6825($dbrow, $component2);
+def_string $string10 = ~script6828($dbrow);
 def_int $int14 = 0;
 def_int $int15 = 0;
 def_int $int16 = 0;
@@ -57,8 +57,8 @@ cc_settextshadow(false);
 cc_settext($string2);
 $int15 = calc($int15 + $int16);
 def_string $string11 = "";
-def_coord $coord17 = db_getfield($dbrow0, quest:startcoord, 0);
-if ($coord17 ! null & $coord17 ! 0_0_0_0_0) {
+def_coord $coord = db_getfield($dbrow, quest:startcoord, 0);
+if ($coord ! null & $coord ! 0_0_0_0_0) {
     cc_create($component2, ^iftype_text, $int14);
     $int14 = calc($int14 + 1);
     $int15 = calc($int15 - 4);
