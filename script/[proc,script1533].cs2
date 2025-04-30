@@ -1,21 +1,29 @@
 // 1533
-[proc,script1533](component $component, string $string)
-def_int $int = 0;
+[proc,script1533](component $component, string $string0)
+def_string $string1 = "";
 if ($component = raids_lobby_partydetails:preferred_size) {
-    $int = %raids_lobby_partysize;
+    $string1 = tostring(%raids_lobby_partysize);
 } else if ($component = raids_lobby_partydetails:preferred_comlevel) {
-    $int = %raids_lobby_mincombat;
+    $string1 = tostring(%raids_lobby_mincombat);
 } else if ($component = raids_lobby_partydetails:preferred_skilltotal) {
-    $int = %raids_lobby_minskilltotal;
+    $string1 = tostring(%raids_lobby_minskilltotal);
 } else if ($component = raids_lobby_partydetails:scaling_layer) {
-    $int = %raids_scaling;
-}
-if ($int > 0) {
-    cc_settext("<$string>: <col=ffffff><tostring($int)></col>");
-} else if ($component = raids_lobby_partydetails:challenge_layer) {
-    cc_settext($string);
+    $string1 = tostring(%raids_scaling);
 } else if ($component = raids_lobby_partydetails:mappool_layer) {
-    cc_settext($string);
+    if (%raids_map_pool_selected = 0) {
+        $string1 = "Small";
+    }
+    if (%raids_map_pool_selected = 1) {
+        $string1 = "Large";
+    }
+    if (%raids_map_pool_selected = 2) {
+        $string1 = "Full";
+    }
+}
+if (string_length($string1) > 0) {
+    cc_settext("<$string0>: <col=ffffff><$string1></col>");
+} else if ($component = raids_lobby_partydetails:challenge_layer) {
+    cc_settext($string0);
 } else {
-    cc_settext("<$string>: ---");
+    cc_settext("<$string0>: ---");
 }
