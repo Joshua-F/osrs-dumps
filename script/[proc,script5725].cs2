@@ -1,14 +1,44 @@
 // 5725
-[proc,script5725](entityoverlay $entityoverlay0, loc $loc1, coord $coord2, int $int3, int $int4, int $int5, string $string0, boolean $boolean6)
-if (~on_mobile = true | %agility_helper_highlight_shortcuts_overlay_disabled = 1 | enum(coord, int, enum_4080, $coord2) = 1) {
+[proc,script5725](entityoverlay $entityoverlay0, loc $loc1, coord $coord2)
+cc_deleteall_entityoverlay($entityoverlay0);
+if (if_find_entityoverlay($entityoverlay0) = ^true) {
+    cc_setonmouseleave(null);
+    cc_setonmouseover(null);
+}
+highlight_loc_off($loc1, $coord2, 12, 1);
+highlight_loc_off($loc1, $coord2, 13, 1);
+if (%agility_helper_highlight_shortcuts = 0) {
     return;
 }
-cc_create_entityoverlay($entityoverlay0, ^iftype_graphic, 0);
-cc_setsize(25, 25, ^setsize_abs, ^setsize_abs);
-cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
-cc_setgraphic("staticons,7");
-if (if_find_entityoverlay($entityoverlay0) = ^true) {
-    cc_setsize(25, 25, ^setsize_abs, ^setsize_abs);
-    cc_setonmouseleave("helper_agility_mouseleave($entityoverlay0, $loc1, $coord2)");
-    cc_setonmouseover("helper_agility_mouseover($entityoverlay0, $loc1, $coord2, $int3, $int4, $int5, $string0, $boolean6)");
+if (%agility_helper_highlight_shortcuts = 1) {
+    highlight_loc_on($loc1, $coord2, 12, 1);
+    return;
 }
+if (map_members = false) {
+    highlight_loc_on($loc1, $coord2, 13, 1);
+    return;
+}
+def_int $int3 = enum(loc, int, enum_4077, $loc1);
+def_int $int4 = enum(loc, int, enum_4076, $loc1);
+def_int $int5 = enum(loc, int, enum_4075, $loc1);
+if (enum(loc, int, enum_4078, $loc1) = 1) {
+    $int3 = enum(coord, int, enum_4079, $coord2);
+}
+def_string $string0 = "";
+def_boolean $boolean6 = false;
+$boolean6, $string0 = ~helper_agility_requirements($loc1, $coord2);
+if (enum(loc, int, enum_4817, $loc1) = 0 & stat(agility) < $int3) {
+    highlight_loc_on($loc1, $coord2, 13, 1);
+} else if (enum(loc, int, enum_4817, $loc1) = 1 & stat_base(agility) < $int3) {
+    highlight_loc_on($loc1, $coord2, 13, 1);
+} else if (stat(strength) < $int4) {
+    highlight_loc_on($loc1, $coord2, 13, 1);
+} else if (stat(ranged) < $int5) {
+    highlight_loc_on($loc1, $coord2, 13, 1);
+} else if ($boolean6 = false) {
+    highlight_loc_on($loc1, $coord2, 13, 1);
+} else {
+    highlight_loc_on($loc1, $coord2, 12, 1);
+    return;
+}
+~script5726($entityoverlay0, $loc1, $coord2, $int3, $int4, $int5, $string0, $boolean6);
