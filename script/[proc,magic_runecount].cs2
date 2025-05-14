@@ -269,6 +269,11 @@ if ($obj14 ! null & ~fake_runes_enabled = true) {
     }
     return(0);
 }
+def_dbrow $dbrow15 = null;
+def_int $int16 = -1;
+def_int $int17 = 0;
+def_obj $obj18 = null;
+def_obj $obj19 = null;
 if (map_members = true) {
     $int12 = inv_total(inv, $obj0);
     if ($obj0 = chaosrune) {
@@ -295,6 +300,33 @@ if (map_members = true) {
     }
     if ($obj0 = enum(int, namedobj, enum_982, $int8)) {
         $int12 = ~add($int12, %rune_pouch_quantity_6);
+    }
+    if (db_find(multirunes:base_rune, $obj0) = 1) {
+        $dbrow15 = db_findnext;
+        $int16 = db_getfieldcount($dbrow15, multirunes:combo_and_alternative_runes:0);
+        while ($int17 < $int16) {
+            $obj18, $obj19 = db_getfield($dbrow15, multirunes:combo_and_alternative_runes, $int17);
+            $int12 = ~add($int12, inv_total(inv, $obj18));
+            if ($obj18 = enum(int, namedobj, enum_982, $int3)) {
+                $int12 = ~add($int12, %rune_pouch_quantity_1);
+            }
+            if ($obj18 = enum(int, namedobj, enum_982, $int4)) {
+                $int12 = ~add($int12, %rune_pouch_quantity_2);
+            }
+            if ($obj18 = enum(int, namedobj, enum_982, $int5)) {
+                $int12 = ~add($int12, %rune_pouch_quantity_3);
+            }
+            if ($obj18 = enum(int, namedobj, enum_982, $int6)) {
+                $int12 = ~add($int12, %rune_pouch_quantity_4);
+            }
+            if ($obj18 = enum(int, namedobj, enum_982, $int7)) {
+                $int12 = ~add($int12, %rune_pouch_quantity_5);
+            }
+            if ($obj18 = enum(int, namedobj, enum_982, $int8)) {
+                $int12 = ~add($int12, %rune_pouch_quantity_6);
+            }
+            $int17 = calc($int17 + 1);
+        }
     }
 } else if (oc_members($obj0) = 0) {
     $int12 = inv_total(inv, $obj0);
