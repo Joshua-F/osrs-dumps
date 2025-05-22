@@ -8,82 +8,61 @@ def_int $int7 = calc(($int4 - 7 * $int5) / 2);
 if ($int6 < 0 | $int7 < 0) {
     return;
 }
-def_int $int8 = 1;
-def_component $component9 = null;
-def_coord $coord10 = null;
+def_component $component8 = null;
+def_coord $coord9 = null;
+def_int $int10 = 0;
 def_int $int11 = 0;
 def_int $int12 = 0;
 def_int $int13 = 0;
 def_int $int14 = 0;
 def_int $int15 = 0;
-def_int $int16 = 0;
-def_obj $obj17 = null;
+def_obj $obj16 = null;
+def_int $int17 = 0;
 .cc_deleteall($component0);
 .cc_create($component0, ^iftype_rectangle, 0);
 .cc_sethide(true);
-def_int $int18 = 0;
-def_int $int19 = ~league_relic_active(struct_4723);
-while ($int8 <= 14) {
-    $int16 = 0;
-    $component9 = enum(int, component, enum_1511, $int8);
-    if ($component9 = null) {
-        return;
-    }
-    $coord10 = enum(int, coord, enum_1512, $int8);
-    if ($coord10 = null) {
-        return;
-    }
-    $int11 = coordz($coord10);
-    $int12 = coordx($coord10);
-    $int13 = calc($int7 + ($int12 - 1) * $int5);
-    $int14 = calc($int6 + ($int11 - 1) * $int5);
-    if_setposition($int13, $int14, ^setpos_abs_left, ^setpos_abs_top, $component9);
-    if_setsize($int5, $int5, ^setsize_abs, ^setsize_abs, $component9);
-    $obj17 = enum(int, namedobj, enum_982, $int8);
-    $int18 = inv_total(inv, $obj17);
-    if (inv_total(inv, bh_rune_pouch) > 0 | inv_total(inv, bh_rune_pouch_trouver) > 0 | inv_total(inv, divine_rune_pouch) > 0 | inv_total(inv, divine_rune_pouch_trouver) > 0) {
-        if (%rune_pouch_type_1 = $int8) {
-            $int18 = calc($int18 + %rune_pouch_quantity_1);
-        } else if (%rune_pouch_type_2 = $int8) {
-            $int18 = calc($int18 + %rune_pouch_quantity_2);
-        } else if (%rune_pouch_type_3 = $int8) {
-            $int18 = calc($int18 + %rune_pouch_quantity_3);
-        } else if ((inv_total(inv, divine_rune_pouch) > 0 | inv_total(inv, divine_rune_pouch_trouver) > 0) & %rune_pouch_type_4 = $int8) {
-            $int18 = calc($int18 + %rune_pouch_quantity_4);
-        } else if ($int19 = 1 & %rune_pouch_type_5 = $int8) {
-            $int18 = calc($int18 + %rune_pouch_quantity_5);
-        } else if ($int19 = 1 & %rune_pouch_type_6 = $int8) {
-            $int18 = calc($int18 + %rune_pouch_quantity_6);
-        }
-    }
-    if ($int18 >= 20 | $boolean2 = false) {
-        $int16 = 1;
-    }
-    cc_deleteall($component9);
-    if ($int16 = 1) {
-        if ($int8 = $int1) {
-            $int15 = ~v2_stone_button_in_filled($component9);
+def_int $int18 = enum_getoutputcount(enum_1511);
+def_int $int19 = 1;
+while ($int19 <= $int18) {
+    $component8, $coord9 = enum(int, component, enum_1511, $int19), enum(int, coord, enum_1512, $int19);
+    if ($component8 ! null & $coord9 ! null) {
+        $int10, $int11 = coordz($coord9), coordx($coord9);
+        $int12, $int13 = calc($int7 + ($int11 - 1) * $int5), calc($int6 + ($int10 - 1) * $int5);
+        if_setposition($int12, $int13, ^setpos_abs_left, ^setpos_abs_top, $component8);
+        if_setsize($int5, $int5, ^setsize_abs, ^setsize_abs, $component8);
+        $obj16 = enum(int, namedobj, enum_982, $int19);
+        $int17 = ~script7878($obj16);
+        if ($boolean2 = false | $int17 >= 20) {
+            $int15 = 1;
         } else {
-            $int15 = ~v2_stone_button_out_filled($component9);
+            $int15 = 0;
         }
-        if_setonmouseover("bank_payment_draw($component0, $int8, $boolean2)", $component9);
-        if_setonmouseleave("bank_payment_draw($component0, -1, $boolean2)", $component9);
-    } else {
-        $int15 = ~v2_stone_button_filled($component9);
+        cc_deleteall($component8);
+        if ($int15 = 1) {
+            if ($int19 = $int1) {
+                $int14 = ~v2_stone_button_in_filled($component8);
+            } else {
+                $int14 = ~v2_stone_button_out_filled($component8);
+            }
+            if_setonmouseover("bank_payment_draw($component0, $int19, $boolean2)", $component8);
+            if_setonmouseleave("bank_payment_draw($component0, -1, $boolean2)", $component8);
+        } else {
+            $int14 = ~v2_stone_button_filled($component8);
+        }
+        if_setopbase("<col=ff9040><oc_name($obj16)></col>", $component8);
+        if_setop(1, "Choose", $component8);
+        if_setonop("script1457($int19, $component0, $component8, $int14, $boolean2)", $component8);
+        cc_create($component8, ^iftype_graphic, $int14);
+        cc_setobject_alwaysnum($obj16, $int17);
+        cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+        cc_setposition(2, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+        cc_setgraphicshadow(0x333333);
+        cc_setoutline(1);
+        if ($int15 = 0) {
+            cc_settrans(125);
+        }
     }
-    if_setopbase("<col=ff9040><oc_name($obj17)></col>", $component9);
-    if_setop(1, "Choose", $component9);
-    if_setonop("script1457($int8, $component0, $component9, $int15, $boolean2)", $component9);
-    cc_create($component9, ^iftype_graphic, $int15);
-    cc_setobject($obj17, $int18);
-    cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
-    cc_setposition(2, 0, ^setpos_abs_centre, ^setpos_abs_centre);
-    cc_setgraphicshadow(0x333333);
-    cc_setoutline(1);
-    if ($int16 = 0) {
-        cc_settrans(125);
-    }
-    .cc_create($component0, ^iftype_rectangle, $int8);
+    .cc_create($component0, ^iftype_rectangle, $int19);
     .cc_sethide(true);
-    $int8 = calc($int8 + 1);
+    $int19 = calc($int19 + 1);
 }
