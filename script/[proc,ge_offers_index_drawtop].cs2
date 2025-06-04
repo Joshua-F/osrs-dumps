@@ -1,20 +1,24 @@
 // 796
-[proc,ge_offers_index_drawtop](int $int0, int $int1, component $component2, int $int3, int $int4, int $int5)
-def_graphic $graphic6 = "combatboxesmed,0";
-def_graphic $graphic7 = "combatboxesmed,1";
-if (~script708 = true) {
+[proc,ge_offers_index_drawtop](int $int0, int $int1, component $component2, int $int3, int $int4, int $int5, int $int6, int $int7)
+def_graphic $graphic8 = "combatboxesmed,0";
+def_graphic $graphic9 = "combatboxesmed,1";
+def_boolean $boolean10 = ~script708;
+def_int $int11 = 0;
+def_int $int12 = 0;
+if (%ge_last_offer_item ! null) {
+    $int11 = 1;
+}
+if ($boolean10 = true) {
     if (cc_find($component2, $int3) = ^true) {
         cc_sethide(false);
-        cc_setgraphic($graphic6);
-        cc_setonmouserepeat("cc_graphic_swapper(event_com, event_comsubid, $graphic7, null)");
-        cc_setonmouseleave("cc_graphic_swapper(event_com, event_comsubid, $graphic6, null)");
+        cc_setgraphic($graphic8);
+        cc_setonmouserepeat("cc_graphic_swapper(event_com, event_comsubid, $graphic9, null)");
+        cc_setonmouseleave("cc_graphic_swapper(event_com, event_comsubid, $graphic8, null)");
     }
     if (cc_find($component2, $int4) = ^true) {
         cc_sethide(false);
     }
-    if (cc_find($component2, $int5) = ^true) {
-        cc_setsize(calc($int0 - 85), $int1, ^setsize_abs, ^setsize_abs);
-    }
+    $int0 = calc($int0 - 88);
 } else {
     if (cc_find($component2, $int3) = ^true) {
         cc_sethide(true);
@@ -22,7 +26,33 @@ if (~script708 = true) {
     if (cc_find($component2, $int4) = ^true) {
         cc_sethide(true);
     }
+}
+if ($int11 = 1) {
     if (cc_find($component2, $int5) = ^true) {
-        cc_setsize($int0, $int1, ^setsize_abs, ^setsize_abs);
+        cc_sethide(false);
+        cc_setgraphic($graphic8);
+        cc_setonmouserepeat("cc_graphic_swapper(event_com, event_comsubid, $graphic9, null)");
+        cc_setonmouseleave("cc_graphic_swapper(event_com, event_comsubid, $graphic8, null)");
+        if (%ge_last_offer_type = 0) {
+            cc_setop(1, "Buy: <~tostring_commas(%ge_last_offer_quantity)> x <oc_name(%ge_last_offer_item)>");
+        } else {
+            cc_setop(1, "Sell: <~tostring_commas(%ge_last_offer_quantity)> x <oc_name(%ge_last_offer_item)>");
+        }
     }
+    if (cc_find($component2, $int6) = ^true) {
+        cc_sethide(false);
+    }
+    $int12 = 88;
+    $int0 = calc($int0 - 88);
+} else {
+    if (cc_find($component2, $int5) = ^true) {
+        cc_sethide(true);
+    }
+    if (cc_find($component2, $int6) = ^true) {
+        cc_sethide(true);
+    }
+}
+if (cc_find($component2, $int7) = ^true) {
+    cc_setsize($int0, $int1, ^setsize_abs, ^setsize_abs);
+    cc_setposition($int12, 0, ^setpos_abs_left, ^setpos_abs_top);
 }
