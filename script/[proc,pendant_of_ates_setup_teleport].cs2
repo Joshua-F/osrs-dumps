@@ -1,19 +1,19 @@
 // 6562
 [proc,pendant_of_ates_setup_teleport](component $component0, dbrow $dbrow1)
-def_boolean $boolean2 = true;
+def_int $int2 = 1;
 def_string $string0 = db_getfield($dbrow1, pendant_of_ates_teleports:teleport_name, 0);
 def_int $int3 = db_getfield($dbrow1, pendant_of_ates_teleports:id, 0);
 if (~pendant_of_ates_teleport_unlocked($dbrow1) = false) {
-    $boolean2, $string0 = false, "?????";
+    $int2, $string0 = 0, "?????";
 }
 def_string $string1 = tostring($int3);
 def_string $string2 = $string1;
 .cc_create(pendant_of_ates:universe, ^iftype_rectangle, calc($int3 - 1));
 .cc_setsize(1, 1, ^setsize_abs, ^setsize_abs);
 .cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
-if ($boolean2 = true) {
+if ($int2 = 1) {
     .cc_setonkey("pendant_of_ates_keypress(event_keychar, $component0, $int3, $string0, $string1, $string2)");
 } else {
     .cc_setonkey(null);
 }
-~pendant_of_ates_draw_teleport($component0, $dbrow1, false, false, $boolean2, $string0, $int3);
+~pendant_of_ates_draw_teleport($component0, $dbrow1, 0, 0, $int2, $string0, $int3);

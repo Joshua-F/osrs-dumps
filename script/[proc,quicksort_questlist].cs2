@@ -1,38 +1,38 @@
 // 745
-[proc,quicksort_questlist](intarray $intarray0, int $int1, int $int2)
-def_int $int3 = calc(($int1 + $int2) / 2);
-def_int $int4 = $intarray0($int3);
-$intarray0($int3) = $intarray0($int2);
-$intarray0($int2) = $int4;
-def_int $int5 = $int1;
-def_int $int6 = $int1;
-def_int $int7 = -1;
+[proc,quicksort_questlist](intarray $intarray0, int $int0, int $int1)
+def_int $int2 = calc(($int0 + $int1) / 2);
+def_int $int3 = $intarray0($int2);
+$intarray0($int2) = $intarray0($int1);
+$intarray0($int1) = $int3;
+def_int $int4 = $int0;
+def_int $int5 = $int0;
+def_int $int6 = -1;
+def_dbrow $dbrow7 = null;
 def_dbrow $dbrow8 = null;
-def_dbrow $dbrow9 = null;
-def_string $string0 = "";
 def_string $string1 = "";
 def_string $string2 = "";
 def_string $string3 = "";
-while ($int6 < $int2) {
-    $dbrow8 = ~script6154($intarray0($int6));
-    $string0 = tostring(~script3236($dbrow8));
-    $string2 = db_getfield($dbrow8, quest:sortname, 0);
-    $dbrow9 = ~script6154($int4);
-    $string1 = tostring(~script3236($dbrow9));
-    $string3 = db_getfield($dbrow9, quest:sortname, 0);
-    if (compare("<$string0><$string2>", "<$string1><$string3>") <= 0) {
-        $int7 = $intarray0($int6);
-        $intarray0($int6) = $intarray0($int5);
-        $intarray0($int5) = $int7;
-        $int5 = calc($int5 + 1);
+def_string $string4 = "";
+while ($int5 < $int1) {
+    $dbrow7 = ~script6154($intarray0($int5));
+    $string1 = tostring(~script3236($dbrow7));
+    $string3 = db_getfield($dbrow7, quest:sortname, 0);
+    $dbrow8 = ~script6154($int3);
+    $string2 = tostring(~script3236($dbrow8));
+    $string4 = db_getfield($dbrow8, quest:sortname, 0);
+    if (compare("<$string1><$string3>", "<$string2><$string4>") <= 0) {
+        $int6 = $intarray0($int5);
+        $intarray0($int5) = $intarray0($int4);
+        $intarray0($int4) = $int6;
+        $int4 = calc($int4 + 1);
     }
-    $int6 = calc($int6 + 1);
+    $int5 = calc($int5 + 1);
 }
-$intarray0($int2) = $intarray0($int5);
-$intarray0($int5) = $int4;
-if ($int1 < calc($int5 - 1)) {
-    ~quicksort_questlist(intarray0, $int1, calc($int5 - 1));
+$intarray0($int1) = $intarray0($int4);
+$intarray0($int4) = $int3;
+if ($int0 < calc($int4 - 1)) {
+    ~quicksort_questlist($intarray0, $int0, calc($int4 - 1));
 }
-if (calc($int5 + 1) < $int2) {
-    ~quicksort_questlist(intarray0, calc($int5 + 1), $int2);
+if (calc($int4 + 1) < $int1) {
+    ~quicksort_questlist($intarray0, calc($int4 + 1), $int1);
 }
