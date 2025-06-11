@@ -1,23 +1,23 @@
 // 7337
-[clientscript,chartering_hover](int $int, boolean $boolean)
+[clientscript,chartering_hover](int $int0, int $int1)
 if (~on_mobile = true) {
     return;
 }
 def_component $list_content = chartering_menu_side:list_content;
-def_dbrow $dbrow = enum(int, dbrow, enum_5565, $int);
+def_dbrow $dbrow = enum(int, dbrow, enum_5565, $int0);
 if ($dbrow = null) {
     return;
 }
-if ($boolean = true) {
+if ($int1 = 1) {
     if_sethide(false, db_getfield($dbrow, chartering_destination_data:chartering_destination_ui_label, 0));
     if_setmodel(model_17359, db_getfield($dbrow, chartering_destination_data:chartering_destination_ui_marker, 0));
-    if (cc_find($list_content, calc($int * 2 + 1)) = true) {
+    if (cc_find($list_content, calc($int0 * 2 + 1)) = true) {
         cc_setcolour(^white);
     }
 } else {
     if_sethide(true, db_getfield($dbrow, chartering_destination_data:chartering_destination_ui_label, 0));
     if_setmodel(model_17360, db_getfield($dbrow, chartering_destination_data:chartering_destination_ui_marker, 0));
-    if (cc_find($list_content, calc($int * 2 + 1)) = true) {
+    if (cc_find($list_content, calc($int0 * 2 + 1)) = true) {
         cc_setcolour(0xff981f);
     }
 }
