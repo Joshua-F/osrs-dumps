@@ -1,9 +1,9 @@
 // 6646
-[proc,pendant_of_ates_draw_teleport](component $component, dbrow $dbrow, boolean $boolean2, boolean $boolean3, boolean $boolean4, string $string, int $int5)
+[proc,pendant_of_ates_draw_teleport](component $component, dbrow $dbrow, int $int2, int $int3, int $int4, string $string, int $int5)
 cc_deleteall($component);
-def_int $int6 = ~pendant_of_ates_draw_text($component, $boolean4, $string, $boolean2, $boolean3, 0, $int5);
-$int6 = ~pendant_of_ates_draw_graphic($component, $boolean4, $boolean2, $boolean3, $int6);
-if ($boolean4 = true) {
+def_int $int6 = ~pendant_of_ates_draw_text($component, $int4, $string, $int2, $int3, 0, $int5);
+$int6 = ~pendant_of_ates_draw_graphic($component, $int4, $int2, $int3, $int6);
+if ($int4 = 1) {
     if_setop(1, "Teleport-to", $component);
     if_setonop("pendant_of_ates_op($component, $int5, $string, tostring($int5), tostring($int5))", $component);
     if_setopbase("<col=ff9040><$string></col>", $component);
@@ -12,9 +12,9 @@ if ($boolean4 = true) {
     if_setonop(null, $component);
     if_setopbase("", $component);
 }
-if ($boolean4 = true) {
-    if_setonmouserepeat("pendant_of_ates_draw_teleport($component, $dbrow, true, $boolean3, $boolean4, $string, $int5)", $component);
-    if_setonmouseleave("pendant_of_ates_draw_teleport($component, $dbrow, false, $boolean3, $boolean4, $string, $int5)", $component);
+if ($int4 = 1) {
+    if_setonmouserepeat("pendant_of_ates_draw_teleport($component, $dbrow, 1, $int3, $int4, $string, $int5)", $component);
+    if_setonmouseleave("pendant_of_ates_draw_teleport($component, $dbrow, 0, $int3, $int4, $string, $int5)", $component);
 } else {
     if_setonmouserepeat(null, $component);
     if_setonmouseleave(null, $component);
