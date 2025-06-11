@@ -4,24 +4,24 @@ if (~rental_world = false) {
     return;
 }
 ~debug_mes_info("CR Quests", "Received <$string0>");
-def_int $intarray0(~script2477($string0));
-~deserialise_intarray($string0, intarray0);
-def_int $int0 = ~2d_intarray_num_rows(intarray0);
+def_int $intarray1(~script2477($string0));
+~deserialise_intarray($string0, $intarray1);
+def_int $int0 = ~2d_intarray_num_rows($intarray1);
 def_int $int1 = -1;
 def_dbrow $dbrow2 = null;
 def_int $int3 = -1;
 def_int $int4 = -1;
 def_int $int5 = -1;
-def_string $string1 = null;
+def_string $string2 = null;
 def_int $int6 = 0;
 while ($int6 < $int0) {
-    $int1, $dbrow2, $int3, $int4, $int5 = ~cr_quests_get_row(intarray0, $int6);
+    $int1, $dbrow2, $int3, $int4, $int5 = ~cr_quests_get_row($intarray1, $int6);
     if ($dbrow2 ! null) {
-        $string1 = "Available";
+        $string2 = "Available";
         if ($int1 = 2) {
-            $string1 = "Target";
+            $string2 = "Target";
         }
-        ~debug_mes_info("CR Quests", "<tostring(calc($int6 + 1))>. <$string1>: <col=0059de><~get_quest_name($dbrow2)></col> (<tostring(db_getfield($dbrow2, quest:id, 0))>) - Reason <tostring($int3)>: <~script2491($dbrow2, $int3)> (PP: <col=0059de><tostring($int4)></col>, SP: <col=0059de><tostring($int5)></col>)");
+        ~debug_mes_info("CR Quests", "<tostring(calc($int6 + 1))>. <$string2>: <col=0059de><~get_quest_name($dbrow2)></col> (<tostring(db_getfield($dbrow2, quest:id, 0))>) - Reason <tostring($int3)>: <~script2491($dbrow2, $int3)> (PP: <col=0059de><tostring($int4)></col>, SP: <col=0059de><tostring($int5)></col>)");
     } else {
         ~debug_mes_info("CR Quests", "<tostring(calc($int6 + 1))>. No recommendation.");
     }

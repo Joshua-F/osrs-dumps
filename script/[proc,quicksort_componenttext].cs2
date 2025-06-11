@@ -1,26 +1,26 @@
 // 1341
-[proc,quicksort_componenttext](componentarray $componentarray0, int $int1, int $int2)
-def_int $int3 = calc(($int1 + $int2) / 2);
-def_component $component4 = $componentarray0($int3);
-$componentarray0($int3) = $componentarray0($int2);
-$componentarray0($int2) = $component4;
-def_int $int5 = $int1;
-def_int $int6 = $int1;
-def_component $component7 = null;
-while ($int6 < $int2) {
-    if (compare(lowercase(if_gettext($componentarray0($int6))), lowercase(if_gettext($component4))) <= 0) {
-        $component7 = $componentarray0($int6);
-        $componentarray0($int6) = $componentarray0($int5);
-        $componentarray0($int5) = $component7;
-        $int5 = calc($int5 + 1);
+[proc,quicksort_componenttext](componentarray $componentarray0, int $int0, int $int1)
+def_int $int2 = calc(($int0 + $int1) / 2);
+def_component $component3 = $componentarray0($int2);
+$componentarray0($int2) = $componentarray0($int1);
+$componentarray0($int1) = $component3;
+def_int $int4 = $int0;
+def_int $int5 = $int0;
+def_component $component6 = null;
+while ($int5 < $int1) {
+    if (compare(lowercase(if_gettext($componentarray0($int5))), lowercase(if_gettext($component3))) <= 0) {
+        $component6 = $componentarray0($int5);
+        $componentarray0($int5) = $componentarray0($int4);
+        $componentarray0($int4) = $component6;
+        $int4 = calc($int4 + 1);
     }
-    $int6 = calc($int6 + 1);
+    $int5 = calc($int5 + 1);
 }
-$componentarray0($int2) = $componentarray0($int5);
-$componentarray0($int5) = $component4;
-if ($int1 < calc($int5 - 1)) {
-    ~quicksort_componenttext(componentarray0, $int1, calc($int5 - 1));
+$componentarray0($int1) = $componentarray0($int4);
+$componentarray0($int4) = $component3;
+if ($int0 < calc($int4 - 1)) {
+    ~quicksort_componenttext($componentarray0, $int0, calc($int4 - 1));
 }
-if (calc($int5 + 1) < $int2) {
-    ~quicksort_componenttext(componentarray0, calc($int5 + 1), $int2);
+if (calc($int4 + 1) < $int1) {
+    ~quicksort_componenttext($componentarray0, calc($int4 + 1), $int1);
 }
