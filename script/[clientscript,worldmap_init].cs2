@@ -43,20 +43,20 @@ if (~on_mobile = true) {
     $int27 = calc($int27 + 3);
 }
 def_int $int28 = 0;
-def_string $string0 = "";
+def_string $string1 = "";
 def_int $int29 = 0;
 def_category $category30 = enum(int, category, enum_1705, $int28);
 while ($category30 ! null) {
     $intarray0($int28) = $int28;
     $int28 = calc($int28 + 1);
-    $string0 = enum(category, string, enum_1713, $category30);
+    $string1 = enum(category, string, enum_1713, $category30);
     cc_create($component21, ^iftype_rectangle, $int25);
     $int25 = calc($int25 + 1);
     cc_setsize(0, $int27, ^setsize_minus, ^setsize_abs);
     cc_setfill(true);
     cc_setcolour(^white);
     cc_setop(1, "Flash icons");
-    cc_setopbase("<col=ff9040><$string0></col>");
+    cc_setopbase("<col=ff9040><$string1></col>");
     ~worldmap_keybutton($category30, $component21, cc_getid);
     cc_create($component21, ^iftype_graphic, $int25);
     $int25 = calc($int25 + 1);
@@ -69,8 +69,8 @@ while ($category30 ! null) {
     cc_settextfont(p12_full);
     cc_settextshadow(true);
     cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
-    cc_settext($string0);
-    $int29 = ~max($int29, parawidth($string0, 512, p12_full));
+    cc_settext($string1);
+    $int29 = ~max($int29, parawidth($string1, 512, p12_full));
     cc_create($component21, ^iftype_text, $int25);
     $int25 = calc($int25 + 1);
     cc_setsize(1, 1, ^setsize_abs, ^setsize_abs);
@@ -78,16 +78,16 @@ while ($category30 ! null) {
     cc_settextfont(p11_full);
     cc_settextshadow(false);
     cc_settextalign(^settextalign_left, ^settextalign_top, 0);
-    cc_settext("<tostring(enum(category, int, enum_1714, $category30))>|<$string0>");
+    cc_settext("<tostring(enum(category, int, enum_1714, $category30))>|<$string1>");
     cc_sethide(true);
     $category30 = enum(int, category, enum_1705, $int28);
 }
 if ($int28 >= 2) {
-    ~worldmap_keysort(intarray0, $component21, 0, calc(enum_getoutputcount(enum_1705) - 1));
+    ~worldmap_keysort($intarray0, $component21, 0, calc(enum_getoutputcount(enum_1705) - 1));
 }
 $int29 = calc($int29 + 18);
 def_int $int31 = -1;
-def_string $string1 = "";
+def_string $string2 = "";
 def_int $int32 = 0;
 def_int $int33 = 0;
 def_int $int34 = 0;
@@ -97,12 +97,12 @@ def_int $int37 = 0;
 $int26 = 0;
 while ($int36 < $int28) {
     if (cc_find($component21, calc($intarray0($int36) * 4 + 3)) = ^true) {
-        $string1, $string0 = ~script632(cc_gettext);
-        $int32 = string_length($string1);
-        if ($int32 > 0 & compare($string1, tostring($int31)) ! 0) {
+        $string2, $string1 = ~script632(cc_gettext);
+        $int32 = string_length($string2);
+        if ($int32 > 0 & compare($string2, tostring($int31)) ! 0) {
             $int33, $int35 = 0, 0;
             while ($int33 < $int32 & $int33 < 10) {
-                $int34 = string_indexof_string("0123456789", substring($string1, calc($int32 - ($int33 + 1)), calc($int32 - $int33)), 0);
+                $int34 = string_indexof_string("0123456789", substring($string2, calc($int32 - ($int33 + 1)), calc($int32 - $int33)), 0);
                 if ($int34 ! -1) {
                     $int34 = calc($int34 * pow(10, $int33));
                     if (calc(^max_32bit_int - $int34) < $int35) {
@@ -124,9 +124,9 @@ while ($int36 < $int28) {
             cc_settextfont(p12_full);
             cc_settextshadow(true);
             cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-            $string0 = enum(int, string, enum_1715, $int35);
-            cc_settext($string0);
-            $int29 = ~max($int29, parawidth($string0, 512, p12_full));
+            $string1 = enum(int, string, enum_1715, $int35);
+            cc_settext($string1);
+            $int29 = ~max($int29, parawidth($string1, 512, p12_full));
             $int31, $int26 = $int35, calc($int26 + 20);
         }
     }
@@ -281,7 +281,7 @@ def_coord $coord41 = null;
 def_coord $coord42 = null;
 def_fontmetrics $fontmetrics43 = null;
 def_graphic $graphic44 = null;
-$string0, $int29, $int28, $int36 = "", 0, 0, 0;
+$string1, $int29, $int28, $int36 = "", 0, 0, 0;
 def_wma $wma45 = enum(int, wma, enum_1697, $int28);
 while ($wma45 ! null) {
     $intarray0($int28) = $int25;
@@ -298,15 +298,15 @@ while ($wma45 ! null) {
     cc_settextfont($graphic44);
     cc_settextshadow(true);
     cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-    $string0 = worldmap_getmapname($wma45);
-    cc_settext($string0);
+    $string1 = worldmap_getmapname($wma45);
+    cc_settext($string1);
     cc_setop(1, "Select");
-    cc_setopbase("<col=ff9040><$string0></col>");
+    cc_setopbase("<col=ff9040><$string1></col>");
     cc_setonmouseover("xpdrops_setup_display_dropdown_hover(true, event_com, event_comsubid, .cc_getid, 0xff981f)");
     cc_setonmouseleave("xpdrops_setup_display_dropdown_hover(false, event_com, event_comsubid, .cc_getid, 0xff981f)");
     cc_setonop("worldmap_maplist_select(event_op, $wma45, $component12, $component13, $component4, $component6, $component7, $component18, $component19)");
     if (~script1814($wma45) = true) {
-        $int29 = ~max($int29, parawidth($string0, 512, $fontmetrics43));
+        $int29 = ~max($int29, parawidth($string1, 512, $fontmetrics43));
         $coord41 = ~worldmap_findcoordinmap($wma45, %varclient_188);
         if ($coord41 ! null) {
             $wma40, $coord42 = $wma45, $coord41;
@@ -317,27 +317,27 @@ while ($wma45 ! null) {
     }
     $wma45 = enum(int, wma, enum_1697, $int28);
 }
-def_int $intarray1(3);
-$intarray1(0) = $int25;
+def_int $intarray3(3);
+$intarray3(0) = $int25;
 cc_create($component16, ^iftype_graphic, $int25);
 $int25 = calc($int25 + 1);
 cc_setsize(17, 17, ^setsize_abs, ^setsize_abs);
 cc_sethide(true);
 cc_setgraphic(struct_param(struct_1, param_624));
-$intarray1(1) = $int25;
+$intarray3(1) = $int25;
 cc_create($component16, ^iftype_graphic, $int25);
 $int25 = calc($int25 + 1);
 cc_setsize(17, 17, ^setsize_abs, ^setsize_abs);
 cc_sethide(true);
 cc_setgraphic(struct_param(struct_343, param_624));
-$intarray1(2) = $int25;
+$intarray3(2) = $int25;
 cc_create($component16, ^iftype_graphic, $int25);
 $int25 = calc($int25 + 1);
 cc_setsize(17, 17, ^setsize_abs, ^setsize_abs);
 cc_sethide(true);
 cc_setgraphic(struct_param(struct_317, param_624));
 if ($int28 >= 3) {
-    ~quicksort_cctext(intarray0, $component16, 1, 44);
+    ~quicksort_cctext($intarray0, $component16, 1, 44);
 }
 $int29 = calc(3 + $int29 + 2 + 26 + 2 + 16 + 3);
 if_setsize($int29, 20, ^setsize_abs, ^setsize_abs, $component12);
@@ -385,7 +385,7 @@ cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
 cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
 cc_setgraphic(tradebacking);
 cc_settiling(true);
-cc_setonclick("worldmap_maplist_open($component12, $component13, $component16, $intarray1(0), $intarray1(1), $intarray1(2))");
+cc_setonclick("worldmap_maplist_open($component12, $component13, $component16, $intarray3(0), $intarray3(1), $intarray3(2))");
 if_setonclick("worldmap_maplist_close($component12, $component13)", $component14);
 cc_create($component12, ^iftype_rectangle, $int25);
 $int25 = calc($int25 + 1);
