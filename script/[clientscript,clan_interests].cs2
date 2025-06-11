@@ -8,12 +8,12 @@ def_string $string0 = "";
 def_string $string1 = "";
 def_string $string2 = "";
 cc_deleteall(clans_interests:list);
-def_boolean $booleanarray0(calc(15 + 1));
+def_boolean $booleanarray3(calc(15 + 1));
 def_int $int2 = 0;
 while ($int2 <= 15) {
     $string2 = enum(int, string, enum_3792, $int2);
     if (string_length($string2) > 0) {
-        $booleanarray0($int2) = true;
+        $booleanarray3($int2) = true;
         if (calc($int1 % 2) = 0) {
             $string0 = append($string0, "<br><$string2>");
         } else {
@@ -36,12 +36,12 @@ if (~on_mobile = true) {
     $int8, $int9 = 37, 1;
 }
 def_int $int10 = calc(($int8 - 17) / 2);
-def_string $string3 = "";
+def_string $string4 = "";
 def_int $int11 = 0;
 $int1 = 0;
 def_int $int12 = 0;
 while ($int12 <= 15) {
-    if ($booleanarray0($int12) = true & cc_find(clans_interests:list, $int12) = ^true) {
+    if ($booleanarray3($int12) = true & cc_find(clans_interests:list, $int12) = ^true) {
         cc_sethide(false);
         $int11 = calc($int1 / 2 * $int8);
         if (calc($int1 % 2) = 0) {
@@ -59,8 +59,8 @@ while ($int12 <= 15) {
         }
         cc_setonmouseleave("cc_settrans(event_com, event_comsubid, 255, null)");
         cc_setop(1, "Change");
-        $string3 = enum(int, string, enum_3792, $int12);
-        cc_setopbase("<col=ff9040><$string3></col>");
+        $string4 = enum(int, string, enum_3792, $int12);
+        cc_setopbase("<col=ff9040><$string4></col>");
         cc_setonop("clan_interests_op(event_op, event_com, event_comsubid, $int12, $int2, calc($int2 + 1))");
         cc_setonvartransmit("clan_interests_synch(event_com, $int12, $int2, calc($int2 + 1)){clan_editing_0}");
         cc_create(clans_interests:list, ^iftype_graphic, $int2);
@@ -80,7 +80,7 @@ while ($int12 <= 15) {
         .cc_settextfont(p12_full);
         .cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
         .cc_settextshadow(true);
-        .cc_settext($string3);
+        .cc_settext($string4);
         ~clan_interests_synch($int12);
         $int1 = calc($int1 + 1);
     }

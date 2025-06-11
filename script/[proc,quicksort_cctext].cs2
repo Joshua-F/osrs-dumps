@@ -1,38 +1,38 @@
 // 1491
-[proc,quicksort_cctext](intarray $intarray0, component $component1, int $int2, int $int3)
-def_int $int4 = calc(($int2 + $int3) / 2);
-def_int $int5 = $intarray0($int4);
-$intarray0($int4) = $intarray0($int3);
-$intarray0($int3) = $int5;
-def_int $int6 = $int2;
-def_int $int7 = $int2;
-def_int $int8 = -1;
-def_string $string0 = "";
+[proc,quicksort_cctext](intarray $intarray0, component $component0, int $int1, int $int2)
+def_int $int3 = calc(($int1 + $int2) / 2);
+def_int $int4 = $intarray0($int3);
+$intarray0($int3) = $intarray0($int2);
+$intarray0($int2) = $int4;
+def_int $int5 = $int1;
+def_int $int6 = $int1;
+def_int $int7 = -1;
 def_string $string1 = "";
-while ($int7 < $int3) {
-    if (cc_find($component1, $intarray0($int7)) = ^true) {
-        $string0 = cc_gettext;
-    } else {
-        $string0 = "";
-    }
-    if (cc_find($component1, $int5) = ^true) {
+def_string $string2 = "";
+while ($int6 < $int2) {
+    if (cc_find($component0, $intarray0($int6)) = ^true) {
         $string1 = cc_gettext;
     } else {
         $string1 = "";
     }
-    if (compare(lowercase($string0), lowercase($string1)) <= 0) {
-        $int8 = $intarray0($int7);
-        $intarray0($int7) = $intarray0($int6);
-        $intarray0($int6) = $int8;
-        $int6 = calc($int6 + 1);
+    if (cc_find($component0, $int4) = ^true) {
+        $string2 = cc_gettext;
+    } else {
+        $string2 = "";
     }
-    $int7 = calc($int7 + 1);
+    if (compare(lowercase($string1), lowercase($string2)) <= 0) {
+        $int7 = $intarray0($int6);
+        $intarray0($int6) = $intarray0($int5);
+        $intarray0($int5) = $int7;
+        $int5 = calc($int5 + 1);
+    }
+    $int6 = calc($int6 + 1);
 }
-$intarray0($int3) = $intarray0($int6);
-$intarray0($int6) = $int5;
-if ($int2 < calc($int6 - 1)) {
-    ~quicksort_cctext(intarray0, $component1, $int2, calc($int6 - 1));
+$intarray0($int2) = $intarray0($int5);
+$intarray0($int5) = $int4;
+if ($int1 < calc($int5 - 1)) {
+    ~quicksort_cctext($intarray0, $component0, $int1, calc($int5 - 1));
 }
-if (calc($int6 + 1) < $int3) {
-    ~quicksort_cctext(intarray0, $component1, calc($int6 + 1), $int3);
+if (calc($int5 + 1) < $int2) {
+    ~quicksort_cctext($intarray0, $component0, calc($int5 + 1), $int2);
 }

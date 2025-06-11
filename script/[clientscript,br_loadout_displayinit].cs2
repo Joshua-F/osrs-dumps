@@ -61,13 +61,13 @@ cc_settextshadow(true);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
 cc_settext("Drag items here to discard them.");
 def_int $int13 = enum_getoutputcount($enum2);
-def_int $intarray0($int13);
+def_int $intarray1($int13);
 def_int $int14 = 0;
 cc_deleteall($component5);
 $int12 = 0;
 while ($int12 < $int13) {
     if (enum(int, namedobj, $enum2, $int12) ! null) {
-        $intarray0($int14) = $int12;
+        $intarray1($int14) = $int12;
         $int14 = calc($int14 + 1);
     }
     cc_create($component5, ^iftype_graphic, $int12);
@@ -76,7 +76,7 @@ while ($int12 < $int13) {
 }
 def_int $int15 = $int14;
 if ($int15 > 1) {
-    ~br_loadout_sort(intarray0, $enum2, 0, calc($int15 - 1));
+    ~br_loadout_sort($intarray1, $enum2, 0, calc($int15 - 1));
 }
 cc_deleteall($component0);
 cc_create($component0, ^iftype_graphic, 0);
@@ -97,11 +97,11 @@ def_int $int18 = 0;
 def_int $int19 = calc((34 - 32) / 2);
 def_obj $obj20 = null;
 def_int $int21 = 0;
-def_string $string1 = "";
+def_string $string2 = "";
 def_int $int22 = 0;
 $int14 = 0;
 while ($int14 < $int15) {
-    if (cc_find($component5, $intarray0($int14)) = ^true) {
+    if (cc_find($component5, $intarray1($int14)) = ^true) {
         cc_sethide(false);
         cc_settiling(true);
         cc_setgraphic(tradebacking_light);
@@ -113,7 +113,7 @@ while ($int14 < $int15) {
         cc_setdraggable($component0, -1);
         cc_setdragdeadzone(5);
         cc_setdragdeadtime(5);
-        $obj20 = enum(int, namedobj, $enum2, $intarray0($int14));
+        $obj20 = enum(int, namedobj, $enum2, $intarray1($int14));
         $string0 = oc_name($obj20);
         cc_setopbase("<col=ff9040><$string0></col>");
         .cc_create($component5, ^iftype_rectangle, $int12);
@@ -159,15 +159,15 @@ while ($int14 < $int15) {
         if ($int22 > 0 & parawidth($string0, 512, p12_full) > .cc_getwidth) {
             while ($int22 > 1 & $int21 = 0) {
                 $int22 = calc($int22 - 1);
-                $string1 = append(substring($string0, 0, $int22), "...");
-                if (parawidth($string1, 512, p12_full) <= .cc_getwidth) {
-                    $string0, $int21 = $string1, 1;
+                $string2 = append(substring($string0, 0, $int22), "...");
+                if (parawidth($string2, 512, p12_full) <= .cc_getwidth) {
+                    $string0, $int21 = $string2, 1;
                 }
             }
         }
         .cc_settext($string0);
         cc_setondrag("br_loadout_menudragging(event_com, event_comsubid, $obj20, $string0, $component0, $int16, $int17, $int19, event_mousex, event_mousey)");
-        cc_setondragcomplete("br_loadout_insert(event_com, event_comsubid, event_com2, event_comsubid2, $intarray0($int14), $int1, $enum2, $enum3, $component0, $int16, $int17, $component4, $component7, $component11)");
+        cc_setondragcomplete("br_loadout_insert(event_com, event_comsubid, event_com2, event_comsubid2, $intarray1($int14), $int1, $enum2, $enum3, $component0, $int16, $int17, $component4, $component7, $component11)");
         $int18 = calc($int18 + 34);
     }
     $int14 = calc($int14 + 1);
