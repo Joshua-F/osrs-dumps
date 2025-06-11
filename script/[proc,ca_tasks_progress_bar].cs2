@@ -41,7 +41,7 @@ def_int $int12 = -1;
 def_int $int13 = if_getwidth($component0);
 def_int $int14 = calc($int13 - 4);
 def_int $int15 = 0;
-def_string $string0 = "";
+def_string $string1 = "";
 def_int $int16 = -1;
 def_int $int17 = 0;
 def_int $int18 = 0;
@@ -49,19 +49,19 @@ def_int $int19 = 0;
 def_int $int20 = 0;
 def_int $int21 = 0;
 def_int $int22 = 0;
-def_string $string1 = "";
+def_string $string2 = "";
 def_graphic $graphic23 = p12_full;
 if ($int7 = 1) {
     $graphic23 = b12_full;
     if (%wgs_hero_part_2_vis ! 0) {
-        $string1 = "You have rewards to collect from Laidee Gnonock!";
+        $string2 = "You have rewards to collect from Laidee Gnonock!";
     } else {
-        $string1 = "You have rewards to collect from Ghommal!";
+        $string2 = "You have rewards to collect from Ghommal!";
     }
 } else if ($int3 >= 6) {
-    $string1 = "Total Points: <tostring(%ca_points)>";
+    $string2 = "Total Points: <tostring(%ca_points)>";
 } else {
-    $string1 = "Total Points: <tostring(%ca_points)> - Next unlock in <tostring($int6)> points";
+    $string2 = "Total Points: <tostring(%ca_points)> - Next unlock in <tostring($int6)> points";
 }
 if ($int2 = 2) {
     $int15 = scale(~min(%ca_points, $int8), $int8, $int14);
@@ -73,9 +73,9 @@ if ($int2 = 2) {
     }
     $int15 = scale($int18, ~max($int17, 1), $int14);
     if ($int17 <= 0) {
-        $string1 = "No Tasks Available";
+        $string2 = "No Tasks Available";
     } else {
-        $string1 = "Tasks Completed: <tostring($int18)>/<tostring($int17)>";
+        $string2 = "Tasks Completed: <tostring($int18)>/<tostring($int17)>";
     }
 } else if ($int7 = 1 | $int3 >= 6) {
     $int15 = $int14;
@@ -132,16 +132,16 @@ if (cc_find($component0, 0) = ^false) {
             cc_setposition(calc($int16 - 4), 0, ^setpos_abs_left, ^setpos_abs_top);
             cc_setgraphic(league_progress_bar_indicator);
             if ($int20 = 1) {
-                $string0 = "<enum(int, string, enum_3967, calc($int9 + 1))> Tier rewards unlocked at one point.";
+                $string1 = "<enum(int, string, enum_3967, calc($int9 + 1))> Tier rewards unlocked at one point.";
             } else {
-                $string0 = "<enum(int, string, enum_3967, calc($int9 + 1))> Tier rewards unlocked at <tostring($int20)> points.";
+                $string1 = "<enum(int, string, enum_3967, calc($int9 + 1))> Tier rewards unlocked at <tostring($int20)> points.";
             }
             if (~on_mobile = true) {
                 cc_setop(1, "Show Threshold");
-                cc_setonop("league_progress_bar_mobile_tooltip(event_com, event_comsubid, $component1, $string0, 512)");
+                cc_setonop("league_progress_bar_mobile_tooltip(event_com, event_comsubid, $component1, $string1, 512)");
             } else {
                 cc_setop(1, "");
-                cc_setonmouserepeat("tooltip_mouserepeat(event_com, event_comsubid, $component1, $string0, 25, 512)");
+                cc_setonmouserepeat("tooltip_mouserepeat(event_com, event_comsubid, $component1, $string1, 25, 512)");
                 cc_setonmouseleave("deltooltip($component1)");
             }
             $int9 = calc($int9 + 1);
@@ -155,7 +155,7 @@ if (cc_find($component0, 0) = ^false) {
     cc_setcolour(^white);
     cc_settextshadow(true);
     cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-    cc_settext($string1);
+    cc_settext($string2);
     $int10 = calc($int10 + 1);
     cc_create($component0, ^iftype_rectangle, $int10);
     cc_setsize($int13, 31, ^setsize_abs, ^setsize_abs);

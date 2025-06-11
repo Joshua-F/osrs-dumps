@@ -21,7 +21,7 @@ if (%questlist_larger_text = 1) {
 }
 def_int $intarray0($int7);
 def_dbrow $dbrow13 = null;
-def_string $string0 = "";
+def_string $string1 = "";
 def_int $int14 = 0;
 def_int $int15 = pow(2, 16);
 cc_deleteall($component4);
@@ -38,16 +38,16 @@ while ($int8 <= $int7) {
         cc_settextshadow(true);
     }
     cc_settextalign(^settextalign_left, ^settextalign_centre, $int11);
-    $string0 = ~get_quest_name($dbrow13);
-    cc_setopbase("<col=ff9040><$string0></col>");
+    $string1 = ~get_quest_name($dbrow13);
+    cc_setopbase("<col=ff9040><$string1></col>");
     if (~script4026($dbrow13, %questlist_sort_type) = true) {
-        $string0 = "MQ: <$string0>";
+        $string1 = "MQ: <$string1>";
     }
     if (~speedrunning_world = true & ~speedrunning_beta_quest($dbrow13) = true) {
-        $string0 = "<$string0> (Beta)";
+        $string1 = "<$string1> (Beta)";
     }
-    cc_settext($string0);
-    cc_setsize(0, calc($int11 * paraheight($string0, cc_getwidth, $fontmetrics10) + $int12), ^setsize_minus, ^setsize_abs);
+    cc_settext($string1);
+    cc_setsize(0, calc($int11 * paraheight($string1, cc_getwidth, $fontmetrics10) + $int12), ^setsize_minus, ^setsize_abs);
     if (~speedrunning_world = true) {
         cc_setop(1, "View info:");
     } else {
@@ -72,7 +72,7 @@ while ($int8 <= $int7) {
     $int8 = calc($int8 + 1);
 }
 if ($int7 > 1) {
-    ~questlist_sort(intarray0, 0, calc($int7 - 1), %questlist_sort_type, $int15);
+    ~questlist_sort($intarray0, 0, calc($int7 - 1), %questlist_sort_type, $int15);
 }
 def_int $int16 = 0;
 def_int $int17 = 0;
@@ -80,20 +80,20 @@ def_int $int18 = 0;
 def_boolean $boolean19 = true;
 def_boolean $boolean20 = true;
 def_boolean $boolean21 = false;
-def_string $string1 = "************";
 def_string $string2 = "************";
+def_string $string3 = "************";
 while ($int16 < $int7) {
     $int17 = calc($intarray0($int16) % $int15);
     $int14 = calc($intarray0($int16) / $int15);
     $dbrow13 = ~script6154($int17);
     $boolean19 = ~quest_requirement_check($dbrow13);
     $boolean20 = ~script5990($dbrow13);
-    $string2 = ~script2265($dbrow13, $int14, %questlist_sort_type);
+    $string3 = ~script2265($dbrow13, $int14, %questlist_sort_type);
     $boolean21 = ~script4028($dbrow13, $int14, $boolean19, $boolean20);
     if (~questlist_hide_quest($dbrow13, $int14, $boolean19, $boolean20, $boolean21) = false) {
-        if (compare($string2, $string1) ! 0 & %questlist_disable_headers = 0) {
-            $int8, $int6 = ~script1354($string2, $int8, $int6, $component4);
-            $string1 = $string2;
+        if (compare($string3, $string2) ! 0 & %questlist_disable_headers = 0) {
+            $int8, $int6 = ~script1354($string3, $int8, $int6, $component4);
+            $string2 = $string3;
         }
         if (cc_find($component4, $int17) = ^true) {
             if (db_getfield($dbrow13, quest:parent_quest, 0) ! null) {

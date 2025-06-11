@@ -3,8 +3,8 @@
 cc_deleteall(cr_ui:quests_recommendation_entries);
 cc_deleteall(cr_ui:quests_journal_buttons);
 def_int $intarray0(~script2477(%varclient_1000));
-~deserialise_intarray(%varclient_1000, intarray0);
-def_int $int0 = ~2d_intarray_num_rows(intarray0);
+~deserialise_intarray(%varclient_1000, $intarray0);
+def_int $int0 = ~2d_intarray_num_rows($intarray0);
 def_int $int1 = -1;
 def_dbrow $dbrow2 = null;
 def_int $int3 = -1;
@@ -20,7 +20,7 @@ def_int $int12 = ~script6396(%varclient_1003);
 def_int $int13 = 0;
 def_int $int14 = 0;
 while ($int14 < $int0) {
-    $int1, $dbrow2, $int3, $int4, $int5 = ~cr_quests_get_row(intarray0, $int14);
+    $int1, $dbrow2, $int3, $int4, $int5 = ~cr_quests_get_row($intarray0, $int14);
     if ($dbrow2 ! null) {
         $int6 = db_getfield($dbrow2, quest:id, 0);
         while ($int7 <= $int6) {
@@ -38,20 +38,20 @@ while ($int14 < $int0) {
     $int14 = calc($int14 + 1);
 }
 %varclient_1004 = -1;
-def_string $string0 = null;
+def_string $string1 = null;
 if ($int10 <= 0) {
     if (%quests_completed_count >= %quests_total_count) {
-        $string0 = "You've completed every quest! Congratulations!";
+        $string1 = "You've completed every quest! Congratulations!";
     } else if (%cr_quests_include_members = 0) {
-        $string0 = "No free quest suggestions available.<br>Check the <col=ffffff>All Quests</col> tab, <col=ffffff>Quest List</col> or <col=ffffff>Skill Guides</col> to find more goals.";
+        $string1 = "No free quest suggestions available.<br>Check the <col=ffffff>All Quests</col> tab, <col=ffffff>Quest List</col> or <col=ffffff>Skill Guides</col> to find more goals.";
     } else {
-        $string0 = "No quest suggestions available.<br>Check the <col=ffffff>Quest List</col> or <col=ffffff>Skill Guides</col> to find more goals.";
+        $string1 = "No quest suggestions available.<br>Check the <col=ffffff>Quest List</col> or <col=ffffff>Skill Guides</col> to find more goals.";
     }
     cc_create(cr_ui:quests_recommendation_entries, ^iftype_text, $int9);
     $int9 = calc($int9 + 1);
     cc_setsize(20, 16, ^setsize_minus, ^setsize_minus);
     cc_setposition(0, -8, ^setpos_proportion_centre, ^setpos_abs_centre);
-    cc_settext($string0);
+    cc_settext($string1);
     cc_settextfont(p12_full);
     cc_settextshadow(true);
     cc_setcolour(0xff981f);

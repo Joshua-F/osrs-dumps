@@ -12,7 +12,7 @@ if ($int1 <= 0) {
     return($int2);
 }
 def_int $int4 = 0;
-def_int $intarray0($int1);
+def_int $intarray1($int1);
 def_int $int5 = 1;
 def_dbrow $dbrow6 = null;
 cc_create($component0, ^iftype_rectangle, 0);
@@ -37,25 +37,25 @@ while ($int5 <= $int1) {
             cc_setcolour(0xdc10d);
         }
     }
-    $intarray0(calc($int5 - 1)) = $int5;
+    $intarray1(calc($int5 - 1)) = $int5;
     $int5 = calc($int5 + 1);
 }
 if ($int1 > 1) {
-    ~quicksort_questlist(intarray0, 0, calc($int1 - 1));
+    ~quicksort_questlist($intarray1, 0, calc($int1 - 1));
 }
 def_int $int7 = 0;
 def_int $int8 = -10;
 def_int $int9 = -10;
 $int2 = -10;
 while ($int7 < $int1) {
-    $dbrow6 = ~script6154($intarray0($int7));
+    $dbrow6 = ~script6154($intarray1($int7));
     if (~questdisplay_hide_quest($dbrow6) = false) {
         $int9 = ~script3236($dbrow6);
         if ($int9 ! $int8) {
             $int5, $int2 = ~script5998(~script3237($dbrow6), $int5, $int2, $component0);
             $int8 = $int9;
         }
-        if (cc_find($component0, $intarray0($int7)) = ^true) {
+        if (cc_find($component0, $intarray1($int7)) = ^true) {
             cc_setposition(0, $int2, ^setpos_abs_centre, ^setpos_abs_top);
         }
         $int2 = calc($int2 + 18);
