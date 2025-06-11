@@ -18,28 +18,28 @@ while ($int1 < 50) {
     cc_sethide(true);
     $int1 = calc($int1 + 1);
 }
-def_int $intarray0(50);
+def_int $intarray1(50);
 def_int $int2 = 0;
-def_string $string1 = "";
-$string1, $string0 = ~script632($string0);
-while ($int2 < 50 & string_length($string1) > 0) {
+def_string $string2 = "";
+$string2, $string0 = ~script632($string0);
+while ($int2 < 50 & string_length($string2) > 0) {
     cc_create(tournament_sidepanel:list, ^iftype_text, $int1);
-    $intarray0($int2) = $int1;
+    $intarray1($int2) = $int1;
     cc_setsize(0, 22, ^setsize_minus, ^setsize_abs);
     cc_setcolour(0xff891f);
     cc_settextfont(p12_full);
     cc_settextshadow(true);
     cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-    cc_settext($string1);
+    cc_settext($string2);
     if (.cc_find(tournament_sidepanel:list, calc($int1 - 50)) = ^true) {
-        .cc_setopbase("<col=ff9040><$string1></col>");
+        .cc_setopbase("<col=ff9040><$string2></col>");
         .cc_setop(1, "Seek");
         .cc_sethide(false);
         .cc_setsize(0, 22, ^setsize_minus, ^setsize_abs);
         .cc_setfill(true);
         .cc_setcolour(^white);
     }
-    $int1, $int2, $string1, $string0 = calc($int1 + 1), calc($int2 + 1), ~script632($string0);
+    $int1, $int2, $string2, $string0 = calc($int1 + 1), calc($int2 + 1), ~script632($string0);
 }
 if ($int2 <= 0) {
     cc_create(tournament_sidepanel:list, ^iftype_text, $int1);
@@ -51,12 +51,12 @@ if ($int2 <= 0) {
     cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
     cc_settext("No eligible players were found.");
 } else if ($int2 >= 2) {
-    ~quicksort_cctext(intarray0, tournament_sidepanel:list, 0, calc($int2 - 1));
+    ~quicksort_cctext($intarray1, tournament_sidepanel:list, 0, calc($int2 - 1));
 }
 def_int $int3 = 0;
 $int1 = 0;
 while ($int1 < $int2) {
-    if (cc_find(tournament_sidepanel:list, $intarray0($int1)) = ^true & .cc_find(tournament_sidepanel:list, calc($intarray0($int1) - 50)) = ^true) {
+    if (cc_find(tournament_sidepanel:list, $intarray1($int1)) = ^true & .cc_find(tournament_sidepanel:list, calc($intarray1($int1) - 50)) = ^true) {
         cc_setposition(0, $int3, ^setpos_abs_centre, ^setpos_abs_top);
         .cc_setposition(0, $int3, ^setpos_abs_centre, ^setpos_abs_top);
         .cc_setonmouserepeat("cc_settrans(event_com, event_comsubid, 200, null)");
