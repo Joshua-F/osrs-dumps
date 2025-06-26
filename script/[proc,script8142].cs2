@@ -1,0 +1,14 @@
+// 8142
+[proc,script8142](component $component0, component $component1, component $component2)
+def_component $component3 = sailing_log:ocean_dropdown;
+def_int $int4 = 1;
+db_listall(sailing_sea);
+def_dbrow $dbrow5 = db_findnext;
+while ($dbrow5 ! null) {
+    if (db_getfield($dbrow5, sailing_sea:ocean, 0) = null) {
+        $int4 = calc($int4 + 1);
+    }
+    $dbrow5 = db_findnext;
+}
+~script8148($component3, $int4, %varclient_1287, 16750623);
+if_setonop("script8143($component0, $component1, $component2, $component3, $int4, 16750623)", $component3);

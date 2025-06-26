@@ -1,0 +1,50 @@
+// 8201
+[proc,script8201](dbrow $dbrow0)
+if_sethide(false, sailing_alpha_runefest:details_view);
+if_sethide(true, sailing_alpha_runefest:confirm);
+if_sethide(true, sailing_alpha_runefest:home_view);
+def_int $int1 = 0;
+if_settext("Sailing Beta - <db_getfield($dbrow0, sailing_alpha_runefest_features:name, 0)>", sailing_alpha_runefest:details_header);
+~script8202($dbrow0);
+~start_slideshow(sailing_alpha_runefest:details_slideshow, ~script8193($dbrow0), 5, 4, 1);
+if ($dbrow0 = sailing_alpha_runefest_feature_tutorial | $dbrow0 = sailing_alpha_runefest_feature_about) {
+    if_sethide(false, sailing_alpha_runefest:select_button);
+    $int1 = ~v2_stone_button_filled(sailing_alpha_runefest:select_button);
+    cc_create(sailing_alpha_runefest:select_button, ^iftype_text, $int1);
+    cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    if ($dbrow0 = sailing_alpha_runefest_feature_about) {
+        cc_setcolour(^yellow);
+        cc_settext("Reset");
+        if_setop(1, "Reset", sailing_alpha_runefest:select_button);
+    } else {
+        cc_setcolour(0x53d93c);
+        cc_settext("Complete");
+        if_setop(1, "Complete", sailing_alpha_runefest:select_button);
+    }
+    cc_settextfont(p12_full);
+    cc_settextshadow(true);
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    if_setonop("script8206($dbrow0)", sailing_alpha_runefest:select_button);
+    if (~on_mobile = false) {
+        if_setonmouserepeat("v2_stone_button_change_in(sailing_alpha_runefest:select_button, 0)", sailing_alpha_runefest:select_button);
+        if_setonmouseleave("v2_stone_button_change_out(sailing_alpha_runefest:select_button, 0)", sailing_alpha_runefest:select_button);
+    }
+} else {
+    if_sethide(true, sailing_alpha_runefest:select_button);
+}
+$int1 = ~v2_stone_button_filled(sailing_alpha_runefest:select_back);
+cc_create(sailing_alpha_runefest:select_back, ^iftype_text, $int1);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_setcolour(^white);
+cc_settext("Back");
+cc_settextfont(p12_full);
+cc_settextshadow(true);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+if_setop(1, "Back", sailing_alpha_runefest:select_back);
+if_setonop("script8197", sailing_alpha_runefest:select_back);
+if (~on_mobile = false) {
+    if_setonmouserepeat("v2_stone_button_change_in(sailing_alpha_runefest:select_back, 0)", sailing_alpha_runefest:select_back);
+    if_setonmouseleave("v2_stone_button_change_out(sailing_alpha_runefest:select_back, 0)", sailing_alpha_runefest:select_back);
+}

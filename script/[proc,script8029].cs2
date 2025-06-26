@@ -1,0 +1,40 @@
+// 8029
+[proc,script8029](component $component0, int $int1, int $int2, component $component3, component $component4, component $component5)(int)
+~scrollbar_vertical($component3, $component4, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+cc_create($component5, ^iftype_rectangle, 0);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+cc_setfill(true);
+cc_setcolour(0x595046);
+~thinbox($component5, 1);
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_int $int8 = 0;
+def_int $int9 = 0;
+def_int $int10 = 0;
+if ($int1 = 0) {
+    cc_create($component0, ^iftype_text, 0);
+    cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_setcolour(0xff981f);
+    cc_settext("No crew mates available.<br>You can manage you crew mates with the Crew Registrar on The Pandemonium.");
+    cc_settextfont(p11_full);
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    cc_settextshadow(true);
+    return($int8);
+}
+while ($int10 < $int2) {
+    if (calc($int10 % 2) = 0) {
+        $int6, $int8 = ~script8030($int6, $int8, $component0, $int10, 0x4e453a);
+    } else {
+        $int6, $int8 = ~script8030($int6, $int8, $component0, $int10, 0x595046);
+    }
+    $int10 = calc($int10 + 1);
+}
+if_setsize(0, $int8, ^setsize_minus, ^setsize_abs, $component0);
+if ($int8 > if_getheight($component4)) {
+    if_setscrollsize(0, $int8, $component4);
+} else {
+    if_setscrollsize(0, 0, $component4);
+}
+~scrollbar_resize($component3, $component4, 0);

@@ -1,0 +1,83 @@
+// 8171
+[proc,script8171]
+def_component $component0 = sailing_crew:crew_slots;
+def_component $component1 = sailing_crew:crew_slots_clicklayer;
+def_graphic $graphic2 = p12_full;
+def_int $rgb3 = 0xff981f;
+def_int $rgb4 = ^white;
+def_int $int5 = 53;
+def_int $int6 = 0;
+def_int $int7 = 245;
+def_int $int8 = 0;
+def_int $int9 = 0;
+def_int $int10 = 0;
+def_string $string0 = "";
+def_int $int11 = 0;
+def_int $int12 = -1;
+def_npc $npc13 = sailing_crew_no_crewmate_dummy;
+def_int $int14 = stat_base(sailing);
+cc_deleteall($component0);
+cc_deleteall($component1);
+while ($int11 <= 4) {
+    $string0 = "Slot <tostring(calc($int11 + 1))>:<br>";
+    $int12 = ~script8180($int11);
+    $int10 = ~script8181($int11);
+    if ($int14 < $int10) {
+        $string0 = "<col=b2b2b2><$string0></col><col=b2b2b2><tostring($int10)> Sailing</col>";
+        $npc13 = sailing_crew_locked_dummy;
+    } else if ($int12 = 0) {
+        $string0 = "<$string0>No Crewmate";
+    } else {
+        db_find(sailing_crew:unique_id, $int12);
+        $npc13 = db_getfield(db_findnext, sailing_crew:cargo_npc, 0);
+        $string0 = "<$string0><nc_name($npc13)>";
+    }
+    cc_create($component0, ^iftype_rectangle, $int8);
+    cc_setsize(0, $int5, ^setsize_minus, ^setsize_abs);
+    cc_setposition(0, $int6, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setcolour($rgb4);
+    cc_setfill(true);
+    if (calc($int8 / 3 % 2) = 1) {
+        $int7 = 230;
+    } else {
+        $int7 = 245;
+    }
+    if (~on_mobile = false) {
+        cc_setonmouseover("script8170($component0, $int8, $int11, 220)");
+    }
+    cc_setonmouseleave("script8170($component0, $int8, $int11, $int7)");
+    if (%sailing_crew_selected_slot_id = $int11) {
+        $int7 = 200;
+    }
+    cc_settrans($int7);
+    $int8 = calc(1 + $int8);
+    cc_create($component1, ^iftype_rectangle, $int9);
+    cc_setsize(0, $int5, ^setsize_minus, ^setsize_abs);
+    cc_setposition(0, $int6, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setfill(true);
+    cc_settrans(255);
+    cc_setop(1, "Select");
+    cc_setonop("opsound(event_op, 2)");
+    cc_setopbase("<col=ff9040>Slot <tostring(calc($int11 + 1))></col>");
+    $int9 = calc($int9 + 1);
+    cc_create($component0, ^iftype_text, $int8);
+    cc_setsize(56, $int5, ^setsize_minus, ^setsize_abs);
+    cc_setposition(5, $int6, ^setpos_abs_right, ^setpos_abs_top);
+    cc_settext($string0);
+    cc_settextfont($graphic2);
+    cc_setcolour($rgb3);
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 14);
+    cc_settextshadow(true);
+    $int8 = calc(1 + $int8);
+    cc_create($component0, ^iftype_model, $int8);
+    cc_setnpchead($npc13);
+    cc_setsize(51, 51, ^setsize_abs, ^setsize_abs);
+    cc_setposition(5, calc($int6 + 1), ^setpos_abs_left, ^setpos_abs_top);
+    cc_setmodelangle(0, 10, 0, 0, 0, 2300);
+    $int6 = calc($int5 + $int6);
+    $int8 = calc(1 + $int8);
+    $int11 = calc($int11 + 1);
+    $int12 = -1;
+    $string0 = "";
+    $npc13 = sailing_crew_no_crewmate_dummy;
+}

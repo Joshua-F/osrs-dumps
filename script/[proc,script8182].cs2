@@ -1,0 +1,17 @@
+// 8182
+[proc,script8182]()(int)
+def_int $int0 = 0;
+def_int $int1 = 0;
+def_int $int2 = 0;
+def_int $int3 = 5;
+if (%sailing_sidepanel_boat_type ! null) {
+    $int3 = min(5, db_getfield(%sailing_sidepanel_boat_type, sailing_boat:crew_capacity, 0));
+}
+while ($int2 < $int3) {
+    $int1 = ~script8180($int2);
+    if ($int1 ! 0) {
+        $int0 = calc($int0 + 1);
+    }
+    $int2 = calc($int2 + 1);
+}
+return($int0);

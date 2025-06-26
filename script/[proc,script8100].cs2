@@ -1,0 +1,12 @@
+// 8100
+[proc,script8100](int $int0)(dbrow)
+if ($int0 = 0) {
+    return(null);
+}
+def_int $int1 = db_find(sailing_combat_facility_ammunition:ammunition_id, $int0);
+if ($int1 = 0) {
+    ~error("Sailing ammunition - No ammunition found with ID <tostring($int0)>");
+} else if ($int1 > 1) {
+    ~error("Sailing ammunition - <tostring($int1)> ammunition found with ID <tostring($int0)>");
+}
+return(db_findnext);

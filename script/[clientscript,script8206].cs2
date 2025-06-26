@@ -1,0 +1,21 @@
+// 8206
+[clientscript,script8206](dbrow $dbrow0)
+sound_synth(synth_2266, 1, 0);
+if_sethide(false, sailing_alpha_runefest:confirm);
+~steelborder(sailing_alpha_runefest:confirm_frame, "Warning", 1);
+if_settext(db_getfield($dbrow0, sailing_alpha_runefest_features:confirmation, 0), sailing_alpha_runefest:confirm_text);
+~stonebutton_init("Cancel", sailing_alpha_runefest:confirm_cancel, p12_full, 0);
+if_setonop("script8207", sailing_alpha_runefest:confirm_cancel);
+~stonebutton_init("Confirm", sailing_alpha_runefest:confirm_button, p12_full, 0);
+if_setop(1, "", sailing_alpha_runefest:confirm_button);
+def_int $int1 = 0;
+def_int $int2 = db_getfield($dbrow0, sailing_alpha_runefest_features:id, 0);
+while ($int1 < $int2) {
+    cc_create(sailing_alpha_runefest:confirm_button_server, ^iftype_rectangle, $int1);
+    $int1 = calc($int1 + 1);
+}
+cc_create(sailing_alpha_runefest:confirm_button_server, ^iftype_rectangle, $int1);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+cc_setop(1, "Confirm");
+cc_setonop("opsound(event_op, 2)");

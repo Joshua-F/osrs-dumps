@@ -1,0 +1,67 @@
+// 8081
+[proc,script8081](component $component0, component $component1, component $component2, component $component3)
+cc_deleteall($component0);
+cc_deleteall($component1);
+cc_deleteall($component3);
+cc_create($component0, ^iftype_rectangle, 0);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+cc_setfill(true);
+cc_setcolour(0x595046);
+~thinbox($component0, 1);
+~scrollbar_vertical($component1, $component2, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+def_int $int4 = 0;
+def_int $int5 = 0;
+def_int $int6 = 27;
+def_int $int7 = 0;
+def_string $string0 = "";
+def_int $int8 = 0;
+def_boolean $boolean9 = false;
+while ($int5 < $int6) {
+    if (calc($int5 % 2) = 1) {
+        cc_create($component3, ^iftype_rectangle, $int4);
+        cc_setsize(0, 15, ^setsize_minus, ^setsize_abs);
+        cc_setposition(0, $int7, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setfill(true);
+        cc_setcolour(0x4e453a);
+        $int4 = calc($int4 + 1);
+    }
+    $string0, $int8, $boolean9 = ~script8099($int5);
+    cc_create($component3, ^iftype_text, $int4);
+    cc_setsize(0, 15, ^setsize_minus, ^setsize_abs);
+    cc_setposition(8, $int7, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setcolour(0xff981f);
+    cc_settext($string0);
+    cc_settextfont(p11_full);
+    cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+    cc_settextshadow(true);
+    $int4 = calc($int4 + 1);
+    cc_create($component3, ^iftype_text, $int4);
+    cc_setsize(0, 15, ^setsize_minus, ^setsize_abs);
+    cc_setposition(10, $int7, ^setpos_abs_right, ^setpos_abs_top);
+    cc_setcolour(0xff981f);
+    if ($boolean9 = true) {
+        if ($int8 >= 1) {
+            cc_settext("Yes");
+        } else {
+            cc_settext("No");
+        }
+    } else {
+        cc_settext(tostring($int8));
+    }
+    cc_settextfont(p11_full);
+    cc_settextalign(^settextalign_right, ^settextalign_centre, 0);
+    cc_settextshadow(true);
+    $int4 = calc($int4 + 1);
+    $int7 = calc($int7 + 15);
+    $int5 = calc($int5 + 1);
+}
+def_int $int10 = 0;
+if_setsize(0, $int7, ^setsize_minus, ^setsize_abs, $component3);
+if ($int7 > if_getheight($component2)) {
+    $int10 = if_getscrolly($component2);
+    if_setscrollsize(0, $int7, $component2);
+} else {
+    if_setscrollsize(0, 0, $component2);
+}
+~scrollbar_resize($component1, $component2, 0);

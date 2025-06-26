@@ -1,0 +1,15 @@
+// 7910
+[proc,script7910](dbrow $dbrow0)(string)
+if ($dbrow0 = null) {
+    return("");
+}
+def_string $string0 = "";
+switch_dbtable (db_getrowtable($dbrow0)) {
+    case sailing_boat :
+        $string0 = "Sailing level: <tostring(db_getfield($dbrow0, sailing_boat:level_required, 0))><br>";
+        $string0 = append($string0, "Player capacity: <tostring(db_getfield($dbrow0, sailing_boat:player_capacity, 0))><br>");
+        $string0 = append($string0, "Size: <db_getfield($dbrow0, sailing_boat:size_desc, 0)><br>");
+        $string0 = append($string0, "Crew slots: <tostring(db_getfield($dbrow0, sailing_boat:crew_capacity, 0))><br>");
+        $string0 = append($string0, "Facilities slots: <tostring(db_getfield($dbrow0, sailing_boat:facility_amount, 0))>");
+}
+return($string0);

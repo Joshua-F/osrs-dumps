@@ -1,0 +1,65 @@
+// 8095
+[proc,script8095](int $int0)(dbrow, int)
+def_dbrow $dbrow1 = null;
+if (%sailing_sidepanel_boat_type = null) {
+    return(null, -1);
+}
+def_coord $coord2 = null;
+def_int $int3 = 0;
+def_dbrow $dbrow4 = null;
+def_int $int5 = -1;
+switch_int ($int0) {
+    case 0 :
+        $dbrow1 = db_getfield(%sailing_sidepanel_boat_type, sailing_boat:sail_option, %sailing_sidepanel_facility_sail);
+    case 1 :
+        $dbrow1 = db_getfield(%sailing_sidepanel_boat_type, sailing_boat:steering_option, %sailing_sidepanel_facility_helm);
+    case 2 :
+        $coord2, $int3, $dbrow4 = db_getfield(%sailing_sidepanel_boat_type, sailing_boat:hotspot, 0);
+        if ($dbrow4 ! null) {
+            $dbrow1 = db_getfield($dbrow4, sailing_boat_hotspot:option, calc(%sailing_sidepanel_facility_hotspot0 - 1));
+        }
+        $int5 = 0;
+    case 3 :
+        $coord2, $int3, $dbrow4 = db_getfield(%sailing_sidepanel_boat_type, sailing_boat:hotspot, 1);
+        if ($dbrow4 ! null) {
+            $dbrow1 = db_getfield($dbrow4, sailing_boat_hotspot:option, calc(%sailing_sidepanel_facility_hotspot1 - 1));
+        }
+        $int5 = 1;
+    case 4 :
+        $coord2, $int3, $dbrow4 = db_getfield(%sailing_sidepanel_boat_type, sailing_boat:hotspot, 2);
+        if ($dbrow4 ! null) {
+            $dbrow1 = db_getfield($dbrow4, sailing_boat_hotspot:option, calc(%sailing_sidepanel_facility_hotspot2 - 1));
+        }
+        $int5 = 2;
+    case 5 :
+        $coord2, $int3, $dbrow4 = db_getfield(%sailing_sidepanel_boat_type, sailing_boat:hotspot, 3);
+        if ($dbrow4 ! null) {
+            $dbrow1 = db_getfield($dbrow4, sailing_boat_hotspot:option, calc(%sailing_sidepanel_facility_hotspot3 - 1));
+        }
+        $int5 = 3;
+    case 6 :
+        $coord2, $int3, $dbrow4 = db_getfield(%sailing_sidepanel_boat_type, sailing_boat:hotspot, 4);
+        if ($dbrow4 ! null) {
+            $dbrow1 = db_getfield($dbrow4, sailing_boat_hotspot:option, calc(%sailing_sidepanel_facility_hotspot4 - 1));
+        }
+        $int5 = 4;
+    case 7 :
+        $coord2, $int3, $dbrow4 = db_getfield(%sailing_sidepanel_boat_type, sailing_boat:hotspot, 5);
+        if ($dbrow4 ! null) {
+            $dbrow1 = db_getfield($dbrow4, sailing_boat_hotspot:option, calc(%sailing_sidepanel_facility_hotspot5 - 1));
+        }
+        $int5 = 5;
+    case 8 :
+        $coord2, $int3, $dbrow4 = db_getfield(%sailing_sidepanel_boat_type, sailing_boat:hotspot, 6);
+        if ($dbrow4 ! null) {
+            $dbrow1 = db_getfield($dbrow4, sailing_boat_hotspot:option, calc(%sailing_sidepanel_facility_hotspot6 - 1));
+        }
+        $int5 = 6;
+    case 9 :
+        $coord2, $int3, $dbrow4 = db_getfield(%sailing_sidepanel_boat_type, sailing_boat:hotspot, 7);
+        if ($dbrow4 ! null) {
+            $dbrow1 = db_getfield($dbrow4, sailing_boat_hotspot:option, calc(%sailing_sidepanel_facility_hotspot7 - 1));
+        }
+        $int5 = 7;
+}
+return($dbrow1, $int5);

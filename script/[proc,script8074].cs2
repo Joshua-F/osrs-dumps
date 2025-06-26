@@ -1,0 +1,35 @@
+// 8074
+[proc,script8074](int $int0, int $int1, int $int2, int $int3, dbrow $dbrow4, component $component5, component $component6, int $int7, int $int8)(int, int, int)
+def_int $int9 = 30;
+def_boolean $boolean10 = db_getfield($dbrow4, sailing_sidepanel_widget_button:long_button, 0);
+if ($boolean10 = true) {
+    $int9 = 106;
+}
+def_string $string0 = db_getfield($dbrow4, sailing_sidepanel_widget_button:default_button_caption, 0);
+def_int $int11 = db_getfieldcount($dbrow4, sailing_sidepanel_widget_button:toggle_graphic);
+def_int $int12 = db_getfieldcount($dbrow4, sailing_sidepanel_widget_button:toggle_optext);
+def_int $int13 = db_getfieldcount($dbrow4, sailing_sidepanel_widget_button:toggle_button_caption);
+def_string $string1 = db_getfield($dbrow4, sailing_sidepanel_widget_button:default_optext, 0);
+def_int $int14 = 0;
+def_graphic $graphic15 = null;
+$graphic15, $int14 = db_getfield($dbrow4, sailing_sidepanel_widget_button:default_graphic, 0);
+if ($int8 < $int11) {
+    $graphic15, $int14 = db_getfield($dbrow4, sailing_sidepanel_widget_button:toggle_graphic, $int8);
+}
+if ($int8 < $int12) {
+    $string1 = db_getfield($dbrow4, sailing_sidepanel_widget_button:toggle_optext, $int8);
+}
+if ($int8 < $int13) {
+    $string0 = db_getfield($dbrow4, sailing_sidepanel_widget_button:toggle_button_caption, $int8);
+}
+if ($int7 = 2) {
+    $int0, $int1 = ~script8082($component5, $component6, $int0, $int1, $int9, 30, $int2, $int3, $string0, $graphic15, $int14, ^white, 0x808080, 1, $int7, 1);
+    cc_setop(1, $string1);
+} else if ($int7 = 0) {
+    $int0, $int1 = ~script8082($component5, $component6, $int0, $int1, $int9, 30, $int2, $int3, $string0, $graphic15, $int14, ^white, 0x808080, 0, $int7, 1);
+    cc_setop(1, $string1);
+} else {
+    $int0, $int1 = ~script8082($component5, $component6, $int0, $int1, $int9, 30, $int2, $int3, $string0, $graphic15, $int14, ^white, 0x808080, 1, $int7, 0);
+}
+$int2 = calc($int2 + $int9 + 8);
+return($int0, $int1, $int2);

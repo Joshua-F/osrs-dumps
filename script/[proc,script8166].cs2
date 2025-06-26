@@ -1,0 +1,10 @@
+// 8166
+[proc,script8166](dbrow $dbrow0)(int)
+def_dbrow $dbrow1 = db_getfield($dbrow0, sailing_charting_core:sailing_sea, 0);
+def_int $int2 = db_getfield($dbrow1, sailing_sea:charting_level, 0);
+def_obj $obj3 = null;
+if ($dbrow0 ! null) {
+    $obj3 = db_getfield($dbrow0, sailing_charting_core:tool_needed, 0);
+}
+def_int $int4 = enum(obj, int, enum_5751, $obj3);
+return(max($int2, $int4));

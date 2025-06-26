@@ -1,0 +1,15 @@
+// 8073
+[proc,script8073](dbrow $dbrow0)(string)
+def_string $string0 = "Crew mate";
+if ($dbrow0 = null) {
+    return($string0);
+}
+if (db_getrowtable($dbrow0) ! sailing_crew) {
+    ~debug_mes_error("Crew data for facility", "DBTable was not sailing_crew.");
+    return($string0);
+}
+def_npc $npc1 = db_getfield($dbrow0, sailing_crew:cargo_npc, 0);
+if ($npc1 ! null) {
+    $string0 = nc_name($npc1);
+}
+return($string0);

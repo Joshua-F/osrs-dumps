@@ -1,0 +1,31 @@
+// 8195
+[clientscript,script8195]
+~script8198;
+def_int $int0 = ~v2_stone_button_filled(sailing_alpha_runefest:survey_button);
+cc_create(sailing_alpha_runefest:survey_button, ^iftype_text, $int0);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_setcolour(^yellow);
+cc_settext("Feedback survey");
+cc_settextfont(p12_full);
+cc_settextshadow(true);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+if_setop(1, "Open Survey", sailing_alpha_runefest:survey_button);
+if_setonop("script8196", sailing_alpha_runefest:survey_button);
+if (~on_mobile = false) {
+    if_setonmouserepeat("v2_stone_button_change_in(sailing_alpha_runefest:survey_button, 0)", sailing_alpha_runefest:survey_button);
+    if_setonmouseleave("v2_stone_button_change_out(sailing_alpha_runefest:survey_button, 0)", sailing_alpha_runefest:survey_button);
+}
+if (%sailing_alpha_runefest_disclaimer_understood = 0) {
+    if_sethide(false, sailing_alpha_runefest:confirm);
+    ~steelborder(sailing_alpha_runefest:confirm_frame, "Welcome to the Sailing Beta!", 1);
+    if_setcolour(0x9f9f9f, sailing_alpha_runefest:confirm_text);
+    if_settext("Please note:<br><col=ff981f>- Gameplay and graphics are not final.</col> Sailing is heavily work-in-progress.<br>- XP rates and rewards are not yet balanced.<br>- You may experience flickering and other graphical issues in some areas.<br><br>To open this guide again, you can <col=ff981f>click the watermark</col> at the bottom left of your screen at any time!", sailing_alpha_runefest:confirm_text);
+    ~stonebutton_init("Understood!", sailing_alpha_runefest:confirm_button, p12_full, 0);
+    if_setonop("script8207", sailing_alpha_runefest:confirm_button);
+}
+def_component $component1 = sailing_alpha_runefest:scrollbar;
+def_component $component2 = sailing_alpha_runefest:button_layer_scrollable;
+~scrollbar_vertical($component1, $component2, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+if_setscrollsize(0, 292, $component2);
+~scrollbar_resize($component1, $component2, 0);

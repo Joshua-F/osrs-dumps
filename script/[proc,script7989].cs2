@@ -1,0 +1,38 @@
+// 7989
+[proc,script7989](intarray $intarray0, int $int0, int $int1, int $int2, enum $enum3, int $int4)
+def_int $int5 = calc(($int0 + $int1) / 2);
+def_int $int6 = $intarray0($int5);
+$intarray0($int5) = $intarray0($int1);
+$intarray0($int1) = $int6;
+def_int $int7 = $int0;
+def_int $int8 = $int0;
+def_int $int9 = -1;
+def_int $int10 = 0;
+def_int $int11 = 0;
+while ($int8 < $int1) {
+    if (cc_find(enum(int, component, $enum3, $intarray0($int8)), $int2) = ^true) {
+        $int10 = cc_getgradientcolour;
+    } else {
+        $int10 = 120;
+    }
+    if (cc_find(enum(int, component, $enum3, $int6), $int2) = ^true) {
+        $int11 = cc_getgradientcolour;
+    } else {
+        $int11 = 120;
+    }
+    if ($int10 <= $int11) {
+        $int9 = $intarray0($int8);
+        $intarray0($int8) = $intarray0($int7);
+        $intarray0($int7) = $int9;
+        $int7 = calc($int7 + 1);
+    }
+    $int8 = calc($int8 + 1);
+}
+$intarray0($int1) = $intarray0($int7);
+$intarray0($int7) = $int6;
+if ($int0 < calc($int7 - 1)) {
+    ~script7989($intarray0, $int0, calc($int7 - 1), $int2, $enum3, $int4);
+}
+if (calc($int7 + 1) < $int1) {
+    ~script7989($intarray0, calc($int7 + 1), $int1, $int2, $enum3, $int4);
+}

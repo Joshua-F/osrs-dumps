@@ -1,0 +1,108 @@
+// 7980
+[proc,script7980](dbrow $dbrow0, component $component1, boolean $boolean2)
+cc_deleteall(sailing_customisation:facility_detailed_info);
+cc_deleteall(sailing_customisation:facility_detailed_materials);
+if_clearops(sailing_customisation:facility_detailed_materials_frame);
+if ($dbrow0 = null) {
+    if_sethide(false, sailing_customisation:facility_main);
+    if_sethide(true, sailing_customisation:facility_detailed);
+    return;
+}
+~script7985;
+~script7987($component1, $boolean2);
+if_setmodel(~script8008($dbrow0, true), sailing_customisation:facility_detailed_model);
+if_setmodelangle(~script8009($dbrow0, 1), sailing_customisation:facility_detailed_model);
+if_setmodelanim(~script8010($dbrow0), sailing_customisation:facility_detailed_model);
+if_settext(~script8004($dbrow0), sailing_customisation:facility_detailed_title);
+def_int $int3 = 0;
+def_string $string0 = ~script8006($dbrow0);
+def_int $int4 = 0;
+def_int $int5 = 0;
+$int4, $int5 = ~script8007($dbrow0);
+switch_int ($int4) {
+    case 1 :
+        $string0 = "<$string0><br><br>Crew require Helmsmanship <tostring($int5)> to use this facility.";
+    case 2 :
+        $string0 = "<$string0><br><br>Crew require Privateering <tostring($int5)> to use this facility.";
+    case 3 :
+        $string0 = "<$string0><br><br>Crew require Deckhandiness <tostring($int5)> to use this facility.";
+}
+def_int $int6 = 0;
+def_int $int7 = calc(paraheight($string0, if_getwidth(sailing_customisation:facility_detailed_info), p12_full) * 14);
+cc_create(sailing_customisation:facility_detailed_info, ^iftype_text, $int3);
+cc_setsize(4, $int7, ^setsize_minus, ^setsize_abs);
+cc_setposition(2, $int6, ^setpos_abs_left, ^setpos_abs_top);
+cc_settext($string0);
+cc_setcolour(0xff981f);
+cc_settextfont(p12_full);
+cc_settextshadow(true);
+cc_settextalign(^settextalign_left, ^settextalign_centre, 14);
+$int6 = calc($int6 + $int7 + 10);
+$int3 = calc($int3 + 1);
+def_int $int8 = calc((if_getwidth(sailing_customisation:facility_detailed_materials_frame) - 4 - 52 * 4) / 5);
+def_int $int9 = $int8;
+def_dbtable $dbtable10 = db_getrowtable($dbrow0);
+$int6 = 0;
+$int3 = 0;
+$int3 = ~script7983($dbtable10, $dbrow0, sailing_customisation:facility_detailed_skills, $int3, sailing, ~script7993(db_getrowtable($dbrow0), $dbrow0), $int9, $int6, 52, 31);
+$int9 = calc($int9 + $int8 + 52);
+$int3 = ~script7983($dbtable10, $dbrow0, sailing_customisation:facility_detailed_skills, $int3, construction, ~script7994(db_getrowtable($dbrow0), $dbrow0), $int9, $int6, 52, 31);
+$int9 = calc($int9 + $int8 + 52);
+def_int $int11 = ~script7995(db_getrowtable($dbrow0), $dbrow0);
+def_int $int12 = 0;
+def_stat $stat13 = null;
+def_int $int14 = 0;
+while ($int12 < $int11) {
+    $stat13, $int14 = ~script7996($dbtable10, $dbrow0, $int12);
+    $int3 = ~script7983($dbtable10, $dbrow0, sailing_customisation:facility_detailed_skills, $int3, $stat13, $int14, $int9, $int6, 52, 31);
+    $int9 = calc($int9 + $int8 + 52);
+    $int12 = calc($int12 + 1);
+}
+if_setsize($int9, if_getheight(sailing_customisation:facility_detailed_skills), ^setsize_abs, ^setsize_abs, sailing_customisation:facility_detailed_skills);
+$int11 = ~script7999(db_getrowtable($dbrow0), $dbrow0);
+$int12 = 0;
+$int3 = 0;
+$int8 = calc((if_getwidth(sailing_customisation:facility_detailed_materials_frame) - 4 - (36 + 8) * 5) / 6);
+$int6 = 0;
+$int9 = $int8;
+def_string $string1 = "<~script8004($dbrow0)>: ";
+def_obj $obj15 = null;
+def_int $int16 = 0;
+def_boolean $boolean17 = false;
+def_string $string2 = "";
+$boolean17, $string2 = ~script7981($dbrow0);
+if ($boolean17 = true) {
+    $string1 = "<$string1><$string2>";
+    if_setsize(8, if_getheight(sailing_customisation:facility_detailed_materials), ^setsize_minus, ^setsize_abs, sailing_customisation:facility_detailed_materials);
+    cc_create(sailing_customisation:facility_detailed_materials, ^iftype_text, $int3);
+    cc_setsize(4, 4, ^setsize_minus, ^setsize_minus);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_settext($string2);
+    cc_setcolour(0xff981f);
+    cc_settextfont(p12_full);
+    cc_settextshadow(true);
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 14);
+} else {
+    if ($int11 <= 0) {
+        $string1 = "<$string1>None.";
+    } else {
+        while ($int12 < $int11) {
+            $obj15, $int16 = ~script8000(db_getrowtable($dbrow0), $dbrow0, $int12);
+            if ($int12 > 0) {
+                $string1 = append($string1, ", <tostring($int16)> x <oc_name($obj15)>");
+            } else {
+                $string1 = append($string1, "<tostring($int16)> x <oc_name($obj15)>");
+            }
+            $int3 = ~script7984(sailing_customisation:facility_detailed_materials, $int3, $obj15, $int16, $int9, $int6, calc(36 + 8), calc(32 + 8));
+            $int9 = calc($int9 + $int8 + (36 + 8));
+            $int12 = calc($int12 + 1);
+        }
+    }
+    if_setsize($int9, if_getheight(sailing_customisation:facility_detailed_materials), ^setsize_abs, ^setsize_abs, sailing_customisation:facility_detailed_materials);
+}
+if (~on_mobile = false) {
+    if_setonmouseover("cc_colour_swapper(sailing_customisation:facility_detailed_materials_frame, 0, 12099970)", sailing_customisation:facility_detailed_materials_frame);
+    if_setonmouseleave("cc_colour_swapper(sailing_customisation:facility_detailed_materials_frame, 0, 7496785)", sailing_customisation:facility_detailed_materials_frame);
+}
+if_setop(1, "Check materials", sailing_customisation:facility_detailed_materials_frame);
+if_setonop("script7982($string1)", sailing_customisation:facility_detailed_materials_frame);

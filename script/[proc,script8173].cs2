@@ -1,0 +1,90 @@
+// 8173
+[proc,script8173](int $int0)
+def_component $component1 = sailing_crew:list;
+def_component $component2 = sailing_crew:list_scrollbar;
+def_component $component3 = sailing_crew:crew_list_clicklayer;
+def_component $component4 = sailing_crew:crew_list_scrollable;
+def_graphic $graphic5 = p12_full;
+def_int $rgb6 = 0xff981f;
+def_int $rgb7 = ^white;
+def_int $int8 = 40;
+def_int $int9 = 0;
+def_int $int10 = 245;
+def_int $int11 = 0;
+def_int $int12 = 0;
+def_string $string0 = "";
+def_int $int13 = db_listall(sailing_crew);
+def_dbrow $dbrow14 = null;
+def_int $int15 = 1;
+def_npc $npc16 = null;
+cc_deleteall($component1);
+cc_deleteall($component2);
+cc_deleteall($component3);
+cc_deleteall($component4);
+while ($int15 <= $int13) {
+    db_find(sailing_crew:unique_id, $int15);
+    $dbrow14 = db_findnext;
+    if ($dbrow14 = null) {
+        ~error("Invalid dbrow found in crew redraw");
+        return;
+    }
+    $npc16 = db_getfield($dbrow14, sailing_crew:cargo_npc, 0);
+    $string0 = nc_name($npc16);
+    cc_create($component1, ^iftype_rectangle, $int11);
+    cc_setsize(0, $int8, ^setsize_minus, ^setsize_abs);
+    cc_setposition(0, $int9, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setcolour($rgb7);
+    cc_setfill(true);
+    if (calc($int11 / 3 % 2) = 1) {
+        $int10 = 230;
+    } else {
+        $int10 = 245;
+    }
+    if (~on_mobile = false) {
+        cc_setonmouseover("script8172($component1, $int11, $int15, 220)");
+    }
+    cc_setonmouseleave("script8172($component1, $int11, $int15, $int10)");
+    if (%sailing_crew_selected_crew_id = $int15) {
+        $int10 = 200;
+    }
+    cc_settrans($int10);
+    $int11 = calc(1 + $int11);
+    cc_create($component3, ^iftype_rectangle, $int12);
+    cc_setsize(0, $int8, ^setsize_minus, ^setsize_abs);
+    cc_setposition(0, $int9, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setfill(true);
+    cc_setop(1, "Select");
+    cc_setonop("opsound(event_op, 2)");
+    cc_setopbase("<col=ff9040><$string0></col>");
+    cc_settrans(255);
+    $int12 = calc($int12 + 1);
+    cc_create($component1, ^iftype_text, $int11);
+    cc_setsize(43, $int8, ^setsize_minus, ^setsize_abs);
+    cc_setposition(5, $int9, ^setpos_abs_right, ^setpos_abs_top);
+    if (~script8179($int15) = 0) {
+        $string0 = "<col=b2b2b2><$string0> (Locked)</col>";
+    }
+    cc_settext($string0);
+    cc_settextfont($graphic5);
+    cc_setcolour($rgb6);
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 14);
+    cc_settextshadow(true);
+    $int11 = calc(1 + $int11);
+    cc_create($component1, ^iftype_model, $int11);
+    cc_setnpchead($npc16);
+    cc_setsize(38, 38, ^setsize_abs, ^setsize_abs);
+    cc_setposition(5, calc($int9 + 1), ^setpos_abs_left, ^setpos_abs_top);
+    cc_setmodelangle(0, 25, 0, 0, 0, 2750);
+    $int9 = calc($int8 + $int9);
+    $int11 = calc(1 + $int11);
+    $dbrow14 = null;
+    $int15 = calc(1 + $int15);
+    $string0 = "";
+    $npc16 = null;
+}
+if_setscrollsize(0, $int9, $component4);
+if ($int0 = 1) {
+    if_setscrollpos(0, 0, $component4);
+}
+~scrollbar_vertical($component2, $component4, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~scrollbar_vertical_rebuild($component2, $component4);

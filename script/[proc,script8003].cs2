@@ -1,0 +1,21 @@
+// 8003
+[proc,script8003](dbrow $dbrow0, int $int1, int $int2, int $int3)(dbrow)
+if ($dbrow0 = null) {
+    return(null);
+}
+def_dbrow $dbrow4 = null;
+switch_int ($int1) {
+    case 0 :
+        return(db_getfield($dbrow0, sailing_boat:keel_option, $int3));
+    case 1 :
+        return(db_getfield($dbrow0, sailing_boat:hull_option, $int3));
+    case 2 :
+        return(db_getfield($dbrow0, sailing_boat:sail_option, $int3));
+    case 3 :
+        return(db_getfield($dbrow0, sailing_boat:steering_option, $int3));
+    case 4 :
+        $dbrow4 = db_getfield($dbrow0, sailing_boat:hotspot:2, $int2);
+        $dbrow4 = db_getfield($dbrow4, sailing_boat_hotspot:option, $int3);
+        return($dbrow4);
+}
+return(null);

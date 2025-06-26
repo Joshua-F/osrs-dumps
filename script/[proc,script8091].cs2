@@ -1,0 +1,17 @@
+// 8091
+[proc,script8091]()(string)
+if (%sailing_player_is_on_boat = 0) {
+    return("Not on boat");
+}
+def_dbrow $dbrow0 = null;
+def_string $string0 = "";
+if (db_find(sailing_boat:type_id, %sailing_boarded_boat_type) = 1) {
+    $dbrow0 = db_findnext;
+    if ($dbrow0 ! null) {
+        $string0 = ~script8019;
+        if (string_length($string0) > 0) {
+            return($string0);
+        }
+    }
+}
+return("Boat");

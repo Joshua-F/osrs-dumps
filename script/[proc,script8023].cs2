@@ -1,0 +1,36 @@
+// 8023
+[proc,script8023](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7)
+cc_deleteall($component0);
+cc_deleteall($component1);
+cc_deleteall($component2);
+cc_deleteall($component3);
+cc_deleteall($component4);
+cc_deleteall($component6);
+cc_deleteall($component7);
+if (%sailing_player_is_on_boat = 0) {
+    cc_create($component0, ^iftype_text, 0);
+    cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_setcolour(0xff981f);
+    cc_settext("The active crew can only be viewed while on a boat.");
+    cc_settextfont(p11_full);
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    cc_settextshadow(true);
+    return;
+}
+def_int $int8 = 0;
+if (%sailing_sidepanel_crew_player_view = 1) {
+    $int8 = 1;
+}
+def_int $int9 = 0;
+def_int $int10 = 0;
+def_string $string0 = "";
+$int9, $int10, $string0 = ~script8025($int8);
+~script8024($component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $int8);
+~script8027($component7, $int9, $int10, $string0);
+if_setonvartransmit("script8026($component7){sailing_sidepanel_boat_information}", $component0);
+if ($int8 = 1) {
+    ~script8031($component3, $component2);
+} else {
+    ~script8029($component3, $int9, $int10, $component4, $component5, $component1);
+}

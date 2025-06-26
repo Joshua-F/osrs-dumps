@@ -1,0 +1,14 @@
+// 8204
+[proc,script8204](dbrow $dbrow0)(string)
+def_int $int1 = db_getfieldcount($dbrow0, sailing_alpha_runefest_features:faqs);
+def_int $int2 = 0;
+def_string $string0 = "";
+def_string $string1 = "";
+def_string $string2 = "";
+while ($int1 ! $int2) {
+    $string1, $string2 = db_getfield($dbrow0, sailing_alpha_runefest_features:faqs, $int2);
+    $string0 = append($string0, "<col=ffffff><$string1></col><br>");
+    $string0 = append($string0, "<$string2><br><br>");
+    $int2 = calc($int2 + 1);
+}
+return($string0);

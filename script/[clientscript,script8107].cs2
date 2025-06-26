@@ -1,0 +1,13 @@
+// 8107
+[clientscript,script8107](int $int0)
+$int0 = calc($int0 + clientclock);
+if ($int0 <= 0) {
+    if_setontimer(null, sailing_bt_hud:bt_current_time);
+    return;
+}
+def_int $int1 = calc($int0 / 50);
+if ($int1 > 3600) {
+    if_settext("1h+", sailing_bt_hud:bt_current_time);
+} else {
+    if_settext(~script4159($int1, 1), sailing_bt_hud:bt_current_time);
+}

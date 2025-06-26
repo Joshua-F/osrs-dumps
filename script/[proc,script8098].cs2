@@ -1,0 +1,11 @@
+// 8098
+[proc,script8098]()(boolean)
+def_boolean $boolean0 = false;
+def_dbrow $dbrow1 = null;
+if (db_find(sailing_boat:type_id, %sailing_boarded_boat_type) = 1) {
+    $dbrow1 = db_findnext;
+    if ($dbrow1 ! null) {
+        $boolean0 = db_getfield($dbrow1, sailing_boat:combined_navigation, 0);
+    }
+}
+return($boolean0);

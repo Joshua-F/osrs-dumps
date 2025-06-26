@@ -1,0 +1,38 @@
+// 8017
+[proc,script8017](int $int0, int $int1, int $int2)(string)
+def_string $string0 = "";
+def_string $string1 = "";
+def_string $string2 = "";
+$int0, $int1, $int2 = calc($int0 - 1), calc($int1 - 1), calc($int2 - 1);
+if ($int0 >= 0) {
+    $string0 = db_getfield(sailing_boat_name_prefix_options, sailing_boat_name_options:option:0, $int0);
+} else {
+    $string0 = db_getfield(sailing_boat_name_prefix_options, sailing_boat_name_options:default, 0);
+}
+if ($int1 >= 0) {
+    $string1 = db_getfield(sailing_boat_name_descriptor_options, sailing_boat_name_options:option:0, $int1);
+} else {
+    $string1 = db_getfield(sailing_boat_name_descriptor_options, sailing_boat_name_options:default, 0);
+}
+if ($int2 >= 0) {
+    $string2 = db_getfield(sailing_boat_name_noun_options, sailing_boat_name_options:option:0, $int2);
+} else {
+    $string2 = db_getfield(sailing_boat_name_noun_options, sailing_boat_name_options:default, 0);
+}
+def_string $string3 = "";
+if (string_length($string0) > 0) {
+    $string3 = $string0;
+}
+if (string_length($string1) > 0) {
+    if (string_length($string3) > 0) {
+        $string3 = "<$string3> ";
+    }
+    $string3 = "<$string3><$string1>";
+}
+if (string_length($string2) > 0) {
+    if (string_length($string3) > 0) {
+        $string3 = "<$string3> ";
+    }
+    $string3 = "<$string3><$string2>";
+}
+return($string3);

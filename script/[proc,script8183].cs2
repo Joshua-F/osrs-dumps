@@ -1,0 +1,9 @@
+// 8183
+[proc,script8183](int $int0)(dbrow)
+db_find(sailing_crew:unique_id, $int0);
+def_dbrow $dbrow1 = db_findnext;
+if ($dbrow1 = null) {
+    ~error("Could not find crew data for id <tostring($int0)>.");
+    return(null);
+}
+return($dbrow1);

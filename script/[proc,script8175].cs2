@@ -1,0 +1,51 @@
+// 8175
+[proc,script8175]
+if (%sailing_crew_selected_slot_id > 4 | %sailing_crew_selected_slot_id = -1) {
+    ~error("Invalid slot id.");
+    return;
+}
+def_component $component0 = sailing_crew:slot_info;
+def_graphic $graphic1 = p11_full;
+def_int $rgb2 = 0xff981f;
+def_int $rgb3 = ^white;
+def_int $int4 = 245;
+def_int $int5 = 230;
+def_int $int6 = 0;
+def_int $int7 = -1;
+def_npc $npc8 = null;
+def_string $string0 = "Slot selected:<br><tostring(calc(%sailing_crew_selected_slot_id + 1))>";
+def_string $string1 = "Crew in slot:";
+cc_deleteall($component0);
+$int7 = ~script8180(%sailing_crew_selected_slot_id);
+if ($int7 = 0) {
+    $string1 = "<$string1><br>No Crewmate";
+} else {
+    db_find(sailing_crew:unique_id, $int7);
+    $npc8 = db_getfield(db_findnext, sailing_crew:cargo_npc, 0);
+    $string1 = "<$string1><br><nc_name($npc8)>";
+}
+cc_create($component0, ^iftype_rectangle, $int6);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+cc_setcolour($rgb3);
+cc_setfill(true);
+cc_settrans($int4);
+$int6 = calc($int6 + 1);
+cc_create($component0, ^iftype_text, $int6);
+cc_setsize(0, 37, ^setsize_minus, ^setsize_abs);
+cc_setposition(0, 2, ^setpos_abs_left, ^setpos_abs_top);
+cc_settext($string0);
+cc_settextfont($graphic1);
+cc_setcolour($rgb2);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 14);
+cc_settextshadow(true);
+$int6 = calc($int6 + 1);
+cc_create($component0, ^iftype_text, $int6);
+cc_setsize(0, 37, ^setsize_minus, ^setsize_abs);
+cc_setposition(0, 37, ^setpos_abs_left, ^setpos_abs_top);
+cc_settext($string1);
+cc_settextfont($graphic1);
+cc_setcolour($rgb2);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 14);
+cc_settextshadow(true);
+$int6 = calc($int6 + 1);

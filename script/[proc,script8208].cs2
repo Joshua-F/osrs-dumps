@@ -1,0 +1,60 @@
+// 8208
+[proc,script8208](component $component0, dbrow $dbrow1)
+def_int $int2 = db_getfield($dbrow1, sailing_alpha_runefest_features:level, 0);
+def_int $int3 = 0;
+if (stat_base(sailing) < $int2) {
+    $int3 = ~v2_stone_button_in_filled($component0);
+} else {
+    $int3 = ~v2_stone_button_filled($component0);
+}
+cc_create($component0, ^iftype_text, $int3);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(10, 4, ^setpos_abs_left, ^setpos_abs_top);
+if (stat_base(sailing) < $int2) {
+    cc_setcolour(0x9f9f9f);
+} else {
+    cc_setcolour(0xff981f);
+}
+cc_settextfont(b12_full);
+cc_settextshadow(true);
+cc_settext(db_getfield($dbrow1, sailing_alpha_runefest_features:name, 0));
+$int3 = calc($int3 + 1);
+cc_create($component0, ^iftype_graphic, $int3);
+cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+cc_setposition(7, 0, ^setpos_abs_right, ^setpos_abs_centre);
+cc_setobject_nonum(db_getfield($dbrow1, sailing_alpha_runefest_features:icon, 0), 0);
+$int3 = calc($int3 + 1);
+cc_create($component0, ^iftype_text, $int3);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(10, 19, ^setpos_abs_left, ^setpos_abs_top);
+cc_setcolour(0x9f9f9f);
+cc_settextfont(p12_full);
+cc_settextshadow(true);
+if (stat_base(sailing) < $int2) {
+    cc_settext("Learn more at level <tostring($int2)>.");
+    return;
+} else {
+    cc_settext(db_getfield($dbrow1, sailing_alpha_runefest_features:blurb, 0));
+}
+def_int $int4 = ~script8191($dbrow1);
+def_int $int5 = ~script8192($dbrow1);
+if ($int4 > 0) {
+    $int3 = calc($int3 + 1);
+    cc_create($component0, ^iftype_text, $int3);
+    cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+    cc_setposition(10, 3, ^setpos_abs_left, ^setpos_abs_bottom);
+    cc_settextalign(^settextalign_left, ^settextalign_bottom, 0);
+    cc_settextfont(p11_full);
+    cc_settextshadow(true);
+    if ($int5 = $int4) {
+        cc_settext("<col=0dc10d><tostring($int5)>/<tostring($int4)> tasks</col>");
+    } else {
+        cc_settext("<col=ffff00><tostring($int5)>/<tostring($int4)> tasks</col>");
+    }
+}
+if (~on_mobile = false) {
+    if_setonmouserepeat("v2_stone_button_change_in($component0, 0)", $component0);
+    if_setonmouseleave("v2_stone_button_change_out($component0, 0)", $component0);
+}
+if_setop(1, "Select activity", $component0);
+if_setonop("script8199($dbrow1)", $component0);

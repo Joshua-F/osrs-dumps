@@ -1,0 +1,29 @@
+// 8130
+[proc,script8130]
+def_int $int0 = 0;
+def_component $component1 = sailing_log:sailing_btn_menu;
+def_component $component2 = sailing_log:sailing_menu_frame;
+def_component $component3 = sailing_log:menu_overlay;
+if (%sailing_intro < 46) {
+    if_sethide(true, $component1);
+    return;
+}
+if (~on_mobile = true) {
+    if_setsize(33, 33, ^setsize_abs, ^setsize_abs, $component1);
+    if_setposition(1, 1, ^setpos_abs_left, ^setpos_abs_top, $component1);
+} else {
+    if_setsize(21, 21, ^setsize_abs, ^setsize_abs, $component1);
+    if_setposition(7, 7, ^setpos_abs_left, ^setpos_abs_top, $component1);
+}
+cc_create($component1, ^iftype_graphic, $int0);
+cc_setsize(21, 21, ^setsize_abs, ^setsize_abs);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_setgraphic("menu_buttons,0");
+def_graphic $graphic4 = "menu_buttons,1";
+def_graphic $graphic5 = "menu_buttons,0";
+if (~on_mobile = false) {
+    cc_setonmouserepeat("cc_graphic_swapper(event_com, event_comsubid, $graphic4, null)");
+    cc_setonmouseleave("cc_graphic_swapper(event_com, event_comsubid, $graphic5, null)");
+}
+if_setonop("script8133(event_op, $component1, $component2, $int0, $component3)", $component1);
+if_setop(1, "Show Menu", $component1);

@@ -1,0 +1,28 @@
+// 8185
+[proc,script8185](int $int0, dbrow $dbrow1)(int)
+def_int $int2 = 1;
+if ($int0 < 1 | $int0 > 3) {
+    ~error("Invalid $stat_id input. $stat_id was <tostring($int0)>.");
+    return($int2);
+}
+if ($dbrow1 = null) {
+    ~error("Null $crew_dbrow input.");
+    return($int2);
+}
+if (db_getrowtable($dbrow1) ! sailing_crew) {
+    ~error("$crew_dbrow input not of type sailing_crew.");
+    return($int2);
+}
+switch_int ($int0) {
+    case 1 :
+        $int2 = db_getfield($dbrow1, sailing_crew:stat_helmsmanship, 0);
+    case 2 :
+        $int2 = db_getfield($dbrow1, sailing_crew:stat_privateering, 0);
+    case 3 :
+        $int2 = db_getfield($dbrow1, sailing_crew:stat_deckhandiness, 0);
+}
+if ($int2 > 5 | $int2 < 1) {
+    $int2 = max(1, min(5, $int2));
+    ~error("Stat value fell outside of limits, so was clamped. $crew_dbrow was probably configured incorrectly.");
+}
+return($int2);

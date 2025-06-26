@@ -1,0 +1,33 @@
+// 8065
+[proc,script8065](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10, component $component11, component $component12, component $component13, component $component14, component $component15, component $component16, component $component17, component $component18, component $component19, component $component20, component $component21, component $component22, component $component23, component $component24, component $component25, component $component26, component $component27, component $component28, component $component29)
+if_sethide(true, $component1);
+if_sethide(true, $component9);
+if_sethide(true, $component14);
+if_sethide(true, $component22);
+cc_deleteall($component0);
+cc_create($component0, ^iftype_text, 0);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top);
+cc_setcolour(0xff981f);
+cc_settextfont(p12_full);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+cc_settextshadow(true);
+switch_int (%sailing_sidepanel_tabs) {
+    case 0 :
+        if (%sailing_sidepanel_crew_assignation = 1) {
+            if_sethide(false, $component22);
+            ~script8040($component22, $component23, $component24, $component25, $component26, $component27, $component28, $component29, $component0);
+        } else {
+            cc_settext("Facilities");
+            if_sethide(false, $component1);
+            ~script8066($component2, $component3, $component4, $component5, $component6, $component7, $component8);
+        }
+    case 1 :
+        cc_settext("Stats");
+        if_sethide(false, $component9);
+        ~script8081($component10, $component11, $component12, $component13);
+    case 2 :
+        cc_settext("Crew");
+        if_sethide(false, $component14);
+        ~script8023($component14, $component15, $component16, $component17, $component18, $component19, $component20, $component21);
+}

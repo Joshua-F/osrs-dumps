@@ -1,0 +1,22 @@
+// 8008
+[proc,script8008](dbrow $dbrow0, boolean $boolean1)(model)
+if ($dbrow0 = null) {
+    return(model_4243);
+}
+switch_dbtable (db_getrowtable($dbrow0)) {
+    case sailing_boat_facility :
+        if ($boolean1 = false & db_getfieldcount($dbrow0, sailing_boat_facility:hidden_model) > 0) {
+            return(db_getfield($dbrow0, sailing_boat_facility:hidden_model, 0));
+        } else {
+            return(db_getfield($dbrow0, sailing_boat_facility:model, 0));
+        }
+    case sailing_boat_keel :
+        return(db_getfield($dbrow0, sailing_boat_keel:model, 0));
+    case sailing_boat_hull :
+        return(db_getfield($dbrow0, sailing_boat_hull:model, 0));
+    case sailing_boat_sail :
+        return(db_getfield($dbrow0, sailing_boat_sail:model, 0));
+    case sailing_boat_steering :
+        return(db_getfield($dbrow0, sailing_boat_steering:model, 0));
+}
+return(model_4243);

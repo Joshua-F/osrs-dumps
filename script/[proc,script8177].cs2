@@ -1,0 +1,97 @@
+// 8177
+[proc,script8177]
+if (%sailing_crew_selected_crew_id <= 0) {
+    ~error("Invalid crew id.");
+    return;
+}
+def_component $component0 = sailing_crew:crew_info;
+def_graphic $graphic1 = p11_full;
+def_int $rgb2 = 0xff981f;
+def_int $rgb3 = ^white;
+def_int $int4 = 245;
+def_int $int5 = 230;
+def_int $int6 = 0;
+db_find(sailing_crew:unique_id, %sailing_crew_selected_crew_id);
+def_dbrow $dbrow7 = db_findnext;
+def_npc $npc8 = db_getfield($dbrow7, sailing_crew:cargo_npc, 0);
+def_string $string0 = "Crew selected:<br><nc_name($npc8)>";
+def_string $string1 = "";
+cc_deleteall($component0);
+if (~script8179(%sailing_crew_selected_crew_id) = 0) {
+    $string0 = "<$string0> (Locked)";
+}
+def_int $int9 = ~script8185(1, $dbrow7);
+def_int $int10 = ~script8185(2, $dbrow7);
+def_int $int11 = ~script8185(3, $dbrow7);
+def_int $int12 = 0;
+def_int $int13 = 0;
+def_int $int14 = 0;
+def_int $int15 = ~script8180(%sailing_crew_selected_slot_id);
+def_dbrow $dbrow16 = null;
+if ($int15 ! 0 & $int15 ! -1) {
+    $dbrow16 = ~script8183($int15);
+}
+if ($dbrow16 ! null) {
+    $int12 = ~script8185(1, $dbrow16);
+    $int13 = ~script8185(2, $dbrow16);
+    $int14 = ~script8185(3, $dbrow16);
+}
+def_int $int17 = 0;
+$string1 = "<$string1>Helmsmanship: <tostring($int9)>";
+$int17 = calc($int9 - $int12);
+if ($int17 = 0) {
+    $string1 = "<$string1> (<col=ffffff>=</col>)";
+}
+if ($int17 < 0) {
+    $string1 = "<$string1> (<col=ff0000><tostring($int17)></col>)";
+}
+if ($int17 > 0) {
+    $string1 = "<$string1> (<col=00ff00>+<tostring($int17)></col>)";
+}
+$string1 = "<$string1><br>Privateering: <tostring($int10)>";
+$int17 = calc($int10 - $int13);
+if ($int17 = 0) {
+    $string1 = "<$string1> (<col=ffffff>=</col>)";
+}
+if ($int17 < 0) {
+    $string1 = "<$string1> (<col=ff0000><tostring($int17)></col>)";
+}
+if ($int17 > 0) {
+    $string1 = "<$string1> (<col=00ff00>+<tostring($int17)></col>)";
+}
+$string1 = "<$string1><br>Deckhandiness: <tostring($int11)>";
+$int17 = calc($int11 - $int14);
+if ($int17 = 0) {
+    $string1 = "<$string1> (<col=ffffff>=</col>)";
+}
+if ($int17 < 0) {
+    $string1 = "<$string1> (<col=ff0000><tostring($int17)></col>)";
+}
+if ($int17 > 0) {
+    $string1 = "<$string1> (<col=00ff00>+<tostring($int17)></col>)";
+}
+cc_create($component0, ^iftype_rectangle, $int6);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+cc_setcolour($rgb3);
+cc_setfill(true);
+cc_settrans($int4);
+$int6 = calc($int6 + 1);
+cc_create($component0, ^iftype_text, $int6);
+cc_setsize(0, 28, ^setsize_minus, ^setsize_abs);
+cc_setposition(0, 2, ^setpos_abs_left, ^setpos_abs_top);
+cc_settext($string0);
+cc_settextfont($graphic1);
+cc_setcolour($rgb2);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 14);
+cc_settextshadow(true);
+$int6 = calc($int6 + 1);
+cc_create($component0, ^iftype_text, $int6);
+cc_setsize(0, 45, ^setsize_minus, ^setsize_abs);
+cc_setposition(0, 30, ^setpos_abs_left, ^setpos_abs_top);
+cc_settextfont($graphic1);
+cc_setcolour($rgb2);
+cc_settext($string1);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 14);
+cc_settextshadow(true);
+$int6 = calc($int6 + 1);

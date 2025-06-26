@@ -1,0 +1,18 @@
+// 8004
+[proc,script8004](dbrow $dbrow0)(string)
+if ($dbrow0 = null) {
+    return("Null");
+}
+switch_dbtable (db_getrowtable($dbrow0)) {
+    case sailing_boat_facility :
+        return(db_getfield($dbrow0, sailing_boat_facility:name, 0));
+    case sailing_boat_keel :
+        return(db_getfield($dbrow0, sailing_boat_keel:name, 0));
+    case sailing_boat_hull :
+        return(db_getfield($dbrow0, sailing_boat_hull:name, 0));
+    case sailing_boat_sail :
+        return(db_getfield($dbrow0, sailing_boat_sail:name, 0));
+    case sailing_boat_steering :
+        return(db_getfield($dbrow0, sailing_boat_steering:name, 0));
+}
+return("Name");

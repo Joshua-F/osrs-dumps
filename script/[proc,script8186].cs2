@@ -1,0 +1,38 @@
+// 8186
+[proc,script8186](int $int0, int $int1, dbrow $dbrow2)(string)
+def_string $string0 = "";
+def_dbrow $dbrow3 = null;
+def_dbrow $dbrow4 = ~script8183(~script8180($int1));
+def_int $int5 = 0;
+if ($dbrow4 = null) {
+    ~error("Couldn't find crew data from ID. Got null instead.");
+    return("");
+}
+switch_int ($int0) {
+    case 0, 1 :
+        $string0 = "";
+    case 2, 3, 4 :
+        $string0 = "Helmsmanship: <tostring(~script8185(1, $dbrow4))>";
+    case 5, 6, 7, 8, 9, 10, 11, 12 :
+        $dbrow3 = ~script8002(%sailing_boat_spawned, $dbrow2, 4, calc($int0 - 5));
+        if ($dbrow3 ! null) {
+            $int5 = db_getfield($dbrow3, sailing_boat_facility:crew_facility, 0);
+            switch_int ($int5) {
+                case 6 :
+                    $string0 = "Deckhandiness: <tostring(~script8185(3, $dbrow4))>";
+                case 7 :
+                    $string0 = "Privateering: <tostring(~script8185(2, $dbrow4))>";
+                case 0 :
+                    $string0 = "";
+                case default :
+                    ~error("No switch case found for $crew_facility_type_id. $crew_facility_type_id was <tostring($int5)>.");
+                    return("");
+            }
+        } else {
+            $string0 = "";
+        }
+    case default :
+        ~error("Case missing for this position. $position was: <tostring($int0)>");
+        return("");
+}
+return($string0);

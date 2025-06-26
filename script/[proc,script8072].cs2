@@ -1,0 +1,10 @@
+// 8072
+[proc,script8072](dbrow $dbrow0)(graphic)
+if ($dbrow0 = null) {
+    return("sailing_icons_18x18,3");
+}
+if (db_getrowtable($dbrow0) ! sailing_crew) {
+    ~debug_mes_error("Crew data for facility", "DBTable was not sailing_crew.");
+    return("sailing_icons_18x18,3");
+}
+return(db_getfield($dbrow0, sailing_crew:sprite, 0));

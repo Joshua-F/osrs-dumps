@@ -1,0 +1,18 @@
+// 7915
+[clientscript,script7915](component $component0, int $int1, int $int2, int $int3, int $int4, int $int5)
+def_int $int6 = 0;
+if (cc_find($component0, $int1) = ^true) {
+    if (%sailing_alpha_runefest_disclaimer_understood = 1 & %sailing_alpha_runefest_icon_glow = 0) {
+        cc_sethide(true);
+        cc_setontimer(null);
+    } else if (cc_gethide = true) {
+        cc_sethide(false);
+        if ($int5 = 1) {
+            $int6 = $int3;
+        } else {
+            $int6 = $int2;
+        }
+        cc_settrans($int3);
+        cc_setontimer("script7916(event_com, event_comsubid, $int5, $int6, $int2, $int3, $int4)");
+    }
+}

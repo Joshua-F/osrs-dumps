@@ -1,0 +1,8 @@
+// 8164
+[proc,script8164](dbrow $dbrow0)(int)
+if (db_getfield($dbrow0, sailing_charting_core:give_repeat_xp, 0) = false) {
+    return(0);
+}
+def_dbrow $dbrow1 = db_getfield($dbrow0, sailing_charting_core:sailing_sea, 0);
+def_int $int2 = ~minmax(5, 99, db_getfield($dbrow1, sailing_sea:charting_level, 0));
+return(enum(int, int, enum_5753, $int2));

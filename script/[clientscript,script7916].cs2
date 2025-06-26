@@ -1,0 +1,17 @@
+// 7916
+[clientscript,script7916](component $component0, int $int1, int $int2, int $int3, int $int4, int $int5, int $int6)
+if (cc_find($component0, $int1) = ^true) {
+    if ($int2 = 1) {
+        $int3 = ~minmax($int4, $int5, calc($int3 - $int6));
+        if ($int3 <= $int4) {
+            $int2 = 0;
+        }
+    } else {
+        $int3 = ~minmax($int4, $int5, calc($int3 + $int6));
+        if ($int3 >= $int5) {
+            $int2 = 1;
+        }
+    }
+    cc_settrans(~minmax(0, 255, $int3));
+    cc_setontimer("script7916(event_com, event_comsubid, $int2, $int3, $int4, $int5, $int6)");
+}

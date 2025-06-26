@@ -1,0 +1,75 @@
+// 8042
+[clientscript,script8042](int $int0, int $int1, int $int2, component $component3, component $component4, dbrow $dbrow5, int $int6, int $rgb7, int $int8)
+def_int $int9 = 6;
+def_int $int10 = $int1;
+def_int $int11 = 0;
+if ($int10 > 0) {
+    $int11 = ~script8180($int6);
+}
+def_int $int12 = 0;
+if ($int6 ! -1) {
+    $int12 = ~sailing_sidepanel_crew_get_ordered_position($int6);
+}
+def_dbrow $dbrow13 = null;
+def_dbrow $dbrow14 = null;
+if ($int11 ! 0) {
+    $dbrow13 = ~script8183($int11);
+    $dbrow14 = ~script8049($int12);
+}
+def_graphic $graphic15 = "sailing_icons_18x18,3";
+if ($dbrow13 ! null) {
+    $graphic15 = ~script8072($dbrow13);
+}
+def_dbrow $dbrow16 = ~script8047($dbrow14);
+def_graphic $graphic17 = ~script8048($dbrow16);
+if ($dbrow5 = $dbrow14) {
+    $int8 = 1;
+}
+if (cc_find($component3, $int0) = ^true) {
+    cc_setsize(0, 34, ^setsize_minus, ^setsize_abs);
+    cc_setposition(0, $int2, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setfill(true);
+    if ($int8 = 1) {
+        cc_setcolour(0x968776);
+    } else {
+        cc_setcolour($rgb7);
+    }
+    $int0 = calc($int0 + 1);
+}
+if (cc_find($component3, $int0) = ^true) {
+    if ($graphic15 = "sailing_icons_18x18,3") {
+        $graphic15 = "cross_interface,5";
+    }
+    cc_setgraphic($graphic15);
+    cc_setposition(5, calc($int2 + 8), ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(18, 18, ^setsize_abs, ^setsize_abs);
+    $int0 = calc($int0 + 1);
+}
+def_string $string0 = "Unassign";
+def_string $string1 = "";
+if (cc_find($component3, $int0) = ^true) {
+    if ($int6 ! -1) {
+        $string0 = ~script8073($dbrow13);
+        $string1 = ~script8186(~script8097(~script8095(%sailing_sidepanel_crew_assignation_facility_viewed), ~script8098), $int6, %sailing_sidepanel_boat_type);
+        if (compare($string1, "") ! 0) {
+            $string0 = "<$string0><br><$string1>";
+        }
+    }
+    cc_settext($string0);
+    cc_setposition(28, $int2, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(56, 34, ^setsize_minus, ^setsize_abs);
+    cc_settextfont(p11_full);
+    cc_settextshadow(true);
+    cc_setcolour(^white);
+    cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+    $int0 = calc($int0 + 1);
+}
+if (cc_find($component3, $int0) = ^true) {
+    cc_setgraphic($graphic17);
+    cc_setposition(5, calc($int2 + 8), ^setpos_abs_right, ^setpos_abs_top);
+    cc_setsize(18, 18, ^setsize_abs, ^setsize_abs);
+    if ($int6 = -1) {
+        cc_sethide(true);
+    }
+    $int0 = calc($int0 + 1);
+}

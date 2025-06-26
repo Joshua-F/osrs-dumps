@@ -1,5 +1,5 @@
 // 2243
-[proc,logout_layout_update](component $component0, component $component1, component $component2, component $component3, component $component4)
+[proc,logout_layout_update](int $int0, component $component1, component $component2, component $component3, component $component4, component $component5)
 if (%csat_hide = 0 & (%csat_type = 1 | %csat_type = 2)) {
     if_sethide(false, $component1);
     if (%csat_type = 1) {
@@ -11,13 +11,23 @@ if (%csat_hide = 0 & (%csat_type = 1 | %csat_type = 2)) {
         if_sethide(true, $component3);
         if_sethide(false, $component4);
     }
-    if_setsize(0, 85, ^setsize_minus, ^setsize_abs, $component1);
-    if_setsize(0, 132, ^setsize_minus, ^setsize_abs, $component0);
-    if_setposition(0, 16, ^setpos_abs_centre, ^setpos_abs_bottom, $component0);
 } else {
     if_sethide(true, $component1);
     if_sethide(true, $component3);
     if_sethide(true, $component4);
-    if_setposition(0, 24, ^setpos_abs_centre, ^setpos_abs_bottom, $component0);
-    if_setsize(0, 170, ^setsize_minus, ^setsize_abs, $component0);
+}
+def_int $int6 = ~v2_stone_button_filled($component5);
+cc_create($component5, ^iftype_text, $int6);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_setcolour(^yellow);
+cc_settext("Feedback survey");
+cc_settextfont(p12_full);
+cc_settextshadow(true);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+if_setop(1, "Open Survey", $component5);
+if_setonop("script8196", $component5);
+if (~on_mobile = false) {
+    if_setonmouserepeat("v2_stone_button_change_in($component5, 0)", $component5);
+    if_setonmouseleave("v2_stone_button_change_out($component5, 0)", $component5);
 }

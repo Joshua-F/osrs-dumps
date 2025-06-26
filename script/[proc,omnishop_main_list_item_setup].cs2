@@ -116,6 +116,9 @@ if ($int4 = 1) {
 }
 $int5 = ~script5288($component6, $int5, $int27, $int28, $int26, $int20, $struct30, $int29);
 def_string $string1 = oc_param($obj7, param_1733);
+if (string_length(db_getfield($dbrow13, omnishop_stock_data:omnishop_stock_name_override, 0)) > 0) {
+    $string1 = db_getfield($dbrow13, omnishop_stock_data:omnishop_stock_name_override, 0);
+}
 if (string_length($string1) = 0) {
     $string1 = oc_name($obj7);
 }
@@ -124,10 +127,18 @@ if ($int16 > 1) {
 }
 def_int $int31 = 1;
 cc_setop(1, "Select");
-cc_setop(2, "<$string0>-1");
-cc_setop(3, "<$string0>-5");
-cc_setop(4, "<$string0>-10");
-cc_setop(5, "<$string0>-50");
+if ($int9 > -1) {
+    cc_setop(2, "<$string0>-1");
+}
+if ($int9 >= 5) {
+    cc_setop(3, "<$string0>-5");
+}
+if ($int9 >= 10) {
+    cc_setop(4, "<$string0>-10");
+}
+if (~kots_world = false & $int9 >= 50) {
+    cc_setop(5, "<$string0>-50");
+}
 cc_setop(10, "Examine");
 cc_setopbase("<col=ff9040><$string1></col>");
 if (~on_mobile = false & $int4 = 0) {

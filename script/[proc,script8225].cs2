@@ -1,0 +1,34 @@
+// 8225
+[proc,script8225](component $component0, component $component1)
+cc_deleteall($component0);
+cc_deleteall($component1);
+def_int $int2 = 0;
+def_int $int3 = 0;
+def_boolean $boolean4 = false;
+def_boolean $boolean5 = false;
+def_boolean $boolean6 = false;
+def_boolean $boolean7 = false;
+def_boolean $boolean8 = false;
+if (inv_total(inv, sailing_log) > 0) {
+    $boolean4 = true;
+}
+if (inv_total(inv, sailing_charting_spyglass) > 0) {
+    $boolean5 = true;
+}
+if (inv_total(inv, sailing_charting_current_duck) > 0 | %current_affairs < 45) {
+    $boolean6 = true;
+}
+if (inv_total(inv, sailing_charting_crowbar) > 0 | %quest_pry < 35) {
+    $boolean7 = true;
+}
+if (inv_total(inv, sailing_charting_upgraded_diving_helmet) > 0 & inv_total(inv, sailing_charting_upgraded_diving_backpack) > 0) {
+    $boolean8 = true;
+}
+$int2, $int3 = ~script8226($component0, $int2, $component1, $int3, $boolean4, 10, 1, "Take", "", "<col=ff9040>Captain's log</col>", sailing_log, null, 36, 32, 0);
+$int2, $int3 = ~script8226($component0, $int2, $component1, $int3, $boolean5, 56, 1, "Take", "", "<col=ff9040>Spyglass</col>", sailing_charting_spyglass, null, 36, 32, 0);
+$int2, $int3 = ~script8226($component0, $int2, $component1, $int3, $boolean6, 100, 1, "Take", "", "<col=ff9040>Current duck</col>", sailing_charting_current_duck, null, 36, 32, 0);
+$int2, $int3 = ~script8226($component0, $int2, $component1, $int3, $boolean7, 146, 1, "Take", "", "<col=ff9040>Crowbar</col>", sailing_charting_crowbar, null, 36, 32, 0);
+$int2, $int3 = ~script8226($component0, $int2, $component1, $int3, $boolean8, 192, 1, "Take", "", "<col=ff9040>Diving equipment</col>", sailing_charting_upgraded_diving_helmet, null, 36, 32, 0);
+$int2, $int3 = ~script8226($component0, $int2, $component1, $int3, false, 342, 1, "Deposit", "", "<col=ff9040>Cargo</col>", cargo_interface_dummy, null, 36, 32, 1);
+$int2, $int3 = ~script8226($component0, $int2, $component1, $int3, false, 388, 1, "Deposit", "", "<col=ff9040>Salvage</col>", salvage_interface_dummy, null, 36, 32, 1);
+$int2, $int3 = ~script8226($component0, $int2, $component1, $int3, false, 434, 1, "Deposit", "", "<col=ff9040>Inventory</col>", null, "sideicons_new,3", 33, 36, 1);
