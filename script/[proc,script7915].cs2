@@ -1,0 +1,25 @@
+// 7915
+[proc,script7915]
+if (~on_enhanced_any = false) {
+    return;
+}
+def_enum $enum0 = ~toplevel_getcomponents;
+def_component $component1 = enum(component, component, $enum0, toplevel_osrs_stretch:overlay_hud);
+if (%settings_hd_new_renderer_toggle = 1 & deviceoption_get(^deviceoption_force_disable_rseven) = 0 & %settings_sd_beta_enabled = 1) {
+    cc_deleteall($component1);
+    cc_create($component1, ^iftype_text, 0);
+    if ($enum0 = enum_1745) {
+        cc_setposition(0, 5, ^setpos_abs_centre, ^setpos_abs_bottom);
+        cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    } else {
+        cc_setposition(0, 5, ^setpos_abs_centre, ^setpos_abs_top);
+        cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    }
+    cc_setsize(240, 20, ^setsize_abs, ^setsize_abs);
+    cc_settextfont(p11_full);
+    cc_setcolour(^white);
+    cc_settrans(160);
+    cc_settext("Experimental new renderer currently enabled");
+} else {
+    cc_deleteall($component1);
+}
