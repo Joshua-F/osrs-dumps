@@ -1,0 +1,17 @@
+// 7971
+[proc,jigsaw_draw_preview](dbrow $dbrow0)
+def_component $component1 = jigsaw:pieces_preview;
+if (cc_find($component1, 0) = ^true) {
+    return;
+}
+def_model $model2 = null;
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_int $int5 = 0;
+$model2, $int3, $int4, $int5 = db_getfield($dbrow0, jigsaw:preview, 0);
+cc_create($component1, ^iftype_model, 0);
+cc_setsize(32, 32, ^setsize_abs, ^setsize_abs);
+cc_setmodel($model2);
+cc_setmodelorthog(true);
+cc_setposition($int3, $int4, ^setpos_abs_left, ^setpos_abs_top);
+cc_setmodelangle(0, 0, 0, 0, 0, $int5);

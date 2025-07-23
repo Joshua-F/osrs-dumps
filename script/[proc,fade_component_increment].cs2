@@ -2,7 +2,13 @@
 [proc,fade_component_increment](int $int0, int $int1, int $int2, int $int3, component $component4)
 if ($int3 <= 0) {
     if_settrans($int1, $component4);
+    if ($int1 >= 255) {
+        if_sethide(true, $component4);
+    }
     if_setontimer(null, $component4);
     return;
+}
+if (if_gethide($component4) = true) {
+    if_sethide(false, $component4);
 }
 if_settrans(calc($int1 - interpolate(0, $int3, 0, $int2, calc($int1 - $int0))), $component4);
