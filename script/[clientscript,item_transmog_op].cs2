@@ -1,5 +1,5 @@
 // 6858
-[clientscript,item_transmog_op](int $int0, dbrow $dbrow1, int $int2, int $int3, int $int4, component $component5, component $component6)
+[clientscript,item_transmog_op](int $int0, int $int1, dbrow $dbrow2, int $int3, int $int4, boolean $boolean5)
 if ($int0 ! 1 & $int0 ! 10) {
     return;
 }
@@ -7,20 +7,16 @@ sound_synth(synth_2266, 1, 0);
 def_string $string0 = null;
 switch_int ($int0) {
     case 10 :
-        $string0 = db_getfield($dbrow1, item_transmog:ui_examine, 0);
+        $string0 = db_getfield($dbrow2, item_transmog:ui_examine, 0);
         if (~string_isnullorempty($string0) = true) {
-            $string0 = oc_name(db_getfield($dbrow1, item_transmog:namedobj, 0));
+            $string0 = oc_name(db_getfield($dbrow2, item_transmog:namedobj, 0));
         }
         mes($string0);
     case 1 :
-        %varclient_1110 = db_getfield($dbrow1, item_transmog:group_id, 0);
-        ~script6789($component5, $int2, 0x9f9f9f);
-        if (cc_find($component5, $int3) = ^true) {
-            cc_setcolour(0x9f9f9f);
+        if ($boolean5 = false | $int3 = $int4) {
+            return;
         }
-        if (cc_find($component5, $int4) = ^true) {
-            cc_setoutline(1);
-            cc_settrans(210);
-            cc_setontimer("script6859(calc(clientclock + 100), $int2, $int3, $int4, $component5)");
-        }
+        %varclient_1110 = db_getfield($dbrow2, item_transmog:group_id, 0);
+        %item_transmog_active_obj = db_getfield($dbrow2, item_transmog:namedobj, 0);
+        ~item_transmog_init($int1);
 }

@@ -12,8 +12,14 @@ if ($int1 < 0) {
 }
 if ($int2 <= 0) {
     if_settrans($int1, $component3);
+    if ($int1 >= 255) {
+        if_sethide(true, $component3);
+    }
     if_setontimer(null, $component3);
     return;
+}
+if (if_gethide($component3) = true) {
+    if_sethide(false, $component3);
 }
 ~fade_component_increment($int0, $int1, $int2, $int2, $component3);
 if_setontimer("fade_component_update($int0, $int1, $int2, calc(clientclock + $int2), $component3)", $component3);

@@ -1,0 +1,19 @@
+// 7963
+[proc,jigsaw_puzzle_draw_pieces](dbrow $dbrow0)
+def_component $component1 = jigsaw:pieces;
+cc_deleteall($component1);
+def_component $component2 = jigsaw:pieces_locked;
+def_int $int3 = db_getfieldcount($dbrow0, jigsaw:piece);
+def_int $int4 = 0;
+def_int $int5 = 0;
+def_int $int6 = ~jigsaw_progress_variable($dbrow0);
+while ($int5 < $int3) {
+    if (testbit($int6, $int5) = ^true) {
+        if (cc_find($component2, $int5) = ^false) {
+            ~jigsaw_puzzle_piece_draw($dbrow0, $component2, $int5, $int4, 0);
+        }
+    } else {
+        $int4 = ~jigsaw_puzzle_piece_draw($dbrow0, $component1, $int5, $int4, 1);
+    }
+    $int5 = calc($int5 + 1);
+}

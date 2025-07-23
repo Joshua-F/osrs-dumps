@@ -1,0 +1,42 @@
+// 7964
+[proc,jigsaw_puzzle_piece_draw](dbrow $dbrow0, component $component1, int $int2, int $int3, int $int4)(int)
+def_model $model5 = null;
+def_int $int6 = 0;
+def_int $int7 = 0;
+$model5, $int6, $int7 = db_getfield($dbrow0, jigsaw:piece, $int2);
+def_string $string0 = db_getfield($dbrow0, jigsaw:piece_name, 0);
+def_int $int8 = db_getfield($dbrow0, jigsaw:piece_zoom, 0);
+def_int $int9 = db_getfield($dbrow0, jigsaw:piece_size_x, 0);
+def_int $int10 = db_getfield($dbrow0, jigsaw:piece_size_y, 0);
+cc_create($component1, ^iftype_model, $int2);
+cc_setsize($int9, $int10, ^setsize_abs, ^setsize_abs);
+cc_setmodel($model5);
+cc_setmodelorthog(true);
+def_int $int11 = 0;
+def_int $int12 = 0;
+def_int $int13 = 0;
+def_int $int14 = 0;
+if ($int4 = 1) {
+    $int14 = calc(random(8) * 256);
+    $int13 = ~script7965($dbrow0, $int3);
+    $int3 = setbit($int3, $int13);
+    $int11, $int12 = db_getfield($dbrow0, jigsaw:piece_start_position, $int13);
+    cc_setop(1, "Rotate");
+    cc_setopbase("<col=ff9040><$string0>");
+    cc_setdraggable(jigsaw:universe, -1);
+    cc_setdragrenderbehaviour(1);
+    cc_setonop("script7969($component1, $int2, $int8)");
+    cc_setondrag("script7966($dbrow0, $component1, $int2, event_mousex, event_mousey)");
+    cc_setondragcomplete("script7967($dbrow0, $component1, $int2, event_mousex, event_mousey)");
+} else {
+    $int11, $int12 = $int6, $int7;
+}
+if ($int11 < 0 | $int11 > 512) {
+    ~debug_mes_warn("Jigsaw", "Jigsaw position was outside or near the edge of the interface, may not be visible. xpos = <tostring($int11)>.");
+}
+if ($int12 < 0 | $int12 > 334) {
+    ~debug_mes_warn("Jigsaw", "Jigsaw position was outside or near the edge of the interface, may not be visible. ypos = <tostring($int12)>.");
+}
+cc_setposition($int11, $int12, ^setpos_abs_left, ^setpos_abs_top);
+cc_setmodelangle(0, 0, 0, 0, $int14, $int8);
+return($int3);

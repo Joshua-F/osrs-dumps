@@ -1,0 +1,128 @@
+// 7978
+[proc,item_transmog_init](int $int0)
+~steelborder(item_transmog:frame, enum(int, string, enum_885, $int0), 0);
+%varclient_1110 = -1;
+def_namedobj $namedobj1 = %item_transmog_active_obj;
+db_find(item_transmog:group, $int0);
+def_int $int2 = db_find_refine(item_transmog:namedobj, $namedobj1);
+def_dbrow $dbrow3 = db_findnext;
+if ($dbrow3 = null) {
+    ~debug_mes_error("Item Transmog", "Failed to find config for <oc_name($namedobj1)> in group <tostring($int0)>");
+}
+def_int $int4 = db_getfield($dbrow3, item_transmog:group_id, 0);
+def_boolean $boolean5 = true;
+def_boolean $boolean6 = false;
+def_boolean $boolean7 = ~on_mobile;
+def_string $string0 = null;
+def_string $string1 = null;
+def_string $string2 = null;
+def_component $component8 = item_transmog:window;
+if_setonvartransmit("item_transmog_init($int0){item_transmog_active_obj}", $component8);
+def_component $component9 = item_transmog:scroll_container;
+def_component $component10 = item_transmog:scrollbar;
+def_component $component11 = item_transmog:entries_container;
+def_component $component12 = item_transmog:entries_clickzones;
+cc_deleteall($component11);
+cc_deleteall($component12);
+def_int $int13 = 3;
+def_int $int14 = 110;
+def_int $int15 = 70;
+def_int $int16 = calc((if_getwidth($component11) - $int14 * $int13) / ($int13 + 1));
+def_int $int17 = $int16;
+def_int $int18 = $int16;
+def_int $int19 = $int18;
+def_int $int20 = 0;
+def_int $int21 = -1;
+def_int $int22 = 0;
+def_int $int23 = 0;
+def_int $int24 = 0;
+def_int $int25 = 0;
+def_int $int26 = db_find(item_transmog:group, $int0);
+def_int $int27 = 0;
+def_int $int28 = 0;
+def_dbrow $dbrow29 = null;
+while ($int27 < $int26) {
+    $dbrow29 = ~item_transmog_get_config($int0, $int27);
+    $boolean5 = ~script6854($dbrow29);
+    $boolean6 = db_getfield($dbrow29, item_transmog:show_when_unavailable, 0);
+    $string0 = db_getfield($dbrow29, item_transmog:ui_name, 0);
+    if (~string_isnullorempty($string0) = true) {
+        $string0 = tostring(calc($int27 + 1));
+    }
+    $string1 = db_getfield($dbrow29, item_transmog:ui_examine, 0);
+    $string2 = db_getfield($dbrow29, item_transmog:ui_op_name, 0);
+    if (~string_isnullorempty($string2) = true) {
+        $string2 = "<oc_name(db_getfield($dbrow29, item_transmog:namedobj, 0))> <tostring(calc($int27 + 1))>";
+    }
+    .cc_create($component12, ^iftype_rectangle, $int27);
+    if ($boolean5 = true | $boolean6 = true) {
+        .cc_setposition($int17, $int19, ^setpos_abs_left, ^setpos_abs_top);
+        .cc_setsize($int14, $int15, ^setsize_abs, ^setsize_abs);
+        .cc_settrans(255);
+        cc_create($component11, ^iftype_rectangle, $int22);
+        $int22 = calc($int22 + 1);
+        cc_setposition($int17, $int19, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setsize($int14, $int15, ^setsize_abs, ^setsize_abs);
+        cc_setfill(true);
+        cc_setcolour(^white);
+        cc_settrans(235);
+        $int21 = ~script7979(~is_equal_bool($int27, $int4), $boolean5);
+        $int23 = $int22;
+        $int22 = ~script5288($component11, $int22, $int17, $int19, $int14, $int15, struct_3712, $int21);
+        $int19 = calc($int19 + 5);
+        cc_create($component11, ^iftype_text, $int22);
+        $int24 = $int22;
+        $int22 = calc($int22 + 1);
+        cc_setposition($int17, $int19, ^setpos_abs_left, ^setpos_abs_top);
+        cc_settextfont(p12_full);
+        $int21 = ~item_transmog_get_text_colour(~is_equal_bool($int27, $int4), $boolean5);
+        cc_setcolour($int21);
+        cc_setsize($int14, $int15, ^setsize_abs, ^setsize_abs);
+        cc_settextalign(^settextalign_centre, ^settextalign_top, 0);
+        cc_settextshadow(true);
+        cc_settext($string0);
+        $int17 = calc($int17 + ($int14 / 2 - 36 / 2));
+        $int19 = calc($int19 + 25);
+        cc_create($component11, ^iftype_graphic, $int22);
+        $int25 = $int22;
+        $int22 = calc($int22 + 1);
+        cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+        cc_setposition($int17, $int19, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setobject(db_getfield($dbrow29, item_transmog:namedobj, 0), 1);
+        cc_setgraphicshadow(0x333333);
+        cc_setoutline(1);
+        cc_settrans(~item_transmog_get_trans(~is_equal_bool($int27, $int4), $boolean5));
+        .cc_setopbase("<col=ff981f><$string2></col>");
+        if (~string_isnullorempty($string1) = false) {
+            .cc_setop(10, "Examine");
+        }
+        .cc_setonop("item_transmog_op(event_op, $int0, $dbrow29, $int27, $int4, $boolean5)");
+        if ($boolean7 = false) {
+            .cc_setonmouserepeat("item_transmog_sethovered(1, $int27, $int4, $int23, $int24, $int25, $component11, $boolean5)");
+            .cc_setonmouseleave("item_transmog_sethovered(0, $int27, $int4, $int23, $int24, $int25, $component11, $boolean5)");
+        }
+        .cc_setop(1, "Select");
+        $int20 = calc($int18 + $int15);
+        $int28 = calc($int28 + 1);
+        $int17 = calc($int16 + $int28 % $int13 * ($int14 + $int16));
+        $int18 = calc($int16 + $int28 / $int13 * ($int15 + $int16));
+        $int19 = $int18;
+    } else {
+        .cc_sethide(true);
+    }
+    $int27 = calc($int27 + 1);
+}
+$int20 = calc($int20 + $int16);
+def_int $int30 = calc($int20 - if_getheight($component9));
+def_int $int31 = $int20;
+def_int $int32 = if_getscrolly($component9);
+if ($int30 <= 0) {
+    if_setsize(if_getwidth($component8), calc(if_getheight($component8) + $int30), ^setsize_abs, ^setsize_abs, $component8);
+    $int31 = 0;
+    $int32 = 0;
+}
+cc_deleteall($component10);
+~scrollbar_vertical($component10, $component9, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+if_setscrollsize(0, $int31, $component9);
+if_setscrollpos(0, $int32, $component9);
+~scrollbar_resize($component10, $component9, if_getscrolly($component9));

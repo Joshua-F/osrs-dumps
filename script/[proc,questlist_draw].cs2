@@ -5,116 +5,123 @@ if (%questlist_disable_headers = 1) {
     $int6 = 2;
 }
 def_int $int7 = db_listall(quest);
-def_int $int8 = 1;
-def_graphic $graphic9 = p11_full;
-def_fontmetrics $fontmetrics10 = p11_full;
-def_int $int11 = 11;
-def_int $int12 = 5;
-if (~on_mobile = true) {
-    $int12 = 11;
+def_boolean $boolean8 = ~on_mobile;
+def_int $int9 = 1;
+def_graphic $graphic10 = p11_full;
+def_fontmetrics $fontmetrics11 = p11_full;
+def_int $int12 = 11;
+def_int $int13 = 5;
+if ($boolean8 = true) {
+    $int13 = 11;
 }
 if (%questlist_larger_text = 1) {
-    $graphic9 = p12_full;
-    $fontmetrics10 = p12_full;
-    $int11 = 13;
-    $int12 = calc($int12 + 2);
+    $graphic10 = p12_full;
+    $fontmetrics11 = p12_full;
+    $int12 = 13;
+    $int13 = calc($int13 + 2);
 }
 def_int $intarray0($int7);
-def_dbrow $dbrow13 = null;
+def_dbrow $dbrow14 = null;
 def_string $string1 = "";
-def_int $int14 = 0;
-def_int $int15 = pow(2, 16);
+def_int $int15 = 0;
+def_int $int16 = pow(2, 16);
+def_boolean $boolean17 = ~speedrunning_world;
+def_boolean $boolean18 = ~league_world;
+def_boolean $boolean19 = ~script7983(~int_to_bool(%questlist_disable_text_shadow));
 cc_deleteall($component4);
 cc_create($component4, ^iftype_rectangle, 0);
 cc_sethide(true);
-while ($int8 <= $int7) {
-    $dbrow13 = ~script6154($int8);
-    cc_create($component4, ^iftype_text, $int8);
-    cc_setsize(0, $int11, ^setsize_minus, ^setsize_abs);
-    cc_settextfont($graphic9);
-    if (%questlist_disable_text_shadow = 1) {
-        cc_settextshadow(false);
-    } else {
-        cc_settextshadow(true);
-    }
-    cc_settextalign(^settextalign_left, ^settextalign_centre, $int11);
-    $string1 = ~get_quest_name($dbrow13);
+while ($int9 <= $int7) {
+    $dbrow14 = ~script6154($int9);
+    cc_create($component4, ^iftype_text, $int9);
+    cc_setsize(0, $int12, ^setsize_minus, ^setsize_abs);
+    cc_settextfont($graphic10);
+    cc_settextshadow($boolean19);
+    cc_settextalign(^settextalign_left, ^settextalign_centre, $int12);
+    $string1 = ~get_quest_name($dbrow14);
     cc_setopbase("<col=ff9040><$string1></col>");
-    if (~script4026($dbrow13, %questlist_sort_type) = true) {
+    if (~script4026($dbrow14, %questlist_sort_type) = true) {
         $string1 = "MQ: <$string1>";
     }
-    if (~speedrunning_world = true & ~speedrunning_beta_quest($dbrow13) = true) {
+    if ($boolean17 = true & ~speedrunning_beta_quest($dbrow14) = true) {
         $string1 = "<$string1> (Beta)";
     }
     cc_settext($string1);
-    cc_setsize(0, calc($int11 * paraheight($string1, cc_getwidth, $fontmetrics10) + $int12), ^setsize_minus, ^setsize_abs);
-    if (~speedrunning_world = true) {
+    cc_setsize(0, calc($int12 * paraheight($string1, cc_getwidth, $fontmetrics11) + $int13), ^setsize_minus, ^setsize_abs);
+    if ($boolean17 = true) {
         cc_setop(1, "View info:");
     } else {
         cc_setop(1, "");
     }
     cc_setop(2, "Read journal:");
-    if (db_getfield($dbrow13, quest:startcoord, 0) ! null & db_getfield($dbrow13, quest:startcoord, 0) ! 0_0_0_0_0) {
+    if (db_getfield($dbrow14, quest:startcoord, 0) ! null & db_getfield($dbrow14, quest:startcoord, 0) ! 0_0_0_0_0) {
         cc_setop(3, "Show on map:");
     } else {
         cc_setop(3, "");
     }
-    if (db_getfield($dbrow13, quest:in_prerelease, 0) = false) {
+    if (db_getfield($dbrow14, quest:release_type, 0) = 2) {
         cc_setop(4, "Open wiki guide:");
         cc_setop(5, "Open wiki quick guide:");
     } else {
         cc_setop(4, "");
         cc_setop(5, "");
     }
-    $int14 = ~quest_status_get($dbrow13);
-    $intarray0(calc($int8 - 1)) = calc($int14 * $int15 + $int8);
+    $int15 = ~quest_status_get($dbrow14);
+    $intarray0(calc($int9 - 1)) = calc($int15 * $int16 + $int9);
     cc_sethide(true);
-    $int8 = calc($int8 + 1);
+    $int9 = calc($int9 + 1);
 }
 if ($int7 > 1) {
-    ~questlist_sort($intarray0, 0, calc($int7 - 1), %questlist_sort_type, $int15);
+    ~questlist_sort($intarray0, 0, calc($int7 - 1), %questlist_sort_type, $int16);
 }
-def_int $int16 = 0;
-def_int $int17 = 0;
-def_int $int18 = 0;
-def_boolean $boolean19 = true;
-def_boolean $boolean20 = true;
-def_boolean $boolean21 = false;
+def_int $int20 = 0;
+def_int $int21 = 0;
+def_int $int22 = 0;
+def_boolean $boolean23 = true;
+def_boolean $boolean24 = true;
+def_boolean $boolean25 = false;
 def_string $string2 = "************";
 def_string $string3 = "************";
-while ($int16 < $int7) {
-    $int17 = calc($intarray0($int16) % $int15);
-    $int14 = calc($intarray0($int16) / $int15);
-    $dbrow13 = ~script6154($int17);
-    $boolean19 = ~quest_requirement_check($dbrow13);
-    $boolean20 = ~script5990($dbrow13);
-    $string3 = ~script2265($dbrow13, $int14, %questlist_sort_type);
-    $boolean21 = ~script4028($dbrow13, $int14, $boolean19, $boolean20);
-    if (~questlist_hide_quest($dbrow13, $int14, $boolean19, $boolean20, $boolean21) = false) {
+def_int $int26 = ~settings_get_colour_or_default(227);
+def_int $int27 = ~settings_get_colour_or_default(224);
+def_int $int28 = ~settings_get_colour_or_default(225);
+def_int $int29 = ~settings_get_colour_or_default(226);
+def_boolean $boolean30 = false;
+def_boolean $boolean31 = ~questlist_hide_miniquests($boolean17);
+while ($int20 < $int7) {
+    $int21 = calc($intarray0($int20) % $int16);
+    $int15 = calc($intarray0($int20) / $int16);
+    $dbrow14 = ~script6154($int21);
+    $boolean23 = ~quest_requirement_check($dbrow14);
+    $boolean24 = ~script5990($dbrow14);
+    $string3 = ~script2265($dbrow14, $int15, %questlist_sort_type);
+    $boolean25 = ~script4028($dbrow14, $int15, $boolean23, $boolean24, $boolean17, $boolean18);
+    $boolean30 = ~quest_is_subquest($dbrow14);
+    if (~questlist_hide_quest($dbrow14, $int15, $boolean23, $boolean24, $boolean25, $boolean17, $boolean30, $boolean31) = false) {
         if (compare($string3, $string2) ! 0 & %questlist_disable_headers = 0) {
-            $int8, $int6 = ~questlist_add_header($string3, $int8, $int6, $component4);
+            $int9, $int6 = ~questlist_add_header($string3, $int9, $int6, $component4);
             $string2 = $string3;
         }
-        if (cc_find($component4, $int17) = ^true) {
-            if (db_getfield($dbrow13, quest:parent_quest, 0) ! null) {
+        if (cc_find($component4, $int21) = ^true) {
+            if ($boolean30 = true) {
                 cc_sethide(true);
             } else {
                 cc_sethide(false);
                 cc_setposition(0, $int6, ^setpos_abs_centre, ^setpos_abs_top);
-                ~questlist_setcolour($int14, $boolean21);
-                $int18 = calc($int18 + 1);
-                $int11 = cc_getheight;
+                ~questlist_setcolour($int15, $boolean25, $boolean17, $int26, $int27, $int28, $int29, $boolean8);
+                $int22 = calc($int22 + 1);
+                $int12 = cc_getheight;
             }
         }
-        $int16, $int6 = calc($int16 + 1), calc($int6 + $int11);
+        $int20, $int6 = calc($int20 + 1), calc($int6 + $int12);
     } else {
-        $int16 = calc($int16 + 1);
+        $int20 = calc($int20 + 1);
     }
 }
 $int6 = calc($int6 + 2);
 if_setsize(0, $int6, ^setsize_minus, ^setsize_abs, $component4);
 cc_deleteall($component1);
-if ($int18 <= 0) {
+if ($int22 <= 0) {
     if_sethide(true, $component3);
     cc_create($component1, ^iftype_text, 0);
     cc_setsize(40, calc(16384 / 2), ^setsize_minus, ^setsize_rel);
@@ -127,15 +134,15 @@ if ($int18 <= 0) {
 } else {
     if_sethide(false, $component3);
 }
-def_int $int22 = %varclient_10;
+def_int $int32 = %varclient_10;
 if ($boolean5 = true) {
-    $int22 = %varclient_972;
+    $int32 = %varclient_972;
 }
 if ($int6 > if_getheight($component2)) {
     if_setscrollsize(0, $int6, $component2);
     ~scrollbar_vertical($component3, $component2, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
     if (cc_find($component3, 1) = ^true) {
-        ~scrollbar_vertical_doscroll($component3, $component2, $int22, true);
+        ~scrollbar_vertical_doscroll($component3, $component2, $int32, true);
     }
 } else {
     if ($boolean5 = true) {

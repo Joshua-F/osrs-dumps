@@ -91,6 +91,7 @@ def_int $setposv22 = ^setpos_abs_centre;
 def_int $int23 = 75;
 cc_deleteall(skillmulti:bottom);
 def_int $int24 = 0;
+def_boolean $boolean25 = enum(int, boolean, enum_3623, $int0);
 if ($int14 > 1) {
     if (calc($int16 * $int14 + $int17 * $int18) > $int15) {
         $int17 = calc(($int15 - $int16 * $int14) / $int18);
@@ -109,7 +110,7 @@ if ($int14 > 1) {
         cc_settextfont(p11_full);
         cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
         cc_settextshadow(false);
-        if ($int24 = %skillmulti_previousselection & ~on_mobile = false) {
+        if ($int24 = %skillmulti_previousselection & ~on_mobile = false & $boolean25 = true) {
             cc_settext(enum(int, string, enum_1812, 36));
         } else {
             cc_settext(enum(int, string, enum_1812, $int24));
@@ -142,7 +143,9 @@ $keyarray2(7) = null;
 $keyarray2(8) = null;
 $keyarray2(9) = null;
 if ($int14 >= 1) {
-    $keyarray2(%skillmulti_previousselection) = ^key_space;
+    if ($boolean25 = true) {
+        $keyarray2(%skillmulti_previousselection) = ^key_space;
+    }
     $string1, $string0 = ~script632($string0);
     ~skillmulti_itembutton_init(0, $obj2, $string1, skillmulti:a, $keyarray2(0), $int0, $int16, $int23);
     if ($int14 >= 2) {

@@ -32,8 +32,13 @@ if (compare($string0, "") = 0 | %hpbar_hud_boss_name_disabled = 1) {
 def_string $string1 = "<tostring(%hpbar_hud_hp)> / <tostring(%hpbar_hud_basehp)>";
 def_int $int15 = 0;
 %hpbar_hud_basehp = ~max(%hpbar_hud_basehp, 1);
-if (%hpbar_hud_boss_percentage_enabled = 1) {
-    $int15 = ~minmax(0, 100, scale(%hpbar_hud_hp, %hpbar_hud_basehp, 100));
+if (%hpbar_hud_boss_percentage_enabled = 1 | nc_param(%hpbar_hud_npc, param_2289) = 1) {
+    $int15 = ~minmax(1, 99, scale(%hpbar_hud_hp, %hpbar_hud_basehp, 100));
+    if (%hpbar_hud_hp <= 0) {
+        $int15 = 0;
+    } else if (%hpbar_hud_hp >= %hpbar_hud_basehp) {
+        $int15 = 100;
+    }
     $string1 = "<tostring($int15)>%";
 }
 if_settext($string1, $component1);

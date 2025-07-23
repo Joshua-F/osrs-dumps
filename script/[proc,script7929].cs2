@@ -1,0 +1,20 @@
+// 7929
+[proc,script7929](int $int0)
+switch_int ($int0) {
+    case 1 :
+        if_setsize(if_getwidth(dom_end_level_ui:window), 200, ^setsize_abs, ^setsize_abs, dom_end_level_ui:window);
+        if_sethide(true, dom_end_level_ui:section_delve);
+        if_sethide(true, dom_end_level_ui:leave_options);
+        if_sethide(false, dom_end_level_ui:loot_claim_options);
+        if_sethide(true, dom_end_level_ui:earned_loot_header_container);
+        if_sethide(false, dom_end_level_ui:loot_claim_header_container);
+        ~dom_end_level_ui_init_loot(dom_end_level_ui:loot_contents, 1);
+    case default :
+        if_setsize(if_getwidth(dom_end_level_ui:window), 270, ^setsize_abs, ^setsize_abs, dom_end_level_ui:window);
+        if_sethide(false, dom_end_level_ui:section_delve);
+        if_sethide(false, dom_end_level_ui:leave_options);
+        if_sethide(true, dom_end_level_ui:loot_claim_options);
+        if_sethide(false, dom_end_level_ui:earned_loot_header_container);
+        if_sethide(true, dom_end_level_ui:loot_claim_header_container);
+        ~dom_end_level_ui_init_loot(dom_end_level_ui:loot_contents, 0);
+}
