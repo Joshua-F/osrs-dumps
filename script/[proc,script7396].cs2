@@ -1,9 +1,29 @@
 // 7396
 [proc,script7396](int $int0, int $int1, int $int2, string $string0)(string)
-if ($int0 >= max(1000000, $int2)) {
-    return("<~tostring_spacer(calc($int0 / 1000000), $string0)>m");
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_string $string1 = "";
+def_int $int5 = 0;
+if ($int0 >= 1000000000) {
+    $int3 = calc($int0 / 1000000000);
+    $int4 = calc($int0 / 100000000 % 10);
+    $string1 = "b";
+    $int5 = 1;
+} else if ($int0 >= max(1000000, $int2)) {
+    $int3 = calc($int0 / 1000000);
+    $int4 = calc($int0 / 100000 % 10);
+    $string1 = "m";
+    $int5 = 1;
+} else if ($int0 >= max(1000, $int1)) {
+    $int3 = calc($int0 / 1000);
+    $int4 = calc($int0 / 100 % 10);
+    $string1 = "k";
+    $int5 = 1;
 }
-if ($int0 >= max(1000, $int1)) {
-    return("<~tostring_spacer(calc($int0 / 1000), $string0)>k");
+if ($int5 = 1) {
+    if ($int3 >= 100 | $int4 = 0) {
+        return("<~tostring_spacer($int3, $string0)><$string1>");
+    }
+    return("<~tostring_spacer($int3, $string0)>.<~tostring_spacer($int4, $string0)><$string1>");
 }
 return(~tostring_spacer($int0, $string0));

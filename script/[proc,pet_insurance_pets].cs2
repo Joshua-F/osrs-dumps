@@ -1,93 +1,93 @@
 // 6137
-[proc,pet_insurance_pets](component $component0, component $component1, int $int2, int $int3, int $int4, int $int5, int $int6, int $int7, int $int8, int $int9, int $int10, int $int11, int $int12, int $int13, int $int14, int $int15)
-def_int $int16 = calc(bitcount($int2) + bitcount($int3) + bitcount($int4));
-def_int $int17 = calc(bitcount($int5) + bitcount($int6) + bitcount($int7));
-if ($int16 = 0) {
+[proc,pet_insurance_pets](component $component0, component $component1, int $int2, int $int3, int $int4, int $int5, int $int6, int $int7, int $int8, int $int9, int $int10, int $int11, int $int12, int $int13, int $int14, int $int15, int $int16)
+def_int $int17 = calc(bitcount($int2) + bitcount($int3) + bitcount($int4));
+def_int $int18 = calc(bitcount($int5) + bitcount($int6) + bitcount($int7));
+if ($int17 = 0) {
     if_settext("You haven't found any pets yet", pet_insurance:pets_message);
     return;
 }
 cc_deleteall($component0);
 cc_deleteall($component1);
-def_int $int18 = if_getheight($component0);
-def_int $int19 = 233;
-def_int $int20 = 30;
-def_int $int21 = 0;
+def_int $int19 = if_getheight($component0);
+def_int $int20 = 233;
+def_int $int21 = 30;
 def_int $int22 = 0;
 def_int $int23 = 0;
 def_int $int24 = 0;
 def_int $int25 = 0;
 def_int $int26 = 0;
-cc_create($component0, ^iftype_rectangle, $int23);
-$int23 = calc($int23 + 1);
-cc_setposition($int24, $int25, ^setpos_abs_left, ^setpos_abs_top);
-cc_setsize(233, $int20, ^setsize_abs, ^setsize_abs);
+def_int $int27 = 0;
+cc_create($component0, ^iftype_rectangle, $int24);
+$int24 = calc($int24 + 1);
+cc_setposition($int25, $int26, ^setpos_abs_left, ^setpos_abs_top);
+cc_setsize(233, $int21, ^setsize_abs, ^setsize_abs);
 cc_setfill(true);
 cc_setcolour(^black);
 cc_settrans(215);
-cc_create($component0, ^iftype_text, $int23);
-$int23 = calc($int23 + 1);
-cc_setposition($int24, $int25, ^setpos_abs_left, ^setpos_abs_top);
+cc_create($component0, ^iftype_text, $int24);
+$int24 = calc($int24 + 1);
+cc_setposition($int25, $int26, ^setpos_abs_left, ^setpos_abs_top);
 cc_settextfont(b12_full);
 cc_setcolour(0xff981f);
-cc_setsize($int19, $int20, ^setsize_abs, ^setsize_abs);
+cc_setsize($int20, $int21, ^setsize_abs, ^setsize_abs);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
 cc_settextshadow(true);
 cc_settext("Reclaimable Pets");
-$int22 = $int20;
-.cc_create($component0, ^iftype_rectangle, $int23);
-.cc_setsize(233, $int20, ^setsize_abs, ^setsize_abs);
+$int23 = $int21;
+.cc_create($component0, ^iftype_rectangle, $int24);
+.cc_setsize(233, $int21, ^setsize_abs, ^setsize_abs);
 .cc_setfill(true);
 .cc_setcolour(^black);
 .cc_settrans(215);
-$int23 = calc($int23 + 1);
-cc_create($component0, ^iftype_text, $int23);
+$int24 = calc($int24 + 1);
+cc_create($component0, ^iftype_text, $int24);
 cc_settextfont(b12_full);
 cc_setcolour(0xff981f);
-cc_setsize($int19, $int20, ^setsize_abs, ^setsize_abs);
+cc_setsize($int20, $int21, ^setsize_abs, ^setsize_abs);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
 cc_settextshadow(true);
 cc_settext("Insured Pets");
-$int23 = calc($int23 + 1);
-cc_create($component0, ^iftype_text, $int23);
-$int23 = calc($int23 + 1);
-cc_create($component0, ^iftype_text, $int23);
-$int23 = calc($int23 + 1);
-if (calc($int16 - $int17) <= 0) {
-    cc_setposition($int24, $int22, ^setpos_abs_left, ^setpos_abs_top);
+$int24 = calc($int24 + 1);
+cc_create($component0, ^iftype_text, $int24);
+$int24 = calc($int24 + 1);
+cc_create($component0, ^iftype_text, $int24);
+$int24 = calc($int24 + 1);
+if (calc($int17 - $int18) <= 0) {
+    cc_setposition($int25, $int23, ^setpos_abs_left, ^setpos_abs_top);
     cc_settextfont(p12_full);
     cc_setcolour(0x9f9f9f);
-    cc_setsize($int19, $int20, ^setsize_abs, ^setsize_abs);
+    cc_setsize($int20, $int21, ^setsize_abs, ^setsize_abs);
     cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
     cc_settextshadow(true);
     cc_settext("You have no reclaimable pets");
-    $int22 = calc($int22 + $int20);
+    $int23 = calc($int23 + $int21);
 } else {
     cc_sethide(true);
-    $int23, $int22, $int21 = ~pet_insurance_draw_pets(1, $component0, $int23, $int22, $int21, $int2, $int3, $int4, $int5, $int6, $int7, $int8, $int9, $int10, $int11, $int12, $int13, $int14, $int15);
+    $int24, $int23, $int22 = ~pet_insurance_draw_pets(1, $component0, $int24, $int23, $int22, $int2, $int3, $int4, $int5, $int6, $int7, $int8, $int9, $int10, $int11, $int12, $int13, $int14, $int15, $int16);
 }
-$int25 = $int22;
-.cc_setposition($int24, $int25, ^setpos_abs_left, ^setpos_abs_top);
+$int26 = $int23;
+.cc_setposition($int25, $int26, ^setpos_abs_left, ^setpos_abs_top);
 if (cc_find($component0, calc(.cc_getid + 1)) = ^true) {
-    cc_setposition(0, $int25, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setposition(0, $int26, ^setpos_abs_left, ^setpos_abs_top);
 }
-$int22 = calc($int22 + $int20);
-if ($int17 <= 0) {
+$int23 = calc($int23 + $int21);
+if ($int18 <= 0) {
     if (cc_find($component0, calc(.cc_getid + 2)) = ^true) {
-        cc_setposition($int24, $int22, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setposition($int25, $int23, ^setpos_abs_left, ^setpos_abs_top);
         cc_settextfont(p12_full);
         cc_setcolour(0x9f9f9f);
-        cc_setsize($int19, $int20, ^setsize_abs, ^setsize_abs);
+        cc_setsize($int20, $int21, ^setsize_abs, ^setsize_abs);
         cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
         cc_settextshadow(true);
         cc_settext("You have no other pets");
-        $int22 = calc($int22 + $int20);
+        $int23 = calc($int23 + $int21);
     }
 } else {
-    $int23, $int22, $int21 = ~pet_insurance_draw_pets(0, $component0, $int23, $int22, $int21, $int2, $int3, $int4, $int5, $int6, $int7, $int8, $int9, $int10, $int11, $int12, $int13, $int14, $int15);
+    $int24, $int23, $int22 = ~pet_insurance_draw_pets(0, $component0, $int24, $int23, $int22, $int2, $int3, $int4, $int5, $int6, $int7, $int8, $int9, $int10, $int11, $int12, $int13, $int14, $int15, $int16);
 }
 if_setscrollpos(0, 0, $component0);
-if ($int22 > $int18) {
-    if_setscrollsize(0, $int22, $component0);
+if ($int23 > $int19) {
+    if_setscrollsize(0, $int23, $component0);
 } else {
     if_setscrollsize(0, 0, $component0);
 }
