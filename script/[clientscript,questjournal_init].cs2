@@ -1,32 +1,36 @@
 // 6819
-[clientscript,questjournal_init](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9)
-def_int $int10 = 0;
+[clientscript,questjournal_init](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10)
+def_int $int11 = 0;
 if (~speedrunning_world = true) {
-    $int10 = 1;
+    $int11 = 1;
 }
-if ($int10 = 1) {
-    if_sethide(false, $component2);
-} else {
-    if_sethide(true, $component2);
-}
-def_int $int11 = 1;
 if ($int11 = 1) {
     if_sethide(false, $component3);
 } else {
     if_sethide(true, $component3);
 }
-if ($int10 = 1) {
-    if_setposition(29, 0, ^setpos_abs_left, ^setpos_abs_top, $component3);
+def_int $int12 = 1;
+if ($int12 = 1) {
+    if_sethide(false, $component4);
 } else {
-    if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top, $component3);
+    if_sethide(true, $component4);
 }
-if_setopkey(1, ^key_escape, 0, $component4);
-if ($int10 = 1 & $int11 = 1) {
-    if_setposition(63, 2, ^setpos_abs_left, ^setpos_abs_top, $component1);
-} else if ($int10 = 1 | $int11 = 1) {
-    if_setposition(34, 2, ^setpos_abs_left, ^setpos_abs_top, $component1);
+if ($int11 = 1) {
+    if_setposition(29, 0, ^setpos_abs_left, ^setpos_abs_top, $component4);
 } else {
-    if_setposition(5, 2, ^setpos_abs_left, ^setpos_abs_top, $component1);
+    if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top, $component4);
 }
-~quest_journal_size($component0, $component5, $component6, $component7, $component8, $component9);
-if_setontimer("quest_journal_size($component0, $component5, $component6, $component7, $component8, $component9)", $component0);
+if_setopkey(1, ^key_escape, 0, $component5);
+if ($int11 = 1 & $int12 = 1) {
+    if_setposition(63, 2, ^setpos_abs_left, ^setpos_abs_top, $component2);
+} else if ($int11 = 1 | $int12 = 1) {
+    if_setposition(34, 2, ^setpos_abs_left, ^setpos_abs_top, $component2);
+} else {
+    if_setposition(5, 2, ^setpos_abs_left, ^setpos_abs_top, $component2);
+}
+~quest_journal_position($component1);
+~quest_journal_size($component1, $component6, $component7, $component8, $component9, $component10, 1);
+if_setontimer("quest_journal_size($component1, $component6, $component7, $component8, $component9, $component10)", $component1);
+if (~on_mobile = true) {
+    if_setontimer("script7923($component0, $component1, 0)", $component0);
+}
