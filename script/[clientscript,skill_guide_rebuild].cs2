@@ -10,11 +10,13 @@ def_int $int6 = ~script1912;
 def_int $int7 = calc(if_getheight($infinity) - $int6);
 def_int $int8 = max(0, min(%varclient_1170, calc($int5 - $int3)));
 def_int $int9 = max($int6, min(%varclient_1171, calc($int6 + $int7 - $int4)));
-if_setposition($int8, $int9, ^setpos_abs_left, ^setpos_abs_top, $universe);
-if (getwindowmode = ^windowmode_small | ~on_mobile = true) {
+if (~script7925 = false) {
     if_setop(1, "", $move_layer);
     if_setondrag(null, $move_layer);
+    $int8 = if_getx(enum(component, component, ~toplevel_getcomponents, toplevel_osrs_stretch:mainmodal));
+    $int9 = if_gety(enum(component, component, ~toplevel_getcomponents, toplevel_osrs_stretch:mainmodal));
 } else {
     if_setop(1, "Move", $move_layer);
     if_setondrag("skill_guide_drag(event_mousex, event_mousey, $int8, $int9, $int6, $infinity, $universe, $move_layer)", $move_layer);
 }
+if_setposition($int8, $int9, ^setpos_abs_left, ^setpos_abs_top, $universe);

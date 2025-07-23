@@ -1,32 +1,36 @@
 // 6819
-[clientscript,questjournal_init](component $universe, component $title, component $back, component $switch, component $close, component $inner, component $container, component $scroll, component $scrollbar, component $textlayer)
-def_int $int10 = 0;
+[clientscript,questjournal_init](component $infinity, component $universe, component $title, component $back, component $switch, component $close, component $inner, component $container, component $scroll, component $scrollbar, component $textlayer)
+def_int $int11 = 0;
 if (~speedrunning_world = true) {
-    $int10 = 1;
+    $int11 = 1;
 }
-if ($int10 = 1) {
+if ($int11 = 1) {
     if_sethide(false, $back);
 } else {
     if_sethide(true, $back);
 }
-def_int $int11 = 1;
-if ($int11 = 1) {
+def_int $int12 = 1;
+if ($int12 = 1) {
     if_sethide(false, $switch);
 } else {
     if_sethide(true, $switch);
 }
-if ($int10 = 1) {
+if ($int11 = 1) {
     if_setposition(29, 0, ^setpos_abs_left, ^setpos_abs_top, $switch);
 } else {
     if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top, $switch);
 }
 if_setopkey(1, ^key_escape, 0, $close);
-if ($int10 = 1 & $int11 = 1) {
+if ($int11 = 1 & $int12 = 1) {
     if_setposition(63, 2, ^setpos_abs_left, ^setpos_abs_top, $title);
-} else if ($int10 = 1 | $int11 = 1) {
+} else if ($int11 = 1 | $int12 = 1) {
     if_setposition(34, 2, ^setpos_abs_left, ^setpos_abs_top, $title);
 } else {
     if_setposition(5, 2, ^setpos_abs_left, ^setpos_abs_top, $title);
 }
-~quest_journal_size($universe, $inner, $container, $scroll, $scrollbar, $textlayer);
+~quest_journal_position($universe);
+~quest_journal_size($universe, $inner, $container, $scroll, $scrollbar, $textlayer, 1);
 if_setontimer("quest_journal_size($universe, $inner, $container, $scroll, $scrollbar, $textlayer)", $universe);
+if (~on_mobile = true) {
+    if_setontimer("script7923($infinity, $universe, 0)", $infinity);
+}

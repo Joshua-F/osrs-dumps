@@ -13,8 +13,14 @@ if ($int3 < 0) {
 if ($int4 <= 0) {
     if_setcolour($int2, $component);
     if_settrans($int3, $component);
+    if ($int3 >= 255) {
+        if_sethide(true, $component);
+    }
     if_setontimer(null, $component);
     return;
+}
+if (if_gethide($component) = true) {
+    if_sethide(false, $component);
 }
 ~fade_overlay_increment($int0, $int1, $int2, $int3, $int4, $int4, $component);
 if_setontimer("fade_overlay_update($int0, $int1, $int2, $int3, $int4, calc(clientclock + $int4), $component)", $component);

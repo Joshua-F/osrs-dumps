@@ -1,6 +1,6 @@
 // 4874
 [proc,quest_highlight_entity](dbrow $dbrow)
-if (~quest_is_miniquest($dbrow) = true | ~quest_is_subquest($dbrow) = true | db_getfield($dbrow, quest:in_prerelease, 0) = true | ~quest_status_get($dbrow) ! 1) {
+if (~quest_is_miniquest($dbrow) = true | ~quest_is_subquest($dbrow) = true | db_getfield($dbrow, quest:release_type, 0) ! 2 | ~quest_status_get($dbrow) ! 1) {
     return;
 }
 if (%quest_start_highlight_filter_requirements = 1 & ~quest_requirement_check($dbrow) = false) {
