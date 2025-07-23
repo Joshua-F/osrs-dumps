@@ -1,3 +1,7 @@
 // 3647
 [proc,settings_apply_remove_roof]
-setgameoption(^gameoption_remove_roof, %option_hide_rooftops);
+def_int $int0 = %option_hide_rooftops;
+if (%option_hide_rooftops_override > 0) {
+    $int0 = calc(%option_hide_rooftops_override - 1);
+}
+setgameoption(^gameoption_remove_roof, $int0);
