@@ -1,15 +1,15 @@
 // 4027
-[proc,questlist_setcolour](int $int0, boolean $boolean1)
-def_int $int2 = ~settings_get_colour_or_default(224);
+[proc,questlist_setcolour](int $int0, boolean $boolean1, boolean $boolean2, int $int3, int $int4, int $int5, int $int6, boolean $boolean7)
+def_int $int8 = $int4;
 if ($boolean1 = true) {
-    $int2 = ~settings_get_colour_or_default(227);
+    $int8 = $int3;
 } else if ($int0 = 0) {
-    $int2 = ~settings_get_colour_or_default(225);
-} else if ($int0 = 2 & ~speedrunning_world = false) {
-    $int2 = ~settings_get_colour_or_default(226);
+    $int8 = $int5;
+} else if ($int0 = 2 & $boolean2 = false) {
+    $int8 = $int6;
 }
-cc_setcolour($int2);
-if (~on_mobile = false) {
+cc_setcolour($int8);
+if ($boolean7 = false) {
     cc_setonmouseover("cc_colour_swapper(event_com, event_comsubid, 16777215)");
-    cc_setonmouseleave("cc_colour_swapper(event_com, event_comsubid, $int2)");
+    cc_setonmouseleave("cc_colour_swapper(event_com, event_comsubid, $int8)");
 }
