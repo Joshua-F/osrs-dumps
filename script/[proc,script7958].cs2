@@ -1,0 +1,17 @@
+// 7958
+[proc,script7958](dbrow $dbrow0)(boolean)
+if ($dbrow0 = null) {
+    ~debug_mes_warn("Jigsaw", "Jigsaw dbrow was null.");
+    return(false);
+}
+def_int $int1 = db_getfieldcount($dbrow0, jigsaw:piece);
+def_int $int2 = db_getfieldcount($dbrow0, jigsaw:piece_start_position);
+if ($int1 > 31) {
+    ~debug_mes_warn("Jigsaw", "Jigsaw had too many pieces, currently only supporting 31 as the max. count is <tostring($int1)>.");
+    return(false);
+}
+if ($int2 < $int1) {
+    ~debug_mes_warn("Jigsaw", "Jigsaw pieces should match the amount of start points. Pieces =  <tostring($int1)>. but start points = <tostring($int2)>.");
+    return(false);
+}
+return(true);

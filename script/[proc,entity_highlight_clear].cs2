@@ -7,26 +7,40 @@ def_coord $coord4 = null;
 def_obj $obj5 = null;
 def_coord $coord6 = null;
 def_string $string0 = "";
+def_int $int7 = 0;
 switch_int ($int0) {
-    case 5 :
+    case 5, 9, 10, 11, 12 :
         $npc_uid1, $int2, $loc3, $coord4, $obj5, $coord6, $string0 = %varclient_553, %varclient_554, %varclient_555, %varclient_556, %varclient_557, %varclient_558, %varclient_559;
-        %varclient_553, %varclient_554, %varclient_555, %varclient_556, %varclient_557, %varclient_558, %varclient_559 = null, -1, null, null, null, null, "";
     case 4 :
         $npc_uid1, $int2, $loc3, $coord4, $obj5, $coord6, $string0 = %varclient_973, %varclient_974, %varclient_975, %varclient_976, %varclient_977, %varclient_978, %varclient_979;
-        %varclient_973, %varclient_974, %varclient_975, %varclient_976, %varclient_977, %varclient_978, %varclient_979 = null, -1, null, null, null, null, "";
     case default :
         return;
 }
 if ($npc_uid1 ! null & $int2 ! -1 & highlight_npc_get($npc_uid1, $int2, $int0) = true) {
     highlight_npc_off($npc_uid1, $int2, $int0);
+    $int7 = 1;
 }
 if ($loc3 ! null & $coord4 ! null & highlight_loc_get($loc3, $coord4, $int0, 0) = true) {
     highlight_loc_off($loc3, $coord4, $int0, 0);
     ~entity_highlight_active_loc_linked($loc3, $coord4, $int0, 0);
+    $int7 = 1;
 }
 if ($obj5 ! null & $coord6 ! null & highlight_obj_get($obj5, $coord6, $int0, 0) = true) {
     highlight_obj_off($obj5, $coord6, $int0, 0);
+    $int7 = 1;
 }
 if (string_length($string0) > 0 & highlight_player_get($string0, $int0) = true) {
     highlight_player_off($string0, $int0);
+    $int7 = 1;
+}
+if ($int7 = 0) {
+    return;
+}
+switch_int ($int0) {
+    case 5, 9, 10, 11, 12 :
+        %varclient_553, %varclient_554, %varclient_555, %varclient_556, %varclient_557, %varclient_558, %varclient_559 = null, -1, null, null, null, null, "";
+    case 4 :
+        %varclient_973, %varclient_974, %varclient_975, %varclient_976, %varclient_977, %varclient_978, %varclient_979 = null, -1, null, null, null, null, "";
+    case default :
+        return;
 }

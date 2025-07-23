@@ -1,0 +1,15 @@
+// 7974
+[proc,jigsaw_preview_button]
+def_component $component0 = jigsaw:preview_button;
+def_component $component1 = jigsaw:pieces_preview;
+cc_deleteall($component0);
+def_int $int2 = ~v2_stone_button_filled($component0);
+if (~on_mobile = false) {
+    if_setonmouserepeat("jigsaw_preview_button($component0, 0, true, $component1)", $component0);
+    if_setonmouseleave("jigsaw_preview_button($component0, 0, false, $component1)", $component0);
+} else {
+    if_setop(1, "Preview", $component0);
+    if_setopbase("<col=ff9040>Layout", $component0);
+    if_setonop("jigsaw_preview_button_mobile($component0, 0, $component1)", $component0);
+}
+~create_graphic($component0, $int2, "jigsaw_buttons,1", -1, -1, ^setpos_abs_centre, ^setpos_abs_centre, 30, 30, ^setsize_abs, ^setsize_abs);

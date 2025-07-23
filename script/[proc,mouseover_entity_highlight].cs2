@@ -1,20 +1,24 @@
 // 5350
 [proc,mouseover_entity_highlight]
 ~entity_highlight_clear(5);
+~entity_highlight_clear(9);
+~entity_highlight_clear(10);
+~entity_highlight_clear(11);
+~entity_highlight_clear(12);
 def_int $menuentrytype0 = minimenu_type;
 if (%mouseover_entity_highlights_enabled = 0 | $menuentrytype0 = ^menuentrytype_tile | $menuentrytype0 = ^menuentrytype_none) {
     return;
 }
 if ($menuentrytype0 = ^menuentrytype_npc & minimenu_findnpc = true) {
-    ~entity_highlight_active_npc(5);
+    ~entity_highlight_active_npc(nc_param(npc_type, param_2312));
     return;
 }
 if ($menuentrytype0 = ^menuentrytype_loc & minimenu_findloc = true) {
-    ~entity_highlight_active_loc(5);
+    ~entity_highlight_active_loc(lc_param(loc_type, param_2312));
     return;
 }
 if ($menuentrytype0 = ^menuentrytype_obj & minimenu_findobj = true) {
-    ~entity_highlight_active_obj(5);
+    ~entity_highlight_active_obj(oc_param(obj_type, param_2312));
     return;
 }
 if ($menuentrytype0 = ^menuentrytype_player & minimenu_findplayer = true) {
