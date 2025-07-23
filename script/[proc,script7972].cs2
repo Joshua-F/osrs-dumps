@@ -1,0 +1,13 @@
+// 7972
+[proc,script7972](dbrow $dbrow)
+def_component $reshuffle_button = jigsaw:reshuffle_button;
+cc_deleteall($reshuffle_button);
+if_setop(1, "Shuffle", $reshuffle_button);
+if_setopbase("<col=ff9040>Pieces", $reshuffle_button);
+if_setonop("jigsaw_reshuffle($dbrow)", $reshuffle_button);
+def_int $int = ~v2_stone_button_filled($reshuffle_button);
+if (~on_mobile = false) {
+    if_setonmouserepeat("v2_stone_button_change_in($reshuffle_button, 0)", $reshuffle_button);
+    if_setonmouseleave("v2_stone_button_change_out($reshuffle_button, 0)", $reshuffle_button);
+}
+~create_graphic($reshuffle_button, $int, "jigsaw_buttons,0", 0, 0, ^setpos_abs_centre, ^setpos_abs_centre, 30, 30, ^setsize_abs, ^setsize_abs);

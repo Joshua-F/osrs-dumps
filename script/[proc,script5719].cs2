@@ -4,10 +4,14 @@ if (~on_enhanced_any = false) {
     return;
 }
 def_entityoverlay $entityoverlay = entityoverlay_create_loc(2, ^overlaytype_middle, 1, 25, 0);
+def_int $int = enum(loc, int, enum_4077, loc_type);
+if ($int <= 0) {
+    $int = lc_param(loc_type, param_2291);
+}
 if (if_find_entityoverlay($entityoverlay) = true) {
     ~helper_agility_vartransmit($entityoverlay, loc_type, loc_coord);
     if (map_members = true) {
-        if (enum(loc, int, enum_4077, loc_type) > 0) {
+        if ($int > 0) {
             cc_setonstattransmit("helper_agility_stattransmit($entityoverlay, stat(ranged), stat(agility), stat(strength), loc_type, loc_coord){ranged, agility, strength}");
         } else if (enum(loc, int, enum_4078, loc_type) = 1 & enum(coord, int, enum_4079, loc_coord) > 0) {
             cc_setonstattransmit("helper_agility_stattransmit($entityoverlay, stat(ranged), stat(agility), stat(strength), loc_type, loc_coord){ranged, agility, strength}");
