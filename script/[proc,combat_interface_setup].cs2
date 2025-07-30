@@ -1,36 +1,36 @@
 // 7593
-[proc,combat_interface_setup]
-def_int $int0 = 0;
+[proc,combat_interface_setup](component $component0)
+def_int $int1 = 0;
 def_int $intarray0(4);
 def_int $intarray1(4);
-def_int $int1 = 45;
-def_int $int2 = 71;
-def_int $int3 = 47;
-def_int $int4 = 32;
-def_int $int5 = 26;
-def_int $int6 = 12;
-def_int $int7 = 8;
-def_int $int8 = 4;
-def_int $int9 = 7;
-def_int $int10 = 20;
-def_int $int11 = 0;
-def_int $int12 = calc(3 * $int4 + 2 * $int8);
-def_int $int13 = 50;
-def_int $int14 = 44;
+def_int $int2 = 45;
+def_int $int3 = 71;
+def_int $int4 = 47;
+def_int $int5 = 32;
+def_int $int6 = 26;
+def_int $int7 = 12;
+def_int $int8 = 8;
+def_int $int9 = 4;
+def_int $int10 = 7;
+def_int $int11 = 20;
+def_int $int12 = 0;
+def_int $int13 = calc(3 * $int5 + 2 * $int9);
+def_int $int14 = 50;
+def_int $int15 = 44;
 if (~on_mobile = true) {
-    $int1 = 43;
-    $int7 = 4;
-    $int2 = 88;
-    $int3 = 47;
-    $int9 = 4;
-    $int10 = 5;
-    $int14 = $int3;
+    $int2 = 43;
+    $int8 = 4;
+    $int3 = 88;
+    $int4 = 47;
+    $int10 = 4;
+    $int11 = 5;
+    $int15 = $int4;
     if (%combat_weapon_category = 18 | %combat_weapon_category = 21) {
-        $int5 = calc($int3 - 6);
+        $int6 = calc($int4 - 6);
     } else {
-        $int5 = calc($int3 - 2);
+        $int6 = calc($int4 - 2);
     }
-    $int6 = 20;
+    $int7 = 20;
     if_setsize(190, 16, ^setsize_abs, ^setsize_abs, combat_interface:category);
 } else {
     if_setsize(190, 28, ^setsize_abs, ^setsize_abs, combat_interface:category);
@@ -45,9 +45,9 @@ if (%combatlevel_transmit > 0) {
             $string2 = "<$string2>.<tostring(%combatlevel_decimal_transmit)>";
         }
     }
-    if_settext("Combat Lvl: <$string2>", combat_interface:level);
+    if_settext("Combat Lvl: <$string2>", $component0);
 } else {
-    if_settext("", combat_interface:level);
+    if_settext("", $component0);
 }
 if (%combat_weapon_category ! 22) {
     if_sethide(true, combat_interface:set_effect);
@@ -56,23 +56,23 @@ if (%combat_weapon_category ! 22) {
 }
 if (%combat_weapon_category = 18 | %combat_weapon_category = 21 | %combat_weapon_category = 22) {
     if_sethide(false, combat_interface:autocast_buttons);
-    $intarray0(0) = $int10;
-    $intarray0(1) = $int10;
-    $intarray0(2) = $int10;
-    $intarray0(3) = $int10;
-    $intarray1(0) = $int1;
-    $intarray1(1) = calc($int1 + $int4 + $int8);
-    $intarray1(2) = calc($int1 + 2 * ($int4 + $int8));
-    $intarray1(3) = calc($int1 + 3 * ($int4 + $int8));
-    $int11 = calc($int1 + 3 * ($int4 + $int8));
-    if_setsize($int2, $int4, ^setsize_abs, ^setsize_abs, combat_interface:0);
-    if_setsize($int2, $int4, ^setsize_abs, ^setsize_abs, combat_interface:1);
-    if_setsize($int2, $int4, ^setsize_abs, ^setsize_abs, combat_interface:2);
-    if_setsize($int2, $int4, ^setsize_abs, ^setsize_abs, combat_interface:3);
-    if_setsize($int2, $int4, ^setsize_abs, ^setsize_abs, combat_interface:0_back);
-    if_setsize($int2, $int4, ^setsize_abs, ^setsize_abs, combat_interface:1_back);
-    if_setsize($int2, $int4, ^setsize_abs, ^setsize_abs, combat_interface:2_back);
-    if_setsize($int2, $int4, ^setsize_abs, ^setsize_abs, combat_interface:3_back);
+    $intarray0(0) = $int11;
+    $intarray0(1) = $int11;
+    $intarray0(2) = $int11;
+    $intarray0(3) = $int11;
+    $intarray1(0) = $int2;
+    $intarray1(1) = calc($int2 + $int5 + $int9);
+    $intarray1(2) = calc($int2 + 2 * ($int5 + $int9));
+    $intarray1(3) = calc($int2 + 3 * ($int5 + $int9));
+    $int12 = calc($int2 + 3 * ($int5 + $int9));
+    if_setsize($int3, $int5, ^setsize_abs, ^setsize_abs, combat_interface:0);
+    if_setsize($int3, $int5, ^setsize_abs, ^setsize_abs, combat_interface:1);
+    if_setsize($int3, $int5, ^setsize_abs, ^setsize_abs, combat_interface:2);
+    if_setsize($int3, $int5, ^setsize_abs, ^setsize_abs, combat_interface:3);
+    if_setsize($int3, $int5, ^setsize_abs, ^setsize_abs, combat_interface:0_back);
+    if_setsize($int3, $int5, ^setsize_abs, ^setsize_abs, combat_interface:1_back);
+    if_setsize($int3, $int5, ^setsize_abs, ^setsize_abs, combat_interface:2_back);
+    if_setsize($int3, $int5, ^setsize_abs, ^setsize_abs, combat_interface:3_back);
     if_setposition(0, -1, ^setpos_abs_centre, ^setpos_abs_centre, combat_interface:0_icon);
     if_setposition(0, -1, ^setpos_abs_centre, ^setpos_abs_centre, combat_interface:1_icon);
     if_setposition(0, -1, ^setpos_abs_centre, ^setpos_abs_centre, combat_interface:2_icon);
@@ -84,23 +84,23 @@ if (%combat_weapon_category = 18 | %combat_weapon_category = 21 | %combat_weapon
     if_setposition(0, 10, ^setpos_abs_centre, ^setpos_abs_centre, combat_interface:3_text);
 } else {
     if_sethide(true, combat_interface:autocast_buttons);
-    $intarray0(0) = $int10;
-    $intarray0(1) = calc($int10 + $int2 + $int7);
-    $intarray0(2) = $int10;
-    $intarray0(3) = calc($int10 + $int2 + $int7);
-    $intarray1(0) = $int1;
-    $intarray1(1) = $int1;
-    $intarray1(2) = calc($int1 + $int3 + $int9);
-    $intarray1(3) = calc($int1 + $int3 + $int9);
-    $int11 = calc($int1 + 2 * ($int3 + $int9));
-    if_setsize($int2, $int3, ^setsize_abs, ^setsize_abs, combat_interface:0);
-    if_setsize($int2, $int3, ^setsize_abs, ^setsize_abs, combat_interface:1);
-    if_setsize($int2, $int3, ^setsize_abs, ^setsize_abs, combat_interface:2);
-    if_setsize($int2, $int3, ^setsize_abs, ^setsize_abs, combat_interface:3);
-    if_setsize($int2, $int3, ^setsize_abs, ^setsize_abs, combat_interface:0_back);
-    if_setsize($int2, $int3, ^setsize_abs, ^setsize_abs, combat_interface:1_back);
-    if_setsize($int2, $int3, ^setsize_abs, ^setsize_abs, combat_interface:2_back);
-    if_setsize($int2, $int3, ^setsize_abs, ^setsize_abs, combat_interface:3_back);
+    $intarray0(0) = $int11;
+    $intarray0(1) = calc($int11 + $int3 + $int8);
+    $intarray0(2) = $int11;
+    $intarray0(3) = calc($int11 + $int3 + $int8);
+    $intarray1(0) = $int2;
+    $intarray1(1) = $int2;
+    $intarray1(2) = calc($int2 + $int4 + $int10);
+    $intarray1(3) = calc($int2 + $int4 + $int10);
+    $int12 = calc($int2 + 2 * ($int4 + $int10));
+    if_setsize($int3, $int4, ^setsize_abs, ^setsize_abs, combat_interface:0);
+    if_setsize($int3, $int4, ^setsize_abs, ^setsize_abs, combat_interface:1);
+    if_setsize($int3, $int4, ^setsize_abs, ^setsize_abs, combat_interface:2);
+    if_setsize($int3, $int4, ^setsize_abs, ^setsize_abs, combat_interface:3);
+    if_setsize($int3, $int4, ^setsize_abs, ^setsize_abs, combat_interface:0_back);
+    if_setsize($int3, $int4, ^setsize_abs, ^setsize_abs, combat_interface:1_back);
+    if_setsize($int3, $int4, ^setsize_abs, ^setsize_abs, combat_interface:2_back);
+    if_setsize($int3, $int4, ^setsize_abs, ^setsize_abs, combat_interface:3_back);
     if (%combat_weapon_category = 8) {
         if_setposition(0, -6, ^setpos_abs_centre, ^setpos_abs_centre, combat_interface:0_icon);
         if_setsize(30, 30, ^setsize_abs, ^setsize_abs, combat_interface:0_icon);
@@ -116,19 +116,19 @@ if (%combat_weapon_category = 18 | %combat_weapon_category = 21 | %combat_weapon
     if_setposition(0, 13, ^setpos_abs_centre, ^setpos_abs_centre, combat_interface:2_text);
     if_setposition(0, 13, ^setpos_abs_centre, ^setpos_abs_centre, combat_interface:3_text);
 }
-if_setsize(calc($int7 + 2 * $int2), $int14, ^setsize_abs, ^setsize_abs, combat_interface:retaliate);
-if_setposition(0, $int11, ^setpos_abs_centre, ^setpos_abs_top, combat_interface:retaliate);
-if_setsize(calc($int7 + 2 * $int2), $int5, ^setsize_abs, ^setsize_abs, combat_interface:sp_attackbar);
-if_setposition(0, calc($int11 + $int14 + $int9), ^setpos_abs_centre, ^setpos_abs_top, combat_interface:sp_attackbar);
-if_setsize($int2, $int12, ^setsize_abs, ^setsize_abs, combat_interface:autocast_buttons);
-if_setposition(calc($int10 + $int2 + $int7), $int1, ^setpos_abs_left, ^setpos_abs_top, combat_interface:autocast_buttons);
-if_setsize($int2, $int13, ^setsize_abs, ^setsize_abs, combat_interface:autocast_normal);
-if_setsize($int2, $int13, ^setsize_abs, ^setsize_abs, combat_interface:normal_container);
-if_setsize($int2, $int13, ^setsize_abs, ^setsize_abs, combat_interface:autocast_defensive);
-if_setsize($int2, $int13, ^setsize_abs, ^setsize_abs, combat_interface:defensive_container);
-if_setsize(if_getwidth(combat_interface:sp_empty), $int6, ^setsize_abs, ^setsize_abs, combat_interface:sp_empty);
-if_setsize(if_getwidth(combat_interface:sp_border), calc($int6 + 2), ^setsize_abs, ^setsize_abs, combat_interface:sp_border);
-if_setsize(if_getwidth(combat_interface:currentenergy), $int6, ^setsize_abs, ^setsize_abs, combat_interface:currentenergy);
+if_setsize(calc($int8 + 2 * $int3), $int15, ^setsize_abs, ^setsize_abs, combat_interface:retaliate);
+if_setposition(0, $int12, ^setpos_abs_centre, ^setpos_abs_top, combat_interface:retaliate);
+if_setsize(calc($int8 + 2 * $int3), $int6, ^setsize_abs, ^setsize_abs, combat_interface:sp_attackbar);
+if_setposition(0, calc($int12 + $int15 + $int10), ^setpos_abs_centre, ^setpos_abs_top, combat_interface:sp_attackbar);
+if_setsize($int3, $int13, ^setsize_abs, ^setsize_abs, combat_interface:autocast_buttons);
+if_setposition(calc($int11 + $int3 + $int8), $int2, ^setpos_abs_left, ^setpos_abs_top, combat_interface:autocast_buttons);
+if_setsize($int3, $int14, ^setsize_abs, ^setsize_abs, combat_interface:autocast_normal);
+if_setsize($int3, $int14, ^setsize_abs, ^setsize_abs, combat_interface:normal_container);
+if_setsize($int3, $int14, ^setsize_abs, ^setsize_abs, combat_interface:autocast_defensive);
+if_setsize($int3, $int14, ^setsize_abs, ^setsize_abs, combat_interface:defensive_container);
+if_setsize(if_getwidth(combat_interface:sp_empty), $int7, ^setsize_abs, ^setsize_abs, combat_interface:sp_empty);
+if_setsize(if_getwidth(combat_interface:sp_border), calc($int7 + 2), ^setsize_abs, ^setsize_abs, combat_interface:sp_border);
+if_setsize(if_getwidth(combat_interface:currentenergy), $int7, ^setsize_abs, ^setsize_abs, combat_interface:currentenergy);
 def_string $string3 = "";
 def_string $string4 = "";
 def_string $string5 = "";
@@ -137,28 +137,28 @@ def_string $string7 = "";
 def_string $string8 = "";
 def_string $string9 = "";
 def_string $string10 = "";
-def_graphic $graphic15 = null;
 def_graphic $graphic16 = null;
 def_graphic $graphic17 = null;
 def_graphic $graphic18 = null;
-$string3, $string7, $graphic15, $string4, $string8, $graphic16, $string5, $string9, $graphic17, $string6, $string10, $graphic18 = ~script7603(%combat_weapon_category);
+def_graphic $graphic19 = null;
+$string3, $string7, $graphic16, $string4, $string8, $graphic17, $string5, $string9, $graphic18, $string6, $string10, $graphic19 = ~script7603(%combat_weapon_category);
 if (%combat_weapon_category = 22) {
-    if_setsize($int2, $int14, ^setsize_abs, ^setsize_abs, combat_interface:retaliate);
-    if_setposition(calc(-5 * $int7), $int11, ^setpos_abs_centre, ^setpos_abs_top, combat_interface:retaliate);
+    if_setsize($int3, $int15, ^setsize_abs, ^setsize_abs, combat_interface:retaliate);
+    if_setposition(calc(-5 * $int8), $int12, ^setpos_abs_centre, ^setpos_abs_top, combat_interface:retaliate);
 }
-if ($graphic15 = null) {
-    $string3, $string7, $graphic15, $string4, $string8, $graphic16, $string5, $string9, $graphic17, $string6, $string10, $graphic18 = ~script7603(%combat_weapon_category);
+if ($graphic16 = null) {
+    $string3, $string7, $graphic16, $string4, $string8, $graphic17, $string5, $string9, $graphic18, $string6, $string10, $graphic19 = ~script7603(%combat_weapon_category);
 }
-~combat_interface_setbuttons($graphic15, $graphic16, $graphic17, $graphic18);
-def_int $int19 = 0;
-if ($graphic15 ! null) {
+~combat_interface_setbuttons($graphic16, $graphic17, $graphic18, $graphic19);
+def_int $int20 = 0;
+if ($graphic16 ! null) {
     if_sethide(false, combat_interface:0);
-    if_setposition($intarray0($int19), $intarray1($int19), ^setpos_abs_left, ^setpos_abs_top, combat_interface:0);
-    $int19 = calc($int19 + 1);
-    if_setgraphic($graphic15, combat_interface:0_icon);
+    if_setposition($intarray0($int20), $intarray1($int20), ^setpos_abs_left, ^setpos_abs_top, combat_interface:0);
+    $int20 = calc($int20 + 1);
+    if_setgraphic($graphic16, combat_interface:0_icon);
     if_settext($string3, combat_interface:0_text);
     if_setop(1, $string3, combat_interface:0);
-    if_setonop("combat_interface_opbutton($graphic15, $graphic16, $graphic17, $graphic18, event_op, 0)", combat_interface:0);
+    if_setonop("combat_interface_opbutton($graphic16, $graphic17, $graphic18, $graphic19, event_op, 0)", combat_interface:0);
     if_setonmouseleave("deltooltip(combat_interface:tooltip)", combat_interface:0);
     if (string_length($string7) > 0) {
         if_setonmouserepeat("tooltip_mouserepeat(event_com, -1, combat_interface:tooltip, $string7, 25, 140)", combat_interface:0);
@@ -166,14 +166,14 @@ if ($graphic15 ! null) {
 } else {
     if_sethide(true, combat_interface:0);
 }
-if ($graphic16 ! null) {
+if ($graphic17 ! null) {
     if_sethide(false, combat_interface:1);
-    if_setposition($intarray0($int19), $intarray1($int19), ^setpos_abs_left, ^setpos_abs_top, combat_interface:1);
-    $int19 = calc($int19 + 1);
-    if_setgraphic($graphic16, combat_interface:1_icon);
+    if_setposition($intarray0($int20), $intarray1($int20), ^setpos_abs_left, ^setpos_abs_top, combat_interface:1);
+    $int20 = calc($int20 + 1);
+    if_setgraphic($graphic17, combat_interface:1_icon);
     if_settext($string4, combat_interface:1_text);
     if_setop(1, $string4, combat_interface:1);
-    if_setonop("combat_interface_opbutton($graphic15, $graphic16, $graphic17, $graphic18, event_op, 1)", combat_interface:1);
+    if_setonop("combat_interface_opbutton($graphic16, $graphic17, $graphic18, $graphic19, event_op, 1)", combat_interface:1);
     if_setonmouseleave("deltooltip(combat_interface:tooltip)", combat_interface:1);
     if (string_length($string8) > 0) {
         if_setonmouserepeat("tooltip_mouserepeat(event_com, -1, combat_interface:tooltip, $string8, 25, 140)", combat_interface:1);
@@ -181,14 +181,14 @@ if ($graphic16 ! null) {
 } else {
     if_sethide(true, combat_interface:1);
 }
-if ($graphic17 ! null) {
+if ($graphic18 ! null) {
     if_sethide(false, combat_interface:2);
-    if_setposition($intarray0($int19), $intarray1($int19), ^setpos_abs_left, ^setpos_abs_top, combat_interface:2);
-    $int19 = calc($int19 + 1);
-    if_setgraphic($graphic17, combat_interface:2_icon);
+    if_setposition($intarray0($int20), $intarray1($int20), ^setpos_abs_left, ^setpos_abs_top, combat_interface:2);
+    $int20 = calc($int20 + 1);
+    if_setgraphic($graphic18, combat_interface:2_icon);
     if_settext($string5, combat_interface:2_text);
     if_setop(1, $string5, combat_interface:2);
-    if_setonop("combat_interface_opbutton($graphic15, $graphic16, $graphic17, $graphic18, event_op, 2)", combat_interface:2);
+    if_setonop("combat_interface_opbutton($graphic16, $graphic17, $graphic18, $graphic19, event_op, 2)", combat_interface:2);
     if_setonmouseleave("deltooltip(combat_interface:tooltip)", combat_interface:2);
     if (string_length($string9) > 0) {
         if_setonmouserepeat("tooltip_mouserepeat(event_com, -1, combat_interface:tooltip, $string9, 25, 140)", combat_interface:2);
@@ -196,14 +196,14 @@ if ($graphic17 ! null) {
 } else {
     if_sethide(true, combat_interface:2);
 }
-if ($graphic18 ! null) {
+if ($graphic19 ! null) {
     if_sethide(false, combat_interface:3);
-    if_setposition($intarray0($int19), $intarray1($int19), ^setpos_abs_left, ^setpos_abs_top, combat_interface:3);
-    $int19 = calc($int19 + 1);
-    if_setgraphic($graphic18, combat_interface:3_icon);
+    if_setposition($intarray0($int20), $intarray1($int20), ^setpos_abs_left, ^setpos_abs_top, combat_interface:3);
+    $int20 = calc($int20 + 1);
+    if_setgraphic($graphic19, combat_interface:3_icon);
     if_settext($string6, combat_interface:3_text);
     if_setop(1, $string6, combat_interface:3);
-    if_setonop("combat_interface_opbutton($graphic15, $graphic16, $graphic17, $graphic18, event_op, 3)", combat_interface:3);
+    if_setonop("combat_interface_opbutton($graphic16, $graphic17, $graphic18, $graphic19, event_op, 3)", combat_interface:3);
     if_setonmouseleave("deltooltip(combat_interface:tooltip)", combat_interface:3);
     if (string_length($string10) > 0) {
         if_setonmouserepeat("tooltip_mouserepeat(event_com, -1, combat_interface:tooltip, $string10, 25, 140)", combat_interface:3);
