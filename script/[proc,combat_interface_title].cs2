@@ -1,0 +1,13 @@
+// 2486
+[proc,combat_interface_title](component $component0, component $component1)
+def_string $string0 = "Unarmed";
+def_obj $obj2 = inv_getobj(worn, 3);
+if ($obj2 ! null & (oc_members($obj2) = 0 | map_members = true)) {
+    $string0 = oc_name($obj2);
+}
+if_settext($string0, $component0);
+if (paraheight($string0, if_getwidth($component0), q8_full) > 1) {
+    if_setposition(0, 31, ^setpos_abs_centre, ^setpos_abs_top, $component1);
+} else {
+    if_setposition(0, 26, ^setpos_abs_centre, ^setpos_abs_top, $component1);
+}
