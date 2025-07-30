@@ -1,9 +1,9 @@
 // 7592
-[clientscript,combat_interface_init]
-def_component $infobutton = combat_interface:infobutton;
-def_component $glow = combat_interface:glow;
+[clientscript,combat_interface_init](component $universe, component $title, component $level, component $infobutton, component $glow)
+cc_deleteall($glow);
 def_int $int = 0;
 if (~on_mobile = true) {
+    if_sethide(false, $infobutton);
     while ($int < 4) {
         cc_create($glow, ^iftype_rectangle, $int);
         cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
@@ -17,4 +17,7 @@ if (~on_mobile = true) {
 } else {
     if_sethide(true, $infobutton);
 }
-~combat_interface_setup;
+~combat_interface_setup($level);
+if_setonvartransmit("combat_interface_setup($level){randomhitsound, com_mode, wilderness_statistics, sote_light_level_0_g, settings_varp_ehc_4}", $universe);
+~combat_interface_title($title, $level);
+if_setoninvtransmit("combat_interface_title($title, $level){worn}", $universe);
