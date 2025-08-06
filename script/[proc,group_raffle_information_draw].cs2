@@ -1,33 +1,33 @@
 // 6069
 [proc,group_raffle_information_draw](component $component0, component $component1, int $int2)
-def_component $component3 = gim_raffle:tabs;
-def_component $component4 = gim_raffle:tabs_clickzone;
-def_component $component5 = gim_raffle:scrollbar;
-def_component $component6 = gim_raffle:raffle_contents;
-def_component $component7 = gim_raffle:raffle_information;
-def_component $component8 = gim_raffle:raffle_container;
-def_component $component9 = gim_raffle:raffle_score_holder;
-cc_deleteall($component3);
-cc_deleteall($component4);
-cc_deleteall($component5);
-cc_deleteall($component6);
-cc_deleteall($component7);
+def_component $tabs = gim_raffle:tabs;
+def_component $tabs_clickzone = gim_raffle:tabs_clickzone;
+def_component $scrollbar = gim_raffle:scrollbar;
+def_component $raffle_contents = gim_raffle:raffle_contents;
+def_component $raffle_information = gim_raffle:raffle_information;
+def_component $raffle_container = gim_raffle:raffle_container;
+def_component $raffle_score_holder = gim_raffle:raffle_score_holder;
+cc_deleteall($tabs);
+cc_deleteall($tabs_clickzone);
+cc_deleteall($scrollbar);
+cc_deleteall($raffle_contents);
+cc_deleteall($raffle_information);
 def_int $int10 = 0;
 def_int $int11 = 0;
 def_int $int12 = 4;
 def_string $string0 = "";
 def_string $string1 = "";
-def_struct $struct13 = enum(int, struct, enum_4365, 1);
-~steelborder(gim_raffle:frame, "Group Raffle - <struct_param($struct13, param_1614)>", 1);
+def_struct $struct = enum(int, struct, enum_4365, 1);
+~steelborder(gim_raffle:frame, "Group Raffle - <struct_param($struct, param_1614)>", 1);
 if ($int10 ! $int2) {
-    $int10, $int11, $int12 = ~raffle_tab_not_selected($component0, $component1, $int10, $int11, $int12, $component3, $component4, "Info", $component5);
+    $int10, $int11, $int12 = ~raffle_tab_not_selected($component0, $component1, $int10, $int11, $int12, $tabs, $tabs_clickzone, "Info", $scrollbar);
 } else {
-    $int10, $int11, $int12 = ~raffle_tab_selected($int10, $int11, $int12, $component3, $component4, "Info", $component5);
+    $int10, $int11, $int12 = ~raffle_tab_selected($int10, $int11, $int12, $tabs, $tabs_clickzone, "Info", $scrollbar);
 }
 if ($int10 ! $int2) {
-    $int10, $int11, $int12 = ~raffle_tab_not_selected($component0, $component1, $int10, $int11, $int12, $component3, $component4, "Score", $component5);
+    $int10, $int11, $int12 = ~raffle_tab_not_selected($component0, $component1, $int10, $int11, $int12, $tabs, $tabs_clickzone, "Score", $scrollbar);
 } else {
-    $int10, $int11, $int12 = ~raffle_tab_selected($int10, $int11, $int12, $component3, $component4, "Score", $component5);
+    $int10, $int11, $int12 = ~raffle_tab_selected($int10, $int11, $int12, $tabs, $tabs_clickzone, "Score", $scrollbar);
 }
 def_int $int14 = %if1;
 def_int $int15 = %if2;
@@ -36,7 +36,7 @@ def_int $int17 = %if4;
 def_int $int18 = %if5;
 def_int $int19 = %if6;
 def_int $int20 = 0;
-if ($struct13 ! null) {
+if ($struct ! null) {
     if (%clan_transmit_loadasguest = 1 & %clan_guest_affinitystatus = 3 & activeclansettings_find_listened = true | %clan_transmit_loadasguest = 0 & %gim_affinitystatus = 3 & activeclansettings_find_affined(^clantype_gim) = true) {
         $int20 = activeclansettings_getaffinedcount;
         $string1 = "Total tickets earned: <col=ffffff><tostring(calc($int14 + $int15 + $int16 + $int17 + $int18))></col><br><br>";
@@ -53,23 +53,23 @@ if ($struct13 ! null) {
         if ($int20 > 4) {
             $string1 = append($string1, "<br><activeclansettings_getaffineddisplayname(4)> - <col=ffffff><tostring($int18)> tickets</col>");
         }
-        if_settext($string1, $component9);
+        if_settext($string1, $raffle_score_holder);
     }
     if ($int2 = 0) {
-        $string0 = struct_param($struct13, param_1615);
+        $string0 = struct_param($struct, param_1615);
     } else {
-        $string0 = if_gettext($component9);
+        $string0 = if_gettext($raffle_score_holder);
     }
-    if_setsize(10, 5, ^setsize_minus, ^setsize_minus, $component7);
-    if_setsize(16, 2, ^setsize_minus, ^setsize_minus, $component6);
-    if_setsize(71, 40, ^setsize_minus, ^setsize_minus, $component8);
-    if_settext($string0, $component7);
-    $int12 = calc(paraheight($string0, if_getwidth($component7), p12_full) * 15);
-    if ($int12 <= if_getheight($component6)) {
-        if_setscrollsize(0, 0, $component6);
+    if_setsize(10, 5, ^setsize_minus, ^setsize_minus, $raffle_information);
+    if_setsize(16, 2, ^setsize_minus, ^setsize_minus, $raffle_contents);
+    if_setsize(71, 40, ^setsize_minus, ^setsize_minus, $raffle_container);
+    if_settext($string0, $raffle_information);
+    $int12 = calc(paraheight($string0, if_getwidth($raffle_information), p12_full) * 15);
+    if ($int12 <= if_getheight($raffle_contents)) {
+        if_setscrollsize(0, 0, $raffle_contents);
     } else {
-        if_setscrollsize(0, $int12, $component6);
+        if_setscrollsize(0, $int12, $raffle_contents);
     }
-    if_setscrollpos(0, 0, $component6);
-    ~scrollbar_vertical($component5, $component6, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+    if_setscrollpos(0, 0, $raffle_contents);
+    ~scrollbar_vertical($scrollbar, $raffle_contents, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
 }

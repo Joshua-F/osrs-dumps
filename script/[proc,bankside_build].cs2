@@ -4,7 +4,7 @@ if_setontimer("script3277(%varclient_386, $component0, $component1, $component2,
 cc_deleteall($component2);
 def_int $int9 = calc((42 - 36) * 3 - 2);
 def_int $int10 = calc((36 - 32) * 2);
-def_obj $obj11 = null;
+def_obj $obj = null;
 def_int $int12 = 0;
 if (%varclient_386 = true) {
     if_sethide(true, $component1);
@@ -42,15 +42,15 @@ $int12 = inv_size(inv);
 while ($int12 > 0) {
     $int12 = calc($int12 - 1);
     if (cc_find($component1, $int12) = true) {
-        $obj11 = inv_getobj(inv, $int12);
+        $obj = inv_getobj(inv, $int12);
         $boolean18 = ~bank_side_locked_slot($int12);
-        ~bankside_drawitem($obj11, inv_getnum(inv, $int12), $int12, $component1, $component2, $int13, $component0, $component4, $component5, $component6, $component7, $component8, $boolean18);
+        ~bankside_drawitem($obj, inv_getnum(inv, $int12), $int12, $component1, $component2, $int13, $component0, $component4, $component5, $component6, $component7, $component8, $boolean18);
         $int16, $int17 = calc($int9 + $int12 % 4 * 42), calc($int10 + $int12 / 4 * 36);
         cc_setposition($int16, $int17, ^setpos_abs_left, ^setpos_abs_top);
         if ($boolean15 = true) {
             $int14 = ~script7783($component2, $int16, $int17, $boolean18, $int14);
         }
-        switch_obj ($obj11) {
+        switch_obj ($obj) {
             case looting_bag, looting_bag_open :
                 if ($int13 = 1) {
                     .cc_create($component2, ^iftype_graphic, $int14);
@@ -68,7 +68,7 @@ while ($int12 > 0) {
                 .cc_setgraphic("prayerglow,0");
                 .cc_settrans(180);
             case default :
-                if (~is_prepot_device($obj11) = true) {
+                if (~is_prepot_device($obj) = true) {
                     .cc_create($component2, ^iftype_graphic, $int14);
                     $int14 = calc($int14 + 1);
                     .cc_setsize(34, 34, ^setsize_abs, ^setsize_abs);

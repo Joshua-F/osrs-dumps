@@ -6,11 +6,11 @@ if ($component0 ! null) {
     if_setonvartransmit("orbs_update_health(null, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9){poison, disease, nightmare_temp, worn_item_bonus2, br_temp_1}", $component0);
     if_setonsubchange("orbs_update_health(null, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9)", $component0);
 }
-def_int $int10 = stat_base(hitpoints);
+def_int $int = stat_base(hitpoints);
 if (%br_ingame = 1) {
-    $int10 = 99;
+    $int = 99;
 }
-~orbs_update($component1, $component2, stat(hitpoints), $int10);
+~orbs_update($component1, $component2, stat(hitpoints), $int);
 if (%poison > 0 | %disease > 0 | %parasite > 0) {
     if_settrans(100, $component3);
 } else {
@@ -37,12 +37,12 @@ if (%poison > 0) {
 } else {
     if_sethide(true, $component5);
 }
-def_graphic $graphic11 = ~graphic_device("orb_frame,1", "tli_button01_orbinfo_65x34,1");
+def_graphic $graphic = ~graphic_device("orb_frame,1", "tli_button01_orbinfo_65x34,1");
 if ((%poison > 0 | %disease > 0 | %parasite > 0) & ~toplevel_check_sidepanel(3) = true) {
-    if_setonmouserepeat("graphic_swapper($component7, $graphic11)", $component8);
-    $graphic11 = ~graphic_device("orb_frame,0", "tli_button01_orbinfo_65x34,0");
-    if_setonmouseleave("graphic_swapper($component7, $graphic11)", $component8);
-    if_setgraphic($graphic11, $component7);
+    if_setonmouserepeat("graphic_swapper($component7, $graphic)", $component8);
+    $graphic = ~graphic_device("orb_frame,0", "tli_button01_orbinfo_65x34,0");
+    if_setonmouseleave("graphic_swapper($component7, $graphic)", $component8);
+    if_setgraphic($graphic, $component7);
     if_sethide(false, $component8);
 } else {
     if_setgraphic(~graphic_device("orb_frame,0", "tli_button01_orbinfo_65x34,0"), $component7);

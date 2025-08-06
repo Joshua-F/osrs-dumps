@@ -1,5 +1,5 @@
 // 4515
-[proc,script4515](component $component0, component $component1, stat $stat2, int $int3, int $int4, int $int5, component $component6)(int)
+[proc,script4515](component $component0, component $component1, stat $stat, int $int3, int $int4, int $int5, component $component6)(int)
 $int4 = calc($int4 + $int3 * 35);
 def_int $int7 = 0;
 def_int $int8 = 0;
@@ -12,7 +12,7 @@ cc_settrans(100);
 cc_settiling(true);
 def_string $string0 = null;
 if (%stat_boosts_hud_tooltips_hidden = 0) {
-    $string0 = "<enum(stat, string, enum_680, $stat2)>: <tostring(stat($stat2))>/<tostring(stat_base($stat2))>";
+    $string0 = "<enum(stat, string, enum_680, $stat)>: <tostring(stat($stat))>/<tostring(stat_base($stat))>";
     if (~on_enhanced_desktop = true) {
         cc_setonmouserepeat("tooltip_mouserepeat($component0, cc_getid, $component1, $string0, 0, 512)");
         cc_setonmouseleave("deltooltip($component1)");
@@ -33,7 +33,7 @@ cc_create($component0, ^iftype_graphic, $int5);
 $int5 = calc($int5 + 1);
 cc_setsize($int9, $int10, ^setsize_abs, ^setsize_abs);
 cc_setposition($int11, $int12, ^setpos_abs_left, ^setpos_abs_top);
-cc_setgraphic(enum(stat, graphic, enum_255, $stat2));
+cc_setgraphic(enum(stat, graphic, enum_255, $stat));
 def_int $int13 = 12;
 def_int $int14 = 2;
 def_int $int15 = calc($int7 + (35 - $int13 - $int14));
@@ -51,7 +51,7 @@ cc_create($component0, ^iftype_text, $int5);
 $int5 = calc($int5 + 1);
 cc_setsize(35, $int13, ^setsize_abs, ^setsize_abs);
 cc_setposition($int4, $int15, ^setpos_abs_left, ^setpos_abs_top);
-if (stat($stat2) < stat_base($stat2)) {
+if (stat($stat) < stat_base($stat)) {
     cc_setcolour(0xff8888);
 } else {
     cc_setcolour(0x93ff7a);
@@ -61,12 +61,12 @@ cc_settextshadow(true);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
 def_string $string1 = "";
 def_int $int18 = 0;
-def_int $int19 = stat($stat2);
+def_int $int19 = stat($stat);
 if (%last_stand_fakelevel > 0) {
-    $int19 = ~last_stand_get_level($stat2);
+    $int19 = ~last_stand_get_level($stat);
 }
 if (%stat_boosts_hud_display_relative = 1) {
-    $int18 = calc($int19 - stat_base($stat2));
+    $int18 = calc($int19 - stat_base($stat));
     if ($int18 > 0) {
         $string1 = "+";
     }

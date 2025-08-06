@@ -1,0 +1,10 @@
+// 2628
+[proc,script2628](npc $npc, string $string)(string)
+if ($npc = null) {
+    return("");
+}
+switch_npc ($npc) {
+    case dom_boss, dom_boss_burrowed, dom_boss_shielded :
+        return("<$string> (Level <~tostring_spacer(~add_capped(%dom_current_level_temp, 1, ^max_32bit_int), ",")>)");
+}
+return($string);

@@ -1,29 +1,29 @@
 // 274
-[clientscript,bankmain_init](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10, component $component11, component $component12, component $component13, component $component14, component $component15, component $component16, component $component17, component $component18, component $component19, component $component20, component $component21, component $component22, component $component23, component $component24, component $component25, component $component26, component $component27, component $component28, component $component29, component $component30, component $component31, component $component32, component $component33)
-~steelborder($component1, "", 0);
+[clientscript,bankmain_init](component $universe, component $frame, component $menu_button, component $wornitems_button, component $items_container, component $wornitems_container, component $menu_container, component $items, component $scrollbar, component $bottom, component $swap, component $insert, component $placeholder, component $item, component $note, component $search, component $title, component $occupiedslots, component $tabs, component $incinerator_target, component $incinerator_confirm, component $tooltip, component $quantity1, component $quantity5, component $quantity10, component $quantityx, component $quantityall, component $quantity_layer, component $depositinv, component $depositinv_graphic, component $depositworn, component $depositworn_graphic, component $bank_tut, component $gim_storage)
+~steelborder($frame, "", 0);
 def_int $int34 = %varclient_51;
 if (~bankmain_searching = true) {
     ~meslayer_close(1, 1, 1);
 } else if (%varclient_5 <= 0) {
     %varclient_359 = "";
 }
-~bankmain_search_setbutton($component0, $component2, $component7, $component8, $component9, $component16, $component17, $component15, $component18, $component19, $component20, $component21, $component28, $component29, $component30, $component31, $component32);
-if_setonop("bankmain_search_toggle(event_op, $component0, $component2, $component7, $component8, $component9, $component16, $component17, $component15, $component18, $component19, $component20, $component21, $component28, $component29, $component30, $component31, $component32)", $component15);
-cc_deleteall($component8);
-~scrollbar_vertical($component8, $component7, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-~bankmain_swapinsert($component10, $component11);
-if_setonvartransmit("bankmain_swapinsert($component10, $component11){bankinsert}", $component10);
-~bankmain_toggleplaceholders($component12);
-if_setonvartransmit("bankmain_toggleplaceholders($component12){prayer25}", $component12);
-~bankmain_itemnote($component13, $component14);
-if_setonvartransmit("bankmain_itemnote($component13, $component14){bankcert}", $component13);
-~bankmain_quantity_buttons($component22, $component23, $component24, $component25, $component26);
-if_setonvartransmit("bankmain_quantity_buttons($component22, $component23, $component24, $component25, $component26){gargboss_perm_transmit, bankinsert}", $component27);
-cc_deleteall($component7);
+~bankmain_search_setbutton($universe, $menu_button, $items, $scrollbar, $bottom, $title, $occupiedslots, $search, $tabs, $incinerator_target, $incinerator_confirm, $tooltip, $depositinv, $depositinv_graphic, $depositworn, $depositworn_graphic, $bank_tut);
+if_setonop("bankmain_search_toggle(event_op, $universe, $menu_button, $items, $scrollbar, $bottom, $title, $occupiedslots, $search, $tabs, $incinerator_target, $incinerator_confirm, $tooltip, $depositinv, $depositinv_graphic, $depositworn, $depositworn_graphic, $bank_tut)", $search);
+cc_deleteall($scrollbar);
+~scrollbar_vertical($scrollbar, $items, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~bankmain_swapinsert($swap, $insert);
+if_setonvartransmit("bankmain_swapinsert($swap, $insert){bankinsert}", $swap);
+~bankmain_toggleplaceholders($placeholder);
+if_setonvartransmit("bankmain_toggleplaceholders($placeholder){prayer25}", $placeholder);
+~bankmain_itemnote($item, $note);
+if_setonvartransmit("bankmain_itemnote($item, $note){bankcert}", $item);
+~bankmain_quantity_buttons($quantity1, $quantity5, $quantity10, $quantityx, $quantityall);
+if_setonvartransmit("bankmain_quantity_buttons($quantity1, $quantity5, $quantity10, $quantityx, $quantityall){gargboss_perm_transmit, bankinsert}", $quantity_layer);
+cc_deleteall($items);
 def_int $int35 = 0;
 def_int $int36 = 0;
 while ($int36 < 1220) {
-    cc_create($component7, ^iftype_graphic, $int35);
+    cc_create($items, ^iftype_graphic, $int35);
     $int35 = calc($int35 + 1);
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
     cc_setgraphicshadow(0x333333);
@@ -32,10 +32,10 @@ while ($int36 < 1220) {
     cc_setdragdeadtime(5);
     $int36 = calc($int36 + 1);
 }
-def_int $int37 = calc(if_getwidth($component7) - 51 - 35);
+def_int $int37 = calc(if_getwidth($items) - 51 - 35);
 $int36 = 1;
 while ($int36 <= 9) {
-    cc_create($component7, ^iftype_graphic, $int35);
+    cc_create($items, ^iftype_graphic, $int35);
     $int35 = calc($int35 + 1);
     cc_setsize($int37, 2, ^setsize_abs, ^setsize_abs);
     cc_setgraphic(tradebacking_dark);
@@ -44,7 +44,7 @@ while ($int36 <= 9) {
 }
 $int36 = 1;
 while ($int36 <= 9) {
-    cc_create($component7, ^iftype_text, $int35);
+    cc_create($items, ^iftype_text, $int35);
     $int35 = calc($int35 + 1);
     cc_setsize($int37, 15, ^setsize_abs, ^setsize_abs);
     cc_settextalign(^settextalign_left, ^settextalign_top, 0);
@@ -56,29 +56,29 @@ while ($int36 <= 9) {
     cc_settext("Tab <tostring($int36)>");
     cc_setop(1, "View tab");
     cc_setopbase("<col=ff9040><tostring($int36)></col>");
-    cc_setonop("bankmain_switchtab($component0, $component2, $component7, $component8, $component9, $component16, $component17, $component15, $component18, $component19, $component20, $component21, event_op, $int36, $component28, $component29, $component30, $component31, $component32)");
+    cc_setonop("bankmain_switchtab($universe, $menu_button, $items, $scrollbar, $bottom, $title, $occupiedslots, $search, $tabs, $incinerator_target, $incinerator_confirm, $tooltip, event_op, $int36, $depositinv, $depositinv_graphic, $depositworn, $depositworn_graphic, $bank_tut)");
     $int36 = calc($int36 + 1);
 }
 $int36 = 0;
 while ($int36 <= 9) {
-    cc_create($component7, ^iftype_rectangle, $int35);
+    cc_create($items, ^iftype_rectangle, $int35);
     $int35 = calc($int35 + 1);
     cc_setsize(0, 32, ^setsize_abs, ^setsize_abs);
     cc_setfill(true);
     cc_settrans(255);
     $int36 = calc($int36 + 1);
 }
-~bankmain_viewbuttons($component4, $component0, $component2, $component3, $component7, $component8, $component9, $component16, $component17, $component15, $component18, $component19, $component20, $component21, $component4, $component5, $component6, $component28, $component29, $component30, $component31, $component32);
-if_setoninvtransmit("bankmain_build($component0, $component2, $component7, $component8, $component9, $component16, $component17, $component15, $component18, $component19, $component20, $component21, $component28, $component29, $component30, $component31, $component32){bank}", $component7);
-if_setonvartransmit("bankmain_build($component0, $component2, $component7, $component8, $component9, $component16, $component17, $component15, $component18, $component19, $component20, $component21, $component28, $component29, $component30, $component31, $component32){bankinsert, bankcert, prayer23, prayer25, prayer26, gargboss_perm_transmit, item_redemption}", $component7);
+~bankmain_viewbuttons($items_container, $universe, $menu_button, $wornitems_button, $items, $scrollbar, $bottom, $title, $occupiedslots, $search, $tabs, $incinerator_target, $incinerator_confirm, $tooltip, $items_container, $wornitems_container, $menu_container, $depositinv, $depositinv_graphic, $depositworn, $depositworn_graphic, $bank_tut);
+if_setoninvtransmit("bankmain_build($universe, $menu_button, $items, $scrollbar, $bottom, $title, $occupiedslots, $search, $tabs, $incinerator_target, $incinerator_confirm, $tooltip, $depositinv, $depositinv_graphic, $depositworn, $depositworn_graphic, $bank_tut){bank}", $items);
+if_setonvartransmit("bankmain_build($universe, $menu_button, $items, $scrollbar, $bottom, $title, $occupiedslots, $search, $tabs, $incinerator_target, $incinerator_confirm, $tooltip, $depositinv, $depositinv_graphic, $depositworn, $depositworn_graphic, $bank_tut){bankinsert, bankcert, prayer23, prayer25, prayer26, gargboss_perm_transmit, item_redemption}", $items);
 %varclient_51 = $int34;
-def_component $component38 = if_getlayer($component0);
-if ($component38 ! null) {
-    ~bankmain_size_check($component0, $component38, ^min_32bit_int, ^min_32bit_int, $component8, $component7);
+def_component $component = if_getlayer($universe);
+if ($component ! null) {
+    ~bankmain_size_check($universe, $component, ^min_32bit_int, ^min_32bit_int, $scrollbar, $items);
 }
-cc_deleteall($component19);
-cc_create($component19, ^iftype_model, 0);
-.cc_create($component19, ^iftype_model, 1);
+cc_deleteall($incinerator_target);
+cc_create($incinerator_target, ^iftype_model, 0);
+.cc_create($incinerator_target, ^iftype_model, 1);
 cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
 .cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
 cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
@@ -89,8 +89,8 @@ cc_setmodelangle(15, 300, 141, 220, 0, 3500);
 .cc_setmodelangle(15, 300, 141, 220, 0, 3500);
 .cc_setmodelanim(blast_furnace_smoke);
 .cc_sethide(true);
-if_setonmouserepeat("script1312(true, $component19, $component21)", $component19);
-if_setonmouseleave("script1312(false, $component19, $component21)", $component19);
-~script5300($component33);
-if_setonvartransmit("script5299(event_com){magic_carpet_var}", $component33);
-if_setonop("bankmain_switchtab($component0, $component2, $component7, $component8, $component9, $component16, $component17, $component15, $component18, $component19, $component20, $component21, event_op, 15, $component28, $component29, $component30, $component31, $component32)", bankmain:potionstore_button);
+if_setonmouserepeat("script1312(true, $incinerator_target, $tooltip)", $incinerator_target);
+if_setonmouseleave("script1312(false, $incinerator_target, $tooltip)", $incinerator_target);
+~script5300($gim_storage);
+if_setonvartransmit("script5299(event_com){magic_carpet_var}", $gim_storage);
+if_setonop("bankmain_switchtab($universe, $menu_button, $items, $scrollbar, $bottom, $title, $occupiedslots, $search, $tabs, $incinerator_target, $incinerator_confirm, $tooltip, event_op, 15, $depositinv, $depositinv_graphic, $depositworn, $depositworn_graphic, $bank_tut)", bankmain:potionstore_button);

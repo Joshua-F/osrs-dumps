@@ -1,13 +1,13 @@
 // 5936
-[proc,script5936](struct $struct0, int $int1)
-def_component $component2 = buff_bar:buff_listeners;
+[proc,script5936](struct $struct, int $int1)
+def_component $buff_listeners = buff_bar:buff_listeners;
 def_int $int3 = 0;
 def_int $int4 = calc(clientclock - $int1);
 def_int $int5 = 0;
 def_int $int6 = 0;
 def_int $int7 = 0;
-def_int $rgb8 = ^black;
-def_string $string0 = "";
+def_int $rgb = ^black;
+def_string $string = "";
 def_int $int9 = 0;
 def_int $int10 = 0;
 def_int $int11 = 0;
@@ -17,19 +17,19 @@ def_int $int14 = 0;
 def_int $int15 = 0;
 def_int $int16 = 10;
 if (calc($int4 % $int16) = 0) {
-    $int12 = struct_param($struct0, param_1275);
-    if (cc_find($component2, $int12) = true) {
-        $int13 = struct_param($struct0, param_1277);
+    $int12 = struct_param($struct, param_1275);
+    if (cc_find($buff_listeners, $int12) = true) {
+        $int13 = struct_param($struct, param_1277);
         $int10 = cc_getcolour;
         $int11 = cc_getmodelzoom;
         $int9 = ~buff_bar_time_to_cycles($int13, $int10);
         $int5 = calc($int9 - $int4);
-        $rgb8 = cc_getblendcolour;
+        $rgb = cc_getblendcolour;
         $int6 = cc_getscrollwidth;
         $int7 = cc_getscrollheight;
-        if (%busy = 1 & struct_param($struct0, param_1290) = true) {
+        if (%busy = 1 & struct_param($struct, param_1290) = true) {
             $int6 = calc($int6 + $int16);
-            $int15 = calc(~buff_bar_get_server_transmit_rate($struct0) * 30 - $int4);
+            $int15 = calc(~buff_bar_get_server_transmit_rate($struct) * 30 - $int4);
             if ($int15 < 0) {
                 $int7 = calc($int7 + $int16);
             }
@@ -42,11 +42,11 @@ if (calc($int4 % $int16) = 0) {
         }
         cc_setscrollsize($int6, $int7);
         cc_setblendcolour($int5);
-        cc_settext(~script5943($struct0, $int5));
-        cc_setopbase(~script5343($struct0, $int11));
+        cc_settext(~script5943($struct, $int5));
+        cc_setopbase(~script5343($struct, $int11));
         if ($int5 <= 0) {
             cc_setscrollsize(0, 0);
-            cc_setcolour(struct_param($struct0, param_1540));
+            cc_setcolour(struct_param($struct, param_1540));
             cc_setblendcolour(^black);
             cc_settext("");
             cc_setontimer(null);

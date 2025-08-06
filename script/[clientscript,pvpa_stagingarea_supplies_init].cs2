@@ -1,15 +1,15 @@
 // 6286
-[clientscript,pvpa_stagingarea_supplies_init](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10)
-def_int $int11 = ~steelborder($component1, "", 0);
-if (cc_find($component1, $int11) = true) {
+[clientscript,pvpa_stagingarea_supplies_init](component $universe, component $frame, component $top, component $tab_stats, component $stats, component $tab_equipment0, component $0equipment, component $tab_equipment1, component $1equipment, component $tab_equipment2, component $2equipment)
+def_int $int11 = ~steelborder($frame, "", 0);
+if (cc_find($frame, $int11) = true) {
     ~pvpa_stagingarea_supplies_settitle;
 }
-if_setonvartransmit("pvpa_stagingarea_supplies_settitle($component1, $int11){pvpa_temp_transmit_0, pvpa_temp_transmit_1}", $component1);
-cc_deleteall($component2);
-def_string $string0 = "Are you ready to fight?";
-def_int $int12 = calc(parawidth($string0, if_getwidth($component2), p12_full) + 3 + 17);
-cc_create($component2, ^iftype_rectangle, 0);
-.cc_create($component2, ^iftype_text, 1);
+if_setonvartransmit("pvpa_stagingarea_supplies_settitle($frame, $int11){pvpa_temp_transmit_0, pvpa_temp_transmit_1}", $frame);
+cc_deleteall($top);
+def_string $string = "Are you ready to fight?";
+def_int $int12 = calc(parawidth($string, if_getwidth($top), p12_full) + 3 + 17);
+cc_create($top, ^iftype_rectangle, 0);
+.cc_create($top, ^iftype_text, 1);
 def_int $int13 = .cc_getid;
 cc_setsize(calc(3 + $int12), 1, ^setsize_abs, ^setsize_minus);
 .cc_setsize($int12, 1, ^setsize_abs, ^setsize_minus);
@@ -22,10 +22,10 @@ cc_setop(1, "Set");
 .cc_settextfont(p12_full);
 .cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
 .cc_settextshadow(true);
-.cc_settext($string0);
-.cc_create($component2, ^iftype_graphic, 2);
+.cc_settext($string);
+.cc_create($top, ^iftype_graphic, 2);
 .cc_setsize(17, 17, ^setsize_abs, ^setsize_abs);
-.cc_setposition(0, calc((if_getheight($component2) - 1 - 17) / 2), ^setpos_abs_right, ^setpos_abs_top);
+.cc_setposition(0, calc((if_getheight($top) - 1 - 17) / 2), ^setpos_abs_right, ^setpos_abs_top);
 %varclient_213 = -1;
-if_setonvartransmit("script6287(event_com, cc_getid, $int13, .cc_getid, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10){pvpa_temp_transmit_0, pvpa_temp_transmit_1}", $component2);
-~script6288($component2, cc_getid, $int13, .cc_getid, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10);
+if_setonvartransmit("script6287(event_com, cc_getid, $int13, .cc_getid, $tab_stats, $stats, $tab_equipment0, $0equipment, $tab_equipment1, $1equipment, $tab_equipment2, $2equipment){pvpa_temp_transmit_0, pvpa_temp_transmit_1}", $top);
+~script6288($top, cc_getid, $int13, .cc_getid, $tab_stats, $stats, $tab_equipment0, $0equipment, $tab_equipment1, $1equipment, $tab_equipment2, $2equipment);

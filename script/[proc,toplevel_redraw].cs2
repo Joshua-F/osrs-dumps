@@ -1,16 +1,16 @@
 // 907
-[proc,toplevel_redraw](component $component0, enum $enum1)
+[proc,toplevel_redraw](component $component0, enum $enum)
 if (%hotkey_cannot_close_sidepanel = 1) {
-    if_setonkey("toplevel_keypress(event_keycode, $enum1, false)", $component0);
+    if_setonkey("toplevel_keypress(event_keycode, $enum, false)", $component0);
 } else {
-    if_setonkey("toplevel_keypress(event_keycode, $enum1, true)", $component0);
+    if_setonkey("toplevel_keypress(event_keycode, $enum, true)", $component0);
 }
-~toplevel_resize($component0, $enum1);
-def_component $component2 = enum(component, component, $enum1, toplevel_osrs_stretch:map_container);
+~toplevel_resize($component0, $enum);
+def_component $component2 = enum(component, component, $enum, toplevel_osrs_stretch:map_container);
 if ($component2 ! null) {
     if_sethide(~int_to_bool(%cutscene_status), $component2);
 }
-$component2 = enum(component, component, $enum1, toplevel_osrs_stretch:compassclick);
+$component2 = enum(component, component, $enum, toplevel_osrs_stretch:compassclick);
 if ($component2 ! null) {
     if (%cutscene_status = 1 | %fov_clamp ! 0) {
         if_sethide(true, $component2);
@@ -18,7 +18,7 @@ if ($component2 ! null) {
         if_sethide(false, $component2);
     }
 }
-def_component $component3 = enum(component, component, $enum1, toplevel_osrs_stretch:overlay_atmosphere);
+def_component $component3 = enum(component, component, $enum, toplevel_osrs_stretch:overlay_atmosphere);
 def_int $int4 = 0;
 def_int $int5 = 0;
 $int5, $int4 = viewport_getfov;
@@ -31,8 +31,8 @@ def_int $int6 = calc(%flashside - 1);
 def_component $component7 = enum(int, component, enum_1139, $int6);
 def_component $component8 = enum(int, component, enum_1138, $int6);
 if ($component7 ! null & $component8 ! null) {
-    $component7 = enum(component, component, $enum1, $component7);
-    $component8 = enum(component, component, $enum1, $component8);
+    $component7 = enum(component, component, $enum, $component7);
+    $component8 = enum(component, component, $enum, $component8);
     if ($component7 ! null & $component8 ! null) {
         if_setontimer("toplevel_timer($component7, $component8, enum(component, int, enum_5619, $component7))", $component0);
     } else {
@@ -41,11 +41,11 @@ if ($component7 ! null & $component8 ! null) {
 } else {
     if_setontimer(null, $component0);
 }
-~toplevel_sidebuttons_enable($enum1);
+~toplevel_sidebuttons_enable($enum);
 def_component $component9 = enum(int, component, enum_1138, 2);
 $component7 = enum(int, component, enum_1139, 2);
-$component9, $component7 = enum(component, component, $enum1, $component9), enum(component, component, $enum1, $component7);
-def_struct $struct10 = null;
+$component9, $component7 = enum(component, component, $enum, $component9), enum(component, component, $enum, $component7);
+def_struct $struct = null;
 if ($component9 ! null & $component7 ! null) {
     switch_int (%side_journal_tab) {
         case default :
@@ -61,17 +61,17 @@ if ($component9 ! null & $component7 ! null) {
             if_setop(1, "Adventure Paths", $component9);
             if_setgraphic("sideicons_interface,23", $component7);
         case 4 :
-            $struct10 = enum(int, struct, enum_2670, %league_type);
+            $struct = enum(int, struct, enum_2670, %league_type);
             if_setop(1, "Leagues", $component9);
-            if ($struct10 ! null) {
-                if_setgraphic(struct_param($struct10, param_149), $component7);
+            if ($struct ! null) {
+                if_setgraphic(struct_param($struct, param_149), $component7);
             } else {
                 if_setgraphic("sideicons_interface,66", $component7);
             }
     }
 }
 $component7 = enum(int, component, enum_1139, 5);
-$component7 = enum(component, component, $enum1, $component7);
+$component7 = enum(component, component, $enum, $component7);
 if ($component7 ! null) {
     switch_int (%prayerbook) {
         case 0 :
@@ -83,7 +83,7 @@ if ($component7 ! null) {
     }
 }
 $component9 = enum(int, component, enum_1138, 5);
-$component9 = enum(component, component, $enum1, $component9);
+$component9 = enum(component, component, $enum, $component9);
 if ($component9 ! null) {
     if (~on_mobile = true) {
         if_setop(2, "", $component9);
@@ -94,7 +94,7 @@ if ($component9 ! null) {
     }
 }
 $component7 = enum(int, component, enum_1139, 6);
-$component7 = enum(component, component, $enum1, $component7);
+$component7 = enum(component, component, $enum, $component7);
 if ($component7 ! null) {
     switch_int (%spellbook) {
         case 1 :
@@ -108,7 +108,7 @@ if ($component7 ! null) {
     }
 }
 $component9 = enum(int, component, enum_1138, 6);
-$component9 = enum(component, component, $enum1, $component9);
+$component9 = enum(component, component, $enum, $component9);
 if ($component9 ! null) {
     if (~on_mobile = true) {
         if_setop(2, "", $component9);
@@ -120,7 +120,7 @@ if ($component9 ! null) {
 }
 $component9 = enum(int, component, enum_1138, 9);
 $component7 = enum(int, component, enum_1139, 9);
-$component9, $component7 = enum(component, component, $enum1, $component9), enum(component, component, $enum1, $component7);
+$component9, $component7 = enum(component, component, $enum, $component9), enum(component, component, $enum, $component7);
 if ($component9 ! null & $component7 ! null) {
     if (%friends_panel = 0) {
         if_setop(1, "Friends List", $component9);
@@ -131,7 +131,7 @@ if ($component9 ! null & $component7 ! null) {
     }
 }
 $component9, $component7 = enum(int, component, enum_1138, 7), enum(int, component, enum_1139, 7);
-$component9, $component7 = enum(component, component, $enum1, $component9), enum(component, component, $enum1, $component7);
+$component9, $component7 = enum(component, component, $enum, $component9), enum(component, component, $enum, $component7);
 if ($component9 ! null) {
     if_setop(1, enum(int, string, enum_3839, %side_channels_tab_selected), $component9);
 }
@@ -139,7 +139,7 @@ if ($component7 ! null) {
     if_setgraphic(enum(int, graphic, enum_3841, %side_channels_tab_selected), $component7);
     if_setonvartransmit("script5303($component7, $component9){magic_carpet_var}", $component7);
 }
-$component7 = enum(component, component, $enum1, toplevel_osrs_stretch:side_background);
+$component7 = enum(component, component, $enum, toplevel_osrs_stretch:side_background);
 if ($component7 ! null) {
     if (%side_transparency = 1) {
         if_setgraphic(tradebacking_dark, $component7);
@@ -149,11 +149,11 @@ if ($component7 ! null) {
         if_settrans(150, $component7);
     }
 }
-$component7 = enum(component, component, $enum1, toplevel_osrs_stretch:multiway_icon);
+$component7 = enum(component, component, $enum, toplevel_osrs_stretch:multiway_icon);
 if ($component7 ! null) {
-    if ($enum1 = enum_1745) {
+    if ($enum = enum_1745) {
         ~osm_multiway_position($component7);
-    } else if ($enum1 = enum_1129) {
+    } else if ($enum = enum_1129) {
         if (%gravestone_duration > 0) {
             if_setposition(15, 17, ^setpos_abs_right, ^setpos_abs_bottom, $component7);
         } else {
@@ -180,27 +180,27 @@ if ($component7 ! null) {
         if_sethide(true, $component7);
     }
 }
-$component2 = enum(component, component, $enum1, toplevel_osrs_stretch:buff_bar);
+$component2 = enum(component, component, $enum, toplevel_osrs_stretch:buff_bar);
 if (%buff_bar_hidden = 0 & %cutscene_status = 0) {
     if_sethide(false, $component2);
 } else {
     if_sethide(true, $component2);
 }
 %varclient_384 = clientclock;
-$component2 = enum(component, component, $enum1, toplevel_osrs_stretch:pm_container);
+$component2 = enum(component, component, $enum, toplevel_osrs_stretch:pm_container);
 if (%cutscene_status = 0) {
     if_sethide(false, $component2);
 } else {
     if_sethide(true, $component2);
 }
-$component2 = enum(component, component, $enum1, toplevel_osrs_stretch:chat_container);
-if ($enum1 = enum_1745) {
+$component2 = enum(component, component, $enum, toplevel_osrs_stretch:chat_container);
+if ($enum = enum_1745) {
     if (%cutscene_status = 1 & %fov_clamp = 3) {
         if_setposition(0, 5, ^setpos_abs_centre, ^setpos_abs_bottom, $component2);
     } else {
         if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top, $component2);
     }
-} else if ($enum1 = enum_1130 | $enum1 = enum_1131) {
+} else if ($enum = enum_1130 | $enum = enum_1131) {
     if (%cutscene_status = 1) {
         if (%fov_clamp = 3) {
             if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_bottom, $component2);
@@ -211,14 +211,14 @@ if ($enum1 = enum_1745) {
         if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_bottom, $component2);
     }
 }
-if ($enum1 ! enum_1129) {
+if ($enum ! enum_1129) {
     if (~script4138 = true) {
-        ~script4135($enum1, true);
+        ~script4135($enum, true);
     } else {
-        ~script4135($enum1, false);
+        ~script4135($enum, false);
     }
 }
-if ($enum1 = enum_1745) {
+if ($enum = enum_1745) {
     if (%cutscene_status = 0) {
         if_sethide(false, toplevel_osm:wifi);
         if_sethide(false, toplevel_osm:battery);
@@ -227,19 +227,19 @@ if ($enum1 = enum_1745) {
         if_sethide(true, toplevel_osm:battery);
     }
 }
-$component2 = enum(component, component, $enum1, toplevel_osrs_stretch:stat_boosts_hud);
+$component2 = enum(component, component, $enum, toplevel_osrs_stretch:stat_boosts_hud);
 if (%cutscene_status = 0) {
     if_sethide(false, $component2);
 } else {
     if_sethide(true, $component2);
 }
-$component2 = enum(component, component, $enum1, toplevel_osrs_stretch:helper);
+$component2 = enum(component, component, $enum, toplevel_osrs_stretch:helper);
 if (%cutscene_status = 0) {
     if_sethide(false, $component2);
 } else {
     if_sethide(true, $component2);
 }
-$component2 = enum(component, component, $enum1, toplevel_osrs_stretch:hpbar_hud);
+$component2 = enum(component, component, $enum, toplevel_osrs_stretch:hpbar_hud);
 if (%cutscene_status = 0) {
     if_sethide(false, $component2);
 } else {
@@ -257,7 +257,7 @@ if (%followerops_deprioritised = 1) {
     setfolloweropslowpriority(false);
 }
 ~mouseover_ops;
-$component2 = enum(component, component, $enum1, toplevel_osrs_stretch:mouseover);
+$component2 = enum(component, component, $enum, toplevel_osrs_stretch:mouseover);
 if (%cutscene_status = 0) {
     if_sethide(false, $component2);
 } else {
@@ -270,9 +270,9 @@ if (%varclient_967 = 0) {
     ~script3644;
 }
 ~logout_timer_notifier;
-~ehc_listeners($enum1);
-~toplevel_setup_popout($enum1);
-$component2 = enum(component, component, $enum1, toplevel_osm:side_left_chat);
+~ehc_listeners($enum);
+~toplevel_setup_popout($enum);
+$component2 = enum(component, component, $enum, toplevel_osm:side_left_chat);
 if ($component2 ! null) {
     if (%cutscene_status = 0) {
         if_sethide(false, $component2);
@@ -280,7 +280,7 @@ if ($component2 ! null) {
         if_sethide(true, $component2);
     }
 }
-$component2 = enum(component, component, $enum1, toplevel_osm:hotkeys);
+$component2 = enum(component, component, $enum, toplevel_osm:hotkeys);
 if ($component2 ! null) {
     if (%cutscene_status = 0) {
         if_sethide(false, $component2);

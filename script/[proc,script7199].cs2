@@ -1,14 +1,14 @@
 // 7199
 [proc,script7199](obj $obj0)
-def_string $string0 = oc_name($obj0);
+def_string $string = oc_name($obj0);
 def_int $int1 = 0;
-if (stringvector_contains(stringvector_2, $string0, false, false) = false) {
-    loottracker_ignorelootadd($string0);
-    stringvector_addunique(stringvector_2, $string0, false);
+if (stringvector_contains(stringvector_2, $string, false, false) = false) {
+    loottracker_ignorelootadd($string);
+    stringvector_addunique(stringvector_2, $string, false);
     $int1 = 1;
 } else {
-    loottracker_ignorelootdel($string0);
-    stringvector_remove(stringvector_2, $string0, false);
+    loottracker_ignorelootdel($string);
+    stringvector_remove(stringvector_2, $string, false);
 }
 if (stringvector_size(stringvector_2) > 0) {
     %option_loottracker_ignorelist_has_text = 1;
@@ -18,14 +18,14 @@ if (stringvector_size(stringvector_2) > 0) {
 def_int $int2 = 0;
 def_int $int3 = 0;
 def_int $int4 = 0;
-def_component $component5 = null;
+def_component $component = null;
 def_obj $obj6 = null;
 while ($int2 < 10) {
-    $component5 = ~loottracker_get_source_info_component($int2);
-    $int4 = if_getcolour($component5);
+    $component = ~loottracker_get_source_info_component($int2);
+    $int4 = if_getcolour($component);
     $int3 = 0;
     while ($int3 < $int4) {
-        if (cc_find($component5, $int3) = true) {
+        if (cc_find($component, $int3) = true) {
             $obj6 = cc_getinvobject;
             if ($obj6 = $obj0) {
                 cc_setblendtrans($int1);
@@ -37,11 +37,11 @@ while ($int2 < 10) {
 }
 $int2 = 0;
 while ($int2 < 10) {
-    $component5 = ~loottracker_get_drop_info_component($int2);
-    $int4 = if_getcolour($component5);
+    $component = ~loottracker_get_drop_info_component($int2);
+    $int4 = if_getcolour($component);
     $int3 = 0;
     while ($int3 < $int4) {
-        if (cc_find($component5, $int3) = true) {
+        if (cc_find($component, $int3) = true) {
             $obj6 = cc_getinvobject;
             if ($obj6 = $obj0) {
                 cc_setblendtrans($int1);

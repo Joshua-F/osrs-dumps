@@ -1,17 +1,17 @@
 // 6494
-[clientscript,cluehelper_overlay_vartransmit](dbrow $dbrow0, int $int1)
-if (%cluehelper_infobox_clue = $dbrow0 & $int1 = %option_cluehelper_enabled) {
+[clientscript,cluehelper_overlay_vartransmit](dbrow $dbrow0, int $int)
+if (%cluehelper_infobox_clue = $dbrow0 & $int = %option_cluehelper_enabled) {
     return;
 }
-def_enum $enum2 = ~toplevel_getcomponents;
-if ($enum2 = null) {
+def_enum $enum = ~toplevel_getcomponents;
+if ($enum = null) {
     return;
 }
-def_component $component3 = enum(component, component, $enum2, toplevel_osrs_stretch:ehc_listener);
-if ($component3 = null) {
+def_component $component = enum(component, component, $enum, toplevel_osrs_stretch:ehc_listener);
+if ($component = null) {
     return;
 }
-if (cc_find($component3, 1) = true) {
+if (cc_find($component, 1) = true) {
     cc_setonvartransmit("cluehelper_overlay_vartransmit(%cluehelper_infobox_clue, %option_cluehelper_enabled){cluehelper_infobox_clue, option_cluehelper}");
 }
 if (%option_cluehelper_enabled = 0) {

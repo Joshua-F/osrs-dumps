@@ -1,19 +1,19 @@
 // 3517
-[clientscript,setbonus_toggle](component $component0, component $component1, component $component2, boolean $boolean3, component $component4, component $component5)
+[clientscript,setbonus_toggle](component $component0, component $stat_group, component $set_bonus, boolean $boolean, component $set_effect, component $component5)
 if (map_members = false) {
     return;
 }
-def_string $string0 = null;
-if ($boolean3 = true) {
-    $string0 = "Set Bonus";
-} else if ($boolean3 = false) {
-    $string0 = "Stat Bonus";
+def_string $string = null;
+if ($boolean = true) {
+    $string = "Set Bonus";
+} else if ($boolean = false) {
+    $string = "Stat Bonus";
 }
-~setbonus_toggle_draw($component0, $component1, $component2, $boolean3, $string0, false, $component4, $component5);
+~setbonus_toggle_draw($component0, $stat_group, $set_bonus, $boolean, $string, false, $set_effect, $component5);
 if (~on_mobile = false) {
-    if_setonmouseover("setbonus_toggle_draw($component0, $component1, $component2, $boolean3, $string0, true, $component4, $component5)", $component0);
-    if_setonmouseleave("setbonus_toggle_draw($component0, $component1, $component2, $boolean3, $string0, false, $component4, $component5)", $component0);
+    if_setonmouseover("setbonus_toggle_draw($component0, $stat_group, $set_bonus, $boolean, $string, true, $set_effect, $component5)", $component0);
+    if_setonmouseleave("setbonus_toggle_draw($component0, $stat_group, $set_bonus, $boolean, $string, false, $set_effect, $component5)", $component0);
 }
-if_setop(1, $string0, $component0);
-if_setonop("script3520($component0, $component1, $component2, $boolean3)", $component0);
-if_setoninvtransmit("setbonus_toggle_draw($component0, $component1, $component2, $boolean3, $string0, false, $component4, $component5){worn}", $component0);
+if_setop(1, $string, $component0);
+if_setonop("script3520($component0, $stat_group, $set_bonus, $boolean)", $component0);
+if_setoninvtransmit("setbonus_toggle_draw($component0, $stat_group, $set_bonus, $boolean, $string, false, $set_effect, $component5){worn}", $component0);

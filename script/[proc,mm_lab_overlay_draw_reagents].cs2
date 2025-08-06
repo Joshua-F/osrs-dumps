@@ -8,23 +8,23 @@ def_int $int7 = 10;
 def_int $int8 = calc($int5 * -1);
 def_int $int9 = 6;
 def_int $int10 = 0;
-def_graphic $graphic11 = null;
-def_string $string0 = "";
+def_graphic $graphic = null;
+def_string $string = "";
 def_int $int12 = 1;
 while ($int12 <= 3) {
     switch_int ($int12) {
         case 1 :
-            $graphic11, $int10, $string0 = "icon_alchemy_chemicals01_20x20,0", %mm_available_mox, "Mox reagent";
+            $graphic, $int10, $string = "icon_alchemy_chemicals01_20x20,0", %mm_available_mox, "Mox reagent";
         case 2 :
-            $graphic11, $int10, $string0 = "icon_alchemy_chemicals01_20x20,1", %mm_available_aga, "Aga reagent";
+            $graphic, $int10, $string = "icon_alchemy_chemicals01_20x20,1", %mm_available_aga, "Aga reagent";
         case 3 :
-            $graphic11, $int10, $string0 = "icon_alchemy_chemicals01_20x20,2", %mm_available_lye, "Lye reagent";
+            $graphic, $int10, $string = "icon_alchemy_chemicals01_20x20,2", %mm_available_lye, "Lye reagent";
     }
-    if ($graphic11 ! null) {
+    if ($graphic ! null) {
         cc_create($component0, ^iftype_graphic, $int1);
         cc_setposition(calc($int6 + $int4 / 2 + $int8), calc($int7 + $int5 / 4), ^setpos_abs_left, ^setpos_abs_bottom);
         cc_setsize($int5, $int5, ^setsize_abs, ^setsize_abs);
-        cc_setgraphic($graphic11);
+        cc_setgraphic($graphic);
         $int1 = calc($int1 + 1);
         cc_create($component0, ^iftype_text, $int1);
         cc_setposition(calc($int6 + $int4 / 2 + $int9), calc($int7 - 1), ^setpos_abs_left, ^setpos_abs_bottom);
@@ -41,7 +41,7 @@ while ($int12 <= 3) {
         cc_setfill(false);
         cc_setcolour(^black);
         cc_settrans(255);
-        ~mm_lab_tooltip($component2, $string0, "Info", "reagent");
+        ~mm_lab_tooltip($component2, $string, "Info", "reagent");
         $int1 = calc($int1 + 1);
         $int6 = calc($int6 + $int4);
     }
