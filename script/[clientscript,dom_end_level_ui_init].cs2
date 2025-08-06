@@ -1,10 +1,16 @@
 // 7927
-[clientscript,dom_end_level_ui_init](int $int0, int $int1)
+[clientscript,dom_end_level_ui_init](int $int0, int $int1, int $int2)
 $int0 = ~add_capped($int0, 1, ^max_32bit_int);
-~steelborder(dom_end_level_ui:frame, "Level <~tostring_spacer($int0, ",")> Complete!", 0);
+if ($int2 = 1) {
+    ~steelborder(dom_end_level_ui:frame, "Doom of Mokhaiotl", 0);
+} else {
+    ~steelborder(dom_end_level_ui:frame, "Level <~tostring_spacer($int0, ",")> Complete!", 0);
+}
 ~thinbox_light(dom_end_level_ui:loot_border, 0);
 ~thinbox_light(dom_end_level_ui:delve_border, 0);
-if ($int1 = 1) {
+if ($int2 = 1) {
+    ~script7929(2);
+} else if ($int1 = 1) {
     ~script7929(1);
 } else {
     ~script7929(0);
@@ -15,9 +21,14 @@ if_setonop("opsound(event_op, 2)", dom_end_level_ui:btn_claim);
 ~stonebutton_init("Descend", dom_end_level_ui:btn_descend, p11_full, 1);
 if_setop(1, "Descend", dom_end_level_ui:btn_descend);
 if_setonop("opsound(event_op, 2)", dom_end_level_ui:btn_descend);
-~stonebutton_init("Leave", dom_end_level_ui:btn_leave, p11_full, 1);
-if_setop(1, "Leave", dom_end_level_ui:btn_leave);
-if_setonop("opsound(event_op, 2)", dom_end_level_ui:btn_leave);
+if ($int2 = 0) {
+    ~stonebutton_init("Leave", dom_end_level_ui:btn_leave, p11_full, 1);
+    if_setop(1, "Leave", dom_end_level_ui:btn_leave);
+    if_setonop("opsound(event_op, 2)", dom_end_level_ui:btn_leave);
+} else {
+    if_setop(1, "", dom_end_level_ui:btn_leave);
+    if_setonop(null, dom_end_level_ui:btn_leave);
+}
 ~stonebutton_icon_init(dom_end_level_ui:btn_inv_all, 0, "bankbuttons,4", 29, 22, "Take-all");
 if_setonop("opsound(event_op, 2)", dom_end_level_ui:btn_inv_all);
 ~stonebutton_icon_init(dom_end_level_ui:btn_bank_all, 0, "bankbuttons,5", 29, 22, "Bank-all");
