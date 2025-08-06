@@ -41,7 +41,7 @@ if ($int17 <= -2) {
     if_settext("", $component7);
     if_sethide(false, $component0);
     friendlist_sort_reset;
-    switch_int (%varclient_183) {
+    switch_int (%friends_sort) {
         case 1 :
             friendlist_sort_legacy(false);
         case 2 :
@@ -60,7 +60,7 @@ if ($int17 <= -2) {
             friendlist_sort_online_status(true);
             friendlist_sort_online_world(true);
             friendlist_sort_world(true);
-            switch_int (%varclient_205) {
+            switch_int (%friends_previoussort) {
                 case default :
                     friendlist_sort_name(true);
                 case 3 :
@@ -74,7 +74,7 @@ if ($int17 <= -2) {
             friendlist_sort_online_status(true);
             friendlist_sort_online_world(true);
             friendlist_sort_world(false);
-            switch_int (%varclient_205) {
+            switch_int (%friends_previoussort) {
                 case default :
                     friendlist_sort_name(true);
                 case 3 :
@@ -163,7 +163,7 @@ if ($int17 <= -2) {
 }
 if ($int12 > if_getheight($component5)) {
     if_setscrollsize(0, $int12, $component5);
-    ~scrollbar_resize($component6, $component5, %varclient_9);
+    ~scrollbar_resize($component6, $component5, %friends_lastscrollpos);
 } else {
     if_setscrollsize(0, 0, $component5);
     ~scrollbar_resize($component6, $component5, 0);

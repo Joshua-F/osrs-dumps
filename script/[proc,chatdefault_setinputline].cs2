@@ -10,8 +10,8 @@ if (~toplevel_chatbox_maketransparent = true) {
     if_settextshadow(false, chatbox:input);
 }
 if_setcolour($int0, chatbox:input);
-def_int $int2 = string_length(%varclient_335);
-def_string $string1 = escape(%varclient_335);
+def_int $int2 = string_length(%chatinput);
+def_string $string1 = escape(%chatinput);
 def_string $string2 = "";
 def_int $int3 = 0;
 if (%has_displayname_transmitter = 1) {
@@ -22,7 +22,7 @@ if (%has_displayname_transmitter = 1) {
     } else {
         $string2 = "<enum(int, string, enum_1894, %ironman)><chat_playername>";
     }
-    switch_int (%varclient_945) {
+    switch_int (%chatbox_mode) {
         case 1 :
             $string2 = append($string2, " (channel)");
         case 2 :
@@ -33,11 +33,11 @@ if (%has_displayname_transmitter = 1) {
             if (~is_group_iron = true) {
                 $string2 = append($string2, " (group)");
             } else {
-                %varclient_945 = 0;
+                %chatbox_mode = 0;
             }
     }
     $string2 = append($string2, ": <$string0><$string1></col>");
-    if (~script1353(%varclient_335) = true) {
+    if (~script1353(%chatinput) = true) {
         if ($int2 < 79) {
             $string2 = append($string2, "<$string0>*</col>");
         }

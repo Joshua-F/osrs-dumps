@@ -1,19 +1,19 @@
 // 435
 [proc,grouping_rebuild]
 def_string $string0 = "";
-if (%varclient_64 > 0 & %varclient_64 <= 27) {
-    $string0 = enum(int, string, enum_848, %varclient_64);
+if (%grouping_gameid > 0 & %grouping_gameid <= 27) {
+    $string0 = enum(int, string, enum_848, %grouping_gameid);
     if_settext($string0, grouping:currentgame);
 } else {
-    %varclient_64 = 0;
+    %grouping_gameid = 0;
     if_settext("Select an activity...", grouping:currentgame);
 }
-def_int $int0 = enum(int, int, enum_850, %varclient_64);
+def_int $int0 = enum(int, int, enum_850, %grouping_gameid);
 if ($int0 = -1) {
     if_settext("---", grouping:suggestedworld);
     if_setcolour(0xff981f, grouping:suggestedworld);
 } else {
-    if (%varclient_64 = 4 & %varclient_103 = 0) {
+    if (%grouping_gameid = 4 & %playermember = 0) {
         $int0 = 383;
     }
     if_settext(tostring($int0), grouping:suggestedworld);
@@ -25,17 +25,17 @@ if ($int0 = -1) {
 }
 cc_deleteall(grouping:teleport);
 def_int $int1 = 0;
-while ($int1 < %varclient_64) {
+while ($int1 < %grouping_gameid) {
     cc_create(grouping:teleport, ^iftype_rectangle, $int1);
     cc_sethide(true);
     $int1 = calc($int1 + 1);
 }
-cc_create(grouping:teleport, ^iftype_rectangle, %varclient_64);
+cc_create(grouping:teleport, ^iftype_rectangle, %grouping_gameid);
 cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
 cc_setsize(if_getwidth(grouping:teleport), if_getheight(grouping:teleport), ^setsize_abs, ^setsize_abs);
 cc_setfill(true);
 cc_settrans(255);
-if (%varclient_64 = 0) {
+if (%grouping_gameid = 0) {
     cc_setop(1, "Teleport");
 } else {
     cc_setop(1, "Teleport to <col=ff8040><$string0></col>");
@@ -51,14 +51,14 @@ while (string_length($string2) > 0) {
     $int3 = calc($int3 + 1);
     $string2 = enum(int, string, enum_849, $int3);
 }
-if (%varclient_64 = 0) {
+if (%grouping_gameid = 0) {
     if_settext("---", grouping:joinleave_text);
     if_clearops(grouping:joinleave);
     if_setonop(null, grouping:joinleave);
-} else if ($int2 ! %varclient_64) {
+} else if ($int2 ! %grouping_gameid) {
     if_settext("Join", grouping:joinleave_text);
     if_setop(1, "Join <col=ff8040><$string0></col> channel", grouping:joinleave);
-    if_setonop("grouping_joinchannel(%varclient_64)", grouping:joinleave);
+    if_setonop("grouping_joinchannel(%grouping_gameid)", grouping:joinleave);
 } else {
     if_settext("Leave", grouping:joinleave_text);
     if_setop(1, "Leave <col=ff8040><$string0></col> channel", grouping:joinleave);
@@ -86,7 +86,7 @@ if (if_gethide(grouping:dropdown) = true) {
     if_setonclick(null, grouping:background);
     $int5 = if_getwidth(grouping:playerlist);
     if_sethide(false, grouping:playerlist_container);
-    if ($int2 = 0 | %varclient_64 ! $int2) {
+    if ($int2 = 0 | %grouping_gameid ! $int2) {
         if_setscrollsize(0, 0, grouping:playerlist);
         ~scrollbar_resize(grouping:scrollbar, grouping:playerlist, 0);
         cc_create(grouping:playerlist, ^iftype_text, $int1);
@@ -207,7 +207,7 @@ cc_sethide(true);
 $int3 = 1;
 $string2 = enum(int, string, enum_849, $int3);
 while (string_length($string2) > 0) {
-    if (%varclient_64 ! $int3) {
+    if (%grouping_gameid ! $int3) {
         .cc_create(grouping:dropdown_contents, ^iftype_text, $int1);
         $int1 = calc($int1 + 1);
         .cc_setsize($int5, $int11, ^setsize_abs, ^setsize_abs);
@@ -226,7 +226,7 @@ while (string_length($string2) > 0) {
     $int3 = calc($int3 + 1);
     $string2 = enum(int, string, enum_849, $int3);
 }
-if (%varclient_64 ! 0) {
+if (%grouping_gameid ! 0) {
     .cc_create(grouping:dropdown_contents, ^iftype_text, $int1);
     $int1 = calc($int1 + 1);
     .cc_setsize($int5, $int11, ^setsize_abs, ^setsize_abs);
