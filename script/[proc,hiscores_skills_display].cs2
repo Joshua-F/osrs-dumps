@@ -2,7 +2,7 @@
 [proc,hiscores_skills_display]
 def_int $int0 = calc(enum_getoutputcount(enum_5624) + 2 + 9 + 1);
 def_int $int1 = enum_getoutputcount(enum_5624);
-def_dbrow $dbrow2 = null;
+def_dbrow $dbrow = null;
 def_int $int3 = 0;
 def_int $int4 = 0;
 def_int $int5 = 0;
@@ -23,15 +23,15 @@ def_string $string0 = "";
 def_int $int19 = 0;
 def_int $int20 = 0;
 while ($int3 < $int1) {
-    $dbrow2 = enum(int, dbrow, enum_5624, $int3);
-    if ($dbrow2 ! null) {
-        $int4 = db_getfield($dbrow2, hiscores_skill_info:skillid, 0);
+    $dbrow = enum(int, dbrow, enum_5624, $int3);
+    if ($dbrow ! null) {
+        $int4 = db_getfield($dbrow, hiscores_skill_info:skillid, 0);
         $int5 = hiscore_getskillxp($int4);
         $int8 = calc(hiscore_getskillrank($int4) + 1);
         $int6 = calc($int6 + $int5);
         $int10 = ~hiscores_xp_to_level($int5);
         $int11 = calc($int11 + $int10);
-        switch_dbrow ($dbrow2) {
+        switch_dbrow ($dbrow) {
             case hiscores_skill_prayer :
                 $int14, $int7 = $int10, calc($int7 + $int5);
             case hiscores_skill_hitpoints :
@@ -52,9 +52,9 @@ while ($int3 < $int1) {
         }
         $int20, $int19 = ~hiscores_xp_progress($int5);
         if ($int20 = 0 & $int19 = 0) {
-            $string0 = "Skill: <db_getfield($dbrow2, hiscores_skill_info:skillname, 0)><br>Rank: <~tostring_spacer($int8, ",")><br>Experience: <~tostring_spacer($int5, ",")>";
+            $string0 = "Skill: <db_getfield($dbrow, hiscores_skill_info:skillname, 0)><br>Rank: <~tostring_spacer($int8, ",")><br>Experience: <~tostring_spacer($int5, ",")>";
         } else {
-            $string0 = "Skill: <db_getfield($dbrow2, hiscores_skill_info:skillname, 0)><br>Rank: <~tostring_spacer($int8, ",")><br>Experience: <~tostring_spacer($int5, ",")><br>Remaining XP: <~tostring_spacer(calc($int19 - $int20), ",")>";
+            $string0 = "Skill: <db_getfield($dbrow, hiscores_skill_info:skillname, 0)><br>Rank: <~tostring_spacer($int8, ",")><br>Experience: <~tostring_spacer($int5, ",")><br>Remaining XP: <~tostring_spacer(calc($int19 - $int20), ",")>";
         }
         if (cc_find(hiscores:hiscores_skills, $int3) = true) {
             ~hiscores_set_tooltip($string0, $int20, $int19);

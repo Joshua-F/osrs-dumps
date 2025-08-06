@@ -1,11 +1,11 @@
 // 3751
-[proc,potionstore_modify_doses](enum $enum0, int $int1)
-def_int $int2 = calc(~potionstore_get_doses($enum0) + $int1);
+[proc,potionstore_modify_doses](enum $enum, int $int1)
+def_int $int2 = calc(~potionstore_get_doses($enum) + $int1);
 if ($int2 < 0) {
     $int1 = calc($int2 * -1);
     ~script2075("Attempted to modify potion store doses to a value below 0 (<~tostring_commas($int2)>). Correcting to 0.");
 }
-switch_enum ($enum0) {
+switch_enum ($enum) {
     case enum_729 :
         %potionstore_agility_potion = calc(%potionstore_agility_potion + $int1);
     case enum_4085 :

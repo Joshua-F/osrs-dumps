@@ -1,20 +1,20 @@
 // 4049
-[clientscript,tackle_box_init](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8)
-~script4064($component1, "bankbuttons,0", 0);
-if_setop(1, "Fill", $component1);
-~script4064($component2, "bankbuttons,4", 0);
-if_setop(1, "Empty", $component2);
-cc_deleteall($component3);
-cc_deleteall($component4);
-cc_deleteall($component5);
-cc_deleteall($component6);
-cc_deleteall($component7);
-cc_deleteall($component8);
-~scrollbar_vertical($component4, $component3, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+[clientscript,tackle_box_init](component $universe, component $fill, component $empty, component $items, component $scrollbar, component $1, component $5, component $x, component $all)
+~script4064($fill, "bankbuttons,0", 0);
+if_setop(1, "Fill", $fill);
+~script4064($empty, "bankbuttons,4", 0);
+if_setop(1, "Empty", $empty);
+cc_deleteall($items);
+cc_deleteall($scrollbar);
+cc_deleteall($1);
+cc_deleteall($5);
+cc_deleteall($x);
+cc_deleteall($all);
+~scrollbar_vertical($scrollbar, $items, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
 def_int $int9 = inv_size(tackle_box);
 def_int $int10 = 0;
 while ($int10 < $int9) {
-    cc_create($component3, ^iftype_graphic, $int10);
+    cc_create($items, ^iftype_graphic, $int10);
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
     cc_setgraphicshadow(0x333333);
     cc_setoutline(1);
@@ -22,6 +22,6 @@ while ($int10 < $int9) {
     cc_setdragdeadtime(5);
     $int10 = calc($int10 + 1);
 }
-~tackle_box_draw($int9, $component3, $component4, $component5, $component6, $component7, $component8);
-if_setoninvtransmit("tackle_box_draw($int9, $component3, $component4, $component5, $component6, $component7, $component8){tackle_box}", $component0);
-if_setonvartransmit("tackle_box_draw($int9, $component3, $component4, $component5, $component6, $component7, $component8){ii_player2}", $component0);
+~tackle_box_draw($int9, $items, $scrollbar, $1, $5, $x, $all);
+if_setoninvtransmit("tackle_box_draw($int9, $items, $scrollbar, $1, $5, $x, $all){tackle_box}", $universe);
+if_setonvartransmit("tackle_box_draw($int9, $items, $scrollbar, $1, $5, $x, $all){ii_player2}", $universe);

@@ -1,6 +1,6 @@
 // 4275
 [proc,clan_banned_populatedisplay](int $int0, component $component1, component $component2, component $component3, int $int4, int $int5, int $int6)(int)
-def_string $string0 = "";
+def_string $string = "";
 def_int $int7 = -1;
 def_int $int8 = 0;
 def_int $int9 = 0;
@@ -12,13 +12,13 @@ if (~clan_members_searching = true) {
     $int13 = string_length(~bankmain_filterstring);
 }
 def_int $int14 = -1;
-def_boolean $boolean15 = ~on_mobile;
+def_boolean $boolean = ~on_mobile;
 def_int $int16 = 0;
 while ($int16 < 500) {
     if (cc_find($component1, $int16) = true & .cc_find($component1, calc($int16 + 500)) = true) {
         if ($int16 < $int0) {
-            $string0 = activeclansettings_getbanneddisplayname($int16);
-            $int7 = ~clan_members_filtername($string0);
+            $string = activeclansettings_getbanneddisplayname($int16);
+            $int7 = ~clan_members_filtername($string);
             if ($int7 ! -1) {
                 cc_sethide(false);
                 .cc_sethide(false);
@@ -34,24 +34,24 @@ while ($int16 < 500) {
                     cc_setposition(0, $int11, ^setpos_abs_right, ^setpos_abs_top);
                     .cc_setposition(0, $int11, ^setpos_abs_right, ^setpos_abs_top);
                 }
-                cc_setopbase("<col=ff9040><$string0></col>");
-                $int12 = string_length($string0);
+                cc_setopbase("<col=ff9040><$string></col>");
+                $int12 = string_length($string);
                 if ($int7 < $int12) {
                     $int14 = ~min($int12, calc($int7 + $int13));
-                    .cc_settext(append(append(substring($string0, 0, $int7), "<col=ffffff><substring($string0, $int7, $int14)></col>"), substring($string0, $int14, $int12)));
+                    .cc_settext(append(append(substring($string, 0, $int7), "<col=ffffff><substring($string, $int7, $int14)></col>"), substring($string, $int14, $int12)));
                 } else {
-                    .cc_settext($string0);
+                    .cc_settext($string);
                 }
                 if (calc($int9 % 2) = 0) {
                     cc_settrans(255);
                 } else {
                     cc_settrans(245);
                 }
-                if ($boolean15 = false) {
+                if ($boolean = false) {
                     cc_setonmouserepeat("clan_members_hover(true, event_com, event_comsubid, cc_gettrans)");
                 }
                 cc_setonmouseleave("clan_members_hover(false, event_com, event_comsubid, cc_gettrans)");
-                cc_setonop("clan_banned_op(event_op, event_com, event_comsubid, cc_gettrans, $string0, $component3, $int4, $int5)");
+                cc_setonop("clan_banned_op(event_op, event_com, event_comsubid, cc_gettrans, $string, $component3, $int4, $int5)");
                 cc_setontimer(null);
                 $int8 = calc($int8 + 1);
             } else {

@@ -1,11 +1,11 @@
 // 1272
 [proc,script1272](component $component0, component $component1)
-def_obj $obj2 = null;
+def_obj $obj = null;
 def_int $int3 = 0;
 def_int $int4 = 0;
 while ($int4 < 1220) {
-    $obj2 = inv_getobj(bank, $int4);
-    if (oc_unplaceholder($obj2) ! $obj2) {
+    $obj = inv_getobj(bank, $int4);
+    if (oc_unplaceholder($obj) ! $obj) {
         $int3 = calc($int3 + 1);
     }
     $int4 = calc($int4 + 1);
@@ -22,19 +22,19 @@ $int5 = calc($int5 + 1);
 cc_setsize(29, 22, ^setsize_abs, ^setsize_abs);
 cc_setposition(3, 0, ^setpos_abs_left, ^setpos_abs_centre);
 cc_setgraphic("bankbuttons,7");
-def_string $string0 = "Release all placeholders";
+def_string $string = "Release all placeholders";
 if ($int3 > 0) {
-    $string0 = append($string0, " (<~tostring_spacer($int3, ",")>)");
+    $string = append($string, " (<~tostring_spacer($int3, ",")>)");
 }
-if_setop(1, $string0, $component0);
-def_int $int6 = parawidth($string0, if_getwidth(if_getlayer($component0)), p12_full);
+if_setop(1, $string, $component0);
+def_int $int6 = parawidth($string, if_getwidth(if_getlayer($component0)), p12_full);
 cc_create($component0, ^iftype_text, $int5);
 cc_setsize($int6, 0, ^setsize_abs, ^setsize_minus);
 cc_setposition(8, 0, ^setpos_abs_right, ^setpos_abs_centre);
 cc_settextshadow(true);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
 cc_settextfont(p12_full);
-cc_settext($string0);
+cc_settext($string);
 if ($int3 > 0) {
     cc_setcolour(0xff981f);
     if (~on_mobile = false) {
@@ -64,18 +64,18 @@ $int5 = calc($int5 + 1);
 cc_setsize(22, 22, ^setsize_abs, ^setsize_abs);
 cc_setposition(15, 1, ^setpos_abs_left, ^setpos_abs_centre);
 cc_setgraphic("acc_man_icons,7");
-$string0 = "Deposit Lock Settings";
-if_setop(1, $string0, $component1);
+$string = "Deposit Lock Settings";
+if_setop(1, $string, $component1);
 ~script4081(2, $component1);
 if_setonvartransmit("script4080(2, event_com){bank_locked_slots}", $component1);
-$int6 = parawidth($string0, if_getwidth(if_getlayer($component1)), p12_full);
+$int6 = parawidth($string, if_getwidth(if_getlayer($component1)), p12_full);
 cc_create($component1, ^iftype_text, $int5);
 cc_setsize($int6, 0, ^setsize_abs, ^setsize_minus);
 cc_setposition(8, 0, ^setpos_abs_right, ^setpos_abs_centre);
 cc_settextshadow(true);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
 cc_settextfont(p12_full);
-cc_settext($string0);
+cc_settext($string);
 cc_setcolour(0xff981f);
 if (~on_mobile = false) {
     if_setonmouseover("cc_colour_swapper(event_com, $int5, 16777215)", $component1);

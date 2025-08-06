@@ -1,19 +1,19 @@
 // 6682
-[proc,ehc_listeners](enum $enum0)
-def_component $component1 = enum(component, component, $enum0, toplevel_osrs_stretch:ehc_listener);
+[proc,ehc_listeners](enum $enum)
+def_component $component = enum(component, component, $enum, toplevel_osrs_stretch:ehc_listener);
 def_int $int2 = -1;
-cc_deleteall($component1);
+cc_deleteall($component);
 if (~on_enhanced_any = false) {
     return;
 }
-def_boolean $boolean3 = ~on_mobile;
+def_boolean $boolean = ~on_mobile;
 def_int $int4 = 0;
-cc_create($component1, ^iftype_rectangle, 0);
+cc_create($component, ^iftype_rectangle, 0);
 cc_settrans(255);
 cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
 cc_setsize(1, 1, ^setsize_abs, ^setsize_abs);
-cc_setonstattransmit("herbiboar_helper_stattransmit($component1, stat(hunter), stat(herblore)){hunter, herblore}");
-cc_create($component1, ^iftype_rectangle, 1);
+cc_setonstattransmit("herbiboar_helper_stattransmit($component, stat(hunter), stat(herblore)){hunter, herblore}");
+cc_create($component, ^iftype_rectangle, 1);
 cc_settrans(255);
 cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
 cc_setsize(1, 1, ^setsize_abs, ^setsize_abs);
@@ -22,24 +22,24 @@ cc_setonmappost("cluehelper_overlay_mappost");
 if (%cluehelper_infobox_clue ! null & %option_cluehelper_enabled = 1) {
     ~cluehelper_overlay(%cluehelper_infobox_clue, ~cluehelper_clue_target(%cluehelper_infobox_clue));
 }
-cc_create($component1, ^iftype_rectangle, 2);
+cc_create($component, ^iftype_rectangle, 2);
 cc_settrans(255);
 cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
 cc_setsize(1, 1, ^setsize_abs, ^setsize_abs);
-if ($boolean3 = true) {
+if ($boolean = true) {
     if (%varclient_1145 < 2) {
         %varclient_1145 = 4;
     }
     minimap_setzoom(~minmax(2, 8, %varclient_1145));
-    cc_setontimer("script7052($component1, %varclient_1145, $boolean3)");
+    cc_setontimer("script7052($component, %varclient_1145, $boolean)");
 } else {
     if (%varclient_1146 < 2) {
         %varclient_1146 = 4;
     }
     minimap_setzoom(~minmax(2, 8, %varclient_1146));
-    cc_setontimer("script7052($component1, %varclient_1146, $boolean3)");
+    cc_setontimer("script7052($component, %varclient_1146, $boolean)");
 }
-cc_create($component1, ^iftype_rectangle, 3);
+cc_create($component, ^iftype_rectangle, 3);
 cc_settrans(255);
 cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
 cc_setsize(1, 1, ^setsize_abs, ^setsize_abs);
