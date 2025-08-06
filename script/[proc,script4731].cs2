@@ -7,7 +7,7 @@ if ($component13 ! null) {
     $int11 = if_getwidth($component13);
     $int12 = if_getheight($component13);
 }
-if (%varclient_222 = $int9 & $int10 = %varclient_384 & %varclient_381 = $int8 & $int11 = $int6 & $int12 = $int7 & calc(clientclock % 40) ! 0) {
+if (%osm_tlidodgers_update = $int9 & $int10 = %buff_bar_dodger_update & %osm_deadsides = $int8 & $int11 = $int6 & $int12 = $int7 & calc(clientclock % 40) ! 0) {
     return;
 }
 def_int $int14 = 2;
@@ -38,7 +38,7 @@ def_int $int38 = 0;
 def_component $component39 = null;
 def_int $int40 = 0;
 def_int $int41 = 0;
-def_int $int42 = %varclient_381;
+def_int $int42 = %osm_deadsides;
 def_int $int43 = 0;
 if (testbit($int2, 13) = ^true) {
     $int43 = 1;
@@ -107,10 +107,10 @@ if ($boolean23 = true & $int43 > 0 & $component13 ! null) {
         }
         if_setposition($int18, $int19, ^setpos_abs_left, ^setpos_abs_top, $component0);
         if_setsize(calc($int11 - max(680, calc($int16 - $int18))), calc($int12 - ($int17 - $int19)), ^setsize_minus, ^setsize_minus, $component0);
-        if_setonvartransmit("script4730($component0, $component1, $int2, $setposh3, $setposv4, $boolean5, $int11, $int12, %varclient_381, %varclient_222, %varclient_384){option_pm, settings_varp_2, chat_filter_assist, chat_filter_clan, xpdrops_options}", $component0);
-        if_setonsubchange("script4730($component0, $component1, $int2, $setposh3, $setposv4, $boolean5, $int11, $int12, %varclient_381, %varclient_222, %varclient_384)", $component0);
-        if_setontimer("script4730($component0, $component1, $int2, $setposh3, $setposv4, $boolean5, $int11, $int12, %varclient_381, %varclient_222, %varclient_384)", $component0);
-        if_setonresize("script4730($component0, $component1, $int2, $setposh3, $setposv4, $boolean5, $int11, $int12, %varclient_381, %varclient_222, %varclient_384)", $component0);
+        if_setonvartransmit("script4730($component0, $component1, $int2, $setposh3, $setposv4, $boolean5, $int11, $int12, %osm_deadsides, %osm_tlidodgers_update, %buff_bar_dodger_update){option_pm, settings_varp_2, chat_filter_assist, chat_filter_clan, xpdrops_options}", $component0);
+        if_setonsubchange("script4730($component0, $component1, $int2, $setposh3, $setposv4, $boolean5, $int11, $int12, %osm_deadsides, %osm_tlidodgers_update, %buff_bar_dodger_update)", $component0);
+        if_setontimer("script4730($component0, $component1, $int2, $setposh3, $setposv4, $boolean5, $int11, $int12, %osm_deadsides, %osm_tlidodgers_update, %buff_bar_dodger_update)", $component0);
+        if_setonresize("script4730($component0, $component1, $int2, $setposh3, $setposv4, $boolean5, $int11, $int12, %osm_deadsides, %osm_tlidodgers_update, %buff_bar_dodger_update)", $component0);
         return;
     }
     $int15 = calc($int15 + $int18);
@@ -183,8 +183,8 @@ if (testbit($int2, 10) = ^true & $boolean23 = false & ($setposh27 = ^setpos_abs_
     $int14 = calc($int14 + 23);
 }
 if (testbit($int2, 16) = ^true & $component1 ! null) {
-    %varclient_490 = $component1;
-    %varclient_525 = $setposh27;
+    %dodger_hud_to_dodge = $component1;
+    %dodger_hud_to_dodge_align = $setposh27;
 }
 $component39 = enum(component, component, ~toplevel_getcomponents, toplevel_osrs_stretch:pvp_icons);
 if (testbit($int2, 18) = ^true & getwindowmode = ^windowmode_small & %attack_style_enabled = 1 & $boolean24 = true & $component1 ! null & $component39 ! null & if_hassub($component39) = true) {
@@ -345,22 +345,22 @@ if (testbit($int2, 11) = ^true & $component39 ! null & if_hassub($component39) =
         }
     }
 }
-if (testbit($int2, 17) = ^true & %varclient_490 ! null & if_find(%varclient_490) = ^true & if_gethide(%varclient_490) = false) {
+if (testbit($int2, 17) = ^true & %dodger_hud_to_dodge ! null & if_find(%dodger_hud_to_dodge) = ^true & if_gethide(%dodger_hud_to_dodge) = false) {
     $int40 = setbit($int40, 17);
-    $int41 = if_getheight(%varclient_490);
-    $int37 = ~script2372(%varclient_490);
-    if (%varclient_525 = ^setpos_abs_left & $setposh27 = ^setpos_abs_left | %varclient_525 = ^setpos_abs_right & $setposh27 = ^setpos_abs_right | %varclient_525 = ^setpos_abs_centre & $setposh27 = ^setpos_abs_centre) {
+    $int41 = if_getheight(%dodger_hud_to_dodge);
+    $int37 = ~script2372(%dodger_hud_to_dodge);
+    if (%dodger_hud_to_dodge_align = ^setpos_abs_left & $setposh27 = ^setpos_abs_left | %dodger_hud_to_dodge_align = ^setpos_abs_right & $setposh27 = ^setpos_abs_right | %dodger_hud_to_dodge_align = ^setpos_abs_centre & $setposh27 = ^setpos_abs_centre) {
         $int14 = calc($int14 + $int41);
         $int14 = calc($int14 + 2);
-    } else if (~script4738($component1, $int15, $int14, %varclient_490, 0, 0) = true & $int14 < calc($int41 + $int37)) {
+    } else if (~script4738($component1, $int15, $int14, %dodger_hud_to_dodge, 0, 0) = true & $int14 < calc($int41 + $int37)) {
         $int14 = calc($int14 + ($int41 + $int37 - $int14));
         $int14 = calc($int14 + 2);
     }
     $int36 = calc($int11 - if_getwidth($component1) - $int16 - 2 * 2);
-    if (%varclient_525 = ^setpos_abs_right) {
+    if (%dodger_hud_to_dodge_align = ^setpos_abs_right) {
         $int20 = calc($int20 + $int41);
         $int20 = calc($int20 + 2);
-    } else if (~script4738($component1, $int36, $int20, %varclient_490, 0, 0) = true & $int20 < calc($int41 + $int37)) {
+    } else if (~script4738($component1, $int36, $int20, %dodger_hud_to_dodge, 0, 0) = true & $int20 < calc($int41 + $int37)) {
         $int20 = calc($int20 + ($int41 + $int37 - $int20));
         $int20 = calc($int20 + 2);
     }
@@ -385,7 +385,7 @@ if ($boolean5 = true & $component1 ! null & $setposh27 ! ^setpos_abs_right) {
     if_setposition($int15, $int14, ^setpos_abs_left, ^setpos_abs_top, $component0);
     if_setsize(calc($int15 + $int16), calc($int14 + $int17), ^setsize_minus, ^setsize_minus, $component0);
 }
-if_setonvartransmit("script4730($component0, $component1, $int2, $setposh3, $setposv4, $boolean5, $int11, $int12, %varclient_381, %varclient_222, %varclient_384){option_pm, settings_varp_2, chat_filter_assist, chat_filter_clan, xpdrops_options}", $component0);
-if_setonsubchange("script4730($component0, $component1, $int2, $setposh3, $setposv4, $boolean5, $int11, $int12, %varclient_381, %varclient_222, %varclient_384)", $component0);
-if_setontimer("script4730($component0, $component1, $int2, $setposh3, $setposv4, $boolean5, $int11, $int12, %varclient_381, %varclient_222, %varclient_384)", $component0);
-if_setonresize("script4730($component0, $component1, $int2, $setposh3, $setposv4, $boolean5, $int11, $int12, %varclient_381, %varclient_222, %varclient_384)", $component0);
+if_setonvartransmit("script4730($component0, $component1, $int2, $setposh3, $setposv4, $boolean5, $int11, $int12, %osm_deadsides, %osm_tlidodgers_update, %buff_bar_dodger_update){option_pm, settings_varp_2, chat_filter_assist, chat_filter_clan, xpdrops_options}", $component0);
+if_setonsubchange("script4730($component0, $component1, $int2, $setposh3, $setposv4, $boolean5, $int11, $int12, %osm_deadsides, %osm_tlidodgers_update, %buff_bar_dodger_update)", $component0);
+if_setontimer("script4730($component0, $component1, $int2, $setposh3, $setposv4, $boolean5, $int11, $int12, %osm_deadsides, %osm_tlidodgers_update, %buff_bar_dodger_update)", $component0);
+if_setonresize("script4730($component0, $component1, $int2, $setposh3, $setposv4, $boolean5, $int11, $int12, %osm_deadsides, %osm_tlidodgers_update, %buff_bar_dodger_update)", $component0);

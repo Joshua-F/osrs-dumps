@@ -2,27 +2,27 @@
 [clientscript,ge_itemsink_monitor_transmit](int $int0, int $int1, obj $obj2, string $string0)
 if ($int0 = 1) {
     cc_deleteall(ge_itemsink_monitor:list);
-    %varclient_43, %varclient_49, %varclient_58 = 0, 0, -1;
+    %poll_id, %poll_ypos, %poh_costume_room_scroll = 0, 0, -1;
     cc_deleteall(ge_itemsink_monitor:scrollbar);
     cc_deleteall(ge_itemsink_monitor:refresh);
     if_sethide(true, ge_itemsink_monitor:refresh);
 }
-if ($int1 ! %varclient_43 | $obj2 = null) {
+if ($int1 ! %poll_id | $obj2 = null) {
     return;
 }
 cc_create(ge_itemsink_monitor:list, ^iftype_rectangle, $int1);
-%varclient_43 = calc(%varclient_43 + 1);
+%poll_id = calc(%poll_id + 1);
 cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
 cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
 cc_setcolour(^white);
 cc_setfill(false);
 cc_settrans(255);
-cc_setontimer("ge_itemsink_monitor_drawline(event_com, event_comsubid, $obj2, $string0, %varclient_49)");
-%varclient_49 = calc(%varclient_49 + 40);
+cc_setontimer("ge_itemsink_monitor_drawline(event_com, event_comsubid, $obj2, $string0, %poll_ypos)");
+%poll_ypos = calc(%poll_ypos + 40);
 if ($int0 = 2) {
-    %varclient_58 = %varclient_49;
+    %poh_costume_room_scroll = %poll_ypos;
     ~scrollbar_vertical(ge_itemsink_monitor:scrollbar, ge_itemsink_monitor:list, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-    ~ge_itemsink_monitor_setsize(%varclient_49, if_getheight(ge_itemsink_monitor:infinite));
+    ~ge_itemsink_monitor_setsize(%poll_ypos, if_getheight(ge_itemsink_monitor:infinite));
     if_sethide(false, ge_itemsink_monitor:refresh);
     ~ge_offers_bigbutton(ge_itemsink_monitor:refresh, "Refresh", 0);
 }

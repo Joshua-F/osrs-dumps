@@ -48,7 +48,7 @@ if ($boolean1 = true) {
     if_setonmouseleave(null, $component0);
 }
 if_setontimer(null, $component0);
-if_setposition(0, %varclient_49, ^setpos_abs_centre, ^setpos_abs_top, $component0);
+if_setposition(0, %poll_ypos, ^setpos_abs_centre, ^setpos_abs_top, $component0);
 def_int $int8 = calc(6 + $int7 + 6);
 $int8 = calc($int8 + 3);
 cc_create($component0, ^iftype_graphic, $int3);
@@ -60,7 +60,7 @@ cc_setsize(0, 20, ^setsize_minus, ^setsize_abs);
 cc_setposition(0, calc($int8 - 20), ^setpos_abs_centre, ^setpos_abs_top);
 if_setsize(0, $int8, ^setsize_minus, ^setsize_abs, $component0);
 if ($int2 ! -1) {
-    %varclient_49 = calc(%varclient_49 + $int8 - 3);
+    %poll_ypos = calc(%poll_ypos + $int8 - 3);
     if ($int2 = 1) {
         ~script4215(clans_info:close, "Back to Recruitment Board");
         if_setonop("opsound(event_op, 2)", clans_info:close);
@@ -71,7 +71,7 @@ if ($int2 ! -1) {
     }
     cc_deleteall(clans_info:scrollbar);
     ~scrollbar_vertical(clans_info:scrollbar, clans_info:editable, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-    ~clan_info_setsize(%varclient_43, %varclient_49, if_getheight(clans_info:infinite));
+    ~clan_info_setsize(%poll_id, %poll_ypos, if_getheight(clans_info:infinite));
 } else {
-    %varclient_49 = calc(%varclient_49 + $int8);
+    %poll_ypos = calc(%poll_ypos + $int8);
 }

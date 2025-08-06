@@ -27,23 +27,23 @@ def_component $component5 = collection:universe;
 def_component $component6 = collection:resize_preview;
 def_enum $enum7 = ~toplevel_getcomponents;
 def_component $component8 = enum(component, component, $enum7, toplevel_osrs_stretch:mainmodal);
-if (%varclient_1245 ! 1) {
-    %varclient_1247 = if_getx($component8);
-    %varclient_1248 = if_gety($component8);
-    %varclient_1241 = if_getwidth($component8);
-    %varclient_1242 = if_getheight($component8);
-    %varclient_1243 = if_getx($component8);
-    %varclient_1244 = if_gety($component8);
-    %varclient_1245 = 1;
+if (%collection_has_been_loaded_before ! 1) {
+    %collection_overview_x = if_getx($component8);
+    %collection_overview_y = if_gety($component8);
+    %collection_width = if_getwidth($component8);
+    %collection_height = if_getheight($component8);
+    %collection_x = if_getx($component8);
+    %collection_y = if_gety($component8);
+    %collection_has_been_loaded_before = 1;
 }
 if (~on_mobile = true) {
     if_setontimer("script7923($component4, $component5, 0)", $component4);
 } else {
-    if (%varclient_1243 < 0 | %varclient_1244 < 0 | %varclient_1241 <= 0 | %varclient_1242 <= 0) {
-        %varclient_1241 = if_getwidth($component8);
-        %varclient_1242 = if_getheight($component8);
-        %varclient_1243 = if_getx($component8);
-        %varclient_1244 = if_gety($component8);
+    if (%collection_x < 0 | %collection_y < 0 | %collection_width <= 0 | %collection_height <= 0) {
+        %collection_width = if_getwidth($component8);
+        %collection_height = if_getheight($component8);
+        %collection_x = if_getx($component8);
+        %collection_y = if_gety($component8);
     }
     if_setontimer("script6110($component4, -1)", $component4);
 }

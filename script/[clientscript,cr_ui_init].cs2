@@ -1,6 +1,6 @@
 // 6377
 [clientscript,cr_ui_init](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6)
-%varclient_1007 = 1;
+%cr_ui_open = 1;
 if (~script6391 = false) {
     if_sethide(true, $component4);
     if_setsize(calc(if_getwidth($component1) - if_getwidth($component4)), if_getheight($component1), ^setsize_abs, ^setsize_abs, $component1);
@@ -41,22 +41,22 @@ def_int $int9 = 0;
 if (~on_mobile = true) {
     $int9 = calc(165 - (20 + 30));
 }
-if (%varclient_1011 < ~cr_ui_min_width) {
-    %varclient_1011 = ~cr_ui_default_width;
+if (%cr_ui_window_width < ~cr_ui_min_width) {
+    %cr_ui_window_width = ~cr_ui_default_width;
 }
-if (%varclient_1012 < ~cr_ui_min_height) {
-    %varclient_1012 = ~cr_ui_default_height;
+if (%cr_ui_window_height < ~cr_ui_min_height) {
+    %cr_ui_window_height = ~cr_ui_default_height;
 }
-if (%varclient_1009 < 0) {
-    %varclient_1009 = calc((if_getwidth($component0) - %varclient_1011) / 2);
+if (%cr_ui_window_x < 0) {
+    %cr_ui_window_x = calc((if_getwidth($component0) - %cr_ui_window_width) / 2);
 }
-if (%varclient_1010 < $int9) {
-    %varclient_1010 = ~max($int9, calc((if_getheight($component0) - %varclient_1012) / 2));
+if (%cr_ui_window_y < $int9) {
+    %cr_ui_window_y = ~max($int9, calc((if_getheight($component0) - %cr_ui_window_height) / 2));
 }
 ~cr_ui_rebuild_window(1, $int9, $component0, $component1, $component6);
 ~cr_ui_size_handler(1, $int9, ^min_32bit_int, ^min_32bit_int, $component0, $component1, $component6);
-if (%varclient_1008 = null) {
-    %varclient_1008 = enum(int, dbrow, enum_4593, 0);
+if (%cr_active_module = null) {
+    %cr_active_module = enum(int, dbrow, enum_4593, 0);
 }
-~cr_ui_activate_module(%varclient_1008, $component4);
+~cr_ui_activate_module(%cr_active_module, $component4);
 ~script2482;

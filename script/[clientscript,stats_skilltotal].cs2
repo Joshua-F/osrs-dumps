@@ -5,7 +5,7 @@ if_settext("Total level:<br><tostring($int2)>", $component0);
 if_clearops($component0);
 def_string $string0 = "";
 def_string $string1 = "";
-if (map_members = true | %varclient_103 = 1) {
+if (map_members = true | %playermember = 1) {
     $string0 = "Total XP:";
     $string1 = ~stats_tostring_totalxp(~stats_totalxp);
 } else {
@@ -19,11 +19,11 @@ if (~league_relic_active(struct_1736) = 1) {
 if (~on_mobile = true) {
     if_setop(1, "Toggle Total XP", $component0);
     if_setonop("stats_op(event_op, event_com, -1, $component1, $string0, $string1, p12_full)", $component0);
-    if (%varclient_218 = $component0 & %varclient_217 = -1) {
+    if (%osm_tooltip_stat = $component0 & %osm_tooltip_built = -1) {
         ~script2344($component0, -1, $component1, $string0, $string1, p12_full);
     }
 } else {
     if_setonmouserepeat("script992(event_com, -1, $component1, $string0, $string1, p12_full, calc(25 / 5))", $component0);
     if_setonmouseleave("deltooltip($component1)", $component0);
-    %varclient_2 = 0;
+    %tooltip_built = 0;
 }

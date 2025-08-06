@@ -24,10 +24,10 @@ def_int $int17 = if_gety($component13);
 if_sethide(false, $component1);
 if_sethide(true, $component5);
 if ($int11 = 0) {
-    $int14 = max(512, min(%varclient_1168, $int8));
-    $int15 = max(334, min(%varclient_1169, $int10));
-    $int16 = max(0, min(%varclient_1170, calc($int8 - %varclient_1168)));
-    $int17 = max($int9, min(%varclient_1171, calc($int9 + $int10 - %varclient_1169)));
+    $int14 = max(512, min(%skill_guide_v2_width, $int8));
+    $int15 = max(334, min(%skill_guide_v2_height, $int10));
+    $int16 = max(0, min(%skill_guide_v2_x, calc($int8 - %skill_guide_v2_width)));
+    $int17 = max($int9, min(%skill_guide_v2_y, calc($int9 + $int10 - %skill_guide_v2_height)));
 }
 if (~on_mobile = false) {
     if_setposition($int16, $int17, ^setpos_abs_left, ^setpos_abs_top, $component1);
@@ -35,14 +35,14 @@ if (~on_mobile = false) {
 }
 def_string $string0 = "";
 def_boolean $boolean18 = false;
-$string0, $boolean18 = ~skill_guide_subsection(%varclient_1172, %varclient_1173);
+$string0, $boolean18 = ~skill_guide_subsection(%skill_guide_v2_current_skill, %skill_guide_v2_current_tab);
 if ($boolean18 = true) {
     $string0 = "<$string0> (Members Only)";
 }
 if ($int11 = 1) {
-    ~steelborder($component2, "<enum(int, string, enum_108, %varclient_1172)> - <$string0> ", 1);
+    ~steelborder($component2, "<enum(int, string, enum_108, %skill_guide_v2_current_skill)> - <$string0> ", 1);
 } else {
-    ~steelborder($component2, "<enum(int, string, enum_108, %varclient_1172)> - <$string0> ", 19);
+    ~steelborder($component2, "<enum(int, string, enum_108, %skill_guide_v2_current_skill)> - <$string0> ", 19);
 }
 ~script1785($component4);
 ~script4215($component3, "Close");
@@ -113,7 +113,7 @@ def_int $int32 = 1;
 def_int $int33 = 6;
 def_int $int34 = 36;
 def_int $int35 = 16;
-switch_int (%varclient_988) {
+switch_int (%responsive_current_breakpoint) {
     case 1 :
         $int35 = 17;
     case 2 :
@@ -134,12 +134,12 @@ if ($int36 >= 392) {
 cc_deleteall($component24);
 def_int $int37 = 0;
 def_int $int38 = 0;
-$string0, $boolean18 = ~skill_guide_subsection(%varclient_1172, $int38);
+$string0, $boolean18 = ~skill_guide_subsection(%skill_guide_v2_current_skill, $int38);
 while (string_length($string0) > 0) {
-    $int37 = ~script5291($component24, $int37, $int38, $int28, $int29, 0x726451, $string0, $graphic30, 16750623, $int32, null, 0, 0, 0, 0, ~is_equal($int38, %varclient_1173));
+    $int37 = ~script5291($component24, $int37, $int38, $int28, $int29, 0x726451, $string0, $graphic30, 16750623, $int32, null, 0, 0, 0, 0, ~is_equal($int38, %skill_guide_v2_current_tab));
     cc_setonop("skill_guide_v2_tab_select($int38)");
     $int38 = calc($int38 + 1);
-    $string0, $boolean18 = ~skill_guide_subsection(%varclient_1172, $int38);
+    $string0, $boolean18 = ~skill_guide_subsection(%skill_guide_v2_current_skill, $int38);
 }
 ~script5288($component25, 0, 0, 0, if_getwidth($component25), if_getheight($component25), struct_3712, 7496785);
 cc_deleteall($component26);
@@ -151,7 +151,7 @@ def_int $int41 = calc(if_getwidth($component26) - 66 - $int33 * 2);
 def_int $int42 = $int41;
 $int36 = $int34;
 def_obj $obj43 = null;
-$int39, $obj43, $string0 = ~skill_guide_data(%varclient_1172, %varclient_1173, $int38);
+$int39, $obj43, $string0 = ~skill_guide_data(%skill_guide_v2_current_skill, %skill_guide_v2_current_tab, $int38);
 while ($obj43 ! null) {
     if ($int39 < 0 & $obj43 = invis_rod) {
         $int42 = calc($int41 + 66);
@@ -187,7 +187,7 @@ while ($obj43 ! null) {
         cc_setgraphic(oc_param($obj43, param_1757));
         cc_setsize(30, 30, ^setsize_abs, ^setsize_abs);
         cc_setposition(calc($int33 + 25), calc($int40 + 3), ^setpos_abs_left, ^setpos_abs_top);
-    } else if (%varclient_1172 = 4 & oc_param($obj43, param_597) ! null) {
+    } else if (%skill_guide_v2_current_skill = 4 & oc_param($obj43, param_597) ! null) {
         cc_setgraphic(oc_param($obj43, param_597));
         cc_setsize(24, 24, ^setsize_abs, ^setsize_abs);
         cc_setposition(calc($int33 + 28), calc($int40 + 6), ^setpos_abs_left, ^setpos_abs_top);
@@ -198,7 +198,7 @@ while ($obj43 ! null) {
         cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
         cc_setposition(calc($int33 + 25), calc($int40 + 3), ^setpos_abs_left, ^setpos_abs_top);
     }
-    if (%varclient_1172 = 22 & %varclient_1173 >= 1 & %varclient_1173 <= 11) {
+    if (%skill_guide_v2_current_skill = 22 & %skill_guide_v2_current_tab >= 1 & %skill_guide_v2_current_tab <= 11) {
         cc_setop(1, "Check materials");
     }
     cc_setgraphicshadow(0x333333);
@@ -215,7 +215,7 @@ while ($obj43 ! null) {
     $int37 = calc($int37 + 1);
     $int40 = calc($int40 + $int36);
     $int38 = calc($int38 + 1);
-    $int39, $obj43, $string0 = ~skill_guide_data(%varclient_1172, %varclient_1173, $int38);
+    $int39, $obj43, $string0 = ~skill_guide_data(%skill_guide_v2_current_skill, %skill_guide_v2_current_tab, $int38);
 }
 cc_create($component26, ^iftype_rectangle, $int37);
 cc_setposition(0, $int40, ^setpos_abs_left, ^setpos_abs_top);

@@ -7,21 +7,21 @@ def_int $int5 = 56360964;
 def_int $int6 = 56360965;
 def_component $component7 = skill_guide_v2:resize_preview;
 def_component $component8 = skill_guide_v2:list;
-if (%varclient_1172 ! $int0 | %varclient_1173 ! $int1) {
+if (%skill_guide_v2_current_skill ! $int0 | %skill_guide_v2_current_tab ! $int1) {
     if_setscrollpos(0, 0, $component8);
 }
-%varclient_1172 = $int0;
-%varclient_1173 = $int1;
+%skill_guide_v2_current_skill = $int0;
+%skill_guide_v2_current_tab = $int1;
 def_enum $enum9 = ~toplevel_getcomponents;
 def_component $component10 = enum(component, component, $enum9, toplevel_osrs_stretch:mainmodal);
 if (~on_mobile = true) {
     if_setontimer("script7923($component2, $component3, 0)", $component2);
 } else {
-    if (%varclient_1170 < 0 | %varclient_1171 < 0 | %varclient_1168 <= 0 | %varclient_1169 <= 0) {
-        %varclient_1168 = if_getwidth($component10);
-        %varclient_1169 = if_getheight($component10);
-        %varclient_1170 = if_getx($component10);
-        %varclient_1171 = if_gety($component10);
+    if (%skill_guide_v2_x < 0 | %skill_guide_v2_y < 0 | %skill_guide_v2_width <= 0 | %skill_guide_v2_height <= 0) {
+        %skill_guide_v2_width = if_getwidth($component10);
+        %skill_guide_v2_height = if_getheight($component10);
+        %skill_guide_v2_x = if_getx($component10);
+        %skill_guide_v2_y = if_gety($component10);
     }
     if_setontimer("script6110($component2, -1)", $component2);
 }

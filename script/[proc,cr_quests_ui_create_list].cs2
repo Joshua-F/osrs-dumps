@@ -2,8 +2,8 @@
 [proc,cr_quests_ui_create_list]
 cc_deleteall(cr_ui:quests_recommendation_entries);
 cc_deleteall(cr_ui:quests_journal_buttons);
-def_int $intarray0(~script2477(%varclient_1000));
-~deserialise_intarray(%varclient_1000, $intarray0);
+def_int $intarray0(~script2477(%cr_quests_client_cached_recommendations));
+~deserialise_intarray(%cr_quests_client_cached_recommendations, $intarray0);
 def_int $int0 = ~2d_intarray_num_rows($intarray0);
 def_int $int1 = -1;
 def_dbrow $dbrow2 = null;
@@ -16,7 +16,7 @@ def_int $int8 = 0;
 def_int $int9 = 0;
 def_int $int10 = 0;
 def_boolean $boolean11 = false;
-def_int $int12 = ~script6396(%varclient_1003);
+def_int $int12 = ~script6396(%cr_quests_ui_expanded_states);
 def_int $int13 = 0;
 def_int $int14 = 0;
 while ($int14 < $int0) {
@@ -28,16 +28,16 @@ while ($int14 < $int0) {
             cc_sethide(true);
             $int7 = calc($int7 + 1);
         }
-        $boolean11 = ~script6397($int14, %varclient_1003, $int12);
+        $boolean11 = ~script6397($int14, %cr_quests_ui_expanded_states, $int12);
         $int9, $int8 = ~cr_quests_ui_create_entry($int0, $int10, $int14, $int1, $dbrow2, $int3, $boolean11, $int9, $int8, cr_ui:quests_recommendation_entries, cr_ui:quests_journal_buttons, cr_ui:quests_scrollbar, cr_ui:quests_recommendations);
         $int10 = calc($int10 + 1);
     }
-    if (%varclient_1004 ! -1 & $int14 = %varclient_1004) {
+    if (%cr_quests_ui_clicked_recommendation_index ! -1 & $int14 = %cr_quests_ui_clicked_recommendation_index) {
         $int13 = ~max(0, calc($int8 - (if_getheight(cr_ui:quests_recommendations) + if_getscrolly(cr_ui:quests_recommendations)) + 10));
     }
     $int14 = calc($int14 + 1);
 }
-%varclient_1004 = -1;
+%cr_quests_ui_clicked_recommendation_index = -1;
 def_string $string1 = null;
 if ($int10 <= 0) {
     if (%quests_completed_count >= %quests_total_count) {

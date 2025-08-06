@@ -9,8 +9,8 @@ if (~hiscores_group_check = 1 & $int8 ! 7 & $int8 ! 8) {
     ~hiscores_group_members_hide;
     ~hiscores_content_position;
 }
-%varclient_1227 = ~minmax(0, 9, $int8);
-def_string $string0 = enum(int, string, enum_5622, %varclient_1227);
+%hiscores_type = ~minmax(0, 9, $int8);
+def_string $string0 = enum(int, string, enum_5622, %hiscores_type);
 def_int $int9 = parawidth($string0, 500, p12_full);
 if (cc_find($component4, $int6) = ^true) {
     cc_settext($string0);
@@ -18,18 +18,18 @@ if (cc_find($component4, $int6) = ^true) {
     cc_setposition(calc(-16 + 13 / 2), 0, ^setpos_abs_centre, ^setpos_abs_centre);
 }
 if (cc_find($component4, $int7) = ^true) {
-    cc_setgraphic(enum(int, graphic, enum_5623, %varclient_1227));
+    cc_setgraphic(enum(int, graphic, enum_5623, %hiscores_type));
     cc_setposition(calc(-18 - 13 / 2 - $int9 / 2), 0, ^setpos_abs_centre, ^setpos_abs_centre);
 }
 def_string $string1 = "";
 if (cc_find(hiscores:hiscores_text_input, 2) = ^true) {
     $string1 = removetags(cc_gettext);
     if (string_length($string1) > 0) {
-        ~script7529($string1, %varclient_1227);
+        ~script7529($string1, %hiscores_type);
     }
 }
 ~hiscores_dropdown_entry_close($component0, $component1, $component2, $component3, $component4, $int5);
-%varclient_1234 = 0;
+%hiscores_gim_group_found = 0;
 if (~hiscores_group_check = 1) {
     ~hiscores_group_skills_show;
     ~hiscores_group_xp_show;

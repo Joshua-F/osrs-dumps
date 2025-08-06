@@ -5,11 +5,11 @@ if (calc(clientclock % 50) ! 0) {
 }
 def_int $int0 = idletimer_get;
 if ($int0 < 30000) {
-    if (%varclient_552 = 1) {
+    if (%logout_notification_sent = 1) {
         return;
     }
     ~local_notification("You are about to be logged out!", "You have 30 seconds until you are logged out due to inactivity.");
-    %varclient_552 = 1;
-} else if (%varclient_552 = 1) {
-    %varclient_552 = 0;
+    %logout_notification_sent = 1;
+} else if (%logout_notification_sent = 1) {
+    %logout_notification_sent = 0;
 }

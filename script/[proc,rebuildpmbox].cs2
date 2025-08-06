@@ -10,9 +10,9 @@ if (enum(enum, int, enum_1136, $enum6) > 0) {
     if ($enum6 = enum_1745) {
         $setposv2, $int3, $int1, $int5 = ^setpos_abs_top, 102, enum(enum, int, enum_1960, $enum6), 30;
     }
-    if ($enum6 = enum_1745 & %varclient_1220 = 1) {
+    if ($enum6 = enum_1745 & %osm_chatbox_disabled = 1) {
         $int4 = 4;
-    } else if (%varclient_41 = 1337 & ~toplevel_chatbox_permittransparent = true) {
+    } else if (%chat_view = 1337 & ~toplevel_chatbox_permittransparent = true) {
         $int4 = calc($int4 + $int5);
     } else {
         $int4 = calc($int4 + if_getheight(enum(component, component, $enum6, toplevel_osrs_stretch:chat_container)));
@@ -53,7 +53,7 @@ def_int $int17 = 0;
 def_string $string5 = "<col=00ffff>";
 def_string $string6 = "<col=ffff00>";
 $string5, $string6 = ~script4485($string5, $string6);
-if (%varclient_55 >= %varclient_202 & %varclient_55 > calc(clientclock - 3000) & chat_gethistorylength(^chattype_broadcast) > 0) {
+if (%chat_lastbroadcast_time >= %broadcast_cleared_time & %chat_lastbroadcast_time > calc(clientclock - 3000) & chat_gethistorylength(^chattype_broadcast) > 0) {
     $int12, $int13, $string1, $string3, $string0, $int14, $string2, $int15 = chat_gethistory_bytypeandline(^chattype_broadcast, 0);
     if ($int12 ! -1) {
         $string0, $string4, $int16 = ~chat_broadcast_parseurl($string0);
@@ -80,7 +80,7 @@ if (%varclient_55 >= %varclient_202 & %varclient_55 > calc(clientclock - 3000) &
 $int12 = $int0;
 def_int $chattype18 = ^chattype_gamemessage;
 def_int $int19 = ~loginlogout_setting_get;
-if (%option_pm = 1 & (%varclient_41 ! 1337 | %hide_pm_alongside_chatbox = 0) & ~script7831 = 1) {
+if (%option_pm = 1 & (%chat_view ! 1337 | %hide_pm_alongside_chatbox = 0) & ~script7831 = 1) {
     while ($int12 ! -1 & $component10 ! null & calc($int7 - $int4) < 57) {
         $chattype18, $int13, $string1, $string3, $string0, $int14, $string2, $int15 = chat_gethistory_byuid($int12);
         if (~pm_filtertest($chattype18, $string1, $int13, $int14) = true) {
@@ -92,7 +92,7 @@ if (%option_pm = 1 & (%varclient_41 ! 1337 | %hide_pm_alongside_chatbox = 0) & ~
                 case ^chattype_loginlogoutnotification :
                     $int7 = calc($int7 + ~script199(~affixtimestamp($string2, "<$string5><$string0></col>", $string5), $int9, $component10, pm_chat:container, $int8, $int1, 13, $int7, $setposv2, $int3, 65535, true));
                     if ($int19 = 0) {
-                        %varclient_65 = calc($int13 + 500 + 1);
+                        %chat_force_chatbox_rebuild = calc($int13 + 500 + 1);
                         if_setontimer("script664(false)", chatbox:universe);
                     }
                 case default :

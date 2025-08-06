@@ -25,21 +25,21 @@ def_component $component17 = collection_overview:universe;
 def_component $component18 = collection_overview:resize_preview;
 def_enum $enum19 = ~toplevel_getcomponents;
 def_component $component20 = enum(component, component, $enum19, toplevel_osrs_stretch:mainmodal);
-if (%varclient_1245 ! 1) {
-    %varclient_1247 = if_getx($component20);
-    %varclient_1248 = if_gety($component20);
-    %varclient_1241 = if_getwidth($component20);
-    %varclient_1242 = if_getheight($component20);
-    %varclient_1243 = if_getx($component20);
-    %varclient_1244 = if_gety($component20);
-    %varclient_1245 = 1;
+if (%collection_has_been_loaded_before ! 1) {
+    %collection_overview_x = if_getx($component20);
+    %collection_overview_y = if_gety($component20);
+    %collection_width = if_getwidth($component20);
+    %collection_height = if_getheight($component20);
+    %collection_x = if_getx($component20);
+    %collection_y = if_gety($component20);
+    %collection_has_been_loaded_before = 1;
 }
 if (~on_mobile = true) {
     if_setontimer("script7923($component16, $component17, 0)", $component16);
 } else {
-    if (%varclient_1247 < 0 | %varclient_1248 < 0) {
-        %varclient_1247 = if_getx($component20);
-        %varclient_1248 = if_gety($component20);
+    if (%collection_overview_x < 0 | %collection_overview_y < 0) {
+        %collection_overview_x = if_getx($component20);
+        %collection_overview_y = if_gety($component20);
     }
     if_setontimer("script6110($component16, -1)", $component16);
 }

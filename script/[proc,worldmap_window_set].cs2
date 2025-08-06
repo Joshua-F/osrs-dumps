@@ -7,43 +7,43 @@ if (~toplevel_getcomponents = enum_1132) {
     if_setsize(0, 0, ^setsize_minus, ^setsize_minus, $component1);
     return;
 }
-%varclient_191 = ~max(~min(%varclient_191, calc(if_getwidth($component0) - $int4)), 0);
-%varclient_192 = ~max(~min(%varclient_192, calc(if_getheight($component0) - 280)), 0);
-%varclient_193, %varclient_194 = ~max(~min(%varclient_193, %varclient_191), 0), ~max(~min(%varclient_194, %varclient_192), 0);
-if_setposition(%varclient_193, %varclient_194, ^setpos_abs_left, ^setpos_abs_top, $component1);
-if_setsize(%varclient_191, %varclient_192, ^setsize_minus, ^setsize_minus, $component1);
-def_int $int5 = calc(%varclient_191 + 6 * 2);
-def_int $int6 = calc(%varclient_192 + 6 * 2);
-def_int $int7 = calc(%varclient_191 - %varclient_193);
-def_int $int8 = calc(%varclient_192 - %varclient_194);
+%worldmap_minuswidth = ~max(~min(%worldmap_minuswidth, calc(if_getwidth($component0) - $int4)), 0);
+%worldmap_minusheight = ~max(~min(%worldmap_minusheight, calc(if_getheight($component0) - 280)), 0);
+%worldmap_x, %worldmap_y = ~max(~min(%worldmap_x, %worldmap_minuswidth), 0), ~max(~min(%worldmap_y, %worldmap_minusheight), 0);
+if_setposition(%worldmap_x, %worldmap_y, ^setpos_abs_left, ^setpos_abs_top, $component1);
+if_setsize(%worldmap_minuswidth, %worldmap_minusheight, ^setsize_minus, ^setsize_minus, $component1);
+def_int $int5 = calc(%worldmap_minuswidth + 6 * 2);
+def_int $int6 = calc(%worldmap_minusheight + 6 * 2);
+def_int $int7 = calc(%worldmap_minuswidth - %worldmap_x);
+def_int $int8 = calc(%worldmap_minusheight - %worldmap_y);
 def_int $int9 = 0;
 if (cc_find($component0, 0) = ^true & .cc_find($component0, 1) = ^true) {
     cc_setsize($int5, 6, ^setsize_minus, ^setsize_abs);
     .cc_setsize($int5, 6, ^setsize_minus, ^setsize_abs);
-    $int9 = calc(%varclient_193 + 6);
-    cc_setposition($int9, %varclient_194, ^setpos_abs_left, ^setpos_abs_top);
+    $int9 = calc(%worldmap_x + 6);
+    cc_setposition($int9, %worldmap_y, ^setpos_abs_left, ^setpos_abs_top);
     .cc_setposition($int9, $int8, ^setpos_abs_left, ^setpos_abs_bottom);
     ~script1746($component0, $component1, $component2, $component3, $int4);
 }
 if (cc_find($component0, 2) = ^true & .cc_find($component0, 3) = ^true) {
     cc_setsize(6, $int6, ^setsize_abs, ^setsize_minus);
     .cc_setsize(6, $int6, ^setsize_abs, ^setsize_minus);
-    $int9 = calc(%varclient_194 + 6);
-    cc_setposition(%varclient_193, $int9, ^setpos_abs_left, ^setpos_abs_top);
+    $int9 = calc(%worldmap_y + 6);
+    cc_setposition(%worldmap_x, $int9, ^setpos_abs_left, ^setpos_abs_top);
     .cc_setposition($int7, $int9, ^setpos_abs_right, ^setpos_abs_top);
     ~script1746($component0, $component1, $component2, $component3, $int4);
 }
 if (cc_find($component0, 4) = ^true & .cc_find($component0, 5) = ^true) {
     cc_setsize(6, 6, ^setsize_abs, ^setsize_abs);
     .cc_setsize(6, 6, ^setsize_abs, ^setsize_abs);
-    cc_setposition(%varclient_193, %varclient_194, ^setpos_abs_left, ^setpos_abs_top);
-    .cc_setposition($int7, %varclient_194, ^setpos_abs_right, ^setpos_abs_top);
+    cc_setposition(%worldmap_x, %worldmap_y, ^setpos_abs_left, ^setpos_abs_top);
+    .cc_setposition($int7, %worldmap_y, ^setpos_abs_right, ^setpos_abs_top);
     ~script1746($component0, $component1, $component2, $component3, $int4);
 }
 if (cc_find($component0, 6) = ^true & .cc_find($component0, 7) = ^true) {
     cc_setsize(6, 6, ^setsize_abs, ^setsize_abs);
     .cc_setsize(6, 6, ^setsize_abs, ^setsize_abs);
-    cc_setposition(%varclient_193, $int8, ^setpos_abs_left, ^setpos_abs_bottom);
+    cc_setposition(%worldmap_x, $int8, ^setpos_abs_left, ^setpos_abs_bottom);
     .cc_setposition($int7, $int8, ^setpos_abs_right, ^setpos_abs_bottom);
     ~script1746($component0, $component1, $component2, $component3, $int4);
 }

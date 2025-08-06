@@ -60,8 +60,8 @@ if (%fov_clamp ! 0) {
     }
 } else {
     viewport_clampfov(0, 0, 0, 0);
-    if (%varclient_73 >= 128 & %varclient_73 <= 896 & %varclient_74 >= 128 & %varclient_74 <= 896) {
-        ~camera_do_zoom(%varclient_73, %varclient_74);
+    if (%camera_zoom_small >= 128 & %camera_zoom_small <= 896 & %camera_zoom_big >= 128 & %camera_zoom_big <= 896) {
+        ~camera_do_zoom(%camera_zoom_small, %camera_zoom_big);
     } else {
         ~camera_do_zoom(512, 512);
     }
@@ -83,9 +83,9 @@ if (%fov_clamp ! 0) {
 def_component $component19 = enum(component, component, $enum1, toplevel_osrs_stretch:mainmodal);
 if ($component19 ! null) {
     if (~on_mobile = false & if_hassub($component19) = true) {
-        if (%varclient_173 = -2) {
+        if (%toplevel_mainmodal_bg_trans = -2) {
             if_setsize(512, 0, ^setsize_abs, ^setsize_minus, $component19);
-        } else if (%varclient_173 = -3) {
+        } else if (%toplevel_mainmodal_bg_trans = -3) {
             if_setsize(0, 0, ^setsize_minus, ^setsize_minus, $component19);
         } else {
             if_setsize(512, 334, ^setsize_abs, ^setsize_abs, $component19);

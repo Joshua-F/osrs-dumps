@@ -10,13 +10,13 @@ if (%league_tasks_is_searching = 0) {
     return;
 }
 if ($key0 = ^key_del) {
-    if (compare("", %varclient_1180) = 0) {
+    if (compare("", %league_tasks_search_string) = 0) {
         return;
     }
-    %varclient_1180 = "";
+    %league_tasks_search_string = "";
     ~league_searchbar_set_text($component19);
     ~league_tasks_draw_list(-1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10, $component11, $component12, $component13, $component14, $component15, $component16, $component17, $component18, $component19);
-    if_setontimer("league_search_update(%varclient_1180, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10, $component11, $component12, $component13, $component14, $component15, $component16, $component17, $component18, $component19)", $component19);
+    if_setontimer("league_search_update(%league_tasks_search_string, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10, $component11, $component12, $component13, $component14, $component15, $component16, $component17, $component18, $component19)", $component19);
     return;
 }
 if ($key0 = ^key_return) {
@@ -27,16 +27,16 @@ if ($key0 = ^key_return) {
     ~chatdefault_restoreinput;
     %league_tasks_is_searching = 0;
     %league_tasks_search_listen_for_keyboard = 0;
-    if_settext(%varclient_1180, $component19);
+    if_settext(%league_tasks_search_string, $component19);
     ~league_tasks_draw_list(-1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10, $component11, $component12, $component13, $component14, $component15, $component16, $component17, $component18, $component19);
-    if_setontimer("league_search_update(%varclient_1180, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10, $component11, $component12, $component13, $component14, $component15, $component16, $component17, $component18, $component19)", $component19);
+    if_setontimer("league_search_update(%league_tasks_search_string, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10, $component11, $component12, $component13, $component14, $component15, $component16, $component17, $component18, $component19)", $component19);
     return;
 }
-def_string $string0 = %varclient_1180;
+def_string $string0 = %league_tasks_search_string;
 def_int $int20 = string_length($string0);
 if ($key0 = ^key_backspace) {
     if ($int20 > 0) {
-        %varclient_1180 = substring($string0, 0, calc($int20 - 1));
+        %league_tasks_search_string = substring($string0, 0, calc($int20 - 1));
     }
     ~league_searchbar_set_text($component19);
     return;
@@ -47,5 +47,5 @@ if (char_isalphanumeric($char1) = false & string_indexof_char(" -/,", $char1) = 
 if (string_length(append_char($string0, $char1)) > 50) {
     return;
 }
-%varclient_1180 = append_char($string0, $char1);
+%league_tasks_search_string = append_char($string0, $char1);
 ~league_searchbar_set_text($component19);

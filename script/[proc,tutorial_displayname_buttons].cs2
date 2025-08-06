@@ -1,13 +1,13 @@
 // 2575
 [proc,tutorial_displayname_buttons](component $component0, component $component1, component $component2, component $component3, component $component4)
-if (%varclient_435 = true) {
+if (%displayname_input_listening = true) {
     ~displayname_button_init($component0, "Look up name");
     if_setop(1, "Look up name", $component0);
     if_sethide(false, $component0);
     if_sethide(true, $component1);
     if_setonop("tutorial_displayname_look_up_name($component0, $component1, $component2, $component3, $component4, event_op)", $component0);
 } else if (%displayname_status = 1) {
-    if (compare(%varclient_436, %varclient_437) = 0) {
+    if (compare(%displayname_input, %displayname_input_last) = 0) {
         ~displayname_disablebutton($component0, "Look up name");
         if_setop(1, "", $component0);
         if_sethide(false, $component0);
@@ -24,7 +24,7 @@ if (%varclient_435 = true) {
     if_sethide(false, $component0);
     if_sethide(true, $component1);
 } else if (%displayname_status = 4) {
-    if (compare(%varclient_436, %varclient_437) = 0) {
+    if (compare(%displayname_input, %displayname_input_last) = 0) {
         ~displayname_button_init($component1, "Set name");
         if_setop(1, "Set name", $component1);
         if_sethide(true, $component0);

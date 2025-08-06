@@ -66,21 +66,21 @@ def_component $component5 = null;
 def_int $int6 = 0;
 def_int $int7 = enum_getoutputcount(enum_1937);
 if ($int0 >= calc($int7 - 1)) {
-    switch_int (%varclient_180) {
+    switch_int (%raids_listsort_list) {
         case 0, 1, 2, 3, 4, 5, 6, 7, 12, 13, 14, 15 :
         case default :
-            %varclient_180 = 1;
+            %raids_listsort_list = 1;
     }
     ~tob_partylist_setsort;
     $component5 = if_getlayer($component1);
-    $int6 = calc(%varclient_178 * 18);
+    $int6 = calc(%raids_count * 18);
     if ($int6 > if_getheight($component5)) {
         if_setscrollsize(0, $int6, $component5);
-        ~scrollbar_resize(tob_partylist:scrollbar, $component5, %varclient_179);
+        ~scrollbar_resize(tob_partylist:scrollbar, $component5, %raids_scroll);
     } else {
         if_setscrollsize(0, 0, $component5);
         ~scrollbar_resize(tob_partylist:scrollbar, $component5, 0);
-        %varclient_179 = 0;
+        %raids_scroll = 0;
     }
     cc_deleteall($component5);
     $int0 = 0;
@@ -90,7 +90,7 @@ if ($int0 >= calc($int7 - 1)) {
         cc_sethide(true);
         $int0 = calc($int0 + 1);
     }
-    if (%varclient_178 <= 0) {
+    if (%raids_count <= 0) {
         cc_create($component5, ^iftype_text, $int7);
         cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
         cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);

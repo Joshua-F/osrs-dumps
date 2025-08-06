@@ -16,7 +16,7 @@ if (~deadman_world ! 0 & if_gettop = toplevel_spectator) {
 }
 if (~pvp_world = true) {
     if_setsize(78, 73, ^setsize_abs, ^setsize_abs, pvp_icons:icons);
-    if (%varclient_53 = true) {
+    if (%combat_insidewilderness = true) {
         $int5 = 0;
     }
     if_setposition(0, 31, ^setpos_abs_centre, ^setpos_abs_bottom, pvp_icons:wildernesslevel);
@@ -104,7 +104,7 @@ if (~pvp_world = true) {
         } else {
             if_settext("<tostring(calc(%deadman_protection_left % 60))>min", pvp_icons:skullduration);
         }
-    } else if (%varclient_78 ! 2) {
+    } else if (%deadman_insidesafezone ! 2) {
         if (%deadman_skullduration > 0) {
             if_setsize(78, 84, ^setsize_abs, ^setsize_abs, pvp_icons:icons);
             if_setposition(0, 43, ^setpos_abs_centre, ^setpos_abs_bottom, pvp_icons:wildernesslevel);
@@ -191,7 +191,7 @@ if (~pvp_world = true) {
 } else {
     if_setsize(78, 73, ^setsize_abs, ^setsize_abs, pvp_icons:icons);
     if_setcolour(^yellow, pvp_icons:wildernesslevel);
-    if (~on_enhanced_any = true & %varclient_53 = true) {
+    if (~on_enhanced_any = true & %combat_insidewilderness = true) {
         if_sethide(false, pvp_icons:comlevelrange);
         ~pvp_icons_comlevelrange($int7);
         if_setcolour(^yellow, pvp_icons:comlevelrange);

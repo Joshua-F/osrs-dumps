@@ -1,6 +1,6 @@
 // 1004
 [clientscript,xpdrops_stattransmit](boolean $boolean0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, int $int10, int $int11, int $int12, int $int13, int $int14, int $int15, int $int16, int $int17, int $int18, int $int19, int $int20, int $int21, int $int22, int $int23, int $int24, int $int25, int $int26, int $int27, int $int28, int $int29, int $int30, int $int31, int $int32, int $int33)
-if ($boolean0 = true & %varclient_953 = -1) {
+if ($boolean0 = true & %xpdrops_fake_skill_0 = -1) {
     return;
 }
 def_int $int34 = calc(23 + 1);
@@ -9,18 +9,18 @@ def_int $intarray1($int34);
 def_int $int35 = 0;
 def_int $int36 = 0;
 if ($boolean0 = true) {
-    while (%varclient_953 ! -1) {
-        if (%varclient_960 = -10) {
+    while (%xpdrops_fake_skill_0 ! -1) {
+        if (%xpdrops_fake_xp_0 = -10) {
             ~xpdrops_showpanel($component1, $component3, $component8, $component9);
         } else {
-            $statarray0($int35) = enum(int, stat, enum_681, %varclient_953);
-            $intarray1($int35) = %varclient_960;
+            $statarray0($int35) = enum(int, stat, enum_681, %xpdrops_fake_skill_0);
+            $intarray1($int35) = %xpdrops_fake_xp_0;
             if ($statarray0($int35) ! null & $intarray1($int35) > 0) {
                 $int35 = calc($int35 + 1);
             }
         }
-        %varclient_953, %varclient_954, %varclient_955, %varclient_956, %varclient_957, %varclient_958, %varclient_959 = %varclient_954, %varclient_955, %varclient_956, %varclient_957, %varclient_958, %varclient_959, -1;
-        %varclient_960, %varclient_961, %varclient_962, %varclient_963, %varclient_964, %varclient_965, %varclient_966 = %varclient_961, %varclient_962, %varclient_963, %varclient_964, %varclient_965, %varclient_966, -1;
+        %xpdrops_fake_skill_0, %xpdrops_fake_skill_1, %xpdrops_fake_skill_2, %xpdrops_fake_skill_3, %xpdrops_fake_skill_4, %xpdrops_fake_skill_5, %xpdrops_fake_skill_6 = %xpdrops_fake_skill_1, %xpdrops_fake_skill_2, %xpdrops_fake_skill_3, %xpdrops_fake_skill_4, %xpdrops_fake_skill_5, %xpdrops_fake_skill_6, -1;
+        %xpdrops_fake_xp_0, %xpdrops_fake_xp_1, %xpdrops_fake_xp_2, %xpdrops_fake_xp_3, %xpdrops_fake_xp_4, %xpdrops_fake_xp_5, %xpdrops_fake_xp_6 = %xpdrops_fake_xp_1, %xpdrops_fake_xp_2, %xpdrops_fake_xp_3, %xpdrops_fake_xp_4, %xpdrops_fake_xp_5, %xpdrops_fake_xp_6, -1;
     }
 } else {
     $int36 = calc(stat_visible_xp(fishing) - $int25);
@@ -187,16 +187,16 @@ if ($int35 > 0 & $int16 > 0 & ~script6065 = true) {
     $int43 = calc($int41 * enum(int, int, enum_1171, %xpdrops_speed) / $int42 + 1);
     while ($int37 < $int35) {
         if ($int38 = 0 & $boolean0 = false) {
-            %varclient_72 = $statarray0($int37);
+            %xpdrops_lastskill = $statarray0($int37);
             $int38 = 1;
         }
-        if (%varclient_71 > 0 & %varclient_71 > calc(clientclock - $int43)) {
-            $int44 = calc(%varclient_71 + $int43);
+        if (%xpdrops_queue > 0 & %xpdrops_queue > calc(clientclock - $int43)) {
+            $int44 = calc(%xpdrops_queue + $int43);
         } else {
             $int44 = clientclock;
         }
         if ($int44 < calc(clientclock + $int43 * $int10)) {
-            $component47 = enum(int, component, enum_1163, %varclient_70);
+            $component47 = enum(int, component, enum_1163, %xpdrops_nextlayer);
             if_sethide(false, $component47);
             $int46 = $intarray1($int37);
             cc_create($component47, ^iftype_graphic, 1);
@@ -225,8 +225,8 @@ if ($int35 > 0 & $int16 > 0 & ~script6065 = true) {
                 ~xpdrops_setdropsize($component47, $int41, $fontmetrics39, $graphic40, $string2);
             }
             if_setontimer("xpdrops_dropletmove($component47, $int44)", $component47);
-            %varclient_71 = $int44;
-            %varclient_70 = calc((%varclient_70 + 1) % $int10);
+            %xpdrops_queue = $int44;
+            %xpdrops_nextlayer = calc((%xpdrops_nextlayer + 1) % $int10);
         } else {
             $int37 = $int35;
         }

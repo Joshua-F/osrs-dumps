@@ -1,14 +1,14 @@
 // 4201
 [proc,xptracker_resize_scrollbar]
-if (%varclient_562 > if_getheight(xptracker:tracker_container)) {
-    if_setscrollsize(0, %varclient_562, xptracker:tracker_container);
+if (%xptracker_current_y > if_getheight(xptracker:tracker_container)) {
+    if_setscrollsize(0, %xptracker_current_y, xptracker:tracker_container);
 } else {
     if_setscrollsize(0, 0, xptracker:tracker_container);
 }
-if_setscrollpos(0, max(0, %varclient_1255), xptracker:tracker_container);
+if_setscrollpos(0, max(0, %osm_popout_scrollpos_xptracker), xptracker:tracker_container);
 def_int $int0 = 0;
-if (%varclient_1255 > 0) {
-    $int0 = %varclient_1255;
+if (%osm_popout_scrollpos_xptracker > 0) {
+    $int0 = %osm_popout_scrollpos_xptracker;
 } else {
     $int0 = if_getscrolly(xptracker:tracker_container);
 }

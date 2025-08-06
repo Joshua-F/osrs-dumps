@@ -3,7 +3,7 @@
 if ($chattype0 = null) {
     return(false);
 }
-if ($int1 < %varclient_383) {
+if ($int1 < %all_chat_cleared_time) {
     return(false);
 }
 if (enum(int, boolean, enum_892, $chattype0) = true & $chattype0 ! ^chattype_playerrelated) {
@@ -29,7 +29,7 @@ def_int $int5 = -1;
 def_int $int6 = ~loginlogout_setting_get;
 switch_int ($chattype0) {
     case ^chattype_publicchat, ^chattype_modchat :
-        if ($int1 < %varclient_199) {
+        if ($int1 < %public_chat_cleared_time) {
             return(false);
         }
         if (compare($string3, removetags($string0)) = 0) {
@@ -53,7 +53,7 @@ switch_int ($chattype0) {
         }
         return(true);
     case ^chattype_autotyper, ^chattype_modautotyper :
-        if ($int1 < %varclient_199) {
+        if ($int1 < %public_chat_cleared_time) {
             return(false);
         }
         if (compare($string3, removetags($string0)) = 0) {
@@ -70,7 +70,7 @@ switch_int ($chattype0) {
         }
         return(true);
     case ^chattype_privatechat, ^chattype_modprivatechat :
-        if ($int1 < %varclient_175) {
+        if ($int1 < %private_chat_cleared_time) {
             return(false);
         }
         if ($int3 = 2) {
@@ -98,7 +98,7 @@ switch_int ($chattype0) {
         }
         return(false);
     case ^chattype_loginlogoutnotification, ^chattype_privatechatout :
-        if ($int1 < %varclient_175) {
+        if ($int1 < %private_chat_cleared_time) {
             return(false);
         }
         if ($chattype0 = ^chattype_loginlogoutnotification) {
@@ -116,7 +116,7 @@ switch_int ($chattype0) {
         }
         return(false);
     case ^chattype_friendschat, ^chattype_chalreq_friendschat :
-        if ($int1 < %varclient_439) {
+        if ($int1 < %friendschat_cleared_time) {
             return(false);
         }
         if (compare($string3, removetags($string0)) = 0) {
@@ -133,7 +133,7 @@ switch_int ($chattype0) {
         }
         return(false);
     case ^chattype_friendschatnotification :
-        if ($int1 < %varclient_439) {
+        if ($int1 < %friendschat_cleared_time) {
             return(false);
         }
         if (%chat_filter_friendschat ! ^chatfilter_off) {
@@ -142,7 +142,7 @@ switch_int ($chattype0) {
         return(false);
     case ^chattype_clanchat, ^chattype_clanguestchat, ^chattype_clanmessage, ^chattype_clanguestmessage, ^chattype_clancreationinvitation, ^chattype_chalreq_clanchat, 111, 112 :
         if ($chattype0 = ^chattype_clanmessage & (~gim_notification_message($string2) = true | ~pvpa_notification_message($string2) = true)) {
-            if ($int1 < %varclient_946) {
+            if ($int1 < %group_chat_cleared_time) {
                 return(false);
             }
             if (chat_getfilter_trade = ^chatfilter_off) {
@@ -151,7 +151,7 @@ switch_int ($chattype0) {
             return(true);
         }
         if ($chattype0 = ^chattype_clanchat & ~script5501($string2) = true) {
-            if ($int1 < %varclient_946) {
+            if ($int1 < %group_chat_cleared_time) {
                 return(false);
             }
             if (compare($string3, removetags($string0)) = 0) {
@@ -168,7 +168,7 @@ switch_int ($chattype0) {
             }
             return(true);
         }
-        if ($int1 < %varclient_440) {
+        if ($int1 < %clan_chat_cleared_time) {
             return(false);
         }
         if (compare($string3, removetags($string0)) = 0) {
@@ -192,7 +192,7 @@ switch_int ($chattype0) {
         }
         return(false);
     case ^chattype_broadcast :
-        if ($int1 < %varclient_202) {
+        if ($int1 < %broadcast_cleared_time) {
             return(false);
         }
         $string1, $string4, $int5 = ~chat_broadcast_parseurl($string1);

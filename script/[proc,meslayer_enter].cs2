@@ -1,32 +1,32 @@
 // 681
 [proc,meslayer_enter]
-if (%varclient_5 = 14 | %varclient_5 = 17) {
-    %varclient_66 = 1;
+if (%meslayermode = 14 | %meslayermode = 17) {
+    %objdialog_updatedelay = 1;
     return;
 }
 def_int $int0 = -1;
 def_string $string0 = "";
-def_int $int1 = string_length(%varclient_359);
+def_int $int1 = string_length(%meslayerinput);
 if ($int1 > 0) {
-    switch_int (%varclient_5) {
+    switch_int (%meslayermode) {
         case 1 :
             return;
         case 4, 5 :
             if (ignore_count < 0) {
                 mes("Unable to update ignore list - system busy.");
-            } else if (%varclient_5 = 4) {
-                ignore_add(%varclient_359);
-            } else if (%varclient_5 = 5) {
-                ignore_del(%varclient_359);
+            } else if (%meslayermode = 4) {
+                ignore_add(%meslayerinput);
+            } else if (%meslayermode = 5) {
+                ignore_del(%meslayerinput);
             }
         case 2, 3, 6 :
             if (friend_count < 0) {
                 mes("Unable to complete action - system busy.");
-            } else if (%varclient_5 = 2) {
-                friend_add(%varclient_359);
-            } else if (%varclient_5 = 3) {
-                friend_del(%varclient_359);
-            } else if (%varclient_5 = 6) {
+            } else if (%meslayermode = 2) {
+                friend_add(%meslayerinput);
+            } else if (%meslayermode = 3) {
+                friend_del(%meslayerinput);
+            } else if (%meslayermode = 6) {
                 if (%has_displayname_transmitter = 0) {
                     ~meslayer_close(1, 1, 1);
                     mes("You must set a name before you can chat.");
@@ -40,54 +40,54 @@ if ($int1 > 0) {
                     ~rebuildpmbox($int0);
                 }
                 if (%chat_stfu = 1) {
-                    friend_del(%varclient_360);
+                    friend_del(%friendtomessage);
                 } else {
-                    chat_sendprivate(%varclient_360, %varclient_359);
+                    chat_sendprivate(%friendtomessage, %meslayerinput);
                 }
-                %varclient_61 = clientclock;
+                %chat_lastoutput = clientclock;
             }
         case 7, 19 :
-            resume_countdialog(~script212(%varclient_359));
-            %varclient_5 = 0;
+            resume_countdialog(~script212(%meslayerinput));
+            %meslayermode = 0;
         case 8 :
-            %varclient_361 = removetags(%varclient_359);
-            resume_namedialog(%varclient_359);
-            %varclient_5 = 0;
+            %last_namedialog = removetags(%meslayerinput);
+            resume_namedialog(%meslayerinput);
+            %meslayermode = 0;
         case 9, 15, 20, 21, 27 :
-            switch_int (%varclient_5) {
+            switch_int (%meslayermode) {
                 case 20 :
-                    ~clan_lastclansearch_set(removetags(%varclient_359));
+                    ~clan_lastclansearch_set(removetags(%meslayerinput));
                 case 27 :
-                    ~worldswitcher_search_set(removetags(%varclient_359));
+                    ~worldswitcher_search_set(removetags(%meslayerinput));
                 case 21 :
-                    %varclient_359 = ~script4191(%varclient_359, "jagex", " ");
-                    %varclient_359 = ~script4191(%varclient_359, "jaqex", " ");
-                    %varclient_359 = ~script4191(%varclient_359, "jagx", " ");
-                    %varclient_359 = ~script4191(%varclient_359, "jgex", " ");
-                    %varclient_359 = ~script4191(%varclient_359, "jgx", " ");
-                    %varclient_359 = ~script4191(%varclient_359, "admin", " ");
-                    %varclient_359 = ~script4191(%varclient_359, "staff", " ");
-                    %varclient_359 = ~script4191(%varclient_359, "mod ", " ");
-                    %varclient_359 = ~script4191(%varclient_359, "m0d ", " ");
-                    %varclient_359 = ~script4191(%varclient_359, "-", " ");
-                    %varclient_359 = ~script4191(%varclient_359, "_", " ");
-                    %varclient_359 = ~script4191(%varclient_359, "  ", " ");
+                    %meslayerinput = ~script4191(%meslayerinput, "jagex", " ");
+                    %meslayerinput = ~script4191(%meslayerinput, "jaqex", " ");
+                    %meslayerinput = ~script4191(%meslayerinput, "jagx", " ");
+                    %meslayerinput = ~script4191(%meslayerinput, "jgex", " ");
+                    %meslayerinput = ~script4191(%meslayerinput, "jgx", " ");
+                    %meslayerinput = ~script4191(%meslayerinput, "admin", " ");
+                    %meslayerinput = ~script4191(%meslayerinput, "staff", " ");
+                    %meslayerinput = ~script4191(%meslayerinput, "mod ", " ");
+                    %meslayerinput = ~script4191(%meslayerinput, "m0d ", " ");
+                    %meslayerinput = ~script4191(%meslayerinput, "-", " ");
+                    %meslayerinput = ~script4191(%meslayerinput, "_", " ");
+                    %meslayerinput = ~script4191(%meslayerinput, "  ", " ");
             }
-            resume_stringdialog(%varclient_359);
-            %varclient_5 = 0;
+            resume_stringdialog(%meslayerinput);
+            %meslayermode = 0;
         case 10 :
             if (%has_displayname_transmitter = 0) {
                 ~meslayer_close(1, 1, 1);
                 mes("You must set a name before you can chat.");
                 return;
             }
-            %varclient_362 = removetags(%varclient_359);
-            friendschat_joinchat(%varclient_359);
+            %last_friendschatjoin = removetags(%meslayerinput);
+            friendschat_joinchat(%meslayerinput);
         case 12 :
             if ($int1 > 10) {
-                $string0 = substring(%varclient_359, 0, 9);
+                $string0 = substring(%meslayerinput, 0, 9);
             } else {
-                $string0 = %varclient_359;
+                $string0 = %meslayerinput;
             }
             chat_setmessagefilter(lowercase($string0));
             ~rebuildchatbox(~script553);
@@ -97,17 +97,17 @@ if ($int1 > 0) {
                 mes("You must set a name before you can chat.");
                 return;
             }
-            %varclient_358, %varclient_62 = %varclient_359, 0;
+            %autotyper, %autochat_pause = %meslayerinput, 0;
             ~chat_autotyper_updateop;
             if_setontimer("chat_autotyper(event_com, true)", chatbox:chat_public);
         case 11, 18 :
             ~meslayer_close(0, 1, 1);
             return;
         case 16 :
-            ~skillmulti_quantitybutton_x_receive(%varclient_359);
+            ~skillmulti_quantitybutton_x_receive(%meslayerinput);
     }
 } else {
-    switch_int (%varclient_5) {
+    switch_int (%meslayermode) {
         case 7, 8, 9, 15, 20, 21 :
             return;
         case 16 :

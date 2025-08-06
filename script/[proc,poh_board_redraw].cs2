@@ -1,6 +1,6 @@
 // 3113
 [proc,poh_board_redraw]
-%varclient_377 = 0;
+%poh_board_count = 0;
 def_int $int0 = 0;
 def_string $string0 = "";
 def_int $int1 = 0;
@@ -23,12 +23,12 @@ while ($int6 = 0 & $int0 <= 200) {
     $int0 = calc($int0 + 1);
 }
 if ($int5 >= 2) {
-    switch_int (%varclient_379) {
+    switch_int (%poh_board_listsort) {
         case 0, 1 :
             ~quicksort_cctext($intarray1, poh_board:name, 0, calc($int5 - 1));
         case default :
-            if (%varclient_379 ! 2) {
-                %varclient_379 = 3;
+            if (%poh_board_listsort ! 2) {
+                %poh_board_listsort = 3;
             }
             ~quicksort_cctext($intarray1, poh_board:level, 0, calc($int5 - 1));
         case 4, 5 :
@@ -49,7 +49,7 @@ if (~on_mobile = true) {
     $int4 = 35;
 }
 def_boolean $boolean7 = false;
-switch_int (%varclient_379) {
+switch_int (%poh_board_listsort) {
     case 1, 3, 5, 7, 9, 11, 13, 15 :
         $int1 = $int5;
         while ($int1 > 0) {
@@ -59,7 +59,7 @@ switch_int (%varclient_379) {
                     $boolean7 = true;
                 } else {
                     $boolean7 = false;
-                    %varclient_377 = calc(%varclient_377 + 1);
+                    %poh_board_count = calc(%poh_board_count + 1);
                 }
             }
             if (cc_find(poh_board:name, $intarray1($int1)) = ^true) {
@@ -143,7 +143,7 @@ switch_int (%varclient_379) {
                     $boolean7 = true;
                 } else {
                     $boolean7 = false;
-                    %varclient_377 = calc(%varclient_377 + 1);
+                    %poh_board_count = calc(%poh_board_count + 1);
                 }
             }
             if (cc_find(poh_board:name, $intarray1($int1)) = ^true) {

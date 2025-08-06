@@ -9,15 +9,15 @@ if (~on_enhanced_any = true) {
 }
 def_int $int4 = 0;
 def_int $int5 = 0;
-if (%varclient_1 < calc(clientclock + $int2)) {
-    if (%varclient_1 < clientclock) {
-        %varclient_1 = clientclock;
+if (%tooltip_time < calc(clientclock + $int2)) {
+    if (%tooltip_time < clientclock) {
+        %tooltip_time = clientclock;
     }
-    %varclient_1 = calc(%varclient_1 + 2);
+    %tooltip_time = calc(%tooltip_time + 2);
     return;
 }
-%varclient_1 = calc(clientclock + $int2 + 10);
-if (%varclient_2 = 0) {
+%tooltip_time = calc(clientclock + $int2 + 10);
+if (%tooltip_built = 0) {
     if ($int3 > if_getwidth(if_getlayer($component1))) {
         $int3 = if_getwidth(if_getlayer($component1));
     }
@@ -52,5 +52,5 @@ if (%varclient_2 = 0) {
     cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
     cc_settextfont(p12_full);
     cc_setcolour(^black);
-    %varclient_2 = 1;
+    %tooltip_built = 1;
 }

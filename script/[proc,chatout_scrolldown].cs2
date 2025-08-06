@@ -1,18 +1,18 @@
 // 76
 [proc,chatout_scrolldown]
 def_string $string0 = null;
-if (%varclient_3 ! -1) {
-    %varclient_3 = calc(%varclient_3 + 1);
-    if (%varclient_3 >= 20) {
-        %varclient_3 = 0;
+if (%chatout_readpos ! -1) {
+    %chatout_readpos = calc(%chatout_readpos + 1);
+    if (%chatout_readpos >= 20) {
+        %chatout_readpos = 0;
     }
-    if (%varclient_3 = %varclient_4) {
-        %varclient_335 = "";
-        %varclient_3 = -1;
+    if (%chatout_readpos = %chatout_writepos) {
+        %chatinput = "";
+        %chatout_readpos = -1;
     } else {
-        $string0 = ~chatout_get(%varclient_3);
+        $string0 = ~chatout_get(%chatout_readpos);
         if (string_length($string0) > 0) {
-            %varclient_335 = $string0;
+            %chatinput = $string0;
         }
     }
 }
