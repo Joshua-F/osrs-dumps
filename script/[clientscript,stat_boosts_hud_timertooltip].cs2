@@ -1,12 +1,12 @@
 // 5316
 [clientscript,stat_boosts_hud_timertooltip](component $component0, component $component1)
-def_int $int2 = calc(%varclient_468 - (clientclock - %varclient_469) / 30);
-def_int $int3 = calc(%varclient_471 - (clientclock - %varclient_472) / 30);
+def_int $int2 = calc(%sbh_cycles_to_next_restore_up - (clientclock - %sbh_last_update_time_restore_up) / 30);
+def_int $int3 = calc(%sbh_cycles_to_next_restore_down - (clientclock - %sbh_last_update_time_restore_down) / 30);
 def_string $string0 = ~script3739(~int_client(10688267, 15667232), "col");
 def_string $string1 = ~script3739(~int_client(416541, 901389), "col");
 def_string $string2 = "<$string0>Stats restoring</col>";
 def_string $string3 = "<$string0><~time_convert($int2, 0)></col>";
-if (%varclient_551 = 1) {
+if (%sbh_has_boosted_stats = 1) {
     $string2 = "<$string2>|<$string1>Boosts draining</col>";
     $string3 = "<$string3>|<$string1><~time_convert($int3, 0)></col>";
 }

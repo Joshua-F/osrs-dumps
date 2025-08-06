@@ -6,7 +6,7 @@ if (if_hassub(enum(component, component, ~toplevel_getcomponents, toplevel_osrs_
 def_string $string1 = "";
 def_string $string2 = "";
 $string1, $string2 = ~script632($string0);
-if (%varclient_178 = 0) {
+if (%raids_count = 0) {
     if (string_length($string1) > 0) {
         ~steelborder(tob_partydetails:frame, "Party of <$string1>", 0);
     } else {
@@ -17,28 +17,28 @@ def_int $rgb1 = 0xff981f;
 if (compare(lowercase($string1), lowercase(removetags(chat_playername))) = 0) {
     $rgb1 = ^white;
 }
-def_int $int2 = calc(~max(0, %varclient_178) * 11);
-def_int $int3 = calc(%varclient_178 * 13 + 1);
+def_int $int2 = calc(~max(0, %raids_count) * 11);
+def_int $int3 = calc(%raids_count * 13 + 1);
 cc_create(tob_partydetails:current, ^iftype_rectangle, $int2);
 cc_setsize(0, 13, ^setsize_minus, ^setsize_abs);
 cc_setposition(0, $int3, ^setpos_abs_centre, ^setpos_abs_top);
 cc_setfill(true);
 cc_setcolour(^black);
 def_int $int4 = 255;
-if (calc(%varclient_178 % 2) = 0) {
+if (calc(%raids_count % 2) = 0) {
     $int4 = 235;
 }
 cc_settrans($int4);
 if ($int0 = 2 & string_length($string1) > 0) {
     cc_setonmouserepeat("cc_settrans(event_com, event_comsubid, 220, null)");
     cc_setonmouseleave("cc_settrans(event_com, event_comsubid, $int4, null)");
-    if (%varclient_178 > 0) {
+    if (%raids_count > 0) {
         cc_setop(10, "Kick");
         cc_setopbase("<col=ff9040><$string1></col>");
     } else {
         cc_setop(10, "Quit party");
     }
-    cc_setonop("tob_partydetails_kickmember(event_op, %varclient_178, event_com, event_comsubid, $string1, $int4)");
+    cc_setonop("tob_partydetails_kickmember(event_op, %raids_count, event_com, event_comsubid, $string1, $int4)");
 }
 def_int $int5 = 0;
 $string0, $int5 = ~script2318(1, tob_partydetails:sort_name, $string0, $int2, $int5, $int3, $rgb1);
@@ -55,4 +55,4 @@ if ($int0 = 2 & string_length($string1) > 0) {
     $int5 = ~script3989($string1, $int5, $int3);
 }
 if_sethide(false, tob_partydetails:leader_highlight);
-%varclient_178 = calc(%varclient_178 + 1);
+%raids_count = calc(%raids_count + 1);

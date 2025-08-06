@@ -3,11 +3,11 @@
 cc_deleteall(chatbox:controls_background);
 def_boolean $boolean0 = false;
 def_enum $enum1 = ~toplevel_getcomponents;
-if (%varclient_41 = 1337 | %cutscene_status = 1 & getwindowmode ! ^windowmode_small | $enum1 = enum_1745 & %varclient_1220 = 1) {
+if (%chat_view = 1337 | %cutscene_status = 1 & getwindowmode ! ^windowmode_small | $enum1 = enum_1745 & %osm_chatbox_disabled = 1) {
     if (~toplevel_chatbox_permittransparent = true) {
         $boolean0 = true;
     } else if (getwindowmode = ^windowmode_small) {
-        %varclient_41 = 0;
+        %chat_view = 0;
         ~chat_alert_set(0, 0);
     }
 }
@@ -27,9 +27,9 @@ if (~script7616 = 1 & $enum1 = enum_1745) {
 cc_deleteall(chatbox:chat_background);
 cc_deleteall(chatbox:chatdisplay);
 def_int $int2 = 0;
-if (clientclock < %varclient_223 & ~toplevel_getcomponents ! enum_1129) {
+if (clientclock < %chat_background_invisible_timeout & ~toplevel_getcomponents ! enum_1129) {
     $int2 = 1;
-    if_setontimer("toplevel_chatbox_resetbackground_soon(%varclient_223)", chatbox:chat_background);
+    if_setontimer("toplevel_chatbox_resetbackground_soon(%chat_background_invisible_timeout)", chatbox:chat_background);
 } else {
     if_setontimer(null, chatbox:chat_background);
 }

@@ -4,13 +4,13 @@ def_graphic $graphic0 = "report_button,0";
 def_int $int1 = 0;
 def_int $int2 = 0;
 ~toplevel_chatbox_background;
-if (%cutscene_status = 1 & getwindowmode ! ^windowmode_small | ~toplevel_getcomponents = enum_1745 & (%varclient_1220 = 1 & %settings_mobile_show_filter_stones_enabled = 0 | %varclient_1221 = 1)) {
+if (%cutscene_status = 1 & getwindowmode ! ^windowmode_small | ~toplevel_getcomponents = enum_1745 & (%osm_chatbox_disabled = 1 & %settings_mobile_show_filter_stones_enabled = 0 | %osm_chatbox_filters_disabled = 1)) {
     if_sethide(true, chatbox:controls);
 } else {
     if_sethide(false, chatbox:controls);
 }
 if (~on_mobile = true) {
-    $int2, %varclient_42 = 1, -1;
+    $int2, %chat_highlight = 1, -1;
     if_setsize(519, calc(165 - 20), ^setsize_abs, ^setsize_abs, enum(component, component, ~toplevel_getcomponents, toplevel_osrs_stretch:chat_container));
     if_setposition(0, 2, ^setpos_abs_right, ^setpos_abs_top, chatbox:controls);
     if_setsize(calc(519 - 58), calc(30 - 2), ^setsize_abs, ^setsize_abs, chatbox:controls);

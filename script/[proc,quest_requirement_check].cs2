@@ -1,6 +1,6 @@
 // 5989
 [proc,quest_requirement_check](dbrow $dbrow0)(boolean)
-if (db_getfield($dbrow0, quest:members, 0) = true & map_members = false & %varclient_103 = 0) {
+if (db_getfield($dbrow0, quest:members, 0) = true & map_members = false & %playermember = 0) {
     return(false);
 }
 def_int $int1 = db_getfieldcount($dbrow0, quest:requirement_quests);
@@ -25,7 +25,7 @@ while ($int2 < $int1) {
 if (%qp < db_getfield($dbrow0, quest:requirement_questpoints, 0)) {
     return(false);
 }
-if (%varclient_52 < db_getfield($dbrow0, quest:requirement_combat, 0)) {
+if (%combat_level < db_getfield($dbrow0, quest:requirement_combat, 0)) {
     return(false);
 }
 if (~quest_requirement_check_misc($dbrow0) = false) {

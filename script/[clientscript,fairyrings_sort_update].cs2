@@ -1,21 +1,21 @@
 // 402
 [clientscript,fairyrings_sort_update](component $component0, component $component1, int $int2, component $component3, component $component4)
 if ($int2 = 1) {
-    if (%varclient_54 = 1 | %varclient_54 = 0) {
-        %varclient_54 = %varclient_54;
+    if (%fairyrings_sort = 1 | %fairyrings_sort = 0) {
+        %fairyrings_sort = %fairyrings_sort;
     } else {
-        %varclient_54 = 0;
+        %fairyrings_sort = 0;
     }
-    if (%varclient_0 < 0) {
-        %varclient_0 = 0;
+    if (%fairyrings_scrollpos < 0) {
+        %fairyrings_scrollpos = 0;
     }
     ~scrollbar_vertical($component1, $component0, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
 } else {
     sound_synth(synth_2266, 1, 0);
-    if (%varclient_54 = 1) {
-        %varclient_54 = 0;
+    if (%fairyrings_sort = 1) {
+        %fairyrings_sort = 0;
     } else {
-        %varclient_54 = 1;
+        %fairyrings_sort = 1;
     }
 }
 def_component $component5 = null;
@@ -92,7 +92,7 @@ while ($dbrow15 ! null) {
     $dbrow15 = db_findnext;
 }
 if ($int14 > 0) {
-    if (%varclient_54 = 1) {
+    if (%fairyrings_sort = 1) {
         ~quicksort_componenttext($componentarray0, 0, calc($int14 - 1));
     } else {
         ~quicksort_componentenum($componentarray0, 0, calc($int14 - 1), enum_823);
@@ -146,11 +146,11 @@ $int9 = if_getheight($component0);
 if ($int10 > $int9) {
     if_setscrollsize(0, $int10, $component0);
     $int9 = calc($int10 - $int9);
-    if (%varclient_0 > $int9) {
-        %varclient_0 = $int9;
+    if (%fairyrings_scrollpos > $int9) {
+        %fairyrings_scrollpos = $int9;
     }
 } else {
     if_setscrollsize(0, 0, $component0);
-    %varclient_0 = 0;
+    %fairyrings_scrollpos = 0;
 }
-~scrollbar_resize($component1, $component0, %varclient_0);
+~scrollbar_resize($component1, $component0, %fairyrings_scrollpos);

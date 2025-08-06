@@ -26,7 +26,7 @@ if (string_length($string0) > 0) {
     cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
     cc_setfill(true);
     $string1, $string0 = ~script632($string0);
-    ~clan_board_entry_init(%varclient_43, $component2, $int0, $string1, clans_board:list);
+    ~clan_board_entry_init(%poll_id, $component2, $int0, $string1, clans_board:list);
     $int6 = if_getwidth(clans_board:sort_name);
     cc_create($component2, ^iftype_text, 1);
     cc_setposition($int5, 0, ^setpos_abs_left, ^setpos_abs_top);
@@ -114,7 +114,7 @@ if (string_length($string0) > 0) {
         cc_sethide(true);
     }
     if_setsize(0, $int7, ^setsize_minus, ^setsize_abs, $component2);
-    %varclient_43, %varclient_49 = calc(%varclient_43 + 1), calc(%varclient_49 + $int7);
+    %poll_id, %poll_ypos = calc(%poll_id + 1), calc(%poll_ypos + $int7);
 } else {
     if_setsize(0, 0, ^setsize_minus, ^setsize_abs, $component2);
     if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top, $component2);
@@ -127,10 +127,10 @@ def_int $int9 = 0;
 def_int $int10 = 0;
 def_int $int11 = 0;
 if ($int0 >= calc(45 - 1)) {
-    switch_int (%varclient_453) {
+    switch_int (%clan_board_sort) {
         case 1, 2, 3, 4, 5, 0 :
         case default :
-            %varclient_453 = 5;
+            %clan_board_sort = 5;
     }
     ~clan_board_setsort;
     cc_deleteall(clans_board:list);
@@ -144,7 +144,7 @@ if ($int0 >= calc(45 - 1)) {
         cc_sethide(true);
         $int0 = calc($int0 + 1);
     }
-    if (%varclient_43 <= 0) {
+    if (%poll_id <= 0) {
         cc_create(clans_board:list, ^iftype_text, $int0);
         cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
         cc_setsize(10, 10, ^setsize_minus, ^setsize_minus);
@@ -198,8 +198,8 @@ if ($int0 >= calc(45 - 1)) {
     }
     $int9 = calc(52 + if_getheight(clans_board:filter_bottomarea));
     $int10 = calc(50 + if_getheight(clans_board:sortarea) + 1 + 2 + if_getheight(clans_board:bottom));
-    $int11 = ~max(calc($int5 + $int9), calc(%varclient_49 + $int10));
-    ~clan_board_setsize(%varclient_49, $int10, clans_board:list, clans_board:list_scrollbar, $int5, $int9, clans_board:filters, clans_board:filter_scrollbar, $int11, clans_board:universe, if_getheight(if_getlayer(clans_board:universe)));
+    $int11 = ~max(calc($int5 + $int9), calc(%poll_ypos + $int10));
+    ~clan_board_setsize(%poll_ypos, $int10, clans_board:list, clans_board:list_scrollbar, $int5, $int9, clans_board:filters, clans_board:filter_scrollbar, $int11, clans_board:universe, if_getheight(if_getlayer(clans_board:universe)));
     if_sethide(false, clans_board:myclan);
     if_sethide(false, clans_board:refresh);
     if_sethide(false, clans_board:reset);
