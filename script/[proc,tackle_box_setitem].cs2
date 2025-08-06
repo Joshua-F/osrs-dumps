@@ -1,10 +1,10 @@
 // 4052
-[proc,tackle_box_setitem](obj $obj0, int $int1, component $component2, int $int3)
+[proc,tackle_box_setitem](obj $obj, int $int1, component $component, int $int3)
 cc_settrans(0);
-if (oc_stackable($obj0) = true) {
-    cc_setobject_alwaysnum($obj0, $int1);
+if (oc_stackable($obj) = true) {
+    cc_setobject_alwaysnum($obj, $int1);
 } else {
-    cc_setobject($obj0, $int1);
+    cc_setobject($obj, $int1);
 }
 switch_int (%ii_elnock_storage_selectedquantity) {
     case default :
@@ -29,7 +29,7 @@ switch_int (%ii_elnock_storage_selectedquantity) {
         cc_setop(4, "Withdraw-X");
 }
 cc_setop(10, "Examine");
-cc_setopbase("<col=ff9040><oc_name($obj0)></col>");
+cc_setopbase("<col=ff9040><oc_name($obj)></col>");
 cc_setonop("tackle_box_opitem(event_op, event_com, event_comsubid, 120, 0)");
-cc_setondrag("tackle_box_dragitem(event_com, event_comsubid, $component2, event_mousey, 0)");
-cc_setondragcomplete("tackle_box_swapitem(event_com, event_comsubid, event_com2, event_comsubid2, $int3, $component2)");
+cc_setondrag("tackle_box_dragitem(event_com, event_comsubid, $component, event_mousey, 0)");
+cc_setondragcomplete("tackle_box_swapitem(event_com, event_comsubid, event_com2, event_comsubid2, $int3, $component)");

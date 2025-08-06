@@ -1,37 +1,37 @@
 // 2917
-[clientscript,gauntlet_recipes_init](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10, component $component11, component $component12, component $component13, component $component14, component $component15, component $component16, component $component17, component $component18, component $component19, component $component20, component $component21, component $component22, component $component23, component $component24, component $component25)
-def_int $int26 = if_getheight($component2);
-if_setscrollsize(0, $int26, $component1);
-~scrollbar_vertical($component3, $component1, "scrollbar_parchment_dragger_v2,3", "scrollbar_parchment_dragger_v2,0", "scrollbar_parchment_dragger_v2,1", "scrollbar_parchment_dragger_v2,2", "scrollbar_parchment_v2,0", "scrollbar_parchment_v2,1");
-if_setscrollpos(0, 0, $component1);
-if_settext("Crystal Singing Recipes", $component0);
-~gauntlet_recipe_add($component4, "Crystal Vial", "<tostring(10)> <~gauntlet_crystal_string> Shards", ~gauntlet_select_item(gauntlet_vial_empty, %gauntlet_corrupted));
-def_string $string0 = "";
+[clientscript,gauntlet_recipes_init](component $scroll_title, component $scroll_layer_outer, component $scroll_layer_inner, component $scrollbar, component $entry1, component $entry2, component $entry3, component $entry4, component $entry5, component $entry6, component $entry7, component $entry8, component $entry9, component $entry10, component $entry11, component $entry12, component $entry13, component $entry14, component $entry15, component $entry16, component $entry17, component $entry18, component $entry19, component $entry20, component $entry21, component $entry22)
+def_int $int = if_getheight($scroll_layer_inner);
+if_setscrollsize(0, $int, $scroll_layer_outer);
+~scrollbar_vertical($scrollbar, $scroll_layer_outer, "scrollbar_parchment_dragger_v2,3", "scrollbar_parchment_dragger_v2,0", "scrollbar_parchment_dragger_v2,1", "scrollbar_parchment_dragger_v2,2", "scrollbar_parchment_v2,0", "scrollbar_parchment_v2,1");
+if_setscrollpos(0, 0, $scroll_layer_outer);
+if_settext("Crystal Singing Recipes", $scroll_title);
+~gauntlet_recipe_add($entry1, "Crystal Vial", "<tostring(10)> <~gauntlet_crystal_string> Shards", ~gauntlet_select_item(gauntlet_vial_empty, %gauntlet_corrupted));
+def_string $string = "";
 if (%gauntlet_corrupted = 1) {
-    $string0 = "Corrupted ";
+    $string = "Corrupted ";
 }
-~gauntlet_recipe_add($component5, "<$string0>Teleport Crystal", "<tostring(40)> <~gauntlet_crystal_string> Shards", ~gauntlet_select_item(gauntlet_teleport_crystal, %gauntlet_corrupted));
-~gauntlet_recipe_add($component6, "<$string0>Escape Crystal", "<tostring(200)> <~gauntlet_crystal_string> Shards", ~gauntlet_select_item(gauntlet_escape_crystal, %gauntlet_corrupted));
-~gauntlet_recipe_add($component7, "<~gauntlet_crystal_string> Paddlefish", "<tostring(10)> <~gauntlet_crystal_string> Shards & 1 Paddlefish", ~gauntlet_select_item(gauntlet_combo_food, %gauntlet_corrupted));
-~gauntlet_recipe_add($component8, "Basic <~gauntlet_crystal_string> Halberd", "<tostring(20)> <~gauntlet_crystal_string> Shards & 1 Weapon Frame", ~gauntlet_select_item(gauntlet_melee_t1, %gauntlet_corrupted));
-~gauntlet_recipe_add($component9, "Basic <~gauntlet_crystal_string> Bow", "<tostring(20)> <~gauntlet_crystal_string> Shards & 1 Weapon Frame", ~gauntlet_select_item(gauntlet_ranged_t1, %gauntlet_corrupted));
-~gauntlet_recipe_add($component10, "Basic <~gauntlet_crystal_string> Staff", "<tostring(20)> <~gauntlet_crystal_string> Shards & 1 Weapon Frame", ~gauntlet_select_item(gauntlet_magic_t1, %gauntlet_corrupted));
-~gauntlet_recipe_add($component11, "Basic <~gauntlet_crystal_string> Helm", "<tostring(40)> <~gauntlet_crystal_string> Shards, <tostring(1)> <~gauntlet_crystal_string> Ore, <tostring(1)> Phren Bark & <tostring(1)> Linum Tirinum", ~gauntlet_select_item(gauntlet_helmet_t1, %gauntlet_corrupted));
-~gauntlet_recipe_add($component12, "Basic <~gauntlet_crystal_string> Body", "<tostring(40)> <~gauntlet_crystal_string> Shards, <tostring(1)> <~gauntlet_crystal_string> Ore, <tostring(1)> Phren Bark & <tostring(1)> Linum Tirinum", ~gauntlet_select_item(gauntlet_chestplate_t1, %gauntlet_corrupted));
-~gauntlet_recipe_add($component13, "Basic <~gauntlet_crystal_string> Legs", "<tostring(40)> <~gauntlet_crystal_string> Shards, <tostring(1)> <~gauntlet_crystal_string> Ore, <tostring(1)> Phren Bark & <tostring(1)> Linum Tirinum", ~gauntlet_select_item(gauntlet_platelegs_t1, %gauntlet_corrupted));
-~gauntlet_recipe_add($component14, "Attuned <~gauntlet_crystal_string> Halberd", "<tostring(60)> <~gauntlet_crystal_string> Shards & 1 Basic <~gauntlet_crystal_string> Halberd", ~gauntlet_select_item(gauntlet_melee_t2, %gauntlet_corrupted));
-~gauntlet_recipe_add($component15, "Attuned <~gauntlet_crystal_string> Bow", "<tostring(60)> <~gauntlet_crystal_string> Shards & 1 Basic <~gauntlet_crystal_string> Bow", ~gauntlet_select_item(gauntlet_ranged_t2, %gauntlet_corrupted));
-~gauntlet_recipe_add($component16, "Attuned <~gauntlet_crystal_string> Staff", "<tostring(60)> <~gauntlet_crystal_string> Shards & 1 Basic <~gauntlet_crystal_string> Staff", ~gauntlet_select_item(gauntlet_magic_t2, %gauntlet_corrupted));
-~gauntlet_recipe_add($component17, "Attuned <~gauntlet_crystal_string> Helm", "<tostring(60)> <~gauntlet_crystal_string> Shards, 1 Basic <~gauntlet_crystal_string> Helm, <tostring(1)> <~gauntlet_crystal_string> Ore, <tostring(1)> Phren Bark & <tostring(1)> Linum Tirinum", ~gauntlet_select_item(gauntlet_helmet_t2, %gauntlet_corrupted));
-~gauntlet_recipe_add($component18, "Attuned <~gauntlet_crystal_string> Body", "<tostring(60)> <~gauntlet_crystal_string> Shards, 1 Basic <~gauntlet_crystal_string> Body, <tostring(2)> <~gauntlet_crystal_string> Ore, <tostring(2)> Phren Bark & <tostring(2)> Linum Tirinum", ~gauntlet_select_item(gauntlet_chestplate_t2, %gauntlet_corrupted));
-~gauntlet_recipe_add($component19, "Attuned <~gauntlet_crystal_string> Legs", "<tostring(60)> <~gauntlet_crystal_string> Shards, 1 Basic <~gauntlet_crystal_string> Legs, <tostring(1)> <~gauntlet_crystal_string> Ore, <tostring(1)> Phren Bark & <tostring(1)> Linum Tirinum", ~gauntlet_select_item(gauntlet_platelegs_t2, %gauntlet_corrupted));
-~gauntlet_recipe_add($component20, "Perfected <~gauntlet_crystal_string> Halberd", "1 Attuned <~gauntlet_crystal_string> Halberd & 1 <~gauntlet_crystal_string> Spike", ~gauntlet_select_item(gauntlet_melee_t3, %gauntlet_corrupted));
-$string0 = "Crystalline";
+~gauntlet_recipe_add($entry2, "<$string>Teleport Crystal", "<tostring(40)> <~gauntlet_crystal_string> Shards", ~gauntlet_select_item(gauntlet_teleport_crystal, %gauntlet_corrupted));
+~gauntlet_recipe_add($entry3, "<$string>Escape Crystal", "<tostring(200)> <~gauntlet_crystal_string> Shards", ~gauntlet_select_item(gauntlet_escape_crystal, %gauntlet_corrupted));
+~gauntlet_recipe_add($entry4, "<~gauntlet_crystal_string> Paddlefish", "<tostring(10)> <~gauntlet_crystal_string> Shards & 1 Paddlefish", ~gauntlet_select_item(gauntlet_combo_food, %gauntlet_corrupted));
+~gauntlet_recipe_add($entry5, "Basic <~gauntlet_crystal_string> Halberd", "<tostring(20)> <~gauntlet_crystal_string> Shards & 1 Weapon Frame", ~gauntlet_select_item(gauntlet_melee_t1, %gauntlet_corrupted));
+~gauntlet_recipe_add($entry6, "Basic <~gauntlet_crystal_string> Bow", "<tostring(20)> <~gauntlet_crystal_string> Shards & 1 Weapon Frame", ~gauntlet_select_item(gauntlet_ranged_t1, %gauntlet_corrupted));
+~gauntlet_recipe_add($entry7, "Basic <~gauntlet_crystal_string> Staff", "<tostring(20)> <~gauntlet_crystal_string> Shards & 1 Weapon Frame", ~gauntlet_select_item(gauntlet_magic_t1, %gauntlet_corrupted));
+~gauntlet_recipe_add($entry8, "Basic <~gauntlet_crystal_string> Helm", "<tostring(40)> <~gauntlet_crystal_string> Shards, <tostring(1)> <~gauntlet_crystal_string> Ore, <tostring(1)> Phren Bark & <tostring(1)> Linum Tirinum", ~gauntlet_select_item(gauntlet_helmet_t1, %gauntlet_corrupted));
+~gauntlet_recipe_add($entry9, "Basic <~gauntlet_crystal_string> Body", "<tostring(40)> <~gauntlet_crystal_string> Shards, <tostring(1)> <~gauntlet_crystal_string> Ore, <tostring(1)> Phren Bark & <tostring(1)> Linum Tirinum", ~gauntlet_select_item(gauntlet_chestplate_t1, %gauntlet_corrupted));
+~gauntlet_recipe_add($entry10, "Basic <~gauntlet_crystal_string> Legs", "<tostring(40)> <~gauntlet_crystal_string> Shards, <tostring(1)> <~gauntlet_crystal_string> Ore, <tostring(1)> Phren Bark & <tostring(1)> Linum Tirinum", ~gauntlet_select_item(gauntlet_platelegs_t1, %gauntlet_corrupted));
+~gauntlet_recipe_add($entry11, "Attuned <~gauntlet_crystal_string> Halberd", "<tostring(60)> <~gauntlet_crystal_string> Shards & 1 Basic <~gauntlet_crystal_string> Halberd", ~gauntlet_select_item(gauntlet_melee_t2, %gauntlet_corrupted));
+~gauntlet_recipe_add($entry12, "Attuned <~gauntlet_crystal_string> Bow", "<tostring(60)> <~gauntlet_crystal_string> Shards & 1 Basic <~gauntlet_crystal_string> Bow", ~gauntlet_select_item(gauntlet_ranged_t2, %gauntlet_corrupted));
+~gauntlet_recipe_add($entry13, "Attuned <~gauntlet_crystal_string> Staff", "<tostring(60)> <~gauntlet_crystal_string> Shards & 1 Basic <~gauntlet_crystal_string> Staff", ~gauntlet_select_item(gauntlet_magic_t2, %gauntlet_corrupted));
+~gauntlet_recipe_add($entry14, "Attuned <~gauntlet_crystal_string> Helm", "<tostring(60)> <~gauntlet_crystal_string> Shards, 1 Basic <~gauntlet_crystal_string> Helm, <tostring(1)> <~gauntlet_crystal_string> Ore, <tostring(1)> Phren Bark & <tostring(1)> Linum Tirinum", ~gauntlet_select_item(gauntlet_helmet_t2, %gauntlet_corrupted));
+~gauntlet_recipe_add($entry15, "Attuned <~gauntlet_crystal_string> Body", "<tostring(60)> <~gauntlet_crystal_string> Shards, 1 Basic <~gauntlet_crystal_string> Body, <tostring(2)> <~gauntlet_crystal_string> Ore, <tostring(2)> Phren Bark & <tostring(2)> Linum Tirinum", ~gauntlet_select_item(gauntlet_chestplate_t2, %gauntlet_corrupted));
+~gauntlet_recipe_add($entry16, "Attuned <~gauntlet_crystal_string> Legs", "<tostring(60)> <~gauntlet_crystal_string> Shards, 1 Basic <~gauntlet_crystal_string> Legs, <tostring(1)> <~gauntlet_crystal_string> Ore, <tostring(1)> Phren Bark & <tostring(1)> Linum Tirinum", ~gauntlet_select_item(gauntlet_platelegs_t2, %gauntlet_corrupted));
+~gauntlet_recipe_add($entry17, "Perfected <~gauntlet_crystal_string> Halberd", "1 Attuned <~gauntlet_crystal_string> Halberd & 1 <~gauntlet_crystal_string> Spike", ~gauntlet_select_item(gauntlet_melee_t3, %gauntlet_corrupted));
+$string = "Crystalline";
 if (%gauntlet_corrupted = 1) {
-    $string0 = "Corrupted";
+    $string = "Corrupted";
 }
-~gauntlet_recipe_add($component21, "Perfected <~gauntlet_crystal_string> Bow", "1 Attuned <~gauntlet_crystal_string> Bow & 1 <$string0> Bowstring", ~gauntlet_select_item(gauntlet_ranged_t3, %gauntlet_corrupted));
-~gauntlet_recipe_add($component22, "Perfected <~gauntlet_crystal_string> Staff", "1 Attuned <~gauntlet_crystal_string> Staff & 1 <~gauntlet_crystal_string> Orb", ~gauntlet_select_item(gauntlet_magic_t3, %gauntlet_corrupted));
-~gauntlet_recipe_add($component23, "Perfected <~gauntlet_crystal_string> Helm", "<tostring(80)> <~gauntlet_crystal_string> Shards, 1 Attuned <~gauntlet_crystal_string> Helm, <tostring(2)> <~gauntlet_crystal_string> Ore, <tostring(2)> Phren Bark & <tostring(2)> Linum Tirinum", ~gauntlet_select_item(gauntlet_helmet_t3, %gauntlet_corrupted));
-~gauntlet_recipe_add($component24, "Perfected <~gauntlet_crystal_string> Body", "<tostring(80)> <~gauntlet_crystal_string> Shards, 1 Attuned <~gauntlet_crystal_string> Body, <tostring(2)> <~gauntlet_crystal_string> Ore, <tostring(2)> Phren Bark & <tostring(2)> Linum Tirinum", ~gauntlet_select_item(gauntlet_chestplate_t3, %gauntlet_corrupted));
-~gauntlet_recipe_add($component25, "Perfected <~gauntlet_crystal_string> Legs", "<tostring(80)> <~gauntlet_crystal_string> Shards, 1 Attuned <~gauntlet_crystal_string> Legs, <tostring(2)> <~gauntlet_crystal_string> Ore, <tostring(2)> Phren Bark & <tostring(2)> Linum Tirinum", ~gauntlet_select_item(gauntlet_platelegs_t3, %gauntlet_corrupted));
+~gauntlet_recipe_add($entry18, "Perfected <~gauntlet_crystal_string> Bow", "1 Attuned <~gauntlet_crystal_string> Bow & 1 <$string> Bowstring", ~gauntlet_select_item(gauntlet_ranged_t3, %gauntlet_corrupted));
+~gauntlet_recipe_add($entry19, "Perfected <~gauntlet_crystal_string> Staff", "1 Attuned <~gauntlet_crystal_string> Staff & 1 <~gauntlet_crystal_string> Orb", ~gauntlet_select_item(gauntlet_magic_t3, %gauntlet_corrupted));
+~gauntlet_recipe_add($entry20, "Perfected <~gauntlet_crystal_string> Helm", "<tostring(80)> <~gauntlet_crystal_string> Shards, 1 Attuned <~gauntlet_crystal_string> Helm, <tostring(2)> <~gauntlet_crystal_string> Ore, <tostring(2)> Phren Bark & <tostring(2)> Linum Tirinum", ~gauntlet_select_item(gauntlet_helmet_t3, %gauntlet_corrupted));
+~gauntlet_recipe_add($entry21, "Perfected <~gauntlet_crystal_string> Body", "<tostring(80)> <~gauntlet_crystal_string> Shards, 1 Attuned <~gauntlet_crystal_string> Body, <tostring(2)> <~gauntlet_crystal_string> Ore, <tostring(2)> Phren Bark & <tostring(2)> Linum Tirinum", ~gauntlet_select_item(gauntlet_chestplate_t3, %gauntlet_corrupted));
+~gauntlet_recipe_add($entry22, "Perfected <~gauntlet_crystal_string> Legs", "<tostring(80)> <~gauntlet_crystal_string> Shards, 1 Attuned <~gauntlet_crystal_string> Legs, <tostring(2)> <~gauntlet_crystal_string> Ore, <tostring(2)> Phren Bark & <tostring(2)> Linum Tirinum", ~gauntlet_select_item(gauntlet_platelegs_t3, %gauntlet_corrupted));

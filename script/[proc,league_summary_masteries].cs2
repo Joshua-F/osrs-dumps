@@ -1,9 +1,9 @@
 // 7725
 [proc,league_summary_masteries]
-def_component $component0 = league_summary:masteries_backing;
-def_component $component1 = league_summary:masteries_content;
-~thinbox_light($component0, 0);
-def_int $int2 = ~league_summary_draw_header($component1, $int2, "Masteries");
+def_component $masteries_backing = league_summary:masteries_backing;
+def_component $masteries_content = league_summary:masteries_content;
+~thinbox_light($masteries_backing, 0);
+def_int $int2 = ~league_summary_draw_header($masteries_content, $int2, "Masteries");
 def_int $int3 = 40;
 def_int $int4 = 0;
 if (%league_combat_mastery_melee_progress > 0) {
@@ -15,35 +15,35 @@ if (%league_combat_mastery_ranged_progress > 0) {
 if (%league_combat_mastery_magic_progress > 0) {
     $int4 = calc($int4 + 1);
 }
-def_boolean $boolean5 = ~int_to_bool($int4);
-if ($boolean5 = false) {
+def_boolean $boolean = ~int_to_bool($int4);
+if ($boolean = false) {
     $int4 = 3;
 }
 def_int $int6 = calc($int4 * $int3);
-def_int $int7 = calc(if_getwidth($component1) - $int6);
+def_int $int7 = calc(if_getwidth($masteries_content) - $int6);
 def_int $int8 = calc($int7 / ($int4 + 1));
 def_int $int9 = $int8;
 def_int $int10 = 24;
 def_int $int11 = 0;
-if ($boolean5 = false) {
+if ($boolean = false) {
     $int10 = calc($int10 + 3);
-    $int2 = ~league_summary_draw_mastery($component1, $int2, "league_5_combat_mastery_small_off,0", $int9, $int10, 0, "");
+    $int2 = ~league_summary_draw_mastery($masteries_content, $int2, "league_5_combat_mastery_small_off,0", $int9, $int10, 0, "");
     $int9 = calc($int9 + $int3 + $int8);
-    $int2 = ~league_summary_draw_mastery($component1, $int2, "league_5_combat_mastery_small_off,6", $int9, $int10, 0, "");
+    $int2 = ~league_summary_draw_mastery($masteries_content, $int2, "league_5_combat_mastery_small_off,6", $int9, $int10, 0, "");
     $int9 = calc($int9 + $int3 + $int8);
-    $int2 = ~league_summary_draw_mastery($component1, $int2, "league_5_combat_mastery_small_off,12", $int9, $int10, 0, "");
+    $int2 = ~league_summary_draw_mastery($masteries_content, $int2, "league_5_combat_mastery_small_off,12", $int9, $int10, 0, "");
     $int9 = calc($int9 + $int3 + $int8);
     return;
 }
 if (%league_combat_mastery_melee_progress > 0) {
-    $int2 = ~league_summary_draw_mastery($component1, $int2, ~league_combat_mastery_tier_icon(enum_5691, %league_combat_mastery_melee_progress), $int9, $int10, %league_combat_mastery_melee_progress, "Melee");
+    $int2 = ~league_summary_draw_mastery($masteries_content, $int2, ~league_combat_mastery_tier_icon(enum_5691, %league_combat_mastery_melee_progress), $int9, $int10, %league_combat_mastery_melee_progress, "Melee");
     $int9 = calc($int9 + $int3 + $int8);
 }
 if (%league_combat_mastery_ranged_progress > 0) {
-    $int2 = ~league_summary_draw_mastery($component1, $int2, ~league_combat_mastery_tier_icon(enum_5692, %league_combat_mastery_ranged_progress), $int9, $int10, %league_combat_mastery_ranged_progress, "Ranged");
+    $int2 = ~league_summary_draw_mastery($masteries_content, $int2, ~league_combat_mastery_tier_icon(enum_5692, %league_combat_mastery_ranged_progress), $int9, $int10, %league_combat_mastery_ranged_progress, "Ranged");
     $int9 = calc($int9 + $int3 + $int8);
 }
 if (%league_combat_mastery_magic_progress > 0) {
-    $int2 = ~league_summary_draw_mastery($component1, $int2, ~league_combat_mastery_tier_icon(enum_5693, %league_combat_mastery_magic_progress), $int9, $int10, %league_combat_mastery_magic_progress, "Magic");
+    $int2 = ~league_summary_draw_mastery($masteries_content, $int2, ~league_combat_mastery_tier_icon(enum_5693, %league_combat_mastery_magic_progress), $int9, $int10, %league_combat_mastery_magic_progress, "Magic");
     $int9 = calc($int9 + $int3 + $int8);
 }

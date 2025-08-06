@@ -1,22 +1,22 @@
 // 3367
-[proc,pvp_store_side_draw](component $component0)
+[proc,pvp_store_side_draw](component $component)
 def_int $int1 = 0;
-def_obj $obj2 = null;
+def_obj $obj = null;
 def_int $int3 = 0;
 def_int $int4 = inv_size(inv);
 while ($int4 > 0) {
     $int4 = calc($int4 - 1);
-    if (cc_find($component0, $int4) = true) {
+    if (cc_find($component, $int4) = true) {
         cc_clearops;
         cc_setontimer(null);
-        $obj2 = inv_getobj(inv, $int4);
-        if ($obj2 ! null) {
+        $obj = inv_getobj(inv, $int4);
+        if ($obj ! null) {
             cc_sethide(false);
-            cc_setobject($obj2, inv_getnum(inv, $int4));
+            cc_setobject($obj, inv_getnum(inv, $int4));
             cc_settrans(130);
             cc_setonop(null);
             cc_setop(10, "Examine");
-            cc_setopbase("<col=ff9040><oc_name($obj2)></col>");
+            cc_setopbase("<col=ff9040><oc_name($obj)></col>");
         } else {
             cc_sethide(true);
             cc_setobject(blankobject, 1);

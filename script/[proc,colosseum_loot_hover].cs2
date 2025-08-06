@@ -1,5 +1,5 @@
 // 4918
-[proc,colosseum_loot_hover](component $component0, boolean $boolean1, int $int2)
+[proc,colosseum_loot_hover](component $component, boolean $boolean, int $int2)
 cc_deleteall(colosseum_intermission:modifier_information);
 def_int $int3 = 0;
 def_int $int4 = inv_size(colosseum_rewards);
@@ -8,7 +8,7 @@ def_int $int6 = calc((36 - 32) * 2);
 def_int $int7 = -1;
 def_int $int8 = 0;
 def_int $int9 = 0;
-def_string $string0 = ",";
+def_string $string = ",";
 def_int $int10 = 1;
 def_int $int11 = 0;
 cc_create(colosseum_intermission:modifier_information, ^iftype_graphic, $int11);
@@ -18,7 +18,7 @@ cc_setgraphic(tradebacking_dark);
 cc_settiling(true);
 $int11 = calc($int11 + 1);
 $int11 = ~thinbox(colosseum_intermission:modifier_information, $int11);
-if ($boolean1 = true & ~on_mobile = false) {
+if ($boolean = true & ~on_mobile = false) {
     if (cc_find(colosseum_intermission:total_loot, $int2) = true) {
         cc_settrans(100);
         cc_setposition(0, 2, ^setpos_abs_centre, ^setpos_abs_centre);
@@ -46,7 +46,7 @@ if ($boolean1 = true & ~on_mobile = false) {
     cc_settextshadow(true);
     cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
     cc_setsize(0, 20, ^setsize_minus, ^setsize_abs);
-    cc_settext("Total value: <col=ffffff><~tostring_spacer(%if3, $string0)> GP</col>");
+    cc_settext("Total value: <col=ffffff><~tostring_spacer(%if3, $string)> GP</col>");
 } else {
     if (cc_find(colosseum_intermission:total_loot, $int2) = true) {
         cc_settrans(0);

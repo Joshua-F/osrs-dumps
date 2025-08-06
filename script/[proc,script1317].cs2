@@ -1,10 +1,10 @@
 // 1317
 [proc,script1317](int $int0, component $component1, component $component2, component $component3, component $component4)
-def_obj $obj5 = inv_getobj(bank, $int0);
-if ($obj5 = null) {
+def_obj $obj = inv_getobj(bank, $int0);
+if ($obj = null) {
     return;
 }
-if (oc_unplaceholder($obj5) ! $obj5) {
+if (oc_unplaceholder($obj) ! $obj) {
     sound_synth(synth_2277, 1, 0);
     mes("You can release placeholders by clicking on them.");
     return;
@@ -17,7 +17,7 @@ if_sethide(false, $component3);
 cc_deleteall($component3);
 def_int $int6 = 0;
 def_int $int7 = inv_getnum(bank, $int0);
-def_string $string0 = "<~tostring_spacer($int7, ",")> <col=ffffff>x</col> <oc_name($obj5)>";
+def_string $string0 = "<~tostring_spacer($int7, ",")> <col=ffffff>x</col> <oc_name($obj)>";
 def_string $string1 = "Are you <col=ffffff>sure</col> you<br>want to destroy it?";
 if ($int7 > 1) {
     $string1 = "Are you <col=ffffff>sure</col> you want<br>to destroy <col=ffffff>all of them</col>?";
@@ -46,8 +46,8 @@ cc_create($component3, ^iftype_text, $int6);
 $int6 = calc($int6 + 1);
 cc_setsize(85, 22, ^setsize_abs, ^setsize_abs);
 cc_setposition(0, 40, ^setpos_abs_centre, ^setpos_abs_centre);
-cc_setobject($obj5, $int7);
-cc_setopbase("<col=ff9040><oc_name($obj5)></col>");
+cc_setobject($obj, $int7);
+cc_setopbase("<col=ff9040><oc_name($obj)></col>");
 .cc_create($component3, ^iftype_graphic, $int6);
 $int6 = calc($int6 + 1);
 .cc_setsize(85, 22, ^setsize_abs, ^setsize_abs);
@@ -76,11 +76,11 @@ cc_create($component3, ^iftype_graphic, $int6);
 $int6 = calc($int6 + 1);
 cc_setsize(16, 16, ^setsize_abs, ^setsize_abs);
 cc_setposition(calc($int8 / 2 - 18), -44, ^setpos_abs_centre, ^setpos_abs_centre);
-def_graphic $graphic10 = "v2_stone_close_button,0";
-cc_setgraphic($graphic10);
-cc_setonmouseleave("cc_graphic_swapper(event_com, event_comsubid, $graphic10, null)");
-$graphic10 = "v2_stone_close_button,1";
-cc_setonmouseover("cc_graphic_swapper(event_com, event_comsubid, $graphic10, null)");
+def_graphic $graphic = "v2_stone_close_button,0";
+cc_setgraphic($graphic);
+cc_setonmouseleave("cc_graphic_swapper(event_com, event_comsubid, $graphic, null)");
+$graphic = "v2_stone_close_button,1";
+cc_setonmouseover("cc_graphic_swapper(event_com, event_comsubid, $graphic, null)");
 cc_setop(1, "Close");
 cc_setonop("bankmain_incinerator_close(1, $component3)");
 def_int $int11 = calc($int8 / 2 - 42);
@@ -101,10 +101,10 @@ cc_create($component3, ^iftype_model, $int6);
 $int6 = calc($int6 + 1);
 cc_setsize(40, 40, ^setsize_abs, ^setsize_abs);
 cc_setposition(calc(0 - ($int8 / 2 - 42)), 0, ^setpos_abs_centre, ^setpos_abs_centre);
-if (($obj5 = coins | $obj5 = trail_sweets) & $int7 > 10) {
-    cc_setobject($obj5, 10);
+if (($obj = coins | $obj = trail_sweets) & $int7 > 10) {
+    cc_setobject($obj, 10);
 } else {
-    cc_setobject(oc_uncert($obj5), $int7);
+    cc_setobject(oc_uncert($obj), $int7);
 }
 cc_create($component3, ^iftype_text, $int6);
 $int6 = calc($int6 + 1);

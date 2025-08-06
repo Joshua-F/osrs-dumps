@@ -2,28 +2,28 @@
 [proc,hiscores_bosses_display]
 def_int $int0 = calc(enum_getoutputcount(enum_5626) + 9 + 1);
 def_int $int1 = enum_getoutputcount(enum_5626);
-def_dbrow $dbrow2 = null;
+def_dbrow $dbrow = null;
 def_int $int3 = 0;
 def_int $int4 = 0;
 def_int $int5 = 0;
-def_varp $varp6 = null;
-def_string $string0 = "";
+def_varp $varp = null;
+def_string $string = "";
 while ($int3 < $int1) {
-    $dbrow2 = enum(int, dbrow, enum_5626, $int3);
-    if ($dbrow2 ! null) {
-        $varp6 = db_getfield($dbrow2, hiscores_bosses_info:bossvarp, 0);
-        $int4 = ~max(0, hiscore_getbosskills($varp6));
-        $int5 = ~max(0, calc(hiscore_getbossrank($varp6) + 1));
+    $dbrow = enum(int, dbrow, enum_5626, $int3);
+    if ($dbrow ! null) {
+        $varp = db_getfield($dbrow, hiscores_bosses_info:bossvarp, 0);
+        $int4 = ~max(0, hiscore_getbosskills($varp));
+        $int5 = ~max(0, calc(hiscore_getbossrank($varp) + 1));
         if (cc_find(hiscores:hiscores_bosses, $int0) = true) {
             cc_settext(~hiscores_tostring($int4));
         }
         if ($int5 > 0) {
-            $string0 = "Boss: <db_getfield($dbrow2, hiscores_bosses_info:bossname, 0)><br>Rank: <~tostring_spacer($int5, ",")><br>Score: <~tostring_spacer($int4, ",")>";
+            $string = "Boss: <db_getfield($dbrow, hiscores_bosses_info:bossname, 0)><br>Rank: <~tostring_spacer($int5, ",")><br>Score: <~tostring_spacer($int4, ",")>";
         } else {
-            $string0 = "Boss: <db_getfield($dbrow2, hiscores_bosses_info:bossname, 0)><br>Rank: Unranked";
+            $string = "Boss: <db_getfield($dbrow, hiscores_bosses_info:bossname, 0)><br>Rank: Unranked";
         }
         if (cc_find(hiscores:hiscores_bosses, $int3) = true) {
-            ~hiscores_set_tooltip($string0, 0, 0);
+            ~hiscores_set_tooltip($string, 0, 0);
         }
         $int0 = calc($int0 + 2);
     }

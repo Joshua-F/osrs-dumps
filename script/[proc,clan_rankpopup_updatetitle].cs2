@@ -1,15 +1,15 @@
 // 4320
 [proc,clan_rankpopup_updatetitle](int $int0, int $int1)
-def_string $string0 = "Loading...";
-def_graphic $graphic2 = null;
+def_string $string = "Loading...";
+def_graphic $graphic = null;
 if (%clan_transmit_loadasguest = 1 & activeclansettings_find_listened = true | %clan_transmit_loadasguest = 0 & activeclansettings_find_affined(^clantype_clan) = true) {
-    $string0, $graphic2 = ~script4302($int0);
+    $string, $graphic = ~script4302($int0);
 }
-cc_settext($string0);
-if ($graphic2 = null) {
+cc_settext($string);
+if ($graphic = null) {
     cc_setposition(0, cc_gety, ^setpos_abs_centre, ^setpos_abs_top);
 } else {
     cc_setposition(calc((13 + 4) / 2), cc_gety, ^setpos_abs_centre, ^setpos_abs_top);
 }
-.cc_setgraphic($graphic2);
-.cc_setposition(calc(0 - (parawidth($string0, 512, p12_full) + 4) / 2), $int1, ^setpos_abs_centre, ^setpos_abs_top);
+.cc_setgraphic($graphic);
+.cc_setposition(calc(0 - (parawidth($string, 512, p12_full) + 4) / 2), $int1, ^setpos_abs_centre, ^setpos_abs_top);

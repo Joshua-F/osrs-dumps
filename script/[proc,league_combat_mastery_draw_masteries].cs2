@@ -1,5 +1,5 @@
 // 7663
-[proc,league_combat_mastery_draw_masteries](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10, component $component11, component $component12, component $component13, int $int14, int $int15, int $int16, int $rgb17, int $int18, int $int19)
+[proc,league_combat_mastery_draw_masteries](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10, component $component11, component $component12, component $component13, int $int14, int $int15, int $int16, int $rgb, int $int18, int $int19)
 def_int $int20 = 49;
 def_graphic $graphic21 = league_5_combat_mastery_icon_medium;
 def_int $int22 = 50;
@@ -27,10 +27,10 @@ def_int $int37 = 0;
 def_int $int38 = 0;
 def_int $int39 = 0;
 def_graphic $graphic40 = null;
-def_enum $enum41 = null;
-def_struct $struct42 = null;
+def_enum $enum = null;
+def_struct $struct = null;
 def_graphic $graphic43 = null;
-def_boolean $boolean44 = ~on_mobile;
+def_boolean $boolean = ~on_mobile;
 def_int $int45 = 0;
 def_int $int46 = 0;
 $int26 = calc(($int27 - 6) / enum_getoutputcount(enum_5690));
@@ -38,26 +38,26 @@ $int26 = calc(($int27 - 6) / enum_getoutputcount(enum_5690));
 while ($int31 < enum_getoutputcount(enum_5690)) {
     $int32 = 1;
     $int28 = $int24;
-    $enum41 = enum(int, enum, enum_5690, $int31);
-    if ($enum41 ! null) {
-        while ($int32 <= enum_getoutputcount($enum41)) {
-            $struct42 = enum(int, struct, $enum41, $int32);
-            if ($struct42 ! null) {
-                if (~league_combat_mastery_active($struct42) = 1) {
+    $enum = enum(int, enum, enum_5690, $int31);
+    if ($enum ! null) {
+        while ($int32 <= enum_getoutputcount($enum)) {
+            $struct = enum(int, struct, $enum, $int32);
+            if ($struct ! null) {
+                if (~league_combat_mastery_active($struct) = 1) {
                     $int45 = 2;
-                } else if (~league_combat_mastery_can_choose($struct42) = 1) {
+                } else if (~league_combat_mastery_can_choose($struct) = 1) {
                     $int45 = 1;
                 } else {
                     $int45 = 0;
                 }
                 if ($int32 > 1) {
-                    $int35, $int34 = ~league_combat_mastery_draw_line($component1, $component2, calc($int28 - $int18 / 2 - 10), calc($int30 + $int26 / 2), 2, $int25, $int35, $int34, $int45, $rgb17);
+                    $int35, $int34 = ~league_combat_mastery_draw_line($component1, $component2, calc($int28 - $int18 / 2 - 10), calc($int30 + $int26 / 2), 2, $int25, $int35, $int34, $int45, $rgb);
                 } else {
-                    $int35, $int34 = ~league_combat_mastery_draw_line($component1, $component2, calc($int28 - $int20 / 2), calc($int30 + $int26 / 2), 2, calc($int25 - 5), $int35, $int34, $int45, $rgb17);
+                    $int35, $int34 = ~league_combat_mastery_draw_line($component1, $component2, calc($int28 - $int20 / 2), calc($int30 + $int26 / 2), 2, calc($int25 - 5), $int35, $int34, $int45, $rgb);
                     if ($int31 = 0) {
-                        $int35, $int34 = ~league_combat_mastery_draw_line($component1, $component2, calc($int28 - $int20 / 2), calc($int30 + $int26 / 2), $int26, 2, $int35, $int34, $int45, $rgb17);
+                        $int35, $int34 = ~league_combat_mastery_draw_line($component1, $component2, calc($int28 - $int20 / 2), calc($int30 + $int26 / 2), $int26, 2, $int35, $int34, $int45, $rgb);
                     } else if ($int31 = 2) {
-                        $int35, $int34 = ~league_combat_mastery_draw_line($component1, $component2, calc($int28 - $int20 / 2), calc($int30 + 2 - $int26 / 2), calc($int26 - 1), 2, $int35, $int34, $int45, $rgb17);
+                        $int35, $int34 = ~league_combat_mastery_draw_line($component1, $component2, calc($int28 - $int20 / 2), calc($int30 + 2 - $int26 / 2), calc($int26 - 1), 2, $int35, $int34, $int45, $rgb);
                     }
                 }
                 cc_create($component5, ^iftype_graphic, $int33);
@@ -85,25 +85,25 @@ while ($int31 < enum_getoutputcount(enum_5690)) {
                 }
                 if ($int45 = 2) {
                     if ($int18 = 40) {
-                        $graphic43 = struct_param($struct42, param_2031);
+                        $graphic43 = struct_param($struct, param_2031);
                     } else {
-                        $graphic43 = struct_param($struct42, param_2033);
+                        $graphic43 = struct_param($struct, param_2033);
                     }
                     ~create_graphic($component4, $int33, $graphic43, calc($int28 + $int25 / 2 - $int18 / 2), calc($int30 + $int26 / 2 - $int18 / 2), ^setpos_abs_left, ^setpos_abs_top, $int18, $int18, ^setsize_abs, ^setsize_abs);
                 } else {
                     if ($int18 = 40) {
-                        $graphic43 = struct_param($struct42, param_2032);
+                        $graphic43 = struct_param($struct, param_2032);
                     } else {
-                        $graphic43 = struct_param($struct42, param_2034);
+                        $graphic43 = struct_param($struct, param_2034);
                     }
                     ~create_graphic($component4, $int33, $graphic43, calc($int28 + $int25 / 2 - $int18 / 2), calc($int30 + $int26 / 2 - $int18 / 2), ^setpos_abs_left, ^setpos_abs_top, $int18, $int18, ^setsize_abs, ^setsize_abs);
                 }
                 cc_settiling(false);
-                ~league_combat_mastery_draw_clickzone($component9, $component10, $int25, $int26, $int28, $int30, $int33, struct_param($struct42, param_2026));
-                cc_setonop("league_combat_mastery_op($component10, event_com, $component11, $int18, $struct42, $int45, $int33, $int32)");
-                if ($boolean44 = false) {
-                    cc_setonmouserepeat("league_combat_mastery_hover(event_com, $component11, $int18, $struct42, $int45, $int33, true, $int32)");
-                    cc_setonmouseleave("league_combat_mastery_hover(event_com, $component11, $int18, $struct42, $int45, $int33, false, $int32)");
+                ~league_combat_mastery_draw_clickzone($component9, $component10, $int25, $int26, $int28, $int30, $int33, struct_param($struct, param_2026));
+                cc_setonop("league_combat_mastery_op($component10, event_com, $component11, $int18, $struct, $int45, $int33, $int32)");
+                if ($boolean = false) {
+                    cc_setonmouserepeat("league_combat_mastery_hover(event_com, $component11, $int18, $struct, $int45, $int33, true, $int32)");
+                    cc_setonmouseleave("league_combat_mastery_hover(event_com, $component11, $int18, $struct, $int45, $int33, false, $int32)");
                 }
                 if ($int45 = 2) {
                     $int38 = ~league_combat_mastery_sparks_draw($component7, $int38, calc($int28 + 3), calc($int30 + $int26 / 2 - 16), enum_5724);
