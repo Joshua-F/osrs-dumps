@@ -4,47 +4,47 @@ if (~keypress_permit(null, chatbox) = false) {
     return;
 }
 if ($key0 = ^key_return) {
-    if (%varclient_56 = 1 & string_length(%varclient_359) <= 0) {
-        switch_int (%varclient_5) {
+    if (%meslayer_initlastnames = 1 & string_length(%meslayerinput) <= 0) {
+        switch_int (%meslayermode) {
             case 8 :
-                %varclient_359 = %varclient_361;
+                %meslayerinput = %last_namedialog;
                 ~script222($string0);
             case 10 :
-                %varclient_359 = %varclient_362;
+                %meslayerinput = %last_friendschatjoin;
                 ~script222($string0);
             case 20 :
-                %varclient_359 = ~clan_lastclansearch_get;
+                %meslayerinput = ~clan_lastclansearch_get;
                 ~script222($string0);
         }
     }
     ~meslayer_enter;
     return;
 }
-switch_int (%varclient_5) {
+switch_int (%meslayermode) {
     case 6, 9 :
-        %varclient_359 = ~add_to_inputstring(%varclient_359, 0, $key0, $char1);
+        %meslayerinput = ~add_to_inputstring(%meslayerinput, 0, $key0, $char1);
     case 11 :
         if ($key0 = ^key_escape) {
             ~meslayer_close(1, 1, 1);
             return;
         }
-        %varclient_359 = ~add_to_inputstring(%varclient_359, 0, $key0, $char1);
+        %meslayerinput = ~add_to_inputstring(%meslayerinput, 0, $key0, $char1);
     case 7, 16 :
-        %varclient_359 = ~add_to_inputstring(%varclient_359, 1, $key0, $char1);
+        %meslayerinput = ~add_to_inputstring(%meslayerinput, 1, $key0, $char1);
     case 19 :
-        %varclient_359 = ~add_to_inputstring(%varclient_359, 6, $key0, $char1);
+        %meslayerinput = ~add_to_inputstring(%meslayerinput, 6, $key0, $char1);
     case 12 :
-        %varclient_359 = ~add_to_inputstring(%varclient_359, 3, $key0, $char1);
+        %meslayerinput = ~add_to_inputstring(%meslayerinput, 3, $key0, $char1);
         ~meslayer_mode12_setprompt;
     case 18 :
         if ($key0 = ^key_escape) {
             ~meslayer_close(1, 1, 1);
             return;
         }
-        %varclient_359 = ~add_to_inputstring(%varclient_359, 3, $key0, $char1);
-        %varclient_359 = ~string_findandreplace(%varclient_359, " ", " ");
+        %meslayerinput = ~add_to_inputstring(%meslayerinput, 3, $key0, $char1);
+        %meslayerinput = ~string_findandreplace(%meslayerinput, " ", " ");
     case 13 :
-        %varclient_359 = ~add_to_inputstring(%varclient_359, 0, $key0, $char1);
+        %meslayerinput = ~add_to_inputstring(%meslayerinput, 0, $key0, $char1);
         ~meslayer_mode13_setprompt;
     case 14, 17 :
         if ($key0 = ^key_escape) {
@@ -53,12 +53,12 @@ switch_int (%varclient_5) {
             ~meslayer_close(1, 1, 1);
             return;
         }
-        %varclient_359 = ~add_to_inputstring(%varclient_359, 4, $key0, $char1);
+        %meslayerinput = ~add_to_inputstring(%meslayerinput, 4, $key0, $char1);
     case 20, 21 :
-        %varclient_359 = ~add_to_inputstring(%varclient_359, 8, $key0, $char1);
+        %meslayerinput = ~add_to_inputstring(%meslayerinput, 8, $key0, $char1);
     case 27 :
-        %varclient_359 = ~add_to_inputstring(%varclient_359, 12, $key0, $char1);
+        %meslayerinput = ~add_to_inputstring(%meslayerinput, 12, $key0, $char1);
     case default :
-        %varclient_359 = ~add_to_inputstring(%varclient_359, 2, $key0, $char1);
+        %meslayerinput = ~add_to_inputstring(%meslayerinput, 2, $key0, $char1);
 }
 ~script222($string0);

@@ -1,7 +1,7 @@
 // 4185
 [clientscript,colour_pallet](component $component0, int $int1)
 ~script4206(colour_pallet:clamp, colour_pallet:fader, colour_pallet:window, ^max_32bit_int, $component0);
-%varclient_459 = $int1;
+%settings_colour_pallet_selected = $int1;
 def_struct $struct2 = enum(int, struct, enum_423, %settings_category);
 def_enum $enum3 = null;
 if ($struct2 = null) {
@@ -55,18 +55,18 @@ cc_setsize(100, 18, ^setsize_abs, ^setsize_abs);
 cc_setposition(18, 2, ^setpos_abs_left, ^setpos_abs_top);
 $int17 = calc($int17 + 1);
 def_int $int18 = 45;
-if (%varclient_459 = -1) {
-    %varclient_459 = struct_param($struct4, param_1230);
+if (%settings_colour_pallet_selected = -1) {
+    %settings_colour_pallet_selected = struct_param($struct4, param_1230);
 }
 cc_create($component11, ^iftype_rectangle, $int17);
 cc_setsize($int18, $int18, ^setsize_abs, ^setsize_abs);
 cc_setposition(45, 22, ^setpos_abs_left, ^setpos_abs_top);
-cc_setcolour(%varclient_459);
+cc_setcolour(%settings_colour_pallet_selected);
 cc_setfill(true);
 $int17 = calc($int17 + 1);
 $int17 = ~thinbox_specific($component11, $int17, 45, 22, $int18, $int18, ^setpos_abs_left, ^setpos_abs_top);
 cc_create($component11, ^iftype_text, $int17);
-cc_settext(append($string0, ~colour_to_string(%varclient_459)));
+cc_settext(append($string0, ~colour_to_string(%settings_colour_pallet_selected)));
 cc_settextfont(p11_full);
 cc_settextshadow(true);
 cc_setcolour(0xff981f);
@@ -86,12 +86,12 @@ $int17 = calc($int17 + 1);
 cc_create($component11, ^iftype_rectangle, $int17);
 cc_setsize($int18, $int18, ^setsize_abs, ^setsize_abs);
 cc_setposition(164, 22, ^setpos_abs_left, ^setpos_abs_top);
-cc_setcolour(%varclient_459);
+cc_setcolour(%settings_colour_pallet_selected);
 cc_setfill(true);
 def_int $int19 = $int17;
 $int17 = calc($int17 + 1);
 $int17 = ~thinbox_specific($component11, $int17, 164, 22, $int18, $int18, ^setpos_abs_left, ^setpos_abs_top);
-def_string $string1 = append($string0, ~colour_to_string(%varclient_459));
+def_string $string1 = append($string0, ~colour_to_string(%settings_colour_pallet_selected));
 cc_create($component11, ^iftype_text, $int17);
 cc_settext($string1);
 cc_settextfont(p11_full);
@@ -110,7 +110,7 @@ def_int $int25 = 0;
 def_int $int26 = 0;
 def_int $int27 = 0;
 def_int $int28 = 0;
-$int26, $int27, $int28 = ~hex_to_rgb(%varclient_459);
+$int26, $int27, $int28 = ~hex_to_rgb(%settings_colour_pallet_selected);
 $int17, $int21, $int22 = ~create_colour_pallet_input($component12, $int17, $component13, $int21, $string1, 20, 33, 80, 18, "Hexadecimal");
 $int17, $int21, $int23 = ~create_colour_pallet_input($component12, $int17, $component13, $int21, tostring($int26), 7, 67, 32, 18, "Red");
 $int17, $int21, $int24 = ~create_colour_pallet_input($component12, $int17, $component13, $int21, tostring($int27), 44, 67, 32, 18, "Green");
@@ -230,4 +230,4 @@ if ($int37 > $int33) {
 ~stonebutton_init("<col=ff981f>Cancel</col>", colour_pallet:cancel, p12_full, 0);
 if_setonop("script4208(^max_32bit_int, colour_pallet:clamp, colour_pallet:fader, colour_pallet:window, $component0)", colour_pallet:cancel);
 ~stonebutton_init("<col=0dc10d>Save</col>", colour_pallet:submit, p12_full, 0);
-if_setonop("script4208(%varclient_459, colour_pallet:clamp, colour_pallet:fader, colour_pallet:window, $component0)", colour_pallet:submit);
+if_setonop("script4208(%settings_colour_pallet_selected, colour_pallet:clamp, colour_pallet:fader, colour_pallet:window, $component0)", colour_pallet:submit);

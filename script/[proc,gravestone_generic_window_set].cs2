@@ -2,13 +2,13 @@
 [proc,gravestone_generic_window_set](component $component0, component $component1, component $component2, int $int3, int $int4, int $int5, component $component6, int $int7, component $component8, int $int9, component $component10, component $component11, component $component12, component $component13)
 def_int $int14 = if_getwidth($component0);
 def_int $int15 = calc(if_getheight($component0) - $int3);
-%varclient_395 = ~max($int4, ~min(%varclient_395, $int14));
-%varclient_396 = ~max($int5, ~min(%varclient_396, $int15));
-%varclient_397 = ~max(0, ~min(%varclient_397, calc($int14 - %varclient_395)));
-%varclient_398 = ~max($int3, ~min(%varclient_398, calc($int3 + $int15 - %varclient_396)));
-if_setsize(%varclient_395, %varclient_396, ^setsize_abs, ^setsize_abs, $component1);
-if_setposition(%varclient_397, %varclient_398, ^setpos_abs_left, ^setpos_abs_top, $component1);
-def_int $int16 = calc(%varclient_396 - $int5);
+%gravestone_width = ~max($int4, ~min(%gravestone_width, $int14));
+%gravestone_height = ~max($int5, ~min(%gravestone_height, $int15));
+%gravestone_x = ~max(0, ~min(%gravestone_x, calc($int14 - %gravestone_width)));
+%gravestone_y = ~max($int3, ~min(%gravestone_y, calc($int3 + $int15 - %gravestone_height)));
+if_setsize(%gravestone_width, %gravestone_height, ^setsize_abs, ^setsize_abs, $component1);
+if_setposition(%gravestone_x, %gravestone_y, ^setpos_abs_left, ^setpos_abs_top, $component1);
+def_int $int16 = calc(%gravestone_height - $int5);
 def_int $int17 = calc($int16 / 2);
 if_setsize(20, calc($int7 + $int17 + 1), ^setsize_minus, ^setsize_abs, $component6);
 if_setsize(20, calc($int9 + ($int16 - $int17)), ^setsize_minus, ^setsize_abs, $component8);
@@ -126,38 +126,38 @@ if ($int27 >= 0) {
 ~scrollbar_vertical_rebuild($component13, $component12);
 if_sethide(false, $component1);
 if_sethide(true, $component2);
-def_int $int34 = calc(%varclient_395 - 6 * 2);
-def_int $int35 = calc(%varclient_396 - 6 * 2);
-def_int $int36 = calc(%varclient_397 + %varclient_395 - 6);
-def_int $int37 = calc(%varclient_398 + %varclient_396 - 6);
+def_int $int34 = calc(%gravestone_width - 6 * 2);
+def_int $int35 = calc(%gravestone_height - 6 * 2);
+def_int $int36 = calc(%gravestone_x + %gravestone_width - 6);
+def_int $int37 = calc(%gravestone_y + %gravestone_height - 6);
 def_int $int38 = 0;
 if (cc_find($component0, 0) = ^true & .cc_find($component0, 1) = ^true) {
     cc_setsize($int34, 29, ^setsize_abs, ^setsize_abs);
     .cc_setsize($int34, 6, ^setsize_abs, ^setsize_abs);
-    $int38 = calc(%varclient_397 + 6);
-    cc_setposition($int38, %varclient_398, ^setpos_abs_left, ^setpos_abs_top);
+    $int38 = calc(%gravestone_x + 6);
+    cc_setposition($int38, %gravestone_y, ^setpos_abs_left, ^setpos_abs_top);
     .cc_setposition($int38, $int37, ^setpos_abs_left, ^setpos_abs_top);
     ~script3465($component0, $component1, $component2, $int3, $int4, $int5, $component6, $int7, $component8, $int9, $component10, $component11, $component12, $component13);
 }
 if (cc_find($component0, 2) = ^true & .cc_find($component0, 3) = ^true) {
     cc_setsize(6, $int35, ^setsize_abs, ^setsize_abs);
     .cc_setsize(6, $int35, ^setsize_abs, ^setsize_abs);
-    $int38 = calc(%varclient_398 + 6);
-    cc_setposition(%varclient_397, $int38, ^setpos_abs_left, ^setpos_abs_top);
+    $int38 = calc(%gravestone_y + 6);
+    cc_setposition(%gravestone_x, $int38, ^setpos_abs_left, ^setpos_abs_top);
     .cc_setposition($int36, $int38, ^setpos_abs_left, ^setpos_abs_top);
     ~script3465($component0, $component1, $component2, $int3, $int4, $int5, $component6, $int7, $component8, $int9, $component10, $component11, $component12, $component13);
 }
 if (cc_find($component0, 4) = ^true & .cc_find($component0, 5) = ^true) {
     cc_setsize(6, 6, ^setsize_abs, ^setsize_abs);
     .cc_setsize(6, 6, ^setsize_abs, ^setsize_abs);
-    cc_setposition(%varclient_397, %varclient_398, ^setpos_abs_left, ^setpos_abs_top);
-    .cc_setposition($int36, %varclient_398, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setposition(%gravestone_x, %gravestone_y, ^setpos_abs_left, ^setpos_abs_top);
+    .cc_setposition($int36, %gravestone_y, ^setpos_abs_left, ^setpos_abs_top);
     ~script3465($component0, $component1, $component2, $int3, $int4, $int5, $component6, $int7, $component8, $int9, $component10, $component11, $component12, $component13);
 }
 if (cc_find($component0, 6) = ^true & .cc_find($component0, 7) = ^true) {
     cc_setsize(6, 6, ^setsize_abs, ^setsize_abs);
     .cc_setsize(6, 6, ^setsize_abs, ^setsize_abs);
-    cc_setposition(%varclient_397, $int37, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setposition(%gravestone_x, $int37, ^setpos_abs_left, ^setpos_abs_top);
     .cc_setposition($int36, $int37, ^setpos_abs_left, ^setpos_abs_top);
     ~script3465($component0, $component1, $component2, $int3, $int4, $int5, $component6, $int7, $component8, $int9, $component10, $component11, $component12, $component13);
 }

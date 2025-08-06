@@ -1,10 +1,10 @@
 // 5084
 [clientscript,reportabuse_init](boolean $boolean0, boolean $boolean1, string $string0)
-if (%varclient_11 = 1) {
+if (%snapshot_open = 1) {
     if_close;
 }
 if ($boolean1 = true) {
-    %varclient_370 = $string0;
+    %snapshot_name = $string0;
 }
 ~beige_stone_button_init(reportabuse:next, "Next", p12_full, 15);
 if_setop(1, "Next", reportabuse:next);
@@ -21,18 +21,18 @@ if_setop(1, "Illegal / harmful content", reportabuse:illegal2);
 if_setonop("script5094", reportabuse:illegal2);
 if_setonkey("reportabuse_onkey(event_keycode, event_keychar)", reportabuse:name1);
 ~reportabuse_name_set;
-%varclient_224 = $boolean0;
+%snapshot_real = $boolean0;
 ~reportabuse_hint_set(0);
-if (string_length(%varclient_370) > 0) {
+if (string_length(%snapshot_name) > 0) {
     ~reportabuse_page2_set;
 } else {
     ~reportabuse_page1_set;
 }
-if (%varclient_140 = true | %varclient_140 = false) {
+if (%snapshot_ignore = true | %snapshot_ignore = false) {
 } else {
-    %varclient_140 = true;
+    %snapshot_ignore = true;
 }
-%varclient_6 = false;
+%snapshot_mute = false;
 ~reportabuse_toggle_set(reportabuse:ignore, "Add player to Ignore list", true);
 if (playermod = 1 | staffmodlevel > 0) {
     if_setposition(5, 24, ^setpos_abs_left, ^setpos_abs_top, reportabuse:ignore);
@@ -77,10 +77,10 @@ $int2 = calc($int4 * $int2);
 if ($int2 > $int5) {
     if_setscrollsize(0, $int2, reportabuse:rules);
     ~scrollbar_vertical(reportabuse:scrollbar, reportabuse:rules, "scrollbar_parchment_dragger_v2,3", "scrollbar_parchment_dragger_v2,0", "scrollbar_parchment_dragger_v2,1", "scrollbar_parchment_dragger_v2,2", "scrollbar_parchment_v2,0", "scrollbar_parchment_v2,1");
-    %varclient_67 = ~minmax(0, calc($int2 - $int5), %varclient_67);
-    ~scrollbar_resize(reportabuse:scrollbar, reportabuse:rules, %varclient_67);
+    %bondif_convert_count_cs = ~minmax(0, calc($int2 - $int5), %bondif_convert_count_cs);
+    ~scrollbar_resize(reportabuse:scrollbar, reportabuse:rules, %bondif_convert_count_cs);
 } else {
     if_setscrollsize(0, 0, reportabuse:rules);
-    %varclient_67 = 0;
+    %bondif_convert_count_cs = 0;
     ~scrollbar_vertical(reportabuse:scrollbar, reportabuse:rules, "scrollbar_parchment_dragger_v2,3", "scrollbar_parchment_dragger_v2,0", "scrollbar_parchment_dragger_v2,1", "scrollbar_parchment_dragger_v2,2", "scrollbar_parchment_v2,0", "scrollbar_parchment_v2,1");
 }

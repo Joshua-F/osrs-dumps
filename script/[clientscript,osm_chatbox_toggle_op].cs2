@@ -2,19 +2,19 @@
 [clientscript,osm_chatbox_toggle_op](int $int0)
 switch_int ($int0) {
     case 1 :
-        if (%varclient_1220 = 1) {
-            %varclient_1220 = 0;
+        if (%osm_chatbox_disabled = 1) {
+            %osm_chatbox_disabled = 0;
             if (cc_find(toplevel_osm:chat_toggle, 0) = ^true) {
                 cc_setgraphic("tli_button01_rectangle_58x40,1");
             }
             if_sethide(false, toplevel_osm:chatting_button);
             if_sethide(false, toplevel_osm:chat_filter_toggle);
             if_setsize(58, 118, ^setsize_abs, ^setsize_abs, toplevel_osm:side_left_chat);
-            if (%varclient_41 = 0) {
+            if (%chat_view = 0) {
                 ~chat_alert_set(0, 0);
             }
         } else {
-            %varclient_1220 = 1;
+            %osm_chatbox_disabled = 1;
             if (cc_find(toplevel_osm:chat_toggle, 0) = ^true) {
                 cc_setgraphic("tli_button01_rectangle_58x40,0");
             }
@@ -24,4 +24,4 @@ switch_int ($int0) {
         }
         ~chat_onsetupchange;
 }
-%varclient_222 = clientclock;
+%osm_tlidodgers_update = clientclock;

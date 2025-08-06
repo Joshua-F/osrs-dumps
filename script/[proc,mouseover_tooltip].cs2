@@ -34,8 +34,8 @@ if (%mouseover_tooltips_hide_opcount = 0 & $int3 > 1 & $int5 = 1) {
     $int10 = 14;
     $int9 = calc(parawidth($string1, if_getwidth($component1), p11_full) + 6);
 }
-def_string $string2 = %varclient_1014;
-def_string $string3 = %varclient_1015;
+def_string $string2 = %mouseover_tooltip_custom_text_left;
+def_string $string3 = %mouseover_tooltip_custom_text_right;
 def_string $string4 = "";
 def_string $string5 = "";
 def_string $string6 = "";
@@ -52,12 +52,12 @@ def_int $int19 = 0;
 def_int $int20 = 0;
 def_int $int21 = 0;
 def_int $int22 = 0;
-if (clientclock > %varclient_1) {
+if (clientclock > %tooltip_time) {
     $string2, $string3 = "", "";
 }
 def_int $int23 = 150;
-if ($int6 = 1 & string_length(%varclient_1014) > 0) {
-    if (string_length(%varclient_1015) > 0) {
+if ($int6 = 1 & string_length(%mouseover_tooltip_custom_text_left) > 0) {
+    if (string_length(%mouseover_tooltip_custom_text_right) > 0) {
         $string6, $string8 = ~script632($string2);
         $string7, $string9 = ~script632($string3);
         $int13 = string_length($string6);
@@ -91,7 +91,7 @@ if ($int6 = 1 & string_length(%varclient_1014) > 0) {
                 $int13, $int14 = 0, 0;
             }
         }
-        if (%varclient_1218 > 0) {
+        if (%mouseover_tooltip_progress_bar_max > 0) {
             $int18 = ~max($int18, 110);
             $int22 = 20;
         }
@@ -101,7 +101,7 @@ if ($int6 = 1 & string_length(%varclient_1014) > 0) {
         $string4 = $string2;
         $int19 = calc(paraheight($string4, 194, p12_full) * 14 + 6);
         $int18 = calc(parawidth($string4, 194, p12_full) + 6);
-        if (%varclient_1218 > 0) {
+        if (%mouseover_tooltip_progress_bar_max > 0) {
             $int18 = ~max($int18, 110);
             $int22 = 20;
         }
@@ -113,9 +113,9 @@ $int24 = ~max($int24, $int9);
 def_int $int25 = mouse_getx;
 def_int $int26 = mouse_gety;
 def_boolean $boolean27 = ~on_mobile;
-if ($boolean27 = true & %varclient_1016 >= 0 & %varclient_1017 >= 0) {
-    $int25 = %varclient_1016;
-    $int26 = %varclient_1017;
+if ($boolean27 = true & %mouseover_tooltip_x_override >= 0 & %mouseover_tooltip_y_override >= 0) {
+    $int25 = %mouseover_tooltip_x_override;
+    $int26 = %mouseover_tooltip_y_override;
 }
 if ($enum4 = enum_1745) {
     $int25 = calc($int25 - if_getx(toplevel_osm:safezone));
@@ -212,7 +212,7 @@ if (string_length($string4) > 0) {
         cc_setcolour(^white);
         $int0 = calc($int0 + 1);
     }
-    if (%varclient_1218 > 0) {
+    if (%mouseover_tooltip_progress_bar_max > 0) {
         cc_create($component1, ^iftype_rectangle, $int0);
         cc_setposition(calc($int25 + 5), calc($int26 + $int19), ^setpos_abs_left, ^setpos_abs_top);
         cc_setsize(calc($int24 - 10), 15, ^setsize_abs, ^setsize_abs);
@@ -221,7 +221,7 @@ if (string_length($string4) > 0) {
         $int0 = calc($int0 + 1);
         cc_create($component1, ^iftype_rectangle, $int0);
         cc_setposition(calc($int25 + 5), calc($int26 + $int19), ^setpos_abs_left, ^setpos_abs_top);
-        cc_setsize(scale(%varclient_1217, %varclient_1218, calc($int24 - 12)), 15, ^setsize_abs, ^setsize_abs);
+        cc_setsize(scale(%mouseover_tooltip_progress_bar_value, %mouseover_tooltip_progress_bar_max, calc($int24 - 12)), 15, ^setsize_abs, ^setsize_abs);
         cc_setfill(true);
         cc_setcolour(0x006600);
         $int0 = calc($int0 + 1);

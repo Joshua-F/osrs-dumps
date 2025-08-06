@@ -2,36 +2,36 @@
 [proc,poll_results_addquestion](int $int0, string $string0, int $int1, int $int2, int $int3, int $int4, int $int5, int $int6, int $int7, int $int8, int $int9, int $int10, int $int11, int $int12, int $int13, int $int14, int $int15, int $int16, int $int17, int $int18, int $int19, int $int20, int $int21, int $int22, int $int23, int $int24, int $int25, int $int26, int $int27, int $int28, int $int29, int $int30, int $int31, int $int32, int $int33, int $int34)
 def_int $int35 = if_getwidth(poll_results:results);
 def_int $int36 = calc($int35 - 3 * 2);
-def_int $int37 = %varclient_43;
-def_int $int38 = %varclient_49;
-cc_create(poll_results:results, ^iftype_rectangle, %varclient_43);
-%varclient_43 = calc(%varclient_43 + 1);
+def_int $int37 = %poll_id;
+def_int $int38 = %poll_ypos;
+cc_create(poll_results:results, ^iftype_rectangle, %poll_id);
+%poll_id = calc(%poll_id + 1);
 cc_setposition(0, $int38, ^setpos_abs_left, ^setpos_abs_top);
 cc_setcolour(^white);
 cc_setfill(true);
 cc_settrans(225);
-cc_create(poll_results:results, ^iftype_rectangle, %varclient_43);
-%varclient_43 = calc(%varclient_43 + 1);
+cc_create(poll_results:results, ^iftype_rectangle, %poll_id);
+%poll_id = calc(%poll_id + 1);
 cc_setposition(0, $int38, ^setpos_abs_left, ^setpos_abs_top);
 cc_setcolour(0x777775);
 cc_setfill(false);
-cc_create(poll_results:results, ^iftype_rectangle, %varclient_43);
-%varclient_43 = calc(%varclient_43 + 1);
+cc_create(poll_results:results, ^iftype_rectangle, %poll_id);
+%poll_id = calc(%poll_id + 1);
 cc_setposition(1, calc($int38 + 1), ^setpos_abs_left, ^setpos_abs_top);
 cc_setcolour(0x474745);
 cc_setfill(false);
-%varclient_49 = calc(%varclient_49 + 3);
+%poll_ypos = calc(%poll_ypos + 3);
 def_string $string1 = "";
 $string1, $string0 = ~script632($string0);
 def_int $int39 = calc(paraheight($string1, $int36, p11_full) * 10 + 2);
 if ($int39 < 15) {
     $int39 = 15;
 }
-cc_create(poll_results:results, ^iftype_text, %varclient_43);
-%varclient_43 = calc(%varclient_43 + 1);
-cc_setposition(3, %varclient_49, ^setpos_abs_left, ^setpos_abs_top);
+cc_create(poll_results:results, ^iftype_text, %poll_id);
+%poll_id = calc(%poll_id + 1);
+cc_setposition(3, %poll_ypos, ^setpos_abs_left, ^setpos_abs_top);
 cc_setsize($int36, $int39, ^setsize_abs, ^setsize_abs);
-%varclient_49 = calc(%varclient_49 + $int39);
+%poll_ypos = calc(%poll_ypos + $int39);
 cc_setcolour(0xff981f);
 cc_settextfont(p11_full);
 cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
@@ -39,11 +39,11 @@ cc_settextshadow(true);
 cc_settext($string1);
 $string1, $string0 = ~script632($string0);
 $int39 = calc(paraheight($string1, $int36, p12_full) * 12 + 5);
-cc_create(poll_results:results, ^iftype_text, %varclient_43);
-%varclient_43 = calc(%varclient_43 + 1);
-cc_setposition(3, %varclient_49, ^setpos_abs_left, ^setpos_abs_top);
+cc_create(poll_results:results, ^iftype_text, %poll_id);
+%poll_id = calc(%poll_id + 1);
+cc_setposition(3, %poll_ypos, ^setpos_abs_left, ^setpos_abs_top);
 cc_setsize($int36, $int39, ^setsize_abs, ^setsize_abs);
-%varclient_49 = calc(%varclient_49 + $int39);
+%poll_ypos = calc(%poll_ypos + $int39);
 cc_setcolour(^white);
 cc_settextfont(p12_full);
 cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
@@ -180,12 +180,12 @@ while ($int41 < $int1) {
     if ($int39 < 15) {
         $int39 = 15;
     }
-    cc_create(poll_results:results, ^iftype_text, %varclient_43);
-    %varclient_43 = calc(%varclient_43 + 1);
-    .cc_create(poll_results:results, ^iftype_text, %varclient_43);
-    %varclient_43 = calc(%varclient_43 + 1);
-    cc_setposition(3, %varclient_49, ^setpos_abs_left, ^setpos_abs_top);
-    .cc_setposition($int43, %varclient_49, ^setpos_abs_left, ^setpos_abs_top);
+    cc_create(poll_results:results, ^iftype_text, %poll_id);
+    %poll_id = calc(%poll_id + 1);
+    .cc_create(poll_results:results, ^iftype_text, %poll_id);
+    %poll_id = calc(%poll_id + 1);
+    cc_setposition(3, %poll_ypos, ^setpos_abs_left, ^setpos_abs_top);
+    .cc_setposition($int43, %poll_ypos, ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize($intarray4(39), $int39, ^setsize_abs, ^setsize_abs);
     .cc_setsize(95, $int39, ^setsize_abs, ^setsize_abs);
     if (testbit($int2, $int41) = ^true) {
@@ -213,9 +213,9 @@ while ($int41 < $int1) {
         .cc_settext("-");
     } else if ($int41 ! $intarray4(40)) {
         .cc_settext("<tostring(calc($intarray5($int41) / 10))>.<tostring(calc($intarray5($int41) % 10))>% (<~tostring_spacer($intarray4($int41), $string1)>)");
-        cc_create(poll_results:results, ^iftype_graphic, %varclient_43);
-        %varclient_43 = calc(%varclient_43 + 1);
-        cc_setposition($int44, calc(%varclient_49 + ($int39 - 11) / 2), ^setpos_abs_left, ^setpos_abs_top);
+        cc_create(poll_results:results, ^iftype_graphic, %poll_id);
+        %poll_id = calc(%poll_id + 1);
+        cc_setposition($int44, calc(%poll_ypos + ($int39 - 11) / 2), ^setpos_abs_left, ^setpos_abs_top);
         cc_setsize(interpolate(0, $intarray4($int41), 0, $int40, $int45), 11, ^setsize_abs, ^setsize_abs);
         if ($int41 = $intarray4(36)) {
             cc_setgraphic(tradebacking_dark);
@@ -226,10 +226,10 @@ while ($int41 < $int1) {
     } else {
         .cc_settext("(<~tostring_spacer($intarray4($int41), $string1)>)");
     }
-    $int41, %varclient_49 = calc($int41 + 1), calc(%varclient_49 + $int39);
+    $int41, %poll_ypos = calc($int41 + 1), calc(%poll_ypos + $int39);
 }
-%varclient_49 = calc(%varclient_49 + 3);
-$int39 = calc(%varclient_49 - $int38);
+%poll_ypos = calc(%poll_ypos + 3);
+$int39 = calc(%poll_ypos - $int38);
 if (cc_find(poll_results:results, $int37) = ^true) {
     cc_setsize($int35, $int39, ^setsize_abs, ^setsize_abs);
 }
@@ -239,4 +239,4 @@ if (cc_find(poll_results:results, calc($int37 + 1)) = ^true) {
 if (cc_find(poll_results:results, calc($int37 + 2)) = ^true) {
     cc_setsize(calc($int35 - 2), calc($int39 - 2), ^setsize_abs, ^setsize_abs);
 }
-%varclient_49 = calc(%varclient_49 + 3);
+%poll_ypos = calc(%poll_ypos + 3);

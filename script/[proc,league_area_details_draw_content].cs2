@@ -21,7 +21,7 @@ def_int $int10 = 0;
 def_int $int11 = 0;
 ~script5288($component4, 0, 0, 0, if_getwidth($component4), if_getheight($component4), struct_3712, 7496785);
 def_int $int12 = calc(if_getwidth($component0) / 3);
-switch_int (%varclient_988) {
+switch_int (%responsive_current_breakpoint) {
     case 1 :
         $int10, $int11 = calc($int12 / 2 - 33), calc($int12 / 2 - 33);
     case 2 :
@@ -32,12 +32,12 @@ switch_int (%varclient_988) {
         $graphic9, $int10, $int11 = p12_full, calc($int12 / 2 - 35), calc($int12 / 2 - 35);
 }
 def_int $int13 = 0;
-$int13 = ~script5293($component0, $int13, 0, $int12, 0, 0x726451, "Overview", $graphic9, $rgb8, 0, null, 0, 0, 0, 0, ~is_equal(%varclient_1239, 0));
+$int13 = ~script5293($component0, $int13, 0, $int12, 0, 0x726451, "Overview", $graphic9, $rgb8, 0, null, 0, 0, 0, 0, ~is_equal(%league_area_details_current_tab, 0));
 cc_setonop("script7632(0)");
-$int13 = ~script5293($component0, $int13, 1, $int12, 0, 0x726451, "Information", $graphic9, $rgb8, 0, null, 0, 0, 0, 0, ~is_equal(%varclient_1239, 1));
+$int13 = ~script5293($component0, $int13, 1, $int12, 0, 0x726451, "Information", $graphic9, $rgb8, 0, null, 0, 0, 0, 0, ~is_equal(%league_area_details_current_tab, 1));
 cc_setonop("script7632(1)");
 if (~script7659 = true & $int7 ! 1 & $int7 ! 2) {
-    $int13 = ~script5293($component0, $int13, 2, $int12, 0, 0x726451, "Echoes", $graphic9, 0xed00ed, $int11, "league_tiny_relic,4", 19, 19, $int10, -1, ~is_equal(%varclient_1239, 2));
+    $int13 = ~script5293($component0, $int13, 2, $int12, 0, 0x726451, "Echoes", $graphic9, 0xed00ed, $int11, "league_tiny_relic,4", 19, 19, $int10, -1, ~is_equal(%league_area_details_current_tab, 2));
     cc_setonop("script7632(2)");
 }
 def_struct $struct14 = ~script7625($int7);
@@ -68,13 +68,13 @@ cc_deleteall($component18);
 cc_deleteall($component20);
 if_setscrollpos(0, 0, $component20);
 if_setscrollpos(0, 0, $component18);
-switch_int (%varclient_1239) {
+switch_int (%league_area_details_current_tab) {
     case 0 :
         $int21 = ~script7635($string0, $component15, $component18);
         ~league_area_details_draw_scrollbar($int21, $component17, $component18);
     case 1 :
         ~league_area_details_draw_sub_tab($component3, $component1, $graphic9, $rgb8, "Key Info", "Unlocks", "Drops", 3);
-        switch_int (%varclient_1240) {
+        switch_int (%league_area_details_current_subtab) {
             case 0 :
                 $int21 = ~script7635($string1, $component16, $component20);
             case 1 :
@@ -87,7 +87,7 @@ switch_int (%varclient_1239) {
         ~league_area_details_draw_sub_tab($component3, $component1, $graphic9, $rgb8, "Boss", "Items", "", 2);
         ~script7636($int7, $component5);
         ~script7645(0, $int7);
-        switch_int (%varclient_1240) {
+        switch_int (%league_area_details_current_subtab) {
             case 0 :
                 $int21 = ~script7637($component20, $int7, $rgb8, $graphic9);
             case 1 :

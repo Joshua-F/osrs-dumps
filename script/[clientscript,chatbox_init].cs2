@@ -1,6 +1,6 @@
 // 925
 [clientscript,chatbox_init]
-%varclient_980 = clientclock;
+%chat_inittime = clientclock;
 ~chatdefault_setonkey(1);
 if_setonvartransmit("chat_onsetupchange{chat_filter_clan, chat_filter_assist, toplevel_temp, magic_carpet_var, tob_temp_transmit_2, option_chat_colour_public_opaque, option_chat_colour_private_opaque, option_chat_colour_autochat_opaque, option_chat_colour_broadcast_opaque, option_chat_colour_friendschat_opaque, option_chat_colour_clanchat_opaque, option_chat_colour_tradereq_opaque, option_chat_colour_challengereq_opaque, option_chat_colour_guestclan_opaque, option_chat_colour_gimchat_opaque, option_chat_colour_clanbroadcast_opaque, option_chat_colour_gimbroadcast_opaque, option_chat_colour_public_transparent, option_chat_colour_private_transparent, option_chat_colour_autochat_transparent, option_chat_colour_broadcast_transparent, option_chat_colour_friendschat_transparent, option_chat_colour_clanchat_transparent, option_chat_colour_tradereq_transparent, option_chat_colour_challengereq_transparent, option_chat_colour_guestclan_transparent, option_chat_colour_gimchat_transparent, option_chat_colour_clanbroadcast_transparent, option_chat_colour_gimbroadcast_transparent, option_chat_colour_private_split, option_chat_colour_broadcast_split, option_chat_colour_didyouknow_opaque, option_chat_colour_didyouknow_transparent}", chatbox:universe);
 if_setonsubchange("chat_onsubchange(event_com, getwindowmode, if_hassub(chatbox:chatmodal), if_hassub(chatbox:chatoverlay), ~toplevel_getcomponents)", chatbox:universe);
@@ -9,17 +9,17 @@ if_setonfriendtransmit("chat_onchattransmit", chatbox:universe);
 if_setonclantransmit("rebuildchatbox", chatbox:universe);
 if_setonclansettingstransmit("rebuildchatbox", chatbox:universe);
 if_setonmisctransmit("script664(true)", chatbox:universe);
-%varclient_335, %varclient_42 = "", -1;
-if (%varclient_41 >= 0 & %varclient_41 <= 6 | %varclient_41 = 1337) {
-    %varclient_41 = %varclient_41;
+%chatinput, %chat_highlight = "", -1;
+if (%chat_view >= 0 & %chat_view <= 6 | %chat_view = 1337) {
+    %chat_view = %chat_view;
 } else {
-    %varclient_41 = 0;
+    %chat_view = 0;
 }
-%varclient_3, %varclient_4 = -1, 0;
-%varclient_336, %varclient_337, %varclient_338, %varclient_339, %varclient_340, %varclient_341, %varclient_342, %varclient_343, %varclient_344, %varclient_345, %varclient_346, %varclient_347, %varclient_348, %varclient_349, %varclient_350, %varclient_351, %varclient_352, %varclient_353, %varclient_354, %varclient_355 = "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "";
-%varclient_356, %varclient_357 = "", "";
-%varclient_55 = ^min_32bit_int;
-%varclient_358, %varclient_62 = "", 0;
+%chatout_readpos, %chatout_writepos = -1, 0;
+%chatout0, %chatout1, %chatout2, %chatout3, %chatout4, %chatout5, %chatout6, %chatout7, %chatout8, %chatout9, %chatout10, %chatout11, %chatout12, %chatout13, %chatout14, %chatout15, %chatout16, %chatout17, %chatout18, %chatout19 = "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "";
+%last_pm_received_sender, %tradepartner = "", "";
+%chat_lastbroadcast_time = ^min_32bit_int;
+%autotyper, %autochat_pause = "", 0;
 def_int $int0 = 0;
 def_component $component1 = enum(int, component, enum_579, $int0);
 while ($component1 ! null) {

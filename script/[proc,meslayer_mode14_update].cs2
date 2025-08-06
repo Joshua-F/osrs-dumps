@@ -1,18 +1,18 @@
 // 752
 [proc,meslayer_mode14_update](boolean $boolean0, enum $enum1, boolean $boolean2)
-%varclient_66 = 0;
+%objdialog_updatedelay = 0;
 cc_deleteall(chatbox:mes_layer_scrollcontents);
 if_sethide(true, chatbox:mes_layer_toggle);
 def_int $int3 = if_getwidth(chatbox:mes_layer_scrollcontents);
 def_int $int4 = if_getheight(chatbox:mes_layer_scrollcontents);
-if (string_length(%varclient_359) <= 0) {
+if (string_length(%meslayerinput) <= 0) {
     if (%disable_last_searched = 0 & $boolean2 = true & %ge_last_searched ! null & ~script3362($boolean0, $enum1) = true) {
         return;
     }
     ~script753($int3, $int4, "Start typing the name of an item to search for it.", $boolean2);
     return;
 }
-def_int $int5 = oc_find(%varclient_359, $boolean0);
+def_int $int5 = oc_find(%meslayerinput, $boolean0);
 if ($int5 < 0) {
     ~script753($int3, $int4, "Too many matches found. Please refine your search.", $boolean2);
     return;

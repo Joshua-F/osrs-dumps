@@ -2,22 +2,22 @@
 [proc,skillmulti_quantitybuttons_set](int $int0, int $int1)
 def_boolean $boolean2 = enum(int, boolean, enum_1810, $int0);
 if ($boolean2 = true) {
-    %varclient_200 = ~max(1, ~min($int1, %varclient_200));
+    %skillmulti_quantity = ~max(1, ~min($int1, %skillmulti_quantity));
 } else {
-    if (%varclient_200 > 5) {
-        %varclient_200 = 10;
-    } else if (%varclient_200 > 1) {
-        %varclient_200 = 5;
+    if (%skillmulti_quantity > 5) {
+        %skillmulti_quantity = 10;
+    } else if (%skillmulti_quantity > 1) {
+        %skillmulti_quantity = 5;
     } else {
-        %varclient_200 = 1;
+        %skillmulti_quantity = 1;
     }
-    %varclient_200 = ~min(%varclient_200, $int1);
+    %skillmulti_quantity = ~min(%skillmulti_quantity, $int1);
 }
 def_int $int3 = 0;
 def_string $string0 = "X";
 if ($boolean2 = true) {
     if ($int1 > 1) {
-        if (%varclient_200 = 1) {
+        if (%skillmulti_quantity = 1) {
             $int3 = ~skillmulti_quantitybutton_setup(1, 1, skillmulti:1, $int0, $int1, $int3);
         } else {
             $int3 = ~skillmulti_quantitybutton_setup(0, 1, skillmulti:1, $int0, $int1, $int3);
@@ -26,7 +26,7 @@ if ($boolean2 = true) {
         ~skillmulti_wipebutton(skillmulti:1);
     }
     if ($int1 > 5) {
-        if (%varclient_200 = 5) {
+        if (%skillmulti_quantity = 5) {
             $int3 = ~skillmulti_quantitybutton_setup(1, 5, skillmulti:5, $int0, $int1, $int3);
         } else {
             $int3 = ~skillmulti_quantitybutton_setup(0, 5, skillmulti:5, $int0, $int1, $int3);
@@ -35,7 +35,7 @@ if ($boolean2 = true) {
         ~skillmulti_wipebutton(skillmulti:5);
     }
     if ($int1 > 10) {
-        if (%varclient_200 = 10) {
+        if (%skillmulti_quantity = 10) {
             $int3 = ~skillmulti_quantitybutton_setup(1, 10, skillmulti:10, $int0, $int1, $int3);
         } else {
             $int3 = ~skillmulti_quantitybutton_setup(0, 10, skillmulti:10, $int0, $int1, $int3);
@@ -43,14 +43,14 @@ if ($boolean2 = true) {
     } else {
         ~skillmulti_wipebutton(skillmulti:10);
     }
-    if (%varclient_201 = 1 | %varclient_201 = 5 | %varclient_201 = 10 | %varclient_201 = $int1) {
+    if (%skillmulti_suggestedquantity = 1 | %skillmulti_suggestedquantity = 5 | %skillmulti_suggestedquantity = 10 | %skillmulti_suggestedquantity = $int1) {
         ~skillmulti_wipebutton(skillmulti:other);
-    } else if (%varclient_201 < 1 | %varclient_201 > $int1) {
+    } else if (%skillmulti_suggestedquantity < 1 | %skillmulti_suggestedquantity > $int1) {
         ~skillmulti_wipebutton(skillmulti:other);
-    } else if (%varclient_200 = %varclient_201) {
-        $int3 = ~skillmulti_quantitybutton_setup(1, %varclient_201, skillmulti:other, $int0, $int1, $int3);
+    } else if (%skillmulti_quantity = %skillmulti_suggestedquantity) {
+        $int3 = ~skillmulti_quantitybutton_setup(1, %skillmulti_suggestedquantity, skillmulti:other, $int0, $int1, $int3);
     } else {
-        $int3 = ~skillmulti_quantitybutton_setup(0, %varclient_201, skillmulti:other, $int0, $int1, $int3);
+        $int3 = ~skillmulti_quantitybutton_setup(0, %skillmulti_suggestedquantity, skillmulti:other, $int0, $int1, $int3);
     }
     if ($int1 > 2) {
         if_setposition($int3, 0, ^setpos_abs_left, ^setpos_abs_centre, skillmulti:x);
@@ -64,19 +64,19 @@ if ($boolean2 = true) {
     } else {
         ~skillmulti_wipebutton(skillmulti:x);
     }
-    if (%varclient_200 >= $int1) {
+    if (%skillmulti_quantity >= $int1) {
         $int3 = ~skillmulti_quantitybutton_setup(1, $int1, skillmulti:all, $int0, $int1, $int3);
     } else {
         $int3 = ~skillmulti_quantitybutton_setup(0, $int1, skillmulti:all, $int0, $int1, $int3);
     }
 } else {
-    if (%varclient_200 = 1) {
+    if (%skillmulti_quantity = 1) {
         $int3 = ~skillmulti_quantitybutton_setup(1, 1, skillmulti:1, $int0, $int1, $int3);
     } else {
         $int3 = ~skillmulti_quantitybutton_setup(0, 1, skillmulti:1, $int0, $int1, $int3);
     }
     if ($int1 >= 5) {
-        if (%varclient_200 = 5) {
+        if (%skillmulti_quantity = 5) {
             $int3 = ~skillmulti_quantitybutton_setup(1, 5, skillmulti:5, $int0, $int1, $int3);
         } else {
             $int3 = ~skillmulti_quantitybutton_setup(0, 5, skillmulti:5, $int0, $int1, $int3);
@@ -85,7 +85,7 @@ if ($boolean2 = true) {
         ~skillmulti_wipebutton(skillmulti:5);
     }
     if ($int1 >= 10) {
-        if (%varclient_200 = 10) {
+        if (%skillmulti_quantity = 10) {
             $int3 = ~skillmulti_quantitybutton_setup(1, 10, skillmulti:10, $int0, $int1, $int3);
         } else {
             $int3 = ~skillmulti_quantitybutton_setup(0, 10, skillmulti:10, $int0, $int1, $int3);

@@ -1,18 +1,18 @@
 // 7611
 [clientscript,osm_chatbox_filters_toggle_op]
-if (%varclient_1220 = 1) {
+if (%osm_chatbox_disabled = 1) {
     return;
 }
-if (%varclient_1221 = 1) {
-    %varclient_1221 = 0;
+if (%osm_chatbox_filters_disabled = 1) {
+    %osm_chatbox_filters_disabled = 0;
     if (cc_find(toplevel_osm:chat_filter_toggle, 0) = ^true) {
         cc_setgraphic("tli_button01_rectangle_58x40,1");
     }
     if (cc_find(toplevel_osm:chat_filter_toggle, 1) = ^true) {
-        cc_settext("<col=a0a0a0>Chat Filter</col><br><col=ffffff><enum(int, string, enum_5620, %varclient_41)>");
+        cc_settext("<col=a0a0a0>Chat Filter</col><br><col=ffffff><enum(int, string, enum_5620, %chat_view)>");
     }
 } else {
-    %varclient_1221 = 1;
+    %osm_chatbox_filters_disabled = 1;
     if (cc_find(toplevel_osm:chat_filter_toggle, 0) = ^true) {
         cc_setgraphic("tli_button01_rectangle_58x40,0");
     }
@@ -21,4 +21,4 @@ if (%varclient_1221 = 1) {
     }
 }
 ~chat_onsetupchange;
-%varclient_222 = clientclock;
+%osm_tlidodgers_update = clientclock;

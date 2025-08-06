@@ -50,14 +50,14 @@ while ($int48 <= 23) {
     }
     $int48 = calc($int48 + 1);
 }
-%varclient_49 = 0;
+%poll_ypos = 0;
 def_int $int49 = 0;
 while ($int49 <= 23) {
-    %varclient_49 = calc($int49 * 25);
+    %poll_ypos = calc($int49 * 25);
     cc_create($component27, ^iftype_graphic, $int48);
     $int48 = calc($int48 + 1);
     cc_setsize(25, 25, ^setsize_abs, ^setsize_abs);
-    cc_setposition(0, %varclient_49, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setposition(0, %poll_ypos, ^setpos_abs_left, ^setpos_abs_top);
     if ($int49 < 23) {
         cc_setgraphic(enum(stat, graphic, enum_255, $statarray0($int49)));
     } else {
@@ -66,7 +66,7 @@ while ($int49 <= 23) {
     cc_create($component27, ^iftype_text, $int48);
     $int48 = calc($int48 + 1);
     cc_setsize(80, 25, ^setsize_abs, ^setsize_abs);
-    cc_setposition(28, %varclient_49, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setposition(28, %poll_ypos, ^setpos_abs_left, ^setpos_abs_top);
     cc_setcolour(0xffb83f);
     cc_settextfont(p12_full);
     cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
@@ -79,7 +79,7 @@ while ($int49 <= 23) {
     cc_create($component27, ^iftype_text, $int48);
     $int48 = calc($int48 + 1);
     cc_setsize(110, 26, ^setsize_minus, ^setsize_abs);
-    cc_setposition(0, %varclient_49, ^setpos_abs_right, ^setpos_abs_top);
+    cc_setposition(0, %poll_ypos, ^setpos_abs_right, ^setpos_abs_top);
     cc_setcolour(0xff981f);
     cc_settextfont(p11_full);
     cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
@@ -88,9 +88,9 @@ while ($int49 <= 23) {
 }
 cc_deleteall($component28);
 if_setscrollpos(0, 0, $component27);
-%varclient_49 = calc(25 * (23 + 1));
-if (%varclient_49 > if_getheight($component27)) {
-    if_setscrollsize(0, %varclient_49, $component27);
+%poll_ypos = calc(25 * (23 + 1));
+if (%poll_ypos > if_getheight($component27)) {
+    if_setscrollsize(0, %poll_ypos, $component27);
 } else {
     if_setscrollsize(0, 0, $component27);
 }

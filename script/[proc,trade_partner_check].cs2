@@ -1,9 +1,9 @@
 // 210
 [proc,trade_partner_check](int $chattype0, string $string0, int $int1)(boolean)
-if (%varclient_41 ! 6) {
+if (%chat_view ! 6) {
     return(false);
 }
-if (string_length(%varclient_357) <= 0) {
+if (string_length(%tradepartner) <= 0) {
     return(false);
 }
 def_string $string1 = "";
@@ -12,7 +12,7 @@ if ($chattype0 = ^chattype_publicchat | $chattype0 = ^chattype_modchat | $chatty
     if (compare($string1, removetags(chat_playername)) = 0) {
         return(true);
     }
-    if (compare($string1, removetags(%varclient_357)) = 0) {
+    if (compare($string1, removetags(%tradepartner)) = 0) {
         if ($chattype0 = ^chattype_modchat | $chattype0 = ^chattype_modprivatechat) {
             return(true);
         }

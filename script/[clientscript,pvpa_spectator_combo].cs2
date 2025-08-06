@@ -2,39 +2,39 @@
 [clientscript,pvpa_spectator_combo](int $int0, int $int1, int $int2, component $component3)
 switch_int ($int0) {
     case 0 :
-        if (%varclient_995 > $int1) {
-            if (%varclient_994 <= $int2) {
-                if (calc(%varclient_996 + 50) <= clientclock) {
-                    %varclient_995 = ~max($int1, calc(%varclient_995 - 75));
-                    if_setsize(%varclient_995, 0, ^setsize_rel, ^setsize_minus, $component3);
+        if (%pvpa_spectator_left_combo > $int1) {
+            if (%pvpa_spectator_left_last_hp <= $int2) {
+                if (calc(%pvpa_spectator_left_hit_time + 50) <= clientclock) {
+                    %pvpa_spectator_left_combo = ~max($int1, calc(%pvpa_spectator_left_combo - 75));
+                    if_setsize(%pvpa_spectator_left_combo, 0, ^setsize_rel, ^setsize_minus, $component3);
                 }
             } else {
-                %varclient_996 = clientclock;
+                %pvpa_spectator_left_hit_time = clientclock;
             }
         } else {
-            %varclient_995 = $int1;
-            if_setsize(%varclient_995, 0, ^setsize_rel, ^setsize_minus, $component3);
+            %pvpa_spectator_left_combo = $int1;
+            if_setsize(%pvpa_spectator_left_combo, 0, ^setsize_rel, ^setsize_minus, $component3);
         }
-        %varclient_994 = $int2;
-        if (%varclient_995 = $int1) {
+        %pvpa_spectator_left_last_hp = $int2;
+        if (%pvpa_spectator_left_combo = $int1) {
             if_setontimer(null, $component3);
         }
     case 1 :
-        if (%varclient_998 > $int1) {
-            if (%varclient_997 <= $int2) {
-                if (calc(%varclient_999 + 50) <= clientclock) {
-                    %varclient_998 = ~max($int1, calc(%varclient_998 - 75));
-                    if_setsize(%varclient_998, 0, ^setsize_rel, ^setsize_minus, $component3);
+        if (%pvpa_spectator_right_combo > $int1) {
+            if (%pvpa_spectator_right_last_hp <= $int2) {
+                if (calc(%pvpa_spectator_right_hit_time + 50) <= clientclock) {
+                    %pvpa_spectator_right_combo = ~max($int1, calc(%pvpa_spectator_right_combo - 75));
+                    if_setsize(%pvpa_spectator_right_combo, 0, ^setsize_rel, ^setsize_minus, $component3);
                 }
             } else {
-                %varclient_999 = clientclock;
+                %pvpa_spectator_right_hit_time = clientclock;
             }
         } else {
-            %varclient_998 = $int1;
-            if_setsize(%varclient_998, 0, ^setsize_rel, ^setsize_minus, $component3);
+            %pvpa_spectator_right_combo = $int1;
+            if_setsize(%pvpa_spectator_right_combo, 0, ^setsize_rel, ^setsize_minus, $component3);
         }
-        %varclient_997 = $int2;
-        if (%varclient_998 = $int1) {
+        %pvpa_spectator_right_last_hp = $int2;
+        if (%pvpa_spectator_right_combo = $int1) {
             if_setontimer(null, $component3);
         }
 }

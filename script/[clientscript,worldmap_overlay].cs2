@@ -17,8 +17,8 @@ $int10, $int11 = worldmap_getdisplayposition;
 def_int $int12 = 0;
 def_int $int13 = 0;
 def_coord $coord14 = null;
-if (%varclient_188 ! $coord6 & %varclient_188 ! null) {
-    $coord14 = ~worldmap_findcoordinmap($wma7, %varclient_188);
+if (%worldmap_youarehere ! $coord6 & %worldmap_youarehere ! null) {
+    $coord14 = ~worldmap_findcoordinmap($wma7, %worldmap_youarehere);
     if ($coord14 ! null) {
         $int12, $int13 = worldmap_getdisplaycoord($coord6);
         if ($int12 >= calc($int10 - 25) & $int12 <= calc($int10 + 25) & $int13 >= calc($int11 - 25) & $int13 <= calc($int11 + 25)) {
@@ -26,10 +26,10 @@ if (%varclient_188 ! $coord6 & %varclient_188 ! null) {
         }
     }
 }
-if ($int10 = $int2 & $int11 = $int3 & $int8 = $int4 & $int9 = $int5 & %varclient_188 = $coord6) {
+if ($int10 = $int2 & $int11 = $int3 & $int8 = $int4 & $int9 = $int5 & %worldmap_youarehere = $coord6) {
     return;
 }
-if_setontimer("worldmap_overlay($component0, $component1, $int10, $int11, $int8, $int9, %varclient_188)", $component0);
+if_setontimer("worldmap_overlay($component0, $component1, $int10, $int11, $int8, $int9, %worldmap_youarehere)", $component0);
 def_int $int15 = calc($int11 + $int9 / 2);
 def_int $int16 = calc($int11 - $int9 / 2);
 def_int $int17 = calc($int10 + $int8 / 2);
