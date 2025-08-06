@@ -18,8 +18,8 @@ if ($stat0 = slayer) {
 if (~xptracker_iscombat($stat0) = false) {
     return(-1);
 }
-if (%varclient_568 ! %hpbar_hud_basehp & %hpbar_hud_basehp ! 0) {
-    %varclient_568 = %hpbar_hud_basehp;
+if (%xptracker_last_hp ! %hpbar_hud_basehp & %hpbar_hud_basehp ! 0) {
+    %xptracker_last_hp = %hpbar_hud_basehp;
 }
 def_enum $enum6 = enum(int, enum, enum_3908, %combat_weapon_category);
 def_int $int7 = %com_mode;
@@ -35,7 +35,7 @@ def_int $int10 = 0;
 def_int $int11 = 0;
 def_int $int12 = 0;
 if (($int9 = 1 & %com_mode = 3 | %autocast_defmode = 1) & $stat0 = defence) {
-    $int3 = %varclient_568;
+    $int3 = %xptracker_last_hp;
     $int10 = %xptracker_defence_multiplier;
     if ($int4 = 3) {
         $int10 = calc($int10 * 10);
@@ -78,7 +78,7 @@ if (($int9 = 1 & %com_mode = 3 | %autocast_defmode = 1) & $stat0 = defence) {
 if ($int11 <= 0) {
     return(-2);
 }
-$int3 = scale(%varclient_568, 3, ~max(3, $int11));
+$int3 = scale(%xptracker_last_hp, 3, ~max(3, $int11));
 if ($int3 <= 0) {
     return(-2);
 }

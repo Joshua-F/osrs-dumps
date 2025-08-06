@@ -1,15 +1,15 @@
 // 84
 [proc,rebuildchatbox](int $int0)
-if (%varclient_1112 = clientclock) {
-    %varclient_65 = calc(clientclock + 1);
+if (%chat_lastrebuild = clientclock) {
+    %chat_force_chatbox_rebuild = calc(clientclock + 1);
     if_setontimer("script664(false)", chatbox:universe);
     return;
 }
-%varclient_1112 = clientclock;
+%chat_lastrebuild = clientclock;
 def_int $int1 = if_getwidth(chatbox:scrollarea);
 def_string $string0 = removetags(chat_playername);
 def_int $int2 = 0;
-if (%varclient_41 = 3) {
+if (%chat_view = 3) {
     $int2 = 1;
 }
 def_int $int3 = 0;
@@ -71,7 +71,7 @@ def_int $int6 = 0;
 def_int $int7 = 0;
 def_int $int8 = 0;
 def_component $component9 = enum(int, component, enum_579, $int8);
-if ((%varclient_41 = 0 | %varclient_41 = 2) & string_length(chat_getmessagefilter) > 0) {
+if ((%chat_view = 0 | %chat_view = 2) & string_length(chat_getmessagefilter) > 0) {
     $int7 = ~script199("<$string4>Public chat filtering:</col> <lt><lowercase(escape(chat_getmessagefilter))><gt>", $int8, $component9, chatbox:scrollarea, $int1, 3, 14, $int6, ^setpos_abs_top, 103, $int3, $boolean4);
     if_clearops($component9);
     if_setonop(null, $component9);
@@ -123,7 +123,7 @@ while ($int10 ! -1 & $component9 ! null) {
             case ^chattype_loginlogoutnotification :
                 $int7 = ~script199(~affixtimestamp($string24, "<$string5><$string21></col>", null), $int8, $component9, chatbox:scrollarea, $int1, 3, 14, $int6, ^setpos_abs_top, 103, $int3, $boolean4);
                 if (%loginlogout_permanent = 0) {
-                    %varclient_65 = calc($int12 + 500 + 1);
+                    %chat_force_chatbox_rebuild = calc($int12 + 500 + 1);
                     if_setontimer("script664(false)", chatbox:universe);
                 }
             case ^chattype_privatechatout :
@@ -467,5 +467,5 @@ while ($int8 > 0) {
     }
 }
 if_setscrollsize(0, $int24, chatbox:scrollarea);
-~scrollbar_resize(chatbox:chatscrollbar, chatbox:scrollarea, calc(%varclient_7 + ($int24 - %varclient_8)));
-%varclient_7, %varclient_8 = if_getscrolly(chatbox:scrollarea), $int24;
+~scrollbar_resize(chatbox:chatscrollbar, chatbox:scrollarea, calc(%chat_lastscrollpos + ($int24 - %chat_lastscrollsize)));
+%chat_lastscrollpos, %chat_lastscrollsize = if_getscrolly(chatbox:scrollarea), $int24;

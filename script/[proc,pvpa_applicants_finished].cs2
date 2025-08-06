@@ -1,15 +1,15 @@
 // 6282
 [proc,pvpa_applicants_finished]
 cc_deleteall(pvp_arena_applicants:layer_holder);
-if (%varclient_49 > if_getheight(pvp_arena_applicants:layer_holder)) {
-    if_setscrollsize(0, %varclient_49, pvp_arena_applicants:layer_holder);
+if (%poll_ypos > if_getheight(pvp_arena_applicants:layer_holder)) {
+    if_setscrollsize(0, %poll_ypos, pvp_arena_applicants:layer_holder);
 } else {
     if_setscrollsize(0, 0, pvp_arena_applicants:layer_holder);
 }
 if_setscrollpos(0, 0, pvp_arena_applicants:layer_holder);
 ~scrollbar_vertical(pvp_arena_applicants:scrollbar, pvp_arena_applicants:layer_holder, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
 def_int $int0 = ~thinbox(pvp_arena_applicants:layer_holder, 0);
-if (%varclient_43 <= 0) {
+if (%poll_id <= 0) {
     cc_create(pvp_arena_applicants:layer_holder, ^iftype_text, $int0);
     cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
     cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
@@ -19,9 +19,9 @@ if (%varclient_43 <= 0) {
     cc_settextshadow(true);
     cc_settext("Your group does not have any applicants.");
 }
-switch_int (%varclient_993) {
+switch_int (%pvpa_applicant_sort) {
     case 1, 2, 0, 3 :
     case default :
-        %varclient_993 = 0;
+        %pvpa_applicant_sort = 0;
 }
 ~pvpa_applicants_setsort;

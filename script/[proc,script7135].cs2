@@ -15,7 +15,7 @@ def_component $component9 = loottools:ground_items_bottom;
 def_component $component10 = loottools:ground_items_lists;
 def_int $int11 = 0;
 if_setsize(0, 20, ^setsize_minus, ^setsize_abs, loottools:ground_items_top);
-if (~on_mobile = true & %varclient_1223 = 2) {
+if (~on_mobile = true & %osm_popout_state = 2) {
     if_sethide(true, loottools:header_container);
     if_setsize(0, 0, ^setsize_minus, ^setsize_minus, loottools:categories_container);
     if_sethide(true, loottools:dropdown_container);
@@ -32,16 +32,16 @@ if (if_getheight($component5) < 500) {
     if_setsize(0, 128, ^setsize_minus, ^setsize_minus, $component10);
     if_setposition(0, 108, ^setpos_abs_left, ^setpos_abs_bottom, $component10);
     if (cc_find($component4, 0) = ^true) {
-        if (%varclient_1257 > 0) {
-            $int11 = %varclient_1257;
+        if (%osm_popout_scrollpos_grounditems > 0) {
+            $int11 = %osm_popout_scrollpos_grounditems;
         } else {
             $int11 = if_getscrolly($component7);
         }
         ~scrollbar_resize($component8, $component7, $int11);
     } else {
         ~scrollbar_vertical($component8, $component7, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-        if (%varclient_1257 > 0) {
-            ~scrollbar_resize($component8, $component7, %varclient_1257);
+        if (%osm_popout_scrollpos_grounditems > 0) {
+            ~scrollbar_resize($component8, $component7, %osm_popout_scrollpos_grounditems);
         }
     }
 } else {
@@ -105,8 +105,8 @@ while ($int13 < 10) {
     $int13 = calc($int13 + 1);
 }
 if (cc_find($component4, 0) = ^true) {
-    if (%varclient_1256 > 0) {
-        $int11 = %varclient_1256;
+    if (%osm_popout_scrollpos_loottracker > 0) {
+        $int11 = %osm_popout_scrollpos_loottracker;
     } else {
         $int11 = if_getscrolly($component3);
     }
@@ -118,7 +118,7 @@ if (cc_find($component4, 0) = ^true) {
         if_setscrollsize(0, 0, $component3);
     }
     ~scrollbar_vertical($component4, $component3, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-    if (%varclient_1256 > 0) {
-        ~scrollbar_resize($component4, $component3, %varclient_1256);
+    if (%osm_popout_scrollpos_loottracker > 0) {
+        ~scrollbar_resize($component4, $component3, %osm_popout_scrollpos_loottracker);
     }
 }

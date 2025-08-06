@@ -3,14 +3,14 @@
 def_int $int15 = $int14;
 if (%hpbar_hud_npc ! null & nc_param(%hpbar_hud_npc, param_945) = 1 | %hpbar_hud_boss = 0) {
     $int14 = 0;
-} else if (%varclient_394 = 2) {
+} else if (%hpbar_fade_status = 2) {
     $int14 = if_gettrans($component2);
 } else if ($int14 ! if_gettrans($component2)) {
     return;
 }
 ~hp_hud_update($component0, $component9, $component6, $component7, $component8, $component1, $component4, $component10, $component11, $component12, $component13, true);
 $int14 = ~max(0, calc($int14 - 3));
-%varclient_394 = 1;
+%hpbar_fade_status = 1;
 if_settrans($int14, $component2);
 if_settrans($int14, $component3);
 if_settrans($int14, $component5);
@@ -25,7 +25,7 @@ if_settrans($int14, $component4);
 if_settrans($int14, $component9);
 if ($int14 <= 0) {
     if_setontimer(null, $component2);
-    %varclient_394 = 0;
+    %hpbar_fade_status = 0;
     return;
 }
 if_setontimer("hp_hud_fade_in($component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10, $component11, $component12, $component13, $int14)", $component2);

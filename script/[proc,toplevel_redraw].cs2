@@ -22,8 +22,8 @@ def_component $component3 = enum(component, component, $enum1, toplevel_osrs_str
 def_int $int4 = 0;
 def_int $int5 = 0;
 $int5, $int4 = viewport_getfov;
-if (%varclient_73 > 0 & %varclient_74 > 0 & ($int5 ! %varclient_73 | $int4 ! %varclient_74)) {
-    ~camera_do_zoom(%varclient_73, %varclient_74);
+if (%camera_zoom_small > 0 & %camera_zoom_big > 0 & ($int5 ! %camera_zoom_small | $int4 ! %camera_zoom_big)) {
+    ~camera_do_zoom(%camera_zoom_small, %camera_zoom_big);
 }
 if_setonscrollwheel("camera_zoom(event_mousey)", $component3);
 if_setpinch(true, $component3);
@@ -186,7 +186,7 @@ if (%buff_bar_hidden = 0 & %cutscene_status = 0) {
 } else {
     if_sethide(true, $component2);
 }
-%varclient_384 = clientclock;
+%buff_bar_dodger_update = clientclock;
 $component2 = enum(component, component, $enum1, toplevel_osrs_stretch:pm_container);
 if (%cutscene_status = 0) {
     if_sethide(false, $component2);
@@ -263,7 +263,7 @@ if (%cutscene_status = 0) {
 } else {
     if_sethide(true, $component2);
 }
-if (%varclient_967 = 0) {
+if (%option_audio_override = 0) {
     ~script7109;
     ~script2475;
     ~script3643;

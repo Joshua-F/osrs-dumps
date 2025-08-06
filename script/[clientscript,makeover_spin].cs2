@@ -2,26 +2,26 @@
 [clientscript,makeover_spin](component $component0, int $int1)
 def_int $int2 = 0;
 if (cc_find($component0, $int1) = ^true) {
-    if (%varclient_1151 = 0) {
-        if (%varclient_1152 = 0) {
+    if (%makeover_model_spin_pause = 0) {
+        if (%makeover_model_spin_direction = 0) {
             $int2 = calc((cc_getmodelangle_y - 5 + 2047) % 2047);
             if ($int2 <= 1535 & $int2 > 1023) {
-                %varclient_1150 = 1535;
-                %varclient_1152 = 1;
+                %makeover_model_spin_position = 1535;
+                %makeover_model_spin_direction = 1;
             } else {
-                %varclient_1150 = $int2;
+                %makeover_model_spin_position = $int2;
             }
         } else {
             $int2 = calc((cc_getmodelangle_y + 5) % 2047);
             if ($int2 >= 511 & $int2 < 1023) {
-                %varclient_1150 = 511;
-                %varclient_1152 = 0;
+                %makeover_model_spin_position = 511;
+                %makeover_model_spin_direction = 0;
             } else {
-                %varclient_1150 = $int2;
+                %makeover_model_spin_position = $int2;
             }
         }
-        cc_setmodelangle(0, 0, 0, %varclient_1150, 0, 1000);
+        cc_setmodelangle(0, 0, 0, %makeover_model_spin_position, 0, 1000);
     } else {
-        cc_setmodelangle(0, 0, 0, %varclient_1150, 0, 1000);
+        cc_setmodelangle(0, 0, 0, %makeover_model_spin_position, 0, 1000);
     }
 }
