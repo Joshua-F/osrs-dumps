@@ -1,7 +1,6 @@
 // 7930
-[proc,dom_end_level_ui_init_loot](component $component0, int $int1)
+[proc,dom_end_level_ui_init_loot](component $component0, int $int1, int $int2)
 cc_deleteall($component0);
-def_int $int2 = inv_size(dom_lootpile);
 def_int $int3 = 4;
 def_int $int4 = 4;
 def_int $int5 = 36;
@@ -9,7 +8,7 @@ def_int $int6 = 32;
 def_int $int7 = calc((if_getwidth($component0) + $int3) / ($int5 + $int3));
 def_int $int8 = calc((if_getheight($component0) + $int4) / ($int6 + $int4));
 def_int $int9 = 0;
-while ($int9 < $int2) {
+while ($int9 < 28) {
     cc_create($component0, ^iftype_graphic, $int9);
     cc_setsize($int5, $int6, ^setsize_abs, ^setsize_abs);
     cc_setposition(calc($int9 % $int7 * ($int5 + $int3)), calc($int9 / $int7 * ($int6 + $int4)), ^setpos_abs_left, ^setpos_abs_top);
@@ -17,5 +16,5 @@ while ($int9 < $int2) {
     cc_setoutline(1);
     $int9 = calc($int9 + 1);
 }
-if_setoninvtransmit("dom_end_level_ui_draw_loot($component0, $int1){dom_lootpile}", $component0);
-~dom_end_level_ui_draw_loot($component0, $int1);
+if_setoninvtransmit("dom_end_level_ui_draw_loot($component0, $int1, $int2){dom_lootpile_during, dom_lootpile}", $component0);
+~dom_end_level_ui_draw_loot($component0, $int1, $int2);
