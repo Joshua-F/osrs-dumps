@@ -1,20 +1,20 @@
 // 2537
 [proc,cr_quests_ui_init]
-%varclient_1004 = -1;
-if (~string_isnullorempty(%varclient_1000) = true) {
-    %varclient_1002 = 1;
+%cr_quests_ui_clicked_recommendation_index = -1;
+if (~string_isnullorempty(%cr_quests_client_cached_recommendations) = true) {
+    %cr_quests_ui_awaiting_data = 1;
     cc_deleteall(cr_ui:quests_recommendation_entries);
     ~loading_icon_init(cr_ui:quests_recommendation_entries, null, enum_3787, 10, 1000, 3000, 512, 1024, 0, 3, "");
     return;
 }
-if (%varclient_1001 = 1) {
+if (%cr_quests_ui_recommendations_list_built = 1) {
     return;
 }
-%varclient_1002 = 0;
+%cr_quests_ui_awaiting_data = 0;
 if_setonstattransmit("script5496", cr_ui:quests_recommendations);
 if_setonvartransmit("script5498{qp_total, qp_total2, qp_total3}", cr_ui:quests_recommendations);
 ~cr_quests_ui_create_header;
 cc_deleteall(cr_ui:quests_scrollbar);
 ~scrollbar_vertical(cr_ui:quests_scrollbar, cr_ui:quests_recommendations, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
 ~cr_quests_ui_create_list;
-%varclient_1001 = 1;
+%cr_quests_ui_recommendations_list_built = 1;

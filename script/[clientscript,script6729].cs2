@@ -15,11 +15,11 @@ cc_deleteall(toa_partydetails:main);
 if_sethide(false, toa_partydetails:members_header);
 if_sethide(false, toa_partydetails:applicants_header);
 ~script6768;
-def_int $int8 = calc(%varclient_178 - 8);
-switch_int (%varclient_181) {
+def_int $int8 = calc(%raids_count - 8);
+switch_int (%raids_listsort_details) {
     case 0, 1, 2, 3, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 6, 7 :
     case default :
-        %varclient_181 = 0;
+        %raids_listsort_details = 0;
 }
 ~toa_partydetails_setsort($int0, $int8);
 if ($int8 <= 0) {
@@ -52,12 +52,12 @@ if ($int4 = 0) {
 } else if ($int4 = 2) {
     $int11 = 1;
     if_sethide(false, toa_partydetails:invocations);
-    if (%varclient_1086 = 1 & $int0 ! 2) {
-        %varclient_1086 = 0;
+    if (%toa_invocations_layout_rewards_hidden = 1 & $int0 ! 2) {
+        %toa_invocations_layout_rewards_hidden = 0;
     }
-    if (%varclient_1086 = 0) {
+    if (%toa_invocations_layout_rewards_hidden = 0) {
         ~toa_invocations_layout_setup(1, 0);
-    } else if (%varclient_1086 = 1) {
+    } else if (%toa_invocations_layout_rewards_hidden = 1) {
         ~toa_invocations_layout_setup(1, 1);
     } else {
         ~toa_invocations_layout_setup(0, 0);
@@ -70,8 +70,8 @@ if ($int4 = 0) {
     if_sethide(false, toa_partydetails:summary);
 }
 def_string $string0 = "";
-if (%varclient_1087 > 0) {
-    $string0 = " (<tostring(%varclient_1087)>)";
+if (%raids_count_2 > 0) {
+    $string0 = " (<tostring(%raids_count_2)>)";
 }
 def_string $string1 = "";
 if ($int8 > 0) {

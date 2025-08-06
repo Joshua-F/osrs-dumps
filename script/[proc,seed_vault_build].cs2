@@ -1,6 +1,6 @@
 // 2820
 [proc,seed_vault_build](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6)
-%varclient_374 = clientclock;
+%seed_vault_built = clientclock;
 cc_deleteall($component0);
 cc_deleteall($component1);
 cc_deleteall($component2);
@@ -123,7 +123,7 @@ if (~seed_vault_searching = true) {
     cc_setcolour(0xff981f);
     cc_settextfont(b12_full);
     cc_settextshadow(true);
-    cc_settext("Search results: <lowercase(%varclient_359)>");
+    cc_settext("Search results: <lowercase(%meslayerinput)>");
     cc_setposition(5, $int14, ^setpos_abs_left, ^setpos_abs_top);
     $int14 = calc(cc_gety + cc_getheight + 2);
     .cc_create($component3, ^iftype_graphic, 0);
@@ -176,8 +176,8 @@ while ($int8 < 93) {
             if (~seed_vault_searching = false) {
                 cc_setdragdeadtime(5);
                 cc_setdragdeadzone(5);
-                cc_setondrag("seed_vault_drag_obj($component0, $component1, $int8, event_mousex, event_mousey, $component4, $component5, %varclient_374)");
-                .cc_setondrag("seed_vault_drag_text($component0, $component1, $int8, event_mousex, event_mousey, $component4, $component5, %varclient_374)");
+                cc_setondrag("seed_vault_drag_obj($component0, $component1, $int8, event_mousex, event_mousey, $component4, $component5, %seed_vault_built)");
+                .cc_setondrag("seed_vault_drag_text($component0, $component1, $int8, event_mousex, event_mousey, $component4, $component5, %seed_vault_built)");
                 .cc_setdragdeadtime(5);
                 .cc_setdragdeadzone(5);
                 cc_setondragcomplete("seed_vault_drop($component0, $component1, event_comsubid, event_comsubid2, cc_getx, cc_gety)");
@@ -231,8 +231,8 @@ if (~seed_vault_searching = false) {
 def_int $int20 = 0;
 def_int $int21 = calc($intarray1($int7) + $int16 + 32 + $int11);
 if ($int21 > if_getheight($component4)) {
-    if (%varclient_376 > 0) {
-        $int20 = %varclient_376;
+    if (%seed_vault_scrollpos > 0) {
+        $int20 = %seed_vault_scrollpos;
     }
     if_setscrollsize(0, $int21, $component4);
     ~scrollbar_resize($component5, $component4, $int20);
