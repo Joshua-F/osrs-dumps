@@ -1,9 +1,9 @@
 // 6050
 [proc,health_regen_values](int $int)(int, int)
-if (%varclient_473 > 0) {
-    $int = calc($int - %varclient_473);
+if (%last_health_regen_synch > 0) {
+    $int = calc($int - %last_health_regen_synch);
     $int = calc($int * 30);
 } else {
     $int = 0;
 }
-return(getbit_range(%varclient_987, 0, 10), $int);
+return(getbit_range(%last_regen_rate, 0, 10), $int);

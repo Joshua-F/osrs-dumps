@@ -1,15 +1,15 @@
 // 5174
 [clientscript,helper_agility_end_lap](int $int0, int $int1)
-if (%varclient_537 ! %helper_agility_current_course) {
+if (%helper_agility_course_drawn ! %helper_agility_current_course) {
     return;
 }
-if (%varclient_532 = 0) {
+if (%helper_agility_course_start_time = 0) {
     return;
 }
-%varclient_533 = calc(%varclient_533 + (1 + $int1));
-%varclient_539 = calc(%varclient_536 / 10);
-%varclient_536 = 0;
+%helper_agility_laps_completed = calc(%helper_agility_laps_completed + (1 + $int1));
+%helper_agility_lap_xp = calc(%helper_agility_xp_gained / 10);
+%helper_agility_xp_gained = 0;
 ~script5172;
-if (%varclient_533 > 1) {
-    %varclient_535 = calc(%varclient_533 * 6000 / ~max(calc($int0 - %varclient_532), 1));
+if (%helper_agility_laps_completed > 1) {
+    %helper_agility_laps_per_hour = calc(%helper_agility_laps_completed * 6000 / ~max(calc($int0 - %helper_agility_course_start_time), 1));
 }

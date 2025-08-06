@@ -1,12 +1,12 @@
 // 4519
 [proc,stat_boosts_hud_update_timer_targets]
-%varclient_467 = %varclient_461;
-%varclient_468 = %varclient_462;
-%varclient_469 = %varclient_463;
-def_int $int0 = calc(%varclient_463 + %varclient_462 * 30);
-def_int $int1 = calc(%varclient_466 + %varclient_465 * 30);
-if (%varclient_467 <= 0 | %varclient_464 > 0 & $int1 < $int0) {
-    %varclient_467 = %varclient_464;
-    %varclient_468 = %varclient_465;
-    %varclient_469 = %varclient_466;
+%sbh_restore_up_rate = %sbh_restore_up_rate_standard;
+%sbh_cycles_to_next_restore_up = %sbh_cycles_to_next_restore_up_standard;
+%sbh_last_update_time_restore_up = %sbh_last_update_time_restore_up_standard;
+def_int $int0 = calc(%sbh_last_update_time_restore_up_standard + %sbh_cycles_to_next_restore_up_standard * 30);
+def_int $int1 = calc(%sbh_last_update_time_restore_up_rapidrestore + %sbh_cycles_to_next_restore_up_rapidrestore * 30);
+if (%sbh_restore_up_rate <= 0 | %sbh_restore_up_rate_rapidrestore > 0 & $int1 < $int0) {
+    %sbh_restore_up_rate = %sbh_restore_up_rate_rapidrestore;
+    %sbh_cycles_to_next_restore_up = %sbh_cycles_to_next_restore_up_rapidrestore;
+    %sbh_last_update_time_restore_up = %sbh_last_update_time_restore_up_rapidrestore;
 }

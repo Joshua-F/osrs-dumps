@@ -1,18 +1,18 @@
 // 75
 [proc,chatout_scrollup]
-def_int $int = %varclient_3;
+def_int $int = %chatout_readpos;
 def_string $string = null;
 if ($int = -1) {
-    $int = %varclient_4;
+    $int = %chatout_writepos;
 }
-if (%varclient_3 ! %varclient_4) {
+if (%chatout_readpos ! %chatout_writepos) {
     $int = calc($int - 1);
     if ($int < 0) {
         $int = 19;
     }
     $string = ~chatout_get($int);
     if (string_length($string) > 0) {
-        %varclient_335 = $string;
-        %varclient_3 = $int;
+        %chatinput = $string;
+        %chatout_readpos = $int;
     }
 }
