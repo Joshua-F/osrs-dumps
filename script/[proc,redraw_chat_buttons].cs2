@@ -4,7 +4,7 @@ def_graphic $graphic = null;
 def_int $int = 0;
 def_enum $enum = ~toplevel_getcomponents;
 def_component $component = null;
-if (~on_mobile = true & %varclient_1220 = 1 & %settings_mobile_show_filter_stones_enabled = 0) {
+if (~on_mobile = true & %osm_chatbox_disabled = 1 & %settings_mobile_show_filter_stones_enabled = 0) {
     if (calc(~chat_alert_get(73) / 25 % 2) = 1) {
         if (cc_find(toplevel_osm:chat_toggle, 0) = true) {
             cc_setgraphic("tli_button01_rectangle_58x40,2");
@@ -21,15 +21,15 @@ while ($int <= 6) {
     } else {
         if_setsize(56, 22, ^setsize_abs, ^setsize_abs, $component);
     }
-    if (%varclient_41 = $int) {
+    if (%chat_view = $int) {
         if ($enum = enum_1745) {
             $graphic = "tli_button01_rectangle_58x24,1";
-        } else if (%varclient_42 = $int) {
+        } else if (%chat_highlight = $int) {
             $graphic = "chat_tab_button,3";
         } else {
             $graphic = "chat_tab_button,2";
         }
-    } else if (%varclient_42 = $int) {
+    } else if (%chat_highlight = $int) {
         if ($enum = enum_1745) {
             $graphic = "tli_button01_rectangle_58x24,1";
         } else {

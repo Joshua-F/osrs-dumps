@@ -1,6 +1,6 @@
 // 3204
 [proc,league_tasks_draw_list](int $int0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10, component $component11, component $component12, component $component13, component $component14, component $component15, component $component16, component $component17, component $component18)
-def_int $int19 = %varclient_1179;
+def_int $int19 = %league_tasks_scroll_pos;
 if ($int19 = -1) {
     $int19 = if_getscrolly($component1);
 }
@@ -21,7 +21,7 @@ def_int $int21 = ~script1912;
 def_int $int22 = calc(if_getheight(league_tasks:infinity) - $int21);
 def_int $int23 = 0;
 def_boolean $boolean24 = ~on_mobile;
-if (~script7925 = false | %varclient_1181 = 0) {
+if (~script7925 = false | %league_tasks_has_been_moved = 0) {
     $int23 = 1;
 }
 def_enum $enum25 = ~toplevel_getcomponents;
@@ -33,10 +33,10 @@ def_int $int30 = if_gety($component26);
 if_sethide(false, league_tasks:universe);
 if_sethide(true, league_tasks:resize_preview);
 if ($int23 = 0) {
-    $int27 = max(350, min(%varclient_1175, $int20));
-    $int28 = max(300, min(%varclient_1176, $int22));
-    $int29 = max(0, min(%varclient_1177, calc($int20 - $int27)));
-    $int30 = max($int21, min(%varclient_1178, calc($int21 + $int22 - $int28)));
+    $int27 = max(350, min(%league_tasks_width, $int20));
+    $int28 = max(300, min(%league_tasks_height, $int22));
+    $int29 = max(0, min(%league_tasks_x, calc($int20 - $int27)));
+    $int30 = max($int21, min(%league_tasks_y, calc($int21 + $int22 - $int28)));
 }
 if ($boolean24 = false) {
     if_setposition($int29, $int30, ^setpos_abs_left, ^setpos_abs_top, league_tasks:universe);
@@ -126,7 +126,7 @@ def_int $int43 = -1;
 def_int $int44 = -1;
 def_int $int45 = -1;
 def_int $int46 = 0;
-def_string $string2 = %varclient_1180;
+def_string $string2 = %league_tasks_search_string;
 def_int $int47 = string_length(~script7124($string2));
 def_int $int48 = 1;
 if (%league_task_filter_tier = 0 & %league_task_filter_type = 0 & %league_task_filter_area = 0 & $int47 <= 1) {
