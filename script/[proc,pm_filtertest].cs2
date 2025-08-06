@@ -3,7 +3,7 @@
 def_int $int3 = ~loginlogout_setting_get;
 switch_int ($chattype0) {
     case ^chattype_modprivatechat :
-        if ($int1 < %varclient_175) {
+        if ($int1 < %private_chat_cleared_time) {
             return(false);
         }
         if ($int2 = 2) {
@@ -11,7 +11,7 @@ switch_int ($chattype0) {
         }
         return(true);
     case ^chattype_privatechat :
-        if ($int1 < %varclient_175) {
+        if ($int1 < %private_chat_cleared_time) {
             return(false);
         }
         if ($int2 = 2) {
@@ -25,7 +25,7 @@ switch_int ($chattype0) {
         }
         return(false);
     case ^chattype_loginlogoutnotification, ^chattype_privatechatout :
-        if ($int1 < %varclient_175) {
+        if ($int1 < %private_chat_cleared_time) {
             return(false);
         }
         if ($chattype0 = ^chattype_loginlogoutnotification) {

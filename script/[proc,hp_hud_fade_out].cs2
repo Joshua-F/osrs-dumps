@@ -1,12 +1,12 @@
 // 2890
 [proc,hp_hud_fade_out](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10, component $component11, component $component12, component $component13, int $int14)
-if (%varclient_394 = 1) {
+if (%hpbar_fade_status = 1) {
     $int14 = if_gettrans($component2);
 } else if ($int14 ! if_gettrans($component2)) {
     return;
 }
 $int14 = ~min(255, calc($int14 + 3));
-%varclient_394 = 2;
+%hpbar_fade_status = 2;
 if_settrans($int14, $component2);
 if_settrans($int14, $component3);
 if_settrans($int14, $component5);
@@ -21,7 +21,7 @@ if_settrans($int14, $component4);
 if_settrans($int14, $component9);
 if ($int14 >= 255) {
     if_setontimer(null, $component2);
-    %varclient_394 = 0;
+    %hpbar_fade_status = 0;
     return;
 }
 if_setontimer("hp_hud_fade_out($component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10, $component11, $component12, $component13, $int14)", $component2);

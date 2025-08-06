@@ -7,24 +7,24 @@ switch_int ($int1) {
             case 1 :
                 ~chat_button_switch($int1, $int2);
             case 2 :
-                %varclient_945 = 0;
+                %chatbox_mode = 0;
                 ~redraw_chat_buttons;
                 ~script223;
             case 3 :
-                %varclient_945 = 1;
+                %chatbox_mode = 1;
                 ~redraw_chat_buttons;
                 ~script223;
             case 4 :
-                %varclient_945 = 2;
+                %chatbox_mode = 2;
                 ~redraw_chat_buttons;
                 ~script223;
             case 5 :
-                %varclient_945 = 3;
+                %chatbox_mode = 3;
                 ~redraw_chat_buttons;
                 ~script223;
             case 6 :
                 if (~is_group_iron = true) {
-                    %varclient_945 = 4;
+                    %chatbox_mode = 4;
                 }
                 ~redraw_chat_buttons;
                 ~script223;
@@ -73,22 +73,22 @@ switch_int ($int1) {
                 ~rebuildchatbox($int2);
                 ~rebuildpmbox($int2);
             case 7 :
-                %varclient_199 = clientclock;
+                %public_chat_cleared_time = clientclock;
                 ~rebuildchatbox($int2);
             case 8 :
                 ~meslayer_mode12;
             case 9 :
                 ~meslayer_mode13;
             case 10 :
-                if (string_length(%varclient_358) > 0) {
-                    if (%varclient_62 = 1) {
-                        %varclient_62 = 0;
+                if (string_length(%autotyper) > 0) {
+                    if (%autochat_pause = 1) {
+                        %autochat_pause = 0;
                     } else {
-                        %varclient_62 = 1;
+                        %autochat_pause = 1;
                     }
                     ~chat_autotyper_updateop;
                 } else {
-                    %varclient_62 = 0;
+                    %autochat_pause = 0;
                     ~chat_autotyper_updateop;
                 }
         }
@@ -112,7 +112,7 @@ switch_int ($int1) {
                 ~rebuildchatbox($int2);
                 ~rebuildpmbox($int2);
             case 7 :
-                %varclient_175 = clientclock;
+                %private_chat_cleared_time = clientclock;
                 if (%option_pm = 0) {
                     ~rebuildchatbox($int2);
                 } else {
@@ -139,7 +139,7 @@ switch_int ($int1) {
                 ~rebuildchatbox($int2);
                 ~rebuildpmbox($int2);
             case 7 :
-                %varclient_439 = clientclock;
+                %friendschat_cleared_time = clientclock;
                 ~rebuildchatbox($int2);
         }
     case 5 :
@@ -162,7 +162,7 @@ switch_int ($int1) {
                 ~rebuildchatbox($int2);
                 ~rebuildpmbox($int2);
             case 7 :
-                %varclient_440 = clientclock;
+                %clan_chat_cleared_time = clientclock;
                 ~rebuildchatbox($int2);
         }
     case 6 :
@@ -186,7 +186,7 @@ switch_int ($int1) {
                 ~rebuildpmbox($int2);
             case 7 :
                 if (~is_group_iron = true) {
-                    %varclient_946 = clientclock;
+                    %group_chat_cleared_time = clientclock;
                     ~rebuildchatbox($int2);
                 }
         }

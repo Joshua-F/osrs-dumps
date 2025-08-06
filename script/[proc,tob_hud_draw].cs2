@@ -1,6 +1,6 @@
 // 2297
 [proc,tob_hud_draw](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10, component $component11, component $component12, component $component13, component $component14, component $component15, component $component16, component $component17, component $component18, component $component19)
-%varclient_219 = calc(clientclock + 30);
+%tob_client_nextrefresh = calc(clientclock + 30);
 ~script4729($component1, null, setbit(0, 12), ^setpos_abs_left, ^setpos_abs_top, false);
 if (~inzone(0_56_50_56_2, 1_57_50_36_36, coord) = true) {
     if (%tob_client_partystatus ! 3) {
@@ -65,20 +65,20 @@ if (~instance_check(coord) = true) {
             ~tob_hud_updateprogress(scale(%tob_client_waveprogress_val, ~max(1, %tob_client_waveprogress_max), 16384), $component5);
             if (%tob_client_waveprogress_type = 0) {
                 if_sethide(true, $component4);
-                %varclient_220 = -1;
+                %tob_client_lastprogress = -1;
             } else {
                 if_sethide(false, $component4);
             }
         } else {
-            %varclient_220 = -1;
+            %tob_client_lastprogress = -1;
             if_setontimer(null, $component5);
             if_settext("", $component6);
         }
-        ~tob_hud_statusrefresh(0, %tob_client_p0, %varclient_330, $component8, $component9, $component19);
-        ~tob_hud_statusrefresh(1, %tob_client_p1, %varclient_331, $component10, $component11, $component19);
-        ~tob_hud_statusrefresh(2, %tob_client_p2, %varclient_332, $component12, $component13, $component19);
-        ~tob_hud_statusrefresh(3, %tob_client_p3, %varclient_333, $component14, $component15, $component19);
-        ~tob_hud_statusrefresh(4, %tob_client_p4, %varclient_334, $component16, $component17, $component19);
+        ~tob_hud_statusrefresh(0, %tob_client_p0, %tob_client_name0, $component8, $component9, $component19);
+        ~tob_hud_statusrefresh(1, %tob_client_p1, %tob_client_name1, $component10, $component11, $component19);
+        ~tob_hud_statusrefresh(2, %tob_client_p2, %tob_client_name2, $component12, $component13, $component19);
+        ~tob_hud_statusrefresh(3, %tob_client_p3, %tob_client_name3, $component14, $component15, $component19);
+        ~tob_hud_statusrefresh(4, %tob_client_p4, %tob_client_name4, $component16, $component17, $component19);
         if (%tob_client_partyslot = 0) {
             if_sethide(false, $component18);
             if_setsize(34, 209, ^setsize_abs, ^setsize_abs, $component7);
@@ -87,7 +87,7 @@ if (~instance_check(coord) = true) {
             if_setsize(34, 174, ^setsize_abs, ^setsize_abs, $component7);
         }
     } else {
-        %varclient_220 = -1;
+        %tob_client_lastprogress = -1;
         if_setontimer(null, $component5);
         if_sethide(true, $component4);
         if_sethide(true, $component7);
@@ -95,7 +95,7 @@ if (~instance_check(coord) = true) {
         ~deltooltip_action($component19);
     }
 } else {
-    %varclient_220 = -1;
+    %tob_client_lastprogress = -1;
     if_setontimer(null, $component5);
     if_sethide(true, $component4);
     if_sethide(true, $component7);
