@@ -1,9 +1,13 @@
 // 7932
-[proc,dom_end_level_ui_draw_loot](component $component0, int $int1)
-def_int $int2 = inv_size(dom_lootpile);
-while ($int2 > 0) {
-    $int2 = calc($int2 - 1);
-    if (cc_find($component0, $int2) = ^true) {
-        ~script7933(inv_getobj(dom_lootpile, $int2), inv_getnum(dom_lootpile, $int2), $int1);
+[proc,dom_end_level_ui_draw_loot](component $component0, int $int1, int $int2)
+def_inv $inv3 = dom_lootpile;
+if ($int2 = 0) {
+    $inv3 = dom_lootpile_during;
+}
+def_int $int4 = 28;
+while ($int4 > 0) {
+    $int4 = calc($int4 - 1);
+    if (cc_find($component0, $int4) = ^true) {
+        ~script7933(inv_getobj($inv3, $int4), inv_getnum($inv3, $int4), $int1);
     }
 }
