@@ -9,10 +9,10 @@ if (%chat_stfu = 1) {
     return;
 }
 if (~is_group_iron = false & $int3 = 4) {
-    $int3 = %varclient_945;
+    $int3 = %chatbox_mode;
 }
-if ($int3 ! -1 & $int3 <= 4 & $int3 ! %varclient_945) {
-    %varclient_945 = $int3;
+if ($int3 ! -1 & $int3 <= 4 & $int3 ! %chatbox_mode) {
+    %chatbox_mode = $int3;
     if ($int3 ! 0) {
         mes("Your chatbox mode is now set to <enum(int, string, enum_4070, $int3)> chat. To reset your mode, type <col=ef1020>/@p</col>.");
     } else {
@@ -20,7 +20,7 @@ if ($int3 ! -1 & $int3 <= 4 & $int3 ! %varclient_945) {
     }
 }
 if ($int2 = 1) {
-    switch_int (%varclient_945) {
+    switch_int (%chatbox_mode) {
         case 1 :
             $int0 = 2;
         case 2 :
@@ -57,4 +57,4 @@ switch_int ($int0) {
         }
         chat_sendpublic($string0, $int0);
 }
-%varclient_61 = clientclock;
+%chat_lastoutput = clientclock;

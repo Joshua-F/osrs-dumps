@@ -1,24 +1,24 @@
 // 6664
 [proc,interact_entity_highlight_pulse_continue](npc_uid $npc_uid, int $int, loc $loc, coord $coord3, obj $obj, coord $coord5, string $string)(boolean)
-if ($npc_uid ! %varclient_973 | $int ! %varclient_974) {
+if ($npc_uid ! %interact_npc_uid | $int ! %interact_npc_creationcycle) {
     if (npc_finduid($npc_uid) = true) {
         entityoverlay_delete_player(0);
     }
     return(false);
 }
-if ($loc ! %varclient_975 | $coord3 ! %varclient_976) {
+if ($loc ! %interact_loc_type | $coord3 ! %interact_loc_coord) {
     if (loc_find($coord3, $loc) = true) {
         entityoverlay_delete_player(0);
     }
     return(false);
 }
-if ($obj ! %varclient_977 | $coord5 ! %varclient_978) {
+if ($obj ! %interact_obj_type | $coord5 ! %interact_obj_coord) {
     if (obj_find($coord5, $obj) = true) {
         entityoverlay_delete_player(0);
     }
     return(false);
 }
-if (compare($string, %varclient_979) ! 0) {
+if (compare($string, %interact_player_name) ! 0) {
     entityoverlay_delete_player(0);
     return(false);
 }

@@ -1,17 +1,17 @@
 // 3344
 [clientscript,notification_tli_update]
-if_setcolour(%varclient_415, notification_display:title_text);
-if_settext(%varclient_387, notification_display:title_text);
-if_setcolour(%varclient_415, notification_display:main_text);
-if_settext(%varclient_388, notification_display:main_text);
-if_setsize(%varclient_390, %varclient_389, ^setsize_abs, ^setsize_abs, notification_display:container);
-def_int $int0 = %varclient_391;
-def_int $int1 = calc(%varclient_392 * 30);
+if_setcolour(%notification_col, notification_display:title_text);
+if_settext(%notification_title, notification_display:title_text);
+if_setcolour(%notification_col, notification_display:main_text);
+if_settext(%notification_main, notification_display:main_text);
+if_setsize(%notification_width, %notification_height, ^setsize_abs, ^setsize_abs, notification_display:container);
+def_int $int0 = %notification_stage;
+def_int $int1 = calc(%notification_delay * 30);
 switch_int ($int0) {
     case 1, 2 :
-        if_setontimer("notification_start($int0, %varclient_390, %varclient_389)", notification_display:content);
+        if_setontimer("notification_start($int0, %notification_width, %notification_height)", notification_display:content);
     case 3 :
         if_setontimer("notification_delay($int1)", notification_display:content);
     case 4, 5 :
-        if_setontimer("notification_end($int0, %varclient_390, %varclient_389)", notification_display:content);
+        if_setontimer("notification_end($int0, %notification_width, %notification_height)", notification_display:content);
 }
