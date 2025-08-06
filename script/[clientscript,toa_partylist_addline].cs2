@@ -87,22 +87,22 @@ if ($int0 >= calc($int5 - 1)) {
         cc_sethide(true);
         $int0 = calc($int0 + 1);
     }
-    switch_int (%varclient_180) {
+    switch_int (%raids_listsort_list) {
         case 0, 1, 4, 5, 16, 17, 18, 19, 20, 21, 12, 13, 22, 23 :
         case default :
-            %varclient_180 = 1;
+            %raids_listsort_list = 1;
     }
     ~toa_partylist_setsort;
-    $int3 = calc(%varclient_178 * $int4);
+    $int3 = calc(%raids_count * $int4);
     if ($int3 > if_getheight($component2)) {
         if_setscrollsize(0, $int3, $component2);
-        ~scrollbar_resize(toa_partylist:scrollbar, $component2, %varclient_1082);
+        ~scrollbar_resize(toa_partylist:scrollbar, $component2, %toa_partylist_scrollpos);
     } else {
         if_setscrollsize(0, 0, $component2);
         ~scrollbar_resize(toa_partylist:scrollbar, $component2, 0);
-        %varclient_1082 = 0;
+        %toa_partylist_scrollpos = 0;
     }
-    if (%varclient_178 <= 0) {
+    if (%raids_count <= 0) {
         cc_create($component2, ^iftype_text, $int5);
         cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
         cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);

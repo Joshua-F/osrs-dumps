@@ -27,7 +27,7 @@ if (string_length($string0) > 0) {
     cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
     cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
     cc_setfill(true);
-    ~raids_partylist_entry_init(%varclient_178, $component1, $int0, $string1, raids_lobby_partylist:list);
+    ~raids_partylist_entry_init(%raids_count, $component1, $int0, $string1, raids_lobby_partylist:list);
     if_setop(1, "View party:", $component1);
     if_setopbase("<col=ff9040><removetags($string1)></col>", $component1);
     $string2, $string0 = ~script632($string0);
@@ -139,7 +139,7 @@ if (string_length($string0) > 0) {
     cc_settextfont(p11_full);
     cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
     cc_settextshadow(true);
-    ~raids_partylist_age_init($string11, %varclient_59);
+    ~raids_partylist_age_init($string11, %clanwars_opponentchangetime);
     cc_create($component1, ^iftype_text, 9);
     cc_sethide(true);
     cc_setcolour(0xff981f);
@@ -190,8 +190,8 @@ if (string_length($string0) > 0) {
     cc_settextshadow(true);
     cc_settext(~string_prependzero($string11, 10));
     if_setsize(0, 18, ^setsize_minus, ^setsize_abs, $component1);
-    if_setposition(0, calc(%varclient_178 * 18), ^setpos_abs_centre, ^setpos_abs_top, $component1);
-    %varclient_178 = calc(%varclient_178 + 1);
+    if_setposition(0, calc(%raids_count * 18), ^setpos_abs_centre, ^setpos_abs_top, $component1);
+    %raids_count = calc(%raids_count + 1);
 } else {
     if_setsize(0, 0, ^setsize_minus, ^setsize_abs, $component1);
     if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top, $component1);
@@ -202,19 +202,19 @@ if_setontimer(null, $component1);
 def_component $component4 = null;
 def_int $int5 = 0;
 if ($int0 >= calc(40 - 1)) {
-    if (%varclient_180 ! 0 & %varclient_180 ! 1 & %varclient_180 ! 2 & %varclient_180 ! 3 & %varclient_180 ! 4 & %varclient_180 ! 5 & %varclient_180 ! 6 & %varclient_180 ! 7 & %varclient_180 ! 8 & %varclient_180 ! 9 & %varclient_180 ! 10 & %varclient_180 ! 11 & %varclient_180 ! 12 & %varclient_180 ! 13 & %varclient_180 ! 24 & %varclient_180 ! 25) {
-        %varclient_180 = 1;
+    if (%raids_listsort_list ! 0 & %raids_listsort_list ! 1 & %raids_listsort_list ! 2 & %raids_listsort_list ! 3 & %raids_listsort_list ! 4 & %raids_listsort_list ! 5 & %raids_listsort_list ! 6 & %raids_listsort_list ! 7 & %raids_listsort_list ! 8 & %raids_listsort_list ! 9 & %raids_listsort_list ! 10 & %raids_listsort_list ! 11 & %raids_listsort_list ! 12 & %raids_listsort_list ! 13 & %raids_listsort_list ! 24 & %raids_listsort_list ! 25) {
+        %raids_listsort_list = 1;
     }
     ~raids_partylist_setsort;
     $component4 = if_getlayer($component1);
-    $int5 = calc(%varclient_178 * 18);
+    $int5 = calc(%raids_count * 18);
     if ($int5 > if_getheight($component4)) {
         if_setscrollsize(0, $int5, $component4);
-        ~scrollbar_resize(raids_lobby_partylist:scrollbar, $component4, %varclient_179);
+        ~scrollbar_resize(raids_lobby_partylist:scrollbar, $component4, %raids_scroll);
     } else {
         if_setscrollsize(0, 0, $component4);
         ~scrollbar_resize(raids_lobby_partylist:scrollbar, $component4, 0);
-        %varclient_179 = 0;
+        %raids_scroll = 0;
     }
     cc_deleteall($component4);
     $int0 = 0;
@@ -224,7 +224,7 @@ if ($int0 >= calc(40 - 1)) {
         cc_sethide(true);
         $int0 = calc($int0 + 1);
     }
-    if (%varclient_178 <= 0) {
+    if (%raids_count <= 0) {
         cc_create($component4, ^iftype_text, 40);
         cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
         cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);

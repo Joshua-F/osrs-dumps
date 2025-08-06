@@ -152,13 +152,13 @@ if ($int28 > 0) {
 if_setscrollpos(0, 0, $key_entries);
 if ($int26 > if_getheight($key_entries)) {
     if_setscrollsize(0, $int26, $key_entries);
-    %varclient_182 = ~max(~min(%varclient_182, calc($int26 - if_getheight($key_entries))), 0);
+    %osb4_roofsetting = ~max(~min(%osb4_roofsetting, calc($int26 - if_getheight($key_entries))), 0);
 } else {
     if_setscrollsize(0, 0, $key_entries);
-    %varclient_182 = 0;
+    %osb4_roofsetting = 0;
 }
 ~scrollbar_vertical($key_scrollbar, $key_entries, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-~scrollbar_resize($key_scrollbar, $key_entries, %varclient_182);
+~scrollbar_resize($key_scrollbar, $key_entries, %osb4_roofsetting);
 $int29 = calc($int29 + 22);
 cc_deleteall($toggles);
 ~worldmap_toggles_createbutton(0, $toggles);
@@ -307,7 +307,7 @@ while ($wma45 ! null) {
     cc_setonop("worldmap_maplist_select(event_op, $wma45, $maplist_display, $maplist_container, $map_overlay, $overview_container, $overview_overlay, $zoom_out, $zoom_in)");
     if (~script1814($wma45) = true) {
         $int29 = ~max($int29, parawidth($string1, 512, $fontmetrics));
-        $coord41 = ~worldmap_findcoordinmap($wma45, %varclient_188);
+        $coord41 = ~worldmap_findcoordinmap($wma45, %worldmap_youarehere);
         if ($coord41 ! null) {
             $wma40, $coord42 = $wma45, $coord41;
         }
