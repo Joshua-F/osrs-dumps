@@ -1,7 +1,7 @@
 // 7822
-[proc,chat_op_core](int $int, string $string0, int $chattype)
+[proc,chat_op_core](int $int0, string $string0, int $chattype1)
 def_string $string1 = removetags($string0);
-switch_int ($int) {
+switch_int ($int0) {
     case 1 :
         opplayer(4, $string1);
     case 2 :
@@ -9,7 +9,7 @@ switch_int ($int) {
     case 8 :
         %snapshot_name = $string1;
     case 9 :
-        if ($chattype = ^chattype_clanchat) {
+        if ($chattype1 = ^chattype_clanchat) {
             if (activeclanchannel_find_affined(^clantype_clan) = true) {
                 ~clan_sidepanel_op(7, -1, $string1, activeclanchannel_getuserslot($string1), 0, -1);
             } else {
@@ -19,7 +19,7 @@ switch_int ($int) {
             ~friendschat_sendkick($string1);
         }
     case 10 :
-        if ($chattype = ^chattype_clanchat) {
+        if ($chattype1 = ^chattype_clanchat) {
             if (activeclanchannel_find_affined(^clantype_clan) = true) {
                 ~clan_sidepanel_op(8, -1, $string1, activeclanchannel_getuserslot($string1), 0, -1);
             } else {
@@ -30,20 +30,20 @@ switch_int ($int) {
         }
     case default :
         if (friend_test($string1) = true) {
-            if ($int = 6 | $int = 7) {
+            if ($int0 = 6 | $int0 = 7) {
                 if (%has_displayname_transmitter = 1) {
                     ~meslayer_mode6($string1);
                 } else {
                     mes("You must set a name before you can do that.");
                 }
             }
-        } else if ($int = 6) {
+        } else if ($int0 = 6) {
             if (%has_displayname_transmitter = 1) {
                 friend_add($string1);
             } else {
                 mes("You must set a name before you can do that.");
             }
-        } else if ($int = 7) {
+        } else if ($int0 = 7) {
             if (%has_displayname_transmitter = 1) {
                 ignore_add($string1);
             } else {

@@ -1,21 +1,21 @@
 // 1720
-[proc,worldmap_toggles_set](component $component0, int $int, component $component2, component $component3, component $component4)
-if (testbit(%worldmap_toggles, $int) = ^true) {
+[proc,worldmap_toggles_set](component $component0, int $int1, component $component2, component $component3, component $component4)
+if (testbit(%worldmap_toggles, $int1) = ^true) {
     .cc_setop(1, "Enable");
     cc_sethide(false);
 } else {
     .cc_setop(1, "Disable");
     cc_sethide(true);
 }
-def_boolean $boolean = true;
-switch_int ($int) {
+def_boolean $boolean5 = true;
+switch_int ($int1) {
     case 0, 1, 4 :
         ~worldmap_overlay_clear($component2, $component3);
     case 2 :
         if (testbit(%worldmap_toggles, 2) = ^true) {
-            $boolean = false;
+            $boolean5 = false;
         }
-        worldmap_disableelementcategory(category_1129, $boolean);
+        worldmap_disableelementcategory(category_1129, $boolean5);
     case 3 :
         ~deltooltip_action($component4);
 }

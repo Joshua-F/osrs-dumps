@@ -1,20 +1,20 @@
 // 112
-[clientscript,meslayer_onkey](int $key, char $char, string $string)
+[clientscript,meslayer_onkey](int $key0, char $char1, string $string0)
 if (~keypress_permit(null, chatbox) = false) {
     return;
 }
-if ($key = ^key_return) {
+if ($key0 = ^key_return) {
     if (%meslayer_initlastnames = 1 & string_length(%meslayerinput) <= 0) {
         switch_int (%meslayermode) {
             case 8 :
                 %meslayerinput = %last_namedialog;
-                ~script222($string);
+                ~script222($string0);
             case 10 :
                 %meslayerinput = %last_friendschatjoin;
-                ~script222($string);
+                ~script222($string0);
             case 20 :
                 %meslayerinput = ~clan_lastclansearch_get;
-                ~script222($string);
+                ~script222($string0);
         }
     }
     ~meslayer_enter;
@@ -22,43 +22,43 @@ if ($key = ^key_return) {
 }
 switch_int (%meslayermode) {
     case 6, 9 :
-        %meslayerinput = ~add_to_inputstring(%meslayerinput, 0, $key, $char);
+        %meslayerinput = ~add_to_inputstring(%meslayerinput, 0, $key0, $char1);
     case 11 :
-        if ($key = ^key_escape) {
+        if ($key0 = ^key_escape) {
             ~meslayer_close(1, 1, 1);
             return;
         }
-        %meslayerinput = ~add_to_inputstring(%meslayerinput, 0, $key, $char);
+        %meslayerinput = ~add_to_inputstring(%meslayerinput, 0, $key0, $char1);
     case 7, 16 :
-        %meslayerinput = ~add_to_inputstring(%meslayerinput, 1, $key, $char);
+        %meslayerinput = ~add_to_inputstring(%meslayerinput, 1, $key0, $char1);
     case 19 :
-        %meslayerinput = ~add_to_inputstring(%meslayerinput, 6, $key, $char);
+        %meslayerinput = ~add_to_inputstring(%meslayerinput, 6, $key0, $char1);
     case 12 :
-        %meslayerinput = ~add_to_inputstring(%meslayerinput, 3, $key, $char);
+        %meslayerinput = ~add_to_inputstring(%meslayerinput, 3, $key0, $char1);
         ~meslayer_mode12_setprompt;
     case 18 :
-        if ($key = ^key_escape) {
+        if ($key0 = ^key_escape) {
             ~meslayer_close(1, 1, 1);
             return;
         }
-        %meslayerinput = ~add_to_inputstring(%meslayerinput, 3, $key, $char);
+        %meslayerinput = ~add_to_inputstring(%meslayerinput, 3, $key0, $char1);
         %meslayerinput = ~string_findandreplace(%meslayerinput, " ", " ");
     case 13 :
-        %meslayerinput = ~add_to_inputstring(%meslayerinput, 0, $key, $char);
+        %meslayerinput = ~add_to_inputstring(%meslayerinput, 0, $key0, $char1);
         ~meslayer_mode13_setprompt;
     case 14, 17 :
-        if ($key = ^key_escape) {
+        if ($key0 = ^key_escape) {
             resume_objdialog(null);
             sound_synth(synth_2266, 1, 0);
             ~meslayer_close(1, 1, 1);
             return;
         }
-        %meslayerinput = ~add_to_inputstring(%meslayerinput, 4, $key, $char);
+        %meslayerinput = ~add_to_inputstring(%meslayerinput, 4, $key0, $char1);
     case 20, 21 :
-        %meslayerinput = ~add_to_inputstring(%meslayerinput, 8, $key, $char);
+        %meslayerinput = ~add_to_inputstring(%meslayerinput, 8, $key0, $char1);
     case 27 :
-        %meslayerinput = ~add_to_inputstring(%meslayerinput, 12, $key, $char);
+        %meslayerinput = ~add_to_inputstring(%meslayerinput, 12, $key0, $char1);
     case default :
-        %meslayerinput = ~add_to_inputstring(%meslayerinput, 2, $key, $char);
+        %meslayerinput = ~add_to_inputstring(%meslayerinput, 2, $key0, $char1);
 }
-~script222($string);
+~script222($string0);

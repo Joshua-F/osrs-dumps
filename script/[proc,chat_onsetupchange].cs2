@@ -1,6 +1,6 @@
 // 113
 [proc,chat_onsetupchange]
-def_graphic $graphic = "report_button,0";
+def_graphic $graphic0 = "report_button,0";
 def_int $int1 = 0;
 def_int $int2 = 0;
 ~toplevel_chatbox_background;
@@ -34,10 +34,10 @@ if (~on_mobile = true) {
     if_sethide(false, chatbox:reportabuse);
     if_setop(1, "", chatbox:reportabuse);
     if_setsize(79, 0, ^setsize_abs, ^setsize_minus, chatbox:reportabuse);
-    if_setgraphic($graphic, chatbox:reportabuse_graphic);
-    if_setonmouseleave("graphic_swapper(chatbox:reportabuse_graphic, $graphic)", chatbox:reportabuse);
-    $graphic = "report_button,1";
-    if_setonmouseover("graphic_swapper(chatbox:reportabuse_graphic, $graphic)", chatbox:reportabuse);
+    if_setgraphic($graphic0, chatbox:reportabuse_graphic);
+    if_setonmouseleave("graphic_swapper(chatbox:reportabuse_graphic, $graphic0)", chatbox:reportabuse);
+    $graphic0 = "report_button,1";
+    if_setonmouseover("graphic_swapper(chatbox:reportabuse_graphic, $graphic0)", chatbox:reportabuse);
     if_setposition(3, 0, ^setpos_abs_right, ^setpos_abs_centre, chatbox:reportabuse);
     $int1 = 82;
     if_setnoclickthrough(true, chatbox:controls);
@@ -53,23 +53,23 @@ if ($int2 = 0) {
     $int3 = calc((519 - 58 + 3 - ($int1 + 60 * (6 + 1))) / (6 + 2));
     $int4 = 60;
 }
-def_component $component = null;
+def_component $component5 = null;
 def_int $int6 = 6;
 while ($int6 >= 0) {
-    $int1, $component = calc($int1 + $int3), enum(int, component, enum_3842, $int6);
-    if_setposition($int1, 0, ^setpos_abs_right, ^setpos_abs_centre, $component);
+    $int1, $component5 = calc($int1 + $int3), enum(int, component, enum_3842, $int6);
+    if_setposition($int1, 0, ^setpos_abs_right, ^setpos_abs_centre, $component5);
     if (~on_mobile = true) {
-        if_setsize(58, 0, ^setsize_abs, ^setsize_minus, $component);
+        if_setsize(58, 0, ^setsize_abs, ^setsize_minus, $component5);
     } else {
-        if_setsize(56, 0, ^setsize_abs, ^setsize_minus, $component);
+        if_setsize(56, 0, ^setsize_abs, ^setsize_minus, $component5);
     }
-    if_setonop("chat_button_onop(event_op, $int6)", $component);
+    if_setonop("chat_button_onop(event_op, $int6)", $component5);
     if ($int2 = 1) {
-        if_setonmouseover(null, $component);
-        if_setonmouseleave(null, $component);
+        if_setonmouseover(null, $component5);
+        if_setonmouseleave(null, $component5);
     } else {
-        if_setonmouseover("chat_button_hover(true, $int6)", $component);
-        if_setonmouseleave("chat_button_hover(false, $int6)", $component);
+        if_setonmouseover("chat_button_hover(true, $int6)", $component5);
+        if_setonmouseleave("chat_button_hover(false, $int6)", $component5);
     }
     $int1, $int6 = calc($int1 + $int4), calc($int6 - 1);
 }

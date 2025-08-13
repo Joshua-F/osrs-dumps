@@ -1,38 +1,38 @@
 // 3561
-[proc,poh_costumes_searchsort](intarray $intarray, int $int0, int $int1)
+[proc,poh_costumes_searchsort](intarray $intarray0, int $int0, int $int1)
 def_int $int2 = calc(($int0 + $int1) / 2);
-def_int $int3 = $intarray($int2);
-$intarray($int2) = $intarray($int1);
-$intarray($int1) = $int3;
+def_int $int3 = $intarray0($int2);
+$intarray0($int2) = $intarray0($int1);
+$intarray0($int1) = $int3;
 def_obj $obj4 = null;
 def_obj $obj5 = null;
-def_string $string = "";
+def_string $string1 = "";
 if (cc_find(chatbox:mes_layer_scrollcontents, $int3) = true) {
     $obj5 = cc_getinvobject;
     if ($obj5 ! null) {
-        $string = oc_name($obj5);
+        $string1 = oc_name($obj5);
     }
 }
 def_int $int6 = $int0;
 def_int $int7 = $int0;
 def_int $int8 = -1;
 while ($int7 < $int1) {
-    if (cc_find(chatbox:mes_layer_scrollcontents, $intarray($int7)) = true) {
+    if (cc_find(chatbox:mes_layer_scrollcontents, $intarray0($int7)) = true) {
         $obj4 = cc_getinvobject;
     }
-    if (compare(oc_name($obj4), $string) <= 0) {
-        $int8 = $intarray($int7);
-        $intarray($int7) = $intarray($int6);
-        $intarray($int6) = $int8;
+    if (compare(oc_name($obj4), $string1) <= 0) {
+        $int8 = $intarray0($int7);
+        $intarray0($int7) = $intarray0($int6);
+        $intarray0($int6) = $int8;
         $int6 = calc($int6 + 1);
     }
     $int7 = calc($int7 + 1);
 }
-$intarray($int1) = $intarray($int6);
-$intarray($int6) = $int3;
+$intarray0($int1) = $intarray0($int6);
+$intarray0($int6) = $int3;
 if ($int0 < calc($int6 - 1)) {
-    ~poh_costumes_searchsort($intarray, $int0, calc($int6 - 1));
+    ~poh_costumes_searchsort($intarray0, $int0, calc($int6 - 1));
 }
 if (calc($int6 + 1) < $int1) {
-    ~poh_costumes_searchsort($intarray, calc($int6 + 1), $int1);
+    ~poh_costumes_searchsort($intarray0, calc($int6 + 1), $int1);
 }

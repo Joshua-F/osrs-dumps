@@ -1,5 +1,5 @@
 // 3876
-[clientscript,searchbar_keypress](int $key, char $char, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10, component $component11, component $component12, component $component13, component $component14)
+[clientscript,searchbar_keypress](int $key0, char $char1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10, component $component11, component $component12, component $component13, component $component14)
 if (~keypress_permit(null, settings) = false) {
     return;
 }
@@ -9,34 +9,34 @@ if (%floater_search_listen_for_keyboard = 0) {
 if (%floater_is_searching = 0) {
     return;
 }
-if ($key = ^key_del) {
+if ($key0 = ^key_del) {
     %settings_search_string = "";
     ~searchbar_set_text($component2);
     ~settings_populate_settings(0, 0, 0, 1, $component3, $component4, $component5, 4, $component6, $component7, $component8, $component9, $component10, $component11, $component12, $component13, $component14);
     return;
 }
-if ($key = ^key_return) {
+if ($key0 = ^key_return) {
     if (~on_mobile = true) {
         ~keyboard_hide;
     }
     return;
 }
-def_string $string = %settings_search_string;
-def_int $int = string_length($string);
-if ($key = ^key_backspace) {
-    if ($int > 0) {
-        %settings_search_string = substring($string, 0, calc($int - 1));
+def_string $string0 = %settings_search_string;
+def_int $int15 = string_length($string0);
+if ($key0 = ^key_backspace) {
+    if ($int15 > 0) {
+        %settings_search_string = substring($string0, 0, calc($int15 - 1));
     }
     ~searchbar_set_text($component2);
     ~settings_populate_settings(0, 0, 0, 1, $component3, $component4, $component5, 4, $component6, $component7, $component8, $component9, $component10, $component11, $component12, $component13, $component14);
     return;
 }
-if (char_isalphanumeric($char) = false & string_indexof_char(" -/,", $char) = -1) {
+if (char_isalphanumeric($char1) = false & string_indexof_char(" -/,", $char1) = -1) {
     return;
 }
-if (string_length(append_char($string, $char)) > 50) {
+if (string_length(append_char($string0, $char1)) > 50) {
     return;
 }
-%settings_search_string = append_char($string, $char);
+%settings_search_string = append_char($string0, $char1);
 ~searchbar_set_text($component2);
 ~settings_populate_settings(0, 0, 0, 1, $component3, $component4, $component5, 4, $component6, $component7, $component8, $component9, $component10, $component11, $component12, $component13, $component14);

@@ -1,5 +1,5 @@
 // 5734
-[clientscript,ge_itemsink_monitor_transmit](int $int0, int $int1, obj $obj, string $string)
+[clientscript,ge_itemsink_monitor_transmit](int $int0, int $int1, obj $obj2, string $string0)
 if ($int0 = 1) {
     cc_deleteall(ge_itemsink_monitor:list);
     %poll_id, %poll_ypos, %poh_costume_room_scroll = 0, 0, -1;
@@ -7,7 +7,7 @@ if ($int0 = 1) {
     cc_deleteall(ge_itemsink_monitor:refresh);
     if_sethide(true, ge_itemsink_monitor:refresh);
 }
-if ($int1 ! %poll_id | $obj = null) {
+if ($int1 ! %poll_id | $obj2 = null) {
     return;
 }
 cc_create(ge_itemsink_monitor:list, ^iftype_rectangle, $int1);
@@ -17,7 +17,7 @@ cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
 cc_setcolour(^white);
 cc_setfill(false);
 cc_settrans(255);
-cc_setontimer("ge_itemsink_monitor_drawline(event_com, event_comsubid, $obj, $string, %poll_ypos)");
+cc_setontimer("ge_itemsink_monitor_drawline(event_com, event_comsubid, $obj2, $string0, %poll_ypos)");
 %poll_ypos = calc(%poll_ypos + 40);
 if ($int0 = 2) {
     %poh_costume_room_scroll = %poll_ypos;

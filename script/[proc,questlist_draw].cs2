@@ -7,21 +7,21 @@ if (%questlist_disable_headers = 1) {
 def_int $int7 = db_listall(quest);
 def_boolean $boolean8 = ~on_mobile;
 def_int $int9 = 1;
-def_graphic $graphic = p11_full;
-def_fontmetrics $fontmetrics = p11_full;
+def_graphic $graphic10 = p11_full;
+def_fontmetrics $fontmetrics11 = p11_full;
 def_int $int12 = 11;
 def_int $int13 = 5;
 if ($boolean8 = true) {
     $int13 = 11;
 }
 if (%questlist_larger_text = 1) {
-    $graphic = p12_full;
-    $fontmetrics = p12_full;
+    $graphic10 = p12_full;
+    $fontmetrics11 = p12_full;
     $int12 = 13;
     $int13 = calc($int13 + 2);
 }
-def_int $intarray($int7);
-def_dbrow $dbrow = null;
+def_int $intarray0($int7);
+def_dbrow $dbrow14 = null;
 def_string $string1 = "";
 def_int $int15 = 0;
 def_int $int16 = pow(2, 16);
@@ -32,47 +32,47 @@ cc_deleteall($component4);
 cc_create($component4, ^iftype_rectangle, 0);
 cc_sethide(true);
 while ($int9 <= $int7) {
-    $dbrow = ~script6154($int9);
+    $dbrow14 = ~script6154($int9);
     cc_create($component4, ^iftype_text, $int9);
     cc_setsize(0, $int12, ^setsize_minus, ^setsize_abs);
-    cc_settextfont($graphic);
+    cc_settextfont($graphic10);
     cc_settextshadow($boolean19);
     cc_settextalign(^settextalign_left, ^settextalign_centre, $int12);
-    $string1 = ~get_quest_name($dbrow);
+    $string1 = ~get_quest_name($dbrow14);
     cc_setopbase("<col=ff9040><$string1></col>");
-    if (~script4026($dbrow, %questlist_sort_type) = true) {
+    if (~script4026($dbrow14, %questlist_sort_type) = true) {
         $string1 = "MQ: <$string1>";
     }
-    if ($boolean17 = true & ~speedrunning_beta_quest($dbrow) = true) {
+    if ($boolean17 = true & ~speedrunning_beta_quest($dbrow14) = true) {
         $string1 = "<$string1> (Beta)";
     }
     cc_settext($string1);
-    cc_setsize(0, calc($int12 * paraheight($string1, cc_getwidth, $fontmetrics) + $int13), ^setsize_minus, ^setsize_abs);
+    cc_setsize(0, calc($int12 * paraheight($string1, cc_getwidth, $fontmetrics11) + $int13), ^setsize_minus, ^setsize_abs);
     if ($boolean17 = true) {
         cc_setop(1, "View info:");
     } else {
         cc_setop(1, "");
     }
     cc_setop(2, "Read journal:");
-    if (db_getfield($dbrow, quest:startcoord, 0) ! null & db_getfield($dbrow, quest:startcoord, 0) ! 0_0_0_0_0) {
+    if (db_getfield($dbrow14, quest:startcoord, 0) ! null & db_getfield($dbrow14, quest:startcoord, 0) ! 0_0_0_0_0) {
         cc_setop(3, "Show on map:");
     } else {
         cc_setop(3, "");
     }
-    if (db_getfield($dbrow, quest:release_type, 0) = 2) {
+    if (db_getfield($dbrow14, quest:release_type, 0) = 2) {
         cc_setop(4, "Open wiki guide:");
         cc_setop(5, "Open wiki quick guide:");
     } else {
         cc_setop(4, "");
         cc_setop(5, "");
     }
-    $int15 = ~quest_status_get($dbrow);
-    $intarray(calc($int9 - 1)) = calc($int15 * $int16 + $int9);
+    $int15 = ~quest_status_get($dbrow14);
+    $intarray0(calc($int9 - 1)) = calc($int15 * $int16 + $int9);
     cc_sethide(true);
     $int9 = calc($int9 + 1);
 }
 if ($int7 > 1) {
-    ~questlist_sort($intarray, 0, calc($int7 - 1), %questlist_sort_type, $int16);
+    ~questlist_sort($intarray0, 0, calc($int7 - 1), %questlist_sort_type, $int16);
 }
 def_int $int20 = 0;
 def_int $int21 = 0;
@@ -89,15 +89,15 @@ def_int $int29 = ~settings_get_colour_or_default(226);
 def_boolean $boolean30 = false;
 def_boolean $boolean31 = ~questlist_hide_miniquests($boolean17);
 while ($int20 < $int7) {
-    $int21 = calc($intarray($int20) % $int16);
-    $int15 = calc($intarray($int20) / $int16);
-    $dbrow = ~script6154($int21);
-    $boolean23 = ~quest_requirement_check($dbrow);
-    $boolean24 = ~script5990($dbrow);
-    $string3 = ~script2265($dbrow, $int15, %questlist_sort_type);
-    $boolean25 = ~script4028($dbrow, $int15, $boolean23, $boolean24, $boolean17, $boolean18);
-    $boolean30 = ~quest_is_subquest($dbrow);
-    if (~questlist_hide_quest($dbrow, $int15, $boolean23, $boolean24, $boolean25, $boolean17, $boolean30, $boolean31) = false) {
+    $int21 = calc($intarray0($int20) % $int16);
+    $int15 = calc($intarray0($int20) / $int16);
+    $dbrow14 = ~script6154($int21);
+    $boolean23 = ~quest_requirement_check($dbrow14);
+    $boolean24 = ~script5990($dbrow14);
+    $string3 = ~script2265($dbrow14, $int15, %questlist_sort_type);
+    $boolean25 = ~script4028($dbrow14, $int15, $boolean23, $boolean24, $boolean17, $boolean18);
+    $boolean30 = ~quest_is_subquest($dbrow14);
+    if (~questlist_hide_quest($dbrow14, $int15, $boolean23, $boolean24, $boolean25, $boolean17, $boolean30, $boolean31) = false) {
         if (compare($string3, $string2) ! 0 & %questlist_disable_headers = 0) {
             $int9, $int6 = ~questlist_add_header($string3, $int9, $int6, $component4);
             $string2 = $string3;

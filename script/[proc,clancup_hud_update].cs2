@@ -1,27 +1,27 @@
 // 1185
 [proc,clancup_hud_update](component $component0, component $component1)
-def_string $string = "";
+def_string $string0 = "";
 if (%clancup_score_me > %clancup_score_them) {
-    $string = "<col=ffffff><~tostring_spacer(%clancup_score_me, ",")></col><br><~tostring_spacer(%clancup_score_them, ",")>";
+    $string0 = "<col=ffffff><~tostring_spacer(%clancup_score_me, ",")></col><br><~tostring_spacer(%clancup_score_them, ",")>";
 } else if (%clancup_score_me < %clancup_score_them) {
-    $string = "<~tostring_spacer(%clancup_score_me, ",")><br><col=ffffff><~tostring_spacer(%clancup_score_them, ",")></col>";
+    $string0 = "<~tostring_spacer(%clancup_score_me, ",")><br><col=ffffff><~tostring_spacer(%clancup_score_them, ",")></col>";
 } else {
-    $string = "<~tostring_spacer(%clancup_score_me, ",")><br><~tostring_spacer(%clancup_score_them, ",")>";
+    $string0 = "<~tostring_spacer(%clancup_score_me, ",")><br><~tostring_spacer(%clancup_score_them, ",")>";
 }
 if (%clancup_time_remaining >= ^max_32bit_int) {
     if_settext("Your team:<br>Opponents:<br>Starting soon...", $component0);
-    $string = append($string, "<br>");
+    $string0 = append($string0, "<br>");
 } else if (%clancup_time_remaining > 1) {
     if_settext("Your team:<br>Opponents:<br>Time:", $component0);
-    $string = append($string, "<br><tostring(%clancup_time_remaining)> mins");
+    $string0 = append($string0, "<br><tostring(%clancup_time_remaining)> mins");
 } else if (%clancup_time_remaining = 1) {
     if_settext("Your team:<br>Opponents:<br>Time:", $component0);
-    $string = append($string, "<br>1 min");
+    $string0 = append($string0, "<br>1 min");
 } else if (%clancup_score_me = %clancup_score_them) {
     if_settext("Your team:<br>Opponents:<br>", $component0);
-    $string = append($string, "<br>Next kill wins!");
+    $string0 = append($string0, "<br>Next kill wins!");
 } else {
     if_settext("Your team:<br>Opponents:<br>Ending...", $component0);
-    $string = append($string, "<br>");
+    $string0 = append($string0, "<br>");
 }
-if_settext($string, $component1);
+if_settext($string0, $component1);

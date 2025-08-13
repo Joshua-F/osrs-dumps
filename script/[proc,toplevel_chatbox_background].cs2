@@ -1,17 +1,17 @@
 // 923
 [proc,toplevel_chatbox_background]
 cc_deleteall(chatbox:controls_background);
-def_boolean $boolean = false;
-def_enum $enum = ~toplevel_getcomponents;
-if (%chat_view = 1337 | %cutscene_status = 1 & getwindowmode ! ^windowmode_small | $enum = enum_1745 & %osm_chatbox_disabled = 1) {
+def_boolean $boolean0 = false;
+def_enum $enum1 = ~toplevel_getcomponents;
+if (%chat_view = 1337 | %cutscene_status = 1 & getwindowmode ! ^windowmode_small | $enum1 = enum_1745 & %osm_chatbox_disabled = 1) {
     if (~toplevel_chatbox_permittransparent = true) {
-        $boolean = true;
+        $boolean0 = true;
     } else if (getwindowmode = ^windowmode_small) {
         %chat_view = 0;
         ~chat_alert_set(0, 0);
     }
 }
-if_sethide($boolean, chatbox:chatarea);
+if_sethide($boolean0, chatbox:chatarea);
 if (%chatbox_scrollbarside = 1 & getwindowmode ! ^windowmode_small) {
     if_setposition(1, 0, ^setpos_abs_right, ^setpos_abs_top, chatbox:scrollarea);
     if_setposition(-1, 0, ^setpos_abs_left, ^setpos_abs_top, chatbox:chatscrollbar);
@@ -19,7 +19,7 @@ if (%chatbox_scrollbarside = 1 & getwindowmode ! ^windowmode_small) {
     if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top, chatbox:scrollarea);
     if_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_top, chatbox:chatscrollbar);
 }
-if (~script7616 = 1 & $enum = enum_1745) {
+if (~script7616 = 1 & $enum1 = enum_1745) {
     if_setsize(calc(519 - 58), 0, ^setsize_abs, ^setsize_minus, chatbox:chat_background);
 } else {
     if_setsize(0, 0, ^setsize_minus, ^setsize_minus, chatbox:chat_background);
@@ -131,7 +131,7 @@ if (~on_mobile = true) {
     $int16 = 130;
 }
 ~scrollbar_vertical_repaint(chatbox:chatscrollbar, "scrollbar_trans_dragger,3", "scrollbar_trans_dragger,0", "scrollbar_trans_dragger,1", "scrollbar_trans_dragger,2", "scrollbar_trans_arrows,0", "scrollbar_trans_arrows,1", 1, $int15, $int16);
-if ($boolean = true) {
+if ($boolean0 = true) {
     if_settrans(255, chatbox:controls_background_graphic);
 } else if (~on_mobile = false) {
     if_settrans(155, chatbox:controls_background_graphic);

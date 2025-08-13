@@ -1,6 +1,6 @@
 // 2874
 [proc,kdr_update]
-def_string $string = ",";
+def_string $string0 = ",";
 def_int $int0 = 0;
 def_int $int1 = 0;
 def_int $int2 = 0;
@@ -9,7 +9,7 @@ if (%kd_toggle = 0 | %inside_wilderness = 0 & ~script2871 = false) {
 } else if (~deadman_world ! 0 & %deadman_protection_left > 0) {
     cc_settext("");
 } else if (%kdr_transmit_deaths = 0) {
-    cc_settext("Kills: <~tostring_spacer(%kdr_transmit_kills, $string)><br>Deaths: 0<br>K/D Ratio: 0.0");
+    cc_settext("Kills: <~tostring_spacer(%kdr_transmit_kills, $string0)><br>Deaths: 0<br>K/D Ratio: 0.0");
 } else {
     if (%kdr_transmit_kills < calc(^max_32bit_int / 10)) {
         $int0 = scale(%kdr_transmit_kills, %kdr_transmit_deaths, 10);
@@ -17,5 +17,5 @@ if (%kd_toggle = 0 | %inside_wilderness = 0 & ~script2871 = false) {
     } else {
         $int1, $int2 = calc(%kdr_transmit_kills / %kdr_transmit_deaths), 0;
     }
-    cc_settext("Kills: <~tostring_spacer(%kdr_transmit_kills, $string)><br>Deaths: <~tostring_spacer(%kdr_transmit_deaths, $string)><br>K/D Ratio: <~tostring_spacer($int1, $string)>.<tostring($int2)>");
+    cc_settext("Kills: <~tostring_spacer(%kdr_transmit_kills, $string0)><br>Deaths: <~tostring_spacer(%kdr_transmit_deaths, $string0)><br>K/D Ratio: <~tostring_spacer($int1, $string0)>.<tostring($int2)>");
 }

@@ -1,13 +1,13 @@
 // 3207
-[clientscript,league_task_filter_init](enum $enum, component $component1, component $component2, component $dropdown_container, component $dropdown_box)
+[clientscript,league_task_filter_init](enum $enum0, component $component1, component $component2, component $component3, component $component4)
 cc_deleteall($component2);
-def_struct $struct = enum(int, struct, enum_2670, %league_type);
-if ($struct = null) {
+def_struct $struct5 = enum(int, struct, enum_2670, %league_type);
+if ($struct5 = null) {
     return;
 }
-def_int $rgb = struct_param($struct, param_1027);
-if_setcolour($rgb, league_tasks:tasks_none);
-if_setcolour($rgb, league_tasks:filter_title);
+def_int $rgb6 = struct_param($struct5, param_1027);
+if_setcolour($rgb6, league_tasks:tasks_none);
+if_setcolour($rgb6, league_tasks:filter_title);
 def_int $int7 = 0;
 .cc_create($component2, ^iftype_graphic, $int7);
 $int7 = calc($int7 + 1);
@@ -39,16 +39,16 @@ cc_setposition(2, 2, ^setpos_abs_left, ^setpos_abs_bottom);
 cc_settextfont(p11_full);
 cc_settextshadow(true);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-~league_task_updatetext($enum);
-if_setonvartransmit("league_task_updatetext(event_com, $int8, $enum){league_general, league_general_2}", $component2);
-.cc_setonclick("league_task_filter_open($enum, $component1, $component2, $int8, $dropdown_container, $dropdown_box, $rgb)");
+~league_task_updatetext($enum0);
+if_setonvartransmit("league_task_updatetext(event_com, $int8, $enum0){league_general, league_general_2}", $component2);
+.cc_setonclick("league_task_filter_open($enum0, $component1, $component2, $int8, $component3, $component4, $rgb6)");
 cc_create($component2, ^iftype_text, $int7);
 $int7 = calc($int7 + 1);
 cc_setposition(2, 0, ^setpos_abs_left, ^setpos_abs_top);
 cc_setsize(3, 18, ^setsize_minus, ^setsize_abs);
-cc_setcolour($rgb);
+cc_setcolour($rgb6);
 cc_settextshadow(true);
 cc_settextfont(p12_full);
 cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
-cc_settext("<enum(int, string, $enum, -1)>:");
-~league_setup_display_hoveroff($component2, $rgb);
+cc_settext("<enum(int, string, $enum0, -1)>:");
+~league_setup_display_hoveroff($component2, $rgb6);

@@ -1,5 +1,5 @@
 // 908
-[proc,toplevel_subchange](component $component0, enum $enum)
+[proc,toplevel_subchange](component $component0, enum $enum1)
 if (if_hassub(chatbox:chatmodal) = true) {
     if_sethide(false, chatbox:chatmodal);
     if_sethide(true, chatbox:chatoverlay);
@@ -16,25 +16,25 @@ if (if_hassub(chatbox:chatmodal) = true) {
     if_sethide(false, chatbox:chatcrm);
     if_sethide(false, chatbox:chatdisplay);
 }
-~toplevel_sidebuttons_enable($enum);
+~toplevel_sidebuttons_enable($enum1);
 def_component $component2 = null;
-def_int $int = 0;
+def_int $int3 = 0;
 if (%toplevel_panel ! -1) {
     if (%osm_sidepanel_on_left = 1) {
-        $int = 1;
+        $int3 = 1;
     }
     $component2 = enum(int, component, enum_1137, %toplevel_panel);
-    $component2 = enum(component, component, $enum, $component2);
+    $component2 = enum(component, component, $enum1, $component2);
     if ($component2 ! null) {
         if (if_hassub($component2) = true) {
             if (if_gethide($component2) = true) {
-                ~toplevel_sidebutton_switch(%toplevel_panel, $enum, $int);
+                ~toplevel_sidebutton_switch(%toplevel_panel, $enum1, $int3);
             }
         } else if (if_gethide($component2) = false) {
-            ~toplevel_sidebutton_switch(%toplevel_panel, $enum, $int);
+            ~toplevel_sidebutton_switch(%toplevel_panel, $enum1, $int3);
         }
     }
 }
-~toplevel_side_hideshow($enum);
-~toplevel_resize($component0, $enum);
-~toplevel_side_customise($enum);
+~toplevel_side_hideshow($enum1);
+~toplevel_resize($component0, $enum1);
+~toplevel_side_customise($enum1);

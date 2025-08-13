@@ -1,5 +1,5 @@
 // 187
-[proc,combat_interface_sp_redraw](component $component)
+[proc,combat_interface_sp_redraw](component $component0)
 def_int $int1 = 0;
 def_obj $obj2 = inv_getobj(worn, 3);
 def_int $int3 = 0;
@@ -49,7 +49,7 @@ if ($obj2 = soulreaper) {
 } else {
     if_settext("Special Attack: <tostring(calc($int5 / 10))>%", combat_interface:sp_indicator);
 }
-~combat_interface_sp_updatebar($component, $int5, $int6, $int4);
+~combat_interface_sp_updatebar($component0, $int5, $int6, $int4);
 if ($int5 >= $int1 | $int8 = 1) {
     $int3 = 1;
 }
@@ -59,14 +59,14 @@ if ($int3 = 1) {
     if_setcolour(0x00326b, combat_interface:currentenergy_colour);
 }
 ~options_button_off(combat_interface:special_attack, 0);
-def_string $string = "<enum(obj, string, enum_1739, $obj2)> (<tostring(calc($int7 / 10))>%)";
+def_string $string0 = "<enum(obj, string, enum_1739, $obj2)> (<tostring(calc($int7 / 10))>%)";
 switch_obj ($obj2) {
     case brut_dragon_spear, brut_dragon_spear_p, "brut_dragon_spear_p+", "brut_dragon_spear_p++", brut_dragon_spear_kp :
-        $string = "<enum(obj, string, enum_1739, $obj2)> 5-100% ";
+        $string0 = "<enum(obj, string, enum_1739, $obj2)> 5-100% ";
     case soulreaper :
-        $string = "<enum(obj, string, enum_1739, $obj2)> 0-5";
+        $string0 = "<enum(obj, string, enum_1739, $obj2)> 0-5";
     case weapon_of_sol :
-        $string = "<enum(obj, string, enum_1739, $obj2)> (<tostring($int5)> / <tostring(20)>)";
+        $string0 = "<enum(obj, string, enum_1739, $obj2)> (<tostring($int5)> / <tostring(20)>)";
 }
 def_obj $obj9 = inv_getobj(worn, 13);
 def_obj $obj10 = inv_getobj(worn, 1);
@@ -75,12 +75,12 @@ if ($obj9 = null & $obj10 ! null & oc_param($obj10, param_1910) = 1) {
 }
 if (%option_satooltips = 0) {
     if (($obj2 = darkbow | $obj2 = br_darkbow | $obj2 = darkbow_green | $obj2 = darkbow_white | $obj2 = darkbow_yellow | $obj2 = deadman_blighted_dark_bow) & ($obj9 = dragon_arrow | $obj9 = dragon_arrow_p | $obj9 = "dragon_arrow_p+" | $obj9 = "dragon_arrow_p++")) {
-        $string = "Descent of Dragons: Deal a double attack with dragon arrows that inflicts up to 50% more damage (minimum damage of 8 per hit). (<tostring(calc(~script3648($obj2) / 10))>%)";
+        $string0 = "Descent of Dragons: Deal a double attack with dragon arrows that inflicts up to 50% more damage (minimum damage of 8 per hit). (<tostring(calc(~script3648($obj2) / 10))>%)";
     }
     if ($obj2 = bh_darkbow_imbue & ($obj9 = dragon_arrow | $obj9 = dragon_arrow_p | $obj9 = "dragon_arrow_p+" | $obj9 = "dragon_arrow_p++")) {
-        $string = "Descent of Dragons: Deal a double attack with dragon arrows that inflicts up to 50% more damage (minimum damage of 10 per hit). (<tostring(calc(~script3648($obj2) / 10))>%)";
+        $string0 = "Descent of Dragons: Deal a double attack with dragon arrows that inflicts up to 50% more damage (minimum damage of 10 per hit). (<tostring(calc(~script3648($obj2) / 10))>%)";
     }
-    if_setonmouserepeat("tooltip_mouserepeat(event_com, -1, combat_interface:tooltip, $string, 25, 160)", combat_interface:sp_attackbar);
+    if_setonmouserepeat("tooltip_mouserepeat(event_com, -1, combat_interface:tooltip, $string0, 25, 160)", combat_interface:sp_attackbar);
     if_setonmouseleave("deltooltip(combat_interface:tooltip)", combat_interface:sp_attackbar);
 } else {
     if_setonmouserepeat(null, combat_interface:sp_attackbar);
