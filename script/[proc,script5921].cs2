@@ -1,0 +1,21 @@
+// 5921
+[proc,script5921](int $int0, int $int1, dbrow $dbrow2)(boolean)
+def_int $int3 = -1;
+def_int $int4 = 0;
+if (db_getfield($dbrow2, furniture:upgrade_source_relative, 0) ! -1) {
+    $int3 = calc($int1 - db_getfield($dbrow2, furniture:upgrade_source_relative, 0));
+    if ($int0 = $int3) {
+        return(true);
+    }
+}
+def_int $int5 = db_getfieldcount($dbrow2, furniture:upgrade_source_absolute);
+if ($int5 > 0) {
+    while ($int4 < $int5) {
+        $int3 = db_getfield($dbrow2, furniture:upgrade_source_absolute:0, $int4);
+        if ($int0 = $int3) {
+            return(true);
+        }
+        $int4 = calc($int4 + 1);
+    }
+}
+return(false);

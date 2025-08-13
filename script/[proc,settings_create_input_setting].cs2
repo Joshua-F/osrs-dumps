@@ -1,18 +1,18 @@
 // 3856
-[proc,settings_create_input_setting](int $int0, int $int1, int $int2, int $int3, int $int4, struct $struct, component $component6, component $component7, component $component8)(int, int, int, int)
-def_int $int9 = parawidth(struct_param($struct, param_1114), 1000, p12_full);
+[proc,settings_create_input_setting](int $int0, int $int1, int $int2, int $int3, int $int4, struct $struct5, component $component6, component $component7, component $component8)(int, int, int, int)
+def_int $int9 = parawidth(struct_param($struct5, param_1114), 1000, p12_full);
 def_int $int10 = calc($int9 + 10);
-def_string $string0 = struct_param($struct, param_1086);
+def_string $string0 = struct_param($struct5, param_1086);
 def_boolean $boolean11 = ~on_mobile;
-if ($boolean11 = true & string_length(struct_param($struct, param_1087)) > 0) {
-    $string0 = struct_param($struct, param_1087);
+if ($boolean11 = true & string_length(struct_param($struct5, param_1087)) > 0) {
+    $string0 = struct_param($struct5, param_1087);
 }
-def_string $string1 = struct_param($struct, param_1096);
+def_string $string1 = struct_param($struct5, param_1096);
 def_int $int12 = 0;
 def_int $int13 = %settings_disable_tooltip_in_interface;
-def_boolean $boolean14 = struct_param($struct, param_1119);
-if ($boolean11 = true & string_length(struct_param($struct, param_1097)) > 0) {
-    $string1 = struct_param($struct, param_1097);
+def_boolean $boolean14 = struct_param($struct5, param_1119);
+if ($boolean11 = true & string_length(struct_param($struct5, param_1097)) > 0) {
+    $string1 = struct_param($struct5, param_1097);
 }
 if (string_length($string1) > 0) {
     $int12 = calc(paraheight($string1, calc(if_getwidth($component7) - ($int10 + 25)), p12_full) * 14);
@@ -26,8 +26,8 @@ if ($boolean11 = true & $int15 < 20) {
     $int15 = 20;
 }
 def_int $int16 = calc($int15 + $int12 + 12);
-def_int $int17 = struct_param($struct, param_1077);
-def_boolean $boolean18 = ~settings_dependency_checker($struct);
+def_int $int17 = struct_param($struct5, param_1077);
+def_boolean $boolean18 = ~settings_dependency_checker($struct5);
 cc_create($component7, ^iftype_rectangle, $int2);
 cc_setsize(10, $int16, ^setsize_minus, ^setsize_abs);
 cc_setposition(0, $int0, ^setpos_abs_centre, ^setpos_abs_top);
@@ -88,11 +88,11 @@ def_string $string3 = " ";
 def_string $string4 = "";
 def_int $int20 = ~script4398($int17);
 if ($int20 > 1) {
-    cc_settext("<~tostring_spacer($int20, $string2)><text_switch(~int_to_bool(string_length(struct_param($struct, param_1112))), $string3, $string4)><struct_param($struct, param_1112)>");
+    cc_settext("<~tostring_spacer($int20, $string2)><text_switch(~int_to_bool(string_length(struct_param($struct5, param_1112))), $string3, $string4)><struct_param($struct5, param_1112)>");
 } else if ($int20 = 0) {
-    cc_settext(struct_param($struct, param_1113));
+    cc_settext(struct_param($struct5, param_1113));
 } else {
-    cc_settext("1<text_switch(~int_to_bool(string_length(struct_param($struct, param_1111))), $string3, $string4)><struct_param($struct, param_1111)>");
+    cc_settext("1<text_switch(~int_to_bool(string_length(struct_param($struct5, param_1111))), $string3, $string4)><struct_param($struct5, param_1111)>");
 }
 cc_create($component6, ^iftype_rectangle, $int3);
 $int3 = calc($int3 + 1);
@@ -102,14 +102,14 @@ cc_setfill(true);
 cc_setcolour(^black);
 cc_settrans(255);
 cc_setop(1, "Select");
-cc_setonop("settings_input_op($struct)");
+cc_setonop("settings_input_op($struct5)");
 cc_create($component7, ^iftype_rectangle, $int2);
 cc_setsize($int10, 20, ^setsize_abs, ^setsize_abs);
 cc_setposition(10, calc($int0 + ($int16 / 2 - 10)), ^setpos_abs_right, ^setpos_abs_top);
 cc_setfill(true);
 cc_setcolour(^black);
 cc_settrans(255);
-~settings_input_setting_set_transmit($struct, $int17, calc($int2 - 1), $int2, calc($int2 - 5), $component7, $int19);
+~settings_input_setting_set_transmit($struct5, $int17, calc($int2 - 1), $int2, calc($int2 - 5), $component7, $int19);
 if ($boolean11 = false & $boolean18 = true) {
     cc_setonmouseover("cc_settrans($component7, $int2, 220, null)");
     cc_setonmouseleave("cc_settrans($component7, $int2, 255, null)");

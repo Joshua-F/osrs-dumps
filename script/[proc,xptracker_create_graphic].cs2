@@ -1,14 +1,14 @@
 // 5363
-[proc,xptracker_create_graphic](int $int0, stat $stat)
+[proc,xptracker_create_graphic](int $int0, stat $stat1)
 def_int $int2 = calc(%xptracker_current_y + 2 + 1);
-if ($stat = null) {
+if ($stat1 = null) {
     $int2 = calc(%xptracker_current_y + (48 - 25) / 2 + 1);
 }
 cc_create(xptracker:tracker_graphic, ^iftype_graphic, $int0);
 cc_setposition(calc(2 + 1), $int2, ^setpos_abs_left, ^setpos_abs_top);
 cc_setsize(25, 25, ^setsize_abs, ^setsize_abs);
-if ($stat ! null) {
-    cc_setgraphic(enum(stat, graphic, enum_255, $stat));
+if ($stat1 ! null) {
+    cc_setgraphic(enum(stat, graphic, enum_255, $stat1));
 } else {
     cc_setgraphic("staticons2,7");
 }

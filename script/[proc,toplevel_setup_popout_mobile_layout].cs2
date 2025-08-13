@@ -1,6 +1,6 @@
 // 7568
-[proc,toplevel_setup_popout_mobile_layout](enum $enum)
-if ($enum ! enum_1745) {
+[proc,toplevel_setup_popout_mobile_layout](enum $enum0)
+if ($enum0 ! enum_1745) {
     return;
 }
 def_int $int1 = -1;
@@ -11,22 +11,22 @@ if (if_hassub(popout:container) = true) {
     $int1 = 58;
     if_sethide(true, popout:osm_frame);
 }
-def_component $component2 = enum(component, component, $enum, toplevel_osrs_stretch:chat_container);
-def_component $component3 = enum(component, component, $enum, toplevel_osrs_stretch:popout);
-def_component $component4 = enum(component, component, $enum, toplevel_osrs_stretch:gameframe);
-def_component $component5 = enum(component, component, $enum, toplevel_osm:side_right_tabs);
+def_component $component2 = enum(component, component, $enum0, toplevel_osrs_stretch:chat_container);
+def_component $component3 = enum(component, component, $enum0, toplevel_osrs_stretch:popout);
+def_component $component4 = enum(component, component, $enum0, toplevel_osrs_stretch:gameframe);
+def_component $component5 = enum(component, component, $enum0, toplevel_osm:side_right_tabs);
 def_int $int6 = calc(if_getheight($component4) / 2 - if_getheight($component5));
 def_int $int7 = max(18, $int6);
-def_struct $struct = null;
-def_graphic $graphic = null;
+def_struct $struct8 = null;
+def_graphic $graphic9 = null;
 def_int $int10 = 0;
 if ($component3 ! null & $component2 ! null) {
     if (%osm_popout_state ! 1 & %osm_popout_state ! 2 & %osm_popout_state ! 0) {
         %osm_popout_state = 0;
     }
     if_sethide(false, popout:osm_buttons);
-    $struct = enum(int, struct, enum_4067, %popout_open);
-    if ($struct = null & %osm_popout_state = 2) {
+    $struct8 = enum(int, struct, enum_4067, %popout_open);
+    if ($struct8 = null & %osm_popout_state = 2) {
         %osm_popout_state = 0;
     }
     switch_int (%osm_popout_state) {
@@ -78,13 +78,13 @@ if ($component3 ! null & $component2 ! null) {
             if_setsize(58, 0, ^setsize_abs, ^setsize_minus, popout:osm_button_frame);
     }
     if (%popout_open ! 0) {
-        $struct = enum(int, struct, enum_4067, %popout_open);
-        if ($struct ! null) {
-            $graphic = struct_param($struct, param_1412);
+        $struct8 = enum(int, struct, enum_4067, %popout_open);
+        if ($struct8 ! null) {
+            $graphic9 = struct_param($struct8, param_1412);
         }
-        if ($graphic ! null) {
+        if ($graphic9 ! null) {
             if_sethide(false, popout:mobile_toggleicon_current);
-            if_setgraphic($graphic, popout:mobile_toggleicon_current);
+            if_setgraphic($graphic9, popout:mobile_toggleicon_current);
             if_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_centre, popout:mobile_toggleicon);
             ~toplevel_popout_resize;
             return;

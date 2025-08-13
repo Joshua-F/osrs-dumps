@@ -1,0 +1,12 @@
+// 3834
+[proc,poh_furniture_level_req](dbrow $dbrow0, stat $stat1)(int)
+def_int $int2 = db_getfieldcount($dbrow0, furniture:level_requirement);
+def_int $int3 = 0;
+while ($int3 < $int2) {
+    if (db_getfield($dbrow0, furniture:level_requirement:0, $int3) = $stat1) {
+        return(db_getfield($dbrow0, furniture:level_requirement:1, $int3));
+    }
+    $int3 = calc($int3 + 1);
+}
+~debug_mes("ERROR: Requested <enum(stat, string, enum_680, $stat1)> requirement for furniture dbrow <db_getfield($dbrow0, furniture:name, 0)> but it doesn't exist.");
+return(-1);

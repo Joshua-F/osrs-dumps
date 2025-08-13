@@ -30,13 +30,13 @@ def_int $int16 = 8;
 def_int $int17 = 0;
 def_int $int18 = 120;
 def_string $string12 = null;
-def_graphic $graphic = null;
+def_graphic $graphic19 = null;
 def_int $int20 = 1;
-def_component $component = if_getlayer(clans_events:universe);
+def_component $component21 = if_getlayer(clans_events:universe);
 if (string_length($string0) > 0) {
     if (cc_find(clans_events:list_contents, $int0) = true & .cc_find(clans_events:list_contents, calc($int0 + 10)) = true) {
         if (%clan_transmit_loadasguest = 1 & %clan_guest_affinitystatus = 3 & activeclansettings_find_listened = true | %clan_transmit_loadasguest = 0 & %clan_affinitystatus = 3 & activeclansettings_find_affined(^clantype_clan) = true) {
-            $string12, $graphic = ~script4302($int2);
+            $string12, $graphic19 = ~script4302($int2);
         }
         $int15 = cc_getwidth;
         cc_sethide(false);
@@ -118,12 +118,12 @@ if (string_length($string0) > 0) {
         cc_create(clans_events:list_contents_rank_to_view_icon, ^iftype_graphic, $int5);
         cc_setsize(13, 13, ^setsize_abs, ^setsize_abs);
         cc_setposition($int7, $int6, ^setpos_abs_left, ^setpos_abs_top);
-        cc_setgraphic($graphic);
+        cc_setgraphic($graphic19);
         if (.cc_find(clans_events:list_contents, calc(10 * 2)) = true) {
             .cc_sethide(true);
         }
-        if ($component ! null) {
-            ~clan_events_setsize($component, clans_events:universe, clans_events:list_contents, clans_events:list_scrollbar, ~max(181, calc($int1 * ($int12 + $int20) + (1 - $int5 % 2))), if_getheight($component));
+        if ($component21 ! null) {
+            ~clan_events_setsize($component21, clans_events:universe, clans_events:list_contents, clans_events:list_scrollbar, ~max(181, calc($int1 * ($int12 + $int20) + (1 - $int5 % 2))), if_getheight($component21));
         }
     } else {
         mes("Couldn't find component");

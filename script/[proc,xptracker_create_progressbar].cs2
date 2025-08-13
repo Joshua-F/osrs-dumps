@@ -1,5 +1,5 @@
 // 5365
-[proc,xptracker_create_progressbar](int $int0, stat $stat, int $int2)
+[proc,xptracker_create_progressbar](int $int0, stat $stat1, int $int2)
 cc_create(xptracker:tracker_progress_backing, ^iftype_rectangle, $int0);
 cc_create(xptracker:tracker_progress, ^iftype_rectangle, $int0);
 cc_create(xptracker:tracker_progress_text, ^iftype_text, $int0);
@@ -8,7 +8,7 @@ cc_create(xptracker:tracker_progress_lvl_right, ^iftype_text, $int0);
 if ($int2 = 1) {
     return;
 }
-def_int $int3 = stat_base($stat);
+def_int $int3 = stat_base($stat1);
 def_int $int4 = calc(%xptracker_current_y + 25 + 2);
 if (cc_find(xptracker:tracker_progress_backing, $int0) = true) {
     cc_setcolour(0x002200);
@@ -17,16 +17,16 @@ if (cc_find(xptracker:tracker_progress_backing, $int0) = true) {
     cc_setsize(0, 15, ^setsize_minus, ^setsize_abs);
     ~popout_tooltip_hook_cc;
     if (~on_enhanced_desktop = true) {
-        cc_setonmouserepeat("script5535(cc_getlayer, cc_getid, $stat)");
+        cc_setonmouserepeat("script5535(cc_getlayer, cc_getid, $stat1)");
     } else if (~on_enhanced_mobile = true) {
-        cc_setonclick("script5535(cc_getlayer, cc_getid, $stat)");
+        cc_setonclick("script5535(cc_getlayer, cc_getid, $stat1)");
     }
 }
 if (cc_find(xptracker:tracker_progress, $int0) = true) {
     cc_setcolour(0x006600);
     cc_setfill(true);
     cc_setposition(0, $int4, ^setpos_abs_left, ^setpos_abs_top);
-    ~xptracker_update_progress_bar($stat);
+    ~xptracker_update_progress_bar($stat1);
 }
 if (cc_find(xptracker:tracker_progress_text, $int0) = true) {
     cc_setcolour(^white);
@@ -35,7 +35,7 @@ if (cc_find(xptracker:tracker_progress_text, $int0) = true) {
     cc_settextfont(p11_full);
     cc_setposition(0, calc($int4 + 1), ^setpos_abs_centre, ^setpos_abs_top);
     cc_setsize(0, 15, ^setsize_minus, ^setsize_abs);
-    ~script5371($stat);
+    ~script5371($stat1);
 }
 if (cc_find(xptracker:tracker_progress_lvl_left, $int0) = true) {
     cc_setcolour(0xcccccc);
@@ -44,7 +44,7 @@ if (cc_find(xptracker:tracker_progress_lvl_left, $int0) = true) {
     cc_settextfont(p11_full);
     cc_setposition(calc(2 - 1), calc($int4 + 1), ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize(0, 15, ^setsize_minus, ^setsize_abs);
-    ~xptracker_update_level_left($stat);
+    ~xptracker_update_level_left($stat1);
 }
 if (cc_find(xptracker:tracker_progress_lvl_right, $int0) = true) {
     cc_setcolour(0xcccccc);
@@ -53,5 +53,5 @@ if (cc_find(xptracker:tracker_progress_lvl_right, $int0) = true) {
     cc_settextfont(p11_full);
     cc_setposition(calc(2 + 1), calc($int4 + 1), ^setpos_abs_right, ^setpos_abs_top);
     cc_setsize(0, 15, ^setsize_minus, ^setsize_abs);
-    ~xptracker_update_level_right($stat);
+    ~xptracker_update_level_right($stat1);
 }

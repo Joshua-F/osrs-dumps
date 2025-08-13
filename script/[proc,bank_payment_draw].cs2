@@ -1,5 +1,5 @@
 // 1456
-[proc,bank_payment_draw](component $component0, int $int1, boolean $boolean)
+[proc,bank_payment_draw](component $component0, int $int1, boolean $boolean2)
 def_int $int3 = if_getheight($component0);
 def_int $int4 = if_getwidth($component0);
 def_int $int5 = 44;
@@ -9,14 +9,14 @@ if ($int6 < 0 | $int7 < 0) {
     return;
 }
 def_component $component8 = null;
-def_coord $coord = null;
+def_coord $coord9 = null;
 def_int $int10 = 0;
 def_int $int11 = 0;
 def_int $int12 = 0;
 def_int $int13 = 0;
 def_int $int14 = 0;
 def_int $int15 = 0;
-def_obj $obj = null;
+def_obj $obj16 = null;
 def_int $int17 = 0;
 .cc_deleteall($component0);
 .cc_create($component0, ^iftype_rectangle, 0);
@@ -24,15 +24,15 @@ def_int $int17 = 0;
 def_int $int18 = enum_getoutputcount(enum_1511);
 def_int $int19 = 1;
 while ($int19 <= $int18) {
-    $component8, $coord = enum(int, component, enum_1511, $int19), enum(int, coord, enum_1512, $int19);
-    if ($component8 ! null & $coord ! null) {
-        $int10, $int11 = coordz($coord), coordx($coord);
+    $component8, $coord9 = enum(int, component, enum_1511, $int19), enum(int, coord, enum_1512, $int19);
+    if ($component8 ! null & $coord9 ! null) {
+        $int10, $int11 = coordz($coord9), coordx($coord9);
         $int12, $int13 = calc($int7 + ($int11 - 1) * $int5), calc($int6 + ($int10 - 1) * $int5);
         if_setposition($int12, $int13, ^setpos_abs_left, ^setpos_abs_top, $component8);
         if_setsize($int5, $int5, ^setsize_abs, ^setsize_abs, $component8);
-        $obj = enum(int, namedobj, enum_982, $int19);
-        $int17 = ~script7878($obj);
-        if ($boolean = false | $int17 >= 20) {
+        $obj16 = enum(int, namedobj, enum_982, $int19);
+        $int17 = ~script7878($obj16);
+        if ($boolean2 = false | $int17 >= 20) {
             $int15 = 1;
         } else {
             $int15 = 0;
@@ -44,16 +44,16 @@ while ($int19 <= $int18) {
             } else {
                 $int14 = ~v2_stone_button_out_filled($component8);
             }
-            if_setonmouseover("bank_payment_draw($component0, $int19, $boolean)", $component8);
-            if_setonmouseleave("bank_payment_draw($component0, -1, $boolean)", $component8);
+            if_setonmouseover("bank_payment_draw($component0, $int19, $boolean2)", $component8);
+            if_setonmouseleave("bank_payment_draw($component0, -1, $boolean2)", $component8);
         } else {
             $int14 = ~v2_stone_button_filled($component8);
         }
-        if_setopbase("<col=ff9040><oc_name($obj)></col>", $component8);
+        if_setopbase("<col=ff9040><oc_name($obj16)></col>", $component8);
         if_setop(1, "Choose", $component8);
-        if_setonop("zmi_payment_selection_op($int19, $component0, $component8, $int14, $boolean)", $component8);
+        if_setonop("zmi_payment_selection_op($int19, $component0, $component8, $int14, $boolean2)", $component8);
         cc_create($component8, ^iftype_graphic, $int14);
-        cc_setobject_alwaysnum($obj, $int17);
+        cc_setobject_alwaysnum($obj16, $int17);
         cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
         cc_setposition(2, 0, ^setpos_abs_centre, ^setpos_abs_centre);
         cc_setgraphicshadow(0x333333);

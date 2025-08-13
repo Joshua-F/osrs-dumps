@@ -1,0 +1,20 @@
+// 3833
+[proc,script3833](dbrow $dbrow0, obj $obj1)(stat, int)
+def_int $int2 = db_getfieldcount($dbrow0, furniture:level_requirement);
+def_int $int3 = 0;
+def_int $int4 = -1;
+def_stat $stat5 = null;
+def_int $int6 = -1;
+while ($int3 < $int2) {
+    $stat5 = db_getfield($dbrow0, furniture:level_requirement:0, $int3);
+    $int6 = db_getfield($dbrow0, furniture:level_requirement:1, $int3);
+    $int4 = stat($stat5);
+    if ($stat5 = construction & $obj1 = eyeglo_crystal_saw) {
+        $int4 = calc($int4 + 3);
+    }
+    if ($int4 < $int6) {
+        return($stat5, $int6);
+    }
+    $int3 = calc($int3 + 1);
+}
+return(null, 0);

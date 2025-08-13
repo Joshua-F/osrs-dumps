@@ -1,23 +1,23 @@
 // 7592
-[clientscript,combat_interface_init](component $universe, component $title, component $level, component $infobutton, component $glow)
-cc_deleteall($glow);
-def_int $int = 0;
+[clientscript,combat_interface_init](component $component0, component $component1, component $component2, component $component3, component $component4)
+cc_deleteall($component4);
+def_int $int5 = 0;
 if (~on_mobile = true) {
-    if_sethide(false, $infobutton);
-    while ($int < 4) {
-        cc_create($glow, ^iftype_rectangle, $int);
+    if_sethide(false, $component3);
+    while ($int5 < 4) {
+        cc_create($component4, ^iftype_rectangle, $int5);
         cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
-        cc_setsize(calc($int * 2), calc($int * 2), ^setsize_minus, ^setsize_minus);
+        cc_setsize(calc($int5 * 2), calc($int5 * 2), ^setsize_minus, ^setsize_minus);
         cc_setcolour(^white);
         cc_setfill(true);
         cc_settrans(220);
-        $int = calc($int + 1);
+        $int5 = calc($int5 + 1);
     }
     ~combat_interface_info_toggle(false);
 } else {
-    if_sethide(true, $infobutton);
+    if_sethide(true, $component3);
 }
-~combat_interface_setup($level);
-if_setonvartransmit("combat_interface_setup($level){randomhitsound, com_mode, wilderness_statistics, sote_light_level_0_g, settings_varp_ehc_4}", $universe);
-~combat_interface_title($title, $level);
-if_setoninvtransmit("combat_interface_title($title, $level){worn}", $universe);
+~combat_interface_setup($component2);
+if_setonvartransmit("combat_interface_setup($component2){randomhitsound, com_mode, wilderness_statistics, sote_light_level_0_g, settings_varp_ehc_4}", $component0);
+~combat_interface_title($component1, $component2);
+if_setoninvtransmit("combat_interface_title($component1, $component2){worn}", $component0);

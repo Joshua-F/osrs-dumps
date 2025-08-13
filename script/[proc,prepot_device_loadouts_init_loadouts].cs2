@@ -1,14 +1,14 @@
 // 7359
 [proc,prepot_device_loadouts_init_loadouts](int $int0)
 def_int $int1 = 0;
-def_component $component = null;
+def_component $component2 = null;
 db_listall(prepot_device_loadout_ui);
-def_dbrow $dbrow = db_findnext;
-while ($dbrow ! null) {
-    ~prepot_device_loadouts_init_loadout($dbrow, $int0);
-    $component = db_getfield($dbrow, prepot_device_loadout_ui:container_com, 0);
-    $int1 = max($int1, calc(if_gety($component) + if_getheight($component)));
-    $dbrow = db_findnext;
+def_dbrow $dbrow3 = db_findnext;
+while ($dbrow3 ! null) {
+    ~prepot_device_loadouts_init_loadout($dbrow3, $int0);
+    $component2 = db_getfield($dbrow3, prepot_device_loadout_ui:container_com, 0);
+    $int1 = max($int1, calc(if_gety($component2) + if_getheight($component2)));
+    $dbrow3 = db_findnext;
 }
 if_setscrollpos(0, 0, bankside:prepot_device_loadouts);
 if ($int1 > if_getheight(bankside:prepot_device_loadouts)) {

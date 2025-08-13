@@ -1,17 +1,17 @@
 // 3327
-[proc,bankside_worn_drawitem](obj $obj, int $int1, int $int2)
+[proc,bankside_worn_drawitem](obj $obj0, int $int1, int $int2)
 cc_clearops;
-def_string $string = "";
-if ($obj ! null) {
-    cc_setobject($obj, $int1);
+def_string $string0 = "";
+if ($obj0 ! null) {
+    cc_setobject($obj0, $int1);
     if (testbit(%if2, $int2) = ^true) {
-        if (map_members = true | oc_members($obj) = 0) {
-            $string = oc_iop($obj, oc_param($obj, param_148));
+        if (map_members = true | oc_members($obj0) = 0) {
+            $string0 = oc_iop($obj0, oc_param($obj0, param_148));
         } else {
-            $string = "";
+            $string0 = "";
         }
-        if (string_length($string) > 0) {
-            cc_setop(1, $string);
+        if (string_length($string0) > 0) {
+            cc_setop(1, $string0);
             cc_settrans(0);
             cc_setonop("cc_settrans_temporarily(event_com, event_comsubid, 100, 0)");
         } else {
@@ -24,7 +24,7 @@ if ($obj ! null) {
     }
     cc_setop(9, "Deposit");
     cc_setop(10, "Examine");
-    cc_setopbase("<col=ff9040><oc_name($obj)></col>");
+    cc_setopbase("<col=ff9040><oc_name($obj0)></col>");
     cc_setondragcomplete("bankside_worn_reorder(event_com, event_com2, event_comsubid, event_comsubid2)");
 } else {
     cc_settrans(255);

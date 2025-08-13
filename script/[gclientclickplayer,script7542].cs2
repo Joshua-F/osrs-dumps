@@ -5,15 +5,15 @@ if (~on_enhanced_desktop = true & %popout_panel_desktop_disabled = 1) {
 } else if (~on_enhanced_mobile = true & %popout_panel_mobile_enabled = 0) {
     return;
 }
-def_string $string = p_name;
-if (string_length($string) <= 0) {
+def_string $string0 = p_name;
+if (string_length($string0) <= 0) {
     return;
 }
 if (%popout_open ! 3) {
     if (cc_find(popout:buttons, calc(3 - 1)) = true | cc_find(popout:osm_buttons, calc(3 * 2 - 2)) = true) {
-        %hiscores_queue_lookup = $string;
+        %hiscores_queue_lookup = $string0;
         cc_triggerop(1);
     }
 } else {
-    ~hiscores_request_data($string, %hiscores_type);
+    ~hiscores_request_data($string0, %hiscores_type);
 }

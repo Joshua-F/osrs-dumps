@@ -1,23 +1,23 @@
 // 3018
-[clientscript,adventurepath_side_init](component $main, component $universe, component $settings, component $path_name, component $path_icon, component $task_name, component $task_description, component $progress_bar, component $settings_tab, component $settings_title, component $toggles, component $settings_scrollbar, component $settings_back, component $hint, component $open_interface)
-cc_deleteall($settings);
-cc_deleteall($path_name);
-cc_deleteall($path_icon);
-cc_deleteall($task_description);
-cc_deleteall($task_name);
-cc_deleteall($progress_bar);
-cc_deleteall($hint);
-cc_deleteall($open_interface);
+[clientscript,adventurepath_side_init](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10, component $component11, component $component12, component $component13, component $component14)
+cc_deleteall($component2);
+cc_deleteall($component3);
+cc_deleteall($component4);
+cc_deleteall($component6);
+cc_deleteall($component5);
+cc_deleteall($component7);
+cc_deleteall($component13);
+cc_deleteall($component14);
 if (%adventurepath_settings_selected = 1) {
-    if_sethide(true, $main);
-    if_sethide(false, $settings_tab);
+    if_sethide(true, $component0);
+    if_sethide(false, $component8);
 } else {
-    if_sethide(false, $main);
-    if_sethide(true, $settings_tab);
+    if_sethide(false, $component0);
+    if_sethide(true, $component8);
 }
-~adventurepath_side_info($path_name, $path_icon, $task_name, $task_description, $progress_bar, $settings_back, $hint, $open_interface);
-if_setonvartransmit("adventurepath_side_info_transmit($path_name, $path_icon, $task_name, $task_description, $progress_bar, $settings_back, $hint, $open_interface){adventurepath_in_focus, adventurepath_selected_task}", $universe);
-if_setonstattransmit("adventurepath_side_info_transmit($path_name, $path_icon, $task_name, $task_description, $progress_bar, $settings_back, $hint, $open_interface){attack, strength, defence, magic, ranged, mining, woodcutting, fishing}", $universe);
-if_setonvartransmit("adventurepath_side_layer($main, $settings_tab){adventurepath_filters}", $main);
-~adventurepath_side_settings($settings, $main, $settings_tab);
-~adventurepath_side_settings_content($main, $settings_tab, $settings_title, $toggles, $settings_scrollbar, $settings_back, 1);
+~adventurepath_side_info($component3, $component4, $component5, $component6, $component7, $component12, $component13, $component14);
+if_setonvartransmit("adventurepath_side_info_transmit($component3, $component4, $component5, $component6, $component7, $component12, $component13, $component14){adventurepath_in_focus, adventurepath_selected_task}", $component1);
+if_setonstattransmit("adventurepath_side_info_transmit($component3, $component4, $component5, $component6, $component7, $component12, $component13, $component14){attack, strength, defence, magic, ranged, mining, woodcutting, fishing}", $component1);
+if_setonvartransmit("adventurepath_side_layer($component0, $component8){adventurepath_filters}", $component0);
+~adventurepath_side_settings($component2, $component0, $component8);
+~adventurepath_side_settings_content($component0, $component8, $component9, $component10, $component11, $component12, 1);

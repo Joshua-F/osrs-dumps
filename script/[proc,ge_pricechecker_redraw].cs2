@@ -9,42 +9,42 @@ cc_deleteall(ge_pricechecker:items);
 def_int $int5 = -1;
 def_int $int6 = 0;
 def_int $int7 = 0;
-def_obj $obj = null;
+def_obj $obj8 = null;
 def_int $int9 = inv_size(tradeoffer);
-def_int $intarray($int9);
-$intarray(0) = %slotinfo_00;
-$intarray(1) = %slotinfo_01;
-$intarray(2) = %slotinfo_02;
-$intarray(3) = %slotinfo_03;
-$intarray(4) = %slotinfo_04;
-$intarray(5) = %slotinfo_05;
-$intarray(6) = %slotinfo_06;
-$intarray(7) = %slotinfo_07;
-$intarray(8) = %slotinfo_08;
-$intarray(9) = %slotinfo_09;
-$intarray(10) = %slotinfo_10;
-$intarray(11) = %slotinfo_11;
-$intarray(12) = %slotinfo_12;
-$intarray(13) = %slotinfo_13;
-$intarray(14) = %slotinfo_14;
-$intarray(15) = %slotinfo_15;
-$intarray(16) = %slotinfo_16;
-$intarray(17) = %slotinfo_17;
-$intarray(18) = %slotinfo_18;
-$intarray(19) = %slotinfo_19;
-$intarray(20) = %slotinfo_20;
-$intarray(21) = %slotinfo_21;
-$intarray(22) = %slotinfo_22;
-$intarray(23) = %slotinfo_23;
-$intarray(24) = %slotinfo_24;
-$intarray(25) = %slotinfo_25;
-$intarray(26) = %slotinfo_26;
-$intarray(27) = %slotinfo_27;
+def_int $intarray0($int9);
+$intarray0(0) = %slotinfo_00;
+$intarray0(1) = %slotinfo_01;
+$intarray0(2) = %slotinfo_02;
+$intarray0(3) = %slotinfo_03;
+$intarray0(4) = %slotinfo_04;
+$intarray0(5) = %slotinfo_05;
+$intarray0(6) = %slotinfo_06;
+$intarray0(7) = %slotinfo_07;
+$intarray0(8) = %slotinfo_08;
+$intarray0(9) = %slotinfo_09;
+$intarray0(10) = %slotinfo_10;
+$intarray0(11) = %slotinfo_11;
+$intarray0(12) = %slotinfo_12;
+$intarray0(13) = %slotinfo_13;
+$intarray0(14) = %slotinfo_14;
+$intarray0(15) = %slotinfo_15;
+$intarray0(16) = %slotinfo_16;
+$intarray0(17) = %slotinfo_17;
+$intarray0(18) = %slotinfo_18;
+$intarray0(19) = %slotinfo_19;
+$intarray0(20) = %slotinfo_20;
+$intarray0(21) = %slotinfo_21;
+$intarray0(22) = %slotinfo_22;
+$intarray0(23) = %slotinfo_23;
+$intarray0(24) = %slotinfo_24;
+$intarray0(25) = %slotinfo_25;
+$intarray0(26) = %slotinfo_26;
+$intarray0(27) = %slotinfo_27;
 def_int $int10 = 0;
 while ($int10 < $int9) {
     cc_create(ge_pricechecker:items, ^iftype_graphic, $int10);
-    $obj = inv_getobj(tradeoffer, $int10);
-    if ($obj ! null) {
+    $obj8 = inv_getobj(tradeoffer, $int10);
+    if ($obj8 ! null) {
         $int6, $int7 = calc($int10 % 5 * $int2), calc($int10 / 5 * $int3);
         $int5 = $int7;
         cc_sethide(false);
@@ -52,14 +52,14 @@ while ($int10 < $int9) {
         cc_setposition(calc($int6 + $int4), $int7, ^setpos_abs_left, ^setpos_abs_top);
         cc_setgraphicshadow(0x333333);
         cc_setoutline(1);
-        cc_setobject($obj, inv_getnum(tradeoffer, $int10));
+        cc_setobject($obj8, inv_getnum(tradeoffer, $int10));
         cc_setop(1, "Remove");
         cc_setop(2, "Remove-5");
         cc_setop(3, "Remove-10");
         cc_setop(4, "Remove-All");
         cc_setop(5, "Remove-X");
         cc_setop(10, "Examine");
-        cc_setopbase("<col=ff9040><oc_name($obj)></col>");
+        cc_setopbase("<col=ff9040><oc_name($obj8)></col>");
         cc_setonop("cc_settrans_temporarily(event_com, event_comsubid, 100, 0)");
     } else {
         cc_sethide(true);
@@ -68,12 +68,12 @@ while ($int10 < $int9) {
 }
 def_int $int11 = 0;
 def_int $int12 = 0;
-def_string $string = ",";
+def_string $string1 = ",";
 def_int $int13 = $int10;
 $int10 = 0;
 while ($int10 < $int9) {
-    $obj, $int11 = inv_getobj(tradeoffer, $int10), inv_getnum(tradeoffer, $int10);
-    if ($obj ! null & $int11 > 0) {
+    $obj8, $int11 = inv_getobj(tradeoffer, $int10), inv_getnum(tradeoffer, $int10);
+    if ($obj8 ! null & $int11 > 0) {
         $int6, $int7 = calc($int10 % 5 * $int2), calc($int10 / 5 * $int3);
         cc_create(ge_pricechecker:items, ^iftype_text, $int13);
         $int13 = calc($int13 + 1);
@@ -84,19 +84,19 @@ while ($int10 < $int9) {
         cc_settextfont(p11_full);
         cc_settextshadow(true);
         cc_settextalign(^settextalign_centre, ^settextalign_top, 0);
-        if (calc(^max_32bit_int / $int11) < $intarray($int10)) {
+        if (calc(^max_32bit_int / $int11) < $intarray0($int10)) {
             $int12 = ^max_32bit_int;
         } else {
-            $int12 = calc($int11 * $intarray($int10));
+            $int12 = calc($int11 * $intarray0($int10));
         }
         if ($int11 > 1) {
             if ($int12 >= 0 & $int12 < ^max_32bit_int) {
-                cc_settext("<~tostring_spacer($int11, $string)> x <~tostring_spacer($intarray($int10), $string)><br>= <~tostring_spacer($int12, $string)>");
+                cc_settext("<~tostring_spacer($int11, $string1)> x <~tostring_spacer($intarray0($int10), $string1)><br>= <~tostring_spacer($int12, $string1)>");
             } else {
-                cc_settext("<~tostring_spacer($int11, $string)> x <~tostring_spacer($intarray($int10), $string)>");
+                cc_settext("<~tostring_spacer($int11, $string1)> x <~tostring_spacer($intarray0($int10), $string1)>");
             }
         } else {
-            cc_settext(~tostring_spacer($intarray($int10), $string));
+            cc_settext(~tostring_spacer($intarray0($int10), $string1));
         }
     }
     $int10 = calc($int10 + 1);
