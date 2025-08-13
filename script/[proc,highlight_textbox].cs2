@@ -1,26 +1,26 @@
 // 3415
-[proc,highlight_textbox](string $string, int $rgb, boolean $boolean1, boolean $boolean2, component $component, int $int4, int $int5, int $int6)
+[proc,highlight_textbox](string $string0, int $rgb0, boolean $boolean1, boolean $boolean2, component $component3, int $int4, int $int5, int $int6)
 if ($boolean2 = true) {
     if_sethide(false, screenhighlight:close);
 } else {
     if_sethide(true, screenhighlight:close);
 }
-def_int $int7 = if_getheight($component);
-def_int $int8 = if_getwidth($component);
+def_int $int7 = if_getheight($component3);
+def_int $int8 = if_getwidth($component3);
 if (calc(clientclock % 100) ! 0 & $int7 = $int4 & $int8 = $int5) {
     return;
 }
-if ($rgb = null) {
-    $rgb = 0xff981f;
+if ($rgb0 = null) {
+    $rgb0 = 0xff981f;
 }
-if_setcolour($rgb, screenhighlight:out_of);
+if_setcolour($rgb0, screenhighlight:out_of);
 if_settext("<tostring(calc(1 + %hnt_hint_step))>/<tostring(%hnt_hint_max_step)>", screenhighlight:out_of);
 def_int $int9 = 0;
 def_int $int10 = 0;
-$int9, $int10 = ~script3416($string, p12_full, 16);
+$int9, $int10 = ~script3416($string0, p12_full, 16);
 if_setsize($int9, $int10, ^setsize_abs, ^setsize_abs, screenhighlight:information_box);
-if_setcolour($rgb, screenhighlight:information_text);
-if_settext($string, screenhighlight:information_text);
+if_setcolour($rgb0, screenhighlight:information_text);
+if_settext($string0, screenhighlight:information_text);
 def_int $int11 = if_getx(screenhighlight:background);
 def_int $int12 = if_gety(screenhighlight:background);
 def_int $int13 = if_getwidth(screenhighlight:background);
@@ -77,4 +77,4 @@ if (if_gethide(screenhighlight:background) = false) {
     if_setposition(0, 50, ^setpos_abs_centre, ^setpos_abs_bottom, screenhighlight:information_box);
 }
 if_sethide(false, screenhighlight:information_box);
-if_setontimer("highlight_textbox_resize($string, $rgb, $boolean1, $boolean2, $component, $int7, $int8, $int6)", screenhighlight:universe);
+if_setontimer("highlight_textbox_resize($string0, $rgb0, $boolean1, $boolean2, $component3, $int7, $int8, $int6)", screenhighlight:universe);

@@ -1,43 +1,43 @@
 // 7506
 [clientscript,hiscores_group_members_show_dropdown](int $int0, int $int1)
-def_component $hiscores_group_members_dropdown = hiscores:hiscores_group_members_dropdown;
-def_component $hiscores_group_members_dropdown_panel = hiscores:hiscores_group_members_dropdown_panel;
-def_component $hiscores_group_members_dropdown_close = hiscores:hiscores_group_members_dropdown_close;
-def_component $hiscores_group_members_dropdown_buttons = hiscores:hiscores_group_members_dropdown_buttons;
-def_component $hiscores_group_members_dropdown_container = hiscores:hiscores_group_members_dropdown_container;
+def_component $component2 = hiscores:hiscores_group_members_dropdown;
+def_component $component3 = hiscores:hiscores_group_members_dropdown_panel;
+def_component $component4 = hiscores:hiscores_group_members_dropdown_close;
+def_component $component5 = hiscores:hiscores_group_members_dropdown_buttons;
+def_component $component6 = hiscores:hiscores_group_members_dropdown_container;
 if (%hiscores_gim_group_found = 0) {
     return;
 }
-cc_deleteall($hiscores_group_members_dropdown_panel);
-cc_deleteall($hiscores_group_members_dropdown_close);
-cc_deleteall($hiscores_group_members_dropdown_buttons);
-cc_deleteall($hiscores_group_members_dropdown_container);
-if_setonop("hiscores_dropdown_entry_close($hiscores_group_members_dropdown_panel, $hiscores_group_members_dropdown_close, $hiscores_group_members_dropdown_buttons, $hiscores_group_members_dropdown_container, $hiscores_group_members_dropdown, $int0)", $hiscores_group_members_dropdown_close);
+cc_deleteall($component3);
+cc_deleteall($component4);
+cc_deleteall($component5);
+cc_deleteall($component6);
+if_setonop("hiscores_dropdown_entry_close($component3, $component4, $component5, $component6, $component2, $int0)", $component4);
 def_int $int7 = 0;
 def_int $int8 = 5;
 def_int $int9 = 0;
 def_int $int10 = 30;
 def_int $int11 = 0;
 def_int $int12 = 220;
-def_string $string = "";
+def_string $string0 = "";
 def_int $int13 = 0;
 while ($int7 < $int8) {
-    $string = stringvector_get(stringvector_5, $int7);
-    if (string_length($string) > 0) {
-        cc_create($hiscores_group_members_dropdown_buttons, ^iftype_rectangle, $int9);
+    $string0 = stringvector_get(stringvector_5, $int7);
+    if (string_length($string0) > 0) {
+        cc_create($component5, ^iftype_rectangle, $int9);
         cc_setsize(0, $int10, ^setsize_minus, ^setsize_abs);
         cc_setposition(0, $int11, ^setpos_abs_left, ^setpos_abs_top);
         cc_setfill(true);
         cc_setcolour(^black);
         cc_settrans($int12);
         if (~on_mobile = false) {
-            cc_setonmouseover("cc_settrans($hiscores_group_members_dropdown_buttons, $int9, 240, null)");
-            cc_setonmouseleave("cc_settrans($hiscores_group_members_dropdown_buttons, $int9, $int12, null)");
+            cc_setonmouseover("cc_settrans($component5, $int9, 240, null)");
+            cc_setonmouseleave("cc_settrans($component5, $int9, $int12, null)");
         }
         $int9 = calc($int9 + 1);
-        cc_create($hiscores_group_members_dropdown_buttons, ^iftype_text, $int9);
-        $int13 = parawidth($string, 500, p12_full);
-        cc_settext($string);
+        cc_create($component5, ^iftype_text, $int9);
+        $int13 = parawidth($string0, 500, p12_full);
+        cc_settext($string0);
         cc_settextfont(p12_full);
         cc_settextshadow(true);
         cc_setcolour(0xff981f);
@@ -45,7 +45,7 @@ while ($int7 < $int8) {
         cc_setsize(0, $int10, ^setsize_minus, ^setsize_abs);
         cc_setposition(calc(2 + 13 / 2), $int11, ^setpos_abs_centre, ^setpos_abs_top);
         $int9 = calc($int9 + 1);
-        cc_create($hiscores_group_members_dropdown_buttons, ^iftype_rectangle, $int9);
+        cc_create($component5, ^iftype_rectangle, $int9);
         cc_setsize(0, $int10, ^setsize_minus, ^setsize_abs);
         cc_setposition(0, $int11, ^setpos_abs_left, ^setpos_abs_top);
         cc_setfill(true);
@@ -53,7 +53,7 @@ while ($int7 < $int8) {
         cc_settrans(255);
         cc_setop(1, "Select");
         cc_setonop(null);
-        cc_setonop("hiscores_group_member_dropdown_entry_selected($hiscores_group_members_dropdown_panel, $hiscores_group_members_dropdown_close, $hiscores_group_members_dropdown_buttons, $hiscores_group_members_dropdown_container, $hiscores_group_members_dropdown, $int0, $int1, $int7)");
+        cc_setonop("hiscores_group_member_dropdown_entry_selected($component3, $component4, $component5, $component6, $component2, $int0, $int1, $int7)");
         $int9 = calc($int9 + 1);
         $int11 = calc($int11 + $int10);
     }
@@ -64,9 +64,9 @@ while ($int7 < $int8) {
         $int12 = 220;
     }
 }
-if_setsize(if_getwidth($hiscores_group_members_dropdown), calc($int11 + 4), ^setsize_abs, ^setsize_abs, $hiscores_group_members_dropdown_panel);
-if_setposition(if_getx($hiscores_group_members_dropdown), calc(if_gety($hiscores_group_members_dropdown) + if_getheight($hiscores_group_members_dropdown)), ^setpos_abs_left, ^setpos_abs_top, $hiscores_group_members_dropdown_panel);
-if_sethide(false, $hiscores_group_members_dropdown_container);
-if (cc_find($hiscores_group_members_dropdown, $int0) = true) {
+if_setsize(if_getwidth($component2), calc($int11 + 4), ^setsize_abs, ^setsize_abs, $component3);
+if_setposition(if_getx($component2), calc(if_gety($component2) + if_getheight($component2)), ^setpos_abs_left, ^setpos_abs_top, $component3);
+if_sethide(false, $component6);
+if (cc_find($component2, $int0) = true) {
     cc_setgraphic("scrollbar_v2,0");
 }

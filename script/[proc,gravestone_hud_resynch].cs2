@@ -1,10 +1,10 @@
 // 3459
-[proc,gravestone_hud_resynch](component $component)
+[proc,gravestone_hud_resynch](component $component0)
 if (%gravestone_duration <= 0 | %gravestone_tli_hide = 1) {
     cc_sethide(true);
     .cc_sethide(true);
-    if_setontimer(null, $component);
-    if_clearops($component);
+    if_setontimer(null, $component0);
+    if_clearops($component0);
     return;
 }
 cc_sethide(false);
@@ -12,11 +12,11 @@ cc_sethide(false);
 if (%gravestone_duration > 1500) {
     cc_setcolour(0x9f9f9f);
     cc_settext("---");
-    if_setontimer(null, $component);
-    if_clearops($component);
+    if_setontimer(null, $component0);
+    if_clearops($component0);
     return;
 }
-def_int $int = calc(%gravestone_duration * 30);
-~gravestone_hud_write($int);
-if_setontimer("gravestone_hud_tickdown(event_com, cc_getid, $int, clientclock)", $component);
-if_setop(1, "Grave info", $component);
+def_int $int1 = calc(%gravestone_duration * 30);
+~gravestone_hud_write($int1);
+if_setontimer("gravestone_hud_tickdown(event_com, cc_getid, $int1, clientclock)", $component0);
+if_setop(1, "Grave info", $component0);

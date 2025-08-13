@@ -1,65 +1,65 @@
 // 497
-[proc,wilderness_lootingbag_draw](inv $inv)
+[proc,wilderness_lootingbag_draw](inv $inv0)
 cc_deleteall(wilderness_lootingbag:items);
-def_int $int1 = inv_size($inv);
-def_int $intarray($int1);
-$intarray(0) = %slotinfo_00;
-$intarray(1) = %slotinfo_01;
-$intarray(2) = %slotinfo_02;
-$intarray(3) = %slotinfo_03;
-$intarray(4) = %slotinfo_04;
-$intarray(5) = %slotinfo_05;
-$intarray(6) = %slotinfo_06;
-$intarray(7) = %slotinfo_07;
-$intarray(8) = %slotinfo_08;
-$intarray(9) = %slotinfo_09;
-$intarray(10) = %slotinfo_10;
-$intarray(11) = %slotinfo_11;
-$intarray(12) = %slotinfo_12;
-$intarray(13) = %slotinfo_13;
-$intarray(14) = %slotinfo_14;
-$intarray(15) = %slotinfo_15;
-$intarray(16) = %slotinfo_16;
-$intarray(17) = %slotinfo_17;
-$intarray(18) = %slotinfo_18;
-$intarray(19) = %slotinfo_19;
-$intarray(20) = %slotinfo_20;
-$intarray(21) = %slotinfo_21;
-$intarray(22) = %slotinfo_22;
-$intarray(23) = %slotinfo_23;
-$intarray(24) = %slotinfo_24;
-$intarray(25) = %slotinfo_25;
-$intarray(26) = %slotinfo_26;
-$intarray(27) = %slotinfo_27;
-def_obj $obj = null;
+def_int $int1 = inv_size($inv0);
+def_int $intarray0($int1);
+$intarray0(0) = %slotinfo_00;
+$intarray0(1) = %slotinfo_01;
+$intarray0(2) = %slotinfo_02;
+$intarray0(3) = %slotinfo_03;
+$intarray0(4) = %slotinfo_04;
+$intarray0(5) = %slotinfo_05;
+$intarray0(6) = %slotinfo_06;
+$intarray0(7) = %slotinfo_07;
+$intarray0(8) = %slotinfo_08;
+$intarray0(9) = %slotinfo_09;
+$intarray0(10) = %slotinfo_10;
+$intarray0(11) = %slotinfo_11;
+$intarray0(12) = %slotinfo_12;
+$intarray0(13) = %slotinfo_13;
+$intarray0(14) = %slotinfo_14;
+$intarray0(15) = %slotinfo_15;
+$intarray0(16) = %slotinfo_16;
+$intarray0(17) = %slotinfo_17;
+$intarray0(18) = %slotinfo_18;
+$intarray0(19) = %slotinfo_19;
+$intarray0(20) = %slotinfo_20;
+$intarray0(21) = %slotinfo_21;
+$intarray0(22) = %slotinfo_22;
+$intarray0(23) = %slotinfo_23;
+$intarray0(24) = %slotinfo_24;
+$intarray0(25) = %slotinfo_25;
+$intarray0(26) = %slotinfo_26;
+$intarray0(27) = %slotinfo_27;
+def_obj $obj2 = null;
 def_int $int3 = 0;
 def_int $int4 = 0;
-def_string $string = "Invalid item.";
+def_string $string1 = "Invalid item.";
 def_int $int5 = 0;
 while ($int5 < $int1) {
     cc_create(wilderness_lootingbag:items, ^iftype_graphic, $int5);
-    $obj = inv_getobj($inv, $int5);
-    if ($obj ! null) {
-        $int3, $int4 = inv_getnum($inv, $int5), calc($int4 + 1);
+    $obj2 = inv_getobj($inv0, $int5);
+    if ($obj2 ! null) {
+        $int3, $int4 = inv_getnum($inv0, $int5), calc($int4 + 1);
         cc_sethide(false);
         cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
         cc_setposition(calc($int5 % 4 * (36 + 8)), calc($int5 / 4 * 32), ^setpos_abs_left, ^setpos_abs_top);
         cc_setoutline(1);
         cc_setgraphicshadow(0x333333);
-        cc_setobject($obj, $int3);
-        if ($inv = inv) {
-            if ($obj = looting_bag | $obj = looting_bag_open) {
+        cc_setobject($obj2, $int3);
+        if ($inv0 = inv) {
+            if ($obj2 = looting_bag | $obj2 = looting_bag_open) {
                 cc_settrans(150);
                 cc_setonmouserepeat(null);
                 cc_setonmouseleave(null);
             } else {
                 cc_settrans(0);
                 cc_setonop("cc_settrans_temporarily(event_com, event_comsubid, 150, 0)");
-                if ($intarray($int5) <= -1) {
-                    cc_setonmouserepeat("tooltip_mouserepeat(event_com, event_comsubid, wilderness_lootingbag:tooltip, $string, 25, 512)");
+                if ($intarray0($int5) <= -1) {
+                    cc_setonmouserepeat("tooltip_mouserepeat(event_com, event_comsubid, wilderness_lootingbag:tooltip, $string1, 25, 512)");
                     cc_setonmouseleave("deltooltip(wilderness_lootingbag:tooltip)");
                 } else {
-                    ~trade_tooltip($int3, $intarray($int5), wilderness_lootingbag:tooltip);
+                    ~trade_tooltip($int3, $intarray0($int5), wilderness_lootingbag:tooltip);
                 }
             }
             cc_setop(1, "Store-1");
@@ -70,15 +70,15 @@ while ($int5 < $int1) {
         } else {
             cc_settrans(0);
             cc_setop(10, "Examine");
-            ~trade_tooltip($int3, $intarray($int5), wilderness_lootingbag:tooltip);
+            ~trade_tooltip($int3, $intarray0($int5), wilderness_lootingbag:tooltip);
         }
-        cc_setopbase("<col=ff9040><oc_name($obj)>");
+        cc_setopbase("<col=ff9040><oc_name($obj2)>");
     } else {
         cc_sethide(true);
     }
     $int5 = calc($int5 + 1);
 }
-if ($inv = looting_bag & $int4 <= 0) {
+if ($inv0 = looting_bag & $int4 <= 0) {
     cc_create(wilderness_lootingbag:items, ^iftype_text, $int5);
     cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize(if_getwidth(wilderness_lootingbag:items), if_getheight(wilderness_lootingbag:items), ^setsize_abs, ^setsize_abs);

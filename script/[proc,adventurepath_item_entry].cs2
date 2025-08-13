@@ -1,13 +1,13 @@
 // 2844
-[proc,adventurepath_item_entry](int $int0, component $component, int $int2, obj $obj, int $int4, string $string0, int $int5)(int, int, int)
-def_int $int6 = calc(if_getwidth($component) - 36 * 2 - 10);
+[proc,adventurepath_item_entry](int $int0, component $component1, int $int2, obj $obj3, int $int4, string $string0, int $int5)(int, int, int)
+def_int $int6 = calc(if_getwidth($component1) - 36 * 2 - 10);
 def_int $int7 = paraheight($string0, $int6, p12_full);
 def_int $int8 = ~max(50, calc($int7 * 13 + 8));
-if ($obj = null) {
+if ($obj3 = null) {
     return($int2, $int5, $int0);
 }
-cc_create($component, ^iftype_rectangle, $int2);
-cc_setsize(if_getwidth($component), $int8, ^setsize_abs, ^setsize_abs);
+cc_create($component1, ^iftype_rectangle, $int2);
+cc_setsize(if_getwidth($component1), $int8, ^setsize_abs, ^setsize_abs);
 cc_setposition(0, $int0, ^setpos_abs_left, ^setpos_abs_top);
 cc_setfill(true);
 if ($int5 = 1) {
@@ -17,15 +17,15 @@ if ($int5 = 1) {
 }
 cc_setcolour(^black);
 $int2 = calc($int2 + 1);
-$int2 = ~stoneborder_free($component, $int2, calc(36 * 2), $int8, 0, $int0);
-cc_create($component, ^iftype_graphic, $int2);
+$int2 = ~stoneborder_free($component1, $int2, calc(36 * 2), $int8, 0, $int0);
+cc_create($component1, ^iftype_graphic, $int2);
 cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
 cc_setposition(calc(36 / 2), calc($int0 + $int8 / 2 - 32 / 2), ^setpos_abs_left, ^setpos_abs_top);
 cc_setoutline(1);
-cc_setobject(oc_uncert($obj), $int4);
+cc_setobject(oc_uncert($obj3), $int4);
 $int2 = calc($int2 + 1);
 def_string $string1 = "";
-switch_obj ($obj) {
+switch_obj ($obj3) {
     case adventurepath_combat_voucher :
         cc_setop(1, "Show voucher items");
         $string1 = "Combat path voucher";
@@ -33,14 +33,14 @@ switch_obj ($obj) {
         $string0 = append($string0, " <~text_device("Click", "Tap")> the voucher icon to see the rewards.");
     case default :
         cc_setop(1, "Check reward");
-        cc_setonop("adventurepath_voucher_item_op($obj, $int4)");
+        cc_setonop("adventurepath_voucher_item_op($obj3, $int4)");
 }
 if (~on_mobile = false) {
     cc_setonmouserepeat("cc_settrans(event_com, cc_getid, 150, null)");
     cc_setonmouseleave("cc_settrans(event_com, cc_getid, 0, null)");
 }
-$int2 = ~stoneborder_free($component, $int2, calc($int6 + 10), $int8, calc(36 * 2), $int0);
-cc_create($component, ^iftype_text, $int2);
+$int2 = ~stoneborder_free($component1, $int2, calc($int6 + 10), $int8, calc(36 * 2), $int0);
+cc_create($component1, ^iftype_text, $int2);
 cc_setsize($int6, $int8, ^setsize_abs, ^setsize_abs);
 cc_setposition(calc(36 * 2 + 5), $int0, ^setpos_abs_left, ^setpos_abs_top);
 cc_settext($string0);

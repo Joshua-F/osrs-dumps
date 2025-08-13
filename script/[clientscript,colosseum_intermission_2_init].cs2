@@ -1,80 +1,80 @@
 // 4931
 [clientscript,colosseum_intermission_2_init](int $int0, int $int1, int $int2, int $int3, int $int4, int $int5, int $int6, int $int7)
 def_int $int8 = 56688641;
-def_component $frame = colosseum_intermission_2:frame;
+def_component $component9 = colosseum_intermission_2:frame;
 def_int $int10 = 56688643;
 def_string $string0 = "Wave <tostring($int0)> Completed!";
 if ($int0 = 0) {
     $string0 = "Fortis Colosseum";
 }
-~steelborder($frame, $string0, 0);
-def_component $confirm_frame = colosseum_intermission_2:confirm_frame;
-def_component $confirm_cancel = colosseum_intermission_2:confirm_cancel;
-def_component $confirm_confirm = colosseum_intermission_2:confirm_confirm;
-~steelbox($confirm_frame, 0, 1);
-~stonebutton_init("Cancel", $confirm_cancel, p12_full, 0);
-if_setonop("colosseum_intermission_2_confirm_close", $confirm_cancel);
-~stonebutton_init("Confirm", $confirm_confirm, p12_full, 0);
+~steelborder($component9, $string0, 0);
+def_component $component11 = colosseum_intermission_2:confirm_frame;
+def_component $component12 = colosseum_intermission_2:confirm_cancel;
+def_component $component13 = colosseum_intermission_2:confirm_confirm;
+~steelbox($component11, 0, 1);
+~stonebutton_init("Cancel", $component12, p12_full, 0);
+if_setonop("colosseum_intermission_2_confirm_close", $component12);
+~stonebutton_init("Confirm", $component13, p12_full, 0);
 ~colosseum_intermission_2_confirm_close;
 def_int $int14 = 0;
-def_component $left_loot_back = colosseum_intermission_2:left_loot_back;
-def_component $left_loot = colosseum_intermission_2:left_loot;
-def_component $left_loot_value = colosseum_intermission_2:left_loot_value;
-cc_deleteall($left_loot_back);
-cc_deleteall($left_loot);
-cc_create($left_loot_back, ^iftype_rectangle, $int14);
+def_component $component15 = colosseum_intermission_2:left_loot_back;
+def_component $component16 = colosseum_intermission_2:left_loot;
+def_component $component17 = colosseum_intermission_2:left_loot_value;
+cc_deleteall($component15);
+cc_deleteall($component16);
+cc_create($component15, ^iftype_rectangle, $int14);
 cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top);
 cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
 cc_setcolour(^black);
 cc_settrans(200);
 cc_setfill(true);
 $int14 = calc($int14 + 1);
-$int14 = ~thinbox($left_loot_back, $int14);
+$int14 = ~thinbox($component15, $int14);
 $int14 = 0;
-def_obj $obj = null;
+def_obj $obj18 = null;
 def_int $int19 = 0;
 def_int $int20 = 0;
 while ($int19 < inv_size(colosseum_rewards_previous)) {
-    $obj = inv_getobj(colosseum_rewards_previous, $int19);
-    if ($obj ! null) {
-        $int14 = ~colosseum_intermission_2_item_draw($left_loot, $int14, $obj, inv_getnum(colosseum_rewards_previous, $int19), $int20, 2);
+    $obj18 = inv_getobj(colosseum_rewards_previous, $int19);
+    if ($obj18 ! null) {
+        $int14 = ~colosseum_intermission_2_item_draw($component16, $int14, $obj18, inv_getnum(colosseum_rewards_previous, $int19), $int20, 2);
         $int20 = calc($int20 + 1);
     }
     $int19 = calc($int19 + 1);
 }
 def_string $string1 = ",";
-if_settext("<~tostring_spacer($int4, $string1)> GP", $left_loot_value);
+if_settext("<~tostring_spacer($int4, $string1)> GP", $component17);
 $int14 = 0;
-def_component $right_loot_back = colosseum_intermission_2:right_loot_back;
-def_component $right_loot = colosseum_intermission_2:right_loot;
-def_component $right_loot_value = colosseum_intermission_2:right_loot_value;
-cc_deleteall($right_loot_back);
-cc_deleteall($right_loot);
-cc_create($right_loot_back, ^iftype_rectangle, $int14);
+def_component $component21 = colosseum_intermission_2:right_loot_back;
+def_component $component22 = colosseum_intermission_2:right_loot;
+def_component $component23 = colosseum_intermission_2:right_loot_value;
+cc_deleteall($component21);
+cc_deleteall($component22);
+cc_create($component21, ^iftype_rectangle, $int14);
 cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top);
 cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
 cc_setcolour(^black);
 cc_settrans(200);
 cc_setfill(true);
 $int14 = calc($int14 + 1);
-$int14 = ~thinbox($right_loot_back, $int14);
+$int14 = ~thinbox($component21, $int14);
 $int14 = 0;
 $int19 = 0;
 $int20 = 0;
 while ($int19 < inv_size(colosseum_rewards_future)) {
-    $obj = inv_getobj(colosseum_rewards_future, $int19);
-    if ($obj ! null) {
-        $int14 = ~colosseum_intermission_2_item_draw($right_loot, $int14, $obj, inv_getnum(colosseum_rewards_future, $int19), $int20, 2);
+    $obj18 = inv_getobj(colosseum_rewards_future, $int19);
+    if ($obj18 ! null) {
+        $int14 = ~colosseum_intermission_2_item_draw($component22, $int14, $obj18, inv_getnum(colosseum_rewards_future, $int19), $int20, 2);
         $int20 = calc($int20 + 1);
     }
     $int19 = calc($int19 + 1);
 }
-if_settext("<~tostring_spacer($int5, $string1)> GP", $right_loot_value);
+if_settext("<~tostring_spacer($int5, $string1)> GP", $component23);
 ~script4932($int0);
 ~colosseum_intermission_2_mod_buttons_draw($int1, $int2, $int3, $int0);
 %colosseum_intermission_2_tab = 0;
-def_component $tab_back = colosseum_intermission_2:tab_back;
-~script5288($tab_back, 0, 0, 0, if_getwidth($tab_back), if_getheight($tab_back), struct_3712, 7496785);
+def_component $component24 = colosseum_intermission_2:tab_back;
+~script5288($component24, 0, 0, 0, if_getwidth($component24), if_getheight($component24), struct_3712, 7496785);
 ~colosseum_intermission_2_tabs_draw;
 ~script4940;
 ~colosseum_intermission_2_mod_info_draw(0, $int1);
@@ -83,7 +83,7 @@ def_component $tab_back = colosseum_intermission_2:tab_back;
 ~colosseum_intermission_2_loot_draw($int6);
 ~colosseum_intermission_2_summary_draw($int0, $int7);
 ~colosseum_intermission_2_update_tab_content;
-def_component $tab_content_1_mod_list_back = colosseum_intermission_2:tab_content_1_mod_list_back;
-def_component $tab_content_1_mod_list_scrollbar = colosseum_intermission_2:tab_content_1_mod_list_scrollbar;
-def_component $tab_content_1_mod_list_content = colosseum_intermission_2:tab_content_1_mod_list_content;
-~colosseum_intermission_2_mod_list_draw($int7, $tab_content_1_mod_list_back, $tab_content_1_mod_list_scrollbar, $tab_content_1_mod_list_content);
+def_component $component25 = colosseum_intermission_2:tab_content_1_mod_list_back;
+def_component $component26 = colosseum_intermission_2:tab_content_1_mod_list_scrollbar;
+def_component $component27 = colosseum_intermission_2:tab_content_1_mod_list_content;
+~colosseum_intermission_2_mod_list_draw($int7, $component25, $component26, $component27);

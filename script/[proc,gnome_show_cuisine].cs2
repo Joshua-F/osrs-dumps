@@ -1,6 +1,6 @@
 // 3785
-[proc,gnome_show_cuisine](component $component0, component $component1, component $component2, component $component3, enum $enum)
-if ($enum = null) {
+[proc,gnome_show_cuisine](component $component0, component $component1, component $component2, component $component3, enum $enum4)
+if ($enum4 = null) {
     if_close;
     return;
 }
@@ -12,22 +12,22 @@ def_int $int8 = calc(if_getheight($component1) / 2);
 def_int $int9 = 0;
 def_int $int10 = 0;
 def_int $int11 = 0;
-def_int $int12 = enum_getoutputcount($enum);
+def_int $int12 = enum_getoutputcount($enum4);
 def_int $int13 = 0;
 def_int $int14 = 0;
-def_struct $struct = null;
-def_boolean $boolean = false;
+def_struct $struct15 = null;
+def_boolean $boolean16 = false;
 while ($int11 < $int12) {
-    $struct = enum(int, struct, $enum, $int11);
+    $struct15 = enum(int, struct, $enum4, $int11);
     $int13 = calc($int7 * $int9);
     $int14 = calc($int8 * $int10);
-    $boolean = ~cuisine_check_inv($struct);
+    $boolean16 = ~cuisine_check_inv($struct15);
     cc_create($component0, ^iftype_model, $int5);
     $int5 = calc($int5 + 1);
-    if ($boolean = true) {
-        cc_setobject(struct_param($struct, param_1057), 1);
+    if ($boolean16 = true) {
+        cc_setobject(struct_param($struct15, param_1057), 1);
     } else {
-        cc_setobject(struct_param($struct, param_1061), 1);
+        cc_setobject(struct_param($struct15, param_1061), 1);
     }
     cc_setsize(38, 38, ^setsize_abs, ^setsize_abs);
     cc_setposition(calc($int13 + $int7 / 2 - 19), calc($int14 + 5), ^setpos_abs_left, ^setpos_abs_top);
@@ -36,7 +36,7 @@ while ($int11 < $int12) {
     $int5 = calc($int5 + 1);
     cc_setposition($int13, calc($int14 + 48), ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize($int7, 32, ^setsize_abs, ^setsize_abs);
-    if ($boolean = true) {
+    if ($boolean16 = true) {
         cc_setcolour(^green);
     } else {
         cc_setcolour(0x9f9f9f);
@@ -44,7 +44,7 @@ while ($int11 < $int12) {
     cc_settextfont(p12_full);
     cc_settextshadow(true);
     cc_settextalign(^settextalign_centre, ^settextalign_centre, 10);
-    cc_settext(struct_param($struct, param_1055));
+    cc_settext(struct_param($struct15, param_1055));
     cc_create($component1, ^iftype_rectangle, $int6);
     cc_setsize(calc($int7 - 6), calc($int8 - 6), ^setsize_abs, ^setsize_abs);
     cc_setposition(calc(3 + $int13), calc(3 + $int14), ^setpos_abs_left, ^setpos_abs_top);
@@ -52,11 +52,11 @@ while ($int11 < $int12) {
     cc_setcolour(^white);
     cc_settrans(255);
     $int6 = calc($int6 + 1);
-    cc_setop(1, "Select <col=ff9040><struct_param($struct, param_1055)>");
-    cc_setonop("gnome_show_ingredients($component2, $struct, $component3)");
+    cc_setop(1, "Select <col=ff9040><struct_param($struct15, param_1055)>");
+    cc_setonop("gnome_show_ingredients($component2, $struct15, $component3)");
     if (~on_mobile = false) {
         cc_setonmouserepeat("cc_colour_swapper($component0, calc($int5 - 1), 16777215)");
-        if ($boolean = true) {
+        if ($boolean16 = true) {
             cc_setonmouseleave("cc_colour_swapper($component0, calc($int5 - 1), 65280)");
         } else {
             cc_setonmouseleave("cc_colour_swapper($component0, calc($int5 - 1), 10461087)");

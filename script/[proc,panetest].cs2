@@ -1,17 +1,17 @@
 // 193
-[proc,panetest](int $chattype, string $string0, int $int, string $string1)(boolean)
+[proc,panetest](int $chattype0, string $string0, int $int1, string $string1)(boolean)
 if (%chat_view = 0) {
     return(true);
 }
-if ($chattype = null) {
+if ($chattype0 = null) {
     return(false);
 }
 switch_int (%chat_view) {
     case 1 :
-        if (enum(int, boolean, enum_892, $chattype) = true) {
+        if (enum(int, boolean, enum_892, $chattype0) = true) {
             return(true);
         }
-        if ($chattype = ^chattype_clanmessage) {
+        if ($chattype0 = ^chattype_clanmessage) {
             if (~gim_notification_message($string1) = true) {
                 return(true);
             } else if (~pvpa_notification_message($string1) = true) {
@@ -19,19 +19,19 @@ switch_int (%chat_view) {
             }
         }
     case 2 :
-        if ($chattype = ^chattype_modchat | $chattype = ^chattype_publicchat | $chattype = ^chattype_autotyper | $chattype = ^chattype_modautotyper) {
+        if ($chattype0 = ^chattype_modchat | $chattype0 = ^chattype_publicchat | $chattype0 = ^chattype_autotyper | $chattype0 = ^chattype_modautotyper) {
             return(true);
         }
     case 3 :
-        if ($chattype = ^chattype_privatechat | $chattype = ^chattype_loginlogoutnotification | $chattype = ^chattype_privatechatout | $chattype = ^chattype_modprivatechat) {
+        if ($chattype0 = ^chattype_privatechat | $chattype0 = ^chattype_loginlogoutnotification | $chattype0 = ^chattype_privatechatout | $chattype0 = ^chattype_modprivatechat) {
             return(true);
         }
     case 4 :
-        if ($chattype = ^chattype_friendschat | $chattype = ^chattype_friendschatnotification | $chattype = ^chattype_chalreq_friendschat) {
+        if ($chattype0 = ^chattype_friendschat | $chattype0 = ^chattype_friendschatnotification | $chattype0 = ^chattype_chalreq_friendschat) {
             return(true);
         }
     case 5 :
-        switch_int ($chattype) {
+        switch_int ($chattype0) {
             case ^chattype_clanchat, ^chattype_clanguestchat, ^chattype_clanguestmessage, ^chattype_clancreationinvitation, ^chattype_chalreq_clanchat, 112 :
                 if (~script5501($string1) = false) {
                     return(true);
@@ -45,7 +45,7 @@ switch_int (%chat_view) {
                 }
         }
     case 6 :
-        switch_int ($chattype) {
+        switch_int ($chattype0) {
             case ^chattype_tradereq, ^chattype_chalreq_trade, ^chattype_trade, 113 :
                 return(true);
             case ^chattype_clanchat, ^chattype_clanmessage, 111, 112 :
@@ -62,7 +62,7 @@ switch_int (%chat_view) {
                     return(true);
                 }
         }
-        if (~trade_partner_check($chattype, $string0, $int) = true) {
+        if (~trade_partner_check($chattype0, $string0, $int1) = true) {
             return(true);
         }
 }
