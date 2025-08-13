@@ -1,0 +1,31 @@
+// 7994
+[proc,settings_side_new_renderer_toggle](component $component0, component $component1)
+if (%settings_sd_beta_enabled = 0 | deviceoption_get(^deviceoption_force_disable_rseven) = 1) {
+    if_sethide(true, $component0);
+    return;
+}
+cc_deleteall($component0);
+def_int $int2 = 17;
+def_int $int3 = 17;
+def_int $int4 = calc(if_getwidth($component0) - $int2 - 2);
+cc_create($component0, ^iftype_text, 0);
+cc_setsize($int4, 0, ^setsize_abs, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+cc_setcolour(0xff981f);
+cc_settextfont(p12_full);
+cc_settextshadow(true);
+cc_settextalign(^settextalign_left, ^settextalign_centre, 10);
+cc_settext("Use new renderer (beta)");
+cc_create($component0, ^iftype_graphic, 1);
+cc_setsize($int2, $int3, ^setsize_abs, ^setsize_abs);
+cc_setposition(0, calc(if_getheight($component0) / 2 - $int3 / 2 - 1), ^setpos_abs_right, ^setpos_abs_top);
+%tooltip_built = 0;
+if (%settings_hd_new_renderer_toggle = 1) {
+    cc_setgraphic("options_radio_buttons,6");
+} else {
+    cc_setgraphic("options_radio_buttons,5");
+}
+if_setonmouseleave("settings_side_new_renderer_toggle_mouseleave($component0, $component1)", $component0);
+if_setonmouserepeat("settings_side_new_renderer_toggle_mouserepeat($component0, $component1)", $component0);
+if_setonop("settings_side_new_renderer_toggle_op($component0, %settings_hd_new_renderer_toggle, $component1)", $component0);
+if_setonvartransmit("settings_side_new_renderer_toggle_transmit($component0, $component1){settings_varp_ehc_6}", $component0);

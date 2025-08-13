@@ -1,5 +1,5 @@
 // 1404
-[clientscript,poh_furniture_creation_entry](int $int0, obj $obj1, int $int2, string $string0, boolean $boolean3)
+[clientscript,poh_furniture_creation_entry](int $int0, dbrow $dbrow1, int $int2, string $string0, boolean $boolean3)
 def_component $component4 = enum(int, component, enum_1461, $int0);
 if ($component4 = null) {
     return;
@@ -44,13 +44,13 @@ cc_settext($string0);
 cc_create($component4, ^iftype_graphic, 4);
 cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
 cc_setposition(10, 0, ^setpos_abs_left, ^setpos_abs_top);
-cc_setobject_nonum($obj1, 1);
+cc_setobject_nonum(db_getfield($dbrow1, furniture:model_obj, 0), 1);
 cc_setgraphicshadow(0x333333);
 cc_setoutline(1);
 if_setop(1, "Build", $component4);
 if_setop(10, "Examine", $component4);
-if_setopbase("<col=ff9040><oc_name($obj1)></col>", $component4);
-if_setonop("poh_furniture_creation_op(event_op, $int0, $obj1, event_com, cc_getid)", $component4);
+if_setopbase("<col=ff9040><db_getfield($dbrow1, furniture:name, 0)></col>", $component4);
+if_setonop("poh_furniture_creation_op(event_op, $int0, $dbrow1, event_com, cc_getid)", $component4);
 cc_create($component4, ^iftype_graphic, 5);
 cc_setsize(16, 16, ^setsize_abs, ^setsize_abs);
 cc_setposition(12, 0, ^setpos_abs_left, ^setpos_abs_top);
