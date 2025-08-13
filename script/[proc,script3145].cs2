@@ -1,0 +1,15 @@
+// 3145
+[proc,script3145](dbrow $dbrow)(int)
+def_int $int1 = db_getfieldcount($dbrow, furniture:level_requirement);
+def_int $int2 = 0;
+def_stat $stat = null;
+def_int $int4 = -1;
+while ($int2 < $int1) {
+    $stat, $int4 = db_getfield($dbrow, furniture:level_requirement, $int2);
+    if ($stat ! construction & stat($stat) < $int4) {
+        mes("You need level <tostring($int4)>  <enum(stat, string, enum_680, $stat)> to build that.");
+        return(0);
+    }
+    $int2 = calc($int2 + 1);
+}
+return(1);
