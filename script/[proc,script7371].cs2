@@ -1,6 +1,11 @@
 // 7371
 [proc,script7371](int $int0)(dbrow)
-if (db_find(poh_room:room_type, $int0) > 1) {
-    ~debug_mes("ERROR: More than one room type configured with the same ID: <tostring($int0)>.");
+def_int $int1 = db_find(poh_room:room_type, $int0);
+def_dbrow $dbrow2 = db_findnext;
+if ($int1 > 1) {
+    ~script2075("ERROR: More than one room type configured with the room ID: <tostring($int0)>.");
 }
-return(db_findnext);
+if ($dbrow2 = null) {
+    return(poh_dummy_parlour);
+}
+return($dbrow2);

@@ -2,12 +2,12 @@
 type=layer
 width=512
 height=334
-onload=wildy_loot_init
+onload=wildy_loot_onload
 
 [contents]
 type=layer
 width=308
-height=286
+height=320
 xmode=abs_centre
 ymode=abs_centre
 layer=universe
@@ -19,19 +19,37 @@ heightmode=minus
 xmode=abs_centre
 ymode=abs_centre
 layer=contents
-onload=steelborder(event_com, "Wilderness Loot Key")
+onload=stoneborder(event_com, "Loot keys", 0)
+
+[tab_divider]
+type=line
+y=84
+width=16
+widthmode=minus
+xmode=abs_centre
+layer=contents
+colour=0x2e2b23
+
+[tabs]
+type=layer
+x=12
+y=45
+width=24
+height=40
+widthmode=minus
+layer=contents
 
 [items]
 type=layer
-y=58
-width=286
-height=162
+y=93
+width=270
+height=152
 xmode=abs_centre
 layer=contents
 
 [items_empty]
 type=layer
-y=59
+y=93
 width=270
 height=152
 xmode=abs_centre
@@ -50,38 +68,42 @@ textalignv=centre
 textshadow=yes
 colour=0xff981f
 
-[value]
-type=text
-y=35
-width=38
-height=20
-widthmode=minus
-xmode=abs_centre
-layer=contents
-textfont=p12_full
-textalignh=centre
-textalignv=centre
-textshadow=yes
-colour=0xffffff
-
-[divider]
+[divider_h1]
 type=graphic
-y=212
-width=10
-height=36
-widthmode=minus
-xmode=abs_centre
+y=251
+width=32
+height=32
 layer=contents
-graphic="steelborder_divider,0"
+graphic="v2_stone_borders,9"
+
+[divider_h2]
+type=graphic
+x=11
+y=249
+width=20
+height=32
+widthmode=minus
+layer=contents
+graphic="v2_stone_borders,8"
 tiling=yes
+
+[divider_h3]
+type=graphic
+x=1
+y=251
+width=27
+height=32
+xmode=abs_right
+layer=contents
+graphic="v2_stone_borders,10"
 
 [destroy_layer]
 type=layer
-x=12
-y=237
+x=11
+y=11
 width=36
 height=36
-xmode=abs_right
+ymode=abs_bottom
 layer=contents
 
 [destroy]
@@ -94,8 +116,9 @@ layer=destroy_layer
 graphic="miscgraphics,0"
 events=2
 op1=Destroy
-onmouseover=settrans(wildy_loot_chest:destroy_graphic, 100)
-onmouseleave=settrans(wildy_loot_chest:destroy_graphic, 0)
+onmouseover=settrans(event_com, 75)
+onmouseleave=settrans(event_com, 0)
+onop=script8009(wildy_loot_chest:confirm_layer, wildy_loot_chest:confirm_buttons)
 
 [destroy_graphic]
 type=graphic
@@ -108,13 +131,41 @@ graphic="bankbuttons,6"
 
 [destroy_divider]
 type=line
-x=54
+x=52
 y=8
-height=46
-xmode=abs_right
+height=43
 ymode=abs_bottom
 layer=contents
 colour=0x2e2b23
+
+[withdraw_as]
+type=text
+x=56
+y=32
+width=124
+height=16
+ymode=abs_bottom
+layer=contents
+textfont=p12_full
+text=Withdraw as:
+textalignh=centre
+textalignv=centre
+textshadow=yes
+colour=0xff981f
+
+[withdrawitem]
+type=layer
+x=56
+y=10
+width=62
+height=22
+ymode=abs_bottom
+layer=contents
+events=2
+op1=Item
+onmouseover=text_colour_swapper(wildy_loot_chest:withdrawitem_text, 16777215)
+onmouseleave=text_colour_swapper(wildy_loot_chest:withdrawitem_text, 16750623)
+onop=wildy_loot_itemnote_switch(0)
 
 [withdrawitemgfx1]
 type=graphic
@@ -153,6 +204,18 @@ textalignh=centre
 textalignv=centre
 textshadow=yes
 colour=0xff981f
+
+[withdrawnote]
+type=layer
+x=118
+y=10
+width=62
+height=22
+ymode=abs_bottom
+layer=contents
+events=2
+op1=Note
+onop=wildy_loot_itemnote_switch(1)
 
 [withdrawnotegfx1]
 type=graphic
@@ -198,6 +261,16 @@ textalignv=centre
 textshadow=yes
 colour=0xff981f
 
+[withdrawinv_layer]
+type=layer
+x=11
+y=11
+width=36
+height=36
+xmode=abs_right
+ymode=abs_bottom
+layer=contents
+
 [withdrawinv]
 type=graphic
 width=36
@@ -207,9 +280,9 @@ graphic="miscgraphics,0"
 events=2
 opbase=inventory
 op1=Withdraw all to
-onmouseover=settrans(wildy_loot_chest:withdrawinv_graphic, 100)
-onmouseleave=settrans(wildy_loot_chest:withdrawinv_graphic, 0)
-onop=deadman_lootall(event_com, "miscgraphics,9", "miscgraphics,0", event_op)
+onmouseover=settrans(event_com, 75)
+onmouseleave=settrans(event_com, 0)
+onop=wildy_loot_lootall(event_com, "miscgraphics,9", "miscgraphics,0", event_op)
 
 [withdrawinv_graphic]
 type=graphic
@@ -219,100 +292,26 @@ width=29
 height=22
 layer=withdrawinv_layer
 graphic="bankbuttons,4"
-graphicshadow=3355443
-
-[inv_buttons]
-type=layer
-widthmode=minus
-heightmode=minus
-layer=contents
-
-[ironman_warning]
-type=text
-x=5
-y=14
-width=58
-height=35
-widthmode=minus
-ymode=abs_bottom
-layer=contents
-hide=yes
-textfont=q8_full
-text=As an Ironman, you may only destroy items collected via loot keys.
-textalignh=centre
-textalignv=centre
-textshadow=yes
-colour=0xff981f
-
-[withdraw_as]
-type=text
-x=11
-y=237
-width=124
-height=15
-layer=inv_buttons
-textfont=p12_full
-text=Withdraw as:
-textalignh=centre
-textalignv=centre
-textshadow=yes
-colour=0xff981f
-onload=wildy_loot_itemnote_transmit
-onvartransmit=wildy_loot_itemnote_transmit{deadman_loot}
-
-[withdrawitem]
-type=layer
-x=11
-y=252
-width=62
-height=22
-layer=inv_buttons
-events=2
-op1=Item
-onmouseover=text_colour_swapper(wildy_loot_chest:withdrawitem_text, 16777215)
-onmouseleave=text_colour_swapper(wildy_loot_chest:withdrawitem_text, 16750623)
-onop=wildy_loot_itemnote_switch(0)
-
-[withdrawnote]
-type=layer
-x=173
-y=252
-width=62
-height=22
-xmode=abs_right
-layer=inv_buttons
-events=2
-op1=Note
-onmouseover=text_colour_swapper(wildy_loot_chest:withdrawnote_text, 16777215)
-onmouseleave=text_colour_swapper(wildy_loot_chest:withdrawnote_text, 16750623)
-onop=wildy_loot_itemnote_switch(1)
-
-[withdrawinv_layer]
-type=layer
-x=136
-y=237
-width=36
-height=36
-layer=inv_buttons
 
 [withdraw_divider]
 type=line
-x=131
+x=125
 y=8
-height=46
+height=43
 xmode=abs_right
 ymode=abs_bottom
-layer=inv_buttons
+layer=contents
 colour=0x2e2b23
 
 [occupiedslots]
 type=text
-x=96
-y=243
+x=89
+y=17
 width=32
 height=24
 xmode=abs_right
-layer=inv_buttons
+ymode=abs_bottom
+layer=contents
 textfont=p11_full
 textalignh=centre
 textalignv=top
@@ -321,21 +320,23 @@ colour=0xff981f
 
 [occupied_divider]
 type=line
-x=107
-y=254
+x=100
+y=30
 width=12
 xmode=abs_right
-layer=inv_buttons
+ymode=abs_bottom
+layer=contents
 colour=0xff981f
 
 [capacity]
 type=text
-x=96
-y=243
+x=89
+y=17
 width=32
 height=24
 xmode=abs_right
-layer=inv_buttons
+ymode=abs_bottom
+layer=contents
 textfont=p11_full
 textalignh=centre
 textalignv=bottom
@@ -344,22 +345,13 @@ colour=0xff981f
 
 [withdrawbank_layer]
 type=layer
-x=59
-y=237
+x=52
+y=11
 width=36
 height=36
 xmode=abs_right
-layer=inv_buttons
-
-[controls_greyout_layer]
-type=layer
-x=7
-y=232
-width=10
-height=47
-widthmode=minus
-layer=inv_buttons
-hide=yes
+ymode=abs_bottom
+layer=contents
 
 [withdrawbank]
 type=graphic
@@ -372,9 +364,9 @@ graphic="miscgraphics,0"
 events=2
 opbase=bank
 op1=Withdraw all to
-onmouseover=settrans(wildy_loot_chest:withdrawbank_graphic, 100)
-onmouseleave=settrans(wildy_loot_chest:withdrawbank_graphic, 0)
-onop=deadman_lootall(event_com, "miscgraphics,9", "miscgraphics,0", event_op)
+onmouseover=settrans(event_com, 75)
+onmouseleave=settrans(event_com, 0)
+onop=wildy_loot_lootall(event_com, "miscgraphics,9", "miscgraphics,0", event_op)
 
 [withdrawbank_graphic]
 type=graphic
@@ -384,7 +376,17 @@ xmode=abs_centre
 ymode=abs_centre
 layer=withdrawbank_layer
 graphic="bankbuttons,5"
-graphicshadow=3355443
+
+[controls_greyout_layer]
+type=layer
+y=7
+width=14
+height=44
+widthmode=minus
+xmode=abs_centre
+ymode=abs_bottom
+layer=contents
+hide=yes
 
 [controls_greyout]
 type=rectangle
@@ -394,4 +396,116 @@ layer=controls_greyout_layer
 colour=0x000000
 fill=yes
 trans=120
+
+[confirm_layer]
+type=layer
+width=308
+height=320
+xmode=abs_centre
+ymode=abs_centre
+layer=universe
+hide=yes
+noclickthrough=yes
+
+[greyout]
+type=rectangle
+width=2
+height=2
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=confirm_layer
+colour=0x000000
+fill=yes
+trans=120
+
+[confirm_title]
+type=text
+y=100
+width=29
+height=32
+widthmode=minus
+xmode=abs_centre
+layer=confirm_layer
+textfont=q8_full
+text=Are you SURE you want to destroy the contents of this inventory?
+textalignh=centre
+textalignv=centre
+textshadow=yes
+colour=0xff0000
+
+[confirm_body]
+type=text
+y=132
+width=80
+height=65
+widthmode=minus
+xmode=abs_centre
+layer=confirm_layer
+textfont=p11_full
+text=All items will be destroyed.<br>This action cannot be undone.
+textlineheight=12
+textalignh=centre
+textalignv=centre
+textshadow=yes
+colour=0xff981f
+
+[confirm_buttons]
+type=layer
+y=198
+width=160
+height=46
+xmode=abs_centre
+layer=confirm_layer
+
+[destroy_confirm]
+type=graphic
+width=70
+height=46
+layer=confirm_buttons
+graphic="combatboxes_large,0"
+events=2
+op1=Confirm Destroy
+onmouseover=text_colour_swapper(wildy_loot_chest:destroy_confirm_text, 16777215)
+onmouseleave=text_colour_swapper(wildy_loot_chest:destroy_confirm_text, 16750623)
+onop=script8010(wildy_loot_chest:confirm_layer, wildy_loot_chest:confirm_buttons)
+
+[destroy_cancel]
+type=graphic
+width=70
+height=46
+xmode=abs_right
+layer=confirm_buttons
+graphic="combatboxes_large,0"
+events=2
+op1=Cancel
+onmouseover=text_colour_swapper(wildy_loot_chest:destroy_cancel_text, 16777215)
+onmouseleave=text_colour_swapper(wildy_loot_chest:destroy_cancel_text, 16750623)
+onop=script8010(wildy_loot_chest:confirm_layer, wildy_loot_chest:confirm_buttons)
+
+[destroy_confirm_text]
+type=text
+width=70
+height=46
+layer=confirm_buttons
+textfont=q8_full
+text=Destroy
+textalignh=centre
+textalignv=centre
+textshadow=yes
+colour=0xff981f
+
+[destroy_cancel_text]
+type=text
+width=70
+height=46
+xmode=abs_right
+layer=confirm_buttons
+textfont=q8_full
+text=Cancel
+textalignh=centre
+textalignv=centre
+textshadow=yes
+colour=0xff981f
 
