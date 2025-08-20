@@ -1,0 +1,39 @@
+// 8024
+[proc,script8024](component $component0, component $component1, int $int2, component $component3)
+def_int $int4 = calc((if_getwidth($component0) - 36 * 8) / 7 + 36);
+def_int $int5 = 0;
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_int $int8 = 0;
+while ($int5 < $int2) {
+    if (cc_find($component0, $int5) = ^true) {
+        if (%itemsets_show_only_craftable = 1 & cc_gettrans = 0 | %itemsets_show_only_craftable = 0) {
+            cc_sethide(false);
+            $int8 = calc($int7 / 8 * 48);
+            cc_setposition(calc($int6 % 8 * $int4), $int8, ^setpos_abs_left, ^setpos_abs_top);
+            $int7 = calc($int7 + 1);
+            $int6 = calc($int6 + 1);
+            if ($int6 = 8) {
+                $int6 = 0;
+            }
+        } else {
+            cc_sethide(true);
+        }
+    }
+    $int5 = calc($int5 + 1);
+}
+if ($int7 > 0) {
+    if_sethide(true, $component3);
+} else {
+    if_sethide(false, $component3);
+}
+if ($int8 > 0) {
+    $int8 = calc($int8 + 32);
+}
+if_setscrollpos(0, 0, $component0);
+if ($int8 > if_getheight($component0)) {
+    if_setscrollsize(0, $int8, $component0);
+} else {
+    if_setscrollsize(0, 0, $component0);
+}
+~scrollbar_vertical($component1, $component0, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
