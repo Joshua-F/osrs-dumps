@@ -1,0 +1,27 @@
+// 8007
+[proc,wildy_loot_build_items]
+cc_deleteall(wildy_loot_chest:items);
+def_int $int0 = 0;
+def_int $int1 = 0;
+while ($int0 < 5) {
+    while ($int1 < 28) {
+        cc_create(wildy_loot_chest:items, ^iftype_graphic, calc($int0 * 28 + $int1));
+        cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+        cc_setposition(calc($int1 % 7 * 39), calc($int1 / 7 * 38), ^setpos_abs_left, ^setpos_abs_top);
+        cc_setgraphicshadow(0x111111);
+        cc_setoutline(1);
+        cc_setop(1, "Take");
+        cc_setop(2, "Take-5");
+        cc_setop(3, "Take-10");
+        cc_setop(4, "Take-X");
+        cc_setop(5, "Take-All");
+        cc_setop(6, "Bank-X");
+        cc_setop(7, "Bank-All");
+        cc_setop(8, "Destroy-X");
+        cc_setop(9, "Destroy-All");
+        cc_setop(10, "Examine");
+        $int1 = calc($int1 + 1);
+    }
+    $int0 = calc($int0 + 1);
+    $int1 = 0;
+}
