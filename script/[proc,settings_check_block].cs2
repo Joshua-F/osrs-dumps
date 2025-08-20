@@ -9,6 +9,9 @@ def_boolean $boolean6 = ~speedrunning_world;
 def_boolean $boolean7 = ~beta_world_maingame;
 def_boolean $boolean8 = ~pvpa_world;
 def_int $int9 = ~deadman_world;
+if (%playermember = 0 & struct_param($struct0, param_2314) = true) {
+    $boolean1 = true;
+}
 if ($boolean2 = true & struct_param($struct0, param_739) = true) {
     $boolean1 = true;
 }
@@ -22,6 +25,10 @@ if ($boolean4 = true & struct_param($struct0, param_1408) = true) {
     $boolean1 = true;
 }
 if ($boolean3 = false & struct_param($struct0, param_1157) = true) {
+    $boolean1 = true;
+}
+if (%option_settings_declutter = 1 & ~settings_declutter_check($struct0) = true) {
+    ~debug_mes("This setting <tostring(struct_param($struct0, param_1077))> - <struct_param($struct0, param_1086)> is getting culled by my setting.");
     $boolean1 = true;
 }
 if (struct_param($struct0, param_741) = true & %ironman ! 0) {
