@@ -1,39 +1,26 @@
 // 822
-[clientscript,itemsets_init](component $itemlist, component $scrollbar)
+[clientscript,itemsets_init](component $itemlist, component $scrollbar, component $filter_button, component $itemlist_no_items)
 cc_deleteall($itemlist);
 cc_deleteall($scrollbar);
-def_int $int2 = calc((if_getwidth($itemlist) - 36 * 8) / 7 + 36);
-def_int $int3 = 0;
-def_obj $obj = null;
-def_int $int5 = 0;
-def_enum $enum = enum(int, enum, enum_1033, $int5);
-while ($enum ! null) {
-    $obj = enum(int, namedobj, $enum, -1);
-    cc_create($itemlist, ^iftype_graphic, $int5);
-    if ($obj ! null) {
-        cc_sethide(false);
-        cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
-        $int3 = calc($int5 / 8 * 48);
-        cc_setposition(calc($int5 % 8 * $int2), $int3, ^setpos_abs_left, ^setpos_abs_top);
-        cc_setobject_nonum($obj, 1);
-        cc_setopbase("<col=ff9040><oc_name($obj)></col>");
-        cc_setgraphicshadow(0x333333);
-        cc_setoutline(1);
-        ~itemsets_redraw($enum);
-        cc_setoninvtransmit("itemsets_redraw(event_com, event_comsubid, $enum){inv}");
-    } else {
-        cc_sethide(true);
-    }
-    $int5 = calc($int5 + 1);
-    $enum = enum(int, enum, enum_1033, $int5);
+def_int $int4 = ~script8020($itemlist, $scrollbar, $itemlist_no_items);
+if_setop(1, "Filter", $filter_button);
+def_int $int5 = ~v2_stone_button_filled($filter_button);
+if (~on_mobile = false) {
+    if_setonmouseover("v2_stone_button_change_in($filter_button, 0)", $filter_button);
+    if_setonmouseleave("v2_stone_button_change_out($filter_button, 0)", $filter_button);
 }
-if ($int3 > 0) {
-    $int3 = calc($int3 + 32);
-}
-if_setscrollpos(0, 0, $itemlist);
-if ($int3 > if_getheight($itemlist)) {
-    if_setscrollsize(0, $int3, $itemlist);
+cc_create($filter_button, ^iftype_text, $int5);
+cc_setsize(10, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+if (%itemsets_show_only_craftable = 0) {
+    cc_settext("Show <col=ffffff>craftable <col=ff981f>sets");
 } else {
-    if_setscrollsize(0, 0, $itemlist);
+    cc_settext("Show <col=ffffff>all <col=ff981f>sets");
 }
-~scrollbar_vertical($scrollbar, $itemlist, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+cc_settextfont(p12_full);
+cc_settextshadow(true);
+cc_setcolour(0xff981f);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+if_setonop("script8021($itemlist, $scrollbar, $int4, $itemlist_no_items, $filter_button, $int5)", $filter_button);
+if_setonvartransmit("script8022($itemlist, $scrollbar, $int4, $itemlist_no_items, $filter_button, $int5){divine_potion_4}", $filter_button);
+if_setoninvtransmit("script5914($itemlist, $scrollbar, $itemlist_no_items){inv}", $itemlist);

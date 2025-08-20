@@ -1,0 +1,50 @@
+// 8015
+[proc,wildy_loot_inv_update]
+def_inv $inv = null;
+def_int $int1 = 0;
+def_int $int2 = 0;
+def_obj $obj = null;
+def_int $int4 = 0;
+def_boolean $boolean = false;
+def_int $int6 = 0;
+while ($int1 < 5) {
+    $inv = enum(int, inv, enum_1243, $int1);
+    while ($int2 < 28) {
+        if (cc_find(wildy_loot_chest:items, calc($int1 * 28 + $int2)) = true) {
+            $obj = inv_getobj($inv, $int2);
+            if ($obj ! null & $int1 = %deadman_loot_tab) {
+                cc_setobject($obj, inv_getnum($inv, $int2));
+                cc_setopbase("<col=ff981f><oc_name($obj)>");
+                if ($int1 = %deadman_loot_tab) {
+                    cc_sethide(false);
+                }
+                $boolean = true;
+            } else {
+                cc_setobject_nonum(blankobject, 1);
+                cc_setopbase("");
+                cc_sethide(true);
+            }
+        }
+        $int2 = calc($int2 + 1);
+    }
+    if ($boolean = true & cc_find(wildy_loot_chest:tabs, $int1) = true & string_length(cc_getop(1)) = 0 & inv_total(inv, enum(int, namedobj, enum_4212, $int1)) > 0) {
+        $int6 = 1;
+    }
+    if ($int1 = %deadman_loot_tab) {
+        if_sethide($boolean, wildy_loot_chest:items_empty);
+        if_sethide($boolean, wildy_loot_chest:controls_greyout_layer);
+        if (cc_find(wildy_loot_chest:tabs, calc(5 + $int1)) = true) {
+            if (inv_total(inv, enum(int, namedobj, enum_4212, $int1)) <= 0) {
+                cc_sethide(true);
+            } else {
+                cc_sethide(false);
+            }
+        }
+    }
+    $int1 = calc($int1 + 1);
+    $int2 = 0;
+    $boolean = false;
+}
+if ($int6 = 1) {
+    ~wildy_loot_inv_tabs_redraw;
+}
