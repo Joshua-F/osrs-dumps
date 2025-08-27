@@ -1,33 +1,33 @@
 // 1701
-[proc,keypress_permit](interface $interface0, overlayinterface $overlayinterface1)(boolean)
+[proc,keypress_permit](interface $interface, overlayinterface $overlayinterface)(boolean)
 if (%keyboard_timeout > clientclock) {
     return(false);
 }
-def_enum $enum2 = ~toplevel_getcomponents;
-if (if_hassub(enum(component, component, $enum2, toplevel_osrs_stretch:floater)) = true) {
-    if (%worldmap_searching = 1 & $overlayinterface1 ! worldmap) {
+def_enum $enum = ~toplevel_getcomponents;
+if (if_hassub(enum(component, component, $enum, toplevel_osrs_stretch:floater)) = true) {
+    if (%worldmap_searching = 1 & $overlayinterface ! worldmap) {
         return(false);
-    } else if (%floater_search_listen_for_keyboard = 1 & %floater_is_searching = 1 & $overlayinterface1 ! settings & $overlayinterface1 ! collection) {
+    } else if (%floater_search_listen_for_keyboard = 1 & %floater_is_searching = 1 & $overlayinterface ! settings & $overlayinterface ! collection) {
         return(false);
     }
 }
-if (if_hassub(enum(component, component, $enum2, toplevel_osrs_stretch:mainmodal)) = true) {
-    if (%displayname_input_listening = true & $interface0 ! tutorial_displayname) {
+if (if_hassub(enum(component, component, $enum, toplevel_osrs_stretch:mainmodal)) = true) {
+    if (%displayname_input_listening = true & $interface ! tutorial_displayname) {
         return(false);
     }
     if (if_hassub(chatbox:chatmodal) = false & if_hassub(chatbox:chatoverlay) = false & if_gethide(chatbox:mes_layer) = true) {
-        if (%smithing_listening = 1 & $interface0 ! smithing & $interface0 ! clan_piano) {
+        if (%smithing_listening = 1 & $interface ! smithing & $interface ! clan_piano) {
             return(false);
-        } else if (%crafting_listening = 1 & $interface0 ! crafting_gold & $interface0 ! silver_crafting) {
+        } else if (%crafting_listening = 1 & $interface ! crafting_gold & $interface ! silver_crafting) {
             return(false);
         }
     }
 }
-if ($enum2 = enum_1132 & if_hassub(toplevel_display:displaymodal) = true) {
-    if ($interface0 = oculus) {
-        $enum2 = $enum2;
-    } else if ($overlayinterface1 = worldmap & %worldmap_searching = 1) {
-        $enum2 = $enum2;
+if ($enum = enum_1132 & if_hassub(toplevel_display:displaymodal) = true) {
+    if ($interface = oculus) {
+        $enum = $enum;
+    } else if ($overlayinterface = worldmap & %worldmap_searching = 1) {
+        $enum = $enum;
     } else {
         return(false);
     }

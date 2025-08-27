@@ -1,14 +1,14 @@
 // 7161
 [proc,loottracker_ui_reorder](int $int0)
-def_component $component1 = ~loottracker_get_source_info_component($int0);
-def_component $component2 = loottools:loottracker_info_source_swapper;
-~script4222($component1, $component2);
+def_component $component = ~loottracker_get_source_info_component($int0);
+def_component $loottracker_info_source_swapper = loottools:loottracker_info_source_swapper;
+~script4222($component, $loottracker_info_source_swapper);
 def_int $int3 = $int0;
 while ($int3 > 0) {
     ~script4222(~loottracker_get_source_info_component(calc($int3 - 1)), ~loottracker_get_source_info_component($int3));
     $int3 = calc($int3 - 1);
 }
-~script4222($component2, ~loottracker_get_source_info_component(0));
+~script4222($loottracker_info_source_swapper, ~loottracker_get_source_info_component(0));
 if (%option_loottracker_display_group_mode = 0) {
     ~loottracker_ui_redraw_display_full;
 }

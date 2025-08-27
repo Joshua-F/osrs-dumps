@@ -1,0 +1,12 @@
+// 8056
+[proc,slayer_taskname](int $int0, int $int1, int $int2)(string)
+if ($int0 = 98) {
+    if ($int2 = 1) {
+        return(db_getfield(~slayer_get_task_by_sublist_id($int1), slayer_task:name_uppercase, 0));
+    }
+    return(db_getfield(~slayer_get_task_by_sublist_id($int1), slayer_task:name_lowercase, 0));
+}
+if ($int2 = 1) {
+    return(db_getfield(~slayer_get_task_by_id($int0), slayer_task:name_uppercase, 0));
+}
+return(db_getfield(~slayer_get_task_by_id($int0), slayer_task:name_lowercase, 0));

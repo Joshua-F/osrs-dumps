@@ -1,15 +1,15 @@
 // 7052
-[clientscript,minimap_zoomlevel_save](component $component0, int $int1, boolean $boolean2)
+[clientscript,minimap_zoomlevel_save](component $component, int $int1, boolean $boolean)
 def_int $int3 = minimap_getzoom;
 if ($int3 = $int1) {
     return;
 }
-if (cc_find($component0, 2) = true) {
-    if ($boolean2 = true) {
+if (cc_find($component, 2) = true) {
+    if ($boolean = true) {
         %minimap_zoom_level_mobile = $int3;
-        cc_setontimer("minimap_zoomlevel_save($component0, %minimap_zoom_level_mobile, $boolean2)");
+        cc_setontimer("minimap_zoomlevel_save($component, %minimap_zoom_level_mobile, $boolean)");
     } else {
         %minimap_zoom_level_desktop = $int3;
-        cc_setontimer("minimap_zoomlevel_save($component0, %minimap_zoom_level_desktop, $boolean2)");
+        cc_setontimer("minimap_zoomlevel_save($component, %minimap_zoom_level_desktop, $boolean)");
     }
 }

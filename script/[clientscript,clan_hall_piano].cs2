@@ -1,19 +1,19 @@
 // 4321
 [clientscript,clan_hall_piano]
-def_component $component0 = clan_piano:keylisteners;
+def_component $keylisteners = clan_piano:keylisteners;
 %smithing_listening = 1;
-def_enum $enum1 = enum_3799;
-def_int $int2 = enum_getoutputcount($enum1);
-def_string $string0 = "";
-def_int $key3 = 0;
+def_enum $enum = enum_3799;
+def_int $int2 = enum_getoutputcount($enum);
+def_string $string = "";
+def_int $key = 0;
 def_int $int4 = 0;
-def_struct $struct5 = null;
+def_struct $struct = null;
 while ($int4 < $int2) {
-    $struct5 = enum(int, struct, $enum1, $int4);
-    if_setonop("clan_piano_play_note($int4)", struct_param($struct5, param_1236));
-    $string0 = struct_param($struct5, param_1240);
-    $key3 = struct_param($struct5, param_1241);
-    ~clan_piano_set_onkey($component0, $int4, $string0, $key3);
+    $struct = enum(int, struct, $enum, $int4);
+    if_setonop("clan_piano_play_note($int4)", struct_param($struct, param_1236));
+    $string = struct_param($struct, param_1240);
+    $key = struct_param($struct, param_1241);
+    ~clan_piano_set_onkey($keylisteners, $int4, $string, $key);
     $int4 = calc($int4 + 1);
 }
-~clan_piano_set_onkey($component0, $int4, "ø", 0);
+~clan_piano_set_onkey($keylisteners, $int4, "ø", 0);

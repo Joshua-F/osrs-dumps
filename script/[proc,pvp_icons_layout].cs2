@@ -4,7 +4,7 @@ def_int $int0 = 0;
 def_int $int1 = 0;
 def_int $int2 = 0;
 def_int $int3 = 0;
-def_enum $enum4 = ~toplevel_getcomponents;
+def_enum $enum = ~toplevel_getcomponents;
 def_int $int5 = 15;
 def_int $int6 = 0;
 def_int $int7 = ~wilderness_level;
@@ -69,10 +69,10 @@ if (~pvp_world = true) {
         if (if_gettop = toplevel_spectator) {
             if_sethide(true, pvp_icons:deadman_final);
         } else if (%deadman_tournament_mode_pl > 6 | %deadman_tournament_saferadius = $int6) {
-            ~script1434(false, $enum4, true);
+            ~script1434(false, $enum, true);
             if_sethide(true, pvp_icons:deadman_finallocation);
         } else if (%deadman_tournament_mode_pl = 5 | %deadman_tournament_mode_pl = 6) {
-            ~script1434(false, $enum4, false);
+            ~script1434(false, $enum, false);
             if_sethide(false, pvp_icons:deadman_finallocation);
         }
         if_sethide(false, pvp_icons:deadman_fog);
@@ -172,10 +172,10 @@ if (~pvp_world = true) {
     if_setgraphic("pvpw_icons,0", pvp_icons:pvp);
     if (%wildwars_mode_pl >= 1) {
         if (%wildwars_mode_pl > 2) {
-            ~script1434(false, $enum4, true);
+            ~script1434(false, $enum, true);
             if_sethide(true, pvp_icons:deadman_finallocation);
         } else if (%wildwars_mode_pl = 2) {
-            ~script1434(false, $enum4, false);
+            ~script1434(false, $enum, false);
             if_sethide(false, pvp_icons:deadman_finallocation);
         }
         if_sethide(false, pvp_icons:deadman_fog);
@@ -265,7 +265,7 @@ if (~on_enhanced_any = true) {
     if_sethide(true, pvp_icons:attackstyle);
 }
 if_setposition(0, $int5, ^setpos_abs_centre, ^setpos_abs_top, pvp_icons:icon_container);
-def_int $int8 = enum(enum, int, enum_1135, $enum4);
+def_int $int8 = enum(enum, int, enum_1135, $enum);
 if (~on_mobile = true) {
     if_setposition(40, 0, ^setpos_abs_right, ^setpos_abs_bottom, pvp_icons:icons);
 } else if ($int8 > 0) {

@@ -1,31 +1,31 @@
 // 3850
-[proc,settings_create_drop_down](int $int0, int $int1, int $int2, int $int3, int $int4, struct $struct5, component $component6, component $component7, component $component8, component $component9, component $component10, component $component11, component $component12, component $component13, component $component14)(int, int, int, int)
-def_enum $enum15 = ~script7106(struct_param($struct5, param_1077));
+[proc,settings_create_drop_down](int $int0, int $int1, int $int2, int $int3, int $int4, struct $struct, component $component6, component $component7, component $component8, component $component9, component $component10, component $component11, component $component12, component $component13, component $component14)(int, int, int, int)
+def_enum $enum = ~script7106(struct_param($struct, param_1077));
 def_boolean $boolean16 = ~on_mobile;
-if ($enum15 = null) {
-    $enum15 = struct_param($struct5, param_1091);
-    if ($boolean16 = true & struct_param($struct5, param_1092) ! null) {
-        $enum15 = struct_param($struct5, param_1092);
+if ($enum = null) {
+    $enum = struct_param($struct, param_1091);
+    if ($boolean16 = true & struct_param($struct, param_1092) ! null) {
+        $enum = struct_param($struct, param_1092);
     }
 }
-if ($enum15 = null) {
+if ($enum = null) {
     cc_create($component6, ^iftype_rectangle, $int3);
     cc_sethide(true);
     $int3 = calc($int3 + 1);
     return($int0, $int1, $int2, $int3);
 }
-def_int $int17 = calc(parawidth(enum(int, string, $enum15, ^max_32bit_int), 1000, p12_full) + 14);
+def_int $int17 = calc(parawidth(enum(int, string, $enum, ^max_32bit_int), 1000, p12_full) + 14);
 def_int $int18 = calc($int17 + 20);
-def_string $string0 = struct_param($struct5, param_1086);
-if ($boolean16 = true & string_length(struct_param($struct5, param_1087)) > 0) {
-    $string0 = struct_param($struct5, param_1087);
+def_string $string0 = struct_param($struct, param_1086);
+if ($boolean16 = true & string_length(struct_param($struct, param_1087)) > 0) {
+    $string0 = struct_param($struct, param_1087);
 }
-def_string $string1 = struct_param($struct5, param_1096);
+def_string $string1 = struct_param($struct, param_1096);
 def_int $int19 = 0;
 def_int $int20 = %settings_disable_tooltip_in_interface;
-def_boolean $boolean21 = struct_param($struct5, param_1119);
-if ($boolean16 = true & string_length(struct_param($struct5, param_1097)) > 0) {
-    $string1 = struct_param($struct5, param_1097);
+def_boolean $boolean21 = struct_param($struct, param_1119);
+if ($boolean16 = true & string_length(struct_param($struct, param_1097)) > 0) {
+    $string1 = struct_param($struct, param_1097);
 }
 if (string_length($string1) > 0) {
     $int19 = calc(paraheight($string1, calc(if_getwidth($component7) - ($int18 + 25)), p12_full) * 14);
@@ -39,8 +39,8 @@ if ($boolean16 = true & $int22 < 20) {
     $int22 = 20;
 }
 def_int $int23 = calc($int22 + 12 + $int19);
-def_boolean $boolean24 = struct_param($struct5, param_1085);
-def_boolean $boolean25 = ~settings_dependency_checker($struct5);
+def_boolean $boolean24 = struct_param($struct, param_1085);
+def_boolean $boolean25 = ~settings_dependency_checker($struct);
 cc_create($component7, ^iftype_rectangle, $int2);
 cc_setsize(10, $int23, ^setsize_minus, ^setsize_abs);
 cc_setposition(0, $int0, ^setpos_abs_centre, ^setpos_abs_top);
@@ -101,8 +101,8 @@ if ($boolean25 = true) {
 }
 cc_settextshadow(true);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-def_int $int27 = struct_param($struct5, param_1077);
-cc_settext(enum(int, string, $enum15, ~settings_get_dropdown($int27)));
+def_int $int27 = struct_param($struct, param_1077);
+cc_settext(enum(int, string, $enum, ~settings_get_dropdown($int27)));
 cc_create($component6, ^iftype_rectangle, $int3);
 $int3 = calc($int3 + 1);
 cc_setsize($int18, 20, ^setsize_abs, ^setsize_abs);
@@ -111,7 +111,7 @@ cc_setfill(true);
 cc_setcolour(^black);
 cc_settrans(255);
 cc_setop(1, "Select");
-cc_setonop("setting_show_dropdown(2, $struct5, $component7, calc($int2 - 1), $enum15, $int18, 20, cc_getx, cc_gety, $component8, $component9, $component10, $component11, $component12, $component13, $int26, $boolean24)");
+cc_setonop("setting_show_dropdown(2, $struct, $component7, calc($int2 - 1), $enum, $int18, 20, cc_getx, cc_gety, $component8, $component9, $component10, $component11, $component12, $component13, $int26, $boolean24)");
 cc_create($component7, ^iftype_rectangle, $int2);
 cc_setsize($int18, 20, ^setsize_abs, ^setsize_abs);
 cc_setposition(10, calc($int0 + ($int23 / 2 - 10)), ^setpos_abs_right, ^setpos_abs_top);
@@ -119,7 +119,7 @@ cc_setfill(true);
 cc_setcolour(^black);
 cc_settrans(255);
 if ($boolean24 = true) {
-    ~settings_dropdown_choose_transmit(2, $struct5, calc($int2 - 1), calc($int2 - 6), $int2, $component7, $enum15, $int27, $component8, $component9, $component10, $component11, $component13);
+    ~settings_dropdown_choose_transmit(2, $struct, calc($int2 - 1), calc($int2 - 6), $int2, $component7, $enum, $int27, $component8, $component9, $component10, $component11, $component13);
 }
 if ($boolean25 = true & ~on_mobile = false) {
     cc_setonmouseover("cc_settrans($component7, $int2, 220, null)");

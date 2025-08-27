@@ -1,18 +1,18 @@
 // 1787
-[proc,inventory_name_override](obj $obj0)(string)
-def_string $string0 = oc_name($obj0);
-if (map_members = true | oc_members($obj0) = 0) {
-    switch_obj ($obj0) {
+[proc,inventory_name_override](obj $obj)(string)
+def_string $string = oc_name($obj);
+if (map_members = true | oc_members($obj) = 0) {
+    switch_obj ($obj) {
         case tob_teleport :
             if (%teleport_crystal_afk_mode = 1) {
-                $string0 = "<$string0> (Active)";
+                $string = "<$string> (Active)";
             } else {
-                $string0 = "<$string0> (Inactive)";
+                $string = "<$string> (Inactive)";
             }
         case league_bankers_note :
             if (%league_reusable_protected_obj ! null) {
-                $string0 = oc_name(%league_reusable_protected_obj);
+                $string = oc_name(%league_reusable_protected_obj);
             }
     }
 }
-return($string0);
+return($string);

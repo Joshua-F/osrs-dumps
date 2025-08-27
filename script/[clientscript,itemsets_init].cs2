@@ -1,15 +1,15 @@
 // 822
-[clientscript,itemsets_init](component $component0, component $component1, component $component2, component $component3)
-cc_deleteall($component0);
-cc_deleteall($component1);
-def_int $int4 = ~itemsets_build_sets($component0, $component1, $component3);
-if_setop(1, "Filter", $component2);
-def_int $int5 = ~v2_stone_button_filled($component2);
+[clientscript,itemsets_init](component $itemlist, component $scrollbar, component $filter_button, component $itemlist_no_items)
+cc_deleteall($itemlist);
+cc_deleteall($scrollbar);
+def_int $int4 = ~itemsets_build_sets($itemlist, $scrollbar, $itemlist_no_items);
+if_setop(1, "Filter", $filter_button);
+def_int $int5 = ~v2_stone_button_filled($filter_button);
 if (~on_mobile = false) {
-    if_setonmouseover("v2_stone_button_change_in($component2, 0)", $component2);
-    if_setonmouseleave("v2_stone_button_change_out($component2, 0)", $component2);
+    if_setonmouseover("v2_stone_button_change_in($filter_button, 0)", $filter_button);
+    if_setonmouseleave("v2_stone_button_change_out($filter_button, 0)", $filter_button);
 }
-cc_create($component2, ^iftype_text, $int5);
+cc_create($filter_button, ^iftype_text, $int5);
 cc_setsize(10, 0, ^setsize_minus, ^setsize_minus);
 cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
 if (%itemsets_show_only_craftable = 0) {
@@ -21,6 +21,6 @@ cc_settextfont(p12_full);
 cc_settextshadow(true);
 cc_setcolour(0xff981f);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-if_setonop("script8021($component0, $component1, $int4, $component3, $component2, $int5)", $component2);
-if_setonvartransmit("script8022($component0, $component1, $int4, $component3, $component2, $int5){divine_potion_4}", $component2);
-if_setoninvtransmit("itemsets_build_sets($component0, $component1, $component3){inv}", $component0);
+if_setonop("script8021($itemlist, $scrollbar, $int4, $itemlist_no_items, $filter_button, $int5)", $filter_button);
+if_setonvartransmit("script8022($itemlist, $scrollbar, $int4, $itemlist_no_items, $filter_button, $int5){divine_potion_4}", $filter_button);
+if_setoninvtransmit("itemsets_build_sets($itemlist, $scrollbar, $itemlist_no_items){inv}", $itemlist);

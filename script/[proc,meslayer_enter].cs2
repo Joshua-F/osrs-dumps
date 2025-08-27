@@ -5,7 +5,7 @@ if (%meslayermode = 14 | %meslayermode = 17) {
     return;
 }
 def_int $int0 = -1;
-def_string $string0 = "";
+def_string $string = "";
 def_int $int1 = string_length(%meslayerinput);
 if ($int1 > 0) {
     switch_int (%meslayermode) {
@@ -85,11 +85,11 @@ if ($int1 > 0) {
             friendschat_joinchat(%meslayerinput);
         case 12 :
             if ($int1 > 10) {
-                $string0 = substring(%meslayerinput, 0, 9);
+                $string = substring(%meslayerinput, 0, 9);
             } else {
-                $string0 = %meslayerinput;
+                $string = %meslayerinput;
             }
-            chat_setmessagefilter(lowercase($string0));
+            chat_setmessagefilter(lowercase($string));
             ~rebuildchatbox(~script553);
         case 13 :
             if (%has_displayname_transmitter = 0) {

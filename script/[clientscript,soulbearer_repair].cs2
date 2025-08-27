@@ -1,24 +1,24 @@
 // 1300
 [clientscript,soulbearer_repair]
-def_enum $enum0 = ~toplevel_getcomponents;
-if ($enum0 = null) {
+def_enum $enum = ~toplevel_getcomponents;
+if ($enum = null) {
     return;
 }
-def_component $component1 = enum(component, component, $enum0, toplevel_osrs_stretch:overlay_atmosphere);
-if ($component1 = null) {
+def_component $component = enum(component, component, $enum, toplevel_osrs_stretch:overlay_atmosphere);
+if ($component = null) {
     return;
 }
-cc_deleteall($component1);
-cc_create($component1, ^iftype_rectangle, 0);
+cc_deleteall($component);
+cc_create($component, ^iftype_rectangle, 0);
 cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
 cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
 cc_setcolour(0x221100);
 cc_setfill(true);
-.cc_create($component1, ^iftype_model, 1);
+.cc_create($component, ^iftype_model, 1);
 .cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
 .cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
 .cc_setmodel(model_29280);
 .cc_setmodelangle(0, 300, 100, 1536, 0, 10100);
 .cc_setmodelanim(soul_skull_active);
 cc_setontimer("soulbearer_repair_update(event_com, cc_getid, .cc_getid, clientclock)");
-~soulbearer_repair_update($component1, 0);
+~soulbearer_repair_update($component, 0);

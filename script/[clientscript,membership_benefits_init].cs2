@@ -1,30 +1,30 @@
 // 2556
-[clientscript,membership_benefits_init](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5)
-cc_deleteall($component0);
-cc_deleteall($component1);
+[clientscript,membership_benefits_init](component $backgrounds, component $text, component $icons, component $opens, component $store_button, component $bond_button)
+cc_deleteall($backgrounds);
+cc_deleteall($text);
 def_int $int6 = 0;
 def_int $int7 = 0;
 def_string $string0 = "";
-def_graphic $graphic8 = null;
+def_graphic $graphic = null;
 while ($int7 < 5) {
     switch_int ($int7) {
         case 0 :
-            $graphic8 = "oge_title,0";
+            $graphic = "oge_title,0";
             $string0 = "Explore a world three times larger!";
         case 1 :
-            $graphic8 = "oge_title,1";
+            $graphic = "oge_title,1";
             $string0 = "Master eight extra skills!";
         case 2 :
-            $graphic8 = "oge_title,2";
+            $graphic = "oge_title,2";
             $string0 = "Take on a hundred more quests!";
         case 3 :
-            $graphic8 = "oge_title,3";
+            $graphic = "oge_title,3";
             $string0 = "Defeat twenty additional bosses!";
         case 4 :
-            $graphic8 = "oge_title,4";
+            $graphic = "oge_title,4";
             $string0 = "And much more...";
     }
-    cc_create($component0, ^iftype_graphic, $int7);
+    cc_create($backgrounds, ^iftype_graphic, $int7);
     cc_setsize(0, 33, ^setsize_minus, ^setsize_abs);
     cc_setposition(0, $int6, ^setpos_abs_centre, ^setpos_abs_top);
     cc_setgraphic(tradebacking_light);
@@ -34,7 +34,7 @@ while ($int7 < 5) {
     cc_setonop("membership_benefits_view($int7)");
     cc_setonmouserepeat("membership_benefits_hover(event_comsubid, $int6, true)");
     cc_setonmouseleave("membership_benefits_hover(event_comsubid, $int6, false)");
-    cc_create($component1, ^iftype_text, $int7);
+    cc_create($text, ^iftype_text, $int7);
     cc_setsize(0, 33, ^setsize_minus, ^setsize_abs);
     cc_setposition(62, $int6, ^setpos_abs_centre, ^setpos_abs_top);
     cc_settext($string0);
@@ -42,11 +42,11 @@ while ($int7 < 5) {
     cc_settextfont(b12_full);
     cc_setcolour(0xff981f);
     cc_settextshadow(true);
-    cc_create($component2, ^iftype_graphic, $int7);
+    cc_create($icons, ^iftype_graphic, $int7);
     cc_setsize(42, 33, ^setsize_abs, ^setsize_abs);
     cc_setposition(10, $int6, ^setpos_abs_left, ^setpos_abs_top);
-    cc_setgraphic($graphic8);
-    cc_create($component3, ^iftype_graphic, $int7);
+    cc_setgraphic($graphic);
+    cc_create($opens, ^iftype_graphic, $int7);
     cc_setsize(24, 23, ^setsize_abs, ^setsize_abs);
     cc_setposition(5, calc($int6 + 5), ^setpos_abs_right, ^setpos_abs_top);
     cc_setgraphic("open_buttons,0");
@@ -57,9 +57,9 @@ def_string $string1 = "Upgrade Now";
 if (map_members = true | %playermember = 1) {
     $string1 = "Open Store";
 }
-~membership_benefits_button_init($component4, $string1);
+~membership_benefits_button_init($store_button, $string1);
 if (~on_mobile = true & ~bonds_hide = true & %has_bonds = 0) {
-    ~membership_benefits_hide_bonds($component4, $component5);
+    ~membership_benefits_hide_bonds($store_button, $bond_button);
 } else {
-    ~membership_benefits_button_init($component5, "Bond Pouch");
+    ~membership_benefits_button_init($bond_button, "Bond Pouch");
 }

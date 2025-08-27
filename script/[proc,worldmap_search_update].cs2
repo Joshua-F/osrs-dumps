@@ -1,6 +1,6 @@
 // 1738
-[proc,worldmap_search_update](string $string0, component $component0)
-def_mapelement $mapelement1 = null;
+[proc,worldmap_search_update](string $string0, component $component)
+def_mapelement $mapelement = null;
 def_coord $coord2 = null;
 def_int $int3 = 0;
 def_int $int4 = 0;
@@ -16,9 +16,9 @@ if (string_length($string0) > 0) {
     $int3 = string_length(%worldmap_search);
     if ($int3 > 0) {
         if ($int3 > 1) {
-            $mapelement1, $coord2 = worldmap_listelement_start;
-            while ($coord6 = null & $mapelement1 ! null) {
-                $string1 = mec_text($mapelement1);
+            $mapelement, $coord2 = worldmap_listelement_start;
+            while ($coord6 = null & $mapelement ! null) {
+                $string1 = mec_text($mapelement);
                 $int4 = string_length($string1);
                 if ($int4 > 0) {
                     $string1 = ~string_findandreplace($string1, "<br>", " ");
@@ -35,7 +35,7 @@ if (string_length($string0) > 0) {
                         $coord6 = $coord2;
                     }
                 }
-                $mapelement1, $coord2 = worldmap_listelement_next;
+                $mapelement, $coord2 = worldmap_listelement_next;
             }
         }
         if ($coord6 ! null) {
@@ -46,7 +46,7 @@ if (string_length($string0) > 0) {
     } else {
         .cc_settext("<col=ff0000>*</col>");
     }
-    cc_setonkey("worldmap_search_input(event_keycode, event_keychar, $component0, cc_getid, .cc_getid, $coord6)");
+    cc_setonkey("worldmap_search_input(event_keycode, event_keychar, $component, cc_getid, .cc_getid, $coord6)");
     %worldmap_searching = 1;
 }
-~worldmap_search_setalignment(if_getwidth($component0));
+~worldmap_search_setalignment(if_getwidth($component));

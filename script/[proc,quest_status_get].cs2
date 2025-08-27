@@ -1,14 +1,14 @@
 // 4029
-[proc,quest_status_get](dbrow $dbrow0)(int)
-if (~quest_is_valid($dbrow0) = false) {
+[proc,quest_status_get](dbrow $dbrow)(int)
+if (~quest_is_valid($dbrow) = false) {
     return(1);
 }
-if (db_getfield($dbrow0, quest:release_type, 0) ! 2) {
+if (db_getfield($dbrow, quest:release_type, 0) ! 2) {
     return(1);
 }
-def_int $int1 = db_getfield($dbrow0, quest:unstartedstate, 0);
-def_int $int2 = db_getfield($dbrow0, quest:endstate, 0);
-def_int $int3 = ~quest_progress_get($dbrow0);
+def_int $int1 = db_getfield($dbrow, quest:unstartedstate, 0);
+def_int $int2 = db_getfield($dbrow, quest:endstate, 0);
+def_int $int3 = ~quest_progress_get($dbrow);
 if ($int1 = -1 | $int2 = -1 | $int3 = -1 | $int2 <= $int1) {
     return(1);
 }

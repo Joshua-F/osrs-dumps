@@ -7,32 +7,32 @@ def_int $int3 = 0;
 def_int $int4 = 1;
 def_int $int5 = 0;
 def_int $int6 = 0;
-def_struct $struct7 = enum(int, struct, enum_4136, $int4);
-while ($struct7 ! null) {
+def_struct $struct = enum(int, struct, enum_4136, $int4);
+while ($struct ! null) {
     $int6 = 0;
-    if (%league_3_fragment_filter_category > 0 & struct_param($struct7, param_1453) ! %league_3_fragment_filter_category) {
+    if (%league_3_fragment_filter_category > 0 & struct_param($struct, param_1453) ! %league_3_fragment_filter_category) {
         $int6 = 1;
     }
-    if (%league_3_fragment_filter_effect > 0 & struct_param($struct7, param_1459) ! %league_3_fragment_filter_effect & struct_param($struct7, param_1460) ! %league_3_fragment_filter_effect) {
+    if (%league_3_fragment_filter_effect > 0 & struct_param($struct, param_1459) ! %league_3_fragment_filter_effect & struct_param($struct, param_1460) ! %league_3_fragment_filter_effect) {
         $int6 = 1;
     }
-    if (%league_3_fragment_filter_level > 0 & ~league_3_fragment_get_level(~league_3_fragment_get_xp(struct_param($struct7, param_1455))) ! %league_3_fragment_filter_level) {
+    if (%league_3_fragment_filter_level > 0 & ~league_3_fragment_get_level(~league_3_fragment_get_xp(struct_param($struct, param_1455))) ! %league_3_fragment_filter_level) {
         $int6 = 1;
     }
     if (%league_3_fragment_filter_lock > 0) {
-        if (%league_3_fragment_filter_lock = 1 & ~league_3_fragment_get_xp(struct_param($struct7, param_1455)) > 0) {
+        if (%league_3_fragment_filter_lock = 1 & ~league_3_fragment_get_xp(struct_param($struct, param_1455)) > 0) {
             $int6 = 1;
         }
-        if (%league_3_fragment_filter_lock = 2 & ~league_3_fragment_get_xp(struct_param($struct7, param_1455)) < 1) {
+        if (%league_3_fragment_filter_lock = 2 & ~league_3_fragment_get_xp(struct_param($struct, param_1455)) < 1) {
             $int6 = 1;
         }
     }
-    $int3 = ~league_3_fragment_list_draw_item($component0, $int3, $int5, $struct7, $int6);
+    $int3 = ~league_3_fragment_list_draw_item($component0, $int3, $int5, $struct, $int6);
     if ($int6 = 0) {
         $int5 = calc($int5 + 1);
     }
     $int4 = calc($int4 + 1);
-    $struct7 = enum(int, struct, enum_4136, $int4);
+    $struct = enum(int, struct, enum_4136, $int4);
 }
 def_int $int8 = calc($int5 * 42);
 if ($int8 < if_getheight($component0)) {

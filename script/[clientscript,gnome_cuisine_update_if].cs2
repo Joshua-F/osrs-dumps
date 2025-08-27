@@ -1,20 +1,20 @@
 // 3784
-[clientscript,gnome_cuisine_update_if](component $component0, component $component1, component $component2, component $component3, enum $enum4)
-~gnome_show_cuisine($component0, $component1, $component2, $component3, $enum4);
+[clientscript,gnome_cuisine_update_if](component $component0, component $component1, component $component2, component $component3, enum $enum)
+~gnome_show_cuisine($component0, $component1, $component2, $component3, $enum);
 def_int $int5 = 0;
-def_int $int6 = enum_getoutputcount($enum4);
-def_struct $struct7 = null;
+def_int $int6 = enum_getoutputcount($enum);
+def_struct $struct = null;
 while ($int5 < $int6) {
-    $struct7 = enum(int, struct, $enum4, $int5);
-    if ($struct7 ! null & %gnome_chosen_cuisine = struct_param($struct7, param_1056)) {
+    $struct = enum(int, struct, $enum, $int5);
+    if ($struct ! null & %gnome_chosen_cuisine = struct_param($struct, param_1056)) {
         $int5 = $int6;
     } else {
-        $struct7 = null;
+        $struct = null;
     }
     $int5 = calc($int5 + 1);
 }
-if ($struct7 = null) {
+if ($struct = null) {
     if_close;
     return;
 }
-~gnome_show_ingredients($component2, $struct7, $component3);
+~gnome_show_ingredients($component2, $struct, $component3);
