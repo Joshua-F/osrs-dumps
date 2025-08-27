@@ -1,27 +1,20 @@
 // 669
 [proc,script669](obj $obj)
-def_int $int = 1;
-$int = ~script670($int, "Withdraw-<~script2579>");
+cc_setop(1, "Withdraw-<~script2579>");
 if (%bank_quantity_type ! 0) {
-    $int = ~script670($int, "Withdraw-1");
+    cc_setop(2, "Withdraw-1");
 }
-if (%bank_quantity_type ! 1) {
-    $int = ~script670($int, "Withdraw-5");
+cc_setop(3, "Withdraw-5");
+cc_setop(4, "Withdraw-10");
+if (%bank_requestedquantity > 0) {
+    cc_setop(5, "Withdraw-<tostring(%bank_requestedquantity)>");
 }
-if (%bank_quantity_type ! 2) {
-    $int = ~script670($int, "Withdraw-10");
-}
-if (%bank_quantity_type ! 3 & %bank_requestedquantity > 0) {
-    $int = ~script670($int, "Withdraw-<tostring(%bank_requestedquantity)>");
-}
-$int = ~script670($int, "Withdraw-X");
-if (%bank_quantity_type ! 4) {
-    $int = ~script670($int, "Withdraw-All");
-}
-$int = ~script670($int, "Withdraw-All-but-1");
+cc_setop(6, "Withdraw-X");
+cc_setop(7, "Withdraw-All");
+cc_setop(8, "Withdraw-All-but-1");
 if (%bank_bankops_toggle_on = 1 & oc_param($obj, param_2257) ! null) {
-    $int = ~script670($int, "Configure-Charges");
+    cc_setop(9, "Configure-Charges");
 }
 if (%bank_leaveplaceholders = 0) {
-    $int = ~script670($int, "Placeholder");
+    cc_setop(10, "Placeholder");
 }

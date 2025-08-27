@@ -1,6 +1,7 @@
 // 413
 [proc,script413](int $int, string $string, component $component1, component $component2, component $component3, component $component4, component $component5)
-if ($int < 32 & testbit(%slayer_rewards_unlocks, $int) = ^true | $int >= 32 & testbit(%slayer_rewards_unlocks1, calc($int % 32)) = ^true) {
+def_dbrow $dbrow = ~script8051($int);
+if (~script8048($int) = ^true) {
     switch_int ($int) {
         case 35 :
             ~script6068(%slayer_toggleoff_superiormobs, $int, $string, $component1, $component2, $component3, $component4, $component5);
@@ -13,7 +14,7 @@ if ($int < 32 & testbit(%slayer_rewards_unlocks, $int) = ^true | $int >= 32 & te
             return;
     }
     cc_setgraphic("options_radio_buttons,6");
-    if (enum(int, boolean, enum_854, $int) = true) {
+    if (db_getfield($dbrow, slayer_unlock:refundable, 0) = true) {
         .cc_setop(1, "Disable");
         .cc_setonop("slayer_rewards_unlock_confirm(false, $int, $string, $component1, $component2, $component3, $component4, $component5, -1)");
     } else {
