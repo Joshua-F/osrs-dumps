@@ -1,0 +1,21 @@
+// 8044
+[proc,script8044](int $int0, int $int1, int $int2)(int)
+def_int $int3 = db_find(slayer_master_task:master_id, $int0);
+def_dbrow $dbrow4 = db_findnext;
+def_int $int5 = 0;
+def_int $int6 = 0;
+def_int $int7 = 1;
+while ($dbrow4 ! null) {
+    if ($int6 < 32 & testbit($int1, $int6) = ^true) {
+        $int7 = 0;
+    } else if ($int6 >= 32 & testbit($int2, calc($int6 % 32)) = ^true) {
+        $int7 = 0;
+    }
+    if ($int7 = 1) {
+        $int5 = calc($int5 + db_getfield($dbrow4, slayer_master_task:weight, 0));
+    }
+    $dbrow4 = db_findnext;
+    $int6 = calc($int6 + 1);
+    $int7 = 1;
+}
+return($int5);

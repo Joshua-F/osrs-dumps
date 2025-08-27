@@ -1,0 +1,13 @@
+// 8051
+[proc,script8051](int $int0)(dbrow)
+def_int $int1 = db_find(slayer_unlock:bit, $int0);
+if ($int1 = 0) {
+    ~script2075("Received invalid bit <tostring($int0)> provided in slayer_rewards_unlock_confirm.");
+    return(null);
+}
+def_dbrow $dbrow2 = db_findnext;
+if ($int1 > 1) {
+    ~script2075("Bit <tostring(db_getfield($dbrow2, slayer_unlock:bit, 0))> in task <db_getfield($dbrow2, slayer_unlock:name, 0)> overlaps, bit values must be unique.");
+    return(null);
+}
+return($dbrow2);
