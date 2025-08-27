@@ -4,6 +4,7 @@ def_int $int9 = 0;
 if (~league_relic_active(struct_1129) = 1) {
     $int9 = 1;
 }
+def_int $int10 = ~script823(%slayer_master_in_focus);
 if ($int9 = 1) {
     if (%slayer_unlock_storage = 1) {
         if_settext("You may spend points to <col=ffffff>Cancel</col> or <col=ffffff>Block</col> your current task.<br>If you <col=ffffff>cancel</col> it, you may be assigned that target again in future. <col=06600c>(Free)</col><br>If you <col=ffffff>block</col> it, you will not get that assignment again. <col=06600c>(Free)</col><br>You may also <col=ffffff>store</col> your current task for later.", $component1);
@@ -11,39 +12,39 @@ if ($int9 = 1) {
         if_settext("You may spend points to <col=ffffff>Cancel</col> or <col=ffffff>Block</col> your current task.<br>If you <col=ffffff>cancel</col> it, you may be assigned that target again in future. <col=06600c>(Free)</col><br>If you <col=ffffff>block</col> it, you will not get that assignment again. <col=06600c>(Free)</col><br><col=ffffff>Neither</col> option will reset your current tally of completed Slayer tasks.", $component1);
     }
 } else if (%slayer_unlock_storage = 1) {
-    if_settext("You may spend points to <col=ffffff>Cancel</col> or <col=ffffff>Block</col> your current task.<br>If you <col=ffffff>cancel</col> it, you may be assigned that target again in future. <col=ff0000>(<tostring(30)> points)</col><br>If you <col=ffffff>block</col> it, you will not get that assignment again. <col=ff0000>(<tostring(100)> points)</col><br>You may also <col=ffffff>store</col> your current task for later.", $component1);
+    if_settext("You may spend points to <col=ffffff>Cancel</col> or <col=ffffff>Block</col> your current task.<br>If you <col=ffffff>cancel</col> it, you may be assigned that target again in future. <col=ff0000>(<tostring(30)> points)</col><br>If you <col=ffffff>block</col> it, you will not get that assignment again. <col=ff0000>(<tostring($int10)> points)</col><br>You may also <col=ffffff>store</col> your current task for later.", $component1);
 } else {
-    if_settext("You may spend points to <col=ffffff>Cancel</col> or <col=ffffff>Block</col> your current task.<br>If you <col=ffffff>cancel</col> it, you may be assigned that target again in future. <col=ff0000>(<tostring(30)> points)</col><br>If you <col=ffffff>block</col> it, you will not get that assignment again. <col=ff0000>(<tostring(100)> points)</col><br><col=ffffff>Neither</col> option will reset your current tally of completed Slayer tasks.", $component1);
+    if_settext("You may spend points to <col=ffffff>Cancel</col> or <col=ffffff>Block</col> your current task.<br>If you <col=ffffff>cancel</col> it, you may be assigned that target again in future. <col=ff0000>(<tostring(30)> points)</col><br>If you <col=ffffff>block</col> it, you will not get that assignment again. <col=ff0000>(<tostring($int10)> points)</col><br><col=ffffff>Neither</col> option will reset your current tally of completed Slayer tasks.", $component1);
 }
 cc_deleteall($component0);
-def_int $int10 = 0;
 def_int $int11 = 0;
+def_int $int12 = 0;
 def_string $string0 = "Creature";
 if (%if2 = 98) {
     if (%if1 > 0) {
-        $int11, $string0 = 1, struct_param(enum(int, struct, enum_5008, %if3), param_1801);
+        $int12, $string0 = 1, ~slayer_taskname(98, %if3, 1);
         if_settext("<tostring(%if1)> x <$string0>", $component2);
     } else if (%if1 = -1) {
-        $int11, $string0 = 1, struct_param(enum(int, struct, enum_5008, %if3), param_1801);
+        $int12, $string0 = 1, ~slayer_taskname(98, %if3, 1);
         if_settext($string0, $component2);
     } else {
         if_settext("None", $component2);
     }
 } else if (%if1 > 0 & %if2 ! 0) {
-    $int11, $string0 = 1, enum(int, string, enum_693, %if2);
+    $int12, $string0 = 1, ~slayer_taskname(%if2, -1, 1);
     if_settext("<tostring(%if1)> x <$string0>", $component2);
 } else {
     if_settext("None", $component2);
 }
-def_int $int12 = 0;
+def_int $int13 = 0;
 def_string $string1 = "Creature";
 if (%if5 = 98) {
     if (%if4 > 0) {
-        $int12, $string1 = 1, struct_param(enum(int, struct, enum_5008, %if6), param_1801);
+        $int13, $string1 = 1, ~slayer_taskname(98, %if6, 1);
         if_settext("<tostring(%if4)> x <$string1>", $component8);
         if_setcolour(^white, $component8);
     } else if (%if4 = -1) {
-        $int12, $string1 = 1, struct_param(enum(int, struct, enum_5008, %if6), param_1801);
+        $int13, $string1 = 1, "";
         if_settext($string1, $component8);
         if_setcolour(^white, $component8);
     } else {
@@ -51,27 +52,27 @@ if (%if5 = 98) {
         if_setcolour(0x9f9f9f, $component8);
     }
 } else if (%if4 > 0 & %if5 ! 0) {
-    $int12, $string1 = 1, enum(int, string, enum_693, %if5);
+    $int13, $string1 = 1, ~slayer_taskname(%if5, -1, 1);
     if_settext("<tostring(%if4)> x <$string1>", $component8);
     if_setcolour(^white, $component8);
 } else {
     if_settext("No stored task", $component8);
     if_setcolour(0x9f9f9f, $component8);
 }
-cc_create($component0, ^iftype_graphic, $int10);
-$int10 = calc($int10 + 1);
-.cc_create($component0, ^iftype_text, $int10);
-$int10 = calc($int10 + 1);
-cc_setsize(85, 22, ^setsize_abs, ^setsize_abs);
-.cc_setsize(85, 22, ^setsize_abs, ^setsize_abs);
-cc_setposition(218, 47, ^setpos_abs_left, ^setpos_abs_top);
-.cc_setposition(218, 47, ^setpos_abs_left, ^setpos_abs_top);
+cc_create($component0, ^iftype_graphic, $int11);
+$int11 = calc($int11 + 1);
+.cc_create($component0, ^iftype_text, $int11);
+$int11 = calc($int11 + 1);
+cc_setsize(57, 22, ^setsize_abs, ^setsize_abs);
+.cc_setsize(57, 22, ^setsize_abs, ^setsize_abs);
+cc_setposition(220, 47, ^setpos_abs_left, ^setpos_abs_top);
+.cc_setposition(220, 47, ^setpos_abs_left, ^setpos_abs_top);
 cc_setgraphic("combatboxesmed,0");
 .cc_settextfont(p11_full);
 .cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
 .cc_settextshadow(true);
-.cc_settext("Cancel task");
-if ($int11 = 1) {
+.cc_settext("Cancel");
+if ($int12 = 1) {
     .cc_setcolour(0xff981f);
     cc_setonmouseover("cc_colour_swapper(event_com, .cc_getid, 16777215)");
     cc_setonmouseleave("cc_colour_swapper(event_com, .cc_getid, 16750623)");
@@ -80,20 +81,20 @@ if ($int11 = 1) {
 } else {
     .cc_setcolour(0x7f4c0f);
 }
-cc_create($component0, ^iftype_graphic, $int10);
-$int10 = calc($int10 + 1);
-.cc_create($component0, ^iftype_text, $int10);
-$int10 = calc($int10 + 1);
-cc_setsize(85, 22, ^setsize_abs, ^setsize_abs);
-.cc_setsize(85, 22, ^setsize_abs, ^setsize_abs);
-cc_setposition(301, 47, ^setpos_abs_left, ^setpos_abs_top);
-.cc_setposition(301, 47, ^setpos_abs_left, ^setpos_abs_top);
+cc_create($component0, ^iftype_graphic, $int11);
+$int11 = calc($int11 + 1);
+.cc_create($component0, ^iftype_text, $int11);
+$int11 = calc($int11 + 1);
+cc_setsize(57, 22, ^setsize_abs, ^setsize_abs);
+.cc_setsize(57, 22, ^setsize_abs, ^setsize_abs);
+cc_setposition(277, 47, ^setpos_abs_left, ^setpos_abs_top);
+.cc_setposition(277, 47, ^setpos_abs_left, ^setpos_abs_top);
 cc_setgraphic("combatboxesmed,0");
 .cc_settextfont(p11_full);
 .cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
 .cc_settextshadow(true);
-.cc_settext("Block task");
-if ($int11 = 1 & %if2 ! 97 & %if2 ! 105 & %if2 ! 98) {
+.cc_settext("Block");
+if ($int12 = 1 & %if2 ! 97 & %if2 ! 105 & %if2 ! 98 & ~script824(%if2, %slayer_master_in_focus) = false) {
     .cc_setcolour(0xff981f);
     cc_setonmouseover("cc_colour_swapper(event_com, .cc_getid, 16777215)");
     cc_setonmouseleave("cc_colour_swapper(event_com, .cc_getid, 16750623)");
@@ -102,39 +103,39 @@ if ($int11 = 1 & %if2 ! 97 & %if2 ! 105 & %if2 ! 98) {
 } else {
     .cc_setcolour(0x7f4c0f);
 }
-cc_create($component0, ^iftype_graphic, $int10);
-$int10 = calc($int10 + 1);
-.cc_create($component0, ^iftype_text, $int10);
-$int10 = calc($int10 + 1);
-cc_setsize(85, 22, ^setsize_abs, ^setsize_abs);
-.cc_setsize(85, 22, ^setsize_abs, ^setsize_abs);
-cc_setposition(384, 47, ^setpos_abs_left, ^setpos_abs_top);
-.cc_setposition(384, 47, ^setpos_abs_left, ^setpos_abs_top);
+cc_create($component0, ^iftype_graphic, $int11);
+$int11 = calc($int11 + 1);
+.cc_create($component0, ^iftype_text, $int11);
+$int11 = calc($int11 + 1);
+cc_setsize(57, 22, ^setsize_abs, ^setsize_abs);
+.cc_setsize(57, 22, ^setsize_abs, ^setsize_abs);
+cc_setposition(334, 47, ^setpos_abs_left, ^setpos_abs_top);
+.cc_setposition(334, 47, ^setpos_abs_left, ^setpos_abs_top);
 cc_setgraphic("combatboxesmed,0");
 .cc_settextfont(p11_full);
 .cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
 .cc_settextshadow(true);
-if ($int12 = 1 & $int11 = 1) {
-    .cc_settext("Swap Task");
-} else if ($int12 = 1) {
-    .cc_settext("Unstore task");
+if ($int13 = 1 & $int12 = 1) {
+    .cc_settext("Swap");
+} else if ($int13 = 1) {
+    .cc_settext("Unstore");
 } else {
-    .cc_settext("Store task");
+    .cc_settext("Store");
 }
 if (%slayer_unlock_storage = 1) {
-    if ($int11 = 1 & $int12 = 1) {
+    if ($int12 = 1 & $int13 = 1) {
         .cc_setcolour(0xff981f);
         cc_setonmouseover("cc_colour_swapper(event_com, .cc_getid, 16777215)");
         cc_setonmouseleave("cc_colour_swapper(event_com, .cc_getid, 16750623)");
         cc_setop(1, "Swap");
         cc_setonop("slayer_rewards_tasks_canceltask($string0, 10, $component3, $component4, $component5, $component6, $component7)");
-    } else if ($int11 = 1 & $int12 = 0) {
+    } else if ($int12 = 1 & $int13 = 0) {
         .cc_setcolour(0xff981f);
         cc_setonmouseover("cc_colour_swapper(event_com, .cc_getid, 16777215)");
         cc_setonmouseleave("cc_colour_swapper(event_com, .cc_getid, 16750623)");
         cc_setop(1, "Store");
         cc_setonop("slayer_rewards_tasks_canceltask($string0, 10, $component3, $component4, $component5, $component6, $component7)");
-    } else if ($int11 = 0 & $int12 = 1) {
+    } else if ($int12 = 0 & $int13 = 1) {
         .cc_setcolour(0xff981f);
         cc_setonmouseover("cc_colour_swapper(event_com, .cc_getid, 16777215)");
         cc_setonmouseleave("cc_colour_swapper(event_com, .cc_getid, 16750623)");
@@ -146,3 +147,19 @@ if (%slayer_unlock_storage = 1) {
 } else {
     .cc_setcolour(0x7f4c0f);
 }
+cc_create(slayer_rewards:view_tasks, ^iftype_graphic, 0);
+.cc_create(slayer_rewards:view_tasks, ^iftype_text, 1);
+cc_setsize(75, 22, ^setsize_abs, ^setsize_abs);
+.cc_setsize(75, 22, ^setsize_abs, ^setsize_abs);
+cc_setposition(391, 25, ^setpos_abs_left, ^setpos_abs_top);
+.cc_setposition(391, 25, ^setpos_abs_left, ^setpos_abs_top);
+cc_setgraphic("combatboxesmed,0");
+.cc_settextfont(p11_full);
+.cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+.cc_settextshadow(true);
+.cc_settext("View List");
+.cc_setcolour(0xff981f);
+cc_setonmouseover("cc_colour_swapper(event_com, .cc_getid, 16777215)");
+cc_setonmouseleave("cc_colour_swapper(event_com, .cc_getid, 16750623)");
+cc_setop(1, "View List");
+if_setop(1, "View List", slayer_rewards:view_tasks);
