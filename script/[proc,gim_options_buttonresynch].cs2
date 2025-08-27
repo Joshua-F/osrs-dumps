@@ -1,105 +1,105 @@
 // 4681
-[proc,gim_options_buttonresynch](component $component0, int $int1, int $int2, int $int3, int $int4, struct $struct5)
+[proc,gim_options_buttonresynch](component $component, int $int1, int $int2, int $int3, int $int4, struct $struct)
 def_int $int6 = 0;
 def_int $int7 = -1;
 def_int $int8 = 0;
-def_string $string0 = "...";
+def_string $string = "...";
 def_int $int9 = 0;
 if (%clan_transmit_loadasguest = 1 & %clan_guest_affinitystatus = 3 & activeclansettings_find_listened = true | %clan_transmit_loadasguest = 0 & %gim_affinitystatus = 3 & activeclansettings_find_affined(^clantype_gim) = true) {
     $int7 = activeclansettings_getaffinedslot(removetags(chat_playername));
-    if (struct_param($struct5, param_1537) = true) {
-        switch_struct ($struct5) {
+    if (struct_param($struct, param_1537) = true) {
+        switch_struct ($struct) {
             case struct_4223 :
                 if (~gim_option_get(struct_4222) = ^true) {
                     if (%varclansetting_52 > 1) {
-                        $string0 = "<~tostring_spacer(%varclansetting_52, ",")> coins";
+                        $string = "<~tostring_spacer(%varclansetting_52, ",")> coins";
                     } else if (%varclansetting_52 = 1) {
-                        $string0 = "1 coin";
+                        $string = "1 coin";
                     } else {
-                        $string0 = "No minimum";
+                        $string = "No minimum";
                     }
                 } else {
-                    $string0 = "N/A";
+                    $string = "N/A";
                 }
             case struct_852 :
                 if (~gim_option_get(struct_849) = ^true) {
                     if (%varclansetting_99 = -1) {
-                        $string0 = "All";
+                        $string = "All";
                     } else {
-                        $string0 = enum(int, string, enum_3967, %varclansetting_99);
+                        $string = enum(int, string, enum_3967, %varclansetting_99);
                     }
                 } else {
-                    $string0 = "N/A";
+                    $string = "N/A";
                 }
             case struct_4227 :
                 if (~gim_option_get(struct_4226) = ^true) {
                     if (%varclansetting_53 > 1) {
-                        $string0 = "<~tostring_spacer(%varclansetting_53, ",")> coins";
+                        $string = "<~tostring_spacer(%varclansetting_53, ",")> coins";
                     } else if (%varclansetting_53 = 1) {
-                        $string0 = "1 coin";
+                        $string = "1 coin";
                     } else {
-                        $string0 = "No minimum";
+                        $string = "No minimum";
                     }
                 } else {
-                    $string0 = "N/A";
+                    $string = "N/A";
                 }
             case struct_4216 :
                 if (~gim_option_get(struct_4215) = ^true) {
                     if (%varclansetting_54 > 0) {
-                        $string0 = "Level <tostring(%varclansetting_54)>";
+                        $string = "Level <tostring(%varclansetting_54)>";
                     } else {
-                        $string0 = "No minimum";
+                        $string = "No minimum";
                     }
                 } else {
-                    $string0 = "N/A";
+                    $string = "N/A";
                 }
             case struct_4217 :
                 if (~gim_option_get(struct_4215) = ^true) {
                     if (%varclansetting_55 > 0) {
-                        $string0 = "Level <tostring(%varclansetting_55)>";
+                        $string = "Level <tostring(%varclansetting_55)>";
                     } else {
-                        $string0 = "No minimum";
+                        $string = "No minimum";
                     }
                 } else {
-                    $string0 = "N/A";
+                    $string = "N/A";
                 }
             case struct_4218 :
                 if (~gim_option_get(struct_4215) = ^true) {
                     if (%varclansetting_56 > 0) {
-                        $string0 = "Level <tostring(%varclansetting_56)>";
+                        $string = "Level <tostring(%varclansetting_56)>";
                     } else {
-                        $string0 = "No minimum";
+                        $string = "No minimum";
                     }
                 } else {
-                    $string0 = "N/A";
+                    $string = "N/A";
                 }
             case struct_4220 :
                 if (~gim_option_get(struct_4219) = ^true) {
                     if (%varclansetting_57 > 0) {
-                        $string0 = "<tostring(%varclansetting_57)> million XP";
+                        $string = "<tostring(%varclansetting_57)> million XP";
                     } else {
-                        $string0 = "No minimum";
+                        $string = "No minimum";
                     }
                 } else {
-                    $string0 = "N/A";
+                    $string = "N/A";
                 }
         }
-    } else if (~gim_option_get($struct5) = ^true) {
-        $string0 = "Enabled";
+    } else if (~gim_option_get($struct) = ^true) {
+        $string = "Enabled";
     } else {
-        $string0 = "Disabled";
+        $string = "Disabled";
     }
     if ($int7 ! -1) {
         $int9 = 1;
     }
-    if (cc_find($component0, $int3) = true) {
-        cc_settext($string0);
+    if (cc_find($component, $int3) = true) {
+        cc_settext($string);
     }
     if ($int9 = 1) {
-        if (cc_find($component0, $int2) = true) {
+        if (cc_find($component, $int2) = true) {
             cc_setgraphic(tradebacking);
         }
-        if (cc_find($component0, $int1) = true) {
+        if (cc_find($component, $int1) = true) {
             cc_settrans(245);
         }
         if (~on_mobile = false) {
@@ -111,13 +111,13 @@ if (%clan_transmit_loadasguest = 1 & %clan_guest_affinitystatus = 3 & activeclan
         return;
     }
 }
-if (cc_find($component0, $int3) = true) {
-    cc_settext($string0);
+if (cc_find($component, $int3) = true) {
+    cc_settext($string);
 }
-if (cc_find($component0, $int2) = true) {
+if (cc_find($component, $int2) = true) {
     cc_setgraphic(tradebacking_dark);
 }
-if (cc_find($component0, $int1) = true) {
+if (cc_find($component, $int1) = true) {
     cc_settrans(255);
 }
 .cc_setonmouserepeat(null);

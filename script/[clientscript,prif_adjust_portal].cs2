@@ -1,9 +1,9 @@
 // 2923
-[clientscript,prif_adjust_portal](int $int0, boolean $boolean1)
+[clientscript,prif_adjust_portal](int $int0, boolean $boolean)
 def_int $int2 = calc(clientclock - $int0);
 def_int $int3 = 0;
 if ($int2 >= 20) {
-    if ($boolean1 = false) {
+    if ($boolean = false) {
         cc_deleteall(prif_overlay:atmospheric);
     } else if (cc_find(prif_overlay:atmospheric, 1) = true) {
         cc_settrans(0);
@@ -12,14 +12,14 @@ if ($int2 >= 20) {
     return;
 }
 if (cc_find(prif_overlay:atmospheric, 0) = true) {
-    if ($boolean1 = true) {
+    if ($boolean = true) {
         cc_setmodelangle(0, 130, 0, 0, 0, ~max(1, scale(6464, 10000, cc_getmodelzoom)));
     } else {
         cc_setmodelangle(0, 130, 0, 0, 0, ~max(1, scale(10000, 6464, ~max(cc_getmodelzoom, 2))));
     }
 }
 if (cc_find(prif_overlay:atmospheric, 1) = true) {
-    if ($boolean1 = true) {
+    if ($boolean = true) {
         cc_settrans(calc(cc_gettrans - 12));
     } else {
         cc_settrans(calc(cc_gettrans + 12));

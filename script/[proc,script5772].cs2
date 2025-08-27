@@ -1,12 +1,12 @@
 // 5772
-[proc,script5772](component $component0, component $component1, component $component2, component $component3, enum $enum4, int $int5)
+[proc,script5772](component $component0, component $component1, component $component2, component $component3, enum $enum, int $int5)
 def_component $component6 = if_getlayer($component0);
 def_int $int7 = 14;
 if (~on_mobile = true) {
     $int7 = 26;
 }
 def_int $int8 = 212;
-def_int $int9 = calc($int7 * enum_getoutputcount($enum4) + 4);
+def_int $int9 = calc($int7 * enum_getoutputcount($enum) + 4);
 def_int $int10 = 0;
 def_int $int11 = if_getheight($component3);
 if ($int9 > $int8) {
@@ -50,7 +50,7 @@ if_setsize(if_getwidth($component2), calc($int9 - 4), ^setsize_abs, ^setsize_abs
 def_int $int17 = 0;
 def_int $int18 = 0;
 def_int $int19 = if_getwidth($component1);
-if (~on_mobile = true & calc($int7 * enum_getoutputcount($enum4)) > if_getheight($component1)) {
+if (~on_mobile = true & calc($int7 * enum_getoutputcount($enum)) > if_getheight($component1)) {
     if_setsize(calc(if_getwidth($component0) * 2), calc($int9 + $int14 - 1), ^setsize_abs, ^setsize_abs, $component0);
 }
 ~create_graphic($component1, $int18, tradebacking, 0, 0, ^setpos_abs_left, ^setpos_abs_top, 0, 0, ^setsize_minus, ^setsize_minus);
@@ -59,8 +59,8 @@ $int17 = ~thinbox_specific($component0, $int17, 0, $int16, if_getwidth($componen
 def_int $int20 = 0;
 def_int $int21 = 0;
 def_int $int22 = 0;
-while ($int22 < enum_getoutputcount($enum4)) {
-    $int18, $int21 = ~script5773($component1, $int18, $int20, $int21, $int19, enum(int, string, $enum4, $int22), $int5, $int7, $int11);
+while ($int22 < enum_getoutputcount($enum)) {
+    $int18, $int21 = ~script5773($component1, $int18, $int20, $int21, $int19, enum(int, string, $enum, $int22), $int5, $int7, $int11);
     $int22 = calc($int22 + 1);
     if (~on_mobile = true & calc($int21 + $int7) > if_getheight($component1)) {
         $int20 = calc($int20 + $int19);

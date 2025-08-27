@@ -1,26 +1,26 @@
 // 6320
-[proc,pvpa_stagingarea_supplies_equipment_sort](intarray $intarray0, int $int0, int $int1)
+[proc,pvpa_stagingarea_supplies_equipment_sort](intarray $intarray, int $int0, int $int1)
 def_int $int2 = calc(($int0 + $int1) / 2);
-def_int $int3 = $intarray0($int2);
-$intarray0($int2) = $intarray0($int1);
-$intarray0($int1) = $int3;
+def_int $int3 = $intarray($int2);
+$intarray($int2) = $intarray($int1);
+$intarray($int1) = $int3;
 def_int $int4 = $int0;
 def_int $int5 = $int0;
 def_int $int6 = -1;
 while ($int5 < $int1) {
-    if (compare(oc_name(enum(int, namedobj, enum_4390, $intarray0($int5))), oc_name(enum(int, namedobj, enum_4390, $int3))) <= 0) {
-        $int6 = $intarray0($int5);
-        $intarray0($int5) = $intarray0($int4);
-        $intarray0($int4) = $int6;
+    if (compare(oc_name(enum(int, namedobj, enum_4390, $intarray($int5))), oc_name(enum(int, namedobj, enum_4390, $int3))) <= 0) {
+        $int6 = $intarray($int5);
+        $intarray($int5) = $intarray($int4);
+        $intarray($int4) = $int6;
         $int4 = calc($int4 + 1);
     }
     $int5 = calc($int5 + 1);
 }
-$intarray0($int1) = $intarray0($int4);
-$intarray0($int4) = $int3;
+$intarray($int1) = $intarray($int4);
+$intarray($int4) = $int3;
 if ($int0 < calc($int4 - 1)) {
-    ~pvpa_stagingarea_supplies_equipment_sort($intarray0, $int0, calc($int4 - 1));
+    ~pvpa_stagingarea_supplies_equipment_sort($intarray, $int0, calc($int4 - 1));
 }
 if (calc($int4 + 1) < $int1) {
-    ~pvpa_stagingarea_supplies_equipment_sort($intarray0, calc($int4 + 1), $int1);
+    ~pvpa_stagingarea_supplies_equipment_sort($intarray, calc($int4 + 1), $int1);
 }

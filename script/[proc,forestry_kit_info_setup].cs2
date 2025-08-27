@@ -1,9 +1,9 @@
 // 1762
-[proc,forestry_kit_info_setup](int $int0, boolean $boolean1)
-def_component $component2 = forestry_kit_main:info;
-def_component $component3 = forestry_kit_main:info_scroller;
-cc_deleteall($component2);
-def_obj $obj4 = enum(int, namedobj, enum_817, $int0);
+[proc,forestry_kit_info_setup](int $int0, boolean $boolean)
+def_component $info = forestry_kit_main:info;
+def_component $info_scroller = forestry_kit_main:info_scroller;
+cc_deleteall($info);
+def_obj $obj = enum(int, namedobj, enum_817, $int0);
 def_graphic $graphic5 = b12_full;
 def_fontmetrics $fontmetrics6 = b12_full;
 def_graphic $graphic7 = p12_full;
@@ -38,27 +38,27 @@ switch_int (%responsive_current_breakpoint) {
 }
 def_int $int12 = 0;
 def_int $int13 = 0;
-def_int $int14 = if_getwidth($component2);
-def_string $string0 = "This is your Forestry kit";
-if ($obj4 ! null) {
-    $string0 = oc_name($obj4);
+def_int $int14 = if_getwidth($info);
+def_string $string = "This is your Forestry kit";
+if ($obj ! null) {
+    $string = oc_name($obj);
 }
-def_int $int15 = calc(paraheight($string0, calc($int14 - $int9 * 2), $fontmetrics6) * $int11);
-cc_create($component2, ^iftype_text, $int12);
+def_int $int15 = calc(paraheight($string, calc($int14 - $int9 * 2), $fontmetrics6) * $int11);
+cc_create($info, ^iftype_text, $int12);
 cc_setposition($int9, $int9, ^setpos_abs_left, ^setpos_abs_top);
 cc_setsize(calc($int14 - $int9 * 2), $int15, ^setsize_abs, ^setsize_abs);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, $int11);
 cc_settextshadow(true);
 cc_settextfont($graphic5);
 cc_setcolour(0xff981f);
-cc_settext($string0);
+cc_settext($string);
 $int12 = calc($int12 + 1);
 $int13 = calc($int13 + $int9 + $int15 + $int10);
-cc_create($component2, ^iftype_graphic, $int12);
+cc_create($info, ^iftype_graphic, $int12);
 cc_setposition(calc($int14 / 2 - 36 / 2), $int13, ^setpos_abs_left, ^setpos_abs_top);
 cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
-if ($obj4 ! null) {
-    cc_setobject($obj4, -1);
+if ($obj ! null) {
+    cc_setobject($obj, -1);
 } else {
     cc_setobject(forestry_kit, -1);
 }
@@ -66,37 +66,37 @@ cc_setoutline(1);
 cc_setgraphicshadow(0x333333);
 $int13 = calc($int13 + 32 + $int10);
 $int12 = calc($int12 + 1);
-if ($obj4 ! null) {
-    cc_create($component2, ^iftype_text, $int12);
+if ($obj ! null) {
+    cc_create($info, ^iftype_text, $int12);
     cc_setposition(0, $int13, ^setpos_abs_centre, ^setpos_abs_top);
     cc_setsize(50, 18, ^setsize_abs, ^setsize_abs);
     cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
     cc_settextshadow(true);
     cc_settextfont($graphic5);
     cc_setcolour(0xff981f);
-    cc_settext(tostring(inv_total(forestry_kit, $obj4)));
+    cc_settext(tostring(inv_total(forestry_kit, $obj)));
     $int12 = calc($int12 + 1);
     $int13 = calc($int13 + 22);
 }
-$string0 = "You can use this kit to store your forestry items.<br><br>This panel will show further information about an item when selected from the left-hand menu.<br><br>Once selected, you may then choose to withdraw the item using the buttons below.<br><br>You may also use the side panel to deposit items.";
-if ($obj4 ! null) {
-    $string0 = oc_param($obj4, param_1784);
+$string = "You can use this kit to store your forestry items.<br><br>This panel will show further information about an item when selected from the left-hand menu.<br><br>Once selected, you may then choose to withdraw the item using the buttons below.<br><br>You may also use the side panel to deposit items.";
+if ($obj ! null) {
+    $string = oc_param($obj, param_1784);
 }
-$int15 = calc(paraheight($string0, calc($int14 - $int9 * 2), $fontmetrics8) * $int11);
-cc_create($component2, ^iftype_text, $int12);
+$int15 = calc(paraheight($string, calc($int14 - $int9 * 2), $fontmetrics8) * $int11);
+cc_create($info, ^iftype_text, $int12);
 cc_setposition($int9, $int13, ^setpos_abs_left, ^setpos_abs_top);
 cc_setsize(calc($int14 - $int9 * 2), $int15, ^setsize_abs, ^setsize_abs);
 cc_settextalign(^settextalign_left, ^settextalign_top, $int11);
 cc_settextshadow(true);
 cc_settextfont($graphic7);
 cc_setcolour(0xff981f);
-cc_settext($string0);
+cc_settext($string);
 $int12 = calc($int12 + 1);
 $int13 = calc($int13 + $int15 + $int10);
-if ($boolean1 = true) {
-    if_setscrollpos(0, 0, $component2);
+if ($boolean = true) {
+    if_setscrollpos(0, 0, $info);
 }
-if_setscrollsize(if_getwidth($component2), $int13, $component2);
-~scrollbar_vertical($component3, $component2, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-~scrollbar_vertical_rebuild($component3, $component2);
+if_setscrollsize(if_getwidth($info), $int13, $info);
+~scrollbar_vertical($info_scroller, $info, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~scrollbar_vertical_rebuild($info_scroller, $info);
 ~forestry_kit_buttons_setup($int0);

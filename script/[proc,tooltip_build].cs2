@@ -1,7 +1,7 @@
 // 2701
-[proc,tooltip_build](component $component0, int $int1, component $component2, string $string0, int $int3)
+[proc,tooltip_build](component $component0, int $int1, component $component2, string $string, int $int3)
 if (~on_enhanced_any = true) {
-    ~mouseover_tooltip_setup($string0, "", mouse_getx, mouse_gety, $component2, $component0, $int1, 0, 0, 1);
+    ~mouseover_tooltip_setup($string, "", mouse_getx, mouse_gety, $component2, $component0, $int1, 0, 0, 1);
     return;
 }
 def_component $component4 = if_getlayer($component2);
@@ -9,7 +9,7 @@ if ($component4 ! null & $int3 > if_getwidth($component4)) {
     $int3 = if_getwidth($component4);
 }
 $int3 = calc($int3 - 4);
-if_setsize(calc(4 + parawidth($string0, $int3, p12_full)), calc(7 + 12 * paraheight($string0, $int3, p12_full)), ^setsize_abs, ^setsize_abs, $component2);
+if_setsize(calc(4 + parawidth($string, $int3, p12_full)), calc(7 + 12 * paraheight($string, $int3, p12_full)), ^setsize_abs, ^setsize_abs, $component2);
 def_int $int5 = if_getx($component0);
 def_int $int6 = if_gety($component0);
 def_int $int7 = 0;
@@ -48,7 +48,7 @@ cc_setcolour(^black);
 cc_create($component2, ^iftype_text, 2);
 cc_setsize(4, 1, ^setsize_minus, ^setsize_minus);
 cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_bottom);
-cc_settext($string0);
+cc_settext($string);
 cc_settextalign(^settextalign_left, ^settextalign_top, 0);
 cc_settextfont(p12_full);
 cc_setcolour(^black);

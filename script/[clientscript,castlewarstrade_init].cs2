@@ -1,18 +1,18 @@
 // 443
-[clientscript,castlewarstrade_init](component $component0)
+[clientscript,castlewarstrade_init](component $itemlist)
 def_int $int1 = 0;
 def_int $int2 = 0;
-def_obj $obj3 = enum(int, namedobj, enum_852, $int2);
-while ($obj3 ! null) {
-    cc_create($component0, ^iftype_graphic, $int2);
-    if (map_members = false & oc_members($obj3) = 1) {
+def_obj $obj = enum(int, namedobj, enum_852, $int2);
+while ($obj ! null) {
+    cc_create($itemlist, ^iftype_graphic, $int2);
+    if (map_members = false & oc_members($obj) = 1) {
         cc_sethide(true);
     } else {
         cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
         cc_setposition(calc($int1 % 8 * 46), calc($int1 / 8 * 50), ^setpos_abs_left, ^setpos_abs_top);
         $int1 = calc($int1 + 1);
-        cc_setobject($obj3, 1);
-        cc_setopbase("<col=ff9040><oc_name($obj3)>");
+        cc_setobject($obj, 1);
+        cc_setopbase("<col=ff9040><oc_name($obj)>");
         cc_setop(1, "Value");
         cc_setop(2, "Buy");
         cc_setop(10, "Examine");
@@ -21,5 +21,5 @@ while ($obj3 ! null) {
         cc_setonop("cc_settrans_temporarily(event_com, event_comsubid, 100, 0)");
     }
     $int2 = calc($int2 + 1);
-    $obj3 = enum(int, namedobj, enum_852, $int2);
+    $obj = enum(int, namedobj, enum_852, $int2);
 }

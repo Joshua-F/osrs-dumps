@@ -1,22 +1,22 @@
 // 6858
-[clientscript,item_transmog_op](int $int0, int $int1, dbrow $dbrow2, int $int3, int $int4, boolean $boolean5)
+[clientscript,item_transmog_op](int $int0, int $int1, dbrow $dbrow, int $int3, int $int4, boolean $boolean)
 if ($int0 ! 1 & $int0 ! 10) {
     return;
 }
 sound_synth(synth_2266, 1, 0);
-def_string $string0 = null;
+def_string $string = null;
 switch_int ($int0) {
     case 10 :
-        $string0 = db_getfield($dbrow2, item_transmog:ui_examine, 0);
-        if (~string_isnullorempty($string0) = true) {
-            $string0 = oc_name(db_getfield($dbrow2, item_transmog:namedobj, 0));
+        $string = db_getfield($dbrow, item_transmog:ui_examine, 0);
+        if (~string_isnullorempty($string) = true) {
+            $string = oc_name(db_getfield($dbrow, item_transmog:namedobj, 0));
         }
-        mes($string0);
+        mes($string);
     case 1 :
-        if ($boolean5 = false | $int3 = $int4) {
+        if ($boolean = false | $int3 = $int4) {
             return;
         }
-        %item_transmog_clicked_transmog_id = db_getfield($dbrow2, item_transmog:group_id, 0);
-        %item_transmog_active_obj = db_getfield($dbrow2, item_transmog:namedobj, 0);
+        %item_transmog_clicked_transmog_id = db_getfield($dbrow, item_transmog:group_id, 0);
+        %item_transmog_active_obj = db_getfield($dbrow, item_transmog:namedobj, 0);
         ~item_transmog_init($int1);
 }

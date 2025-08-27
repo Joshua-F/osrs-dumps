@@ -1,41 +1,41 @@
 // 5938
 [proc,buff_bar_layout_redraw]
-def_component $component0 = buff_bar:buff_display;
-def_component $component1 = buff_bar:buff_listeners;
-def_component $component2 = buff_bar:tooltip;
-def_struct $struct3 = null;
+def_component $buff_display = buff_bar:buff_display;
+def_component $buff_listeners = buff_bar:buff_listeners;
+def_component $tooltip = buff_bar:tooltip;
+def_struct $struct = null;
 def_int $int4 = 0;
 def_string $string0 = "";
 def_string $string1 = "";
 def_int $int5 = 0;
 def_int $int6 = 0;
-def_enum $enum7 = enum_4214;
+def_enum $enum = enum_4214;
 if (~on_enhanced_any = false) {
-    $enum7 = enum_3899;
+    $enum = enum_3899;
 }
-def_int $int8 = enum_getoutputcount($enum7);
+def_int $int8 = enum_getoutputcount($enum);
 def_int $int9 = 12;
 if (getwindowmode = ^windowmode_small) {
     $int9 = 8;
 }
 def_int $int10 = 0;
-cc_deleteall($component0);
-~deltooltip_action($component2);
+cc_deleteall($buff_display);
+~deltooltip_action($tooltip);
 if (%buff_bar_hidden = 1) {
     return;
 }
 while ($int6 < $int8 & $int10 < $int9) {
-    $struct3 = enum(int, struct, $enum7, $int6);
-    $int4 = struct_param($struct3, param_1275);
-    if (cc_find($component1, $int4) = true) {
+    $struct = enum(int, struct, $enum, $int6);
+    $int4 = struct_param($struct, param_1275);
+    if (cc_find($buff_listeners, $int4) = true) {
         $int5 = cc_getcolour;
-        if (~buff_bar_buff_should_display($struct3, $int5) = true) {
+        if (~buff_bar_buff_should_display($struct, $int5) = true) {
             $string0 = cc_gettext;
             $string1 = cc_getopbase;
-            ~script5947($struct3, $string0, $string1, $int10);
+            ~script5947($struct, $string0, $string1, $int10);
             $int10 = calc($int10 + 1);
         }
     }
     $int6 = calc($int6 + 1);
 }
-~buff_bar_position_review(buff_bar:content, buff_bar:dodger, $component0, buff_bar:tooltip, ^min_32bit_int);
+~buff_bar_position_review(buff_bar:content, buff_bar:dodger, $buff_display, buff_bar:tooltip, ^min_32bit_int);

@@ -9,27 +9,27 @@ cc_deleteall($component6);
 def_int $int7 = enum_getoutputcount(enum_2304);
 def_int $intarray0(calc($int7 + 1));
 def_int $int8 = 0;
-def_obj $obj9 = null;
+def_obj $obj = null;
 def_int $int10 = 50;
 def_int $int11 = 40;
 while ($int8 < 93) {
-    $obj9 = inv_getobj(seed_vault, $int8);
+    $obj = inv_getobj(seed_vault, $int8);
     cc_create($component0, ^iftype_graphic, $int8);
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
     .cc_create($component1, ^iftype_text, $int8);
     .cc_setsize($int10, 30, ^setsize_abs, ^setsize_abs);
-    if ($obj9 ! null & ~seed_vault_filteritem($obj9) = true) {
+    if ($obj ! null & ~seed_vault_filteritem($obj) = true) {
         cc_setop(10, "Examine");
-        cc_setopbase("<col=ff9040><oc_name($obj9)></col>");
+        cc_setopbase("<col=ff9040><oc_name($obj)></col>");
         cc_setgraphicshadow(0x333333);
         cc_setoutline(1);
-        if (oc_unplaceholder($obj9) ! $obj9) {
-            cc_setobject($obj9, 0);
+        if (oc_unplaceholder($obj) ! $obj) {
+            cc_setobject($obj, 0);
             cc_settrans(120);
             cc_setop(8, "Remove-Placeholder");
             cc_setop(9, "Remove-All-Placeholders");
         } else {
-            cc_setobject($obj9, inv_total(seed_vault, $obj9));
+            cc_setobject($obj, inv_total(seed_vault, $obj));
             if (%seed_vault_selected_qty = ^max_32bit_int) {
                 cc_setop(1, "Withdraw-All");
             } else if (%seed_vault_selected_qty > 1) {
@@ -43,18 +43,18 @@ while ($int8 < 93) {
             }
             cc_setop(6, "Withdraw-X");
             cc_setop(7, "Withdraw-All");
-            if (oc_stackable($obj9) = false & oc_cert($obj9) ! $obj9) {
+            if (oc_stackable($obj) = false & oc_cert($obj) ! $obj) {
                 cc_setop(9, "Withdraw-Notes");
             }
         }
         .cc_setop(10, "Examine");
-        .cc_setopbase("<col=ff9040><oc_name($obj9)></col>");
+        .cc_setopbase("<col=ff9040><oc_name($obj)></col>");
         .cc_settextfont(p11_full);
         .cc_settextshadow(true);
         .cc_setcolour(0xff981f);
         .cc_settextalign(^settextalign_centre, ^settextalign_top, 0);
-        .cc_settext(oc_name($obj9));
-        if (oc_unplaceholder($obj9) ! $obj9) {
+        .cc_settext(oc_name($obj));
+        if (oc_unplaceholder($obj) ! $obj) {
             .cc_setop(8, "Remove-Placeholder");
             .cc_setop(9, "Remove-All-Placeholders");
         } else {
@@ -71,7 +71,7 @@ while ($int8 < 93) {
             }
             .cc_setop(6, "Withdraw-X");
             .cc_setop(7, "Withdraw-All");
-            if (oc_stackable($obj9) = false & oc_cert($obj9) ! $obj9) {
+            if (oc_stackable($obj) = false & oc_cert($obj) ! $obj) {
                 .cc_setop(9, "Withdraw-Notes");
             }
         }
@@ -81,8 +81,8 @@ while ($int8 < 93) {
                 cc_setop(8, "Remove-Favourite");
                 .cc_setop(8, "Remove-Favourite");
             } else {
-                $intarray0(oc_param(oc_unplaceholder($obj9), param_709)) = calc($intarray0(oc_param(oc_unplaceholder($obj9), param_709)) + 1);
-                if (oc_unplaceholder($obj9) ! $obj9) {
+                $intarray0(oc_param(oc_unplaceholder($obj), param_709)) = calc($intarray0(oc_param(oc_unplaceholder($obj), param_709)) + 1);
+                if (oc_unplaceholder($obj) ! $obj) {
                     cc_setop(8, "Remove-Placeholder");
                     .cc_setop(8, "Remove-Placeholder");
                 } else if (~script2831 > 0) {
@@ -160,10 +160,10 @@ def_int $int18 = 0;
 $int14 = 0;
 def_int $int19 = -1;
 while ($int8 < 93) {
-    $obj9 = inv_getobj(seed_vault, $int8);
-    if ($obj9 ! null & ~seed_vault_filteritem($obj9) = true) {
-        $int19 = oc_param(oc_unplaceholder($obj9), param_709);
-        if (~seed_vault_searching = true & ~seed_vault_filteritem($obj9) = true) {
+    $obj = inv_getobj(seed_vault, $int8);
+    if ($obj ! null & ~seed_vault_filteritem($obj) = true) {
+        $int19 = oc_param(oc_unplaceholder($obj), param_709);
+        if (~seed_vault_searching = true & ~seed_vault_filteritem($obj) = true) {
             $int19 = 0;
         } else if (~script2828($int8) ! -1) {
             $int19 = 0;

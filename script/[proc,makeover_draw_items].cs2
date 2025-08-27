@@ -1,5 +1,5 @@
 // 7072
-[proc,makeover_draw_items](component $component0, component $component1, enum $enum2, boolean $boolean3)
+[proc,makeover_draw_items](component $component0, component $component1, enum $enum, boolean $boolean)
 cc_deleteall($component0);
 def_int $int4 = 98;
 def_int $int5 = 90;
@@ -11,21 +11,21 @@ def_int $int10 = 1;
 def_int $int11 = 0;
 ~thinbox($component1, $int11);
 def_int $int12 = 0;
-def_dbrow $dbrow13 = null;
-def_int $int14 = enum_getoutputcount($enum2);
+def_dbrow $dbrow = null;
+def_int $int14 = enum_getoutputcount($enum);
 def_model $model15 = null;
 def_model $model16 = null;
 def_string $string0 = "";
 def_int $int17 = 3;
 def_string $string1 = "";
-if ($boolean3 = true) {
+if ($boolean = true) {
     $int4 = 146;
     $int5 = 140;
     $int6 = -82;
     $int17 = 2;
 }
 while ($int12 < $int14) {
-    $dbrow13 = enum(int, dbrow, $enum2, $int12);
+    $dbrow = enum(int, dbrow, $enum, $int12);
     if ($int10 > $int17) {
         $int9 = calc($int9 + $int5);
         $int8 = $int6;
@@ -37,58 +37,58 @@ while ($int12 < $int14) {
     }
     switch_int (%makeover_interface_type) {
         case 0 :
-            $model15 = db_getfield($dbrow13, hair_styles:head_model, 0);
-            $string0 = db_getfield($dbrow13, hair_styles:name, 0);
+            $model15 = db_getfield($dbrow, hair_styles:head_model, 0);
+            $string0 = db_getfield($dbrow, hair_styles:name, 0);
             $string1 = "Hairstyle";
         case 1 :
-            $model15 = db_getfield($dbrow13, facial_hair_styles:chat_head, 0);
-            $string0 = db_getfield($dbrow13, facial_hair_styles:name, 0);
+            $model15 = db_getfield($dbrow, facial_hair_styles:chat_head, 0);
+            $string0 = db_getfield($dbrow, facial_hair_styles:name, 0);
             $string1 = "Facial Hairstyle";
         case 2 :
         case 3 :
             if (%makeover_bodytype = 0) {
-                $model15 = db_getfield($dbrow13, torso_styles:torso_model_type_a_1, 0);
-                $model16 = db_getfield($dbrow13, torso_styles:torso_model_type_a_2, 0);
+                $model15 = db_getfield($dbrow, torso_styles:torso_model_type_a_1, 0);
+                $model16 = db_getfield($dbrow, torso_styles:torso_model_type_a_2, 0);
             } else {
-                $model15 = db_getfield($dbrow13, torso_styles:torso_model_type_b_1, 0);
-                $model16 = db_getfield($dbrow13, torso_styles:torso_model_type_b_2, 0);
+                $model15 = db_getfield($dbrow, torso_styles:torso_model_type_b_1, 0);
+                $model16 = db_getfield($dbrow, torso_styles:torso_model_type_b_2, 0);
             }
-            $string0 = db_getfield($dbrow13, torso_styles:name, 0);
+            $string0 = db_getfield($dbrow, torso_styles:name, 0);
             $string1 = "Clothes";
         case 4 :
             if (%makeover_bodytype = 0) {
-                $model15 = db_getfield($dbrow13, sleeve_styles:sleeve_model_type_a, 0);
+                $model15 = db_getfield($dbrow, sleeve_styles:sleeve_model_type_a, 0);
             } else {
-                $model15 = db_getfield($dbrow13, sleeve_styles:sleeve_model_type_b, 0);
+                $model15 = db_getfield($dbrow, sleeve_styles:sleeve_model_type_b, 0);
             }
-            $string0 = db_getfield($dbrow13, sleeve_styles:name, 0);
+            $string0 = db_getfield($dbrow, sleeve_styles:name, 0);
             $string1 = "Clothes";
         case 5 :
             if (%makeover_bodytype = 0) {
-                $model15 = db_getfield($dbrow13, legging_styles:legging_model_type_a, 0);
+                $model15 = db_getfield($dbrow, legging_styles:legging_model_type_a, 0);
             } else {
-                $model15 = db_getfield($dbrow13, legging_styles:legging_model_type_b, 0);
+                $model15 = db_getfield($dbrow, legging_styles:legging_model_type_b, 0);
             }
-            $string0 = db_getfield($dbrow13, legging_styles:name, 0);
+            $string0 = db_getfield($dbrow, legging_styles:name, 0);
             $string1 = "Clothes";
         case 6 :
             if (%makeover_bodytype = 0) {
-                $model15 = db_getfield($dbrow13, shoe_styles:shoe_model_type_a, 0);
+                $model15 = db_getfield($dbrow, shoe_styles:shoe_model_type_a, 0);
             } else {
-                $model15 = db_getfield($dbrow13, shoe_styles:shoe_model_type_b, 0);
+                $model15 = db_getfield($dbrow, shoe_styles:shoe_model_type_b, 0);
             }
-            $string0 = db_getfield($dbrow13, shoe_styles:name, 0);
+            $string0 = db_getfield($dbrow, shoe_styles:name, 0);
             $string1 = "Shoes";
         case 7 :
             if (%makeover_bodytype = 0) {
-                $model15 = db_getfield($dbrow13, hand_styles:hand_model_type_a, 0);
+                $model15 = db_getfield($dbrow, hand_styles:hand_model_type_a, 0);
             } else {
-                $model15 = db_getfield($dbrow13, hand_styles:hand_model_type_b, 0);
+                $model15 = db_getfield($dbrow, hand_styles:hand_model_type_b, 0);
             }
-            $string0 = db_getfield($dbrow13, hand_styles:name, 0);
+            $string0 = db_getfield($dbrow, hand_styles:name, 0);
             $string1 = "Wristwear";
     }
-    $int11 = ~makeover_draw_item($component0, $dbrow13, $int11, $int8, $int9, $model15, $model16, $string0, $boolean3, $string1);
+    $int11 = ~makeover_draw_item($component0, $dbrow, $int11, $int8, $int9, $model15, $model16, $string0, $boolean, $string1);
     $int10 = calc($int10 + 1);
     $int12 = calc($int12 + 1);
 }

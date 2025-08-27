@@ -1,14 +1,14 @@
 // 2068
-[proc,toplevel_keypress](int $key0, enum $enum1, boolean $boolean2)
+[proc,toplevel_keypress](int $key, enum $enum, boolean $boolean2)
 if (~keypress_permit(null, null) = false) {
     return;
 }
 def_boolean $boolean3 = false;
-def_component $component4 = enum(component, component, $enum1, toplevel_osrs_stretch:mainmodal);
+def_component $component4 = enum(component, component, $enum, toplevel_osrs_stretch:mainmodal);
 def_component $component5 = enum(int, component, enum_1137, 3);
-def_component $component6 = enum(component, component, $enum1, toplevel_osrs_stretch:floater);
-$component5 = enum(component, component, $enum1, $component5);
-if ($key0 = ^key_escape) {
+def_component $component6 = enum(component, component, $enum, toplevel_osrs_stretch:floater);
+$component5 = enum(component, component, $enum, $component5);
+if ($key = ^key_escape) {
     switch_int (%meslayermode) {
         case 14, 17, 18, 11 :
             return;
@@ -22,7 +22,7 @@ if ($key0 = ^key_escape) {
             if_close;
             return;
         }
-        $component4 = enum(component, component, $enum1, toplevel_osrs_stretch:sidemodal);
+        $component4 = enum(component, component, $enum, toplevel_osrs_stretch:sidemodal);
         if ($component4 ! null & if_hassub($component5) = true & if_hassub($component4) = true) {
             if_close;
             return;
@@ -36,12 +36,12 @@ if ($key0 = ^key_escape) {
         }
     }
 }
-def_int $int7 = ~keybind_get_slot($key0);
-if ($int7 = -1 | $int7 = calc(%flashside - 1)) {
+def_int $int = ~keybind_get_slot($key);
+if ($int = -1 | $int = calc(%flashside - 1)) {
     return;
 }
-def_component $component8 = enum(int, component, enum_1137, $int7);
-$component8 = enum(component, component, $enum1, $component8);
+def_component $component8 = enum(int, component, enum_1137, $int);
+$component8 = enum(component, component, $enum, $component8);
 if (if_hassub($component8) = true) {
-    ~toplevel_sidebutton_op($enum1, $int7, $boolean2, 0);
+    ~toplevel_sidebutton_op($enum, $int, $boolean2, 0);
 }
