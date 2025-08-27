@@ -869,25 +869,6 @@ column=title,string,REQUIRED,CLIENTSIDE
 column=info,string,obj,REQUIRED,LIST,CLIENTSIDE
 column=disable_on_leagues,boolean,REQUIRED,CLIENTSIDE
 
-// 84
-[league_slayer_task_data]
-column=task_id
-column=min_comlevel,int,CLIENTSIDE
-default=min_comlevel,0
-column=min_stat_requirement_all,int,stat,LIST,CLIENTSIDE
-column=min_stat_requirement_any,int,stat,LIST,CLIENTSIDE
-column=leagues_min_comlevel,int,CLIENTSIDE
-default=leagues_min_comlevel,0
-column=leagues_max_comlevel,int,CLIENTSIDE
-default=leagues_max_comlevel,126
-column=quests_required_all
-column=quests_required_any
-column=regions,int,REQUIRED,LIST,INDEXED,CLIENTSIDE
-column=name_lowercase,string,REQUIRED,CLIENTSIDE
-column=name_uppercase,string,REQUIRED,CLIENTSIDE
-column=slayer_tip
-column=master_weight_minamount_maxamount,npc,int,int,int,INDEXED,CLIENTSIDE
-
 // 85
 [leagues_echo_bosses]
 column=echo_orb_droprate,int,REQUIRED,CLIENTSIDE
@@ -1180,4 +1161,67 @@ column=button,component,REQUIRED,CLIENTSIDE
 // 112
 [poh_hotspot]
 column=builddata,dbrow,LIST,CLIENTSIDE
+
+// 113
+[slayer_task]
+column=id,int,REQUIRED,INDEXED,CLIENTSIDE
+column=min_comlevel,int,CLIENTSIDE
+default=min_comlevel,0
+column=min_stat_requirement_all,int,stat,LIST,CLIENTSIDE
+column=min_stat_requirement_any,int,stat,LIST,CLIENTSIDE
+column=leagues_min_comlevel,int,CLIENTSIDE
+default=leagues_min_comlevel,0
+column=leagues_max_comlevel,int,CLIENTSIDE
+default=leagues_max_comlevel,126
+column=quests_required_all
+column=quests_required_any
+column=regions,int,REQUIRED,LIST,INDEXED,CLIENTSIDE
+column=name_lowercase,string,REQUIRED,CLIENTSIDE
+column=name_uppercase,string,REQUIRED,CLIENTSIDE
+column=slayer_tip
+column=twisted_min_comlevel
+column=equipment_required
+column=task_sublist
+column=extension_min_max,dbrow,int,int,CLIENTSIDE
+column=block_unlock,dbrow,CLIENTSIDE
+
+// 114
+[slayer_master_task]
+column=master_id,int,REQUIRED,INDEXED,CLIENTSIDE
+column=task,dbrow,REQUIRED,INDEXED,CLIENTSIDE
+column=weight,int,REQUIRED,CLIENTSIDE
+column=min_amount,int,REQUIRED,CLIENTSIDE
+column=max_amount,int,REQUIRED,CLIENTSIDE
+column=areas,dbrow,LIST,CLIENTSIDE
+column=task_unlock,dbrow,CLIENTSIDE
+
+// 115
+[slayer_area]
+column=area_id,int,REQUIRED,INDEXED,CLIENTSIDE
+column=world_region
+column=area_text
+column=area_name_in_helper,string,REQUIRED,CLIENTSIDE
+column=area_hint
+column=min_stat_requirement_all
+column=min_stat_requirement_any
+column=quests_required_all
+
+// 116
+[slayer_task_sublist]
+column=subtable_id,int,REQUIRED,INDEXED,CLIENTSIDE
+column=task_subtable_id,int,REQUIRED,INDEXED,CLIENTSIDE
+column=slayer_master_exclusive
+column=exclude_slayer_master
+column=task,dbrow,REQUIRED,CLIENTSIDE
+
+// 117
+[slayer_unlock]
+column=bit,int,REQUIRED,INDEXED,CLIENTSIDE
+column=cost,int,REQUIRED,CLIENTSIDE
+column=icon,obj,REQUIRED,CLIENTSIDE
+column=name,string,REQUIRED,CLIENTSIDE
+column=description,string,REQUIRED,CLIENTSIDE
+column=refundable,boolean,CLIENTSIDE
+default=refundable,false
+column=list_position,int,int,REQUIRED,INDEXED,CLIENTSIDE
 

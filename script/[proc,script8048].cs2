@@ -1,0 +1,13 @@
+// 8048
+[proc,script8048](int $int0)(int)
+def_int $int1 = -1;
+if ($int0 < 32) {
+    $int1 = %slayer_rewards_unlocks;
+} else if ($int0 < 64) {
+    $int1 = %slayer_rewards_unlocks1;
+} else {
+    ~script2075("Tried to check a slayer unlock bit greater than 63 but no such variable exists.");
+    return(^false);
+}
+$int0 = calc($int0 % 32);
+return(testbit($int1, $int0));

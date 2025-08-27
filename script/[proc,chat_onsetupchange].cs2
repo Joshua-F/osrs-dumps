@@ -83,6 +83,9 @@ if (%chatoverlay_unclamp = 1 & if_hassub(chatbox:chatoverlay) = true) {
 } else {
     if_setsize(479, 96, ^setsize_abs, ^setsize_abs, chatbox:chatoverlay);
 }
+if (chat_getfilter_private ! %chat_filter_private) {
+    ~chat_set_filter(3, %chat_filter_private);
+}
 ~redraw_chat_buttons;
 def_int $int7 = ~script553;
 ~rebuildchatbox($int7);

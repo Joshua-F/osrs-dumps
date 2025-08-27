@@ -1,0 +1,13 @@
+// 8045
+[proc,script8045](dbrow $dbrow0, int $int1, int $int2)(int, int)
+def_int $int3 = -1;
+def_int $int4 = -1;
+def_dbrow $dbrow5 = null;
+$dbrow5, $int3, $int4 = db_getfield($dbrow0, slayer_task:extension_min_max, 0);
+if ($dbrow5 = null) {
+    return($int1, $int2);
+}
+if (~script8048(db_getfield($dbrow5, slayer_unlock:bit, 0)) = ^true) {
+    return($int3, $int4);
+}
+return($int1, $int2);
