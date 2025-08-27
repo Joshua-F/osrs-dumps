@@ -1,5 +1,16 @@
 // 405
 [clientscript,slayer_rewards_init](component $universe, component $tabs, component $unlock, component $extend, component $buy, component $tasks, component $main, component $confirm)
-~slayer_rewards_tabs($tabs, $unlock, $extend, $buy, $tasks, $unlock);
+switch_int (%slayer_rewards_tab_last_opened) {
+    case 0 :
+        ~slayer_rewards_tabs($tabs, $unlock, $extend, $buy, $tasks, $unlock);
+    case 1 :
+        ~slayer_rewards_tabs($tabs, $unlock, $extend, $buy, $tasks, $extend);
+    case 2 :
+        ~slayer_rewards_tabs($tabs, $unlock, $extend, $buy, $tasks, $buy);
+    case 3 :
+        ~slayer_rewards_tabs($tabs, $unlock, $extend, $buy, $tasks, $tasks);
+    case default :
+        ~slayer_rewards_tabs($tabs, $unlock, $extend, $buy, $tasks, $unlock);
+}
 if_sethide(false, $main);
 if_sethide(true, $confirm);

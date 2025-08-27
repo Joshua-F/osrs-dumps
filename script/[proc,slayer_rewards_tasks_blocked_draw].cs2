@@ -5,19 +5,19 @@ def_int $int8 = 0;
 def_int $int9 = -1;
 switch_int ($int1) {
     case 1 :
-        $int8, $int9 = %slayer_blocked_1, 3;
+        $int8, $int9 = ~script8025(%slayer_master_in_focus, 1), 3;
     case 2 :
-        $int8, $int9 = %slayer_blocked_2, 4;
+        $int8, $int9 = ~script8025(%slayer_master_in_focus, 2), 4;
     case 3 :
-        $int8, $int9 = %slayer_blocked_3, 5;
+        $int8, $int9 = ~script8025(%slayer_master_in_focus, 3), 5;
     case 4 :
-        $int8, $int9 = %slayer_blocked_4, 6;
+        $int8, $int9 = ~script8025(%slayer_master_in_focus, 4), 6;
     case 5 :
-        $int8, $int9 = %slayer_blocked_5, 7;
+        $int8, $int9 = ~script8025(%slayer_master_in_focus, 5), 7;
     case 6 :
-        $int8, $int9 = %slayer_blocked_6, 12;
+        $int8, $int9 = ~script8025(%slayer_master_in_focus, 6), 12;
     case 7 :
-        $int8, $int9 = %slayer_blocked_diary, 8;
+        $int8, $int9 = ~script8025(%slayer_master_in_focus, 7), 8;
     case default :
         return;
 }
@@ -61,7 +61,7 @@ if ($int8 = 0) {
 } else {
     cc_setcolour(^white);
     cc_settextfont(p12_full);
-    cc_settext(enum(int, string, enum_693, $int8));
+    cc_settext(~slayer_taskname($int8, -1, 1));
 }
 cc_create($component0, ^iftype_graphic, $int10);
 $int10 = calc($int10 + 1);

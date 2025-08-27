@@ -10,6 +10,9 @@ def_int $int3 = db_getfieldcount($dbrow, quest:requirement_stats);
 def_int $int4 = 0;
 while ($int4 < $int3) {
     $stat, $int2 = db_getfield($dbrow, quest:requirement_stats, $int4);
+    if (~script417($stat) = true) {
+        $int2 = 1;
+    }
     if ($stat ! null & $int2 > 1) {
         $string = "<$string><~questjournal_overview_skill_requirement($stat, $int2)><br>";
     }
