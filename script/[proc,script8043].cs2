@@ -1,0 +1,24 @@
+// 8043
+[proc,script8043]()(boolean)
+def_int $int0 = -1;
+def_dbrow $dbrow1 = null;
+def_dbrow $dbrow2 = null;
+def_int $int3 = -1;
+def_boolean $boolean4 = false;
+if (%slayer_master_in_focus ! -1) {
+    $int0 = db_find(slayer_master_task:master_id, %slayer_master_in_focus);
+    if ($int0 ! -1) {
+        $dbrow1 = db_findnext;
+        while ($dbrow1 ! null & $boolean4 = false) {
+            $dbrow2 = db_getfield($dbrow1, slayer_master_task:task, 0);
+            if ($dbrow2 ! null) {
+                $int3 = db_getfield($dbrow2, slayer_task:id, 0);
+                if ($int3 = %slayer_target) {
+                    $boolean4 = true;
+                }
+            }
+            $dbrow1 = db_findnext;
+        }
+    }
+}
+return($boolean4);
