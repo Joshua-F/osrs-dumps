@@ -1,15 +1,15 @@
 // 2257
-[clientscript,music_init_counter](component $component0)
-if_setontimer(null, $component0);
-def_dbrow $dbrow1 = null;
+[clientscript,music_init_counter](component $component)
+if_setontimer(null, $component);
+def_dbrow $dbrow = null;
 def_int $int2 = 0;
 def_int $int3 = db_find(music:hidden, false);
 def_int $int4 = 0;
 while ($int4 < $int3) {
-    $dbrow1 = db_find_get($int4);
-    if (~music_isunlocked($dbrow1) = true) {
+    $dbrow = db_find_get($int4);
+    if (~music_isunlocked($dbrow) = true) {
         $int2 = calc($int2 + 1);
     }
     $int4 = calc($int4 + 1);
 }
-if_settext("<~tostring_spacer(~min($int2, $int3), ",")> / <~tostring_spacer($int3, ",")>", $component0);
+if_settext("<~tostring_spacer(~min($int2, $int3), ",")> / <~tostring_spacer($int3, ",")>", $component);

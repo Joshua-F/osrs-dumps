@@ -1,31 +1,31 @@
 // 3490
-[clientscript,death_office_init](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9)
-def_int $int10 = ~steelborder($component1, ~death_office_title, 0);
-if (cc_find($component1, $int10) = true) {
+[clientscript,death_office_init](component $universe, component $frame, component $items, component $scrollbar, component $1, component $5, component $x, component $all, component $takeall, component $info)
+def_int $int = ~steelborder($frame, ~death_office_title, 0);
+if (cc_find($frame, $int) = true) {
     cc_setoninvtransmit("death_office_title(event_com, event_comsubid){death_permanent}");
 }
-~scrollbar_vertical($component3, $component2, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-$int10 = 0;
-while ($int10 < 120) {
-    cc_create($component2, ^iftype_graphic, $int10);
+~scrollbar_vertical($scrollbar, $items, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+$int = 0;
+while ($int < 120) {
+    cc_create($items, ^iftype_graphic, $int);
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
     cc_sethide(true);
     cc_setgraphicshadow(0x333333);
     cc_setop(1, "Select");
     cc_setop(10, "Examine");
     cc_setonop("cc_settrans_temporarily(event_com, event_comsubid, 100, 0)");
-    $int10 = calc($int10 + 1);
+    $int = calc($int + 1);
 }
-~death_office_redraw($component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9);
-if_setoninvtransmit("death_office_redraw($component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9){death_permanent}", $component0);
-if_setonvartransmit("death_office_redraw($component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9){if1, if2, if3}", $component0);
-if_setop(1, "1", $component4);
-~death_office_resetquantity("1", $component4);
-if_setop(1, "5", $component5);
-~death_office_resetquantity("5", $component5);
-if_setop(1, "X", $component6);
-~death_office_resetquantity("X", $component6);
-if_setop(1, "All", $component7);
-~death_office_resetquantity("All", $component7);
-if_setop(1, "Take-All", $component8);
-~script3501($component8);
+~death_office_redraw($items, $scrollbar, $1, $5, $x, $all, $takeall, $info);
+if_setoninvtransmit("death_office_redraw($items, $scrollbar, $1, $5, $x, $all, $takeall, $info){death_permanent}", $universe);
+if_setonvartransmit("death_office_redraw($items, $scrollbar, $1, $5, $x, $all, $takeall, $info){if1, if2, if3}", $universe);
+if_setop(1, "1", $1);
+~death_office_resetquantity("1", $1);
+if_setop(1, "5", $5);
+~death_office_resetquantity("5", $5);
+if_setop(1, "X", $x);
+~death_office_resetquantity("X", $x);
+if_setop(1, "All", $all);
+~death_office_resetquantity("All", $all);
+if_setop(1, "Take-All", $takeall);
+~script3501($takeall);

@@ -12,8 +12,8 @@ if_settext("What is a <col=ff981f>Fresh Start World</col>?", fsw_optin:i_title);
 def_int $int1 = 10;
 def_int $int2 = 6;
 def_int $int3 = 13;
-def_graphic $graphic4 = p12_full;
-def_fontmetrics $fontmetrics5 = p12_full;
+def_graphic $graphic = p12_full;
+def_fontmetrics $fontmetrics = p12_full;
 def_int $int6 = 0;
 def_int $int7 = calc(460 - $int1 * 2);
 def_int $int8 = 0;
@@ -27,11 +27,11 @@ def_int $int11 = db_getfieldcount(fsw_info_fresh, fsw_info_fresh_table:info);
 while ($int6 < $int11) {
     $string1, $string2, $string3 = db_getfield(fsw_info_fresh, fsw_info_fresh_table:info, $int6);
     $string4 = $string3;
-    $int8 = calc(paraheight($string4, $int7, $fontmetrics5) * $int3);
+    $int8 = calc(paraheight($string4, $int7, $fontmetrics) * $int3);
     cc_create(fsw_optin:i_content, ^iftype_text, $int10);
     $int10 = calc($int10 + 1);
     cc_setposition($int1, $int9, ^setpos_abs_left, ^setpos_abs_top);
-    cc_settextfont($graphic4);
+    cc_settextfont($graphic);
     if (calc($int6 % 2) = 0) {
         cc_setcolour(0xff981f);
     } else {
@@ -48,7 +48,7 @@ cc_create(fsw_optin:i_content, ^iftype_text, $int10);
 $int10 = calc($int10 + 1);
 cc_setposition($int1, calc($int9 + 2), ^setpos_abs_left, ^setpos_abs_top);
 $string4 = "There are <$string0> remaining before Fresh Start Worlds ends.";
-$int8 = calc(paraheight($string4, $int7, $fontmetrics5) * $int3);
+$int8 = calc(paraheight($string4, $int7, $fontmetrics) * $int3);
 cc_settextfont(p11_full);
 cc_setcolour(^yellow);
 cc_setsize($int7, $int8, ^setsize_abs, ^setsize_abs);

@@ -1,7 +1,7 @@
 // 5923
-[proc,buff_bar_get_value](struct $struct0)(int)
-def_int $int1 = 0;
-switch_struct ($struct0) {
+[proc,buff_bar_get_value](struct $struct)(int)
+def_int $int = 0;
+switch_struct ($struct) {
     case struct_3091 :
         if (%buff_sire_stun_start > 0) {
             return(~script4674(%buff_sire_stun_start, calc(45 * 30 + 150)));
@@ -12,15 +12,15 @@ switch_struct ($struct0) {
         }
     case struct_3093 :
         if (%buff_sotd_special_start > 0) {
-            return(~script5940(%buff_sotd_special_start, struct_param($struct0, param_1541)));
+            return(~script5940(%buff_sotd_special_start, struct_param($struct, param_1541)));
         }
     case struct_3083 :
         if (%buff_imbued_heart_start > 0) {
-            return(~script5942(%buff_imbued_heart_start, %imbued_heart_timer, struct_param($struct0, param_1541)));
+            return(~script5942(%buff_imbued_heart_start, %imbued_heart_timer, struct_param($struct, param_1541)));
         }
     case struct_4735 :
         if (%buff_surge_potion_start > 0) {
-            return(~script5942(%buff_surge_potion_start, %surge_potion_timer, struct_param($struct0, param_1541)));
+            return(~script5942(%buff_surge_potion_start, %surge_potion_timer, struct_param($struct, param_1541)));
         }
     case struct_3082 :
         if (%buff_dragonfire_shield_start > 0) {
@@ -60,19 +60,19 @@ switch_struct ($struct0) {
         }
     case struct_3102 :
         if (%buff_antifire_start > 0) {
-            return(~script5942(%buff_antifire_start, %antifire_potion, struct_param($struct0, param_1541)));
+            return(~script5942(%buff_antifire_start, %antifire_potion, struct_param($struct, param_1541)));
         }
     case struct_3103 :
         if (%buff_super_antifire_start > 0) {
-            return(~script5942(%buff_super_antifire_start, %super_antifire_potion, struct_param($struct0, param_1541)));
+            return(~script5942(%buff_super_antifire_start, %super_antifire_potion, struct_param($struct, param_1541)));
         }
     case struct_3105 :
         if (%poison >= -38 & %poison < 0) {
-            return(~script5942(%buff_antipoison_start, calc(%poison * -1), struct_param($struct0, param_1541)));
+            return(~script5942(%buff_antipoison_start, calc(%poison * -1), struct_param($struct, param_1541)));
         }
     case struct_3104 :
         if (%poison < -38) {
-            return(~script5942(%buff_antipoison_start, calc((%poison + 38) * -1), struct_param($struct0, param_1541)));
+            return(~script5942(%buff_antipoison_start, calc((%poison + 38) * -1), struct_param($struct, param_1541)));
         }
     case struct_3080 :
         if (%buff_charge_start > 0) {
@@ -80,7 +80,7 @@ switch_struct ($struct0) {
         }
     case struct_3090 :
         if (%buff_magic_imbue_start > 0) {
-            return(~script5942(%buff_magic_imbue_start, %magic_imbue_active, struct_param($struct0, param_1541)));
+            return(~script5942(%buff_magic_imbue_start, %magic_imbue_active, struct_param($struct, param_1541)));
         }
     case struct_3081 :
         if (%buff_gwd_altar_start > 0) {
@@ -95,9 +95,9 @@ switch_struct ($struct0) {
             return(~script5941(%aide_tele_timer, 30));
         }
     case struct_5894 :
-        $int1 = max(0, calc(6 - 1 * (~stat_totallevel / 300)));
-        if (%league_last_recall_cooldown > 0 & $int1 > 0) {
-            return(~script5941(%league_last_recall_cooldown, $int1));
+        $int = max(0, calc(6 - 1 * (~stat_totallevel / 300)));
+        if (%league_last_recall_cooldown > 0 & $int > 0) {
+            return(~script5941(%league_last_recall_cooldown, $int));
         }
     case struct_5895 :
         if (%buff_league_undying_retribution_start > 0) {
@@ -217,11 +217,11 @@ switch_struct ($struct0) {
         }
     case struct_3740 :
         if (%poison > 0 & %poison < 1000000) {
-            return(~script5940(%buff_poison_damage_timer_start, struct_param($struct0, param_1541)));
+            return(~script5940(%buff_poison_damage_timer_start, struct_param($struct, param_1541)));
         }
     case struct_3741 :
         if (%poison >= 1000000) {
-            return(~script5940(%buff_poison_damage_timer_start, struct_param($struct0, param_1541)));
+            return(~script5940(%buff_poison_damage_timer_start, struct_param($struct, param_1541)));
         }
     case struct_989 :
         if (%player_own_burn_damage_total > 0) {
@@ -401,11 +401,11 @@ switch_struct ($struct0) {
         }
     case struct_341 :
         if (%buff_cannon_decay_start > 0 & %dropcannon = 4 & calc(map_world % 128) = %mcannon_world & %mcannon_decayed = 0) {
-            return(~script5940(%buff_cannon_decay_start, struct_param($struct0, param_1541)));
+            return(~script5940(%buff_cannon_decay_start, struct_param($struct, param_1541)));
         }
     case struct_342 :
         if (%buff_cannon_decay_start > 0 & %dropcannon = 4 & calc(map_world % 128) = %mcannon_world & %mcannon_decayed = 1) {
-            return(~script5940(%buff_cannon_decay_start, struct_param($struct0, param_1541)));
+            return(~script5940(%buff_cannon_decay_start, struct_param($struct, param_1541)));
         }
     case struct_4368 :
         if (%buff_apmekens_sight_end > 0) {
@@ -495,11 +495,11 @@ switch_struct ($struct0) {
         return(%wgs_stone_of_jas_boost);
     case struct_965 :
         if (%wgs_smouldering_heart_timer > 0) {
-            return(~script5942(%wgs_smouldering_heart_buff_start, %wgs_smouldering_heart_timer, struct_param($struct0, param_1541)));
+            return(~script5942(%wgs_smouldering_heart_buff_start, %wgs_smouldering_heart_timer, struct_param($struct, param_1541)));
         }
     case struct_966 :
         if (%wgs_smouldering_gland_timer > 0) {
-            return(~script5942(%wgs_smouldering_gland_buff_start, %wgs_smouldering_gland_timer, struct_param($struct0, param_1541)));
+            return(~script5942(%wgs_smouldering_gland_buff_start, %wgs_smouldering_gland_timer, struct_param($struct, param_1541)));
         }
     case struct_977 :
         if (%buff_deadman_overload_potion_start > 0) {
@@ -522,4 +522,4 @@ switch_struct ($struct0) {
             return(%ent_totems_trail_xp_buff_actions);
         }
 }
-return(struct_param($struct0, param_1540));
+return(struct_param($struct, param_1540));

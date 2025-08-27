@@ -1,9 +1,9 @@
 // 5281
-[proc,shared_bank_side_drawitem](obj $obj0, int $int1, component $component2)
+[proc,shared_bank_side_drawitem](obj $obj, int $int, component $component)
 cc_clearops;
-if ($obj0 ! null) {
+if ($obj ! null) {
     cc_settrans(0);
-    cc_setobject($obj0, $int1);
+    cc_setobject($obj, $int);
     cc_setonop("cc_settrans_temporarily(event_com, event_comsubid, 100, 0)");
     cc_setop(1, "Deposit-<~script2579>");
     if (%bank_quantity_type ! 0) {
@@ -23,7 +23,7 @@ if ($obj0 ! null) {
         cc_setop(7, "Deposit-All");
     }
     cc_setop(10, "Examine");
-    cc_setopbase("<col=ff9040><oc_name($obj0)></col>");
+    cc_setopbase("<col=ff9040><oc_name($obj)></col>");
     cc_setondragcomplete("shared_bank_side_reorder(event_com, event_com2, event_comsubid, event_comsubid2)");
 } else {
     cc_settrans(255);

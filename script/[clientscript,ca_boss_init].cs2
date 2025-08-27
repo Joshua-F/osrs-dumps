@@ -1,18 +1,18 @@
 // 4835
-[clientscript,ca_boss_init](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10, component $component11, component $component12, component $component13)
-~script4767($component11, $component12, $component13, -1);
-def_struct $struct14 = enum(int, struct, enum_3987, %ca_boss_selected);
-def_string $string0 = struct_param($struct14, param_1313);
-def_int $int15 = 0;
-if ($struct14 ! null) {
-    ~steelborder($component0, "Combat Achievements - <$string0>", 0);
+[clientscript,ca_boss_init](component $frame, component $boss_name, component $wiki, component $wiki_click_layer, component $map, component $map_click_layer, component $collection, component $collection_click_layer, component $ca_boss_information, component $ca_boss_stats, component $ca_boss_stats_click, component $burger_btn_menu, component $burger_menu_frame, component $burger_menu_overlay)
+~script4767($burger_btn_menu, $burger_menu_frame, $burger_menu_overlay, -1);
+def_struct $struct = enum(int, struct, enum_3987, %ca_boss_selected);
+def_string $string = struct_param($struct, param_1313);
+def_int $int = 0;
+if ($struct ! null) {
+    ~steelborder($frame, "Combat Achievements - <$string>", 0);
 } else {
-    ~steelborder($component0, "Combat Achievements - Boss", 0);
+    ~steelborder($frame, "Combat Achievements - Boss", 0);
 }
-~ca_boss_set_name($component1, $string0);
-~ca_boss_init_wiki($component2, $component3, $struct14, $string0);
-~ca_boss_init_map($component4, $component5, $string0);
-~ca_boss_init_collection($component6, $component7, $string0);
-~ca_boss_init_image($component8, $struct14);
-$int15 = ~ca_boss_init_stats($component9, $struct14);
-~ca_boss_init_buttons($component9, $component10, $int15, $struct14);
+~ca_boss_set_name($boss_name, $string);
+~ca_boss_init_wiki($wiki, $wiki_click_layer, $struct, $string);
+~ca_boss_init_map($map, $map_click_layer, $string);
+~ca_boss_init_collection($collection, $collection_click_layer, $string);
+~ca_boss_init_image($ca_boss_information, $struct);
+$int = ~ca_boss_init_stats($ca_boss_stats, $struct);
+~ca_boss_init_buttons($ca_boss_stats, $ca_boss_stats_click, $int, $struct);

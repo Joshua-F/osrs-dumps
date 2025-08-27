@@ -1,5 +1,5 @@
 // 755
-[clientscript,trade_main_init](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5)
+[clientscript,trade_main_init](component $universe, component $your_offer, component $your_removed, component $other_offer, component $other_removed, component $accept_text)
 %trade_slot_0_changed = 0;
 %trade_slot_1_changed = 0;
 %trade_slot_2_changed = 0;
@@ -29,12 +29,12 @@
 %trade_slot_26_changed = 0;
 %trade_slot_27_changed = 0;
 def_int $int6 = inv_size(tradeoffer);
-cc_deleteall($component1);
-cc_deleteall($component3);
+cc_deleteall($your_offer);
+cc_deleteall($other_offer);
 def_int $int7 = 0;
 while ($int7 < $int6) {
-    cc_create($component1, ^iftype_graphic, $int7);
-    .cc_create($component3, ^iftype_graphic, $int7);
+    cc_create($your_offer, ^iftype_graphic, $int7);
+    .cc_create($other_offer, ^iftype_graphic, $int7);
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
     .cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
     cc_setgraphicshadow(0x333333);
@@ -49,8 +49,8 @@ def_int $int8 = 0;
 $int7 = 0;
 while ($int7 < $int6) {
     $int8 = calc($int6 + $int7);
-    cc_create($component1, ^iftype_graphic, $int8);
-    .cc_create($component3, ^iftype_graphic, $int8);
+    cc_create($your_offer, ^iftype_graphic, $int8);
+    .cc_create($other_offer, ^iftype_graphic, $int8);
     cc_setgraphic(exclamation_mark);
     .cc_setgraphic(exclamation_mark);
     cc_setsize(10, 32, ^setsize_abs, ^setsize_abs);
@@ -62,6 +62,6 @@ while ($int7 < $int6) {
     $int7 = calc($int7 + 1);
 }
 def_int $int9 = calc((36 - 10) / 2);
-~trade_main_drawitems($int6, $int9, $component1, $component2, $component3, $component4, $component5);
-if_setoninvtransmit("trade_main_drawitems($int6, $int9, $component1, $component2, $component3, $component4, $component5){tradeoffer}", $component0);
-if_setonvartransmit("trade_main_drawitems($int6, $int9, $component1, $component2, $component3, $component4, $component5){traderemoved}", $component0);
+~trade_main_drawitems($int6, $int9, $your_offer, $your_removed, $other_offer, $other_removed, $accept_text);
+if_setoninvtransmit("trade_main_drawitems($int6, $int9, $your_offer, $your_removed, $other_offer, $other_removed, $accept_text){tradeoffer}", $universe);
+if_setonvartransmit("trade_main_drawitems($int6, $int9, $your_offer, $your_removed, $other_offer, $other_removed, $accept_text){traderemoved}", $universe);

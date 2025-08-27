@@ -1,18 +1,18 @@
 // 275
 [proc,nzone_rewards_price](obj $obj0)(string)
 def_obj $obj1 = oc_uncert($obj0);
-def_int $int2 = inv_total(ranging_guild_bowshop_skillcape_trimmed, $obj1);
-if ($int2 <= 0) {
+def_int $int = inv_total(ranging_guild_bowshop_skillcape_trimmed, $obj1);
+if ($int <= 0) {
     if ($obj1 = zenyte_ring_enchanted_recoil) {
-        $int2 = 725;
+        $int = 725;
     } else if (oc_param($obj1, param_385) = 1) {
-        $int2 = inv_total(smithing_iron3, slayer_helm);
+        $int = inv_total(smithing_iron3, slayer_helm);
     } else {
-        $int2 = inv_total(smithing_iron3, $obj1);
+        $int = inv_total(smithing_iron3, $obj1);
     }
-    $int2 = calc($int2 * 1000);
+    $int = calc($int * 1000);
     if (~script6931(3) = 1) {
-        $int2 = calc($int2 / 2);
+        $int = calc($int / 2);
     }
 }
-return(~tostring_spacer($int2, ","));
+return(~tostring_spacer($int, ","));

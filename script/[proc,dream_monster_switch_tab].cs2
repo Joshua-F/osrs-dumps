@@ -1,5 +1,5 @@
 // 1181
-[proc,dream_monster_switch_tab](component $component0)
+[proc,dream_monster_switch_tab](component $component)
 def_component $componentarray0(4);
 $componentarray0(0) = dream_monster_stat:stats_button;
 $componentarray0(1) = dream_monster_stat:aggressive_button;
@@ -15,20 +15,20 @@ $componentarray2(0) = dream_monster_stat:stats_tab;
 $componentarray2(1) = dream_monster_stat:aggressive_tab;
 $componentarray2(2) = dream_monster_stat:defensive_tab;
 $componentarray2(3) = dream_monster_stat:other_tab;
-def_int $int1 = 0;
-while ($int1 < 4) {
-    if ($componentarray0($int1) = $component0) {
-        if_sethide(false, $componentarray1($int1));
-        if_setgraphic("banktabs,2", $componentarray2($int1));
-        if (if_getheight($componentarray1($int1)) > if_getheight(dream_monster_stat:content)) {
+def_int $int = 0;
+while ($int < 4) {
+    if ($componentarray0($int) = $component) {
+        if_sethide(false, $componentarray1($int));
+        if_setgraphic("banktabs,2", $componentarray2($int));
+        if (if_getheight($componentarray1($int)) > if_getheight(dream_monster_stat:content)) {
             if_sethide(false, dream_monster_stat:scrollbar);
-            ~scrollbar_vertical(dream_monster_stat:scrollbar, $componentarray1($int1), "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+            ~scrollbar_vertical(dream_monster_stat:scrollbar, $componentarray1($int), "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
         } else {
             if_sethide(true, dream_monster_stat:scrollbar);
         }
     } else {
-        if_sethide(true, $componentarray1($int1));
-        if_setgraphic("banktabs,0", $componentarray2($int1));
+        if_sethide(true, $componentarray1($int));
+        if_setgraphic("banktabs,0", $componentarray2($int));
     }
-    $int1 = calc($int1 + 1);
+    $int = calc($int + 1);
 }

@@ -1,6 +1,6 @@
 // 4956
 [proc,colosseum_intermission_draw_summary](component $component0, component $component1, component $component2, component $component3, int $int4, int $int5)
-def_component $component6 = colosseum_intermission:modifier_scrollbar;
+def_component $modifier_scrollbar = colosseum_intermission:modifier_scrollbar;
 def_int $int7 = ~script1776(%colosseum_last_wave_duration);
 def_string $string0 = ~script4159($int7, 1);
 def_int $int8 = ~script1776(%colosseum_total_duration);
@@ -28,17 +28,17 @@ if ($int12 > 0 & $int12 < 500) {
 def_int $int16 = 0;
 def_int $int17 = 0;
 def_int $int18 = enum_getoutputcount(enum_5312);
-def_struct $struct19 = null;
+def_struct $struct = null;
 def_int $int20 = 1;
 while ($int17 < $int18) {
-    $struct19 = enum(int, struct, enum_5312, $int17);
-    if ($struct19 ! null & ~script4978($struct19, $int5) = true) {
-        if (struct_param($struct19, param_1901) = true) {
-            $int20 = ~script4980($struct19);
+    $struct = enum(int, struct, enum_5312, $int17);
+    if ($struct ! null & ~script4978($struct, $int5) = true) {
+        if (struct_param($struct, param_1901) = true) {
+            $int20 = ~script4980($struct);
         } else {
             $int20 = 1;
         }
-        $int16 = calc($int16 + struct_param($struct19, param_1903));
+        $int16 = calc($int16 + struct_param($struct, param_1903));
     }
     $int17 = calc($int17 + 1);
 }
@@ -120,20 +120,20 @@ cc_setsize(8192, 28, ^setsize_rel, ^setsize_abs);
 cc_settext("<col=0dc10d>+<tostring($int13)></col> (<tostring(%colosseum_wave_damage_taken)>)");
 $int17 = 0;
 $int18 = enum_getoutputcount(enum_5312);
-$struct19 = null;
+$struct = null;
 $int9 = 0;
 def_int $int21 = 0;
 while ($int17 < $int18) {
-    $struct19 = enum(int, struct, enum_5312, $int17);
-    if ($struct19 ! null & ~script4978($struct19, $int5) = true) {
-        $int9 = ~colosseum_intermission_draw_active_modifier($component0, $struct19, $int21, $int9);
+    $struct = enum(int, struct, enum_5312, $int17);
+    if ($struct ! null & ~script4978($struct, $int5) = true) {
+        $int9 = ~colosseum_intermission_draw_active_modifier($component0, $struct, $int21, $int9);
         $int21 = calc($int21 + 1);
     }
     $int17 = calc($int17 + 1);
 }
 def_int $int22 = if_getscrolly($component0);
 if ($int21 > 0) {
-    ~scrollbar_vertical($component6, $component0, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+    ~scrollbar_vertical($modifier_scrollbar, $component0, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
 }
 $int10 = calc($int21 * 28 + 32 + 10);
 if ($int10 >= if_getheight($component0)) {
@@ -143,7 +143,7 @@ if ($int10 >= if_getheight($component0)) {
 }
 if_setscrollpos(0, $int22, $component0);
 if ($int21 > 0) {
-    ~scrollbar_vertical_rebuild($component6, $component0);
+    ~scrollbar_vertical_rebuild($modifier_scrollbar, $component0);
 } else {
     cc_create($component0, ^iftype_text, $int9);
     cc_setposition(10, 0, ^setpos_abs_centre, ^setpos_abs_top);

@@ -1,0 +1,38 @@
+// 8067
+[proc,script8067](intarray $intarray, component $component, int $int1, int $int2)
+def_int $int3 = calc(($int1 + $int2) / 2);
+def_int $int4 = $intarray($int3);
+$intarray($int3) = $intarray($int2);
+$intarray($int2) = $int4;
+def_int $int5 = $int1;
+def_int $int6 = $int1;
+def_int $int7 = -1;
+def_string $string1 = "";
+def_string $string2 = "";
+while ($int6 < $int2) {
+    if (cc_find($component, $intarray($int6)) = true) {
+        $string1 = cc_getopbase;
+    } else {
+        $string1 = "";
+    }
+    if (cc_find($component, $int4) = true) {
+        $string2 = cc_getopbase;
+    } else {
+        $string2 = "";
+    }
+    if (compare(lowercase($string1), lowercase($string2)) <= 0) {
+        $int7 = $intarray($int6);
+        $intarray($int6) = $intarray($int5);
+        $intarray($int5) = $int7;
+        $int5 = calc($int5 + 1);
+    }
+    $int6 = calc($int6 + 1);
+}
+$intarray($int2) = $intarray($int5);
+$intarray($int5) = $int4;
+if ($int1 < calc($int5 - 1)) {
+    ~script8067($intarray, $component, $int1, calc($int5 - 1));
+}
+if (calc($int5 + 1) < $int2) {
+    ~script8067($intarray, $component, calc($int5 + 1), $int2);
+}

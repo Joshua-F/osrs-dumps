@@ -1,15 +1,15 @@
 // 1098
-[clientscript,bugreport_keypress](int $key0, char $char1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7)
+[clientscript,bugreport_keypress](int $key, char $char, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7)
 if (~keypress_permit(bugreport, null) = false) {
     return;
 }
-if ($key0 = ^key_return & ~on_mobile = true) {
+if ($key = ^key_return & ~on_mobile = true) {
     ~keyboard_hide;
 }
-def_string $string0 = "";
+def_string $string = "";
 if ($component2 = $component5) {
-    %bugreport_desc = ~add_to_inputstring(%bugreport_desc, 5, $key0, $char1);
-    $string0 = %bugreport_desc;
+    %bugreport_desc = ~add_to_inputstring(%bugreport_desc, 5, $key, $char);
+    $string = %bugreport_desc;
     if (string_length(%bugreport_desc) > 0) {
         if_setop(1, "Submit", $component7);
         if_setonop("bugreport_submit", $component7);
@@ -20,14 +20,14 @@ if ($component2 = $component5) {
         if_setonclick("bugreport_submit", $component7);
     }
 } else if ($component2 = $component6) {
-    %bugreport_repro = ~add_to_inputstring(%bugreport_repro, 5, $key0, $char1);
-    $string0 = %bugreport_repro;
+    %bugreport_repro = ~add_to_inputstring(%bugreport_repro, 5, $key, $char);
+    $string = %bugreport_repro;
 } else {
     return;
 }
-$string0 = ~bugreport_parse($string0, 1);
-$string0 = append($string0, "<col=ffffff>*</col>");
-def_int $int8 = calc(paraheight($string0, if_getwidth($component2), p12_full) * 12 + 5);
+$string = ~bugreport_parse($string, 1);
+$string = append($string, "<col=ffffff>*</col>");
+def_int $int8 = calc(paraheight($string, if_getwidth($component2), p12_full) * 12 + 5);
 def_int $int9 = if_getheight($component2);
 if ($int8 < $int9) {
     $int8 = $int9;
@@ -35,7 +35,7 @@ if ($int8 < $int9) {
 if (cc_find($component2, 0) = true & .cc_find($component2, 1) = true) {
     cc_setsize(0, $int8, ^setsize_minus, ^setsize_abs);
     .cc_setsize(0, $int8, ^setsize_minus, ^setsize_abs);
-    .cc_settext($string0);
+    .cc_settext($string);
 }
 if ($int8 > $int9) {
     if_setscrollsize(0, $int8, $component2);

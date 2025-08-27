@@ -2,11 +2,11 @@
 [proc,cr_quests_ui_create_list]
 cc_deleteall(cr_ui:quests_recommendation_entries);
 cc_deleteall(cr_ui:quests_journal_buttons);
-def_int $intarray0(~script2477(%cr_quests_client_cached_recommendations));
-~deserialise_intarray(%cr_quests_client_cached_recommendations, $intarray0);
-def_int $int0 = ~2d_intarray_num_rows($intarray0);
+def_int $intarray(~script2477(%cr_quests_client_cached_recommendations));
+~deserialise_intarray(%cr_quests_client_cached_recommendations, $intarray);
+def_int $int0 = ~2d_intarray_num_rows($intarray);
 def_int $int1 = -1;
-def_dbrow $dbrow2 = null;
+def_dbrow $dbrow = null;
 def_int $int3 = -1;
 def_int $int4 = 0;
 def_int $int5 = 0;
@@ -15,21 +15,21 @@ def_int $int7 = 0;
 def_int $int8 = 0;
 def_int $int9 = 0;
 def_int $int10 = 0;
-def_boolean $boolean11 = false;
+def_boolean $boolean = false;
 def_int $int12 = ~script6396(%cr_quests_ui_expanded_states);
 def_int $int13 = 0;
 def_int $int14 = 0;
 while ($int14 < $int0) {
-    $int1, $dbrow2, $int3, $int4, $int5 = ~cr_quests_get_row($intarray0, $int14);
-    if ($dbrow2 ! null) {
-        $int6 = db_getfield($dbrow2, quest:id, 0);
+    $int1, $dbrow, $int3, $int4, $int5 = ~cr_quests_get_row($intarray, $int14);
+    if ($dbrow ! null) {
+        $int6 = db_getfield($dbrow, quest:id, 0);
         while ($int7 <= $int6) {
             cc_create(cr_ui:quests_journal_buttons, ^iftype_rectangle, $int7);
             cc_sethide(true);
             $int7 = calc($int7 + 1);
         }
-        $boolean11 = ~script6397($int14, %cr_quests_ui_expanded_states, $int12);
-        $int9, $int8 = ~cr_quests_ui_create_entry($int0, $int10, $int14, $int1, $dbrow2, $int3, $boolean11, $int9, $int8, cr_ui:quests_recommendation_entries, cr_ui:quests_journal_buttons, cr_ui:quests_scrollbar, cr_ui:quests_recommendations);
+        $boolean = ~script6397($int14, %cr_quests_ui_expanded_states, $int12);
+        $int9, $int8 = ~cr_quests_ui_create_entry($int0, $int10, $int14, $int1, $dbrow, $int3, $boolean, $int9, $int8, cr_ui:quests_recommendation_entries, cr_ui:quests_journal_buttons, cr_ui:quests_scrollbar, cr_ui:quests_recommendations);
         $int10 = calc($int10 + 1);
     }
     if (%cr_quests_ui_clicked_recommendation_index ! -1 & $int14 = %cr_quests_ui_clicked_recommendation_index) {
@@ -38,20 +38,20 @@ while ($int14 < $int0) {
     $int14 = calc($int14 + 1);
 }
 %cr_quests_ui_clicked_recommendation_index = -1;
-def_string $string1 = null;
+def_string $string = null;
 if ($int10 <= 0) {
     if (%quests_completed_count >= %quests_total_count) {
-        $string1 = "You've completed every quest! Congratulations!";
+        $string = "You've completed every quest! Congratulations!";
     } else if (%cr_quests_include_members = 0) {
-        $string1 = "No free quest suggestions available.<br>Check the <col=ffffff>All Quests</col> tab, <col=ffffff>Quest List</col> or <col=ffffff>Skill Guides</col> to find more goals.";
+        $string = "No free quest suggestions available.<br>Check the <col=ffffff>All Quests</col> tab, <col=ffffff>Quest List</col> or <col=ffffff>Skill Guides</col> to find more goals.";
     } else {
-        $string1 = "No quest suggestions available.<br>Check the <col=ffffff>Quest List</col> or <col=ffffff>Skill Guides</col> to find more goals.";
+        $string = "No quest suggestions available.<br>Check the <col=ffffff>Quest List</col> or <col=ffffff>Skill Guides</col> to find more goals.";
     }
     cc_create(cr_ui:quests_recommendation_entries, ^iftype_text, $int9);
     $int9 = calc($int9 + 1);
     cc_setsize(20, 16, ^setsize_minus, ^setsize_minus);
     cc_setposition(0, -8, ^setpos_rel_centre, ^setpos_abs_centre);
-    cc_settext($string1);
+    cc_settext($string);
     cc_settextfont(p12_full);
     cc_settextshadow(true);
     cc_setcolour(0xff981f);

@@ -1,9 +1,9 @@
 // 5907
-[clientscript,speedrun_time_update](dbrow $dbrow0, int $int1)
-if ($dbrow0 = null | $dbrow0 ! %latest_speedrun_panel | $int1 = -1) {
+[clientscript,speedrun_time_update](dbrow $dbrow, int $int)
+if ($dbrow = null | $dbrow ! %latest_speedrun_panel | $int = -1) {
     if_setontimer(null, speedrunning_panel:current_time_text);
     if_settext("-", speedrunning_panel:current_time_text);
     return;
 }
-$int1 = calc($int1 * 30 - clientclock);
-if_setontimer("speedrun_time_update_timer($int1, %option_precise_timing, %option_separate_hours)", speedrunning_panel:current_time_text);
+$int = calc($int * 30 - clientclock);
+if_setontimer("speedrun_time_update_timer($int, %option_precise_timing, %option_separate_hours)", speedrunning_panel:current_time_text);

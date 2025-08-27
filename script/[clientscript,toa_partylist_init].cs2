@@ -1,19 +1,19 @@
 // 6594
-[clientscript,toa_partylist_init](component $component0, component $component1)
-def_int $int2 = 0;
-def_component $component3 = enum(int, component, enum_4793, $int2);
-while ($component3 ! null) {
-    cc_deleteall($component3);
-    if_sethide(true, $component3);
-    $int2 = calc($int2 + 1);
-    $component3 = enum(int, component, enum_4793, $int2);
+[clientscript,toa_partylist_init](component $list, component $scrollbar)
+def_int $int = 0;
+def_component $component = enum(int, component, enum_4793, $int);
+while ($component ! null) {
+    cc_deleteall($component);
+    if_sethide(true, $component);
+    $int = calc($int + 1);
+    $component = enum(int, component, enum_4793, $int);
 }
-if_setscrollsize(0, 0, $component0);
-if_setscrollpos(0, 0, $component0);
-~scrollbar_vertical($component1, $component0, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+if_setscrollsize(0, 0, $list);
+if_setscrollpos(0, 0, $list);
+~scrollbar_vertical($scrollbar, $list, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
 %raids_count, %clanwars_opponentchangetime = 0, clientclock;
-cc_deleteall($component0);
-cc_create($component0, ^iftype_text, 0);
+cc_deleteall($list);
+cc_create($list, ^iftype_text, 0);
 cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
 cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
 cc_setcolour(0x808080);
@@ -36,4 +36,4 @@ cc_sethide(true);
 ~script6600;
 if_setonvartransmit("toa_partylist_setpartybutton{toa_mycontroller}", toa_partylist:myparty);
 if_setonvartransmit("script6599{toa_perm_transmit_1}", toa_partylist:filter);
-~toa_partylist_setsize(toa_partylist:contents, ^max_32bit_int, $component0, $component1);
+~toa_partylist_setsize(toa_partylist:contents, ^max_32bit_int, $list, $scrollbar);

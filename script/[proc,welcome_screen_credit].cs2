@@ -1,30 +1,30 @@
 // 2216
 [proc,welcome_screen_credit](component $component0, component $component1, component $component2)
-def_string $string0 = "";
-def_int $int3 = 0;
+def_string $string = "";
+def_int $int = 0;
 if (%account_credit > 1) {
-    $string0 = "You have <col=00ff00><~tostring_spacer(%account_credit, ",")></col> days of membership left.";
+    $string = "You have <col=00ff00><~tostring_spacer(%account_credit, ",")></col> days of membership left.";
 } else if (%account_credit = 1) {
-    $string0 = "You have <col=00ff00><~tostring_spacer(%account_credit, ",")></col> day of membership left.";
+    $string = "You have <col=00ff00><~tostring_spacer(%account_credit, ",")></col> day of membership left.";
 } else if (%playermember = 1) {
-    $string0 = "You have no membership credit left.<br><br><col=ff9040>Subscribe to retain your membership status!</col>";
+    $string = "You have no membership credit left.<br><br><col=ff9040>Subscribe to retain your membership status!</col>";
 } else if (%playermember = 0) {
-    $string0 = "You are not a member.<br>Subscribe to access extra skills, areas,<br>quests, and more.";
+    $string = "You are not a member.<br>Subscribe to access extra skills, areas,<br>quests, and more.";
 } else {
-    $int3 = 1;
+    $int = 1;
 }
 if (%recurring_membership = false & %account_credit <= 3 & %playermember = 1) {
-    $string0 = "<$string0><br><col=ff9040>Renew now to avoid losing your</col><br><col=ff9040>membership status!</col>";
+    $string = "<$string><br><col=ff9040>Renew now to avoid losing your</col><br><col=ff9040>membership status!</col>";
 }
 if (~on_mobile = false) {
     if_setonmouserepeat("comp_sethide(false, $component2)", $component0);
     if_setonmouseleave("comp_sethide(true, $component2)", $component0);
 }
-if ($int3 = 1) {
+if ($int = 1) {
     if_setontimer("welcome_screen_credit($component0, $component1, $component2)", $component1);
     if_settext("", $component1);
 } else {
-    if_settext($string0, $component1);
+    if_settext($string, $component1);
     if_setontimer(null, $component1);
 }
 if_sethide(true, $component2);
