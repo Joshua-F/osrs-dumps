@@ -1,27 +1,39 @@
 // 7336
-[proc,script7336](dbrow $dbrow0, int $int1, int $int2, int $int3, intarray $intarray0)(int, int)
-def_component $component4 = chartering_menu_side:list_content;
+[proc,script7336](dbrow $dbrow0, int $int1, int $int2, int $int3, intarray $intarray0, int $int4)(int, int)
+def_component $component5 = chartering_menu_side:list_content;
 def_string $string1 = db_getfield($dbrow0, chartering_destination_data:chartering_destination_name, 0);
-def_int $int5 = db_getfield($dbrow0, chartering_destination_data:chartering_destination_id, 0);
-if (testbit($int3, $int5) = ^true) {
-    cc_create($component4, ^iftype_rectangle, $int1);
+def_int $int6 = db_getfield($dbrow0, chartering_destination_data:chartering_destination_id, 0);
+if (testbit($int3, $int6) = ^true) {
+    cc_create($component5, ^iftype_rectangle, $int1);
     cc_sethide(true);
     $int1 = calc($int1 + 1);
-    cc_create($component4, ^iftype_rectangle, $int1);
+    cc_create($component5, ^iftype_rectangle, $int1);
     cc_sethide(true);
     $int1 = calc($int1 + 1);
     return($int1, $int2);
 }
 if_setnoclickthrough(true, db_getfield($dbrow0, chartering_destination_data:chartering_destination_ui_label, 0));
 if_setnoclickthrough(true, db_getfield($dbrow0, chartering_destination_data:chartering_destination_ui_marker, 0));
-~create_graphic($component4, $int1, tradebacking, 0, calc($int2 * 20), ^setpos_abs_left, ^setpos_abs_top, 0, 20, ^setsize_minus, ^setsize_abs);
+~create_graphic($component5, $int1, tradebacking, 0, calc($int2 * 20), ^setpos_abs_left, ^setpos_abs_top, 0, 20, ^setsize_minus, ^setsize_abs);
 cc_setop(1, $string1);
 cc_setonmouseover("script7337(db_getfield($dbrow0, chartering_destination_data:chartering_destination_id, 0), true)");
 cc_setonmouseleave("script7337(db_getfield($dbrow0, chartering_destination_data:chartering_destination_id, 0), false)");
 cc_setonop("opsound(event_op, 2)");
+def_string $string2 = "";
+def_string $string3 = "";
+if ($int4 < 36) {
+    if ($int4 < 10) {
+        $string2 = tostring($int4);
+    } else {
+        $string2 = enum(int, string, enum_1401, calc($int4 - 9));
+        $string3 = enum(int, string, enum_1402, calc($int4 - 9));
+    }
+    $string1 = append("<col=ffffff><$string2></col> :  ", $string1);
+    cc_setonkey("script8068(event_keycode, event_keychar, $int1, null, $string2, $string3, $component5, 0)");
+}
 $int1 = calc($int1 + 1);
 $intarray0($int2) = $int1;
-cc_create($component4, ^iftype_text, $int1);
+cc_create($component5, ^iftype_text, $int1);
 cc_setposition(4, calc($int2 * 20), ^setpos_abs_left, ^setpos_abs_top);
 cc_setsize(calc(4 * 2), 20, ^setsize_minus, ^setsize_abs);
 cc_settextfont(p12_full);

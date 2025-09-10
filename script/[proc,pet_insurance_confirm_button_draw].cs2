@@ -2,58 +2,35 @@
 [proc,pet_insurance_confirm_button_draw](int $int0, component $component1)
 def_int $int2 = 0;
 def_int $int3 = 0;
-def_int $int4 = 0;
-def_int $int5 = 0;
-def_obj $obj6 = null;
-if (%pet_insurance_deposit ! 0) {
-    $int3 = 1;
-}
+def_obj $obj4 = null;
 if (%pet_insurance_reclaim ! 0) {
-    $int4 = 1;
-}
-if ($int3 = 1 & $int4 = 1) {
-    return;
-}
-if ($int4 = 1) {
-    $obj6 = enum(int, namedobj, enum_985, calc(%pet_insurance_reclaim - 1));
-    if ($obj6 = null) {
+    $int2 = 1;
+    $obj4 = enum(int, namedobj, enum_985, calc(%pet_insurance_reclaim - 1));
+    if ($obj4 = null) {
         return;
     }
 }
 cc_deleteall($component1);
-if ($int3 = 1 | $int4 = 1) {
-    $int2 = 1;
-}
 if ($int2 = 1 & $int0 = 0) {
-    $int5 = ~v2_stone_button_out_filled($component1);
+    $int3 = ~v2_stone_button_out_filled($component1);
 } else {
-    $int5 = ~v2_stone_button_in_filled($component1);
+    $int3 = ~v2_stone_button_in_filled($component1);
 }
 def_string $string0 = "Confirm";
 def_string $string1 = "";
 def_string $string2 = "";
-cc_create($component1, ^iftype_text, $int5);
-$int5 = calc($int5 + 1);
+cc_create($component1, ^iftype_text, $int3);
+$int3 = calc($int3 + 1);
 cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
 cc_settextfont(p12_full);
 cc_settextshadow(true);
 cc_setcolour(0x9f9f9f);
 if ($int2 = 1) {
-    if ($int3 = 1) {
-        if (%pet_insurance_discounted = 1) {
-            $string2 = "<tostring(calc(%pet_insurance_deposit - 1))>.5mil";
-        } else {
-            $string2 = "<tostring(%pet_insurance_deposit)>mil";
-        }
-        $string0 = "Confirm (<$string2>)";
-        $string1 = "<tostring(%pet_insurance_deposit)> Reclaims";
-    } else if ($int4 = 1) {
-        $string0 = "Confirm Reclaim";
-        $string1 = oc_name($obj6);
-    }
+    $string0 = "Confirm Reclaim";
+    $string1 = oc_name($obj4);
     cc_setposition(0, -8, ^setpos_abs_centre, ^setpos_abs_centre);
-    .cc_create($component1, ^iftype_text, $int5);
+    .cc_create($component1, ^iftype_text, $int3);
     .cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
     .cc_setposition(0, 8, ^setpos_abs_centre, ^setpos_abs_centre);
     .cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
