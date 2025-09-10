@@ -1,9 +1,9 @@
 // 7336
-[proc,script7336](dbrow $dbrow, int $int1, int $int2, int $int3, intarray $intarray)(int, int)
+[proc,script7336](dbrow $dbrow, int $int1, int $int2, int $int3, intarray $intarray, int $int4)(int, int)
 def_component $list_content = chartering_menu_side:list_content;
-def_string $string = db_getfield($dbrow, chartering_destination_data:chartering_destination_name, 0);
-def_int $int5 = db_getfield($dbrow, chartering_destination_data:chartering_destination_id, 0);
-if (testbit($int3, $int5) = ^true) {
+def_string $string1 = db_getfield($dbrow, chartering_destination_data:chartering_destination_name, 0);
+def_int $int6 = db_getfield($dbrow, chartering_destination_data:chartering_destination_id, 0);
+if (testbit($int3, $int6) = ^true) {
     cc_create($list_content, ^iftype_rectangle, $int1);
     cc_sethide(true);
     $int1 = calc($int1 + 1);
@@ -15,10 +15,22 @@ if (testbit($int3, $int5) = ^true) {
 if_setnoclickthrough(true, db_getfield($dbrow, chartering_destination_data:chartering_destination_ui_label, 0));
 if_setnoclickthrough(true, db_getfield($dbrow, chartering_destination_data:chartering_destination_ui_marker, 0));
 ~create_graphic($list_content, $int1, tradebacking, 0, calc($int2 * 20), ^setpos_abs_left, ^setpos_abs_top, 0, 20, ^setsize_minus, ^setsize_abs);
-cc_setop(1, $string);
+cc_setop(1, $string1);
 cc_setonmouseover("chartering_hover(db_getfield($dbrow, chartering_destination_data:chartering_destination_id, 0), 1)");
 cc_setonmouseleave("chartering_hover(db_getfield($dbrow, chartering_destination_data:chartering_destination_id, 0), 0)");
 cc_setonop("opsound(event_op, 2)");
+def_string $string2 = "";
+def_string $string3 = "";
+if ($int4 < 36) {
+    if ($int4 < 10) {
+        $string2 = tostring($int4);
+    } else {
+        $string2 = enum(int, string, enum_1401, calc($int4 - 9));
+        $string3 = enum(int, string, enum_1402, calc($int4 - 9));
+    }
+    $string1 = append("<col=ffffff><$string2></col> :  ", $string1);
+    cc_setonkey("script8068(event_keycode, event_keychar, $int1, null, $string2, $string3, $list_content, 0)");
+}
 $int1 = calc($int1 + 1);
 $intarray($int2) = $int1;
 cc_create($list_content, ^iftype_text, $int1);
@@ -28,7 +40,7 @@ cc_settextfont(p12_full);
 cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
 cc_setcolour(0xff981f);
 cc_settextshadow(true);
-cc_settext($string);
+cc_settext($string1);
 $int1 = calc($int1 + 1);
 $int2 = calc($int2 + 1);
 return($int1, $int2);

@@ -1,4 +1,11 @@
 // 8058
 [proc,slayer_areahint](int $int)(string)
+if ($int <= 0) {
+    return("Somewhere.");
+}
 def_dbrow $dbrow = ~script8054($int);
+if ($dbrow = null) {
+    ~script2075("Unimplemented area dbrow for area_id <tostring($int)>");
+    return("Somewhere.");
+}
 return(db_getfield($dbrow, slayer_area:area_hint, 0));
