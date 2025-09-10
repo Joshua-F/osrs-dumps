@@ -1,9 +1,13 @@
 // 6128
 [proc,pet_insurance_pot_value_draw](component $component0)
-if (%pet_insurance_credits = 0) {
+if (%pet_insurance_credits_processed = 0 & %pet_insurance_discounted = 0) {
     if_settext("None", $component0);
     if_setcolour(0x9f9f9f, $component0);
     return;
 }
-if_settext(tostring(%pet_insurance_credits), pet_insurance:insurance_credits_value);
+def_string $string0 = "";
+if (%pet_insurance_discounted = 1) {
+    $string0 = ".5";
+}
+if_settext("<tostring(%pet_insurance_credits_processed)><$string0>", pet_insurance:insurance_credits_value);
 if_setcolour(^white, $component0);
