@@ -1,11 +1,13 @@
 // 6126
 [clientscript,pet_insurance_init](int $int0, int $int1, int $int2, int $int3, int $int4, int $int5, int $int6, int $int7, int $int8, int $int9, int $int10, int $int11, int $int12, int $int13, int $int14)
-if_settext("Reclaim your lost pets", pet_insurance:info_1);
-if_settext("for 1 reclaim token", pet_insurance:info_2);
+if_settext("Reclaim your lost", pet_insurance:info_1);
+if_settext("pets for free", pet_insurance:info_2);
 if_settext("View your other pets", pet_insurance:info_4);
 if_settext("and their locations", pet_insurance:info_5);
 ~pet_insurance_pot_value_draw(pet_insurance:insurance_credits_value);
-~pet_insurance_pot_button(0, pet_insurance:buy_click, pet_insurance:buy_button);
+if (%pet_insurance_credits > 0 | %pet_insurance_discounted > 0) {
+    ~pet_insurance_pot_button(0, pet_insurance:buy_click, pet_insurance:buy_button);
+}
 ~pet_insurance_confirm_button(0, pet_insurance:confirm_click, pet_insurance:confirm_button);
 ~pet_insurance_pets(pet_insurance:pets, pet_insurance:pets_scrollbar, $int0, $int1, $int2, $int3, $int4, $int5, $int6, $int7, $int8, $int9, $int10, $int11, $int12, $int13, $int14);
 if_setonvartransmit("script6127(pet_insurance:insurance_credits_value){pet_insurance_perm_transmit}", pet_insurance:insurance_credits_value);
