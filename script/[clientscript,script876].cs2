@@ -7,7 +7,6 @@ def_boolean $boolean2 = ~on_mobile;
 if ($boolean2 = true) {
     ~script5965;
 }
-deviceoption_set(^deviceoption_plugin_safe_mode, 0);
 if (~on_enhanced_any = false) {
     return;
 }
@@ -29,3 +28,7 @@ minimenu_setblockmode(^opkind_shiftop, ^opmode_noshift);
 ~script7578;
 ~script7541;
 ~script7587;
+if (deviceoption_get(^deviceoption_fps_limit) = 0) {
+    deviceoption_set(^deviceoption_fps_limit, 999);
+}
+deviceoption_set(^deviceoption_background_fps_limit, deviceoption_get(^deviceoption_fps_limit));
