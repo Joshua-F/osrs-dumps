@@ -1,29 +1,29 @@
 // 1985
-[clientscript,gravestone_retrieval_init](component $universe, component $frame, component $items, component $scrollbar, component $button, component $button_gfx, component $discard, component $discard_gfx, component $info, component $fee)
-def_int $int10 = ~steelborder($frame, "", 0);
-~gravestone_retrieval_unlockstatus($frame, $int10, $button, $button_gfx, $info, $fee);
-if_setonvartransmit("gravestone_retrieval_unlockstatus($frame, $int10, $button, $button_gfx, $info, $fee){if1, if2}", $universe);
-if_setgraphic("miscgraphics,0", $discard);
-if_setop(1, "Discard-All", $discard);
-if_setontimer(null, $discard);
-if_setonmouserepeat("gravestone_retrieval_buttonhover(true, $discard_gfx, null, null)", $discard);
-if_setonmouseleave("gravestone_retrieval_buttonhover(false, $discard_gfx, null, null)", $discard);
-if_setonop("gravestone_retrieval_buttonop(event_op, $discard, $discard_gfx, null, null)", $discard);
-def_int $int11 = calc(36 + 10);
-def_int $int12 = calc(32 + 8);
+[clientscript,gravestone_retrieval_init](component $universe, component $frame, component $items, component $scrollbar, component $button, component $button_gfx, component $discard, component $discard_gfx, component $info, component $fee, component $com_14, component $com_15)
+def_int $int12 = ~steelborder($frame, "", 0);
+~gravestone_retrieval_unlockstatus($frame, $int12, $button, $button_gfx, $discard, $discard_gfx, $com_14, $com_15);
+if_setonvartransmit("gravestone_retrieval_unlockstatus($frame, $int12, $button, $button_gfx, $discard, $discard_gfx, $com_14, $com_15){if1, if2, if3}", $universe);
+if_setgraphic("miscgraphics,0", $info);
+if_setop(1, "Discard-All", $info);
+if_setontimer(null, $info);
+if_setonmouserepeat("gravestone_retrieval_buttonhover(true, $fee, null, null)", $info);
+if_setonmouseleave("gravestone_retrieval_buttonhover(false, $fee, null, null)", $info);
+if_setonop("gravestone_retrieval_buttonop(event_op, $info, $fee, null, null)", $info);
+def_int $int13 = calc(36 + 10);
+def_int $int14 = calc(32 + 8);
 cc_deleteall($items);
-def_int $int13 = 0;
-while ($int13 < 120) {
-    cc_create($items, ^iftype_graphic, $int13);
+def_int $int15 = 0;
+while ($int15 < 120) {
+    cc_create($items, ^iftype_graphic, $int15);
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
-    cc_setposition(calc(1 + $int13 % 8 * $int11), calc(3 + $int13 / 8 * $int12), ^setpos_abs_left, ^setpos_abs_top);
+    cc_setposition(calc(1 + $int15 % 8 * $int13), calc(3 + $int15 / 8 * $int14), ^setpos_abs_left, ^setpos_abs_top);
     cc_setgraphicshadow(0x333333);
     cc_setoutline(1);
     cc_setop(2, "Take-All");
     cc_setop(9, "Value");
     cc_setop(10, "Examine");
     cc_sethide(true);
-    $int13 = calc($int13 + 1);
+    $int15 = calc($int15 + 1);
 }
 ~scrollbar_vertical($scrollbar, $items, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
 ~gravestone_retrieval_items($items, $scrollbar);

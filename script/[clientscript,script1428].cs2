@@ -26,7 +26,12 @@ if_setonop("bankmenu_depositinv_toggle_op(event_op, $depositinv_toggle, cc_getid
 if_setonvartransmit("bankmenu_depositworn_toggle_set($depositworn_toggle, cc_getid){prayer26}", $depositworn_toggle);
 if_setonop("bankmenu_depositworn_toggle_op(event_op, $depositworn_toggle, cc_getid)", $depositworn_toggle);
 $component = bankmain:depositpotion_toggle;
-~bankmenu_draw_toggle("Always deposit to potion store", $component, 1);
+~bankmenu_draw_toggle("Always deposit to potion storage", $component, 1);
 ~bankmenu_depositpotion_toggle_set($component);
 if_setonvartransmit("bankmenu_depositpotion_toggle_set($component, cc_getid){bankdeposit}", $component);
 if_setonop("bankmenu_depositpotion_toggle_op(event_op, $component, cc_getid)", $component);
+$component = bankmain:release_placeholders;
+~bankmenu_draw_toggle("Chugging Barrel only fills from currently opened storage", $component, 0);
+~bankmenu_depositpotion_toggle_set($component);
+if_setonvartransmit("bankmenu_chuggingbarrel_toggle_set($component, cc_getid){bankdeposit}", $component);
+if_setonop("bankmenu_chuggingbarrel_toggle_op(event_op, $component, cc_getid)", $component);
