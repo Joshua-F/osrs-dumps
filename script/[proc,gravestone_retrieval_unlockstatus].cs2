@@ -1,47 +1,62 @@
 // 1987
-[proc,gravestone_retrieval_unlockstatus](component $component0, int $int1, component $component2, component $component3, component $component4, component $component5)
+[proc,gravestone_retrieval_unlockstatus](component $component0, int $int1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7)
 if (cc_find($component0, $int1) = ^true) {
     cc_settext(enum(int, string, enum_1753, %if1));
 }
-if_sethide(false, $component4);
-if_sethide(true, $component5);
+if_sethide(false, $component6);
+if_sethide(true, $component7);
 if_setgraphic("miscgraphics,0", $component2);
+if_setgraphic("miscgraphics,0", $component4);
 if_setontimer(null, $component2);
+if_sethide(true, $component4);
+if_sethide(true, $component5);
+if_setsize(80, 0, ^setsize_minus, ^setsize_minus, $component6);
 def_string $string0 = "";
-def_obj $obj6 = enum(int, namedobj, enum_1756, %if1);
-def_int $int7 = enum(int, int, enum_1757, %if1);
-if ($int7 = -1) {
-    $int7 = %gravestone_transmit_fee;
+def_obj $obj8 = enum(int, namedobj, enum_1756, %if1);
+def_int $int9 = enum(int, int, enum_1757, %if1);
+if ($int9 = -1) {
+    $int9 = %gravestone_transmit_fee;
 }
-if ($obj6 ! null & $int7 > 0) {
+if ($obj8 ! null & $int9 > 0) {
     if_setgraphic("bankbuttons,7", $component3);
     if_setop(1, "Unlock", $component2);
-    if ($obj6 = coins) {
+    if ($obj8 = coins) {
         if (%if2 > 1) {
-            $string0 = "Death's Coffer: <col=ffffff><~tostring_spacer(%if2, ",")> x <oc_name($obj6)></col>";
+            $string0 = "Death's Coffer: <col=ffffff><~tostring_spacer(%if2, ",")> x <oc_name($obj8)></col>";
         } else if (%if2 = 1) {
             $string0 = "Death's Coffer: <col=ffffff>One Coin</col>";
         } else {
             $string0 = "Death's Coffer: <col=ffffff>Empty</col>";
         }
-        if ($int7 > 1) {
-            if_settext("Fee to unlock: <col=ffffff><~tostring_spacer($int7, ",")> x <oc_name($obj6)></col><br><$string0>", $component5);
+        if ($int9 > 1) {
+            if_settext("Fee to unlock: <col=ffffff><~tostring_spacer($int9, ",")> x <oc_name($obj8)></col><br><$string0>", $component7);
         } else {
-            if_settext("Fee to unlock: <col=ffffff><oc_name($obj6)></col><br><$string0>", $component5);
+            if_settext("Fee to unlock: <col=ffffff><oc_name($obj8)></col><br><$string0>", $component7);
         }
-    } else if ($int7 > 1) {
-        if_settext("Fee to unlock:<br><col=ffffff><~tostring_spacer($int7, ",")> x <oc_name($obj6)></col>", $component5);
+    } else if ($int9 > 1) {
+        if_settext("Fee to unlock:<br><col=ffffff><~tostring_spacer($int9, ",")> x <oc_name($obj8)></col>", $component7);
     } else {
-        if_settext("Fee to unlock:<br><col=ffffff><oc_name($obj6)></col>", $component5);
+        if_settext("Fee to unlock:<br><col=ffffff><oc_name($obj8)></col>", $component7);
     }
-    if_setonmouserepeat("gravestone_retrieval_buttonhover(true, $component3, $component4, $component5)", $component2);
-    if_setonmouseleave("gravestone_retrieval_buttonhover(false, $component3, $component4, $component5)", $component2);
-    if_setonop("gravestone_retrieval_buttonop(event_op, $component2, $component3, $component4, $component5)", $component2);
+    if_setonmouserepeat("gravestone_retrieval_buttonhover(true, $component3, $component6, $component7)", $component2);
+    if_setonmouseleave("gravestone_retrieval_buttonhover(false, $component3, $component6, $component7)", $component2);
+    if_setonop("gravestone_retrieval_buttonop(event_op, $component2, $component3, $component6, $component7)", $component2);
 } else {
     if_setgraphic("bankbuttons,4", $component3);
     if_setop(1, "Take-All", $component2);
-    if_settext("", $component5);
+    if_settext("", $component7);
     if_setonmouserepeat("gravestone_retrieval_buttonhover(true, $component3, null, null)", $component2);
     if_setonmouseleave("gravestone_retrieval_buttonhover(false, $component3, null, null)", $component2);
     if_setonop("gravestone_retrieval_buttonop(event_op, $component2, $component3, null, null)", $component2);
+    if (%if3 = 1) {
+        if_sethide(false, $component4);
+        if_sethide(false, $component5);
+        if_setsize(120, 0, ^setsize_minus, ^setsize_minus, $component6);
+        if_setgraphic("bankbuttons,5", $component5);
+        if_setop(1, "Bank-All", $component4);
+        if_settext("", $component7);
+        if_setonmouserepeat("gravestone_retrieval_buttonhover(true, $component5, null, null)", $component4);
+        if_setonmouseleave("gravestone_retrieval_buttonhover(false, $component5, null, null)", $component4);
+        if_setonop("gravestone_retrieval_buttonop(event_op, $component4, $component5, null, null)", $component4);
+    }
 }
