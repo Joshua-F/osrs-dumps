@@ -1,15 +1,15 @@
 // 7859
 [proc,script7859](string $string0, component $component0, int $int1)
-def_int $int2 = calc(parawidth($string0, 512, p12_full) + 22);
+def_int $int2 = min(calc(parawidth($string0, calc(512 / 2 - 49), p12_full) + 22), calc(parawidth($string0, 512, p12_full) + 22));
 cc_deleteall($component0);
 cc_create($component0, ^iftype_graphic, 0);
 cc_setsize(17, 17, ^setsize_abs, ^setsize_abs);
 cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_centre);
 .cc_create($component0, ^iftype_text, 1);
-.cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
-.cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+.cc_setsize(22, 0, ^setsize_minus, ^setsize_minus);
+.cc_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_centre);
 .cc_settextshadow(true);
-.cc_settextalign(^settextalign_right, ^settextalign_centre, 0);
+.cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
 .cc_settextfont(p12_full);
 .cc_settext($string0);
 .cc_setcolour(0xff981f);
@@ -18,7 +18,7 @@ if_setonmouseleave("cc_colour_swapper(event_com, .cc_getid, 16750623)", $compone
 if_setopbase("<col=ff9040><$string0></col>", $component0);
 if_setsize($int2, if_getheight($component0), ^setsize_abs, ^setsize_abs, $component0);
 if ($int1 = 1) {
-    if_setposition(calc(-10 - $int2 / 2), if_gety($component0), ^setpos_abs_centre, ^setpos_abs_top, $component0);
+    if_setposition(calc(512 / 2 - 5), if_gety($component0), ^setpos_abs_right, ^setpos_abs_top, $component0);
 } else {
-    if_setposition(calc(10 + $int2 / 2), if_gety($component0), ^setpos_abs_centre, ^setpos_abs_top, $component0);
+    if_setposition(calc(512 / 2 - 5), if_gety($component0), ^setpos_abs_left, ^setpos_abs_top, $component0);
 }

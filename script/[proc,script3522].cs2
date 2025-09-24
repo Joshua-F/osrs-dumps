@@ -2,6 +2,21 @@
 [proc,script3522](component $component0, component $component1)
 def_string $string0 = enum(int, string, enum_3047, %worn_items_set_text);
 def_int $int2 = 1;
+if (%worn_items_inquisitors_armour > 0 & %worn_items_inquisitors_armour < 3) {
+    $int2 = 0;
+    if (%worn_items_inquisitors_mace = 0) {
+        if (%worn_items_inquisitors_armour = 1) {
+            $string0 = append($string0, "<col=ffffff>Inquisitor's armour:<br><br>Each individual piece of Inquisitor's armour boosts damage and accuracy by 0.5% when using the crush attack style. This is boosted to 2.5% if an Inquisitor's mace is equipped.<br><br>Current bonus: 0.5%<br>");
+        } else {
+            $string0 = append($string0, "<col=ffffff>Inquisitor's armour:<br><br>Each individual piece of Inquisitor's armour boosts damage and accuracy by 0.5% when using the crush attack style. This is boosted to 2.5% if an Inquisitor's mace is equipped.<br><br>Current bonus: 1%<br>");
+        }
+    } else if (%worn_items_inquisitors_armour = 1) {
+        $string0 = append($string0, "<col=ffffff>Inquisitor's armour:<br><br>Each individual piece of Inquisitor's armour boosts damage and accuracy by 2.5% when using the crush attack style since an Inquisitor's mace is equipped.<br><br>Current bonus: 2.5%<br>");
+    } else {
+        $string0 = append($string0, "<col=ffffff>Inquisitor's armour:<br><br>Each individual piece of Inquisitor's armour boosts damage and accuracy by 2.5% when using the crush attack style, since an Inquisitor's mace is equipped.<br><br>Current bonus: 5%<br>");
+    }
+    $string0 = append($string0, "<br>");
+}
 if (%worn_items_swampbark_set > 0 & %worn_items_swampbark_set < 5) {
     $int2 = 0;
     $string0 = append($string0, "<col=ffffff>Swampbark Armour: <br><br>When wearing the Swampbark Helm, Body, or Legs, the duration of Bind, Snare and Entangle spells is increased by 1.2 seconds.<br>This is cumulative for each piece worn.</col><br><br>");
@@ -63,22 +78,25 @@ if (%worn_items_crystal_armour > 0 & %worn_items_crystal_armour < 6) {
 }
 if (%worn_items_zarytexbow = 1) {
     $int2 = 0;
-    $string0 = append($string0, "<br><col=ffffff>Zaryte Crossbow:</col><br><br>");
-    $string0 = append($string0, "You have the Zaryte Crossbow equipped. Special bolt effects are increased by 10%.");
+    $string0 = append($string0, "<col=ffffff>Zaryte Crossbow:</col><br><br>");
+    $string0 = append($string0, "You have the Zaryte Crossbow equipped. Special bolt effects are increased by 10%.<br>");
+    $string0 = append($string0, "<br>");
 }
 if (%worn_items_kerispartisansun = 1) {
     $int2 = 0;
-    $string0 = append($string0, "<br><col=ffffff>Keris Partisan of the Sun:</col><br><br>");
-    $string0 = append($string0, "While within the Tombs of Amascut:<br><br>- You have 25% increased accuracy against creatures below 25% health<br><br>- Killing a creature with the partisan restores <tostring(12)> hitpoints at the cost of <tostring(5)> prayer points.<br>    - This effect can overheal up to 20% above your hitpoints.");
+    $string0 = append($string0, "<col=ffffff>Keris Partisan of the Sun:</col><br><br>");
+    $string0 = append($string0, "While within the Tombs of Amascut:<br><br>- You have 25% increased accuracy against creatures below 25% health<br><br>- Killing a creature with the partisan restores <tostring(12)> hitpoints at the cost of <tostring(5)> prayer points.<br>    - This effect can overheal up to 20% above your hitpoints.<br>");
+    $string0 = append($string0, "<br>");
 }
 if (%worn_items_dizanas_quiver_charged = 1) {
     $int2 = 0;
-    $string0 = append($string0, "<br><col=ffffff>Dizana's Sunfire:</col><br><br>");
-    $string0 = append($string0, "Dizana's Quiver ranged attack is increased by 10 and ranged strength is increased by 1.<br><col=ffffff>Only applies when using arrows and bolts.");
+    $string0 = append($string0, "<col=ffffff>Dizana's Sunfire:</col><br><br>");
+    $string0 = append($string0, "Dizana's Quiver ranged attack is increased by 10 and ranged strength is increased by 1.<br><col=ffffff>Only applies when using arrows and bolts.<br>");
+    $string0 = append($string0, "<br>");
 }
 if (%worn_items_rc_outfit > 0 & %worn_items_rc_outfit < 4) {
     $int2 = 0;
-    $string0 = append($string0, "<br><col=ffffff>Raiments of the Eye - Bonus runes crafted </col><br><br>");
+    $string0 = append($string0, "<col=ffffff>Raiments of the Eye - Bonus runes crafted </col><br><br>");
     if (%worn_items_rc_outfit_hat = 1) {
         $string0 = append($string0, "Hood of the Eye: +10%<br>");
     }
@@ -92,10 +110,11 @@ if (%worn_items_rc_outfit > 0 & %worn_items_rc_outfit < 4) {
         $string0 = append($string0, "Boots of the Eye: +10%<br>");
     }
     $string0 = append($string0, "<br>This bonus stacks additively not multiplicatively with other similar effects.<br>");
+    $string0 = append($string0, "<br>");
 }
 if (%worn_items_smithing_uniform > 0 & %worn_items_smithing_uniform < 8) {
     $int2 = 0;
-    $string0 = append($string0, "<br><col=ffffff>Smiths Uniform chance to smith faster bonus:</col><br><br>");
+    $string0 = append($string0, "<col=ffffff>Smiths Uniform chance to smith faster bonus:</col><br><br>");
     if (%worn_items_smithing_uniform_top = 1) {
         $string0 = append($string0, "Smiths Tunic: +20%<br>");
     }
@@ -108,11 +127,243 @@ if (%worn_items_smithing_uniform > 0 & %worn_items_smithing_uniform < 8) {
     if (%worn_items_smithing_uniform_gloves = 1) {
         $string0 = append($string0, "Smiths Gloves: +20%<br>");
     }
+    $string0 = append($string0, "<br>");
 }
 if (%worn_items_virtusset = 1) {
     $int2 = 0;
-    $string0 = append($string0, "<br><col=ffffff>Virtus Outfit:</col><br><br>");
-    $string0 = append($string0, "Ice spells have a 10% increased chance to freeze a non-frozen target.<br><br>Smoke spells also reduce the targets healing for 30 cycles.<br><br>Shadow spells now reduce every non-prayer combat stat.<br><br>Blood spells can overheal you by 20% of your maximum hitpoints.");
+    $string0 = append($string0, "<col=ffffff>Virtus Outfit:</col><br><br>");
+    $string0 = append($string0, "Ice spells have a 10% increased chance to freeze a non-frozen target.<br><br>Smoke spells also reduce the targets healing for 30 cycles.<br><br>Shadow spells now reduce every non-prayer combat stat.<br><br>Blood spells can overheal you by 20% of your maximum hitpoints.<br>");
+    $string0 = append($string0, "<br>");
+}
+if (%worn_items_trawler_bonus > 0 & %worn_items_trawler_bonus < 4) {
+    $int2 = 0;
+    $string0 = append($string0, "<col=ffffff>Angler outfit fishing XP increase:</col><br><br>");
+    if (%worn_items_trawler_bonus_head = 1) {
+        $string0 = append($string0, "Angler hat: +0.4%<br>");
+    }
+    if (%worn_items_trawler_bonus_top = 1) {
+        $string0 = append($string0, "Angler top: +0.8%<br>");
+    }
+    if (%worn_items_trawler_bonus_legs = 1) {
+        $string0 = append($string0, "Angler waders: +0.6%<br>");
+    }
+    if (%worn_items_trawler_bonus_boots = 1) {
+        $string0 = append($string0, "Angler Boots: +0.2%<br>");
+    }
+    $string0 = append($string0, "<br>");
+}
+if (%worn_items_spirit_angler > 0 & %worn_items_spirit_angler < 4) {
+    $int2 = 0;
+    $string0 = append($string0, "<col=ffffff>Spirit Angler outfit fishing XP increase:</col><br><br>");
+    if (%worn_items_spirit_angler_head = 1) {
+        $string0 = append($string0, "Spirit Angler headband: +0.4%<br>");
+    }
+    if (%worn_items_spirit_angler_top = 1) {
+        $string0 = append($string0, "Spirit Angler top: +0.8%<br>");
+    }
+    if (%worn_items_spirit_angler_legs = 1) {
+        $string0 = append($string0, "Spirit Angler waders: +0.6%<br>");
+    }
+    if (%worn_items_spirit_angler_boots = 1) {
+        $string0 = append($string0, "Spirit Angler boots: +0.2%<br>");
+    }
+    $string0 = append($string0, "<br>");
+}
+if (%worn_items_lumberjack_full_outfit > 0 & %worn_items_lumberjack_full_outfit < 20) {
+    $int2 = 0;
+    $string0 = append($string0, "<col=ffffff>Lumberjack outfit woodcutting XP increase:</col><br><br>");
+    if (%worn_items_lumberjack_head = 1) {
+        $string0 = append($string0, "Lumberjack hat headband: +0.4%<br>");
+    }
+    if (%worn_items_lumberjack_body = 1) {
+        $string0 = append($string0, "Lumberjack body: +0.8%<br>");
+    }
+    if (%worn_items_lumberjack_legs = 1) {
+        $string0 = append($string0, "Lumberjack legs: +0.6%<br>");
+    }
+    if (%worn_items_lumberjack_boots = 1) {
+        $string0 = append($string0, "Lumberjack boots: +0.2%<br>");
+    }
+    $string0 = append($string0, "<br>");
+}
+if (%worn_items_prospector_set > 0 & %worn_items_prospector_set < 20) {
+    $int2 = 0;
+    $string0 = append($string0, "<col=ffffff>Prospector outfit mining XP increase:</col><br><br>");
+    if (%worn_items_prospector_head = 1) {
+        $string0 = append($string0, "Prospector helmet: +0.4%<br>");
+    }
+    if (%worn_items_prospector_body = 1) {
+        $string0 = append($string0, "Prospector jacket: +0.8%<br>");
+    }
+    if (%worn_items_prospector_legs = 1) {
+        $string0 = append($string0, "Prospector legs: +0.6%<br>");
+    }
+    if (%worn_items_prospector_boots = 1) {
+        $string0 = append($string0, "Prospector boots: +0.2%<br>");
+    }
+    $string0 = append($string0, "<br>");
+}
+if (%worn_items_farming_set > 0 & %worn_items_farming_set < 20) {
+    $int2 = 0;
+    $string0 = append($string0, "<col=ffffff>Farmer's outfit farming XP increase:</col><br><br>");
+    if (%worn_items_farming_head = 1) {
+        $string0 = append($string0, "Farmer's strawhat: +0.4%<br>");
+    }
+    if (%worn_items_farming_body = 1) {
+        $string0 = append($string0, "Farmer's top: +0.8%<br>");
+    }
+    if (%worn_items_farming_legs = 1) {
+        $string0 = append($string0, "Farmer's legs: +0.6%<br>");
+    }
+    if (%worn_items_farming_boots = 1) {
+        $string0 = append($string0, "Farmer's boots: +0.2%<br>");
+    }
+    $string0 = append($string0, "<br>");
+}
+if (%worn_items_pyromancer_set > 0 & %worn_items_pyromancer_set < 20) {
+    $int2 = 0;
+    $string0 = append($string0, "<col=ffffff>Pyromancer outfit firemaking XP increase:</col><br><br>");
+    if (%worn_items_pyromancer_head = 1) {
+        $string0 = append($string0, "Pyromancer hood: +0.4%<br>");
+    }
+    if (%worn_items_pyromancer_body = 1) {
+        $string0 = append($string0, "Pyromancer garb: +0.8%<br>");
+    }
+    if (%worn_items_pyromancer_legs = 1) {
+        $string0 = append($string0, "Pyromancer robe: +0.6%<br>");
+    }
+    if (%worn_items_pyromancer_boots = 1) {
+        $string0 = append($string0, "Pyromancer boots: +0.2%<br>");
+    }
+    $string0 = append($string0, "<br>");
+}
+if (~script8075 = true) {
+    $int2 = 0;
+    $string0 = append($string0, "<col=ffffff>Shayzien armour reduces the damage of the acid splash attack used by Lizardman Shamans:</col><br><br>");
+    if (%worn_items_shayzien_head > 0) {
+        $string0 = append($string0, "Shayzien helm: <tostring(scale(%worn_items_shayzien_head, 5, 20))>% damage reduction<br>");
+    }
+    if (%worn_items_slayer_helmet > 0) {
+        $string0 = append($string0, "Slayer helm: 20% damage reduction<br>");
+    }
+    if (%worn_items_shayzien_body > 0) {
+        $string0 = append($string0, "Shayzien body: <tostring(scale(%worn_items_shayzien_body, 5, 20))>% damage reduction<br>");
+    }
+    if (%worn_items_shayzien_legs > 0) {
+        $string0 = append($string0, "Shayzien greaves: <tostring(scale(%worn_items_shayzien_legs, 5, 20))>% damage reduction<br>");
+    }
+    if (%worn_items_shayzien_boots > 0) {
+        $string0 = append($string0, "Shayzien boots: <tostring(scale(%worn_items_shayzien_boots, 5, 20))>% damage reduction<br>");
+    }
+    if (%worn_items_shayzien_gloves > 0) {
+        $string0 = append($string0, "Shayzien gloves: <tostring(scale(%worn_items_shayzien_gloves, 5, 20))>% damage reduction<br>");
+    }
+    $string0 = append($string0, "<br>");
+}
+if (%worn_items_rogue_set > 0 & %worn_items_rogue_set < 5) {
+    $int2 = 0;
+    $string0 = append($string0, "<col=ffffff>Rogue kit double loot from standard pickpocketing:</col><br><br>");
+    if (%worn_items_rogue_head > 0) {
+        $string0 = append($string0, "Rogue mask: 15% chance<br>");
+    }
+    if (%worn_items_rogue_body > 0) {
+        $string0 = append($string0, "Rogue top: 15% chance<br>");
+    }
+    if (%worn_items_rogue_legs > 0) {
+        $string0 = append($string0, "Rogue trousers: 15% chance<br>");
+    }
+    if (%worn_items_rogue_boots > 0) {
+        $string0 = append($string0, "Rogue boots: 15% chance<br>");
+    }
+    if (%worn_items_rogue_gloves > 0) {
+        $string0 = append($string0, "Rogue gloves: 15% chance<br>");
+    }
+    $string0 = append($string0, "<br>");
+}
+if (%worn_items_carpenter_set > 0 & %worn_items_carpenter_set < 5) {
+    $int2 = 0;
+    $string0 = append($string0, "<col=ffffff>Carpenter's outfit construction XP increase:</col><br><br>");
+    if (%worn_items_carpenter_head = 1) {
+        $string0 = append($string0, "Carpenter's helmet: +0.4%<br>");
+    }
+    if (%worn_items_carpenter_body = 1) {
+        $string0 = append($string0, "Carpenter's shirt: +0.8%<br>");
+    }
+    if (%worn_items_carpenter_legs = 1) {
+        $string0 = append($string0, "Carpenter's trousers: +0.6%<br>");
+    }
+    if (%worn_items_carpenter_boots = 1) {
+        $string0 = append($string0, "Carpenter's boots: +0.2%<br>");
+    }
+    $string0 = append($string0, "<br>");
+}
+if (%worn_items_swampbark_set > 0 & %worn_items_swampbark_set < 3) {
+    $int2 = 0;
+    $string0 = append($string0, "<col=ffffff>Swampbark increases the duration of Bind, Snare and Entangle spells:</col><br><br>");
+    if (%worn_items_swampbark_head = 1) {
+        $string0 = append($string0, "Swampbark helm: +1.2 seconds<br>");
+    }
+    if (%worn_items_swampbark_body = 1) {
+        $string0 = append($string0, "Swampbark body: +1.2 seconds<br>");
+    }
+    if (%worn_items_swampbark_legs = 1) {
+        $string0 = append($string0, "Swampbark legs: +1.2 seconds<br>");
+    }
+    $string0 = append($string0, "<br>");
+}
+if (%worn_items_bloodbark_set > 0 & %worn_items_bloodbark_set < 5) {
+    $int2 = 0;
+    $string0 = append($string0, "<col=ffffff>Bloodbark increases the amount healed by Blood spells:</col><br><br>");
+    if (%worn_items_bloodbark_head = 1) {
+        $string0 = append($string0, "Bloodbark helm: +2%<br>");
+    }
+    if (%worn_items_bloodbark_body = 1) {
+        $string0 = append($string0, "Bloodbark body: +2%<br>");
+    }
+    if (%worn_items_bloodbark_legs = 1) {
+        $string0 = append($string0, "Bloodbark legs: +2%<br>");
+    }
+    if (%worn_items_bloodbark_boots = 1) {
+        $string0 = append($string0, "Bloodbark boots: +2%<br>");
+    }
+    if (%worn_items_bloodbark_gloves = 1) {
+        $string0 = append($string0, "Bloodbark gloves: +2%<br>");
+    }
+    $string0 = append($string0, "<br>");
+}
+if (%worn_items_pados_robes_set > 0 & %worn_items_pados_robes_set < 4) {
+    $int2 = 0;
+    $string0 = append($string0, "<col=ffffff>Zealot's robes prayer XP increase:</col><br><br>");
+    if (%worn_items_zealot_head = 1) {
+        $string0 = append($string0, "Zealot's helm: +1.25%<br>");
+    }
+    if (%worn_items_zealot_body = 1) {
+        $string0 = append($string0, "Zealot's robe top: +1.25%<br>");
+    }
+    if (%worn_items_zealot_legs = 1) {
+        $string0 = append($string0, "Zealot's robe bottom: +1.25%<br>");
+    }
+    if (%worn_items_zealot_boots = 1) {
+        $string0 = append($string0, "Zealot's boots: +1.25%<br>");
+    }
+    $string0 = append($string0, "<br>");
+}
+if (%worn_items_rc_outfit > 0 & %worn_items_rc_outfit < 4) {
+    $int2 = 0;
+    $string0 = append($string0, "<col=ffffff>Raiments of the Eye bonus runes:</col><br><br>");
+    if (%worn_items_rc_head = 1) {
+        $string0 = append($string0, "Hat of the eye: +10%<br>");
+    }
+    if (%worn_items_rc_body = 1) {
+        $string0 = append($string0, "Robe top of the eye: +10%<br>");
+    }
+    if (%worn_items_rc_legs = 1) {
+        $string0 = append($string0, "Robe bottoms of the eye: +10%<br>");
+    }
+    if (%worn_items_rc_boots = 1) {
+        $string0 = append($string0, "Boots of the eye: +10%<br>");
+    }
+    $string0 = append($string0, "<br>");
 }
 if ($int2 = 1 & %worn_items_set_text = 0) {
     $string0 = "When wearing gear that gives a set bonus, you'll be able to view it here.<br>";
