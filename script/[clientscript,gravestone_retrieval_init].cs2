@@ -1,14 +1,14 @@
 // 1985
-[clientscript,gravestone_retrieval_init](component $universe, component $frame, component $items, component $scrollbar, component $button, component $button_gfx, component $discard, component $discard_gfx, component $info, component $fee, component $com_14, component $com_15)
+[clientscript,gravestone_retrieval_init](component $universe, component $frame, component $items, component $scrollbar, component $button, component $button_gfx, component $button_bank, component $button_bank_gfx, component $discard, component $discard_gfx, component $info, component $fee)
 def_int $int12 = ~steelborder($frame, "", 0);
-~gravestone_retrieval_unlockstatus($frame, $int12, $button, $button_gfx, $discard, $discard_gfx, $com_14, $com_15);
-if_setonvartransmit("gravestone_retrieval_unlockstatus($frame, $int12, $button, $button_gfx, $discard, $discard_gfx, $com_14, $com_15){if1, if2, if3}", $universe);
-if_setgraphic("miscgraphics,0", $info);
-if_setop(1, "Discard-All", $info);
-if_setontimer(null, $info);
-if_setonmouserepeat("gravestone_retrieval_buttonhover(true, $fee, null, null)", $info);
-if_setonmouseleave("gravestone_retrieval_buttonhover(false, $fee, null, null)", $info);
-if_setonop("gravestone_retrieval_buttonop(event_op, $info, $fee, null, null)", $info);
+~gravestone_retrieval_unlockstatus($frame, $int12, $button, $button_gfx, $button_bank, $button_bank_gfx, $info, $fee);
+if_setonvartransmit("gravestone_retrieval_unlockstatus($frame, $int12, $button, $button_gfx, $button_bank, $button_bank_gfx, $info, $fee){if1, if2, if3}", $universe);
+if_setgraphic("miscgraphics,0", $discard);
+if_setop(1, "Discard-All", $discard);
+if_setontimer(null, $discard);
+if_setonmouserepeat("gravestone_retrieval_buttonhover(true, $discard_gfx, null, null)", $discard);
+if_setonmouseleave("gravestone_retrieval_buttonhover(false, $discard_gfx, null, null)", $discard);
+if_setonop("gravestone_retrieval_buttonop(event_op, $discard, $discard_gfx, null, null)", $discard);
 def_int $int13 = calc(36 + 10);
 def_int $int14 = calc(32 + 8);
 cc_deleteall($items);
