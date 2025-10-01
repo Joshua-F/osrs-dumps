@@ -1,5 +1,5 @@
 // 274
-[clientscript,bankmain_init](component $universe, component $frame, component $wornitems_button, component $bank_highlight, component $items_container, component $com_80, component $menu_container, component $items, component $scrollbar, component $bottom, component $swap, component $insert, component $placeholder, component $item, component $note, component $search, component $title, component $occupiedslots, component $tabs, component $incinerator_target, component $incinerator_confirm, component $com_130, component $quantity1, component $quantity5, component $quantity10, component $quantityx, component $quantityall, component $quantity_layer, component $depositinv, component $depositinv_graphic, component $depositworn, component $depositworn_graphic, component $bank_tut, component $gim_storage)
+[clientscript,bankmain_init](component $universe, component $frame, component $menu_button, component $wornitems_button, component $items_container, component $wornitems_container, component $menu_container, component $items, component $scrollbar, component $bottom, component $swap, component $insert, component $placeholder, component $item, component $note, component $search, component $title, component $occupiedslots, component $tabs, component $incinerator_target, component $incinerator_confirm, component $tooltip, component $quantity1, component $quantity5, component $quantity10, component $quantityx, component $quantityall, component $quantity_layer, component $depositinv, component $depositinv_graphic, component $depositworn, component $depositworn_graphic, component $bank_tut, component $gim_storage)
 ~steelborder($frame, "", 0);
 def_int $int34 = %bank_scrollpos;
 if (~bankmain_searching = true) {
@@ -7,8 +7,8 @@ if (~bankmain_searching = true) {
 } else if (%meslayermode <= 0) {
     %meslayerinput = "";
 }
-~bankmain_search_setbutton($universe, $wornitems_button, $items, $scrollbar, $bottom, $title, $occupiedslots, $search, $tabs, $incinerator_target, $incinerator_confirm, $com_130, $depositinv, $depositinv_graphic, $depositworn, $depositworn_graphic, $bank_tut);
-if_setonop("bankmain_search_toggle(event_op, $universe, $wornitems_button, $items, $scrollbar, $bottom, $title, $occupiedslots, $search, $tabs, $incinerator_target, $incinerator_confirm, $com_130, $depositinv, $depositinv_graphic, $depositworn, $depositworn_graphic, $bank_tut)", $search);
+~bankmain_search_setbutton($universe, $menu_button, $items, $scrollbar, $bottom, $title, $occupiedslots, $search, $tabs, $incinerator_target, $incinerator_confirm, $tooltip, $depositinv, $depositinv_graphic, $depositworn, $depositworn_graphic, $bank_tut);
+if_setonop("bankmain_search_toggle(event_op, $universe, $menu_button, $items, $scrollbar, $bottom, $title, $occupiedslots, $search, $tabs, $incinerator_target, $incinerator_confirm, $tooltip, $depositinv, $depositinv_graphic, $depositworn, $depositworn_graphic, $bank_tut)", $search);
 cc_deleteall($scrollbar);
 ~scrollbar_vertical($scrollbar, $items, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
 ~bankmain_swapinsert($swap, $insert);
@@ -56,7 +56,7 @@ while ($int36 <= 9) {
     cc_settext("Tab <tostring($int36)>");
     cc_setop(1, "View tab");
     cc_setopbase("<col=ff9040><tostring($int36)></col>");
-    cc_setonop("bankmain_switchtab($universe, $wornitems_button, $items, $scrollbar, $bottom, $title, $occupiedslots, $search, $tabs, $incinerator_target, $incinerator_confirm, $com_130, event_op, $int36, $depositinv, $depositinv_graphic, $depositworn, $depositworn_graphic, $bank_tut)");
+    cc_setonop("bankmain_switchtab($universe, $menu_button, $items, $scrollbar, $bottom, $title, $occupiedslots, $search, $tabs, $incinerator_target, $incinerator_confirm, $tooltip, event_op, $int36, $depositinv, $depositinv_graphic, $depositworn, $depositworn_graphic, $bank_tut)");
     $int36 = calc($int36 + 1);
 }
 $int36 = 0;
@@ -68,9 +68,9 @@ while ($int36 <= 9) {
     cc_settrans(255);
     $int36 = calc($int36 + 1);
 }
-~bankmain_viewbuttons($items_container, $universe, $wornitems_button, $bank_highlight, $items, $scrollbar, $bottom, $title, $occupiedslots, $search, $tabs, $incinerator_target, $incinerator_confirm, $com_130, $items_container, $com_80, $menu_container, $depositinv, $depositinv_graphic, $depositworn, $depositworn_graphic, $bank_tut);
-if_setoninvtransmit("bankmain_build($universe, $wornitems_button, $items, $scrollbar, $bottom, $title, $occupiedslots, $search, $tabs, $incinerator_target, $incinerator_confirm, $com_130, $depositinv, $depositinv_graphic, $depositworn, $depositworn_graphic, $bank_tut){bank}", $items);
-if_setonvartransmit("bankmain_build($universe, $wornitems_button, $items, $scrollbar, $bottom, $title, $occupiedslots, $search, $tabs, $incinerator_target, $incinerator_confirm, $com_130, $depositinv, $depositinv_graphic, $depositworn, $depositworn_graphic, $bank_tut){bankinsert, bankcert, prayer23, prayer25, prayer26, gargboss_perm_transmit, item_redemption}", $items);
+~bankmain_viewbuttons($items_container, $universe, $menu_button, $wornitems_button, $items, $scrollbar, $bottom, $title, $occupiedslots, $search, $tabs, $incinerator_target, $incinerator_confirm, $tooltip, $items_container, $wornitems_container, $menu_container, $depositinv, $depositinv_graphic, $depositworn, $depositworn_graphic, $bank_tut);
+if_setoninvtransmit("bankmain_build($universe, $menu_button, $items, $scrollbar, $bottom, $title, $occupiedslots, $search, $tabs, $incinerator_target, $incinerator_confirm, $tooltip, $depositinv, $depositinv_graphic, $depositworn, $depositworn_graphic, $bank_tut){bank}", $items);
+if_setonvartransmit("bankmain_build($universe, $menu_button, $items, $scrollbar, $bottom, $title, $occupiedslots, $search, $tabs, $incinerator_target, $incinerator_confirm, $tooltip, $depositinv, $depositinv_graphic, $depositworn, $depositworn_graphic, $bank_tut){bankinsert, bankcert, prayer23, prayer25, prayer26, gargboss_perm_transmit, item_redemption}", $items);
 %bank_scrollpos = $int34;
 def_component $component = if_getlayer($universe);
 if ($component ! null) {
@@ -89,8 +89,8 @@ cc_setmodelangle(15, 300, 141, 220, 0, 3500);
 .cc_setmodelangle(15, 300, 141, 220, 0, 3500);
 .cc_setmodelanim(blast_furnace_smoke);
 .cc_sethide(true);
-if_setonmouserepeat("script1312(true, $incinerator_target, $com_130)", $incinerator_target);
-if_setonmouseleave("script1312(false, $incinerator_target, $com_130)", $incinerator_target);
+if_setonmouserepeat("script1312(true, $incinerator_target, $tooltip)", $incinerator_target);
+if_setonmouseleave("script1312(false, $incinerator_target, $tooltip)", $incinerator_target);
 ~script5300($gim_storage);
 if_setonvartransmit("script5299(event_com){magic_carpet_var}", $gim_storage);
-if_setonop("bankmain_switchtab($universe, $wornitems_button, $items, $scrollbar, $bottom, $title, $occupiedslots, $search, $tabs, $incinerator_target, $incinerator_confirm, $com_130, event_op, 15, $depositinv, $depositinv_graphic, $depositworn, $depositworn_graphic, $bank_tut)", bankmain:potionstore_button);
+if_setonop("bankmain_switchtab($universe, $menu_button, $items, $scrollbar, $bottom, $title, $occupiedslots, $search, $tabs, $incinerator_target, $incinerator_confirm, $tooltip, event_op, 15, $depositinv, $depositinv_graphic, $depositworn, $depositworn_graphic, $bank_tut)", bankmain:potionstore_button);
