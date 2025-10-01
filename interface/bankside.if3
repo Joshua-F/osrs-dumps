@@ -250,6 +250,7 @@ events=2
 op1=Dismiss
 onmouseover=graphic_swapper(event_com, "v2_stone_close_button,1")
 onmouseleave=graphic_swapper(event_com, "v2_stone_close_button,0")
+onclick=bankside_runepouch_dismiss(bankside:runepouch_select_container, bankside:runepouch_name_select_container)
 
 [runepouch_frame]
 type=layer
@@ -282,6 +283,7 @@ heightmode=minus
 xmode=abs_centre
 ymode=abs_centre
 layer=runepouch_frame
+onload=script8086(bankside:runepouch_loadout_container, bankside:runepouch_loadout_j, bankside:runepouch_loadout_scrollbar)
 
 [runepouch_top]
 type=layer
@@ -290,7 +292,7 @@ widthmode=minus
 heightmode=minus
 xmode=abs_centre
 layer=runepouch_contents
-onload=bankside_runepouch_current_init(event_com, bankside:runepouch_select_container, bankside:runepouch_select_list, bankside:runepouch_select_scrollbar)
+onload=bankside_runepouch_current_init(event_com, bankside:runepouch_select_container, bankside:runepouch_select_list, bankside:runepouch_select_scrollbar, bankside:runepouch_name_select_container, bankside:runepouch_name_select_list, bankside:runepouch_name_select_scrollbar)
 
 [com_27]
 type=text
@@ -306,86 +308,80 @@ textalignv=centre
 textshadow=yes
 colour=0xff981f
 
-[runepouch_loadout_a]
-type=layer
-y=126
-height=40
-widthmode=minus
-xmode=abs_centre
-ymode=abs_bottom
-layer=runepouch_contents
-onload=bankside_runepouch_loadout_init(1, event_com, bankside:runepouch_load_a, bankside:runepouch_select_container, bankside:runepouch_select_list)
-
 [runepouch_load_a]
 type=layer
-x=2
+y=2
 width=30
-height=8
-heightmode=minus
-ymode=abs_centre
+height=32
+ymode=abs_bottom
 layer=runepouch_loadout_a
 events=2
 op1=*
 
-[runepouch_loadout_b]
-type=layer
-y=84
-height=40
-widthmode=minus
-xmode=abs_centre
-ymode=abs_bottom
-layer=runepouch_contents
-onload=bankside_runepouch_loadout_init(2, event_com, bankside:runepouch_load_b, bankside:runepouch_select_container, bankside:runepouch_select_list)
-
 [runepouch_load_b]
 type=layer
-x=2
+y=2
 width=30
-height=8
-heightmode=minus
-ymode=abs_centre
+height=32
+ymode=abs_bottom
 layer=runepouch_loadout_b
 events=2
 op1=*
 
-[runepouch_loadout_c]
-type=layer
-y=42
-height=40
-widthmode=minus
-xmode=abs_centre
-ymode=abs_bottom
-layer=runepouch_contents
-onload=bankside_runepouch_loadout_init(3, event_com, bankside:runepouch_load_c, bankside:runepouch_select_container, bankside:runepouch_select_list)
-
 [runepouch_load_c]
 type=layer
-x=2
+y=2
 width=30
-height=8
-heightmode=minus
-ymode=abs_centre
+height=32
+ymode=abs_bottom
 layer=runepouch_loadout_c
 events=2
 op1=*
 
-[runepouch_loadout_d]
-type=layer
-height=40
-widthmode=minus
-xmode=abs_centre
-ymode=abs_bottom
-layer=runepouch_contents
-onload=bankside_runepouch_loadout_init(4, event_com, bankside:runepouch_load_d, bankside:runepouch_select_container, bankside:runepouch_select_list)
-
 [runepouch_load_d]
 type=layer
-x=2
+y=2
 width=30
-height=8
-heightmode=minus
-ymode=abs_centre
+height=32
+ymode=abs_bottom
 layer=runepouch_loadout_d
+events=2
+op1=*
+
+[runepouch_loadout_scrollbar]
+type=layer
+y=64
+width=16
+height=64
+heightmode=minus
+xmode=abs_right
+layer=runepouch_contents
+
+[runepouch_loadout_container]
+type=layer
+y=64
+width=16
+height=64
+widthmode=minus
+heightmode=minus
+layer=runepouch_contents
+
+[runepouch_loadout_a]
+type=layer
+height=60
+widthmode=minus
+xmode=abs_centre
+layer=runepouch_loadout_container
+onload=bankside_runepouch_loadout_init(1, event_com, bankside:runepouch_load_a, bankside:runepouch_select_container, bankside:runepouch_select_list, bankside:runepouch_name_a, bankside:runepouch_name_select_container)
+
+[runepouch_name_a]
+type=layer
+x=2
+y=3
+width=7
+height=18
+widthmode=minus
+layer=runepouch_loadout_a
 events=2
 op1=*
 
@@ -396,7 +392,34 @@ height=230
 layer=runepouch_contents
 hide=yes
 
-[com_37]
+[runepouch_name_select_container]
+type=layer
+width=186
+height=230
+layer=runepouch_contents
+hide=yes
+
+[runepouch_loadout_b]
+type=layer
+y=62
+height=60
+widthmode=minus
+xmode=abs_centre
+layer=runepouch_loadout_container
+onload=bankside_runepouch_loadout_init(2, event_com, bankside:runepouch_load_b, bankside:runepouch_select_container, bankside:runepouch_select_list, bankside:runepouch_name_b, bankside:runepouch_name_select_container)
+
+[runepouch_name_b]
+type=layer
+x=2
+y=3
+width=7
+height=18
+widthmode=minus
+layer=runepouch_loadout_b
+events=2
+op1=*
+
+[com_40]
 type=graphic
 widthmode=minus
 heightmode=minus
@@ -407,6 +430,26 @@ graphic=tradebacking_dark
 tiling=yes
 onload=if_setnoclickthrough(event_com, true)
 
+[runepouch_loadout_c]
+type=layer
+y=124
+height=60
+widthmode=minus
+xmode=abs_centre
+layer=runepouch_loadout_container
+onload=bankside_runepouch_loadout_init(3, event_com, bankside:runepouch_load_c, bankside:runepouch_select_container, bankside:runepouch_select_list, bankside:runepouch_name_c, bankside:runepouch_name_select_container)
+
+[runepouch_name_c]
+type=layer
+x=2
+y=3
+width=7
+height=18
+widthmode=minus
+layer=runepouch_loadout_c
+events=2
+op1=*
+
 [runepouch_select_list]
 type=layer
 width=16
@@ -414,6 +457,146 @@ widthmode=minus
 heightmode=minus
 ymode=abs_centre
 layer=runepouch_select_container
+
+[runepouch_loadout_d]
+type=layer
+y=186
+height=60
+widthmode=minus
+xmode=abs_centre
+layer=runepouch_loadout_container
+onload=bankside_runepouch_loadout_init(4, event_com, bankside:runepouch_load_d, bankside:runepouch_select_container, bankside:runepouch_select_list, bankside:runepouch_name_d, bankside:runepouch_name_select_container)
+
+[runepouch_name_d]
+type=layer
+x=2
+y=3
+width=7
+height=18
+widthmode=minus
+layer=runepouch_loadout_d
+events=2
+op1=*
+
+[runepouch_loadout_e]
+type=layer
+y=248
+height=60
+widthmode=minus
+xmode=abs_centre
+layer=runepouch_loadout_container
+onload=bankside_runepouch_loadout_init(5, event_com, bankside:runepouch_load_e, bankside:runepouch_select_container, bankside:runepouch_select_list, bankside:runepouch_name_e, bankside:runepouch_name_select_container)
+
+[runepouch_name_e]
+type=layer
+x=2
+y=3
+width=7
+height=18
+widthmode=minus
+layer=runepouch_loadout_e
+events=2
+op1=*
+
+[runepouch_loadout_f]
+type=layer
+y=310
+height=60
+widthmode=minus
+xmode=abs_centre
+layer=runepouch_loadout_container
+onload=bankside_runepouch_loadout_init(6, event_com, bankside:runepouch_load_f, bankside:runepouch_select_container, bankside:runepouch_select_list, bankside:runepouch_name_f, bankside:runepouch_name_select_container)
+
+[runepouch_name_f]
+type=layer
+x=2
+y=3
+width=7
+height=18
+widthmode=minus
+layer=runepouch_loadout_f
+events=2
+op1=*
+
+[runepouch_loadout_g]
+type=layer
+y=372
+height=60
+widthmode=minus
+xmode=abs_centre
+layer=runepouch_loadout_container
+onload=bankside_runepouch_loadout_init(7, event_com, bankside:runepouch_load_g, bankside:runepouch_select_container, bankside:runepouch_select_list, bankside:runepouch_name_g, bankside:runepouch_name_select_container)
+
+[runepouch_name_g]
+type=layer
+x=2
+y=3
+width=7
+height=18
+widthmode=minus
+layer=runepouch_loadout_g
+events=2
+op1=*
+
+[runepouch_loadout_h]
+type=layer
+y=434
+height=60
+widthmode=minus
+xmode=abs_centre
+layer=runepouch_loadout_container
+onload=bankside_runepouch_loadout_init(8, event_com, bankside:runepouch_load_h, bankside:runepouch_select_container, bankside:runepouch_select_list, bankside:runepouch_name_h, bankside:runepouch_name_select_container)
+
+[runepouch_name_h]
+type=layer
+x=2
+y=3
+width=7
+height=18
+widthmode=minus
+layer=runepouch_loadout_h
+events=2
+op1=*
+
+[runepouch_loadout_i]
+type=layer
+y=496
+height=60
+widthmode=minus
+xmode=abs_centre
+layer=runepouch_loadout_container
+onload=bankside_runepouch_loadout_init(9, event_com, bankside:runepouch_load_i, bankside:runepouch_select_container, bankside:runepouch_select_list, bankside:runepouch_name_i, bankside:runepouch_name_select_container)
+
+[runepouch_name_i]
+type=layer
+x=2
+y=3
+width=7
+height=18
+widthmode=minus
+layer=runepouch_loadout_i
+events=2
+op1=*
+
+[runepouch_loadout_j]
+type=layer
+y=558
+height=60
+widthmode=minus
+xmode=abs_centre
+layer=runepouch_loadout_container
+onload=bankside_runepouch_loadout_init(10, event_com, bankside:runepouch_load_j, bankside:runepouch_select_container, bankside:runepouch_select_list, bankside:runepouch_name_j, bankside:runepouch_name_select_container)
+
+[runepouch_name_j]
+type=layer
+x=2
+y=3
+width=7
+height=18
+widthmode=minus
+layer=runepouch_loadout_j
+events=2
+op1=*
 
 [runepouch_select_scrollbar]
 type=layer
@@ -469,7 +652,7 @@ onmouseover=settrans(event_com, 100)
 onmouseleave=settrans(event_com, 0)
 onop=opsound(event_op, -1)
 
-[com_44]
+[com_63]
 type=text
 height=22
 widthmode=minus
@@ -506,7 +689,7 @@ xmode=abs_centre
 layer=prepot_device_container
 onload=thinstonebox(event_com)
 
-[com_47]
+[com_66]
 type=graphic
 width=2
 height=2
@@ -542,7 +725,7 @@ widthmode=minus
 xmode=abs_centre
 layer=prepot_device_contents_container
 
-[com_51]
+[com_70]
 type=text
 y=166
 height=17
@@ -721,4 +904,91 @@ width=60
 widthmode=minus
 heightmode=minus
 layer=prepot_device_loadout_0
+
+[runepouch_load_e]
+type=layer
+y=2
+width=30
+height=32
+ymode=abs_bottom
+layer=runepouch_loadout_e
+events=2
+op1=*
+
+[runepouch_load_f]
+type=layer
+y=2
+width=30
+height=32
+ymode=abs_bottom
+layer=runepouch_loadout_f
+events=2
+op1=*
+
+[runepouch_load_g]
+type=layer
+y=2
+width=30
+height=32
+ymode=abs_bottom
+layer=runepouch_loadout_g
+events=2
+op1=*
+
+[runepouch_load_h]
+type=layer
+y=2
+width=30
+height=32
+ymode=abs_bottom
+layer=runepouch_loadout_h
+events=2
+op1=*
+
+[runepouch_load_i]
+type=layer
+y=2
+width=30
+height=32
+ymode=abs_bottom
+layer=runepouch_loadout_i
+events=2
+op1=*
+
+[runepouch_load_j]
+type=layer
+y=2
+width=30
+height=32
+ymode=abs_bottom
+layer=runepouch_loadout_j
+events=2
+op1=*
+
+[com_95]
+type=graphic
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=runepouch_name_select_container
+graphic=tradebacking_dark
+tiling=yes
+onload=if_setnoclickthrough(event_com, true)
+
+[runepouch_name_select_list]
+type=layer
+width=16
+widthmode=minus
+heightmode=minus
+ymode=abs_centre
+layer=runepouch_name_select_container
+
+[runepouch_name_select_scrollbar]
+type=layer
+width=16
+heightmode=minus
+xmode=abs_right
+ymode=abs_centre
+layer=runepouch_name_select_container
 

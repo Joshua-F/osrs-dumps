@@ -1,13 +1,14 @@
 // 1700
-[proc,orbs_worldmap_setup](component $component0, component $component1, component $component2)
-def_enum $enum3 = ~toplevel_getcomponents;
-if ($enum3 = null) {
+[proc,orbs_worldmap_setup](component $component0, component $component1, component $component2, component $component3, component $component4)
+def_enum $enum5 = ~toplevel_getcomponents;
+if ($enum5 = null) {
     return;
 }
-def_graphic $graphic4 = null;
-def_graphic $graphic5 = null;
-$graphic4, $graphic5 = ~orbs_worldmap_graphics;
-if ($enum3 = enum_1745) {
+def_graphic $graphic6 = null;
+def_graphic $graphic7 = null;
+$graphic6, $graphic7 = ~orbs_worldmap_graphics;
+def_string $string0 = "<col=ff0000>Ctr + m</col> can be pressed to open the world map.";
+if ($enum5 = enum_1745) {
     if (%osm_minimap_toggle = 0) {
         if_setposition(0, 130, ^setpos_abs_right, ^setpos_abs_top, $component0);
     } else {
@@ -17,7 +18,9 @@ if ($enum3 = enum_1745) {
     if_setgraphic("tli_button01_orb01_34x34,0", $component1);
     if_setsize(34, 34, ^setsize_abs, ^setsize_abs, $component1);
     if_setsize(26, 26, ^setsize_abs, ^setsize_abs, $component2);
-} else if (~on_enhanced_desktop = true & $enum3 ! enum_1129) {
+    if_setonmouserepeat(null, $component1);
+    if_setonmouseleave(null, $component1);
+} else if (~on_mobile = false & $enum5 ! enum_1129) {
     if (%minimap_toggle = 0) {
         if_setposition(0, 115, ^setpos_abs_right, ^setpos_abs_top, $component0);
     } else {
@@ -27,22 +30,37 @@ if ($enum3 = enum_1745) {
     if_setgraphic(ring_30, $component1);
     if_setsize(30, 30, ^setsize_abs, ^setsize_abs, $component1);
     if_setsize(22, 22, ^setsize_abs, ^setsize_abs, $component2);
-} else if ($enum3 = enum_1129) {
+    if ($component4 ! null & ~on_mobile = false) {
+        if_setsize(22, 22, ^setsize_abs, ^setsize_abs, $component4);
+        if_setonmouserepeat("tooltip_mouserepeat(event_com, -1, $component3, $string0, 25, 512)", $component1);
+        if_setonmouseleave("deltooltip($component3)", $component1);
+    }
+} else if ($enum5 = enum_1129) {
     if_setposition(10, 115, ^setpos_abs_right, ^setpos_abs_top, $component0);
     if_setsize(30, 30, ^setsize_abs, ^setsize_abs, $component0);
     if_setgraphic(ring_30, $component1);
     if_setsize(30, 30, ^setsize_abs, ^setsize_abs, $component1);
     if_setsize(22, 22, ^setsize_abs, ^setsize_abs, $component2);
+    if ($component4 ! null & ~on_mobile = false) {
+        if_setsize(22, 22, ^setsize_abs, ^setsize_abs, $component4);
+        if_setonmouserepeat("tooltip_mouserepeat(event_com, -1, $component3, $string0, 25, 512)", $component1);
+        if_setonmouseleave("deltooltip($component3)", $component1);
+    }
 } else {
     if_setposition(0, 115, ^setpos_abs_right, ^setpos_abs_top, $component0);
     if_setsize(30, 30, ^setsize_abs, ^setsize_abs, $component0);
     if_setgraphic(ring_30, $component1);
     if_setsize(30, 30, ^setsize_abs, ^setsize_abs, $component1);
     if_setsize(22, 22, ^setsize_abs, ^setsize_abs, $component2);
+    if ($component4 ! null & ~on_mobile = false) {
+        if_setsize(22, 22, ^setsize_abs, ^setsize_abs, $component4);
+        if_setonmouserepeat("tooltip_mouserepeat(event_com, -1, $component3, $string0, 25, 512)", $component1);
+        if_setonmouseleave("deltooltip($component3)", $component1);
+    }
 }
-if (if_hassub(enum(component, component, $enum3, toplevel_osrs_stretch:floater)) = true) {
+if (if_hassub(enum(component, component, $enum5, toplevel_osrs_stretch:floater)) = true) {
     if_settrans(125, $component2);
-    if_setgraphic($graphic5, $component2);
+    if_setgraphic($graphic7, $component2);
     if_setonmouserepeat("settrans(event_com, 0)", $component2);
     if_setonmouseleave("settrans(event_com, 125)", $component2);
     if_clearops($component2);
@@ -50,11 +68,11 @@ if (if_hassub(enum(component, component, $enum3, toplevel_osrs_stretch:floater))
     if_setonop("opsound(event_op, -1)", $component2);
 } else {
     if_settrans(0, $component2);
-    if_setgraphic($graphic4, $component2);
-    if_setonmouserepeat("graphic_swapper(event_com, $graphic5)", $component2);
-    if_setonmouseleave("graphic_swapper(event_com, $graphic4)", $component2);
+    if_setgraphic($graphic6, $component2);
+    if_setonmouserepeat("graphic_swapper(event_com, $graphic7)", $component2);
+    if_setonmouseleave("graphic_swapper(event_com, $graphic6)", $component2);
     if_clearops($component2);
-    if ($enum3 = enum_1745) {
+    if ($enum5 = enum_1745) {
         ~orbs_worldmap_op1($component2);
         if_setop(2, "Open <col=ff9040>World Map</col>", $component2);
         if (%osm_minimap_toggle = 0) {
@@ -62,7 +80,7 @@ if (if_hassub(enum(component, component, $enum3, toplevel_osrs_stretch:floater))
         } else {
             if_setop(4, "Restore <col=ff9040>Minimap</col>", $component2);
         }
-    } else if (~on_enhanced_desktop = true & $enum3 ! enum_1129) {
+    } else if (~on_mobile = false & $enum5 ! enum_1129) {
         ~orbs_worldmap_op1($component2);
         if_setop(2, "Floating <col=ff9040>World Map</col>", $component2);
         if_setop(3, "Fullscreen <col=ff9040>World Map</col>", $component2);

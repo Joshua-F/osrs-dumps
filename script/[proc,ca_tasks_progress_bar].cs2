@@ -51,6 +51,7 @@ def_int $int21 = 0;
 def_int $int22 = 0;
 def_string $string2 = "";
 def_graphic $graphic23 = p12_full;
+def_int $int24 = 0;
 if ($int7 = 1) {
     $graphic23 = b12_full;
     if (%wgs_hero_part_2_vis ! 0) {
@@ -96,6 +97,7 @@ if (cc_find($component0, 0) = ^false) {
         cc_setonop("button_select_sound");
         cc_settrans(250);
         $int10 = calc($int10 + 1);
+        $int24 = 1;
     }
     cc_create($component0, ^iftype_rectangle, $int10);
     cc_setsize(calc($int13 - 2), 29, ^setsize_abs, ^setsize_abs);
@@ -139,6 +141,7 @@ if (cc_find($component0, 0) = ^false) {
             if (~on_mobile = true) {
                 cc_setop(1, "Show Threshold");
                 cc_setonop("league_progress_bar_mobile_tooltip(event_com, event_comsubid, $component1, $string1, 512)");
+                $int24 = 1;
             } else {
                 cc_setop(1, "");
                 cc_setonmouserepeat("tooltip_mouserepeat(event_com, event_comsubid, $component1, $string1, 25, 512)");
@@ -156,6 +159,12 @@ if (cc_find($component0, 0) = ^false) {
     cc_settextshadow(true);
     cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
     cc_settext($string2);
+    if ($int24 = 1) {
+        if (~on_mobile = false) {
+            cc_setonmouseover("cc_colour_swapper(event_com, $int10, 16750623)");
+        }
+        cc_setonmouseleave("cc_colour_swapper($component0, $int10, 16777215)");
+    }
     $int10 = calc($int10 + 1);
     cc_create($component0, ^iftype_rectangle, $int10);
     cc_setsize($int13, 31, ^setsize_abs, ^setsize_abs);
