@@ -13,46 +13,46 @@ if (%grouping_gameid = 4 & %playermember = 0) {
     $int0 = 383;
 }
 if ($int0 = -1) {
-    if_settext("---", grouping:com_28);
-    if_setcolour(0xff981f, grouping:com_28);
+    if_settext("---", grouping:suggestedworld);
+    if_setcolour(0xff981f, grouping:suggestedworld);
 } else {
-    if_settext(tostring($int0), grouping:com_28);
+    if_settext(tostring($int0), grouping:suggestedworld);
     if (map_world = $int0) {
-        if_setcolour(0x0dc10d, grouping:com_28);
+        if_setcolour(0x0dc10d, grouping:suggestedworld);
     } else {
-        if_setcolour(^yellow, grouping:com_28);
+        if_setcolour(^yellow, grouping:suggestedworld);
     }
 }
-cc_deleteall(grouping:com_32);
-cc_deleteall(grouping:suggestedworld);
+cc_deleteall(grouping:teleport);
+cc_deleteall(grouping:hop_button);
 def_int $int1 = 0;
 while ($int1 < %grouping_gameid) {
-    cc_create(grouping:com_32, ^iftype_rectangle, $int1);
+    cc_create(grouping:teleport, ^iftype_rectangle, $int1);
     cc_sethide(true);
-    .cc_create(grouping:suggestedworld, ^iftype_rectangle, $int1);
+    .cc_create(grouping:hop_button, ^iftype_rectangle, $int1);
     .cc_sethide(true);
     $int1 = calc($int1 + 1);
 }
-cc_create(grouping:com_32, ^iftype_rectangle, %grouping_gameid);
+cc_create(grouping:teleport, ^iftype_rectangle, %grouping_gameid);
 cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
-cc_setsize(if_getwidth(grouping:com_32), if_getheight(grouping:com_32), ^setsize_abs, ^setsize_abs);
+cc_setsize(if_getwidth(grouping:teleport), if_getheight(grouping:teleport), ^setsize_abs, ^setsize_abs);
 cc_setfill(true);
 cc_settrans(255);
-.cc_create(grouping:suggestedworld, ^iftype_rectangle, %grouping_gameid);
+.cc_create(grouping:hop_button, ^iftype_rectangle, %grouping_gameid);
 .cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
-.cc_setsize(if_getwidth(grouping:suggestedworld), if_getheight(grouping:suggestedworld), ^setsize_abs, ^setsize_abs);
+.cc_setsize(if_getwidth(grouping:hop_button), if_getheight(grouping:hop_button), ^setsize_abs, ^setsize_abs);
 .cc_setfill(true);
 .cc_settrans(255);
 if (%grouping_gameid = 0) {
     cc_setop(1, "Teleport");
-    if_sethide(true, grouping:joinleave);
+    if_sethide(true, grouping:hop_button_background);
 } else {
     cc_setop(1, "Teleport to <col=ff8040><$string0></col>");
     if ($int0 ! -1) {
         .cc_setop(1, "Switch <col=ff8040><tostring($int0)></col>");
-        if_sethide(false, grouping:joinleave);
+        if_sethide(false, grouping:hop_button_background);
     } else {
-        if_sethide(true, grouping:joinleave);
+        if_sethide(true, grouping:hop_button_background);
     }
 }
 def_int $int2 = 0;
@@ -67,17 +67,17 @@ while (string_length($string2) > 0) {
     $string2 = enum(int, string, enum_849, $int3);
 }
 if (%grouping_gameid = 0) {
-    if_settext("---", grouping:com_31);
-    if_clearops(grouping:joinleave_text);
-    if_setonop(null, grouping:joinleave_text);
+    if_settext("---", grouping:joinleave_text);
+    if_clearops(grouping:joinleave);
+    if_setonop(null, grouping:joinleave);
 } else if ($int2 ! %grouping_gameid) {
-    if_settext("Join", grouping:com_31);
-    if_setop(1, "Join <col=ff8040><$string0></col> channel", grouping:joinleave_text);
-    if_setonop("grouping_joinchannel(%grouping_gameid)", grouping:joinleave_text);
+    if_settext("Join", grouping:joinleave_text);
+    if_setop(1, "Join <col=ff8040><$string0></col> channel", grouping:joinleave);
+    if_setonop("grouping_joinchannel(%grouping_gameid)", grouping:joinleave);
 } else {
-    if_settext("Leave", grouping:com_31);
-    if_setop(1, "Leave <col=ff8040><$string0></col> channel", grouping:joinleave_text);
-    if_setonop("grouping_joinchannel(0)", grouping:joinleave_text);
+    if_settext("Leave", grouping:joinleave_text);
+    if_setop(1, "Leave <col=ff8040><$string0></col> channel", grouping:joinleave);
+    if_setonop("grouping_joinchannel(0)", grouping:joinleave);
 }
 def_int $int4 = 0;
 def_int $int5 = 0;
