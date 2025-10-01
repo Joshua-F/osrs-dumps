@@ -273,6 +273,7 @@ events=2
 op1=Dismiss
 onmouseover=graphic_swapper(event_com, "v2_stone_close_button,1")
 onmouseleave=graphic_swapper(event_com, "v2_stone_close_button,0")
+onclick=bankside_runepouch_dismiss(bankside:runepouch_select_container, bankside:runepouch_name_select_container)
 
 // 15:23
 [runepouch_frame]
@@ -308,6 +309,7 @@ heightmode=minus
 xmode=abs_centre
 ymode=abs_centre
 layer=runepouch_frame
+onload=script8086(bankside:runepouch_loadout_container, bankside:runepouch_loadout_j, bankside:runepouch_loadout_scrollbar)
 
 // 15:26
 [runepouch_top]
@@ -317,7 +319,7 @@ widthmode=minus
 heightmode=minus
 xmode=abs_centre
 layer=runepouch_contents
-onload=bankside_runepouch_current_init(event_com, bankside:runepouch_select_container, bankside:runepouch_select_list, bankside:runepouch_select_scrollbar)
+onload=bankside_runepouch_current_init(event_com, bankside:runepouch_select_container, bankside:runepouch_select_list, bankside:runepouch_select_scrollbar, bankside:runepouch_name_select_container, bankside:runepouch_name_select_list, bankside:runepouch_name_select_scrollbar)
 
 // 15:27
 [com_27]
@@ -335,93 +337,87 @@ textshadow=yes
 colour=0xff981f
 
 // 15:28
-[runepouch_loadout_a]
-type=layer
-y=126
-height=40
-widthmode=minus
-xmode=abs_centre
-ymode=abs_bottom
-layer=runepouch_contents
-onload=bankside_runepouch_loadout_init(1, event_com, bankside:runepouch_load_a, bankside:runepouch_select_container, bankside:runepouch_select_list)
-
-// 15:29
 [runepouch_load_a]
 type=layer
-x=2
+y=2
 width=30
-height=8
-heightmode=minus
-ymode=abs_centre
+height=32
+ymode=abs_bottom
 layer=runepouch_loadout_a
 events=2
 op1=*
 
-// 15:30
-[runepouch_loadout_b]
-type=layer
-y=84
-height=40
-widthmode=minus
-xmode=abs_centre
-ymode=abs_bottom
-layer=runepouch_contents
-onload=bankside_runepouch_loadout_init(2, event_com, bankside:runepouch_load_b, bankside:runepouch_select_container, bankside:runepouch_select_list)
-
-// 15:31
+// 15:29
 [runepouch_load_b]
 type=layer
-x=2
+y=2
 width=30
-height=8
-heightmode=minus
-ymode=abs_centre
+height=32
+ymode=abs_bottom
 layer=runepouch_loadout_b
 events=2
 op1=*
 
-// 15:32
-[runepouch_loadout_c]
-type=layer
-y=42
-height=40
-widthmode=minus
-xmode=abs_centre
-ymode=abs_bottom
-layer=runepouch_contents
-onload=bankside_runepouch_loadout_init(3, event_com, bankside:runepouch_load_c, bankside:runepouch_select_container, bankside:runepouch_select_list)
-
-// 15:33
+// 15:30
 [runepouch_load_c]
 type=layer
-x=2
+y=2
 width=30
-height=8
-heightmode=minus
-ymode=abs_centre
+height=32
+ymode=abs_bottom
 layer=runepouch_loadout_c
 events=2
 op1=*
 
-// 15:34
-[runepouch_loadout_d]
-type=layer
-height=40
-widthmode=minus
-xmode=abs_centre
-ymode=abs_bottom
-layer=runepouch_contents
-onload=bankside_runepouch_loadout_init(4, event_com, bankside:runepouch_load_d, bankside:runepouch_select_container, bankside:runepouch_select_list)
-
-// 15:35
+// 15:31
 [runepouch_load_d]
 type=layer
-x=2
+y=2
 width=30
-height=8
-heightmode=minus
-ymode=abs_centre
+height=32
+ymode=abs_bottom
 layer=runepouch_loadout_d
+events=2
+op1=*
+
+// 15:32
+[runepouch_loadout_scrollbar]
+type=layer
+y=64
+width=16
+height=64
+heightmode=minus
+xmode=abs_right
+layer=runepouch_contents
+
+// 15:33
+[runepouch_loadout_container]
+type=layer
+y=64
+width=16
+height=64
+widthmode=minus
+heightmode=minus
+layer=runepouch_contents
+
+// 15:34
+[runepouch_loadout_a]
+type=layer
+height=60
+widthmode=minus
+xmode=abs_centre
+layer=runepouch_loadout_container
+onload=bankside_runepouch_loadout_init(1, event_com, bankside:runepouch_load_a, bankside:runepouch_select_container, bankside:runepouch_select_list, bankside:runepouch_name_a, bankside:runepouch_name_select_container)
+
+// 15:35
+[runepouch_name_a]
+type=layer
+x=2
+y=3
+width=7
+height=18
+widthmode=minus
+layer=runepouch_loadout_a
 events=2
 op1=*
 
@@ -434,7 +430,37 @@ layer=runepouch_contents
 hide=yes
 
 // 15:37
-[com_37]
+[runepouch_name_select_container]
+type=layer
+width=186
+height=230
+layer=runepouch_contents
+hide=yes
+
+// 15:38
+[runepouch_loadout_b]
+type=layer
+y=62
+height=60
+widthmode=minus
+xmode=abs_centre
+layer=runepouch_loadout_container
+onload=bankside_runepouch_loadout_init(2, event_com, bankside:runepouch_load_b, bankside:runepouch_select_container, bankside:runepouch_select_list, bankside:runepouch_name_b, bankside:runepouch_name_select_container)
+
+// 15:39
+[runepouch_name_b]
+type=layer
+x=2
+y=3
+width=7
+height=18
+widthmode=minus
+layer=runepouch_loadout_b
+events=2
+op1=*
+
+// 15:40
+[com_40]
 type=graphic
 widthmode=minus
 heightmode=minus
@@ -445,7 +471,29 @@ graphic=tradebacking_dark
 tiling=yes
 onload=if_setnoclickthrough(event_com, true)
 
-// 15:38
+// 15:41
+[runepouch_loadout_c]
+type=layer
+y=124
+height=60
+widthmode=minus
+xmode=abs_centre
+layer=runepouch_loadout_container
+onload=bankside_runepouch_loadout_init(3, event_com, bankside:runepouch_load_c, bankside:runepouch_select_container, bankside:runepouch_select_list, bankside:runepouch_name_c, bankside:runepouch_name_select_container)
+
+// 15:42
+[runepouch_name_c]
+type=layer
+x=2
+y=3
+width=7
+height=18
+widthmode=minus
+layer=runepouch_loadout_c
+events=2
+op1=*
+
+// 15:43
 [runepouch_select_list]
 type=layer
 width=16
@@ -454,7 +502,161 @@ heightmode=minus
 ymode=abs_centre
 layer=runepouch_select_container
 
-// 15:39
+// 15:44
+[runepouch_loadout_d]
+type=layer
+y=186
+height=60
+widthmode=minus
+xmode=abs_centre
+layer=runepouch_loadout_container
+onload=bankside_runepouch_loadout_init(4, event_com, bankside:runepouch_load_d, bankside:runepouch_select_container, bankside:runepouch_select_list, bankside:runepouch_name_d, bankside:runepouch_name_select_container)
+
+// 15:45
+[runepouch_name_d]
+type=layer
+x=2
+y=3
+width=7
+height=18
+widthmode=minus
+layer=runepouch_loadout_d
+events=2
+op1=*
+
+// 15:46
+[runepouch_loadout_e]
+type=layer
+y=248
+height=60
+widthmode=minus
+xmode=abs_centre
+layer=runepouch_loadout_container
+onload=bankside_runepouch_loadout_init(5, event_com, bankside:runepouch_load_e, bankside:runepouch_select_container, bankside:runepouch_select_list, bankside:runepouch_name_e, bankside:runepouch_name_select_container)
+
+// 15:47
+[runepouch_name_e]
+type=layer
+x=2
+y=3
+width=7
+height=18
+widthmode=minus
+layer=runepouch_loadout_e
+events=2
+op1=*
+
+// 15:48
+[runepouch_loadout_f]
+type=layer
+y=310
+height=60
+widthmode=minus
+xmode=abs_centre
+layer=runepouch_loadout_container
+onload=bankside_runepouch_loadout_init(6, event_com, bankside:runepouch_load_f, bankside:runepouch_select_container, bankside:runepouch_select_list, bankside:runepouch_name_f, bankside:runepouch_name_select_container)
+
+// 15:49
+[runepouch_name_f]
+type=layer
+x=2
+y=3
+width=7
+height=18
+widthmode=minus
+layer=runepouch_loadout_f
+events=2
+op1=*
+
+// 15:50
+[runepouch_loadout_g]
+type=layer
+y=372
+height=60
+widthmode=minus
+xmode=abs_centre
+layer=runepouch_loadout_container
+onload=bankside_runepouch_loadout_init(7, event_com, bankside:runepouch_load_g, bankside:runepouch_select_container, bankside:runepouch_select_list, bankside:runepouch_name_g, bankside:runepouch_name_select_container)
+
+// 15:51
+[runepouch_name_g]
+type=layer
+x=2
+y=3
+width=7
+height=18
+widthmode=minus
+layer=runepouch_loadout_g
+events=2
+op1=*
+
+// 15:52
+[runepouch_loadout_h]
+type=layer
+y=434
+height=60
+widthmode=minus
+xmode=abs_centre
+layer=runepouch_loadout_container
+onload=bankside_runepouch_loadout_init(8, event_com, bankside:runepouch_load_h, bankside:runepouch_select_container, bankside:runepouch_select_list, bankside:runepouch_name_h, bankside:runepouch_name_select_container)
+
+// 15:53
+[runepouch_name_h]
+type=layer
+x=2
+y=3
+width=7
+height=18
+widthmode=minus
+layer=runepouch_loadout_h
+events=2
+op1=*
+
+// 15:54
+[runepouch_loadout_i]
+type=layer
+y=496
+height=60
+widthmode=minus
+xmode=abs_centre
+layer=runepouch_loadout_container
+onload=bankside_runepouch_loadout_init(9, event_com, bankside:runepouch_load_i, bankside:runepouch_select_container, bankside:runepouch_select_list, bankside:runepouch_name_i, bankside:runepouch_name_select_container)
+
+// 15:55
+[runepouch_name_i]
+type=layer
+x=2
+y=3
+width=7
+height=18
+widthmode=minus
+layer=runepouch_loadout_i
+events=2
+op1=*
+
+// 15:56
+[runepouch_loadout_j]
+type=layer
+y=558
+height=60
+widthmode=minus
+xmode=abs_centre
+layer=runepouch_loadout_container
+onload=bankside_runepouch_loadout_init(10, event_com, bankside:runepouch_load_j, bankside:runepouch_select_container, bankside:runepouch_select_list, bankside:runepouch_name_j, bankside:runepouch_name_select_container)
+
+// 15:57
+[runepouch_name_j]
+type=layer
+x=2
+y=3
+width=7
+height=18
+widthmode=minus
+layer=runepouch_loadout_j
+events=2
+op1=*
+
+// 15:58
 [runepouch_select_scrollbar]
 type=layer
 width=16
@@ -463,7 +665,7 @@ xmode=abs_right
 ymode=abs_centre
 layer=runepouch_select_container
 
-// 15:40
+// 15:59
 [bankside_highlight]
 type=layer
 widthmode=minus
@@ -474,7 +676,7 @@ layer=universe
 hide=yes
 noclickthrough=yes
 
-// 15:41
+// 15:60
 [prepot_device_container]
 type=layer
 widthmode=minus
@@ -484,7 +686,7 @@ ymode=abs_centre
 layer=universe
 hide=yes
 
-// 15:42
+// 15:61
 [prepot_device_bankall]
 type=graphic
 x=9
@@ -498,7 +700,7 @@ onmouseover=settrans(event_com, 100)
 onmouseleave=settrans(event_com, 0)
 onop=opsound(event_op, -1)
 
-// 15:43
+// 15:62
 [prepot_device_fill]
 type=graphic
 x=27
@@ -513,8 +715,8 @@ onmouseover=settrans(event_com, 100)
 onmouseleave=settrans(event_com, 0)
 onop=opsound(event_op, -1)
 
-// 15:44
-[com_44]
+// 15:63
+[com_63]
 type=text
 height=22
 widthmode=minus
@@ -527,7 +729,7 @@ textalignv=centre
 textshadow=yes
 colour=0xff981f
 
-// 15:45
+// 15:64
 [prepot_device_dismiss]
 type=graphic
 x=3
@@ -542,7 +744,7 @@ op1=Dismiss
 onmouseover=graphic_swapper(event_com, "v2_stone_close_button,1")
 onmouseleave=graphic_swapper(event_com, "v2_stone_close_button,0")
 
-// 15:46
+// 15:65
 [prepot_device_frame]
 type=layer
 y=22
@@ -553,8 +755,8 @@ xmode=abs_centre
 layer=prepot_device_container
 onload=thinstonebox(event_com)
 
-// 15:47
-[com_47]
+// 15:66
+[com_66]
 type=graphic
 width=2
 height=2
@@ -566,7 +768,7 @@ layer=prepot_device_frame
 graphic=tradebacking_light
 tiling=yes
 
-// 15:48
+// 15:67
 [prepot_device_contents_container]
 type=layer
 width=4
@@ -577,7 +779,7 @@ xmode=abs_centre
 ymode=abs_centre
 layer=prepot_device_frame
 
-// 15:49
+// 15:68
 [prepot_device_contents_bg]
 type=layer
 height=47
@@ -585,7 +787,7 @@ widthmode=minus
 xmode=abs_centre
 layer=prepot_device_contents_container
 
-// 15:50
+// 15:69
 [prepot_device_contents]
 type=layer
 height=47
@@ -593,8 +795,8 @@ widthmode=minus
 xmode=abs_centre
 layer=prepot_device_contents_container
 
-// 15:51
-[com_51]
+// 15:70
+[com_70]
 type=text
 y=166
 height=17
@@ -608,7 +810,7 @@ textalignv=centre
 textshadow=yes
 colour=0xff981f
 
-// 15:52
+// 15:71
 [prepot_device_loadouts_scrollbar]
 type=layer
 y=64
@@ -618,7 +820,7 @@ heightmode=minus
 xmode=abs_right
 layer=prepot_device_contents_container
 
-// 15:53
+// 15:72
 [prepot_device_loadouts]
 type=layer
 y=64
@@ -628,7 +830,7 @@ widthmode=minus
 heightmode=minus
 layer=prepot_device_contents_container
 
-// 15:54
+// 15:73
 [prepot_device_loadout_0]
 type=layer
 y=2
@@ -637,7 +839,7 @@ widthmode=minus
 xmode=abs_centre
 layer=prepot_device_loadouts
 
-// 15:55
+// 15:74
 [prepot_device_loadout_1]
 type=layer
 y=78
@@ -646,7 +848,7 @@ widthmode=minus
 xmode=abs_centre
 layer=prepot_device_loadouts
 
-// 15:56
+// 15:75
 [prepot_device_loadout_2]
 type=layer
 y=154
@@ -655,7 +857,7 @@ widthmode=minus
 xmode=abs_centre
 layer=prepot_device_loadouts
 
-// 15:57
+// 15:76
 [prepot_device_loadout_3]
 type=layer
 y=230
@@ -664,7 +866,7 @@ widthmode=minus
 xmode=abs_centre
 layer=prepot_device_loadouts
 
-// 15:58
+// 15:77
 [prepot_device_loadout_1_load]
 type=layer
 x=4
@@ -675,7 +877,7 @@ layer=prepot_device_loadout_1
 events=2
 op1=*
 
-// 15:59
+// 15:78
 [prepot_device_loadout_1_save]
 type=layer
 x=4
@@ -687,7 +889,7 @@ layer=prepot_device_loadout_1
 events=2
 op1=*
 
-// 15:60
+// 15:79
 [prepot_device_loadout_1_contents]
 type=layer
 x=60
@@ -696,7 +898,7 @@ widthmode=minus
 heightmode=minus
 layer=prepot_device_loadout_1
 
-// 15:61
+// 15:80
 [prepot_device_loadout_2_load]
 type=layer
 x=4
@@ -707,7 +909,7 @@ layer=prepot_device_loadout_2
 events=2
 op1=*
 
-// 15:62
+// 15:81
 [prepot_device_loadout_2_save]
 type=layer
 x=4
@@ -719,7 +921,7 @@ layer=prepot_device_loadout_2
 events=2
 op1=*
 
-// 15:63
+// 15:82
 [prepot_device_loadout_2_contents]
 type=layer
 x=60
@@ -728,7 +930,7 @@ widthmode=minus
 heightmode=minus
 layer=prepot_device_loadout_2
 
-// 15:64
+// 15:83
 [prepot_device_loadout_3_load]
 type=layer
 x=4
@@ -739,7 +941,7 @@ layer=prepot_device_loadout_3
 events=2
 op1=*
 
-// 15:65
+// 15:84
 [prepot_device_loadout_3_save]
 type=layer
 x=4
@@ -751,7 +953,7 @@ layer=prepot_device_loadout_3
 events=2
 op1=*
 
-// 15:66
+// 15:85
 [prepot_device_loadout_3_contents]
 type=layer
 x=60
@@ -760,7 +962,7 @@ widthmode=minus
 heightmode=minus
 layer=prepot_device_loadout_3
 
-// 15:67
+// 15:86
 [prepot_device_loadout_0_load]
 type=layer
 x=4
@@ -771,7 +973,7 @@ layer=prepot_device_loadout_0
 events=2
 op1=*
 
-// 15:68
+// 15:87
 [prepot_device_loadout_0_save]
 type=layer
 x=4
@@ -783,7 +985,7 @@ layer=prepot_device_loadout_0
 events=2
 op1=*
 
-// 15:69
+// 15:88
 [prepot_device_loadout_0_contents]
 type=layer
 x=60
@@ -791,4 +993,100 @@ width=60
 widthmode=minus
 heightmode=minus
 layer=prepot_device_loadout_0
+
+// 15:89
+[runepouch_load_e]
+type=layer
+y=2
+width=30
+height=32
+ymode=abs_bottom
+layer=runepouch_loadout_e
+events=2
+op1=*
+
+// 15:90
+[runepouch_load_f]
+type=layer
+y=2
+width=30
+height=32
+ymode=abs_bottom
+layer=runepouch_loadout_f
+events=2
+op1=*
+
+// 15:91
+[runepouch_load_g]
+type=layer
+y=2
+width=30
+height=32
+ymode=abs_bottom
+layer=runepouch_loadout_g
+events=2
+op1=*
+
+// 15:92
+[runepouch_load_h]
+type=layer
+y=2
+width=30
+height=32
+ymode=abs_bottom
+layer=runepouch_loadout_h
+events=2
+op1=*
+
+// 15:93
+[runepouch_load_i]
+type=layer
+y=2
+width=30
+height=32
+ymode=abs_bottom
+layer=runepouch_loadout_i
+events=2
+op1=*
+
+// 15:94
+[runepouch_load_j]
+type=layer
+y=2
+width=30
+height=32
+ymode=abs_bottom
+layer=runepouch_loadout_j
+events=2
+op1=*
+
+// 15:95
+[com_95]
+type=graphic
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=runepouch_name_select_container
+graphic=tradebacking_dark
+tiling=yes
+onload=if_setnoclickthrough(event_com, true)
+
+// 15:96
+[runepouch_name_select_list]
+type=layer
+width=16
+widthmode=minus
+heightmode=minus
+ymode=abs_centre
+layer=runepouch_name_select_container
+
+// 15:97
+[runepouch_name_select_scrollbar]
+type=layer
+width=16
+heightmode=minus
+xmode=abs_right
+ymode=abs_centre
+layer=runepouch_name_select_container
 

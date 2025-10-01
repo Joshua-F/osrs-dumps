@@ -4,4 +4,5 @@
 ~steelborder($frame, "Combat Achievements - Rewards", 0);
 cc_deleteall($tiers_content_scrollbar);
 ~scrollbar_vertical($tiers_content_scrollbar, $rewards_content, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-~ca_rewards_tiers_init($universe, $tiers_click, $tiers_tabs, $rewards_content, $tiers_content_frame, $tiers_content, $tiers_content_borders, $tiers_content_scrollbar, enum(int, struct, enum_3980, 0));
+~ca_rewards_tiers_init($universe, $tiers_click, $tiers_tabs, $rewards_content, $tiers_content_frame, $tiers_content, $tiers_content_borders, $tiers_content_scrollbar, enum(int, struct, enum_3980, ~minmax(0, calc(enum_getoutputcount(enum_3980) - 1), %ca_last_reward_tier_selected)));
+if_setonvartransmit("ca_rewards_transmit($universe, $tiers_click, $tiers_tabs, $rewards_content, $tiers_content_frame, $tiers_content, $tiers_content_borders, $tiers_content_scrollbar){ca_general_tasks2}", $universe);
