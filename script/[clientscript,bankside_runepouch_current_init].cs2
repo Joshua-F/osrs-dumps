@@ -1,73 +1,73 @@
 // 4876
-[clientscript,bankside_runepouch_current_init](component $runepouch_top, component $runepouch_select_container, component $runepouch_select_list, component $runepouch_select_scrollbar)
+[clientscript,bankside_runepouch_current_init](component $runepouch_top, component $runepouch_select_container, component $runepouch_select_list, component $runepouch_select_scrollbar, component $runepouch_name_select_container, component $runepouch_name_select_list, component $runepouch_name_select_scrollbar)
 cc_deleteall($runepouch_top);
-def_int $int4 = 0;
-cc_create($runepouch_top, ^iftype_rectangle, $int4);
-$int4 = calc($int4 + 1);
+def_int $int7 = 0;
+cc_create($runepouch_top, ^iftype_rectangle, $int7);
+$int7 = calc($int7 + 1);
 cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
 cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
 cc_setcolour(^black);
 cc_setfill(true);
 cc_settrans(220);
-while ($int4 <= 4) {
-    cc_create($runepouch_top, ^iftype_graphic, $int4);
-    $int4 = calc($int4 + 1);
+while ($int7 <= 4) {
+    cc_create($runepouch_top, ^iftype_graphic, $int7);
+    $int7 = calc($int7 + 1);
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
     cc_setgraphicshadow(0x333333);
     cc_setoutline(1);
     cc_setdragdeadzone(5);
     cc_setdragdeadtime(5);
 }
-def_int $int5 = 0;
-while ($int5 < 4) {
-    cc_create($runepouch_top, ^iftype_graphic, $int4);
-    $int4 = calc($int4 + 1);
+def_int $int8 = 0;
+while ($int8 < 4) {
+    cc_create($runepouch_top, ^iftype_graphic, $int7);
+    $int7 = calc($int7 + 1);
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
     cc_setobject_nonum(pattern_lime_dummy, 1);
     cc_settrans(120);
     cc_setgraphicshadow(0x333333);
     cc_setoutline(1);
-    $int5 = calc($int5 + 1);
+    $int8 = calc($int8 + 1);
 }
-cc_create($runepouch_top, ^iftype_model, $int4);
-def_int $int6 = $int4;
-$int4 = calc($int4 + 1);
+cc_create($runepouch_top, ^iftype_model, $int7);
+def_int $int9 = $int7;
+$int7 = calc($int7 + 1);
 cc_setsize(45, 45, ^setsize_abs, ^setsize_abs);
 cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_centre);
-~bankside_runepouch_current_draw($runepouch_top, $int6);
-if_setonvartransmit("bankside_runepouch_current_draw(event_com, $int6){bankcert, bankinsert, gargboss_perm_transmit, rune_pouch_a, rune_pouch_b, rune_pouch_c, rune_pouch_d}", $runepouch_top);
+~bankside_runepouch_current_draw($runepouch_top, $int9);
+if_setonvartransmit("bankside_runepouch_current_draw(event_com, $int9){bankcert, bankinsert, gargboss_perm_transmit, rune_pouch_a, rune_pouch_b, rune_pouch_c, rune_pouch_d}", $runepouch_top);
 if_sethide(true, $runepouch_select_container);
 cc_deleteall($runepouch_select_list);
-$int4 = 0;
-cc_create($runepouch_select_list, ^iftype_graphic, $int4);
-$int4 = calc($int4 + 1);
+$int7 = 0;
+cc_create($runepouch_select_list, ^iftype_graphic, $int7);
+$int7 = calc($int7 + 1);
 cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
 cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
 cc_setgraphic(tradebacking);
 cc_settiling(true);
 cc_settrans(0);
 cc_setontimer(null);
-def_int $int7 = if_getwidth($runepouch_select_list);
-def_int $int8 = calc(($int7 - 4 * 36) / 3);
-def_int $int9 = calc(($int7 - (4 * 36 + 3 * $int8)) / 2);
-def_int $int10 = -1;
-def_int $int11 = scale(7, 8, $int8);
-def_int $int12 = 0;
+def_int $int10 = if_getwidth($runepouch_select_list);
+def_int $int11 = calc(($int10 - 4 * 36) / 3);
+def_int $int12 = calc(($int10 - (4 * 36 + 3 * $int11)) / 2);
+def_int $int13 = -1;
+def_int $int14 = scale(7, 8, $int11);
+def_int $int15 = 0;
 def_obj $obj = null;
 def_boolean $boolean = ~on_mobile;
-def_int $int15 = 1;
-while ($int15 <= 23) {
-    $obj = enum(int, namedobj, enum_982, $int15);
+def_int $int18 = 1;
+while ($int18 <= 23) {
+    $obj = enum(int, namedobj, enum_982, $int18);
     if ($obj ! null) {
-        cc_create($runepouch_select_list, ^iftype_graphic, $int4);
-        $int4 = calc($int4 + 1);
+        cc_create($runepouch_select_list, ^iftype_graphic, $int7);
+        $int7 = calc($int7 + 1);
         cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
-        $int10 = calc($int12 / 4 * (32 + $int11));
-        cc_setposition(calc($int9 + $int12 % 4 * (36 + $int8)), $int10, ^setpos_abs_left, ^setpos_abs_top);
+        $int13 = calc($int15 / 4 * (32 + $int14));
+        cc_setposition(calc($int12 + $int15 % 4 * (36 + $int11)), $int13, ^setpos_abs_left, ^setpos_abs_top);
         cc_setgraphicshadow(0x333333);
         cc_setoutline(1);
         cc_setobject_nonum($obj, 1);
-        cc_settrans(0);
+        cc_settrans(110);
         if ($boolean = false) {
             cc_setonmouserepeat("script4878(true, event_com, event_comsubid, 80, 0)");
         }
@@ -76,15 +76,15 @@ while ($int15 <= 23) {
         cc_setop(1, "Select");
         cc_setopbase("<col=ff9040><oc_name($obj)></col>");
         cc_setonop("bankside_runepouch_loadout_selectrune(event_com, event_comsubid, $obj, $runepouch_select_container)");
-        $int12 = calc($int12 + 1);
+        $int15 = calc($int15 + 1);
     }
-    $int15 = calc($int15 + 1);
+    $int18 = calc($int18 + 1);
 }
-cc_create($runepouch_select_list, ^iftype_graphic, $int4);
-$int4 = calc($int4 + 1);
+cc_create($runepouch_select_list, ^iftype_graphic, $int7);
+$int7 = calc($int7 + 1);
 cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
-$int10 = calc($int12 / 4 * (32 + $int11));
-cc_setposition(calc($int9 + $int12 % 4 * (36 + $int8)), $int10, ^setpos_abs_left, ^setpos_abs_top);
+$int13 = calc($int15 / 4 * (32 + $int14));
+cc_setposition(calc($int12 + $int15 % 4 * (36 + $int11)), $int13, ^setpos_abs_left, ^setpos_abs_top);
 cc_setgraphicshadow(0x333333);
 cc_setoutline(1);
 cc_setobject_nonum(pattern_lime_dummy, 1);
@@ -97,11 +97,60 @@ cc_setontimer(null);
 cc_setop(1, "Select");
 cc_setopbase("<col=ff9040>Empty slot</col>");
 cc_setonop("bankside_runepouch_loadout_selectrune(event_com, event_comsubid, pattern_lime_dummy, $runepouch_select_container)");
-$int10 = calc($int10 + 32);
+$int13 = calc($int13 + 32);
 if_setscrollpos(0, 0, $runepouch_select_list);
-if ($int10 > if_getheight($runepouch_select_list)) {
-    if_setscrollsize(0, $int10, $runepouch_select_list);
+if ($int13 > if_getheight($runepouch_select_list)) {
+    if_setscrollsize(0, $int13, $runepouch_select_list);
 } else {
     if_setscrollsize(0, 0, $runepouch_select_list);
 }
 ~scrollbar_vertical($runepouch_select_scrollbar, $runepouch_select_list, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+if_sethide(true, $runepouch_name_select_container);
+cc_deleteall($runepouch_name_select_list);
+def_int $int19 = 0;
+def_int $int20 = enum_getoutputcount(enum_5733);
+$int7 = 0;
+$int13 = 0;
+while ($int19 < $int20) {
+    cc_create($runepouch_name_select_list, ^iftype_rectangle, $int7);
+    cc_setposition(0, $int13, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(0, 20, ^setsize_minus, ^setsize_abs);
+    cc_setcolour(^black);
+    cc_setfill(true);
+    if (~on_mobile = false) {
+        cc_setonmouseover("cc_colour_swapper($runepouch_name_select_list, $int7, 16777215)");
+    }
+    cc_setonmouseleave("cc_colour_swapper($runepouch_name_select_list, $int7, 0)");
+    if (calc($int19 % 2) = 0) {
+        cc_settrans(200);
+    } else {
+        cc_settrans(220);
+    }
+    $int13 = calc($int13 + 20);
+    $int7 = calc($int7 + 1);
+    $int19 = calc($int19 + 1);
+}
+$int19 = 0;
+$int13 = 0;
+while ($int19 < $int20) {
+    cc_create($runepouch_name_select_list, ^iftype_text, $int7);
+    cc_setposition(0, $int13, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(0, 20, ^setsize_minus, ^setsize_abs);
+    cc_setcolour(0xff981f);
+    cc_settextfont(p12_full);
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    cc_settextshadow(true);
+    cc_settext(enum(int, string, enum_5733, $int19));
+    cc_setop(1, "Select");
+    cc_setonop("script8090($runepouch_name_select_container, $runepouch_name_select_list, $int7)");
+    $int13 = calc($int13 + 20);
+    $int7 = calc($int7 + 1);
+    $int19 = calc($int19 + 1);
+}
+if_setscrollpos(0, 0, $runepouch_name_select_list);
+if ($int13 > if_getheight($runepouch_name_select_list)) {
+    if_setscrollsize(0, $int13, $runepouch_name_select_list);
+} else {
+    if_setscrollsize(0, 0, $runepouch_name_select_list);
+}
+~scrollbar_vertical($runepouch_name_select_scrollbar, $runepouch_name_select_list, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
