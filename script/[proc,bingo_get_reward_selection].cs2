@@ -1,0 +1,17 @@
+// 8277
+[proc,bingo_get_reward_selection](int $int0, int $int1)(dbrow, int)
+def_dbrow $dbrow2 = empty_reward_selection;
+def_int $int3 = 0;
+if ($int0 < 0 | $int1 < 0) {
+    return($dbrow2, $int3);
+}
+def_dbrow $dbrow4 = ~bingo_active_event;
+if ($dbrow4 = null) {
+    return($dbrow2, $int3);
+}
+def_dbrow $dbrow5 = db_getfield($dbrow4, bingo_events:grid, $int0);
+if ($dbrow5 ! null & $int1 < db_getfieldcount($dbrow5, bingo_grids:reward_selection)) {
+    $dbrow2 = db_getfield($dbrow5, bingo_grids:reward_selection, $int1);
+    $int3 = db_getfieldcount($dbrow2, reward_selection:reward);
+}
+return($dbrow2, $int3);

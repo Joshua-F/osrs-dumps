@@ -1,0 +1,56 @@
+// 8246
+[proc,script8246](dbrow $dbrow)(npcarray, stringarray)
+def_npcarray $npcarray0 = array_create(npc, 0, -1);
+def_stringarray $stringarray1 = array_create(string, 0, -1);
+def_int $int1 = 0;
+def_int $int2 = 0;
+def_string $string = "";
+$int1 = db_getfieldcount($dbrow, action:boss_kill);
+$int2 = 0;
+while ($int2 < $int1) {
+    array_push($npcarray0, db_getfield($dbrow, action:boss_kill, $int2));
+    $int2 = calc($int2 + 1);
+}
+$int1 = db_getfieldcount($dbrow, action:npc_kill);
+$int2 = 0;
+while ($int2 < $int1) {
+    array_push($npcarray0, db_getfield($dbrow, action:npc_kill, $int2));
+    $int2 = calc($int2 + 1);
+}
+$int1 = db_getfieldcount($dbrow, action:npc_kill_slayer_category);
+$int2 = 0;
+while ($int2 < $int1) {
+    $string = "";
+    if (string_length($string) > 0) {
+        array_push($stringarray1, $string);
+    }
+    $int2 = calc($int2 + 1);
+}
+$int1 = db_getfieldcount($dbrow, action:boss_kill_category);
+$int2 = 0;
+while ($int2 < $int1) {
+    $string = enum(category, string, enum_5735, db_getfield($dbrow, action:boss_kill_category, $int2));
+    if (string_length($string) > 0) {
+        array_push($stringarray1, $string);
+    }
+    $int2 = calc($int2 + 1);
+}
+$int1 = db_getfieldcount($dbrow, action:npc_kill_category);
+$int2 = 0;
+while ($int2 < $int1) {
+    $string = enum(category, string, enum_5736, db_getfield($dbrow, action:npc_kill_category, $int2));
+    if (string_length($string) > 0) {
+        array_push($stringarray1, $string);
+    }
+    $int2 = calc($int2 + 1);
+}
+$int1 = db_getfieldcount($dbrow, action:child_action);
+def_npcarray $npcarray3 = null;
+def_stringarray $stringarray4 = null;
+while ($int2 < $int1) {
+    $npcarray3, $stringarray4 = ~script8246(db_getfield($dbrow, action:child_action, $int2));
+    array_pushall($npcarray0, $npcarray3);
+    array_pushall($stringarray1, $stringarray4);
+    $int2 = calc($int2 + 1);
+}
+return($npcarray0, $stringarray1);
