@@ -1,0 +1,15 @@
+// 8134
+[proc,bingo_redraw_tile_details](int $int0, int $int1, component $component2, component $component3, component $component4)
+if_setonvartransmit("bingo_redraw_tile_details($int0, $int1, $component2, $component3, $component4){bingo_rewards_perm_0, bingo_rewards_perm_1, bingo_rewards_perm_2, bingo_rewards_perm_3, bingo_rewards_perm_4, bingo_rewards_perm_5, bingo_challenge_parent_0, bingo_challenge_parent_1, bingo_challenge_parent_2, bingo_challenge_parent_3, bingo_challenge_parent_4, bingo_challenge_parent_5, bingo_challenge_parent_6, bingo_challenge_parent_7, bingo_challenge_parent_8, bingo_challenge_parent_9, bingo_challenge_parent_10, bingo_challenge_parent_11, bingo_challenge_parent_12, bingo_challenge_parent_13, bingo_challenge_complete_var_0, bingo_challenge_complete_var_1}", $component3);
+if_setonresize("bingo_redraw_tile_details($int0, $int1, $component2, $component3, $component4)", $component3);
+if (%bingo_info_maximised = true) {
+    cc_deleteall($component3);
+    ~bingo_redraw_info($component2, ~bingo_active_event, $component3, $component4);
+    return;
+}
+def_int $int5 = ~script8130($component3, "");
+def_int $int6 = calc((if_getwidth($component3) - 314) / 2);
+def_int $int7 = calc((if_getheight($component3) - 260 - 30) / 2);
+$int5 = ~script5288($component3, $int5, $int6, $int7, 314, 260, struct_3712, 7496785);
+$int5 = ~bingo_redraw_tile_details_content($component3, $int5, $int6, $int7, $int0, $int1, $component2, $component3, $component4);
+$int5 = ~script8137($component3, $int5, $int0, $int1, $component4, $component2);
