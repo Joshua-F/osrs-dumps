@@ -1,42 +1,48 @@
 // 3809
-[proc,script3809](int $int0, stat $stat1, int $int2)(boolean)
-if (map_members = false & enum(stat, boolean, enum_1497, $stat1) = true) {
-    if ($int2 = 1) {
-        mes("You need to be on a members' world to gain experience in <enum(stat, string, enum_680, $stat1)>.");
+[proc,script3809](int $int0, int $int1, stat $stat2, int $int3)(boolean)
+if (enum(stat, int, enum_81, $stat2) = -1 | testbit($int1, enum(stat, int, enum_81, $stat2)) = ^false) {
+    if ($int3 = 1) {
+        mes("This skill is not available.");
     }
     return(false);
 }
-if (stat_base($stat1) < $int0) {
-    if ($int2 = 1) {
-        mes("You need an <enum(stat, string, enum_680, $stat1)> level of <tostring($int0)> to choose that option.");
+if (map_members = false & enum(stat, boolean, enum_1497, $stat2) = true) {
+    if ($int3 = 1) {
+        mes("You need to be on a members' world to gain experience in <enum(stat, string, enum_680, $stat2)>.");
     }
     return(false);
 }
-switch_stat ($stat1) {
+if (stat_base($stat2) < $int0) {
+    if ($int3 = 1) {
+        mes("You need an <enum(stat, string, enum_680, $stat2)> level of <tostring($int0)> to choose that option.");
+    }
+    return(false);
+}
+switch_stat ($stat2) {
     case herblore :
         if (%druidquest < 4) {
-            if ($int2 = 1) {
+            if ($int3 = 1) {
                 mes("You need to complete the Druidic Ritual quest to choose that option.");
             }
             return(false);
         }
     case runecraft :
         if (%runemysteries < 6) {
-            if ($int2 = 1) {
+            if ($int3 = 1) {
                 mes("You need to complete the Rune Mysteries quest to choose that option.");
             }
             return(false);
         }
     case construction :
         if (%poh_house_location = 0) {
-            if ($int2 = 1) {
+            if ($int3 = 1) {
                 mes("You must own a house to choose that option.");
             }
             return(false);
         }
 }
-if (%league_type = 3 & ~league_world = true & ~script5830($stat1) = 0) {
-    if ($int2 = 1) {
+if (%league_type = 3 & ~league_world = true & ~script5830($stat2) = 0) {
+    if ($int3 = 1) {
         mes("You haven't unlocked this skill yet.");
     }
     return(false);

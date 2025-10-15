@@ -1,0 +1,51 @@
+// 8219
+[proc,script8219](int $int0)(int, int, int, int)
+def_int $int1 = 0;
+def_int $int2 = 0;
+def_int $setposh3 = ^setpos_abs_left;
+def_int $setposv4 = ^setpos_abs_top;
+def_enum $enum5 = ~toplevel_getcomponents;
+if ($enum5 ! null) {
+    if ($enum5 = enum_1745) {
+        if (%osm_minimap_toggle = 1) {
+            if (~show_storebutton = true) {
+                $int1, $int2, $setposh3, $setposv4 = 79, 144, ^setpos_abs_right, ^setpos_abs_top;
+                if ($int0 = 1) {
+                    if_setposition($int1, $int2, $setposh3, $setposv4, orbs_osm_nomap:orb_contentrecom);
+                }
+            } else {
+                $int1, $int2, $setposh3, $setposv4 = 44, 144, ^setpos_abs_right, ^setpos_abs_top;
+                if ($int0 = 1) {
+                    if_setposition($int1, $int2, $setposh3, $setposv4, orbs_osm_nomap:orb_contentrecom);
+                }
+            }
+        } else {
+            $int1, $int2, $setposh3, $setposv4 = 101, 156, ^setpos_abs_left, ^setpos_abs_top;
+            if ($int0 = 1) {
+                if_setposition($int1, $int2, $setposh3, $setposv4, orbs_osm:orb_contentrecom);
+            }
+        }
+    } else if ($enum5 = enum_1129) {
+        $int1, $int2, $setposh3, $setposv4 = 0, 50, ^setpos_abs_right, ^setpos_abs_top;
+        if ($int0 = 1) {
+            if_setposition($int1, $int2, $setposh3, $setposv4, orbs:orb_contentrecom);
+        }
+    } else if (~on_mobile = false & %minimap_toggle = 1) {
+        $int1, $int2, $setposh3, $setposv4 = -3, 103, ^setpos_abs_right, ^setpos_abs_top;
+        if ($int0 = 1) {
+            if_setposition($int1, $int2, $setposh3, $setposv4, orbs_nomap:orb_contentrecom);
+        }
+        $int1, $int2 = calc($int1 + 3), calc($int2 + 3);
+    } else if (~show_storebutton = false) {
+        $int1, $int2, $setposh3, $setposv4 = 85, 143, ^setpos_abs_left, ^setpos_abs_top;
+        if ($int0 = 1) {
+            if_setposition($int1, $int2, $setposh3, $setposv4, orbs:orb_contentrecom);
+        }
+    } else {
+        $int1, $int2, $setposh3, $setposv4 = 55, 162, ^setpos_abs_left, ^setpos_abs_top;
+        if ($int0 = 1) {
+            if_setposition($int1, $int2, $setposh3, $setposv4, orbs:orb_contentrecom);
+        }
+    }
+}
+return($int1, $int2, $setposh3, $setposv4);

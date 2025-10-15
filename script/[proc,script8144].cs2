@@ -1,0 +1,27 @@
+// 8144
+[proc,script8144](int $int0, int $int1, int $int2, int $int3)(int, int, int, int, int, int)
+def_int $int4 = 2;
+def_int $int5 = $int2;
+def_int $int6 = $int3;
+def_int $int7 = calc(0 - $int5);
+def_int $int8 = calc(0 - $int6);
+def_int $setposh9 = ^setpos_abs_left;
+def_int $setposv10 = ^setpos_abs_top;
+if ($int1 < 0 | ~script8262($int0) <= $int1) {
+    return($int7, $int8, $setposh9, $setposv10, $int5, $int6);
+}
+def_int $int11 = calc($int1 / $int0);
+def_int $int12 = 0;
+if ($int11 = 0) {
+    $int7, $int8, $setposh9, $setposv10 = $int4, calc($int1 % $int0 * ($int3 + $int4) + $int4), ^setpos_abs_left, ^setpos_abs_top;
+} else if ($int11 = 1) {
+    $int7, $int8, $setposh9, $setposv10 = calc(($int0 - 1 - $int1 % $int0) * ($int2 + $int4)), $int4, ^setpos_abs_right, ^setpos_abs_bottom;
+} else {
+    $int12 = calc($int1 % $int0);
+    if ($int12 = 0) {
+        $int7, $int8, $setposh9, $setposv10 = $int4, $int4, ^setpos_abs_left, ^setpos_abs_bottom;
+    } else if ($int12 = 1) {
+        $int7, $int8, $setposh9, $setposv10 = $int4, $int4, ^setpos_abs_right, ^setpos_abs_bottom;
+    }
+}
+return($int7, $int8, $setposh9, $setposv10, $int5, $int6);

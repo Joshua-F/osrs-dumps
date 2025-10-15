@@ -1,0 +1,13 @@
+// 8187
+[clientscript,script8187](component $component0, int $int1)
+def_int $int2 = 0;
+def_int $int3 = 400;
+if (cc_find($component0, $int1) = ^true & .cc_find($component0, $int1) = ^true & .cc_find_parent = ^true) {
+    if (clientclock <= calc(.cc_param(param_2350) + 1)) {
+        cc_settrans(0);
+    } else {
+        $int2 = calc($int3 * (clientclock % 16384) % 16384);
+        $int2 = sin_deg($int2);
+        cc_settrans(calc(255 - scale(calc($int2 + 16384), calc(2 * 16384), 255)));
+    }
+}

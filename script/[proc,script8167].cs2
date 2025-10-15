@@ -1,0 +1,57 @@
+// 8167
+[proc,script8167](stringarray $stringarray0, int $int0, int $int1)(int)
+def_enum $enum2 = null;
+def_int $int3 = 0;
+def_string $string1 = "<col=ffffff>";
+def_string $string2 = "<col=9f9f9f>";
+def_string $string3 = "<substring($string2, 0, 1)>str<substring($string2, 4, string_length($string2))>";
+def_string $string4 = "";
+switch_int ($int0) {
+    case 3 :
+        $enum2 = enum_5691;
+        $int3 = %league_combat_mastery_melee_progress;
+        $string4 = "Melee Mastery";
+    case 4 :
+        $enum2 = enum_5692;
+        $int3 = %league_combat_mastery_ranged_progress;
+        $string4 = "Ranged Mastery";
+    case 5 :
+        $enum2 = enum_5693;
+        $int3 = %league_combat_mastery_magic_progress;
+        $string4 = "Magic Mastery";
+    case -1 :
+        $enum2 = enum_5694;
+        $int3 = max(max(%league_combat_mastery_melee_progress, %league_combat_mastery_ranged_progress), %league_combat_mastery_magic_progress);
+        $string4 = "Passive Buff";
+}
+def_int $int4 = enum_getoutputcount($enum2);
+$int3 = min($int3, $int4);
+def_int $int5 = min(calc($int3 + $int1), $int4);
+$int1 = calc($int5 - $int3);
+array_push($stringarray0, "");
+if ($int1 = 0) {
+    array_push($stringarray0, "<$string4>: <tostring($int3)>/<tostring($int4)>");
+} else {
+    array_push($stringarray0, "<$string4>: <$string1>+<tostring($int1)>");
+}
+def_struct $struct6 = null;
+def_int $int7 = 0;
+def_string $string5 = "";
+def_string $string6 = "";
+while ($int7 < $int4) {
+    $struct6 = enum(int, struct, $enum2, calc($int7 + 1));
+    if ($struct6 ! null) {
+        if ($int7 < $int3) {
+            $string5 = "";
+        } else if ($int7 < calc($int3 + $int1)) {
+            $string5 = "<$string1>(NEW) ";
+        } else {
+            $string5 = "<$string2><$string3>";
+        }
+        $string6 = removetags(~script3302(struct_param($struct6, param_2028), "<br>", " "));
+        array_push($stringarray0, "");
+        array_push($stringarray0, "<$string5><$string6>");
+    }
+    $int7 = calc($int7 + 1);
+}
+return($int5);
