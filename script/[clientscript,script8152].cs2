@@ -1,0 +1,22 @@
+// 8152
+[clientscript,script8152](component $component0, dbrow $dbrow, string $string)
+def_component $component2 = null;
+if (if_find($component0) = true & cc_find_parent = true) {
+    $component2 = cc_param(param_2321);
+}
+if ($component2 = null) {
+    return;
+}
+def_int $int = 0;
+if (if_find($component2) = true) {
+    $int = cc_query(1);
+    $int = if_query_refine(param_2320, $dbrow);
+    if ($int > 0 & if_query_next = true) {
+        if (string_length($string) > 0) {
+            %bingo_lookup_phrase = $string;
+        } else {
+            %bingo_lookup_phrase = "";
+        }
+        cc_triggerop(1);
+    }
+}
