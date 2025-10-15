@@ -1,0 +1,7 @@
+// 8293
+[proc,script8293](int $int)(obj, int, int)
+def_dbrow $dbrow = jagex_bingo_event1;
+if ($dbrow = null | db_getfieldcount($dbrow, bingo_events:event_maingame_reward) <= 0 | $int >= db_getfieldcount($dbrow, bingo_events:event_maingame_reward)) {
+    return(null, -1, -1);
+}
+return(db_getfield($dbrow, bingo_events:event_maingame_reward, $int));

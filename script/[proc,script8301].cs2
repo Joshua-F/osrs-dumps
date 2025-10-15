@@ -1,0 +1,11 @@
+// 8301
+[proc,script8301](dbrowarray $dbrowarray)
+def_int $int = array_size($dbrowarray);
+def_dbrow $dbrow = null;
+while ($int > 0) {
+    $int = calc($int - 1);
+    $dbrow = $dbrowarray($int);
+    if ($dbrow ! null & ~quest_is_complete($dbrow) = true) {
+        array_delete($dbrowarray, $int);
+    }
+}
