@@ -1,0 +1,76 @@
+// 8117
+[proc,script8117](component $component0, int $int1, int $int2, int $int3, int $int4, boolean $boolean5, component $component6, component $component7, component $component8, int $int9, int $int10, int $setposh, int $setposv, int $int13, int $int14, int $setsize15, int $setsize16, component $component17)(int, boolean)
+def_dbrow $dbrow = null;
+def_int $int19 = 0;
+$dbrow, $int19 = ~bingo_get_reward_selection($int2, $int3);
+$int19 = min($int19, 3);
+def_int $int20 = ~script8273($int2, $int3);
+if ($int19 <= 0 | $int20 < 0) {
+    return($int1, false);
+}
+def_graphicarray $graphicarray = null;
+def_objarray $objarray = null;
+def_stringarray $stringarray = null;
+$graphicarray, $objarray, $stringarray = ~script8120($int2, $int3);
+def_string $string = string_join($stringarray, "<br>or<br>");
+def_struct $struct = struct_6299;
+def_boolean $boolean22 = false;
+if ($int20 > 0) {
+    $struct = struct_6283;
+} else if (~script8272($int2, $int3) = true) {
+    $struct = struct_6279;
+    $boolean22 = true;
+}
+$int1 = ~cc_add_button($component0, $int1, $int9, $int10, $setposh, $setposv, $int13, $int14, $setsize15, $setsize16, $struct, "");
+def_int $int23 = calc(min(cc_getwidth, cc_getheight) - 8);
+def_int $int24 = -1;
+if ($int20 > 0) {
+    $string = "You already claimed this reward.<br><br><$stringarray(calc($int20 - 1))>";
+    $int24 = calc($int20 - 1);
+    cc_setparam(param_2320, db_getfield($dbrow, reward_selection:reward, $int24));
+    cc_setonop("bingo_redraw_reward_selection($int2, $int3, $int4, $boolean5, 0, $int24, 1, $component6, $component7, $component8)");
+    cc_setop(1, "Review");
+} else if ($boolean22 = true) {
+    if ($int19 > 1) {
+        $string = "Claim a reward!<br><br><$string>";
+    } else {
+        $string = "Claim the reward!<br><br><$string>";
+    }
+    ~cc_set_button_highlight_anim(1);
+    ~cc_set_button_highlight(4320000);
+    cc_setonop("bingo_redraw_reward_selection($int2, $int3, $int4, $boolean5, 1, -1, 1, $component6, $component7, $component8)");
+    cc_setop(1, "Select");
+} else {
+    if ($int4 = -1) {
+        $string = "Complete more tiles to unlock this!<br><br><$string>";
+    } else {
+        $string = "Complete the tile to unlock this!<br><br><$string>";
+    }
+    cc_setonop("bingo_redraw_reward_selection($int2, $int3, $int4, $boolean5, 0, -1, 1, $component6, $component7, $component8)");
+    cc_setop(1, "View");
+}
+cc_setonmouserepeat("bingo_reward_mouserepeat($int2, $int3, $int4, $component0, cc_getid, $component8, $string, 25, 512, $component17)");
+def_int $int25 = array_size($graphicarray);
+def_int $int26 = 0;
+def_int $int27 = 1;
+def_int $int28 = 1;
+while ($int25 > 0) {
+    $int25 = calc($int25 - 1);
+    $int26 = 0;
+    if ($int27 = 1) {
+        cc_create_child(^iftype_graphic, $int1);
+        $int27 = 0;
+    } else {
+        cc_create_sibling(^iftype_graphic, $int1);
+    }
+    if ($graphicarray($int25) ! null) {
+        cc_setgraphic($graphicarray($int25));
+    } else if ($objarray($int25) ! null) {
+        $int26 = 1;
+        cc_setobject($objarray($int25), -1);
+        cc_setgraphicshadow(0x262626);
+    }
+    ~script8119($int28, $int25, $int23, $int26);
+    $int1 = calc($int1 + 1);
+}
+return($int1, $boolean22);

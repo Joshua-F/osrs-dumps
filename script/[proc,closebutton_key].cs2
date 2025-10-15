@@ -1,0 +1,15 @@
+// 8183
+[proc,closebutton_key](int $key)(boolean)
+if (~keypress_permit(null, null) = false) {
+    return(true);
+}
+def_enum $enum = ~toplevel_getcomponents;
+if ($enum = null) {
+    return(false);
+}
+def_component $component = enum(component, component, $enum, toplevel_osrs_stretch:mainmodal);
+if ($component ! null & $key = ^key_escape & %keybinding_esc_to_close = 1 & if_hassub($component) = true) {
+    if_close;
+    return(true);
+}
+return(false);

@@ -1,0 +1,15 @@
+// 8285
+[proc,script8285](struct $struct, enum $enum)(int, int)
+if (~feature_flag(0) = false) {
+    return(-1, -1);
+}
+if ($enum = null) {
+    return(-1, -1);
+}
+def_int $int2 = enum(struct, int, $enum, $struct);
+if ($int2 = -1) {
+    return(-1, -1);
+}
+def_int $int3 = calc($int2 / 32);
+def_int $int4 = calc($int2 % 32);
+return($int3, $int4);
