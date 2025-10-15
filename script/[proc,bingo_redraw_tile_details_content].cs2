@@ -1,0 +1,143 @@
+// 8135
+[proc,bingo_redraw_tile_details_content](component $component0, int $int1, int $int2, int $int3, int $int4, int $int5, component $component6, component $component7, component $component8)(int)
+def_int $int9 = ~script8258($int4, $int5);
+def_dbrow $dbrow10 = null;
+def_int $int11 = 0;
+def_int $int12 = 0;
+def_int $int13 = 0;
+def_graphic $graphic14 = null;
+def_obj $obj15 = null;
+def_string $string0 = "";
+$dbrow10, $int11, $int12, $int13, $string0, $graphic14, $obj15 = ~script8145($int9);
+def_int $int16 = ~script8278($dbrow10, $int9);
+def_boolean $boolean17 = ~script8281($int9);
+def_int $int18 = ~script8267($int4, $int5);
+def_int $int19 = 6;
+def_int $int20 = 100;
+def_int $int21 = calc(314 - 3 * $int19 - $int20);
+def_int $int22 = 23;
+def_int $int23 = calc($int3 + 260 - 6);
+$int2 = calc($int2 + $int19);
+$int3 = calc($int3 + $int19);
+cc_create($component0, ^iftype_graphic, $int1);
+cc_setposition($int2, $int3, ^setpos_abs_left, ^setpos_abs_top);
+~script8115($int20, $graphic14, $obj15, $int11);
+def_int $int24 = calc(cc_gety + cc_getheight + $int19);
+$int1 = calc($int1 + 1);
+cc_create($component0, ^iftype_text, $int1);
+cc_setsize($int20, $int22, ^setsize_abs, ^setsize_abs);
+cc_setposition($int2, $int24, ^setpos_abs_left, ^setpos_abs_top);
+cc_settextfont(p12_full);
+cc_settextshadow(true);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+if ($boolean17 = true) {
+    cc_settext("<tostring($int11)> / <tostring($int11)>");
+    cc_setcolour(0x0dc10d);
+} else {
+    if ($int16 >= $int11) {
+        cc_settext("<tostring(calc($int11 - 1))> / <tostring($int11)>");
+    } else {
+        cc_settext("<tostring($int16)> / <tostring($int11)>");
+    }
+    cc_setcolour(^white);
+}
+$int24 = calc($int24 + $int22 + $int19);
+$int1 = calc($int1 + 1);
+def_int $rgb25 = null;
+switch_int ($int13) {
+    case 1 :
+        $rgb25 = 0x8db679;
+    case 2 :
+        $rgb25 = 0xeaab5e;
+    case 3 :
+        $rgb25 = 0xe45951;
+    case default :
+        $rgb25 = 0xff981f;
+}
+cc_create($component0, ^iftype_text, $int1);
+cc_setsize($int21, calc(12 * paraheight($string0, $int21, b12_full) + 5), ^setsize_abs, ^setsize_abs);
+cc_setposition($int2, $int3, ^setpos_abs_right, ^setpos_abs_top);
+cc_settextfont(b12_full);
+cc_settextshadow(true);
+cc_setcolour($rgb25);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+cc_settext($string0);
+def_int $int26 = calc(cc_gety + cc_getheight + $int22);
+$int1 = calc($int1 + 1);
+def_int $int27 = -1;
+def_int $int28 = -1;
+$int1, $int28, $int27 = ~script8199($component0, $int1, $int2, $int26, ^setpos_abs_right, ^setpos_abs_top, $int21, calc($int23 - $int26), ^setsize_abs, ^setsize_abs);
+def_int $int29 = 0;
+cc_create_child(^iftype_text, $int1);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_abs);
+$int1 = calc($int1 + 1);
+def_int $int30 = db_getfieldcount($dbrow10, action:action_display_desc);
+def_int $int31 = 0;
+while ($int31 < $int30) {
+    $int1, $int29 = ~script8139($component0, $int1, $int29, $int22, db_getfield($dbrow10, action:action_display_desc, $int31));
+    $int31 = calc($int31 + 1);
+}
+def_boolean $boolean32 = db_getfield($dbrow10, action:action_display_show_derived_desc, 0);
+def_objarray $objarray1 = null;
+def_stringarray $stringarray2 = null;
+def_int $int33 = 0;
+def_npcarray $npcarray3 = null;
+def_stringarray $stringarray4 = null;
+def_int $int34 = 0;
+def_int $int35 = 0;
+if ($boolean32 = true) {
+    $objarray1 = ~script8244($dbrow10);
+    $int33 = array_size($objarray1);
+    $int31 = 0;
+    if ($int33 > 0) {
+        $stringarray2 = ~script8245($objarray1);
+        $int33 = array_size($stringarray2);
+        $int1, $int29 = ~script8139($component0, $int1, $int29, $int22, "Relevant Items (<tostring($int33)>)", "");
+        while ($int31 < $int33) {
+            $int1, $int29 = ~script8139($component0, $int1, $int29, $int22, "", ~script8136($stringarray2($int31)));
+            $int31 = calc($int31 + 1);
+        }
+    }
+    $npcarray3, $stringarray4 = ~script8246($dbrow10);
+    $int34 = array_size($npcarray3);
+    $int35 = array_size($stringarray4);
+    if ($int34 > 0 | $int35 > 0) {
+        $int1, $int29 = ~script8139($component0, $int1, $int29, $int22, "Relevant NPCs", "");
+        $int31 = 0;
+        while ($int31 < $int34) {
+            $int1, $int29 = ~script8139($component0, $int1, $int29, $int22, "", nc_name($npcarray3($int31)));
+            $int31 = calc($int31 + 1);
+        }
+        $int31 = 0;
+        while ($int31 < $int35) {
+            $int1, $int29 = ~script8139($component0, $int1, $int29, $int22, "", $stringarray4($int31));
+            $int31 = calc($int31 + 1);
+        }
+    }
+}
+~script8138($component0, $int27, $int28, calc($int23 - $int26), $int29, -1);
+cc_create($component0, ^iftype_text, $int1);
+cc_setsize($int20, $int22, ^setsize_abs, ^setsize_abs);
+cc_setposition($int2, $int24, ^setpos_abs_left, ^setpos_abs_top);
+cc_settextfont(p12_full);
+cc_settextshadow(true);
+cc_setcolour(0xff981f);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+cc_settext("Rewards");
+$int24 = calc($int24 + cc_getheight);
+$int1 = calc($int1 + 1);
+cc_create($component0, ^iftype_text, $int1);
+cc_setsize($int20, $int22, ^setsize_abs, ^setsize_abs);
+cc_setposition($int2, $int24, ^setpos_abs_left, ^setpos_abs_top);
+cc_settextfont(p12_full);
+cc_settextshadow(true);
+cc_setcolour(^white);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+cc_settext("<tostring($int12)> Points");
+$int24 = calc($int24 + cc_getheight);
+$int1 = calc($int1 + 1);
+def_boolean $boolean36 = false;
+if ($int18 >= 0) {
+    $int1, $boolean36 = ~script8117($component0, $int1, $int4, $int18, $int5, ~script7983(%bingo_info_maximised), $component6, $component7, $component8, calc($int2 + scale(20, 100, $int20)), $int24, ^setpos_abs_left, ^setpos_abs_top, scale(60, 100, $int20), max(30, scale(60, 100, $int20)), ^setsize_abs, ^setsize_abs, null);
+}
+return($int1);

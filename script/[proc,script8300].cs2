@@ -1,0 +1,37 @@
+// 8300
+[proc,script8300](dbrowarray $dbrowarray0)
+def_int $int0 = 0;
+def_int $int1 = 0;
+def_int $int2 = 0;
+def_dbrow $dbrow3 = null;
+def_int $int4 = 0;
+def_int $int5 = 0;
+def_dbrow $dbrow6 = null;
+$int2 = array_size($dbrowarray0);
+$int0 = 0;
+while ($int0 < $int2) {
+    $dbrow3 = $dbrowarray0($int0);
+    $int4 = db_getfieldcount($dbrow3, quest:requirement_quests);
+    $int5 = 0;
+    while ($int5 < $int4) {
+        $dbrow6 = db_getfield($dbrow3, quest:requirement_quests, $int5);
+        if ($dbrow6 ! null & array_indexof($dbrowarray0, $dbrow6, 0, -1) = -1) {
+            array_push($dbrowarray0, $dbrow6);
+        }
+        $int5 = calc($int5 + 1);
+    }
+    switch_dbrow ($dbrow3) {
+        case quest_clientofkourend :
+            if (array_indexof($dbrowarray0, quest_xmarksthespot, 0, -1) = -1) {
+                array_push($dbrowarray0, quest_xmarksthespot);
+            }
+        case quest_monkeymadness2 :
+            if (array_indexof($dbrowarray0, subquest_rfd_monkey, 0, -1) = -1) {
+                array_push($dbrowarray0, subquest_rfd_monkey);
+            }
+        case default :
+            $dbrow6 = null;
+    }
+    $int0 = calc($int0 + 1);
+    $int2 = array_size($dbrowarray0);
+}

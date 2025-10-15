@@ -1,0 +1,25 @@
+// 8217
+[proc,script8217](component $component0, int $int1)(int, int, int, int)
+def_int $int2 = 0;
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_int $int5 = 0;
+if ($component0 ! null & (cc_find($component0, $int1) = ^true | $int1 = -1 & if_find($component0) = ^true)) {
+    $int2 = cc_getx;
+    $int3 = cc_gety;
+    $int4 = calc($int2 + cc_getwidth);
+    $int5 = calc($int3 + cc_getheight);
+    if ($int1 ! -1) {
+        while (cc_find($component0, cc_parentsubid) = ^true) {
+            $int2, $int4, $int3, $int5, $component0 = ~script8218($int2, $int4, $int3, $int5);
+        }
+    } else {
+        $component0 = if_getlayer($component0);
+    }
+    while ($component0 ! null & if_find($component0) = ^true) {
+        $int2, $int4, $int3, $int5, $component0 = ~script8218($int2, $int4, $int3, $int5);
+    }
+    return($int2, $int3, calc($int4 - $int2), calc($int5 - $int3));
+} else {
+    return(-1, -1, -1, -1);
+}

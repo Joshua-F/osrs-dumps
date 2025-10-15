@@ -1,0 +1,9 @@
+// 8250
+[proc,script8250](int $int0)(int)
+def_dbrow $dbrow1 = ~bingo_active_event;
+def_int $int2 = db_getfieldcount($dbrow1, bingo_events:grid);
+if ($int0 >= $int2) {
+    ~script2075("Searching for grid <tostring($int0)>, while our event only has <tostring($int2)> grids.");
+    return(0);
+}
+return(db_getfield(db_getfield($dbrow1, bingo_events:grid, $int0), bingo_grids:grid_layout, 0));

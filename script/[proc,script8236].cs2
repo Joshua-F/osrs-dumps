@@ -1,0 +1,16 @@
+// 8236
+[proc,script8236](int $int0, int $int1, int $int2, int $int3, component $component4)
+def_int $int5 = 0;
+def_int $int6 = 0;
+if (.cc_find($component4, 8) = ^true) {
+    .cc_setposition($int0, $int1, ^setpos_abs_left, ^setpos_abs_top);
+    .cc_setsize($int2, $int3, ^setsize_abs, ^setsize_abs);
+    .cc_sethide(false);
+    $int5 = .cc_countchild;
+    while ($int6 < $int5) {
+        $int6 = calc($int6 + 1);
+        if (.cc_find($component4, calc(8 + $int6)) = ^true) {
+            .cc_callonresize;
+        }
+    }
+}

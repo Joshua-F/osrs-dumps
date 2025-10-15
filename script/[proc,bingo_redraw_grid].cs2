@@ -1,0 +1,205 @@
+// 8109
+[proc,bingo_redraw_grid](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5)
+if ($component0 = null | $component1 = null | $component2 = null) {
+    return;
+}
+cc_deleteall($component0);
+cc_deleteall($component1);
+def_dbrow $dbrow6 = ~bingo_active_event;
+def_int $int7 = ~script8263(%bingo_selected_grid);
+def_int $int8 = 0;
+def_int $int9 = 0;
+$int8, $int9 = ~script8141(%bingo_selected_grid);
+$int8 = calc($int8 + 1 + 0);
+$int9 = calc($int9 + 0 + 1);
+def_int $int10 = 2;
+def_int $int11 = 2;
+def_int $int12 = if_getwidth($component0);
+def_int $int13 = if_getheight($component0);
+def_int $int14 = calc(($int12 - $int8 * $int10) / $int8);
+def_int $int15 = calc(($int13 - ($int9 + 1) * $int11) / $int9);
+def_int $int16 = 0;
+if (calc(1 * 1) > 0) {
+    $int16 = calc($int12 - ($int14 + $int10) * $int8);
+}
+def_int $int17 = 0;
+if (calc(1 * 0) > 0) {
+    $int17 = calc($int15 - ($int15 + $int11) * $int8);
+}
+def_int $int18 = 0;
+def_int $int19 = 0;
+def_int $int20 = 0;
+def_int $int21 = 0;
+def_int $int22 = 0;
+def_string $string0 = "";
+def_dbrow $dbrow23 = null;
+def_int $int24 = 0;
+def_int $int25 = 0;
+def_int $int26 = 0;
+def_string $string1 = "";
+def_int $int27 = -1;
+def_boolean $boolean28 = false;
+def_graphic $graphic29 = null;
+def_obj $obj30 = null;
+def_int $int31 = 0;
+def_int $int32 = 0;
+def_struct $struct33 = null;
+def_int $rgb34 = null;
+def_int $int35 = 0;
+def_boolean $boolean36 = false;
+def_int $int37 = -1;
+def_int $int38 = min(calc($int14 - 6), calc($int15 - 12));
+while ($int18 < $int7) {
+    $int20, $int21 = ~script8142(%bingo_selected_grid, $int18);
+    $int22 = ~script8258(%bingo_selected_grid, $int18);
+    $dbrow23, $int24, $int25, $int26, $string1, $graphic29, $obj30 = ~script8145($int22);
+    switch_int ($int26) {
+        case 1 :
+            $struct33 = struct_6284;
+            $rgb34 = 0x68835b;
+        case 2 :
+            $struct33 = struct_6289;
+            $rgb34 = 0xb87e38;
+        case 3 :
+            $struct33 = struct_6294;
+            $rgb34 = 0xb9322a;
+        case default :
+            $struct33 = null;
+            $rgb34 = 0x7a796c;
+    }
+    if (%bingo_info_maximised = true & $int18 = %bingo_selected_tile) {
+        $int35 = 1;
+    } else {
+        $int35 = 0;
+    }
+    $int27 = ~script8278($dbrow23, $int22);
+    $boolean28 = ~script8281($int22);
+    $int19 = ~cc_add_button($component0, $int19, calc($int10 + $int16 + ($int20 + 1) * ($int14 + $int10)), calc($int11 + $int17 + ($int21 + 0) * ($int15 + $int11)), ^setpos_abs_left, ^setpos_abs_top, $int14, $int15, ^setsize_abs, ^setsize_abs, $struct33, "");
+    $int37 = cc_getid;
+    cc_setparam(param_2318, $int22);
+    cc_setparam(param_2319, $int18);
+    if (string_length($string1) > 0) {
+        $string0 = "<$string1><br><br><tostring($int27)> / <tostring($int24)>";
+    } else {
+        $string0 = "<tostring($int27)> / <tostring($int24)>";
+    }
+    cc_setparam(param_2354, $string0);
+    ~script8131($int35, %bingo_selected_grid, $int18, $component5, $component4, $component3);
+    cc_create_child(^iftype_graphic, $int19);
+    cc_setposition(calc(3 + ($int14 - 6 - $int38) / 2), calc(3 + ($int15 - 12 - $int38) / 2), ^setpos_abs_left, ^setpos_abs_top);
+    ~script8115($int38, $graphic29, $obj30, $int24);
+    $int19 = calc($int19 + 1);
+    cc_create_sibling(^iftype_rectangle, $int19);
+    cc_setsize(6, 7, ^setsize_minus, ^setsize_abs);
+    cc_setposition(3, 1, ^setpos_abs_left, ^setpos_abs_bottom);
+    cc_setcolour($rgb34);
+    $int19 = calc($int19 + 1);
+    cc_create_sibling(^iftype_rectangle, $int19);
+    cc_setsize(8, 5, ^setsize_minus, ^setsize_abs);
+    cc_setposition(4, 2, ^setpos_abs_left, ^setpos_abs_bottom);
+    cc_setcolour(^black);
+    cc_setfill(true);
+    $int19 = calc($int19 + 1);
+    cc_create_sibling(^iftype_rectangle, $int19);
+    cc_setposition(5, 3, ^setpos_abs_left, ^setpos_abs_bottom);
+    cc_setsize(calc($int14 - 10), 3, ^setsize_abs, ^setsize_abs);
+    cc_setcolour(^black);
+    cc_setfill(true);
+    if ($boolean28 = true) {
+        cc_setcolour(0x0dc10d);
+    } else if ($int27 > 0) {
+        cc_setcolour(^yellow);
+        cc_setsize(max(2, min(calc(cc_getwidth - 2), scale($int27, $int24, cc_getwidth))), cc_getheight, ^setsize_abs, ^setsize_abs);
+    } else {
+        cc_setsize(0, cc_getheight, ^setsize_abs, ^setsize_abs);
+    }
+    $int19 = calc($int19 + 1);
+    cc_create_sibling(^iftype_text, $int19);
+    cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+    cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+    cc_settextfont(p12_full);
+    cc_settextshadow(true);
+    cc_setcolour(0xff981f);
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    if ($graphic29 = null & $obj30 = null) {
+        cc_settext(tostring($int22));
+    }
+    $int19 = calc($int19 + 1);
+    cc_create_sibling(^iftype_text, $int19);
+    cc_setsize(6, 11, ^setsize_minus, ^setsize_minus);
+    cc_setposition(3, 2, ^setpos_abs_left, ^setpos_abs_top);
+    cc_settextfont(p12_full);
+    cc_settextshadow(true);
+    cc_setcolour(0xff981f);
+    cc_settextalign(^settextalign_right, ^settextalign_top, 0);
+    $int19 = calc($int19 + 1);
+    $int31 = ~script8267(%bingo_selected_grid, $int18);
+    if ($int31 >= 0) {
+        $int32, $boolean36 = ~script8117($component1, $int32, %bingo_selected_grid, $int31, $int18, false, $component5, $component4, $component3, calc($int10 + $int16 + ($int20 + 1) * ($int14 + $int10)), calc($int11 + $int17 + ($int21 + 0) * ($int15 + $int11)), ^setpos_abs_left, ^setpos_abs_top, $int14, $int15, ^setsize_abs, ^setsize_abs, null);
+        if ($boolean36 = true & cc_find($component0, $int37) = ^true) {
+            cc_create_child(^iftype_rectangle, $int19);
+            cc_setposition(4, 2, ^setpos_abs_left, ^setpos_abs_bottom);
+            cc_setsize(calc($int14 - 8), 5, ^setsize_abs, ^setsize_abs);
+            cc_setfill(true);
+            cc_setcolour(0x11ff11);
+            cc_setontimer("script8187(cc_getlayer, cc_getid)");
+            $int19 = calc($int19 + 1);
+        }
+    }
+    $int18 = calc($int18 + 1);
+}
+def_int $int39 = ~script8264(%bingo_selected_grid);
+$int31 = 0;
+while ($int31 < $int39) {
+    $int32, $boolean36 = ~script8117($component1, $int32, %bingo_selected_grid, $int31, -1, false, $component5, $component4, $component3, ~script8143(%bingo_selected_grid, $int31, $int14, $int15), ^setsize_abs, ^setsize_abs, $component0);
+    $int31 = calc($int31 + 1);
+}
+cc_deleteall($component2);
+def_int $int40 = 2;
+def_int $int41 = 2;
+def_int $int42 = 22;
+def_int $int43 = 2;
+if (~on_mobile = true) {
+    $int40 = 1;
+    $int41 = 1;
+    $int42 = 21;
+    $int43 = 4;
+}
+$int19 = 0;
+$int19 = ~cc_add_button($component2, $int19, $int40, $int41, ^setpos_abs_right, ^setpos_abs_top, $int42, $int42, ^setsize_abs, ^setsize_abs, struct_6272, "");
+cc_setonkey("bingo_show_rewards_onkey(event_keycode, $component0)");
+cc_setontimer("bingo_show_rewards_timer($component0)");
+$string0 = "Toggle this button or hold CTRL to show all rewards.";
+cc_setonmouserepeat("tooltip_mouserepeat($component2, cc_getid, $component3, $string0, 25, 512)");
+cc_setonmouseleave("deltooltip($component3)");
+cc_setop(1, "Toggle");
+~script8190(%bingo_show_rewards, 0);
+def_boolean $boolean44 = ~script7983(%bingo_show_rewards);
+cc_setonop("bingo_show_rewards_op(event_com, event_comsubid, $boolean44, $component0)");
+$int41 = calc(cc_gety + cc_getheight);
+cc_create_child(^iftype_text, $int19);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+cc_settextfont(b12_full);
+cc_settextshadow(true);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+cc_settext("R");
+cc_setcolour(^black);
+$int19 = calc($int19 + 1);
+if (%bingo_info_visible = 0) {
+    $int41 = calc($int41 + $int43);
+    $int19 = ~cc_add_button($component2, $int19, $int40, $int41, ^setpos_abs_right, ^setpos_abs_top, $int42, $int42, ^setsize_abs, ^setsize_abs, struct_6272, "");
+    $string0 = "Show Event Details and Bonus Effects.";
+    cc_setonmouserepeat("tooltip_mouserepeat($component2, cc_getid, $component3, $string0, 25, 512)");
+    cc_setop(1, "Press");
+    cc_setonop("script8146($component4, $dbrow6, $component3, $component5)");
+    cc_create_child(^iftype_text, $int19);
+    cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+    cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+    cc_settextfont(b12_full);
+    cc_settextshadow(true);
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    cc_settext("I");
+    cc_setcolour(^black);
+    $int19 = calc($int19 + 1);
+}

@@ -1,0 +1,56 @@
+// 8151
+[proc,script8151](int $int0, int $int1, int $int2, string $string0, string $string1, component $component3, string $string2, dbrow $dbrow4, string $string3)(int, int, int)
+def_component $component5 = null;
+def_int $int6 = -1;
+if (string_length($string0) > 0) {
+    cc_create_sibling(^iftype_rectangle, $int0);
+    cc_setsize(0, 23, ^setsize_minus, ^setsize_abs);
+    cc_setposition(0, $int1, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setcolour(^black);
+    cc_setfill(true);
+    if ($int2 = 1) {
+        cc_settrans(220);
+    } else {
+        cc_settrans(200);
+    }
+    if ($dbrow4 ! null) {
+        cc_setop(6, "Lookup");
+        cc_setonop("script8152(cc_getlayer, $dbrow4, $string3)");
+    } else if ($component3 ! null & string_length($string2) > 0) {
+        $component5 = cc_getlayer;
+        $int6 = cc_getid;
+        cc_setonmouserepeat("tooltip_mouserepeat($component5, $int6, $component3, $string2, 25, 512)");
+        cc_setonmouseleave("deltooltip($component3)");
+    }
+    $int0 = calc($int0 + 1);
+    cc_create_sibling(^iftype_text, $int0);
+    cc_setsize(calc(5 * 2), 23, ^setsize_minus, ^setsize_abs);
+    cc_setposition(5, $int1, ^setpos_abs_left, ^setpos_abs_top);
+    cc_settextshadow(true);
+    cc_settext($string0);
+    $int0 = calc($int0 + 1);
+    if (string_length($string1) > 0) {
+        cc_settextfont(p12_full);
+        cc_setcolour(0xff981f);
+        cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+        cc_create_sibling(^iftype_text, $int0);
+        cc_setsize(calc(5 * 2), 23, ^setsize_minus, ^setsize_abs);
+        cc_setposition(5, $int1, ^setpos_abs_left, ^setpos_abs_top);
+        cc_settextfont(p12_full);
+        cc_settextshadow(true);
+        cc_setcolour(^white);
+        cc_settextalign(^settextalign_right, ^settextalign_centre, 0);
+        cc_settext($string1);
+        $int0 = calc($int0 + 1);
+    } else {
+        cc_settextfont(b12_full);
+        cc_setcolour(0xff981f);
+        cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    }
+    $int1 = calc($int1 + 23);
+    $int2 = calc(1 - $int2);
+} else {
+    $int1 = calc($int1 + 23);
+    $int2 = 0;
+}
+return($int0, $int1, $int2);

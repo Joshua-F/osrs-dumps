@@ -1,0 +1,72 @@
+// 8203
+[proc,scrollbar_vertical_dynamic](component $component0, int $int1, int $int2, component $component3, int $int4, graphic $graphic5, graphic $graphic6, graphic $graphic7, graphic $graphic8, graphic $graphic9, graphic $graphic10)(int)
+def_int $int11 = 0;
+def_int $int12 = 0;
+if (($int1 = -1 & if_find($component0) = ^true | cc_find($component0, $int1) = ^true) & ($int4 = -1 & .if_find($component3) = ^true | .cc_find($component3, $int4) = ^true)) {
+    $int11 = .cc_getscrollheight;
+    if ($int11 <= 0) {
+        $int11 = .cc_getheight;
+    }
+    if ($int11 > 0) {
+        $int12 = calc((cc_getheight - 32) * .cc_getheight / $int11);
+    } else {
+        $int12 = calc(cc_getheight - 32);
+    }
+    if ($int12 < 10) {
+        $int12 = 10;
+    }
+    .cc_setonscrollwheel("scrollbar_vertical_dynamic_wheel($component0, $int1, $component3, $int4, event_mousey)");
+} else {
+    return($int2);
+}
+if (($int1 = -1 & if_find($component0) = ^true | cc_find($component0, $int1) = ^true) & ($int1 = -1 & .if_find($component0) = ^true | .cc_find($component0, $int1) = ^true)) {
+    cc_create_child(^iftype_graphic, $int2);
+    .cc_setparam(param_2351, $int2);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_setsize(0, 32, ^setsize_minus, ^setsize_minus);
+    cc_setgraphic($graphic5);
+    cc_settiling(false);
+    cc_setonclick("scrollbar_vertical_dynamic_jump($component0, $int1)");
+    cc_setonscrollwheel("scrollbar_vertical_dynamic_wheel($component0, $int1, $component3, $int4, event_mousey)");
+    cc_setnoclickthrough(true);
+    $int2 = calc($int2 + 1);
+    .cc_create_child(^iftype_graphic, $int2);
+    .cc_setposition(0, 16, ^setpos_abs_centre, ^setpos_abs_top);
+    .cc_setsize(0, $int12, ^setsize_minus, ^setsize_abs);
+    .cc_setgraphic($graphic7);
+    .cc_settiling(false);
+    .cc_setdraggable($component0, cc_getid);
+    .cc_setondrag("scrollbar_vertical_dynamic_drag($component0, $int1, $component3, $int4, event_mousey, 0)");
+    .cc_setondragcomplete("scrollbar_vertical_dynamic_drag($component0, $int1, $component3, $int4, event_mousey, 1)");
+    .cc_setdragrenderbehaviour(1);
+    $int2 = calc($int2 + 1);
+    cc_create_sibling(^iftype_graphic, $int2);
+    cc_setposition(0, .cc_gety, ^setpos_abs_centre, ^setpos_abs_top);
+    cc_setsize(0, 5, ^setsize_minus, ^setsize_abs);
+    cc_setgraphic($graphic6);
+    cc_settiling(false);
+    $int2 = calc($int2 + 1);
+    cc_create_sibling(^iftype_graphic, $int2);
+    cc_setposition(0, calc(.cc_gety + .cc_getheight - 5), ^setpos_abs_centre, ^setpos_abs_top);
+    cc_setsize(0, 5, ^setsize_minus, ^setsize_abs);
+    cc_setgraphic($graphic8);
+    cc_settiling(false);
+    $int2 = calc($int2 + 1);
+    cc_create_sibling(^iftype_graphic, $int2);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top);
+    cc_setsize(0, 16, ^setsize_minus, ^setsize_abs);
+    cc_setgraphic($graphic9);
+    cc_settiling(false);
+    cc_setonhold("scrollbar_vertical_dynamic_up_down($component0, $int1, $component3, $int4, -4)");
+    cc_setnoclickthrough(true);
+    $int2 = calc($int2 + 1);
+    cc_create_sibling(^iftype_graphic, $int2);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_bottom);
+    cc_setsize(0, 16, ^setsize_minus, ^setsize_abs);
+    cc_setgraphic($graphic10);
+    cc_settiling(false);
+    cc_setonhold("scrollbar_vertical_dynamic_up_down($component0, $int1, $component3, $int4, 4)");
+    cc_setnoclickthrough(true);
+    $int2 = calc($int2 + 1);
+}
+return($int2);

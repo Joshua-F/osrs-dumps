@@ -1,0 +1,13 @@
+// 8210
+[proc,scrollbar_vertical_dynamic_doscroll](component $component0, int $int1, component $component2, int $int3, int $int4, int $int5)
+def_int $int6 = 0;
+if ($int3 = -1 & .if_find($component2) = ^true | .cc_find($component2, $int3) = ^true) {
+    $int6 = ~max(calc(.cc_getscrollheight - .cc_getheight), 1);
+    $int4 = ~max(~min($int4, $int6), 0);
+    .cc_setscrollpos(.cc_getscrollx, $int4);
+} else {
+    return;
+}
+if ($int5 = 1) {
+    ~scrollbar_vertical_dynamic_setdragger($component0, $int1, $component2, $int3);
+}

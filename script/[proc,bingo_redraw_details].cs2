@@ -1,0 +1,28 @@
+// 8102
+[proc,bingo_redraw_details](component $component0, dbrow $dbrow1)
+cc_deleteall($component0);
+def_string $string0 = db_getfield($dbrow1, bingo_events:event_name, 0);
+def_int $int2 = db_getfield($dbrow1, bingo_events:event_end, 0);
+def_string $string1 = "";
+if ($int2 ! -1) {
+    $string1 = "Ends on <fromdate($int2)>";
+}
+def_int $int3 = 0;
+cc_create($component0, ^iftype_text, $int3);
+cc_setsize(4, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(2, 0, ^setpos_abs_left, ^setpos_abs_top);
+cc_settextfont(p12_full);
+cc_settextshadow(true);
+cc_setcolour(0xff981f);
+cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+cc_settext($string0);
+$int3 = calc($int3 + 1);
+cc_create($component0, ^iftype_text, $int3);
+cc_setsize(4, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(2, 0, ^setpos_abs_right, ^setpos_abs_top);
+cc_settextfont(p12_full);
+cc_settextshadow(true);
+cc_setcolour(0xff981f);
+cc_settextalign(^settextalign_right, ^settextalign_centre, 0);
+cc_settext($string1);
+$int3 = calc($int3 + 1);

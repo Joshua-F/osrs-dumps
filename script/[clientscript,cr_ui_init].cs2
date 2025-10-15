@@ -1,5 +1,5 @@
 // 6377
-[clientscript,cr_ui_init](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6)
+[clientscript,cr_ui_init](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, int $int6)
 %cr_ui_open = 1;
 if (~script6391 = false) {
     if_sethide(true, $component4);
@@ -13,50 +13,9 @@ if_setop(2, "", $component3);
 if_setopkey(2, ^key_escape, 0, $component3);
 def_int $int7 = calc((if_gety(if_getlayer($component5)) - if_getheight($component3)) / 2);
 if_setposition($int7, $int7, ^setpos_abs_right, ^setpos_abs_top, $component3);
-cc_deleteall($component0);
-def_int $int8 = 0;
-while ($int8 < 8) {
-    cc_create($component0, ^iftype_graphic, $int8);
-    cc_settiling(true);
-    cc_settrans(255);
-    cc_setonmouserepeat("cc_settrans(event_com, event_comsubid, 200, null)");
-    cc_setonmouseleave("cc_settrans(event_com, event_comsubid, 255, null)");
-    cc_setdraggable($component0, -1);
-    cc_setdragdeadzone(1);
-    cc_setdragdeadtime(5);
-    $int8 = calc($int8 + 1);
-}
-cc_deleteall($component6);
-$int8 = 0;
-while ($int8 < 4) {
-    cc_create($component6, ^iftype_rectangle, $int8);
-    cc_setsize(calc($int8 * 2), calc($int8 * 2), ^setsize_minus, ^setsize_minus);
-    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
-    cc_setcolour(0x9f9f9f);
-    cc_setfill(false);
-    cc_settrans(calc(100 + $int8 * 10));
-    $int8 = calc($int8 + 1);
-}
-def_int $int9 = 0;
-if (~on_mobile = true) {
-    $int9 = calc(165 - (20 + 30));
-}
-if (%cr_ui_window_width < ~cr_ui_min_width) {
-    %cr_ui_window_width = ~cr_ui_default_width;
-}
-if (%cr_ui_window_height < ~cr_ui_min_height) {
-    %cr_ui_window_height = ~cr_ui_default_height;
-}
-if (%cr_ui_window_x < 0) {
-    %cr_ui_window_x = calc((if_getwidth($component0) - %cr_ui_window_width) / 2);
-}
-if (%cr_ui_window_y < $int9) {
-    %cr_ui_window_y = ~max($int9, calc((if_getheight($component0) - %cr_ui_window_height) / 2));
-}
-~cr_ui_rebuild_window(1, $int9, $component0, $component1, $component6);
-~cr_ui_size_handler(1, $int9, ^min_32bit_int, ^min_32bit_int, $component0, $component1, $component6);
 if (%cr_active_module = null) {
     %cr_active_module = enum(int, dbrow, enum_4593, 0);
 }
 ~cr_ui_activate_module(%cr_active_module, $component4);
 ~script2482;
+~toplevel_floater_drag_init(0, $component0, $component1);

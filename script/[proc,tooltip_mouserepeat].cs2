@@ -3,6 +3,12 @@
 if (~on_enhanced_mobile = true) {
     return;
 }
+if (~on_enhanced_any = false & $component2 ! null & if_find($component2) = ^true) {
+    cc_setparam(param_2355, clientclock);
+    if (cc_param(param_2352) ! null & (cc_param(param_2353) ! $int1 | cc_param(param_2352) ! $component0 | string_length(cc_param(param_2354)) ! string_length($string0) | compare(cc_param(param_2354), $string0) ! 0)) {
+        ~deltooltip_action($component2);
+    }
+}
 if (~on_enhanced_any = false & %tooltip_time < calc(clientclock + $int3)) {
     if (%tooltip_time < clientclock) {
         %tooltip_time = clientclock;

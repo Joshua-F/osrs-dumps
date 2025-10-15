@@ -1,0 +1,66 @@
+// 8157
+[proc,bingo_tutorial_redraw](component $component0)
+def_component $component1 = bingo_overlay:tutorial_content;
+def_int $int2 = 0;
+def_int $int3 = 0;
+def_string $string0 = "";
+def_string $string1 = "Next Step";
+if (if_find($component1) = ^true) {
+    $int2 = cc_param(param_2322);
+    cc_deleteall($component1);
+    switch_int ($int2) {
+        case 0 :
+            $string0 = "Welcome to the Grid Master interface.<br><br>Here you can view all the Grid Master challenges, just like our central challenge <col=ffffff><db_getfield(action_bingo_tutorial, action:action_name, 0)></col>.<br><br>Selecting a challenge will show you any relevant information about it, what it'll reward you with and how many grid points you'll receive.";
+        case 1 :
+            $string0 = "To view a challenge's rewards you can either:<br> - Select a challenge then select its specific rewards (like the icon below).<br> - Toggle the <col=ffffff>R</col> button to flip all the tiles over, showing their reward side.";
+            if (~on_mobile = false) {
+                $string0 = "To view a challenge's rewards you can either:<br> - Select a challenge then select its specific rewards (like the icon below).<br> - Toggle the <col=ffffff>R</col> button, or hold the <col=ffffff>CTRL</col> key to flip all the tiles over, showing their reward side.";
+            } else {
+                $string0 = "To view a challenge's rewards you can either:<br> - Select a challenge then select its specific rewards (like the icon below).<br> - Toggle the <col=ffffff>R</col> button to flip all the tiles over, showing their reward side.";
+            }
+            $string0 = "<$string0><br><br>The rewards at the edges of the grid are obtainable after completing the row / column they're attached to.";
+        case 2 :
+            if (~on_mobile = false) {
+                $string0 = "This interface is fully resizable and movable, it will also scale to the size you select.<br>It will also stay open while playing the game, so you can keep it open for reference.";
+            } else {
+                $string0 = "This interface will stay open while playing the game, so you can keep it open for reference.";
+            }
+            $string0 = "<$string0><br><br><br>To start you off in Grid Master, we've given you some initial Powerups, Auto-Completed a chunk of quests automatically for you and given you a Dramen staff to get started with.<br><br><br><br><col=ffffff>Don't forget to claim your central tile reward for completing the Grid Master Tutorial!</col>";
+            $string1 = "Complete Tutorial";
+    }
+    cc_create($component1, ^iftype_text, $int3);
+    cc_setsize(273, 100, ^setsize_abs, ^setsize_abs);
+    cc_setposition(0, 10, ^setpos_abs_centre, ^setpos_abs_top);
+    cc_settextfont(p12_full);
+    cc_settextshadow(true);
+    cc_setcolour(0xff981f);
+    cc_settext($string0);
+    cc_settextalign(^settextalign_centre, ^settextalign_top, 13);
+    $int3 = calc($int3 + 1);
+    $int3 = ~cc_add_button($component1, $int3, 17, 17, ^setpos_abs_right, ^setpos_abs_bottom, 120, 35, ^setsize_abs, ^setsize_abs, struct_6265, $string1);
+    cc_setonop("script8159($component1, $int2)");
+    cc_setop(1, $string1);
+    if ($int2 > 0) {
+        $int3 = ~cc_add_button($component1, $int3, 17, 17, ^setpos_abs_left, ^setpos_abs_bottom, 120, 35, ^setsize_abs, ^setsize_abs, struct_6265, "Back");
+        cc_setonop("script8158($component1, $int2)");
+        cc_setop(1, "Back");
+    }
+    switch_int ($int2) {
+        case 0 :
+            $int3 = ~cc_add_button($component1, $int3, 0, 60, ^setpos_abs_centre, ^setpos_abs_bottom, 80, 80, ^setsize_abs, ^setsize_abs, struct_6284, "");
+            ~script8190(false, 1);
+            cc_create_child(^iftype_graphic, $int3);
+            cc_setsize(10, 10, ^setsize_minus, ^setsize_minus);
+            cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+            cc_setgraphic("icon_compass_rose_50x50,3");
+            $int3 = calc($int3 + 1);
+        case 1 :
+            $int3 = ~cc_add_button($component1, $int3, 0, 60, ^setpos_abs_centre, ^setpos_abs_bottom, 80, 80, ^setsize_abs, ^setsize_abs, struct_6299, "");
+            ~script8190(false, 1);
+            cc_create_child(^iftype_graphic, $int3);
+            cc_setsize(10, 10, ^setsize_minus, ^setsize_minus);
+            cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+            cc_setgraphic("relic_bingo01_60x60_01,10");
+            $int3 = calc($int3 + 1);
+    }
+}

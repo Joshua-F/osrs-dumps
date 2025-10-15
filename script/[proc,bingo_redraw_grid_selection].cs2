@@ -1,0 +1,34 @@
+// 8103
+[proc,bingo_redraw_grid_selection](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6)
+def_int $int7 = 0;
+cc_deleteall($component0);
+cc_create($component0, ^iftype_graphic, $int7);
+cc_setsize(19, 19, ^setsize_abs, ^setsize_abs);
+cc_setposition(32, 0, ^setpos_abs_right, ^setpos_abs_centre);
+cc_setgraphic("warning_icons,0");
+cc_setonmouseleave("deltooltip($component4)");
+$int7 = calc($int7 + 1);
+cc_create($component0, ^iftype_text, $int7);
+cc_setsize(64, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(32, 0, ^setpos_abs_left, ^setpos_abs_top);
+cc_settextfont(b12_full);
+cc_settextshadow(true);
+cc_setcolour(0xff981f);
+cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+$int7 = calc($int7 + 1);
+cc_create($component0, ^iftype_text, $int7);
+cc_setsize(87, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(32, 0, ^setpos_abs_right, ^setpos_abs_top);
+cc_settextfont(p12_full);
+cc_settextshadow(true);
+cc_setcolour(0xff981f);
+cc_settextalign(^settextalign_right, ^settextalign_centre, 0);
+$int7 = calc($int7 + 1);
+~script8107($component0, $component4);
+if_setonvartransmit("script8106($component0, $component4){bingo_challenge_complete_var_0, bingo_challenge_complete_var_1}", $component0);
+$int7 = ~cc_add_button($component0, $int7, 4, 4, ^setpos_abs_left, ^setpos_abs_top, 22, 8, ^setsize_abs, ^setsize_minus, struct_6272, "");
+cc_setop(1, "Previous Grid");
+cc_setonop("bingo_change_grid(-1, event_com, $component1, $component2, $component3, $component4, $component5, $component6)");
+$int7 = ~cc_add_button($component0, $int7, 4, 4, ^setpos_abs_right, ^setpos_abs_top, 22, 8, ^setsize_abs, ^setsize_minus, struct_6272, "");
+cc_setop(1, "Next Grid");
+cc_setonop("bingo_change_grid(1, event_com, $component1, $component2, $component3, $component4, $component5, $component6)");

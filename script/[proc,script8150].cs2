@@ -1,0 +1,49 @@
+// 8150
+[proc,script8150](component $component0, int $int1, int $int2, int $int3, int $int4, int $int5, string $string0, string $string1, component $component6, string $string2)(int, int, int)
+if (string_length($string0) > 0) {
+    cc_create($component0, ^iftype_rectangle, $int1);
+    cc_setsize(calc($int4 - 6 * 2), 23, ^setsize_abs, ^setsize_abs);
+    cc_setposition(calc($int2 + 6), $int3, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setcolour(^black);
+    cc_setfill(true);
+    if ($int5 = 1) {
+        cc_settrans(220);
+    } else {
+        cc_settrans(200);
+    }
+    if ($component6 ! null & string_length($string2) > 0) {
+        cc_setonmouserepeat("tooltip_mouserepeat($component0, cc_getid, $component6, $string2, 25, 512)");
+        cc_setonmouseleave("deltooltip($component6)");
+    }
+    $int1 = calc($int1 + 1);
+    cc_create($component0, ^iftype_text, $int1);
+    cc_setsize(calc($int4 - (6 + 5) * 2), 23, ^setsize_abs, ^setsize_abs);
+    cc_setposition(calc($int2 + 6 + 5), $int3, ^setpos_abs_left, ^setpos_abs_top);
+    cc_settextshadow(true);
+    cc_settext($string0);
+    $int1 = calc($int1 + 1);
+    if (string_length($string1) > 0) {
+        cc_settextfont(p12_full);
+        cc_setcolour(0xff981f);
+        cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+        cc_create($component0, ^iftype_text, $int1);
+        cc_setsize(calc($int4 - (6 + 5) * 2), 23, ^setsize_abs, ^setsize_abs);
+        cc_setposition(calc($int2 + 6 + 5), $int3, ^setpos_abs_left, ^setpos_abs_top);
+        cc_settextfont(p12_full);
+        cc_settextshadow(true);
+        cc_setcolour(^white);
+        cc_settextalign(^settextalign_right, ^settextalign_centre, 0);
+        cc_settext($string1);
+        $int1 = calc($int1 + 1);
+    } else {
+        cc_settextfont(b12_full);
+        cc_setcolour(0xff981f);
+        cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    }
+    $int3 = calc($int3 + 23);
+    $int5 = calc(1 - $int5);
+} else {
+    $int3 = calc($int3 + 23);
+    $int5 = 0;
+}
+return($int1, $int3, $int5);

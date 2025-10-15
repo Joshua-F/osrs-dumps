@@ -1,0 +1,38 @@
+// 8139
+[proc,script8139](component $component0, int $int1, int $int2, int $int3, string $string0, string $string1)(int, int)
+def_int $int4 = 0;
+if (cc_find($component0, calc($int1 - 1)) = ^true) {
+    $int4 = cc_getwidth;
+    if (string_length($string0) > 0) {
+        if ($int2 ! 0) {
+            $int2 = calc($int2 + $int3);
+        }
+        cc_create_sibling(^iftype_text, $int1);
+        if (paraheight($string0, $int4, p12_full) > 1) {
+            cc_setsize($int4, calc(paraheight($string0, $int4, p12_full) * 12 + 5), ^setsize_abs, ^setsize_abs);
+        } else {
+            cc_setsize(0, $int3, ^setsize_minus, ^setsize_abs);
+        }
+        cc_setposition(0, $int2, ^setpos_abs_left, ^setpos_abs_top);
+        cc_settextfont(p12_full);
+        cc_settextshadow(true);
+        cc_setcolour(0xff981f);
+        cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+        cc_settext($string0);
+        $int2 = calc($int2 + cc_getheight);
+        $int1 = calc($int1 + 1);
+    }
+    if (string_length($string1) > 0) {
+        cc_create_sibling(^iftype_text, $int1);
+        cc_setsize(0, $int3, ^setsize_minus, ^setsize_abs);
+        cc_setposition(0, $int2, ^setpos_abs_left, ^setpos_abs_top);
+        cc_settextfont(p12_full);
+        cc_settextshadow(true);
+        cc_setcolour(^white);
+        cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+        cc_settext($string1);
+        $int2 = calc($int2 + cc_getheight);
+        $int1 = calc($int1 + 1);
+    }
+}
+return($int1, $int2);

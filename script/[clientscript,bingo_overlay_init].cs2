@@ -1,0 +1,76 @@
+// 8093
+[clientscript,bingo_overlay_init](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10, component $component11, component $component12, component $component13, component $component14, component $component15, component $component16)
+def_dbrow $dbrow17 = ~bingo_active_event;
+if ($dbrow17 = null) {
+    cc_deleteall($component2);
+    cc_create($component2, ^iftype_rectangle, 0);
+    cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+    cc_setfill(true);
+    cc_setcolour(^red);
+    cc_settrans(192);
+    cc_setop(1, "Close");
+    cc_triggerop(1);
+    cc_setontimer("script8094(event_com, event_comsubid)");
+    return;
+}
+~script8105(%bingo_selected_grid);
+%bingo_show_rewards = false;
+%bingo_lookup_phrase = "";
+def_int $int18 = ~script8263(%bingo_selected_grid);
+if ($int18 = 0) {
+    %bingo_selected_tile = -1;
+}
+if (%bingo_selected_tile < 0 | %bingo_selected_tile >= $int18) {
+    if (calc($int18 % 2) = 1) {
+        %bingo_selected_tile = calc($int18 / 2);
+    } else {
+        %bingo_selected_tile = 0;
+    }
+}
+def_string $string0 = db_getfield($dbrow17, bingo_events:event_name, 0);
+if (~on_mobile = false) {
+    ~steelborder($component2, $string0, 2);
+    if (cc_find($component2, 11) = ^true) {
+        cc_setonclick("opsound(1, -1)");
+        cc_setonop(null);
+    }
+} else {
+    ~steelborder($component2, $string0, 0);
+    if (cc_find($component2, 11) = ^true) {
+        cc_setonop(null);
+    }
+}
+if (~script8248 > 1) {
+    ~bingo_redraw_grid_selection($component8, $component11, $component10, $component12, $component15, $component14, $component13);
+}
+if (~on_mobile = false) {
+    ~toplevel_floater_drag_init(1, $component0, $component1);
+} else {
+    ~script8230(1, 16, 16, 326, 331);
+    ~script8237(1, $component0, $component1);
+    ~toplevel_floater_size_handler(^min_32bit_int, ^min_32bit_int, 1, $component0, $component1);
+}
+~script8101($component4, $component3, $component5, $component6, $component7, $component8, $component9, $component11, $component10, $component12, $component13);
+if_setonresize("script8100($component4, $component3, $component5, $component6, $component7, $component8, $component9, $component11, $component10, $component12, $component13)", $component4);
+~bingo_redraw_grid($component11, $component10, $component12, $component15, $component14, $component13);
+if_setonvartransmit("bingo_redraw_grid($component11, $component10, $component12, $component15, $component14, $component13){bingo_rewards_perm_0, bingo_rewards_perm_1, bingo_rewards_perm_2, bingo_rewards_perm_3, bingo_rewards_perm_4, bingo_rewards_perm_5, bingo_challenge_parent_0, bingo_challenge_parent_1, bingo_challenge_parent_2, bingo_challenge_parent_3, bingo_challenge_parent_4, bingo_challenge_parent_5, bingo_challenge_parent_6, bingo_challenge_parent_7, bingo_challenge_parent_8, bingo_challenge_parent_9, bingo_challenge_parent_10, bingo_challenge_parent_11, bingo_challenge_parent_12, bingo_challenge_parent_13, bingo_challenge_complete_var_0, bingo_challenge_complete_var_1}", $component9);
+if_setonresize("bingo_redraw_grid($component11, $component10, $component12, $component15, $component14, $component13)", $component9);
+if_setparam(param_2321, $component10, $component4, -1);
+~bingo_redraw_info($component13, $dbrow17, $component14, $component15);
+if_setonvartransmit("bingo_redraw_info($component13, $dbrow17, $component14, $component15){event_league_relics, event_rewards_temp_0, event_rewards_temp_1, event_rewards_temp_2, event_rewards_temp_3, event_rewards_temp_4, event_rewards_temp_5, event_rewards_temp_6, event_rewards_temp_7, event_rewards_temp_8, event_rewards_temp_9, event_rewards_temp_10, event_rewards_xp_sharer_varp1, event_rewards_xp_sharer_varp2, league_combat_mastery_paths, bingo_rewards_perm_0, bingo_rewards_perm_1, bingo_rewards_perm_2, bingo_rewards_perm_3, bingo_rewards_perm_4, bingo_rewards_perm_5, bingo_challenge_parent_0, bingo_challenge_parent_1, bingo_challenge_parent_2, bingo_challenge_parent_3, bingo_challenge_parent_4, bingo_challenge_parent_5, bingo_challenge_parent_6, bingo_challenge_parent_7, bingo_challenge_parent_8, bingo_challenge_parent_9, bingo_challenge_parent_10, bingo_challenge_parent_11, bingo_challenge_parent_12, bingo_challenge_parent_13, bingo_challenge_complete_var_0, bingo_challenge_complete_var_1}", $component13);
+if_setonresize("bingo_redraw_info($component13, $dbrow17, $component14, $component15)", $component13);
+if_setontimer("bingo_force_resize(if_getwidth($component1), if_getheight($component1), event_com, $component4, $component9, $component13, $component14)", $component1);
+cc_deleteall($component1);
+cc_create($component1, ^iftype_graphic, 0);
+cc_setposition(-1, -1, ^setpos_abs_left, ^setpos_abs_top);
+cc_setsize(0, 0, ^setsize_abs, ^setsize_abs);
+cc_setop(1, "Redraw");
+cc_setonop("bingo_force_resize(if_getwidth($component1), if_getheight($component1), event_com, $component4, $component9, $component13, $component14)");
+if (%bingo_tutorial <= 3) {
+    ~bingo_tutorial_redraw($component16);
+    if_setonresize("bingo_tutorial_redraw($component16)", $component16);
+    if_sethide(false, $component16);
+} else if (%bingo_tutorial >= 4) {
+    if_sethide(true, $component16);
+}
