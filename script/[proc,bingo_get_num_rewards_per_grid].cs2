@@ -1,0 +1,10 @@
+// 8266
+[proc,bingo_get_num_rewards_per_grid](int $int)(int)
+switch_int (~bingo_get_grid_layout($int)) {
+    case default :
+        return(0);
+    case 1, 2, 3, 4 :
+        return(~bingo_get_num_line_rewards_per_grid($int));
+    case 5 :
+        return(calc(~bingo_get_num_line_rewards_per_grid($int) + ~bingo_get_num_tile_rewards_per_grid($int)));
+}

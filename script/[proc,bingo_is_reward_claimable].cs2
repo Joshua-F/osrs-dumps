@@ -1,0 +1,25 @@
+// 8272
+[proc,bingo_is_reward_claimable](int $int0, int $int1)(boolean)
+def_intarray $intarray = ~bingo_get_task_ids_for_reward($int0, $int1);
+def_int $int2 = array_size($intarray);
+def_int $int3 = 0;
+def_boolean $boolean = true;
+def_int $int5 = 0;
+while ($int5 < $int2) {
+    if ($intarray($int5) ! -1) {
+        $int3 = 1;
+        if (~bingo_is_task_completed($intarray($int5)) = false) {
+            $boolean = false;
+        }
+    }
+    if ($boolean = false) {
+        $int5 = $int2;
+    } else {
+        $int5 = calc($int5 + 1);
+    }
+}
+if ($int3 = 1) {
+    return($boolean);
+} else {
+    return(false);
+}
