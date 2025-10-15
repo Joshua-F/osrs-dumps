@@ -1,7 +1,7 @@
 // 3806
 [proc,xpreward_update](int $int0, component $component1, component $component2)
 def_stat $stat3 = enum(int, stat, enum_681, $int0);
-if ($stat3 ! null & ~script3809(%if1, $stat3, 0) = false) {
+if ($stat3 ! null & ~script3809(%if1, %if2, $stat3, 0) = false) {
     $int0, $stat3 = 0, null;
 }
 def_string $string0 = "You need to choose which skill you wish to be advanced.";
@@ -22,13 +22,14 @@ if ($stat3 ! null) {
     if_setonmouseleave(null, $component2);
     if_setonop("mes($string0)", $component2);
 }
-if_setonvartransmit("xpreward_update(0, $int0, $component1, $component2){if1, druidquest, runemysteries, poh_house_data}", $component1);
+if_setonvartransmit("xpreward_update(0, $int0, $component1, $component2){if1, if2, druidquest, runemysteries, poh_house_data}", $component1);
 if_setonstattransmit("xpreward_update(0, $int0, $component1, $component2)", $component1);
 if_setontimer(null, $component1);
 def_int $int4 = 0;
 def_component $component5 = null;
 def_stat $stat6 = null;
 def_int $int7 = 1;
+def_int $int8 = 0;
 while ($int7 <= 23) {
     $component5, $stat6 = enum(int, component, enum_421, $int7), enum(int, stat, enum_681, $int7);
     if ($component5 ! null & $stat6 ! null) {
@@ -42,13 +43,23 @@ while ($int7 <= 23) {
         cc_setsize(25, 25, ^setsize_abs, ^setsize_abs);
         cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
         cc_setgraphic(enum(stat, graphic, enum_255, $stat6));
-        if (~script3809(%if1, $stat6, 0) = true) {
+        if (~script3809(%if1, %if2, $stat6, 0) = true) {
             cc_settrans(0);
         } else {
             cc_settrans(150);
+            if (enum(stat, int, enum_81, $stat6) = -1 | testbit(%if2, enum(stat, int, enum_81, $stat6)) = ^false) {
+                cc_settrans(220);
+                $int8 = 0;
+                while ($int8 < $int4) {
+                    if (cc_find($component5, $int8) = ^true) {
+                        cc_settrans(220);
+                    }
+                    $int8 = calc($int8 + 1);
+                }
+            }
         }
         if_setop(1, enum(stat, string, enum_680, $stat6), $component5);
-        if_setonop("xpreward_select(%if1, $int7, $component1, $component2)", $component5);
+        if_setonop("xpreward_select(%if1, %if2, $int7, $component1, $component2)", $component5);
     }
     $int7 = calc($int7 + 1);
 }

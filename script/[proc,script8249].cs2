@@ -1,0 +1,11 @@
+// 8249
+[proc,script8249]()(int)
+def_dbrow $dbrow0 = ~bingo_active_event;
+def_int $int1 = db_getfieldcount($dbrow0, bingo_events:grid);
+def_int $int2 = 0;
+def_int $int3 = 0;
+while ($int2 < $int1) {
+    $int3 = calc($int3 + db_getfieldcount(db_getfield($dbrow0, bingo_events:grid, $int2), bingo_grids:challenge));
+    $int2 = calc($int2 + 1);
+}
+return($int3);

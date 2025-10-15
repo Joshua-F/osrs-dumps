@@ -1,0 +1,20 @@
+// 8255
+[proc,script8255](dbrow $dbrow0, int $int1)(dbrow, int, int, int)
+def_int $int2 = db_getfieldcount($dbrow0, bingo_events:grid);
+def_int $int3 = 0;
+def_dbrow $dbrow4 = null;
+def_int $int5 = 0;
+def_int $int6 = 0;
+def_int $int7 = 0;
+while ($int3 < $int2) {
+    $dbrow4 = db_getfield($dbrow0, bingo_events:grid, $int3);
+    $int5 = db_getfieldcount($dbrow4, bingo_grids:challenge);
+    if ($int1 < calc($int6 + $int5)) {
+        $int7 = calc($int1 - $int6);
+        return(db_getfield($dbrow4, bingo_grids:challenge, $int7));
+    }
+    $int6 = calc($int6 + $int5);
+    $int3 = calc($int3 + 1);
+}
+~script2075("Unable to find a task definition for task ID <tostring($int1)>.");
+return(null, -1, -1, -1);

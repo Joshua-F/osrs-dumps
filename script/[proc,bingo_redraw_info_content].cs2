@@ -1,0 +1,153 @@
+// 8149
+[proc,bingo_redraw_info_content](component $component0, int $int1, int $int2, int $int3, int $int4, int $int5, dbrow $dbrow6, component $component7, component $component8, component $component9)(int)
+def_int $int10 = calc($int3 + 6);
+def_int $int11 = 0;
+def_int $int12 = db_getfield($dbrow6, bingo_events:event_end, 0);
+def_string $string0 = "";
+def_int $int13 = ~script8248;
+def_int $int14 = 0;
+def_int $int15 = 0;
+if ($int12 ! -1 | $int13 < 2) {
+    $int1 = ~thinbox_specific($component0, $int1, calc($int2 + 6), $int10, calc($int4 - 2 * 6), 23, ^setpos_abs_left, ^setpos_abs_top);
+    $int1, $int10, $int11 = ~script8150($component0, $int1, $int2, $int10, $int4, $int11, "Event Details", "", null, "");
+    if ($int13 < 2) {
+        $int14, $int15 = ~script8251(%bingo_selected_grid);
+        $int1, $int10, $int11 = ~script8150($component0, $int1, $int2, $int10, $int4, $int11, "Grid Points", tostring($int14), null, "");
+    }
+    if ($int12 ! -1) {
+        $string0 = fromdate($int12);
+        $int1, $int10, $int11 = ~script8150($component0, $int1, $int2, $int10, $int4, $int11, "End Date", $string0, null, "");
+    }
+    $int1, $int10, $int11 = ~script8150($component0, $int1, $int2, $int10, $int4, $int11, "", "", null, "");
+}
+if (%bingo_info_maximised = true) {
+    $int1 = ~thinbox_specific($component0, $int1, calc($int2 + 6), $int10, calc($int4 - 2 * 6), 23, ^setpos_abs_left, ^setpos_abs_top);
+    $int1, $int10, $int11 = ~script8150($component0, $int1, $int2, $int10, $int4, $int11, "Selected Tile", "", null, "");
+    cc_create($component0, ^iftype_rectangle, $int1);
+    cc_setsize(calc($int4 - 6 * 2), 260, ^setsize_abs, ^setsize_abs);
+    cc_setposition(calc($int2 + 6), $int10, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setcolour(^black);
+    cc_setfill(true);
+    if ($int11 = 1) {
+        cc_settrans(220);
+    } else {
+        cc_settrans(200);
+    }
+    $int11 = calc(1 - $int11);
+    $int1 = calc($int1 + 1);
+    if (%bingo_selected_grid > -1 & %bingo_selected_tile > -1) {
+        $int1 = ~bingo_redraw_tile_details_content($component0, $int1, $int2, $int10, %bingo_selected_grid, %bingo_selected_tile, $component7, $component8, $component9);
+    }
+    $int10 = calc($int10 + 260);
+    $int1, $int10, $int11 = ~script8150($component0, $int1, $int2, $int10, $int4, $int11, "", "", null, "");
+}
+$int1 = ~thinbox_specific($component0, $int1, calc($int2 + 6), $int10, calc($int4 - 2 * 6), 23, ^setpos_abs_left, ^setpos_abs_top);
+$int1, $int10, $int11 = ~script8150($component0, $int1, $int2, $int10, $int4, $int11, "Bonus Effects", "", null, "");
+def_int $int16 = -1;
+def_int $int17 = -1;
+$int1, $int17, $int16 = ~script8199($component0, $int1, calc($int2 + 6), $int10, ^setpos_abs_left, ^setpos_abs_top, calc($int4 - 6 * 2), calc($int5 - ($int10 + 6)), ^setsize_abs, ^setsize_abs);
+def_int $int18 = 0;
+def_int $int19 = cc_getheight;
+cc_create_child(^iftype_text, $int1);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_abs);
+$int1 = calc($int1 + 1);
+def_int $int20 = 0;
+def_int $int21 = 0;
+def_string $string1 = "";
+def_int $int22 = 0;
+while ($int20 <= 23) {
+    $int21 = ~script8287($int20);
+    if ($int21 > 0) {
+        $int22 = 1;
+        if ($int20 = 0) {
+            $string1 = "All Skills XP";
+        } else {
+            $string1 = "<enum(int, string, enum_108, $int20)> XP";
+        }
+        $int1, $int18, $int11 = ~script8151($int1, $int18, $int11, $string1, "+<tostring($int21)>%", null, "", null, "");
+    }
+    $int20 = calc($int20 + 1);
+}
+if ($int22 = 0) {
+    $int1, $int18, $int11 = ~script8151($int1, $int18, $int11, "All Skills XP", "+0%", null, "", null, "");
+}
+if (calc(8 - 1) ! 0) {
+    $int1, $int18, $int11 = ~script8151($int1, $int18, $int11, "Drop Rate", "x<tostring(8)>", $component9, "Various rare items have their chance to drop increased.", null, "");
+}
+if (calc(4 - 1) ! 0) {
+    $int1, $int18, $int11 = ~script8151($int1, $int18, $int11, "Minigame Points", "x<tostring(4)>", $component9, "How many points you obtain from various minigames has been increased.", null, "");
+}
+if (calc(5 - 1) ! 0) {
+    $int1, $int18, $int11 = ~script8151($int1, $int18, $int11, "Farming Tickrate", "x<tostring(5)>", $component9, "How fast farming crops grow has been sped up.", null, "");
+}
+if (calc(5 - 1) ! 0) {
+    $int1, $int18, $int11 = ~script8151($int1, $int18, $int11, "Slayer Points", "x<tostring(5)>", $component9, "How many slayer points you obtain from slayer tasks has been increased.", null, "");
+}
+if (%event_rewards_xp_sharer_group_1_active = 1) {
+    $int1, $int18, $int11 = ~script8154($int1, $int18, $int11, "Combatant", %event_rewards_xp_shared_group_1_stat_1, %event_rewards_xp_shared_group_1_stat_2, %event_rewards_xp_shared_group_1_stat_3, $component9, reward_combatant);
+}
+if (%event_rewards_xp_sharer_group_2_active = 1) {
+    $int1, $int18, $int11 = ~script8154($int1, $int18, $int11, "Craftsman", %event_rewards_xp_shared_group_2_stat_1, %event_rewards_xp_shared_group_2_stat_2, %event_rewards_xp_shared_group_2_stat_3, $component9, reward_craftsman);
+}
+if (%event_rewards_xp_sharer_group_3_active = 1) {
+    $int1, $int18, $int11 = ~script8154($int1, $int18, $int11, "Gatherer", %event_rewards_xp_shared_group_3_stat_1, %event_rewards_xp_shared_group_3_stat_2, %event_rewards_xp_shared_group_3_stat_3, $component9, reward_gatherer);
+}
+if (%league_combat_mastery_melee_progress > 0) {
+    $int1, $int18, $int11 = ~script8153($int1, $int18, $int11, %league_combat_mastery_melee_progress, enum_5691, $component9);
+}
+if (%league_combat_mastery_ranged_progress > 0) {
+    $int1, $int18, $int11 = ~script8153($int1, $int18, $int11, %league_combat_mastery_ranged_progress, enum_5692, $component9);
+}
+if (%league_combat_mastery_magic_progress > 0) {
+    $int1, $int18, $int11 = ~script8153($int1, $int18, $int11, %league_combat_mastery_magic_progress, enum_5693, $component9);
+}
+def_structarray $structarray2 = null;
+if (%event_league_relics ! null) {
+    $structarray2 = enum_getinputs(struct, %event_league_relics);
+}
+def_struct $struct23 = null;
+def_int $int24 = 0;
+def_int $int25 = 0;
+def_boolean $boolean26 = false;
+def_stringarray $stringarray3 = null;
+def_structarray $structarray4 = null;
+def_int $int27 = 0;
+def_dbrow $dbrow28 = null;
+if (array_isnull($structarray2) = false & array_size($structarray2) > 0) {
+    $int25 = array_size($structarray2);
+    $stringarray3 = array_create(string, 0, $int25);
+    $structarray4 = array_create(struct, 0, $int25);
+    while ($int24 < $int25) {
+        $struct23 = $structarray2($int24);
+        if ($struct23 ! null) {
+            $boolean26 = ~int_to_bool(~league_relic_active($struct23));
+            if ($boolean26 = true) {
+                array_push($stringarray3, struct_param($struct23, param_879));
+                array_push($structarray4, $struct23);
+            }
+        }
+        $int24 = calc($int24 + 1);
+    }
+    $int25 = array_size($stringarray3);
+    if ($int25 > 0) {
+        array_sort($stringarray3, $structarray4);
+        $int24 = 0;
+        $string1 = "On";
+        while ($int24 < $int25) {
+            $struct23 = $structarray4($int24);
+            $int27 = db_find(reward:league_relic, $struct23);
+            if ($int27 = 0) {
+                $dbrow28 = null;
+            } else {
+                if ($int27 > 1) {
+                    ~debug_mes_warning("Ambiguous relic to reward link for bonus effects");
+                }
+                $dbrow28 = db_findnext;
+            }
+            $int1, $int18, $int11 = ~script8151($int1, $int18, $int11, $stringarray3($int24), $string1, $component9, struct_param($struct23, param_880), $dbrow28, "");
+            $int24 = calc($int24 + 1);
+        }
+    }
+}
+~script8138($component0, $int16, $int17, $int19, $int18, -1);
+return($int1);

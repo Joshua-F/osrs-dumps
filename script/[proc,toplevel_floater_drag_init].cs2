@@ -1,0 +1,38 @@
+// 8233
+[proc,toplevel_floater_drag_init](int $int0, component $component1, component $component2)
+cc_deleteall($component1);
+def_int $int3 = 0;
+while ($int3 < 8) {
+    cc_create($component1, ^iftype_graphic, $int3);
+    cc_settiling(true);
+    cc_settrans(255);
+    cc_setonmouserepeat("cc_settrans(event_com, event_comsubid, 200, null)");
+    cc_setonmouseleave("cc_settrans(event_com, event_comsubid, 255, null)");
+    cc_setdraggable($component1, -1);
+    cc_setdragdeadzone(1);
+    cc_setdragdeadtime(5);
+    $int3 = calc($int3 + 1);
+}
+cc_create($component1, ^iftype_layer, $int3);
+cc_setsize(300, 200, ^setsize_abs, ^setsize_abs);
+cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+$int3 = calc($int3 + 1);
+def_int $int4 = 0;
+def_int $int5 = 0;
+while ($int4 < 4) {
+    if (cc_find($component1, 8) = ^true) {
+        cc_create_child(^iftype_rectangle, $int3);
+        $int5 = calc($int4 * 2);
+        cc_setsize($int5, $int5, ^setsize_minus, ^setsize_minus);
+        cc_setposition($int4, $int4, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setonresize("script8234(event_com, event_comsubid, $int5)");
+        cc_setcolour(0x9f9f9f);
+        cc_setfill(false);
+        cc_settrans(calc(100 + $int4 * 10));
+    }
+    $int4 = calc($int4 + 1);
+    $int3 = calc($int3 + 1);
+}
+~script8230($int0, ~script8225($int0));
+~script8237($int0, $component1, $component2);
+~toplevel_floater_size_handler(^min_32bit_int, ^min_32bit_int, $int0, $component1, $component2);

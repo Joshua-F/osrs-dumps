@@ -7,7 +7,7 @@ if ($enum5 = null) {
 def_graphic $graphic6 = null;
 def_graphic $graphic7 = null;
 $graphic6, $graphic7 = ~orbs_worldmap_graphics;
-def_string $string0 = "<col=ff0000>Ctr + m</col> can be pressed to open the world map.";
+def_string $string0 = "<col=ff0000>Ctrl + M</col> to open.";
 if ($enum5 = enum_1745) {
     if (%osm_minimap_toggle = 0) {
         if_setposition(0, 130, ^setpos_abs_right, ^setpos_abs_top, $component0);
@@ -30,7 +30,10 @@ if ($enum5 = enum_1745) {
     if_setgraphic(ring_30, $component1);
     if_setsize(30, 30, ^setsize_abs, ^setsize_abs, $component1);
     if_setsize(22, 22, ^setsize_abs, ^setsize_abs, $component2);
-    if ($component4 ! null & ~on_mobile = false) {
+    if ($component4 ! null & ~on_mobile = false & %settings_world_map_hotkey_disabled = 0) {
+        if (~on_enhanced_any = false & %minimap_toggle = 0) {
+            $string0 = "World Map<br><col=ff0000>Ctrl + M</col><br>to open.";
+        }
         if_setsize(22, 22, ^setsize_abs, ^setsize_abs, $component4);
         if_setonmouserepeat("tooltip_mouserepeat(event_com, -1, $component3, $string0, 25, 512)", $component1);
         if_setonmouseleave("deltooltip($component3)", $component1);
@@ -41,7 +44,10 @@ if ($enum5 = enum_1745) {
     if_setgraphic(ring_30, $component1);
     if_setsize(30, 30, ^setsize_abs, ^setsize_abs, $component1);
     if_setsize(22, 22, ^setsize_abs, ^setsize_abs, $component2);
-    if ($component4 ! null & ~on_mobile = false) {
+    if ($component4 ! null & ~on_mobile = false & %settings_world_map_hotkey_disabled = 0) {
+        if (~on_enhanced_any = false) {
+            $string0 = "World Map<br><col=ff0000>Ctrl + M</col> to open.";
+        }
         if_setsize(22, 22, ^setsize_abs, ^setsize_abs, $component4);
         if_setonmouserepeat("tooltip_mouserepeat(event_com, -1, $component3, $string0, 25, 512)", $component1);
         if_setonmouseleave("deltooltip($component3)", $component1);
@@ -52,7 +58,7 @@ if ($enum5 = enum_1745) {
     if_setgraphic(ring_30, $component1);
     if_setsize(30, 30, ^setsize_abs, ^setsize_abs, $component1);
     if_setsize(22, 22, ^setsize_abs, ^setsize_abs, $component2);
-    if ($component4 ! null & ~on_mobile = false) {
+    if ($component4 ! null & ~on_mobile = false & %settings_world_map_hotkey_disabled = 0) {
         if_setsize(22, 22, ^setsize_abs, ^setsize_abs, $component4);
         if_setonmouserepeat("tooltip_mouserepeat(event_com, -1, $component3, $string0, 25, 512)", $component1);
         if_setonmouseleave("deltooltip($component3)", $component1);

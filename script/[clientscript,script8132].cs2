@@ -1,0 +1,15 @@
+// 8132
+[clientscript,script8132](component $component0, int $int1, int $int2, int $int3, component $component4, component $component5, component $component6)
+if (%bingo_info_maximised = true) {
+    if (%bingo_selected_tile > -1 & if_find_child($component0, param_2319, %bingo_selected_tile) = true) {
+        ~script8131(0, $int2, %bingo_selected_tile, $component4, $component5, $component6);
+    }
+    if (cc_find($component0, $int1) = ^true) {
+        ~script8131(1, $int2, $int3, $component4, $component5, $component6);
+    }
+}
+%bingo_selected_tile = $int3;
+~bingo_redraw_tile_details($int2, $int3, $component4, $component5, $component6);
+if (%bingo_info_maximised = true) {
+    ~script8129($component5);
+}

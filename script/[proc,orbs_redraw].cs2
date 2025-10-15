@@ -1,0 +1,32 @@
+// 8222
+[proc,orbs_redraw](component $component0, component $component1)
+cc_deleteall($component0);
+cc_deleteall($component1);
+cc_create($component1, ^iftype_graphic, 0);
+cc_sethide(true);
+def_int $int2 = 0;
+def_int $int3 = 54;
+def_int $int4 = 163;
+def_int $setposh5 = ^setpos_abs_left;
+def_int $setposv6 = ^setpos_abs_top;
+def_int $int7 = 34;
+def_struct $struct8 = struct_6307;
+def_string $string0 = "<col=ff9040>";
+if (~script8216(3) = true) {
+    $int3, $int4, $setposh5, $setposv6 = ~script8219(0);
+    if (~on_mobile = true) {
+        $struct8 = struct_6311;
+    } else {
+        $struct8 = struct_6307;
+    }
+    $int2 = ~cc_add_button($component0, $int2, $int3, $int4, $setposh5, $setposv6, $int7, $int7, ^setsize_abs, ^setsize_abs, $struct8, "");
+    cc_setop(1, "Toggle");
+    cc_setontimer("bingo_icon_flash($component0, $int2)");
+    cc_setopbase("<$string0>Grid Master</col>");
+    cc_setonop("orbs_send_data($component1, 0)");
+    cc_create_child(^iftype_graphic, $int2);
+    cc_setsize(33, 36, ^setsize_abs, ^setsize_abs);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_setgraphic("sideicons_interface,68");
+    $int2 = calc($int2 + 1);
+}

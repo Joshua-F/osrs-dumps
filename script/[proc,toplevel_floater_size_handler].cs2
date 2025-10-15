@@ -1,0 +1,30 @@
+// 8242
+[proc,toplevel_floater_size_handler](int $int0, int $int1, int $int2, component $component3, component $component4)
+def_int $int5 = ~script8231;
+def_int $int6 = if_getwidth($component3);
+def_int $int7 = calc(if_getheight($component3) - $int5);
+if ($int0 = $int6 & $int1 = $int7) {
+    return;
+}
+def_int $int8 = 0;
+def_int $int9 = 0;
+def_int $int10 = 0;
+def_int $int11 = 0;
+$int8, $int9, $int10, $int11 = ~script8225($int2);
+if (calc(if_getx($component4) + if_getwidth($component4)) >= calc($int0 - 10)) {
+    if (if_getx($component4) <= 10) {
+        $int10 = calc($int10 + ($int6 - $int0));
+    } else {
+        $int8 = calc($int8 + ($int6 - $int0));
+    }
+}
+if (calc(if_gety($component4) + if_getheight($component4)) >= calc($int1 - 10)) {
+    if (if_gety($component4) <= calc($int5 + 10)) {
+        $int11 = calc($int11 + ($int7 - $int1));
+    } else {
+        $int9 = calc($int9 + ($int7 - $int1));
+    }
+}
+~script8230($int2, $int8, $int9, $int10, $int11);
+~script8237($int2, $component3, $component4);
+if_setontimer("toplevel_floater_size_handler($int6, $int7, $int2, $component3, $component4)", $component3);

@@ -1,0 +1,72 @@
+// 8244
+[proc,script8244](dbrow $dbrow0)(objarray)
+def_objarray $objarray0 = array_create(obj, 0, -1);
+def_int $int1 = 0;
+def_int $int2 = 0;
+def_enum $enum3 = null;
+def_int $int4 = 0;
+$int1 = db_getfieldcount($dbrow0, action:equip_item);
+$int2 = 0;
+while ($int2 < $int1) {
+    array_push($objarray0, db_getfield($dbrow0, action:equip_item, $int2));
+    $int2 = calc($int2 + 1);
+}
+$int1 = db_getfieldcount($dbrow0, action:collection_generic);
+$int2 = 0;
+while ($int2 < $int1) {
+    array_push($objarray0, db_getfield($dbrow0, action:collection_generic, $int2));
+    $int2 = calc($int2 + 1);
+}
+$int1 = db_getfieldcount($dbrow0, action:collection_specific);
+$int2 = 0;
+while ($int2 < $int1) {
+    $enum3 = struct_param(db_getfield($dbrow0, action:collection_specific, $int2), param_690);
+    if ($enum3 ! null) {
+        $int4 = 0;
+        while ($int4 < enum_getoutputcount($enum3)) {
+            array_push($objarray0, oc_uncert(oc_cert(enum(int, namedobj, $enum3, $int4))));
+            $int4 = calc($int4 + 1);
+        }
+    }
+    $int2 = calc($int2 + 1);
+}
+$int1 = db_getfieldcount($dbrow0, action:loot_drop);
+$int2 = 0;
+while ($int2 < $int1) {
+    array_push($objarray0, db_getfield($dbrow0, action:loot_drop, $int2));
+    $int2 = calc($int2 + 1);
+}
+$int1 = db_getfieldcount($dbrow0, action:mine_ore);
+$int2 = 0;
+while ($int2 < $int1) {
+    array_push($objarray0, db_getfield($dbrow0, action:mine_ore, $int2));
+    $int2 = calc($int2 + 1);
+}
+$int1 = db_getfieldcount($dbrow0, action:poh_build);
+$int2 = 0;
+def_dbrow $dbrow5 = null;
+while ($int2 < $int1) {
+    $dbrow5 = db_getfield($dbrow0, action:poh_build, $int2);
+    array_push($objarray0, db_getfield($dbrow5, furniture:model_obj, 0));
+    $int2 = calc($int2 + 1);
+}
+$int1 = db_getfieldcount($dbrow0, action:create_item);
+$int2 = 0;
+while ($int2 < $int1) {
+    array_push($objarray0, db_getfield($dbrow0, action:create_item, $int2));
+    $int2 = calc($int2 + 1);
+}
+$int1 = db_getfieldcount($dbrow0, action:chop_logs);
+$int2 = 0;
+while ($int2 < $int1) {
+    array_push($objarray0, db_getfield($dbrow0, action:chop_logs, $int2));
+    $int2 = calc($int2 + 1);
+}
+$int1 = db_getfieldcount($dbrow0, action:child_action);
+def_objarray $objarray1 = null;
+while ($int2 < $int1) {
+    $objarray1 = ~script8244(db_getfield($dbrow0, action:child_action, $int2));
+    array_pushall($objarray0, $objarray1);
+    $int2 = calc($int2 + 1);
+}
+return($objarray0);

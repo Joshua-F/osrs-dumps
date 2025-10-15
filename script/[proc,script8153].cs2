@@ -1,0 +1,26 @@
+// 8153
+[proc,script8153](int $int0, int $int1, int $int2, int $int3, enum $enum4, component $component5)(int, int, int)
+def_int $int6 = 0;
+$int3 = min(enum_getoutputcount($enum4), $int3);
+def_string $string0 = "Combat Mastery";
+switch_enum ($enum4) {
+    case enum_5691 :
+        $string0 = "Melee Mastery";
+    case enum_5692 :
+        $string0 = "Ranged Mastery";
+    case enum_5693 :
+        $string0 = "Magic Mastery";
+}
+def_stringarray $stringarray1 = array_create(string, $int3, -1);
+def_struct $struct7 = null;
+def_string $string2 = "";
+while ($int6 < $int3) {
+    $struct7 = enum(int, struct, $enum4, calc($int6 + 1));
+    if ($struct7 ! null) {
+        $string2 = removetags(~script3302(struct_param($struct7, param_2028), "<br>", " "));
+        $stringarray1($int6) = "- <$string2>";
+    }
+    $int6 = calc($int6 + 1);
+}
+$int0, $int1, $int2 = ~script8151($int0, $int1, $int2, $string0, tostring($int3), $component5, string_join($stringarray1, "<br><br>"), reward_increase_all_combat_masteries, "<$string0>:");
+return($int0, $int1, $int2);

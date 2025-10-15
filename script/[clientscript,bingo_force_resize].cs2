@@ -1,0 +1,12 @@
+// 8099
+[clientscript,bingo_force_resize](int $int0, int $int1, component $component2, component $component3, component $component4, component $component5, component $component6)
+if (if_getwidth($component2) ! $int0 | if_getheight($component2) ! $int1) {
+    if_setontimer("bingo_force_resize(if_getwidth($component2), if_getheight($component2), event_com, $component3, $component4, $component5, $component6)", $component2);
+    if (cc_find($component2, 0) = ^true) {
+        cc_setonop("bingo_force_resize(if_getwidth($component2), if_getheight($component2), event_com, $component3, $component4, $component5, $component6)");
+    }
+    if_callonresize($component3);
+    if_callonresize($component4);
+    if_callonresize($component5);
+    if_callonresize($component6);
+}

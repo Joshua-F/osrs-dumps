@@ -1,0 +1,96 @@
+// 8163
+[proc,script8163](dbrow $dbrow0, int $int1)(graphic, obj, string)
+def_graphic $graphic2 = null;
+def_obj $obj3 = null;
+def_string $string0 = "";
+if ($dbrow0 = null) {
+    return($graphic2, $obj3, $string0);
+}
+$string0 = db_getfield($dbrow0, reward:name, 0);
+$graphic2 = db_getfield($dbrow0, reward:display_graphic, 0);
+if ($graphic2 ! null) {
+    return($graphic2, $obj3, $string0);
+}
+$obj3 = db_getfield($dbrow0, reward:display_object, 0);
+if ($obj3 ! null) {
+    return($graphic2, $obj3, $string0);
+}
+def_int $int4 = 0;
+def_struct $struct5 = null;
+def_int $int6 = 0;
+$int4 = db_getfieldcount($dbrow0, reward:league_relic);
+if ($int4 > 0) {
+    $struct5 = db_getfield($dbrow0, reward:league_relic, 0);
+    $graphic2 = struct_param($struct5, param_881);
+    return($graphic2, $obj3, $string0);
+}
+$int4 = db_getfieldcount($dbrow0, reward:combat_mastery_tier);
+$int6 = 0;
+def_int $int7 = 0;
+def_int $int8 = 0;
+while ($int6 < $int4) {
+    $int7, $int8 = db_getfield($dbrow0, reward:combat_mastery_tier, $int6);
+    switch_int ($int7) {
+        case 3 :
+            $graphic2 = ~league_combat_mastery_tier_icon(enum_5691, $int8);
+        case 4 :
+            $graphic2 = ~league_combat_mastery_tier_icon(enum_5692, $int8);
+        case 5 :
+            $graphic2 = ~league_combat_mastery_tier_icon(enum_5693, $int8);
+    }
+    if ($graphic2 ! null) {
+        return($graphic2, $obj3, $string0);
+    }
+    $int6 = calc($int6 + 1);
+}
+$int4 = db_getfield($dbrow0, reward:xp_boost_percentage_all_stat, 0);
+if ($int4 > 0) {
+    $graphic2 = "staticons2,7";
+    return($graphic2, $obj3, $string0);
+}
+$int4 = db_getfieldcount($dbrow0, reward:xp_boost_percentage);
+$int6 = 0;
+def_stat $stat9 = null;
+def_int $int10 = 0;
+def_stat $stat11 = null;
+def_int $int12 = 0;
+while ($int6 < $int4) {
+    $stat9, $int10 = db_getfield($dbrow0, reward:xp_boost_percentage, $int6);
+    if ($int10 > $int12) {
+        $stat11 = $stat9;
+    }
+    $int6 = calc($int6 + 1);
+}
+if ($stat11 ! null) {
+    $graphic2 = enum(stat, graphic, enum_255, $stat11);
+    return($graphic2, $obj3, $string0);
+}
+$int4 = db_getfieldcount($dbrow0, reward:object);
+def_obj $obj13 = null;
+if ($int4 > 0) {
+    if ($int4 > $int1) {
+        $obj13, $int4 = db_getfield($dbrow0, reward:object, $int1);
+    } else {
+        $obj13, $int4 = db_getfield($dbrow0, reward:object, 0);
+    }
+    if ($obj13 = dragon_arrow) {
+        return($graphic2, dragon_arrows5, $string0);
+    }
+    return($graphic2, oc_uncert(oc_cert($obj13)), $string0);
+}
+$int4 = db_getfield($dbrow0, reward:combat_achievement_unlock, 0);
+if ($int4 > 0) {
+    $obj3 = enum(int, obj, enum_5734, $int4);
+    return($graphic2, $obj3, $string0);
+}
+$int4 = db_getfield($dbrow0, reward:achievement_diary_unlock, 0);
+if ($int4 > 0) {
+    $graphic2 = "icon_compass_rose_50x50,1";
+    return($graphic2, $obj3, $string0);
+}
+$int4 = db_getfieldcount($dbrow0, reward:quest_unlock);
+if ($int4 > 0) {
+    $graphic2 = "icon_compass_rose_50x50,0";
+    return($graphic2, $obj3, $string0);
+}
+return($graphic2, $obj3, $string0);

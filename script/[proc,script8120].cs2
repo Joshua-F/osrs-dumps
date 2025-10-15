@@ -1,0 +1,26 @@
+// 8120
+[proc,script8120](int $int0, int $int1)(graphicarray, objarray, stringarray)
+def_dbrow $dbrow2 = null;
+def_int $int3 = 0;
+$dbrow2, $int3 = ~bingo_get_reward_selection($int0, $int1);
+def_int $int4 = 0;
+def_graphic $graphic5 = null;
+def_obj $obj6 = null;
+def_string $string0 = "";
+def_stringarray $stringarray1 = array_create(string, $int3, -1);
+def_graphicarray $graphicarray2 = array_create(graphic, $int3, -1);
+def_objarray $objarray3 = array_create(obj, $int3, -1);
+while ($int4 < $int3) {
+    $graphic5, $obj6, $string0 = ~script8161($dbrow2, $int4);
+    $stringarray1($int4) = $string0;
+    $graphicarray2($int4) = $graphic5;
+    $objarray3($int4) = $obj6;
+    $int4 = calc($int4 + 1);
+}
+if (db_getfield($dbrow2, reward_selection:display_graphic, 0) ! null | db_getfield($dbrow2, reward_selection:display_object, 0) ! null) {
+    $graphicarray2 = array_create(graphic, 1, -1);
+    $objarray3 = array_create(obj, 1, -1);
+    $graphicarray2(0) = db_getfield($dbrow2, reward_selection:display_graphic, 0);
+    $objarray3(0) = db_getfield($dbrow2, reward_selection:display_object, 0);
+}
+return($graphicarray2, $objarray3, $stringarray1);

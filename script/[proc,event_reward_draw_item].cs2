@@ -1,0 +1,56 @@
+// 8170
+[proc,event_reward_draw_item](int $int0, int $int1, int $int2, obj $obj3, int $int4, int $int5, int $int6, int $int7, int $int8, int $int9, component $component10, component $component11, int $int12, component $component13, component $component14, component $component15, component $component16, component $component17, component $component18, component $component19, component $component20, component $component21, component $component22, component $component23)(int, int)
+.cc_create($component13, ^iftype_rectangle, $int9);
+.cc_setsize($int2, 32, ^setsize_abs, ^setsize_abs);
+.cc_setposition($int0, $int1, ^setpos_abs_left, ^setpos_abs_top);
+.cc_setcolour(^black);
+.cc_setfill(true);
+.cc_settrans(255);
+.cc_setop(1, "Select <col=ff891f><oc_name($obj3)>");
+$int9 = calc($int9 + 1);
+if ($obj3 = null) {
+    return($int8, $int9);
+}
+cc_create($component14, ^iftype_graphic, $int8);
+cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+cc_setposition(calc($int0 + (40 - 36) / 2), $int1, ^setpos_abs_left, ^setpos_abs_top);
+cc_setobject_nonum($obj3, 1);
+cc_setgraphicshadow(0x333333);
+cc_setoutline(1);
+def_int $int24 = calc($int2 - 40);
+$int0 = calc($int0 + 40);
+$int8 = calc($int8 + 1);
+cc_create($component14, ^iftype_text, $int8);
+cc_setsize($int24, 32, ^setsize_abs, ^setsize_abs);
+cc_setposition($int0, $int1, ^setpos_abs_left, ^setpos_abs_top);
+cc_settextalign(^settextalign_left, ^settextalign_top, 0);
+cc_settextfont(p12_full);
+cc_settextshadow(true);
+def_string $string0 = "";
+def_string $string1 = ",";
+def_boolean $boolean25 = ~script8296(%map_flags_cached);
+def_int $rgb26 = ^white;
+def_string $string2 = "<col=ffffff>";
+if ($int7 = $int6) {
+    $rgb26, $string2 = ^white, "<col=ffffff>";
+    .cc_setonmouserepeat(null);
+    .cc_setonmouseleave(null);
+} else if (oc_members($obj3) = 1 & map_members = false) {
+    $rgb26, $string2 = 0x9f9f9f, "<col=9f9f9f>";
+} else if (%event_points_currency < $int5 & $boolean25 = false) {
+    $rgb26, $string2 = 0x9f9f9f, "<col=9f9f9f>";
+} else if ($boolean25 = true) {
+    $rgb26, $string2 = 0x9f9f9f, "<col=9f9f9f>";
+} else {
+    $rgb26, $string2 = 0x0dc10d, "<col=ff891f>";
+}
+.cc_setonop("event_reward_shop_select($int6, $component10, $component11, $int12, $component13, $component14, $component15, $component16, $component17, $component18, $component19, $component20, $component21, $component22, $component23)");
+cc_settextalign(^settextalign_left, ^settextalign_top, 15);
+cc_setcolour($rgb26);
+if ($int5 = 1) {
+    cc_settext("<oc_name($obj3)><br>  <$string2><~tostring_spacer($int5, $string1)> point</col>");
+} else {
+    cc_settext("<oc_name($obj3)><br>  <$string2><~tostring_spacer($int5, $string1)> points</col>");
+}
+$int8 = calc($int8 + 1);
+return($int8, $int9);
