@@ -1,0 +1,41 @@
+// 8392
+[proc,ballot_popup_open](string $string0, int $int0, int $int1, string $string1, string $string2)(int)
+sound_synth(synth_2266, 1, 0);
+if_sethide(false, ballot:popup_container);
+cc_deleteall(ballot:popup_window);
+def_int $int2 = 0;
+def_int $int3 = 20;
+def_int $int4 = 0;
+if ($int0 > 0 & $int1 > 0) {
+    $int3 = 10;
+    $int4 = calc($int3 * 3 + 27 - 5);
+    cc_create(ballot:popup_window, ^iftype_graphic, $int2);
+    cc_setposition(0, $int3, ^setpos_abs_centre, ^setpos_abs_top);
+    cc_sethttpsprite($string0);
+} else {
+    $int4 = calc($int3 * 3 + 27 - 5);
+    cc_create(ballot:popup_window, ^iftype_text, $int2);
+    cc_setposition(0, $int3, ^setpos_abs_centre, ^setpos_abs_top);
+    cc_setcolour(0xff981f);
+    cc_settextfont(p12_full);
+    cc_settextshadow(true);
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 16);
+    cc_settext($string0);
+}
+def_int $int5 = 0;
+if (string_length($string2) > 0) {
+    $int5 = calc(20 + max(parawidth($string1, 512, p12_full), parawidth($string2, 512, p12_full)));
+    if_setsize($int5, 27, ^setsize_abs, ^setsize_abs, ballot:popup_other);
+    if_setsize($int5, 27, ^setsize_abs, ^setsize_abs, ballot:popup_dismiss);
+    if_sethide(false, ballot:popup_other);
+    ~stonebutton_init($string2, ballot:popup_other, p12_full, 1);
+} else {
+    cc_deleteall(ballot:popup_other);
+    if_sethide(true, ballot:popup_other);
+    if_setonop(null, ballot:popup_other);
+    $int5 = calc(20 + parawidth($string1, 512, p12_full));
+    if_setsize($int5, 27, ^setsize_abs, ^setsize_abs, ballot:popup_dismiss);
+}
+~stonebutton_init($string1, ballot:popup_dismiss, p12_full, 1);
+if_setonop("ballot_popup_dismiss", ballot:popup_dismiss);
+~ballot_popup_layout(if_getwidth(ballot:popup_container), if_getheight(ballot:popup_container), $int2, $string0, $int0, $int1, $string2, $int3, $int4, $int5);
