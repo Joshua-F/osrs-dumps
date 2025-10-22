@@ -1,0 +1,23 @@
+// 6386
+[proc,script6386](component $component0, int $int1, int $int2)
+def_int $int3 = 12;
+def_int $int4 = 3;
+cc_create($component0, ^iftype_layer, ~script8302($component0));
+cc_setposition(10, 11, ^setpos_abs_left, ^setpos_abs_top);
+cc_setsize(calc($int2 * ($int3 + $int4)), $int3, ^setsize_abs, ^setsize_abs);
+def_int $int5 = 0;
+while ($int5 < $int2) {
+    if ($int5 = 0) {
+        cc_create_child(^iftype_graphic, ~script8302($component0));
+    } else {
+        cc_create_sibling(^iftype_graphic, ~script8302($component0));
+    }
+    cc_setsize($int3, $int3, ^setsize_abs, ^setsize_abs);
+    cc_setposition(calc($int5 * ($int3 + $int4)), 0, ^setpos_abs_left, ^setpos_abs_top);
+    if ($int5 < $int1) {
+        cc_setgraphic("pip_progress_12x12,1");
+    } else {
+        cc_setgraphic("pip_progress_12x12,0");
+    }
+    $int5 = calc($int5 + 1);
+}

@@ -1,0 +1,52 @@
+// 8466
+[proc,script8466]
+def_objarray $objarray0 = ~script8468;
+def_int $int0 = calc(array_size($objarray0) - array_count($objarray0, null, 0, -1));
+def_boolean $booleanarray1(5);
+def_obj $obj1 = null;
+def_dbrow $dbrow2 = null;
+def_int $int3 = -1;
+def_int $int4 = inv_size(inv);
+def_int $int5 = 0;
+def_obj $obj6 = null;
+def_int $int7 = -1;
+def_component $component8 = inventory:items;
+if (~script8305(equipment_side:items, toplevel_osrs_stretch:sidemodal) = true & ~script8307(equipment_side:items) = false) {
+    $component8 = equipment_side:items;
+}
+while ($int5 < $int4) {
+    $obj6 = inv_getobj(inv, $int5);
+    if ($obj6 ! null) {
+        $int7 = array_indexof($objarray0, $obj6, 0, -1);
+        if ($int7 ! -1) {
+            $objarray0($int7) = null;
+            $booleanarray1($int7) = true;
+            $obj1, $dbrow2, $int3 = ~inv_highlight_get_tracked_item_data($int7);
+            ~ui_highlight_update(1, $int7, $component8, $int5, $dbrow2, $int3);
+        }
+    }
+    $int5 = calc($int5 + 1);
+}
+$int7 = 0;
+while ($int7 < 5) {
+    ~ui_highlight_set_hidden(1, $int7, ~script7983($booleanarray1($int7)));
+    $int7 = calc($int7 + 1);
+}
+def_component $component9 = ~script8488;
+if ($component9 ! null) {
+    if ($int0 > 0) {
+        if (%inv_highlight_events_comid < 0) {
+            cc_create($component9, ^iftype_rectangle, ~script8490($component9));
+            %inv_highlight_events_comid = cc_getid;
+            cc_setsize(1, 1, ^setsize_abs, ^setsize_abs);
+            cc_settrans(255);
+            cc_setoninvtransmit("script8467{inv}");
+            cc_setonsubchange("script8467");
+        }
+    } else if (%inv_highlight_events_comid >= 0) {
+        if (cc_find($component9, %inv_highlight_events_comid) = ^true) {
+            cc_delete;
+        }
+        %inv_highlight_events_comid = -1;
+    }
+}

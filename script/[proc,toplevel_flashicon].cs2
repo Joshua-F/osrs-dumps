@@ -5,18 +5,15 @@ def_int $int4 = calc(%flashside - 1);
 def_component $component5 = enum(int, component, enum_1139, $int4);
 $component5 = enum(component, component, $enum3, $component5);
 if ($component5 ! $component0) {
+    ~ui_highlight_clear(2, $int4);
     return;
 }
 if ($enum3 = enum_1745 & $int2 = 1 & %osm_tab_expansion_disabled = 1) {
     if_sethide(false, $component0);
     if_setgraphic("tli_button01_square_40x40,0", $component1);
     $component0 = toplevel_osm:expand_icon;
+    $component5 = toplevel_osm:expand_icon;
     $component1 = toplevel_osm:expand_stone;
 }
-if (calc(clientclock % 20) < 10) {
-    if_sethide(false, $component0);
-    ~toplevel_sidebutton_highlight($component1);
-} else {
-    if_sethide(true, $component0);
-    if_setgraphic(null, $component1);
-}
+if_sethide(false, $component0);
+~ui_highlight_update(2, $int4, $component5, -1, ui_highlighting_style_tutorial_cta, 0);

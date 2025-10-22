@@ -1,0 +1,25 @@
+// 8564
+[proc,script8564](int $int0, int $int1, int $int2, int $int3, int $int4)(intarray)
+def_int $int5 = 0;
+def_intarray $intarray0 = array_create(int, 0, $int2);
+def_int $int6 = calc($int3 | $int4);
+while ($int5 < $int2) {
+    if (testbit($int6, $int5) = ^false) {
+        array_push($intarray0, $int5);
+    }
+    $int5 = calc($int5 + 1);
+}
+array_randomise($intarray0, $int0, $int1);
+$int5 = 0;
+def_int $int7 = 0;
+while ($int5 < $int2) {
+    if (testbit($int3, $int5) = ^true) {
+        array_insert($intarray0, $int5, $int7);
+        $int7 = calc($int7 + 1);
+    }
+    if (testbit($int4, $int5) = ^true) {
+        array_push($intarray0, $int5);
+    }
+    $int5 = calc($int5 + 1);
+}
+return($intarray0);

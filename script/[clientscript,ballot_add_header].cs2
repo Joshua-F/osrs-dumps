@@ -1,0 +1,37 @@
+// 8372
+[clientscript,ballot_add_header](int $int0, string $string0)
+def_int $int1 = ~script8368($int0, 102);
+cc_setparam(param_2364, $string0);
+cc_create_child(^iftype_rectangle, ~script8363);
+def_int $int2 = 4;
+cc_setsize(calc($int2 * 2), 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_setcolour(0x726451);
+cc_settrans(120);
+cc_setfill(true);
+def_int $int3 = 0;
+while ($int2 > 0) {
+    $int3 = calc(255 - scale($int2, 5, calc(255 - 120)));
+    $int2 = calc($int2 - 1);
+    cc_create_sibling(^iftype_rectangle, ~script8363);
+    cc_setsize(1, 0, ^setsize_abs, ^setsize_minus);
+    cc_setposition($int2, 0, ^setpos_abs_left, ^setpos_abs_centre);
+    cc_setcolour(0x726451);
+    cc_settrans($int3);
+    cc_setfill(true);
+    cc_create_sibling(^iftype_rectangle, ~script8363);
+    cc_setsize(1, 0, ^setsize_abs, ^setsize_minus);
+    cc_setposition($int2, 0, ^setpos_abs_right, ^setpos_abs_centre);
+    cc_setcolour(0x726451);
+    cc_settrans($int3);
+    cc_setfill(true);
+}
+cc_create_sibling(^iftype_text, ~script8363);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_setsize(3, 0, ^setsize_minus, ^setsize_minus);
+cc_setcolour(0xff981f);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 16);
+cc_settext($string0);
+cc_settextfont(b12_full);
+cc_settextshadow(true);
+~script8369($int1);

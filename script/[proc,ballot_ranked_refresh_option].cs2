@@ -1,0 +1,67 @@
+// 8435
+[proc,ballot_ranked_refresh_option](int $int0, int $int1, string $string0, int $int2, int $int3)
+cc_setposition(0, calc($int0 * 24), ^setpos_abs_centre, ^setpos_abs_top);
+cc_children_find(2);
+if_children_filter(param_2365, 601);
+while (.if_children_findnext = true) {
+    if ($int2 = 1) {
+        if (testbit($int3, $int0) = ^true) {
+            .cc_setcolour(0xc0c0c0);
+            .cc_setparam(param_2361, 12632256);
+        } else {
+            .cc_setcolour(0xff981f);
+            .cc_setparam(param_2361, 16750623);
+        }
+    } else {
+        .cc_setcolour(0x808080);
+        .cc_setparam(param_2361, 8421504);
+    }
+    .cc_settext("<tostring(calc(cc_param(param_2370) + 1))>. <$string0>");
+}
+def_int $int4 = -1;
+cc_children_find(2);
+if_children_filter(param_2365, 605);
+while (.if_children_findnext = true) {
+    if (calc(($int0 + 1) % 2) = 0) {
+        $int4 = 220;
+    } else {
+        $int4 = 170;
+    }
+    .cc_settrans($int4);
+    if (testbit($int3, $int0) = ^false) {
+        .cc_setonmouserepeat("cc_settrans(event_com, event_comsubid, 120, null)");
+        .cc_setonmouseleave("cc_settrans(event_com, event_comsubid, $int4, null)");
+    }
+}
+cc_children_find(2);
+if_children_filter(param_2365, 602);
+while (.if_children_findnext = true) {
+    if (testbit($int3, $int0) = ^true | $int0 > 0 & testbit($int3, calc($int0 - 1)) = ^true) {
+        .cc_settrans(180);
+    } else if ($int2 = 1) {
+        .cc_settrans(0);
+    } else {
+        .cc_settrans(180);
+    }
+}
+cc_children_find(2);
+if_children_filter(param_2365, 603);
+while (.if_children_findnext = true) {
+    if (testbit($int3, $int0) = ^true | $int0 < calc($int1 - 1) & testbit($int3, calc($int0 + 1)) = ^true) {
+        .cc_settrans(180);
+    } else if ($int2 = 1) {
+        .cc_settrans(0);
+    } else {
+        .cc_settrans(180);
+    }
+}
+cc_children_find(2);
+if_children_filter(param_2365, 604);
+while (.if_children_findnext = true) {
+    if ($int2 = 1) {
+        .cc_setparam(param_2357, setbit(.cc_param(param_2357), 0));
+    } else {
+        .cc_setparam(param_2357, clearbit(.cc_param(param_2357), 0));
+    }
+    .cc_setopbase("<col=ff9040><$string0></col>");
+}

@@ -1,0 +1,25 @@
+// 8479
+[clientscript,ui_highlight_lifetime](int $int0, int $int1, component $component2, int $int3)
+def_component $component4 = null;
+def_int $int5 = -1;
+def_boolean $boolean6 = false;
+if (cc_find($component2, $int3) = ^true) {
+    if (cc_param(param_2379) > 0 & clientclock >= calc(cc_param(param_2378) + cc_param(param_2379))) {
+        ~ui_highlight_clear($int0, $int1);
+        return;
+    }
+    $component4 = cc_param(param_2375);
+    $int5 = cc_param(param_2376);
+    if ($int5 ! -1 & $int5 >= 0 & .cc_find($component4, $int5) = ^true | .if_find($component4) = ^true) {
+        $boolean6 = cc_param(param_2380);
+        if (cc_find(cc_getlayer, cc_param(param_2374)) = ^true) {
+            if ($boolean6 = false) {
+                $boolean6 = ~script8309;
+            }
+            cc_sethide($boolean6);
+        }
+    } else {
+        ~ui_highlight_clear($int0, $int1);
+        return;
+    }
+}

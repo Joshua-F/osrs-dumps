@@ -1,0 +1,141 @@
+// 8358
+[proc,script8358](int $int0, int $int1, int $int2, int $int3, int $int4, string $string0, intarray $intarray1, intarray $intarray2, int $intbool5, int $int6)
+cc_create_child(^iftype_layer, ~script8363);
+if ($int2 = 1) {
+    cc_setsize(0, 33, ^setsize_minus, ^setsize_abs);
+    cc_setposition(0, calc($int0 * 33), ^setpos_abs_centre, ^setpos_abs_top);
+} else {
+    cc_setsize(0, 24, ^setsize_minus, ^setsize_abs);
+    cc_setposition(0, calc($int0 * 24), ^setpos_abs_centre, ^setpos_abs_top);
+}
+cc_setparam(param_2365, 600);
+cc_setparam(param_2370, $int0);
+cc_create_child(^iftype_rectangle, ~script8363);
+def_int $int7 = cc_getid;
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setcolour(0x726451);
+cc_setfill(true);
+if (calc($int0 % 2) = 0) {
+    cc_settrans(170);
+} else {
+    cc_settrans(220);
+}
+cc_create_sibling(^iftype_text, ~script8363);
+if ($int2 = 1) {
+    cc_setsize(calc(5 * 2), 15, ^setsize_minus, ^setsize_abs);
+    cc_setposition(0, 2, ^setpos_abs_centre, ^setpos_abs_top);
+    cc_settextalign(^settextalign_centre, ^settextalign_top, 0);
+} else {
+    cc_setsize($int3, 0, ^setsize_abs, ^setsize_minus);
+    cc_setposition(5, 0, ^setpos_abs_left, ^setpos_abs_centre);
+    cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+}
+if ($intbool5 = ^true) {
+    cc_setcolour(0xc0c0c0);
+} else {
+    cc_setcolour(0xff981f);
+}
+cc_settextfont(p12_full);
+cc_settextshadow(true);
+cc_settext(~ballot_overview_build_ranktext($int0, $string0, $int1));
+cc_create_sibling(^iftype_rectangle, ~script8363);
+cc_setcolour(0x383023);
+cc_setfill(false);
+if ($int2 = 1) {
+    cc_setsize(4, 21, ^setsize_minus, ^setsize_minus);
+    cc_setposition(0, 2, ^setpos_abs_centre, ^setpos_abs_bottom);
+} else {
+    cc_setsize(calc(5 * 3 + $int3), 8, ^setsize_minus, ^setsize_minus);
+    cc_setposition(5, 0, ^setpos_abs_right, ^setpos_abs_centre);
+}
+cc_create_sibling(^iftype_rectangle, ~script8363);
+cc_setcolour(0x5a5245);
+cc_setfill(false);
+if ($int2 = 1) {
+    cc_setsize(6, 23, ^setsize_minus, ^setsize_minus);
+    cc_setposition(0, 3, ^setpos_abs_centre, ^setpos_abs_bottom);
+} else {
+    cc_setsize(calc(5 * 3 + $int3 + 2), 10, ^setsize_minus, ^setsize_minus);
+    cc_setposition(calc(5 + 1), 0, ^setpos_abs_right, ^setpos_abs_centre);
+}
+cc_create_sibling(^iftype_layer, ~script8363);
+if ($int2 = 1) {
+    cc_setsize(8, 25, ^setsize_minus, ^setsize_minus);
+    cc_setposition(0, 4, ^setpos_abs_centre, ^setpos_abs_bottom);
+} else {
+    cc_setsize(calc(5 * 3 + $int3 + 4), 12, ^setsize_minus, ^setsize_minus);
+    cc_setposition(calc(5 + 2), 0, ^setpos_abs_right, ^setpos_abs_centre);
+}
+cc_create_child(^iftype_graphic, ~script8363);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setgraphic(tradebacking);
+cc_settiling(true);
+cc_settrans(0);
+def_string $string3 = "";
+def_int $int8 = -1;
+def_int $int9 = 0;
+def_int $int10 = -1;
+def_int $int11 = 0;
+def_int $int12 = -1;
+def_int $int13 = 0;
+def_int $int14 = 0;
+if ($int1 = 1 & $intbool5 = ^false) {
+    $string3 = "Voters' rankings for <col=ef1020><$string0></col>:";
+    while ($int14 < $int4) {
+        $int8 = calc($int0 * $int4 + $int14);
+        $int9 = calc($int9 + $intarray1($int8));
+        if ($intarray1($int8) > 0) {
+            $string3 = append($string3, "<br><tostring(calc($int14 + 1))>. <tostring(calc($intarray2($int8) / 10))>.<tostring(calc($intarray2($int8) % 10))>% (<~tostring_commas($intarray1($int8))>)");
+            if ($int6 = $int14) {
+                $string3 = append($string3, " - your selection");
+            }
+        }
+        cc_create_sibling(^iftype_rectangle, ~script8363);
+        cc_sethide(true);
+        if ($int10 = -1) {
+            $int10 = cc_getid;
+        }
+        $int14 = calc($int14 + 1);
+    }
+    if ($int9 > 0) {
+        while ($int14 > 0) {
+            $int14 = calc($int14 - 1);
+            $int13 = $intarray1(calc($int0 * $int4 + $int14));
+            if ($int13 > 0 & cc_find(cc_getlayer, calc($int10 + $int14)) = ^true) {
+                cc_sethide(false);
+                $int12 = calc(255 - scale($int14, $int4, 255));
+                cc_setcolour(~rgb_to_hex($int12, $int12, $int12));
+                cc_settrans(0);
+                cc_setfill(true);
+                cc_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_centre);
+                $int11 = calc($int11 + $int13);
+                cc_setsize(scale($int11, $int9, 16384), 0, ^setsize_rel, ^setsize_minus);
+                if ($int6 = $int14) {
+                    cc_create_sibling(^iftype_graphic, ~script8363);
+                    cc_setsize(13, 13, ^setsize_abs, ^setsize_abs);
+                    cc_setgraphic(heart_icon);
+                    cc_setposition(calc(16384 / 2 - (scale($int11, $int9, 16384) - scale($int13, calc(2 * $int9), 16384))), -1, ^setpos_rel_centre, ^setpos_abs_centre);
+                }
+            }
+        }
+        cc_create_sibling(^iftype_graphic, ~script8363);
+        cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+        cc_setgraphic(tradebacking);
+        cc_settiling(true);
+        cc_settrans(75);
+        if (.cc_find(cc_getlayer, $int7) = ^true) {
+            .cc_setonmouserepeat("cc_settrans(event_com, event_comsubid, 120, null)");
+            if (calc($int0 % 2) = 0) {
+                .cc_setonmouseleave("cc_settrans(event_com, event_comsubid, 170, null)");
+            } else {
+                .cc_setonmouseleave("cc_settrans(event_com, event_comsubid, 220, null)");
+            }
+            .cc_setop(1, "Details for");
+            .cc_setopbase("<col=ff9040><$string0></col>");
+            .cc_setonop("script8359($string3)");
+        }
+    }
+}
+cc_find_parent;
+cc_find_parent;
+cc_find_parent;

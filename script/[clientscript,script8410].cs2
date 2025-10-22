@@ -1,0 +1,14 @@
+// 8410
+[clientscript,script8410](component $component0, int $int1, int $int2, int $int3)
+if (cc_find($component0, $int1) = ^true) {
+    if (%poll_vote_status ! 3 & %poll_vote_status ! 4) {
+        sound_synth(synth_2277, 1, 0);
+    } else if (~script8417 = false) {
+        if_runscript*(ifscript_2608709403, ballot:single_choice, -1)($int2, -1);
+    } else {
+        sound_synth(synth_2266, 1, 0);
+        cc_settrans(220);
+        cc_setontimer("cc_settrans_temporarily_end(event_com, event_comsubid, 255, calc(clientclock + 25))");
+        if_runscript*(ifscript_2608709403, ballot:single_choice, -1)($int2, $int3);
+    }
+}

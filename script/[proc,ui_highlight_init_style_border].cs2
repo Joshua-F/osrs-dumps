@@ -1,0 +1,35 @@
+// 8472
+[proc,ui_highlight_init_style_border](dbrow $dbrow0, component $component1, int $int2, component $component3, int $int4, component $component5, int $int6)
+if (db_getrowtable($dbrow0) ! ui_highlighting_style_border) {
+    ~debug_mes_warn("UI", "Style passed to ui_highlight_init_style_border that doesn't use the border table.");
+    return;
+}
+def_int $int7 = max(1, db_getfield($dbrow0, ui_highlighting_style_border:width, 0));
+def_int $int8 = db_getfield($dbrow0, ui_highlighting_style_border:padding, 0);
+def_intarray $intarray0 = ~script8491($component1, calc(1 + $int7));
+cc_create_child(^iftype_layer, $intarray0(0));
+def_int $int9 = calc($int7 * 2 + $int8 * 2);
+~ui_highlight_set_size_pos_to_target($int9, $int9, 0, 0);
+cc_setontimer("ui_highlight_set_size_pos_to_target(cc_getlayer, cc_getid, $component3, $int4, $int9, $int9, 0, 0)");
+def_int $rgb10 = db_getfield($dbrow0, ui_highlighting_style_border:colour, 0);
+def_int $int11 = 0;
+def_int $int12 = db_getfieldcount($dbrow0, ui_highlighting_style_border:fx);
+def_int $int13 = 0;
+while ($int13 < $int7) {
+    if ($int13 = 0) {
+        cc_create_child(^iftype_rectangle, $intarray0(calc($int13 + 1)));
+    } else {
+        cc_create_sibling(^iftype_rectangle, $intarray0(calc($int13 + 1)));
+    }
+    cc_setsize(calc($int13 * 2), calc($int13 * 2), ^setsize_minus, ^setsize_minus);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_setcolour($rgb10);
+    cc_settrans(0);
+    cc_setfill(false);
+    $int11 = 0;
+    while ($int11 < $int12) {
+        ~script8474(db_getfield($dbrow0, ui_highlighting_style_border:fx, $int11));
+        $int11 = calc($int11 + 1);
+    }
+    $int13 = calc($int13 + 1);
+}

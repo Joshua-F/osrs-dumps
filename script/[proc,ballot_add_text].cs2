@@ -1,0 +1,29 @@
+// 8375
+[proc,ballot_add_text](int $int0, string $string0, string $string1, int $int1, int $int2, string $string2, int $int3, int $int4)
+def_int $int5 = ~script8368($int0, 101);
+def_component $component6 = cc_getlayer;
+def_int $int7 = 0;
+if ($int1 > 0) {
+    $int7 = calc($int1 + 12);
+}
+cc_create_child(^iftype_text, ~script8363);
+cc_setsize($int7, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+cc_setcolour(0xff981f);
+cc_settextalign(^settextalign_left, ^settextalign_top, 16);
+cc_settext($string0);
+cc_settextfont(p12_full);
+cc_settextshadow(true);
+def_int $int8 = -1;
+if ($int1 > 0 & $int2 > 0 & string_length($string1) > 0) {
+    cc_create_sibling(^iftype_graphic, ~script8363);
+    cc_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_top);
+    cc_setsize($int1, $int2, ^setsize_abs, ^setsize_abs);
+    cc_sethttpsprite($string1);
+    $int8 = setbit(if_param(param_2362, $component6, $int5), 1);
+    if_setparam(param_2362, $int8, $component6, $int5);
+    if (string_length($string2) > 0) {
+        ~script8379($string2, $int1, $int2, ^setpos_abs_right, $int3, $int4);
+    }
+}
+~script8369($int5);

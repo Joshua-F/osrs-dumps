@@ -1,0 +1,41 @@
+// 8440
+[proc,script8440](int $int0, intarray $intarray0, int $int1)
+def_component $component2 = cc_getlayer;
+def_int $int3 = cc_getid;
+def_boolean $boolean4 = ~int_to_bool(testbit(cc_param(param_2362), 1));
+def_int $int5 = setbit(0, 0);
+def_int $int6 = 1;
+if (testbit($int0, 2) = ^true) {
+    $int6, $int5 = 0, clearbit($int5, 0);
+} else if (testbit($int0, 1) = ^true) {
+    $int6 = 0;
+}
+cc_children_find(2);
+if_children_filter(param_2365, 608);
+while (.if_children_findnext = true) {
+    .cc_setparam(param_2357, $int5);
+}
+cc_children_find(2);
+def_int $int7 = if_children_filter(param_2365, 600);
+def_intarray $intarray1 = if_children_subids;
+def_int $int8 = 0;
+def_int $int9 = -1;
+while ($int8 < array_size($intarray1)) {
+    cc_find($component2, $intarray1($int8));
+    $int9 = $intarray0(cc_param(param_2370));
+    cc_setparam(param_2363, $int9);
+    ~ballot_ranked_refresh_option($int8, $int7, if_param(param_2364, $component2, $intarray1($int9)), $int6, $int1);
+    $int8 = calc($int8 + 1);
+}
+def_int $int10 = setbit(0, 1);
+def_int $int11 = if_param(param_2368, $component2, $int3);
+if (if_find_child($component2, param_2365, 202, param_2368, $int11) = true) {
+    if (testbit($int0, 2) = ^false) {
+        $int10 = setbit($int10, 0);
+    }
+    if (testbit($int0, 1) = ^true) {
+        $int10 = setbit($int10, 2);
+    }
+    cc_setparam(param_2357, $int10);
+    ~script8420;
+}

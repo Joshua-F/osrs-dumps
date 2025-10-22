@@ -1,0 +1,93 @@
+// 8328
+[proc,ballot_list_layout](int $int0)
+def_int $int1 = calc(if_getwidth(ballot:list) - (5 + 30 + 3) * 2);
+if_children_find(1, ballot:list, -1);
+if_children_filter(param_2365, 700);
+def_intarray $intarray0 = if_children_subids;
+def_int $int2 = -1;
+def_int $int3 = -1;
+def_int $int4 = 0;
+def_int $int5 = -1;
+def_int $int6 = -1;
+def_int $int7 = 0;
+def_int $int8 = 0;
+def_int $int9 = 0;
+def_int $int10 = 0;
+def_int $int11 = 0;
+def_int $int12 = array_size($intarray0);
+while ($int11 < $int12) {
+    if (cc_find(ballot:list, $intarray0($int11)) = ^true) {
+        cc_sethide(true);
+        $int2 = getbit_range(cc_param(param_2363), 0, calc(8 - 1));
+        $int3 = getbit_range(cc_param(param_2363), 8, 15);
+        if (($int2 >= pow(2, 9) | testbit(%poll_filters_categories, $int2) = ^false) & ($int3 >= pow(2, 8) | testbit(%poll_filters_statuses, $int3) = ^false)) {
+            cc_sethide(false);
+            if ($int4 > 0) {
+                $int4 = calc($int4 + 5);
+            }
+            $int5, $int6 = cc_param(param_2359), cc_param(param_2360);
+            if (cc_find(ballot:list, $int5) = ^true & .cc_find(ballot:list, $int6) = ^true) {
+                $int7 = calc(paraheight(cc_gettext, $int1, p12_full) * 15 + 5);
+                $int8 = calc(paraheight(.cc_gettext, $int1, p11_full) * 12 + 3);
+                cc_setsize($int1, $int7, ^setsize_abs, ^setsize_abs);
+                .cc_setsize($int1, $int8, ^setsize_abs, ^setsize_abs);
+                $int9 = calc($int7 + $int8);
+                $int10 = max(35, $int9);
+                if ($int9 < $int10) {
+                    cc_setposition(0, calc(($int10 - $int9) / 2), ^setpos_abs_centre, ^setpos_abs_top);
+                    .cc_setposition(0, calc(($int10 - $int9) / 2), ^setpos_abs_centre, ^setpos_abs_bottom);
+                } else {
+                    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top);
+                    .cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_bottom);
+                }
+            } else {
+                $int10 = 35;
+            }
+            if (cc_find(ballot:list, $intarray0($int11)) = ^true) {
+                cc_setsize(0, $int10, ^setsize_minus, ^setsize_abs);
+                cc_setposition(0, $int4, ^setpos_abs_centre, ^setpos_abs_bottom);
+            }
+            $int4 = calc($int4 + $int10);
+        }
+    }
+    $int11 = calc($int11 + 1);
+}
+def_string $string1 = "No polls were found matching<br>these filter settings.<br><br>Please adjust your filters<br>or select another year.";
+if (cc_find(ballot:list, if_param(param_2359, ballot:list, -1)) = ^true) {
+    if ($int4 <= 0) {
+        cc_sethide(false);
+        cc_settextalign(^settextalign_centre, ^settextalign_centre, 20);
+        cc_settext($string1);
+        $int4 = calc(paraheight($string1, if_getwidth(ballot:list), p12_full) * 20 + 50);
+    } else {
+        cc_sethide(true);
+    }
+}
+def_int $int13 = if_getheight(ballot:list_scrollbar);
+if ($int4 > $int13) {
+    if_setsize(20, 4, ^setsize_minus, ^setsize_minus, ballot:list);
+    if_setposition(2, 0, ^setpos_abs_left, ^setpos_abs_centre, ballot:list);
+    if_setscrollsize(0, $int4, ballot:list);
+} else {
+    if_setsize(20, $int4, ^setsize_minus, ^setsize_abs, ballot:list);
+    if_setposition(2, 2, ^setpos_abs_left, ^setpos_abs_top, ballot:list);
+    if_setscrollsize(0, 0, ballot:list);
+}
+def_int $int14 = ~minmax(0, calc($int4 - $int13), if_getscrolly(ballot:list));
+if_setscrollpos(0, $int14, ballot:list);
+~scrollbar_vertical_rebuild(ballot:list_scrollbar, ballot:list);
+~scrollbar_resize(ballot:list_scrollbar, ballot:list, $int14);
+$int4 = if_param(param_2363, ballot:list_years_scrollbar, -1);
+$int13 = if_getheight(ballot:list_years_scrollbar);
+if ($int4 > $int13) {
+    if_setscrollsize(0, $int4, ballot:list_years_content);
+} else {
+    if_setscrollsize(0, 0, ballot:list_years_content);
+}
+$int14 = ~minmax(0, calc($int4 - $int13), if_getscrolly(ballot:list_years_content));
+if ($int0 ! -1) {
+    $int14 = ~minmax(0, calc($int4 - $int13), calc($int0 - 25));
+}
+if_setscrollpos(0, $int14, ballot:list_years_content);
+~scrollbar_vertical_rebuild(ballot:list_years_scrollbar, ballot:list_years_content);
+~scrollbar_resize(ballot:list_years_scrollbar, ballot:list_years_content, $int14);

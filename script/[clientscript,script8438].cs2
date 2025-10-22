@@ -1,0 +1,18 @@
+// 8438
+[clientscript,script8438](component $component0, int $int1, int $int2)
+if (cc_find($component0, $int1) = ^true) {
+    if (%poll_vote_status ! 3 & %poll_vote_status ! 4) {
+        sound_synth(synth_2277, 1, 0);
+    } else if (~script8417 = false) {
+        if_runscript*(ifscript_1137418264, ballot:ranked, -1)($int2, null);
+    } else {
+        sound_synth(synth_2266, 1, 0);
+        cc_settrans(220);
+        cc_setontimer("cc_settrans_temporarily_end(event_com, event_comsubid, 255, calc(clientclock + 25))");
+        if (~script8418 = false) {
+            if_runscript*(ifscript_1137418264, ballot:ranked, -1)($int2, null);
+        } else {
+            if_runscript*(ifscript_1137418264, ballot:ranked, -1)($int2, ~ballot_voting_ranked_get_selected($int2));
+        }
+    }
+}

@@ -1,0 +1,38 @@
+// 8356
+[clientscript,ballot_overview_build_ranked](int $int0, int $int1, int $int2, int $int3, int $int4, int $int5, stringarray $stringarray0, intarray $intarray1, intarray $intarray2, intarray $intarray3)
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_int $int8 = 0;
+def_int $int9 = 80;
+def_int $int10 = -1;
+if (if_find_child(ballot:overview_contents, param_2365, 200, param_2368, $int0) = true) {
+    if ($int3 ! -1) {
+        $int6 = setbit($int6, 1);
+    }
+    if ($int2 = 1) {
+        $int6 = setbit($int6, 3);
+    }
+    cc_setparam(param_2369, 5);
+    cc_setparam(param_2362, $int6);
+    $int7 = min(array_size($stringarray0), min(array_size($intarray1), min(array_size($intarray2), array_size($intarray3))));
+    if ($int2 = 0) {
+        while ($int8 < $int7) {
+            $int9 = max($int9, parawidth(~ballot_overview_build_ranktext($int8, $stringarray0($int8), $int1), 512, p12_full));
+            $int8 = calc($int8 + 1);
+        }
+        $int8 = 0;
+    }
+    while ($int8 < $int7) {
+        ~script8358($int8, $int1, $int2, $int9, $int7, $stringarray0($int8), $intarray1, $intarray2, testbit($int4, $int8), $intarray3($int8));
+        $int8 = calc($int8 + 1);
+    }
+    if ($int3 ! -1) {
+        if ($int5 = 1) {
+            $int10 = 16777215;
+        } else {
+            $int10 = 11513775;
+        }
+        ~script8345($int1, "Skip question", $int3, -1, $int10);
+    }
+}
+~script8384($int0);
