@@ -1,0 +1,16 @@
+// 8490
+[proc,script8490](component $component)(int)
+def_int $int1 = 0;
+if_query(0, $component, -1);
+def_int $int2 = if_query_nextid;
+if ($int2 = -1 | $int2 < 0) {
+    return($int1);
+}
+while ($int2 ! -1) {
+    if (calc($int2 - $int1) > 1) {
+        return(calc($int1 + 1));
+    }
+    $int1 = $int2;
+    $int2 = if_query_nextid;
+}
+return(calc($int1 + 1));
