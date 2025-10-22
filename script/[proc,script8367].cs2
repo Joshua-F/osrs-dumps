@@ -1,0 +1,48 @@
+// 8367
+[proc,script8367](component $component0)(int)
+def_int $int1 = cc_getwidth;
+if_children_find(0, $component0, -1);
+def_int $int2 = if_children_filter(param_2365, 100);
+def_intarray $intarray0 = if_children_subids;
+def_int $int3 = 0;
+def_int $int4 = -1;
+def_int $int5 = 0;
+def_int $int6 = 0;
+def_int $int7 = -1;
+def_int $int8 = -1;
+def_int $int9 = -1;
+def_int $int10 = 0;
+while ($int10 < $int2) {
+    $int3 = calc($int3 + $int5);
+    cc_find($component0, $intarray0($int10));
+    $int7 = cc_param(param_2367);
+    switch_int ($int7) {
+        case -100, -101, 104 :
+            $int4, $int5 = ~script8371($int1, $int7);
+        case 102 :
+            $int4, $int5 = ~script8373($int1);
+        case 101 :
+            $int4, $int5 = ~script8376($int1);
+        case 103 :
+            $int4, $int5 = ~script8381($int1);
+        case -1 :
+            $int9 = cc_param(param_2368);
+            if ($int8 = -1 & $int7 = $int8 & .if_find_child($component0, param_2365, 213, param_2368, $int9) = true) {
+                .cc_setposition(0, $int3, ^setpos_abs_centre, ^setpos_abs_top);
+                $int3 = calc($int3 + 12);
+            }
+            $int4, $int5 = ~script8385($int1);
+            if ($component0 = ballot:overview_contents & if_find_child(ballot:overview_backgrounds, param_2365, 214, param_2368, $int9) = true) {
+                cc_setposition(0, $int3, ^setpos_abs_centre, ^setpos_abs_top);
+                $int3, $int6 = calc($int3 + 4), 4;
+                cc_setsize(0, calc($int4 + 4 * 2), ^setsize_minus, ^setsize_abs);
+            }
+        case default :
+            $int4, $int5 = 50, 0;
+    }
+    cc_find($component0, $intarray0($int10));
+    cc_setposition(0, $int3, ^setpos_abs_centre, ^setpos_abs_top);
+    cc_setsize(0, $int4, ^setsize_minus, ^setsize_abs);
+    $int3, $int10, $int6, $int8 = calc($int3 + $int4 + $int6), calc($int10 + 1), 0, $int7;
+}
+return($int3);

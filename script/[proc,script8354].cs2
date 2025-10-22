@@ -1,0 +1,70 @@
+// 8354
+[proc,script8354](int $int0)(int)
+def_component $component1 = cc_getlayer;
+def_int $int2 = cc_getid;
+def_int $int3 = cc_param(param_2362);
+def_boolean $boolean4 = ~int_to_bool(testbit($int3, 0));
+def_int $int5 = scale($int0, 100, calc(100 - 35));
+if_children_find(2, $component1, $int2);
+def_int $int6 = if_children_filter(param_2365, 500);
+def_int $int7 = calc($int5 / $int6);
+def_int $int8 = calc($int7 - 1);
+def_int $int9 = calc($int8 - 2 * 2);
+def_int $int10 = calc($int0 - $int7 * $int6);
+def_int $int11 = calc($int10 - 2 * 2);
+def_int $int12 = 1;
+while (if_children_findnext = true) {
+    $int12 = max($int12, paraheight(~script8355, $int9, p11_full));
+}
+def_int $int13 = calc($int12 * 13);
+def_int $int14 = calc($int13 + 2 * 2);
+def_int $int15 = calc($int10 + 1);
+if_children_find(2, $component1, $int2);
+if_children_filter(param_2365, 500);
+while (if_children_findnext = true) {
+    cc_setposition($int15, 0, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize($int8, $int14, ^setsize_abs, ^setsize_abs);
+    $int15 = calc($int15 + $int7);
+}
+if_children_find(2, $component1, $int2);
+if_children_filter(param_2365, 502);
+def_intarray $intarray0 = if_children_subids;
+def_int $int16 = 1;
+if ($boolean4 = true) {
+    $int16 = 2;
+}
+def_int $int17 = $int14;
+def_int $int18 = 0;
+def_int $int19 = -1;
+while ($int18 < array_size($intarray0)) {
+    $int17 = calc($int17 + 1);
+    cc_find($component1, $intarray0($int18));
+    $int19 = max($int16, paraheight(~script8355, $int11, p11_full));
+    $int13 = calc($int19 * 15);
+    $int14 = calc($int13 + 2 * 2);
+    cc_setposition(0, $int17, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize($int10, $int14, ^setsize_abs, ^setsize_abs);
+    if_children_find(2, $component1, $int2);
+    if_children_filter(param_2365, 504);
+    if_children_filter(param_2370, $int18);
+    $int15 = calc($int10 + 1);
+    while (if_children_findnext = true) {
+        cc_setposition($int15, $int17, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setsize($int8, $int14, ^setsize_abs, ^setsize_abs);
+        $int15 = calc($int15 + $int7);
+    }
+    $int17, $int18 = calc($int17 + $int14), calc($int18 + 1);
+}
+if (testbit($int3, 1) = ^true) {
+    $int17 = calc($int17 + 4);
+    if_children_find(1, $component1, $int2);
+    if_children_filter(param_2365, 350);
+    while (if_children_findnext = true) {
+        $int14 = ~script8416($int0);
+        cc_setposition(0, $int17, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setsize(0, $int14, ^setsize_minus, ^setsize_abs);
+        $int17 = calc($int17 + $int14);
+    }
+    cc_find_parent;
+}
+return($int17);

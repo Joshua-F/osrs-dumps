@@ -1,0 +1,22 @@
+// 8335
+[clientscript,script8335](int $int0, int $int1, string $string0)
+def_string $string1 = "This poll is <col=ffffff>open</col>.";
+if ($int1 ! -1) {
+    $string1 = "This poll is <col=ffffff>open</col>, closing in <col=ffffff><~tostring_minutes($int1, 0)></col>.";
+}
+switch_int (%poll_vote_status) {
+    case 0, 3 :
+        ~script8337($int0, "<$string1> You haven't voted yet.");
+        ~script8338("Vote");
+    case 1 :
+        if (string_length($string0) = 0) {
+            ~script8337($int0, "<$string1> You're not eligible to vote.");
+        } else {
+            ~script8337($int0, "<$string1> <$string0>");
+        }
+    case 2 :
+        ~script8337($int0, "<$string1> Your vote has been recorded.");
+    case 4, 5 :
+        ~script8337($int0, "<$string1> You haven't submitted your vote yet.");
+        ~script8338("Continue Voting");
+}
