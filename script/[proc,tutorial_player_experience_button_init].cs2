@@ -1,0 +1,16 @@
+// 8559
+[proc,tutorial_player_experience_button_init](component $component, int $int1, string $string0, int $rgb, string $string1)(int)
+def_int $int3 = ~tutorial_player_experience_button_draw(-1, $component, $string0, $rgb);
+if_setop(1, "Select", $component);
+if (~on_mobile = false) {
+    if_setonmouserepeat("tutorial_player_experience_button_draw(2, $component, $string0, $rgb)", $component);
+    if_setonmouseleave("tutorial_player_experience_button_draw(-1, $component, $string0, $rgb)", $component);
+}
+if_setonop("tutorial_player_experience_button_op($component, $int1, $string0, $rgb, $string1)", $component);
+if_setopbase("<col=ff9040><$string1></col>", $component);
+if_setontimer(null, $component);
+if (cc_find(tutorial_player_experience:content, $int1) = false) {
+    cc_create(tutorial_player_experience:content, ^iftype_layer, $int1);
+    cc_sethide(true);
+}
+return($int3);
