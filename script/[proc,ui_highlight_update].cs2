@@ -1,0 +1,40 @@
+// 8477
+[proc,ui_highlight_update](int $int0, int $int1, component $component2, int $int3, dbrow $dbrow4, int $int5)
+def_component $component6 = ~script8488;
+if ($component6 = null) {
+    return;
+}
+def_int $int7 = 0;
+def_int $int8 = ~script8489($int0, $int1);
+if ($int8 ! -1 & cc_find($component6, $int8) = ^true) {
+    if (cc_param(param_2377) ! $dbrow4) {
+        cc_delete;
+    }
+} else {
+    $int8 = ~script8490($component6);
+}
+if (cc_find($component6, $int8) = ^false) {
+    cc_create($component6, ^iftype_layer, $int8);
+    cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+    cc_setparam(param_2372, $int0);
+    cc_setparam(param_2373, $int1);
+    cc_setparam(param_2377, $dbrow4);
+    cc_setparam(param_2378, clientclock);
+    cc_setontimer("ui_highlight_lifetime($int0, $int1, $component6, $int8)");
+    if ($int3 ! -1 & $int3 >= 0 & .cc_find($component2, $int3) = ^true | .if_find($component2) = ^true) {
+        cc_setparam(param_2374, ~script8490($component6));
+        cc_create_child(^iftype_layer, cc_param(param_2374));
+        cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+        cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+        ~ui_highlight_init_style($dbrow4, cc_getlayer, cc_getid, $component6, $int8, $component2, $int3);
+    }
+}
+if (cc_find($component6, $int8) = ^true) {
+    cc_setparam(param_2380, false);
+    cc_setparam(param_2375, $component2);
+    cc_setparam(param_2376, $int3);
+    if (cc_param(param_2379) ! $int5) {
+        cc_setparam(param_2378, clientclock);
+        cc_setparam(param_2379, $int5);
+    }
+}

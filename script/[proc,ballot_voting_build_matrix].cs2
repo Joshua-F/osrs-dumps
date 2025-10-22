@@ -1,0 +1,106 @@
+// 8424
+[proc,ballot_voting_build_matrix](int $int0, int $int1, intarray $intarray0, stringarray $stringarray1, stringarray $stringarray2, int $int2, int $int3, int $int4, int $int5, int $int6)
+def_intarray $intarray3 = ~script8389($int4, array_size($stringarray1), $int5, $int6);
+def_int $int7 = calc(~script8390 % 2);
+def_int $int8 = 16750623;
+def_int $int9 = 11513775;
+def_int $int10 = setbit(0, 0);
+def_int $int11 = setbit($int10, 1);
+if (testbit($int1, 2) = ^true) {
+    $int10 = clearbit($int10, 0);
+    $int11 = clearbit($int11, 0);
+    $int8, $int9 = 8421504, 8421504;
+} else if (testbit($int1, 1) = ^true) {
+    $int10 = clearbit($int10, 0);
+    $int11 = setbit($int11, 2);
+    $int8, $int9 = 8421504, 8421504;
+}
+def_int $int12 = array_size($stringarray1);
+def_int $int13 = array_size($stringarray2);
+def_int $int14 = -1;
+def_int $int15 = 0;
+def_int $intarray4(calc($int13 + 1));
+while ($int15 < $int13) {
+    if ($int7 = 1) {
+        $int14 = calc($int13 - ($int15 + 1));
+    } else {
+        $int14 = $int15;
+    }
+    ~ballot_matrix_cell(500, 150);
+    ~ballot_matrix_text($stringarray2($int14), ^settextalign_centre, ^settextalign_bottom, $int8, p11_full, 13);
+    $intarray4($int14) = cc_getid;
+    cc_find_parent;
+    cc_find_parent;
+    $int15 = calc($int15 + 1);
+}
+if ($int2 ! 0) {
+    ~ballot_matrix_cell(500, 150);
+    ~ballot_matrix_text("Skip", ^settextalign_centre, ^settextalign_bottom, $int9, p11_full, 13);
+    $intarray4($int15) = cc_getid;
+    cc_find_parent;
+    cc_find_parent;
+}
+def_int $int16 = -1;
+def_int $int17 = -1;
+def_int $int18 = -1;
+def_int $int19 = 0;
+while ($int19 < $int12) {
+    $int18 = $intarray3($int19);
+    ~ballot_matrix_cell(502, 150);
+    cc_setparam(param_2370, $int18);
+    ~ballot_matrix_text($stringarray1($int18), ^settextalign_right, ^settextalign_centre, $int8, p11_full, 15);
+    $int17 = cc_getid;
+    cc_find_parent;
+    cc_find_parent;
+    $int15 = 0;
+    while ($int15 < $int13) {
+        if ($int7 = 1) {
+            $int14 = calc($int13 - ($int15 + 1));
+        } else {
+            $int14 = $int15;
+        }
+        $int16 = $int10;
+        if ($intarray0($int18) = $int14) {
+            $int16 = setbit($int10, 2);
+        }
+        ~ballot_matrix_cell(504, 215);
+        cc_setparam(param_2370, $int18);
+        cc_setparam(param_2371, $int14);
+        cc_setparam(param_2363, $int19);
+        ~ballot_matrix_radio($int16, $int17, $intarray4($int14));
+        cc_setparam(param_2370, $int18);
+        cc_setparam(param_2371, $int14);
+        cc_setonop("script8426(event_com, event_comsubid, $int0, $int18, $int14)");
+        cc_setopbase("<col=ff9040><$stringarray2($int14)></col>");
+        cc_find_parent;
+        cc_find_parent;
+        $int15 = calc($int15 + 1);
+    }
+    if (testbit($int2, $int18) = ^true) {
+        $int16 = $int10;
+        if ($intarray0($int18) = -1) {
+            $int16 = setbit($int10, 2);
+        }
+        ~ballot_matrix_cell(504, 215);
+        cc_setparam(param_2370, $int18);
+        cc_setparam(param_2371, -1);
+        cc_setparam(param_2363, $int19);
+        ~ballot_matrix_radio($int16, $int17, $intarray4($int15));
+        cc_setparam(param_2370, $int18);
+        cc_setparam(param_2371, -1);
+        cc_setonop("script8426(event_com, event_comsubid, $int0, $int18, -1)");
+        cc_setopbase("<col=ff9040>Skip</col>");
+        cc_find_parent;
+        cc_find_parent;
+    }
+    $int19 = calc($int19 + 1);
+}
+if ($int3 = 1) {
+    cc_create_child(^iftype_layer, ~script8363);
+    cc_setparam(param_2365, 201);
+    cc_setparam(param_2368, $int0);
+    ~ballot_create_option_with_text($int11, "Skip question", 1);
+    cc_setparam(param_2365, 202);
+    cc_setparam(param_2368, $int0);
+    cc_setonop("script8426(event_com, event_comsubid, $int0, -1, -1)");
+}

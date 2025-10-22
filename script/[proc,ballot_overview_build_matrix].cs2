@@ -1,0 +1,90 @@
+// 8351
+[proc,ballot_overview_build_matrix](int $int0, int $int1, stringarray $stringarray0, stringarray $stringarray1, intarray $intarray2, intarray $intarray3, int $int2, intarray $intarray4, int $int3)
+def_int $int4 = array_size($stringarray0);
+def_int $int5 = array_size($stringarray1);
+def_int $int6 = calc($int4 * $int5);
+def_int $int7 = 0;
+def_int $int8 = 0;
+while ($int8 = 0 & $int7 < $int4) {
+    if ($intarray2(calc($int6 + $int7)) ! -1) {
+        $int8 = 1;
+    }
+    $int7 = calc($int7 + 1);
+}
+$int7 = 0;
+if ($int8 = 1) {
+    cc_setparam(param_2362, setbit(cc_param(param_2362), 2));
+}
+def_int $int9 = 0;
+while ($int9 < $int5) {
+    ~ballot_matrix_cell(500, 150);
+    ~ballot_matrix_text($stringarray1($int9), ^settextalign_centre, ^settextalign_bottom, 16750623, p11_full, 13);
+    cc_find_parent;
+    cc_find_parent;
+    $int9 = calc($int9 + 1);
+}
+if ($int8 = 1) {
+    ~ballot_matrix_cell(500, 150);
+    ~ballot_matrix_text("Skip", ^settextalign_centre, ^settextalign_bottom, 11513775, p11_full, 13);
+    cc_find_parent;
+    cc_find_parent;
+}
+def_int $int10 = 0;
+def_int $int11 = -1;
+def_int $int12 = -1;
+def_int $int13 = max(1, array_max($intarray3));
+def_string $string5 = "-";
+$int7 = 0;
+while ($int7 < $int4) {
+    ~ballot_matrix_cell(502, 150);
+    cc_setparam(param_2370, $int7);
+    ~ballot_matrix_text($stringarray0($int7), ^settextalign_right, ^settextalign_centre, 16750623, p11_full, 15);
+    cc_find_parent;
+    cc_find_parent;
+    $int9 = 0;
+    while ($int9 < $int5) {
+        if ($int1 = 1) {
+            $string5 = "<tostring(calc($intarray3($int10) / 10))>.<tostring(calc($intarray3($int10) % 10))>%<br>(<~tostring_commas($intarray2($int10))>)";
+            $int11 = interpolate(255, 80, 0, $int13, $intarray3($int10));
+        } else {
+            $int11 = 215;
+        }
+        ~ballot_matrix_cell(504, $int11);
+        cc_setparam(param_2370, $int7);
+        if ($intarray4($int7) = $int9) {
+            $int12 = 16777215;
+        } else if ($int1 = 1) {
+            $int12 = ~scale_colour(16711680, 16758847, $intarray3($int10), $int13);
+        } else {
+            $int12 = 16750623;
+        }
+        ~ballot_matrix_text($string5, ^settextalign_centre, ^settextalign_centre, $int12, p11_full, 15);
+        cc_find_parent;
+        cc_find_parent;
+        $int9, $int10 = calc($int9 + 1), calc($int10 + 1);
+    }
+    if ($intarray2(calc($int6 + $int7)) ! -1) {
+        if ($int1 = 1) {
+            $string5 = "(<~tostring_commas($intarray2(calc($int6 + $int7)))>)";
+        }
+        ~ballot_matrix_cell(504, 215);
+        cc_setparam(param_2370, $int7);
+        if ($intarray4($int7) = -1) {
+            $int12 = 16777215;
+        } else {
+            $int12 = 11513775;
+        }
+        ~ballot_matrix_text($string5, ^settextalign_centre, ^settextalign_centre, $int12, p11_full, 15);
+        cc_find_parent;
+        cc_find_parent;
+    }
+    $int7 = calc($int7 + 1);
+}
+if ($int2 ! -1) {
+    if ($int3 = 1) {
+        $int12 = 16777215;
+    } else {
+        $int12 = 11513775;
+    }
+    ~script8345($int1, "Skip question", $int2, -1, $int12);
+}

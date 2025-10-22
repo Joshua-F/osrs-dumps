@@ -1,0 +1,142 @@
+// 8325
+[clientscript,ballot_list_build](int $int0, int $int1, stringarray $stringarray0, stringarray $stringarray1, intarray $intarray2, intarray $intarray3)
+%poll_id = 0;
+cc_deleteall(ballot:list_years_content);
+def_boolean $boolean2 = ~on_mobile;
+def_int $int3 = -1;
+def_int $int4 = 0;
+def_int $int5 = 0;
+def_int $int6 = 0;
+def_int $int7 = 30;
+while ($int7 >= 0) {
+    if (testbit($int1, $int7) = ^true) {
+        $int3 = calc(2013 + $int7);
+        $int5 = calc($int4 * 25);
+        cc_create(ballot:list_years_content, ^iftype_rectangle, ~script8363);
+        cc_setsize(0, 25, ^setsize_minus, ^setsize_abs);
+        cc_setposition(0, $int5, ^setpos_abs_centre, ^setpos_abs_top);
+        cc_setcolour(0x726451);
+        cc_setfill(true);
+        if (calc($int4 % 2) = 0) {
+            cc_settrans(220);
+            cc_setonmouseleave("cc_settrans(event_com, event_comsubid, 220, null)");
+        } else {
+            cc_settrans(170);
+            cc_setonmouseleave("cc_settrans(event_com, event_comsubid, 170, null)");
+        }
+        if ($boolean2 = false) {
+            cc_setonmouserepeat("cc_settrans(event_com, event_comsubid, 120, null)");
+        }
+        cc_setop(1, "Load");
+        cc_setopbase("<col=ff9040><tostring($int3)></col>");
+        cc_setonop("ballot_list_select_year($int3)");
+        cc_create(ballot:list_years_content, ^iftype_text, ~script8363);
+        cc_setsize(0, 25, ^setsize_minus, ^setsize_abs);
+        cc_setposition(0, $int5, ^setpos_abs_centre, ^setpos_abs_top);
+        if ($int3 = $int0) {
+            cc_setcolour(^white);
+            $int6 = $int5;
+        } else {
+            cc_setcolour(0xff981f);
+        }
+        cc_settextshadow(true);
+        cc_settextfont(p12_full);
+        cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+        cc_settext(tostring($int3));
+        $int4 = calc($int4 + 1);
+    }
+    $int7 = calc($int7 - 1);
+}
+if_setparam(param_2363, calc($int4 * 25), ballot:list_years_scrollbar, -1);
+if_setscrollpos(0, 0, ballot:list_years_content);
+~scrollbar_default(ballot:list_years_scrollbar, ballot:list_years_content);
+%poll_id = 0;
+cc_deleteall(ballot:list);
+.cc_create(ballot:list, ^iftype_text, ~script8363);
+if_setparam(param_2359, .cc_getid, ballot:list, -1);
+.cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+.cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top);
+.cc_setcolour(0x9f9f9f);
+.cc_settextfont(p12_full);
+.cc_settextshadow(true);
+.cc_sethide(true);
+def_int $int8 = -1;
+def_dbrow $dbrow9 = null;
+$int4 = 0;
+def_int $int10 = array_size($intarray2);
+while ($int4 < $int10) {
+    cc_create(ballot:list, ^iftype_layer, ~script8363);
+    cc_setop(1, "View");
+    cc_setonop("ballot_list_select_poll(event_com, event_comsubid, $intarray2($int4), $stringarray0($int4))");
+    cc_setparam(param_2366, $int4);
+    cc_setparam(param_2365, 700);
+    cc_setparam(param_2363, $intarray3($int4));
+    if ($boolean2 = false) {
+        cc_setonmouseover("cc_settrans(event_com, calc(cc_getid + 1), 220, null)");
+    }
+    cc_setonmouseleave("cc_settrans(event_com, calc(cc_getid + 1), 255, null)");
+    cc_setparam(param_2359, calc(cc_getid + 2));
+    cc_setparam(param_2360, calc(cc_getid + 3));
+    cc_sethide(true);
+    cc_create_child(^iftype_rectangle, ~script8363);
+    cc_setcolour(0x726451);
+    cc_setfill(true);
+    cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_settrans(255);
+    cc_create_sibling(^iftype_text, ~script8363);
+    cc_setcolour(0xff981f);
+    cc_settextfont(p12_full);
+    cc_settextshadow(true);
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    cc_settext($stringarray0($int4));
+    cc_create_sibling(^iftype_text, ~script8363);
+    cc_setcolour(0xafafaf);
+    cc_settextfont(p11_full);
+    cc_settextshadow(true);
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    cc_settext($stringarray1($int4));
+    $int8 = getbit_range($intarray3($int4), 0, calc(8 - 1));
+    db_find(poll_filters:id, $int8);
+    db_find_refine(poll_filters:category, true);
+    $dbrow9 = db_findnext;
+    cc_create_sibling(^iftype_graphic, ~script8363);
+    cc_setsize(30, 35, ^setsize_abs, ^setsize_abs);
+    cc_setposition(5, 0, ^setpos_abs_left, ^setpos_abs_centre);
+    if ($dbrow9 ! null) {
+        cc_setgraphic(db_getfield($dbrow9, poll_filters:icon, 0));
+    }
+    cc_settiling(false);
+    $int8 = getbit_range($intarray3($int4), 8, 15);
+    db_find(poll_filters:id, $int8);
+    db_find_refine(poll_filters:category, false);
+    $dbrow9 = db_findnext;
+    cc_create_sibling(^iftype_graphic, ~script8363);
+    cc_setsize(30, 35, ^setsize_abs, ^setsize_abs);
+    cc_setposition(5, 0, ^setpos_abs_right, ^setpos_abs_centre);
+    if ($dbrow9 ! null) {
+        cc_setgraphic(db_getfield($dbrow9, poll_filters:icon, 0));
+    }
+    cc_settiling(false);
+    $int4 = calc($int4 + 1);
+}
+if_setscrollpos(0, 0, ballot:list);
+~scrollbar_default(ballot:list_scrollbar, ballot:list);
+~ballot_list_layout($int6);
+%poll_id = 0;
+cc_deleteall(ballot:list_filters);
+def_int $int11 = calc(30 + 10);
+db_find(poll_filters:category, true);
+$dbrow9, $int4 = db_findnext, 0;
+while ($dbrow9 ! null) {
+    ~ballot_list_filter_build($dbrow9, ^setpos_abs_left, $int11, $int4, testbit(%poll_filters_categories, db_getfield($dbrow9, poll_filters:id, 0)));
+    $dbrow9, $int4 = db_findnext, calc($int4 + 1);
+}
+db_find(poll_filters:category, false);
+$dbrow9, $int4 = db_findnext, 0;
+while ($dbrow9 ! null) {
+    ~ballot_list_filter_build($dbrow9, ^setpos_abs_right, $int11, $int4, testbit(%poll_filters_statuses, db_getfield($dbrow9, poll_filters:id, 0)));
+    $dbrow9, $int4 = db_findnext, calc($int4 + 1);
+}
+~script8314("Poll History: <tostring($int0)>");
+~script8313(1);

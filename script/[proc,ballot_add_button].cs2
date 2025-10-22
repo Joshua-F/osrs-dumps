@@ -1,0 +1,44 @@
+// 8370
+[proc,ballot_add_button](int $int0, int $int1, string $string0, string $string1)
+def_int $int2 = ~script8368($int0, $int1);
+cc_setparam(param_2364, $string0);
+cc_create_child(^iftype_layer, ~script8363);
+cc_setparam(param_2365, 301);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top);
+def_int $int3 = %poll_id;
+if (~on_mobile = false) {
+    cc_setonmouseover("v2_stone_button_change_in(event_com, $int3)");
+    cc_setonmouseleave("v2_stone_button_change_out(event_com, $int3)");
+}
+cc_setop(1, $string1);
+def_int $int4 = cc_getid;
+~ballot_graphic_child(tradebacking, 0, 0, ^setpos_abs_centre, ^setpos_abs_centre, 2, 2, ^setsize_minus, ^setsize_minus);
+~ballot_graphic_sibling("v2_stone_button,0", 0, 0, ^setpos_abs_left, ^setpos_abs_top, 9, 9, ^setsize_abs, ^setsize_abs);
+~ballot_graphic_sibling("v2_stone_button,1", 0, 0, ^setpos_abs_right, ^setpos_abs_top, 9, 9, ^setsize_abs, ^setsize_abs);
+~ballot_graphic_sibling("v2_stone_button,2", 0, 0, ^setpos_abs_left, ^setpos_abs_bottom, 9, 9, ^setsize_abs, ^setsize_abs);
+~ballot_graphic_sibling("v2_stone_button,3", 0, 0, ^setpos_abs_right, ^setpos_abs_bottom, 9, 9, ^setsize_abs, ^setsize_abs);
+~ballot_graphic_sibling("v2_stone_button,4", 0, 9, ^setpos_abs_left, ^setpos_abs_top, 9, 18, ^setsize_abs, ^setsize_minus);
+~ballot_graphic_sibling("v2_stone_button,5", 9, 0, ^setpos_abs_left, ^setpos_abs_top, 18, 9, ^setsize_minus, ^setsize_abs);
+~ballot_graphic_sibling("v2_stone_button,6", 0, 9, ^setpos_abs_right, ^setpos_abs_top, 9, 18, ^setsize_abs, ^setsize_minus);
+~ballot_graphic_sibling("v2_stone_button,7", 9, 0, ^setpos_abs_left, ^setpos_abs_bottom, 18, 9, ^setsize_minus, ^setsize_abs);
+if ($int1 = 104) {
+    cc_create_sibling(^iftype_graphic, ~script8363);
+    cc_setsize(15, 15, ^setsize_abs, ^setsize_abs);
+    cc_setposition(10, 0, ^setpos_abs_left, ^setpos_abs_centre);
+    cc_setgraphic(mapfunction_infoicon);
+}
+cc_create_sibling(^iftype_text, ~script8363);
+if ($int1 = 104) {
+    cc_setsize(calc(10 * 2 + 15 + 4), 0, ^setsize_minus, ^setsize_minus);
+    cc_setposition(10, 0, ^setpos_abs_right, ^setpos_abs_centre);
+} else {
+    cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+}
+cc_setcolour(0xff981f);
+cc_settextfont(p12_full);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 13);
+cc_settextshadow(true);
+cc_settext($string0);
+~script8369($int2);
+cc_find(cc_getlayer, $int4);

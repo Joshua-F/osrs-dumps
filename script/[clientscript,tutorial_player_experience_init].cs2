@@ -1,0 +1,14 @@
+// 8558
+[clientscript,tutorial_player_experience_init]
+def_string $string0 = "How familiar are you with Old School RuneScape?";
+~steelborder(tutorial_player_experience:frame, $string0, 1);
+~script6386(tutorial_player_experience:frame, 3, 3);
+def_int $int0 = 0;
+$int0 = max($int0, ~tutorial_player_experience_button_init(tutorial_player_experience:button_new, 1, "I'm brand new! This is my first time here.", 0xff981f, "New player"));
+$int0 = max($int0, ~tutorial_player_experience_button_init(tutorial_player_experience:button_returning, 2, "I've played in the past, but not recently.", 0xff981f, "Returning player"));
+$int0 = max($int0, ~tutorial_player_experience_button_init(tutorial_player_experience:button_experienced, 3, "I'm an experienced player.", 0xff981f, "Experienced player"));
+if_setsize($int0, if_getheight(tutorial_player_experience:button_new), ^setsize_abs, ^setsize_abs, tutorial_player_experience:button_new);
+if_setsize($int0, if_getheight(tutorial_player_experience:button_returning), ^setsize_abs, ^setsize_abs, tutorial_player_experience:button_returning);
+if_setsize($int0, if_getheight(tutorial_player_experience:button_experienced), ^setsize_abs, ^setsize_abs, tutorial_player_experience:button_experienced);
+def_int $int1 = calc(max(calc(parawidth($string0, ^max_32bit_int, b12_full) + 80), $int0) + 60);
+if_setsize($int1, if_getheight(tutorial_player_experience:main), ^setsize_abs, ^setsize_abs, tutorial_player_experience:main);

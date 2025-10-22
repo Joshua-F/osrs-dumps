@@ -1,0 +1,37 @@
+// 8326
+[proc,ballot_list_filter_build](dbrow $dbrow0, int $setposh1, int $int2, int $int3, int $int4)
+def_int $int5 = %poll_id;
+cc_create(ballot:list_filters, ^iftype_layer, ~script8363);
+cc_setsize($int2, 0, ^setsize_abs, ^setsize_minus);
+cc_setposition(calc($int3 * ($int2 + 5)), 0, $setposh1, ^setpos_abs_centre);
+cc_setopbase("<col=ff9040><db_getfield($dbrow0, poll_filters:opbase, 0)></col>");
+cc_setonop("ballot_list_filter_toggle(event_com, event_comsubid, %poll_id, $dbrow0, $int4)");
+if ($int4 = 1) {
+    cc_setop(1, "Show");
+    ~ballot_graphic_child(miscgraphics_buttontile_nw_red, 0, 0, ^setpos_abs_left, ^setpos_abs_top, 6, 6, ^setsize_abs, ^setsize_abs);
+    ~ballot_graphic_sibling(miscgraphics_buttontile_nc_red, 6, 0, ^setpos_abs_left, ^setpos_abs_top, 12, 6, ^setsize_minus, ^setsize_abs);
+    ~ballot_graphic_sibling(miscgraphics_buttontile_ne_red, 0, 0, ^setpos_abs_right, ^setpos_abs_top, 6, 6, ^setsize_abs, ^setsize_abs);
+    ~ballot_graphic_sibling(miscgraphics_buttontile_cw_red, 0, 6, ^setpos_abs_left, ^setpos_abs_top, 6, 12, ^setsize_abs, ^setsize_minus);
+    ~ballot_graphic_sibling(miscgraphics_buttontile_cc_red, 6, 6, ^setpos_abs_left, ^setpos_abs_top, 12, 12, ^setsize_minus, ^setsize_minus);
+    ~ballot_graphic_sibling(miscgraphics_buttontile_ce_red, 0, 6, ^setpos_abs_right, ^setpos_abs_top, 6, 12, ^setsize_abs, ^setsize_minus);
+    ~ballot_graphic_sibling(miscgraphics_buttontile_sw_red, 0, 0, ^setpos_abs_left, ^setpos_abs_bottom, 6, 6, ^setsize_abs, ^setsize_abs);
+    ~ballot_graphic_sibling(miscgraphics_buttontile_sc_red, 6, 0, ^setpos_abs_left, ^setpos_abs_bottom, 12, 6, ^setsize_minus, ^setsize_abs);
+    ~ballot_graphic_sibling(miscgraphics_buttontile_se_red, 0, 0, ^setpos_abs_right, ^setpos_abs_bottom, 6, 6, ^setsize_abs, ^setsize_abs);
+} else {
+    cc_setop(1, "Hide");
+    ~ballot_graphic_child(miscgraphics_buttontile_nw_grey, 0, 0, ^setpos_abs_left, ^setpos_abs_top, 6, 6, ^setsize_abs, ^setsize_abs);
+    ~ballot_graphic_sibling(miscgraphics_buttontile_nc_grey, 6, 0, ^setpos_abs_left, ^setpos_abs_top, 12, 6, ^setsize_minus, ^setsize_abs);
+    ~ballot_graphic_sibling(miscgraphics_buttontile_ne_grey, 0, 0, ^setpos_abs_right, ^setpos_abs_top, 6, 6, ^setsize_abs, ^setsize_abs);
+    ~ballot_graphic_sibling(miscgraphics_buttontile_cw_grey, 0, 6, ^setpos_abs_left, ^setpos_abs_top, 6, 12, ^setsize_abs, ^setsize_minus);
+    ~ballot_graphic_sibling(miscgraphics_buttontile_cc_grey, 6, 6, ^setpos_abs_left, ^setpos_abs_top, 12, 12, ^setsize_minus, ^setsize_minus);
+    ~ballot_graphic_sibling(miscgraphics_buttontile_ce_grey, 0, 6, ^setpos_abs_right, ^setpos_abs_top, 6, 12, ^setsize_abs, ^setsize_minus);
+    ~ballot_graphic_sibling(miscgraphics_buttontile_sw_grey, 0, 0, ^setpos_abs_left, ^setpos_abs_bottom, 6, 6, ^setsize_abs, ^setsize_abs);
+    ~ballot_graphic_sibling(miscgraphics_buttontile_sc_grey, 6, 0, ^setpos_abs_left, ^setpos_abs_bottom, 12, 6, ^setsize_minus, ^setsize_abs);
+    ~ballot_graphic_sibling(miscgraphics_buttontile_se_grey, 0, 0, ^setpos_abs_right, ^setpos_abs_bottom, 6, 6, ^setsize_abs, ^setsize_abs);
+}
+~ballot_graphic_sibling(db_getfield($dbrow0, poll_filters:icon, 0), 0, 0, ^setpos_abs_centre, ^setpos_abs_centre, 30, 35, ^setsize_abs, ^setsize_abs);
+cc_settrans(0);
+if (~on_mobile = false & .cc_find(ballot:list_filters, $int5) = ^true) {
+    .cc_setonmouserepeat("cc_settrans(event_com, cc_getid, 100, null)");
+    .cc_setonmouseleave("cc_settrans(event_com, cc_getid, 0, null)");
+}

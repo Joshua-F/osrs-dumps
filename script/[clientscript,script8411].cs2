@@ -1,0 +1,17 @@
+// 8411
+[clientscript,script8411](component $component0, int $int1, int $int2, int $int3)
+def_int $int4 = 1;
+if (cc_find($component0, $int1) = ^true) {
+    if (%poll_vote_status ! 3 & %poll_vote_status ! 4) {
+        sound_synth(synth_2277, 1, 0);
+    } else if (~script8417 = false) {
+        if_runscript*(ifscript_3073860558, ballot:multiple_choice, -1)($int2, -1, 1);
+    } else {
+        if (~script8418 = true) {
+            $int4 = 0;
+        }
+        cc_settrans(220);
+        cc_setontimer("cc_settrans_temporarily_end(event_com, event_comsubid, 255, calc(clientclock + 25))");
+        if_runscript*(ifscript_3073860558, ballot:multiple_choice, -1)($int2, $int3, $int4);
+    }
+}

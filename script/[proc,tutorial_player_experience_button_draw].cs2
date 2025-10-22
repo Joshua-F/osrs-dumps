@@ -1,0 +1,35 @@
+// 8562
+[proc,tutorial_player_experience_button_draw](int $int0, component $component1, string $string0, int $rgb2)(int)
+def_int $int3 = 0;
+def_int $int4 = 9;
+switch_int ($int0) {
+    case 1 :
+        $int3 = ~v2_stone_button_in_filled($component1);
+    case 2 :
+        $int3 = ~v2_stone_button_out_filled($component1);
+    case default :
+        $int3 = ~script6387($component1);
+}
+def_int $int5 = 32;
+def_int $int6 = 21;
+switch_int ($int0) {
+    case 2, 1 :
+        ~create_graphic($component1, $int3, "rightarrow_small_stone,1", $int4, 0, ^setpos_abs_left, ^setpos_abs_centre, $int5, $int6, ^setsize_abs, ^setsize_abs);
+    case default :
+        ~create_graphic($component1, $int3, "rightarrow_small_stone,0", $int4, 0, ^setpos_abs_left, ^setpos_abs_centre, $int5, $int6, ^setsize_abs, ^setsize_abs);
+}
+$int3 = calc($int3 + 1);
+$int4 = calc($int4 + $int5 + 5);
+cc_create($component1, ^iftype_text, $int3);
+$int3 = calc($int3 + 1);
+def_int $int7 = parawidth($string0, if_getwidth($component1), p11_full);
+cc_setposition($int4, 0, ^setpos_abs_left, ^setpos_abs_centre);
+cc_setsize($int7, 2, ^setsize_abs, ^setsize_minus);
+cc_setcolour($rgb2);
+cc_settextfont(p11_full);
+cc_settextshadow(true);
+cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+cc_settext($string0);
+$int4 = calc($int4 + $int7);
+def_int $int8 = calc($int4 + 12);
+return($int8);

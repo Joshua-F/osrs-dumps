@@ -1,5 +1,8 @@
 // 8055
 [proc,slayer_get_master_task](int $int0, dbrow $dbrow1)(dbrow)
-db_find(slayer_master_task:master_id, $int0);
+def_int $int2 = db_find(slayer_master_task:master_id, $int0);
+if ($int2 = 0) {
+    return(null);
+}
 db_find_refine(slayer_master_task:task, $dbrow1);
 return(db_findnext);

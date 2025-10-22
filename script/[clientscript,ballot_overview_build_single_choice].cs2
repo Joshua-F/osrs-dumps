@@ -1,0 +1,45 @@
+// 8342
+[clientscript,ballot_overview_build_single_choice](int $int0, int $int1, int $int2, int $int3, int $int4, int $int5, stringarray $stringarray0, intarray $intarray1, intarray $intarray2)
+def_int $int6 = 0;
+if ($int2 ! -1) {
+    $int6 = setbit($int6, 1);
+}
+def_int $int7 = array_size($stringarray0);
+def_int $intarray3($int7);
+if (if_find_child(ballot:overview_contents, param_2365, 200, param_2368, $int0) = true) {
+    cc_setparam(param_2369, 1);
+    cc_setparam(param_2362, $int6);
+    ~script8344($int0, $int1, $stringarray0, $intarray1, $intarray2, $int2, $int3, $intarray3, $int4);
+}
+def_int $int8 = 0;
+if ($int5 ! -1 & $int1 = 1 & $int7 = 2 & $intarray2(0) >= calc($int5 * 10) & compare(lowercase("yes"), lowercase($stringarray0(0))) = 0 & compare(lowercase("no"), lowercase($stringarray0(1))) = 0) {
+    $int8 = if_param(param_2363, ballot:overview_backgrounds, -1);
+    cc_create(ballot:overview_backgrounds, ^iftype_layer, $int8);
+    $int8 = calc($int8 + 1);
+    cc_setparam(param_2365, 214);
+    cc_setparam(param_2368, $int0);
+    cc_sethide(false);
+    cc_create_child(^iftype_rectangle, $int8);
+    $int8 = calc($int8 + 1);
+    cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_setcolour(0x20ff20);
+    cc_settrans(220);
+    cc_setfill(true);
+    cc_create_sibling(^iftype_rectangle, $int8);
+    $int8 = calc($int8 + 1);
+    cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_setcolour(0x383023);
+    cc_settrans(0);
+    cc_setfill(false);
+    cc_create_sibling(^iftype_rectangle, $int8);
+    $int8 = calc($int8 + 1);
+    cc_setsize(2, 2, ^setsize_minus, ^setsize_minus);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_setcolour(0x5a5245);
+    cc_settrans(0);
+    cc_setfill(false);
+    if_setparam(param_2363, $int8, ballot:overview_backgrounds, -1);
+}
+~script8384($int0);

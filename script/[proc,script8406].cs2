@@ -1,0 +1,59 @@
+// 8406
+[proc,script8406](int $int0, int $int1, int $int2, int $int3, stringarray $stringarray0, int $int4, int $int5, int $int6, int $int7)
+def_intarray $intarray1 = ~script8389($int5, array_size($stringarray0), $int6, $int7);
+def_int $int8 = 0;
+if (testbit($int2, 2) = ^false) {
+    $int8 = setbit($int8, 0);
+}
+if ($int0 = 1) {
+    $int8 = setbit($int8, 1);
+}
+def_int $int9 = -1;
+def_int $int10 = 0;
+while ($int10 < array_size($stringarray0)) {
+    cc_create_child(^iftype_layer, ~script8363);
+    cc_setparam(param_2365, 300);
+    cc_setparam(param_2368, $int1);
+    cc_setparam(param_2370, $intarray1($int10));
+    $int9 = $int8;
+    if (testbit($int2, 1) = ^false) {
+        if ($int0 = 1) {
+            if (testbit($int3, $intarray1($int10)) = ^true) {
+                $int9 = setbit($int8, 2);
+            }
+        } else if ($int3 = $intarray1($int10)) {
+            $int9 = setbit($int8, 2);
+        }
+    }
+    ~ballot_create_option_with_text($int9, $stringarray0($intarray1($int10)), 0);
+    cc_setparam(param_2365, 301);
+    cc_setparam(param_2368, $int1);
+    cc_setparam(param_2370, $intarray1($int10));
+    if ($int0 = 1) {
+        cc_setonop("script8411(event_com, event_comsubid, $int1, $intarray1($int10))");
+    } else {
+        cc_setonop("script8410(event_com, event_comsubid, $int1, $intarray1($int10))");
+    }
+    $int10 = calc($int10 + 1);
+    cc_find_parent;
+    cc_find_parent;
+}
+if ($int4 = 1) {
+    cc_create_child(^iftype_layer, ~script8363);
+    cc_setparam(param_2365, 300);
+    cc_setparam(param_2368, $int1);
+    cc_setparam(param_2370, -1);
+    $int9 = $int8;
+    if (testbit($int2, 1) = ^true) {
+        $int9 = setbit($int9, 2);
+    }
+    ~ballot_create_option_with_text($int9, "Skip question", 1);
+    cc_setparam(param_2365, 301);
+    cc_setparam(param_2368, $int1);
+    cc_setparam(param_2370, -1);
+    if ($int0 = 1) {
+        cc_setonop("script8411(event_com, event_comsubid, $int1, -1)");
+    } else {
+        cc_setonop("script8410(event_com, event_comsubid, $int1, -1)");
+    }
+}

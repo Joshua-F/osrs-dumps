@@ -1,0 +1,13 @@
+// 8473
+[proc,ui_highlight_init_style](dbrow $dbrow0, component $component1, int $int2, component $component3, int $int4, component $component5, int $int6)
+switch_dbtable (db_getrowtable($dbrow0)) {
+    case ui_highlighting_style_border :
+        ~ui_highlight_init_style_border($dbrow0, $component1, $int2, $component3, $int4, $component5, $int6);
+    case default :
+        cc_create_child(^iftype_rectangle, ~script8490($component1));
+        cc_setontimer("ui_highlight_set_size_pos_to_target(cc_getlayer, cc_getid, $component1, $int2, 2, 2, 0, 0)");
+        ~ui_highlight_set_size_pos_to_target(2, 2, 0, 0);
+        cc_setcolour(^cyan);
+        cc_settrans(0);
+        cc_setfill(false);
+}

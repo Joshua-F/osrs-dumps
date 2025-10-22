@@ -1,0 +1,10 @@
+// 8471
+[clientscript,ui_highlight_pulse](component $component0, int $int1, int $int2, int $int3, int $int4)
+def_int $int5 = calc(clientclock % $int4);
+if (cc_find($component0, $int1) = ^true) {
+    if (calc(clientclock / $int4 % 2) = 0) {
+        cc_settrans(interpolate($int2, $int3, 0, calc($int4 - 1), $int5));
+    } else {
+        cc_settrans(interpolate(0, $int2, 0, calc($int4 - 1), $int5));
+    }
+}

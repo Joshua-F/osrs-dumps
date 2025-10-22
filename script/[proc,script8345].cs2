@@ -1,0 +1,57 @@
+// 8345
+[proc,script8345](int $int0, string $string0, int $int1, int $int2, int $int3)
+cc_create_child(^iftype_layer, ~script8363);
+cc_setparam(param_2365, 350);
+cc_create_child(^iftype_text, ~script8363);
+cc_setsize(100, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_centre);
+cc_setcolour($int3);
+cc_settextalign(^settextalign_left, ^settextalign_centre, 13);
+cc_settext($string0);
+cc_settextfont(p11_full);
+cc_settextshadow(true);
+cc_create_sibling(^iftype_text, ~script8363);
+cc_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_centre);
+cc_setsize(100, 0, ^setsize_abs, ^setsize_minus);
+cc_setcolour($int3);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 13);
+cc_settextfont(p11_full);
+cc_settextshadow(true);
+if ($int0 = 0) {
+    cc_settext("-");
+} else if ($int2 ! -1) {
+    cc_settext("<tostring(calc($int2 / 10))>.<tostring(calc($int2 % 10))>% (<~tostring_commas($int1)>)");
+} else {
+    cc_settext("(<~tostring_commas($int1)>)");
+}
+if ($int2 = -1 | $int0 = 0) {
+    cc_find_parent;
+    cc_find_parent;
+    return;
+}
+cc_create_sibling(^iftype_layer, ~script8363);
+def_int $int4 = calc(4 + 100);
+cc_setposition($int4, 0, ^setpos_abs_right, ^setpos_abs_centre);
+def_int $int5 = interpolate(0, 16384, 0, 1000, $int2);
+cc_create_child(^iftype_graphic, ~script8363);
+cc_setsize($int5, 0, ^setsize_rel, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_centre);
+cc_setgraphic(tradebacking);
+cc_settiling(true);
+cc_settrans(0);
+cc_create_sibling(^iftype_rectangle, ~script8363);
+cc_setsize($int5, 0, ^setsize_rel, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_centre);
+cc_setcolour(^white);
+cc_settrans(200);
+cc_setfill(true);
+cc_create_sibling(^iftype_rectangle, ~script8363);
+cc_setsize($int5, 0, ^setsize_rel, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_centre);
+cc_setcolour(0x383023);
+cc_settrans(0);
+cc_setfill(false);
+cc_find_parent;
+cc_find_parent;
+cc_setparam(param_2362, setbit(cc_param(param_2362), 0));
+cc_find_parent;

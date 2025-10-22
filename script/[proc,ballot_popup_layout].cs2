@@ -1,0 +1,38 @@
+// 8394
+[proc,ballot_popup_layout](int $int0, int $int1, int $int2, string $string0, int $int3, int $int4, string $string1, int $int5, int $int6, int $int7)
+def_int $int8 = $int7;
+if (string_length($string1) > 0) {
+    if_setposition(calc($int7 / 2 + 10), $int5, ^setpos_abs_centre, ^setpos_abs_bottom, ballot:popup_other);
+    if_setposition(calc(0 - ($int7 / 2 + 10)), $int5, ^setpos_abs_centre, ^setpos_abs_bottom, ballot:popup_dismiss);
+    $int8 = calc($int8 + $int7 + 30);
+} else {
+    if_setposition(0, $int5, ^setpos_abs_centre, ^setpos_abs_bottom, ballot:popup_dismiss);
+}
+def_int $int9 = calc($int0 - 20);
+def_int $int10 = calc($int1 - $int6);
+def_int $int11 = 0;
+def_int $int12 = 0;
+if ($int3 > 0 & $int4 > 0) {
+    $int11 = min($int9, $int3);
+    if ($int11 < $int3) {
+        $int12 = scale($int11, $int3, $int4);
+        if ($int12 > $int10) {
+            $int12, $int11 = $int10, scale($int10, $int4, $int3);
+        }
+    } else {
+        $int12 = min($int4, $int10);
+        if ($int12 < $int4) {
+            $int11 = scale($int12, $int4, $int11);
+        }
+    }
+} else {
+    $int11 = parawidth($string0, $int9, p12_full);
+    $int12 = calc(paraheight($string0, $int9, p12_full) * 16 + 5);
+    $int11 = min($int11, $int9);
+    $int12 = min($int12, $int10);
+}
+if (cc_find(ballot:popup_window, $int2) = ^true) {
+    cc_setsize($int11, $int12, ^setsize_abs, ^setsize_abs);
+}
+if_setsize(calc($int11 + 20), calc($int12 + $int6), ^setsize_abs, ^setsize_abs, ballot:popup_window);
+if_setontimer("ballot_popup_layout($int0, $int1, $int2, $string0, $int3, $int4, $string1, $int5, $int6, $int7)", ballot:popup_window);

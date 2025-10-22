@@ -1,0 +1,52 @@
+// 8337
+[proc,script8337](int $int0, string $string0)
+db_find(poll_filters:id, $int0);
+db_find_refine(poll_filters:category, true);
+def_dbrow $dbrow1 = db_findnext;
+def_graphic $graphic2 = null;
+if ($dbrow1 ! null) {
+    $graphic2 = db_getfield($dbrow1, poll_filters:icon, 0);
+}
+def_int $int3 = ~script8368(-100, 101);
+def_component $component4 = cc_getlayer;
+def_int $int5 = 0;
+if ($graphic2 ! null) {
+    $int5 = calc(30 + 12);
+}
+cc_create_child(^iftype_text, ~script8363);
+cc_setsize($int5, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_top);
+cc_setcolour(0xff981f);
+cc_settextalign(^settextalign_left, ^settextalign_top, 16);
+cc_settext($string0);
+cc_settextfont(p12_full);
+cc_settextshadow(true);
+def_int $int6 = -1;
+def_string $string1 = "";
+def_string $string2 = "<col=0dc10d>Close</col>";
+def_string $string3 = "";
+if ($graphic2 ! null) {
+    cc_create_sibling(^iftype_graphic, ~script8363);
+    cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(30, 35, ^setsize_abs, ^setsize_abs);
+    cc_setgraphic($graphic2);
+    $int6 = setbit(if_param(param_2362, $component4, $int3), 1);
+    if_setparam(param_2362, $int6, $component4, $int3);
+    $string1 = db_getfield($dbrow1, poll_filters:desc, 0);
+    if (string_length($string1) > 0) {
+        cc_create_sibling(^iftype_rectangle, ~script8363);
+        cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setsize(30, 35, ^setsize_abs, ^setsize_abs);
+        cc_setcolour(^white);
+        cc_setfill(true);
+        cc_settrans(255);
+        cc_setop(1, "Info:");
+        cc_setopbase("<col=ff9040><db_getfield($dbrow1, poll_filters:opbase, 0)></col>");
+        if (~on_mobile = false) {
+            cc_setonmouseover("cc_settrans(event_com, event_comsubid, 210, null)");
+            cc_setonmouseleave("cc_settrans(event_com, event_comsubid, 255, null)");
+        }
+        cc_setonop("ballot_popup_open($string1, -1, -1, $string2, $string3)");
+    }
+}
+~script8369($int3);

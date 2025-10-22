@@ -1,0 +1,25 @@
+// 8379
+[proc,script8379](string $string0, int $int0, int $int1, int $setposh2, int $int3, int $int4)
+cc_create_sibling(^iftype_rectangle, ~script8363);
+cc_setposition(0, 0, $setposh2, ^setpos_abs_top);
+cc_setsize($int0, $int1, ^setsize_abs, ^setsize_abs);
+cc_setcolour(^white);
+cc_setfill(true);
+cc_settrans(255);
+if ($int3 > 0 & $int4 > 0) {
+    cc_setop(1, "View embedded image");
+    if (~on_mobile = false) {
+        cc_setonmouseover("cc_settrans(event_com, event_comsubid, 210, null)");
+        cc_setonmouseleave("cc_settrans(event_com, event_comsubid, 255, null)");
+    }
+    cc_setonop("script8380($string0, $int3, $int4)");
+} else {
+    if (~on_mobile = true) {
+        cc_setop(10, "Open in browser");
+    } else {
+        cc_setop(1, "Open in browser");
+        cc_setonmouseover("cc_settrans(event_com, event_comsubid, 210, null)");
+        cc_setonmouseleave("cc_settrans(event_com, event_comsubid, 255, null)");
+    }
+    cc_setonop("openurl_raw($string0, true, true)");
+}

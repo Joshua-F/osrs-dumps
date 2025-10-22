@@ -1,0 +1,18 @@
+// 8349
+[proc,script8349](int $int0)(int)
+def_int $int1 = 1;
+def_int $int2 = $int0;
+def_int $int3 = -1;
+$int0 = calc($int0 - 100 - 4);
+if (testbit(cc_param(param_2362), 0) = ^true) {
+    $int2 = scale($int2, 100, 40);
+    $int3 = calc($int0 - $int2 - 4);
+    if (.cc_find(cc_getlayer, calc(cc_getid + 3)) = ^true) {
+        .cc_setsize($int3, 12, ^setsize_abs, ^setsize_abs);
+    }
+}
+if (.cc_find(cc_getlayer, calc(cc_getid + 1)) = ^true) {
+    $int1 = paraheight(.cc_gettext, $int2, p11_full);
+    .cc_setsize($int2, 0, ^setsize_abs, ^setsize_minus);
+}
+return(calc($int1 * 13));

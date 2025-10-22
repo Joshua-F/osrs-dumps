@@ -1,0 +1,16 @@
+// 8460
+[proc,inv_highlight_item_on](obj $obj0, dbrow $dbrow1, int $int2)
+if ($obj0 = null) {
+    return;
+}
+def_objarray $objarray0 = ~script8468;
+def_int $int3 = array_indexof($objarray0, $obj0, 0, -1);
+if ($int3 = -1) {
+    $int3 = array_indexof($objarray0, null, 0, -1);
+    if ($int3 = -1) {
+        ~debug_mes_warn("IH", "Max number of items already highlighted. Consider adding more vars or disabling other highlights.");
+        return;
+    }
+}
+~inv_highlight_set_tracked_item($int3, $obj0, $dbrow1, $int2);
+~script8466;

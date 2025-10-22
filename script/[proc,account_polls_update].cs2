@@ -1,25 +1,30 @@
 // 3270
 [proc,account_polls_update]
-def_component $component0 = account:polls_text;
-def_component $component1 = account:poll_button;
-def_component $component2 = account:poll_button_text;
-def_component $component3 = account:poll_button_foreground;
-def_string $string0 = "Current Poll: <col=ff0000>Inactive</col>";
+def_string $string0 = "Polls: <col=ff0000>Inactive</col>";
 def_string $string1 = "View Poll";
-if (%poll_active = 1) {
-    $string0 = "Current Poll: <col=00ff00>Active</col>";
+if (%poll_pollrunning = 1) {
+    $string0 = "Polls: <col=0dc10d>Running</col>";
     if (%poll_playershouldvote = 1) {
         $string1 = "Vote Now";
+        if_setcolour(~tob_hud_nameflasher, account:poll_button_text);
+        if_setonmouserepeat("script6379(1, event_com)", account:poll_button_text);
+        if_setonmouseleave("script6379(0, event_com)", account:poll_button_text);
+        if_setontimer("script6384(0, event_com)", account:poll_button_text);
+    } else {
+        if_setcolour(0xf7f0df, account:poll_button_text);
+        if_setonmouserepeat("text_colour_swapper(event_com, 12632256)", account:poll_button_text);
+        if_setonmouseleave("text_colour_swapper(event_com, 16249055)", account:poll_button_text);
+        if_setontimer(null, account:poll_button_text);
     }
-    if_setop(1, $string1, $component1);
-    if_sethide(true, $component3);
-    if_setonmouseover("text_colour_swapper($component2, 12632256)", $component2);
-    if_setonmouseleave("text_colour_swapper($component2, 16249055)", $component2);
+    if_setop(1, $string1, account:poll_button);
+    if_sethide(true, account:poll_button_foreground);
 } else {
-    if_setop(1, "", $component1);
-    if_sethide(false, $component3);
-    if_setonmouseover("text_colour_swapper($component2, 16249055)", $component2);
-    if_setonmouseleave("text_colour_swapper($component2, 16249055)", $component2);
+    if_setop(1, "", account:poll_button);
+    if_setcolour(0xf7f0df, account:poll_button_text);
+    if_setonmouserepeat(null, account:poll_button_text);
+    if_setonmouseleave(null, account:poll_button_text);
+    if_setontimer(null, account:poll_button_text);
+    if_sethide(false, account:poll_button_foreground);
 }
-if_settext($string0, $component0);
-if_settext($string1, $component2);
+if_settext($string0, account:polls_text);
+if_settext($string1, account:poll_button_text);

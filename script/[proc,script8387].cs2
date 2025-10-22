@@ -1,0 +1,30 @@
+// 8387
+[proc,script8387](int $int0)(int)
+def_component $component1 = cc_getlayer;
+def_int $int2 = cc_param(param_2368);
+def_int $int3 = calc(($int0 - 12) / 2);
+def_int $int4 = calc(($int0 - 12) / 2);
+def_int $int5 = 1;
+if (.cc_find($component1, calc(cc_getid + 2)) = ^true) {
+    $int5 = calc($int5 + paraheight(.cc_gettext, $int3, p12_full));
+    .cc_setsize($int3, 16, ^setsize_abs, ^setsize_minus);
+}
+def_int $int6 = calc($int5 * 16 + 4);
+def_int $int7 = 0;
+if (if_find_child($component1, param_2365, 211, param_2368, $int2) = true & cc_gethide = false) {
+    $int5 = 1;
+    if (.if_find_child($component1, param_2365, 212, param_2368, $int2) = true) {
+        $int5 = paraheight(.cc_gettext, calc($int4 - 2 * 4), p12_full);
+    }
+    $int7 = calc($int5 * 16 + 2 * 4);
+    cc_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_top);
+    cc_setsize($int4, $int7, ^setsize_abs, ^setsize_abs);
+    $int7 = calc($int7 + 4);
+}
+def_int $int8 = -1;
+if (if_find_child($component1, param_2365, 200, param_2368, $int2) = true) {
+    $int8 = ~script8388($int4);
+    cc_setposition(0, $int7, ^setpos_abs_right, ^setpos_abs_top);
+    cc_setsize($int4, $int8, ^setsize_abs, ^setsize_abs);
+}
+return(max($int6, calc($int7 + $int8)));

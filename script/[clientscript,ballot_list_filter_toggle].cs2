@@ -1,0 +1,81 @@
+// 8327
+[clientscript,ballot_list_filter_toggle](component $component0, int $int1, int $int2, dbrow $dbrow3, int $int4)
+def_int $int5 = -1;
+def_boolean $boolean6 = null;
+if ($dbrow3 ! null & cc_find($component0, $int1) = ^true) {
+    sound_synth(synth_2266, 1, 0);
+    $int5, $boolean6 = db_getfield($dbrow3, poll_filters:id, 0), db_getfield($dbrow3, poll_filters:category, 0);
+    cc_setonop("ballot_list_filter_toggle(event_com, event_comsubid, $int2, $dbrow3, calc(1 - $int4))");
+    if ($int4 = 1) {
+        cc_setop(1, "Hide");
+        if_runscript*(ifscript_3322554378, ballot:list_filters, -1)($boolean6, $int5, 0);
+        if ($boolean6 = true) {
+            %poll_filters_categories = clearbit(%poll_filters_categories, $int5);
+        } else {
+            %poll_filters_statuses = clearbit(%poll_filters_statuses, $int5);
+        }
+        if (cc_find($component0, $int2) = ^true) {
+            cc_setgraphic(miscgraphics_buttontile_nw_grey);
+        }
+        if (cc_find($component0, calc($int2 + 1)) = ^true) {
+            cc_setgraphic(miscgraphics_buttontile_nc_grey);
+        }
+        if (cc_find($component0, calc($int2 + 2)) = ^true) {
+            cc_setgraphic(miscgraphics_buttontile_ne_grey);
+        }
+        if (cc_find($component0, calc($int2 + 3)) = ^true) {
+            cc_setgraphic(miscgraphics_buttontile_cw_grey);
+        }
+        if (cc_find($component0, calc($int2 + 4)) = ^true) {
+            cc_setgraphic(miscgraphics_buttontile_cc_grey);
+        }
+        if (cc_find($component0, calc($int2 + 5)) = ^true) {
+            cc_setgraphic(miscgraphics_buttontile_ce_grey);
+        }
+        if (cc_find($component0, calc($int2 + 6)) = ^true) {
+            cc_setgraphic(miscgraphics_buttontile_sw_grey);
+        }
+        if (cc_find($component0, calc($int2 + 7)) = ^true) {
+            cc_setgraphic(miscgraphics_buttontile_sc_grey);
+        }
+        if (cc_find($component0, calc($int2 + 8)) = ^true) {
+            cc_setgraphic(miscgraphics_buttontile_se_grey);
+        }
+    } else {
+        cc_setop(1, "Show");
+        if_runscript*(ifscript_3322554378, ballot:list_filters, -1)($boolean6, $int5, 1);
+        if ($boolean6 = true) {
+            %poll_filters_categories = setbit(%poll_filters_categories, $int5);
+        } else {
+            %poll_filters_statuses = setbit(%poll_filters_statuses, $int5);
+        }
+        if (cc_find($component0, $int2) = ^true) {
+            cc_setgraphic(miscgraphics_buttontile_nw_red);
+        }
+        if (cc_find($component0, calc($int2 + 1)) = ^true) {
+            cc_setgraphic(miscgraphics_buttontile_nc_red);
+        }
+        if (cc_find($component0, calc($int2 + 2)) = ^true) {
+            cc_setgraphic(miscgraphics_buttontile_ne_red);
+        }
+        if (cc_find($component0, calc($int2 + 3)) = ^true) {
+            cc_setgraphic(miscgraphics_buttontile_cw_red);
+        }
+        if (cc_find($component0, calc($int2 + 4)) = ^true) {
+            cc_setgraphic(miscgraphics_buttontile_cc_red);
+        }
+        if (cc_find($component0, calc($int2 + 5)) = ^true) {
+            cc_setgraphic(miscgraphics_buttontile_ce_red);
+        }
+        if (cc_find($component0, calc($int2 + 6)) = ^true) {
+            cc_setgraphic(miscgraphics_buttontile_sw_red);
+        }
+        if (cc_find($component0, calc($int2 + 7)) = ^true) {
+            cc_setgraphic(miscgraphics_buttontile_sc_red);
+        }
+        if (cc_find($component0, calc($int2 + 8)) = ^true) {
+            cc_setgraphic(miscgraphics_buttontile_se_red);
+        }
+    }
+    ~ballot_list_layout(-1);
+}

@@ -1,0 +1,53 @@
+// 8383
+[clientscript,ballot_add_question](int $int0, int $int1, int $int2, string $string0)
+def_int $int3 = ~script8368($int0, -1);
+cc_setparam(param_2368, $int1);
+if ($int2 = 1) {
+    cc_setparam(param_2362, setbit(cc_param(param_2362), 0));
+}
+def_string $string1 = "Question <tostring(calc($int1 + 1))>: ";
+def_int $int4 = parawidth($string1, 100, b12_full);
+cc_create_child(^iftype_text, ~script8363);
+cc_setsize($int4, 16, ^setsize_abs, ^setsize_abs);
+cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+cc_setcolour(0xff981f);
+cc_settextalign(^settextalign_left, ^settextalign_top, 0);
+cc_settext($string1);
+cc_settextfont(b12_full);
+cc_settextshadow(true);
+cc_create_sibling(^iftype_text, ~script8363);
+if ($int2 = 1) {
+    cc_setposition(0, 16, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(0, 16, ^setsize_minus, ^setsize_minus);
+} else {
+    cc_setposition($int4, 0, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize($int4, 0, ^setsize_minus, ^setsize_minus);
+}
+cc_setcolour(^white);
+cc_settextalign(^settextalign_left, ^settextalign_top, 16);
+cc_settext($string0);
+cc_settextfont(p12_full);
+cc_settextshadow(true);
+if (%poll_vote_page_active = 1) {
+    cc_create_sibling(^iftype_layer, ~script8363);
+    cc_setparam(param_2365, 211);
+    cc_setparam(param_2368, $int1);
+    cc_sethide(true);
+    cc_create_child(^iftype_rectangle, ~script8363);
+    cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+    cc_setcolour(0xc00000);
+    cc_create_sibling(^iftype_text, ~script8363);
+    cc_setparam(param_2365, 212);
+    cc_setparam(param_2368, $int1);
+    cc_setposition(0, 0, ^setpos_rel_centre, ^setpos_rel_centre);
+    cc_setsize(calc(4 * 2), calc(4 * 2), ^setsize_minus, ^setsize_minus);
+    cc_setcolour(^white);
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 16);
+    cc_settextfont(p12_full);
+    cc_settextshadow(true);
+    cc_find_parent;
+}
+cc_create_sibling(^iftype_layer, ~script8363);
+cc_setparam(param_2365, 200);
+cc_setparam(param_2368, $int1);
+~script8369($int3);

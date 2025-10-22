@@ -1,0 +1,12 @@
+// 8560
+[clientscript,tutorial_player_experience_button_op](component $component0, int $int1, string $string0, int $rgb2, string $string1)
+sound_synth(synth_2266, 1, 0);
+if (cc_find(tutorial_player_experience:content, $int1) = ^true) {
+    cc_resume_pausebutton;
+}
+~tutorial_player_experience_button_draw(1, $component0, $string0, $rgb2);
+if_clearops($component0);
+if_setonmouserepeat(null, $component0);
+if_setonmouseleave(null, $component0);
+if_setonop(null, $component0);
+if_setontimer("tutorial_player_experience_button_reset(calc(clientclock + 30), $component0, $int1, $string0, $rgb2, $string1)", $component0);

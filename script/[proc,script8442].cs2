@@ -1,0 +1,54 @@
+// 8442
+[proc,script8442](int $int0, int $int1, string $string0, int $int2, int $int3, int $int4)
+def_int $int5 = cc_getid;
+def_int $int6 = 0;
+def_int $int7 = 0;
+if ($int2 = 1) {
+    $int6 = calc(21 + parawidth("Skip", 100, p12_full));
+    $int7 = calc(12 + $int6);
+}
+cc_create_child(^iftype_rectangle, ~script8363);
+cc_setsize($int7, 0, ^setsize_minus, ^setsize_minus);
+cc_setfill(true);
+cc_setcolour(0x372e22);
+cc_create_sibling(^iftype_inputfield, ~script8363);
+cc_setparam(param_2365, 400);
+cc_setparam(param_2368, $int0);
+cc_setposition(4, 4, ^setpos_abs_left, ^setpos_abs_top);
+cc_setsize(calc(4 * 2 + $int7), calc(4 * 2), ^setsize_minus, ^setsize_minus);
+cc_settextalign(^settextalign_left, ^settextalign_top, 16);
+cc_settextfont(p12_full);
+cc_settextshadow(true);
+cc_setcolour(^white);
+cc_input_setselectcolour(^black);
+cc_input_setselectbgcolour(^white);
+cc_input_setlinewidthlimit($int3);
+if ($int4 = 1) {
+    cc_input_setsubmitmode(0);
+} else {
+    cc_input_setsubmitmode(1);
+}
+cc_settext($string0);
+cc_input_setonsubmit("ballot_noop");
+cc_input_setonchange("script8444(event_com, event_comsubid, $int5)");
+cc_input_setonfocuschanged("script8445(event_com, $int5)");
+if (testbit($int1, 2) = ^true | $int2 = 1 & testbit($int1, 1) = ^true) {
+    ~script8450(0, $int0, $int1, cc_getlayer, cc_getid);
+}
+def_int $int8 = setbit(0, 1);
+if ($int2 = 1) {
+    cc_create_sibling(^iftype_layer, ~script8363);
+    if (testbit($int1, 2) = ^false) {
+        $int8 = setbit($int8, 0);
+    }
+    if (testbit($int1, 1) = ^true) {
+        $int8 = setbit($int8, 2);
+    }
+    ~ballot_create_option_with_text($int8, "Skip", 1);
+    cc_setparam(param_2365, 202);
+    cc_setparam(param_2368, $int0);
+    cc_setonop("script8446(event_com, event_comsubid, $int0)");
+    cc_find_parent;
+    cc_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_top);
+    cc_setsize($int6, ~script8416($int6), ^setsize_abs, ^setsize_abs);
+}
