@@ -1,0 +1,16 @@
+// 8441
+[clientscript,ballot_voting_build_free_text](int $int0, int $int1, int $int2, int $int3, int $int4, string $string)
+def_int $int5 = 0;
+if ($int2 = 1) {
+    $int5 = setbit($int5, 1);
+}
+if ($int4 = 1) {
+    $int5 = setbit($int5, 3);
+}
+if (cc_find_param(ballot:voting, param_2365, 200, param_2368, $int0) = true) {
+    cc_setparam(param_2369, 3);
+    cc_setparam(param_2362, $int5);
+    cc_setparam(param_2363, $int3);
+    ~ballot_voting_build_free_text($int0, $int1, $string, $int2, $int3, $int4);
+}
+~ballot_finish_question($int0);
