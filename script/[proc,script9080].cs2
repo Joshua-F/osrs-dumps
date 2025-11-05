@@ -1,0 +1,45 @@
+// 9080
+[proc,script9080](dbrow $dbrow0, dbrow $dbrow1, int $int2)(int)
+def_dbtable $dbtable3 = db_getrowtable($dbrow1);
+def_dbrow $dbrow4 = null;
+def_int $int5 = ~script9079($dbrow0, $dbtable3, $int2);
+def_int $int6 = 0;
+while ($int6 < $int5) {
+    switch_dbtable ($dbtable3) {
+        case sailing_boat_facility :
+            $dbrow4 = db_getfield($dbrow0, sailing_boat:hotspot:3, $int2);
+            if ($dbrow4 ! null & db_getfield($dbrow4, sailing_boat_hotspot:option, $int6) = $dbrow1) {
+                return($int6);
+            }
+        case sailing_boat_keel :
+            if (db_getfield($dbrow0, sailing_boat:keel_option, $int6) = $dbrow1) {
+                return($int6);
+            }
+        case sailing_boat_hull :
+            if (db_getfield($dbrow0, sailing_boat:hull_option, $int6) = $dbrow1) {
+                return($int6);
+            }
+        case sailing_boat_sail :
+            if (db_getfield($dbrow0, sailing_boat:sail_option, $int6) = $dbrow1) {
+                return($int6);
+            }
+        case sailing_boat_steering :
+            if (db_getfield($dbrow0, sailing_boat:steering_option, $int6) = $dbrow1) {
+                return($int6);
+            }
+        case sailing_boat_flag :
+            if (db_getfield($dbrow0, sailing_boat:flag_option, $int6) = $dbrow1) {
+                return($int6);
+            }
+        case sailing_boat_brazier :
+            if (db_getfield($dbrow0, sailing_boat:brazier_option, $int6) = $dbrow1) {
+                return($int6);
+            }
+        case sailing_boat_trim :
+            if (db_getfield($dbrow0, sailing_boat:trim_option, $int6) = $dbrow1) {
+                return($int6);
+            }
+    }
+    $int6 = calc($int6 + 1);
+}
+return(-1);

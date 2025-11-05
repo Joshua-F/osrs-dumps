@@ -1,0 +1,19 @@
+// 8850
+[proc,script8850](dbrow $dbrow0, string $string0)(string)
+def_string $string1 = "";
+if ($dbrow0 = null) {
+    return("");
+}
+def_int $int1 = db_getfield($dbrow0, sailing_boat_facility_stats:boat_hp_max, 0);
+def_int $int2 = db_getfield($dbrow0, sailing_boat_facility_stats:boat_basespeed, 0);
+$string1 = "Boat speed: <$string0><tostring(calc($int2 / 128))>";
+if (calc($int2 % 128) = 64) {
+    $string1 = "<$string1>.5";
+} else {
+    $string1 = "<$string1>.0";
+}
+$string1 = "<$string1><br>Boat hitpoints: <$string0>+<tostring($int1)>";
+if (string_length($string1) > 0) {
+    return($string1);
+}
+return("");

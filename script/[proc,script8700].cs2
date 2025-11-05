@@ -1,0 +1,52 @@
+// 8700
+[proc,script8700]()(string)
+def_string $string0 = "<col=b2b2b2>Ocean Completion:<br><col=b2b2b2>None selected</col>";
+def_int $int0 = -1;
+def_dbrow $dbrow1 = null;
+def_int $int2 = 0;
+def_int $int3 = 0;
+def_dbrow $dbrow4 = null;
+def_dbrow $dbrow5 = null;
+$dbrow4, $dbrow5 = ~script8662;
+if (~script8688 ! -1) {
+    $int0 = ~script8688;
+} else if (~script8694 ! -1) {
+    db_find(sailing_sea:unique_id, ~script8694);
+    $dbrow1 = db_findnext;
+    if ($dbrow1 ! null) {
+        $dbrow1 = db_getfield($dbrow1, sailing_sea:ocean, 0);
+    }
+    if ($dbrow1 ! null) {
+        $int0 = db_getfield($dbrow1, sailing_sea:unique_id, 0);
+    }
+} else if (%sailing_charting_selected_chartable_id ! -1) {
+    db_find(sailing_charting_core:unique_id, %sailing_charting_selected_chartable_id);
+    $dbrow1 = db_findnext;
+    if ($dbrow1 ! null) {
+        $dbrow1 = db_getfield($dbrow1, sailing_charting_core:sailing_sea, 0);
+    }
+    if ($dbrow1 ! null) {
+        $dbrow1 = db_getfield($dbrow1, sailing_sea:ocean, 0);
+    }
+    if ($dbrow1 ! null) {
+        $int0 = db_getfield($dbrow1, sailing_sea:unique_id, 0);
+    }
+} else if ($dbrow5 ! null) {
+    $int0 = db_getfield($dbrow5, sailing_sea:unique_id, 0);
+}
+if ($int0 ! -1) {
+    db_find(sailing_sea:unique_id, $int0);
+    $dbrow1 = db_findnext;
+    if ($dbrow1 ! null) {
+        $int2, $int3 = ~script9002($int0);
+        $string0 = "<db_getfield($dbrow1, sailing_sea:name, 0)>:<br>";
+        if ($int2 >= $int3) {
+            $string0 = "<col=00d800><$string0><col=00d800><tostring($int2)>/<tostring($int3)> (<~tostring_commas(calc(~script9000($dbrow1) / 10))> XP)</col>";
+        } else {
+            $string0 = "<$string0><tostring($int2)>/<tostring($int3)> (<~tostring_commas(calc(~script9000($dbrow1) / 10))> XP)</col>";
+        }
+    } else {
+        ~error("Dbrow for a specific ocean ID not found. ID: <tostring($int0)>");
+    }
+}
+return($string0);

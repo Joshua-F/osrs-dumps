@@ -1,0 +1,18 @@
+// 8851
+[proc,script8851](dbrow $dbrow0, string $string0)(string)
+def_string $string1 = "";
+if ($dbrow0 = null) {
+    return("");
+}
+def_int $int1 = db_getfield($dbrow0, sailing_boat_facility_stats:boat_hp_max, 0);
+def_int $int2 = db_getfield($dbrow0, sailing_boat_facility_stats:boat_armour, 0);
+def_int $int3 = db_getfield($dbrow0, sailing_boat_facility_stats:boat_crystal_flecked_resistant, 0);
+$string1 = "Boat hitpoints: <$string0>+<tostring($int1)>";
+$string1 = "<$string1><br>Boat armour: <$string0>+<tostring($int2)>";
+if ($int3 = 1) {
+    $string1 = "<$string1><br>Immunity: <$string0>Crystal-flecked waters";
+}
+if (string_length($string1) > 0) {
+    return($string1);
+}
+return("");

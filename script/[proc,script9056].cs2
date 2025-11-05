@@ -1,0 +1,25 @@
+// 9056
+[proc,script9056](dbtable $dbtable0, dbrow $dbrow1)(int)
+if ($dbtable0 = null) {
+    $dbtable0 = db_getrowtable($dbrow1);
+}
+switch_dbtable ($dbtable0) {
+    case sailing_boat_facility :
+        return(db_getfield($dbrow1, sailing_boat_facility:construction_requirement, 0));
+    case sailing_boat_keel :
+        return(db_getfield($dbrow1, sailing_boat_keel:construction_requirement, 0));
+    case sailing_boat_hull :
+        return(db_getfield($dbrow1, sailing_boat_hull:construction_requirement, 0));
+    case sailing_boat_sail :
+        return(db_getfield($dbrow1, sailing_boat_sail:construction_requirement, 0));
+    case sailing_boat_steering :
+        return(db_getfield($dbrow1, sailing_boat_steering:construction_requirement, 0));
+    case sailing_boat_flag :
+        return(db_getfield($dbrow1, sailing_boat_flag:construction_requirement, 0));
+    case sailing_boat_brazier :
+        return(db_getfield($dbrow1, sailing_boat_brazier:construction_requirement, 0));
+    case sailing_boat_trim :
+        return(db_getfield($dbrow1, sailing_boat_trim:construction_requirement, 0));
+    case default :
+        return(-1);
+}

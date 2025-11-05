@@ -3,39 +3,43 @@
 def_component $component0 = chartering_menu_side:list_background;
 def_component $component1 = chartering_menu_side:list_content;
 def_component $component2 = chartering_menu_side:list_scroller;
-def_int $int3 = ~script7334(coord);
-def_int $int4 = ~script7333($int3);
 cc_deleteall($component0);
 cc_deleteall($component1);
 cc_deleteall($component2);
 ~thinbox($component0, 0);
-def_int $intarray0(enum_getoutputcount(enum_5565));
-def_int $int5 = 0;
+def_int $int3 = db_listall(chartering_destinations);
+def_int $int4 = 0;
+def_dbrow $dbrow5 = null;
+def_int $intarray0(calc(db_listall(chartering_destinations) - 1));
 def_int $int6 = 0;
 def_int $int7 = 0;
-def_dbrow $dbrow8 = enum(int, dbrow, enum_5565, $int5);
+def_int $int8 = 0;
 def_int $int9 = 0;
-while ($dbrow8 ! null) {
-    $int6, $int7 = ~script7336($dbrow8, $int6, $int7, $int4, $intarray0, $int9);
-    $int5 = calc($int5 + 1);
-    $dbrow8 = enum(int, dbrow, enum_5565, $int5);
+def_dbrow $dbrow10 = ~script7334(coord);
+while ($int4 < $int3) {
+    $dbrow5 = db_find_get($int4);
+    if ($dbrow5 ! null) {
+        $int7, $int8 = ~script7336($dbrow5, $dbrow10, $int7, $int8, $intarray0, $int9);
+    }
+    $int6 = calc($int6 + 1);
+    $int4 = calc($int4 + 1);
     $int9 = calc($int9 + 1);
 }
-def_int $int10 = $int7;
-~quicksort_cctext($intarray0, $component1, 0, calc($int10 - 1));
-$int5 = 0;
-while ($int5 < $int10) {
-    if (cc_find($component1, calc($intarray0($int5) - 1)) = ^true) {
-        cc_setposition(0, calc($int5 * 20), ^setpos_abs_left, ^setpos_abs_top);
-        if (calc($int5 % 2) = 0) {
+$int3 = $int8;
+~quicksort_cctext($intarray0, $component1, 0, calc($int3 - 1));
+$int6 = 0;
+while ($int6 < $int3) {
+    if (cc_find($component1, calc($intarray0($int6) - 1)) = ^true) {
+        cc_setposition(0, calc($int6 * 20), ^setpos_abs_left, ^setpos_abs_top);
+        if (calc($int6 % 2) = 0) {
             cc_setgraphic(tradebacking_dark);
         }
     }
-    if (cc_find($component1, $intarray0($int5)) = ^true) {
-        cc_setposition(4, calc($int5 * 20), ^setpos_abs_left, ^setpos_abs_top);
+    if (cc_find($component1, $intarray0($int6)) = ^true) {
+        cc_setposition(4, calc($int6 * 20), ^setpos_abs_left, ^setpos_abs_top);
     }
-    $int5 = calc($int5 + 1);
+    $int6 = calc($int6 + 1);
 }
-if_setscrollsize(if_getwidth($component1), calc($int10 * 20), $component1);
+if_setscrollsize(if_getwidth($component1), calc($int3 * 20), $component1);
 ~scrollbar_vertical($component2, $component1, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
 ~scrollbar_resize($component2, $component1, if_getscrolly($component1));

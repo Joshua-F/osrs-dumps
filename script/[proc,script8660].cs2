@@ -1,0 +1,18 @@
+// 8660
+[proc,script8660]
+def_string $string0 = "Current Sea:";
+if (%sailing_transmit_is_at_sea = 0) {
+    $string0 = "Nearest Sea:";
+}
+def_dbrow $dbrow0 = null;
+def_dbrow $dbrow1 = null;
+$dbrow0, $dbrow1 = ~script8662;
+if ($dbrow0 = null) {
+    if_settext("<col=b2b2b2><$string0> Unknown", sailing_log:location_text);
+    return;
+}
+$string0 = "<col=f9f9f9><$string0> <db_getfield($dbrow0, sailing_sea:name, 0)>";
+if ($dbrow1 ! null) {
+    $string0 = "<col=f9f9f9><$string0> (<db_getfield($dbrow1, sailing_sea:name, 0)>)";
+}
+if_settext($string0, sailing_log:location_text);

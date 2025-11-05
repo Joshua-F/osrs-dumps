@@ -1,0 +1,9 @@
+// 9051
+[proc,script9051](npc $npc0)(dbrow)
+db_find(sailing_crew:boat_npc, $npc0);
+def_dbrow $dbrow1 = db_findnext;
+if ($dbrow1 = null) {
+    ~error("Could not find crew data for npc <nc_name($npc0)>.");
+    return(null);
+}
+return($dbrow1);

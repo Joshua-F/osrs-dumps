@@ -3,67 +3,69 @@
 if ($int12 > 0) {
     $int12 = calc($int12 + 8);
 }
-def_int $int19 = 0;
 if ($int12 > if_getheight($component2)) {
     if_setscrollsize(0, $int12, $component2);
     if (%bank_scrollpos > 0) {
-        $int19 = %bank_scrollpos;
+        ~scrollbar_resize($component3, $component2, %bank_scrollpos);
+    } else {
+        ~scrollbar_resize($component3, $component2, 0);
     }
-    ~scrollbar_resize($component3, $component2, $int19);
 } else {
     if_setscrollsize(0, 0, $component2);
     ~scrollbar_resize($component3, $component2, 0);
 }
 if_settext(tostring($int13), $component6);
 cc_deleteall($component8);
-def_int $int20 = calc((if_getwidth($component8) - 40 * (9 + 1)) / 2);
-def_int $int21 = 0;
-while ($int21 <= 9) {
-    cc_create($component8, ^iftype_graphic, $int21);
-    cc_setsize(41, 40, ^setsize_abs, ^setsize_abs);
-    cc_setposition(calc($int21 * 40 + $int20), 0, ^setpos_abs_left, ^setpos_abs_top);
-    cc_settiling(false);
-    $int21 = calc($int21 + 1);
+def_int $int19 = calc((if_getwidth($component8) - 40 * (9 + 1)) / 2);
+cc_create($component8, ^iftype_graphic, 0);
+cc_setsize(41, 40, ^setsize_abs, ^setsize_abs);
+cc_setposition(calc(0 + $int19), 0, ^setpos_abs_left, ^setpos_abs_top);
+cc_settiling(false);
+def_int $int20 = 1;
+while ($int20 <= 9) {
+    cc_copy($component8, 0, $int20);
+    cc_setposition(calc($int20 * 40 + $int19), 0, ^setpos_abs_left, ^setpos_abs_top);
+    $int20 = calc($int20 + 1);
 }
-def_int $int22 = 0;
+def_int $int21 = 0;
 if (%bank_tab_1 > 0) {
-    $int22 = setbit($int22, 1);
+    $int21 = setbit($int21, 1);
 }
 if (%bank_tab_2 > 0) {
-    $int22 = setbit($int22, 2);
+    $int21 = setbit($int21, 2);
 }
 if (%bank_tab_3 > 0) {
-    $int22 = setbit($int22, 3);
+    $int21 = setbit($int21, 3);
 }
 if (%bank_tab_4 > 0) {
-    $int22 = setbit($int22, 4);
+    $int21 = setbit($int21, 4);
 }
 if (%bank_tab_5 > 0) {
-    $int22 = setbit($int22, 5);
+    $int21 = setbit($int21, 5);
 }
 if (%bank_tab_6 > 0) {
-    $int22 = setbit($int22, 6);
+    $int21 = setbit($int21, 6);
 }
 if (%bank_tab_7 > 0) {
-    $int22 = setbit($int22, 7);
+    $int21 = setbit($int21, 7);
 }
 if (%bank_tab_8 > 0) {
-    $int22 = setbit($int22, 8);
+    $int21 = setbit($int21, 8);
 }
 if (%bank_tab_9 > 0) {
-    $int22 = setbit($int22, 9);
+    $int21 = setbit($int21, 9);
 }
-def_int $int23 = calc((40 - 36) / 2);
-def_int $int24 = calc((40 - 32) / 2);
-~bankmain_tabicon($component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10, $component11, 0, -1, -1, false, $int20, $int23, $int24, $int22, $component14, $component15, $component16, $component17, $component18);
-def_int $int25 = 0;
-def_boolean $boolean26 = false;
-$int25, $boolean26 = ~bankmain_tabicon($component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10, $component11, 1, %bank_tab_1, $int25, $boolean26, $int20, $int23, $int24, $int22, $component14, $component15, $component16, $component17, $component18);
-$int25, $boolean26 = ~bankmain_tabicon($component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10, $component11, 2, %bank_tab_2, $int25, $boolean26, $int20, $int23, $int24, $int22, $component14, $component15, $component16, $component17, $component18);
-$int25, $boolean26 = ~bankmain_tabicon($component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10, $component11, 3, %bank_tab_3, $int25, $boolean26, $int20, $int23, $int24, $int22, $component14, $component15, $component16, $component17, $component18);
-$int25, $boolean26 = ~bankmain_tabicon($component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10, $component11, 4, %bank_tab_4, $int25, $boolean26, $int20, $int23, $int24, $int22, $component14, $component15, $component16, $component17, $component18);
-$int25, $boolean26 = ~bankmain_tabicon($component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10, $component11, 5, %bank_tab_5, $int25, $boolean26, $int20, $int23, $int24, $int22, $component14, $component15, $component16, $component17, $component18);
-$int25, $boolean26 = ~bankmain_tabicon($component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10, $component11, 6, %bank_tab_6, $int25, $boolean26, $int20, $int23, $int24, $int22, $component14, $component15, $component16, $component17, $component18);
-$int25, $boolean26 = ~bankmain_tabicon($component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10, $component11, 7, %bank_tab_7, $int25, $boolean26, $int20, $int23, $int24, $int22, $component14, $component15, $component16, $component17, $component18);
-$int25, $boolean26 = ~bankmain_tabicon($component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10, $component11, 8, %bank_tab_8, $int25, $boolean26, $int20, $int23, $int24, $int22, $component14, $component15, $component16, $component17, $component18);
-$int25, $boolean26 = ~bankmain_tabicon($component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10, $component11, 9, %bank_tab_9, $int25, $boolean26, $int20, $int23, $int24, $int22, $component14, $component15, $component16, $component17, $component18);
+def_int $int22 = calc((40 - 36) / 2);
+def_int $int23 = calc((40 - 32) / 2);
+~bankmain_tabicon($component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10, $component11, 0, -1, -1, false, $int19, $int22, $int23, $int21, $component14, $component15, $component16, $component17, $component18);
+def_int $int24 = 0;
+def_boolean $boolean25 = false;
+$int24, $boolean25 = ~bankmain_tabicon($component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10, $component11, 1, %bank_tab_1, $int24, $boolean25, $int19, $int22, $int23, $int21, $component14, $component15, $component16, $component17, $component18);
+$int24, $boolean25 = ~bankmain_tabicon($component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10, $component11, 2, %bank_tab_2, $int24, $boolean25, $int19, $int22, $int23, $int21, $component14, $component15, $component16, $component17, $component18);
+$int24, $boolean25 = ~bankmain_tabicon($component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10, $component11, 3, %bank_tab_3, $int24, $boolean25, $int19, $int22, $int23, $int21, $component14, $component15, $component16, $component17, $component18);
+$int24, $boolean25 = ~bankmain_tabicon($component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10, $component11, 4, %bank_tab_4, $int24, $boolean25, $int19, $int22, $int23, $int21, $component14, $component15, $component16, $component17, $component18);
+$int24, $boolean25 = ~bankmain_tabicon($component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10, $component11, 5, %bank_tab_5, $int24, $boolean25, $int19, $int22, $int23, $int21, $component14, $component15, $component16, $component17, $component18);
+$int24, $boolean25 = ~bankmain_tabicon($component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10, $component11, 6, %bank_tab_6, $int24, $boolean25, $int19, $int22, $int23, $int21, $component14, $component15, $component16, $component17, $component18);
+$int24, $boolean25 = ~bankmain_tabicon($component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10, $component11, 7, %bank_tab_7, $int24, $boolean25, $int19, $int22, $int23, $int21, $component14, $component15, $component16, $component17, $component18);
+$int24, $boolean25 = ~bankmain_tabicon($component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10, $component11, 8, %bank_tab_8, $int24, $boolean25, $int19, $int22, $int23, $int21, $component14, $component15, $component16, $component17, $component18);
+$int24, $boolean25 = ~bankmain_tabicon($component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10, $component11, 9, %bank_tab_9, $int24, $boolean25, $int19, $int22, $int23, $int21, $component14, $component15, $component16, $component17, $component18);

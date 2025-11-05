@@ -1,0 +1,27 @@
+// 9001
+[proc,script9001](dbrow $dbrow0)(int)
+def_int $int1 = 1;
+def_int $int2 = 1;
+switch_dbtable (db_getfield($dbrow0, sailing_charting_core:charting_type, 0)) {
+    case sailing_charting_drink_crate :
+        $int1 = 12;
+    case sailing_charting_current_duck :
+        $int1 = 22;
+    case sailing_charting_mermaid_guide :
+        $int1 = 38;
+    case sailing_charting_weather_troll :
+        $int1 = 57;
+}
+switch_dbrow (db_getfield($dbrow0, sailing_charting_core:hazard, 0)) {
+    case sailing_sea_hazard_stormy_seas :
+        $int2 = 24;
+    case sailing_sea_hazard_fetid_waters :
+        $int2 = 40;
+    case sailing_sea_hazard_crystal_flecked_waters :
+        $int2 = 66;
+    case sailing_sea_hazard_tangled_kelp :
+        $int2 = 72;
+    case sailing_sea_hazard_icy_seas :
+        $int2 = 78;
+}
+return(max($int1, $int2));

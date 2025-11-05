@@ -1,0 +1,20 @@
+// 8856
+[proc,script8856](dbrow $dbrow0, string $string0)(string)
+def_dbrow $dbrow1 = db_getfield($dbrow0, sailing_boat_facility:combat_facility_data, 0);
+def_string $string1 = "";
+def_string $string2 = "";
+def_string $string3 = "";
+def_dbrow $dbrow2 = null;
+def_int $int3 = -1;
+$string2 = "<$string2><br>Ranged accuracy: <$string0><tostring(db_getfield($dbrow1, sailing_combat_facility:accuracy, 0))>";
+$string2 = "<$string2><br>Ranged strength: <$string0><tostring(db_getfield($dbrow1, sailing_combat_facility:damage, 0))>";
+$dbrow2 = ~script9035(db_getfield($dbrow1, sailing_combat_facility:ammunition_max_tier, 0));
+if ($dbrow2 ! null) {
+    $string2 = "<$string2><br>Max ammunition tier: <$string0><oc_name(db_getfield($dbrow2, sailing_combat_facility_ammunition:ammunition_obj, 0))>s";
+}
+$string1 = "Ranged level requirement: <$string0><tostring(db_getfield($dbrow1, sailing_combat_facility:ranged_level_required, 0))>";
+$string3 = "<$string1><$string2>";
+if (string_length($string3) > 0) {
+    return($string3);
+}
+return("");

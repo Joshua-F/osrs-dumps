@@ -1,23 +1,17 @@
 // 7337
-[clientscript,script7337](int $int0, boolean $boolean1)
-if (~on_mobile = true) {
-    return;
-}
-def_component $component2 = chartering_menu_side:list_content;
-def_dbrow $dbrow3 = enum(int, dbrow, enum_5565, $int0);
-if ($dbrow3 = null) {
-    return;
-}
-if ($boolean1 = true) {
-    if_sethide(false, db_getfield($dbrow3, chartering_destination_data:chartering_destination_ui_label, 0));
-    if_setmodel(model_17359, db_getfield($dbrow3, chartering_destination_data:chartering_destination_ui_marker, 0));
-    if (cc_find($component2, calc($int0 * 2 + 1)) = ^true) {
+[clientscript,script7337](component $component0, int $int1, component $component2, int $int3, int $int4)
+if ($int4 = 1) {
+    if (cc_find($component0, $int1) = ^true) {
+        cc_setgraphic("map_cross,1");
+    }
+    if (cc_find($component2, $int3) = ^true) {
         cc_setcolour(^white);
     }
 } else {
-    if_sethide(true, db_getfield($dbrow3, chartering_destination_data:chartering_destination_ui_label, 0));
-    if_setmodel(model_17360, db_getfield($dbrow3, chartering_destination_data:chartering_destination_ui_marker, 0));
-    if (cc_find($component2, calc($int0 * 2 + 1)) = ^true) {
+    if (cc_find($component0, $int1) = ^true) {
+        cc_setgraphic("map_cross,0");
+    }
+    if (cc_find($component2, $int3) = ^true) {
         cc_setcolour(0xff981f);
     }
 }

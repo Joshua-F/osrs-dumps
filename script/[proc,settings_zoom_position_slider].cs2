@@ -1,16 +1,16 @@
 // 3900
 [proc,settings_zoom_position_slider](component $component0, int $int1, int $int2, int $int3, int $int4)
-def_int $int5 = calc(896 - 128);
-def_int $int6 = calc(896 - 128);
+def_int $int5 = calc(%camera_zoom_big_max - %camera_zoom_big_min);
+def_int $int6 = calc(%camera_zoom_small_max - %camera_zoom_small_min);
 def_int $int7 = calc($int2 - 16);
 def_int $int8 = 0;
 def_int $int9 = 0;
 $int8, $int9 = viewport_geteffectivesize;
 def_int $int10 = 0;
 if ($int8 > 334) {
-    $int10 = calc((%camera_zoom_big - 128) * $int7 / $int5);
+    $int10 = calc((%camera_zoom_big - %camera_zoom_big_min) * $int7 / $int5);
 } else {
-    $int10 = calc((%camera_zoom_small - 128) * $int7 / $int6);
+    $int10 = calc((%camera_zoom_small - %camera_zoom_small_min) * $int7 / $int6);
 }
 if (cc_find($component0, $int1) = ^true) {
     cc_setposition(calc($int4 + $int10), $int3, ^setpos_abs_left, ^setpos_abs_top);

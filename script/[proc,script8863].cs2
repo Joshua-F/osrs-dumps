@@ -1,0 +1,21 @@
+// 8863
+[proc,script8863](string $string0)(string)
+def_int $int0 = string_length($string0);
+def_int $int1 = 27;
+def_string $string1 = "";
+def_int $int2 = 0;
+switch_int (%responsive_current_breakpoint) {
+    case 1 :
+        $int1 = 35;
+    case 2, 3 :
+        $int1 = 40;
+}
+if ($int0 >= $int1) {
+    $string1 = substring($string0, 0, calc($int1 - 4));
+    $int2 = calc(string_length($string1) - 1);
+    if (string_indexof_string($string1, " ", $int2) = $int2) {
+        $string1 = substring($string1, 0, $int2);
+    }
+    $string0 = "<$string1>...";
+}
+return($string0);

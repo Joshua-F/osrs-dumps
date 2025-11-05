@@ -1,0 +1,14 @@
+// 9000
+[proc,script9000](dbrow $dbrow0)(int)
+def_int $int1 = 1;
+def_int $int2 = 1;
+if (db_getfield($dbrow0, sailing_sea:type, 0) = 0) {
+    $int1 = db_getfield($dbrow0, sailing_sea:required_level, 0);
+    $int2 = db_getfield($dbrow0, sailing_sea:xp_level, 0);
+    if ($int2 > 1) {
+        $int1 = $int2;
+    }
+    return(enum(int, int, enum_5870, $int1));
+} else {
+    return(enum(dbrow, int, enum_5869, $dbrow0));
+}

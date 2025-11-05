@@ -1,0 +1,22 @@
+// 8759
+[proc,script8759](dbrow $dbrow0)(string)
+def_int $int1 = -1;
+def_int $int2 = -1;
+if ($dbrow0 ! null) {
+    if (db_getrowtable($dbrow0) = sailing_boat_facility) {
+        $int1, $int2 = db_getfield($dbrow0, sailing_boat_facility:crew_stat_requirement, 0);
+    } else if (db_getrowtable($dbrow0) = sailing_boat_steering) {
+        $int1, $int2 = db_getfield($dbrow0, sailing_boat_steering:crew_stat_requirement, 0);
+    } else if (db_getrowtable($dbrow0) = sailing_boat_hull) {
+        $int1, $int2 = 3, 1;
+    }
+    switch_int ($int1) {
+        case 1 :
+            return(" (H<tostring(max($int2, 1))>)");
+        case 2 :
+            return(" (P<tostring(max($int2, 1))>)");
+        case 3 :
+            return(" (D<tostring(max($int2, 1))>)");
+    }
+}
+return("");
