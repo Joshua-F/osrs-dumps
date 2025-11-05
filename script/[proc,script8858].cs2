@@ -1,0 +1,15 @@
+// 8858
+[proc,script8858](string $string0, fontmetrics $fontmetrics0, int $int1, int $int2)(string)
+def_string $string1 = "...Read more";
+if (string_length($string0) > 180) {
+    $string0 = substring($string0, 0, 180);
+}
+def_int $int3 = paraheight("<$string0><$string1>", $int1, $fontmetrics0);
+def_int $int4 = string_length($string0);
+def_int $int5 = 0;
+while ($int3 > $int2) {
+    $string0 = substring($string0, 0, calc(string_length($string0) - $int5));
+    $int3 = paraheight("<$string0><$string1>", $int1, $fontmetrics0);
+    $int5 = calc($int5 + 1);
+}
+return($string0);

@@ -1,0 +1,40 @@
+// 9052
+[proc,sailing_crew_get_stat_string](int $int0, int $int1, dbrow $dbrow2)(string)
+def_string $string0 = "";
+def_dbrow $dbrow3 = null;
+def_dbrow $dbrow4 = ~script9050(~sailing_crew_get_slot($int1));
+def_int $int5 = 0;
+if ($dbrow4 = null) {
+    ~error("Couldn't find crew data from ID. Got null instead.");
+    return("");
+}
+switch_int ($int0) {
+    case 0, 1 :
+        $string0 = "";
+    case 2, 3, 4 :
+        $string0 = "Helmsmanship: <tostring(~sailing_crew_get_stat(1, $dbrow4, -1))>";
+    case 5 :
+        $string0 = "Deckhandiness: <tostring(~sailing_crew_get_stat(3, $dbrow4, -1))>";
+    case 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 :
+        $dbrow3 = ~sailing_customisation_return_built(%sailing_boat_spawned, $dbrow2, 4, calc($int0 - 6));
+        if ($dbrow3 ! null) {
+            $int5 = db_getfield($dbrow3, sailing_boat_facility:crew_facility, 0);
+            switch_int ($int5) {
+                case 7, 9, 10, 12 :
+                    $string0 = "Deckhandiness: <tostring(~sailing_crew_get_stat(3, $dbrow4, -1))>";
+                case 8 :
+                    $string0 = "Privateering: <tostring(~sailing_crew_get_stat(2, $dbrow4, -1))>";
+                case 0 :
+                    $string0 = "";
+                case default :
+                    ~error("No switch case found for $crew_facility_type_id. $crew_facility_type_id was <tostring($int5)>.");
+                    return("");
+            }
+        } else {
+            $string0 = "";
+        }
+    case default :
+        ~error("Case missing for this position. $position was: <tostring($int0)>");
+        return("");
+}
+return($string0);

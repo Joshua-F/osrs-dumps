@@ -1,0 +1,15 @@
+// 8624
+[proc,sailing_boat_selection_draw_button](int $int0)
+def_component $component1 = sailing_boat_selection:boats;
+def_component $component2 = sailing_boat_selection:button;
+cc_deleteall($component2);
+if ($int0 = 0) {
+    if_setsize(0, 0, ^setsize_minus, ^setsize_minus, $component1);
+    if_sethide(true, $component2);
+    return;
+}
+if_setsize(0, 39, ^setsize_minus, ^setsize_minus, $component1);
+if_sethide(false, $component2);
+~create_v2_stone_button_filled_free($component2, 0, if_getwidth($component2), if_getheight($component2), 0, 0, "Board friend's boat", ^white, ^white, 0, false);
+if_setop(1, "Board friend's boat", $component2);
+if_setonop("script8625($component2)", $component2);

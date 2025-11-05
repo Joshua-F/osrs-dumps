@@ -1,0 +1,81 @@
+// 8818
+[proc,sailing_customisation_draw_facilities]
+def_component $component0 = sailing_customisation:facility_content;
+def_component $component1 = sailing_customisation:facility_content_main;
+def_component $component2 = sailing_customisation:facility_highlight;
+def_component $component3 = sailing_customisation:facility_content_background;
+cc_deleteall($component1);
+cc_deleteall($component0);
+cc_deleteall($component2);
+cc_deleteall($component3);
+def_int $int4 = 0;
+def_int $int5 = 0;
+def_int $int6 = 0;
+def_int $int7 = -1;
+def_int $int8 = 0;
+def_int $int9 = 0;
+def_int $int10 = 0;
+def_graphic $graphic11 = null;
+def_string $string0 = "";
+def_dbrow $dbrow12 = null;
+def_dbrow $dbrow13 = null;
+def_dbrow $dbrow14 = null;
+def_dbrow $dbrow15 = %sailing_boat_customisation_boat;
+$int7, $graphic11, $string0, $dbrow12 = ~script8840(%sailing_boat_customisation_tab);
+if ($graphic11 ! null & string_length($string0) > 0) {
+    $int5, $int6, $int4 = ~sailing_customisation_draw_tab_header($component1, $int5, $int6, $int4, $string0, $graphic11);
+}
+$dbrow14 = ~sailing_customisation_return_built(%sailing_boat_customisation_boat_slot, $dbrow15, $int7, %sailing_boat_customisation_hotspot_id);
+if (%sailing_boat_customisation_type = 1) {
+    $int8 = ~script8815($dbrow12, $dbrow15);
+} else if (%sailing_boat_customisation_type = 0) {
+    $int8 = ~sailing_customisation_amount($dbrow15, $int7, 0);
+}
+if ($int8 <= 0) {
+    ~error("Amount of facilities to draw was 0.");
+    return;
+}
+def_int $int16 = 0;
+def_int $int17 = 100;
+def_string $string1 = "";
+def_dbrow $dbrowarray2($int8);
+def_string $stringarray3($int8);
+def_string $string4 = "";
+while ($int9 < $int8) {
+    if (%sailing_boat_customisation_type = 0) {
+        $dbrow13 = ~sailing_customisation_return_option($dbrow15, $int7, 0, $int9);
+    } else if (%sailing_boat_customisation_type = 1) {
+        $dbrow13 = ~script8816($dbrow12, $dbrow15, $int9);
+    }
+    if ($dbrow13 ! null) {
+        $int16 = ~script9055(db_getrowtable($dbrow13), $dbrow13);
+        $int17 = ~script9073($dbrow13);
+        $string1 = ~sailing_customisation_return_name($dbrow13);
+        if ($dbrow14 = $dbrow13) {
+            $string4 = "000<$string1>";
+        } else if ($int17 < 100) {
+            $string4 = "00<tostring($int17)><$string1>";
+        } else if ($int16 < 10) {
+            $string4 = "1000<tostring($int16)><$string1>";
+        } else {
+            $string4 = "100<tostring($int16)><$string1>";
+        }
+        $dbrowarray2($int9) = $dbrow13;
+        $stringarray3($int9) = $string4;
+    }
+    $int9 = calc($int9 + 1);
+}
+array_sort($stringarray3, $dbrowarray2);
+$int9 = 0;
+while ($int9 < $int8) {
+    $dbrow13 = $dbrowarray2($int9);
+    if ($dbrow13 ! null & ~script8867($dbrow13) = true) {
+        $int5, $int6, $int4 = ~sailing_customisation_draw_facility($component1, $int5, $int6, $int4, $int10, $dbrow13, $dbrow14);
+        $int10 = calc($int10 + 1);
+    }
+    $int9 = calc($int9 + 1);
+}
+if ($int4 < if_getheight($component1)) {
+    $int6 = ~sailing_customisation_draw_facility_frame($int6, calc(if_getheight($component1) - $int4), $int4, $int10, null, null, false);
+}
+~sailing_customisation_draw_scrollbar($int4);

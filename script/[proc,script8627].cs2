@@ -1,0 +1,38 @@
+// 8627
+[proc,script8627](component $component0, int $int1, int $int2, int $int3)(int)
+if (%sailing_last_personal_boat_boarded < 1) {
+    return(0);
+}
+def_component $component4 = sailing_boat_selection:boats_container_recent;
+cc_deleteall($component4);
+def_int $int5 = ~sailing_boat_get_type(%sailing_last_personal_boat_boarded);
+def_int $int6 = 0;
+def_int $int7 = $int6;
+if ($int5 = -1) {
+    return(0);
+}
+def_int $int8 = db_find(sailing_boat:type_id, $int5);
+if ($int8 < 0) {
+    return(0);
+}
+def_dbrow $dbrow9 = db_findnext;
+cc_create($component4, ^iftype_text, $int6);
+cc_settext("Recent Boat");
+cc_setsize(0, 12, ^setsize_minus, ^setsize_abs);
+cc_setposition(5, 0, ^setpos_abs_left, ^setpos_abs_top);
+cc_settextfont(b12_full);
+cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+cc_settextshadow(true);
+cc_setcolour(0xff981f);
+$int1 = calc($int1 + 17);
+$int6 = calc($int6 + 1);
+def_int $int10 = $int1;
+$int6, $int1 = ~sailing_boat_selection_draw_boat($component4, $component0, $int6, %sailing_last_personal_boat_boarded, $int1, $int5, $dbrow9, $int2, 1, $int3);
+def_int $int11 = calc($int1 - $int10);
+$int6 = ~thinbox_specific_col($component4, $int6, 0, $int10, if_getwidth($component4), $int11, ^setpos_abs_centre, ^setpos_abs_top, 0x2e2b23, 0x726451);
+$int1 = calc($int1 + 5);
+cc_copy($component4, $int7, $int6);
+cc_settext("Other Boats");
+cc_setposition(5, $int1, ^setpos_abs_left, ^setpos_abs_top);
+$int1 = calc($int1 + 15);
+return($int1);

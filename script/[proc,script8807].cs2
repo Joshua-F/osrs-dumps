@@ -1,0 +1,48 @@
+// 8807
+[proc,script8807](dbrow $dbrow0, dbrow $dbrow1)(int, string)
+if (~sailing_unlocked = false & $dbrow0 ! sailing_boat_facility_cargo_hold_regular_raft) {
+    return(0, "You cannot build that at the moment.");
+}
+def_dbtable $dbtable2 = db_getrowtable($dbrow0);
+def_int $int3 = ~script9058($dbtable2, $dbrow0);
+def_int $int4 = ~script9060($dbtable2, $dbrow0);
+def_int $int5 = ~script9057($dbtable2, $dbrow0);
+def_int $int6 = 2;
+def_string $string0 = "That facility requires level <col=ff981f><tostring(~script9055($dbtable2, $dbrow0))> Sailing</col> and level <col=ff981f><tostring(~script9056($dbtable2, $dbrow0))> Construction</col> to build.";
+if (~script8806($dbtable2, $dbrow0, sailing, -1) = false) {
+    return(0, $string0);
+}
+if (~script8806($dbtable2, $dbrow0, construction, -1) = false) {
+    if ($int5 > 0) {
+        $int6 = 1;
+    } else {
+        return(0, $string0);
+    }
+}
+def_string $string1 = "";
+def_boolean $boolean7 = false;
+$boolean7, $string1 = ~script8808($dbrow0, $dbrow1);
+if ($boolean7 = false) {
+    return(0, $string1);
+}
+def_int $int8 = 0;
+def_stat $stat9 = null;
+def_int $int10 = -1;
+while ($int8 < $int3) {
+    $stat9, $int10 = ~script9059($dbtable2, $dbrow0, $int8);
+    if (~script8806($dbtable2, $dbrow0, $stat9, $int10) = false) {
+        return(0, "You do not have the required stats to build that.");
+    }
+    $int8 = calc($int8 + 1);
+}
+$int8 = 0;
+def_int $int11 = -1;
+def_dbrow $dbrow12 = null;
+while ($int8 < $int4) {
+    $dbrow12 = ~script9061($dbtable2, $dbrow0, $int8);
+    if (~quest_is_complete($dbrow12) = false) {
+        return(0, "You have not completed <col=ff981f><~get_quest_name($dbrow12)></col>, which is a requirement to build this facility.");
+    }
+    $int8 = calc($int8 + 1);
+}
+return($int6, "");

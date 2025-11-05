@@ -1,0 +1,73 @@
+// 8618
+[proc,script8618](component $component0, int $int1, component $component2, int $int3, component $component4, int $int5, int $int6, graphic $graphic7, graphic $graphic8, graphic $graphic9, string $string0, int $int10, int $int11, int $int12, int $int13, int $int14, obj $obj15, int $int16, int $int17, int $int18)(int, int)
+def_graphic $graphic19 = "icon_barracuda_objectives_18x18,1";
+def_graphic $graphic20 = "icon_sailing_tabs_20x20,4";
+def_graphic $graphic21 = "frex_ticks,0";
+def_string $string1 = "-";
+def_string $string2 = ",";
+def_boolean $boolean22 = true;
+if ($int10 > 0) {
+    $string1 = ~script4159(calc($int10 * 60 / 100), 0);
+}
+if (calc($int18 + 1) < $int17) {
+    $boolean22 = false;
+}
+cc_create($component0, ^iftype_rectangle, $int1);
+cc_setcolour(^white);
+cc_setposition(0, $int5, ^setpos_abs_centre, ^setpos_abs_top);
+cc_setsize(4, 48, ^setsize_minus, ^setsize_abs);
+cc_setfill(true);
+cc_settrans($int6);
+$int1 = calc($int1 + 1);
+$int1 = ~create_graphic($component0, $int1, $graphic9, 5, calc($int5 + 8), ^setpos_abs_left, ^setpos_abs_top, 32, 32, ^setsize_abs, ^setsize_abs, false);
+$int1 = ~dynamic_stone_button_filled($component0, $component2, $string0, 42, calc($int5 + 9), 65, 30, $int1, $int3, 1, ~script7983($boolean22));
+if (cc_find($component2, $int3) = ^true) {
+    cc_setop(1, "Select-trial");
+    cc_setopbase("<col=ff9040><$string0></col>");
+    cc_setonop("script8619($boolean22, $int17)");
+}
+$int1 = ~create_graphic($component0, $int1, $graphic19, 113, calc($int5 + 16), ^setpos_abs_left, ^setpos_abs_top, 18, 18, ^setsize_abs, ^setsize_abs, false);
+$int1 = ~create_text($component0, $int1, p11_full, 133, calc($int5 + 15), ^setpos_abs_left, ^setpos_abs_top, 30, 20, ^setsize_abs, ^setsize_abs, $string1, true, ^white, ^settextalign_centre, ^settextalign_centre, 0);
+$int1 = ~create_graphic($component0, $int1, $graphic7, 168, calc($int5 + 4), ^setpos_abs_left, ^setpos_abs_top, 18, 18, ^setsize_abs, ^setsize_abs, false);
+$int1 = ~create_text($component0, $int1, p11_full, 191, calc($int5 + 4), ^setpos_abs_left, ^setpos_abs_top, 15, 20, ^setsize_abs, ^setsize_abs, tostring($int11), true, ^white, ^settextalign_centre, ^settextalign_centre, 0);
+$int1 = ~create_graphic($component0, $int1, $graphic8, 168, calc($int5 + 26), ^setpos_abs_left, ^setpos_abs_top, 18, 18, ^setsize_abs, ^setsize_abs, false);
+$int1 = ~create_text($component0, $int1, p11_full, 191, calc($int5 + 26), ^setpos_abs_left, ^setpos_abs_top, 15, 20, ^setsize_abs, ^setsize_abs, tostring($int12), true, ^white, ^settextalign_centre, ^settextalign_centre, 0);
+if ($int13 = 0) {
+    $int1 = ~create_graphic($component0, $int1, $graphic20, 211, calc($int5 + 14), ^setpos_abs_left, ^setpos_abs_top, 20, 20, ^setsize_abs, ^setsize_abs, false);
+    $int1 = ~create_text($component0, $int1, p11_full, 230, calc($int5 + 15), ^setpos_abs_left, ^setpos_abs_top, 45, 20, ^setsize_abs, ^setsize_abs, ~tostring_spacer(calc($int14 / 10), $string2), true, ^white, ^settextalign_centre, ^settextalign_centre, 0);
+} else {
+    $int1 = ~create_graphic($component0, $int1, $graphic20, 211, calc($int5 + 3), ^setpos_abs_left, ^setpos_abs_top, 20, 20, ^setsize_abs, ^setsize_abs, false);
+    $int1 = ~create_text($component0, $int1, p11_full, 230, calc($int5 + 3), ^setpos_abs_left, ^setpos_abs_top, 45, 20, ^setsize_abs, ^setsize_abs, ~tostring_spacer(calc($int14 / 10), $string2), true, ^white, ^settextalign_centre, ^settextalign_centre, 0);
+    $int1 = ~create_graphic($component0, $int1, $graphic20, 211, calc($int5 + 25), ^setpos_abs_left, ^setpos_abs_top, 20, 20, ^setsize_abs, ^setsize_abs, false);
+    if ($int16 = 0) {
+        $int1 = ~create_text($component0, $int1, p11_full, 230, calc($int5 + 24), ^setpos_abs_left, ^setpos_abs_top, 45, 20, ^setsize_abs, ^setsize_abs, "+<~tostring_spacer(calc($int13 / 10), $string2)>", true, ^white, ^settextalign_centre, ^settextalign_centre, 0);
+    } else {
+        $int1 = ~create_graphic($component0, $int1, $graphic21, 245, calc($int5 + 30), ^setpos_abs_left, ^setpos_abs_top, 13, 13, ^setsize_abs, ^setsize_abs, false);
+    }
+}
+if ($boolean22 = false) {
+    cc_create($component0, ^iftype_rectangle, $int1);
+    cc_setcolour(^black);
+    cc_setposition(0, $int5, ^setpos_abs_centre, ^setpos_abs_top);
+    cc_setsize(4, 48, ^setsize_minus, ^setsize_abs);
+    cc_setfill(true);
+    cc_settrans(130);
+    $int1 = calc($int1 + 1);
+}
+if ($obj15 ! null) {
+    $int1 = ~thinbox_specific($component0, $int1, 281, calc($int5 + 6), calc(36 + 4), calc(32 + 4), ^setpos_abs_left, ^setpos_abs_top);
+    $int1 = ~create_object($component0, $int1, $obj15, 1, 285, calc($int5 + 8), ^setpos_abs_left, ^setpos_abs_top, 36, 32, ^setsize_abs, ^setsize_abs);
+    cc_create($component4, ^iftype_rectangle, $int3);
+    cc_setposition(281, calc($int5 + 6), ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(calc(36 + 4), calc(32 + 4), ^setsize_abs, ^setsize_abs);
+    cc_setcolour(^white);
+    cc_setfill(true);
+    cc_settrans(255);
+    cc_setonmouserepeat("cc_settrans(event_com, event_comsubid, 220, null)");
+    cc_setonmouseleave("cc_settrans(event_com, event_comsubid, 255, null)");
+    cc_setop(1, "View");
+    cc_setopbase("<col=ff9040><oc_name($obj15)></col>");
+} else {
+    cc_create($component4, ^iftype_rectangle, $int3);
+}
+return($int1, calc($int3 + 1));

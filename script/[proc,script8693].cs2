@@ -1,0 +1,12 @@
+// 8693
+[proc,script8693]
+def_dbrow $dbrow0 = null;
+if (~script8688 ! -1 & ~script8694 ! -1) {
+    db_find(sailing_sea:unique_id, ~script8694);
+    $dbrow0 = db_findnext;
+    $dbrow0 = db_getfield($dbrow0, sailing_sea:ocean, 0);
+    if ($dbrow0 ! null & ~script8688 ! db_getfield($dbrow0, sailing_sea:unique_id, 0)) {
+        %sailing_charting_ocean_filter = -1;
+        ~script8661;
+    }
+}

@@ -1,0 +1,40 @@
+// 8794
+[proc,script8794](component $component0, int $int1, component $component2, int $int3, int $int4)
+if_setontimer(null, $component0);
+def_string $string0 = "";
+def_int $int5 = 1;
+while ($int5 <= $int1) {
+    if (cc_find($component0, calc($int5 - 1)) = ^true) {
+        if ($int5 = %sailing_crew_selected_crew_id) {
+            cc_settrans(210);
+            cc_setonmouserepeat(null);
+            cc_setonmouseleave(null);
+        } else if (calc($int5 % 2) = 1) {
+            cc_settrans(255);
+            if (~on_mobile = false) {
+                cc_setonmouserepeat("cc_settrans(event_com, event_comsubid, 225, null)");
+            }
+            cc_setonmouseleave("cc_settrans(event_com, event_comsubid, 255, null)");
+        } else {
+            cc_settrans(240);
+            if (~on_mobile = false) {
+                cc_setonmouserepeat("cc_settrans(event_com, event_comsubid, 225, null)");
+            }
+            cc_setonmouseleave("cc_settrans(event_com, event_comsubid, 240, null)");
+        }
+        $string0 = removetags(cc_getopbase);
+    } else {
+        $string0 = "Crew";
+    }
+    if (.cc_find($component0, calc($int1 + 2 * ($int5 - 1) + 1)) = ^true) {
+        if (~sailing_crew_get_unlocked($int5) = 1) {
+            .cc_setcolour(0xff981f);
+            .cc_settext($string0);
+        } else {
+            .cc_setcolour(0x9f9f9f);
+            .cc_settext("<$string0><br>(Locked)");
+        }
+    }
+    $int5 = calc($int5 + 1);
+}
+~sailing_crew_comparison($component2, $int3, $int4);

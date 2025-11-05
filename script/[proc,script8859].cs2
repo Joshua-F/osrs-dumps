@@ -1,0 +1,43 @@
+// 8859
+[proc,script8859](int $int0, fontmetrics $fontmetrics1, int $int2, int $int3, string $string0, string $string1)(boolean, string)
+def_int $int4 = 0;
+if (string_length($string0) < 1) {
+    $string0, $int4 = " ", 1;
+}
+def_int $int5 = string_indexof_string($string0, "readmore", 0);
+$string0 = removetags($string0);
+def_boolean $boolean6 = false;
+def_string $string2 = "<col=ff981f>...Read more</col>";
+def_int $int7 = paraheight($string0, $int0, $fontmetrics1);
+def_int $int8 = calc($int7 * 15);
+def_int $int9 = 0;
+if ($int5 ! -1) {
+    $boolean6 = true;
+    $string0 = substring($string0, 0, calc($int5 - 1));
+    $string0 = append($string0, " <$string2>");
+} else if ($int7 > $int2) {
+    $boolean6 = true;
+    $string0 = ~script8858($string0, $fontmetrics1, $int0, $int2);
+    $string0 = append($string0, " <$string2>");
+} else if ($int3 = 1 & string_length($string1) > 0) {
+    if ($int4 = 1) {
+        $int9 = paraheight($string1, $int0, $fontmetrics1);
+    } else {
+        $int9 = paraheight("<$string0><br><$string1>", $int0, $fontmetrics1);
+    }
+    if ($int9 <= $int2) {
+        if ($int4 = 1) {
+            $string0 = $string1;
+        } else {
+            $string0 = append($string0, "<br><$string1>");
+        }
+    } else {
+        $string0 = ~script8858($string0, $fontmetrics1, $int0, $int2);
+        $boolean6 = true;
+        if (string_indexof_char($string0, char_46) = calc(string_length($string0) - 1)) {
+            $string0 = substring($string0, 0, calc(string_length($string0) - 1));
+        }
+        $string0 = append($string0, " <$string2>");
+    }
+}
+return($boolean6, $string0);

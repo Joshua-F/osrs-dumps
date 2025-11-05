@@ -1,0 +1,42 @@
+// 8767
+[proc,script8767](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7)
+cc_deleteall($component0);
+cc_deleteall($component1);
+cc_deleteall($component2);
+cc_deleteall($component3);
+cc_deleteall($component4);
+cc_deleteall($component6);
+cc_deleteall($component7);
+def_string $string0 = "";
+if (%sailing_sidepanel_shipyard_mode = 1) {
+    $string0 = "Crew details are not available while customising your boat in the shipyard.";
+} else if (%sailing_player_is_on_player_boat = 0) {
+    $string0 = "Crew details can only be viewed while on a boat.";
+}
+if (string_length($string0) > 0) {
+    cc_create($component0, ^iftype_text, 0);
+    cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_setcolour(0xff981f);
+    cc_settext($string0);
+    cc_settextfont(p11_full);
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 13);
+    cc_settextshadow(true);
+    return;
+}
+def_int $int8 = 0;
+if (%sailing_sidepanel_crew_player_view = 1) {
+    $int8 = 1;
+}
+def_int $int9 = 0;
+def_int $int10 = 0;
+def_string $string1 = "";
+$int9, $int10, $string1 = ~script8769($int8);
+~script8768($component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $int8);
+~script8771($component7, $int9, $int10, $string1);
+if_setonvartransmit("script8770($component7){sailing_sidepanel_boat_information}", $component0);
+if ($int8 = 1) {
+    ~script8775($component3, $component2);
+} else {
+    ~script8773($component3, $int9, $int10, $component4, $component5, $component1);
+}

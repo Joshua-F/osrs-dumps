@@ -1,0 +1,64 @@
+// 8774
+[proc,script8774](int $int0, int $int1, component $component2, int $int3, int $rgb4)(int, int)
+def_int $int5 = 6;
+def_int $int6 = ~sailing_sidepanel_crew_get_slot($int3);
+def_int $int7 = 0;
+def_dbrow $dbrow8 = null;
+def_dbrow $dbrow9 = null;
+def_graphic $graphic10 = null;
+def_dbrow $dbrow11 = null;
+def_graphic $graphic12 = null;
+def_int $rgb13 = 0x9f9f9f;
+def_string $string0 = "Available slot";
+def_string $string1 = "";
+cc_create($component2, ^iftype_rectangle, $int0);
+cc_setsize(0, 34, ^setsize_minus, ^setsize_abs);
+cc_setposition(0, $int1, ^setpos_abs_left, ^setpos_abs_top);
+cc_setfill(true);
+cc_setcolour($rgb4);
+$int0 = calc($int0 + 1);
+if ($int6 ! 0) {
+    if ($int3 ! -1) {
+        $int7 = ~sailing_sidepanel_crew_get_ordered_position($int3);
+    }
+    $dbrow8 = ~script9050($int6);
+    if ($dbrow8 ! null) {
+        $graphic10 = ~script8734($dbrow8);
+        $string0 = ~script8735($dbrow8);
+        $string1 = ~script8736($dbrow8);
+        if (compare($string1, "") ! 0) {
+            $string0 = "<$string0><br><$string1>";
+        }
+    }
+    $dbrow9 = ~script8765($int7);
+    $dbrow11 = ~sailing_sidepanel_get_sidepanel_data($dbrow9);
+    $graphic12 = ~script8764($dbrow11);
+    $rgb13 = ^white;
+    cc_create($component2, ^iftype_graphic, $int0);
+    if ($graphic10 = "icon_sailing_player_18x18,0") {
+        $graphic10 = "cross_interface,5";
+    }
+    cc_setgraphic($graphic10);
+    cc_setposition(5, calc($int1 + 8), ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(18, 18, ^setsize_abs, ^setsize_abs);
+    $int0 = calc($int0 + 1);
+    cc_create($component2, ^iftype_graphic, $int0);
+    cc_setgraphic($graphic12);
+    cc_setposition(5, calc($int1 + (34 - 24) / 2), ^setpos_abs_right, ^setpos_abs_top);
+    cc_setsize(24, 24, ^setsize_abs, ^setsize_abs);
+    if ($int3 = -1) {
+        cc_sethide(true);
+    }
+    $int0 = calc($int0 + 1);
+}
+cc_create($component2, ^iftype_text, $int0);
+cc_settext($string0);
+cc_setposition(28, $int1, ^setpos_abs_left, ^setpos_abs_top);
+cc_setsize(56, 34, ^setsize_minus, ^setsize_abs);
+cc_settextfont(p11_full);
+cc_settextshadow(true);
+cc_setcolour($rgb13);
+cc_settextalign(^settextalign_left, ^settextalign_centre, 13);
+$int0 = calc($int0 + 1);
+$int1 = calc($int1 + 34);
+return($int0, $int1);

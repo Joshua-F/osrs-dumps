@@ -1,19 +1,19 @@
 // 654
-[clientscript,skill_guide_init](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10)
-~skill_guide_build($component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10);
-def_enum $enum11 = ~toplevel_getcomponents;
-def_component $component12 = enum(component, component, $enum11, toplevel_osrs_stretch:mainmodal);
+[clientscript,skill_guide_init](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7)
+~skill_guide_build($component1, $component2, $component3, $component4, $component5, $component6, $component7);
+def_enum $enum8 = ~toplevel_getcomponents;
+def_component $component9 = enum(component, component, $enum8, toplevel_osrs_stretch:mainmodal);
 if (~on_mobile = true) {
-    if_setontimer("script7923($component10, $component0, 0)", $component10);
+    if_setontimer("script7923($component7, $component0, 0)", $component7);
 } else {
     if (%skill_guide_v2_x < 0 | %skill_guide_v2_y < 0 | %skill_guide_v2_width <= 0 | %skill_guide_v2_height <= 0) {
-        %skill_guide_v2_width = if_getwidth($component12);
-        %skill_guide_v2_height = if_getheight($component12);
-        %skill_guide_v2_x = if_getx($component12);
-        %skill_guide_v2_y = if_gety($component12);
+        %skill_guide_v2_width = if_getwidth($component9);
+        %skill_guide_v2_height = if_getheight($component9);
+        %skill_guide_v2_x = if_getx($component9);
+        %skill_guide_v2_y = if_gety($component9);
     }
-    if_setontimer("script6110($component10, -1)", $component10);
-    if_setonresize("skill_guide_rebuild", $component10);
+    if_setontimer("script6110($component7, -1)", $component7);
+    if_setonresize("skill_guide_rebuild(event_com)", $component7);
 }
-if_setonvartransmit("skill_guide_build($component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10){skill_guide_v2}", $component0);
-~skill_guide_v2_size_handler(-1, -1, $component10, $component0);
+if_setonvartransmit("skill_guide_build($component1, $component2, $component3, $component4, $component5, $component6, $component7){skill_guide_v2}", $component0);
+~skill_guide_v2_size_handler(-1, -1, $component7, $component0);

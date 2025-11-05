@@ -1,0 +1,13 @@
+// 8976
+[proc,script8976](dbrow $dbrow0)(graphic)
+def_int $int1 = db_getfield($dbrow0, sailing_boat_facility:facility_subtype, 0);
+def_graphic $graphic2 = db_getfield($dbrow0, sailing_boat_facility:facility_type_sprite:0, 0);
+if ($graphic2 ! null) {
+    return($graphic2);
+}
+db_find(boat_facilities_default_sprite_data:facility_subtype, $int1);
+def_dbrow $dbrow3 = db_findnext;
+if ($dbrow3 = null) {
+    return(db_getfield(sailing_facility_sprite_default, boat_facilities_default_sprite_data:sprite:0, 0));
+}
+return(db_getfield($dbrow3, boat_facilities_default_sprite_data:sprite:0, 0));

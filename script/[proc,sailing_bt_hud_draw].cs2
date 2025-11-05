@@ -1,0 +1,147 @@
+// 8606
+[proc,sailing_bt_hud_draw](dbrow $dbrow0, int $int1, int $int2, int $int3, int $int4, int $int5, int $int6, int $int7, int $int8, string $string0, int $int9)
+def_int $int10 = calc($int9 - %sailing_bt_time_start);
+def_string $string1 = "";
+def_string $string2 = "";
+def_string $string3 = "";
+def_string $string4 = "";
+def_graphic $graphic11 = null;
+def_graphic $graphic12 = null;
+def_graphic $graphic13 = null;
+def_int $int14 = 0;
+def_graphic $graphic15 = "icon_barracuda_reset_22x22,0";
+def_graphic $graphic16 = "icon_barracuda_reset_22x22,1";
+def_component $component17 = sailing_bt_hud:bt_btn_icon;
+def_component $component18 = sailing_bt_hud:bt_title;
+def_component $component19 = sailing_bt_hud:bt_btn_expand_icon;
+def_component $component20 = sailing_bt_hud:bt_btn_expand_click;
+def_graphic $graphic21 = null;
+def_graphic $graphic22 = "open_buttons_small,2";
+def_graphic $graphic23 = "open_buttons_small,3";
+def_string $string5 = "Minimise";
+def_int $int24 = 0;
+cc_deleteall($component18);
+cc_deleteall($component17);
+cc_deleteall($component19);
+if ($dbrow0 ! null) {
+    if_sethide(false, sailing_bt_hud:barracuda_trials);
+    if (%sailing_bt_time_start = 0) {
+        if_settext("0:00", sailing_bt_hud:bt_current_time);
+        if_setcolour(0xaaaaaa, sailing_bt_hud:bt_current_time);
+        if_setontimer(null, sailing_bt_hud:bt_current_time);
+    } else {
+        $int10 = calc($int10 * 30 - clientclock);
+        if_setontimer("script8608($int10)", sailing_bt_hud:bt_current_time);
+        if_setcolour(^white, sailing_bt_hud:bt_current_time);
+    }
+    if ($int6 > 0) {
+        if_settext(~script4159(calc($int6 * 60 / 100), 1), sailing_bt_hud:bt_rank_time);
+        if (calc($int9 - %sailing_bt_time_start) > $int6) {
+            if_setcolour(0xaaaaaa, sailing_bt_hud:bt_rank_time);
+        } else {
+            if_setcolour(0xff981f, sailing_bt_hud:bt_rank_time);
+        }
+    } else {
+        if_settext("-", sailing_bt_hud:bt_rank_time);
+    }
+    if (%sailing_bt_hud_compact = 0) {
+        $string2 = db_getfield($dbrow0, sailing_bt_trial_core:primary_req_desc, 0);
+        $string3 = db_getfield($dbrow0, sailing_bt_trial_core:secondary_req_desc, 0);
+    }
+    $graphic11 = db_getfield($dbrow0, sailing_bt_trial_core:tracker_icon1, 0);
+    $graphic12 = db_getfield($dbrow0, sailing_bt_trial_core:tracker_icon2, 0);
+    $string1 = db_getfield($dbrow0, sailing_bt_trial_core:trial_name, 0);
+    if ($int4 = 1) {
+        $graphic21 = db_getfield($dbrow0, sailing_bt_trial_core:tracker_icon4, 0);
+        if ($dbrow0 = sailing_bt_jubbly_jive) {
+            $string4 = tostring($int2);
+        }
+    } else {
+        $graphic21 = db_getfield($dbrow0, sailing_bt_trial_core:tracker_icon3, 0);
+    }
+    switch_int ($int5) {
+        case default :
+            $graphic13 = "icon_barracuda_rank_32x32,0";
+        case 1 :
+            $graphic13 = "icon_barracuda_rank_32x32,1";
+        case 2 :
+            $graphic13 = "icon_barracuda_rank_32x32,2";
+        case 3 :
+            $graphic13 = "icon_barracuda_rank_32x32,3";
+    }
+    if_settext("<tostring($int1)> / <tostring($int7)> <$string2>", sailing_bt_hud:bt_tracker_progress);
+    if_settext("<tostring($int3)> / <tostring($int8)> <$string3>", sailing_bt_hud:bt_optional_progress);
+    if_setgraphic($graphic11, sailing_bt_hud:bt_primary_objective_gfx);
+    if_setgraphic($graphic12, sailing_bt_hud:bt_secondary_objective_gfx);
+    if_setgraphic($graphic13, sailing_bt_hud:bt_rank_gfx);
+    $int14 = 0;
+    $int14 = ~script619($component18, $int14);
+    cc_create($component18, ^iftype_text, $int14);
+    cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_setcolour(^white);
+    cc_settextfont(b12_full);
+    cc_settextshadow(true);
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    cc_settext($string1);
+    $int14 = 0;
+    $int14 = ~script619($component17, $int14);
+    cc_create($component17, ^iftype_graphic, $int14);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_setsize(22, 22, ^setsize_abs, ^setsize_abs);
+    cc_setgraphic($graphic15);
+    cc_settrans(0);
+    if_setonmouserepeat("script3440(event_com, cc_getid, $graphic16, null)", $component17);
+    if_setonmouseleave("script3440(event_com, cc_getid, $graphic15, null)", $component17);
+    if_setop(1, "Reset trial", sailing_bt_hud:bt_btn_reset_click);
+    if_setop(2, "Quick-reset trial", sailing_bt_hud:bt_btn_reset_click);
+    if_setop(3, "Exit trial", sailing_bt_hud:bt_btn_reset_click);
+    if_setonclick("script8607", sailing_bt_hud:bt_btn_reset_click);
+    if ($graphic21 ! null) {
+        if_setgraphic($graphic21, sailing_bt_hud:bt_partial_gfx);
+        if_sethide(false, sailing_bt_hud:bt_partial_gfx);
+    } else {
+        if_setgraphic(null, sailing_bt_hud:bt_partial_gfx);
+        if_sethide(true, sailing_bt_hud:bt_partial_gfx);
+    }
+    if_settext($string4, sailing_bt_hud:bt_partial_text);
+    if ($dbrow0 = sailing_bt_jubbly_jive) {
+        ~script8610(sailing_bt_hud:bt_middle_content, $string0);
+        $int24 = 1;
+    } else if ($dbrow0 = sailing_bt_gwenith_glide) {
+        ~script8612(sailing_bt_hud:bt_middle_content, $string0, $int7);
+        $int24 = 1;
+    }
+    if (%sailing_bt_hud_compact = 1) {
+        $graphic22 = "open_buttons_small,0";
+        $graphic23 = "open_buttons_small,1";
+        $string5 = "Expand";
+    }
+    $int14 = 0;
+    $int14 = ~script619($component19, $int14);
+    cc_create($component19, ^iftype_graphic, $int14);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_setsize(18, 18, ^setsize_abs, ^setsize_abs);
+    cc_setgraphic($graphic22);
+    cc_settrans(0);
+    if_setonmouserepeat("script3440(event_com, cc_getid, $graphic23, null)", $component19);
+    if_setonmouseleave("script3440(event_com, cc_getid, $graphic22, null)", $component19);
+    if_setop(1, $string5, $component20);
+    if_setonop("script8609($dbrow0, $int1, $int2, $int3, $int4, $int5, $int6, $int7, $int8, $string0, $int9)", $component20);
+    if (%sailing_bt_hud_compact = 1) {
+        if_sethide(true, sailing_bt_hud:bt_title);
+        if_setposition(35, -4, ^setpos_abs_left, ^setpos_abs_top, sailing_bt_hud:bt_left);
+        if_setposition(95, -4, ^setpos_abs_left, ^setpos_abs_top, sailing_bt_hud:bt_right);
+    } else {
+        if_sethide(false, sailing_bt_hud:bt_title);
+        if ($int24 = 0) {
+            if_setposition(23, 32, ^setpos_abs_left, ^setpos_abs_top, sailing_bt_hud:bt_left);
+            if_setposition(-16, 32, ^setpos_abs_right, ^setpos_abs_top, sailing_bt_hud:bt_right);
+        } else {
+            if_setposition(0, 60, ^setpos_abs_left, ^setpos_abs_top, sailing_bt_hud:bt_left);
+            if_setposition(3, 60, ^setpos_abs_right, ^setpos_abs_top, sailing_bt_hud:bt_right);
+        }
+    }
+} else {
+    if_sethide(true, sailing_bt_hud:barracuda_trials);
+}

@@ -1,0 +1,24 @@
+// 8998
+[proc,script8998](int $int0, dbrow $dbrow1, int $int2)(int)
+def_int $int3 = 0;
+def_int $int4 = db_getfieldcount($dbrow1, sailing_boat:hotspot);
+def_int $int5 = 0;
+def_int $int6 = 0;
+def_dbrow $dbrow7 = null;
+def_dbrow $dbrow8 = null;
+def_dbrow $dbrow9 = null;
+while ($int3 < $int4) {
+    $dbrow7 = db_getfield($dbrow1, sailing_boat:hotspot:3, $int3);
+    $int5 = ~sailing_boat_get_hotspot($int0, $int3);
+    if ($dbrow7 ! null & $int5 > 0) {
+        $dbrow9 = db_getfield($dbrow7, sailing_boat_hotspot:option, calc($int5 - 1));
+        if ($dbrow9 ! null & db_getfield($dbrow9, sailing_boat_facility:facility_subtype, 0) = 2) {
+            $dbrow8 = ~sailing_customisation_return_stats($dbrow9);
+            if ($dbrow8 ! null) {
+                return(~script9084($dbrow8, $int2));
+            }
+        }
+    }
+    $int3 = calc($int3 + 1);
+}
+return(0);

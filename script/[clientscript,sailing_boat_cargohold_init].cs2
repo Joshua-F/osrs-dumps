@@ -1,0 +1,38 @@
+// 8869
+[clientscript,sailing_boat_cargohold_init](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10, component $component11, component $component12, component $component13, component $component14)
+~sailing_boat_cargohold_warning($component1);
+~scrollbar_vertical($component3, $component2, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~sailing_boat_cargohold_quantitybuttons_set($component5, $component6, $component7, $component8, $component9);
+if_setonvartransmit("sailing_boat_cargohold_quantitybuttons_set($component5, $component6, $component7, $component8, $component9){prayer23}", $component5);
+def_int $int15 = calc(if_getwidth($component2) - 9 * 36);
+def_int $int16 = calc($int15 / (9 + 1));
+def_int $int17 = calc($int15 - $int16 * (9 - 1));
+$int17 = calc(($int17 + 1) / 2);
+~sailing_boat_cargohold_items($component2, $component3, $component4, $int17, $int16);
+if_setoninvtransmit("sailing_boat_cargohold_items($component2, $component3, $component4, $int17, $int16){%sailing_boat_cargohold_inv}", $component0);
+if_setonvartransmit("sailing_boat_cargohold_items($component2, $component3, $component4, $int17, $int16){prayer23}", $component0);
+cc_deleteall($component10);
+def_int $int18 = 0;
+$int18 = ~thinbox($component10, $int18);
+def_string $string0 = "Tools:";
+def_int $int19 = parawidth($string0, 512, p12_full);
+$int17 = 7;
+cc_create($component10, ^iftype_text, $int18);
+cc_setsize($int19, 0, ^setsize_abs, ^setsize_minus);
+cc_setposition($int17, 0, ^setpos_abs_left, ^setpos_abs_centre);
+cc_setcolour(0xff981f);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+cc_settextfont(p12_full);
+cc_settextshadow(true);
+cc_settext($string0);
+if_setposition($int17, 0, ^setpos_abs_right, ^setpos_abs_centre, $component11);
+$int15 = calc($int17 * 2 + $int19 + 5);
+if_setsize($int15, 0, ^setsize_minus, ^setsize_minus, $component11);
+$int18 = db_listall(sailing_charting_tool_recovery);
+~sailing_boat_cargohold_tools($component10, $component11, $int15, $int18);
+if_setoninvtransmit("sailing_boat_cargohold_tools($component10, $component11, $int15, $int18){inv}", $component10);
+if_setonvartransmit("sailing_boat_cargohold_tools($component10, $component11, $int15, $int18){current_affairs_main, pry_main, 100_pirate_quest}", $component10);
+~script8878($component12, "Cargo", cargo_interface_dummy, null, null);
+~script8878($component13, "Salvage", salvage_interface_dummy, null, null);
+~script8878($component14, "Inventory", null, "sideicons_new,3", 0_0_0_33_36);
+~sailing_boat_cargohold_stack_toggle($component2, $component3, $component4);

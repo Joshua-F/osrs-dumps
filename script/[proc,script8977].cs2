@@ -1,0 +1,11 @@
+// 8977
+[proc,script8977](dbrow $dbrow0)(graphic)
+def_graphic $graphic1 = db_getfield($dbrow0, sailing_boat_brazier:facility_type_sprite:0, 0);
+if ($graphic1 ! null) {
+    return($graphic1);
+}
+def_dbrow $dbrow2 = sailing_facility_sprite_brazier;
+if ($dbrow2 = null) {
+    return(db_getfield(sailing_facility_sprite_default, boat_facilities_default_sprite_data:sprite:0, 0));
+}
+return(db_getfield($dbrow2, boat_facilities_default_sprite_data:sprite:0, 0));

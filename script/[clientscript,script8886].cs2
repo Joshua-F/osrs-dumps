@@ -1,0 +1,15 @@
+// 8886
+[clientscript,script8886](component $component0, component $component1, component $component2, boolean $boolean3)
+if ($boolean3 = false) {
+    mes("There isn't any non-stackable items in this cargo hold that can be stacked or unstacked.");
+    sound_synth(synth_2277, 1, 0);
+    return;
+}
+%cargo_hold_draw_stacked = calc(1 - %cargo_hold_draw_stacked);
+~sailing_boat_cargohold_stack_toggle($component0, $component1, $component2);
+sound_synth(synth_2266, 1, 0);
+def_int $int4 = calc(if_getwidth($component0) - 9 * 36);
+def_int $int5 = calc($int4 / (9 + 1));
+def_int $int6 = calc($int4 - $int5 * (9 - 1));
+$int6 = calc(($int6 + 1) / 2);
+~sailing_boat_cargohold_items($component0, $component1, $component2, $int6, $int5);

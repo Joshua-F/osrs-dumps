@@ -1,0 +1,56 @@
+// 8831
+[proc,sailing_customisation_draw_build_button](component $component0, int $int1, int $int2, int $int3, int $int4, int $int5, dbrow $dbrow6, dbrow $dbrow7, boolean $boolean8, int $int9, boolean $boolean10)(int)
+def_string $string0 = "";
+def_boolean $boolean11 = false;
+def_int $int12 = 0;
+def_boolean $boolean13 = ~script8839($dbrow6);
+def_string $string1 = "";
+def_string $string2 = "Build";
+def_string $string3 = ~sailing_customisation_return_name($dbrow6);
+def_string $string4 = $string3;
+def_int $int14 = 0;
+def_int $rgb15 = 0xff981f;
+def_int $rgb16 = ^white;
+def_int $int17 = ~script9057(db_getrowtable($dbrow6), $dbrow6);
+$int14, $string0 = ~script8807($dbrow6, $dbrow7);
+if (staffmodlevel >= 2 & inv_total(inv, rotten_potato) > 0 & $dbrow7 ! $dbrow6) {
+    $boolean8, $boolean11 = true, false;
+} else if ($boolean8 = false) {
+    $boolean11, $string1 = true, "You must discover the <col=ff981f>schematic</col> for this facility before you can build it.";
+    $string4 = "Unknown Schematic";
+} else if ($dbrow7 = $dbrow6 | $boolean10 = true) {
+    cc_create($component0, ^iftype_text, $int1);
+    cc_settext("Currently Built");
+    cc_setsize(calc($int3 - 6), calc($int4 - 6), ^setsize_abs, ^setsize_abs);
+    cc_setposition(calc(if_getwidth($component0) - ($int3 + 2)), calc($int2 + ($int5 - $int4 - 2)), ^setpos_abs_left, ^setpos_abs_top);
+    cc_settextfont(b12_full);
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 20);
+    cc_settextshadow(true);
+    cc_setcolour(0xff981f);
+    $int1 = calc($int1 + 1);
+    return($int1);
+} else if ($int14 = 1 & $int17 > 0) {
+    if (inv_total(inv, coins) < $int17 | $boolean13 = false) {
+        $boolean11, $string1 = true, "As you do not meet the <col=ff981f>Construction requirement</col> for this facility, you can pay <col=ff981f><~tostring_commas($int17)> coins</col> for the shipwrights to build it for you. However, you will still need the <col=ff981f>required materials</col>.";
+        $string4 = "Shipwright assistance";
+    }
+    if ($boolean11 = true) {
+        $rgb15, $rgb16 = 0x9f9f9f, 0x9f9f9f;
+    }
+    $int1 = ~script8651($component0, $int1, $int3, $int4, calc(if_getwidth($component0) - ($int3 + 5)), calc($int2 + ($int5 - $int4 - 5)), ~script7396($int17, 100000, 1000000, ","), coins_5, $rgb15, $rgb16, $boolean11);
+    $int1 = ~script8832($component0, $int1, $int2, $int5, $string4, $dbrow6, $string1, $boolean11, $int9, $string3);
+    return($int1);
+} else if ($int14 = 0) {
+    $boolean11, $string1 = true, $string0;
+} else if ($boolean13 = false) {
+    $boolean11, $string1 = true, "You are missing some of the <col=ff981f>materials</col> needed to build this facility.";
+    $string4 = "Missing materials";
+}
+if ($int12 = 0) {
+    if ($boolean11 = true) {
+        $rgb15, $rgb16 = 0x9f9f9f, 0x9f9f9f;
+    }
+    $int1 = ~create_v2_stone_button_filled_free($component0, $int1, $int3, $int4, calc(if_getwidth($component0) - ($int3 + 5)), calc($int2 + ($int5 - $int4 - 5)), $string2, $rgb15, $rgb16, 0, $boolean11);
+    $int1 = ~script8832($component0, $int1, $int2, $int5, $string4, $dbrow6, $string1, $boolean11, $int9, $string3);
+}
+return($int1);

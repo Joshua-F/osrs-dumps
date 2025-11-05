@@ -1,0 +1,14 @@
+// 9077
+[proc,sailing_customisation_return_loc_anim](dbrow $dbrow0)(seq)
+if ($dbrow0 = null) {
+    return(null);
+}
+def_seq $seq1 = null;
+def_string $string0 = "";
+switch_dbtable (db_getrowtable($dbrow0)) {
+    case sailing_boat_facility :
+        $seq1 = db_getfield($dbrow0, sailing_boat_facility:customisation_loc_anim, 0);
+    case sailing_boat_brazier :
+        $seq1 = db_getfield($dbrow0, sailing_boat_brazier:customisation_loc_anim, 0);
+}
+return($seq1);

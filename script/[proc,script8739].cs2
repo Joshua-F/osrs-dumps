@@ -1,0 +1,23 @@
+// 8739
+[proc,script8739](int $int0, int $int1, int $int2, int $int3, dbrow $dbrow4, component $component5, component $component6, int $int7)(int, int, int)
+def_int $int8 = 30;
+def_boolean $boolean9 = db_getfield($dbrow4, sailing_sidepanel_widget_button_target_npc:long_button, 0);
+if ($boolean9 = true) {
+    $int8 = 106;
+}
+def_string $string0 = db_getfield($dbrow4, sailing_sidepanel_widget_button_target_npc:default_button_caption, 0);
+def_string $string1 = db_getfield($dbrow4, sailing_sidepanel_widget_button_target_npc:default_target_verb, 0);
+def_int $int10 = 0;
+def_graphic $graphic11 = null;
+$graphic11, $int10 = db_getfield($dbrow4, sailing_sidepanel_widget_button_target_npc:default_graphic, 0);
+if ($int7 = 2) {
+    $int0, $int1 = ~sailing_sidepanel_stonebutton($component5, $component6, $int0, $int1, $int8, 30, $int2, $int3, $string0, $graphic11, $int10, ^white, 0x9f9f9f, 1, $int7, 1);
+    cc_settargetverb($string1);
+} else if ($int7 = 0) {
+    $int0, $int1 = ~sailing_sidepanel_stonebutton($component5, $component6, $int0, $int1, $int8, 30, $int2, $int3, $string0, $graphic11, $int10, ^white, 0x9f9f9f, 0, $int7, 1);
+    cc_settargetverb($string1);
+} else {
+    $int0, $int1 = ~sailing_sidepanel_stonebutton($component5, $component6, $int0, $int1, $int8, 30, $int2, $int3, $string0, $graphic11, $int10, ^white, 0x9f9f9f, 1, $int7, 0);
+}
+$int2 = calc($int2 + $int8 + 8);
+return($int0, $int1, $int2);

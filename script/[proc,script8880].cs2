@@ -1,0 +1,28 @@
+// 8880
+[proc,script8880](int $int0, component $component1, obj $obj2, graphic $graphic3, coord $coord4)
+def_int $int5 = 0;
+if ($int0 = 1) {
+    $int5 = ~v2_stone_button_in_filled($component1);
+} else {
+    $int5 = ~v2_stone_button_filled($component1);
+}
+cc_create($component1, ^iftype_graphic, $int5);
+$int5 = calc($int5 + 1);
+if ($obj2 ! null) {
+    cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+    cc_setposition(1, -1, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_setoutline(1);
+    cc_settrans(0);
+    cc_setgraphicshadow(0x333333);
+    cc_setobject_nonum($obj2, 1);
+} else {
+    cc_setsize(coordx($coord4), coordz($coord4), ^setsize_abs, ^setsize_abs);
+    cc_setposition(0, -1, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_setgraphic($graphic3);
+}
+cc_create($component1, ^iftype_graphic, $int5);
+$int5 = calc($int5 + 1);
+cc_setsize(12, 10, ^setsize_abs, ^setsize_abs);
+cc_setposition(4, 4, ^setpos_abs_left, ^setpos_abs_bottom);
+cc_setgraphic(bankbutton_arrow_green);
+cc_sethflip(true);

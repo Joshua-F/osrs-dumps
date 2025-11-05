@@ -1,0 +1,45 @@
+// 8808
+[proc,script8808](dbrow $dbrow0, dbrow $dbrow1)(boolean, string)
+if (db_getrowtable($dbrow0) ! sailing_boat_facility) {
+    return(true, "");
+}
+def_int $int2 = db_getfield($dbrow0, sailing_boat_facility:build_max, 0);
+if ($int2 = -1) {
+    return(true, "");
+}
+if ($int2 = 0) {
+    return(false, "You cannot currently build that on your boat.");
+}
+def_int $int3 = 0;
+def_dbrow $dbrow4 = null;
+def_dbrow $dbrow5 = %sailing_boat_customisation_boat;
+def_int $int6 = %sailing_boat_customisation_boat_slot;
+def_int $int7 = 0;
+def_int $int8 = db_getfieldcount($dbrow5, sailing_boat:hotspot);
+def_int $int9 = 0;
+def_int $int10 = db_getfieldcount($dbrow0, sailing_boat_facility:variants);
+def_dbrow $dbrow11 = null;
+def_int $int12 = 0;
+while ($int7 < $int8) {
+    $int12 = calc(~sailing_boat_get_hotspot($int6, $int7) - 1);
+    if ($int12 > -1) {
+        $dbrow11 = db_getfield($dbrow5, sailing_boat:hotspot:3, $int7);
+        $dbrow4 = db_getfield($dbrow11, sailing_boat_hotspot:option, $int12);
+        if ($dbrow0 = $dbrow4 & $dbrow0 ! $dbrow1) {
+            $int3 = calc($int3 + 1);
+        } else {
+            $int9 = 0;
+            while ($int9 < $int10) {
+                if ($dbrow4 = db_getfield($dbrow0, sailing_boat_facility:variants, $int9) & $dbrow4 ! $dbrow1) {
+                    $int3 = calc($int3 + 1);
+                }
+                $int9 = calc($int9 + 1);
+            }
+        }
+        if ($int3 >= $int2) {
+            return(false, "You can only build a maximum of <col=ff981f><~script8952($int2)> <lowercase(db_getfield($dbrow0, sailing_boat_facility:name, 0))></col> or related facility on your boat.");
+        }
+    }
+    $int7 = calc($int7 + 1);
+}
+return(true, "");

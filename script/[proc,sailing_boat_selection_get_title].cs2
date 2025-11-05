@@ -1,0 +1,8 @@
+// 8978
+[proc,sailing_boat_selection_get_title]()(string)
+db_find(boat_selection_type:type, %sailing_boat_selection_type);
+def_dbrow $dbrow0 = db_findnext;
+if ($dbrow0 = null) {
+    return("Boats");
+}
+return(db_getfield($dbrow0, boat_selection_type:title, 0));

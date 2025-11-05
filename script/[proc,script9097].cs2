@@ -1,0 +1,15 @@
+// 9097
+[proc,script9097](dbrow $dbrow0)(int)
+def_int $int1 = db_getfield($dbrow0, port_task:task_id, 0);
+if ($int1 <= 0 | $int1 > db_listall(port_task)) {
+    ~script2075("Port task had invalid ID. ID = <tostring($int1)>.");
+    return(-1);
+}
+def_int $int2 = 0;
+while ($int2 < 5) {
+    if (~script9098($int2) = $int1) {
+        return($int2);
+    }
+    $int2 = calc($int2 + 1);
+}
+return(-1);

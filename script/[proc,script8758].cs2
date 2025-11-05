@@ -1,0 +1,106 @@
+// 8758
+[proc,script8758](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8)
+cc_deleteall($component0);
+cc_deleteall($component1);
+cc_deleteall($component2);
+cc_deleteall($component3);
+cc_deleteall($component5);
+cc_deleteall($component6);
+cc_deleteall($component7);
+def_string $string0 = "";
+if (%sailing_sidepanel_shipyard_mode = 1) {
+    $string0 = "Facilities are not available while customising your boat in the shipyard.";
+} else if (%sailing_player_is_on_player_boat = 0) {
+    $string0 = "Facilities can only be viewed while on a boat.";
+}
+if (string_length($string0) > 0) {
+    cc_create($component7, ^iftype_text, 0);
+    cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_setcolour(0xff981f);
+    cc_settext($string0);
+    cc_settextfont(p11_full);
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 13);
+    cc_settextshadow(true);
+    return;
+}
+def_dbrow $dbrow9 = null;
+def_string $string1 = "";
+$dbrow9, $string1 = ~script9027(%sailing_sidepanel_crew_assignation_facility_viewed);
+if (string_length($string1) = 0 & $dbrow9 ! null & db_getrowtable($dbrow9) = sailing_boat_facility) {
+    $string1 = db_getfield($dbrow9, sailing_boat_facility:name, 0);
+}
+$string1 = "<$string1><~script8759($dbrow9)>";
+if (cc_find($component8, 0) = ^true) {
+    cc_settext($string1);
+}
+~sailing_sidepanel_stonebutton($component6, null, 0, 0, if_getwidth($component6), if_getheight($component6), 0, 0, "", ge_backbutton, 16, ^white, 0x9f9f9f, 0, 0, 1);
+cc_setop(1, "Back");
+def_int $int10 = ~sailing_sidepanel_crew_count_get;
+def_int $int11 = 0;
+if (%sailing_sidepanel_boat_type ! null) {
+    $int11 = min(5, db_getfield(%sailing_sidepanel_boat_type, sailing_boat:crew_capacity, 0));
+}
+cc_create($component5, ^iftype_text, 0);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_setcolour(0xff981f);
+cc_settext("Crew capacity: <tostring($int10)>/<tostring($int11)>");
+cc_settextfont(p11_full);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 13);
+cc_settextshadow(true);
+cc_create($component7, ^iftype_rectangle, 0);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+cc_setfill(true);
+cc_setcolour(0x595046);
+~thinbox($component7, 1);
+~scrollbar_vertical($component3, $component4, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+def_int $int12 = 0;
+def_int $int13 = 0;
+def_int $int14 = 2;
+def_int $int15 = 0;
+def_int $int16 = 0;
+def_int $int17 = 0;
+if ($int10 = 0) {
+    cc_create($component2, ^iftype_text, 0);
+    cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_setcolour(0xff981f);
+    if (~sailing_unlocked = true) {
+        cc_settext("No crewmates available.<br><br>You can manage your crewmates with the Crew Registrar.");
+    } else {
+        cc_settext("You are not yet an experienced enough sailor to manage a crew.");
+    }
+    cc_settextfont(p11_full);
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 13);
+    cc_settextshadow(true);
+} else {
+    $int12, $int13, $int14 = ~script8762($int12, $int13, $int14, $component2, $component1, $dbrow9, -1, 0x595046, 0);
+    while ($int16 < $int10 & $int17 < 5) {
+        if (~sailing_sidepanel_crew_get_slot($int17) ! 0) {
+            if (calc($int16 % 2) = 0) {
+                $int12, $int13, $int14 = ~script8762($int12, $int13, $int14, $component2, $component1, $dbrow9, $int17, 0x4e453a, 0);
+            } else {
+                $int12, $int13, $int14 = ~script8762($int12, $int13, $int14, $component2, $component1, $dbrow9, $int17, 0x595046, 0);
+            }
+            $int16 = calc($int16 + 1);
+        }
+        $int17 = calc($int17 + 1);
+    }
+}
+if ($int14 > if_getheight($component4)) {
+    if_setsize(0, $int14, ^setsize_minus, ^setsize_abs, $component2);
+    if_setscrollsize(0, $int14, $component4);
+} else {
+    if_setsize(0, 0, ^setsize_minus, ^setsize_minus, $component2);
+    if_setscrollsize(0, 0, $component4);
+    if ($int15 = 1) {
+        cc_create($component2, ^iftype_rectangle, $int12);
+        cc_setsize(0, $int14, ^setsize_minus, ^setsize_minus);
+        cc_setposition(0, $int14, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setfill(true);
+        cc_setcolour(0x4e453a);
+    }
+}
+~scrollbar_resize($component3, $component4, 0);

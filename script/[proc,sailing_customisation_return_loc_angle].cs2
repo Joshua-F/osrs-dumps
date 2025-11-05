@@ -1,0 +1,72 @@
+// 9076
+[proc,sailing_customisation_return_loc_angle](dbrow $dbrow0, dbrow $dbrow1, int $int2)(int, int, int, int, int, int)
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_int $int5 = 0;
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_int $int8 = 1000;
+if ($dbrow0 = null) {
+    return($int3, $int4, $int5, $int6, $int7, $int8);
+}
+def_dbrow $dbrow9 = null;
+def_string $string0 = "";
+switch_dbtable (db_getrowtable($dbrow0)) {
+    case sailing_boat_facility :
+        $dbrow9, $string0 = db_getfield($dbrow0, sailing_boat_facility:customisation_loc_values, 0), db_getfield($dbrow0, sailing_boat_facility:name, 0);
+    case sailing_boat_keel :
+        $dbrow9, $string0 = db_getfield($dbrow0, sailing_boat_keel:customisation_loc_values, 0), db_getfield($dbrow0, sailing_boat_keel:name, 0);
+    case sailing_boat_hull :
+        $dbrow9, $string0 = db_getfield($dbrow0, sailing_boat_hull:customisation_loc_values, 0), db_getfield($dbrow0, sailing_boat_hull:name, 0);
+    case sailing_boat_sail :
+        $dbrow9, $string0 = db_getfield($dbrow0, sailing_boat_sail:customisation_loc_values, 0), db_getfield($dbrow0, sailing_boat_sail:name, 0);
+    case sailing_boat_steering :
+        $dbrow9, $string0 = db_getfield($dbrow0, sailing_boat_steering:customisation_loc_values, 0), db_getfield($dbrow0, sailing_boat_steering:name, 0);
+    case sailing_boat_flag :
+        $dbrow9, $string0 = db_getfield($dbrow0, sailing_boat_flag:customisation_loc_values, 0), db_getfield($dbrow0, sailing_boat_flag:name, 0);
+    case sailing_boat_brazier :
+        $dbrow9, $string0 = db_getfield($dbrow0, sailing_boat_brazier:customisation_loc_values, 0), db_getfield($dbrow0, sailing_boat_brazier:name, 0);
+    case sailing_boat_trim :
+        $dbrow9, $string0 = db_getfield($dbrow0, sailing_boat_trim:customisation_loc_values, 0), db_getfield($dbrow0, sailing_boat_trim:name, 0);
+    case sailing_boat_hull_ornament :
+        $dbrow9, $string0 = db_getfield($dbrow0, sailing_boat_hull_ornament:customisation_loc_values, 0), db_getfield($dbrow0, sailing_boat_hull_ornament:name, 0);
+}
+if ($dbrow1 = null | $dbrow9 = null) {
+    ~script2075("Customisation facility (<$string0>) was not given any loc angles.");
+    return($int3, $int4, $int5, $int6, $int7, $int8);
+}
+def_int $int10 = db_getfield($dbrow1, sailing_boat:type_id, 0);
+def_int $int11 = db_getfieldcount($dbrow9, sailing_customisation_loc_angles:angles);
+def_int $int12 = 0;
+def_int $int13 = 0;
+while ($int12 < $int11) {
+    $int13 = db_getfield($dbrow9, sailing_customisation_loc_angles:angles:0, $int12);
+    if ($int13 = $int10 | $int13 = -1) {
+        $int3 = db_getfield($dbrow9, sailing_customisation_loc_angles:angles:1, $int12);
+        $int4 = db_getfield($dbrow9, sailing_customisation_loc_angles:angles:2, $int12);
+        $int5 = db_getfield($dbrow9, sailing_customisation_loc_angles:angles:3, $int12);
+        $int6 = db_getfield($dbrow9, sailing_customisation_loc_angles:angles:4, $int12);
+        $int7 = db_getfield($dbrow9, sailing_customisation_loc_angles:angles:5, $int12);
+        $int8 = max(1, db_getfield($dbrow9, sailing_customisation_loc_angles:angles:6, $int12));
+    }
+    $int12 = calc($int12 + 1);
+}
+if ($int2 = 0) {
+    return($int3, $int4, $int5, $int6, $int7, $int8);
+}
+$int12, $int13 = 0, 0;
+$int11 = db_getfieldcount($dbrow9, sailing_customisation_loc_angles:angles_large_modifiers);
+while ($int12 < $int11) {
+    $int13 = db_getfield($dbrow9, sailing_customisation_loc_angles:angles_large_modifiers:0, $int12);
+    if ($int13 = $int10 | $int13 = -1) {
+        $int3 = calc($int3 + db_getfield($dbrow9, sailing_customisation_loc_angles:angles_large_modifiers:1, $int12));
+        $int4 = calc($int4 + db_getfield($dbrow9, sailing_customisation_loc_angles:angles_large_modifiers:2, $int12));
+        $int5 = calc($int5 + db_getfield($dbrow9, sailing_customisation_loc_angles:angles_large_modifiers:3, $int12));
+        $int6 = calc($int6 + db_getfield($dbrow9, sailing_customisation_loc_angles:angles_large_modifiers:4, $int12));
+        $int7 = calc($int7 + db_getfield($dbrow9, sailing_customisation_loc_angles:angles_large_modifiers:5, $int12));
+        $int8 = max(1, calc($int8 + db_getfield($dbrow9, sailing_customisation_loc_angles:angles_large_modifiers:6, $int12)));
+        return($int3, $int4, $int5, $int6, $int7, $int8);
+    }
+    $int12 = calc($int12 + 1);
+}
+return($int3, $int4, $int5, $int6, $int7, $int8);

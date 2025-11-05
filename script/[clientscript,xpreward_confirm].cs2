@@ -1,13 +1,20 @@
 // 3808
-[clientscript,xpreward_confirm](int $int0, component $component1, component $component2)
+[clientscript,xpreward_confirm](int $int0, component $component1, component $component2, string $string0)
 sound_synth(synth_2266, 1, 0);
-if (cc_find($component2, 0) = ^true) {
-    cc_setcolour(^white);
-}
+cc_deleteall($component2);
+def_int $int3 = ~options_button_on($component2, 0);
+cc_create($component2, ^iftype_text, $int3);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_settextfont(p12_full);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+cc_settextshadow(true);
+cc_setcolour(^white);
+cc_settext($string0);
 if_setonmouserepeat(null, $component2);
 if_setonmouseleave(null, $component2);
 if_setonop(null, $component2);
-if_setontimer("xpreward_update(calc(clientclock + 20), $int0, $component1, $component2)", $component1);
+if_setontimer("xpreward_reset(calc(clientclock + 20), $int0, $component1, $component2)", $component1);
 if (cc_find($component1, calc($int0 - 1)) = ^true) {
     cc_resume_pausebutton;
 }

@@ -1,0 +1,58 @@
+// 8873
+[proc,sailing_boat_cargohold_draw_item](component $component0, obj $obj1, int $int2, int $int3, int $int4, int $int5, int $int6, boolean $boolean7)(int, int)
+def_int $int8 = invother_total(%sailing_boat_cargohold_inv, $obj1);
+if (oc_stackable($obj1) = true) {
+    $int6 = calc($int6 + 1);
+} else {
+    if ($boolean7 = false) {
+        $int8 = 1;
+    }
+    $int6 = calc($int6 + $int8);
+}
+cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+$int3 = calc(4 + $int2 / 9 * (32 + 8));
+cc_setposition(calc($int4 + $int2 % 9 * (36 + $int5)), $int3, ^setpos_abs_left, ^setpos_abs_top);
+cc_setoutline(1);
+cc_settrans(0);
+cc_setgraphicshadow(0x333333);
+cc_setobject($obj1, $int8);
+if (oc_param($obj1, param_2504) = 1) {
+    cc_setop(1, "Withdraw");
+} else {
+    switch_int (%depositbox_mode) {
+        case default :
+            cc_setop(1, "Withdraw-1");
+            cc_setop(3, "Withdraw-5");
+            cc_setop(4, "Withdraw-10");
+            cc_setop(5, "Withdraw-X");
+            cc_setop(6, "Withdraw-All");
+        case 1 :
+            cc_setop(1, "Withdraw-5");
+            cc_setop(2, "Withdraw-1");
+            cc_setop(4, "Withdraw-10");
+            cc_setop(5, "Withdraw-X");
+            cc_setop(6, "Withdraw-All");
+        case 4 :
+            cc_setop(1, "Withdraw-10");
+            cc_setop(2, "Withdraw-1");
+            cc_setop(3, "Withdraw-5");
+            cc_setop(5, "Withdraw-X");
+            cc_setop(6, "Withdraw-All");
+        case 3 :
+            cc_setop(1, "Withdraw-X");
+            cc_setop(2, "Withdraw-1");
+            cc_setop(3, "Withdraw-5");
+            cc_setop(4, "Withdraw-10");
+            cc_setop(6, "Withdraw-All");
+        case 2 :
+            cc_setop(1, "Withdraw-All");
+            cc_setop(2, "Withdraw-1");
+            cc_setop(3, "Withdraw-5");
+            cc_setop(4, "Withdraw-10");
+            cc_setop(5, "Withdraw-X");
+    }
+    cc_setop(10, "Examine");
+}
+cc_setopbase("<col=ff9040><oc_name($obj1)></col>");
+cc_setonop("sailing_boat_cargohold_items_op(event_op, event_com, event_comsubid, $obj1)");
+return($int3, $int6);

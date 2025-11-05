@@ -28,7 +28,7 @@ switch_struct ($struct0) {
         }
     case struct_3086 :
         if (%stamina_active = 1) {
-            return(~script5942(%buff_stamina_potion_start, calc(%stamina_duration_extra + %stamina_duration), 10));
+            return(~script5942(%buff_stamina_potion_start, %stamina_duration, 10));
         }
     case struct_4150 :
         if (%raids_prayer_enhance_tier = 1 & %raids_prayerenhance_timer > 0) {
@@ -520,6 +520,18 @@ switch_struct ($struct0) {
     case struct_5010 :
         if (%ent_totems_buffs_visible > 0) {
             return(%ent_totems_trail_xp_buff_actions);
+        }
+    case struct_6368 :
+        if (%sailing_boat_time_till_trim > 0 & %sailing_boat_winds_timer_paused = 0 & %sailing_boat_speedboost_duration = 0) {
+            return(~script5940(%buff_sailing_winds_timer_start, struct_param($struct0, param_1541)));
+        }
+    case struct_6369 :
+        if (%sailing_boat_time_trim_window > 0) {
+            return(~script5940(%buff_sailing_trim_timer_start, struct_param($struct0, param_1541)));
+        }
+    case struct_6370 :
+        if (%sailing_boat_speedboost_duration > 0) {
+            return(~script5940(%buff_sailing_winds_timer_start, struct_param($struct0, param_1541)));
         }
 }
 return(struct_param($struct0, param_1540));

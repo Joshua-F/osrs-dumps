@@ -1,0 +1,20 @@
+// 8642
+[proc,script8642](component $component0, int $int1, int $int2, int $int3)(int, int)
+def_int $int4 = 30;
+def_int $int5 = 85;
+def_boolean $boolean6 = ~script8980($int3);
+def_string $string0 = "No Cargo";
+def_string $string1 = "<col=ff981f>That boat does not have anything stored in its cargo hold.";
+def_int $rgb7 = ~sailing_boat_selection_available_colour($boolean6);
+$int1 = ~create_v2_stone_button_filled_free($component0, $int1, $int5, $int4, calc(if_getwidth($component0) - ($int5 + 5)), calc($int2 + 5), "View Cargo", $rgb7, $rgb7, 0, ~script7983($boolean6));
+if (cc_find($component0, calc($int1 - 1)) = ^true) {
+    cc_setop(1, "View");
+    if ($boolean6 = false) {
+        cc_setonop("script8635($string0, $string1)");
+    } else {
+        cc_setonop("script8643($int3)");
+    }
+    cc_setopbase("<col=ff981f>Cargo</col>");
+    cc_setnoclickthrough(true);
+}
+return($int1, calc($int2 + $int4 + 5));

@@ -1,0 +1,16 @@
+// 8583
+[proc,script8583]
+if (map_members = true & %sailing_intro >= 6 & %settings_sailing_side_panel_onlyonboat = 0) {
+    if_sethide(false, combat_interface:switch_button);
+    if_setposition(10, 0, ^setpos_abs_centre, ^setpos_abs_top, combat_interface:header);
+    ~script8581(combat_interface:switch_button, 0);
+    return;
+}
+if (%sailing_sidepanel_visible_from_combat_tab = 1) {
+    if_sethide(false, combat_interface:switch_button);
+    if_setposition(10, 0, ^setpos_abs_centre, ^setpos_abs_top, combat_interface:header);
+    ~script8581(combat_interface:switch_button, 0);
+} else {
+    if_sethide(true, combat_interface:switch_button);
+    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top, combat_interface:header);
+}

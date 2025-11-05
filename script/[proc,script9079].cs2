@@ -1,0 +1,26 @@
+// 9079
+[proc,script9079](dbrow $dbrow0, dbtable $dbtable1, int $int2)(int)
+def_int $int3 = 0;
+def_dbrow $dbrow4 = null;
+switch_dbtable ($dbtable1) {
+    case sailing_boat_facility :
+        $dbrow4 = db_getfield($dbrow0, sailing_boat:hotspot:3, $int2);
+        if ($dbrow4 ! null) {
+            $int3 = db_getfieldcount($dbrow4, sailing_boat_hotspot:option);
+        }
+    case sailing_boat_keel :
+        $int3 = db_getfieldcount($dbrow0, sailing_boat:keel_option);
+    case sailing_boat_hull :
+        $int3 = db_getfieldcount($dbrow0, sailing_boat:hull_option);
+    case sailing_boat_sail :
+        $int3 = db_getfieldcount($dbrow0, sailing_boat:sail_option);
+    case sailing_boat_steering :
+        $int3 = db_getfieldcount($dbrow0, sailing_boat:steering_option);
+    case sailing_boat_flag :
+        $int3 = db_getfieldcount($dbrow0, sailing_boat:flag_option);
+    case sailing_boat_brazier :
+        $int3 = db_getfieldcount($dbrow0, sailing_boat:brazier_option);
+    case sailing_boat_trim :
+        $int3 = db_getfieldcount($dbrow0, sailing_boat:trim_option);
+}
+return($int3);

@@ -1,0 +1,24 @@
+// 8825
+[proc,sailing_customisation_draw_facility_model](component $component0, int $int1, int $int2, dbrow $dbrow3, boolean $boolean4, int $int5)(int)
+def_int $int6 = ~script8866;
+cc_create($component0, ^iftype_rectangle, $int1);
+cc_setposition(5, calc(5 + $int2), ^setpos_abs_left, ^setpos_abs_top);
+cc_setcolour(^black);
+cc_setfill(true);
+cc_setsize(60, $int6, ^setsize_abs, ^setsize_abs);
+cc_settrans(150);
+$int1 = calc($int1 + 1);
+$int1 = ~thinbox_specific($component0, $int1, 5, calc(5 + $int2), 60, $int6, ^setpos_abs_left, ^setpos_abs_top);
+cc_create($component0, ^iftype_model, $int1);
+cc_setsize(60, $int6, ^setsize_abs, ^setsize_abs);
+cc_setposition(5, calc(5 + $int2), ^setpos_abs_left, ^setpos_abs_top);
+if ($boolean4 = true) {
+    cc_setlocmodel(~sailing_customisation_return_loc($dbrow3));
+    cc_setmodelanim(~sailing_customisation_return_loc_anim($dbrow3));
+    cc_setmodelangle(~sailing_customisation_return_loc_angle($dbrow3, %sailing_boat_customisation_boat, 0));
+} else {
+    cc_setmodel(model_57767);
+    cc_setmodelangle(0, 0, 500, 2047, 0, 1300);
+}
+$int1 = calc($int1 + 1);
+return($int1);

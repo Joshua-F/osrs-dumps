@@ -1,0 +1,59 @@
+// 8896
+[proc,sailing_boat_cargohold_side_drawitem](obj $obj0, int $int1, int $int2)
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_int $int5 = -1;
+if ($obj0 ! null) {
+    cc_sethide(false);
+    cc_setobject($obj0, $int1);
+    cc_setopbase("<col=ff9040><oc_name($obj0)></col>");
+    if (testbit(%sailing_boat_cargohold_side_whitelist, $int2) = ^true) {
+        switch_int (%depositbox_mode) {
+            case default :
+                cc_setop(1, "Deposit-1");
+                cc_setop(3, "Deposit-5");
+                cc_setop(4, "Deposit-10");
+                cc_setop(5, "Deposit-X");
+                cc_setop(6, "Deposit-All");
+            case 1 :
+                cc_setop(1, "Deposit-5");
+                cc_setop(2, "Deposit-1");
+                cc_setop(4, "Deposit-10");
+                cc_setop(5, "Deposit-X");
+                cc_setop(6, "Deposit-All");
+            case 4 :
+                cc_setop(1, "Deposit-10");
+                cc_setop(2, "Deposit-1");
+                cc_setop(3, "Deposit-5");
+                cc_setop(5, "Deposit-X");
+                cc_setop(6, "Deposit-All");
+            case 3 :
+                cc_setop(1, "Deposit-X");
+                cc_setop(2, "Deposit-1");
+                cc_setop(3, "Deposit-5");
+                cc_setop(4, "Deposit-10");
+                cc_setop(6, "Deposit-All");
+            case 2 :
+                cc_setop(1, "Deposit-All");
+                cc_setop(2, "Deposit-1");
+                cc_setop(3, "Deposit-5");
+                cc_setop(4, "Deposit-10");
+                cc_setop(5, "Deposit-X");
+        }
+        cc_settrans(0);
+        cc_setonop("sailing_boat_cargohold_items_side_op(event_op, event_com, event_comsubid, $obj0)");
+    } else {
+        cc_setop(1, "Deposit");
+        cc_settrans(150);
+        cc_setonop(null);
+    }
+    cc_setop(10, "Examine");
+    cc_setdragdeadzone(5);
+    cc_setdragdeadtime(6);
+    cc_setondragcomplete("sailing_boat_cargohold_side_reorder(event_com, event_comsubid, event_comsubid2)");
+} else {
+    cc_clearops;
+    cc_settrans(255);
+    cc_setobject_nonum(blankobject, 1);
+    cc_setondragcomplete(null);
+}

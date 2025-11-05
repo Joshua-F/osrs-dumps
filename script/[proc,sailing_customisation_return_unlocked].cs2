@@ -1,0 +1,30 @@
+// 9078
+[proc,sailing_customisation_return_unlocked](dbrow $dbrow0)(boolean)
+if ($dbrow0 = null) {
+    return(true);
+}
+switch_dbrow ($dbrow0) {
+    case sailing_boat_facility_salvaging_station_2x5a, sailing_boat_facility_salvaging_station_2x5b, sailing_boat_facility_salvaging_station_3x8 :
+        return(~int_to_bool(%lost_schematic_salvaging_station));
+    case sailing_boat_facility_gale_catcher :
+        return(~int_to_bool(%lost_schematic_gale_catcher));
+    case sailing_boat_facility_1x3_eternal_brazier, sailing_boat_facility_2x5_eternal_brazier, sailing_boat_facility_3x8_eternal_brazier :
+        return(~int_to_bool(%lost_schematic_eternal_brazier));
+    case sailing_boat_facility_salvaging_hook_dragon, sailing_boat_facility_salvaging_hook_dragon_raft :
+        return(~int_to_bool(%lost_schematic_dragon_salvaging_hook));
+    case sailing_boat_facility_cargo_hold_rosewood_raft, sailing_boat_facility_cargo_hold_rosewood_2x5, sailing_boat_facility_cargo_hold_rosewood_large :
+        return(~int_to_bool(%lost_schematic_rosewood_cargo_hold));
+    case sailing_boat_facility_dragon_cannon :
+        return(~int_to_bool(%lost_schematic_dragon_cannon));
+    case sailing_boat_rosewood_hull_2x5, sailing_boat_rosewood_hull_large, sailing_boat_rosewood_raft_base :
+        return(~int_to_bool(%lost_schematic_rosewood_hull));
+    case sailing_boat_rosewood_mast_raft, sailing_boat_rosewood_mast_2x5, sailing_boat_rosewood_mast_large :
+        return(~int_to_bool(%lost_schematic_rosewood_sail));
+    case sailing_boat_dragon_steering_raft, sailing_boat_dragon_steering_2x5, sailing_boat_dragon_steering_large :
+        return(~int_to_bool(%lost_schematic_dragon_tiller));
+    case sailing_boat_dragon_keel_2x5, sailing_boat_dragon_keel_large :
+        return(~int_to_bool(%lost_schematic_dragon_keel));
+    case default :
+        return(true);
+}
+return(true);

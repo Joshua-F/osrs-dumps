@@ -1,0 +1,47 @@
+// 8795
+[proc,sailing_crew_comparison](component $component0, int $int1, int $int2)
+def_int $int3 = -1;
+def_dbrow $dbrow4 = null;
+def_dbrow $dbrow5 = null;
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_int $int8 = 0;
+def_int $int9 = 0;
+def_int $int10 = 0;
+def_int $int11 = 0;
+def_string $string0 = "Crew slot:";
+def_string $string1 = "Selected<br>recruit:<br> ";
+if (cc_find($component0, $int1) = ^true & .cc_find($component0, $int2) = ^true) {
+    $string0 = append($string0, "<br><col=ffb83f><tostring(calc(%sailing_crew_selected_slot_id + 1))></col><br> ");
+    $int3 = ~sailing_crew_get_slot(%sailing_crew_selected_slot_id);
+    if ($int3 = 0) {
+        $string0 = append($string0, "<br><col=9f9f9f>None</col>");
+    } else {
+        db_find(sailing_crew:unique_id, $int3);
+        $dbrow4 = db_findnext;
+        if ($dbrow4 ! null) {
+            $string0 = append($string0, "<br><col=ffb83f><nc_name(db_getfield($dbrow4, sailing_crew:cargo_npc, 0))></col>");
+            $int6 = db_getfield($dbrow4, sailing_crew:stat_helmsmanship, 0);
+            $int7 = db_getfield($dbrow4, sailing_crew:stat_privateering, 0);
+            $int8 = db_getfield($dbrow4, sailing_crew:stat_deckhandiness, 0);
+        } else {
+            $string0 = append($string0, "<br>Crew");
+            $int6, $int7, $int8 = 1, 1, 1;
+        }
+    }
+    db_find(sailing_crew:unique_id, %sailing_crew_selected_crew_id);
+    $dbrow5 = db_findnext;
+    if ($dbrow5 ! null) {
+        $string1 = append($string1, "<br><col=ffb83f><nc_name(db_getfield($dbrow5, sailing_crew:cargo_npc, 0))></col>");
+        $int9 = db_getfield($dbrow5, sailing_crew:stat_helmsmanship, 0);
+        $int10 = db_getfield($dbrow5, sailing_crew:stat_privateering, 0);
+        $int11 = db_getfield($dbrow5, sailing_crew:stat_deckhandiness, 0);
+    } else {
+        $string1 = append($string1, "<br><col=9f9f9f>None</col>");
+    }
+    $string0, $string1 = ~script8796($string0, $string1, $int6, $int9);
+    $string0, $string1 = ~script8796($string0, $string1, $int7, $int10);
+    $string0, $string1 = ~script8796($string0, $string1, $int8, $int11);
+    cc_settext($string0);
+    .cc_settext($string1);
+}

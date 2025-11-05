@@ -1,0 +1,99 @@
+// 8822
+[proc,sailing_customisation_draw_facility_text](component $component0, int $int1, int $int2, int $int3, dbrow $dbrow4, boolean $boolean5, boolean $boolean6, int $int7)(int, int)
+def_int $int8 = 0;
+def_int $int9 = 38;
+def_int $int10 = 0;
+def_int $int11 = 20;
+def_int $int12 = 0;
+def_int $int13 = 0;
+def_int $int14 = 0;
+def_int $settextalignv15 = ^settextalign_top;
+def_string $string0 = db_getfield($dbrow4, sailing_boat_facility:name, 0);
+def_graphic $graphic16 = null;
+def_fontmetrics $fontmetrics17 = null;
+$graphic16, $fontmetrics17 = ~sailing_customisation_desc_font;
+def_string $string1 = db_getfield($dbrow4, sailing_boat_facility:description, 0);
+def_string $string2 = ~script8847($dbrow4);
+$int8 = ~script8861;
+$int13 = calc($int8 + 100);
+def_int $int18 = paraheight($string1, $int8, $fontmetrics17);
+def_int $int19 = paraheight($string2, $int13, $fontmetrics17);
+if ($boolean6 = false) {
+    $int8 = calc($int8 + 100);
+} else {
+    $string0 = ~script8863($string0);
+}
+if ($boolean5 = true) {
+    if ($int7 < 2) {
+        $int9 = calc($int9 + 45);
+    }
+    if ($graphic16 = p12_full) {
+        $int14 = calc($int18 * 15);
+    } else {
+        $int14 = calc($int18 * 12);
+    }
+    if ($int14 > $int9) {
+        $int10 = calc($int14 - $int9);
+    } else {
+        $int10 = 0;
+    }
+} else {
+    $string1 = "You must discover the schematic for this facility before you can build it.";
+}
+cc_create($component0, ^iftype_text, $int1);
+cc_settext($string0);
+if ($boolean5 = false) {
+    cc_settext("Unknown");
+}
+cc_setsize(5, $int11, ^setsize_minus, ^setsize_abs);
+cc_setposition($int2, calc($int3 + 3), ^setpos_abs_left, ^setpos_abs_top);
+cc_settextfont(b12_full);
+cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+cc_settextshadow(true);
+cc_setcolour(0xff981f);
+$int1 = calc($int1 + 1);
+cc_create($component0, ^iftype_text, $int1);
+cc_settext($string1);
+cc_setsize($int8, $int9, ^setsize_abs, ^setsize_abs);
+if ($graphic16 = p12_full) {
+    cc_setposition($int2, calc($int3 + ($int11 + 2)), ^setpos_abs_left, ^setpos_abs_top);
+} else {
+    cc_setposition($int2, calc($int3 + ($int11 + 3)), ^setpos_abs_left, ^setpos_abs_top);
+}
+cc_settextfont($graphic16);
+if ($graphic16 = p12_full) {
+    cc_settextalign(^settextalign_left, $settextalignv15, 15);
+} else {
+    cc_settextalign(^settextalign_left, $settextalignv15, 13);
+}
+cc_settextshadow(true);
+cc_setcolour(^white);
+$int1 = calc($int1 + 1);
+if ($boolean5 = true & %sailing_boat_customisation_hide_more_detail = 0 & $int19 > 0) {
+    if ($graphic16 = p12_full) {
+        $int12 = calc($int19 * 15);
+    } else {
+        $int12 = calc($int19 * 12);
+    }
+    if (calc($int12 + $int14) > $int9) {
+        $int10 = calc($int12 + $int14 - $int9);
+        if ($graphic16 = p11_full) {
+            $int10 = calc($int10 + 5 - 2);
+        }
+    }
+    cc_create($component0, ^iftype_text, $int1);
+    cc_settext($string2);
+    cc_setsize($int13, $int9, ^setsize_abs, ^setsize_abs);
+    cc_settextfont($graphic16);
+    if ($graphic16 = p12_full) {
+        cc_setposition($int2, calc($int3 + $int14 + $int11 + 5), ^setpos_abs_left, ^setpos_abs_top);
+        cc_settextalign(^settextalign_left, $settextalignv15, 15);
+    } else {
+        cc_setposition($int2, calc($int3 + $int14 + $int11 + 5 + 2), ^setpos_abs_left, ^setpos_abs_top);
+        cc_settextalign(^settextalign_left, $settextalignv15, 13);
+    }
+    cc_settextshadow(true);
+    cc_setcolour(^white);
+    $int1 = calc($int1 + 1);
+}
+return($int1, $int10);

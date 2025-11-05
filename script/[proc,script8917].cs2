@@ -1,0 +1,184 @@
+// 8917
+[proc,script8917](component $component0, dbrow $dbrow1, dbrow $dbrow2, int $int3, int $int4, int $int5, int $int6, int $int7, int $int8, int $int9, graphic $graphic10, int $int11, int $int12, int $int13, int $int14)(int, int, int, int)
+def_model $model15 = db_getfield($dbrow1, port_task:task_board_graphic, 0);
+def_int $int16 = 0;
+def_int $int17 = 0;
+$int16, $int17 = db_getfield($dbrow2, task_board_layout:style_task, $int4);
+def_int $int18 = 85;
+def_int $int19 = 120;
+def_int $int20 = 1800;
+if ($int3 = 1) {
+    $int18, $int19, $int20 = ~script8921;
+}
+def_component $component21 = null;
+def_int $int22 = db_getfield($dbrow1, port_task:task_type, 0);
+def_string $string0 = db_getfield($dbrow1, port_task:name, 0);
+if ($component0 = sailing_log:tasks_content) {
+    $component21 = sailing_log:tasks_click;
+    $int18 = 85;
+    $int19 = 120;
+    $int20 = 1800;
+} else {
+    $int14 = -1;
+}
+cc_create($component0, ^iftype_model, $int5);
+cc_setmodel($model15);
+cc_setmodelangle(0, 0, 512, 0, 0, $int20);
+cc_setposition($int7, $int9, ^setpos_abs_left, ^setpos_abs_top);
+cc_setsize($int18, $int19, ^setsize_abs, ^setsize_abs);
+if ($component21 = null) {
+    cc_setop(1, "Select");
+    cc_setopbase("<col=ff9040><$string0></col>");
+    cc_setonop("port_task_board_onop(event_com, event_comsubid, $dbrow1)");
+} else {
+    cc_create($component21, ^iftype_rectangle, $int6);
+    cc_setposition($int7, $int9, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize($int18, $int19, ^setsize_abs, ^setsize_abs);
+    cc_settrans(255);
+    cc_setop(1, "Select");
+    if ($dbrow1 ! port_task_blank & $dbrow1 ! port_task_locked) {
+        cc_setopbase("<col=ff9040><$string0></col>");
+    }
+    cc_setonop("script8927($dbrow1, $int14)");
+    $int6 = calc($int6 + 1);
+}
+def_int $int23 = 0;
+def_int $int24 = 0;
+def_graphic $graphic25 = null;
+def_graphic $graphic26 = null;
+def_graphic $graphic27 = null;
+def_int $int28 = 37;
+def_int $int29 = db_getfield($dbrow1, port_task:level_required, 0);
+if ($component0 = sailing_log:tasks_content) {
+    if ($dbrow1 = port_task_locked) {
+        $int5 = calc($int5 + 1);
+        cc_create($component0, ^iftype_model, $int5);
+        cc_setsize(40, 40, ^setsize_abs, ^setsize_abs);
+        cc_setposition(calc($int7 + ($int18 - 40) / 2), calc($int9 + ($int19 - 40) / 2), ^setpos_abs_left, ^setpos_abs_top);
+        cc_setobject_nonum(pattern_lime_dummy, 1);
+        if ($int14 ! -1) {
+            $int5 = calc($int5 + 1);
+            cc_create($component0, ^iftype_text, $int5);
+            cc_setsize($int18, 30, ^setsize_abs, ^setsize_abs);
+            cc_setposition($int7, calc($int9 + ($int19 - 30) - 5), ^setpos_abs_left, ^setpos_abs_top);
+            cc_settext(tostring($int14));
+            cc_settextfont(quill_oblique_large);
+            cc_settextshadow(false);
+            cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+            cc_setcolour(^black);
+        }
+    }
+} else {
+    $int23, $int24, $graphic25, $graphic26, $graphic27, $int28 = ~script8930;
+    $int5 = calc($int5 + 1);
+    cc_create($component0, ^iftype_graphic, $int5);
+    cc_setsize($int28, $int28, ^setsize_abs, ^setsize_abs);
+    cc_setposition(calc($int7 + $int23), calc($int9 + $int24), ^setpos_abs_left, ^setpos_abs_top);
+    if (stat_base(sailing) < $int29) {
+        cc_setgraphic($graphic27);
+    } else {
+        cc_setgraphic($graphic26);
+    }
+    $int5 = calc($int5 + 1);
+    cc_create($component0, ^iftype_text, $int5);
+    cc_setsize($int28, $int28, ^setsize_abs, ^setsize_abs);
+    cc_setposition(calc($int7 + $int23), calc($int9 + $int24 + 1), ^setpos_abs_left, ^setpos_abs_top);
+    cc_settext(tostring($int29));
+    cc_settextfont($graphic25);
+    cc_settextshadow(true);
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    cc_setcolour(^white);
+}
+$int23 = 0;
+$int24 = 0;
+def_int $int30 = 0;
+def_model $model31 = null;
+def_int $int32 = 37;
+if ($component0 ! sailing_log:tasks_content) {
+    $int23, $int24, $model31, $int32 = ~script8931;
+    $int5 = calc($int5 + 1);
+    cc_create($component0, ^iftype_model, $int5);
+    cc_setmodel($model31);
+    cc_setmodelangle(0, 0, 512, 100, 0, $int20);
+    cc_setsize($int32, $int32, ^setsize_abs, ^setsize_abs);
+    cc_setposition(calc($int7 + $int23), calc($int9 + $int24), ^setpos_abs_left, ^setpos_abs_top);
+    cc_setmodelorthog(true);
+    ~script8919($dbrow1);
+    $int5 = calc($int5 + 1);
+    .cc_create($component0, ^iftype_rectangle, $int5);
+    .cc_setsize(1, 1, ^setsize_abs, ^setsize_abs);
+    .cc_setposition(1, 1, ^setpos_abs_left, ^setpos_abs_top);
+    .cc_settrans(255);
+    .cc_setonvartransmit("script8918($component0, calc($int5 - 1), $dbrow1){port_tasks_0, port_tasks_1, port_tasks_2, port_tasks_3, port_tasks_4}");
+}
+$int5 = calc($int5 + 1);
+def_model $model33 = null;
+def_int $int34 = 5;
+def_int $int35 = 8;
+def_int $int36 = 22;
+def_int $int37 = 92;
+def_int $int38 = 1800;
+if ($component0 = sailing_log:tasks_content) {
+    $int34, $int35 = 5, 8;
+    $int36, $int37 = 22, 92;
+    $int38 = 1800;
+}
+if ($int3 = 1) {
+    $int36, $int37, $int38, $int34, $int35 = ~script8929;
+}
+if ($dbrow1 = port_task_blank | $dbrow1 = port_task_locked) {
+    $model33, $int36, $int37, $int34, $int35, $int38 = model_16238, 0, 0, 0, 0, 1500;
+} else if ($int22 = 1) {
+    $model33 = ~script8928(db_getfield($dbrow1, port_task:starting_port, 0));
+} else {
+    $model33 = ~script8928(db_getfield($dbrow1, port_task:cargo_port, 0));
+    $int34, $int35 = 0, 0;
+}
+def_int $int39 = calc($int7 + $int36 + $int34);
+def_int $int40 = calc($int9 + $int37 + $int35);
+cc_create($component0, ^iftype_model, $int5);
+cc_setmodel($model33);
+cc_setmodelangle(0, 0, 512, 0, 0, $int38);
+cc_setposition($int39, $int40, ^setpos_abs_left, ^setpos_abs_top);
+cc_setsize(1, 1, ^setsize_abs, ^setsize_abs);
+$int5 = calc($int5 + 1);
+def_int $int41 = 0;
+def_int $int42 = db_getfield($dbrow2, task_board_layout:tasks_on_first_row, 0);
+def_int $int43 = db_getfield($dbrow2, task_board_layout:tasks_on_subsequent_rows, 0);
+if ($int4 = calc($int42 - 1)) {
+    $int9 = calc($int9 + $int19 + $int12);
+    $int41 = 1;
+    if ($int42 ! $int43) {
+        if ($int42 > $int43) {
+            $int12 = calc($int12 + $int18 / 2 * ($int42 - $int43));
+        } else {
+            $int12 = calc($int12 - $int18 / 2 * ($int43 - $int42));
+        }
+        $int42 = $int43;
+    }
+}
+def_int $int44 = 0;
+def_int $int45 = 0;
+def_int $int46 = 0;
+def_int $int47 = 0;
+def_int $int48 = 0;
+def_int $int49 = 0;
+if ($int41 = 1) {
+    $int16 = 0;
+} else {
+    $int16 = calc($int16 + 1);
+}
+if ($int4 >= calc($int42 - 1)) {
+    while ($int44 <= $int16) {
+        $int45, $int46 = db_getfield($dbrow2, task_board_layout:style_task, $int44);
+        $int44 = calc($int44 + 1);
+    }
+    if ($int41 = 1) {
+        $int7 = $int8;
+    } else {
+        $int7 = calc($int7 + $int18 + $int12);
+    }
+} else {
+    $int7 = calc($int7 + $int18 + $int12);
+}
+return($int5, $int6, $int7, $int9);

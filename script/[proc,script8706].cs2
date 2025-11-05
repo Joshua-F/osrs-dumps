@@ -1,0 +1,255 @@
+// 8706
+[proc,script8706](int $int0)
+%sailing_charting_selected_chartable_id = $int0;
+def_component $component1 = sailing_log:info_inner;
+def_graphic $graphic2 = p12_full;
+def_graphic $graphic3 = p11_full;
+def_int $rgb4 = 0xff981f;
+def_int $rgb5 = ^white;
+def_int $int6 = 245;
+def_int $int7 = 230;
+def_int $int8 = 0;
+def_int $int9 = calc(if_getwidth($component1) / 2);
+def_int $int10 = calc(if_getwidth($component1) - $int9);
+def_dbrow $dbrow11 = null;
+def_dbrow $dbrow12 = null;
+def_string $string0 = "<col=b2b2b2>No hint selected. Choose one from the list above to display more information about it.";
+if (%sailing_show_charting_hints = 0) {
+    $string0 = "<col=b2b2b2>No hint selected. Choose an entry above to reveal a hint about what you need to chart.";
+}
+def_dbrow $dbrow13 = null;
+def_dbrow $dbrow14 = null;
+$dbrow13, $dbrow14 = ~script8662;
+cc_deleteall($component1);
+if ($int0 ! -1) {
+    db_find(sailing_charting_core:unique_id, $int0);
+    $dbrow11 = db_findnext;
+    if ($dbrow11 = null) {
+        ~error("Invalid charting_core_dbrow found.");
+        return;
+    }
+    $string0 = db_getfield($dbrow11, sailing_charting_core:hint, 0);
+    if (compare($string0, "") = 0) {
+        ~error("Invalid hint found within charting_core_dbrow.");
+        return;
+    }
+    if (~script9004($int0) = ^true) {
+        $string0 = "<col=00d800><$string0>";
+    } else {
+        $string0 = "<col=f9f9f9><$string0>";
+    }
+}
+cc_create($component1, ^iftype_rectangle, $int8);
+cc_setsize(0, 40, ^setsize_minus, ^setsize_abs);
+cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+cc_setcolour($rgb5);
+cc_setfill(true);
+cc_settrans($int6);
+$int8 = calc($int8 + 1);
+cc_create($component1, ^iftype_rectangle, $int8);
+cc_setsize($int10, 20, ^setsize_abs, ^setsize_abs);
+cc_setposition(0, 41, ^setpos_abs_left, ^setpos_abs_top);
+cc_setcolour($rgb5);
+cc_setfill(true);
+cc_settrans($int6);
+$int8 = calc($int8 + 1);
+cc_create($component1, ^iftype_rectangle, $int8);
+cc_setsize($int9, 20, ^setsize_abs, ^setsize_abs);
+cc_setposition($int10, 41, ^setpos_abs_left, ^setpos_abs_top);
+cc_setcolour($rgb5);
+cc_setfill(true);
+cc_settrans($int7);
+$int8 = calc($int8 + 1);
+cc_create($component1, ^iftype_rectangle, $int8);
+cc_setsize($int10, 20, ^setsize_abs, ^setsize_abs);
+cc_setposition(0, 61, ^setpos_abs_left, ^setpos_abs_top);
+cc_setcolour($rgb5);
+cc_setfill(true);
+cc_settrans($int7);
+$int8 = calc($int8 + 1);
+cc_create($component1, ^iftype_rectangle, $int8);
+cc_setsize($int9, 20, ^setsize_abs, ^setsize_abs);
+cc_setposition($int10, 61, ^setpos_abs_left, ^setpos_abs_top);
+cc_setcolour($rgb5);
+cc_setfill(true);
+cc_settrans($int6);
+$int8 = calc($int8 + 1);
+cc_create($component1, ^iftype_rectangle, $int8);
+cc_setsize($int10, 20, ^setsize_abs, ^setsize_abs);
+cc_setposition(0, 81, ^setpos_abs_left, ^setpos_abs_top);
+cc_setcolour($rgb5);
+cc_setfill(true);
+cc_settrans($int6);
+$int8 = calc($int8 + 1);
+cc_create($component1, ^iftype_rectangle, $int8);
+cc_setsize($int9, 20, ^setsize_abs, ^setsize_abs);
+cc_setposition($int10, 81, ^setpos_abs_left, ^setpos_abs_top);
+cc_setcolour($rgb5);
+cc_setfill(true);
+cc_settrans($int7);
+$int8 = calc($int8 + 1);
+cc_create($component1, ^iftype_text, $int8);
+cc_setsize(24, 40, ^setsize_minus, ^setsize_abs);
+cc_setposition(12, 0, ^setpos_abs_left, ^setpos_abs_top);
+cc_settext($string0);
+cc_settextfont($graphic2);
+cc_setcolour($rgb4);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 14);
+cc_settextshadow(true);
+$int8 = calc($int8 + 1);
+$string0 = "<col=b2b2b2>Ocean";
+if ($dbrow11 ! null) {
+    $dbrow12 = db_getfield($dbrow11, sailing_charting_core:sailing_sea, 0);
+    $dbrow12 = db_getfield($dbrow12, sailing_sea:ocean, 0);
+    if ($dbrow12 = $dbrow14) {
+        $string0 = "<col=00bce6><db_getfield($dbrow12, sailing_sea:name, 0)>";
+    } else {
+        $string0 = "<col=f9f9f9><db_getfield($dbrow12, sailing_sea:name, 0)>";
+    }
+}
+cc_create($component1, ^iftype_text, $int8);
+cc_setsize($int10, 20, ^setsize_abs, ^setsize_abs);
+cc_setposition(0, 41, ^setpos_abs_left, ^setpos_abs_top);
+cc_settext($string0);
+cc_settextfont($graphic3);
+cc_setcolour($rgb4);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 14);
+cc_settextshadow(true);
+$int8 = calc($int8 + 1);
+$string0 = "<col=b2b2b2>Sea";
+if ($dbrow11 ! null) {
+    $dbrow12 = db_getfield($dbrow11, sailing_charting_core:sailing_sea, 0);
+    if ($dbrow12 = $dbrow13) {
+        $string0 = "<col=00bce6><db_getfield($dbrow12, sailing_sea:name, 0)>";
+    } else {
+        $string0 = "<col=f9f9f9><db_getfield($dbrow12, sailing_sea:name, 0)>";
+    }
+}
+cc_create($component1, ^iftype_text, $int8);
+cc_setsize($int9, 20, ^setsize_abs, ^setsize_abs);
+cc_setposition($int10, 41, ^setpos_abs_left, ^setpos_abs_top);
+cc_settext($string0);
+cc_settextfont($graphic3);
+cc_setcolour($rgb4);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 14);
+cc_settextshadow(true);
+$int8 = calc($int8 + 1);
+$string0 = "<col=b2b2b2>Tool needed";
+if ($int0 ! -1) {
+    $string0 = "<col=00bce6>No tool needed";
+    $dbrow12 = null;
+    db_find(sailing_charting_drink_crate:sailing_charting_core, $dbrow11);
+    $dbrow12 = db_findnext;
+    if ($dbrow12 = null) {
+        db_find(sailing_charting_current_duck:sailing_charting_core, $dbrow11);
+        $dbrow12 = db_findnext;
+    }
+    if ($dbrow12 = null) {
+        db_find(sailing_charting_mermaid_guide:sailing_charting_core, $dbrow11);
+        $dbrow12 = db_findnext;
+    }
+    if ($dbrow12 = null) {
+        db_find(sailing_charting_spyglass:sailing_charting_core, $dbrow11);
+        $dbrow12 = db_findnext;
+    }
+    if ($dbrow12 ! null) {
+        switch_dbtable (db_getrowtable($dbrow12)) {
+            case sailing_charting_spyglass :
+                if (inv_total(inv, sailing_charting_spyglass) > 0) {
+                    $string0 = "<col=00bce6>Spyglass";
+                } else {
+                    $string0 = "<col=f9f9f9>Spyglass";
+                }
+            case sailing_charting_current_duck :
+                if (inv_total(inv, sailing_charting_current_duck) > 0) {
+                    $string0 = "<col=00bce6>Current duck";
+                } else {
+                    $string0 = "<col=f9f9f9>Current duck";
+                }
+            case sailing_charting_drink_crate :
+                if (inv_total(inv, sailing_charting_crowbar) > 0) {
+                    $string0 = "<col=00bce6>Crowbar";
+                } else {
+                    $string0 = "<col=f9f9f9>Crowbar";
+                }
+            case sailing_charting_mermaid_guide :
+                if (~script8868 = true) {
+                    $string0 = "<col=00bce6>Diving equipment";
+                } else {
+                    $string0 = "<col=f9f9f9>Diving equipment";
+                }
+        }
+    }
+}
+cc_create($component1, ^iftype_text, $int8);
+cc_setsize($int10, 20, ^setsize_abs, ^setsize_abs);
+cc_setposition(0, 61, ^setpos_abs_left, ^setpos_abs_top);
+cc_settext($string0);
+cc_settextfont($graphic3);
+cc_setcolour($rgb4);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 14);
+cc_settextshadow(true);
+$int8 = calc($int8 + 1);
+$string0 = "<col=b2b2b2>Sailing requirement";
+def_int $int15 = 1;
+if ($dbrow11 ! null) {
+    $int15 = ~script9001($dbrow11);
+    if (stat_base(sailing) >= $int15) {
+        $string0 = "<col=00bce6>Level <tostring($int15)> Sailing";
+    } else {
+        $string0 = "<col=f9f9f9>Level <tostring($int15)> Sailing";
+    }
+}
+cc_create($component1, ^iftype_text, $int8);
+cc_setsize($int9, 20, ^setsize_abs, ^setsize_abs);
+cc_setposition($int10, 61, ^setpos_abs_left, ^setpos_abs_top);
+cc_settext($string0);
+cc_settextfont($graphic3);
+cc_setcolour($rgb4);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 14);
+cc_settextshadow(true);
+$int8 = calc($int8 + 1);
+$string0 = "<col=b2b2b2>XP on first charting";
+def_int $int16 = 0;
+if ($dbrow11 ! null) {
+    $int16 = calc(~script8999($dbrow11) / 10);
+    $string0 = "<col=f9f9f9>XP on first charting";
+    if ($int16 > 0) {
+        $string0 = "<col=f9f9f9><~tostring_commas($int16)> <$string0>";
+    } else {
+        $string0 = "<col=f9f9f9>No <$string0>";
+    }
+}
+cc_create($component1, ^iftype_text, $int8);
+cc_setsize($int10, 20, ^setsize_abs, ^setsize_abs);
+cc_setposition(0, 81, ^setpos_abs_left, ^setpos_abs_top);
+cc_settext($string0);
+cc_settextfont($graphic3);
+cc_setcolour($rgb4);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 14);
+cc_settextshadow(true);
+$int8 = calc($int8 + 1);
+$string0 = "<col=b2b2b2>XP on repeat charting";
+$int16 = 0;
+if ($dbrow11 ! null) {
+    $string0 = "<col=f9f9f9>XP on repeat charting";
+    if ($int16 > 0) {
+        $string0 = "<col=f9f9f9><~tostring_commas($int16)> <$string0>";
+    } else {
+        $string0 = "<col=f9f9f9>No <$string0>";
+    }
+}
+cc_create($component1, ^iftype_text, $int8);
+cc_setsize($int9, 20, ^setsize_abs, ^setsize_abs);
+cc_setposition($int10, 81, ^setpos_abs_left, ^setpos_abs_top);
+cc_settext($string0);
+cc_settextfont($graphic3);
+cc_setcolour($rgb4);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 14);
+cc_settextshadow(true);
+$int8 = calc($int8 + 1);
+cc_create($component1, ^iftype_line, $int8);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_abs);
+cc_setposition(0, 40, ^setpos_abs_left, ^setpos_abs_top);
+cc_setcolour(0x000001);
+$int8 = calc($int8 + 1);

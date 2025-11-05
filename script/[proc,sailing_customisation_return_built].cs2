@@ -1,0 +1,38 @@
+// 9067
+[proc,sailing_customisation_return_built](int $int0, dbrow $dbrow1, int $int2, int $int3)(dbrow)
+if ($dbrow1 = null) {
+    return(null);
+}
+def_int $int4 = -1;
+def_int $int5 = -1;
+switch_int ($int2) {
+    case 0 :
+        $int4 = ~sailing_boat_get_keel($int0, $dbrow1);
+    case 1 :
+        $int4 = ~sailing_boat_get_hull($int0, $dbrow1);
+    case 2 :
+        $int4 = ~sailing_boat_get_sail($int0, $dbrow1);
+    case 3 :
+        $int4 = ~sailing_boat_get_steering($int0, $dbrow1);
+    case 5 :
+        $int4 = ~sailing_boat_get_flag($int0, $dbrow1);
+        $int4 = calc($int4 - 1);
+        if ($int4 < 0) {
+            return(null);
+        }
+    case 6 :
+        $int4 = ~sailing_boat_get_brazier($int0, $dbrow1);
+        $int4 = calc($int4 - 1);
+        if ($int4 < 0) {
+            return(null);
+        }
+    case 7 :
+        $int4 = ~sailing_boat_get_trim($int0, $dbrow1);
+    case 4 :
+        $int4 = ~sailing_boat_get_hotspot($int0, $int3);
+        $int4 = calc($int4 - 1);
+        if ($int4 < 0) {
+            return(null);
+        }
+}
+return(~sailing_customisation_return_option($dbrow1, $int2, $int3, $int4));

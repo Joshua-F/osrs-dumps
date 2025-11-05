@@ -1,0 +1,13 @@
+// 8650
+[proc,sailing_boat_selection_draw_healthbar](component $component0, int $int1, int $int2, int $int3, int $int4)(int, int)
+def_int $int5 = 0;
+def_int $int6 = 0;
+def_int $int7 = 110;
+def_int $int8 = 20;
+$int5, $int6 = ~sailing_boat_get_hp($int3);
+if ($int6 > 0 & $int5 > 0) {
+    $int1 = ~script622($component0, $int1, calc(if_getwidth($component0) - ($int7 + 5)), $int2, $int7, $int8, 0, 0, $int5, $int6);
+    ~sailing_boat_selection_tooltip("Boat Hitpoints", "Boat Hitpoints: <tostring($int5)>/<tostring($int6)>", 1);
+    $int2 = calc($int2 + $int8 + 5);
+}
+return($int1, $int2);

@@ -1,0 +1,57 @@
+// 8847
+[proc,script8847](dbrow $dbrow0)(string)
+def_dbrow $dbrow1 = null;
+def_dbrow $dbrow2 = ~sailing_customisation_return_stats($dbrow0);
+def_dbrow $dbrow3 = %sailing_boat_customisation_boat;
+def_int $int4 = 0;
+def_string $string0 = "";
+def_string $string1 = "<col=ff981f>";
+def_int $int5 = 0;
+if ($dbrow0 = null) {
+    return("");
+}
+def_dbtable $dbtable6 = db_getrowtable($dbrow0);
+if ($dbtable6 = sailing_boat_facility) {
+    $int5 = db_getfield($dbrow0, sailing_boat_facility:facility_subtype, 0);
+    switch_int ($int5) {
+        case 4 :
+            $string0 = ~script8856($dbrow0, $string1);
+        case 2 :
+            $string0 = ~script8853($dbrow2, $string1);
+        case 6 :
+            $string0 = ~script8854($dbrow2, $string1);
+        case 8 :
+            $string0 = ~script8855($dbrow2, $string1);
+        case 10 :
+            $dbrow1 = db_getfield($dbrow0, sailing_boat_facility:sidepanel_layout_data, 0);
+            switch_dbrow ($dbrow1) {
+                case sailing_sidepanel_facility_trawling_depth_1 :
+                    $string0 = "Max net depth: <$string1>Shallow</col>";
+                case sailing_sidepanel_facility_trawling_depth_2 :
+                    $string0 = "Max net depth: <$string1>Moderate</col>";
+                case sailing_sidepanel_facility_trawling_depth_3 :
+                    $string0 = "Max net depth: <$string1>Deep</col>";
+            }
+            $string0 = "<$string0><br>Fishing level requirement: <$string1><tostring(64)></col>";
+    }
+} else if ($dbtable6 = sailing_boat_keel) {
+    $string0 = ~script8851($dbrow2, $string1);
+} else if ($dbtable6 = sailing_boat_hull) {
+    $string0 = ~script8850($dbrow2, $string1);
+} else if ($dbtable6 = sailing_boat_sail) {
+    $string0 = ~script8849($dbrow2, $string1);
+} else if ($dbtable6 = sailing_boat_steering) {
+    $string0 = ~script8848($dbrow2, $string1);
+} else if ($dbtable6 = sailing_boat_brazier) {
+    $string0 = ~script8852($dbrow2, $string1);
+}
+def_string $string2 = "";
+if ($dbrow3 ! null & db_getfield($dbrow3, sailing_boat:crew_capacity, 0) > 0) {
+    $string2 = ~script8857($dbrow0, $string1);
+}
+if (string_length($string0) > 0 & string_length($string2) > 0) {
+    $string0 = "<$string0><br><$string2>";
+} else if (string_length($string0) < 1 & string_length($string2) > 0) {
+    $string0 = $string2;
+}
+return($string0);

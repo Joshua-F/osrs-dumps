@@ -1,0 +1,19 @@
+// 8769
+[proc,script8769](int $int0)(int, int, string)
+def_int $int1 = 0;
+def_int $int2 = 0;
+def_string $string0 = "";
+if ($int0 = 1) {
+    $int1 = %sailing_sidepanel_players_on_board_total;
+    if (%sailing_sidepanel_boat_type ! null) {
+        $int2 = db_getfield(%sailing_sidepanel_boat_type, sailing_boat:player_capacity, 0);
+    }
+    $string0 = "Player crew capacity: ";
+} else {
+    $int1 = ~sailing_sidepanel_crew_count_get;
+    if (%sailing_sidepanel_boat_type ! null) {
+        $int2 = min(5, db_getfield(%sailing_sidepanel_boat_type, sailing_boat:crew_capacity, 0));
+    }
+    $string0 = "NPC crew capacity: ";
+}
+return($int1, $int2, $string0);

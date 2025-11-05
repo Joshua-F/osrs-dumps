@@ -1,0 +1,16 @@
+// 8809
+[clientscript,sailing_customisation_init]
+def_component $component0 = sailing_customisation:infinity;
+def_component $component1 = sailing_customisation:frame;
+if_setontimer("script6110($component0, -1)", $component0);
+if_setonresize("sailing_customisation_draw", $component0);
+if_setonstattransmit("sailing_customisation_draw{sailing, construction}", $component0);
+if_setoninvtransmit("sailing_customisation_draw{inv}", $component0);
+if (%sailing_boat_customisation_last_type ! %sailing_boat_customisation_type | %sailing_boat_customisation_last_hotspot_id ! %sailing_boat_customisation_hotspot_id) {
+    %sailing_boat_customisation_tab = 0;
+    %sailing_boat_customisation_scroll_pos = 0;
+    %sailing_boat_customisation_last_type = %sailing_boat_customisation_type;
+    %sailing_boat_customisation_last_hotspot_id = %sailing_boat_customisation_hotspot_id;
+}
+~steelborder($component1, "Boat Customisation", 0);
+~sailing_customisation_draw;

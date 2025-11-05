@@ -1,0 +1,30 @@
+// 9002
+[proc,script9002](int $int0)(int, int)
+def_int $int1 = 0;
+def_int $int2 = 0;
+db_listall(sailing_charting_core);
+def_dbrow $dbrow3 = db_findnext;
+def_dbrow $dbrow4 = null;
+def_dbrow $dbrow5 = null;
+def_int $int6 = 0;
+while ($dbrow3 ! null) {
+    $dbrow4 = db_getfield($dbrow3, sailing_charting_core:sailing_sea, 0);
+    if ($int0 = -1) {
+        $int1 = calc($int1 + 1);
+        $int6 = 1;
+    } else if ($dbrow4 ! null) {
+        $dbrow5 = db_getfield($dbrow4, sailing_sea:ocean, 0);
+        if ($dbrow5 ! null & db_getfield($dbrow5, sailing_sea:unique_id, 0) = $int0) {
+            $int1 = calc($int1 + 1);
+            $int6 = 1;
+        }
+    }
+    if ($int6 = 1 & ~script9004(db_getfield($dbrow3, sailing_charting_core:unique_id, 0)) = ^true) {
+        $int2 = calc($int2 + 1);
+    }
+    $dbrow3 = db_findnext;
+    $dbrow4 = null;
+    $dbrow5 = null;
+    $int6 = 0;
+}
+return($int2, $int1);

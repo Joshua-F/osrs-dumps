@@ -1,0 +1,27 @@
+// 8819
+[proc,sailing_customisation_draw_tab_header](component $component0, int $int1, int $int2, int $int3, string $string0, graphic $graphic4)(int, int, int)
+def_int $int5 = -1;
+def_int $int6 = -1;
+def_graphic $graphic7 = null;
+def_fontmetrics $fontmetrics8 = null;
+$int5 = calc(if_getwidth($component0) - (20 + 3 * 5));
+$graphic7, $fontmetrics8 = ~sailing_customisation_desc_font;
+$int6 = calc(paraheight($string0, $int5, $fontmetrics8) * 15 + 2);
+$int6 = max($int6, 16);
+$int3 = calc($int6 + 2 * 5);
+$int1 = ~sailing_customisation_draw_facility_frame($int1, $int3, 0, -1, null, null, false);
+cc_create($component0, ^iftype_graphic, $int1);
+$int1 = calc($int1 + 1);
+cc_setsize(16, 16, ^setsize_abs, ^setsize_abs);
+cc_setposition(5, calc(($int3 - 16) / 2), ^setpos_abs_left, ^setpos_abs_top);
+cc_setgraphic($graphic4);
+cc_create($component0, ^iftype_text, $int1);
+$int1 = calc($int1 + 1);
+cc_setsize($int5, $int6, ^setsize_abs, ^setsize_abs);
+cc_setposition(5, 5, ^setpos_abs_right, ^setpos_abs_top);
+cc_settextfont($graphic7);
+cc_settextalign(^settextalign_left, ^settextalign_centre, 15);
+cc_settextshadow(true);
+cc_setcolour(^white);
+cc_settext($string0);
+return($int1, $int2, $int3);

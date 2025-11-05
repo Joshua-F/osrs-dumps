@@ -1,0 +1,24 @@
+// 9070
+[proc,sailing_customisation_return_name](dbrow $dbrow0)(string)
+if ($dbrow0 = null) {
+    return("Null");
+}
+switch_dbtable (db_getrowtable($dbrow0)) {
+    case sailing_boat_facility :
+        return(db_getfield($dbrow0, sailing_boat_facility:name, 0));
+    case sailing_boat_keel :
+        return(db_getfield($dbrow0, sailing_boat_keel:name, 0));
+    case sailing_boat_hull :
+        return(db_getfield($dbrow0, sailing_boat_hull:name, 0));
+    case sailing_boat_sail :
+        return(db_getfield($dbrow0, sailing_boat_sail:name, 0));
+    case sailing_boat_steering :
+        return(db_getfield($dbrow0, sailing_boat_steering:name, 0));
+    case sailing_boat_flag :
+        return(db_getfield($dbrow0, sailing_boat_flag:name, 0));
+    case sailing_boat_brazier :
+        return(db_getfield($dbrow0, sailing_boat_brazier:name, 0));
+    case sailing_boat_trim :
+        return(db_getfield($dbrow0, sailing_boat_trim:name, 0));
+}
+return("Name");

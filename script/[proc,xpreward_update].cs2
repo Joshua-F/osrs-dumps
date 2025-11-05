@@ -1,65 +1,70 @@
 // 3806
-[proc,xpreward_update](int $int0, component $component1, component $component2)
-def_stat $stat3 = enum(int, stat, enum_681, $int0);
-if ($stat3 ! null & ~script3809(%if1, %if2, $stat3, 0) = false) {
-    $int0, $stat3 = 0, null;
+[proc,xpreward_update](int $int0, component $component1, component $component2, int $int3)
+def_stat $stat4 = enum(int, stat, enum_681, $int0);
+if ($stat4 ! null & ~script3809(%if1, %if2, $stat4, 0) = false) {
+    $int0, $stat4 = 0, null;
 }
 def_string $string0 = "You need to choose which skill you wish to be advanced.";
-if ($stat3 ! null) {
-    if (cc_find($component2, 0) = ^true) {
-        cc_setcolour(0x999999);
-        cc_settext("Confirm: <enum(stat, string, enum_680, $stat3)>");
+if ($stat4 ! null) {
+    $string0 = "Confirm: <enum(stat, string, enum_680, $stat4)>";
+    if (cc_find($component2, $int3) = ^true) {
+        cc_setcolour(0xff981f);
+        cc_settext($string0);
     }
-    if_setonmouserepeat("cc_colour_swapper($component2, 0, 13421772)", $component2);
-    if_setonmouseleave("cc_colour_swapper($component2, 0, 10066329)", $component2);
-    if_setonop("xpreward_confirm($int0, $component1, $component2)", $component2);
+    if_setonmouserepeat("cc_colour_swapper($component2, $int3, 16777215)", $component2);
+    if_setonmouseleave("cc_colour_swapper($component2, $int3, 16750623)", $component2);
+    if_setonop("xpreward_confirm($int0, $component1, $component2, $string0)", $component2);
 } else {
-    if (cc_find($component2, 0) = ^true) {
-        cc_setcolour(0x666666);
+    if (cc_find($component2, $int3) = ^true) {
+        cc_setcolour(0x9f9f9f);
         cc_settext("Confirm");
     }
     if_setonmouserepeat(null, $component2);
     if_setonmouseleave(null, $component2);
     if_setonop("mes($string0)", $component2);
 }
-if_setonvartransmit("xpreward_update(0, $int0, $component1, $component2){if1, if2, druidquest, runemysteries, poh_house_data}", $component1);
-if_setonstattransmit("xpreward_update(0, $int0, $component1, $component2)", $component1);
+if_setonvartransmit("xpreward_update($int0, $component1, $component2, $int3){if1, if2, druidquest, runemysteries, poh_house_data, sailing_intro_primary, league_general, league_reusable_protected_1}", $component1);
+if_setonstattransmit("xpreward_update($int0, $component1, $component2, $int3)", $component1);
 if_setontimer(null, $component1);
-def_int $int4 = 0;
-def_component $component5 = null;
-def_stat $stat6 = null;
-def_int $int7 = 1;
-def_int $int8 = 0;
-while ($int7 <= 23) {
-    $component5, $stat6 = enum(int, component, enum_421, $int7), enum(int, stat, enum_681, $int7);
-    if ($component5 ! null & $stat6 ! null) {
-        cc_deleteall($component5);
-        if ($stat6 = $stat3) {
-            $int4 = ~options_button_on($component5, 0);
+def_int $int5 = 0;
+def_component $component6 = null;
+def_stat $stat7 = null;
+def_int $int8 = 1;
+def_int $int9 = 0;
+while ($int8 <= 24) {
+    $component6, $stat7 = enum(int, component, enum_421, $int8), enum(int, stat, enum_681, $int8);
+    if ($component6 ! null & $stat7 ! null) {
+        cc_deleteall($component6);
+        if ($stat7 = $stat4) {
+            $int5 = ~options_button_on($component6, 0);
         } else {
-            $int4 = ~options_button_off($component5, 0);
+            $int5 = ~options_button_off($component6, 0);
         }
-        cc_create($component5, ^iftype_graphic, $int4);
+        cc_create($component6, ^iftype_graphic, $int5);
         cc_setsize(25, 25, ^setsize_abs, ^setsize_abs);
-        cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
-        cc_setgraphic(enum(stat, graphic, enum_255, $stat6));
-        if (~script3809(%if1, %if2, $stat6, 0) = true) {
+        if ($stat7 = hunter | $stat7 = sailing | $stat7 = fishing) {
+            cc_setposition(-1, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+        } else {
+            cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+        }
+        cc_setgraphic(enum(stat, graphic, enum_255, $stat7));
+        if (~script3809(%if1, %if2, $stat7, 0) = true) {
             cc_settrans(0);
         } else {
             cc_settrans(150);
-            if (enum(stat, int, enum_81, $stat6) = -1 | testbit(%if2, enum(stat, int, enum_81, $stat6)) = ^false) {
+            if (enum(stat, int, enum_81, $stat7) = -1 | testbit(%if2, enum(stat, int, enum_81, $stat7)) = ^false) {
                 cc_settrans(220);
-                $int8 = 0;
-                while ($int8 < $int4) {
-                    if (cc_find($component5, $int8) = ^true) {
+                $int9 = 0;
+                while ($int9 < $int5) {
+                    if (cc_find($component6, $int9) = ^true) {
                         cc_settrans(220);
                     }
-                    $int8 = calc($int8 + 1);
+                    $int9 = calc($int9 + 1);
                 }
             }
         }
-        if_setop(1, enum(stat, string, enum_680, $stat6), $component5);
-        if_setonop("xpreward_select(%if1, %if2, $int7, $component1, $component2)", $component5);
+        if_setop(1, enum(stat, string, enum_680, $stat7), $component6);
+        if_setonop("xpreward_select(%if1, %if2, $int8, $component1, $component2, $int3)", $component6);
     }
-    $int7 = calc($int7 + 1);
+    $int8 = calc($int8 + 1);
 }

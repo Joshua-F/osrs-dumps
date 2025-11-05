@@ -1,0 +1,33 @@
+// 9075
+[proc,sailing_customisation_return_loc](dbrow $dbrow0)(loc)
+if ($dbrow0 = null) {
+    return(sailing_boat_facility_customisation_default);
+}
+def_loc $loc1 = null;
+def_loc $loc2 = null;
+switch_dbtable (db_getrowtable($dbrow0)) {
+    case sailing_boat_facility :
+        $loc2, $loc1 = db_getfield($dbrow0, sailing_boat_facility:loc, 0), db_getfield($dbrow0, sailing_boat_facility:customisation_loc_override, 0);
+    case sailing_boat_keel :
+        $loc2, $loc1 = db_getfield($dbrow0, sailing_boat_keel:loc:1, 0), db_getfield($dbrow0, sailing_boat_keel:customisation_loc_override, 0);
+    case sailing_boat_hull :
+        $loc2, $loc1 = db_getfield($dbrow0, sailing_boat_hull:loc:0, 0), db_getfield($dbrow0, sailing_boat_hull:customisation_loc_override, 0);
+    case sailing_boat_sail :
+        $loc2, $loc1 = db_getfield($dbrow0, sailing_boat_sail:loc:0, 0), db_getfield($dbrow0, sailing_boat_sail:customisation_loc_override, 0);
+    case sailing_boat_steering :
+        $loc2, $loc1 = db_getfield($dbrow0, sailing_boat_steering:loc:1, 0), db_getfield($dbrow0, sailing_boat_steering:customisation_loc_override, 0);
+    case sailing_boat_flag :
+        $loc2, $loc1 = db_getfield($dbrow0, sailing_boat_flag:loc:1, 0), db_getfield($dbrow0, sailing_boat_flag:customisation_loc_override, 0);
+    case sailing_boat_brazier :
+        $loc2, $loc1 = db_getfield($dbrow0, sailing_boat_brazier:loc:1, 0), db_getfield($dbrow0, sailing_boat_brazier:customisation_loc_override, 0);
+    case sailing_boat_trim :
+        $loc2, $loc1 = db_getfield($dbrow0, sailing_boat_trim:loc:1, 0), db_getfield($dbrow0, sailing_boat_trim:customisation_loc_override, 0);
+}
+if ($loc1 ! null) {
+    $loc2 = $loc1;
+}
+if ($loc2 ! null) {
+    return($loc2);
+} else {
+    return(sailing_boat_facility_customisation_default);
+}

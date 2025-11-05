@@ -1,0 +1,58 @@
+// 8789
+[proc,script8789](component $component0, component $component1, int $int2, int $int3, component $component4, component $component5)
+if_setontimer(null, $component0);
+def_int $int6 = -1;
+def_string $string0 = "";
+def_int $int7 = -1;
+def_npc $npc8 = null;
+def_int $int9 = -1;
+def_int $int10 = 0;
+while ($int10 <= 4) {
+    if (cc_find($component0, $int10) = ^true) {
+        if ($int10 = %sailing_crew_selected_slot_id) {
+            cc_settrans(210);
+            cc_setonmouserepeat(null);
+            cc_setonmouseleave(null);
+        } else if (calc($int10 % 2) = 0) {
+            cc_settrans(255);
+            if (~on_mobile = false) {
+                cc_setonmouserepeat("cc_settrans(event_com, event_comsubid, 225, null)");
+            }
+            cc_setonmouseleave("cc_settrans(event_com, event_comsubid, 255, null)");
+        } else {
+            cc_settrans(240);
+            if (~on_mobile = false) {
+                cc_setonmouserepeat("cc_settrans(event_com, event_comsubid, 225, null)");
+            }
+            cc_setonmouseleave("cc_settrans(event_com, event_comsubid, 240, null)");
+        }
+    }
+    $int6 = calc(4 + 1 + 2 * $int10);
+    if (cc_find($component0, $int6) = ^true & .cc_find($component0, calc($int6 + 1)) = ^true) {
+        $string0 = "Slot <tostring(calc($int10 + 1))>:<br>";
+        $int7, $int9 = ~sailing_crew_get_slot($int10), ~sailing_crew_get_slot_requirement($int10);
+        if (stat_base(sailing) < $int9) {
+            .cc_setcolour(0x9f9f9f);
+            .cc_settext(append($string0, "Level <tostring($int9)>"));
+            cc_setnpchead(sailing_crew_locked_dummy);
+        } else if ($int7 = 0) {
+            .cc_setcolour(0xff981f);
+            .cc_settext(append($string0, "No Crew"));
+            cc_setnpchead(sailing_crew_no_crewmate_dummy);
+        } else {
+            db_find(sailing_crew:unique_id, $int7);
+            $npc8 = db_getfield(db_findnext, sailing_crew:cargo_npc, 0);
+            .cc_setcolour(0xff981f);
+            .cc_settext(append($string0, nc_name($npc8)));
+            cc_setnpchead($npc8);
+        }
+    }
+    $int10 = calc($int10 + 1);
+}
+$string0 = "<col=0dc10d>Assign to crew slot <tostring(calc(%sailing_crew_selected_slot_id + 1))></col>";
+~stonebutton_init($string0, $component4, p12_full, 1);
+if_setonop("script615(event_op, 2, $string0, event_com, p12_full, 1)", $component4);
+$string0 = "<col=e5e500>Clear crew slot <tostring(calc(%sailing_crew_selected_slot_id + 1))></col>";
+~stonebutton_init($string0, $component5, p12_full, 1);
+if_setonop("script615(event_op, 2, $string0, event_com, p12_full, 1)", $component5);
+~sailing_crew_comparison($component1, $int2, $int3);

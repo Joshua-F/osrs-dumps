@@ -1,0 +1,19 @@
+// 8741
+[proc,script8741](int $int0, int $int1, component $component2, int $int3, int $int4, dbrow $dbrow5, component $component6, int $int7, int $int8, obj $obj9)(int, int, int)
+def_obj $obj10 = $obj9;
+if ($obj10 = null) {
+    $obj10 = db_getfield($dbrow5, sailing_sidepanel_widget_object:object, 0);
+}
+def_int $int11 = $int8;
+if ($int8 = -1) {
+    $int11 = db_getfield($dbrow5, sailing_sidepanel_widget_object:amount, 0);
+}
+$int0 = ~create_object($component6, $int0, $obj10, $int11, $int3, $int4, ^setpos_abs_left, ^setpos_abs_top, 36, 32, ^setsize_abs, ^setsize_abs);
+if ($int7 = 1) {
+    cc_settrans(128);
+}
+cc_create($component2, ^iftype_rectangle, $int1);
+$int1 = calc($int1 + 1);
+cc_sethide(true);
+$int3 = calc($int3 + 30 + 8);
+return($int0, $int1, $int3);

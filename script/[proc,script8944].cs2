@@ -1,0 +1,38 @@
+// 8944
+[proc,script8944](dbrow $dbrow0, int $int1)(boolean, string)
+if ($dbrow0 = null) {
+    return(false, "");
+}
+def_dbtable $dbtable2 = db_getrowtable($dbrow0);
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_int $int5 = 0;
+def_int $int6 = 0;
+def_string $string0 = "";
+def_int $int7 = ~script8947($dbrow0);
+if ($int7 ! -1) {
+    $int5 = $int7;
+    if (~script8951($int5) = true) {
+        if ($int1 = 1) {
+            $string0 = ~script8946($dbrow0, $int5);
+        }
+        return(true, $string0);
+    } else {
+        return(false, "");
+    }
+}
+$int4 = ~script8945($dbrow0, -1);
+if ($int4 <= 0) {
+    return(false, "");
+}
+while ($int3 < $int4) {
+    $int5 = ~script8945($dbrow0, $int3);
+    if ($int5 ! 0 & ~script8951($int5) = true) {
+        if ($int1 = 1) {
+            $string0 = ~script8946($dbrow0, $int5);
+        }
+        return(true, $string0);
+    }
+    $int3 = calc($int3 + 1);
+}
+return(false, "");

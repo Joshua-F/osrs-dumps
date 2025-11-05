@@ -1,0 +1,22 @@
+// 8973
+[proc,script8973](int $int0, int $int1)(string)
+def_int $int2 = ~sailing_boat_get_dock($int0);
+def_dbrow $dbrow3 = null;
+def_dbrow $dbrow4 = null;
+def_string $string0 = "";
+db_find(boat_location_sprite_data:location, $int2);
+$dbrow4 = db_findnext;
+if ($dbrow4 ! null) {
+    return(db_getfield($dbrow4, boat_location_sprite_data:name, 0));
+}
+$dbrow3 = ~script9094($int2);
+if ($dbrow3 = null) {
+    return(db_getfield(sailing_boat_location_default_sprite, boat_location_sprite_data:name, 0));
+}
+if ($int1 = 1) {
+    $string0 = db_getfield($dbrow3, sailing_dock:inline_name, 0);
+    if (string_length($string0) > 0) {
+        return($string0);
+    }
+}
+return(~script9092($dbrow3));

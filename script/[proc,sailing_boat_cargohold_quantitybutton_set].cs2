@@ -1,0 +1,12 @@
+// 8883
+[proc,sailing_boat_cargohold_quantitybutton_set](component $component0, string $string0, int $int1, component $component2, component $component3, component $component4, component $component5, component $component6)
+if (%depositbox_mode = $int1) {
+    ~stonebutton_draw(true, "<col=ffffff><$string0></col>", p12_full, 1, $component0);
+    if_setonop("opsound(event_op, 2)", $component0);
+    if_setonmouserepeat(null, $component0);
+    if_setonmouseleave(null, $component0);
+    if_setontimer(null, $component0);
+} else {
+    ~stonebutton_init($string0, $component0, p12_full, 1);
+    if_setonop("sailing_boat_cargohold_quantitybutton_op(event_op, event_com, $int1, $component2, $component3, $component4, $component5, $component6)", $component0);
+}

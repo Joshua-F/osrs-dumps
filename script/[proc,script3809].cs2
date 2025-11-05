@@ -14,7 +14,16 @@ if (map_members = false & enum(stat, boolean, enum_1497, $stat2) = true) {
 }
 if (stat_base($stat2) < $int0) {
     if ($int3 = 1) {
-        mes("You need an <enum(stat, string, enum_680, $stat2)> level of <tostring($int0)> to choose that option.");
+        mes("You need level <tostring($int0)> <enum(stat, string, enum_680, $stat2)> to choose that option.");
+    }
+    return(false);
+}
+def_boolean $boolean4 = false;
+def_string $string0 = "";
+$boolean4, $string0 = ~script8948($stat2);
+if ($boolean4 = true) {
+    if ($int3 = 1) {
+        mes($string0);
     }
     return(false);
 }
@@ -40,6 +49,11 @@ switch_stat ($stat2) {
             }
             return(false);
         }
+    case sailing :
+        if ($int3 = 1) {
+            mes("Sailing XP rewards are not yet available.");
+        }
+        return(false);
 }
 if (%league_type = 3 & ~league_world = true & ~script5830($stat2) = 0) {
     if ($int3 = 1) {

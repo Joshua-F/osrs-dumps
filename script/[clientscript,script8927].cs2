@@ -1,0 +1,16 @@
+// 8927
+[clientscript,script8927](dbrow $dbrow0, int $int1)
+if ($dbrow0 = port_task_blank) {
+    mes("You do not have a task assigned to that port task slot.");
+    sound_synth(synth_8414, 1, 0);
+} else if ($dbrow0 = port_task_locked) {
+    if ($int1 ! -1) {
+        mes("You need a Sailing level of <tostring($int1)> to use that port task slot.");
+    } else {
+        mes("You have not unlocked that port task slot.");
+    }
+    sound_synth(synth_8414, 1, 0);
+} else {
+    sound_synth(synth_8415, 1, 0);
+    ~port_task_info_draw(sailing_log:task_window, $dbrow0);
+}

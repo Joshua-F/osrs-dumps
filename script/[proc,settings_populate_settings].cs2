@@ -34,6 +34,10 @@ def_string $string0 = %settings_search_string;
 def_string $string1 = null;
 def_boolean $boolean36 = false;
 def_int $int37 = 0;
+def_int $int38 = 80;
+def_int $int39 = 0;
+def_int $int40 = 0;
+def_boolean $boolean41 = ~on_mobile;
 if ($int35 = 1) {
     if (string_length($string0) = 0) {
         cc_create($component5, ^iftype_text, 0);
@@ -73,7 +77,7 @@ if ($int35 = 1) {
     $int18 = enum_getoutputcount(enum_422);
     $int7 = 0;
 }
-while ($int17 < $int18) {
+while ($int17 < $int18 & $int40 = 0) {
     if ($int35 = 0) {
         $struct21 = enum(int, struct, enum_423, $int7);
     } else {
@@ -93,11 +97,11 @@ while ($int17 < $int18) {
     $int19 = 0;
     $int20 = enum_getoutputcount($enum22);
     if (~settings_check_block($struct21) = false) {
-        while ($int19 < $int20) {
+        while ($int19 < $int20 & $int40 = 0) {
             $struct23 = enum(int, struct, $enum22, $int19);
             if ($struct23 ! null) {
                 $int32 = struct_param($struct23, param_1077);
-                $int28, $int30, $int25, $int26, $int27, $int33, $int34, $int37 = ~settings_create_setting($struct23, $struct21, $int25, $int26, $int27, $int28, $int30, $int24, $component4, $component5, $component6, $component8, $component9, $component10, $component11, $component12, $component13, $component14, $component15, $int7, $int33, $int34, $int35, $string0, $component16, $int19, $int37);
+                $int28, $int30, $int25, $int26, $int27, $int33, $int34, $int37 = ~settings_create_setting($struct23, $struct21, $int25, $int26, $int27, $int28, $int30, $int24, $component4, $component5, $component6, $component8, $component9, $component10, $component11, $component12, $component13, $component14, $component15, $int7, $int33, $int34, $int35, $string0, $component16, $int19, $int37, $boolean41);
                 if ($int1 = 1 & $int2 > 0) {
                     if (%settings_disable_tooltip_in_interface = 0 & $int2 >= calc($int29 - $int31) & $int2 < calc($int28 - $int30)) {
                         $int1 = 0;
@@ -116,6 +120,12 @@ while ($int17 < $int18) {
                     $int28 = calc($int28 + struct_param($struct23, param_1079));
                     $int29 = $int28;
                     $int31 = $int30;
+                    if ($int35 = 1) {
+                        $int39 = calc($int39 + 1);
+                        if ($int39 >= $int38) {
+                            $int40 = 1;
+                        }
+                    }
                 }
             }
             $int19 = calc($int19 + 1);
@@ -129,6 +139,26 @@ if ($int34 > 0) {
     $int33 = ^max_32bit_int;
     $int28 = $int34;
     $int34 = 0;
+}
+if ($int40 = 1) {
+    cc_deleteall($component5);
+    cc_deleteall($component4);
+    cc_deleteall($component14);
+    if_setsize(0, 0, ^setsize_abs, ^setsize_abs, $component15);
+    if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top, $component15);
+    cc_create($component5, ^iftype_text, 0);
+    cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+    cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+    cc_settext("<br><br>Your search for '<$string0>' returned too many results.<br><br>Please try refining your search to narrow down the results.");
+    cc_settextfont(p12_full);
+    cc_settextshadow(true);
+    cc_setcolour(0xff981f);
+    cc_settextalign(^settextalign_centre, ^settextalign_top, 16);
+    if_setsize(0, 0, ^setsize_minus, ^setsize_minus, $component5);
+    if_setscrollpos(0, 0, $component8);
+    if_setscrollsize(0, 0, $component8);
+    ~scrollbar_vertical($component6, $component8, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+    return;
 }
 if ($int35 = 1 & $int25 = 0) {
     cc_create($component5, ^iftype_text, 0);

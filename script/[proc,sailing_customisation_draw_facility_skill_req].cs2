@@ -1,0 +1,63 @@
+// 8826
+[proc,sailing_customisation_draw_facility_skill_req](component $component0, int $int1, int $int2, int $int3, int $int4, dbrow $dbrow5, boolean $boolean6)(int, boolean)
+def_int $int7 = ~script9055(db_getrowtable($dbrow5), $dbrow5);
+def_int $int8 = ~script9056(db_getrowtable($dbrow5), $dbrow5);
+if ($int7 < 1 & $int8 < 1) {
+    return($int1, false);
+}
+cc_create($component0, ^iftype_graphic, $int1);
+cc_setgraphic(tradebacking_dark);
+cc_setposition(5, calc($int2 + 5), ^setpos_abs_right, ^setpos_abs_top);
+cc_setsize($int3, calc($int4 + 5), ^setsize_abs, ^setsize_abs);
+if ($boolean6 = true) {
+    ~sailing_customisation_tooltip("Skill requirement", "Level <tostring($int8)> Construction<br>Level <tostring($int7)> Sailing", 1);
+} else {
+    ~sailing_customisation_tooltip("Skill requirement", "Level ?? Construction<br>Level ?? Sailing", 1);
+}
+$int1 = calc($int1 + 1);
+$int1 = ~thinbox_specific($component0, $int1, 5, calc($int2 + 5), $int3, calc($int4 + 2), ^setpos_abs_right, ^setpos_abs_top);
+cc_create($component0, ^iftype_graphic, $int1);
+cc_setgraphic(enum(stat, graphic, enum_255, construction));
+cc_setposition(29, calc($int2 + 5 + 3), ^setpos_abs_right, ^setpos_abs_top);
+cc_setsize(25, 25, ^setsize_abs, ^setsize_abs);
+$int1 = calc($int1 + 1);
+cc_create($component0, ^iftype_text, $int1);
+cc_settext(tostring($int8));
+cc_setsize(15, 25, ^setsize_abs, ^setsize_abs);
+cc_setposition(10, calc($int2 + 5 + 5), ^setpos_abs_right, ^setpos_abs_top);
+cc_settextfont(p12_full);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+cc_settextshadow(true);
+if (~script8806(db_getrowtable($dbrow5), $dbrow5, construction, $int8) = false) {
+    cc_setcolour(0x9f9f9f);
+} else {
+    cc_setcolour(0xff981f);
+}
+if ($boolean6 = false) {
+    cc_setcolour(0x9f9f9f);
+    cc_settext("?");
+}
+$int1 = calc($int1 + 1);
+cc_create($component0, ^iftype_graphic, $int1);
+cc_setgraphic(enum(stat, graphic, enum_255, sailing));
+cc_setposition(77, calc($int2 + 5 + 3), ^setpos_abs_right, ^setpos_abs_top);
+cc_setsize(25, 25, ^setsize_abs, ^setsize_abs);
+$int1 = calc($int1 + 1);
+cc_create($component0, ^iftype_text, $int1);
+cc_settext(tostring($int7));
+cc_setsize(16, 25, ^setsize_abs, ^setsize_abs);
+cc_setposition(58, calc($int2 + 5 + 5), ^setpos_abs_right, ^setpos_abs_top);
+cc_settextfont(p12_full);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+cc_settextshadow(true);
+if (~script8806(db_getrowtable($dbrow5), $dbrow5, sailing, $int7) = false) {
+    cc_setcolour(0x9f9f9f);
+} else {
+    cc_setcolour(0xff981f);
+}
+if ($boolean6 = false) {
+    cc_setcolour(0x9f9f9f);
+    cc_settext("?");
+}
+$int1 = calc($int1 + 1);
+return($int1, true);

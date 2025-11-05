@@ -1,0 +1,24 @@
+// 8828
+[clientscript,script8828](component $component0, int $int1, int $int2, string $string0, string $string1, string $string2, dbrow $dbrow3, int $int4)
+def_component $component5 = sailing_customisation:facility_debug_click_layer;
+if ($int2 = 2 & ~rental_world = true) {
+    ~script8830($component5, $int4, $dbrow3);
+    return;
+}
+if (%sailing_show_customisation_material_messages = 1) {
+    if (%sailing_intro = 28 & $dbrow3 = sailing_boat_facility_cargo_hold_regular_raft) {
+        mes("Jim will provide the materials needed to build a <lowercase($string0)>.");
+    } else {
+        mes("<$string0> materials: <$string2></col>.");
+    }
+}
+if (cc_find($component0, $int1) = ^true) {
+    cc_setcolour(0x0e0e0c);
+}
+sound_synth(synth_2266, 1, 0);
+if (%sailing_intro = 28 & $dbrow3 = sailing_boat_facility_cargo_hold_regular_raft) {
+    $string1 = "Jim will provide the materials needed to build a <lowercase($string0)>.";
+} else {
+    $string1 = "Materials needed: <br><br><$string1>";
+}
+~sailing_customisation_popup($string0, $string1);

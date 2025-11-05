@@ -1,20 +1,33 @@
 // 4874
 [proc,quest_highlight_entity](dbrow $dbrow0)
-if (~quest_is_miniquest($dbrow0) = true | ~quest_is_subquest($dbrow0) = true | db_getfield($dbrow0, quest:release_type, 0) ! 2 | ~quest_status_get($dbrow0) ! 1) {
+def_int $int1 = 0;
+if (db_getfield($dbrow0, quest:release_type, 0) ! 2) {
+    $int1 = 1;
+}
+if (~restrict_content_dbrow($dbrow0) = true) {
+    $int1 = 1;
+}
+if (~quest_is_miniquest($dbrow0) = true | ~quest_is_subquest($dbrow0) = true) {
+    $int1 = 1;
+}
+if (~quest_status_get($dbrow0) ! 1) {
+    $int1 = 1;
+}
+if ($int1 = 1) {
     return;
 }
 if (%quest_start_highlight_filter_requirements = 1 & ~quest_requirement_check($dbrow0) = false) {
     return;
 }
-def_int $int1 = db_getfieldcount($dbrow0, quest:startnpc);
-def_int $int2 = db_getfieldcount($dbrow0, quest:startloc);
-def_int $int3 = 0;
-while ($int3 < $int1) {
-    highlight_npctype_on(db_getfield($dbrow0, quest:startnpc, $int3), 13);
-    $int3 = calc($int3 + 1);
+def_int $int2 = db_getfieldcount($dbrow0, quest:startnpc);
+def_int $int3 = db_getfieldcount($dbrow0, quest:startloc);
+def_int $int4 = 0;
+while ($int4 < $int2) {
+    highlight_npctype_on(db_getfield($dbrow0, quest:startnpc, $int4), 13);
+    $int4 = calc($int4 + 1);
 }
-$int3 = 0;
-while ($int3 < $int2) {
-    highlight_loctype_on(db_getfield($dbrow0, quest:startloc, $int3), 16);
-    $int3 = calc($int3 + 1);
+$int4 = 0;
+while ($int4 < $int3) {
+    highlight_loctype_on(db_getfield($dbrow0, quest:startloc, $int4), 16);
+    $int4 = calc($int4 + 1);
 }

@@ -1,0 +1,14 @@
+// 8634
+[clientscript,sailing_boat_selection_keypress_unavailable](char $char0, int $key1, component $component2, int $int3, string $string0, string $string1, int $key4, string $string2, string $string3)
+if (if_gethide(sailing_boat_selection:popups) = false) {
+    return;
+}
+if (if_gethide(sailing_boat_selection:loading) = false) {
+    return;
+}
+if (~keypress_permit(sailing_boat_selection, null) = false) {
+    return;
+}
+if ($char0 ! null & (string_indexof_char($string0, $char0) ! -1 | string_indexof_char($string1, $char0) ! -1 | $key1 ! null & $key1 = $key4) & cc_find($component2, $int3) = ^true) {
+    ~script8636($string2, $string3);
+}

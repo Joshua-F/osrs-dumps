@@ -1,0 +1,11 @@
+// 9087
+[proc,script9087]()(string)
+def_dbrow $dbrow0 = null;
+if (db_find(sailing_boat:type_id, %sailing_boarded_boat_type) = 1) {
+    $dbrow0 = db_findnext;
+}
+def_string $string0 = db_getfield($dbrow0, sailing_boat:displayname, 0);
+if (string_length($string0) <= 0) {
+    return(~sailing_boat_name_core(%sailing_boarded_boat_name_1, %sailing_boarded_boat_name_2, %sailing_boarded_boat_name_3));
+}
+return($string0);

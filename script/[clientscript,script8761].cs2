@@ -1,0 +1,85 @@
+// 8761
+[clientscript,script8761](int $int0, int $int1, int $int2, component $component3, component $component4, dbrow $dbrow5, int $int6, int $rgb7, int $int8)
+def_int $int9 = 6;
+def_int $int10 = $int1;
+def_int $int11 = 0;
+if ($int10 > 0) {
+    $int11 = ~sailing_crew_get_slot($int6);
+}
+def_int $int12 = 0;
+if ($int11 ! 0) {
+    $int12 = ~sailing_sidepanel_crew_get_ordered_position($int6);
+}
+def_dbrow $dbrow13 = null;
+def_dbrow $dbrow14 = null;
+if ($int11 ! 0) {
+    $dbrow13 = ~script9050($int11);
+    $dbrow14 = ~script8765($int12);
+}
+def_graphic $graphic15 = "icon_sailing_player_18x18,0";
+if ($dbrow13 ! null) {
+    $graphic15 = ~script8734($dbrow13);
+}
+def_dbrow $dbrow16 = ~sailing_sidepanel_get_sidepanel_data($dbrow14);
+def_graphic $graphic17 = ~script8764($dbrow16);
+if ($dbrow5 = $dbrow14) {
+    $int8 = 1;
+}
+if (cc_find($component3, $int0) = ^true) {
+    cc_setsize(0, 34, ^setsize_minus, ^setsize_abs);
+    cc_setposition(0, $int2, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setfill(true);
+    if ($int8 = 1) {
+        cc_setcolour(0x968776);
+    } else {
+        cc_setcolour($rgb7);
+    }
+    $int0 = calc($int0 + 1);
+}
+if (cc_find($component3, $int0) = ^true) {
+    if ($graphic15 = "icon_sailing_player_18x18,0") {
+        $graphic15 = "cross_interface,5";
+    }
+    cc_setgraphic($graphic15);
+    cc_setposition(5, calc($int2 + 8), ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(18, 18, ^setsize_abs, ^setsize_abs);
+    $int0 = calc($int0 + 1);
+}
+def_string $string0 = "Unassign";
+def_string $string1 = "";
+def_int $int18 = 1;
+if (cc_find($component3, $int0) = ^true) {
+    if ($int6 ! -1 & $int11 ! 0) {
+        $string0 = ~script8735($dbrow13);
+        $string1 = ~script8736($dbrow13);
+        if (compare($string1, "") ! 0) {
+            $string0 = "<$string0><br><$string1>";
+        }
+        if (~script8737($dbrow5, $dbrow13) = false) {
+            $int18 = 0;
+        }
+    } else if ($int6 ! -1 & $int11 = 0) {
+        $string0 = "No crewmate";
+    }
+    cc_settext($string0);
+    cc_setposition(28, $int2, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(56, 34, ^setsize_minus, ^setsize_abs);
+    cc_settextfont(p11_full);
+    cc_settextshadow(true);
+    if ($int18 = 0) {
+        cc_setcolour(0x9f9f9f);
+    } else {
+        cc_setcolour(^white);
+    }
+    cc_settextalign(^settextalign_left, ^settextalign_centre, 13);
+    $int0 = calc($int0 + 1);
+}
+if (cc_find($component3, $int0) = ^true) {
+    cc_setgraphic($graphic17);
+    cc_setposition(5, calc($int2 + (34 - 24) / 2), ^setpos_abs_right, ^setpos_abs_top);
+    cc_setsize(24, 24, ^setsize_abs, ^setsize_abs);
+    if ($int6 = -1) {
+        cc_sethide(true);
+    }
+    $int0 = calc($int0 + 1);
+}

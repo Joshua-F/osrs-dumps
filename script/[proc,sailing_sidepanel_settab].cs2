@@ -1,0 +1,69 @@
+// 8719
+[proc,sailing_sidepanel_settab](int $int0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10, component $component11, component $component12, component $component13, component $component14, component $component15, component $component16, component $component17, component $component18, component $component19, component $component20, component $component21, component $component22, component $component23, component $component24, component $component25, component $component26, component $component27, component $component28, component $component29, component $component30, component $component31, component $component32, component $component33, component $component34, component $component35)
+if ($component1 = null) {
+    return;
+}
+if_sethide(false, $component1);
+def_graphic $graphic36 = null;
+def_graphic $graphic37 = null;
+def_graphic $graphic38 = null;
+def_graphic $graphic39 = null;
+def_int $rgb40 = ^black;
+def_component $component41 = null;
+def_int $int42 = 0;
+def_int $int43 = 0;
+if (%sailing_sidepanel_tabs = $int0) {
+    if (%side_transparency = 1) {
+        ~sailing_sidepanel_draw_tab($component1, "tabs_short,0", "tabs_short,1", null, null);
+        $rgb40 = 0x5d5848;
+    } else {
+        ~sailing_sidepanel_draw_tab($component1, "tabs_short,8", "tabs_short,9", null, null);
+        $rgb40 = 0x28251e;
+    }
+    if_setonmouserepeat(null, $component1);
+    if_setonmouseleave(null, $component1);
+    if_setonop("opsound(0, 0)", $component1);
+    cc_deleteall($component5);
+    $component41 = if_getlayer($component1);
+    cc_create($component5, ^iftype_line, 0);
+    cc_setcolour($rgb40);
+    if (if_getwidth($component5) = 1) {
+        $int42 = calc(if_getx($component1) - 2);
+        $int43 = 500;
+        cc_setposition($int42, 0, ^setpos_abs_centre, ^setpos_abs_bottom);
+    } else {
+        $int42 = if_getx($component1);
+        $int43 = calc($int42 * 2);
+        cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_bottom);
+    }
+    cc_setsize($int43, 1, ^setsize_abs, ^setsize_abs);
+    cc_create($component5, ^iftype_line, 1);
+    cc_setcolour($rgb40);
+    $int43 = 500;
+    if (if_getwidth($component5) = 1) {
+        $int42 = calc($int42 + if_getwidth($component1) + $int43 / 2 + 1);
+        cc_setposition($int42, 0, ^setpos_abs_centre, ^setpos_abs_bottom);
+    } else {
+        $int42 = calc($int42 + if_getwidth($component1));
+        cc_setposition($int42, 0, ^setpos_abs_left, ^setpos_abs_bottom);
+    }
+    cc_setsize($int43, 1, ^setsize_abs, ^setsize_abs);
+} else {
+    if (%side_transparency = 1) {
+        $graphic36, $graphic37 = "tabs_short,2", "tabs_short,3";
+        ~sailing_sidepanel_draw_tab($component1, $graphic36, $graphic37, null, null);
+    } else {
+        $graphic36, $graphic37 = "tabs_short,10", "tabs_short,11";
+        $graphic38, $graphic39 = "tabs_short,12", "tabs_short,13";
+        ~sailing_sidepanel_draw_tab($component1, $graphic36, $graphic37, $graphic38, $graphic39);
+    }
+    if_setonmouseleave("sailing_sidepanel_draw_tab($component1, $graphic36, $graphic37, $graphic38, $graphic39)", $component1);
+    if (%side_transparency = 1) {
+        $graphic36, $graphic37 = "tabs_short,4", "tabs_short,5";
+    } else {
+        $graphic36, $graphic37 = "tabs_short,10", "tabs_short,11";
+        $graphic38, $graphic39 = "tabs_short,14", "tabs_short,15";
+    }
+    if_setonmouserepeat("sailing_sidepanel_draw_tab($component1, $graphic36, $graphic37, $graphic38, $graphic39)", $component1);
+    if_setonop("sailing_sidepanel_op_tab(event_op, $int0, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10, $component11, $component12, $component13, $component14, $component15, $component16, $component17, $component18, $component19, $component20, $component21, $component22, $component23, $component24, $component25, $component26, $component27, $component28, $component29, $component30, $component31, $component32, $component33, $component34, $component35)", $component1);
+}

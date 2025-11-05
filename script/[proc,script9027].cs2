@@ -1,0 +1,55 @@
+// 9027
+[proc,script9027](int $int0)(dbrow, string)
+if (%sailing_sidepanel_boat_type = null) {
+    return(null, "");
+}
+def_dbrow $dbrow1 = null;
+def_string $string0 = "";
+def_int $int2 = -1;
+def_int $int3 = 0;
+def_int $int4 = -1;
+switch_int ($int0) {
+    case 0 :
+        $dbrow1 = db_getfield(%sailing_sidepanel_boat_type, sailing_boat:sail_option, %sailing_sidepanel_facility_sail);
+        $string0 = "Sail";
+    case 1 :
+        $dbrow1 = db_getfield(%sailing_sidepanel_boat_type, sailing_boat:steering_option, %sailing_sidepanel_facility_helm);
+        if (db_getfield(%sailing_sidepanel_boat_type, sailing_boat:combined_navigation, 0) = true) {
+            $string0 = "Helm and sails";
+        } else {
+            $string0 = "Helm";
+        }
+    case 2 :
+        $dbrow1 = db_getfield(%sailing_sidepanel_boat_type, sailing_boat:hull_option, %sailing_sidepanel_facility_hull);
+        $string0 = "Hull repairs";
+    case 3 :
+        $dbrow1 = ~script9029(0, %sailing_sidepanel_facility_hotspot0);
+    case 4 :
+        $dbrow1 = ~script9029(1, %sailing_sidepanel_facility_hotspot1);
+    case 5 :
+        $dbrow1 = ~script9029(2, %sailing_sidepanel_facility_hotspot2);
+    case 6 :
+        $dbrow1 = ~script9029(3, %sailing_sidepanel_facility_hotspot3);
+    case 7 :
+        $dbrow1 = ~script9029(4, %sailing_sidepanel_facility_hotspot4);
+    case 8 :
+        $dbrow1 = ~script9029(5, %sailing_sidepanel_facility_hotspot5);
+    case 9 :
+        $dbrow1 = ~script9029(6, %sailing_sidepanel_facility_hotspot6);
+    case 10 :
+        $dbrow1 = ~script9029(7, %sailing_sidepanel_facility_hotspot7);
+    case 11 :
+        $dbrow1 = ~script9029(8, %sailing_sidepanel_facility_hotspot8);
+    case 12 :
+        $dbrow1 = ~script9029(9, %sailing_sidepanel_facility_hotspot9);
+    case 13 :
+        $dbrow1 = ~script9029(10, %sailing_sidepanel_facility_hotspot10);
+}
+if (string_length($string0) <= 0) {
+    if ($dbrow1 ! null) {
+        $string0 = db_getfield($dbrow1, sailing_boat_facility:name, 0);
+    } else {
+        $string0 = "Facility";
+    }
+}
+return($dbrow1, $string0);

@@ -1,0 +1,21 @@
+// 9094
+[proc,script9094](int $int0)(dbrow)
+if ($int0 = 255) {
+    return(null);
+}
+if ($int0 = 254) {
+    return(null);
+}
+if ($int0 = 253) {
+    return(null);
+}
+def_int $int1 = db_find(sailing_dock:dock_id, $int0);
+if ($int1 ! 1) {
+    if ($int1 = 0) {
+        ~script2075("Sailing: No dock found with ID <tostring($int0)>.");
+    } else {
+        ~script2075("Sailing: <tostring($int1)> docks found with ID <tostring($int0)>.");
+    }
+    return(sailing_dock_port_sarim);
+}
+return(db_findnext);

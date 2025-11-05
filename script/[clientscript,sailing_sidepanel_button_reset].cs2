@@ -1,0 +1,13 @@
+// 8750
+[clientscript,sailing_sidepanel_button_reset](component $component0, component $component1, int $int2, int $int3, int $rgb4, int $int5)
+if (clientclock >= $int5) {
+    ~sailing_sidepanel_stonebutton_filled($component1, $int3, $rgb4);
+    if (cc_find($component0, $int2) = ^true) {
+        if (~on_mobile = false) {
+            cc_setonmouseover("sailing_sidepanel_stonebutton_highlighted($component1, $int3, $rgb4)");
+        }
+        cc_setonmouseleave("sailing_sidepanel_stonebutton_filled($component1, $int3, $rgb4)");
+        cc_setonop("sailing_sidepanel_button_press($component0, $component1, $int2, $int3, $rgb4)");
+        cc_setontimer(null);
+    }
+}

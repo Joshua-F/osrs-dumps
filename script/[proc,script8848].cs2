@@ -1,0 +1,27 @@
+// 8848
+[proc,script8848](dbrow $dbrow0, string $string0)(string)
+def_string $string1 = "";
+if ($dbrow0 = null) {
+    return("");
+}
+def_int $int1 = db_getfield($dbrow0, sailing_boat_facility_stats:boat_rapidresistance, 0);
+def_int $int2 = db_getfield($dbrow0, sailing_boat_facility_stats:boat_tangled_kelp_resistant, 0);
+switch_int ($int1) {
+    case 0 :
+        $string1 = "Rapid resistance: <$string0>None";
+    case 1 :
+        $string1 = "Rapid resistance: <$string0>Gentle rapids";
+    case 2 :
+        $string1 = "Rapid resistance: <$string0>Strong rapids";
+    case 3 :
+        $string1 = "Rapid resistance: <$string0>Powerful rapids";
+    case 4 :
+        $string1 = "Rapid resistance: <$string0>Deadly rapids";
+}
+if ($int2 = 1) {
+    $string1 = "<$string1><br>Immunity: <$string0>Tangled kelp";
+}
+if (string_length($string1) > 0) {
+    return($string1);
+}
+return("");

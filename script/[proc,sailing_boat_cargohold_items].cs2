@@ -1,0 +1,49 @@
+// 8871
+[proc,sailing_boat_cargohold_items](component $component0, component $component1, component $component2, int $int3, int $int4)
+cc_deleteall($component0);
+def_int $int5 = 0;
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_int $int8 = 0;
+def_inv $inv9 = %sailing_boat_cargohold_inv;
+def_obj $obj10 = null;
+def_int $intarray0(240);
+def_int $intarray1(240);
+def_int $int11 = 0;
+def_int $int12 = 0;
+def_int $int13 = -1;
+def_int $int14 = 0;
+def_boolean $boolean15 = ~script8899;
+$int12 = ~sailing_boat_cargohold_sort_list($intarray0, $intarray1, $inv9, $component0, 1, $boolean15);
+while ($int6 < $int12) {
+    $int11 = $intarray1($int6);
+    if (cc_find($component0, $int11) = ^true) {
+        $obj10 = invother_getobj($inv9, $int11);
+        if ($obj10 ! null) {
+            $int5, $int7 = ~sailing_boat_cargohold_draw_item($component0, $obj10, $int6, $int5, $int3, $int4, $int7, $boolean15);
+        } else {
+            cc_sethide(true);
+        }
+    }
+    $int6 = calc($int6 + 1);
+}
+if_settext(tostring($int7), $component2);
+if ($int7 < 1) {
+    cc_create($component0, ^iftype_text, 0);
+    cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_setcolour(0xff981f);
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    cc_settextfont(p12_full);
+    cc_settextshadow(true);
+    cc_settext("This cargo hold has no items to show here.");
+}
+def_int $int16 = 0;
+$int5 = calc($int5 + 32);
+if ($int5 > if_getheight($component0)) {
+    $int16 = if_getscrolly($component0);
+    if_setscrollsize(0, $int5, $component0);
+} else {
+    if_setscrollsize(0, 0, $component0);
+}
+~scrollbar_resize($component1, $component0, $int16);

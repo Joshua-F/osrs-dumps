@@ -1,0 +1,26 @@
+// 8665
+[proc,script8665](component $component0, component $component1, component $component2)
+cc_deleteall($component0);
+def_int $int3 = 0;
+while ($int3 < 9) {
+    cc_create($component0, ^iftype_graphic, $int3);
+    cc_settiling(true);
+    cc_settrans(255);
+    cc_setonmouserepeat("cc_settrans(event_com, event_comsubid, 200, null)");
+    cc_setonmouseleave("cc_settrans(event_com, event_comsubid, 255, null)");
+    cc_setdraggable($component0, -1);
+    cc_setdragdeadzone(1);
+    cc_setdragdeadtime(5);
+    $int3 = calc($int3 + 1);
+}
+cc_deleteall($component2);
+$int3 = 0;
+while ($int3 < 4) {
+    cc_create($component2, ^iftype_rectangle, $int3);
+    cc_setsize(calc($int3 * 2), calc($int3 * 2), ^setsize_minus, ^setsize_minus);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_setcolour(0x9f9f9f);
+    cc_setfill(false);
+    cc_settrans(calc(100 + $int3 * 10));
+    $int3 = calc($int3 + 1);
+}

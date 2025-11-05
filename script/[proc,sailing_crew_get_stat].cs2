@@ -1,0 +1,33 @@
+// 8797
+[proc,sailing_crew_get_stat](int $int0, dbrow $dbrow1, int $int2)(int)
+def_int $int3 = 1;
+if ($dbrow1 = null) {
+    ~error("Null $crew_dbrow input.");
+    return($int3);
+}
+if (db_getrowtable($dbrow1) ! sailing_crew) {
+    ~error("$crew_dbrow input not of type sailing_crew.");
+    return($int3);
+}
+switch_int ($int0) {
+    case default :
+        ~error("Invalid $stat_id input. $stat_id was <tostring($int0)>.");
+        return($int3);
+    case 1 :
+        $int3 = db_getfield($dbrow1, sailing_crew:stat_helmsmanship, 0);
+        if (%sailing_sidepanel_whirlpool_surprise_active = 1) {
+            $int3 = max($int3, calc(1 + 1));
+        }
+    case 2 :
+        $int3 = db_getfield($dbrow1, sailing_crew:stat_privateering, 0);
+    case 3 :
+        $int3 = db_getfield($dbrow1, sailing_crew:stat_deckhandiness, 0);
+        if (%sailing_sidepanel_whirlpool_surprise_active = 1) {
+            $int3 = max($int3, calc(1 + 1));
+        }
+}
+if ($int3 > 5 | $int3 < 1) {
+    $int3 = max(1, min(5, $int3));
+    ~error("Stat value fell outside of limits, so was clamped. $crew_dbrow was probably configured incorrectly.");
+}
+return($int3);

@@ -1,0 +1,28 @@
+// 8849
+[proc,script8849](dbrow $dbrow0, string $string0)(string)
+def_string $string1 = "";
+if ($dbrow0 = null) {
+    return("");
+}
+def_int $int1 = db_getfield($dbrow0, sailing_boat_facility_stats:boat_stormresistance, 0);
+switch_int ($int1) {
+    case 0 :
+        $string1 = "Storm resistance: <$string0>None";
+    case 1 :
+        $string1 = "Storm resistance: <$string0>Partial";
+    case 2 :
+        $string1 = "Storm resistance: <$string0>Full";
+}
+def_int $int2 = db_getfield($dbrow0, sailing_boat_facility_stats:boat_speedboost_duration, 0);
+$string1 = "<$string1><br>Speed boost duration: <$string0><tostring($int2)>";
+def_int $int3 = calc(64 + db_getfield($dbrow0, sailing_boat_facility_stats:boat_acceleration, 0));
+$string1 = "<$string1><br>Acceleration: <$string0><tostring(calc($int3 / 128))>";
+if (calc($int3 % 128) = 64) {
+    $string1 = "<$string1>.5";
+} else {
+    $string1 = "<$string1>.0";
+}
+if (string_length($string1) > 0) {
+    return($string1);
+}
+return("");

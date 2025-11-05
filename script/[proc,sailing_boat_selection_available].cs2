@@ -1,0 +1,66 @@
+// 8997
+[proc,sailing_boat_selection_available](int $int0, int $int1, string $string0)(boolean, string, string)
+def_int $int2 = ~sailing_boat_get_dock($int1);
+def_int $int3 = 0;
+def_int $int4 = 0;
+switch_int ($int2) {
+    case 255 :
+        if (~script8989 = true) {
+            if (%sailing_boat_selection_type = 12) {
+                return(false, "Boat Unavailable", "<col=ff981f>You can't <$string0> that boat as it is already <col=ffffff>bottled<col=ff981f>.");
+            } else {
+                return(false, "Boat Unavailable", "<col=ff981f>You can't <$string0> that boat as it is <col=ffffff>bottled<col=ff981f>. You'll need to unbottle or recover it first.");
+            }
+        } else {
+            $int3 = 1;
+        }
+    case 254 :
+        if (~script8990 = true) {
+            return(false, "Boat Unavailable", "<col=ff981f>You can't <$string0> that boat as it has <col=ffffff>capsized<col=ff981f>. You'll need to speak to a <col=ffffff>shipwright<col=ff981f> to recover it.");
+        } else {
+            $int3 = 1;
+        }
+    case 253 :
+        if (~script8991 = true) {
+            return(false, "Boat Unavailable", "<col=ff981f>You can't <$string0> that boat as it is <col=ffffff>lost at sea<col=ff981f>. You'll need to speak to a <col=ffffff>shipwright<col=ff981f> to recover it.");
+        } else {
+            $int3 = 1;
+        }
+}
+def_dbrow $dbrow5 = null;
+if ($int3 = 0) {
+    $dbrow5 = ~script9094($int2);
+    if ($dbrow5 = null | %sailing_boat_selection_current_dock = null) {
+        return(false, "Boat Unavailable", "<col=ff981f>You can't choose that boat at the moment.");
+    }
+    if (~script8992 = true & $dbrow5 ! %sailing_boat_selection_current_dock) {
+        return(false, "Boat Unavailable", "<col=ff981f>You can't <$string0> that boat as it is currently docked at <col=ffffff><~script8973($int1, 1)><col=ff981f>.");
+    }
+}
+if (~script8986 = true) {
+    if ($dbrow5 ! null & $dbrow5 = %sailing_boat_selection_current_dock) {
+        return(false, "Boat Unavailable", "<col=ff981f>That boat is already at the nearby dock. There's no need to recover it.");
+    }
+    $int4 = ~script8979($int0, $int1);
+    if (~add_capped(inv_total(inv, coins), inv_total(bank, coins), ^max_32bit_int) < $int4) {
+        return(false, "Boat Unavailable", "<col=ff981f>You need <col=ffffff><~tostring_spacer($int4, ",")> coins<col=ff981f> to do that.");
+    }
+}
+def_int $int6 = ~script9081($int1);
+def_boolean $boolean7 = ~script8993;
+def_boolean $boolean8 = ~script8994;
+if (%sailing_boat_selection_teleport_dock ! null & $dbrow5 ! null & %sailing_boat_selection_teleport_dock = $dbrow5) {
+    return(false, "Boat Unavailable", "<col=ff981f>That boat is already docked at <col=ffffff><~script8974($dbrow5, 1)><col=ff981f>.");
+}
+if ($boolean7 = true & $int6 = 0) {
+    return(false, "Boat Unavailable", "<col=ff981f>You need to build a <col=ffffff><lowercase(lc_name(sailing_teleportation_focus))><col=ff981f> on that boat to be able to teleport it.");
+}
+if ($boolean8 = true & $int6 < 2) {
+    return(false, "Boat Unavailable", "<col=ff981f>You need to build a <col=ffffff><lowercase(lc_name(sailing_teleportation_focus_greater))><col=ff981f> on that boat to be able to teleport it.");
+}
+def_boolean $boolean9 = ~script8995;
+def_inv $inv10 = ~script9018($int1);
+if ($boolean9 = true & $inv10 ! null & inv_size($inv10) ! ~inv_freespace($inv10, inv_size($inv10))) {
+    return(false, "Boat Unavailable", "<col=ff981f>You can't <$string0> that boat as it has items in the <col=ffffff>cargo hold<col=ff981f>. You'll need to empty it first.");
+}
+return(true, "", "");

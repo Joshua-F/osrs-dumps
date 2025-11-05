@@ -3,17 +3,30 @@
 def_dbrow $dbrow2 = null;
 def_int $int3 = 0;
 def_int $int4 = db_find(music:hidden, false);
-def_int $int5 = 0;
-while ($int5 < $int4) {
-    if (cc_find($component0, $int5) = ^true) {
-        $dbrow2 = db_find_get($int5);
-        if (~music_isunlocked($dbrow2) = true) {
-            ~music_setcolour(901389);
-            $int3 = calc($int3 + 1);
-        } else {
-            ~music_setcolour(16711680);
+def_int $int5 = $int4;
+def_int $int6 = 0;
+def_int $int7 = 1;
+while ($int6 < $int4) {
+    if (cc_find($component0, $int6) = ^true) {
+        $dbrow2 = db_find_get($int6);
+        if ($dbrow2 ! null) {
+            $int7 = db_getfield($dbrow2, music:release_type, 0);
+            if (~restrict_content_dbrow($dbrow2) = true) {
+                $int7 = 0;
+            }
+            if ($int7 = 1) {
+                if (~music_isunlocked($dbrow2) = true) {
+                    ~music_setcolour(901389);
+                    $int3 = calc($int3 + 1);
+                } else {
+                    ~music_setcolour(16711680);
+                }
+            } else {
+                ~music_setcolour(10461087);
+                $int5 = calc($int5 - 1);
+            }
         }
     }
-    $int5 = calc($int5 + 1);
+    $int6 = calc($int6 + 1);
 }
-if_settext("<~tostring_spacer(~min($int3, $int4), ",")> / <~tostring_spacer($int4, ",")>", $component1);
+if_settext("<~tostring_spacer(~min($int3, $int5), ",")> / <~tostring_spacer($int5, ",")>", $component1);

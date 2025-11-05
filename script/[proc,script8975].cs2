@@ -1,0 +1,15 @@
+// 8975
+[proc,script8975](int $int0)(graphic)
+def_int $int1 = ~sailing_boat_get_dock($int0);
+def_dbrow $dbrow2 = null;
+def_dbrow $dbrow3 = null;
+db_find(boat_location_sprite_data:location, $int1);
+$dbrow3 = db_findnext;
+if ($dbrow3 ! null) {
+    return(db_getfield($dbrow3, boat_location_sprite_data:sprite, 0));
+}
+$dbrow2 = ~script9094($int1);
+if ($dbrow2 = null) {
+    return(db_getfield(sailing_boat_location_default_sprite, boat_location_sprite_data:sprite, 0));
+}
+return(db_getfield($dbrow2, sailing_dock:dock_sprite_small, 0));

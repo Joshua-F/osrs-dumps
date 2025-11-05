@@ -1,0 +1,26 @@
+// 8673
+[proc,sailing_log_create_dropdown]
+def_int $rgb0 = 0xff981f;
+def_int $int1 = 46;
+def_int $int2 = 120;
+if (~on_mobile = true) {
+    $int1 = 56;
+    $int2 = 154;
+}
+def_int $int3 = calc($int1 / 2);
+def_int $int4 = 6;
+def_component $component5 = sailing_log:sailing_menu_frame;
+def_component $component6 = sailing_log:sailing_btn_menu;
+def_int $int7 = %sailing_log_tab_opened;
+def_int $int8 = 0;
+if_setsize($int2, calc($int1 + 12), ^setsize_abs, ^setsize_abs, $component5);
+cc_create($component5, ^iftype_graphic, $int8);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+cc_setgraphic(tradebacking_light);
+$int8 = calc($int8 + 1);
+$int8 = ~steelbox($component5, $int8, 0);
+if_sethide(true, $component5);
+$int8 = ~script8674($component5, $component6, $int2, $int3, $int4, "Sea Charting", 0, $int7, $rgb0, $int8);
+$int4 = calc($int4 + $int3);
+$int8 = ~script8674($component5, $component6, $int2, $int3, $int4, "Port Tasks", 1, $int7, $rgb0, $int8);
