@@ -1,0 +1,14 @@
+// 8840
+[proc,script8840](int $int0)(int, graphic, string, dbrow)
+db_find(sailing_customisation_tab:tab_id, $int0);
+db_find_refine(sailing_customisation_tab:type, %sailing_boat_customisation_type);
+def_dbrow $dbrow1 = db_findnext;
+def_string $string0 = "";
+if ($dbrow1 ! null) {
+    $string0 = db_getfield($dbrow1, sailing_customisation_tab:facility_desc, 0);
+    if ($dbrow1 = sailing_customisation_tab_storage & %ironman = 2) {
+        $string0 = append($string0, " As you are an <col=ff981f>Ultimate Ironman</col>, you cannot store any stackable items inside any cargo hold, with the exception of cannonballs (which have a max of <tostring(200)>).");
+    }
+    return(db_getfield($dbrow1, sailing_customisation_tab:facility_type, 0), db_getfield($dbrow1, sailing_customisation_tab:tab_icon, 0), $string0, $dbrow1);
+}
+return(-1, null, "", null);

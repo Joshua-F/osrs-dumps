@@ -22,10 +22,21 @@ if (%smithing_bar_lasttype = %smithing_bar_type & %smithing_item_lasttype = enum
     cc_setsize(if_getwidth($component0), if_getheight($component0), ^setsize_abs, ^setsize_abs);
     if_setopkey(1, ^key_space, 0, $component0);
 }
+cc_create($component0, ^iftype_graphic, $int5);
+$int5 = calc($int5 + 1);
+cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+cc_setposition(11, 2, ^setpos_abs_left, ^setpos_abs_top);
+cc_setgraphicshadow(0x333333);
+cc_setoutline(1);
+if (~inzone(0_26_195_0_0, 0_26_195_63_63, coord) = true & $obj1 = bronze_dagger & %tutorial_2 < 350) {
+    cc_setontimer("cc_flash_component_timer(event_com, event_comsubid, 0, 1)");
+}
+def_int $int8 = enum(obj, int, enum_844, $obj1);
+cc_setobject($obj1, $int8);
 cc_create($component0, ^iftype_text, $int5);
 $int5 = calc($int5 + 1);
-cc_setsize($int4, 13, ^setsize_abs, ^setsize_abs);
-cc_setposition(2, calc(32 - 1), ^setpos_abs_left, ^setpos_abs_top);
+cc_setsize(calc($int4 - 7), 13, ^setsize_abs, ^setsize_abs);
+cc_setposition(7, calc(32 - 1), ^setpos_abs_left, ^setpos_abs_top);
 cc_settextfont(p11_full);
 cc_settextalign(^settextalign_left, ^settextalign_top, 0);
 if ($int2 = 1 | stat(smithing) < enum(obj, int, enum_846, $obj1)) {
@@ -38,8 +49,8 @@ if ($int2 = 1 | stat(smithing) < enum(obj, int, enum_846, $obj1)) {
 cc_settext($string0);
 cc_create($component0, ^iftype_text, $int5);
 $int5 = calc($int5 + 1);
-cc_setsize($int4, 13, ^setsize_abs, ^setsize_abs);
-cc_setposition(2, calc(32 + 11), ^setpos_abs_left, ^setpos_abs_top);
+cc_setsize(calc($int4 - 7), 13, ^setsize_abs, ^setsize_abs);
+cc_setposition(7, calc(32 + 11), ^setpos_abs_left, ^setpos_abs_top);
 cc_settextfont(p11_full);
 cc_settextalign(^settextalign_left, ^settextalign_top, 0);
 cc_settextshadow(true);
@@ -53,17 +64,6 @@ if ($int7 = 1) {
 } else {
     cc_settext("<tostring($int7)> bars");
 }
-cc_create($component0, ^iftype_graphic, $int5);
-$int5 = calc($int5 + 1);
-cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
-cc_setposition(6, 2, ^setpos_abs_left, ^setpos_abs_top);
-cc_setgraphicshadow(0x333333);
-cc_setoutline(1);
-if (~inzone(0_26_195_0_0, 0_26_195_63_63, coord) = true & $obj1 = bronze_dagger & %tutorial_2 < 350) {
-    cc_setontimer("cc_flash_component_timer(event_com, event_comsubid, 0, 1)");
-}
-def_int $int8 = enum(obj, int, enum_844, $obj1);
-cc_setobject($obj1, $int8);
 if ($int8 > 1) {
     if_setop(1, "Smith set", $component0);
 } else {

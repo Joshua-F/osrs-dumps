@@ -1,6 +1,13 @@
 // 5193
-[proc,settings_set_draw_distance](int $int0)
+[proc,settings_set_draw_distance]
 if (~on_enhanced_any = false) {
     return;
+}
+if (%settings_draw_distance < 25 | %settings_draw_distance > 90) {
+    %settings_draw_distance = ~minmax(25, 90, deviceoption_get(^deviceoption_draw_distance));
+}
+def_int $int0 = %settings_draw_distance;
+if (%draw_distance_max_override = 1) {
+    $int0 = 90;
 }
 deviceoption_set(^deviceoption_draw_distance, $int0);

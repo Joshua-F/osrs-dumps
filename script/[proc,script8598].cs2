@@ -1,0 +1,23 @@
+// 8598
+[proc,script8598](component $component0, component $component1, int $int2, int $int3, component $component4, component $component5, component $component6, component $component7, component $component8, int $int9)
+def_int $int10 = if_getwidth($component1);
+def_int $int11 = if_getheight($component1);
+if ($int10 = $int2 & $int11 = $int3 & %fletching_table_opened = $int9) {
+    return;
+}
+def_int $int12 = calc($int11 - 3);
+def_int $int13 = 800;
+if ($int13 > $int12) {
+    $int13 = $int12;
+}
+if_setsize(500, $int13, ^setsize_abs, ^setsize_abs, $component0);
+if_setposition(0, calc(($int11 - $int13) / 2), ^setpos_abs_centre, ^setpos_abs_bottom, $component0);
+~scrollbar_vertical_rebuild($component5, $component4);
+~scrollbar_vertical_rebuild($component7, $component6);
+cc_deleteall($component8);
+if (%fletching_table_opened = 1) {
+    ~steelborder($component8, "Fletching Table", 0);
+} else {
+    ~steelborder($component8, "Fletching Knife", 0);
+}
+if_setontimer("script8597($component0, $component1, $int10, $int11, $component4, $component5, $component6, $component7, $component8, $int9)", $component0);

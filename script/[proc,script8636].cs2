@@ -1,0 +1,28 @@
+// 8636
+[proc,script8636](string $string0, string $string1)
+def_component $component0 = sailing_boat_selection:popups;
+def_component $component1 = sailing_boat_selection:popups_background;
+def_component $component2 = sailing_boat_selection:popups_content_border;
+def_component $component3 = sailing_boat_selection:popups_content;
+def_component $component4 = sailing_boat_selection:popups_button;
+def_int $int5 = 0;
+cc_deleteall($component2);
+cc_deleteall($component3);
+cc_deleteall($component4);
+sound_synth(synth_2277, 1, 0);
+if_sethide(false, $component0);
+~steelborder($component2, $string0, 1);
+cc_create($component3, ^iftype_text, $int5);
+cc_settext($string1);
+cc_setsize(10, 5, ^setsize_minus, ^setsize_minus);
+cc_setposition(5, 5, ^setpos_abs_left, ^setpos_abs_top);
+cc_settextfont(p12_full);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+cc_settextshadow(true);
+cc_setcolour(0xff981f);
+$int5 = calc($int5 + 1);
+~create_v2_stone_button_filled_free($component4, 0, if_getwidth($component4), if_getheight($component4), 0, 0, "<col=ff981f>Close", ^white, 0xdfdfdf, 0, false);
+if_setonop("script8637", $component4);
+if_setop(1, "Close", $component4);
+if_setonop("script8637", $component1);
+if_setop(1, "Close", $component1);

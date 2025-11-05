@@ -1,0 +1,30 @@
+// 9057
+[proc,script9057](dbtable $dbtable0, dbrow $dbrow1)(int)
+if ($dbtable0 = null) {
+    $dbtable0 = db_getrowtable($dbrow1);
+}
+def_boolean $boolean2 = false;
+switch_dbtable ($dbtable0) {
+    case sailing_boat_facility :
+        $boolean2 = db_getfield($dbrow1, sailing_boat_facility:construction_coins_alternative, 0);
+    case sailing_boat_keel :
+        $boolean2 = db_getfield($dbrow1, sailing_boat_keel:construction_coins_alternative, 0);
+    case sailing_boat_hull :
+        $boolean2 = db_getfield($dbrow1, sailing_boat_hull:construction_coins_alternative, 0);
+    case sailing_boat_sail :
+        $boolean2 = db_getfield($dbrow1, sailing_boat_sail:construction_coins_alternative, 0);
+    case sailing_boat_steering :
+        $boolean2 = db_getfield($dbrow1, sailing_boat_steering:construction_coins_alternative, 0);
+    case sailing_boat_flag :
+        $boolean2 = db_getfield($dbrow1, sailing_boat_flag:construction_coins_alternative, 0);
+    case sailing_boat_brazier :
+        $boolean2 = db_getfield($dbrow1, sailing_boat_brazier:construction_coins_alternative, 0);
+    case sailing_boat_trim :
+        $boolean2 = db_getfield($dbrow1, sailing_boat_trim:construction_coins_alternative, 0);
+    case default :
+        return(0);
+}
+if ($boolean2 = true) {
+    return(enum(int, int, enum_5901, ~script9056($dbtable0, $dbrow1)));
+}
+return(0);

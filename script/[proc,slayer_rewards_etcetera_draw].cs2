@@ -14,7 +14,7 @@ if (~league_relic_active(struct_1129) = 1) {
     $int11 = 1;
 }
 while ($dbrow10 ! null) {
-    if (~script8048(db_getfield($dbrow10, slayer_unlock:bit, 0)) = ^false & ~script3689(%league_type, db_getfield($dbrow10, slayer_unlock:bit, 0)) = 0) {
+    if (~script8048(db_getfield($dbrow10, slayer_unlock:bit, 0)) = ^false & ~script8935($dbrow10, db_getfield($dbrow10, slayer_unlock:bit, 0)) = false) {
         $int6, $int7 = calc($int6 + 1), calc($int7 + db_getfield($dbrow10, slayer_unlock:cost, 0));
     }
     $dbrow10 = db_findnext;
@@ -48,7 +48,7 @@ if ($int6 > 0 & $int7 > 0) {
     if_setonmouserepeat("options_button_on(event_com, 0)", $component0);
     if_setonmouseleave("options_button_off(event_com, 0)", $component0);
     if_setop(1, "Extend", $component0);
-    if_setonop("slayer_rewards_unlock_confirm(null, calc(57 + 9), $string1, $component1, $component2, $component3, $component4, $component5, $int7)", $component0);
+    if_setonop("slayer_rewards_unlock_confirm(null, calc(61 + 9), $string1, $component1, $component2, $component3, $component4, $component5, $int7)", $component0);
 } else {
     cc_setcolour(0x7f4c0f);
     cc_settext($string0);

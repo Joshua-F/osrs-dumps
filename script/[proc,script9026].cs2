@@ -1,0 +1,18 @@
+// 9026
+[proc,script9026](int $int0, int $int1, int $int2)(dbrow)
+def_dbrow $dbrow3 = null;
+def_dbrow $dbrow4 = null;
+switch_int ($int1) {
+    case 1 :
+        $dbrow3 = db_getfield(%sailing_sidepanel_boat_type, sailing_boat:sail_option, $int0);
+    case 2 :
+        $dbrow3 = db_getfield(%sailing_sidepanel_boat_type, sailing_boat:steering_option, $int0);
+    case 3 :
+        $dbrow3 = db_getfield(%sailing_sidepanel_boat_type, sailing_boat:hull_option, $int0);
+    case 0 :
+        $dbrow4 = db_getfield(%sailing_sidepanel_boat_type, sailing_boat:hotspot:3, $int2);
+        if ($dbrow4 ! null) {
+            $dbrow3 = db_getfield($dbrow4, sailing_boat_hotspot:option, calc($int0 - 1));
+        }
+}
+return($dbrow3);
