@@ -1,0 +1,18 @@
+// 9025
+[proc,script9025](int $int0, int $int1, int $int2)(dbrow)
+def_dbrow $dbrow3 = ~script9026($int0, $int1, $int2);
+if ($dbrow3 = null) {
+    return(null);
+}
+def_dbrow $dbrow4 = null;
+switch_dbtable (db_getrowtable($dbrow3)) {
+    case sailing_boat_sail :
+        $dbrow4 = db_getfield($dbrow3, sailing_boat_sail:sidepanel_layout_data, 0);
+    case sailing_boat_steering :
+        $dbrow4 = db_getfield($dbrow3, sailing_boat_steering:sidepanel_layout_data, 0);
+    case sailing_boat_hull :
+        $dbrow4 = db_getfield($dbrow3, sailing_boat_hull:sidepanel_layout_data, 0);
+    case sailing_boat_facility :
+        $dbrow4 = db_getfield($dbrow3, sailing_boat_facility:sidepanel_layout_data, 0);
+}
+return($dbrow4);

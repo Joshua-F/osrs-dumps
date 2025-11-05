@@ -1,0 +1,20 @@
+// 8885
+[proc,sailing_boat_cargohold_stack_toggle](component $component0, component $component1, component $component2)
+def_component $toggle_stacks = sailing_boat_cargohold:toggle_stacks;
+cc_deleteall($toggle_stacks);
+def_string $string = "Stack items";
+def_graphic $graphic = "stack_icons,1";
+def_int $int5 = 0;
+def_int $int6 = 0;
+def_boolean $boolean = ~script8887;
+if (%cargo_hold_draw_stacked = 1) {
+    $string, $graphic = "Un-stack items", "stack_icons,0";
+}
+$int5 = ~create_v2_stone_button_filled_free_icon($toggle_stacks, $int5, if_getwidth($toggle_stacks), if_getheight($toggle_stacks), 0, 0, $string, 0xff9040, ^white, 0, 0, $graphic);
+$int6 = calc($int5 - 3);
+if (cc_find($toggle_stacks, $int6) = true) {
+    cc_setposition(calc(cc_getx + 2), calc(cc_gety - 2), ^setpos_abs_left, ^setpos_abs_top);
+}
+if_setop(1, "Toggle", $toggle_stacks);
+if_setopbase("<col=ff9040>Item stacking</col>", $toggle_stacks);
+if_setonop("sailing_boat_cargohold_stack_toggle_change($component0, $component1, $component2, $boolean)", $toggle_stacks);

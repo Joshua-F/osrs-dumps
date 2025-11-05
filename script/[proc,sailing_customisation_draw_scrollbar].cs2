@@ -1,0 +1,12 @@
+// 8841
+[proc,sailing_customisation_draw_scrollbar](int $int)
+def_component $facility_scrollbar = sailing_customisation:facility_scrollbar;
+def_component $facility_content = sailing_customisation:facility_content;
+cc_deleteall($facility_scrollbar);
+if ($int > if_getheight($facility_content)) {
+    if_setscrollsize(0, $int, $facility_content);
+} else {
+    if_setscrollsize(0, 0, $facility_content);
+}
+~scrollbar_vertical($facility_scrollbar, $facility_content, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~scrollbar_resize($facility_scrollbar, $facility_content, %sailing_boat_customisation_scroll_pos);

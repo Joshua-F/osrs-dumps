@@ -67,6 +67,7 @@ column=cr_points_area
 column=cr_points_xp_type
 column=cr_starter
 column=fsw_world_first_id
+column=related_content,int,CLIENTSIDE
 
 // 1
 [events]
@@ -110,6 +111,7 @@ column=region,int,REQUIRED,LIST,CLIENTSIDE
 column=requirements,dbrow,CLIENTSIDE
 column=allregions,boolean,CLIENTSIDE
 default=allregions,true
+column=related_content,int,CLIENTSIDE
 
 // 5
 [cluehelper_clue_map]
@@ -120,6 +122,7 @@ column=requirements,dbrow,LIST,CLIENTSIDE
 column=region,int,REQUIRED,CLIENTSIDE
 column=allregions,boolean,CLIENTSIDE
 default=allregions,true
+column=related_content,int,CLIENTSIDE
 
 // 6
 [cluehelper_clue_cipher]
@@ -132,6 +135,7 @@ column=requirements,dbrow,CLIENTSIDE
 column=region,int,REQUIRED,LIST,CLIENTSIDE
 column=allregions,boolean,CLIENTSIDE
 default=allregions,true
+column=related_content,int,CLIENTSIDE
 
 // 7
 [cluehelper_clue_coordinate]
@@ -144,6 +148,7 @@ column=combat_encounter,dbrow,LIST,CLIENTSIDE
 column=region,int,REQUIRED,LIST,CLIENTSIDE
 column=allregions,boolean,CLIENTSIDE
 default=allregions,true
+column=related_content,int,CLIENTSIDE
 
 // 8
 [cluehelper_clue_cryptic]
@@ -160,6 +165,7 @@ column=hidey_hole_coord,coord,CLIENTSIDE
 column=region,int,REQUIRED,LIST,CLIENTSIDE
 column=allregions,boolean,CLIENTSIDE
 default=allregions,true
+column=related_content,int,CLIENTSIDE
 
 // 9
 [cluehelper_clue_emote]
@@ -177,6 +183,7 @@ column=requirements,dbrow,CLIENTSIDE
 column=region,int,REQUIRED,LIST,CLIENTSIDE
 column=allregions,boolean,CLIENTSIDE
 default=allregions,true
+column=related_content,int,CLIENTSIDE
 
 // 10
 [cluehelper_clue_fairyring]
@@ -190,6 +197,7 @@ column=requirements,dbrow,CLIENTSIDE
 column=region,int,REQUIRED,LIST,CLIENTSIDE
 column=allregions,boolean,CLIENTSIDE
 default=allregions,true
+column=related_content,int,CLIENTSIDE
 
 // 11
 [cluehelper_clue_falobard]
@@ -201,6 +209,7 @@ column=requirements,dbrow,REQUIRED,CLIENTSIDE
 column=region,int,REQUIRED,LIST,CLIENTSIDE
 column=allregions,boolean,CLIENTSIDE
 default=allregions,false
+column=related_content,int,CLIENTSIDE
 
 // 12
 [cluehelper_clue_hotcold]
@@ -212,6 +221,7 @@ column=combat_encounter,dbrow,LIST,CLIENTSIDE
 column=region,int,REQUIRED,LIST,CLIENTSIDE
 column=allregions,boolean,CLIENTSIDE
 default=allregions,true
+column=related_content,int,CLIENTSIDE
 
 // 13
 [cluehelper_clue_music]
@@ -222,9 +232,10 @@ column=unlock_text,string,REQUIRED,CLIENTSIDE
 column=target,dbrow,REQUIRED,CLIENTSIDE
 column=requirements,dbrow,CLIENTSIDE
 column=region,int,CLIENTSIDE
-default=region,22
+default=region,23
 column=allregions,boolean,CLIENTSIDE
 default=allregions,true
+column=related_content,int,CLIENTSIDE
 
 // 14
 [cluehelper_clue_skillchallenge]
@@ -234,9 +245,10 @@ column=clue_text,string,REQUIRED,CLIENTSIDE
 column=requirements,dbrow,LIST,CLIENTSIDE
 column=target,dbrow,CLIENTSIDE
 column=region,int,LIST,CLIENTSIDE
-default=region,22
+default=region,23
 column=allregions,boolean,CLIENTSIDE
 default=allregions,false
+column=related_content,int,CLIENTSIDE
 
 // 15
 [cluehelper_target_npc]
@@ -456,17 +468,22 @@ column=omnishop_shop_cost_currency,dbrow,CLIENTSIDE
 default=omnishop_shop_cost_currency,currency_coins
 column=omnishop_shop_info_title,string,REQUIRED,CLIENTSIDE
 column=omnishop_shop_info_intro_desc,string,CLIENTSIDE
-default=omnishop_shop_info_intro_desc,Feel free to peruse our stock.
+default=omnishop_shop_info_intro_desc,
 column=omnishop_shop_info_instructions,string,CLIENTSIDE
 column=omnishop_shop_main_op_text,string,CLIENTSIDE
 default=omnishop_shop_main_op_text,Buy
 column=omnishop_shop_side_op_text,string,CLIENTSIDE
 default=omnishop_shop_side_op_text,Sell
+column=omnishop_shop_cost_hide,boolean,CLIENTSIDE
+default=omnishop_shop_cost_hide,false
+column=omnishop_shop_allow_selling,int,CLIENTSIDE
+default=omnishop_shop_allow_selling,1
 
 // 40
 [omnishop_stock_data]
 column=omnishop_stock_obj,namedobj,REQUIRED,CLIENTSIDE
 column=omnishop_stock_alternateobj,namedobj,CLIENTSIDE
+column=omnishop_stock_displayobj,obj,CLIENTSIDE
 column=omnishop_stock_toggle_var
 column=omnishop_stock_toggle_var_owned_state
 column=omnishop_stock_reclaimable
@@ -486,6 +503,10 @@ column=omnishop_stock_restricted_category,int,CLIENTSIDE
 default=omnishop_stock_restricted_category,0
 column=omnishop_stock_restricted_uim,int,CLIENTSIDE
 default=omnishop_stock_restricted_uim,0
+column=omnishop_stock_max_purchase,int,CLIENTSIDE
+default=omnishop_stock_max_purchase,0
+column=omnishop_stock_show_unlimited,int,CLIENTSIDE
+default=omnishop_stock_show_unlimited,0
 column=omnishop_stock_buyable,boolean,CLIENTSIDE
 default=omnishop_stock_buyable,true
 column=omnishop_stock_sellable,boolean,CLIENTSIDE
@@ -494,6 +515,9 @@ column=omnishop_stock_sold_noted,boolean,CLIENTSIDE
 default=omnishop_stock_sold_noted,false
 column=omnishop_stock_view_only,boolean,CLIENTSIDE
 default=omnishop_stock_view_only,false
+column=omnishop_stock_name_override,string,CLIENTSIDE
+default=omnishop_stock_name_override,
+column=omnishop_stock_description_dynamic,dbrow,CLIENTSIDE
 
 // 41
 [omnishop_currency_data]
@@ -525,13 +549,16 @@ column=duration,int,REQUIRED,CLIENTSIDE
 column=midi,midi,REQUIRED,CLIENTSIDE
 column=variable,int,int,CLIENTSIDE
 default=variable,-1,-1
-column=area,int,INDEXED,CLIENTSIDE
+column=area,int,LIST,INDEXED,CLIENTSIDE
 column=area_default,int,INDEXED,CLIENTSIDE
 column=hidden,boolean,INDEXED,CLIENTSIDE
 default=hidden,false
 column=holiday,int,INDEXED,CLIENTSIDE
 default=holiday,-1
 column=secondary_track,dbrow,CLIENTSIDE
+column=release_type,int,CLIENTSIDE
+default=release_type,1
+column=related_content,int,CLIENTSIDE
 
 // 45
 [woodcutting_resource]
@@ -810,14 +837,6 @@ column=termite_obstacle_ids
 column=phase
 column=cd
 column=attacks
-
-// 76
-[chartering_destination_data]
-column=chartering_destination_id,int,REQUIRED,CLIENTSIDE
-column=chartering_destination_name,string,REQUIRED,CLIENTSIDE
-column=chartering_destination_ui_label,component,REQUIRED,CLIENTSIDE
-column=chartering_destination_ui_marker,component,REQUIRED,CLIENTSIDE
-column=chartering_destination_port_coord
 
 // 77
 [prepot_device_loadout_ui]
@@ -1186,6 +1205,7 @@ column=equipment_required
 column=task_sublist
 column=extension_min_max,dbrow,int,int,CLIENTSIDE
 column=block_unlock,dbrow,CLIENTSIDE
+column=related_content,int,CLIENTSIDE
 
 // 114
 [slayer_master_task]
@@ -1207,6 +1227,7 @@ column=area_hint
 column=min_stat_requirement_all
 column=min_stat_requirement_any
 column=quests_required_all
+column=related_content,int,CLIENTSIDE
 
 // 116
 [slayer_task_sublist]
@@ -1226,6 +1247,7 @@ column=description,string,REQUIRED,CLIENTSIDE
 column=refundable,boolean,CLIENTSIDE
 default=refundable,false
 column=list_position,int,int,REQUIRED,INDEXED,CLIENTSIDE
+column=related_task,dbrow,LIST,CLIENTSIDE
 
 // 118
 [action]
@@ -1349,4 +1371,1136 @@ default=colour,65535
 column=padding,int,CLIENTSIDE
 default=padding,0
 column=fx,dbrow,REQUIRED,CLIENTSIDE
+
+// 127
+[restrict_content_obj]
+column=related_content
+column=category
+column=obj
+
+// 128
+[music_area_group]
+column=area,int,REQUIRED,LIST,INDEXED,CLIENTSIDE
+
+// 129
+[amenity]
+column=print_name,string,REQUIRED,CLIENTSIDE
+column=inline_name
+column=behaviour_id
+column=statreq
+column=materials
+column=needs_hammer
+column=needs_saw
+column=materials_xp_scale
+column=build_xp
+column=hammer_anim
+column=custom_anim
+column=dummyobj,obj,REQUIRED,CLIENTSIDE
+
+// 130
+[fletching_bow_crafting]
+column=level_required,int,CLIENTSIDE
+default=level_required,1
+column=xp_given_unstrung,int,REQUIRED,CLIENTSIDE
+column=xp_given_string,int,REQUIRED,CLIENTSIDE
+column=end_product,namedobj,REQUIRED,CLIENTSIDE
+column=unstrung_product,namedobj,REQUIRED,CLIENTSIDE
+column=primary_resource,namedobj,REQUIRED,CLIENTSIDE
+column=bow_string,namedobj,CLIENTSIDE
+default=bow_string,bow_string
+column=quantity,int,CLIENTSIDE
+default=quantity,1
+
+// 131
+[fletching_crossbow_crafting]
+column=level_required,int,CLIENTSIDE
+default=level_required,1
+column=xp_given_stock,int,REQUIRED,CLIENTSIDE
+column=xp_given_unstrung,int,REQUIRED,CLIENTSIDE
+column=xp_given_string,int,REQUIRED,CLIENTSIDE
+column=end_product,namedobj,REQUIRED,CLIENTSIDE
+column=unstrung_product,namedobj,REQUIRED,CLIENTSIDE
+column=stock_product,namedobj,REQUIRED,CLIENTSIDE
+column=stock_resource,namedobj,REQUIRED,CLIENTSIDE
+column=limbs_product,namedobj,REQUIRED,CLIENTSIDE
+column=crossbow_string,namedobj,CLIENTSIDE
+default=crossbow_string,xbows_crossbow_string
+column=quantity,int,CLIENTSIDE
+default=quantity,1
+
+// 132
+[fletching_arrow_crafting]
+column=level_required,int,CLIENTSIDE
+default=level_required,1
+column=xp_given_per_arrow,int,REQUIRED,CLIENTSIDE
+column=headless_resource,namedobj,CLIENTSIDE
+default=headless_resource,headless_arrow
+column=arrow_product,namedobj,REQUIRED,CLIENTSIDE
+column=arrow_head,namedobj,REQUIRED,CLIENTSIDE
+
+// 133
+[fletching_bolt_crafting]
+column=level_required,int,CLIENTSIDE
+default=level_required,1
+column=xp_given_per_bolt,int,REQUIRED,CLIENTSIDE
+column=bolt_product,namedobj,REQUIRED,CLIENTSIDE
+column=bolt_unfeathered,namedobj,REQUIRED,CLIENTSIDE
+column=xp_given_per_tip,int,CLIENTSIDE
+column=bolt_tipped_product,namedobj,CLIENTSIDE
+column=bolt_tip,namedobj,CLIENTSIDE
+
+// 134
+[fletching_bolt_tip_crafting]
+column=level_required,int,CLIENTSIDE
+default=level_required,1
+column=xp_given,int,REQUIRED,CLIENTSIDE
+column=gem,namedobj,REQUIRED,LIST,CLIENTSIDE
+column=tips_given,int,REQUIRED,LIST,CLIENTSIDE
+
+// 135
+[fletching_darts_crafting]
+column=level_required,int,CLIENTSIDE
+default=level_required,1
+column=xp_given_per_dart,int,REQUIRED,CLIENTSIDE
+column=dart_unfinished,namedobj,REQUIRED,CLIENTSIDE
+
+// 136
+[fletching_javelin_crafting]
+column=level_required,int,CLIENTSIDE
+default=level_required,1
+column=xp_given_per_javelin,int,REQUIRED,CLIENTSIDE
+column=javelin_head,namedobj,REQUIRED,CLIENTSIDE
+
+// 137
+[fletching_shield_crafting]
+column=level_required,int,CLIENTSIDE
+default=level_required,1
+column=xp_given,int,REQUIRED,CLIENTSIDE
+column=log_resource,namedobj,REQUIRED,CLIENTSIDE
+column=log_amount,int,CLIENTSIDE
+default=log_amount,2
+
+// 138
+[fletching_ogre_arrow_crafting]
+column=level_required,int,CLIENTSIDE
+default=level_required,1
+column=xp_given_per_arrow,int,REQUIRED,CLIENTSIDE
+column=resource,namedobj,CLIENTSIDE
+column=tip_min,int,CLIENTSIDE
+default=tip_min,2
+column=tip_max,int,CLIENTSIDE
+default=tip_max,6
+column=arrow_head,namedobj,CLIENTSIDE
+
+// 139
+[fletching_ballista_crafting]
+column=level_required,int,CLIENTSIDE
+default=level_required,1
+column=limbs,namedobj,REQUIRED,CLIENTSIDE
+column=springs,namedobj,REQUIRED,CLIENTSIDE
+column=frame,namedobj,REQUIRED,CLIENTSIDE
+column=string,namedobj,REQUIRED,CLIENTSIDE
+column=incomplete,namedobj,REQUIRED,CLIENTSIDE
+column=xp_given_incomplete,int,REQUIRED,CLIENTSIDE
+column=unstrung,namedobj,REQUIRED,CLIENTSIDE
+column=xp_given_unstrung,int,REQUIRED,CLIENTSIDE
+column=xp_given_complete,int,REQUIRED,CLIENTSIDE
+
+// 140
+[fletching_grapple_crafting]
+column=level_required,int,CLIENTSIDE
+default=level_required,1
+column=xp_given_unfinished,int,REQUIRED,CLIENTSIDE
+column=bolt,namedobj,REQUIRED,CLIENTSIDE
+column=grapple_tip,namedobj,REQUIRED,CLIENTSIDE
+column=rope,namedobj,REQUIRED,CLIENTSIDE
+column=grapple_unfinished,namedobj,REQUIRED,CLIENTSIDE
+column=xp_given_finished,int,CLIENTSIDE
+default=xp_given_finished,0
+
+// 141
+[fletching_battlestaff_crafting]
+column=level_required,int,CLIENTSIDE
+default=level_required,1
+column=xp_given,int,REQUIRED,CLIENTSIDE
+column=log_resource,namedobj,REQUIRED,CLIENTSIDE
+
+// 142
+[fletching_blowpipe_crafting]
+column=level_required,int,CLIENTSIDE
+default=level_required,1
+column=xp_given,int,REQUIRED,CLIENTSIDE
+column=log_resource,namedobj,REQUIRED,CLIENTSIDE
+column=log_quantity,int,CLIENTSIDE
+default=log_quantity,1
+column=secondary_resource,namedobj,CLIENTSIDE
+column=secondary_quantity,int,CLIENTSIDE
+default=secondary_quantity,0
+
+// 143
+[sailing_bt_trial_core]
+column=trial_id
+column=trial_name,string,REQUIRED,CLIENTSIDE
+column=sailing_req
+column=crewmates_allowed
+column=collectable_bonus_xp
+column=collectable_interaction_range
+column=petrate
+column=paint_odds
+column=tracker_icon1,graphic,REQUIRED,CLIENTSIDE
+column=tracker_icon2,graphic,REQUIRED,CLIENTSIDE
+column=tracker_icon3,graphic,CLIENTSIDE
+column=tracker_icon4,graphic,CLIENTSIDE
+column=primary_req_desc,string,REQUIRED,CLIENTSIDE
+column=secondary_req_desc,string,REQUIRED,CLIENTSIDE
+column=trial_boundary_sw
+column=trial_boundary_ne
+column=trial_boundary_area
+column=trial_start_coord
+column=trial_start_facingangle
+column=trial_hintarrow_initial
+column=collectable_loc
+column=collectable_obj
+column=rank_data,int,int,int,int,int,REQUIRED,LIST,CLIENTSIDE
+column=reward_swordfish,namedobj,REQUIRED,CLIENTSIDE
+column=reward_shark,namedobj,REQUIRED,CLIENTSIDE
+column=reward_marlin,namedobj,REQUIRED,CLIENTSIDE
+
+// 144
+[sailing_bt_gwenith_glide_crystal_data]
+column=crystal_loc
+column=crystal_coord
+column=fade_data
+column=portals
+
+// 145
+[sailing_bt_gwenith_glide_portals]
+column=area
+column=destination
+column=destination_alt
+column=flag_destination_alt
+column=barracuda_objective
+column=barracuda_rank_min
+column=barracuda_rank_min_destination_override
+
+// 146
+[sailing_bt_jubbly_jive_pillars]
+column=id
+column=clickbox_coord
+column=jubbly_spawn
+column=projanim_destination
+
+// 147
+[boat_location_sprite_data]
+column=location,int,REQUIRED,INDEXED,CLIENTSIDE
+column=sprite,graphic,REQUIRED,CLIENTSIDE
+column=name,string,REQUIRED,CLIENTSIDE
+
+// 148
+[boat_facilities_default_sprite_data]
+column=facility_subtype,int,INDEXED,CLIENTSIDE
+column=sprite,graphic,REQUIRED,CLIENTSIDE
+
+// 149
+[boat_selection_type]
+column=type,int,REQUIRED,INDEXED,CLIENTSIDE
+column=title,string,REQUIRED,CLIENTSIDE
+column=selection_text,string,CLIENTSIDE
+default=selection_text,Select
+column=selection_enabled,boolean,CLIENTSIDE
+default=selection_enabled,true
+column=show_recent_boat,boolean,CLIENTSIDE
+default=show_recent_boat,true
+column=show_retrieval_cost,boolean,CLIENTSIDE
+default=show_retrieval_cost,false
+column=show_boat_health,boolean,CLIENTSIDE
+default=show_boat_health,true
+column=show_empty_boat_slots,boolean,CLIENTSIDE
+default=show_empty_boat_slots,true
+column=show_cargo_hold,boolean,CLIENTSIDE
+default=show_cargo_hold,true
+column=bottled_ships_not_allowed,boolean,CLIENTSIDE
+default=bottled_ships_not_allowed,false
+column=capsized_ships_not_allowed,boolean,CLIENTSIDE
+default=capsized_ships_not_allowed,false
+column=lost_ships_not_allowed,boolean,CLIENTSIDE
+default=lost_ships_not_allowed,false
+column=only_boats_at_current_port,boolean,CLIENTSIDE
+default=only_boats_at_current_port,false
+column=requires_teleport_focus,boolean,CLIENTSIDE
+default=requires_teleport_focus,false
+column=requires_greater_teleport_focus,boolean,CLIENTSIDE
+default=requires_greater_teleport_focus,false
+column=requires_empty_cargo_hold,boolean,CLIENTSIDE
+default=requires_empty_cargo_hold,false
+
+// 150
+[sailing_chance_encounters]
+column=id
+column=name
+column=weighting
+
+// 151
+[sailing_chance_encounter_rescue_npcs]
+column=adrift_npc
+column=passenger_npc
+column=dialogue_adrift
+column=dialogue_passenger_npc
+column=dialogue_passenger_player
+column=dialogue_complete
+column=mes_boarding
+column=mes_complete
+column=pickup_xp
+column=rescue_xp
+
+// 152
+[sailing_chance_encounters_lost_goods]
+column=adrift_npc
+column=sailing_level
+column=xp
+
+// 153
+[sailing_chance_encounters_lost_goods_resource]
+column=reward
+column=mes
+
+// 154
+[sailing_charting_core]
+column=unique_id,int,REQUIRED,INDEXED,CLIENTSIDE
+column=hint,string,REQUIRED,CLIENTSIDE
+column=sailing_sea,dbrow,REQUIRED,INDEXED,CLIENTSIDE
+column=give_repeat_xp,boolean,CLIENTSIDE
+default=give_repeat_xp,false
+column=charting_type,dbtable,REQUIRED,CLIENTSIDE
+column=hazard,dbrow,CLIENTSIDE
+
+// 155
+[sailing_charting_generic]
+column=sailing_charting_core,dbrow,REQUIRED,INDEXED,CLIENTSIDE
+column=feedback_string
+column=already_charted_feedback
+
+// 156
+[sailing_charting_spyglass]
+column=sailing_charting_core,dbrow,REQUIRED,INDEXED,CLIENTSIDE
+column=inzone
+column=camera_control
+
+// 157
+[sailing_charting_current_duck]
+column=sailing_charting_core,dbrow,REQUIRED,INDEXED,CLIENTSIDE
+column=inzone
+column=duck_route
+column=duck_lifetime
+
+// 158
+[sailing_charting_drink_crate]
+column=sailing_charting_core,dbrow,REQUIRED,INDEXED,CLIENTSIDE
+column=coord
+column=drink_namedobj
+column=drink_obj
+column=repeatable
+column=extra_warning
+
+// 159
+[sailing_charting_weather_troll]
+column=sailing_charting_core,dbrow,REQUIRED,INDEXED,CLIENTSIDE
+column=weather_troll_coord
+column=weather_troll_facing_direction
+column=weather_data_coord
+column=clockwise_winds
+
+// 160
+[sailing_charting_mermaid_guide]
+column=sailing_charting_core,dbrow,REQUIRED,INDEXED,CLIENTSIDE
+column=coord
+column=hint
+column=required_items
+column=quantities_needed
+column=required_alternatives
+column=npc
+
+// 161
+[sailing_charting_tool_recovery]
+column=name,string,REQUIRED,CLIENTSIDE
+column=inline_name
+column=tool,namedobj,REQUIRED,LIST,CLIENTSIDE
+column=unique_id,int,REQUIRED,INDEXED,CLIENTSIDE
+
+// 162
+[sailing_combat_facility]
+column=type_id
+column=facility_loc
+column=sailing_level_required
+column=ranged_level_required,int,REQUIRED,CLIENTSIDE
+column=accuracy,int,REQUIRED,CLIENTSIDE
+column=damage,int,REQUIRED,CLIENTSIDE
+column=ammunition_max_tier,int,CLIENTSIDE
+default=ammunition_max_tier,1
+column=attack_rate,int,CLIENTSIDE
+default=attack_rate,4
+column=damage_type
+column=attack_range,int,CLIENTSIDE
+default=attack_range,5
+column=human_attack_anim
+column=human_idle_anim
+column=human_engage_anim
+column=idle_anim_disengaged
+column=idle_anim_engaged
+column=engage_anim
+column=attack_anim
+column=attack_spotanim_north
+column=attack_spotanim_east
+column=attack_spotanim_south
+column=attack_spotanim_west
+column=npc_impact_anim
+column=rangetravel_anims
+column=attack_sound
+
+// 163
+[sailing_combat_support_facility]
+column=facility_loc_inactive
+column=facility_loc_active
+column=level_required
+column=human_interaction_anim
+column=interaction_anim
+column=activate_sfx
+column=deactivate_sfx
+column=charge_sfx
+column=inactive_stats
+column=active_stats
+column=upkeep_cost
+column=interact_verb_activate
+column=interact_verb_deactivate
+
+// 164
+[sailing_boat_facility_stats]
+column=boat_hp_max,int,CLIENTSIDE
+default=boat_hp_max,0
+column=boat_defence
+column=boat_stabdefence
+column=boat_slashdefence
+column=boat_crushdefence
+column=boat_heavyrangeddefence
+column=boat_standardrangeddefence
+column=boat_lightrangeddefence
+column=boat_magicdefence
+column=boat_magiclevel
+column=boat_armour,int,CLIENTSIDE
+default=boat_armour,0
+column=boat_airmagicarmour
+column=boat_earthmagicarmour
+column=boat_firemagicarmour
+column=boat_watermagicarmour
+column=boat_lightrangedarmour
+column=boat_standardrangedarmour
+column=boat_heavyrangedarmour
+column=boat_stabarmour
+column=boat_slasharmour
+column=boat_crusharmour
+column=boat_stormresistance,int,CLIENTSIDE
+default=boat_stormresistance,0
+column=boat_rapidresistance,int,CLIENTSIDE
+default=boat_rapidresistance,0
+column=boat_basespeed,int,CLIENTSIDE
+default=boat_basespeed,0
+column=boat_speedcap,int,CLIENTSIDE
+default=boat_speedcap,0
+column=boat_acceleration,int,CLIENTSIDE
+default=boat_acceleration,0
+column=boat_speedboost_duration,int,CLIENTSIDE
+default=boat_speedboost_duration,0
+column=boat_cargohold_size,int,CLIENTSIDE
+default=boat_cargohold_size,0
+column=boat_cargohold_size_uim,int,CLIENTSIDE
+default=boat_cargohold_size_uim,0
+column=boat_fetid_water_resistant,int,CLIENTSIDE
+default=boat_fetid_water_resistant,0
+column=boat_crystal_flecked_resistant,int,CLIENTSIDE
+default=boat_crystal_flecked_resistant,0
+column=boat_tangled_kelp_resistant,int,CLIENTSIDE
+default=boat_tangled_kelp_resistant,0
+column=boat_icy_seas_resistant,int,CLIENTSIDE
+default=boat_icy_seas_resistant,0
+column=boat_max_wind_motes,int,CLIENTSIDE
+default=boat_max_wind_motes,0
+
+// 165
+[sailing_combat_facility_ammunition]
+column=ammunition_id,int,REQUIRED,INDEXED,CLIENTSIDE
+column=ammunition_obj,namedobj,REQUIRED,CLIENTSIDE
+column=ammunition_tier
+column=ammunition_accuracy
+column=ammunition_strength
+
+// 166
+[sailing_boat]
+column=type_id,int,REQUIRED,INDEXED,CLIENTSIDE
+column=name,string,REQUIRED,CLIENTSIDE
+column=inline_name,string,REQUIRED,CLIENTSIDE
+column=displayname,string,CLIENTSIDE
+default=displayname,
+column=level_required,int,CLIENTSIDE
+default=level_required,1
+column=player_capacity,int,CLIENTSIDE
+default=player_capacity,1
+column=boat_size,int,CLIENTSIDE
+default=boat_size,2
+column=size_desc,string,REQUIRED,CLIENTSIDE
+column=combined_navigation,boolean,CLIENTSIDE
+default=combined_navigation,false
+column=origin
+column=entry
+column=width
+column=height
+column=tile_width
+column=tile_height
+column=player_access_levels
+column=hp_coord
+column=entity_data
+column=retrieval_cost,int,REQUIRED,CLIENTSIDE
+column=wake_coord
+column=wake_coord2
+column=bt_prop_coord
+column=direction16_acceleration
+column=direction16_turnspeed
+column=keel_option,dbrow,LIST,CLIENTSIDE
+column=hull_option,dbrow,REQUIRED,LIST,CLIENTSIDE
+column=sail_option,dbrow,REQUIRED,LIST,CLIENTSIDE
+column=steering_option,dbrow,REQUIRED,LIST,CLIENTSIDE
+column=flag_option,dbrow,LIST,CLIENTSIDE
+column=trim_option,dbrow,LIST,CLIENTSIDE
+column=brazier_option,dbrow,CLIENTSIDE
+column=hotspot,coord,int,int,dbrow,LIST,CLIENTSIDE
+column=static_facility,coord,loc,int,locshape,CLIENTSIDE
+column=facility_amount,int,CLIENTSIDE
+default=facility_amount,0
+column=same_facilities_port_and_starboard,boolean,CLIENTSIDE
+default=same_facilities_port_and_starboard,false
+column=crew_capacity,int,CLIENTSIDE
+default=crew_capacity,0
+column=crew_sail_position
+column=crew_helm_position
+column=hp_npc
+column=temporary_boat,boolean,CLIENTSIDE
+default=temporary_boat,false
+column=boat_sprite,graphic,CLIENTSIDE
+default=boat_sprite,"league_task_tiers,1"
+column=crystal_helm_variant
+column=capsizing_anim
+column=emitter_coords
+
+// 167
+[sailing_sidepanel_facility]
+column=widget,dbrow,REQUIRED,LIST,CLIENTSIDE
+column=facility_can_lock_in,boolean,CLIENTSIDE
+default=facility_can_lock_in,false
+column=facility_can_be_assigned,boolean,CLIENTSIDE
+default=facility_can_be_assigned,false
+column=linked_facility,dbrow,CLIENTSIDE
+column=sidepanel_priority_type,int,CLIENTSIDE
+default=sidepanel_priority_type,0
+column=icon,graphic,REQUIRED,CLIENTSIDE
+
+// 168
+[sailing_sidepanel_widget_button]
+column=default_optext,string,REQUIRED,CLIENTSIDE
+column=default_graphic,graphic,int,REQUIRED,CLIENTSIDE
+column=default_button_caption,string,CLIENTSIDE
+column=toggle_enabled,boolean,CLIENTSIDE
+default=toggle_enabled,false
+column=toggle_optext,string,LIST,CLIENTSIDE
+column=toggle_graphic,graphic,int,REQUIRED,LIST,CLIENTSIDE
+column=toggle_button_caption,string,CLIENTSIDE
+column=long_button,boolean,CLIENTSIDE
+default=long_button,false
+
+// 169
+[sailing_sidepanel_widget_button_target_npc]
+column=default_target_verb,string,REQUIRED,CLIENTSIDE
+column=default_graphic,graphic,int,REQUIRED,CLIENTSIDE
+column=default_button_caption,string,REQUIRED,CLIENTSIDE
+column=long_button,boolean,CLIENTSIDE
+default=long_button,false
+
+// 170
+[sailing_sidepanel_widget_graphic]
+column=graphic,graphic,int,REQUIRED,LIST,CLIENTSIDE
+
+// 171
+[sailing_sidepanel_widget_object]
+column=object,namedobj,REQUIRED,CLIENTSIDE
+column=amount,int,CLIENTSIDE
+default=amount,-1
+
+// 172
+[sailing_sidepanel_widget_text]
+column=text,string,REQUIRED,LIST,CLIENTSIDE
+
+// 173
+[sailing_crew]
+column=unique_id,int,REQUIRED,INDEXED,CLIENTSIDE
+column=world_npc
+column=boat_npc,npc,REQUIRED,INDEXED,CLIENTSIDE
+column=cargo_npc,npc,REQUIRED,LIST,INDEXED,CLIENTSIDE
+column=sprite,graphic,CLIENTSIDE
+default=sprite,"icon_sailing_player_18x18,0"
+column=stat_requirement
+column=quest_requirement
+column=special_requirement
+column=order_string_idle
+column=order_string_sails
+column=order_string_helm
+column=order_string_helm_and_sails
+column=order_string_salvage
+column=order_string_cargo
+column=order_string_cannon
+column=order_string_repairs
+column=order_string_repairfailure
+column=order_string_chum_station
+column=order_string_trawling_net
+column=order_string_trawling_net_catch
+column=panic_string
+column=encounter_string
+column=stat_helmsmanship,int,REQUIRED,CLIENTSIDE
+column=stat_privateering,int,REQUIRED,CLIENTSIDE
+column=stat_deckhandiness,int,REQUIRED,CLIENTSIDE
+
+// 174
+[sailing_shipyard]
+column=shipyard_id
+column=entry
+column=facecoord
+column=gangplank
+column=buildspace_origin
+column=buildspace_width
+column=buildspace_height
+column=buildspace_anchor
+column=boat_rotation
+column=npc
+column=obj
+
+// 175
+[sailing_boat_hotspot]
+column=placeholder
+column=shape
+column=option,dbrow,REQUIRED,LIST,CLIENTSIDE
+
+// 176
+[sailing_boat_facility]
+column=name,string,REQUIRED,CLIENTSIDE
+column=description,string,REQUIRED,CLIENTSIDE
+column=customisation_hide_desc,boolean,CLIENTSIDE
+default=customisation_hide_desc,false
+column=facility_type,int,CLIENTSIDE
+default=facility_type,0
+column=facility_subtype,int,CLIENTSIDE
+default=facility_subtype,0
+column=facility_type_sprite,graphic,int,int,CLIENTSIDE
+column=loc,loc,REQUIRED,LIST,CLIENTSIDE
+column=alternate_locs,loc,CLIENTSIDE
+column=customisation_loc_values,dbrow,REQUIRED,CLIENTSIDE
+column=customisation_loc_override,loc,CLIENTSIDE
+column=customisation_loc_anim,seq,CLIENTSIDE
+column=hidden_model,model,CLIENTSIDE
+column=sailing_requirement,int,REQUIRED,CLIENTSIDE
+column=construction_requirement,int,REQUIRED,CLIENTSIDE
+column=construction_coins_alternative,boolean,CLIENTSIDE
+default=construction_coins_alternative,false
+column=other_stat_requirement,stat,int,CLIENTSIDE
+column=quest_requirement,dbrow,CLIENTSIDE
+column=material,namedobj,int,REQUIRED,LIST,CLIENTSIDE
+column=build_max,int,CLIENTSIDE
+default=build_max,-1
+column=variants,dbrow,LIST,CLIENTSIDE
+column=facility_stats,dbrow,CLIENTSIDE
+column=sidepanel_layout_data,dbrow,CLIENTSIDE
+column=crew_facility,int,REQUIRED,CLIENTSIDE
+column=crew_stat_requirement,int,int,CLIENTSIDE
+default=crew_stat_requirement,0,0
+column=combat_facility_data,dbrow,CLIENTSIDE
+column=facility_customisation_order,int,CLIENTSIDE
+default=facility_customisation_order,100
+
+// 177
+[sailing_boat_keel]
+column=name,string,REQUIRED,CLIENTSIDE
+column=description,string,REQUIRED,CLIENTSIDE
+column=customisation_hide_desc,boolean,CLIENTSIDE
+default=customisation_hide_desc,true
+column=loc,coord,loc,int,locshape,REQUIRED,CLIENTSIDE
+column=customisation_loc_values,dbrow,REQUIRED,CLIENTSIDE
+column=customisation_loc_override,loc,CLIENTSIDE
+column=sailing_requirement,int,REQUIRED,CLIENTSIDE
+column=construction_requirement,int,REQUIRED,CLIENTSIDE
+column=construction_coins_alternative,boolean,CLIENTSIDE
+default=construction_coins_alternative,false
+column=other_stat_requirement,stat,int,CLIENTSIDE
+column=quest_requirement,dbrow,CLIENTSIDE
+column=material,namedobj,int,LIST,CLIENTSIDE
+column=facility_stats,dbrow,REQUIRED,CLIENTSIDE
+column=facility_customisation_order,int,CLIENTSIDE
+default=facility_customisation_order,100
+
+// 178
+[sailing_boat_hull]
+column=name,string,REQUIRED,CLIENTSIDE
+column=description,string,REQUIRED,CLIENTSIDE
+column=customisation_hide_desc,boolean,CLIENTSIDE
+default=customisation_hide_desc,true
+column=loc,loc,REQUIRED,CLIENTSIDE
+column=customisation_loc_values,dbrow,REQUIRED,CLIENTSIDE
+column=customisation_loc_override,loc,CLIENTSIDE
+column=origin
+column=sailing_requirement,int,REQUIRED,CLIENTSIDE
+column=construction_requirement,int,REQUIRED,CLIENTSIDE
+column=construction_coins_alternative,boolean,CLIENTSIDE
+default=construction_coins_alternative,false
+column=other_stat_requirement,stat,int,CLIENTSIDE
+column=quest_requirement,dbrow,CLIENTSIDE
+column=material,namedobj,int,LIST,CLIENTSIDE
+column=facility_stats,dbrow,REQUIRED,CLIENTSIDE
+column=sidepanel_layout_data,dbrow,CLIENTSIDE
+column=facility_customisation_order,int,CLIENTSIDE
+default=facility_customisation_order,100
+
+// 179
+[sailing_boat_sail]
+column=name,string,REQUIRED,CLIENTSIDE
+column=description,string,REQUIRED,CLIENTSIDE
+column=customisation_hide_desc,boolean,CLIENTSIDE
+default=customisation_hide_desc,true
+column=customisation_loc_values,dbrow,REQUIRED,CLIENTSIDE
+column=customisation_loc_override,loc,CLIENTSIDE
+column=hidden_model,model,CLIENTSIDE
+column=sailing_requirement,int,REQUIRED,CLIENTSIDE
+column=construction_requirement,int,REQUIRED,CLIENTSIDE
+column=construction_coins_alternative,boolean,CLIENTSIDE
+default=construction_coins_alternative,false
+column=other_stat_requirement,stat,int,CLIENTSIDE
+column=quest_requirement,dbrow,CLIENTSIDE
+column=material,namedobj,int,LIST,CLIENTSIDE
+column=interact_coord
+column=interact_loc
+column=interact_player_coord
+column=loc,loc,coord,int,locshape,dbrow,REQUIRED,CLIENTSIDE
+column=facility_stats,dbrow,REQUIRED,CLIENTSIDE
+column=sidepanel_layout_data,dbrow,REQUIRED,CLIENTSIDE
+column=facility_customisation_order,int,CLIENTSIDE
+default=facility_customisation_order,100
+
+// 180
+[sailing_boat_sail_fx]
+column=sail_reverse
+column=sail_down
+column=sail_half
+column=sail_full
+column=sail_transition_down_to_half
+column=sail_transition_down_to_full
+column=sail_transition_half_to_down
+column=sail_transition_full_to_down
+column=sail_transition_half_to_full
+column=sail_transition_full_to_half
+column=sail_sfx_down_to_half
+column=sail_sfx_down_to_full
+column=sail_sfx_half_to_down
+column=sail_sfx_full_to_down
+column=sail_sfx_half_to_full
+column=sail_sfx_full_to_half
+column=sail_sfx_luffing_down
+column=sail_sfx_luffing_half
+column=sail_sfx_luffing_full
+column=sail_sfx_speedboost
+column=sail_vfx_luffing_reverse
+column=sail_vfx_luffing_down
+column=sail_vfx_luffing_half
+column=sail_vfx_luffing_full
+column=sail_vfx_speedboost
+column=sail_trim_human
+
+// 181
+[sailing_boat_steering]
+column=name,string,REQUIRED,CLIENTSIDE
+column=description,string,REQUIRED,CLIENTSIDE
+column=customisation_hide_desc,boolean,CLIENTSIDE
+default=customisation_hide_desc,true
+column=customisation_loc_values,dbrow,REQUIRED,CLIENTSIDE
+column=customisation_loc_override,loc,REQUIRED,CLIENTSIDE
+column=hidden_model,model,CLIENTSIDE
+column=loc,coord,loc,int,locshape,dbrow,REQUIRED,CLIENTSIDE
+column=wheel
+column=animation
+column=sailing_requirement,int,REQUIRED,CLIENTSIDE
+column=construction_requirement,int,REQUIRED,CLIENTSIDE
+column=construction_coins_alternative,boolean,CLIENTSIDE
+default=construction_coins_alternative,false
+column=other_stat_requirement,stat,int,CLIENTSIDE
+column=quest_requirement,dbrow,CLIENTSIDE
+column=material,namedobj,int,LIST,CLIENTSIDE
+column=facility_stats,dbrow,CLIENTSIDE
+column=sidepanel_layout_data,dbrow,REQUIRED,CLIENTSIDE
+column=crew_stat_requirement,int,int,CLIENTSIDE
+default=crew_stat_requirement,0,0
+column=facility_customisation_order,int,CLIENTSIDE
+default=facility_customisation_order,100
+
+// 182
+[sailing_boat_steering_fx]
+column=steering_trim_anim
+column=steering_trim_anim_human
+column=steering_speedboosted_anim
+column=steering_speedboosted_anim_human
+column=steering_speedboosted_anim_end
+column=steering_speedboosted_anim_end_human
+column=steering_anim_engage
+column=steering_anim_engage_human
+column=steering_anim_in_use_human
+column=steering_anim_in_use
+column=steering_anim_idle
+column=steering_sfx_trim
+column=steering_sfx_engage
+column=steering_sfx_disengage
+
+// 183
+[sailing_boat_hull_ornament]
+column=name,string,REQUIRED,CLIENTSIDE
+column=description,string,REQUIRED,CLIENTSIDE
+column=loc,loc,REQUIRED,CLIENTSIDE
+column=customisation_loc_values,dbrow,REQUIRED,CLIENTSIDE
+column=customisation_loc_override,loc,REQUIRED,CLIENTSIDE
+column=hidden_model,model,REQUIRED,CLIENTSIDE
+column=origin
+column=sailing_requirement,int,REQUIRED,CLIENTSIDE
+column=construction_requirement,int,REQUIRED,CLIENTSIDE
+column=construction_coins_alternative,boolean,CLIENTSIDE
+default=construction_coins_alternative,false
+column=other_stat_requirement,stat,int,REQUIRED,CLIENTSIDE
+column=quest_requirement,dbrow,REQUIRED,CLIENTSIDE
+column=material,namedobj,int,REQUIRED,CLIENTSIDE
+column=facility_stats,dbrow,REQUIRED,CLIENTSIDE
+column=facility_customisation_order,int,CLIENTSIDE
+default=facility_customisation_order,100
+
+// 184
+[sailing_boat_flag]
+column=name,string,REQUIRED,CLIENTSIDE
+column=description,string,REQUIRED,CLIENTSIDE
+column=customisation_loc_values,dbrow,REQUIRED,CLIENTSIDE
+column=customisation_loc_override,loc,CLIENTSIDE
+column=hidden_model,model,CLIENTSIDE
+column=loc,coord,loc,int,locshape,REQUIRED,CLIENTSIDE
+column=sailing_requirement,int,REQUIRED,CLIENTSIDE
+column=construction_requirement,int,REQUIRED,CLIENTSIDE
+column=construction_coins_alternative,boolean,CLIENTSIDE
+default=construction_coins_alternative,false
+column=other_stat_requirement,stat,int,CLIENTSIDE
+column=quest_requirement,dbrow,CLIENTSIDE
+column=material,namedobj,int,REQUIRED,LIST,CLIENTSIDE
+column=facility_stats,dbrow,CLIENTSIDE
+column=facility_customisation_order,int,CLIENTSIDE
+default=facility_customisation_order,100
+
+// 185
+[sailing_boat_brazier]
+column=name,string,REQUIRED,CLIENTSIDE
+column=description,string,REQUIRED,CLIENTSIDE
+column=customisation_loc_values,dbrow,REQUIRED,CLIENTSIDE
+column=customisation_loc_override,loc,REQUIRED,CLIENTSIDE
+column=customisation_loc_anim,seq,CLIENTSIDE
+column=hidden_model,model,CLIENTSIDE
+column=loc,coord,loc,int,locshape,REQUIRED,CLIENTSIDE
+column=sailing_requirement,int,REQUIRED,CLIENTSIDE
+column=construction_requirement,int,REQUIRED,CLIENTSIDE
+column=construction_coins_alternative,boolean,CLIENTSIDE
+default=construction_coins_alternative,false
+column=other_stat_requirement,stat,int,CLIENTSIDE
+column=quest_requirement,dbrow,CLIENTSIDE
+column=material,namedobj,int,REQUIRED,LIST,CLIENTSIDE
+column=facility_stats,dbrow,REQUIRED,CLIENTSIDE
+column=facility_type_sprite,graphic,int,int,CLIENTSIDE
+column=facility_customisation_order,int,CLIENTSIDE
+default=facility_customisation_order,100
+
+// 186
+[sailing_boat_trim]
+column=name,string,REQUIRED,CLIENTSIDE
+column=description,string,REQUIRED,CLIENTSIDE
+column=loc,coord,loc,int,locshape,REQUIRED,CLIENTSIDE
+column=customisation_loc_values,dbrow,REQUIRED,CLIENTSIDE
+column=customisation_loc_override,loc,CLIENTSIDE
+column=sailing_requirement,int,REQUIRED,CLIENTSIDE
+column=construction_requirement,int,REQUIRED,CLIENTSIDE
+column=construction_coins_alternative,boolean,CLIENTSIDE
+default=construction_coins_alternative,false
+column=other_stat_requirement,stat,int,CLIENTSIDE
+column=quest_requirement,dbrow,CLIENTSIDE
+column=material,namedobj,int,CLIENTSIDE
+column=facility_stats,dbrow,CLIENTSIDE
+column=sidepanel_layout_data,dbrow,CLIENTSIDE
+column=customisation_buildable,boolean,CLIENTSIDE
+default=customisation_buildable,true
+column=facility_customisation_order,int,CLIENTSIDE
+default=facility_customisation_order,100
+
+// 187
+[sailing_boat_name_options]
+column=default,string,REQUIRED,CLIENTSIDE
+column=option,string,LIST,CLIENTSIDE
+
+// 188
+[sailing_customisation_loc_angles]
+column=angles,int,int,int,int,int,int,int,REQUIRED,LIST,INDEXED,CLIENTSIDE
+column=angles_large_modifiers,int,int,int,int,int,int,int,INDEXED,CLIENTSIDE
+
+// 189
+[sailing_customisation_tab]
+column=type,int,REQUIRED,INDEXED,CLIENTSIDE
+column=tab_id,int,REQUIRED,INDEXED,CLIENTSIDE
+column=tab_name,string,REQUIRED,CLIENTSIDE
+column=tab_icon,graphic,REQUIRED,CLIENTSIDE
+column=facility_type,int,REQUIRED,INDEXED,CLIENTSIDE
+column=facility_subtype,int,LIST,INDEXED,CLIENTSIDE
+default=facility_subtype,-1
+column=facility_desc,string,CLIENTSIDE
+
+// 190
+[sailing_shoal]
+column=id
+column=name
+column=entity_data
+column=targetspeed
+column=turnspeed
+column=acceleration
+column=shoal_spawn
+column=shoal_rarespawn_id
+column=shoal_rarespawn_level_required
+column=shoal_rarespawn
+column=shoal_rarespawn_model
+column=shoal_loot
+column=shoal_loot_rarespawn
+column=level_required
+column=shoal_accepted_bait
+column=shoal_max_depth
+column=shoal_depth_change_rate
+
+// 191
+[sailing_shoal_specific]
+column=debug_name
+column=shoal_data
+column=origin
+column=width
+column=height
+column=angle
+column=spawn
+column=respawnrate
+column=patrol_route
+
+// 192
+[sailing_shoal_droptable]
+column=shoal_fish_given
+column=rare_fish_chance
+column=paint_odds
+column=lowchance
+column=highchance
+
+// 193
+[sailing_trawling_animations]
+column=human_idle
+column=human_engage
+column=human_lower_to_1
+column=human_lower_to_2_or_3
+column=human_raise
+column=human_reset_to_idle
+column=trawling_net_lower_to_1
+column=trawling_net_lower_to_2
+column=trawling_net_lower_to_3
+column=trawling_net_raise_to_2
+column=trawling_net_raise_to_1
+column=trawling_net_reset_to_idle
+
+// 194
+[sailing_dock]
+column=dock_id,int,REQUIRED,INDEXED,CLIENTSIDE
+column=nice_name,string,REQUIRED,CLIENTSIDE
+column=inline_name,string,CLIENTSIDE
+default=inline_name,
+column=type
+column=level_required
+column=quest_required
+column=port_task_quest_required
+column=land_coord
+column=sea_coord
+column=sea_coord_anchor
+column=boat_rotation
+column=inzone_land
+column=inzone_sea
+column=dock_sprite_small,graphic,REQUIRED,CLIENTSIDE
+
+// 195
+[sailing_npc_boat]
+column=origin
+column=entry
+column=width
+column=height
+column=multiway_deck
+column=spawn
+column=angle
+column=npc_spawn
+column=entity_data
+column=respawnrate
+column=behaviour
+column=patrol
+column=wanderrange
+column=targetspeed
+column=turnspeed
+column=acceleration
+column=sail
+column=debug_name
+column=static_spawn
+column=allow_instance
+
+// 196
+[sailing_boat_cargohold_whitelist_obj]
+column=entry,obj,REQUIRED,LIST,INDEXED,CLIENTSIDE
+column=entry_category,category,REQUIRED,LIST,INDEXED,CLIENTSIDE
+
+// 197
+[port_task]
+column=task_id,int,REQUIRED,INDEXED,CLIENTSIDE
+column=name,string,REQUIRED,CLIENTSIDE
+column=task_type,int,REQUIRED,CLIENTSIDE
+column=level_required,int,REQUIRED,CLIENTSIDE
+column=reward_tier,int,REQUIRED,CLIENTSIDE
+column=starting_port,dbrow,INDEXED,CLIENTSIDE
+column=cargo_port,dbrow,CLIENTSIDE
+column=ending_port,dbrow,REQUIRED,CLIENTSIDE
+column=cancellable,boolean,CLIENTSIDE
+default=cancellable,true
+column=xp_reward
+column=give_coin_reward
+column=facilities_required,loc,string,CLIENTSIDE
+column=facilitites_recommended,loc,string,CLIENTSIDE
+column=boat_combat_required,boolean,CLIENTSIDE
+default=boat_combat_required,false
+column=regular_combat_required,int,CLIENTSIDE
+default=regular_combat_required,0
+column=combat_recommended,int,CLIENTSIDE
+default=combat_recommended,0
+column=delivery_object,namedobj,CLIENTSIDE
+column=cargo,namedobj,int,CLIENTSIDE
+column=port_checkpoint,int,int,CLIENTSIDE
+default=port_checkpoint,-1,-1
+column=bounty_target_alive,npc,CLIENTSIDE
+column=bounty_target_dead,npc,CLIENTSIDE
+column=bounty_object,namedobj,CLIENTSIDE
+column=bounty_object_amount,int,CLIENTSIDE
+column=bounty_object_rarity,int,CLIENTSIDE
+column=task_board_graphic,model,REQUIRED,CLIENTSIDE
+column=flavour_text,string,REQUIRED,CLIENTSIDE
+column=related_tasks
+column=guide_task
+column=side_effect_id
+
+// 198
+[task_board_layout]
+column=layout_id,int,REQUIRED,INDEXED,CLIENTSIDE
+column=style_task,int,int,REQUIRED,LIST,CLIENTSIDE
+column=tasks_on_first_row,int,REQUIRED,CLIENTSIDE
+column=tasks_on_subsequent_rows,int,REQUIRED,CLIENTSIDE
+
+// 199
+[sailing_anchor_anims]
+column=sailing_anchor_inactive
+column=sailing_anchor_active
+column=sailing_anchor_drop
+column=sailing_anchor_pull
+column=sailing_anchor_human_drop
+column=sailing_anchor_human_pull
+
+// 200
+[sailing_sea_hazard]
+column=hazard_id,int,REQUIRED,INDEXED,CLIENTSIDE
+column=name,string,REQUIRED,CLIENTSIDE
+column=ship_damage
+column=effect_frequency
+column=hazard_area
+column=validate_area
+column=sfx_emitter_locs
+
+// 201
+[sailing_sea]
+column=unique_id,int,REQUIRED,INDEXED,CLIENTSIDE
+column=ocean_id,int,INDEXED,CLIENTSIDE
+column=name,string,REQUIRED,CLIENTSIDE
+column=type,int,REQUIRED,INDEXED,CLIENTSIDE
+column=ocean,dbrow,INDEXED,CLIENTSIDE
+column=required_level,int,REQUIRED,CLIENTSIDE
+column=xp_level,int,CLIENTSIDE
+default=xp_level,1
+column=centre_coord,coord,CLIENTSIDE
+column=has_charting_rapids
+column=sfx_emitter_locs
+
+// 202
+[sailing_shipwreck_cluster]
+column=controller_coord
+column=debug_name
+column=active_shipwrecks_max
+column=shipwreck_data
+column=shipwreck_coord
+
+// 203
+[sailing_shipwreck]
+column=debug_name
+column=sailing_shipwreck_durability
+column=active_loc
+column=inactive_loc
+column=levelreq
+column=salvage
+column=xp
+column=lowchance
+column=highchance
+column=shipwreck_full_to_depleted
+column=shipwreck_depleted_to_full
+column=shipwreck_idle_anim
+column=shipwreck_stump_idle_anim
+column=pet_chance
+
+// 204
+[sailing_salvaging_hook_animations]
+column=sailing_salvaging_loc_drop_anim
+column=sailing_salvaging_loc_idle02_anim
+column=sailing_salvaging_loc_reset_anim
+column=sailing_salvaging_player_drop_anim
+column=sailing_salvaging_player_interact_anim
+column=sailing_salvaging_player_reset_anim
+
+// 205
+[thieving_chest]
+column=thieving_req
+column=thieving_xp
+column=stat_low
+column=stat_high
+column=lockpick_stat_low
+column=lockpick_stat_high
+column=teleport_stat_low
+column=teleport_stat_high
+column=open_chest
+column=lootcontainer_details
+
+// 206
+[chartering_destinations]
+column=chartering_destination_id,int,REQUIRED,INDEXED,CLIENTSIDE
+column=chartering_destination_name,string,REQUIRED,CLIENTSIDE
+column=chartering_destination_inline_name,string,CLIENTSIDE
+column=chartering_destination_port_coord,coord,REQUIRED,CLIENTSIDE
+column=chartering_destination_x_pos,int,REQUIRED,CLIENTSIDE
+column=chartering_destination_y_pos,int,REQUIRED,CLIENTSIDE
+column=chartering_destination_inzone,coord,coord,REQUIRED,CLIENTSIDE
+column=chartering_shop_inv
+column=related_content,int,CLIENTSIDE
+
+// 207
+[chartering_costs]
+column=chartering_costs
 

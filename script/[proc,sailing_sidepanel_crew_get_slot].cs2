@@ -1,0 +1,20 @@
+// 9040
+[proc,sailing_sidepanel_crew_get_slot](int $int)(int)
+if ($int < 0 | $int > 4) {
+    ~error("Input invalid ID in sailing_sidepanel_crew_get_slot (<tostring($int)>)");
+    return(0);
+}
+switch_int ($int) {
+    case 0 :
+        return(%sailing_sidepanel_crew_slot_1);
+    case 1 :
+        return(%sailing_sidepanel_crew_slot_2);
+    case 2 :
+        return(%sailing_sidepanel_crew_slot_3);
+    case 3 :
+        return(%sailing_sidepanel_crew_slot_4);
+    case 4 :
+        return(%sailing_sidepanel_crew_slot_5);
+}
+~error("Input ID not found in sailing_sidepanel_crew_get_slot for id <tostring($int)>, may need adding to switch case.");
+return(0);

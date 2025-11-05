@@ -1,0 +1,8 @@
+// 8968
+[proc,sailing_boat_selection_get_boat_icon](int $int)(graphic)
+db_find(sailing_boat:type_id, $int);
+def_dbrow $dbrow = db_findnext;
+if ($dbrow = null) {
+    return(null);
+}
+return(db_getfield($dbrow, sailing_boat:boat_sprite, 0));

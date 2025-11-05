@@ -1,0 +1,20 @@
+// 9003
+[proc,script9003](dbrow $dbrow0)(int, int)
+if (db_getrowtable($dbrow0) ! sailing_sea) {
+    ~error("Input table must be of type sailing_sea.");
+    return(-1, -1);
+}
+def_int $int1 = db_find(sailing_charting_core:sailing_sea, $dbrow0);
+if ($int1 <= 0) {
+    ~error("Found no dbrows with this sea set.");
+    return(-1, -1);
+}
+def_int $int2 = 0;
+def_dbrow $dbrow3 = db_findnext;
+while ($dbrow3 ! null) {
+    if (~script9004(db_getfield($dbrow3, sailing_charting_core:unique_id, 0)) = ^true) {
+        $int2 = calc($int2 + 1);
+    }
+    $dbrow3 = db_findnext;
+}
+return($int2, $int1);

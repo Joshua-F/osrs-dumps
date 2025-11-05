@@ -1,0 +1,18 @@
+// 8832
+[proc,script8832](component $component, int $int1, int $int2, int $int3, string $string0, dbrow $dbrow, string $string1, boolean $boolean, int $int6, string $string2)(int)
+def_component $facility_click_layer = sailing_customisation:facility_click_layer;
+cc_setop(1, "Build");
+cc_setopbase("<col=ff981f><$string2></col>");
+if ($boolean = true) {
+    cc_setonop("script8833($string0, $string1)");
+    $int1 = calc($int1 + 1);
+} else {
+    .cc_create($facility_click_layer, ^iftype_rectangle, $int6);
+    .cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+    .cc_setcolour(^black);
+    .cc_setfill(false);
+    .cc_setsize(1, 1, ^setsize_minus, ^setsize_abs);
+    .cc_settrans(255);
+    cc_setonop("script8834($facility_click_layer, $int6, $dbrow)");
+}
+return($int1);

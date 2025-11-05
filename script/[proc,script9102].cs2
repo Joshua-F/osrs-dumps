@@ -1,0 +1,14 @@
+// 9102
+[proc,script9102](dbrow $dbrow)(boolean, string)
+def_int $int1 = ~script9100($dbrow);
+def_boolean $boolean = false;
+def_string $string = "";
+def_int $int3 = 0;
+while ($int3 < $int1) {
+    $boolean, $string = ~restrict_content_dbrow_with_string(~script9101($dbrow, $int3));
+    if ($boolean = true) {
+        return(true, $string);
+    }
+    $int3 = calc($int3 + 1);
+}
+return(false, "");

@@ -1,0 +1,12 @@
+// 9074
+[proc,script9074](dbrow $dbrow)(int, int)
+if ($dbrow = null) {
+    return(-1, 0);
+}
+switch_dbtable (db_getrowtable($dbrow)) {
+    case sailing_boat_facility :
+        return(db_getfield($dbrow, sailing_boat_facility:crew_stat_requirement, 0));
+    case sailing_boat_steering :
+        return(db_getfield($dbrow, sailing_boat_steering:crew_stat_requirement, 0));
+}
+return(-1, 0);

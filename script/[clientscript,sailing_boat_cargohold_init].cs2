@@ -1,0 +1,38 @@
+// 8869
+[clientscript,sailing_boat_cargohold_init](component $universe, component $warning, component $items, component $scrollbar, component $occupiedslots, component $1, component $5, component $10, component $x, component $all, component $tools_container, component $tools, component $depositall_cargo, component $depositall_salvage, component $depositall_inventory)
+~sailing_boat_cargohold_warning($warning);
+~scrollbar_vertical($scrollbar, $items, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~sailing_boat_cargohold_quantitybuttons_set($1, $5, $10, $x, $all);
+if_setonvartransmit("sailing_boat_cargohold_quantitybuttons_set($1, $5, $10, $x, $all){prayer23}", $1);
+def_int $int15 = calc(if_getwidth($items) - 9 * 36);
+def_int $int16 = calc($int15 / (9 + 1));
+def_int $int17 = calc($int15 - $int16 * (9 - 1));
+$int17 = calc(($int17 + 1) / 2);
+~sailing_boat_cargohold_items($items, $scrollbar, $occupiedslots, $int17, $int16);
+if_setoninvtransmit("sailing_boat_cargohold_items($items, $scrollbar, $occupiedslots, $int17, $int16){%sailing_boat_cargohold_inv}", $universe);
+if_setonvartransmit("sailing_boat_cargohold_items($items, $scrollbar, $occupiedslots, $int17, $int16){prayer23}", $universe);
+cc_deleteall($tools_container);
+def_int $int18 = 0;
+$int18 = ~thinbox($tools_container, $int18);
+def_string $string = "Tools:";
+def_int $int19 = parawidth($string, 512, p12_full);
+$int17 = 7;
+cc_create($tools_container, ^iftype_text, $int18);
+cc_setsize($int19, 0, ^setsize_abs, ^setsize_minus);
+cc_setposition($int17, 0, ^setpos_abs_left, ^setpos_abs_centre);
+cc_setcolour(0xff981f);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+cc_settextfont(p12_full);
+cc_settextshadow(true);
+cc_settext($string);
+if_setposition($int17, 0, ^setpos_abs_right, ^setpos_abs_centre, $tools);
+$int15 = calc($int17 * 2 + $int19 + 5);
+if_setsize($int15, 0, ^setsize_minus, ^setsize_minus, $tools);
+$int18 = db_listall(sailing_charting_tool_recovery);
+~sailing_boat_cargohold_tools($tools_container, $tools, $int15, $int18);
+if_setoninvtransmit("sailing_boat_cargohold_tools($tools_container, $tools, $int15, $int18){inv}", $tools_container);
+if_setonvartransmit("sailing_boat_cargohold_tools($tools_container, $tools, $int15, $int18){current_affairs_main, pry_main, 100_pirate_quest}", $tools_container);
+~script8878($depositall_cargo, "Cargo", cargo_interface_dummy, null, null);
+~script8878($depositall_salvage, "Salvage", salvage_interface_dummy, null, null);
+~script8878($depositall_inventory, "Inventory", null, "sideicons_new,3", 0_0_0_33_36);
+~sailing_boat_cargohold_stack_toggle($items, $scrollbar, $occupiedslots);

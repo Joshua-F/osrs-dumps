@@ -1,0 +1,18 @@
+// 8784
+[proc,sailing_crew_resize](int $int0, component $component1, component $component2, int $int3, component $component4, component $component5, component $component6, component $component7, int $int8, int $int9)
+if_setsize(if_getwidth($component1), min(calc($int0 - 5), $int3), ^setsize_abs, ^setsize_abs, $component1);
+if ($int8 > if_getheight($component4)) {
+    if_setscrollsize(0, $int8, $component4);
+    ~scrollbar_resize($component5, $component4, if_getscrolly($component4));
+} else {
+    if_setscrollsize(0, 0, $component4);
+    ~scrollbar_resize($component5, $component4, 0);
+}
+if ($int9 > if_getheight($component6)) {
+    if_setscrollsize(0, $int9, $component6);
+    ~scrollbar_resize($component7, $component6, if_getscrolly($component6));
+} else {
+    if_setscrollsize(0, 0, $component6);
+    ~scrollbar_resize($component7, $component6, 0);
+}
+if_setontimer("sailing_crew_resize($int0, $component1, $component2, $int3, $component4, $component5, $component6, $component7, $int8, $int9)", $component1);

@@ -1,20 +1,21 @@
 // 3804
 [clientscript,xpreward_init](component $universe, component $confirm)
 cc_deleteall($universe);
-def_int $int = 0;
-while ($int < 23) {
-    cc_create($universe, ^iftype_rectangle, $int);
+def_int $int2 = 0;
+while ($int2 < 24) {
+    cc_create($universe, ^iftype_rectangle, $int2);
     cc_setsize(1, 1, ^setsize_abs, ^setsize_abs);
     cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
     cc_sethide(true);
-    $int = calc($int + 1);
+    $int2 = calc($int2 + 1);
 }
 cc_deleteall($confirm);
-cc_create($confirm, ^iftype_text, 0);
+def_int $int3 = ~options_button_off($confirm, 0);
+cc_create($confirm, ^iftype_text, $int3);
 cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
 cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
 cc_settextfont(p12_full);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
 cc_settextshadow(true);
 if_setop(1, "Confirm", $confirm);
-~xpreward_update(0, $universe, $confirm);
+~xpreward_update(0, $universe, $confirm, $int3);

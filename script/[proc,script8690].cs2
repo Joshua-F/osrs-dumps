@@ -1,0 +1,24 @@
+// 8690
+[proc,script8690](component $component0, component $component1, component $component2)
+def_component $sea_dropdown = sailing_log:sea_dropdown;
+def_int $int4 = db_listall(sailing_sea);
+def_int $int5 = $int4;
+$int4 = calc($int4 + 2);
+def_int $intarray($int4);
+$intarray(0) = -1;
+$intarray(1) = -2;
+def_int $int6 = 2;
+def_int $int7 = 0;
+def_dbrow $dbrow = null;
+while ($int7 < $int5) {
+    db_find(sailing_sea:unique_id, $int7);
+    $dbrow = db_findnext;
+    $dbrow = db_getfield($dbrow, sailing_sea:ocean, 0);
+    if ($dbrow ! null & (~script8688 = db_getfield($dbrow, sailing_sea:unique_id, 0) | ~script8688 = -1)) {
+        $intarray($int6) = $int7;
+        $int6 = calc($int6 + 1);
+    }
+    $int7 = calc($int7 + 1);
+}
+~script8695($sea_dropdown, $int6, %sailing_charting_sea_filter, 16750623);
+if_setonop("script8691($component0, $component1, $component2, $sea_dropdown, $int6, $intarray, 16750623, 16777215)", $sea_dropdown);

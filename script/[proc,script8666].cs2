@@ -1,0 +1,100 @@
+// 8666
+[proc,script8666]
+def_component $infinity = sailing_log:infinity;
+def_component $universe = sailing_log:universe;
+def_component $resize_preview = sailing_log:resize_preview;
+def_int $int3 = if_getwidth($universe);
+def_int $int4 = if_getheight($universe);
+def_int $int5 = if_getwidth($infinity);
+def_int $int6 = ~script1912;
+def_int $int7 = calc(if_getheight($infinity) - $int6);
+def_int $int8 = 0;
+def_boolean $boolean = ~on_mobile;
+if (~script7925 = false | %sailing_log_has_been_moved = 0) {
+    $int8 = 1;
+}
+def_enum $enum = ~toplevel_getcomponents;
+def_component $component = enum(component, component, $enum, toplevel_osrs_stretch:mainmodal);
+def_int $int12 = 512;
+def_int $int13 = 334;
+def_int $int14 = if_getx($component);
+def_int $int15 = if_gety($component);
+if_sethide(false, $universe);
+if_sethide(true, $resize_preview);
+if ($int8 = 0) {
+    $int12 = max($int12, min(%sailing_log_width, $int5));
+    $int13 = max($int13, min(%sailing_log_height, $int7));
+    $int14 = max(0, min(%sailing_log_x, calc($int5 - $int12)));
+    $int15 = max($int6, min(%sailing_log_y, calc($int6 + $int7 - $int13)));
+    if_setposition($int14, $int15, ^setpos_abs_left, ^setpos_abs_top, $universe);
+    if_setsize($int12, $int13, ^setsize_abs, ^setsize_abs, $universe);
+} else if ($boolean = false) {
+    $int13 = calc(if_getheight($infinity) - 12);
+    if (calc($int13 % 2) ! 0) {
+        $int13 = calc($int13 - 1);
+    }
+    $int13 = ~minmax(334, 442, $int13);
+    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, $universe);
+    if_setsize($int12, $int13, ^setsize_abs, ^setsize_abs, $universe);
+}
+def_component $content_outer = sailing_log:content_outer;
+def_int $int17 = calc($int13 - 6 * 2);
+def_int $int18 = calc($int12 - 6 * 2);
+def_int $int19 = calc($int14 + $int12 - 6);
+def_int $int20 = calc($int15 + $int13 - 6);
+if ($int8 = 0) {
+    if (cc_find($infinity, 0) = true) {
+        cc_setsize(calc($int18 - 50), calc(if_gety($content_outer) - 2 * 6), ^setsize_abs, ^setsize_abs);
+        cc_setposition(calc($int14 + 6 + 25), calc($int15 + 6), ^setpos_abs_left, ^setpos_abs_top);
+        ~sailing_log_reset_handle($int6);
+    }
+    if (cc_find($infinity, 1) = true) {
+        cc_setsize($int18, 6, ^setsize_abs, ^setsize_abs);
+        cc_setposition(calc($int14 + 6), $int20, ^setpos_abs_left, ^setpos_abs_top);
+        ~sailing_log_reset_handle($int6);
+    }
+    if (cc_find($infinity, 2) = true) {
+        cc_setsize(6, $int17, ^setsize_abs, ^setsize_abs);
+        cc_setposition($int14, calc($int15 + 6), ^setpos_abs_left, ^setpos_abs_top);
+        ~sailing_log_reset_handle($int6);
+    }
+    if (cc_find($infinity, 3) = true) {
+        cc_setsize(6, $int17, ^setsize_abs, ^setsize_abs);
+        cc_setposition($int19, calc($int15 + 6), ^setpos_abs_left, ^setpos_abs_top);
+        ~sailing_log_reset_handle($int6);
+    }
+    if (cc_find($infinity, 4) = true) {
+        cc_setsize(6, 6, ^setsize_abs, ^setsize_abs);
+        cc_setposition($int14, $int15, ^setpos_abs_left, ^setpos_abs_top);
+        ~sailing_log_reset_handle($int6);
+    }
+    if (cc_find($infinity, 5) = true) {
+        cc_setsize(6, 6, ^setsize_abs, ^setsize_abs);
+        cc_setposition($int19, $int15, ^setpos_abs_left, ^setpos_abs_top);
+        ~sailing_log_reset_handle($int6);
+    }
+    if (cc_find($infinity, 6) = true) {
+        cc_setsize(6, 6, ^setsize_abs, ^setsize_abs);
+        cc_setposition($int14, $int20, ^setpos_abs_left, ^setpos_abs_top);
+        ~sailing_log_reset_handle($int6);
+    }
+    if (cc_find($infinity, 7) = true) {
+        cc_setsize(6, 6, ^setsize_abs, ^setsize_abs);
+        cc_setposition($int19, $int20, ^setpos_abs_left, ^setpos_abs_top);
+        ~sailing_log_reset_handle($int6);
+    }
+    if (cc_find($infinity, 8) = true) {
+        cc_setsize(calc($int12 - 28 - 6 * 2), 6, ^setsize_abs, ^setsize_abs);
+        cc_setposition(calc($int14 + 28 + 6), $int15, ^setpos_abs_left, ^setpos_abs_top);
+        ~sailing_log_reset_handle($int6);
+    }
+}
+def_string $string = "Captain's Log - Sea Charting";
+if (%sailing_log_tab_opened = 1) {
+    $string = "Captain's Log - Port Tasks";
+}
+if ($int8 = 1) {
+    ~steelborder(sailing_log:frame, $string, 1);
+} else {
+    ~steelborder(sailing_log:frame, $string, 3);
+}

@@ -1,0 +1,25 @@
+// 9060
+[proc,script9060](dbtable $dbtable, dbrow $dbrow)(int)
+if ($dbtable = null) {
+    $dbtable = db_getrowtable($dbrow);
+}
+switch_dbtable ($dbtable) {
+    case sailing_boat_facility :
+        return(db_getfieldcount($dbrow, sailing_boat_facility:quest_requirement));
+    case sailing_boat_keel :
+        return(db_getfieldcount($dbrow, sailing_boat_keel:quest_requirement));
+    case sailing_boat_hull :
+        return(db_getfieldcount($dbrow, sailing_boat_hull:quest_requirement));
+    case sailing_boat_sail :
+        return(db_getfieldcount($dbrow, sailing_boat_sail:quest_requirement));
+    case sailing_boat_steering :
+        return(db_getfieldcount($dbrow, sailing_boat_steering:quest_requirement));
+    case sailing_boat_flag :
+        return(db_getfieldcount($dbrow, sailing_boat_flag:quest_requirement));
+    case sailing_boat_brazier :
+        return(db_getfieldcount($dbrow, sailing_boat_brazier:quest_requirement));
+    case sailing_boat_trim :
+        return(db_getfieldcount($dbrow, sailing_boat_trim:quest_requirement));
+    case default :
+        return(-1);
+}

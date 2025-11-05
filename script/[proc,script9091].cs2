@@ -1,0 +1,10 @@
+// 9091
+[proc,script9091](dbrow $dbrow)(string)
+if ($dbrow = null) {
+    return("");
+}
+def_string $string = db_getfield($dbrow, sailing_dock:inline_name, 0);
+if (string_length($string) <= 0) {
+    $string = db_getfield($dbrow, sailing_dock:nice_name, 0);
+}
+return($string);

@@ -1,0 +1,15 @@
+// 8845
+[proc,sailing_customisation_toggle_setup]
+def_component $detail_toggle = sailing_customisation:detail_toggle;
+if (%sailing_boat_customisation_hide_more_detail = 0) {
+    if_setgraphic("toggle_box,1", sailing_customisation:detail_toggle_sprite);
+} else {
+    if_setgraphic("toggle_box,0", sailing_customisation:detail_toggle_sprite);
+}
+if_setop(1, "Toggle", $detail_toggle);
+if_setopbase("<col=ff981f>Detailed descriptions</col>", $detail_toggle);
+if_setonop("script8846", $detail_toggle);
+if (~on_mobile = false) {
+    if_setonmouserepeat("text_colour_swapper(sailing_customisation:detail_toggle_text, 16777215)", $detail_toggle);
+    if_setonmouseleave("text_colour_swapper(sailing_customisation:detail_toggle_text, 16750623)", $detail_toggle);
+}

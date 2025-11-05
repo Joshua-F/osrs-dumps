@@ -1,0 +1,14 @@
+// 8684
+[proc,script8684](component $component0, component $component1, component $component2)
+def_component $ocean_dropdown = sailing_log:ocean_dropdown;
+def_int $int = 2;
+db_listall(sailing_sea);
+def_dbrow $dbrow = db_findnext;
+while ($dbrow ! null) {
+    if (db_getfield($dbrow, sailing_sea:ocean, 0) = null) {
+        $int = calc($int + 1);
+    }
+    $dbrow = db_findnext;
+}
+~script8695($ocean_dropdown, $int, %sailing_charting_ocean_filter, 16750623);
+if_setonop("script8685($component0, $component1, $component2, $ocean_dropdown, $int, 16750623, 16777215)", $ocean_dropdown);

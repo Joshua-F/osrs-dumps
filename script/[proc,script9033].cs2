@@ -1,0 +1,11 @@
+// 9033
+[proc,script9033]()(boolean)
+def_boolean $boolean = false;
+def_dbrow $dbrow = null;
+if (db_find(sailing_boat:type_id, %sailing_boarded_boat_type) = 1) {
+    $dbrow = db_findnext;
+    if ($dbrow ! null) {
+        $boolean = db_getfield($dbrow, sailing_boat:combined_navigation, 0);
+    }
+}
+return($boolean);
