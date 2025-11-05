@@ -1,0 +1,33 @@
+// 8806
+[proc,script8806](dbtable $dbtable, dbrow $dbrow, stat $stat, int $int3)(boolean)
+def_int $int4 = 0;
+def_int $int5 = 0;
+def_int $int6 = 0;
+if ($stat = construction) {
+    $int4 = stat(construction);
+    $int5 = ~script9056($dbtable, $dbrow);
+    if ($int4 = -1 | $int5 = -1) {
+        return(false);
+    }
+    if (~saw_check = eyeglo_crystal_saw) {
+        $int4 = calc($int4 + 3);
+    }
+    if ($int4 < $int5) {
+        return(false);
+    }
+    return(true);
+}
+if ($stat = sailing) {
+    $int6 = ~script9055($dbtable, $dbrow);
+    if ($int6 = -1) {
+        return(false);
+    }
+    if (stat(sailing) < $int6) {
+        return(false);
+    }
+    return(true);
+}
+if (stat($stat) < $int3) {
+    return(false);
+}
+return(true);

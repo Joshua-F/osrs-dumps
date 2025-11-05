@@ -1,0 +1,12 @@
+// 9037
+[proc,script9037](obj $obj)(int)
+if ($obj = null) {
+    return(-1);
+}
+def_dbrow $dbrow = oc_param($obj, param_2456);
+if ($dbrow = null) {
+    ~error("Ammunition object <oc_name($obj)> did not have ammunition data defined as a parameter!");
+    return(-1);
+}
+def_int $int = db_getfield($dbrow, sailing_combat_facility_ammunition:ammunition_id, 0);
+return($int);

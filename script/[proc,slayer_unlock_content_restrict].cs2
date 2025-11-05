@@ -1,0 +1,14 @@
+// 9102
+[proc,slayer_unlock_content_restrict](dbrow $dbrow)(boolean, string)
+def_int $int1 = ~slayer_unlock_get_related_task_count($dbrow);
+def_boolean $boolean = false;
+def_string $string = "";
+def_int $int3 = 0;
+while ($int3 < $int1) {
+    $boolean, $string = ~restrict_content_dbrow_with_string(~slayer_unlock_get_related_task($dbrow, $int3));
+    if ($boolean = true) {
+        return(true, $string);
+    }
+    $int3 = calc($int3 + 1);
+}
+return(false, "");

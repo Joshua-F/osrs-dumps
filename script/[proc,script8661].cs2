@@ -1,0 +1,27 @@
+// 8661
+[proc,script8661]
+def_dbrow $dbrow0 = null;
+def_dbrow $dbrow1 = null;
+$dbrow0, $dbrow1 = ~script8662;
+def_int $int2 = -1;
+def_int $int3 = -1;
+if ($dbrow0 ! null) {
+    $int2 = db_getfield($dbrow0, sailing_sea:unique_id, 0);
+}
+if ($dbrow1 ! null) {
+    $int3 = db_getfield($dbrow1, sailing_sea:unique_id, 0);
+}
+if (%sailing_charting_ocean_filter = -2) {
+    if ($int3 ! -1) {
+        %sailing_charting_ocean_filter_override = $int3;
+    } else {
+        %sailing_charting_ocean_filter_override = -1;
+    }
+}
+if (%sailing_charting_sea_filter = -2) {
+    if ($int2 ! -1) {
+        %sailing_charting_sea_filter_override = $int2;
+    } else {
+        %sailing_charting_sea_filter_override = -1;
+    }
+}

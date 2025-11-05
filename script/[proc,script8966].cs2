@@ -1,0 +1,17 @@
+// 8966
+[proc,script8966](dbrow $dbrow0, int $int1)(boolean)
+if ($dbrow0 = null | $int1 <= 0) {
+    return(false);
+}
+db_find(music_area_group:area, $int1);
+def_int $int2 = 0;
+def_int $int3 = 0;
+def_dbrow $dbrow4 = db_findnext;
+while ($dbrow4 ! null) {
+    if (~script8963($dbrow0, $dbrow4) = true) {
+        return(true);
+    }
+    $int2 = calc($int2 + 1);
+    $dbrow4 = db_findnext;
+}
+return(false);

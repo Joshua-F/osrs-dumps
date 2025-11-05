@@ -1,0 +1,42 @@
+// 8817
+[proc,script8817](dbrow $dbrow0, dbrow $dbrow1, int $int2, int $int3)(int, dbrow)
+def_int $int4 = db_getfieldcount($dbrow0, sailing_customisation_tab:facility_subtype);
+if ($int4 <= 0) {
+    ~error("No sub types or types defined for tab - <db_getfield($dbrow0, sailing_customisation_tab:tab_name, 0)> dbrow");
+    return(0, null);
+}
+def_int $int5 = 0;
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_dbrow $dbrow8 = db_getfield($dbrow1, sailing_boat:hotspot:3, %sailing_boat_customisation_hotspot_id);
+def_int $int9 = 0;
+def_int $int10 = db_getfield($dbrow0, sailing_customisation_tab:facility_subtype, 0);
+def_dbrow $dbrow11 = null;
+def_int $int12 = 0;
+if ($dbrow8 ! null) {
+    $int9 = db_getfieldcount($dbrow8, sailing_boat_hotspot:option);
+}
+if ($int3 = 1 & $int7 = -1) {
+    return($int9, null);
+}
+while ($int6 < $int4) {
+    $int7 = db_getfield($dbrow0, sailing_customisation_tab:facility_subtype, $int6);
+    if ($dbrow8 ! null) {
+        $int12 = 0;
+        while ($int12 < $int9) {
+            $dbrow11 = db_getfield($dbrow8, sailing_boat_hotspot:option, $int12);
+            if ($dbrow11 ! null) {
+                $int10 = db_getfield($dbrow11, sailing_boat_facility:facility_subtype, 0);
+                if ($int10 = $int7 | $int7 = -1) {
+                    if ($int3 = 0 & $int2 = $int5) {
+                        return($int5, $dbrow11);
+                    }
+                    $int5 = calc($int5 + 1);
+                }
+            }
+            $int12 = calc($int12 + 1);
+        }
+    }
+    $int6 = calc($int6 + 1);
+}
+return($int5, null);

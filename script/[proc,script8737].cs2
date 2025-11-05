@@ -1,0 +1,28 @@
+// 8737
+[proc,script8737](dbrow $dbrow0, dbrow $dbrow1)(boolean)
+def_int $int2 = -1;
+def_int $int3 = -1;
+if ($dbrow0 ! null) {
+    if (db_getrowtable($dbrow0) = sailing_boat_facility) {
+        $int2, $int3 = db_getfield($dbrow0, sailing_boat_facility:crew_stat_requirement, 0);
+    } else if (db_getrowtable($dbrow0) = sailing_boat_steering) {
+        $int2, $int3 = db_getfield($dbrow0, sailing_boat_steering:crew_stat_requirement, 0);
+    } else if (db_getrowtable($dbrow0) = sailing_boat_hull) {
+        $int2, $int3 = 3, 1;
+    }
+    switch_int ($int2) {
+        case 1 :
+            if (~sailing_crew_get_stat(1, $dbrow1, -1) < max($int3, 1)) {
+                return(false);
+            }
+        case 2 :
+            if (~sailing_crew_get_stat(2, $dbrow1, -1) < max($int3, 1)) {
+                return(false);
+            }
+        case 3 :
+            if (~sailing_crew_get_stat(3, $dbrow1, -1) < max($int3, 1)) {
+                return(false);
+            }
+    }
+}
+return(true);

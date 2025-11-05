@@ -1,0 +1,33 @@
+// 8872
+[proc,sailing_boat_cargohold_sort_list](intarray $intarray0, intarray $intarray1, inv $inv, component $component, int $int2, boolean $boolean)(int)
+def_int $int4 = 0;
+def_int $int5 = 0;
+def_obj $obj = null;
+def_obj $objarray(240);
+while ($int4 < 240) {
+    if ($component ! null) {
+        cc_create($component, ^iftype_graphic, $int4);
+    }
+    if ($int2 = 1) {
+        $obj = invother_getobj($inv, $int4);
+    } else {
+        $obj = inv_getobj($inv, $int4);
+    }
+    if ($obj ! null & array_count($objarray, $obj, 0, -1) <= 0) {
+        if ($boolean = true) {
+            $objarray($int4) = $obj;
+        }
+        if (oc_param($obj, param_2504) = 1) {
+            $intarray0($int4) = $int4;
+        } else {
+            $intarray0($int4) = calc(240 + $int4);
+        }
+        $int5 = calc($int5 + 1);
+    } else {
+        $intarray0($int4) = 65535;
+    }
+    $int4 = calc($int4 + 1);
+}
+array_generaterange($intarray1, 0, -1, -1);
+array_sort($intarray0, $intarray1);
+return($int5);

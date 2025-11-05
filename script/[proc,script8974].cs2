@@ -1,0 +1,13 @@
+// 8974
+[proc,script8974](dbrow $dbrow, int $int)(string)
+def_string $string = "";
+if ($dbrow = null) {
+    return(db_getfield(sailing_boat_location_default_sprite, boat_location_sprite_data:name, 0));
+}
+if ($int = 1) {
+    $string = db_getfield($dbrow, sailing_dock:inline_name, 0);
+    if (string_length($string) > 0) {
+        return($string);
+    }
+}
+return(~sailing_dock_name($dbrow));
