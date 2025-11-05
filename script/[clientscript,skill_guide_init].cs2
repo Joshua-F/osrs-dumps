@@ -1,6 +1,6 @@
 // 654
-[clientscript,skill_guide_init](component $universe, component $title, component $description, component $info, component $icons, component $scrollbar, component $scroll_top, component $scroll_middle, component $scroll_bottom, component $categories, component $infinity)
-~skill_guide_build($title, $description, $info, $icons, $scrollbar, $scroll_top, $scroll_middle, $scroll_bottom, $categories, $infinity);
+[clientscript,skill_guide_init](component $universe, component $title, component $description, component $info, component $icons, component $scrollbar, component $categories, component $infinity)
+~skill_guide_build($title, $description, $info, $icons, $scrollbar, $categories, $infinity);
 def_enum $enum = ~toplevel_getcomponents;
 def_component $component = enum(component, component, $enum, toplevel_osrs_stretch:mainmodal);
 if (~on_mobile = true) {
@@ -13,7 +13,7 @@ if (~on_mobile = true) {
         %skill_guide_v2_y = if_gety($component);
     }
     if_setontimer("responsive_interface_scaler($infinity, -1)", $infinity);
-    if_setonresize("skill_guide_rebuild", $infinity);
+    if_setonresize("skill_guide_rebuild(event_com)", $infinity);
 }
-if_setonvartransmit("skill_guide_build($title, $description, $info, $icons, $scrollbar, $scroll_top, $scroll_middle, $scroll_bottom, $categories, $infinity){skill_guide_v2}", $universe);
+if_setonvartransmit("skill_guide_build($title, $description, $info, $icons, $scrollbar, $categories, $infinity){skill_guide_v2}", $universe);
 ~skill_guide_v2_size_handler(-1, -1, $infinity, $universe);

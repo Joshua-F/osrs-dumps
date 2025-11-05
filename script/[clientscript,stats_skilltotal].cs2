@@ -1,8 +1,9 @@
 // 396
-[clientscript,stats_skilltotal](component $com_27, component $tooltip)
+[clientscript,stats_skilltotal](component $component0, component $component1)
 def_int $int = ~stat_totallevel;
-if_settext("Total level:<br><tostring($int)>", $com_27);
-if_clearops($com_27);
+if_setonvartransmit("stats_skilltotal($component0, $component1){league_reusable_protected_1, content_restriction_temp_1}", $component0);
+if_settext("Total level: <tostring($int)>", $component0);
+if_clearops($component0);
 def_string $string0 = "";
 def_string $string1 = "";
 if (map_members = true | %playermember = 1) {
@@ -17,13 +18,13 @@ if (~league_relic_active(struct_1736) = 1) {
     $string1 = append($string1, "|<~tostring_spacer(~script7698(null), ",")>");
 }
 if (~on_mobile = true) {
-    if_setop(1, "Toggle Total XP", $com_27);
-    if_setonop("stats_op(event_op, event_com, -1, $tooltip, $string0, $string1, p12_full)", $com_27);
-    if (%osm_tooltip_stat = $com_27 & %osm_tooltip_built = -1) {
-        ~script2344($com_27, -1, $tooltip, $string0, $string1, p12_full);
+    if_setop(1, "Toggle Total XP", $component0);
+    if_setonop("stats_op(event_op, event_com, -1, $component1, $string0, $string1, p12_full)", $component0);
+    if (%osm_tooltip_stat = $component0 & %osm_tooltip_built = -1) {
+        ~script2344($component0, -1, $component1, $string0, $string1, p12_full);
     }
 } else {
-    if_setonmouserepeat("script992(event_com, -1, $tooltip, $string0, $string1, p12_full, calc(25 / 5))", $com_27);
-    if_setonmouseleave("deltooltip($tooltip)", $com_27);
+    if_setonmouserepeat("script992(event_com, -1, $component1, $string0, $string1, p12_full, calc(25 / 5))", $component0);
+    if_setonmouseleave("deltooltip($component1)", $component0);
     %tooltip_built = 0;
 }

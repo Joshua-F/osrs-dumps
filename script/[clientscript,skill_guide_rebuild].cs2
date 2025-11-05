@@ -1,13 +1,12 @@
 // 1898
-[clientscript,skill_guide_rebuild]
-def_component $infinity = skill_guide:infinity;
+[clientscript,skill_guide_rebuild](component $component)
 def_component $universe = skill_guide:universe;
 def_component $move_layer = skill_guide:move_layer;
 def_int $int3 = if_getwidth($universe);
 def_int $int4 = if_getheight($universe);
-def_int $int5 = if_getwidth($infinity);
+def_int $int5 = if_getwidth($component);
 def_int $int6 = ~script1912;
-def_int $int7 = calc(if_getheight($infinity) - $int6);
+def_int $int7 = calc(if_getheight($component) - $int6);
 def_int $int8 = max(0, min(%skill_guide_v2_x, calc($int5 - $int3)));
 def_int $int9 = max($int6, min(%skill_guide_v2_y, calc($int6 + $int7 - $int4)));
 if (~script7925 = false) {
@@ -17,6 +16,6 @@ if (~script7925 = false) {
     $int9 = if_gety(enum(component, component, ~toplevel_getcomponents, toplevel_osrs_stretch:mainmodal));
 } else {
     if_setop(1, "Move", $move_layer);
-    if_setondrag("skill_guide_drag(event_mousex, event_mousey, $int8, $int9, $int6, $infinity, $universe, $move_layer)", $move_layer);
+    if_setondrag("skill_guide_drag(event_mousex, event_mousey, $int8, $int9, $int6, $component, $universe, $move_layer)", $move_layer);
 }
 if_setposition($int8, $int9, ^setpos_abs_left, ^setpos_abs_top, $universe);

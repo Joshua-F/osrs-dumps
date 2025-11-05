@@ -1,0 +1,19 @@
+// 8664
+[proc,sailing_log_redraw]
+~script8665(sailing_log:infinity, sailing_log:universe, sailing_log:resize_preview);
+~script8666;
+~sailing_menu_button;
+~sailing_log_create_dropdown;
+~sailing_charting_filters_redraw;
+if_setonvartransmit("sailing_charting_nearest_transmit{sailing_temp_transmit_no_protect_2}", sailing_log:charting_container);
+~sailing_charting_info_redraw(%sailing_charting_selected_chartable_id);
+~sailing_charting_list_redraw(0);
+~sailing_charting_completion_redraw;
+~sailing_port_task_list_redraw;
+if (%sailing_log_tab_opened = 1) {
+    if_sethide(false, sailing_log:tasks_container);
+    if_sethide(true, sailing_log:charting_container);
+} else {
+    if_sethide(true, sailing_log:tasks_container);
+    if_sethide(false, sailing_log:charting_container);
+}

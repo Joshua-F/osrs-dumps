@@ -1,0 +1,8 @@
+// 9086
+[proc,sailing_boat_get_name](int $int)(string)
+def_dbrow $dbrow = ~sailing_boat_from_id(~sailing_boat_get_type($int));
+def_string $string = db_getfield($dbrow, sailing_boat:displayname, 0);
+if (string_length($string) <= 0) {
+    return(~sailing_boat_name_core(~sailing_boat_get_name_vars($int)));
+}
+return($string);
