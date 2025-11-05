@@ -1,0 +1,18 @@
+// 8887
+[proc,script8887]()(boolean)
+def_int $int = 0;
+def_obj $obj = null;
+if (%sailing_boat_cargohold_inv = null) {
+    return(false);
+}
+while ($int < inv_size(%sailing_boat_cargohold_inv)) {
+    $obj = invother_getobj(%sailing_boat_cargohold_inv, $int);
+    if ($obj ! null & oc_stackable($obj) = false & invother_total(%sailing_boat_cargohold_inv, $obj) > 1) {
+        return(true);
+    }
+    if ($obj = null) {
+        return(false);
+    }
+    $int = calc($int + 1);
+}
+return(false);

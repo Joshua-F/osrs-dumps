@@ -1,0 +1,11 @@
+// 8662
+[proc,script8662]()(dbrow, dbrow)
+if (%sailing_transmit_nearby_sea_plus1 <= 0) {
+    return(null, null);
+}
+def_dbrow $dbrow0 = ~script9099(calc(%sailing_transmit_nearby_sea_plus1 - 1));
+def_dbrow $dbrow1 = null;
+if ($dbrow0 ! null) {
+    $dbrow1 = db_getfield($dbrow0, sailing_sea:ocean, 0);
+}
+return($dbrow0, $dbrow1);

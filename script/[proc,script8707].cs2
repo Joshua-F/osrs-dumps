@@ -1,0 +1,36 @@
+// 8707
+[proc,script8707]
+def_dbrow $dbrow0 = ~script9095(%port_task_slot_0_id);
+def_dbrow $dbrow1 = ~script9095(%port_task_slot_1_id);
+def_dbrow $dbrow2 = ~script9095(%port_task_slot_2_id);
+def_dbrow $dbrow3 = ~script9095(%port_task_slot_3_id);
+def_dbrow $dbrow4 = ~script9095(%port_task_slot_4_id);
+if (%port_task_extra_slots_unlocked < 4) {
+    $dbrow4 = port_task_locked;
+    if (%port_task_extra_slots_unlocked < 3) {
+        $dbrow3 = port_task_locked;
+        if (%port_task_extra_slots_unlocked < 2) {
+            $dbrow2 = port_task_locked;
+            if (%port_task_extra_slots_unlocked < 1) {
+                $dbrow1 = port_task_locked;
+            }
+        }
+    }
+}
+if ($dbrow0 = null) {
+    $dbrow0 = port_task_blank;
+}
+if ($dbrow1 = null) {
+    $dbrow1 = port_task_blank;
+}
+if ($dbrow2 = null) {
+    $dbrow2 = port_task_blank;
+}
+if ($dbrow3 = null) {
+    $dbrow3 = port_task_blank;
+}
+if ($dbrow4 = null) {
+    $dbrow4 = port_task_blank;
+}
+~script8916(sailing_log:tasks_content, captains_log_tasks_layout, 0, $dbrow0, $dbrow1, $dbrow2, $dbrow3, $dbrow4, null, null, null);
+if_setonvartransmit("sailing_log_redraw{port_tasks_general}", sailing_log:tasks_content);

@@ -1,7 +1,8 @@
 // 6081
 [proc,script6081](int $int0, int $int1, string $string0, int $int2, int $int3)(int)
 def_int $int4 = calc(if_getwidth(bankmain:potionstore_items) / 2);
-~create_graphic(bankmain:potionstore_items, $int0, tradebacking, 0, calc($int1 * 36), ^setpos_abs_left, ^setpos_abs_top, 0, 36, ^setsize_minus, ^setsize_abs);
+def_string $string1 = ",";
+~create_graphic(bankmain:potionstore_items, $int0, tradebacking, 0, calc($int1 * 36), ^setpos_abs_left, ^setpos_abs_top, 0, 36, ^setsize_minus, ^setsize_abs, true);
 $int0 = calc($int0 + 1);
 cc_create(bankmain:potionstore_items, ^iftype_rectangle, $int0);
 cc_setposition(0, calc(($int1 + 1) * 36 - 1), ^setpos_abs_left, ^setpos_abs_top);
@@ -24,13 +25,13 @@ cc_setcolour(0x726451);
 $int0 = calc($int0 + 1);
 cc_create(bankmain:potionstore_items, ^iftype_text, $int0);
 cc_setposition(3, calc($int1 * 36 + 36 / 2), ^setpos_abs_right, ^setpos_abs_top);
-def_string $string1 = "Vials: <tostring(%potionstore_vials)>";
-cc_setsize(parawidth($string1, 3000, p12_full), calc(36 - 2 - 36 / 2), ^setsize_abs, ^setsize_abs);
+def_string $string2 = "Vials: <col=ffffff><~tostring_spacer(%potionstore_vials, $string1)></col>";
+cc_setsize(parawidth($string2, 3000, p12_full), calc(36 - 2 - 36 / 2), ^setsize_abs, ^setsize_abs);
 cc_settextfont(p12_full);
 cc_setcolour(0xff981f);
 cc_settextshadow(true);
 cc_settextalign(^settextalign_right, ^settextalign_bottom, 0);
-cc_settext($string1);
+cc_settext($string2);
 cc_setop(1, "Withdraw-<~script2579>");
 if (%bank_quantity_type ! 0) {
     cc_setop(2, "Withdraw-1");

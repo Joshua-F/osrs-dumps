@@ -1,0 +1,52 @@
+// 8591
+[clientscript,fletching_table_build_category_list](component $category_list, component $category_backgrounds, component $category_headers, component $list, component $right_scroll, component $left_list, component $left_scroll, component $frame, component $universe, component $infinity)
+cc_deleteall($category_list);
+cc_deleteall($category_backgrounds);
+cc_deleteall($left_scroll);
+~fletching_table_size_check($universe, $infinity, ^min_32bit_int, ^min_32bit_int, $list, $right_scroll, $left_list, $left_scroll, $frame, %fletching_table_opened);
+def_int $int10 = 0;
+def_int $int11 = 0;
+def_int $int12 = enum_getoutputcount(enum_5840);
+def_int $int13 = 0;
+def_int $int14 = 0;
+if (~on_mobile = true) {
+    $int13 = 20;
+}
+while ($int11 < $int12) {
+    $int10 = enum(int, int, enum_5840, $int11);
+    cc_create($category_list, ^iftype_text, $int11);
+    cc_setsize(5, calc(20 + $int13), ^setsize_minus, ^setsize_abs);
+    cc_setposition(5, $int14, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setcolour(0xff981f);
+    cc_settextfont(p12_full);
+    cc_settextshadow(true);
+    cc_settext(enum(int, string, enum_5841, $int10));
+    cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+    cc_setonmouseover("cc_colour_swapper($category_list, $int11, 16777215)");
+    cc_setonmouseleave("cc_colour_swapper($category_list, $int11, 16750623)");
+    cc_setonop("fletching_table_catop($category_headers, $int10, $list, $right_scroll)");
+    cc_setop(1, "Select");
+    .cc_create($category_backgrounds, ^iftype_rectangle, $int11);
+    .cc_setsize(0, calc(20 + $int13), ^setsize_minus, ^setsize_abs);
+    .cc_setposition(0, $int14, ^setpos_abs_left, ^setpos_abs_top);
+    .cc_setfill(true);
+    if (calc($int11 % 2) = 0) {
+        .cc_setcolour(^white);
+        .cc_settrans(255);
+    } else {
+        .cc_setcolour(^black);
+        .cc_settrans(225);
+    }
+    $int14 = calc(cc_gety + cc_getheight);
+    $int11 = calc($int11 + 1);
+}
+def_int $int15 = 0;
+if ($int14 > if_getheight($left_list)) {
+    $int15 = if_getscrolly($left_list);
+    if_setscrollsize(0, $int14, $left_list);
+} else {
+    if_setscrollsize(0, 0, $left_list);
+    $int15 = 0;
+}
+~scrollbar_vertical($left_scroll, $left_list, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~scrollbar_resize($left_scroll, $left_list, $int15);

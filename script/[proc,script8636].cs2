@@ -1,0 +1,28 @@
+// 8636
+[proc,script8636](string $string0, string $string1)
+def_component $popups = sailing_boat_selection:popups;
+def_component $popups_background = sailing_boat_selection:popups_background;
+def_component $popups_content_border = sailing_boat_selection:popups_content_border;
+def_component $popups_content = sailing_boat_selection:popups_content;
+def_component $popups_button = sailing_boat_selection:popups_button;
+def_int $int = 0;
+cc_deleteall($popups_content_border);
+cc_deleteall($popups_content);
+cc_deleteall($popups_button);
+sound_synth(synth_2277, 1, 0);
+if_sethide(false, $popups);
+~steelborder($popups_content_border, $string0, 1);
+cc_create($popups_content, ^iftype_text, $int);
+cc_settext($string1);
+cc_setsize(10, 5, ^setsize_minus, ^setsize_minus);
+cc_setposition(5, 5, ^setpos_abs_left, ^setpos_abs_top);
+cc_settextfont(p12_full);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+cc_settextshadow(true);
+cc_setcolour(0xff981f);
+$int = calc($int + 1);
+~create_v2_stone_button_filled_free($popups_button, 0, if_getwidth($popups_button), if_getheight($popups_button), 0, 0, "<col=ff981f>Close", ^white, 0xdfdfdf, 0, false);
+if_setonop("script8637", $popups_button);
+if_setop(1, "Close", $popups_button);
+if_setonop("script8637", $popups_background);
+if_setop(1, "Close", $popups_background);

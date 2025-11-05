@@ -51,7 +51,11 @@ while ($int8 < $int9) {
         $string1 = "<$string3> <col=06600c>(<tostring($int24)> points)</col>";
     } else {
         $int24 = db_getfield($dbrow10, slayer_unlock:cost, 0);
-        $string1 = "<$string3> <col=ff0000>(<tostring($int24)> points)</col>";
+        if (~script8935($dbrow10, $int22) = true) {
+            $string1 = "<$string3> <col=bbbbbb>(Unavailable)</col>";
+        } else {
+            $string1 = "<$string3> <col=ff0000>(<tostring($int24)> points)</col>";
+        }
     }
     $int18 = calc(paraheight($string1, $int14, p11_full) * 10 + 2);
     $int17 = 0;

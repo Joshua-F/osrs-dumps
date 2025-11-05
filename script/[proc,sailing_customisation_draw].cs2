@@ -1,0 +1,19 @@
+// 8811
+[proc,sailing_customisation_draw]
+def_component $facility_container_backing = sailing_customisation:facility_container_backing;
+def_component $facility_border = sailing_customisation:facility_border;
+def_component $facility_click_layer = sailing_customisation:facility_click_layer;
+if_sethide(true, sailing_customisation:popups);
+if_sethide(true, sailing_customisation:loading);
+cc_deleteall($facility_click_layer);
+cc_deleteall($facility_container_backing);
+cc_deleteall($facility_border);
+~script5288($facility_container_backing, 0, 0, 0, if_getwidth($facility_container_backing), if_getheight($facility_container_backing), struct_3712, 7496785);
+~thinbox_light($facility_border, 0);
+if (%sailing_boat_customisation_boat = null) {
+    ~error("Boat type passed into the customisation interface was null.");
+    return;
+}
+~sailing_customisation_draw_tabs;
+~sailing_customisation_draw_facilities;
+~sailing_customisation_toggle_setup;

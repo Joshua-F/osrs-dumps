@@ -1,0 +1,24 @@
+// 9068
+[proc,script9068](dbrow $dbrow0, int $int1, int $int2)(int)
+def_int $int3 = 0;
+def_dbrow $dbrow4 = null;
+switch_int ($int1) {
+    case 1 :
+        $int3 = db_getfieldcount($dbrow0, sailing_boat:hull_option);
+    case 0 :
+        $int3 = db_getfieldcount($dbrow0, sailing_boat:keel_option);
+    case 2 :
+        $int3 = db_getfieldcount($dbrow0, sailing_boat:sail_option);
+    case 3 :
+        $int3 = db_getfieldcount($dbrow0, sailing_boat:steering_option);
+    case 5 :
+        $int3 = db_getfieldcount($dbrow0, sailing_boat:flag_option);
+    case 6 :
+        $int3 = db_getfieldcount($dbrow0, sailing_boat:brazier_option);
+    case 7 :
+        $int3 = db_getfieldcount($dbrow0, sailing_boat:trim_option);
+    case 4 :
+        $dbrow4 = db_getfield($dbrow0, sailing_boat:hotspot:3, $int2);
+        $int3 = db_getfieldcount($dbrow4, sailing_boat_hotspot:option);
+}
+return($int3);
