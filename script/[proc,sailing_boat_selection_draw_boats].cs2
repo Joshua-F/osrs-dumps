@@ -1,0 +1,87 @@
+// 8626
+[proc,sailing_boat_selection_draw_boats]
+def_component $boats_container_parent = sailing_boat_selection:boats_container_parent;
+def_component $boats_scrollbar = sailing_boat_selection:boats_scrollbar;
+def_component $boats_container = sailing_boat_selection:boats_container;
+def_component $boats_container_backing = sailing_boat_selection:boats_container_backing;
+def_component $boats_click_layer = sailing_boat_selection:boats_click_layer;
+def_component $popups = sailing_boat_selection:popups;
+cc_deleteall($boats_container);
+cc_deleteall($boats_container_backing);
+cc_deleteall($boats_scrollbar);
+cc_deleteall($boats_click_layer);
+cc_deleteall($popups);
+if_sethide(true, sailing_boat_selection:loading);
+if_sethide(true, sailing_boat_selection:popups);
+if_sethide(true, sailing_boat_selection:cargo_hold);
+def_int $int6 = 0;
+def_int $int7 = 1;
+def_int $int8 = 0;
+def_int $int9 = ~sailing_boat_number_owned;
+def_int $int10 = ~script9021;
+def_int $int11 = 43;
+def_int $int12 = 0;
+def_int $int13 = 0;
+def_int $int14 = 1;
+def_int $int15 = -1;
+def_int $int16 = 0;
+def_dbrow $dbrow = null;
+def_int $int18 = 0;
+def_int $int19 = 0;
+def_int $int20 = 0;
+def_boolean $boolean = ~script8987;
+if (~script8982 = true) {
+    $int8 = ~script8627($boats_click_layer, $int8, $int11, $int7);
+    if ($int8 > 0) {
+        if_setsize(14, calc(12 + $int8), ^setsize_minus, ^setsize_minus, $boats_container_parent);
+        $int8 = 0;
+    } else {
+        if_setsize(14, 12, ^setsize_minus, ^setsize_minus, $boats_container_parent);
+    }
+}
+$int6 = ~thinbox_light($boats_container_backing, 0);
+while ($int14 <= 5) {
+    $int18 = 0;
+    if ($int14 <= $int9) {
+        if (%sailing_last_personal_boat_boarded ! $int14) {
+            $int15 = ~sailing_boat_get_type($int14);
+            if ($int15 ! -1) {
+                $int16 = db_find(sailing_boat:type_id, $int15);
+                if ($int16 >= 1) {
+                    $int18 = 1;
+                    $dbrow = db_findnext;
+                    $int8 = $int8;
+                    $int12 = calc($int8 - 1);
+                    $int6, $int8 = ~sailing_boat_selection_draw_boat($boats_container, $boats_click_layer, $int6, $int14, $int8, $int15, $dbrow, $int11, 0, $int7);
+                    $int13 = calc($int8 - $int12);
+                    cc_create($boats_container, ^iftype_rectangle, $int6);
+                    $int6 = calc($int6 + 1);
+                    cc_setposition(0, $int12, ^setpos_abs_centre, ^setpos_abs_top);
+                    cc_setsize(calc(if_getwidth($boats_container) + 4), $int13, ^setsize_abs, ^setsize_abs);
+                    cc_setfill(false);
+                    cc_setcolour(0x726451);
+                    $int7 = calc($int7 + 1);
+                }
+            }
+        } else {
+            $int18 = 1;
+        }
+    }
+    if ($int18 = 0 & $boolean = true) {
+        if ($int10 >= $int14) {
+            $int20 = 1;
+        } else {
+            $int20 = 0;
+        }
+        $int6, $int8 = ~sailing_boat_selection_draw_blank_slot($boats_container, $int6, $int14, $int20, $int8, $int11, $int7);
+        $int7 = calc($int7 + 1);
+        $int19 = 1;
+    } else {
+        $int19 = 0;
+    }
+    $int14 = calc($int14 + 1);
+}
+if (if_getheight($boats_container) > $int8) {
+    ~script8630($boats_container, $int6, $int8, $int19, $int7);
+}
+~sailing_boat_selection_draw_boat_scrollbar($int8);

@@ -1,0 +1,31 @@
+// 8946
+[proc,script8946](dbrow $dbrow, int $int)(string)
+def_string $string = "That is unavailable.";
+if ($dbrow = null) {
+    return($string);
+}
+def_dbtable $dbtable = db_getrowtable($dbrow);
+switch_dbtable ($dbtable) {
+    case quest :
+        if ($int = 1) {
+            return("Sailing quests are currently unavailable on this world.");
+        }
+        return("That quest is unavailable.");
+    case music :
+        if ($int = 1) {
+            return("Music tracks unlocked with sailing are currently unavailable on this world.");
+        }
+        return("That track is unavailable.");
+    case slayer_task :
+        if ($int = 1) {
+            return("Slayer tasks and creatures related to Sailing are currently unavailable on this world.");
+        }
+        return("That slayer task is unavailable.");
+    case slayer_area :
+        if ($int = 1) {
+            return("Slayer areas related to Sailing are currently unavailable on this world.");
+        }
+        return("That slayer area is unavailable.");
+    case default :
+        return($string);
+}

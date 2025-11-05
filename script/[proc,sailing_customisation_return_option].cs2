@@ -1,0 +1,27 @@
+// 9069
+[proc,sailing_customisation_return_option](dbrow $dbrow0, int $int1, int $int2, int $int3)(dbrow)
+if ($dbrow0 = null) {
+    return(null);
+}
+def_dbrow $dbrow4 = null;
+switch_int ($int1) {
+    case 0 :
+        return(db_getfield($dbrow0, sailing_boat:keel_option, $int3));
+    case 1 :
+        return(db_getfield($dbrow0, sailing_boat:hull_option, $int3));
+    case 2 :
+        return(db_getfield($dbrow0, sailing_boat:sail_option, $int3));
+    case 3 :
+        return(db_getfield($dbrow0, sailing_boat:steering_option, $int3));
+    case 5 :
+        return(db_getfield($dbrow0, sailing_boat:flag_option, $int3));
+    case 6 :
+        return(db_getfield($dbrow0, sailing_boat:brazier_option, $int3));
+    case 7 :
+        return(db_getfield($dbrow0, sailing_boat:trim_option, $int3));
+    case 4 :
+        $dbrow4 = db_getfield($dbrow0, sailing_boat:hotspot:3, $int2);
+        $dbrow4 = db_getfield($dbrow4, sailing_boat_hotspot:option, $int3);
+        return($dbrow4);
+}
+return(null);

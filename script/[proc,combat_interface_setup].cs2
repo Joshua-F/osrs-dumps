@@ -212,3 +212,12 @@ if ($graphic19 ! null) {
     if_sethide(true, combat_interface:3);
 }
 ~script7602;
+if (%sailing_sidepanel_visible_from_combat_tab = 1) {
+    if_sethide(false, combat_interface:switch_button);
+    if_setposition(10, 0, ^setpos_abs_centre, ^setpos_abs_top, combat_interface:header);
+    ~script8581(combat_interface:switch_button, 0);
+} else {
+    if_sethide(true, combat_interface:switch_button);
+    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top, combat_interface:header);
+    cc_deleteall(combat_interface:switch_button);
+}

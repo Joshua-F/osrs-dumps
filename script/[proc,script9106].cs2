@@ -1,0 +1,7 @@
+// 9106
+[proc,script9106](dbrow $dbrow)(string)
+def_string $string = db_getfield($dbrow, chartering_destinations:chartering_destination_inline_name, 0);
+if (string_length($string) <= 0) {
+    $string = db_getfield($dbrow, chartering_destinations:chartering_destination_name, 0);
+}
+return($string);

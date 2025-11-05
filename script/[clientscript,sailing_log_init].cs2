@@ -1,0 +1,55 @@
+// 8658
+[clientscript,sailing_log_init]
+def_graphic $graphic0 = "close_buttons,0";
+def_graphic $graphic1 = "close_buttons,1";
+def_component $close_button = sailing_log:close_button;
+def_int $int3 = 3;
+def_int $int4 = 6;
+def_int $int5 = 26;
+def_int $int6 = 23;
+if (~on_mobile = true) {
+    $graphic0 = "steelborder_close_button,0";
+    $graphic1 = "steelborder_close_button,0";
+    $int3 = 1;
+    $int4 = 1;
+    $int5 = 33;
+    $int6 = 33;
+}
+if_setposition($int3, $int4, ^setpos_abs_right, ^setpos_abs_top, $close_button);
+if_setsize($int5, $int6, ^setsize_abs, ^setsize_abs, $close_button);
+~create_graphic($close_button, 0, $graphic0, 0, 0, ^setpos_abs_centre, ^setpos_abs_centre, $int5, $int6, ^setsize_abs, ^setsize_abs, true);
+cc_setonmouseleave("cc_graphic_swapper(event_com, event_comsubid, $graphic0, null)");
+cc_setonmouseover("cc_graphic_swapper(event_com, event_comsubid, $graphic1, null)");
+if_setop(1, "Close", $close_button);
+if (%keybinding_esc_to_close = 1) {
+    if_setopkey(1, ^key_escape, 0, $close_button);
+}
+~script8661;
+def_component $infinity = sailing_log:infinity;
+def_component $universe = sailing_log:universe;
+def_component $resize_preview = sailing_log:resize_preview;
+def_enum $enum = ~toplevel_getcomponents;
+def_component $component = enum(component, component, $enum, toplevel_osrs_stretch:mainmodal);
+if (~on_mobile = true) {
+    if_setontimer("script7923($infinity, $universe, 0)", $infinity);
+} else {
+    if (%sailing_log_x < 0 | %sailing_log_y < 0 | %sailing_log_width <= 0 | %sailing_log_height <= 0) {
+        %sailing_log_x = if_getx($component);
+        %sailing_log_y = if_gety($component);
+        %sailing_log_width = if_getwidth($component);
+        %sailing_log_height = if_getheight($component);
+    }
+    if_setontimer("responsive_interface_scaler($infinity, -1)", $infinity);
+}
+if_setonresize("sailing_log_redraw", $infinity);
+if_sethide(false, $universe);
+if_sethide(true, $resize_preview);
+if ($enum = enum_1132) {
+    if_setposition(6, 6, ^setpos_abs_centre, ^setpos_abs_centre, $universe);
+    if_setsize(12, 12, ^setsize_minus, ^setsize_minus, $universe);
+    ~script8677;
+    return;
+}
+~script8665($infinity, $universe, $resize_preview);
+~sailing_log_size_handler(-1, -1, $infinity, $universe);
+if_setonvartransmit("script8659{sailing_temp_transmit_no_protect_2, sailing_temp_transmit_no_protect_3}", sailing_log:location_text);

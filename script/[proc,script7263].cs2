@@ -15,22 +15,27 @@ def_obj $obj6 = null;
 def_int $int7 = -1;
 def_int $int8 = 0;
 def_int $int9 = 0;
-def_inv $inv10 = db_getfield($dbrow0, omnishop_shop_data:omnishop_shop_inv, 0);
+def_int $int10 = 0;
+def_inv $inv11 = db_getfield($dbrow0, omnishop_shop_data:omnishop_shop_inv, 0);
 if ($int3 = 1) {
     $obj6 = db_getfield($dbrow4, omnishop_stock_data:omnishop_stock_obj, 0);
     if (~script4202($dbrow4) = true) {
         $obj6 = db_getfield($dbrow4, omnishop_stock_data:omnishop_stock_alternateobj, 0);
     }
-    if ($inv10 ! null) {
-        $int7 = inv_total($inv10, $obj6);
+    if ($inv11 ! null) {
+        $int7 = inv_total($inv11, $obj6);
     }
+    $int10 = db_getfield($dbrow4, omnishop_stock_data:omnishop_stock_max_purchase, 0);
     $int8 = db_getfield($dbrow4, omnishop_stock_data:omnishop_stock_restricted, 0);
     $int9 = db_getfield($dbrow4, omnishop_stock_data:omnishop_stock_restricted_category, 0);
-    if ($int8 ! 0 | $int9 ! 0) {
+    if ($int8 ! 0 | $int9 ! 0 | $int10 ! 0) {
         if ($int8 = 0) {
             $int8 = $int9;
         } else if ($int9 ! 0 & $int9 < $int8) {
             $int8 = $int9;
+        }
+        if ($int8 = 0) {
+            $int8 = $int10;
         }
         if ($int7 = -1) {
             $int7 = $int8;

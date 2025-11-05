@@ -1,0 +1,209 @@
+// 8901
+[proc,port_task_info_draw](component $popup, dbrow $dbrow1)
+if ($dbrow1 = null) {
+    return;
+}
+def_component $universe = port_task_info:universe;
+def_int $int3 = 61734913;
+def_component $component4 = port_task_info:frame;
+def_component $left_frame = port_task_info:left_frame;
+if_setontimer("port_task_info_draw($popup, $dbrow1, if_getwidth($popup), if_getheight($popup))", $universe);
+def_graphic $graphic = p12_full;
+def_int $int7 = 18;
+def_int $int8 = 15;
+def_int $int9 = 140;
+def_int $int10 = 0;
+if ($popup = port_task_board:popup) {
+    $int10 = 1;
+}
+if ($int10 = 1) {
+    $graphic, $int7, $int8, $int9 = ~script8924;
+}
+def_component $select = port_task_info:select;
+def_component $cancel = port_task_info:cancel;
+def_component $title = null;
+def_component $component14 = port_task_info:text;
+def_component $text_2 = null;
+def_component $back = null;
+def_model $model17 = db_getfield($dbrow1, port_task:task_board_graphic, 0);
+def_int $int18 = 0;
+def_int $int19 = 0;
+def_int $int20 = 0;
+if (~script9097($dbrow1) ! -1) {
+    $int20 = 1;
+}
+if ($int10 = 1) {
+    ~stonebutton_init("Back", $cancel, p12_full, 0);
+    if_setonop("script8902(port_task_info:clamp, port_task_info:fader, port_task_info:window, $popup)", $cancel);
+    if ($int20 = 1) {
+        ~stonebutton_init("Cancel task", $select, p12_full, 0);
+    } else {
+        ~stonebutton_init("<col=0dc10d>Accept task</col>", $select, p12_full, 0);
+    }
+    if_setonop("script8903($select)", $select);
+    ~script8904(port_task_info:clamp, port_task_info:fader, port_task_info:window, 0, $popup);
+    if_sethide(false, port_task_info:window);
+} else {
+    $title = sailing_log:title;
+    $component14 = sailing_log:text_1;
+    $text_2 = sailing_log:text_2;
+    $cancel = sailing_log:cancel;
+    $back = sailing_log:back;
+    ~stonebutton_init("Back", $back, p12_full, 0);
+    if_setonop("port_task_info_back($popup, $cancel, $back, $title, $component14, $text_2, $component4)", $back);
+    if_setop(1, "Back", $back);
+    if (~script8906($dbrow1) = false) {
+        if_sethide(false, $cancel);
+        ~stonebutton_init("Cancel task", $cancel, p12_full, 0);
+        if_setonop("opsound_specific(event_op, 2, synth_8415)", $cancel);
+        if_setop(1, "Cancel task", $cancel);
+        if_setposition(-60, 14, ^setpos_abs_centre, ^setpos_abs_bottom, $back);
+    } else {
+        if_sethide(true, $cancel);
+        if_setonop(null, $cancel);
+        if_setop(1, "", $cancel);
+        if_setposition(0, 14, ^setpos_abs_centre, ^setpos_abs_bottom, $back);
+    }
+    $component4 = sailing_log:window_frame;
+}
+if_sethide(false, $popup);
+def_int $int21 = 1800;
+if ($int10 = 1) {
+    $int21 = ~script8908;
+}
+cc_create($component4, ^iftype_model, $int18);
+def_model $model22 = model_57848;
+def_model $model23 = model_57841;
+$model22, $model23 = ~script8907($model17);
+if ($int10 = 1) {
+    cc_setmodel($model22);
+    cc_setmodelangle(0, 0, 512, 0, 0, $int21);
+    cc_setposition(0, 2, ^setpos_abs_centre, ^setpos_abs_centre);
+} else {
+    cc_setmodel($model23);
+    cc_setmodelangle(0, 0, 512, 512, 0, 620);
+    cc_setposition(0, 1, ^setpos_abs_centre, ^setpos_abs_centre);
+}
+cc_setsize(2, 2, ^setsize_abs, ^setsize_abs);
+$int18 = calc($int18 + 1);
+if ($int10 = 1) {
+    cc_create($left_frame, ^iftype_model, $int19);
+    cc_setmodel($model17);
+    cc_setmodelangle(0, 0, 512, 0, 0, $int21);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_setsize(2, 2, ^setsize_abs, ^setsize_abs);
+    $int19 = calc($int19 + 1);
+    if ($int20 = 1) {
+        cc_create($left_frame, ^iftype_model, $int19);
+        cc_setmodel(model_57852);
+        cc_setmodelangle(0, 0, 512, 100, 0, $int21);
+        cc_setposition(0, ~script8911, ^setpos_abs_centre, ^setpos_abs_centre);
+        cc_setsize(2, 2, ^setsize_abs, ^setsize_abs);
+        cc_setmodelorthog(true);
+        $int19 = calc($int19 + 1);
+    }
+}
+def_model $model24 = null;
+def_int $int25 = 5;
+def_int $int26 = 8;
+def_int $int27 = 22;
+def_int $int28 = 92;
+def_int $int29 = 1800;
+def_int $int30 = 0;
+def_int $int31 = 0;
+if ($int10 = 1) {
+    $int27, $int28, $int29, $int25, $int26 = ~script8909;
+    if (db_getfield($dbrow1, port_task:task_type, 0) = 1) {
+        $model24 = ~script8928(db_getfield($dbrow1, port_task:starting_port, 0));
+    } else {
+        $model24 = ~script8928(db_getfield($dbrow1, port_task:cargo_port, 0));
+        $int25 = 0;
+        $int26 = 0;
+    }
+    $int30 = calc($int27 + $int25);
+    $int31 = calc($int28 + $int26);
+    cc_create($left_frame, ^iftype_model, $int19);
+    cc_setmodel($model24);
+    cc_setmodelangle(0, 0, 512, 0, 0, $int29);
+    cc_setposition($int30, $int31, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(1, 1, ^setsize_abs, ^setsize_abs);
+    $int19 = calc($int19 + 1);
+}
+def_int $int32 = 30;
+def_int $int33 = 32;
+def_int $int34 = 58;
+def_int $int35 = 193;
+def_int $int36 = 50;
+def_int $int37 = 35;
+$int32, $int33, $int34, $int35, $int36, $int37 = ~script8910;
+if ($int10 = 1) {
+    if_setposition($int36, $int37, ^setpos_abs_centre, ^setpos_abs_bottom, $select);
+    if_setposition(calc(0 - $int36), $int37, ^setpos_abs_centre, ^setpos_abs_bottom, $cancel);
+}
+def_int $int38 = db_getfield($dbrow1, port_task:level_required, 0);
+def_dbrow $dbrow39 = null;
+def_string $string0 = "";
+def_string $string1 = db_getfield($dbrow1, port_task:name, 0);
+def_dbrow $dbrow40 = db_getfield($dbrow1, port_task:ending_port, 0);
+def_string $string2 = ~sailing_dock_name($dbrow40);
+def_string $string3 = db_getfield($dbrow1, port_task:flavour_text, 0);
+def_string $string4 = "";
+def_obj $obj = null;
+def_int $int42 = 0;
+def_int $int43 = 0;
+if ($int10 = 1) {
+    if_setposition($int32, $int33, ^setpos_abs_left, ^setpos_abs_top, $component14);
+    if_setsize($int34, $int35, ^setsize_minus, ^setsize_minus, $component14);
+} else if ($title = null) {
+    if_setposition(32, 15, ^setpos_abs_left, ^setpos_abs_top, $component14);
+    if_setsize(55, 96, ^setsize_minus, ^setsize_abs, $component14);
+} else {
+    if_setposition(32, 15, ^setpos_abs_left, ^setpos_abs_top, $title);
+    if_setsize(55, 20, ^setsize_minus, ^setsize_abs, $title);
+    if_setposition(32, 38, ^setpos_abs_left, ^setpos_abs_top, $component14);
+    if_setsize(55, 96, ^setsize_minus, ^setsize_abs, $component14);
+}
+def_string $string5 = "";
+if (db_getfield($dbrow1, port_task:task_type, 0) = 0) {
+    $dbrow39 = db_getfield($dbrow1, port_task:cargo_port, 0);
+    $string0 = ~sailing_dock_name($dbrow39);
+    $obj, $int42 = db_getfield($dbrow1, port_task:cargo, 0);
+    $string5 = "Sailing Requirement: <tostring($int38)><br>Cargo: <oc_name($obj)><br>Location: <$string0><br>Destination: <$string2><br>Quantity: <tostring($int42)>";
+    $int43 = 5;
+} else {
+    $string4 = nc_name(db_getfield($dbrow1, port_task:bounty_target_alive, 0));
+    $obj = db_getfield($dbrow1, port_task:bounty_object, 0);
+    $int42 = db_getfield($dbrow1, port_task:bounty_object_amount, 0);
+    $string5 = "Sailing Requirement: <tostring($int38)><br>Port: <$string2><br>Target: <$string4><br>Item: <oc_name($obj)><br>Quantity: <tostring($int42)>";
+    $int43 = 5;
+}
+if ($title = null) {
+    $string5 = "<$string1><br><br><$string5>";
+    $int43 = 7;
+} else {
+    if_settext($string1, $title);
+    if_settextfont($graphic, $title);
+    if_settextalign(^settextalign_left, ^settextalign_top, $int7, $title);
+}
+if ($text_2 = null) {
+    if_settext("<$string5><br><br><$string3>", $component14);
+    if_settextfont($graphic, $component14);
+    if_settextalign(^settextalign_left, ^settextalign_top, $int7, $component14);
+} else {
+    if_settext($string5, $component14);
+    if_settext($string3, $text_2);
+    if_settextfont($graphic, $component14);
+    if_settextfont($graphic, $text_2);
+    if_settextalign(^settextalign_left, ^settextalign_top, $int7, $component14);
+    if_settextalign(^settextalign_left, ^settextalign_top, $int7, $text_2);
+    if ($int10 = 1) {
+        if_setposition(0, calc(48 + $int43 * 16), ^setpos_abs_centre, ^setpos_abs_top, $text_2);
+        if_setsize($int34, $int35, ^setsize_minus, ^setsize_minus, $text_2);
+    } else if ($title = null) {
+        if_setposition(32, calc(28 + $int43 * 16), ^setpos_abs_left, ^setpos_abs_top, $text_2);
+        if_setsize(55, 193, ^setsize_minus, ^setsize_minus, $text_2);
+    } else {
+        if_setposition(32, calc(53 + $int43 * 16), ^setpos_abs_left, ^setpos_abs_top, $text_2);
+        if_setsize(55, 193, ^setsize_minus, ^setsize_minus, $text_2);
+    }
+}

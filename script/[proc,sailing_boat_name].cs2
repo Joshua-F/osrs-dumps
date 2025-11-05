@@ -1,0 +1,17 @@
+// 8757
+[proc,sailing_boat_name]()(string)
+if (%sailing_player_is_on_player_boat = 0 & %sailing_sidepanel_shipyard_mode = 0) {
+    return("Not on boat");
+}
+def_dbrow $dbrow = null;
+def_string $string = "";
+if (db_find(sailing_boat:type_id, %sailing_boarded_boat_type) = 1) {
+    $dbrow = db_findnext;
+    if ($dbrow ! null) {
+        $string = ~script9087;
+        if (string_length($string) > 0) {
+            return($string);
+        }
+    }
+}
+return("Boat");

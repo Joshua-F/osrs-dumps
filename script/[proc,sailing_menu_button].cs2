@@ -1,0 +1,29 @@
+// 8672
+[proc,sailing_menu_button]
+def_int $int = 0;
+def_component $sailing_btn_menu = sailing_log:sailing_btn_menu;
+def_component $sailing_menu_frame = sailing_log:sailing_menu_frame;
+def_component $menu_overlay = sailing_log:menu_overlay;
+if (%sailing_intro < 46) {
+    if_sethide(true, $sailing_btn_menu);
+    return;
+}
+if (~on_mobile = true) {
+    if_setsize(33, 33, ^setsize_abs, ^setsize_abs, $sailing_btn_menu);
+    if_setposition(1, 1, ^setpos_abs_left, ^setpos_abs_top, $sailing_btn_menu);
+} else {
+    if_setsize(21, 21, ^setsize_abs, ^setsize_abs, $sailing_btn_menu);
+    if_setposition(7, 7, ^setpos_abs_left, ^setpos_abs_top, $sailing_btn_menu);
+}
+cc_create($sailing_btn_menu, ^iftype_graphic, $int);
+cc_setsize(21, 21, ^setsize_abs, ^setsize_abs);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_setgraphic("menu_buttons,0");
+def_graphic $graphic4 = "menu_buttons,1";
+def_graphic $graphic5 = "menu_buttons,0";
+if (~on_mobile = false) {
+    cc_setonmouserepeat("cc_graphic_swapper(event_com, event_comsubid, $graphic4, null)");
+    cc_setonmouseleave("cc_graphic_swapper(event_com, event_comsubid, $graphic5, null)");
+}
+if_setonop("sailing_menu_click(event_op, $sailing_btn_menu, $sailing_menu_frame, $int, $menu_overlay)", $sailing_btn_menu);
+if_setop(1, "Show Menu", $sailing_btn_menu);
