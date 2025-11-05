@@ -4,7 +4,9 @@ def_int $int0 = 0;
 def_int $int1 = 1;
 def_stat $stat = enum(int, stat, enum_681, $int1);
 while ($stat ! null) {
-    $int0 = calc($int0 + stat_base($stat));
+    if (~restrict_content_skill($stat) = false) {
+        $int0 = calc($int0 + stat_base($stat));
+    }
     $int1 = calc($int1 + 1);
     $stat = enum(int, stat, enum_681, $int1);
 }

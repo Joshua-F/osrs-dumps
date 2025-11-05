@@ -1,0 +1,161 @@
+// 8781
+[clientscript,sailing_crew_init](component $universe, component $crew_container, component $crew_body, component $crew_list, component $crew_scrollbar, component $recruits_container, component $recruits_body, component $recruits_list, component $recruits_scrollbar, component $middle_container, component $comparison_container, component $assign, component $clear, component $bottom)
+~script8782("Current Crew", $crew_container, $crew_body, $crew_list, $crew_scrollbar);
+~script8782("All Recruits", $recruits_container, $recruits_body, $recruits_list, $recruits_scrollbar);
+def_string $string = "Select which of your recruits will serve as crew on your boats whenever there is space for them.";
+def_int $int14 = if_getwidth($middle_container);
+def_int $int15 = calc(paraheight($string, $int14, p12_full) * 14 + 3 + 5);
+cc_deleteall($middle_container);
+cc_create($middle_container, ^iftype_text, 0);
+cc_setsize(0, $int15, ^setsize_minus, ^setsize_abs);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 14);
+cc_settextfont(p12_full);
+cc_setcolour(0xff981f);
+cc_settextshadow(true);
+cc_settext($string);
+if_setposition(0, 60, ^setpos_abs_centre, ^setpos_abs_bottom, $comparison_container);
+if_setsize(0, calc($int15 + 60), ^setsize_minus, ^setsize_minus, $comparison_container);
+cc_deleteall($comparison_container);
+def_int $int16 = 0;
+cc_create($comparison_container, ^iftype_graphic, $int16);
+$int16 = calc($int16 + 1);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_setgraphic(tradebacking_dark);
+cc_settiling(true);
+cc_settrans(0);
+$int16 = ~thinbox($comparison_container, $int16);
+cc_create($comparison_container, ^iftype_text, $int16);
+$int16 = calc($int16 + 1);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 14);
+cc_settextfont(p11_full);
+cc_setcolour(0xff981f);
+cc_settextshadow(true);
+cc_settext(" <br> <br> <br> <br><col=ffb83f>Helmsmanship</col><br><col=ffb83f>Privateering</col><br><col=ffb83f>Deckhandiness</col>");
+cc_create($comparison_container, ^iftype_text, $int16);
+def_int $int17 = $int16;
+$int16 = calc($int16 + 1);
+cc_setsize(scale(47, 100, 16384), 0, ^setsize_rel, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_centre);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 14);
+cc_settextfont(p11_full);
+cc_setcolour(0xff981f);
+cc_settextshadow(true);
+cc_create($comparison_container, ^iftype_text, $int16);
+def_int $int18 = $int16;
+$int16 = calc($int16 + 1);
+cc_setsize(scale(47, 100, 16384), 0, ^setsize_rel, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_centre);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 14);
+cc_settextfont(p11_full);
+cc_setcolour(0xff981f);
+cc_settextshadow(true);
+cc_deleteall($bottom);
+$int16 = 0;
+cc_create($bottom, ^iftype_graphic, $int16);
+$int16 = calc($int16 + 1);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_setgraphic(tradebacking_dark);
+cc_settiling(true);
+cc_settrans(0);
+$int16 = ~thinbox($bottom, $int16);
+cc_create($bottom, ^iftype_text, $int16);
+$int16 = calc($int16 + 1);
+cc_setsize(10, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 14);
+cc_settextfont(p12_full);
+cc_setcolour(0xff981f);
+cc_settextshadow(true);
+cc_settext("<col=ffb83f>Helmsmanship:</col> Crew can navigate larger boats.<br><col=ffb83f>Privateering:</col> Crew can fire more powerful cannons and deal more damage.<br><col=ffb83f>Deckhandiness:</col> Crew can operate superior facilities, help more with cargo, and more.");
+cc_deleteall($crew_list);
+$int16 = 0;
+while ($int16 <= 4) {
+    cc_create($crew_list, ^iftype_rectangle, $int16);
+    cc_setsize(0, 52, ^setsize_minus, ^setsize_abs);
+    cc_setposition(0, calc($int16 * 52), ^setpos_abs_centre, ^setpos_abs_top);
+    cc_setcolour(^white);
+    cc_setfill(true);
+    cc_setop(1, "Select");
+    cc_setopbase("<col=ff9040>Crew slot <tostring(calc($int16 + 1))></col>");
+    cc_setonop("script8785(event_op, event_com, $int16, $comparison_container, $int17, $int18, $assign, $clear)");
+    $int16 = calc($int16 + 1);
+}
+def_int $int19 = 0;
+while ($int19 <= 4) {
+    cc_create($crew_list, ^iftype_model, $int16);
+    $int16 = calc($int16 + 1);
+    cc_setsize(45, 52, ^setsize_abs, ^setsize_abs);
+    cc_setposition(0, calc($int19 * 52), ^setpos_abs_left, ^setpos_abs_top);
+    cc_setmodelangle(0, 10, 0, 0, 0, 2350);
+    .cc_create($crew_list, ^iftype_text, $int16);
+    $int16 = calc($int16 + 1);
+    .cc_setsize(45, 52, ^setsize_minus, ^setsize_abs);
+    .cc_setposition(0, calc($int19 * 52), ^setpos_abs_right, ^setpos_abs_top);
+    .cc_settextalign(^settextalign_centre, ^settextalign_centre, 14);
+    .cc_settextfont(p12_full);
+    .cc_settextshadow(true);
+    $int19 = calc($int19 + 1);
+}
+$int15 = calc(52 * $int19);
+~script8789($crew_list, $comparison_container, $int17, $int18, $assign, $clear);
+if_setonstattransmit("script8786(event_com, $comparison_container, $int17, $int18, $assign, $clear){sailing}", $crew_list);
+if_setonvartransmit("script8786(event_com, $comparison_container, $int17, $int18, $assign, $clear){sailing_crew_perm_1, sailing_crew_perm_2}", $crew_list);
+if_setonvartransmit("script8787($crew_list, $comparison_container, $int17, $int18, $assign, $clear){sote_light_level_0_g}", $crew_scrollbar);
+def_int $int20 = db_listall(sailing_crew);
+def_npc $npcarray(calc($int20 + 1));
+def_dbrow $dbrow = null;
+cc_deleteall($recruits_list);
+$int16, $int19 = 0, 1;
+while ($int19 <= $int20) {
+    cc_create($recruits_list, ^iftype_rectangle, $int16);
+    cc_setsize(0, 44, ^setsize_minus, ^setsize_abs);
+    cc_setposition(0, calc($int16 * 44), ^setpos_abs_centre, ^setpos_abs_top);
+    cc_setcolour(^white);
+    cc_setfill(true);
+    cc_setop(1, "Select");
+    db_find(sailing_crew:unique_id, $int19);
+    $dbrow = db_findnext;
+    if ($dbrow ! null) {
+        $npcarray($int19) = db_getfield($dbrow, sailing_crew:cargo_npc, 0);
+        cc_setopbase("<col=ff9040><nc_name($npcarray($int19))></col>");
+    } else {
+        cc_setopbase("<col=ff9040>Crew</col>");
+    }
+    cc_setonop("script8790(event_op, event_com, $int19, $int20, $comparison_container, $int17, $int18)");
+    $int16, $int19 = calc($int16 + 1), calc($int19 + 1);
+}
+$int19 = 1;
+while ($int19 <= $int20) {
+    cc_create($recruits_list, ^iftype_model, $int16);
+    $int16 = calc($int16 + 1);
+    cc_setsize(35, 44, ^setsize_abs, ^setsize_abs);
+    cc_setposition(0, calc(($int19 - 1) * 44), ^setpos_abs_left, ^setpos_abs_top);
+    cc_setmodelangle(0, 10, 0, 0, 0, 2800);
+    if ($npcarray($int19) ! null) {
+        cc_setnpchead($npcarray($int19));
+    } else {
+        cc_setnpchead(sailing_crew_locked_dummy);
+    }
+    .cc_create($recruits_list, ^iftype_text, $int16);
+    $int16 = calc($int16 + 1);
+    .cc_setsize(35, 44, ^setsize_minus, ^setsize_abs);
+    .cc_setposition(0, calc(($int19 - 1) * 44), ^setpos_abs_right, ^setpos_abs_top);
+    .cc_settextalign(^settextalign_centre, ^settextalign_centre, 14);
+    .cc_settextfont(p12_full);
+    .cc_settextshadow(true);
+    $int19 = calc($int19 + 1);
+}
+def_int $int22 = calc(44 * $int20);
+~script8794($recruits_list, $int20, $comparison_container, $int17, $int18);
+if_setonvartransmit("script8791(event_com, $int20, $comparison_container, $int17, $int18){sailing_crew_unlocks_1}", $recruits_list);
+if_setonvartransmit("script8792($recruits_list, $int20, $comparison_container, $int17, $int18){sote_light_level_0_g}", $recruits_scrollbar);
+def_int $int23 = min(calc(334 + 60), calc(50 + 22 + 2 + min($int15, $int22) + 2 + 2 + if_getheight($bottom)));
+def_component $component = if_getlayer($universe);
+if ($component ! null) {
+    ~sailing_crew_resize(if_getheight($component), $universe, $component, $int23, $crew_list, $crew_scrollbar, $recruits_list, $recruits_scrollbar, $int15, $int22);
+}

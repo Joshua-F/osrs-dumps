@@ -1,0 +1,12 @@
+// 8779
+[proc,sailing_sidepanel_draw_navigator_assign_button](component $component0, int $int1, component $component2, int $int3)
+cc_deleteall($component2);
+if (~sailing_unlocked = true & %sailing_sidepanel_player_role = 10) {
+    ~sailing_sidepanel_stonebutton($component0, $component2, $int1, 0, 120, 30, 30, 80, "Edit navigator", null, 0, ^white, 0x9f9f9f, $int3, 0, 0);
+    cc_settargetverb("Edit-navigator");
+    cc_setoppriority(-1);
+    cc_setontargetenter("sailing_sidepanel_redraw_navigator_assign_button($component0, $int1, $component2, 1)");
+    cc_setontargetleave("sailing_sidepanel_redraw_navigator_assign_button($component0, $int1, $component2, 0)");
+} else {
+    ~sailing_sidepanel_stonebutton($component0, $component2, $int1, 0, 120, 30, 30, 80, "Edit navigator", null, 0, ^white, 0x9f9f9f, $int3, 1, 0);
+}

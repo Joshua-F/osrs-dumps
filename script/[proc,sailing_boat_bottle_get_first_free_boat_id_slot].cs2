@@ -1,0 +1,10 @@
+// 9008
+[proc,sailing_boat_bottle_get_first_free_boat_id_slot]()(int)
+def_int $int = 1;
+while ($int <= ~sailing_boat_slots_unlocked) {
+    if (~sailing_boat_bottle_get_boat_id($int) = 0) {
+        return($int);
+    }
+    $int = calc(1 + $int);
+}
+return(-1);

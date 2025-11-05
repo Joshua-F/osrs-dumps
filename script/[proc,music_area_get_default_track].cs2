@@ -1,0 +1,8 @@
+// 8967
+[proc,music_area_get_default_track](int $int)(dbrow)
+if ($int <= 0) {
+    return(null);
+}
+db_find(music:area, $int);
+db_find_refine(music:area_default, $int);
+return(db_findnext);

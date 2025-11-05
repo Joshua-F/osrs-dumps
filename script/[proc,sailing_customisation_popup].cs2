@@ -1,0 +1,52 @@
+// 8837
+[proc,sailing_customisation_popup](string $string0, string $string1)
+def_component $popups = sailing_customisation:popups;
+def_component $popups_background = sailing_customisation:popups_background;
+def_component $popups_content_border = sailing_customisation:popups_content_border;
+def_component $popups_content = sailing_customisation:popups_content;
+def_component $popups_button = sailing_customisation:popups_button;
+def_component $popups_container = sailing_customisation:popups_container;
+def_int $int6 = 0;
+def_graphic $graphic = p12_full;
+cc_deleteall($popups_content_border);
+cc_deleteall($popups_content);
+cc_deleteall($popups_button);
+if_sethide(false, $popups);
+def_int $int8 = 290;
+def_int $int9 = 130;
+def_int $int10 = 50;
+def_int $int11 = 0;
+def_int $int12 = 0;
+~sailing_customisation_clear_tooltip;
+def_int $int13 = 265;
+if ($graphic = p11_full) {
+    $int12 = calc(paraheight($string1, if_getwidth($popups_content), p11_full) * 16);
+} else {
+    $int12 = calc(paraheight($string1, if_getwidth($popups_content), p12_full) * 16);
+}
+if ($int12 > $int10) {
+    $int11 = min(150, calc($int12 - $int10));
+    $int9 = min($int13, calc($int9 + $int11));
+}
+if_setsize($int8, calc($int9 + 20), ^setsize_abs, ^setsize_abs, $popups_container);
+~steelborder($popups_content_border, $string0, 1);
+cc_create($popups_content, ^iftype_graphic, $int6);
+cc_setgraphic(tradebacking_dark);
+cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+$int6 = calc($int6 + 1);
+$int6 = ~thinbox_light($popups_content, $int6);
+cc_create($popups_content, ^iftype_text, $int6);
+cc_settext($string1);
+cc_setsize(20, 20, ^setsize_minus, ^setsize_minus);
+cc_setposition(10, 10, ^setpos_abs_left, ^setpos_abs_top);
+cc_settextfont($graphic);
+cc_settextalign(^settextalign_left, ^settextalign_centre, 16);
+cc_settextshadow(true);
+cc_setcolour(^white);
+$int6 = calc($int6 + 1);
+~create_v2_stone_button_filled_free($popups_button, 0, if_getwidth($popups_button), if_getheight($popups_button), 0, 0, "<col=ff981f>Close", ^white, 0xdfdfdf, 0, false);
+if_setonop("sailing_customisation_popup_close", $popups_button);
+if_setop(1, "Close", $popups_button);
+if_setonop("sailing_customisation_popup_close", $popups_background);
+if_setop(1, "Close", $popups_background);

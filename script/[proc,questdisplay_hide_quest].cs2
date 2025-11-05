@@ -1,5 +1,8 @@
 // 6155
 [proc,questdisplay_hide_quest](dbrow $dbrow)(boolean)
+if (~restrict_content_dbrow($dbrow) = true) {
+    return(true);
+}
 if (~quest_is_subquest($dbrow) = true) {
     return(true);
 }

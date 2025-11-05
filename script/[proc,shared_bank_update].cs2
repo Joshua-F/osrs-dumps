@@ -5,17 +5,19 @@ def_int $int8 = -1;
 def_int $int9 = -1;
 def_int $int10 = 0;
 def_int $int11 = 0;
-def_boolean $boolean = ~bankmain_searching;
+def_boolean $boolean12 = ~bankmain_searching;
 def_obj $obj = null;
 def_int $int14 = 0;
+def_boolean $boolean15 = ~bankmain_searching;
+def_string $string = ~bankmain_filterstring;
 while ($int14 < $int3) {
     if (cc_find($component1, $int14) = true) {
         $obj = inv_getobj(inv_group_temp, $int14);
         if ($obj ! null) {
             $int11 = calc($int11 + 1);
         }
-        if ($boolean = true) {
-            if ($obj ! null & ~bankmain_filteritem($obj) = true) {
+        if ($boolean12 = true) {
+            if ($obj ! null & ~bankmain_filteritem($obj, $boolean15, $string) = true) {
                 cc_sethide(false);
                 cc_setposition(calc($int10 % 8 * $int7), calc($int10 / 8 * $int7), ^setpos_abs_left, ^setpos_abs_top);
                 ~shared_bank_drawitem($obj, inv_getnum(inv_group_temp, $int14), $int3, $component0, $component1, $component2);
@@ -35,9 +37,7 @@ while ($int14 < $int3) {
     $int14 = calc($int14 + 1);
 }
 if_settext(~tostring_spacer($int11, ","), $component6);
-def_string $string = "";
-if ($boolean = true) {
-    $string = ~bankmain_filterstring;
+if ($boolean12 = true) {
     if (string_length($string) > 0) {
         if (cc_find($component4, $int5) = true) {
             cc_settext("Showing items: <col=ff0000><$string></col>");
@@ -66,7 +66,7 @@ if ($int9 ! -1) {
 } else {
     $int9 = 0;
 }
-def_int $int15 = ~min($int9, calc($int8 + 2 * $int7));
-def_int $int16 = 90;
-def_int $int17 = calc($int7 * (($int3 + 7) / 8 - 1) + 32 + $int16);
-~shared_bank_setsize(if_getlayer($component0), $component0, $component1, $component2, $int15, $int17, $int16);
+def_int $int16 = ~min($int9, calc($int8 + 2 * $int7));
+def_int $int17 = 90;
+def_int $int18 = calc($int7 * (($int3 + 7) / 8 - 1) + 32 + $int17);
+~shared_bank_setsize(if_getlayer($component0), $component0, $component1, $component2, $int16, $int18, $int17);
