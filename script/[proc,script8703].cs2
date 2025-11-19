@@ -1,5 +1,11 @@
 // 8703
-[proc,script8703](int $int0, int $int1, int $int2, dbrow $dbrow)(boolean)
+[proc,script8703](int $int0, int $int1, int $int2, int $int3, int $int4, dbrow $dbrow)(boolean)
+if ($int2 = -1) {
+    $int2 = $int1;
+}
+if ($int4 = -1) {
+    $int4 = $int3;
+}
 if ($int0 = -1) {
     ~error("Invalid chartable object ID input");
     return(false);
@@ -15,13 +21,14 @@ if (%sailing_charting_completion_filter ! 0) {
         return(false);
     }
 }
+def_int $int7 = db_getfield(db_getfield($dbrow, sailing_charting_core:sailing_sea, 0), sailing_sea:required_level, 0);
 if (%sailing_charting_level_filter = 0 & stat(sailing) < ~script9001($dbrow)) {
     return(false);
 }
-if (~script8688 ! -1 & ~script8688 ! $int2) {
+if (~script8688 ! -1 & ~script8688 ! $int3 & ~script8688 ! $int4) {
     return(false);
 }
-if (~script8694 ! -1 & ~script8694 ! $int1) {
+if (~script8694 ! -1 & ~script8694 ! $int1 & ~script8694 ! $int2) {
     return(false);
 }
 return(true);
