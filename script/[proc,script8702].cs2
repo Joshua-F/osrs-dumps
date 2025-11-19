@@ -14,9 +14,13 @@ def_int $int10 = db_listall(sailing_charting_core);
 def_dbrow $dbrow11 = db_findnext;
 def_dbrow $dbrow12 = null;
 def_dbrow $dbrow13 = null;
-def_int $int14 = -1;
-def_int $int15 = -1;
+def_dbrow $dbrow14 = null;
+def_dbrow $dbrow15 = null;
 def_int $int16 = -1;
+def_int $int17 = -1;
+def_int $int18 = -1;
+def_int $int19 = -1;
+def_int $int20 = -1;
 def_boolean $boolean = ~on_mobile;
 cc_deleteall($list);
 cc_deleteall($list_scrollbar);
@@ -26,32 +30,68 @@ $int10 = 0;
 while ($dbrow11 ! null) {
     $dbrow12 = db_getfield($dbrow11, sailing_charting_core:sailing_sea, 0);
     $dbrow13 = db_getfield($dbrow12, sailing_sea:ocean, 0);
-    $int14 = db_getfield($dbrow12, sailing_sea:unique_id, 0);
+    $dbrow14 = db_getfield($dbrow11, sailing_charting_core:sailing_sea_secondary, 0);
+    if ($dbrow14 ! null) {
+        $dbrow15 = db_getfield($dbrow14, sailing_sea:ocean, 0);
+    } else {
+        $dbrow15 = null;
+    }
+    $int16 = db_getfield($dbrow12, sailing_sea:unique_id, 0);
     if ($dbrow13 ! null) {
-        $int15 = db_getfield($dbrow13, sailing_sea:unique_id, 0);
+        $int17 = db_getfield($dbrow13, sailing_sea:unique_id, 0);
+    } else {
+        $int17 = 0;
+    }
+    if ($dbrow14 ! null) {
+        $int18 = db_getfield($dbrow14, sailing_sea:unique_id, 0);
+    } else {
+        $int18 = $int16;
+    }
+    if ($dbrow15 ! null) {
+        $int19 = db_getfield($dbrow15, sailing_sea:unique_id, 0);
+    } else {
+        $int19 = $int17;
     }
     $string = db_getfield($dbrow11, sailing_charting_core:hint, 0);
-    $int16 = db_getfield($dbrow11, sailing_charting_core:unique_id, 0);
+    $int20 = db_getfield($dbrow11, sailing_charting_core:unique_id, 0);
     $dbrowarray($int10) = $dbrow11;
-    $stringarray($int10) = "<tostring(calc(10000 + ~script9001($dbrow11)))><tostring(calc(10000 + $int14))><tostring(calc(10000 + $int14))><$string>";
+    $stringarray($int10) = "<tostring(calc(10000 + $int19))><tostring(calc(10000 + $int18))><tostring(calc(10000 + ~script9001($dbrow11)))><tostring(calc(10000 + $int16))><$string>";
     $int10 = calc($int10 + 1);
     $dbrow11 = db_findnext;
 }
 if ($int10 > 1) {
     array_sort($stringarray, $dbrowarray);
 }
-def_int $int18 = 0;
-while ($int18 < $int10) {
-    $dbrow11 = $dbrowarray($int18);
+def_int $int22 = 0;
+while ($int22 < $int10) {
+    $dbrow11 = $dbrowarray($int22);
     $dbrow12 = db_getfield($dbrow11, sailing_charting_core:sailing_sea, 0);
     $dbrow13 = db_getfield($dbrow12, sailing_sea:ocean, 0);
-    $int14 = db_getfield($dbrow12, sailing_sea:unique_id, 0);
+    $dbrow14 = db_getfield($dbrow11, sailing_charting_core:sailing_sea_secondary, 0);
+    if ($dbrow14 ! null) {
+        $dbrow15 = db_getfield($dbrow14, sailing_sea:ocean, 0);
+    } else {
+        $dbrow15 = null;
+    }
+    $int16 = db_getfield($dbrow12, sailing_sea:unique_id, 0);
     if ($dbrow13 ! null) {
-        $int15 = db_getfield($dbrow13, sailing_sea:unique_id, 0);
+        $int17 = db_getfield($dbrow13, sailing_sea:unique_id, 0);
+    } else {
+        $int17 = -1;
+    }
+    if ($dbrow14 ! null) {
+        $int18 = db_getfield($dbrow14, sailing_sea:unique_id, 0);
+    } else {
+        $int18 = -1;
+    }
+    if ($dbrow15 ! null) {
+        $int19 = db_getfield($dbrow15, sailing_sea:unique_id, 0);
+    } else {
+        $int19 = -1;
     }
     $string = db_getfield($dbrow11, sailing_charting_core:hint, 0);
-    $int16 = db_getfield($dbrow11, sailing_charting_core:unique_id, 0);
-    if (~script8703($int16, $int14, $int15, $dbrow11) = true & compare("", $string) ! 0) {
+    $int20 = db_getfield($dbrow11, sailing_charting_core:unique_id, 0);
+    if (~script8703($int20, $int16, $int18, $int17, $int19, $dbrow11) = true & compare("", $string) ! 0) {
         cc_create($list, ^iftype_rectangle, $int9);
         cc_setsize(0, $int6, ^setsize_minus, ^setsize_abs);
         cc_setposition(0, $int7, ^setpos_abs_left, ^setpos_abs_top);
@@ -60,7 +100,7 @@ while ($int18 < $int10) {
         if ($boolean = false) {
             cc_setonmouserepeat("script8704(event_comsubid, $list, 170)");
         }
-        if (%sailing_charting_selected_chartable_id = $int16) {
+        if (%sailing_charting_selected_chartable_id = $int20) {
             $int8 = 200;
             if ($boolean = false) {
                 cc_setonmouseleave("script8704(event_comsubid, $list, 200)");
@@ -78,13 +118,13 @@ while ($int18 < $int10) {
         }
         cc_settrans($int8);
         cc_setop(1, "More Info");
-        cc_setonop("script8705($int16)");
+        cc_setonop("script8705($int20)");
         $int9 = calc(1 + $int9);
         cc_create($list, ^iftype_text, $int9);
         cc_setsize(10, $int6, ^setsize_minus, ^setsize_abs);
         cc_setposition(5, $int7, ^setpos_abs_left, ^setpos_abs_top);
-        if (~script9004($int16) = ^true) {
-            $string = "<col=00d800><$string>";
+        if (~script9004($int20) = ^true) {
+            $string = "<col=0dc10d><$string>";
         } else if (%sailing_show_charting_hints = 0) {
             $string = "???";
         }
@@ -96,7 +136,7 @@ while ($int18 < $int10) {
         $int7 = calc($int6 + $int7);
         $int9 = calc(1 + $int9);
     }
-    $int18 = calc($int18 + 1);
+    $int22 = calc($int22 + 1);
 }
 if ($int9 = 0) {
     cc_create($list, ^iftype_rectangle, $int9);
