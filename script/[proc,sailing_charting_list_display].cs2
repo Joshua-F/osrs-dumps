@@ -1,5 +1,11 @@
 // 8703
-[proc,sailing_charting_list_display](int $int0, int $int1, int $int2, dbrow $dbrow)(boolean)
+[proc,sailing_charting_list_display](int $int0, int $int1, int $int2, int $int3, int $int4, dbrow $dbrow)(boolean)
+if ($int2 = -1) {
+    $int2 = $int1;
+}
+if ($int4 = -1) {
+    $int4 = $int3;
+}
 if ($int0 = -1) {
     ~error("Invalid chartable object ID input");
     return(false);
@@ -15,13 +21,14 @@ if (%sailing_charting_completion_filter ! 0) {
         return(false);
     }
 }
+def_int $int7 = db_getfield(db_getfield($dbrow, sailing_charting_core:sailing_sea, 0), sailing_sea:required_level, 0);
 if (%sailing_charting_level_filter = 0 & stat(sailing) < ~sailing_charting_level_req($dbrow)) {
     return(false);
 }
-if (~sailing_charting_ocean_filter_get ! -1 & ~sailing_charting_ocean_filter_get ! $int2) {
+if (~sailing_charting_ocean_filter_get ! -1 & ~sailing_charting_ocean_filter_get ! $int3 & ~sailing_charting_ocean_filter_get ! $int4) {
     return(false);
 }
-if (~sailing_charting_sea_filter_get ! -1 & ~sailing_charting_sea_filter_get ! $int1) {
+if (~sailing_charting_sea_filter_get ! -1 & ~sailing_charting_sea_filter_get ! $int1 & ~sailing_charting_sea_filter_get ! $int2) {
     return(false);
 }
 return(true);
