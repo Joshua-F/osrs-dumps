@@ -1,10 +1,12 @@
 // 9090
 [proc,script9090](dbrow $dbrow0, int $int1, boolean $boolean2, boolean $boolean3)(int)
 def_int $int4 = db_getfield($dbrow0, sailing_boat:retrieval_cost, 0);
+def_int $int5 = $int4;
 if ($boolean2 = true) {
-    $int4 = scale($int4, 100, 150);
+    $int5 = calc($int5 + scale(50, 100, $int4));
 }
 if ($boolean3 = true) {
-    $int4 = scale($int4, 100, 300);
+    $int5 = calc($int5 + $int4);
 }
-return($int4);
+$int5 = calc($int5 + scale(~script7333($dbrow0, ~sailing_boat_get_hull($int1, $dbrow0)), 100, $int4));
+return($int5);

@@ -1,35 +1,44 @@
 // 8827
-[proc,sailing_customisation_draw_materials](component $component0, int $int1, int $int2, dbrow $dbrow3, int $int4, int $int5)(int)
+[proc,sailing_customisation_draw_materials](component $component0, int $int1, int $int2, dbrow $dbrow3, int $int4, int $int5)(int, int)
 if ($int4 < 1) {
-    return($int1);
+    return($int1, 0);
 }
 def_int $int6 = 0;
 def_int $int7 = 5;
-def_obj $obj8 = null;
-def_int $int9 = 0;
+def_int $int8 = 0;
+def_int $int9 = $int2;
 def_int $int10 = 0;
+def_int $int11 = ~script9108;
+def_obj $obj12 = null;
+def_int $int13 = 0;
+def_int $int14 = 0;
 def_string $string0 = "";
 def_string $string1 = "";
 def_string $string2 = "";
 def_string $string3 = "";
 def_string $string4 = "";
-def_int $int11 = 0;
-def_boolean $boolean12 = false;
+def_int $int15 = 0;
+def_boolean $boolean16 = false;
 cc_create($component0, ^iftype_graphic, $int1);
 cc_setgraphic(tradebacking_dark);
 cc_setposition($int7, calc($int2 - 3), ^setpos_abs_left, ^setpos_abs_top);
 cc_setsize(1, 1, ^setsize_abs, ^setsize_abs);
-$int10 = $int1;
+$int14 = $int1;
 $int1 = calc($int1 + 1);
 $int7 = calc($int7 + 3);
 while ($int6 < $int4) {
-    $obj8, $int9 = ~script9063(db_getrowtable($dbrow3), $dbrow3, $int6);
-    if ($obj8 ! null) {
-        $boolean12 = oc_param($obj8, param_2483);
-        if (inv_total(inv, $obj8) >= $int9) {
-            $int11 = 1;
+    if (calc($int6 % $int11) = 0) {
+        $int7 = calc(5 + 3);
+        $int2 = calc($int9 + (32 + 3) * ($int6 / $int11));
+        $int10 = calc($int10 + 1);
+    }
+    $obj12, $int13 = ~script9063(db_getrowtable($dbrow3), $dbrow3, $int6);
+    if ($obj12 ! null) {
+        $boolean16 = oc_param($obj12, param_2483);
+        if (inv_total(inv, $obj12) >= $int13) {
+            $int15 = 1;
         } else {
-            $int11 = 0;
+            $int15 = 0;
         }
         cc_create($component0, ^iftype_graphic, $int1);
         cc_sethide(false);
@@ -37,10 +46,10 @@ while ($int6 < $int4) {
         cc_setposition(calc($int7 + 3), $int2, ^setpos_abs_left, ^setpos_abs_top);
         cc_setoutline(1);
         cc_setgraphicshadow(0x333333);
-        cc_setobject($obj8, -1);
+        cc_setobject($obj12, -1);
         cc_setop(1, "Check");
-        cc_setopbase("<col=ff9040><oc_name($obj8)>");
-        if ($int11 = 0) {
+        cc_setopbase("<col=ff9040><oc_name($obj12)>");
+        if ($int15 = 0) {
             cc_settrans(150);
             $string3 = "<col=999999>";
             $string4 = ~mes_highlight_red;
@@ -48,14 +57,14 @@ while ($int6 < $int4) {
             $string3 = "<col=ffffff>";
             $string4 = ~mes_highlight_green;
         }
-        $string0 = "<$string3><oc_name($obj8)> x <~tostring_commas($int9)></col>";
-        if ($boolean12 = true) {
+        $string0 = "<$string3><oc_name($obj12)> x <~tostring_commas($int13)></col>";
+        if ($boolean16 = true) {
             $string0 = "<$string0> <$string3>(Not consumed)</col>";
         }
         ~sailing_customisation_tooltip("Material", removetags($string0), 1);
         $string1 = "<$string1><$string0><br>";
-        $string0 = "<$string4><oc_name($obj8)> x <~tostring_commas($int9)></col>";
-        if ($boolean12 = true) {
+        $string0 = "<$string4><oc_name($obj12)> x <~tostring_commas($int13)></col>";
+        if ($boolean16 = true) {
             $string0 = "<$string0> <$string4>(Not consumed)</col>";
         }
         if ($int6 = 0) {
@@ -64,15 +73,15 @@ while ($int6 < $int4) {
             $string2 = "<$string2>, <$string0>";
         }
         $int1 = calc($int1 + 1);
-        if ($boolean12 = false) {
+        if ($boolean16 = false) {
             cc_create($component0, ^iftype_text, $int1);
-            cc_settext(~script7396($int9, 10000, 10000000, ","));
+            cc_settext(~script7396($int13, 10000, 10000000, ","));
             cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
             cc_setposition(calc($int7 + 3), $int2, ^setpos_abs_left, ^setpos_abs_top);
             cc_settextfont(p11_full);
             cc_settextalign(^settextalign_left, ^settextalign_top, 0);
             cc_settextshadow(true);
-            if ($int11 = 0) {
+            if ($int15 = 0) {
                 cc_setcolour(0x9f9f9f);
             } else {
                 cc_setcolour(^white);
@@ -80,17 +89,17 @@ while ($int6 < $int4) {
             $int1 = calc($int1 + 1);
         }
         $int7 = calc($int7 + 36 + 2);
+        $int8 = max($int8, $int7);
     }
     $int6 = calc($int6 + 1);
 }
-if (cc_find($component0, $int10) = ^true) {
-    cc_setsize(calc($int7 - 3), calc(32 + (5 - 1)), ^setsize_abs, ^setsize_abs);
+def_int $int17 = calc(32 + (5 - 1));
+def_int $int18 = calc($int10 * $int17);
+if (cc_find($component0, $int14) = ^true) {
+    cc_setsize(calc($int8 - 3), $int18, ^setsize_abs, ^setsize_abs);
     $int1 = ~thinbox_specific($component0, $int1, cc_getx, cc_gety, cc_getwidth, cc_getheight, ^setpos_abs_left, ^setpos_abs_top);
     if (cc_find($component0, calc($int1 - 2)) = ^true) {
         cc_setop(1, "Check");
-        if (~rental_world = true) {
-            ~script8829($int5, $dbrow3);
-        }
         cc_setopbase("<col=ff981f>Materials</col>");
         cc_setonop("script8828(event_com, event_comsubid, event_op, ~sailing_customisation_return_name($dbrow3), $string1, $string2, $dbrow3, $int5)");
         if (~on_mobile = false) {
@@ -99,4 +108,8 @@ if (cc_find($component0, $int10) = ^true) {
         }
     }
 }
-return($int1);
+def_int $int19 = 0;
+if ($int18 > $int17) {
+    $int19 = calc($int18 - $int17);
+}
+return($int1, $int19);

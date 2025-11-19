@@ -9,19 +9,20 @@ def_int $int13 = calc(parawidth($string0, if_getwidth($component0), p12_full) + 
 def_int $int14 = 50;
 def_int $int15 = $int2;
 def_int $key16 = null;
+def_int $int17 = 0;
 def_string $string2 = "";
 def_string $string3 = "";
 def_string $string4 = "";
 def_string $string5 = "";
-def_boolean $boolean17 = false;
-def_boolean $boolean18 = ~on_mobile;
-def_boolean $boolean19 = ~script8983;
-def_graphic $graphic20 = "open_buttons_tiny_11x11,2";
-def_graphic $graphic21 = "open_buttons_tiny_11x11,0";
-def_graphic $graphic22 = $graphic21;
-$boolean17, $string4, $string5 = ~sailing_boat_selection_available($int5, $int3, lowercase($string0));
-def_int $rgb23 = ~sailing_boat_selection_available_colour($boolean17);
-if ($boolean18 = false & $int9 < 36 & $boolean19 = true) {
+def_boolean $boolean18 = false;
+def_boolean $boolean19 = ~on_mobile;
+def_boolean $boolean20 = ~script8983;
+def_graphic $graphic21 = "open_buttons_tiny_11x11,2";
+def_graphic $graphic22 = "open_buttons_tiny_11x11,0";
+def_graphic $graphic23 = $graphic22;
+$boolean18, $string4, $string5 = ~sailing_boat_selection_available($int5, $int3, lowercase($string0));
+def_int $rgb24 = ~sailing_boat_selection_available_colour($boolean18);
+if ($boolean19 = false & $int9 < 36 & $boolean20 = true) {
     $string2 = tostring($int9);
     $string3 = $string2;
     if ($int8 = 1) {
@@ -32,7 +33,7 @@ if ($boolean18 = false & $int9 < 36 & $boolean19 = true) {
         $string3 = enum(int, string, enum_1402, calc($int9 - 9));
     }
 }
-if ($boolean18 = true | $boolean19 = false) {
+if ($boolean19 = true | $boolean20 = false) {
     $string2, $string3 = "", "";
 }
 cc_create($component0, ^iftype_rectangle, $int2);
@@ -52,19 +53,19 @@ if ($int11 = 1) {
 }
 cc_setonop("script8640($int3)");
 cc_setopbase("<col=ff981f><$string1></col>");
-if ($boolean18 = false) {
+if ($boolean19 = false) {
     cc_setonmouseover("sailing_boat_selection_hover(event_comsubid, $component0, 210, \"open_buttons_small,3\")");
     if (calc($int9 % 2) = 1) {
-        cc_setonmouseleave("sailing_boat_selection_hover(event_comsubid, $component0, 230, $graphic20)");
+        cc_setonmouseleave("sailing_boat_selection_hover(event_comsubid, $component0, 230, $graphic21)");
     } else {
-        cc_setonmouseleave("sailing_boat_selection_hover(event_comsubid, $component0, 245, $graphic20)");
+        cc_setonmouseleave("sailing_boat_selection_hover(event_comsubid, $component0, 245, $graphic21)");
     }
 }
 $int2 = calc($int2 + 1);
 if ($int11 = 1) {
-    $graphic22 = $graphic20;
+    $graphic23 = $graphic21;
 }
-$int2 = ~create_graphic($component0, $int2, $graphic22, 7, calc($int4 + 5), ^setpos_abs_left, ^setpos_abs_top, 11, 11, ^setsize_abs, ^setsize_abs, false);
+$int2 = ~create_graphic($component0, $int2, $graphic23, 7, calc($int4 + 5), ^setpos_abs_left, ^setpos_abs_top, 11, 11, ^setsize_abs, ^setsize_abs, false);
 $int2 = ~create_graphic($component0, $int2, ~sailing_boat_selection_get_boat_icon($int5), 10, calc($int4 + ($int7 - 35) / 2), ^setpos_abs_left, ^setpos_abs_top, 35, 35, ^setsize_abs, ^setsize_abs, false);
 ~sailing_boat_selection_tooltip("Boat Type", ~sailing_boat_selection_get_boat_type($int5), 1);
 cc_create($component0, ^iftype_text, $int2);
@@ -78,29 +79,33 @@ cc_setposition($int14, calc($int4 + 3), ^setpos_abs_left, ^setpos_abs_top);
 cc_settextfont(p12_full);
 cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
 cc_settextshadow(true);
-cc_setcolour($rgb23);
+cc_setcolour($rgb24);
 $int2 = calc($int2 + 1);
-if ($boolean19 = true) {
+if ($boolean20 = true) {
     if ($int8 = 1) {
         $int13 = calc($int13 + 16);
     }
     if (~script8986 = true) {
         $int13 = calc($int13 + 20);
-        $int2 = ~script8651($component0, $int2, $int13, $int12, calc(if_getwidth($component0) - ($int13 + 5)), calc($int4 + ($int7 - $int12) / 2), ~script7396(~script8979($int5, $int3), 100000, 1000000, ","), coins, ^white, ^white, ~script7983($boolean17));
+        $int17 = ~script8979($int5, $int3);
+        $int2 = ~script8651($component0, $int2, $int13, $int12, calc(if_getwidth($component0) - ($int13 + 5)), calc($int4 + ($int7 - $int12) / 2), ~script7396($int17, 100000, 1000000, ","), coins, ^white, ^white, ~script7983($boolean18));
+        if (~sailing_boat_get_dock($int3) = 255) {
+            $boolean18 = true;
+        }
     } else {
-        $int2 = ~create_v2_stone_button_filled_free($component0, $int2, $int13, $int12, calc(if_getwidth($component0) - ($int13 + 5)), calc($int4 + ($int7 - $int12) / 2), $string0, ^white, ^white, 0, ~script7983($boolean17));
+        $int2 = ~create_v2_stone_button_filled_free($component0, $int2, $int13, $int12, calc(if_getwidth($component0) - ($int13 + 5)), calc($int4 + ($int7 - $int12) / 2), $string0, ^white, ^white, 0, ~script7983($boolean18));
     }
     if (cc_find($component0, calc($int2 - 1)) = ^true) {
         cc_setop(1, $string0);
-        cc_setcolour($rgb23);
-        if ($boolean17 = true) {
+        cc_setcolour($rgb24);
+        if ($boolean18 = true) {
             cc_setonop("sailing_boat_selection_button_press($component1, $component0, $int3, $int15)");
-            if ($boolean18 = false) {
+            if ($boolean19 = false) {
                 cc_setonkey("sailing_boat_selection_keypress(event_keychar, event_keycode, $component0, $component1, $int3, $string2, $string3, $key16, $int15)");
             }
         } else {
             cc_setonop("script8635($string4, $string5)");
-            if ($boolean18 = false) {
+            if ($boolean19 = false) {
                 cc_setonkey("sailing_boat_selection_keypress_unavailable(event_keychar, event_keycode, $component1, $int3, $string2, $string3, $key16, $string4, $string5)");
             }
         }
@@ -112,7 +117,7 @@ if ($boolean19 = true) {
     cc_setsize(1, 1, ^setsize_abs, ^setsize_abs);
     cc_settrans(255);
 }
-$int2 = ~script8631($component0, $int2, $int3, $int4, $int7, calc($int13 + 15), $rgb23);
+$int2 = ~script8631($component0, $int2, $int3, $int4, $int7, calc($int13 + 15), $rgb24);
 $int4 = calc($int4 + ($int7 + (5 - 2)));
 if ($int11 = 1) {
     $int2, $int4 = ~script8641($component0, $int2, $int3, $int5, $int4, $int15);
