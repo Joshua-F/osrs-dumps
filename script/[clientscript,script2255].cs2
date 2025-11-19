@@ -1,0 +1,33 @@
+// 2255
+[clientscript,script2255](component $component0, int $int1, int $int2, int $int3, int $int4, int $int5)
+if (calc(clientclock - $int1) < 15) {
+    return;
+}
+def_int $int6 = 0;
+if (cc_find($component0, $int3) = ^true) {
+    $int6 = calc(cc_getwidth - $int5);
+    if ($int6 <= 0) {
+        if (cc_find($component0, $int2) = ^true) {
+            cc_delete;
+        }
+        if (cc_find($component0, $int3) = ^true) {
+            cc_delete;
+        }
+        if (cc_find($component0, $int4) = ^true) {
+            cc_delete;
+        }
+        if_setontimer(null, $component0);
+    } else {
+        if (cc_find($component0, $int2) = ^true) {
+            cc_setsize($int6, cc_getheight, ^setsize_abs, ^setsize_abs);
+        }
+        if (cc_find($component0, $int3) = ^true) {
+            cc_setsize($int6, cc_getheight, ^setsize_abs, ^setsize_abs);
+        }
+        if (cc_find($component0, $int4) = ^true) {
+            cc_setsize($int6, cc_getheight, ^setsize_abs, ^setsize_abs);
+        }
+    }
+} else {
+    if_setontimer(null, $component0);
+}
