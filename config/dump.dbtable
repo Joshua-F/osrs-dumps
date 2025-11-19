@@ -1669,10 +1669,12 @@ column=mes
 column=unique_id,int,REQUIRED,INDEXED,CLIENTSIDE
 column=hint,string,REQUIRED,CLIENTSIDE
 column=sailing_sea,dbrow,REQUIRED,INDEXED,CLIENTSIDE
+column=sailing_sea_secondary,dbrow,INDEXED,CLIENTSIDE
 column=give_repeat_xp,boolean,CLIENTSIDE
 default=give_repeat_xp,false
 column=charting_type,dbtable,REQUIRED,CLIENTSIDE
 column=hazard,dbrow,CLIENTSIDE
+column=required_dock,dbrow,CLIENTSIDE
 
 // 155
 [sailing_charting_generic]
@@ -1824,6 +1826,8 @@ column=boat_icy_seas_resistant,int,CLIENTSIDE
 default=boat_icy_seas_resistant,0
 column=boat_max_wind_motes,int,CLIENTSIDE
 default=boat_max_wind_motes,0
+column=boat_additional_recovery_cost_percentage,int,CLIENTSIDE
+default=boat_additional_recovery_cost_percentage,0
 
 // 165
 [sailing_combat_facility_ammunition]
@@ -2325,7 +2329,8 @@ column=nice_name,string,REQUIRED,CLIENTSIDE
 column=inline_name,string,CLIENTSIDE
 default=inline_name,
 column=type
-column=level_required
+column=level_required,int,CLIENTSIDE
+default=level_required,1
 column=quest_required
 column=port_task_quest_required
 column=land_coord
@@ -2387,7 +2392,7 @@ default=regular_combat_required,0
 column=combat_recommended,int,CLIENTSIDE
 default=combat_recommended,0
 column=delivery_object,namedobj,CLIENTSIDE
-column=cargo,namedobj,int,CLIENTSIDE
+column=cargo,namedobj,int,INDEXED,CLIENTSIDE
 column=port_checkpoint,int,int,CLIENTSIDE
 default=port_checkpoint,-1,-1
 column=bounty_target_alive,npc,CLIENTSIDE
@@ -2487,6 +2492,7 @@ column=teleport_stat_low
 column=teleport_stat_high
 column=open_chest
 column=lootcontainer_details
+column=gle_npc
 
 // 206
 [chartering_destinations]
