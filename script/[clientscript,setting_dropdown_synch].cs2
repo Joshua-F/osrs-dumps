@@ -1,17 +1,18 @@
 // 3854
-[clientscript,setting_dropdown_synch](int $int0, int $int1, component $component2, enum $enum3, int $int4, int $int5)
-def_int $int6 = 0;
+[clientscript,setting_dropdown_synch](int $int0, int $int1, component $component2, enum $enum3, int $int4, int $int5, struct $struct6)
+def_string $string0 = "";
+def_boolean $boolean7 = false;
 if (cc_find($component2, $int1) = ^true) {
     if ($int0 < 35) {
         $int0 = calc($int0 + 1);
-        cc_setontimer("setting_dropdown_synch($int0, $int1, $component2, $enum3, $int4, $int5)");
+        cc_setontimer("setting_dropdown_synch($int0, $int1, $component2, $enum3, $int4, $int5, $struct6)");
     } else {
         if ($int5 = 2) {
-            $int6 = ~settings_get_dropdown($int4);
+            $string0, $boolean7 = ~script9115($enum3, ~settings_get_dropdown($int4), $struct6);
         } else {
-            $int6 = ~settings_get_keybind($int4);
+            $string0 = enum(int, string, $enum3, ~settings_get_keybind($int4));
         }
-        cc_settext(enum(int, string, $enum3, $int6));
+        cc_settext($string0);
         cc_setontimer(null);
     }
 }

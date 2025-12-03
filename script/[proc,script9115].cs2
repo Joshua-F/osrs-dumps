@@ -1,0 +1,38 @@
+// 9115
+[proc,script9115](enum $enum0, int $int1, struct $struct2)(string, boolean)
+def_string $string0 = "";
+def_boolean $boolean3 = false;
+def_int $int4 = 1;
+def_int $int5 = 0;
+def_int $int6 = struct_param($struct2, param_1077);
+switch_int ($int6) {
+    case 999 :
+        if ($int1 = -1) {
+            $int4 = 0;
+            $int5 = 1;
+            $string0 = "<tostring(~script9116($int6))>% custom text to be cropped";
+        } else {
+            $int4 = 0;
+            $string0 = enum(int, string, $enum0, $int1);
+            if (string_length($string0) > 0) {
+                switch_int (calc($int1 % 3)) {
+                    case 0 :
+                        $string0 = "<col=ff0000><substring($string0, 0, 1)></col><substring($string0, 1, string_length($string0))>";
+                    case 1 :
+                        $string0 = "<col=00ff00><substring($string0, 0, 1)></col><substring($string0, 1, string_length($string0))>";
+                    case 2 :
+                        $string0 = "<col=0000ff><substring($string0, 0, 1)></col><substring($string0, 1, string_length($string0))>";
+                }
+            }
+        }
+        if ($int1 ! -1 & calc($int1 % 2) = 1) {
+            $boolean3 = true;
+        }
+}
+if ($int4 = 1) {
+    $string0 = enum(int, string, $enum0, $int1);
+}
+if ($int5 = 1) {
+    $string0 = ~script4193($string0, calc(parawidth(enum(int, string, $enum0, ^max_32bit_int), 1000, p12_full) + 14), p12_full);
+}
+return($string0, $boolean3);

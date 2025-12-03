@@ -72,6 +72,7 @@ cc_setposition(10, calc($int0 + ($int23 / 2 - 10)), ^setpos_abs_right, ^setpos_a
 cc_setgraphic(tradebacking);
 cc_settiling(true);
 cc_create($component7, ^iftype_rectangle, $int2);
+def_int $int26 = $int2;
 $int2 = calc($int2 + 1);
 cc_setsize($int18, 20, ^setsize_abs, ^setsize_abs);
 cc_setposition(10, calc($int0 + ($int23 / 2 - 10)), ^setpos_abs_right, ^setpos_abs_top);
@@ -84,12 +85,13 @@ cc_setposition(11, calc($int0 + ($int23 / 2 - 9)), ^setpos_abs_right, ^setpos_ab
 cc_setfill(false);
 cc_setcolour(0x474745);
 cc_create($component7, ^iftype_graphic, $int2);
-def_int $int26 = $int2;
+def_int $int27 = $int2;
 $int2 = calc($int2 + 1);
 cc_setsize(16, 16, ^setsize_abs, ^setsize_abs);
 cc_setposition(12, calc($int0 + ($int23 / 2 - 8)), ^setpos_abs_right, ^setpos_abs_top);
 cc_setgraphic("scrollbar_v2,1");
 cc_create($component7, ^iftype_text, $int2);
+def_int $int28 = $int2;
 $int2 = calc($int2 + 1);
 cc_setsize($int17, 16, ^setsize_abs, ^setsize_abs);
 cc_setposition(28, calc($int0 + ($int23 / 2 - 8)), ^setpos_abs_right, ^setpos_abs_top);
@@ -101,9 +103,13 @@ if ($boolean25 = true) {
 }
 cc_settextshadow(true);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-def_int $int27 = struct_param($struct5, param_1077);
-cc_settext(enum(int, string, $enum15, ~settings_get_dropdown($int27)));
+def_int $int29 = struct_param($struct5, param_1077);
+def_string $string2 = null;
+def_boolean $boolean30 = false;
+$string2, $boolean30 = ~script9115($enum15, ~settings_get_dropdown($int29), $struct5);
+cc_settext($string2);
 cc_create($component6, ^iftype_rectangle, $int3);
+def_int $int31 = $int3;
 $int3 = calc($int3 + 1);
 cc_setsize($int18, 20, ^setsize_abs, ^setsize_abs);
 cc_setposition(10, calc($int0 + ($int23 / 2 - 10)), ^setpos_abs_right, ^setpos_abs_top);
@@ -111,7 +117,7 @@ cc_setfill(true);
 cc_setcolour(^black);
 cc_settrans(255);
 cc_setop(1, "Select");
-cc_setonop("setting_show_dropdown(2, $struct5, $component7, calc($int2 - 1), $enum15, $int18, 20, cc_getx, cc_gety, $component8, $component9, $component10, $component11, $component12, $component13, $int26, $boolean24)");
+cc_setonop("setting_show_dropdown(2, $struct5, $component7, $int28, $enum15, $int18, 20, cc_getx, cc_gety, $component8, $component9, $component10, $component11, $component12, $component13, $int27, $boolean24)");
 cc_create($component7, ^iftype_rectangle, $int2);
 cc_setsize($int18, 20, ^setsize_abs, ^setsize_abs);
 cc_setposition(10, calc($int0 + ($int23 / 2 - 10)), ^setpos_abs_right, ^setpos_abs_top);
@@ -119,13 +125,39 @@ cc_setfill(true);
 cc_setcolour(^black);
 cc_settrans(255);
 if ($boolean24 = true) {
-    ~settings_dropdown_choose_transmit(2, $struct5, calc($int2 - 1), calc($int2 - 6), $int2, $component7, $enum15, $int27, $component8, $component9, $component10, $component11, $component13);
+    ~settings_dropdown_choose_transmit(2, $struct5, calc($int2 - 1), calc($int2 - 6), $int2, $component7, $enum15, $int29, $component8, $component9, $component10, $component11, $component13);
 }
 if ($boolean25 = true & ~on_mobile = false) {
     cc_setonmouseover("cc_settrans($component7, $int2, 220, null)");
     cc_setonmouseleave("cc_settrans($component7, $int2, 255, null)");
 }
 $int2 = calc($int2 + 1);
+def_int $int32 = -1;
+if (struct_param($struct5, param_2515) = 1) {
+    cc_create($component7, ^iftype_inputfield, $int2);
+    $int32 = $int2;
+    $int2 = calc($int2 + 1);
+    cc_setsize($int17, 16, ^setsize_abs, ^setsize_abs);
+    cc_setposition(28, calc($int0 + ($int23 / 2 - 8)), ^setpos_abs_right, ^setpos_abs_top);
+    cc_input_setlinewrappingwidth(cc_getwidth);
+    cc_input_setlinecountlimit(1);
+    cc_input_setacceptmode(3);
+    cc_input_setlinewidthlimit(~script9117($int29));
+    cc_settextfont(p12_full);
+    cc_setcolour(^white);
+    cc_settextshadow(true);
+    cc_settextalign(^settextalign_left, ^settextalign_top, 0);
+    cc_input_setwrapmode(0);
+    cc_input_setselectcolour(^black);
+    cc_input_setselectbgcolour(^white);
+    cc_settext("");
+    cc_input_setsubmitmode(1);
+    if (cc_find($component6, $int31) = ^true) {
+        cc_setnoclickthrough(true);
+        cc_setop(2, "Input");
+        cc_setonop("script9109(event_op, $int26, $int32, $component6, $int31, 2, $struct5, $component7, $int28, $enum15, $int18, 20, cc_getx, cc_gety, $component8, $component9, $component10, $component11, $component12, $component13, $int27, $boolean24)");
+    }
+}
 if ($boolean21 = false & $int20 = 0 & $int19 > 0) {
     cc_create($component7, ^iftype_text, $int2);
     cc_setsize(calc($int18 + 25), $int19, ^setsize_minus, ^setsize_abs);

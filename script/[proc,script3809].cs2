@@ -50,10 +50,12 @@ switch_stat ($stat2) {
             return(false);
         }
     case sailing :
-        if ($int3 = 1) {
-            mes("Sailing XP rewards are not yet available.");
+        if (%sailing_intro < 50) {
+            if ($int3 = 1) {
+                mes("You need to complete the Pandemonium quest to choose that option.");
+            }
+            return(false);
         }
-        return(false);
 }
 if (%league_type = 3 & ~league_world = true & ~script5830($stat2) = 0) {
     if ($int3 = 1) {

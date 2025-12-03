@@ -1,0 +1,20 @@
+// 9120
+[proc,script9120](string $string0, int $int0, int $int1)(string, int)
+def_int $int2 = -1;
+if (string_length($string0) > 0) {
+    if ($int1 <= 0) {
+        $int1 = ^max_32bit_int;
+    }
+    $int2 = ~string_to_int($string0);
+    if ($int2 <= 0) {
+        return("", 0);
+    } else if ($int2 > $int1) {
+        $int2 = $int1;
+        $int0 = string_length(tostring($int1));
+    } else if (compare(substring($string0, 0, 1), "0") = 0) {
+        $int0 = 0;
+    }
+    $string0 = tostring($int2);
+    $int0 = min($int0, string_length($string0));
+}
+return($string0, $int0);

@@ -1,0 +1,78 @@
+// 9128
+[proc,script9128](component $component0)
+if (if_find($component0) = ^true) {
+    cc_setnoclickthrough(true);
+}
+def_int $int1 = ~script9133($component0, ^green, "");
+def_int $int2 = 8;
+def_int $int3 = $int2;
+def_int $int4 = $int2;
+def_int $int5 = 48;
+$int1 = ~script9131($component0, $int1, calc($int3 + ($int5 + $int2) * 0), $int4, $int5, $int5, "Default");
+$int1 = ~script9131($component0, $int1, calc($int3 + ($int5 + $int2) * 1), $int4, $int5, $int5, "Toggled<br> ");
+$int1 = ~script9131($component0, $int1, calc($int3 + ($int5 + $int2) * 2), $int4, $int5, $int5, " <br>Disabled");
+$int1 = ~script9131($component0, $int1, calc($int3 + ($int5 + $int2) * 3), $int4, $int5, $int5, "Toggled<br>Disabled");
+$int4 = calc($int4 + $int5 + $int2);
+$int1 = calc($int1 + 1);
+def_struct $struct6 = null;
+def_int $int7 = 0;
+def_dbrow $dbrow8 = dynamic_builders_demo;
+def_int $int9 = db_getfieldcount($dbrow8, dynamic_builders_demo_sets:button_styles);
+def_int $int10 = 0;
+def_int $int11 = 1;
+def_boolean $boolean12 = false;
+def_int $int13 = 0;
+def_string $string0 = "";
+def_boolean $boolean14 = false;
+def_string $string1 = "";
+while ($int7 < $int9) {
+    $int3 = $int2;
+    $int10 = 0;
+    $struct6, $int5, $int5, $string0, $boolean14 = db_getfield($dbrow8, dynamic_builders_demo_sets:button_styles, $int7);
+    if ($struct6 = struct_6374) {
+        $int1 = ~script9131($component0, $int1, $int3, $int4, 400, 24, "<col=ffffff><$string0></col>");
+    } else {
+        while ($int10 < 4) {
+            $int11 = 0;
+            switch_int ($int10) {
+                case 0 :
+                    $int11, $boolean12, $int13 = 1, false, 0;
+                case 1 :
+                    if ($boolean14 = false & struct_param($struct6, param_2328) ! null) {
+                        $int11, $boolean12, $int13 = 1, true, 0;
+                    }
+                case 2 :
+                    $int11, $boolean12, $int13 = 1, false, 1;
+                case 3 :
+                    if (struct_param($struct6, param_2328) ! null) {
+                        $int11, $boolean12, $int13 = 1, true, 1;
+                    }
+            }
+            if ($int11 = 1) {
+                $int1 = ~cc_add_button($component0, $int1, $int3, $int4, ^setpos_abs_left, ^setpos_abs_top, $int5, $int5, ^setsize_abs, ^setsize_abs, $struct6, $string0);
+                ~script8190($boolean12, $int13);
+                if ($boolean12 = true & $int13 = 0) {
+                    cc_setop(1, "Toggle");
+                    cc_setonop("script9122(event_com, event_comsubid, false)");
+                }
+            }
+            $int3 = calc($int3 + cc_getwidth + $int2);
+            $int10 = calc($int10 + 1);
+        }
+        $string1 = "~cc_add_button($com,$id,$x,$y,^setpos_abs_left,^setpos_abs_top,$width,$height,^setsize_abs,^setsize_abs,<struct_param($struct6, param_2516)>,$text);<br>~cc_set_button_states($toggled,$disabled);<br>";
+        $int1 = ~script9132($component0, $int1, $int3, $int4, ^setpos_abs_left, ^setpos_abs_top, 1000, $int5, ^setsize_abs, ^setsize_abs, $string1);
+    }
+    $int4 = calc($int4 + cc_getheight + $int2);
+    $int7 = calc($int7 + 1);
+}
+$int3 = $int2;
+$int5 = 48;
+$int1 = ~cc_add_button($component0, $int1, $int3, $int4, ^setpos_abs_left, ^setpos_abs_top, calc(4 * $int5), $int5, ^setsize_abs, ^setsize_abs, struct_6265, "Button Text");
+cc_setop(1, "Press");
+def_stringarray $stringarray2 = array_create(string, 4, -1);
+$stringarray2(0) = "Option:<br><col=ff0000>First";
+$stringarray2(1) = "Option:<br><col=ffff00>Second";
+$stringarray2(2) = "Option:<br><col=00ff00>Third";
+$stringarray2(3) = "Option:<br><col=0000ff>Fourth";
+~script9130(0, $stringarray2);
+$int4 = calc($int4 + cc_getheight + $int2);

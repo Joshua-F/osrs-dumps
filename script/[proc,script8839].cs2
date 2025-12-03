@@ -14,7 +14,11 @@ def_int $int5 = 0;
 while ($int5 < $int4) {
     $obj1, $int2 = ~script9063($dbtable3, $dbrow0, $int5);
     if (inv_total(inv, $obj1) < $int2) {
-        return(false);
+        if (calc(~script9136($obj1) + inv_total(inv, $obj1)) >= $int2) {
+            $obj1 = $obj1;
+        } else {
+            return(false);
+        }
     }
     $int5 = calc($int5 + 1);
 }
