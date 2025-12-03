@@ -1,5 +1,8 @@
 // 4574
-[proc,settings_side_dropdown_update](component $component, enum $enum, int $int)
+[proc,settings_side_dropdown_update](component $component, enum $enum, int $int, struct $struct)
+def_string $string = null;
+def_boolean $boolean = false;
 if (cc_find($component, 4) = true) {
-    cc_settext(enum(int, string, $enum, ~settings_get_dropdown($int)));
+    $string, $boolean = ~settings_get_dropdown_option($enum, ~settings_get_dropdown($int), $struct);
+    cc_settext($string);
 }
