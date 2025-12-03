@@ -1,0 +1,17 @@
+// 9112
+[clientscript,setting_dropdown_inputfield_change](component $component, int $int1, int $int2)
+def_string $string0 = "";
+def_string $string1 = "";
+def_int $int3 = 0;
+def_int $int4 = 0;
+if (cc_find($component, $int1) = true) {
+    $string0 = cc_gettext;
+    if (string_length($string0) > 0) {
+        $int3 = cc_input_getcaretposition;
+        $string1, $int4 = ~settings_inputfield_sanitise($int2, $string0, $int3);
+        cc_input_setonchange(null);
+        cc_input_setcaret($int4);
+        cc_settext($string1);
+        cc_input_setonchange("setting_dropdown_inputfield_change(event_com, event_comsubid, $int2)");
+    }
+}
