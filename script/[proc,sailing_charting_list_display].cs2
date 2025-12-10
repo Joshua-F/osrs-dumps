@@ -22,7 +22,7 @@ if (%sailing_charting_completion_filter ! 0) {
     }
 }
 def_int $int7 = db_getfield(db_getfield($dbrow, sailing_charting_core:sailing_sea, 0), sailing_sea:required_level, 0);
-if (%sailing_charting_level_filter = 0 & stat(sailing) < ~sailing_charting_level_req($dbrow)) {
+if (%sailing_charting_level_filter = 0 & (stat(sailing) < ~sailing_charting_level_req($dbrow) | ~script9137($dbrow) = false)) {
     return(false);
 }
 if (~sailing_charting_ocean_filter_get ! -1 & ~sailing_charting_ocean_filter_get ! $int3 & ~sailing_charting_ocean_filter_get ! $int4) {
