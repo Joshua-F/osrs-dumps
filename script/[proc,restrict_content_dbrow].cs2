@@ -1,6 +1,92 @@
 // 8943
 [proc,restrict_content_dbrow](dbrow $dbrow0)(boolean)
-def_string $string0 = "";
-def_boolean $boolean1 = false;
-$boolean1, $string0 = ~script8944($dbrow0, 0);
-return($boolean1);
+def_int $int1 = 0;
+switch_dbtable (db_getrowtable($dbrow0)) {
+    case quest :
+        $int1 = db_getfieldcount($dbrow0, quest:related_content);
+    case music :
+        $int1 = db_getfieldcount($dbrow0, music:related_content);
+    case slayer_task :
+        $int1 = db_getfieldcount($dbrow0, slayer_task:related_content);
+    case slayer_area :
+        $int1 = db_getfieldcount($dbrow0, slayer_area:related_content);
+    case cluehelper_clue_anagram :
+        $int1 = db_getfieldcount($dbrow0, cluehelper_clue_anagram:related_content);
+    case cluehelper_clue_map :
+        $int1 = db_getfieldcount($dbrow0, cluehelper_clue_map:related_content);
+    case cluehelper_clue_cipher :
+        $int1 = db_getfieldcount($dbrow0, cluehelper_clue_cipher:related_content);
+    case cluehelper_clue_coordinate :
+        $int1 = db_getfieldcount($dbrow0, cluehelper_clue_coordinate:related_content);
+    case cluehelper_clue_cryptic :
+        $int1 = db_getfieldcount($dbrow0, cluehelper_clue_cryptic:related_content);
+    case cluehelper_clue_emote :
+        $int1 = db_getfieldcount($dbrow0, cluehelper_clue_emote:related_content);
+    case cluehelper_clue_fairyring :
+        $int1 = db_getfieldcount($dbrow0, cluehelper_clue_fairyring:related_content);
+    case cluehelper_clue_falobard :
+        $int1 = db_getfieldcount($dbrow0, cluehelper_clue_falobard:related_content);
+    case cluehelper_clue_hotcold :
+        $int1 = db_getfieldcount($dbrow0, cluehelper_clue_hotcold:related_content);
+    case cluehelper_clue_music :
+        $int1 = db_getfieldcount($dbrow0, cluehelper_clue_music:related_content);
+    case cluehelper_clue_skillchallenge :
+        $int1 = db_getfieldcount($dbrow0, cluehelper_clue_skillchallenge:related_content);
+    case chartering_destinations :
+        $int1 = db_getfieldcount($dbrow0, chartering_destinations:related_content);
+    case default :
+        ~error("Content not properly configured to be restricted, missing dbtable inside [proc,restrict_content_dbrow].");
+        return(false);
+}
+if ($int1 <= 0) {
+    return(false);
+}
+def_int $int2 = 0;
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_dbtable $dbtable5 = db_getrowtable($dbrow0);
+while ($int3 < $int1) {
+    switch_dbtable ($dbtable5) {
+        case quest :
+            $int2 = db_getfield($dbrow0, quest:related_content, $int3);
+        case music :
+            $int2 = db_getfield($dbrow0, music:related_content, $int3);
+        case slayer_task :
+            $int2 = db_getfield($dbrow0, slayer_task:related_content, $int3);
+        case slayer_area :
+            $int2 = db_getfield($dbrow0, slayer_area:related_content, $int3);
+        case cluehelper_clue_anagram :
+            $int2 = db_getfield($dbrow0, cluehelper_clue_anagram:related_content, $int3);
+        case cluehelper_clue_map :
+            $int2 = db_getfield($dbrow0, cluehelper_clue_map:related_content, $int3);
+        case cluehelper_clue_cipher :
+            $int2 = db_getfield($dbrow0, cluehelper_clue_cipher:related_content, $int3);
+        case cluehelper_clue_coordinate :
+            $int2 = db_getfield($dbrow0, cluehelper_clue_coordinate:related_content, $int3);
+        case cluehelper_clue_cryptic :
+            $int2 = db_getfield($dbrow0, cluehelper_clue_cryptic:related_content, $int3);
+        case cluehelper_clue_emote :
+            $int2 = db_getfield($dbrow0, cluehelper_clue_emote:related_content, $int3);
+        case cluehelper_clue_fairyring :
+            $int2 = db_getfield($dbrow0, cluehelper_clue_fairyring:related_content, $int3);
+        case cluehelper_clue_falobard :
+            $int2 = db_getfield($dbrow0, cluehelper_clue_falobard:related_content, $int3);
+        case cluehelper_clue_hotcold :
+            $int2 = db_getfield($dbrow0, cluehelper_clue_hotcold:related_content, $int3);
+        case cluehelper_clue_music :
+            $int2 = db_getfield($dbrow0, cluehelper_clue_music:related_content, $int3);
+        case cluehelper_clue_skillchallenge :
+            $int2 = db_getfield($dbrow0, cluehelper_clue_skillchallenge:related_content, $int3);
+        case chartering_destinations :
+            $int2 = db_getfield($dbrow0, chartering_destinations:related_content, $int3);
+        case default :
+            ~error("Content not properly configured to be restricted, missing dbtable inside [proc,restrict_content_dbrow].");
+            return(false);
+    }
+    if ($int2 ! 0 & ~script8951($int2) = true) {
+        return(true);
+    }
+    $int2 = 0;
+    $int3 = calc($int3 + 1);
+}
+return(false);

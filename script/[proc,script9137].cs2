@@ -1,0 +1,29 @@
+// 9137
+[proc,script9137](dbrow $dbrow0)(boolean)
+def_boolean $boolean1 = true;
+switch_dbtable (db_getfield($dbrow0, sailing_charting_core:charting_type, 0)) {
+    case sailing_charting_drink_crate :
+        if (~quest_is_complete(quest_pryingtimes) = false) {
+            $boolean1 = false;
+        }
+    case sailing_charting_current_duck :
+        if (~quest_is_complete(quest_currentaffairs) = false) {
+            $boolean1 = false;
+        }
+    case sailing_charting_mermaid_guide :
+        if (~quest_is_complete(subquest_rfd_pirate) = false) {
+            $boolean1 = false;
+        }
+}
+def_dbrow $dbrow2 = db_getfield($dbrow0, sailing_charting_core:required_dock, 0);
+def_int $int3 = db_getfieldcount($dbrow2, sailing_dock:quest_required);
+def_int $int4 = 0;
+def_dbrow $dbrow5 = null;
+while ($int4 < $int3 & $boolean1 = true) {
+    $dbrow5 = db_getfield($dbrow2, sailing_dock:quest_required, $int4);
+    if (~quest_is_complete($dbrow5) = false) {
+        $boolean1 = false;
+    }
+    $int4 = calc($int4 + 1);
+}
+return($boolean1);

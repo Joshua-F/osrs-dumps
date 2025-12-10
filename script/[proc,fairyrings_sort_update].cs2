@@ -1,5 +1,5 @@
 // 8080
-[proc,fairyrings_sort_update](component $component0, component $component1, int $int2, component $component3, component $component4, int $int5)
+[proc,fairyrings_sort_update](component $component0, component $component1, int $int2, int $int3, component $component4, component $component5)
 if ($int2 = 1) {
     if (%fairyrings_sort = 1 | %fairyrings_sort = 0) {
         %fairyrings_sort = %fairyrings_sort;
@@ -10,7 +10,7 @@ if ($int2 = 1) {
         %fairyrings_scrollpos = 0;
     }
     ~scrollbar_vertical($component1, $component0, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-} else {
+} else if ($int3 = 0) {
     sound_synth(synth_2266, 1, 0);
     if (%fairyrings_sort = 1) {
         %fairyrings_sort = 0;
@@ -26,7 +26,7 @@ if ($int9 <= 0) {
     $int9 = 143;
 }
 cc_deleteall($component0);
-cc_deleteall($component4);
+cc_deleteall($component5);
 def_int $int10 = 17;
 def_int $int11 = 0;
 def_int $int12 = 0;
@@ -37,13 +37,11 @@ while ($int12 < 10) {
     $component6 = enum(int, component, enum_1297, $int12);
     $component8 = enum(int, component, enum_1298, $int12);
     $component7 = enum(int, component, enum_1299, $int12);
-    if ($int5 = 1) {
-        if (string_length($string0) > 0) {
-            if (string_indexof_string(~script7125(lowercase(if_gettext($component6)), ":"), $string0, 0) ! -1) {
-                $int14 = 1;
-            } else {
-                $int14 = 0;
-            }
+    if (string_length($string0) > 0) {
+        if (string_indexof_string(~script7125(lowercase(if_gettext($component6)), ":"), $string0, 0) ! -1) {
+            $int14 = 1;
+        } else {
+            $int14 = 0;
         }
     } else {
         $int14 = 1;
@@ -75,8 +73,8 @@ while ($int12 < 10) {
 if ($boolean13 = false) {
     $int11 = calc($int11 + 3);
 }
-if_sethide($boolean13, $component3);
-if_setsize(0, $int11, ^setsize_minus, ^setsize_abs, $component4);
+if_sethide($boolean13, $component4);
+if_setsize(0, $int11, ^setsize_minus, ^setsize_abs, $component5);
 def_component $component15 = null;
 def_component $componentarray1(64);
 def_int $int16 = 0;
@@ -87,13 +85,11 @@ def_int $int18 = 0;
 while ($dbrow17 ! null) {
     $component15 = db_getfield($dbrow17, fairyring:text_component, 0);
     if ($component15 ! null) {
-        if ($int5 = 1) {
-            if (string_length($string0) > 0) {
-                if (string_indexof_string(~script7125(lowercase(if_gettext($component15)), ":"), $string0, 0) ! -1) {
-                    $int14 = 1;
-                } else {
-                    $int14 = 0;
-                }
+        if (string_length($string0) > 0) {
+            if (string_indexof_string(~script7125(lowercase(if_gettext($component15)), ":"), $string0, 0) ! -1) {
+                $int14 = 1;
+            } else {
+                $int14 = 0;
             }
         } else {
             $int14 = 1;
@@ -151,7 +147,7 @@ while ($int18 < $int16) {
     $int18 = calc($int18 + 1);
 }
 $string2 = if_gettext(fairyrings_log:hideout);
-if ($int5 = 1 & string_length($string0) > 0) {
+if (string_length($string0) > 0) {
     if (string_indexof_string(~script7125(lowercase(if_gettext(fairyrings_log:hideout)), ":"), $string0, 0) ! -1) {
         $int14 = 1;
     } else {
