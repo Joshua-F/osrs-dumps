@@ -1,0 +1,86 @@
+// 9139
+[proc,script9139](component $component0, int $int1, int $int2, int $int3, int $int4, int $int5, int $int6, component $component7)
+def_obj $obj8 = null;
+def_obj $obj9 = null;
+def_obj $obj10 = null;
+db_find(patchy_data:id, %if1);
+def_dbrow $dbrow11 = db_findnext;
+if ($dbrow11 ! null) {
+    $obj8, $obj9, $obj10 = db_getfield($dbrow11, patchy_data:combined, 0), db_getfield($dbrow11, patchy_data:ingredients, 0);
+    if ($obj8 ! null & $obj9 ! null & $obj10 ! null) {
+        if (cc_find($component0, $int1) = ^true) {
+            cc_settext("<col=ffffff><~script4783(oc_name($obj8), if_getwidth($component0), b12_full)></col>");
+        }
+        if (cc_find($component0, $int2) = ^true) {
+            cc_setobject_nonum($obj9, 1);
+            cc_sethide(false);
+        }
+        if (cc_find($component0, $int3) = ^true) {
+            cc_setobject_nonum($obj10, 1);
+            cc_sethide(false);
+        }
+        if (cc_find($component0, $int4) = ^true) {
+            cc_sethide(false);
+        }
+        if (cc_find($component0, $int5) = ^true) {
+            cc_settext("<oc_name($obj9)> &<br><oc_name($obj10)>");
+        }
+        if (cc_find($component0, $int6) = ^true) {
+            cc_sethide(true);
+        }
+    } else {
+        $dbrow11 = null;
+    }
+}
+def_int $int12 = -1;
+if ($dbrow11 ! null) {
+    $int12 = db_getfield($dbrow11, patchy_data:id, 0);
+} else {
+    if (cc_find($component0, $int1) = ^true) {
+        cc_settext("---");
+    }
+    if (cc_find($component0, $int2) = ^true) {
+        cc_setobject_nonum(blankobject, 1);
+        cc_sethide(true);
+    }
+    if (cc_find($component0, $int3) = ^true) {
+        cc_setobject_nonum(blankobject, 1);
+        cc_sethide(true);
+    }
+    if (cc_find($component0, $int4) = ^true) {
+        cc_sethide(true);
+    }
+    if (cc_find($component0, $int5) = ^true) {
+        cc_settext("");
+    }
+    if (cc_find($component0, $int6) = ^true) {
+        cc_sethide(false);
+    }
+}
+def_boolean $boolean13 = ~on_mobile;
+def_int $int14 = -1;
+if_children_find(1, $component7, -1);
+while (if_children_findnext = true) {
+    $int14 = cc_param(param_2359);
+    if (cc_param(param_2358) = $int12) {
+        if (.cc_find($component7, $int14) = ^true) {
+            .cc_settrans(215);
+        }
+        cc_setonmouserepeat(null);
+        cc_setonmouseleave(null);
+        if (.cc_find($component7, cc_param(param_2360)) = ^true) {
+            .cc_setcolour(^white);
+        }
+    } else {
+        if (.cc_find($component7, $int14) = ^true) {
+            .cc_settrans(255);
+        }
+        if ($boolean13 = false) {
+            cc_setonmouserepeat("cc_settrans(event_com, $int14, 230, null)");
+            cc_setonmouseleave("cc_settrans(event_com, $int14, 255, null)");
+        }
+        if (.cc_find($component7, cc_param(param_2360)) = ^true) {
+            .cc_setcolour(0xcfcfcf);
+        }
+    }
+}

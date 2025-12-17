@@ -6,6 +6,7 @@ if ($dbrow0 = null) {
 }
 def_int $int1 = db_getfield($dbrow0, sailing_boat_facility_stats:boat_rapidresistance, 0);
 def_int $int2 = db_getfield($dbrow0, sailing_boat_facility_stats:boat_tangled_kelp_resistant, 0);
+def_int $int3 = db_getfield($dbrow0, sailing_boat_facility_stats:boat_crystalhelm_resistance, 0);
 switch_int ($int1) {
     case 0 :
         $string1 = "Rapid resistance: <$string0>None";
@@ -20,6 +21,14 @@ switch_int ($int1) {
 }
 if ($int2 = 1) {
     $string1 = "<$string1><br>Immunity: <$string0>Tangled kelp";
+}
+switch_int ($int3) {
+    case 1 :
+        $string1 = "<$string1><br>Crystallised helm hitpoints : <$string0>66%";
+    case 2 :
+        $string1 = "<$string1><br>Crystallised helm hitpoints : <$string0>33%";
+    case default :
+        $string1 = "<$string1><br>Crystallised helm hitpoints : <$string0>100%";
 }
 if (string_length($string1) > 0) {
     return($string1);

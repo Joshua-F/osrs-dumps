@@ -1,0 +1,48 @@
+// 9144
+[proc,script9144](string $string0, graphic $graphic0, int $int1, int $int2, int $int3)(int)
+cc_deleteall(menu_new:frame);
+if (%settings_new_menu_transparent_interface_disabled = 0) {
+    ~steelborder(menu_new:frame, "", 13);
+} else {
+    ~steelborder(menu_new:frame, "", 5);
+}
+def_int $int4 = ~thinbox(menu_new:title, 0);
+cc_create(menu_new:title, ^iftype_graphic, $int4);
+if ($graphic0 ! null) {
+    cc_setsize($int1, $int2, ^setsize_abs, ^setsize_abs);
+    cc_setgraphic($graphic0);
+    cc_setposition(10, 10, ^setpos_abs_left, ^setpos_abs_top);
+}
+def_int $int5 = parawidth($string0, 1000, b12_full);
+if ($int5 > calc($int3 * 4)) {
+    $int3 = calc(72 + scale(220, 100, $int3));
+} else if ($int5 > calc($int3 * 3)) {
+    $int3 = calc(72 + scale(170, 100, $int3));
+} else if ($int5 > calc($int3 * 2)) {
+    $int3 = calc(72 + scale(120, 100, $int3));
+}
+cc_create(menu_new:title, ^iftype_text, calc($int4 + 1));
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top);
+cc_setsize(72, 0, ^setsize_minus, ^setsize_minus);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 14);
+cc_setcolour(0xff981f);
+cc_settextshadow(true);
+cc_settextfont(b12_full);
+cc_settext($string0);
+def_int $int6 = 26;
+def_int $int7 = 23;
+def_graphic $graphic8 = "close_buttons,0";
+def_graphic $graphic9 = "close_buttons,1";
+if (~on_mobile = true) {
+    $graphic8 = "steelborder_close_button,0";
+    $graphic9 = "steelborder_close_button,0";
+    $int6 = 33;
+    $int7 = 33;
+}
+~create_graphic(menu_new:title, calc($int4 + 2), $graphic8, 12, 0, ^setpos_abs_right, ^setpos_abs_centre, $int6, $int7, ^setsize_abs, ^setsize_abs, false);
+cc_setonmouseleave("cc_graphic_swapper(event_com, event_comsubid, $graphic8, null)");
+cc_setonmouseover("cc_graphic_swapper(event_com, event_comsubid, $graphic9, null)");
+cc_setop(1, "Close");
+cc_setonop("closebutton_click");
+cc_setonkey("script8184(event_keycode, event_com, event_comsubid, 1)");
+return($int3);

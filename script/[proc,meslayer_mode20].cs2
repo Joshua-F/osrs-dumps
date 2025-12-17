@@ -1,5 +1,5 @@
 // 8077
-[proc,meslayer_mode20](string $string0, string $string1)
+[proc,meslayer_mode20](string $string0, string $string1, int $int0)
 if (%snapshot_open = 1) {
     if_close;
 }
@@ -9,6 +9,6 @@ if_settext($string0, chatbox:mes_text);
 ~script222($string1);
 if_setonkey("meslayer_onkey(event_keycode, event_keychar, $string1)", chatbox:mes_text2);
 if_setondialogabort("meslayer_ondialogabort", chatbox:mes_text2);
-if (~on_mobile = true) {
+if (~on_mobile = true & $int0 = 1) {
     ~keyboard_show(0, 80);
 }

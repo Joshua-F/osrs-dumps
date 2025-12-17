@@ -17,13 +17,17 @@ def_string $string0 = "";
 def_string $string1 = "";
 def_string $string2 = "";
 def_string $string3 = "";
+def_string $string4 = "";
 def_int $int16 = 0;
 def_namedobj $namedobj17 = null;
 def_namedobj $namedobj18 = null;
 def_namedobj $namedobj19 = null;
 cc_deleteall($component4);
-$string1, $string2, $string3 = ~collection_category_count($struct0);
-if (string_length($string3) ! 0) {
+$string1, $string2, $string3, $string4 = ~collection_category_count($struct0);
+if (string_length($string4) ! 0) {
+    if_setsize(0, 82, ^setsize_minus, ^setsize_abs, $component3);
+    if_setsize(0, 83, ^setsize_minus, ^setsize_minus, $component7);
+} else if (string_length($string3) ! 0) {
     if_setsize(0, 70, ^setsize_minus, ^setsize_abs, $component3);
     if_setsize(0, 71, ^setsize_minus, ^setsize_minus, $component7);
 } else if (string_length($string2) ! 0) {
@@ -114,6 +118,17 @@ if (string_length($string1) ! 0) {
 $int20 = ~max($int20, parawidth($string0, if_getwidth($component4), p11_full));
 cc_setsize($int20, 20, ^setsize_abs, ^setsize_abs);
 $int16 = calc($int16 + 1);
+if (string_length($string4) ! 0) {
+    cc_create($component4, ^iftype_text, $int16);
+    cc_settext($string4);
+    cc_settextfont(p11_full);
+    cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+    cc_settextshadow(true);
+    cc_setcolour(0xff981f);
+    cc_setposition(0, 41, ^setpos_abs_left, ^setpos_abs_bottom);
+    cc_setsize(parawidth($string4, if_getwidth($component4), p11_full), 10, ^setsize_abs, ^setsize_abs);
+    $int16 = calc($int16 + 1);
+}
 if (string_length($string3) ! 0) {
     cc_create($component4, ^iftype_text, $int16);
     cc_settext($string3);

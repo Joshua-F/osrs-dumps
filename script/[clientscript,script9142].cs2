@@ -1,0 +1,122 @@
+// 9142
+[clientscript,script9142](int $int0, graphic $graphic1, int $int2, int $int3, string $string0, string $string1)
+if_setsize(512, 334, ^setsize_abs, ^setsize_abs, menu_new:universe);
+if_setsize(0, 16, ^setsize_minus, ^setsize_abs, menu_new:scrollbar);
+if_setsize(0, 16, ^setsize_minus, ^setsize_minus, menu_new:content_scroll);
+def_component $component4 = menu_new:graphics;
+def_component $component5 = menu_new:text;
+def_int $int6 = if_getheight($component4);
+def_int $int7 = if_getwidth($component4);
+def_component $component8 = menu_new:scrollbar;
+def_component $component9 = menu_new:keylisteners;
+cc_deleteall($component4);
+cc_deleteall($component5);
+cc_deleteall($component8);
+cc_deleteall($component9);
+if (~on_mobile = true) {
+    $int0 = 0;
+}
+if ($int0 = 1) {
+    ~chatdefault_stopinput;
+}
+cc_deleteall($component9);
+def_int $int10 = calc(if_getwidth($component4) / 2);
+def_int $int11 = 0;
+def_int $int12 = 0;
+def_int $int13 = 0;
+def_int $int14 = 0;
+def_int $int15 = 0;
+def_int $int16 = 200;
+def_stringarray $stringarray2 = array_create(string, 150, 150);
+def_int $int17 = 0;
+def_int $int18 = 0;
+def_int $int19 = string_indexof_string($string1, "|", 0);
+def_string $string3 = "";
+def_int $int20 = 0;
+def_int $int21 = 0;
+def_int $int22 = 0;
+def_int $int23 = 0;
+while ($int19 ! -1) {
+    $string3 = substring($string1, 0, $int19);
+    $stringarray2($int17) = $string3;
+    $int20 = parawidth(append("W: ", $string3), $int10, p12_full);
+    if ($int20 > $int21) {
+        $int21 = calc($int20 + 20);
+    }
+    $int17 = calc($int17 + 1);
+    $string1 = substring($string1, calc($int19 + 1), string_length($string1));
+    $int19 = string_indexof_string($string1, "|", 0);
+}
+$int20 = parawidth(append("W: ", $string1), $int10, p12_full);
+if ($int20 > $int21) {
+    $int21 = calc($int20 + 20);
+}
+array_resize($stringarray2, $int17);
+$int21 = ~script9144($string0, $graphic1, $int2, $int3, $int21);
+$int21 = min($int21, calc(if_getwidth(menu_new:graphics) / 2));
+while ($int18 < $int17) {
+    $int11, $int12, $int13, $int14, $int15, $int22, $int16, $int23 = ~script9143(calc($int18 + 1), $stringarray2($int18), $int21, $component4, $component5, $component9, $int10, $int11, $int12, $int13, $int0, $int14, $int15, $int22, $int6, $int16, $int23);
+    $int18 = calc($int18 + 1);
+}
+$int11, $int12, $int13, $int14, $int15, $int22, $int16, $int23 = ~script9143(calc($int18 + 1), $string1, $int21, $component4, $component5, $component9, $int10, $int11, $int12, $int13, $int0, $int14, $int15, $int22, $int6, $int16, $int23);
+def_int $int24 = 0;
+if (~on_mobile = true) {
+    if (calc(($int22 - 2) / 24) <= 1) {
+        $int24 = 1;
+    }
+} else if (calc(($int22 - 2) / 18) <= 1) {
+    $int24 = 1;
+}
+if ($int17 > 0 & calc(($int17 + 1) % 2) = 1) {
+    $int14 = calc($int14 + $int22);
+}
+if ($int24 = 1 & $int15 <= $int7 & calc($int15 / $int21) <= 2 & (calc($int15 / $int21) = 1 | calc($int14 / ($int15 / $int21)) < calc($int6 + 16))) {
+    $int12, $int13, $int18 = 0, 0, 0;
+    $int14 = calc($int14 / 2);
+    $int16 = 200;
+    while ($int18 <= $int17) {
+        if (cc_find($component5, $int18) = ^true & .cc_find($component4, $int18) = ^true & string_length(cc_gettext) > 0) {
+            cc_setposition($int13, $int12, ^setpos_abs_left, ^setpos_abs_top);
+            .cc_setposition($int13, $int12, ^setpos_abs_left, ^setpos_abs_top);
+            if ($int16 = 220) {
+                $int16 = 200;
+            } else {
+                $int16 = 220;
+            }
+            .cc_settrans($int16);
+            if (~on_mobile = false) {
+                .cc_setonmouseover("cc_settrans($component4, $int18, 240, null)");
+                .cc_setonmouseleave("cc_settrans($component4, $int18, $int16, null)");
+            }
+            $int12 = calc($int12 + cc_getheight);
+            if (calc($int12 + cc_getheight) > $int14) {
+                $int13, $int12 = calc($int13 + cc_getwidth), 0;
+                if (calc(($int13 / $int21 + 1) % 2) = 0) {
+                    $int16 = 220;
+                } else {
+                    $int16 = 200;
+                }
+            }
+        }
+        $int18 = calc($int18 + 1);
+    }
+    $int15 = calc(cc_getx + cc_getwidth);
+    if_setsize(0, 0, ^setsize_minus, ^setsize_abs, menu_new:scrollbar);
+    if_setsize(0, 0, ^setsize_minus, ^setsize_minus, menu_new:content_scroll);
+    if_setsize(calc(512 - (if_getwidth(menu_new:content_scroll) - $int15)), calc(334 - (if_getheight(menu_new:content_scroll) - $int14)), ^setsize_abs, ^setsize_abs, menu_new:universe);
+} else if ($int15 <= $int7) {
+    if (calc($int15 / $int21) = 1 & $int14 < calc($int6 + 16)) {
+        if_setsize(calc(512 - (if_getwidth(menu_new:content_scroll) - $int15)), calc(334 - (if_getheight(menu_new:content_scroll) - $int14 + 14)), ^setsize_abs, ^setsize_abs, menu_new:universe);
+    } else {
+        if_setsize(calc(512 - (if_getwidth(menu_new:content_scroll) - $int15)), calc(334 - (if_getheight(menu_new:content_scroll) - $int23 + 14)), ^setsize_abs, ^setsize_abs, menu_new:universe);
+    }
+    mes("if_getheight(menu_new:content_scroll) = <tostring(if_getheight(menu_new:content_scroll))> and $lowest_y = <tostring($int23)>");
+    if_setsize(0, 0, ^setsize_minus, ^setsize_abs, menu_new:scrollbar);
+    if_setsize(0, 0, ^setsize_minus, ^setsize_minus, menu_new:content_scroll);
+}
+if_setscrollsize($int15, 0, menu_new:content_scroll);
+if_setscrollpos(0, 0, menu_new:content_scroll);
+if ($int15 > $int7) {
+    ~scrollbar_horizontal($component8, menu_new:content_scroll, "scrollbar_dragger_horizontal_v2,3", "scrollbar_dragger_horizontal_v2,2", "scrollbar_dragger_horizontal_v2,1", "scrollbar_dragger_horizontal_v2,0", "scrollbar_v2,2", "scrollbar_v2,3", 1);
+    ~scrollbar_horizontal_rebuild($component8, menu_new:content_scroll);
+}

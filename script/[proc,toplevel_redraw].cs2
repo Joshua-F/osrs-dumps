@@ -60,28 +60,34 @@ $component9 = enum(int, component, enum_1138, 2);
 $component7 = enum(int, component, enum_1139, 2);
 $component9, $component7 = enum(component, component, $enum1, $component9), enum(component, component, $enum1, $component7);
 def_struct $struct10 = null;
+def_int $int11 = ~script9148;
 if ($component9 ! null & $component7 ! null) {
-    switch_int (%side_journal_tab) {
-        case default :
-            if_setop(1, "Character Summary", $component9);
-            if_setgraphic("sideicons_interface,30", $component7);
-        case 1 :
-            if_setop(1, "Quest List", $component9);
-            if_setgraphic("sideicons_interface,2", $component7);
-        case 2 :
-            if_setop(1, "Achievement Diaries", $component9);
-            if_setgraphic("sideicons_interface,16", $component7);
-        case 3 :
-            if_setop(1, "Adventure Paths", $component9);
-            if_setgraphic("sideicons_interface,23", $component7);
-        case 4 :
-            $struct10 = enum(int, struct, enum_2670, %league_type);
-            if_setop(1, "Leagues", $component9);
-            if ($struct10 ! null) {
-                if_setgraphic(struct_param($struct10, param_149), $component7);
+    if_clearops($component9);
+    if_setop(1, enum(int, string, enum_836, %side_journal_tab), $component9);
+    if_setgraphic(enum(int, graphic, enum_837, %side_journal_tab), $component7);
+    $struct10 = enum(int, struct, enum_2670, %league_type);
+    switch_int ($int11) {
+        case 2, 1, 3 :
+            if (%side_journal_tab = 4) {
+                if ($struct10 ! null) {
+                    if_setgraphic(struct_param($struct10, param_149), $component7);
+                }
             } else {
-                if_setgraphic("sideicons_interface,66", $component7);
+                if_setop(6, enum(int, string, enum_836, 4), $component9);
             }
+        case 0 :
+            if (%side_journal_tab ! 3) {
+                if_setop(5, enum(int, string, enum_836, 3), $component9);
+            }
+    }
+    if (%side_journal_tab ! 0) {
+        if_setop(2, enum(int, string, enum_836, 0), $component9);
+    }
+    if (%side_journal_tab ! 1) {
+        if_setop(3, enum(int, string, enum_836, 1), $component9);
+    }
+    if (%side_journal_tab ! 2) {
+        if_setop(4, enum(int, string, enum_836, 2), $component9);
     }
 }
 $component7 = enum(int, component, enum_1139, 5);
@@ -138,20 +144,57 @@ $component9, $component7 = enum(component, component, $enum1, $component9), enum
 if ($component9 ! null & $component7 ! null) {
     if (%friends_panel = 0) {
         if_setop(1, "Friends List", $component9);
+        if_setop(2, "Ignore List", $component9);
         if_setgraphic("sideicons_interface,8", $component7);
     } else {
         if_setop(1, "Ignore List", $component9);
+        if_setop(2, "Friends List", $component9);
         if_setgraphic("sideicons_interface,9", $component7);
     }
+}
+$component9 = enum(int, component, enum_1138, 8);
+$component9 = enum(component, component, $enum1, $component9);
+if ($component9 ! null) {
+    if_setop(2, "Account", $component9);
+    if_setop(3, "Community", $component9);
+    if_setop(4, "Useful links", $component9);
 }
 $component9, $component7 = enum(int, component, enum_1138, 7), enum(int, component, enum_1139, 7);
 $component9, $component7 = enum(component, component, $enum1, $component9), enum(component, component, $enum1, $component7);
 if ($component9 ! null) {
+    if_clearops($component9);
     if_setop(1, enum(int, string, enum_3839, %side_channels_tab_selected), $component9);
+    if ((%ironman = 4 | %ironman = 5 | %ironman = 6) & %side_channels_tab_selected ! %ironman) {
+        if_setop(2, enum(int, string, enum_3839, %ironman), $component9);
+    }
+    if (%side_channels_tab_selected ! 0) {
+        if_setop(3, enum(int, string, enum_3839, 0), $component9);
+    }
+    if (%side_channels_tab_selected ! 1) {
+        if_setop(4, enum(int, string, enum_3839, 1), $component9);
+    }
+    if (%side_channels_tab_selected ! 2) {
+        if_setop(5, enum(int, string, enum_3839, 2), $component9);
+    }
+    if (%side_channels_tab_selected ! 3) {
+        if_setop(6, enum(int, string, enum_3839, 3), $component9);
+    }
 }
 if ($component7 ! null) {
     if_setgraphic(enum(int, graphic, enum_3841, %side_channels_tab_selected), $component7);
     if_setonvartransmit("script5303($component7, $component9){magic_carpet_var}", $component7);
+}
+$component9 = enum(int, component, enum_1138, 11);
+$component9 = enum(component, component, $enum1, $component9);
+if ($component9 ! null) {
+    if_setop(2, "Controls", $component9);
+    if_setop(3, "Audio", $component9);
+    if_setop(4, "Display", $component9);
+}
+$component9 = enum(int, component, enum_1138, 10);
+$component9 = enum(component, component, $enum1, $component9);
+if ($component9 ! null) {
+    if_setop(2, "World Switcher", $component9);
 }
 $component7 = enum(component, component, $enum1, toplevel_osrs_stretch:side_background);
 if ($component7 ! null) {

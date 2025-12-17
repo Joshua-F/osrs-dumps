@@ -36,11 +36,15 @@ if_setonop("opsound(event_op, 2)", $component2);
 if_setontimer(null, $component2);
 def_int $int10 = calc(if_getwidth($component1) - (if_getx($component2) + if_getwidth($component2) + 4));
 ~bankside_runepouch_loadout_draw($int0, $component1, $int10, $int9, $component3, $component4);
-~bankside_runepouch_name_init($component5, $int0);
-if (~on_mobile = false) {
-    if_setonmouserepeat("cc_graphic_swapper($component5, 0, tradebacking_dark, null)", $component5);
+~script9147;
+if (%settings_runepouch_loadout_names_disabled = 0) {
+    ~bankside_runepouch_name_init($component5, $int0);
 }
-if_setonmouseleave("cc_graphic_swapper($component5, 0, tradebacking, null)", $component5);
+~script9146(bankside:runepouch_loadout_container, bankside:runepouch_loadout_j, bankside:runepouch_loadout_scrollbar);
+if (~on_mobile = false) {
+    if_setonmouserepeat("cc_colour_swapper($component5, 1, 16777215)", $component5);
+}
+if_setonmouseleave("cc_colour_swapper($component5, 1, 16750623)", $component5);
 if_setop(1, "Change loadout name", $component5);
 if_setonop("script8089($component6, $int0)", $component5);
 if_setonvartransmit("bankside_runepouch_loadout_draw($int0, event_com, $int10, $int9, $component3, $component4){bankcert, rune_pouch_a, rune_pouch_b, rune_pouch_c, rune_pouch_d, music_next_id_remembered, music_current_id_remembered, music_current_id, bondif_quickopen, bondif_redeem_selected_button, bondif_convert_perbond, bondif_convert_count, rune_pouch_k, rune_pouch_l, rune_pouch_m, rune_pouch_loadout_1, rune_pouch_loadout_2, rune_pouch_loadout_3, rune_pouch_loadout_4, rune_pouch_loadout_5, rune_pouch_loadout_6, rune_pouch_loadout_7, rune_pouch_loadout_8, rune_pouch_loadout_9, rune_pouch_loadout_10, rune_pouch_loadout_11, rune_pouch_loadout_12, rune_pouch_loadout_13, rune_pouch_loadout_14, rune_pouch_loadout_15, rune_pouch_loadout_16}", $component1);

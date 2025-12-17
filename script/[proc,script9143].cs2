@@ -1,0 +1,74 @@
+// 9143
+[proc,script9143](int $int0, string $string0, int $int1, component $component2, component $component3, component $component4, int $int5, int $int6, int $int7, int $int8, int $int9, int $int10, int $int11, int $int12, int $int13, int $int14, int $int15)(int, int, int, int, int, int, int, int)
+if (string_length($string0) <= 0) {
+    cc_create($component2, ^iftype_rectangle, $int6);
+    cc_sethide(true);
+    cc_create($component3, ^iftype_text, $int6);
+    cc_sethide(true);
+    cc_create($component4, ^iftype_rectangle, $int6);
+    cc_sethide(true);
+    return($int6, $int7, $int8, $int10, $int11, $int12, $int14, $int15);
+}
+def_int $int16 = 0;
+if (~on_mobile = true) {
+    $int16 = calc(paraheight($string0, $int5, p12_full) * 24 + 2);
+} else {
+    $int16 = calc(paraheight(append("W: ", $string0), $int5, p12_full) * 18 + 2);
+}
+if ($int16 > $int12) {
+    $int12 = $int16;
+}
+if (calc($int7 + $int16) > $int13) {
+    $int8, $int7 = calc($int8 + $int1), 0;
+    if (calc(($int8 / $int1 + 1) % 2) = 0) {
+        $int14 = 220;
+    } else {
+        $int14 = 200;
+    }
+}
+cc_create($component2, ^iftype_rectangle, $int6);
+cc_setposition($int8, $int7, ^setpos_abs_left, ^setpos_abs_top);
+cc_setsize($int1, $int16, ^setsize_abs, ^setsize_abs);
+cc_setcolour(^black);
+cc_setfill(true);
+if ($int14 = 220) {
+    $int14 = 200;
+} else {
+    $int14 = 220;
+}
+cc_settrans($int14);
+if (~on_mobile = false) {
+    cc_setonmouseover("cc_settrans($component2, $int6, 240, null)");
+    cc_setonmouseleave("cc_settrans($component2, $int6, $int14, null)");
+}
+cc_create($component3, ^iftype_text, $int6);
+.cc_create($component4, ^iftype_rectangle, $int6);
+cc_setposition($int8, $int7, ^setpos_abs_left, ^setpos_abs_top);
+.cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_setsize($int1, $int16, ^setsize_abs, ^setsize_abs);
+.cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_settextfont(p12_full);
+cc_setcolour(0xff981f);
+cc_setonmouseover("cc_colour_swapper(event_com, event_comsubid, 16777215)");
+cc_setonmouseleave("cc_colour_swapper(event_com, event_comsubid, 16750623)");
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 14);
+cc_settext($string0);
+def_string $string1 = "";
+def_string $string2 = "";
+$int6 = calc($int6 + 1);
+if ($int9 = 1 & $int6 < 36) {
+    if ($int6 < 10) {
+        $string1 = tostring($int6);
+    } else {
+        $string1 = enum(int, string, enum_1401, calc($int6 - 9));
+        $string2 = enum(int, string, enum_1402, calc($int6 - 9));
+    }
+    $string0 = append("<col=ffffff><$string1></col>: ", $string0);
+    .cc_setonkey("chatbox_keyinput_listener(event_keycode, event_keychar, $component3, cc_getid, null, null, $string1, $string2, ^white, 0)");
+}
+cc_settext($string0);
+$int7 = calc($int7 + $int16);
+if (calc(cc_gety + cc_getheight) > $int15) {
+    $int15 = calc(cc_gety + cc_getheight);
+}
+return($int6, $int7, $int8, calc($int10 + $int16), calc(cc_getx + cc_getwidth), $int12, $int14, $int15);
