@@ -62,11 +62,12 @@ def_int $int17 = 3;
 $int8 = 0;
 def_int $int18 = 0;
 def_obj $obj = null;
-$int18, $obj, $string = ~skill_guide_data(%skill_guide_skill, $int7, $int8);
-while ($obj ! null) {
-    $int17 = ~skill_guide_addentry($int18, $obj, $string, $component2, $component3, $int16, $int7, $int8, $int17);
+def_dbrow $dbrow = null;
+$int18, $obj, $dbrow, $string = ~skill_guide_data(%skill_guide_skill, $int7, $int8);
+while ($obj ! null | $dbrow ! null) {
+    $int17 = ~skill_guide_addentry($int18, $obj, $dbrow, $string, $component2, $component3, $int16, $int7, $int8, $int17);
     $int8 = calc($int8 + 1);
-    $int18, $obj, $string = ~skill_guide_data(%skill_guide_skill, $int7, $int8);
+    $int18, $obj, $dbrow, $string = ~skill_guide_data(%skill_guide_skill, $int7, $int8);
 }
 if_setsize(if_getwidth($component2), $int17, ^setsize_abs, ^setsize_abs, $component3);
 if_setscrollpos(0, 0, $component2);

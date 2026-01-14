@@ -1,0 +1,61 @@
+// 9196
+[proc,script9196](component $component, int $int1, int $int2, int $int3, int $int4, int $int5, int $int6, string $string0, int $int7, string $string1, int $int8, graphic $graphic9, int $int10, int $int11)(int, int)
+if ($int7 = 1 & ~string_isnullorempty($string0) = false) {
+    cc_create_sibling(^iftype_text, ~script8302($component));
+    cc_setposition($int1, $int2, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(parawidth($string0, if_getwidth($component), p11_full), $int6, ^setsize_abs, ^setsize_abs);
+    cc_settextalign(^settextalign_left, ^settextalign_centre, $int6);
+    $int1 = calc($int1 + cc_getwidth);
+    cc_settextfont(p11_full);
+    cc_setcolour(0xff981f);
+    cc_settext($string0);
+}
+$int7 = 0;
+def_int $int12 = 1;
+def_int $int13 = 1;
+def_int $int14 = calc(if_getwidth($component) - $int4);
+def_fontmetrics $fontmetrics = p11_full;
+def_graphic $graphic16 = p11_full;
+def_int $int17 = 16;
+def_string $string2 = $string1;
+def_string $string3 = "";
+if ($int8 > 0) {
+    $string3 = "(+<tostring($int8)>)";
+} else {
+    $int13 = 0;
+}
+def_int $int18 = parawidth($string2, $int14, $fontmetrics);
+def_int $int19 = parawidth($string3, $int14, $fontmetrics);
+def_int $int20 = calc($int10 + $int12 + $int18 + $int13 + $int19);
+if (calc($int1 + $int20) > $int14) {
+    $int1 = $int3;
+    $int2 = calc($int2 + $int6 + $int5);
+}
+if ($graphic9 ! null) {
+    cc_create_sibling(^iftype_graphic, ~script8302($component));
+    cc_setgraphic($graphic9);
+    cc_setsize($int10, $int11, ^setsize_abs, ^setsize_abs);
+    cc_setposition($int1, $int2, ^setpos_abs_left, ^setpos_abs_top);
+    $int1 = calc($int1 + cc_getwidth + $int12);
+}
+cc_create_sibling(^iftype_text, ~script8302($component));
+cc_setposition($int1, $int2, ^setpos_abs_left, ^setpos_abs_top);
+cc_setsize($int18, $int6, ^setsize_abs, ^setsize_abs);
+cc_settextalign(^settextalign_left, ^settextalign_centre, $int6);
+cc_settext($string2);
+cc_setcolour(^white);
+cc_settextfont($graphic16);
+$int1 = calc($int1 + cc_getwidth + $int13);
+if ($int8 > 0) {
+    cc_create_sibling(^iftype_text, ~script8302($component));
+    cc_setposition($int1, $int2, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize($int19, $int6, ^setsize_abs, ^setsize_abs);
+    cc_settextalign(^settextalign_left, ^settextalign_centre, $int6);
+    cc_settext($string3);
+    cc_setcolour(^yellow);
+    cc_settextfont($graphic16);
+    $int1 = calc($int1 + cc_getwidth + 5);
+} else {
+    $int1 = calc($int1 + 5);
+}
+return($int1, $int2);
