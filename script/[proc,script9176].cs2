@@ -1,0 +1,30 @@
+// 9176
+[proc,script9176](int $int0, int $int1)(int)
+~script8086(skill_guide_v2:overview_tabs);
+~script8086(skill_guide_v2:overview_content_1);
+~script8086(skill_guide_v2:overview_content_2);
+def_int $int2 = 120;
+if_setparam(param_2525, 3, skill_guide_v2:overview_tabs, -1);
+if_setparam(param_2524, 0, skill_guide_v2:overview_tabs, -1);
+~script9177(skill_guide_v2:overview_tabs, skill_guide_v2:overview_content_1, "Overview", $int2);
+~script9177(skill_guide_v2:overview_tabs, skill_guide_v2:overview_content_2, "Quest XP", $int2);
+cc_create(skill_guide_v2:overview_tabs, ^iftype_line, ~script8302(skill_guide_v2:overview_tabs));
+cc_setposition(0, 1, ^setpos_abs_left, ^setpos_abs_bottom);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_abs);
+cc_setlinewid(1);
+cc_setcolour(0x5d5848);
+if_setparam(param_2525, 4, skill_guide_v2:overview_content_1, -1);
+if_setparam(param_2524, 4, skill_guide_v2:overview_content_1, -1);
+~skill_guide_v2_overview($int0, skill_guide_v2:overview_content_1);
+~script9182(skill_guide_v2:overview_content_1, "", "");
+~script9185(skill_guide_v2:overview_content_1, skill_guide_v2_icon_wiki, "View <enum(int, string, enum_108, $int0)> on the Wiki", 1);
+def_string $string = "https://oldschool.runescape.wiki/w/<enum(int, string, enum_108, $int0)>";
+cc_setonop("openurl_raw($string, true, true)");
+if_setparam(param_2525, 4, skill_guide_v2:overview_content_2, -1);
+if_setparam(param_2524, 0, skill_guide_v2:overview_content_2, -1);
+~script9194(enum(int, stat, enum_681, $int0), skill_guide_v2:overview_content_2);
+if (%skill_guide_v2_overview_current_tab ! null) {
+    ~script9181(skill_guide_v2:overview_tabs, %skill_guide_v2_overview_current_tab);
+} else {
+    ~script9181(skill_guide_v2:overview_tabs, skill_guide_v2:overview_content_1);
+}

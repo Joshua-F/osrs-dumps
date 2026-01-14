@@ -1,0 +1,35 @@
+// 9194
+[proc,script9194](stat $stat, component $component)
+def_intarray $intarray = array_create(int, 0, -1);
+def_dbrowarray $dbrowarray = array_create(dbrow, 0, -1);
+db_find(quest:stat_xp_awarded:0, $stat);
+def_dbrow $dbrow = db_findnext;
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_int $int5 = 0;
+while ($dbrow ! null) {
+    $int4 = db_getfieldcount($dbrow, quest:stat_xp_awarded);
+    $int3 = 0;
+    $int5 = 0;
+    while ($int3 < $int4) {
+        if (db_getfield($dbrow, quest:stat_xp_awarded:0, $int3) = $stat) {
+            $int5 = calc(db_getfield($dbrow, quest:stat_xp_awarded:1, $int3) / 10);
+            if ($int5 > 0) {
+                array_push($intarray, $int5);
+                array_push($dbrowarray, $dbrow);
+            }
+            $int3 = $int4;
+        }
+        $int3 = calc($int3 + 1);
+    }
+    $dbrow = db_findnext;
+}
+array_sort($intarray, $dbrowarray);
+array_reverse($intarray);
+array_reverse($dbrowarray);
+def_int $int6 = 0;
+def_int $int7 = array_size($dbrowarray);
+while ($int6 < $int7) {
+    ~script9195($component, $stat, $dbrowarray($int6), $intarray($int6), $int6);
+    $int6 = calc($int6 + 1);
+}

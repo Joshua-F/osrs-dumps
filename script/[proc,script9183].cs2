@@ -1,0 +1,13 @@
+// 9183
+[proc,script9183](component $component, string $string)
+def_stringarray $stringarray = string_split($string, "||");
+def_int $int1 = array_size($stringarray);
+def_int $int2 = 0;
+while ($int2 < $int1) {
+    if (string_indexof_string($stringarray($int2), "::", 0) > -1) {
+        ~script9188($component, $stringarray($int2));
+    } else {
+        ~script9187($component, $stringarray($int2));
+    }
+    $int2 = calc($int2 + 1);
+}
