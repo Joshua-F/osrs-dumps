@@ -1,0 +1,41 @@
+// 9179
+[proc,script9179](int $int0, component $component, int $int2)
+def_int $rgb = 0xff981f;
+def_graphic $graphic4 = "tabs_modal_short,0";
+def_graphic $graphic5 = "tabs_modal_short,1";
+if ($int0 = 1) {
+    $rgb = 0xffa82f;
+} else if ($int0 = 0) {
+    $graphic4, $graphic5 = "tabs_modal_short,2", "tabs_modal_short,3";
+} else if ($int0 = 2) {
+    $graphic4, $graphic5 = "tabs_modal_short,4", "tabs_modal_short,5";
+}
+if (.cc_find($component, $int2) = true) {
+    .cc_query(1);
+    if (.if_query_next = true) {
+        .cc_setgraphic($graphic4);
+    }
+    if (.if_query_next = true) {
+        .cc_setgraphic($graphic5);
+    }
+    if (.if_query_next = true) {
+        .cc_setgraphic($graphic4);
+    }
+    if (.if_query_next = true) {
+        .cc_setcolour($rgb);
+    }
+    if (.if_query_next = true) {
+        if ($int0 = 1 | $int0 = 3) {
+            .cc_clearops;
+            .cc_setonmouserepeat(null);
+            .cc_setonmouseleave(null);
+        } else {
+            .cc_setop(1, "View");
+            .cc_setonop("script9180($component, $int2)");
+            if (~on_mobile = false) {
+                .cc_setonmouserepeat("script9178(2, $component, $int2)");
+                .cc_setonmouseleave("script9178(0, $component, $int2)");
+            }
+        }
+    }
+}

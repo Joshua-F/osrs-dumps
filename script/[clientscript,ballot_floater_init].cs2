@@ -1,13 +1,26 @@
 // 8311
-[clientscript,ballot_floater_init](component $universe, component $content, component $frame, component $close)
-def_int $int4 = ~steelborder($frame, "", 3);
-if_setparam(param_2363, $int4, $frame, -1);
+[clientscript,ballot_floater_init](component $universe, component $dodger, component $content, component $frame, component $close)
+def_int $int5 = 0;
+def_int $int6 = 3;
+if (~toplevel_getcomponents = enum_1132) {
+    $int5, $int6 = 1, 1;
+    ~interface_dodger_init($dodger, null, setbit(0, 13), ^setpos_abs_centre, ^setpos_abs_top, false);
+}
+def_int $int7 = ~steelborder($frame, "", $int6);
+if_setparam(param_2363, $int7, $frame, -1);
 ~script8314("Loading...");
 ~script4215($close, "Close");
 if_setonop("ballot_pre_close", $close);
 if_setopkey(1, ^key_escape, 0, $close);
-def_int $int5 = ~script8231;
-def_int $int6 = calc(512 - 50);
-def_int $int7 = calc(334 - max(60, $int5));
-~script8228($int6, $int7, calc(512 - 10), calc(334 - $int5));
+if ($int5 = 1) {
+    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, $content);
+    if_setsize(0, 0, ^setsize_minus, ^setsize_minus, $content);
+    ~script8229(2, $content);
+    if_setontimer("script9141(event_com, if_getwidth($content), if_getheight($content), $dodger, if_getwidth($dodger), if_getheight($dodger), $content)", $universe);
+    return;
+}
+def_int $int8 = ~script8231;
+def_int $int9 = calc(512 - 50);
+def_int $int10 = calc(334 - max(60, $int8));
+~script8228($int9, $int10, calc(512 - 10), calc(334 - $int8));
 ~toplevel_floater_drag_init(2, $universe, $content);

@@ -1,0 +1,24 @@
+// 9181
+[proc,script9181](component $component0, component $component1)
+if_sethide(false, $component1);
+if_setscrollsize(if_getwidth($component1), if_param(param_2524, $component1, -1), $component1);
+def_int $int2 = max(calc(if_getscrollheight($component1) - if_getheight($component1)), 1);
+if_setscrollpos(0, min(if_getscrolly($component1), $int2), $component1);
+~scrollbar_vertical(skill_guide_v2:overview_scrollbar, $component1, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~scrollbar_vertical_rebuild(skill_guide_v2:overview_scrollbar, $component1);
+%skill_guide_v2_overview_current_tab = $component1;
+if_query(1, $component0, -1);
+def_intarray $intarray = if_query_ids;
+def_int $int3 = array_size($intarray);
+def_int $int4 = 0;
+while ($int4 < $int3) {
+    if (cc_find($component0, $intarray($int4)) = true & cc_param(param_2527) ! null) {
+        if (cc_param(param_2527) = $component1) {
+            ~script9179(1, $component0, cc_getid);
+        } else {
+            if_sethide(true, cc_param(param_2527));
+            ~script9179(0, $component0, cc_getid);
+        }
+    }
+    $int4 = calc($int4 + 1);
+}
