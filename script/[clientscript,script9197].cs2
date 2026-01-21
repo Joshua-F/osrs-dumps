@@ -1,0 +1,25 @@
+// 9197
+[clientscript,script9197](int $int0, int $int1, int $int2, component $close, int $int4)
+~steelborder(deadmanskull_interface:frame, "Deadman Unlocks", 0);
+def_graphic $graphic = null;
+def_int $int6 = 0;
+def_boolean $boolean = ~on_mobile;
+if ($boolean = true) {
+    if_setsize(33, 33, ^setsize_abs, ^setsize_abs, $close);
+    if_setposition(1, 1, ^setpos_abs_right, ^setpos_abs_top, $close);
+    if_setgraphic("steelborder_close_button,0", $close);
+    $int6 = calc(165 - (20 + 30));
+} else {
+    if_setsize(26, 23, ^setsize_abs, ^setsize_abs, $close);
+    if_setposition(2, 6, ^setpos_abs_right, ^setpos_abs_top, $close);
+    $graphic = "close_buttons,0";
+    if_setgraphic($graphic, $close);
+    if_setonmouseleave("graphic_swapper(event_com, $graphic)", $close);
+    $graphic = "close_buttons,1";
+    if_setonmouseover("graphic_swapper(event_com, $graphic)", $close);
+}
+if_setop(1, "Close", $close);
+if_setonop("opsound(event_op, 2)", $close);
+if_setopkey(2, ^key_escape, 0, $close);
+if_setop(2, "", $close);
+~script9199(%deadman_skull_tab, enum(int, dbrow, enum_2768, %deadman_skull_tab));

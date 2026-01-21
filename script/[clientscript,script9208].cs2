@@ -1,0 +1,18 @@
+// 9208
+[clientscript,script9208](struct $struct, int $int1, int $int2, component $component3, component $component4, int $int5, int $int6)
+if (clientclock = $int5) {
+    return;
+}
+if (cc_find($component3, $int1) = true & .cc_find($component3, $int2) = true) {
+    cc_settrans(0);
+    cc_setgraphic(struct_param($struct, param_1384));
+    .cc_setcolour(^white);
+}
+def_string $string = struct_param($struct, param_2532);
+if ($int6 = 0) {
+    $string = "<$string> (Inactive):";
+} else {
+    $string = "<$string> (Active):";
+}
+$string = "<$string> <struct_param($struct, param_1373)>";
+~tooltip_mouserepeat($component3, $int2, $component4, $string, 25, 256);
