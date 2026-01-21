@@ -45,7 +45,7 @@ if ($int17 ! 0) {
         $int10 = 1;
     }
 }
-if (~script4203($dbrow13) = true) {
+if (~script4203($dbrow13, $obj7) = true) {
     $int10 = 1;
 }
 if ($int10 = 1) {
@@ -121,6 +121,9 @@ if (string_length(db_getfield($dbrow13, omnishop_stock_data:omnishop_stock_name_
 }
 if (string_length($string1) = 0) {
     $string1 = oc_name($obj7);
+}
+if ($dbrow13 ! null & db_getfield($dbrow13, omnishop_stock_data:omnishop_stock_use_shortname, 0) = true) {
+    $string1 = db_getfield($dbrow13, omnishop_stock_data:omnishop_stock_shortname, 0);
 }
 if ($int16 > 1) {
     $string1 = "<$string1> (x<tostring($int16)>)";

@@ -1,0 +1,47 @@
+// 9206
+[proc,script9206](int $int0, int $int1, int $int2, int $int3, struct $struct, dbrow $dbrow5, component $component6, component $component7, int $int8, int $int9)
+if ($struct = null) {
+    return;
+}
+def_int $int10 = calc($int1 * 3);
+def_int $int11 = calc($int10 + 1);
+def_int $int12 = calc($int10 + 2);
+def_int $int13 = 33;
+def_int $int14 = 1;
+def_int $int15 = 97;
+def_int $int16 = 63;
+cc_create($component6, ^iftype_rectangle, $int10);
+cc_setposition(calc($int2 + 1), calc($int3 + 4), ^setpos_abs_left, ^setpos_abs_top);
+cc_setsize($int15, $int16, ^setsize_abs, ^setsize_abs);
+cc_setfill(true);
+cc_setcolour(^white);
+cc_settrans(255);
+~script9207($int0, $struct, $int10, $int11, $int12, $component6, $component7, $int8);
+cc_create($component6, ^iftype_graphic, $int11);
+cc_setposition(calc($int2 + $int13), calc($int3 + 10), ^setpos_abs_left, ^setpos_abs_top);
+cc_setsize(35, 35, ^setsize_abs, ^setsize_abs);
+if ($int8 = 1) {
+    cc_setgraphic(struct_param($struct, param_1384));
+} else {
+    cc_setgraphic(struct_param($struct, param_2533));
+}
+cc_settrans(55);
+cc_create($component6, ^iftype_text, $int12);
+cc_setposition(calc($int2 + $int14), calc($int3 + 47), ^setpos_abs_left, ^setpos_abs_top);
+cc_setsize(97, 20, ^setsize_abs, ^setsize_abs);
+cc_settextfont(p11_full);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+cc_settextshadow(true);
+if ($int8 = 1) {
+    cc_setcolour(0xd39f34);
+} else {
+    cc_setcolour(0x9f9f9f);
+}
+def_dbrow $dbrow17 = null;
+def_int $int18 = 0;
+$dbrow17, $int18 = db_getfield($dbrow5, omnishop_stock_data:omnishop_stock_cost, 0);
+if ($dbrow5 ! null & $int9 = 0) {
+    cc_settext("<struct_param($struct, param_2532)><br><tostring($int18)> points");
+} else {
+    cc_settext(struct_param($struct, param_2532));
+}
