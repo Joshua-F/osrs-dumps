@@ -1,0 +1,111 @@
+// 9204
+[proc,script9204](int $int0, dbrow $dbrow1, component $component2, component $component3, component $component4)
+def_int $int5 = 0;
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_int $int8 = 0;
+def_struct $struct = null;
+def_dbrow $dbrow10 = null;
+def_int $int11 = 0;
+def_int $int12 = 0;
+def_int $int13 = 4;
+def_int $int14 = 111;
+def_int $int15 = 6;
+def_int $int16 = 0;
+def_int $int17 = 0;
+def_int $int18 = 0;
+def_int $int19 = 0;
+def_int $int20 = 0;
+def_int $int21 = 0;
+def_int $int22 = 0;
+cc_deleteall($component2);
+def_int $int23 = db_getfieldcount($dbrow1, deadmanskull_interface_tab:combat_sigil);
+if ($int23 > 0) {
+    $int17 = 1;
+    $int20 = calc($int8 + 5);
+    $int8 = calc($int8 + 23);
+    while ($int5 < $int23) {
+        $struct, $dbrow10 = db_getfield($dbrow1, deadmanskull_interface_tab:combat_sigil, $int5);
+        $int11, $int12 = ~script9211($struct, $int0);
+        if (calc($int5 % $int13) = 0) {
+            $int6 = $int15;
+        } else {
+            $int6 = calc($int6 + $int14);
+        }
+        $int7 = calc($int5 / $int13 * 74 + $int8);
+        ~script9206($int0, $int16, $int6, $int7, $struct, $dbrow10, $component2, $component4, $int11, $int12);
+        $int5 = calc($int5 + 1);
+        $int16 = calc($int16 + 1);
+    }
+    $int8 = calc($int7 + 74);
+}
+$int5 = 0;
+$int23 = db_getfieldcount($dbrow1, deadmanskull_interface_tab:skilling_sigil);
+if ($int23 > 0) {
+    $int18 = 1;
+    $int21 = calc($int8 + 5);
+    $int8 = calc($int8 + 23);
+    while ($int5 < $int23) {
+        $struct, $dbrow10 = db_getfield($dbrow1, deadmanskull_interface_tab:skilling_sigil, $int5);
+        $int11, $int12 = ~script9211($struct, $int0);
+        if (calc($int5 % $int13) = 0) {
+            $int6 = $int15;
+        } else {
+            $int6 = calc($int6 + $int14);
+        }
+        $int7 = calc($int5 / $int13 * 74 + $int8);
+        ~script9206($int0, $int16, $int6, $int7, $struct, $dbrow10, $component2, $component4, $int11, $int12);
+        $int5 = calc($int5 + 1);
+        $int16 = calc($int16 + 1);
+    }
+    $int8 = calc($int7 + 74);
+}
+$int5 = 0;
+$int23 = db_getfieldcount($dbrow1, deadmanskull_interface_tab:utility_sigil);
+if ($int23 > 0) {
+    $int19 = 1;
+    $int22 = calc($int8 + 5);
+    $int8 = calc($int8 + 23);
+    while ($int5 < $int23) {
+        $struct, $dbrow10 = db_getfield($dbrow1, deadmanskull_interface_tab:utility_sigil, $int5);
+        $int11, $int12 = ~script9211($struct, $int0);
+        if (calc($int5 % $int13) = 0) {
+            $int6 = $int15;
+        } else {
+            $int6 = calc($int6 + $int14);
+        }
+        $int7 = calc($int5 / $int13 * 74 + $int8);
+        ~script9206($int0, $int16, $int6, $int7, $struct, $dbrow10, $component2, $component4, $int11, $int12);
+        $int5 = calc($int5 + 1);
+        $int16 = calc($int16 + 1);
+    }
+    $int8 = calc($int7 + 74);
+}
+$int16 = calc($int16 * 3);
+if ($int17 = 1) {
+    ~script9205("Combat Sigils", $int20, $int16, $component2);
+    $int16 = calc($int16 + 2);
+}
+if ($int18 = 1) {
+    ~script9205("Skilling Sigils", $int21, $int16, $component2);
+    $int16 = calc($int16 + 2);
+}
+if ($int19 = 1) {
+    ~script9205("Utility Sigils", $int22, $int16, $component2);
+    $int16 = calc($int16 + 2);
+}
+def_int $int24 = 0;
+if ($component2 ! null) {
+    $int24 = if_getscrolly($component2);
+}
+if ($component2 ! null & $int24 ! -1 & $int8 ! -1) {
+    if ($int8 > if_getheight($component2)) {
+        if_setscrollsize(0, $int8, $component2);
+    } else {
+        if_setscrollsize(0, 0, $component2);
+    }
+    if_setscrollpos(0, $int24, $component2);
+    cc_deleteall($component3);
+    ~scrollbar_vertical($component3, $component2, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+    ~scrollbar_resize($component3, $component2, $int24);
+}
