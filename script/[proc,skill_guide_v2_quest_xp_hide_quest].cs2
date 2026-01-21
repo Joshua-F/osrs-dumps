@@ -1,0 +1,9 @@
+// 9213
+[proc,skill_guide_v2_quest_xp_hide_quest](dbrow $dbrow)(boolean)
+if (~restrict_content_dbrow($dbrow) = true) {
+    return(true);
+}
+if (db_getfield($dbrow, quest:release_type, 0) ! 2) {
+    return(true);
+}
+return(false);
