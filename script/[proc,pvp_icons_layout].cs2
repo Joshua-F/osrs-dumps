@@ -58,7 +58,11 @@ if (~pvp_world = true) {
         if_sethide(false, pvp_icons:icons);
     }
     if (%deadman_tournament_mode_pl >= 4) {
-        $int6 = 12;
+        if (%deadman_finale_teleport_colosseum_complete = 1) {
+            $int6 = 7;
+        } else {
+            $int6 = 10;
+        }
         if (~private_event_world = 4) {
             $int6 = 2;
         } else if (~private_event_world = 1) {
@@ -68,10 +72,10 @@ if (~pvp_world = true) {
         }
         if (if_gettop = toplevel_spectator) {
             if_sethide(true, pvp_icons:deadman_final);
-        } else if (%deadman_tournament_mode_pl > 6 | %deadman_tournament_saferadius = $int6) {
+        } else if (%deadman_tournament_mode_pl > 6) {
             ~script1434(false, $enum, true);
             if_sethide(true, pvp_icons:deadman_finallocation);
-        } else if (%deadman_tournament_mode_pl = 5 | %deadman_tournament_mode_pl = 6) {
+        } else if (%deadman_tournament_mode_pl = 6) {
             ~script1434(false, $enum, false);
             if_sethide(false, pvp_icons:deadman_finallocation);
         }
