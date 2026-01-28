@@ -1,13 +1,11 @@
 // 290
-[proc,bankmain_itemnote](component $component0, component $component1)
+[proc,bankmain_itemnote](component $component)
 if (%bank_withdrawnotes = 1) {
-    ~options_button_off($component0, 0);
-    ~options_button_on($component1, 0);
-    if_setonop("bankmain_itemnote_op(event_op, $component0, $component1, 0)", $component0);
-    if_setonop(null, $component1);
+    if_setgraphic("miscgraphics,9", $component);
+    if_setonop("bankmain_itemnote_op(event_op, $component, 0)", $component);
+    if_setop(1, "Disable <col=ff9040>Notes", $component);
 } else {
-    ~options_button_on($component0, 0);
-    ~options_button_off($component1, 0);
-    if_setonop(null, $component0);
-    if_setonop("bankmain_itemnote_op(event_op, $component0, $component1, 1)", $component1);
+    if_setgraphic("miscgraphics,0", $component);
+    if_setonop("bankmain_itemnote_op(event_op, $component, 1)", $component);
+    if_setop(1, "Enable <col=ff9040>Notes", $component);
 }
