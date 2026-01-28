@@ -1,222 +1,251 @@
 // 277
-[proc,bankmain_build](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10, component $component11, component $component12, component $component13, component $component14, component $component15, component $component16)
+[proc,bankmain_build](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10, component $component11, component $component12, component $component13, component $component14, component $component15, component $component16, component $component17, component $component18, component $component19)
 if (%bank_showincinerator = 1) {
-    if_sethide(false, $component9);
+    if_sethide(false, $component10);
 } else {
-    if_sethide(true, $component9);
-    ~deltooltip_action($component11);
+    if_sethide(true, $component10);
+    ~deltooltip_action($component12);
 }
-if (%bank_hidedepositworn = 1) {
-    if_sethide(true, $component14);
-    if_sethide(true, $component15);
+~script9219($component10);
+def_boolean $boolean20 = false;
+if (%bank_hidedepositcontainers = 1) {
+    $boolean20 = true;
 } else {
-    if_sethide(false, $component14);
-    if_sethide(false, $component15);
+    $boolean20 = false;
 }
+if_sethide($boolean20, $component15);
+if_sethide($boolean20, $component16);
 if (%bank_hidedepositinv = 1) {
-    if_sethide(true, $component12);
-    if_sethide(true, $component13);
+    $boolean20 = true;
 } else {
-    if_sethide(false, $component12);
-    if_sethide(false, $component13);
+    $boolean20 = false;
 }
-if_setonvartransmit("script3368($component16){item_redemption}", $component16);
-if_setposition(441, 0, ^setpos_abs_left, ^setpos_abs_top, $component14);
-if_setposition(444, 7, ^setpos_abs_left, ^setpos_abs_top, $component15);
-if (%bank_hidedepositinv = 1 & %bank_hidedepositworn = 0) {
-    if_setposition(if_getx($component12), if_gety($component12), ^setpos_abs_left, ^setpos_abs_top, $component14);
-    if_setposition(if_getx($component13), if_gety($component13), ^setpos_abs_left, ^setpos_abs_top, $component15);
-    if_setsize(37, 37, ^setsize_minus, ^setsize_abs, $component4);
-} else if (%bank_hidedepositinv = 0 & %bank_hidedepositworn = 1) {
-    if_setsize(37, 37, ^setsize_minus, ^setsize_abs, $component4);
-} else if (%bank_hidedepositinv = 1 & %bank_hidedepositworn = 1) {
-    if_setsize(74, 37, ^setsize_minus, ^setsize_abs, $component4);
+if_sethide($boolean20, $component13);
+if_sethide($boolean20, $component14);
+if (%bank_hidedepositworn = 1) {
+    $boolean20 = true;
 } else {
-    if_setsize(0, 37, ^setsize_minus, ^setsize_abs, $component4);
+    $boolean20 = false;
 }
-if_sethide(true, $component10);
-cc_deleteall($component10);
-def_int $int17 = 0;
+if_sethide($boolean20, $component17);
+if_sethide($boolean20, $component18);
+if_setonvartransmit("script3368($component19){item_redemption}", $component19);
+if_setposition(439, 0, ^setpos_abs_left, ^setpos_abs_top, $component17);
+if_setposition(442, 7, ^setpos_abs_left, ^setpos_abs_top, $component18);
+def_component $componentarray0(3);
+def_component $componentarray1(3);
+def_int $int21 = 0;
+def_int $int22 = 0;
+if (%bank_hidedepositcontainers = 0) {
+    $componentarray0($int21) = $component15;
+    $componentarray1($int21) = $component16;
+    $int21 = calc($int21 + 1);
+}
+if (%bank_hidedepositinv = 0) {
+    $componentarray0($int21) = $component13;
+    $componentarray1($int21) = $component14;
+    $int21 = calc($int21 + 1);
+}
+if (%bank_hidedepositworn = 0) {
+    $componentarray0($int21) = $component17;
+    $componentarray1($int21) = $component18;
+    $int21 = calc($int21 + 1);
+}
+if_setsize(calc(37 * (3 - $int21)), 37, ^setsize_minus, ^setsize_abs, $component5);
+if ($int21 = 0) {
+    if_sethide(true, bankmain:deposit_line);
+} else {
+    if_sethide(false, bankmain:deposit_line);
+}
+while ($int22 < $int21) {
+    if_setposition(calc(366 + $int22 * 37), if_gety($componentarray0($int22)), ^setpos_abs_left, ^setpos_abs_top, $componentarray0($int22));
+    if_setposition(calc(369 + $int22 * 37), if_gety($componentarray1($int22)), ^setpos_abs_left, ^setpos_abs_top, $componentarray1($int22));
+    $int22 = calc($int22 + 1);
+}
+if_sethide(true, $component11);
+cc_deleteall($component11);
+def_int $int23 = 0;
 if (%bank_tab_display = 3) {
     if (%bank_tab_1 > 0 | %bank_tab_2 > 0 | %bank_tab_3 > 0 | %bank_tab_4 > 0 | %bank_tab_5 > 0 | %bank_tab_6 > 0 | %bank_tab_7 > 0 | %bank_tab_8 > 0 | %bank_tab_9 > 0) {
-        $int17 = 0;
+        $int23 = 0;
     } else {
-        $int17 = 1;
+        $int23 = 1;
     }
 }
-def_int $int18 = 0;
-if ($int17 = 1) {
-    if_sethide(true, $component8);
-    $int18 = 2;
-    if_setsize(460, 39, ^setsize_abs, ^setsize_minus, $component2);
-    if_setsize(16, 39, ^setsize_abs, ^setsize_minus, $component3);
+def_int $int24 = 0;
+if ($int23 = 1) {
+    if_sethide(true, $component9);
+    $int24 = 2;
+    if_setsize(460, 39, ^setsize_abs, ^setsize_minus, $component3);
     if_setsize(53, 39, ^setsize_minus, ^setsize_minus, bankmain:potionstore_container);
-    if_setposition(28, 42, ^setpos_abs_right, ^setpos_abs_top, $component1);
 } else {
-    if_sethide(false, $component8);
-    if_setsize(460, 81, ^setsize_abs, ^setsize_minus, $component2);
-    if_setsize(16, 81, ^setsize_abs, ^setsize_minus, $component3);
+    if_sethide(false, $component9);
+    if_setsize(460, 81, ^setsize_abs, ^setsize_minus, $component3);
+    if_setsize(16, 81, ^setsize_abs, ^setsize_minus, $component4);
     if_setsize(53, 81, ^setsize_minus, ^setsize_minus, bankmain:potionstore_container);
-    if_setposition(12, 42, ^setpos_abs_right, ^setpos_abs_top, $component1);
 }
 if (%bank_currenttab = 15) {
     if_sethide(false, bankmain:potionstore_container);
+    if ($int23 = 1) {
+        if_sethide(true, $component2);
+    }
     ~script6080;
 } else {
     if_sethide(true, bankmain:potionstore_container);
+    if_sethide(false, $component2);
 }
-~scrollbar_vertical_rebuild($component3, $component2);
-def_int $int19 = 1410;
-def_int $int20 = calc(1410 + 9 * 3);
-while ($int19 <= $int20) {
-    if (cc_find($component2, $int19) = true) {
+~scrollbar_vertical_rebuild($component4, $component3);
+def_int $int25 = 1410;
+def_int $int26 = calc(1410 + 9 * 3);
+while ($int25 <= $int26) {
+    if (cc_find($component3, $int25) = true) {
         cc_sethide(true);
     }
-    $int19 = calc($int19 + 1);
+    $int25 = calc($int25 + 1);
 }
-$int19 = 0;
-def_int $int21 = calc(8 - 1);
-def_int $int22 = calc(if_getwidth($component2) - 51 - 35);
-def_int $int23 = calc(($int22 - 8 * 36) / $int21);
+$int25 = 0;
+def_int $int27 = calc(8 - 1);
+def_int $int28 = calc(if_getwidth($component3) - 51 - 35);
+def_int $int29 = calc(($int28 - 8 * 36) / $int27);
 def_obj $obj = null;
-def_int $int25 = 0;
-def_int $int26 = 0;
-def_int $int27 = 0;
-def_int $int28 = 0;
-def_int $int29 = -1;
-def_int $int30 = 0;
-def_boolean $boolean = ~bankmain_searching;
+def_int $int31 = 0;
+def_int $int32 = 0;
+def_int $int33 = 0;
+def_int $int34 = 0;
+def_int $int35 = -1;
+def_int $int36 = 0;
+def_boolean $boolean37 = ~bankmain_searching;
 def_string $string = "";
-if ($boolean = true) {
+if ($boolean37 = true) {
     $string = ~bankmain_filterstring;
 }
 if ((%bank_currenttab <= 0 | %bank_currenttab > 9) & %bank_currenttab ! 15) {
-    while ($int19 < 1410) {
-        if (cc_find($component2, $int19) = true) {
+    while ($int25 < 1410) {
+        if (cc_find($component3, $int25) = true) {
             cc_sethide(true);
         }
-        if (inv_getobj(bank, $int19) ! null) {
-            $int28, $int29 = calc($int28 + 1), $int19;
+        if (inv_getobj(bank, $int25) ! null) {
+            $int34, $int35 = calc($int34 + 1), $int25;
         }
-        $int19 = calc($int19 + 1);
+        $int25 = calc($int25 + 1);
     }
-    $int30 = calc(%bank_tab_1 + %bank_tab_2 + %bank_tab_3 + %bank_tab_4 + %bank_tab_5 + %bank_tab_6 + %bank_tab_7 + %bank_tab_8 + %bank_tab_9);
-    if ($int30 <= 0) {
-        $int29 = calc(1410 - 1);
+    $int36 = calc(%bank_tab_1 + %bank_tab_2 + %bank_tab_3 + %bank_tab_4 + %bank_tab_5 + %bank_tab_6 + %bank_tab_7 + %bank_tab_8 + %bank_tab_9);
+    if ($int36 <= 0) {
+        $int35 = calc(1410 - 1);
     }
-    $int27, $int25 = ~script509($int30, calc($int29 + 1), 0, $component2, $component3, $component9, $component10, $component11, $int18, $int23, $int21, $int17, $boolean, $string);
-    $int26 = calc($int26 + $int25);
-    $int19 = 0;
+    $int33, $int31 = ~script509($int36, calc($int35 + 1), 0, $component3, $component4, $component10, $component11, $component12, $int24, $int29, $int27, $int23, $boolean37, $string);
+    $int32 = calc($int32 + $int31);
+    $int25 = 0;
     if (%bank_tab_1 > 0) {
-        $int18 = ~script510(1, $component2, $int27);
-        $int27, $int25 = ~script509($int19, calc($int19 + %bank_tab_1), 1, $component2, $component3, $component9, $component10, $component11, $int18, $int23, $int21, $int17, $boolean, $string);
-        $int26 = calc($int26 + $int25);
-        $int19 = calc($int19 + %bank_tab_1);
+        $int24 = ~script510(1, $component3, $int33);
+        $int33, $int31 = ~script509($int25, calc($int25 + %bank_tab_1), 1, $component3, $component4, $component10, $component11, $component12, $int24, $int29, $int27, $int23, $boolean37, $string);
+        $int32 = calc($int32 + $int31);
+        $int25 = calc($int25 + %bank_tab_1);
     }
     if (%bank_tab_2 > 0) {
-        $int18 = ~script510(2, $component2, $int27);
-        $int27, $int25 = ~script509($int19, calc($int19 + %bank_tab_2), 2, $component2, $component3, $component9, $component10, $component11, $int18, $int23, $int21, $int17, $boolean, $string);
-        $int26 = calc($int26 + $int25);
-        $int19 = calc($int19 + %bank_tab_2);
+        $int24 = ~script510(2, $component3, $int33);
+        $int33, $int31 = ~script509($int25, calc($int25 + %bank_tab_2), 2, $component3, $component4, $component10, $component11, $component12, $int24, $int29, $int27, $int23, $boolean37, $string);
+        $int32 = calc($int32 + $int31);
+        $int25 = calc($int25 + %bank_tab_2);
     }
     if (%bank_tab_3 > 0) {
-        $int18 = ~script510(3, $component2, $int27);
-        $int27, $int25 = ~script509($int19, calc($int19 + %bank_tab_3), 3, $component2, $component3, $component9, $component10, $component11, $int18, $int23, $int21, $int17, $boolean, $string);
-        $int26 = calc($int26 + $int25);
-        $int19 = calc($int19 + %bank_tab_3);
+        $int24 = ~script510(3, $component3, $int33);
+        $int33, $int31 = ~script509($int25, calc($int25 + %bank_tab_3), 3, $component3, $component4, $component10, $component11, $component12, $int24, $int29, $int27, $int23, $boolean37, $string);
+        $int32 = calc($int32 + $int31);
+        $int25 = calc($int25 + %bank_tab_3);
     }
     if (%bank_tab_4 > 0) {
-        $int18 = ~script510(4, $component2, $int27);
-        $int27, $int25 = ~script509($int19, calc($int19 + %bank_tab_4), 4, $component2, $component3, $component9, $component10, $component11, $int18, $int23, $int21, $int17, $boolean, $string);
-        $int26 = calc($int26 + $int25);
-        $int19 = calc($int19 + %bank_tab_4);
+        $int24 = ~script510(4, $component3, $int33);
+        $int33, $int31 = ~script509($int25, calc($int25 + %bank_tab_4), 4, $component3, $component4, $component10, $component11, $component12, $int24, $int29, $int27, $int23, $boolean37, $string);
+        $int32 = calc($int32 + $int31);
+        $int25 = calc($int25 + %bank_tab_4);
     }
     if (%bank_tab_5 > 0) {
-        $int18 = ~script510(5, $component2, $int27);
-        $int27, $int25 = ~script509($int19, calc($int19 + %bank_tab_5), 5, $component2, $component3, $component9, $component10, $component11, $int18, $int23, $int21, $int17, $boolean, $string);
-        $int26 = calc($int26 + $int25);
-        $int19 = calc($int19 + %bank_tab_5);
+        $int24 = ~script510(5, $component3, $int33);
+        $int33, $int31 = ~script509($int25, calc($int25 + %bank_tab_5), 5, $component3, $component4, $component10, $component11, $component12, $int24, $int29, $int27, $int23, $boolean37, $string);
+        $int32 = calc($int32 + $int31);
+        $int25 = calc($int25 + %bank_tab_5);
     }
     if (%bank_tab_6 > 0) {
-        $int18 = ~script510(6, $component2, $int27);
-        $int27, $int25 = ~script509($int19, calc($int19 + %bank_tab_6), 6, $component2, $component3, $component9, $component10, $component11, $int18, $int23, $int21, $int17, $boolean, $string);
-        $int26 = calc($int26 + $int25);
-        $int19 = calc($int19 + %bank_tab_6);
+        $int24 = ~script510(6, $component3, $int33);
+        $int33, $int31 = ~script509($int25, calc($int25 + %bank_tab_6), 6, $component3, $component4, $component10, $component11, $component12, $int24, $int29, $int27, $int23, $boolean37, $string);
+        $int32 = calc($int32 + $int31);
+        $int25 = calc($int25 + %bank_tab_6);
     }
     if (%bank_tab_7 > 0) {
-        $int18 = ~script510(7, $component2, $int27);
-        $int27, $int25 = ~script509($int19, calc($int19 + %bank_tab_7), 7, $component2, $component3, $component9, $component10, $component11, $int18, $int23, $int21, $int17, $boolean, $string);
-        $int26 = calc($int26 + $int25);
-        $int19 = calc($int19 + %bank_tab_7);
+        $int24 = ~script510(7, $component3, $int33);
+        $int33, $int31 = ~script509($int25, calc($int25 + %bank_tab_7), 7, $component3, $component4, $component10, $component11, $component12, $int24, $int29, $int27, $int23, $boolean37, $string);
+        $int32 = calc($int32 + $int31);
+        $int25 = calc($int25 + %bank_tab_7);
     }
     if (%bank_tab_8 > 0) {
-        $int18 = ~script510(8, $component2, $int27);
-        $int27, $int25 = ~script509($int19, calc($int19 + %bank_tab_8), 8, $component2, $component3, $component9, $component10, $component11, $int18, $int23, $int21, $int17, $boolean, $string);
-        $int26 = calc($int26 + $int25);
-        $int19 = calc($int19 + %bank_tab_8);
+        $int24 = ~script510(8, $component3, $int33);
+        $int33, $int31 = ~script509($int25, calc($int25 + %bank_tab_8), 8, $component3, $component4, $component10, $component11, $component12, $int24, $int29, $int27, $int23, $boolean37, $string);
+        $int32 = calc($int32 + $int31);
+        $int25 = calc($int25 + %bank_tab_8);
     }
     if (%bank_tab_9 > 0) {
-        $int18 = ~script510(9, $component2, $int27);
-        $int27, $int25 = ~script509($int19, calc($int19 + %bank_tab_9), 9, $component2, $component3, $component9, $component10, $component11, $int18, $int23, $int21, $int17, $boolean, $string);
-        $int26 = calc($int26 + $int25);
-        $int19 = calc($int19 + %bank_tab_9);
+        $int24 = ~script510(9, $component3, $int33);
+        $int33, $int31 = ~script509($int25, calc($int25 + %bank_tab_9), 9, $component3, $component4, $component10, $component11, $component12, $int24, $int29, $int27, $int23, $boolean37, $string);
+        $int32 = calc($int32 + $int31);
+        $int25 = calc($int25 + %bank_tab_9);
     }
-    if ($boolean = true) {
+    if ($boolean37 = true) {
         if (string_length($string) > 0) {
-            if_settext("Showing items: <col=ff0000><$string></col>", $component5);
+            if_settext("Showing items: <col=ff0000><$string></col>", $component6);
             if (%meslayermode = 11) {
-                if_settext("Show items whose names contain the following text: (<tostring($int26)> found)", chatbox:mes_text);
+                if_settext("Show items whose names contain the following text: (<tostring($int32)> found)", chatbox:mes_text);
             }
         } else {
-            if_settext("Showing items: <col=ff0000>*</col>", $component5);
+            if_settext("Showing items: <col=ff0000>*</col>", $component6);
             if (%meslayermode = 11) {
                 if_settext("Show items whose names contain the following text:", chatbox:mes_text);
             }
         }
     } else {
-        if_settext("The Bank of Gielinor", $component5);
+        if_settext("The Bank of Gielinor", $component6);
     }
-    ~bankmain_finishbuilding($component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10, $component11, $int27, $int28, $component12, $component13, $component14, $component15, $component16);
+    ~bankmain_finishbuilding($component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10, $component11, $component12, $int33, $int34, $component13, $component14, $component15, $component16, $component17, $component18, $component19);
     return;
 }
-if ($boolean = true) {
+if ($boolean37 = true) {
     ~meslayer_close(1, 1, 1);
 }
-def_int $int32 = -1;
-def_int $int33 = -1;
-$int32, $int33 = ~bank_gettabrange(%bank_currenttab);
-def_int $int34 = 0;
-def_int $int35 = 0;
-while ($int19 < 1410) {
-    if (cc_find($component2, $int19) = true) {
-        $obj = inv_getobj(bank, $int19);
+def_int $int38 = -1;
+def_int $int39 = -1;
+$int38, $int39 = ~bank_gettabrange(%bank_currenttab);
+def_int $int40 = 0;
+def_int $int41 = 0;
+while ($int25 < 1410) {
+    if (cc_find($component3, $int25) = true) {
+        $obj = inv_getobj(bank, $int25);
         if ($obj ! null) {
-            $int28 = calc($int28 + 1);
+            $int34 = calc($int34 + 1);
         }
-        if ($int19 >= $int32 & $int19 < $int33) {
+        if ($int25 >= $int38 & $int25 < $int39) {
             cc_sethide(false);
-            ~bankmain_drawitem($obj, inv_getnum(bank, $int19), $component2, $component3, $component9, $component10, $component11);
-            cc_setposition(calc(51 + $int34 * (36 + $int23)), $int27, ^setpos_abs_left, ^setpos_abs_top);
-            if ($int34 < $int21) {
-                $int34 = calc($int34 + 1);
+            ~bankmain_drawitem($obj, inv_getnum(bank, $int25), $component3, $component4, $component10, $component11, $component12);
+            cc_setposition(calc(51 + $int40 * (36 + $int29)), $int33, ^setpos_abs_left, ^setpos_abs_top);
+            if ($int40 < $int27) {
+                $int40 = calc($int40 + 1);
             } else {
-                $int34, $int35 = 0, calc($int35 + 1);
-                $int27 = calc($int35 * 36);
+                $int40, $int41 = 0, calc($int41 + 1);
+                $int33 = calc($int41 * 36);
             }
         } else {
             cc_sethide(true);
         }
     }
-    $int19 = calc($int19 + 1);
+    $int25 = calc($int25 + 1);
 }
-$int27 = calc($int27 + 32);
+$int33 = calc($int33 + 32);
 if_sethide(true, bankmain:potionstore_container);
 if (%bank_currenttab = 15) {
-    if_settext("Potion store", $component5);
+    if_settext("Potion storage", $component6);
     if_sethide(false, bankmain:potionstore_container);
 } else if (%bank_tab_display = 2) {
-    if_settext("Tab <enum(int, string, enum_207, %bank_currenttab)>", $component5);
+    if_settext("Tab <enum(int, string, enum_207, %bank_currenttab)>", $component6);
 } else {
-    if_settext("Tab <tostring(%bank_currenttab)>", $component5);
+    if_settext("Tab <tostring(%bank_currenttab)>", $component6);
 }
-~bankmain_finishbuilding($component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10, $component11, $int27, $int28, $component12, $component13, $component14, $component15, $component16);
+~bankmain_finishbuilding($component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $component10, $component11, $component12, $int33, $int34, $component13, $component14, $component15, $component16, $component17, $component18, $component19);

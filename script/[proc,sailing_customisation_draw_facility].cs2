@@ -6,23 +6,25 @@ def_int $int9 = 30;
 def_int $int10 = 100;
 def_int $int11 = ~script9062(db_getrowtable($dbrow5), $dbrow5);
 def_int $int12 = 0;
-def_boolean $boolean13 = ~sailing_customisation_return_unlocked($dbrow5);
-def_boolean $boolean14 = ~script8835($dbrow5, $dbrow6);
-def_boolean $boolean15 = true;
-if ($boolean13 = false | $int11 <= 0) {
+def_int $int13 = 0;
+def_boolean $boolean14 = ~sailing_customisation_return_unlocked($dbrow5);
+def_boolean $boolean15 = ~script8835($dbrow5, $dbrow6);
+def_boolean $boolean16 = true;
+if ($boolean14 = false | $int11 <= 0) {
     $int8 = calc($int8 - (32 + 5) - 3);
 }
-$int1, $boolean15 = ~sailing_customisation_draw_facility_skill_req($component, $int1, $int3, $int10, $int9, $dbrow5, $boolean13);
-$int1, $int12 = ~sailing_customisation_draw_facility_text($component, $int1, $int7, $int3, $dbrow5, $boolean13, $boolean15, $int11);
+$int1, $boolean16 = ~sailing_customisation_draw_facility_skill_req($component, $int1, $int3, $int10, $int9, $dbrow5, $boolean14);
+$int1, $int12 = ~sailing_customisation_draw_facility_text($component, $int1, $int7, $int3, $dbrow5, $boolean14, $boolean16, $int11);
 $int8 = calc($int8 + $int12);
-if ($boolean13 = true) {
-    $int1, $int12 = ~sailing_customisation_draw_materials($component, $int1, calc($int3 + $int8 - (32 + 5)), $dbrow5, $int11, $int4);
+if ($boolean14 = true) {
+    $int1, $int12, $int13 = ~sailing_customisation_draw_materials($component, $int1, calc($int3 + $int8 - (32 + 5)), $dbrow5, $int11, $int4);
+    $int1 = ~script9230($component, $int1, calc($int3 + $int8 - (32 + 5)), $dbrow5, $int13);
     $int8 = calc($int8 + $int12);
 }
-$int2 = ~sailing_customisation_draw_facility_frame($int2, $int8, $int3, $int4, $dbrow5, $dbrow6, $boolean14);
-$int1 = ~sailing_customisation_draw_facility_model($component, $int1, $int3, $dbrow5, $boolean13, $int12);
-if ($boolean13 = true) {
-    $int1 = ~sailing_customisation_draw_build_button($component, $int1, $int3, $int10, $int9, $int8, $dbrow5, $dbrow6, $boolean13, $int4, $boolean14);
+$int2 = ~sailing_customisation_draw_facility_frame($int2, $int8, $int3, $int4, $dbrow5, $dbrow6, $boolean15);
+$int1 = ~sailing_customisation_draw_facility_model($component, $int1, $int3, $dbrow5, $boolean14, $int12);
+if ($boolean14 = true) {
+    $int1 = ~sailing_customisation_draw_build_button($component, $int1, $int3, $int10, $int9, $int8, $dbrow5, $dbrow6, $boolean14, $int4, $boolean15);
 }
 $int3 = calc($int3 + $int8);
 return($int1, $int2, $int3);
