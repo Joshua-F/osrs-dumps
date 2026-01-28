@@ -17,20 +17,19 @@ if ($int3 > 0) {
 } else {
     $int5 = ~options_button_off($component0, $int5);
 }
-cc_create($component0, ^iftype_graphic, $int5);
-$int5 = calc($int5 + 1);
-cc_setsize(29, 22, ^setsize_abs, ^setsize_abs);
-cc_setposition(3, 0, ^setpos_abs_left, ^setpos_abs_centre);
-cc_setgraphic("bankbuttons,7");
 def_string $string = "Release all placeholders";
 if ($int3 > 0) {
     $string = append($string, " (<~tostring_spacer($int3, ",")>)");
 }
 if_setop(1, $string, $component0);
-def_int $int6 = parawidth($string, if_getwidth(if_getlayer($component0)), p12_full);
+cc_create($component0, ^iftype_graphic, $int5);
+$int5 = calc($int5 + 1);
+cc_setsize(29, 22, ^setsize_abs, ^setsize_abs);
+cc_setposition(3, 0, ^setpos_abs_left, ^setpos_abs_centre);
+cc_setgraphic("bankbuttons,7");
 cc_create($component0, ^iftype_text, $int5);
-cc_setsize($int6, 0, ^setsize_abs, ^setsize_minus);
-cc_setposition(8, 0, ^setpos_abs_right, ^setpos_abs_centre);
+cc_setsize(20, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(20, 0, ^setpos_abs_left, ^setpos_abs_centre);
 cc_settextshadow(true);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
 cc_settextfont(p12_full);
@@ -50,8 +49,6 @@ if ($int3 > 0) {
     }
     if_setonop("opsound(event_op, 2)", $component0);
 }
-def_int $int7 = calc($int6 + 40);
-if_setsize($int7, if_getheight($component0), ^setsize_abs, ^setsize_abs, $component0);
 cc_deleteall($component1);
 $int5 = ~options_button_off($component1, 0);
 cc_create($component1, ^iftype_graphic, $int5);
@@ -68,10 +65,9 @@ $string = "Deposit Lock Settings";
 if_setop(1, $string, $component1);
 ~script4081(2, $component1);
 if_setonvartransmit("script4080(2, event_com){bank_locked_slots}", $component1);
-$int6 = parawidth($string, if_getwidth(if_getlayer($component1)), p12_full);
 cc_create($component1, ^iftype_text, $int5);
-cc_setsize($int6, 0, ^setsize_abs, ^setsize_minus);
-cc_setposition(8, 0, ^setpos_abs_right, ^setpos_abs_centre);
+cc_setsize(20, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(20, 0, ^setpos_abs_left, ^setpos_abs_centre);
 cc_settextshadow(true);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
 cc_settextfont(p12_full);
@@ -82,8 +78,3 @@ if (~on_mobile = false) {
     if_setonmouseleave("cc_colour_swapper(event_com, $int5, 16750623)", $component1);
 }
 if_setonop("opsound(event_op, 6)", $component1);
-def_int $int8 = calc($int6 + 46);
-if_setsize($int8, if_getheight($component1), ^setsize_abs, ^setsize_abs, $component1);
-def_int $int9 = calc($int7 + 15 + $int8);
-if_setposition(calc(0 - ($int9 - $int7) / 2), if_gety($component0), ^setpos_abs_centre, ^setpos_abs_top, $component0);
-if_setposition(calc(($int9 - $int8) / 2), if_gety($component1), ^setpos_abs_centre, ^setpos_abs_top, $component1);
