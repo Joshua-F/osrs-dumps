@@ -25,6 +25,16 @@ if_setonop("bankmenu_depositinv_toggle_op(event_op, $depositinv_toggle, cc_getid
 ~bankmenu_depositworn_toggle_set($depositworn_toggle);
 if_setonvartransmit("bankmenu_depositworn_toggle_set($depositworn_toggle, cc_getid){prayer26}", $depositworn_toggle);
 if_setonop("bankmenu_depositworn_toggle_op(event_op, $depositworn_toggle, cc_getid)", $depositworn_toggle);
+$component = bankmain:depositcontainers_toggle;
+~bankmenu_draw_toggle("'Empty containers' button", $component, 1);
+~bankmenu_depositcontainers_toggle_set($component);
+if_setonvartransmit("bankmenu_depositcontainers_toggle_set($component, cc_getid){bankdeposit}", $component);
+if_setonop("bankmenu_depositcontainers_toggle_op(event_op, $component, cc_getid)", $component);
+$component = bankmain:popup_tab_forgetpos;
+~bankmenu_draw_toggle("Forget storage tab status on bank open", $component, 0);
+~bankmenu_popuptab_forget_toggle_set($component);
+if_setonvartransmit("bankmenu_popuptab_forget_toggle_set($component, cc_getid){bankdeposit}", $component);
+if_setonop("bankmenu_popuptab_forget_toggle_op(event_op, $component, cc_getid)", $component);
 $component = bankmain:depositpotion_toggle;
 ~bankmenu_draw_toggle("Always deposit to potion storage", $component, 1);
 ~bankmenu_depositpotion_toggle_set($component);

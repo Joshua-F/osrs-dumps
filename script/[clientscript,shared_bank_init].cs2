@@ -1,12 +1,12 @@
 // 5264
-[clientscript,shared_bank_init](component $universe, component $frame, component $occupiedslots, component $capacity, component $main_bank, int $int5, component $search, component $items, component $scrollbar, component $swap, component $insert, component $item, component $note, component $quantity_layer, component $quantity1, component $quantity5, component $quantity10, component $quantityx, component $quantityall, component $save_button, component $close, int $int21)
+[clientscript,shared_bank_init](component $universe, component $frame, component $occupiedslots, component $capacity, component $main_bank, int $int5, component $search, component $items, component $scrollbar, component $swap_insert, component $swap_insert_graphic, component $note, component $quantity_layer, component $quantity1, component $quantity5, component $quantity10, component $quantityx, component $quantityall, component $save_button, component $close, int $int20)
 cc_deleteall($universe);
 cc_deleteall($items);
-def_int $int22 = ~steelborder($frame, "", 1);
-def_int $int23 = %if1;
-def_int $int24 = %if2;
-def_int $int25 = %if3;
-def_int $int26 = %if4;
+def_int $int21 = ~steelborder($frame, "", 1);
+def_int $int22 = %if1;
+def_int $int23 = %if2;
+def_int $int24 = %if3;
+def_int $int25 = %if4;
 cc_create($universe, ^iftype_text, 0);
 cc_setposition(36, 9, ^setpos_abs_right, ^setpos_abs_top);
 cc_setcolour(0xff891f);
@@ -16,37 +16,37 @@ cc_settextshadow(true);
 .cc_create($universe, ^iftype_graphic, 1);
 .cc_setsize(20, 18, ^setsize_abs, ^setsize_abs);
 .cc_setgraphic("ge_smallicons,0");
-~shared_bank_drawcap($int23, $int24);
+~shared_bank_drawcap($int22, $int23);
 if (~bankmain_searching = true) {
     ~meslayer_close(1, 1, 1);
 } else if (%meslayermode <= 0) {
     %meslayerinput = "";
 }
-~shared_bank_search_setbutton($search, $universe, $items, $scrollbar, $int25, $frame, $int22, $occupiedslots);
-if_setonop("shared_bank_search_toggle(event_op, $search, $universe, $items, $scrollbar, $int25, $frame, $int22, $occupiedslots)", $search);
-if_settext(~tostring_spacer($int25, ","), $capacity);
-def_int $int27 = 0;
-while ($int27 < $int25) {
-    cc_create($items, ^iftype_graphic, $int27);
+~shared_bank_search_setbutton($search, $universe, $items, $scrollbar, $int24, $frame, $int21, $occupiedslots);
+if_setonop("shared_bank_search_toggle(event_op, $search, $universe, $items, $scrollbar, $int24, $frame, $int21, $occupiedslots)", $search);
+if_settext(~tostring_spacer($int24, ","), $capacity);
+def_int $int26 = 0;
+while ($int26 < $int24) {
+    cc_create($items, ^iftype_graphic, $int26);
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
     cc_setgraphicshadow(0x333333);
     cc_setoutline(1);
     cc_setdragdeadzone(5);
     cc_setdragdeadtime(5);
-    $int27 = calc($int27 + 1);
+    $int26 = calc($int26 + 1);
 }
 ~scrollbar_vertical($scrollbar, $items, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-~shared_bank_update($universe, $items, $scrollbar, $int25, $frame, $int22, $occupiedslots);
-if_setoninvtransmit("shared_bank_update($universe, event_com, $scrollbar, $int25, $frame, $int22, $occupiedslots){inv_group_temp}", $items);
-if_setonvartransmit("shared_bank_update($universe, event_com, $scrollbar, $int25, $frame, $int22, $occupiedslots){gargboss_perm_transmit, bankinsert}", $items);
-~bankmain_swapinsert($swap, $insert);
-if_setonvartransmit("bankmain_swapinsert($swap, $insert){bankinsert}", $swap);
-~bankmain_itemnote($item, $note);
-if_setonvartransmit("bankmain_itemnote($item, $note){bankcert}", $item);
+~shared_bank_update($universe, $items, $scrollbar, $int24, $frame, $int21, $occupiedslots);
+if_setoninvtransmit("shared_bank_update($universe, event_com, $scrollbar, $int24, $frame, $int21, $occupiedslots){inv_group_temp}", $items);
+if_setonvartransmit("shared_bank_update($universe, event_com, $scrollbar, $int24, $frame, $int21, $occupiedslots){gargboss_perm_transmit, bankinsert}", $items);
+~bankmain_swapinsert($swap_insert, $swap_insert_graphic);
+if_setonvartransmit("bankmain_swapinsert($swap_insert, $swap_insert_graphic){bankinsert}", $swap_insert);
+~bankmain_itemnote($note);
+if_setonvartransmit("bankmain_itemnote($note){bankcert}", $note);
 ~bankmain_quantity_buttons($quantity1, $quantity5, $quantity10, $quantityx, $quantityall);
 if_setonvartransmit("bankmain_quantity_buttons($quantity1, $quantity5, $quantity10, $quantityx, $quantityall){gargboss_perm_transmit, bankinsert}", $quantity_layer);
 ~options_bigbutton_init($save_button, "Save", "Refresh", b12_full);
-if ($int26 = 1) {
+if ($int25 = 1) {
     ~ge_offers_bigbutton($main_bank, "Back to bank", 0);
 } else {
     if_clearops($main_bank);
