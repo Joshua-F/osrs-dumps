@@ -12,7 +12,7 @@ height=330
 xmode=abs_centre
 ymode=abs_centre
 layer=infinite
-onload=bankmain_init(event_com, bankmain:frame, bankmain:menu_button, bankmain:wornitems_button, bankmain:items_container, bankmain:wornitems_container, bankmain:menu_container, bankmain:items, bankmain:scrollbar, bankmain:bottom, bankmain:swap, bankmain:insert, bankmain:placeholder, bankmain:item, bankmain:note, bankmain:search, bankmain:title, bankmain:occupiedslots, bankmain:tabs, bankmain:incinerator_target, bankmain:incinerator_confirm, bankmain:tooltip, bankmain:quantity1, bankmain:quantity5, bankmain:quantity10, bankmain:quantityx, bankmain:quantityall, bankmain:quantity_layer, bankmain:depositinv, bankmain:depositinv_graphic, bankmain:depositworn, bankmain:depositworn_graphic, bankmain:bank_tut, bankmain:gim_storage)
+onload=bankmain_init(event_com, bankmain:frame, bankmain:menu_button, bankmain:wornitems_button, bankmain:items_container, bankmain:wornitems_container, bankmain:menu_container, bankmain:items, bankmain:scrollbar, bankmain:bottom, bankmain:swap_insert, bankmain:swap_insert_graphic, bankmain:placeholder, bankmain:note, bankmain:search, bankmain:title, bankmain:occupiedslots, bankmain:tabs, bankmain:incinerator_target, bankmain:incinerator_confirm, bankmain:tooltip, bankmain:quantity1, bankmain:quantity5, bankmain:quantity10, bankmain:quantityx, bankmain:quantityall, bankmain:quantity_layer, bankmain:depositinv, bankmain:depositinv_graphic, bankmain:depositcontainers, bankmain:depositcontainers_graphic, bankmain:depositworn, bankmain:depositworn_graphic, bankmain:bank_tut, bankmain:gim_storage)
 
 // 12:2
 [frame]
@@ -40,11 +40,10 @@ colour=0xff981f
 // 12:4
 [bank_tut]
 type=layer
-x=30
+x=58
 y=7
 width=21
 height=21
-xmode=abs_right
 layer=universe
 events=2
 op1=*
@@ -83,18 +82,6 @@ layer=universe
 noclickthrough=yes
 
 // 12:8
-[gim_storage]
-type=layer
-x=35
-y=6
-width=24
-height=23
-layer=universe
-noclickthrough=yes
-events=2
-op1=*
-
-// 12:9
 [capacity]
 type=text
 widthmode=minus
@@ -108,7 +95,7 @@ textalignv=bottom
 textshadow=yes
 colour=0xff981f
 
-// 12:10
+// 12:9
 [items_container]
 type=layer
 y=5
@@ -120,7 +107,7 @@ xmode=abs_centre
 ymode=abs_bottom
 layer=universe
 
-// 12:11
+// 12:10
 [tabs]
 type=layer
 width=478
@@ -128,15 +115,15 @@ height=40
 xmode=abs_centre
 layer=items_container
 
-// 12:12
-[com_12]
+// 12:11
+[com_11]
 type=line
 y=39
 width=488
 layer=tabs
 colour=0x2e2b23
 
-// 12:13
+// 12:12
 [items]
 type=layer
 x=1
@@ -147,7 +134,7 @@ heightmode=minus
 ymode=abs_bottom
 layer=items_container
 
-// 12:14
+// 12:13
 [scrollbar]
 type=layer
 x=1
@@ -159,7 +146,7 @@ xmode=abs_right
 ymode=abs_bottom
 layer=items_container
 
-// 12:15
+// 12:14
 [potionstore_container]
 type=layer
 x=1
@@ -174,7 +161,7 @@ layer=items_container
 hide=yes
 noclickthrough=yes
 
-// 12:16
+// 12:15
 [potionstore_background]
 type=layer
 widthmode=minus
@@ -183,199 +170,99 @@ xmode=abs_centre
 ymode=abs_centre
 layer=potionstore_container
 
-// 12:17
+// 12:16
 [bottom]
 type=layer
-height=37
+y=1
+height=36
 widthmode=minus
 xmode=abs_centre
 ymode=abs_bottom
 layer=items_container
 
-// 12:18
-[rearrange_text]
-type=text
-width=100
-height=15
+// 12:17
+[swap_insert]
+type=graphic
+x=2
+width=36
+height=36
 layer=bottom
-textfont=p12_full
-text=Rearrange mode:
-textalignh=centre
-textalignv=centre
-textshadow=yes
-colour=0xff981f
+graphic="miscgraphics,0"
+events=2
+op1=*
+onmouseover=settrans(bankmain:swap_insert_graphic, 75)
+onmouseleave=settrans(bankmain:swap_insert_graphic, 0)
+onop=bankmain_depositall(event_com, "miscgraphics,9", "miscgraphics,0", event_op)
+
+// 12:18
+[swap_insert_graphic]
+type=graphic
+x=5
+y=7
+width=29
+height=22
+layer=bottom
+graphic="bankbuttons,11"
 
 // 12:19
-[swap]
-type=layer
-width=50
-height=15
-heightmode=minus
-ymode=abs_bottom
+[note]
+type=graphic
+x=39
+width=36
+height=36
 layer=bottom
+graphic="miscgraphics,0"
 events=2
-op1=Swap
-onmouseover=text_colour_swapper(bankmain:swap_text, 16777215)
-onmouseleave=text_colour_swapper(bankmain:swap_text, 16750623)
+op1=*
+onmouseover=settrans(bankmain:note_graphic, 75)
+onmouseleave=settrans(bankmain:note_graphic, 0)
+onop=bankmain_depositall(event_com, "miscgraphics,9", "miscgraphics,0", event_op)
 
 // 12:20
-[swap_text]
-type=text
-width=50
-height=15
-heightmode=minus
-ymode=abs_bottom
+[note_graphic]
+type=graphic
+x=42
+y=7
+width=28
+height=22
 layer=bottom
-textfont=p12_full
-text=Swap
-textalignh=centre
-textalignv=centre
-textshadow=yes
-colour=0xff981f
+graphic="bankbuttons,13"
 
 // 12:21
-[insert]
-type=layer
-x=50
-width=50
-height=15
-heightmode=minus
-ymode=abs_bottom
+[com_21]
+type=line
+x=78
+y=4
+height=28
 layer=bottom
-events=2
-op1=Insert
-onmouseover=text_colour_swapper(bankmain:insert_text, 16777215)
-onmouseleave=text_colour_swapper(bankmain:insert_text, 16750623)
+colour=0x2e2b23
 
 // 12:22
-[insert_text]
-type=text
-x=50
-width=50
-height=15
-heightmode=minus
-ymode=abs_bottom
-layer=bottom
-textfont=p12_full
-text=Insert
-textalignh=centre
-textalignv=centre
-textshadow=yes
-colour=0xff981f
-
-// 12:23
-[withdraw_text]
-type=text
-x=100
-width=100
-height=15
-layer=bottom
-textfont=p12_full
-text=Withdraw as:
-textalignh=centre
-textalignv=centre
-textshadow=yes
-colour=0xff981f
-
-// 12:24
-[item]
-type=layer
-x=100
-width=50
-height=15
-heightmode=minus
-ymode=abs_bottom
-layer=bottom
-events=2
-op1=Item
-onmouseover=text_colour_swapper(bankmain:item_text, 16777215)
-onmouseleave=text_colour_swapper(bankmain:item_text, 16750623)
-
-// 12:25
-[item_text]
-type=text
-x=100
-y=15
-width=50
-height=15
-heightmode=minus
-layer=bottom
-textfont=p12_full
-text=Item
-textalignh=centre
-textalignv=centre
-textshadow=yes
-colour=0xff981f
-
-// 12:26
-[note]
-type=layer
-x=150
-width=50
-height=15
-heightmode=minus
-ymode=abs_bottom
-layer=bottom
-events=2
-op1=Note
-onmouseover=text_colour_swapper(bankmain:note_text, 16777215)
-onmouseleave=text_colour_swapper(bankmain:note_text, 16750623)
-
-// 12:27
-[note_text]
-type=text
-x=150
-y=15
-width=50
-height=15
-heightmode=minus
-layer=bottom
-textfont=p12_full
-text=Note
-textalignh=centre
-textalignv=centre
-textshadow=yes
-colour=0xff981f
-
-// 12:28
 [quantity_layer]
 type=layer
-widthmode=minus
+x=80
+width=188
 heightmode=minus
 layer=bottom
 
-// 12:29
-[com_29]
-type=text
-x=200
-width=125
-height=15
-layer=quantity_layer
-textfont=p12_full
-text=Quantity:
-textalignh=centre
-textalignv=centre
-textshadow=yes
-colour=0xff981f
-
-// 12:30
+// 12:23
 [quantity1]
-type=layer
-x=200
-width=25
-height=15
-heightmode=minus
-ymode=abs_bottom
+type=graphic
+x=2
+width=36
+height=36
 layer=quantity_layer
+graphic="miscgraphics,0"
 events=2
 op1=Default quantity: 1
 onmouseover=text_colour_swapper(bankmain:quantity1_text, 16777215)
 onmouseleave=text_colour_swapper(bankmain:quantity1_text, 16750623)
 
-// 12:31
+// 12:24
 [quantity1_text]
 type=text
-x=200
+x=8
+y=7
 width=25
 height=15
 heightmode=minus
@@ -388,24 +275,24 @@ textalignv=centre
 textshadow=yes
 colour=0xff981f
 
-// 12:32
+// 12:25
 [quantity5]
-type=layer
-x=225
-width=25
-height=15
-heightmode=minus
-ymode=abs_bottom
+type=graphic
+x=39
+width=36
+height=36
 layer=quantity_layer
+graphic="miscgraphics,0"
 events=2
 op1=Default quantity: 5
 onmouseover=text_colour_swapper(bankmain:quantity5_text, 16777215)
 onmouseleave=text_colour_swapper(bankmain:quantity5_text, 16750623)
 
-// 12:33
+// 12:26
 [quantity5_text]
 type=text
-x=225
+x=45
+y=7
 width=25
 height=15
 heightmode=minus
@@ -418,24 +305,24 @@ textalignv=centre
 textshadow=yes
 colour=0xff981f
 
-// 12:34
+// 12:27
 [quantity10]
-type=layer
-x=250
-width=25
-height=15
-heightmode=minus
-ymode=abs_bottom
+type=graphic
+x=76
+width=36
+height=36
 layer=quantity_layer
+graphic="miscgraphics,0"
 events=2
-op1=Default quantity: 10
+op1=Default quantity: 5
 onmouseover=text_colour_swapper(bankmain:quantity10_text, 16777215)
 onmouseleave=text_colour_swapper(bankmain:quantity10_text, 16750623)
 
-// 12:35
+// 12:28
 [quantity10_text]
 type=text
-x=250
+x=82
+y=7
 width=25
 height=15
 heightmode=minus
@@ -448,25 +335,25 @@ textalignv=centre
 textshadow=yes
 colour=0xff981f
 
-// 12:36
+// 12:29
 [quantityx]
-type=layer
-x=275
-width=25
-height=15
-heightmode=minus
-ymode=abs_bottom
+type=graphic
+x=113
+width=36
+height=36
 layer=quantity_layer
+graphic="miscgraphics,0"
 events=6
 op1=*
 op2=Set custom quantity
 onmouseover=text_colour_swapper(bankmain:quantityx_text, 16777215)
 onmouseleave=text_colour_swapper(bankmain:quantityx_text, 16750623)
 
-// 12:37
+// 12:30
 [quantityx_text]
 type=text
-x=275
+x=119
+y=7
 width=25
 height=15
 heightmode=minus
@@ -479,24 +366,24 @@ textalignv=centre
 textshadow=yes
 colour=0xff981f
 
-// 12:38
+// 12:31
 [quantityall]
-type=layer
-x=300
-width=25
-height=15
-heightmode=minus
-ymode=abs_bottom
+type=graphic
+x=150
+width=36
+height=36
 layer=quantity_layer
+graphic="miscgraphics,0"
 events=2
 op1=Default quantity: All
 onmouseover=text_colour_swapper(bankmain:quantityall_text, 16777215)
 onmouseleave=text_colour_swapper(bankmain:quantityall_text, 16750623)
 
-// 12:39
+// 12:32
 [quantityall_text]
 type=text
-x=300
+x=156
+y=7
 width=25
 height=15
 heightmode=minus
@@ -509,10 +396,19 @@ textalignv=centre
 textshadow=yes
 colour=0xff981f
 
-// 12:40
+// 12:33
+[com_33]
+type=line
+x=269
+y=4
+height=28
+layer=bottom
+colour=0x2e2b23
+
+// 12:34
 [placeholder]
 type=graphic
-x=326
+x=323
 width=36
 height=36
 layer=bottom
@@ -523,45 +419,75 @@ op1=*
 onmouseover=settrans(bankmain:placeholder_graphic, 75)
 onmouseleave=settrans(bankmain:placeholder_graphic, 0)
 
-// 12:41
+// 12:35
 [placeholder_graphic]
 type=graphic
-x=329
+x=326
 y=7
 width=29
 height=22
 layer=bottom
 graphic="bankbuttons,7"
-graphicshadow=3355443
 
-// 12:42
+// 12:36
 [search]
-type=graphic
-x=365
-width=36
+type=layer
+x=273
+width=46
 height=36
 layer=bottom
-graphic="miscgraphics,0"
 events=2
 op1=Search
 onmouseover=settrans(bankmain:search_graphic, 75)
 onmouseleave=settrans(bankmain:search_graphic, 0)
 
-// 12:43
+// 12:37
 [search_graphic]
 type=graphic
-x=368
+x=282
+width=29
+height=22
+ymode=abs_centre
+layer=bottom
+graphic="bankbuttons,2"
+
+// 12:38
+[deposit_line]
+type=line
+x=362
+y=4
+height=28
+layer=bottom
+colour=0x2e2b23
+
+// 12:39
+[depositcontainers]
+type=graphic
+x=366
+width=36
+height=36
+layer=bottom
+graphic="miscgraphics,0"
+events=2
+op1=Empty containers
+onmouseover=settrans(bankmain:depositcontainers_graphic, 75)
+onmouseleave=settrans(bankmain:depositcontainers_graphic, 0)
+onop=bankmain_depositall(event_com, "miscgraphics,9", "miscgraphics,0", event_op)
+
+// 12:40
+[depositcontainers_graphic]
+type=graphic
+x=369
 y=7
 width=29
 height=22
 layer=bottom
-graphic="bankbuttons,2"
-graphicshadow=3355443
+graphic="bankbuttons,3"
 
-// 12:44
+// 12:41
 [depositinv]
 type=graphic
-x=404
+x=403
 width=36
 height=36
 layer=bottom
@@ -572,7 +498,7 @@ onmouseover=settrans(bankmain:depositinv_graphic, 75)
 onmouseleave=settrans(bankmain:depositinv_graphic, 0)
 onop=bankmain_depositall(event_com, "miscgraphics,9", "miscgraphics,0", event_op)
 
-// 12:45
+// 12:42
 [depositinv_graphic]
 type=graphic
 x=406
@@ -581,12 +507,11 @@ width=29
 height=22
 layer=bottom
 graphic="bankbuttons,0"
-graphicshadow=3355443
 
-// 12:46
+// 12:43
 [depositworn]
 type=graphic
-x=441
+x=440
 width=36
 height=36
 layer=bottom
@@ -597,42 +522,62 @@ onmouseover=settrans(bankmain:depositworn_graphic, 75)
 onmouseleave=settrans(bankmain:depositworn_graphic, 0)
 onop=bankmain_depositall(event_com, "miscgraphics,9", "miscgraphics,0", event_op)
 
-// 12:47
+// 12:44
 [depositworn_graphic]
 type=graphic
-x=444
+x=443
 y=7
 width=29
 height=22
 layer=bottom
 graphic="bankbuttons,1"
-graphicshadow=3355443
+
+// 12:45
+[horizontal_line]
+type=line
+x=6
+y=42
+width=28
+ymode=abs_bottom
+layer=items_container
+colour=0x2e2b23
+
+// 12:46
+[popup_button_out]
+type=layer
+x=2
+y=82
+width=36
+height=36
+ymode=abs_bottom
+layer=items_container
+events=14
+op1=*
+op2=*
+op3=*
+
+// 12:47
+[storage_popup_tab]
+type=layer
+y=80
+width=40
+height=104
+ymode=abs_bottom
+layer=items_container
+hide=yes
 
 // 12:48
-[potionstore_button]
-type=layer
-y=100
-width=52
-height=52
-ymode=abs_bottom
-layer=items_container
-hide=yes
-events=2
-op1=Potion store
-onload=potionstore_button_init(event_com)
-
-// 12:49
 [incinerator_target]
 type=layer
-y=39
-width=52
-height=70
+x=2
+y=45
+width=36
+height=36
 ymode=abs_bottom
 layer=items_container
-hide=yes
 events=1048576
 
-// 12:50
+// 12:49
 [incinerator_confirm]
 type=layer
 widthmode=minus
@@ -643,8 +588,8 @@ layer=items_container
 hide=yes
 noclickthrough=yes
 
-// 12:51
-[com_51]
+// 12:50
+[com_50]
 type=graphic
 widthmode=minus
 heightmode=minus
@@ -655,7 +600,7 @@ graphic=tradebacking
 tiling=yes
 trans=100
 
-// 12:52
+// 12:51
 [potionstore_items]
 type=layer
 x=16
@@ -666,7 +611,7 @@ xmode=abs_right
 ymode=abs_bottom
 layer=potionstore_container
 
-// 12:53
+// 12:52
 [potionstore_scrollbar]
 type=layer
 width=16
@@ -675,7 +620,7 @@ xmode=abs_right
 ymode=abs_bottom
 layer=potionstore_container
 
-// 12:54
+// 12:53
 [menu_container]
 type=layer
 y=5
@@ -686,8 +631,883 @@ heightmode=minus
 xmode=abs_centre
 ymode=abs_bottom
 layer=universe
+hide=yes
+
+// 12:54
+[wornitems_container]
+type=layer
+y=5
+width=10
+height=40
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_bottom
+layer=universe
+hide=yes
 
 // 12:55
+[com_55]
+type=model
+contenttype=328
+y=116
+width=136
+height=168
+xmode=abs_centre
+ymode=abs_centre
+layer=wornitems_container
+model=null
+modelzoom=550
+
+// 12:56
+[com_56]
+type=graphic
+x=66
+y=-5
+width=36
+height=124
+ymode=abs_centre
+layer=wornitems_container
+graphic="miscgraphics,2"
+tiling=yes
+
+// 12:57
+[com_57]
+type=graphic
+x=10
+y=34
+width=36
+height=45
+ymode=abs_centre
+layer=wornitems_container
+graphic="miscgraphics,2"
+tiling=yes
+
+// 12:58
+[com_58]
+type=graphic
+x=122
+y=34
+width=36
+height=45
+ymode=abs_centre
+layer=wornitems_container
+graphic="miscgraphics,2"
+tiling=yes
+
+// 12:59
+[com_59]
+type=graphic
+x=45
+y=-7
+width=78
+height=36
+ymode=abs_centre
+layer=wornitems_container
+graphic="miscgraphics,3"
+tiling=yes
+
+// 12:60
+[com_60]
+type=graphic
+x=60
+y=-46
+width=48
+height=36
+ymode=abs_centre
+layer=wornitems_container
+graphic="miscgraphics,3"
+tiling=yes
+
+// 12:61
+[wornslot0]
+type=layer
+x=66
+y=-84
+width=36
+height=36
+ymode=abs_centre
+layer=wornitems_container
+events=1030
+op1=*
+op2=*
+op10=*
+onload=wear_initslots(enum_2777, false)
+
+// 12:62
+[wornslot1]
+type=layer
+x=25
+y=-45
+width=36
+height=36
+ymode=abs_centre
+layer=wornitems_container
+events=1030
+op1=*
+op2=*
+op10=*
+
+// 12:63
+[wornslot2]
+type=layer
+x=66
+y=-45
+width=36
+height=36
+ymode=abs_centre
+layer=wornitems_container
+events=1030
+op1=*
+op2=*
+op10=*
+
+// 12:64
+[wornslot3]
+type=layer
+x=10
+y=-6
+width=36
+height=36
+ymode=abs_centre
+layer=wornitems_container
+events=1030
+op1=*
+op2=*
+op10=*
+
+// 12:65
+[wornslot4]
+type=layer
+x=66
+y=-6
+width=36
+height=36
+ymode=abs_centre
+layer=wornitems_container
+events=1030
+op1=*
+op2=*
+op10=*
+
+// 12:66
+[wornslot5]
+type=layer
+x=122
+y=-6
+width=36
+height=36
+ymode=abs_centre
+layer=wornitems_container
+events=1030
+op1=*
+op2=*
+op10=*
+
+// 12:67
+[wornslot7]
+type=layer
+x=66
+y=34
+width=36
+height=36
+ymode=abs_centre
+layer=wornitems_container
+events=1030
+op1=*
+op2=*
+op10=*
+
+// 12:68
+[wornslot9]
+type=layer
+x=10
+y=74
+width=36
+height=36
+ymode=abs_centre
+layer=wornitems_container
+events=1030
+op1=*
+op2=*
+op10=*
+
+// 12:69
+[wornslot10]
+type=layer
+x=66
+y=74
+width=36
+height=36
+ymode=abs_centre
+layer=wornitems_container
+events=1030
+op1=*
+op2=*
+op10=*
+
+// 12:70
+[wornslot12]
+type=layer
+x=122
+y=74
+width=36
+height=36
+ymode=abs_centre
+layer=wornitems_container
+events=1030
+op1=*
+op2=*
+op10=*
+
+// 12:71
+[wornslot13]
+type=layer
+x=107
+y=-45
+width=36
+height=36
+ymode=abs_centre
+layer=wornitems_container
+events=1030
+op1=*
+op2=*
+op10=*
+
+// 12:72
+[extra_quiver_slot]
+type=layer
+x=107
+y=-83
+width=36
+height=36
+ymode=abs_centre
+layer=wornitems_container
+onload=script5023(event_com, bankmain:extra_quiver_ammo, bankmain:extra_quiver_ammo_graphic)
+
+// 12:73
+[stat_group]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=wornitems_container
+onload=stat_group_tooltips(bankmain:tooltip, bankmain:stabatt, bankmain:slashatt, bankmain:crushatt, bankmain:magicatt, bankmain:rangeatt, bankmain:stabdef, bankmain:slashdef, bankmain:crushdef, bankmain:magicdef, bankmain:rangedef, bankmain:meleestrength, bankmain:rangestrength, bankmain:magicdamage, bankmain:prayer, bankmain:typemultiplier, bankmain:slayermultiplier, bankmain:attackspeedbase, bankmain:attackspeedactual)
+
+// 12:74
+[com_74]
+type=text
+y=-125
+width=155
+height=15
+xmode=abs_right
+ymode=abs_centre
+layer=stat_group
+textfont=b12_full
+text=Attack bonus
+textalignh=left
+textalignv=top
+textshadow=yes
+colour=0xff981f
+
+// 12:75
+[stabatt]
+type=text
+x=6
+y=-110
+width=147
+height=14
+xmode=abs_right
+ymode=abs_centre
+layer=stat_group
+textfont=p12_full
+textalignh=left
+textalignv=top
+textshadow=yes
+colour=0xff981f
+
+// 12:76
+[slashatt]
+type=text
+x=6
+y=-96
+width=147
+height=14
+xmode=abs_right
+ymode=abs_centre
+layer=stat_group
+textfont=p12_full
+textalignh=left
+textalignv=top
+textshadow=yes
+colour=0xff981f
+
+// 12:77
+[crushatt]
+type=text
+x=6
+y=-82
+width=147
+height=14
+xmode=abs_right
+ymode=abs_centre
+layer=stat_group
+textfont=p12_full
+textalignh=left
+textalignv=top
+textshadow=yes
+colour=0xff981f
+
+// 12:78
+[magicatt]
+type=text
+x=-75
+y=-96
+width=147
+height=14
+xmode=abs_right
+ymode=abs_centre
+layer=stat_group
+textfont=p12_full
+textalignh=left
+textalignv=top
+textshadow=yes
+colour=0xff981f
+
+// 12:79
+[rangeatt]
+type=text
+x=-75
+y=-82
+width=147
+height=14
+xmode=abs_right
+ymode=abs_centre
+layer=stat_group
+textfont=p12_full
+textalignh=left
+textalignv=top
+textshadow=yes
+colour=0xff981f
+
+// 12:80
+[com_80]
+type=text
+y=-64
+width=155
+height=15
+xmode=abs_right
+ymode=abs_centre
+layer=stat_group
+textfont=b12_full
+text=Defence bonus
+textalignh=left
+textalignv=top
+textshadow=yes
+colour=0xff981f
+
+// 12:81
+[stabdef]
+type=text
+x=6
+y=-49
+width=147
+height=14
+xmode=abs_right
+ymode=abs_centre
+layer=stat_group
+textfont=p12_full
+textalignh=left
+textalignv=top
+textshadow=yes
+colour=0xff981f
+
+// 12:82
+[slashdef]
+type=text
+x=6
+y=-35
+width=147
+height=14
+xmode=abs_right
+ymode=abs_centre
+layer=stat_group
+textfont=p12_full
+textalignh=left
+textalignv=top
+textshadow=yes
+colour=0xff981f
+
+// 12:83
+[crushdef]
+type=text
+x=6
+y=-21
+width=147
+height=14
+xmode=abs_right
+ymode=abs_centre
+layer=stat_group
+textfont=p12_full
+textalignh=left
+textalignv=top
+textshadow=yes
+colour=0xff981f
+
+// 12:84
+[magicdef]
+type=text
+x=-75
+y=-35
+width=147
+height=14
+xmode=abs_right
+ymode=abs_centre
+layer=stat_group
+textfont=p12_full
+textalignh=left
+textalignv=top
+textshadow=yes
+colour=0xff981f
+
+// 12:85
+[rangedef]
+type=text
+x=-75
+y=-21
+width=147
+height=14
+xmode=abs_right
+ymode=abs_centre
+layer=stat_group
+textfont=p12_full
+textalignh=left
+textalignv=top
+textshadow=yes
+colour=0xff981f
+
+// 12:86
+[com_86]
+type=text
+y=-3
+width=155
+height=15
+xmode=abs_right
+ymode=abs_centre
+layer=stat_group
+textfont=b12_full
+text=Other bonuses
+textalignh=left
+textalignv=top
+textshadow=yes
+colour=0xff981f
+
+// 12:87
+[meleestrength]
+type=text
+x=6
+y=12
+width=147
+height=14
+xmode=abs_right
+ymode=abs_centre
+layer=stat_group
+textfont=p12_full
+textalignh=left
+textalignv=top
+textshadow=yes
+colour=0xff981f
+
+// 12:88
+[rangestrength]
+type=text
+x=6
+y=26
+width=147
+height=14
+xmode=abs_right
+ymode=abs_centre
+layer=stat_group
+textfont=p12_full
+textalignh=left
+textalignv=top
+textshadow=yes
+colour=0xff981f
+
+// 12:89
+[magicdamage]
+type=text
+x=6
+y=40
+width=147
+height=14
+xmode=abs_right
+ymode=abs_centre
+layer=stat_group
+textfont=p12_full
+textalignh=left
+textalignv=top
+textshadow=yes
+colour=0xff981f
+
+// 12:90
+[prayer]
+type=text
+x=6
+y=54
+width=147
+height=14
+xmode=abs_right
+ymode=abs_centre
+layer=stat_group
+textfont=p12_full
+textalignh=left
+textalignv=top
+textshadow=yes
+colour=0xff981f
+
+// 12:91
+[com_91]
+type=text
+y=72
+width=155
+height=15
+xmode=abs_right
+ymode=abs_centre
+layer=stat_group
+textfont=b12_full
+text=Target-specific
+textalignh=left
+textalignv=top
+textshadow=yes
+colour=0xff981f
+
+// 12:92
+[typemultiplier]
+type=text
+x=6
+y=87
+width=147
+height=14
+xmode=abs_right
+ymode=abs_centre
+layer=stat_group
+textfont=p12_full
+textalignh=left
+textalignv=top
+textshadow=yes
+colour=0xff981f
+
+// 12:93
+[slayermultiplier]
+type=text
+x=6
+y=101
+width=147
+height=14
+xmode=abs_right
+ymode=abs_centre
+layer=stat_group
+textfont=p12_full
+textalignh=left
+textalignv=top
+textshadow=yes
+colour=0xff981f
+
+// 12:94
+[com_94]
+type=text
+y=119
+width=155
+height=15
+xmode=abs_right
+ymode=abs_centre
+layer=stat_group
+textfont=b12_full
+text=Weapon speed
+textalignh=left
+textalignv=top
+textshadow=yes
+colour=0xff981f
+
+// 12:95
+[next_page]
+type=layer
+x=49
+y=128
+width=70
+height=26
+ymode=abs_centre
+layer=wornitems_container
+onload=script3517(bankmain:next_page, bankmain:stat_group, bankmain:set_bonus, true, null, null)
+
+// 12:96
+[set_bonus]
+type=layer
+contenttype=9586
+widthmode=minus
+heightmode=minus
+layer=wornitems_container
+hide=yes
+onload=script3517(bankmain:previous_page, bankmain:stat_group, bankmain:set_bonus, false, bankmain:set_effect, bankmain:scrollbar_1)
+
+// 12:97
+[com_97]
+type=graphic
+x=56
+y=104
+width=17
+height=18
+ymode=abs_centre
+layer=wornitems_container
+graphic="options_icons_small,0"
+
+// 12:98
+[com_98]
+type=text
+x=77
+y=104
+width=62
+height=18
+ymode=abs_centre
+layer=wornitems_container
+textfont=p12_full
+textalignh=left
+textalignv=centre
+textshadow=yes
+colour=0xff9800
+onload=runweight_init(event_com)
+
+// 12:99
+[menu_button]
+type=layer
+x=34
+y=7
+width=21
+height=21
+layer=universe
+
+// 12:100
+[wornitems_button]
+type=layer
+x=7
+y=37
+width=36
+height=36
+xmode=abs_right
+layer=universe
+
+// 12:101
+[bank_highlight]
+type=layer
+width=488
+height=30
+heightmode=minus
+xmode=abs_centre
+ymode=abs_bottom
+layer=universe
+hide=yes
+
+// 12:102
+[popup]
+type=layer
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=universe
+
+// 12:103
+[dropdown_container]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=infinite
+hide=yes
+
+// 12:104
+[tooltip]
+type=layer
+width=1
+height=1
+layer=infinite
+
+// 12:105
+[com_105]
+type=text
+y=-125
+width=155
+height=15
+xmode=abs_right
+ymode=abs_centre
+layer=set_bonus
+textfont=b12_full
+text=Set Effect Bonus
+textalignh=left
+textalignv=top
+textshadow=yes
+colour=0xff981f
+
+// 12:106
+[set_effect]
+type=layer
+x=328
+y=20
+width=148
+height=254
+ymode=abs_centre
+layer=set_bonus
+onload=script9229(bankmain:set_effect, bankmain:scrollbar_1)
+
+// 12:107
+[scrollbar_1]
+type=layer
+x=2
+y=20
+width=16
+height=254
+xmode=abs_right
+ymode=abs_centre
+layer=set_bonus
+
+// 12:108
+[previous_page]
+type=layer
+x=49
+y=128
+width=70
+height=26
+ymode=abs_centre
+layer=set_bonus
+
+// 12:109
+[attackspeedbase]
+type=text
+x=70
+y=134
+width=83
+height=14
+xmode=abs_right
+ymode=abs_centre
+layer=stat_group
+textfont=p12_full
+textalignh=left
+textalignv=top
+textshadow=yes
+colour=0xff981f
+
+// 12:110
+[attackspeedactual]
+type=text
+x=-11
+y=134
+width=83
+height=14
+xmode=abs_right
+ymode=abs_centre
+layer=stat_group
+textfont=p12_full
+textalignh=left
+textalignv=top
+textshadow=yes
+colour=0xff981f
+
+// 12:111
+[extra_quiver_ammo_graphic]
+type=layer
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=extra_quiver_slot
+
+// 12:112
+[extra_quiver_ammo]
+type=layer
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=extra_quiver_slot
+events=1030
+op1=*
+op2=*
+op10=*
+
+// 12:113
+[dropdown]
+type=layer
+x=192
+y=176
+width=123
+height=99
+layer=dropdown_container
+noclickthrough=yes
+
+// 12:114
+[dropdown_content]
+type=layer
+width=15
+widthmode=minus
+heightmode=minus
+layer=dropdown
+
+// 12:115
+[dropdown_scroller]
+type=layer
+width=16
+height=99
+xmode=abs_right
+layer=dropdown
+
+// 12:116
+[storage_popup_tab_frame]
+type=layer
+widthmode=minus
+heightmode=minus
+ymode=abs_bottom
+layer=storage_popup_tab
+
+// 12:117
+[popup_button_in]
+type=layer
+x=2
+y=2
+width=36
+height=26
+ymode=abs_bottom
+layer=storage_popup_tab
+events=2
+op1=*
+
+// 12:118
+[gim_storage]
+type=layer
+x=2
+y=29
+width=36
+height=36
+ymode=abs_bottom
+layer=storage_popup_tab
+hide=yes
+noclickthrough=yes
+events=2
+op1=*
+
+// 12:119
+[potionstore_button]
+type=layer
+x=2
+y=66
+width=36
+height=36
+ymode=abs_bottom
+layer=storage_popup_tab
+hide=yes
+events=2
+op1=Potion storage
+onload=potionstore_button_init(event_com)
+
+// 12:120
 [tabdisplay]
 type=layer
 y=2
@@ -696,33 +1516,8 @@ height=20
 xmode=abs_centre
 layer=menu_container
 
-// 12:56
-[incinerator_toggle]
-type=layer
-y=-108
-width=200
-height=28
-xmode=abs_centre
-ymode=abs_centre
-layer=menu_container
-events=2
-op1=*
-onload=script1428(event_com, bankmain:sideops_toggle, bankmain:depositworn_toggle, bankmain:depositinv_toggle, bankmain:banktut_toggle)
-
-// 12:57
-[banktut_toggle]
-type=layer
-y=-108
-width=200
-height=28
-xmode=abs_centre
-ymode=abs_centre
-layer=menu_container
-events=2
-op1=*
-
-// 12:58
-[com_58]
+// 12:121
+[com_121]
 type=text
 widthmode=minus
 heightmode=minus
@@ -736,8 +1531,8 @@ textalignv=centre
 textshadow=yes
 colour=0xff981f
 
-// 12:59
-[tabdisplay_select]
+// 12:122
+[tabdisplay_select_1]
 type=layer
 width=80
 widthmode=minus
@@ -747,7 +1542,32 @@ ymode=abs_centre
 layer=tabdisplay
 onload=script517(event_com)
 
-// 12:60
+// 12:123
+[incinerator_toggle]
+type=layer
+y=-108
+width=200
+height=28
+xmode=abs_centre
+ymode=abs_centre
+layer=menu_container
+events=2
+op1=*
+onload=script1428(event_com, bankmain:sideops_toggle, bankmain:depositworn_toggle, bankmain:depositinv_toggle, bankmain:banktut_toggle)
+
+// 12:124
+[banktut_toggle]
+type=layer
+y=-108
+width=200
+height=28
+xmode=abs_centre
+ymode=abs_centre
+layer=menu_container
+events=2
+op1=*
+
+// 12:125
 [sideops_toggle]
 type=layer
 y=-80
@@ -759,7 +1579,7 @@ layer=menu_container
 events=2
 op1=*
 
-// 12:61
+// 12:126
 [bankops_toggle]
 type=layer
 y=-80
@@ -771,7 +1591,7 @@ layer=menu_container
 events=2
 op1=*
 
-// 12:62
+// 12:127
 [depositinv_toggle]
 type=layer
 y=-52
@@ -783,7 +1603,7 @@ layer=menu_container
 events=2
 op1=*
 
-// 12:63
+// 12:128
 [depositworn_toggle]
 type=layer
 y=-52
@@ -795,36 +1615,56 @@ layer=menu_container
 events=2
 op1=*
 
-// 12:64
+// 12:129
+[depositcontainers_toggle]
+type=layer
+y=107
+width=200
+height=28
+xmode=abs_centre
+layer=menu_container
+events=2
+op1=*
+
+// 12:130
+[popup_tab_forgetpos]
+type=layer
+y=107
+width=200
+height=28
+xmode=abs_centre
+layer=menu_container
+events=2
+op1=*
+
+// 12:131
 [depositpotion_toggle]
 type=layer
-y=-24
+y=135
 width=200
 height=28
 xmode=abs_centre
-ymode=abs_centre
 layer=menu_container
 events=2
 op1=*
 
-// 12:65
+// 12:132
 [chuggingbarrel_toggle]
 type=layer
-y=-24
+y=135
 width=200
 height=28
 xmode=abs_centre
-ymode=abs_centre
 layer=menu_container
 events=2
 op1=*
 
-// 12:66
+// 12:133
 [release_placeholders]
 type=layer
-x=-108
-y=135
-width=204
+x=-114
+y=182
+width=205
 height=36
 xmode=abs_centre
 layer=menu_container
@@ -832,12 +1672,12 @@ events=2
 op1=*
 onload=script1270(event_com, bankmain:locks)
 
-// 12:67
+// 12:134
 [locks]
 type=layer
-x=108
-y=135
-width=204
+x=-114
+y=231
+width=205
 height=36
 xmode=abs_centre
 layer=menu_container
@@ -845,9 +1685,10 @@ events=6
 op1=*
 op2=*
 
-// 12:68
+// 12:135
 [bank_fillers]
 type=layer
+x=115
 y=174
 width=204
 height=103
@@ -855,7 +1696,7 @@ xmode=abs_centre
 layer=menu_container
 onload=script2207(event_com)
 
-// 12:69
+// 12:136
 [bank_filler_1]
 type=graphic
 x=6
@@ -868,7 +1709,7 @@ events=2
 op1=1
 onload=script2208(event_com, "1")
 
-// 12:70
+// 12:137
 [bank_filler_1_text]
 type=text
 x=6
@@ -885,7 +1726,7 @@ colour=0xf7f0df
 onmouseover=text_colour_swapper(event_com, 14202273)
 onmouseleave=text_colour_swapper(event_com, 16249055)
 
-// 12:71
+// 12:138
 [bank_filler_10]
 type=graphic
 x=45
@@ -898,7 +1739,7 @@ events=2
 op1=10
 onload=script2208(event_com, "10")
 
-// 12:72
+// 12:139
 [bank_filler_10_text]
 type=text
 x=45
@@ -915,7 +1756,7 @@ colour=0xf7f0df
 onmouseover=text_colour_swapper(event_com, 14202273)
 onmouseleave=text_colour_swapper(event_com, 16249055)
 
-// 12:73
+// 12:140
 [bank_filler_50]
 type=graphic
 x=84
@@ -928,7 +1769,7 @@ events=2
 op1=50
 onload=script2208(event_com, "50")
 
-// 12:74
+// 12:141
 [bank_filler_50_text]
 type=text
 x=84
@@ -945,7 +1786,7 @@ colour=0xf7f0df
 onmouseover=text_colour_swapper(event_com, 14202273)
 onmouseleave=text_colour_swapper(event_com, 16249055)
 
-// 12:75
+// 12:142
 [bank_filler_x]
 type=graphic
 x=123
@@ -958,7 +1799,7 @@ events=2
 op1=X
 onload=script2208(event_com, "X")
 
-// 12:76
+// 12:143
 [bank_filler_x_text]
 type=text
 x=123
@@ -975,7 +1816,7 @@ colour=0xf7f0df
 onmouseover=text_colour_swapper(event_com, 14202273)
 onmouseleave=text_colour_swapper(event_com, 16249055)
 
-// 12:77
+// 12:144
 [bank_filler_all]
 type=graphic
 x=162
@@ -988,7 +1829,7 @@ events=2
 op1=All
 onload=script2208(event_com, "All")
 
-// 12:78
+// 12:145
 [bank_filler_all_text]
 type=text
 x=162
@@ -1005,7 +1846,7 @@ colour=0xf7f0df
 onmouseover=text_colour_swapper(event_com, 14202273)
 onmouseleave=text_colour_swapper(event_com, 16249055)
 
-// 12:79
+// 12:146
 [bank_filler_confirm]
 type=layer
 x=4
@@ -1018,831 +1859,4 @@ layer=bank_fillers
 events=2
 op1=*
 onload=script2211(event_com)
-
-// 12:80
-[wornitems_container]
-type=layer
-y=5
-width=10
-height=40
-widthmode=minus
-heightmode=minus
-xmode=abs_centre
-ymode=abs_bottom
-layer=universe
-hide=yes
-
-// 12:81
-[com_81]
-type=model
-contenttype=328
-y=116
-width=136
-height=168
-xmode=abs_centre
-ymode=abs_centre
-layer=wornitems_container
-model=null
-modelzoom=550
-
-// 12:82
-[com_82]
-type=graphic
-x=66
-y=-5
-width=36
-height=124
-ymode=abs_centre
-layer=wornitems_container
-graphic="miscgraphics,2"
-tiling=yes
-
-// 12:83
-[com_83]
-type=graphic
-x=10
-y=34
-width=36
-height=45
-ymode=abs_centre
-layer=wornitems_container
-graphic="miscgraphics,2"
-tiling=yes
-
-// 12:84
-[com_84]
-type=graphic
-x=122
-y=34
-width=36
-height=45
-ymode=abs_centre
-layer=wornitems_container
-graphic="miscgraphics,2"
-tiling=yes
-
-// 12:85
-[com_85]
-type=graphic
-x=45
-y=-7
-width=78
-height=36
-ymode=abs_centre
-layer=wornitems_container
-graphic="miscgraphics,3"
-tiling=yes
-
-// 12:86
-[com_86]
-type=graphic
-x=60
-y=-46
-width=48
-height=36
-ymode=abs_centre
-layer=wornitems_container
-graphic="miscgraphics,3"
-tiling=yes
-
-// 12:87
-[wornslot0]
-type=layer
-x=66
-y=-84
-width=36
-height=36
-ymode=abs_centre
-layer=wornitems_container
-events=1030
-op1=*
-op2=*
-op10=*
-onload=wear_initslots(enum_2777, false)
-
-// 12:88
-[wornslot1]
-type=layer
-x=25
-y=-45
-width=36
-height=36
-ymode=abs_centre
-layer=wornitems_container
-events=1030
-op1=*
-op2=*
-op10=*
-
-// 12:89
-[wornslot2]
-type=layer
-x=66
-y=-45
-width=36
-height=36
-ymode=abs_centre
-layer=wornitems_container
-events=1030
-op1=*
-op2=*
-op10=*
-
-// 12:90
-[wornslot3]
-type=layer
-x=10
-y=-6
-width=36
-height=36
-ymode=abs_centre
-layer=wornitems_container
-events=1030
-op1=*
-op2=*
-op10=*
-
-// 12:91
-[wornslot4]
-type=layer
-x=66
-y=-6
-width=36
-height=36
-ymode=abs_centre
-layer=wornitems_container
-events=1030
-op1=*
-op2=*
-op10=*
-
-// 12:92
-[wornslot5]
-type=layer
-x=122
-y=-6
-width=36
-height=36
-ymode=abs_centre
-layer=wornitems_container
-events=1030
-op1=*
-op2=*
-op10=*
-
-// 12:93
-[wornslot7]
-type=layer
-x=66
-y=34
-width=36
-height=36
-ymode=abs_centre
-layer=wornitems_container
-events=1030
-op1=*
-op2=*
-op10=*
-
-// 12:94
-[wornslot9]
-type=layer
-x=10
-y=74
-width=36
-height=36
-ymode=abs_centre
-layer=wornitems_container
-events=1030
-op1=*
-op2=*
-op10=*
-
-// 12:95
-[wornslot10]
-type=layer
-x=66
-y=74
-width=36
-height=36
-ymode=abs_centre
-layer=wornitems_container
-events=1030
-op1=*
-op2=*
-op10=*
-
-// 12:96
-[wornslot12]
-type=layer
-x=122
-y=74
-width=36
-height=36
-ymode=abs_centre
-layer=wornitems_container
-events=1030
-op1=*
-op2=*
-op10=*
-
-// 12:97
-[wornslot13]
-type=layer
-x=107
-y=-45
-width=36
-height=36
-ymode=abs_centre
-layer=wornitems_container
-events=1030
-op1=*
-op2=*
-op10=*
-
-// 12:98
-[extra_quiver_slot]
-type=layer
-x=107
-y=-83
-width=36
-height=36
-ymode=abs_centre
-layer=wornitems_container
-onload=script5023(event_com, bankmain:extra_quiver_ammo, bankmain:extra_quiver_ammo_graphic)
-
-// 12:99
-[stat_group]
-type=layer
-widthmode=minus
-heightmode=minus
-layer=wornitems_container
-onload=stat_group_tooltips(bankmain:tooltip, bankmain:stabatt, bankmain:slashatt, bankmain:crushatt, bankmain:magicatt, bankmain:rangeatt, bankmain:stabdef, bankmain:slashdef, bankmain:crushdef, bankmain:magicdef, bankmain:rangedef, bankmain:meleestrength, bankmain:rangestrength, bankmain:magicdamage, bankmain:prayer, bankmain:typemultiplier, bankmain:slayermultiplier, bankmain:attackspeedbase, bankmain:attackspeedactual)
-
-// 12:100
-[com_100]
-type=text
-y=-125
-width=155
-height=15
-xmode=abs_right
-ymode=abs_centre
-layer=stat_group
-textfont=b12_full
-text=Attack bonus
-textalignh=left
-textalignv=top
-textshadow=yes
-colour=0xff981f
-
-// 12:101
-[stabatt]
-type=text
-x=6
-y=-110
-width=147
-height=14
-xmode=abs_right
-ymode=abs_centre
-layer=stat_group
-textfont=p12_full
-textalignh=left
-textalignv=top
-textshadow=yes
-colour=0xff981f
-
-// 12:102
-[slashatt]
-type=text
-x=6
-y=-96
-width=147
-height=14
-xmode=abs_right
-ymode=abs_centre
-layer=stat_group
-textfont=p12_full
-textalignh=left
-textalignv=top
-textshadow=yes
-colour=0xff981f
-
-// 12:103
-[crushatt]
-type=text
-x=6
-y=-82
-width=147
-height=14
-xmode=abs_right
-ymode=abs_centre
-layer=stat_group
-textfont=p12_full
-textalignh=left
-textalignv=top
-textshadow=yes
-colour=0xff981f
-
-// 12:104
-[magicatt]
-type=text
-x=-75
-y=-110
-width=147
-height=14
-xmode=abs_right
-ymode=abs_centre
-layer=stat_group
-textfont=p12_full
-textalignh=left
-textalignv=top
-textshadow=yes
-colour=0xff981f
-
-// 12:105
-[rangeatt]
-type=text
-x=-75
-y=-96
-width=147
-height=14
-xmode=abs_right
-ymode=abs_centre
-layer=stat_group
-textfont=p12_full
-textalignh=left
-textalignv=top
-textshadow=yes
-colour=0xff981f
-
-// 12:106
-[com_106]
-type=text
-y=-64
-width=155
-height=15
-xmode=abs_right
-ymode=abs_centre
-layer=stat_group
-textfont=b12_full
-text=Defence bonus
-textalignh=left
-textalignv=top
-textshadow=yes
-colour=0xff981f
-
-// 12:107
-[stabdef]
-type=text
-x=6
-y=-49
-width=147
-height=14
-xmode=abs_right
-ymode=abs_centre
-layer=stat_group
-textfont=p12_full
-textalignh=left
-textalignv=top
-textshadow=yes
-colour=0xff981f
-
-// 12:108
-[slashdef]
-type=text
-x=6
-y=-35
-width=147
-height=14
-xmode=abs_right
-ymode=abs_centre
-layer=stat_group
-textfont=p12_full
-textalignh=left
-textalignv=top
-textshadow=yes
-colour=0xff981f
-
-// 12:109
-[crushdef]
-type=text
-x=6
-y=-21
-width=147
-height=14
-xmode=abs_right
-ymode=abs_centre
-layer=stat_group
-textfont=p12_full
-textalignh=left
-textalignv=top
-textshadow=yes
-colour=0xff981f
-
-// 12:110
-[magicdef]
-type=text
-x=-75
-y=-49
-width=147
-height=14
-xmode=abs_right
-ymode=abs_centre
-layer=stat_group
-textfont=p12_full
-textalignh=left
-textalignv=top
-textshadow=yes
-colour=0xff981f
-
-// 12:111
-[rangedef]
-type=text
-x=-75
-y=-35
-width=147
-height=14
-xmode=abs_right
-ymode=abs_centre
-layer=stat_group
-textfont=p12_full
-textalignh=left
-textalignv=top
-textshadow=yes
-colour=0xff981f
-
-// 12:112
-[com_112]
-type=text
-y=-3
-width=155
-height=15
-xmode=abs_right
-ymode=abs_centre
-layer=stat_group
-textfont=b12_full
-text=Other bonuses
-textalignh=left
-textalignv=top
-textshadow=yes
-colour=0xff981f
-
-// 12:113
-[meleestrength]
-type=text
-x=6
-y=12
-width=147
-height=14
-xmode=abs_right
-ymode=abs_centre
-layer=stat_group
-textfont=p12_full
-textalignh=left
-textalignv=top
-textshadow=yes
-colour=0xff981f
-
-// 12:114
-[rangestrength]
-type=text
-x=6
-y=26
-width=147
-height=14
-xmode=abs_right
-ymode=abs_centre
-layer=stat_group
-textfont=p12_full
-textalignh=left
-textalignv=top
-textshadow=yes
-colour=0xff981f
-
-// 12:115
-[magicdamage]
-type=text
-x=6
-y=40
-width=147
-height=14
-xmode=abs_right
-ymode=abs_centre
-layer=stat_group
-textfont=p12_full
-textalignh=left
-textalignv=top
-textshadow=yes
-colour=0xff981f
-
-// 12:116
-[prayer]
-type=text
-x=6
-y=54
-width=147
-height=14
-xmode=abs_right
-ymode=abs_centre
-layer=stat_group
-textfont=p12_full
-textalignh=left
-textalignv=top
-textshadow=yes
-colour=0xff981f
-
-// 12:117
-[com_117]
-type=text
-y=72
-width=155
-height=15
-xmode=abs_right
-ymode=abs_centre
-layer=stat_group
-textfont=b12_full
-text=Target-specific
-textalignh=left
-textalignv=top
-textshadow=yes
-colour=0xff981f
-
-// 12:118
-[typemultiplier]
-type=text
-x=6
-y=87
-width=147
-height=14
-xmode=abs_right
-ymode=abs_centre
-layer=stat_group
-textfont=p12_full
-textalignh=left
-textalignv=top
-textshadow=yes
-colour=0xff981f
-
-// 12:119
-[slayermultiplier]
-type=text
-x=6
-y=101
-width=147
-height=14
-xmode=abs_right
-ymode=abs_centre
-layer=stat_group
-textfont=p12_full
-textalignh=left
-textalignv=top
-textshadow=yes
-colour=0xff981f
-
-// 12:120
-[com_120]
-type=text
-y=119
-width=155
-height=15
-xmode=abs_right
-ymode=abs_centre
-layer=stat_group
-textfont=b12_full
-text=Weapon speed
-textalignh=left
-textalignv=top
-textshadow=yes
-colour=0xff981f
-
-// 12:121
-[next_page]
-type=layer
-x=49
-y=128
-width=70
-height=26
-ymode=abs_centre
-layer=wornitems_container
-onload=script3517(bankmain:next_page, bankmain:stat_group, bankmain:set_bonus, true, null, null)
-
-// 12:122
-[set_bonus]
-type=layer
-contenttype=9586
-widthmode=minus
-heightmode=minus
-layer=wornitems_container
-hide=yes
-onload=script3517(bankmain:previous_page, bankmain:stat_group, bankmain:set_bonus, false, bankmain:set_effect, bankmain:scrollbar_1)
-
-// 12:123
-[com_123]
-type=graphic
-x=56
-y=104
-width=17
-height=18
-ymode=abs_centre
-layer=wornitems_container
-graphic="options_icons_small,0"
-
-// 12:124
-[com_124]
-type=text
-x=77
-y=104
-width=62
-height=18
-ymode=abs_centre
-layer=wornitems_container
-textfont=p12_full
-textalignh=left
-textalignv=centre
-textshadow=yes
-colour=0xff9800
-onload=runweight_init(event_com)
-
-// 12:125
-[menu_button]
-type=layer
-x=12
-y=42
-width=25
-height=25
-xmode=abs_right
-layer=universe
-
-// 12:126
-[wornitems_button]
-type=layer
-x=12
-y=42
-width=25
-height=25
-layer=universe
-
-// 12:127
-[bank_highlight]
-type=layer
-width=488
-height=30
-heightmode=minus
-xmode=abs_centre
-ymode=abs_bottom
-layer=universe
-hide=yes
-
-// 12:128
-[popup]
-type=layer
-widthmode=minus
-heightmode=minus
-xmode=abs_centre
-ymode=abs_centre
-layer=universe
-
-// 12:129
-[dropdown_container]
-type=layer
-widthmode=minus
-heightmode=minus
-layer=infinite
-hide=yes
-
-// 12:130
-[tooltip]
-type=layer
-width=1
-height=1
-layer=infinite
-
-// 12:131
-[com_131]
-type=text
-y=-134
-width=155
-height=15
-xmode=abs_right
-ymode=abs_centre
-layer=set_bonus
-textfont=b12_full
-text=Set Effect Bonus
-textalignh=left
-textalignv=top
-textshadow=yes
-colour=0xff981f
-
-// 12:132
-[set_effect]
-type=layer
-x=25
-y=10
-width=125
-height=260
-xmode=abs_right
-ymode=abs_centre
-layer=set_bonus
-onload=script3521(bankmain:set_effect, bankmain:scrollbar_1)
-
-// 12:133
-[scrollbar_1]
-type=layer
-x=6
-y=10
-width=16
-height=260
-xmode=abs_right
-ymode=abs_centre
-layer=set_bonus
-
-// 12:134
-[previous_page]
-type=layer
-x=49
-y=128
-width=70
-height=26
-ymode=abs_centre
-layer=set_bonus
-
-// 12:135
-[attackspeedbase]
-type=text
-x=70
-y=134
-width=83
-height=14
-xmode=abs_right
-ymode=abs_centre
-layer=stat_group
-textfont=p12_full
-textalignh=left
-textalignv=top
-textshadow=yes
-colour=0xff981f
-
-// 12:136
-[attackspeedactual]
-type=text
-x=-11
-y=134
-width=83
-height=14
-xmode=abs_right
-ymode=abs_centre
-layer=stat_group
-textfont=p12_full
-textalignh=left
-textalignv=top
-textshadow=yes
-colour=0xff981f
-
-// 12:137
-[extra_quiver_ammo_graphic]
-type=layer
-widthmode=minus
-heightmode=minus
-xmode=abs_centre
-ymode=abs_centre
-layer=extra_quiver_slot
-
-// 12:138
-[extra_quiver_ammo]
-type=layer
-widthmode=minus
-heightmode=minus
-xmode=abs_centre
-ymode=abs_centre
-layer=extra_quiver_slot
-events=1030
-op1=*
-op2=*
-op10=*
-
-// 12:139
-[dropdown]
-type=layer
-x=192
-y=176
-width=123
-height=99
-layer=dropdown_container
-noclickthrough=yes
-
-// 12:140
-[dropdown_content]
-type=layer
-width=15
-widthmode=minus
-heightmode=minus
-layer=dropdown
-
-// 12:141
-[dropdown_scroller]
-type=layer
-width=16
-height=99
-xmode=abs_right
-layer=dropdown
 

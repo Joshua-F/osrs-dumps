@@ -14,7 +14,7 @@ widthmode=minus
 xmode=abs_centre
 ymode=abs_centre
 layer=infinite
-onload=shared_bank_init(event_com, shared_bank:frame, shared_bank:occupiedslots, shared_bank:capacity, shared_bank:main_bank, 47448076, shared_bank:search, shared_bank:items, shared_bank:scrollbar, shared_bank:swap, shared_bank:insert, shared_bank:item, shared_bank:note, shared_bank:quantity_layer, shared_bank:quantity1, shared_bank:quantity5, shared_bank:quantity10, shared_bank:quantityx, shared_bank:quantityall, shared_bank:save_button, shared_bank:close, 47448072)
+onload=shared_bank_init(event_com, shared_bank:frame, shared_bank:occupiedslots, shared_bank:capacity, shared_bank:main_bank, 47448076, shared_bank:search, shared_bank:items, shared_bank:scrollbar, shared_bank:swap_insert, shared_bank:swap_insert_graphic, shared_bank:note, shared_bank:quantity_layer, shared_bank:quantity1, shared_bank:quantity5, shared_bank:quantity10, shared_bank:quantityx, shared_bank:quantityall, shared_bank:save_button, shared_bank:close, 47448072)
 
 // 724:2
 [frame]
@@ -226,7 +226,7 @@ onop=bankmain_depositall(event_com, "miscgraphics,9", "miscgraphics,0", event_op
 // 724:19
 [depositinv_graphic]
 type=graphic
-x=15
+x=16
 y=71
 width=29
 height=22
@@ -236,181 +236,78 @@ graphic="bankbuttons,0"
 graphicshadow=3355443
 
 // 724:20
-[bottom]
-type=layer
-y=10
-width=20
-height=40
-widthmode=minus
-xmode=abs_centre
-ymode=abs_bottom
-layer=universe
-
-// 724:21
 [mode_layer]
 type=layer
-width=105
+x=2
+width=36
 heightmode=minus
 ymode=abs_centre
 layer=bottom
+
+// 724:21
+[swap_insert]
+type=graphic
+x=1
+y=1
+width=36
+height=36
+layer=mode_layer
+graphic="miscgraphics,0"
+events=2
+op1=*
+targetverb=Enable
+onmouseover=settrans(shared_bank:swap_insert_graphic, 75)
+onmouseleave=settrans(shared_bank:swap_insert_graphic, 0)
+onop=bankmain_depositall(event_com, "miscgraphics,9", "miscgraphics,0", event_op)
 
 // 724:22
-[rearrange_text]
-type=text
-height=15
-widthmode=minus
-xmode=abs_centre
-layer=mode_layer
-textfont=p12_full
-text=Rearrange mode:
-textalignh=centre
-textalignv=centre
-textshadow=yes
-colour=0xff981f
-
-// 724:23
-[swap]
-type=layer
-width=50
-height=15
-heightmode=minus
-ymode=abs_bottom
-layer=mode_layer
-events=2
-op1=Swap
-onmouseover=text_colour_swapper(shared_bank:swap_text, 16777215)
-onmouseleave=text_colour_swapper(shared_bank:swap_text, 16750623)
-
-// 724:24
-[swap_text]
-type=text
-width=50
-height=15
-heightmode=minus
-ymode=abs_bottom
-layer=mode_layer
-textfont=p12_full
-text=Swap
-textalignh=centre
-textalignv=centre
-textshadow=yes
-colour=0xff981f
-
-// 724:25
-[insert]
-type=layer
-width=50
-height=15
-heightmode=minus
-xmode=abs_right
-ymode=abs_bottom
-layer=mode_layer
-events=2
-op1=Insert
-onmouseover=text_colour_swapper(shared_bank:insert_text, 16777215)
-onmouseleave=text_colour_swapper(shared_bank:insert_text, 16750623)
-
-// 724:26
-[insert_text]
-type=text
-width=50
-height=15
-heightmode=minus
-xmode=abs_right
-ymode=abs_bottom
-layer=mode_layer
-textfont=p12_full
-text=Insert
-textalignh=centre
-textalignv=centre
-textshadow=yes
-colour=0xff981f
-
-// 724:27
 [withdrawal_layer]
 type=layer
-x=110
-width=85
+x=39
+width=36
 heightmode=minus
 ymode=abs_centre
 layer=bottom
 
-// 724:28
-[withdraw_text]
-type=text
-height=15
-widthmode=minus
-xmode=abs_centre
-layer=withdrawal_layer
-textfont=p12_full
-text=Withdraw as:
-textalignh=centre
-textalignv=centre
-textshadow=yes
-colour=0xff981f
-
-// 724:29
-[item]
-type=layer
-width=40
-height=15
-heightmode=minus
-ymode=abs_bottom
-layer=withdrawal_layer
-events=2
-op1=Item
-onmouseover=text_colour_swapper(shared_bank:item_text, 16777215)
-onmouseleave=text_colour_swapper(shared_bank:item_text, 16750623)
-
-// 724:30
-[item_text]
-type=text
-width=40
-height=15
-heightmode=minus
-ymode=abs_bottom
-layer=withdrawal_layer
-textfont=p12_full
-text=Item
-textalignh=centre
-textalignv=centre
-textshadow=yes
-colour=0xff981f
-
-// 724:31
+// 724:23
 [note]
-type=layer
-width=40
-height=15
-heightmode=minus
-xmode=abs_right
-ymode=abs_bottom
+type=graphic
+x=1
+y=1
+width=36
+height=36
 layer=withdrawal_layer
+graphic="miscgraphics,0"
 events=2
-op1=Note
-onmouseover=text_colour_swapper(shared_bank:note_text, 16777215)
-onmouseleave=text_colour_swapper(shared_bank:note_text, 16750623)
+op1=*
+onmouseover=settrans(shared_bank:note_graphic, 75)
+onmouseleave=settrans(shared_bank:note_graphic, 0)
+onop=bankmain_depositall(event_com, "miscgraphics,9", "miscgraphics,0", event_op)
 
-// 724:32
-[note_text]
-type=text
-width=40
-height=15
+// 724:24
+[swap_insert_graphic]
+type=graphic
+x=4
+y=8
+width=29
+height=22
+layer=mode_layer
+graphic="bankbuttons,11"
+graphicshadow=3355443
+
+// 724:25
+[quantity_layer]
+type=layer
+y=1
+width=188
 heightmode=minus
 xmode=abs_right
-ymode=abs_bottom
-layer=withdrawal_layer
-textfont=p12_full
-text=Note
-textalignh=centre
-textalignv=centre
-textshadow=yes
-colour=0xff981f
+layer=bottom
 
-// 724:33
-[com_33]
+// 724:26
+[com_26]
 type=text
-x=195
+x=117
 width=340
 height=15
 widthmode=minus
@@ -422,10 +319,10 @@ textalignv=centre
 textshadow=yes
 colour=0xffffff
 
-// 724:34
+// 724:27
 [save_button]
 type=layer
-x=209
+x=131
 width=100
 height=15
 heightmode=minus
@@ -434,45 +331,55 @@ layer=bottom
 events=2
 op1=Save
 
-// 724:35
-[quantity_layer]
+// 724:28
+[bottom]
 type=layer
-width=145
-heightmode=minus
-xmode=abs_right
-ymode=abs_centre
-layer=bottom
-
-// 724:36
-[com_36]
-type=text
-height=15
+y=10
+width=20
+height=40
 widthmode=minus
 xmode=abs_centre
-layer=quantity_layer
-textfont=p12_full
-text=Quantity:
-textalignh=centre
-textalignv=centre
-textshadow=yes
-colour=0xff981f
-
-// 724:37
-[quantity1]
-type=layer
-width=25
-height=15
-heightmode=minus
 ymode=abs_bottom
+layer=universe
+
+// 724:29
+[popup]
+type=layer
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=universe
+
+// 724:30
+[note_graphic]
+type=graphic
+x=4
+y=8
+width=29
+height=22
+layer=withdrawal_layer
+graphic="bankbuttons,13"
+graphicshadow=3355443
+
+// 724:31
+[quantity1]
+type=graphic
+x=2
+width=36
+height=36
 layer=quantity_layer
+graphic="miscgraphics,0"
 events=2
 op1=Default quantity: 1
 onmouseover=text_colour_swapper(shared_bank:quantity1_text, 16777215)
 onmouseleave=text_colour_swapper(shared_bank:quantity1_text, 16750623)
 
-// 724:38
+// 724:32
 [quantity1_text]
 type=text
+x=8
+y=7
 width=25
 height=15
 heightmode=minus
@@ -485,24 +392,24 @@ textalignv=centre
 textshadow=yes
 colour=0xff981f
 
-// 724:39
+// 724:33
 [quantity5]
-type=layer
-x=30
-width=25
-height=15
-heightmode=minus
-ymode=abs_bottom
+type=graphic
+x=39
+width=36
+height=36
 layer=quantity_layer
+graphic="miscgraphics,0"
 events=2
 op1=Default quantity: 5
 onmouseover=text_colour_swapper(shared_bank:quantity5_text, 16777215)
 onmouseleave=text_colour_swapper(shared_bank:quantity5_text, 16750623)
 
-// 724:40
+// 724:34
 [quantity5_text]
 type=text
-x=30
+x=45
+y=7
 width=25
 height=15
 heightmode=minus
@@ -515,27 +422,27 @@ textalignv=centre
 textshadow=yes
 colour=0xff981f
 
-// 724:41
+// 724:35
 [quantity10]
-type=layer
-width=25
-height=15
-heightmode=minus
-xmode=abs_centre
-ymode=abs_bottom
+type=graphic
+x=76
+width=36
+height=36
 layer=quantity_layer
+graphic="miscgraphics,0"
 events=2
-op1=Default quantity: 10
+op1=Default quantity: 5
 onmouseover=text_colour_swapper(shared_bank:quantity10_text, 16777215)
 onmouseleave=text_colour_swapper(shared_bank:quantity10_text, 16750623)
 
-// 724:42
+// 724:36
 [quantity10_text]
 type=text
+x=82
+y=7
 width=25
 height=15
 heightmode=minus
-xmode=abs_centre
 ymode=abs_bottom
 layer=quantity_layer
 textfont=p12_full
@@ -545,30 +452,28 @@ textalignv=centre
 textshadow=yes
 colour=0xff981f
 
-// 724:43
+// 724:37
 [quantityx]
-type=layer
-x=30
-width=25
-height=15
-heightmode=minus
-xmode=abs_right
-ymode=abs_bottom
+type=graphic
+x=113
+width=36
+height=36
 layer=quantity_layer
+graphic="miscgraphics,0"
 events=6
 op1=*
 op2=Set custom quantity
 onmouseover=text_colour_swapper(shared_bank:quantityx_text, 16777215)
 onmouseleave=text_colour_swapper(shared_bank:quantityx_text, 16750623)
 
-// 724:44
+// 724:38
 [quantityx_text]
 type=text
-x=30
+x=119
+y=7
 width=25
 height=15
 heightmode=minus
-xmode=abs_right
 ymode=abs_bottom
 layer=quantity_layer
 textfont=p12_full
@@ -578,27 +483,27 @@ textalignv=centre
 textshadow=yes
 colour=0xff981f
 
-// 724:45
+// 724:39
 [quantityall]
-type=layer
-width=25
-height=15
-heightmode=minus
-xmode=abs_right
-ymode=abs_bottom
+type=graphic
+x=150
+width=36
+height=36
 layer=quantity_layer
+graphic="miscgraphics,0"
 events=2
 op1=Default quantity: All
 onmouseover=text_colour_swapper(shared_bank:quantityall_text, 16777215)
 onmouseleave=text_colour_swapper(shared_bank:quantityall_text, 16750623)
 
-// 724:46
+// 724:40
 [quantityall_text]
 type=text
+x=156
+y=7
 width=25
 height=15
 heightmode=minus
-xmode=abs_right
 ymode=abs_bottom
 layer=quantity_layer
 textfont=p12_full
@@ -607,13 +512,4 @@ textalignh=centre
 textalignv=centre
 textshadow=yes
 colour=0xff981f
-
-// 724:47
-[popup]
-type=layer
-widthmode=minus
-heightmode=minus
-xmode=abs_centre
-ymode=abs_centre
-layer=universe
 

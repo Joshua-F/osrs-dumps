@@ -1,6 +1,6 @@
 // 8839
 [proc,script8839](dbrow $dbrow)(boolean)
-def_obj $obj = null;
+def_obj $obj1 = null;
 def_int $int2 = -1;
 def_dbtable $dbtable = db_getrowtable($dbrow);
 def_int $int4 = ~script9062($dbtable, $dbrow);
@@ -11,11 +11,26 @@ if (%sailing_intro = 28 & $dbrow = sailing_boat_facility_cargo_hold_regular_raft
     return(true);
 }
 def_int $int5 = 0;
+def_int $int6 = 0;
+def_obj $obj7 = null;
+if (db_getrowtable($dbrow) = sailing_boat_facility) {
+    $int6 = db_getfield($dbrow, sailing_boat_facility:facility_bottle_id, 0);
+    if ($int6 > 0) {
+        while ($int5 < 28) {
+            $obj7 = inv_getobj(inv, $int5);
+            if ($obj7 = sailing_facility_bottle_full) {
+                return(true);
+            }
+            $int5 = calc($int5 + 1);
+        }
+        $int5 = 0;
+    }
+}
 while ($int5 < $int4) {
-    $obj, $int2 = ~script9063($dbtable, $dbrow, $int5);
-    if (inv_total(inv, $obj) < $int2) {
-        if (calc(~script9136($obj) + inv_total(inv, $obj)) >= $int2) {
-            $obj = $obj;
+    $obj1, $int2 = ~script9063($dbtable, $dbrow, $int5);
+    if (inv_total(inv, $obj1) < $int2) {
+        if (calc(~script9136($obj1) + inv_total(inv, $obj1)) >= $int2) {
+            $obj1 = $obj1;
         } else {
             return(false);
         }
