@@ -89,9 +89,15 @@ if (%bank_currenttab = 15) {
     if ($int23 = 1) {
         if_sethide(true, $component2);
     }
+    if (cc_find(bankmain:potionstore_button, 0) = true) {
+        cc_setgraphic("miscgraphics,9");
+    }
     ~script6080;
 } else {
     if_sethide(true, bankmain:potionstore_container);
+    if (cc_find(bankmain:potionstore_button, 0) = true) {
+        cc_setgraphic("miscgraphics,0");
+    }
     if_sethide(false, $component2);
 }
 ~scrollbar_vertical_rebuild($component4, $component3);
@@ -239,10 +245,8 @@ while ($int25 < 1410) {
     $int25 = calc($int25 + 1);
 }
 $int33 = calc($int33 + 32);
-if_sethide(true, bankmain:potionstore_container);
 if (%bank_currenttab = 15) {
     if_settext("Potion storage", $component6);
-    if_sethide(false, bankmain:potionstore_container);
 } else if (%bank_tab_display = 2) {
     if_settext("Tab <enum(int, string, enum_207, %bank_currenttab)>", $component6);
 } else {
