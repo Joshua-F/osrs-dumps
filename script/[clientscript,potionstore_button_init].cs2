@@ -14,11 +14,13 @@ if (%mm_potion_storage_unlocked = 0) {
     .cc_setposition(4, 4, ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize(36, 36, ^setsize_abs, ^setsize_abs);
     .cc_setsize(28, 28, ^setsize_abs, ^setsize_abs);
-    cc_setgraphic("miscgraphics,0");
+    if (%bank_currenttab = 15) {
+        cc_setgraphic("miscgraphics,9");
+    } else {
+        cc_setgraphic("miscgraphics,0");
+    }
     .cc_setgraphic("bank_storage,2");
     if_setop(1, "Potion Storage", $potionstore_button);
-    if_setonop("script9226", $potionstore_button);
-    if_setonvartransmit("script9226{bankcert}", $potionstore_button);
     if_setonmouserepeat("cc_settrans(event_com, .cc_getid, 75, null)", $potionstore_button);
     if_setonmouseleave("cc_settrans(event_com, .cc_getid, 0, null)", $potionstore_button);
     if_sethide(false, $potionstore_button);
