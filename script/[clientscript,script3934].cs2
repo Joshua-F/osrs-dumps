@@ -1,34 +1,20 @@
 // 3934
 [clientscript,script3934](component $sound_icon, component $sound_bobble_container, component $sound_slider_bobble, component $tooltip, component $sound_holder)
 cc_deleteall($sound_bobble_container);
-if (~on_enhanced_any = false) {
-    if_setposition(0, 48, ^setpos_abs_centre, ^setpos_abs_top, $sound_holder);
-} else {
-    if_setposition(0, 42, ^setpos_abs_centre, ^setpos_abs_bottom, $sound_holder);
-    if_setonvartransmit("script7100($sound_slider_bobble){option_master_volume}", $sound_bobble_container);
-    ~script7101($sound_slider_bobble);
-}
-def_int $int5 = struct_param(struct_2754, param_1101);
-def_int $int6 = 0;
-def_int $int7 = if_getwidth($sound_bobble_container);
+if_setposition(0, 42, ^setpos_abs_centre, ^setpos_abs_bottom, $sound_holder);
+if_setonvartransmit("script7100($sound_slider_bobble){option_master_volume}", $sound_bobble_container);
+~script7101($sound_slider_bobble);
+def_int $int = if_getwidth($sound_bobble_container);
 def_graphic $graphic = "options_icons,2";
-def_int $int9 = ~settings_get_slider(31);
-~settings_set_slider(31, $int9);
-def_string $string0 = "Mute Sound Effects";
-def_string $string1 = "Unmute Sound Effects";
-~settings_create_icon($int9, 31, $sound_slider_bobble, $sound_bobble_container, $int5, $graphic, $sound_icon, $string0, $string1, $tooltip);
-if_setonvartransmit("script3939(31, $sound_slider_bobble, $sound_bobble_container, $int5, $graphic, $sound_icon, $string0, $string1, $tooltip){option_sounds}", $sound_slider_bobble);
+def_string $string0 = "Mute Sound Effects Volume";
+def_string $string1 = "Unmute Sound Effects Volume";
+~script9253(%option_sounds, 31, $sound_slider_bobble, $sound_bobble_container, -1, $graphic, $sound_icon, $string0, $string1, $tooltip);
+if_setdraggable($sound_bobble_container, -1, $sound_slider_bobble);
+if_setdragdeadzone(0, $sound_slider_bobble);
+if_setdragdeadtime(0, $sound_slider_bobble);
+if_setondrag("script9242($sound_slider_bobble, event_mousex, $int)", $sound_slider_bobble);
+if_setondragcomplete("script9243($sound_slider_bobble, event_mousex, $int)", $sound_slider_bobble);
+if_setonvartransmit("script9245($sound_slider_bobble, $int){option_sounds}", $sound_slider_bobble);
 if_setnoclickthrough(true, $sound_slider_bobble);
-if_setonclick("opsound(0, 0)", $sound_slider_bobble);
-while ($int6 <= $int5) {
-    cc_create($sound_bobble_container, ^iftype_rectangle, $int6);
-    cc_setop(1, "Adjust Sound Effect Volume");
-    cc_setposition(scale($int6, $int5, $int7), 0, ^setpos_abs_left, ^setpos_abs_top);
-    cc_setsize(calc(scale(calc(1 + $int6), $int5, $int7) - scale($int6, $int5, $int7)), 0, ^setsize_abs, ^setsize_minus);
-    cc_setfill(true);
-    cc_setcolour(^white);
-    cc_settrans(255);
-    cc_setonop("settings_side_notch_op(31, $int6, $sound_slider_bobble, $sound_bobble_container, $int5, $graphic, $sound_icon, $string0, $string1, $tooltip)");
-    $int6 = calc($int6 + 1);
-}
-~script3941($int9, $sound_slider_bobble, $sound_bobble_container, $int5);
+if_setonclick("script9241($sound_slider_bobble, event_mousex, $int, $sound_bobble_container)", $sound_bobble_container);
+~script9246($sound_slider_bobble, $int);

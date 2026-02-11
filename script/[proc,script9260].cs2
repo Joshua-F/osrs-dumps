@@ -1,0 +1,12 @@
+// 9260
+[proc,script9260](component $component0, int $int1, int $int2, int $int3, int $int4, int $int5, component $component6, int $int7, string $string, int $int8)
+def_int $int9 = %option_master_volume;
+def_int $int10 = ~minmax(0, 100, scale($int2, calc($int3 - 16), 100));
+if (cc_find($component0, $int1) = true & (%option_master_volume ! $int10 | $int8 = 1)) {
+    %option_master_volume = ~minmax(0, 100, $int10);
+    ~script7109;
+    ~script9262($component0, $int1, $int3, $int4, $int5, $component6, $int7, $string);
+    if ($int9 <= 0 & %option_master_volume > 0 | $int9 > 0 & %option_master_volume <= 0 | $int8 = 1) {
+        if_runscript*(ifscript_3416078959, settings:settings_clickzone, $int1)(319, %option_master_volume);
+    }
+}

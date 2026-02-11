@@ -1,0 +1,167 @@
+// 9290
+[proc,script9290](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5)
+if_setscrollpos(0, 0, $component2);
+cc_deleteall($component1);
+def_dbrow $dbrowarray0(100);
+def_dbrow $dbrowarray1(100);
+def_dbrow $dbrowarray2(100);
+def_int $int6 = 0;
+while ($int6 < 100) {
+    $dbrowarray0($int6) = ~script9316(calc($int6 + 1));
+    $dbrowarray1($int6) = ~script9318(calc($int6 + 1));
+    $dbrowarray2($int6) = ~script9320(calc($int6 + 1));
+    $int6 = calc($int6 + 1);
+}
+def_int $int7 = db_find(music:hidden, false);
+def_int $int8 = $int7;
+def_int $int9 = 0;
+def_int $intarray($int7);
+def_string $stringarray($int7);
+$int6 = 0;
+def_dbrow $dbrow = null;
+while ($int6 < $int7) {
+    $intarray($int6) = $int6;
+    cc_create($component1, ^iftype_text, $int6);
+    cc_sethide(true);
+    $dbrow = db_find_get($int6);
+    if ($dbrow ! null) {
+        $stringarray($int6) = ~get_music_sortname($dbrow);
+    } else {
+        $stringarray($int6) = "";
+    }
+    $int6 = calc($int6 + 1);
+}
+def_int $int11 = 15;
+if (~on_mobile = true) {
+    $int11 = scale(4, 3, $int11);
+}
+if ($int7 > 1) {
+    array_sort($stringarray, $intarray);
+}
+$int6 = 0;
+def_string $string = "";
+def_int $int12 = 1;
+def_int $int13 = 0;
+def_int $int14 = 0;
+def_int $int15 = 0;
+def_int $int16 = 0;
+def_int $int17 = ~settings_get_colour_or_default(487);
+def_int $int18 = ~settings_get_colour_or_default(485);
+def_int $int19 = ~settings_get_colour_or_default(486);
+def_boolean $boolean = ~flip_bool(~int_to_bool(%settings_music_player_disable_text_shadow));
+def_int $int21 = 0;
+while ($int6 < $int7) {
+    if (cc_find($component1, $intarray($int6)) = true) {
+        $dbrow = db_find_get($intarray($int6));
+        if ($dbrow ! null) {
+            if (array_count($dbrowarray0, $dbrow, 0, -1) > 0) {
+                $int14 = 1;
+            } else {
+                $int14 = 0;
+            }
+            if (array_count($dbrowarray1, $dbrow, 0, -1) > 0) {
+                $int15 = 1;
+            } else {
+                $int15 = 0;
+            }
+            if (array_count($dbrowarray2, $dbrow, 0, -1) > 0) {
+                $int16 = 1;
+            } else {
+                $int16 = 0;
+            }
+            if (~music_isunlocked($dbrow) = true) {
+                $int21 = 1;
+            } else {
+                $int21 = 0;
+            }
+            $int12 = db_getfield($dbrow, music:release_type, 0);
+            if (~restrict_content_dbrow($dbrow) = true) {
+                $int12 = 0;
+            }
+            if ($int21 = 1 & $int12 = 1) {
+                $int9 = calc($int9 + 1);
+            }
+            if (~script9291($dbrow, $int14, $int15, $int16, $int21) = true) {
+                cc_sethide(false);
+                cc_setsize(0, $int11, ^setsize_minus, ^setsize_abs);
+                cc_setposition(0, calc(3 + $int13 * $int11), ^setpos_abs_centre, ^setpos_abs_top);
+                cc_settextfont(p12_full);
+                cc_settextshadow($boolean);
+                cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+                $string = ~get_music_name($dbrow);
+                cc_settext($string);
+                cc_setop(1, "Play");
+                cc_setop(2, "Unlock hint");
+                if ($int14 = 1) {
+                    cc_setop(3, "Remove from playlist 1");
+                } else {
+                    cc_setop(3, "Add to playlist 1");
+                }
+                if ($int15 = 1) {
+                    cc_setop(4, "Remove from playlist 2");
+                } else {
+                    cc_setop(4, "Add to playlist 2");
+                }
+                if ($int16 = 1) {
+                    cc_setop(5, "Remove from playlist 3");
+                } else {
+                    cc_setop(5, "Add to playlist 3");
+                }
+                cc_setopbase("<col=ff9040><$string></col>");
+                if ($int12 = 1) {
+                    if ($int21 = 1) {
+                        ~music_setcolour($int19);
+                    } else {
+                        ~music_setcolour($int18);
+                    }
+                } else {
+                    ~music_setcolour($int17);
+                }
+                cc_setonmouseover("cc_colour_swapper(event_com, event_comsubid, 16777215)");
+                $int13 = calc($int13 + 1);
+            } else {
+                cc_sethide(true);
+            }
+        } else {
+            cc_sethide(true);
+        }
+    }
+    $int6 = calc($int6 + 1);
+}
+cc_deleteall($component0);
+if ($int13 <= 0) {
+    if_sethide(true, $component3);
+    cc_create($component0, ^iftype_text, 0);
+    cc_setsize(40, calc(16384 / 2), ^setsize_minus, ^setsize_rel);
+    cc_setposition(0, 8, ^setpos_abs_centre, ^setpos_abs_top);
+    cc_setcolour(0xff981f);
+    cc_settextfont(p12_full);
+    cc_settextshadow(true);
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 14);
+    if (%music_current_playlist = 0) {
+        cc_settext("There are no music tracks available that match your current filters.");
+    } else {
+        cc_settext("There are no music tracks available that match your current filters and playlist settings.");
+    }
+} else {
+    if_sethide(false, $component3);
+}
+cc_deleteall($component3);
+def_int $int22 = calc(3 + $int13 * $int11 + 3);
+def_int $int23 = %camera_zoom_mouse_enabled;
+if ($int22 > if_getheight($component2)) {
+    if_setscrollsize(0, $int22, $component2);
+    ~scrollbar_vertical($component3, $component2, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+    if (cc_find($component3, 1) = true) {
+        ~scrollbar_vertical_doscroll($component3, $component2, $int23, true);
+    }
+} else {
+    %camera_zoom_mouse_enabled = 0;
+    if_setscrollsize(0, 0, $component2);
+    ~scrollbar_vertical($component3, $component2, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+    if (cc_find($component3, 1) = true) {
+        ~scrollbar_vertical_doscroll($component3, $component2, 0, true);
+    }
+}
+if_settext("Unlocked: <~tostring_commas(~min($int9, $int8))> / <~tostring_commas($int8)>", $component4);
+~script6479($component5, $component1);

@@ -1,0 +1,63 @@
+// 9255
+[clientscript,script9255](int $int0, component $component1, component $component2, int $int3, graphic $graphic, component $component5, string $string0, string $string1, component $component6)
+~settings_side_op_sound;
+def_int $int7 = if_getwidth($component2);
+def_int $int8 = 0;
+switch_int ($int0) {
+    case 319 :
+        $int8 = %option_master_volume;
+    case 30 :
+        $int8 = %option_music;
+    case 31 :
+        $int8 = %option_sounds;
+    case 32 :
+        $int8 = %option_areasounds;
+}
+if ($int8 > 0) {
+    switch_int ($int0) {
+        case 319 :
+            %option_master_volume_saved = $int8;
+            %option_master_volume = 0;
+            ~script9234($component1, $int7);
+        case 30 :
+            %option_music_saved = $int8;
+            %option_music = 0;
+            ~script9240($component1, $int7);
+        case 31 :
+            %option_sounds_saved = $int8;
+            %option_sounds = 0;
+            ~script9246($component1, $int7);
+        case 32 :
+            %option_areasounds_saved = $int8;
+            %option_areasounds = 0;
+            ~script9252($component1, $int7);
+    }
+} else {
+    switch_int ($int0) {
+        case 319 :
+            if (%option_master_volume_saved <= 0) {
+                %option_master_volume_saved = 100;
+            }
+            %option_master_volume = %option_master_volume_saved;
+            ~script9234($component1, $int7);
+        case 30 :
+            if (%option_music_saved <= 0) {
+                %option_music_saved = 20;
+            }
+            %option_music = %option_music_saved;
+            ~script9240($component1, $int7);
+        case 31 :
+            if (%option_sounds_saved <= 0) {
+                %option_sounds_saved = 45;
+            }
+            %option_sounds = %option_sounds_saved;
+            ~script9246($component1, $int7);
+        case 32 :
+            if (%option_areasounds_saved <= 0) {
+                %option_areasounds_saved = 30;
+            }
+            %option_areasounds = %option_areasounds_saved;
+            ~script9252($component1, $int7);
+    }
+}
+~script9254($int0);
