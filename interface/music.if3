@@ -5,7 +5,7 @@ widthmode=minus
 heightmode=minus
 xmode=abs_centre
 ymode=abs_centre
-onload=music_init(event_com, music:jukebox, music:scrollable, music:scrollbar, music:count, music:manual, music:manual_background, music:area, music:area_background, music:random, music:random_background)
+onload=music_init(event_com, music:inner, music:jukebox, music:scrollable, music:scrollbar, music:count, music:single, music:area, music:shuffle, music:skip, music:playlist, music:dropdown, music:dropdown_content, music:dropdown_scrollbar, music:now_playing_text, music:overlay)
 
 // 239:1
 [contents]
@@ -17,73 +17,20 @@ ymode=abs_centre
 layer=universe
 
 // 239:2
-[frame]
+[now_playing]
 type=layer
-y=52
-width=186
-height=196
-xmode=abs_centre
+x=7
+y=44
+width=183
+height=38
 layer=contents
-onload=steelbox(event_com)
 
 // 239:3
-[background]
-type=rectangle
-width=2
-height=2
-widthmode=minus
-heightmode=minus
-xmode=abs_centre
-layer=frame
-colour=0x000000
-fill=yes
-trans=212
-
-// 239:4
-[scrollable]
-type=layer
-x=9
-width=32
-height=12
-widthmode=minus
-heightmode=minus
-ymode=abs_centre
-layer=frame
-
-// 239:5
-[overlay]
-type=layer
-widthmode=minus
-heightmode=minus
-layer=scrollable
-onvartransmit=script6478(0){cluehelper_infobox_clue, option_cluehelper}
-
-// 239:6
-[jukebox]
-type=layer
-widthmode=minus
-heightmode=minus
-layer=scrollable
-
-// 239:7
-[scrollbar]
-type=layer
-x=6
-width=16
-height=12
-heightmode=minus
-xmode=abs_right
-ymode=abs_centre
-layer=frame
-
-// 239:8
 [now_playing_title]
 type=text
-x=7
-y=17
-width=44
-height=17
-layer=contents
+width=47
+height=18
+layer=now_playing
 textfont=p12_full
 text=Playing:
 textalignh=left
@@ -91,106 +38,23 @@ textalignv=top
 textshadow=yes
 colour=0xff981f
 
-// 239:9
+// 239:4
 [now_playing_text]
 type=text
-x=7
-y=34
+y=17
 width=183
 height=18
-layer=contents
+layer=now_playing
 textfont=p12_full
 textalignh=left
 textalignv=top
 textshadow=yes
 colour=0x0dc10d
 
-// 239:10
-[area]
-type=layer
-x=63
-y=5
-width=38
-height=27
-layer=contents
-events=2
-op1=Area
-
-// 239:11
-[area_background]
-type=graphic
-width=36
-height=25
-xmode=abs_centre
-ymode=abs_centre
-layer=area
-graphic="miscgraphics5,0"
-
-// 239:12
-[area_title]
-type=text
-width=36
-height=25
-xmode=abs_centre
-ymode=abs_centre
-layer=area
-textfont=p12_full
-text=Area
-textalignh=centre
-textalignv=centre
-textshadow=yes
-colour=0xff981f
-
-// 239:13
-[manual]
-type=layer
-x=105
-y=5
-width=38
-height=27
-layer=contents
-events=2
-op1=Manual
-
-// 239:14
-[manual_background]
-type=graphic
-width=36
-height=25
-xmode=abs_centre
-ymode=abs_centre
-layer=manual
-graphic="miscgraphics5,0"
-
-// 239:15
-[manual_title]
-type=text
-width=37
-height=25
-xmode=abs_centre
-ymode=abs_centre
-layer=manual
-textfont=p12_full
-text=Man
-textalignh=centre
-textalignv=centre
-textshadow=yes
-colour=0xff981f
-
-// 239:16
-[random]
-type=layer
-x=147
-y=5
-width=38
-height=27
-layer=contents
-events=2
-op1=Random
-
-// 239:17
+// 239:5
 [count]
 type=text
+y=1
 height=248
 widthmode=minus
 heightmode=minus
@@ -203,28 +67,165 @@ textalignv=bottom
 textshadow=yes
 colour=0xff981f
 
-// 239:18
-[random_background]
-type=graphic
-width=36
-height=25
+// 239:6
+[frame]
+type=layer
+y=80
+width=186
+height=166
 xmode=abs_centre
+layer=contents
+onload=steelbox(event_com)
+
+// 239:7
+[background]
+type=rectangle
+width=2
+height=2
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+layer=frame
+colour=0x000000
+fill=yes
+trans=212
+
+// 239:8
+[inner]
+type=layer
+x=6
+width=12
+height=12
+widthmode=minus
+heightmode=minus
 ymode=abs_centre
-layer=random
-graphic="miscgraphics5,0"
+layer=frame
+
+// 239:9
+[scrollable]
+type=layer
+x=3
+width=20
+widthmode=minus
+heightmode=minus
+ymode=abs_centre
+layer=inner
+
+// 239:10
+[overlay]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=scrollable
+
+// 239:11
+[jukebox]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=scrollable
+
+// 239:12
+[scrollbar]
+type=layer
+width=16
+heightmode=minus
+xmode=abs_right
+ymode=abs_centre
+layer=inner
+
+// 239:13
+[controls]
+type=layer
+height=62
+widthmode=minus
+xmode=abs_right
+layer=contents
+
+// 239:14
+[area]
+type=layer
+x=6
+y=5
+width=37
+height=26
+layer=controls
+events=2
+op1=Area Mode
+
+// 239:15
+[shuffle]
+type=layer
+x=49
+y=5
+width=37
+height=26
+layer=controls
+events=2
+op1=Shuffle Mode
+
+// 239:16
+[single]
+type=layer
+x=92
+y=5
+width=37
+height=26
+layer=controls
+events=2
+op1=Single Mode
+
+// 239:17
+[skip]
+type=layer
+x=6
+y=5
+width=37
+height=26
+xmode=abs_right
+layer=controls
+events=2
+op1=Skip Track
+
+// 239:18
+[playlist]
+type=layer
+x=6
+y=37
+width=120
+height=20
+xmode=abs_right
+layer=controls
 
 // 239:19
-[random_title]
-type=text
-width=36
-height=25
-xmode=abs_centre
-ymode=abs_centre
-layer=random
-textfont=p12_full
-text=Rand
-textalignh=centre
-textalignv=centre
-textshadow=yes
-colour=0xff981f
+[dropdown_container]
+type=layer
+widthmode=minus
+heightmode=minus
+layer=contents
+hide=yes
+
+// 239:20
+[dropdown]
+type=layer
+width=123
+height=99
+layer=dropdown_container
+noclickthrough=yes
+
+// 239:21
+[dropdown_content]
+type=layer
+width=15
+widthmode=minus
+heightmode=minus
+layer=dropdown
+
+// 239:22
+[dropdown_scrollbar]
+type=layer
+width=16
+height=99
+xmode=abs_right
+layer=dropdown
 

@@ -1,0 +1,23 @@
+// 9291
+[proc,script9291](dbrow $dbrow, int $int1, int $int2, int $int3, int $int4)(boolean)
+if ($int4 = 0 & %settings_music_player_hide_tracks = 1) {
+    return(false);
+}
+if ($int4 = 1 & %settings_music_player_hide_tracks = 2) {
+    return(false);
+}
+switch_int (%music_current_playlist) {
+    case 1 :
+        if ($int1 = 0) {
+            return(false);
+        }
+    case 2 :
+        if ($int2 = 0) {
+            return(false);
+        }
+    case 3 :
+        if ($int3 = 0) {
+            return(false);
+        }
+}
+return(true);

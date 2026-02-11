@@ -1,0 +1,14 @@
+// 9232
+[proc,script9232](component $component, int $int1, int $int2, int $int3)
+def_int $int4 = %option_master_volume;
+def_int $int5 = ~minmax(0, 100, scale($int1, calc($int2 - 16), 100));
+if (%option_master_volume ! $int5 | $int3 = 1) {
+    %option_master_volume = ~minmax(0, 100, $int5);
+    ~script7109;
+    ~script9234($component, $int2);
+    ~script9254(319);
+    ~script9256;
+    if ($int4 <= 0 & %option_master_volume > 0 | $int4 > 0 & %option_master_volume <= 0 | $int3 = 1) {
+        if_runscript*(ifscript_3081216314, settings_side:master_slider_bobble, -1)(%option_master_volume);
+    }
+}

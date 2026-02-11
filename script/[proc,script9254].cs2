@@ -1,0 +1,44 @@
+// 9254
+[proc,script9254](int $int0)
+def_int $int1 = 0;
+def_component $component = null;
+def_string $string0 = "";
+def_string $string1 = "";
+def_component $tooltip = settings_side:tooltip;
+switch_int ($int0) {
+    case 319 :
+        $int1 = %option_master_volume;
+        $component = settings_side:master_icon;
+        $string0 = "Mute Master Volume";
+        $string1 = "Unmute Master Volume";
+    case 30 :
+        $int1 = %option_music;
+        $component = settings_side:music_icon;
+        $string0 = "Mute Music Volume";
+        $string1 = "Unmute Music Volume";
+    case 31 :
+        $int1 = %option_sounds;
+        $component = settings_side:sound_icon;
+        $string0 = "Mute Sound Effects Volume";
+        $string1 = "Unmute Sound Effects Volume";
+    case 32 :
+        $int1 = %option_areasounds;
+        $component = settings_side:areasound_icon;
+        $string0 = "Mute Area Sounds Volume";
+        $string1 = "Unmute Area Sounds Volume";
+}
+if (cc_find($component, 1) = true) {
+    if ($int1 <= 0) {
+        cc_sethide(false);
+    } else {
+        cc_sethide(true);
+    }
+}
+if ($int1 <= 0) {
+    if_setop(1, "Unmute", $component);
+    if_setonmouserepeat("tooltip_mouserepeat($component, -1, $tooltip, $string1, 25, 190)", $component);
+} else {
+    if_setop(1, "Mute", $component);
+    if_setonmouserepeat("tooltip_mouserepeat($component, -1, $tooltip, $string0, 25, 190)", $component);
+}
+%tooltip_built = 0;

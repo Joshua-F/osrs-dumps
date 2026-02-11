@@ -1,0 +1,14 @@
+// 9302
+[proc,script9302](dbrow $dbrow)(int)
+if ($dbrow = null) {
+    return(0);
+}
+def_int $int1 = -1;
+def_int $int2 = -1;
+$int1, $int2 = ~get_music_variable($dbrow);
+def_int $int3 = calc($int1 * 100 + $int2);
+if ($int3 <= 0) {
+    $int3 = 0;
+    ~script2075("Music - <~get_music_name($dbrow)> has an invalid ID (<tostring($int3)>).");
+}
+return($int3);
