@@ -1,0 +1,11 @@
+// 9312
+[proc,music_playlist_2_remove_track](dbrow $dbrow)(boolean)
+def_int $int = 1;
+while ($int <= 100) {
+    if (~music_playlist_2_get_track_in_slot($int) = $dbrow) {
+        ~music_playlist_2_set_track_in_slot($int, null);
+        return(true);
+    }
+    $int = calc($int + 1);
+}
+return(false);
