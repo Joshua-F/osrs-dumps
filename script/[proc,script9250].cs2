@@ -1,0 +1,14 @@
+// 9250
+[proc,script9250](component $component, int $int1, int $int2, int $int3)
+def_int $int4 = %option_areasounds;
+def_int $int5 = ~minmax(0, 100, scale($int1, calc($int2 - 16), 100));
+if (%option_areasounds ! $int5 | $int3 = 1) {
+    %option_areasounds = ~minmax(0, 100, $int5);
+    ~script3644;
+    ~script9252($component, $int2);
+    ~script9254(32);
+    ~script9256;
+    if ($int4 <= 0 & %option_areasounds > 0 | $int4 > 0 & %option_areasounds <= 0 | $int3 = 1) {
+        if_runscript*(ifscript_2493361579, settings_side:areasounds_slider_bobble, -1)(%option_areasounds);
+    }
+}
