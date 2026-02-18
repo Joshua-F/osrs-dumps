@@ -1,0 +1,40 @@
+// 3936
+[proc,script3936]
+def_dbrow $dbrowarray0(100);
+def_dbrow $dbrowarray1(100);
+def_dbrow $dbrowarray2(100);
+def_int $int = 0;
+while ($int < 100) {
+    $dbrowarray0($int) = ~script9316(calc($int + 1));
+    $dbrowarray1($int) = ~script9318(calc($int + 1));
+    $dbrowarray2($int) = ~script9320(calc($int + 1));
+    $int = calc($int + 1);
+}
+def_component $now_playing_text = music:now_playing_text;
+if (%music_current_track = null) {
+    if_settext(" ", $now_playing_text);
+    if_setop(2, "", $now_playing_text);
+    if_setop(3, "", $now_playing_text);
+    if_setop(4, "", $now_playing_text);
+    if_setop(5, "", $now_playing_text);
+    if_setopbase("", $now_playing_text);
+} else {
+    if_settext(~get_music_name(%music_current_track), $now_playing_text);
+    if_setop(2, "Unlock hint", $now_playing_text);
+    if (array_count($dbrowarray0, %music_current_track, 0, -1) > 0) {
+        if_setop(3, "Remove from playlist 1", $now_playing_text);
+    } else {
+        if_setop(3, "Add to playlist 1", $now_playing_text);
+    }
+    if (array_count($dbrowarray1, %music_current_track, 0, -1) > 0) {
+        if_setop(4, "Remove from playlist 2", $now_playing_text);
+    } else {
+        if_setop(4, "Add to playlist 2", $now_playing_text);
+    }
+    if (array_count($dbrowarray2, %music_current_track, 0, -1) > 0) {
+        if_setop(5, "Remove from playlist 3", $now_playing_text);
+    } else {
+        if_setop(5, "Add to playlist 3", $now_playing_text);
+    }
+    if_setopbase("<col=ff9040><~get_music_name(%music_current_track)></col>", $now_playing_text);
+}
