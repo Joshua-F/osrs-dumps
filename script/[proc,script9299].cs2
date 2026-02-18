@@ -1,4 +1,7 @@
 // 9299
 [proc,script9299](component $component)
-if_setcolour(~settings_get_colour_or_default(486), $component);
+def_int $int = ~settings_get_colour_or_default(487);
+if_setcolour($int, $component);
 if_settextshadow(~flip_bool(~int_to_bool(%settings_music_player_disable_text_shadow)), $component);
+if_setonmouseover("text_colour_swapper($component, 16777215)", $component);
+if_setonmouseleave("text_colour_swapper($component, $int)", $component);
