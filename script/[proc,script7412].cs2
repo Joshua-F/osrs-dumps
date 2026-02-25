@@ -1,24 +1,25 @@
 // 7412
 [proc,script7412](enum $enum)
-if ($enum = null | $enum ! enum_1745) {
+if (~toplevel_is_mobile($enum) = false) {
     return;
 }
-def_component $component = enum(component, component, $enum, toplevel_osm:hotkeys);
-if ($component = null) {
+def_component $component1 = enum(component, component, $enum, toplevel_osm:hotkeys);
+def_component $component2 = enum(component, component, $enum, toplevel_osrs_stretch:gameframe);
+if ($component1 = null | $component2 = null) {
     return;
 }
 if (%osm_hotkeys_dropdown = 0) {
-    if_setsize(58, 242, ^setsize_abs, ^setsize_abs, $component);
-    if (if_getheight(toplevel_osm:gameframe) < 503) {
-        if_setposition(0, calc(4 + 46), ^setpos_abs_left, ^setpos_abs_bottom, $component);
+    if_setsize(58, 242, ^setsize_abs, ^setsize_abs, $component1);
+    if (if_getheight($component2) < 503) {
+        if_setposition(0, calc(4 + 46), ^setpos_abs_left, ^setpos_abs_bottom, $component1);
     } else {
-        if_setposition(0, 60, ^setpos_abs_left, ^setpos_abs_centre, $component);
+        if_setposition(0, 60, ^setpos_abs_left, ^setpos_abs_centre, $component1);
     }
 } else {
-    if_setsize(58, 43, ^setsize_abs, ^setsize_abs, $component);
-    if (if_getheight(toplevel_osm:gameframe) < 503) {
-        if_setposition(0, calc(4 + 46), ^setpos_abs_left, ^setpos_abs_bottom, $component);
+    if_setsize(58, 43, ^setsize_abs, ^setsize_abs, $component1);
+    if (if_getheight($component2) < 503) {
+        if_setposition(0, calc(4 + 46), ^setpos_abs_left, ^setpos_abs_bottom, $component1);
     } else {
-        if_setposition(0, 160, ^setpos_abs_left, ^setpos_abs_centre, $component);
+        if_setposition(0, 160, ^setpos_abs_left, ^setpos_abs_centre, $component1);
     }
 }

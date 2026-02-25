@@ -1,0 +1,16 @@
+// 3937
+[proc,script3937]()(boolean)
+def_enum $enum = ~toplevel_getcomponents;
+if (~toplevel_is_mobile($enum) = false) {
+    return(false);
+}
+def_component $component = enum(component, component, $enum, toplevel_osm:safezone);
+if ($component = null) {
+    return(false);
+}
+def_int $int2 = ~script7464($enum);
+def_int $int3 = scale($int2, 16384, if_getwidth(if_getlayer($component)));
+if ($int3 <= safearea_getminx & $int3 <= safearea_getmaxx) {
+    return(false);
+}
+return(true);
