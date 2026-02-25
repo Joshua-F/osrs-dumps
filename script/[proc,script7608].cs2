@@ -1,7 +1,16 @@
 // 7608
-[proc,script7608]
+[proc,script7608](enum $enum)
+if ($enum = null) {
+    return;
+}
+def_component $component1 = enum(component, component, $enum, toplevel_osm:chat_toggle);
+def_component $component2 = enum(component, component, $enum, toplevel_osm:chatting_button);
+def_component $component3 = enum(component, component, $enum, toplevel_osm:side_left_chat);
+if ($component1 = null | $component2 = null | $component3 = null) {
+    return;
+}
 def_int $int = 0;
-cc_create(toplevel_osm:chat_toggle, ^iftype_graphic, 0);
+cc_create($component1, ^iftype_graphic, 0);
 cc_setsize(58, 40, ^setsize_abs, ^setsize_abs);
 cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
 if (%osm_chatbox_disabled = 1) {
@@ -9,29 +18,29 @@ if (%osm_chatbox_disabled = 1) {
 } else {
     cc_setgraphic("tli_button01_rectangle_58x40,1");
 }
-cc_create(toplevel_osm:chat_toggle, ^iftype_graphic, 1);
+cc_create($component1, ^iftype_graphic, 1);
 cc_setsize(32, 32, ^setsize_abs, ^setsize_abs);
 cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
 cc_setgraphic("options_icons,5");
-if_setop(1, "Toggle Chatbox", toplevel_osm:chat_toggle);
-if_setop(2, "Toggle Filters", toplevel_osm:chat_toggle);
-if_setop(3, "Report player abuse", toplevel_osm:chat_toggle);
-if_setop(4, "Toggle report minimenu option", toplevel_osm:chat_toggle);
-if_setop(5, "Report game bug", toplevel_osm:chat_toggle);
-if_setonop("osm_chatbox_toggle_op(event_op)", toplevel_osm:chat_toggle);
-cc_create(toplevel_osm:chatting_button, ^iftype_graphic, 0);
+if_setop(1, "Toggle Chatbox", $component1);
+if_setop(2, "Toggle Filters", $component1);
+if_setop(3, "Report player abuse", $component1);
+if_setop(4, "Toggle report minimenu option", $component1);
+if_setop(5, "Report game bug", $component1);
+if_setonop("osm_chatbox_toggle_op(event_op, $enum)", $component1);
+cc_create($component2, ^iftype_graphic, 0);
 cc_setsize(58, 40, ^setsize_abs, ^setsize_abs);
 cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top);
 cc_setgraphic("tli_button01_rectangle_58x40,1");
-cc_create(toplevel_osm:chatting_button, ^iftype_graphic, 1);
+cc_create($component2, ^iftype_graphic, 1);
 cc_setsize(33, 36, ^setsize_abs, ^setsize_abs);
 cc_setposition(0, -1, ^setpos_abs_centre, ^setpos_abs_centre);
 cc_setgraphic("side_icons,40");
-if_setop(1, "Start chatting", toplevel_osm:chatting_button);
+if_setop(1, "Start chatting", $component2);
 if (%osm_chatbox_disabled = 1) {
-    if_sethide(true, toplevel_osm:chatting_button);
-    if_setsize(58, 79, ^setsize_abs, ^setsize_abs, toplevel_osm:side_left_chat);
+    if_sethide(true, $component2);
+    if_setsize(58, 79, ^setsize_abs, ^setsize_abs, $component3);
 } else {
-    if_sethide(false, toplevel_osm:chatting_button);
-    if_setsize(58, 118, ^setsize_abs, ^setsize_abs, toplevel_osm:side_left_chat);
+    if_sethide(false, $component2);
+    if_setsize(58, 118, ^setsize_abs, ^setsize_abs, $component3);
 }

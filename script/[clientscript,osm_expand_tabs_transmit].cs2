@@ -1,10 +1,14 @@
 // 7613
-[clientscript,osm_expand_tabs_transmit](int $int)
+[clientscript,osm_expand_tabs_transmit](int $int, enum $enum)
 if ($int = %flashside) {
     return;
 }
+def_component $component2 = enum(component, component, $enum, toplevel_osm:expand_stone);
+def_component $component3 = enum(component, component, $enum, toplevel_osm:expand_icon);
 if (%flashside = 0) {
-    if_setgraphic("tli_button01_square_40x40,0", toplevel_osm:expand_stone);
-    if_sethide(false, toplevel_osm:expand_icon);
+    if_setgraphic("tli_button01_square_40x40,0", $component2);
+    if ($component3 ! null) {
+        if_sethide(false, $component3);
+    }
 }
-if_setonvartransmit("osm_expand_tabs_transmit(%flashside){toplevel_temp}", toplevel_osm:expand_stone);
+if_setonvartransmit("osm_expand_tabs_transmit(%flashside, $enum){toplevel_temp}", $component2);
