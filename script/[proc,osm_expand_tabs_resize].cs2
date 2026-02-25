@@ -1,13 +1,33 @@
 // 7615
-[proc,osm_expand_tabs_resize]
+[proc,osm_expand_tabs_resize](enum $enum)
+def_component $component1 = enum(component, component, $enum, toplevel_osm:expand_stone);
+def_component $component2 = enum(component, component, $enum, toplevel_osm:expand_icon);
+def_component $component3 = enum(component, component, $enum, toplevel_osm:tabs_blocking);
+def_component $component4 = enum(component, component, $enum, toplevel_osm:side_right_tabs);
 if (%osm_tab_expansion_disabled = 1) {
-    if_setgraphic("side_icons,42", toplevel_osm:expand_icon);
-    if_setop(1, "Show More", toplevel_osm:expand_stone);
-    if_setsize(0, 0, ^setsize_minus, ^setsize_minus, toplevel_osm:tabs_blocking);
-    if_setsize(58, 280, ^setsize_abs, ^setsize_abs, toplevel_osm:side_right_tabs);
+    if ($component2 ! null) {
+        if_setgraphic("side_icons,42", $component2);
+    }
+    if ($component1 ! null) {
+        if_setop(1, "Show More", $component1);
+    }
+    if ($component3 ! null) {
+        if_setsize(0, 0, ^setsize_minus, ^setsize_minus, $component3);
+    }
+    if ($component4 ! null) {
+        if_setsize(58, 280, ^setsize_abs, ^setsize_abs, $component4);
+    }
 } else {
-    if_setgraphic("side_icons,41", toplevel_osm:expand_icon);
-    if_setop(1, "Show Less", toplevel_osm:expand_stone);
-    if_setsize(0, 0, ^setsize_abs, ^setsize_minus, toplevel_osm:tabs_blocking);
-    if_setsize(85, 280, ^setsize_abs, ^setsize_abs, toplevel_osm:side_right_tabs);
+    if ($component2 ! null) {
+        if_setgraphic("side_icons,41", $component2);
+    }
+    if ($component1 ! null) {
+        if_setop(1, "Show Less", $component1);
+    }
+    if ($component3 ! null) {
+        if_setsize(0, 0, ^setsize_abs, ^setsize_minus, $component3);
+    }
+    if ($component4 ! null) {
+        if_setsize(85, 280, ^setsize_abs, ^setsize_abs, $component4);
+    }
 }
