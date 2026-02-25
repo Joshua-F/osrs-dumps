@@ -6,7 +6,7 @@ def_int $int3 = 0;
 def_int $int4 = 0;
 def_int $setposh = ^setpos_abs_left;
 def_int $setposv = ^setpos_abs_top;
-if ($enum = enum_1131 | $enum = enum_1745) {
+if ($enum = enum_1131 | ~toplevel_is_mobile($enum) = true) {
     if (%toplevel_panel ! -1) {
         $component1 = enum(int, component, enum_1137, %toplevel_panel);
     }
@@ -16,8 +16,8 @@ if ($enum = enum_1131 | $enum = enum_1745) {
     } else {
         if_sethide(true, $component2);
     }
-    if ($enum = enum_1745) {
-        if (if_getheight(toplevel_osm:gameframe) < 503) {
+    if (~toplevel_is_mobile($enum) = true) {
+        if (if_getheight(enum(component, component, $enum, toplevel_osrs_stretch:gameframe)) < 503) {
             if (%osm_tab_expansion_disabled = 1) {
                 $int3, $int4, $setposh, $setposv = 58, 4, ^setpos_abs_right, ^setpos_abs_bottom;
             } else {
@@ -33,7 +33,7 @@ if ($enum = enum_1131 | $enum = enum_1745) {
             $int3 = 58;
         }
         if_setposition($int3, $int4, $setposh, $setposv, $component2);
-        if_setposition(0, $int4, ^setpos_abs_right, $setposv, toplevel_osm:side_right_tabs);
+        if_setposition(0, $int4, ^setpos_abs_right, $setposv, enum(component, component, $enum, toplevel_osm:side_right_tabs));
     }
     ~script2526;
     %buff_bar_dodger_update = clientclock;

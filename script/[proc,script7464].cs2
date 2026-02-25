@@ -1,7 +1,11 @@
 // 7464
-[proc,script7464]()(int)
-def_int $int0 = if_getwidth(toplevel_osm:safezone);
-def_int $int1 = calc(($int0 - 748) / 2);
-$int1 = max(0, $int1);
-def_int $int2 = scale($int1, $int0, 16384);
-return(min($int2, 2200));
+[proc,script7464](enum $enum)(int)
+def_component $component = enum(component, component, $enum, toplevel_osm:safezone);
+if ($component = null) {
+    return(2200);
+}
+def_int $int2 = if_getwidth($component);
+def_int $int3 = calc(($int2 - 748) / 2);
+$int3 = max(0, $int3);
+def_int $int4 = scale($int3, $int2, 16384);
+return(min($int4, 2200));

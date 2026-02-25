@@ -1,5 +1,5 @@
 // 4728
-[proc,mouseover_tooltip](int $int0, component $component, string $string0, int $menuentrytype, int $int3, enum $enum)(int)
+[proc,mouseover_tooltip](int $int0, component $component1, string $string0, int $menuentrytype, int $int3, enum $enum)(int)
 def_int $int5 = 1;
 def_int $int6 = 1;
 if (%mouseover_tooltips_disabled = 1 | enum(int, boolean, enum_3903, $menuentrytype) = false | ~on_mobile = true) {
@@ -32,7 +32,7 @@ if (%mouseover_tooltips_hide_opcount = 0 & $int3 > 1 & $int5 = 1) {
         $string1 = "<$string1>s";
     }
     $int10 = 14;
-    $int9 = calc(parawidth($string1, if_getwidth($component), p11_full) + 6);
+    $int9 = calc(parawidth($string1, if_getwidth($component1), p11_full) + 6);
 }
 def_string $string2 = %mouseover_tooltip_custom_text_left;
 def_string $string3 = %mouseover_tooltip_custom_text_right;
@@ -117,39 +117,40 @@ if ($boolean = true & %mouseover_tooltip_x_override >= 0 & %mouseover_tooltip_y_
     $int25 = %mouseover_tooltip_x_override;
     $int26 = %mouseover_tooltip_y_override;
 }
-if ($enum = enum_1745) {
-    $int25 = calc($int25 - if_getx(toplevel_osm:safezone));
-    $int26 = calc($int26 - if_gety(toplevel_osm:safezone));
+def_component $component28 = enum(component, component, $enum, toplevel_osm:safezone);
+if ($component28 ! null) {
+    $int25 = calc($int25 - if_getx($component28));
+    $int26 = calc($int26 - if_gety($component28));
 }
 if ($boolean = true) {
     $int25 = ~max(calc($int25 - 0 - $int24), 0);
 } else {
-    $int25 = ~min(calc($int25 + 0), calc(if_getwidth($component) - $int24));
+    $int25 = ~min(calc($int25 + 0), calc(if_getwidth($component1) - $int24));
 }
-$int26 = ~min(calc($int26 + 24), calc(if_getheight($component) - ($int8 + $int19 + $int10 - 2)));
+$int26 = ~min(calc($int26 + 24), calc(if_getheight($component1) - ($int8 + $int19 + $int10 - 2)));
 if ($int5 = 1) {
-    cc_create($component, ^iftype_rectangle, $int0);
+    cc_create($component1, ^iftype_rectangle, $int0);
     cc_setposition($int25, $int26, ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize($int24, $int8, ^setsize_abs, ^setsize_abs);
     cc_setfill(false);
     cc_setcolour(0x0e0e0c);
     cc_settrans($int23);
     $int0 = calc($int0 + 1);
-    cc_create($component, ^iftype_rectangle, $int0);
+    cc_create($component1, ^iftype_rectangle, $int0);
     cc_setposition(calc($int25 + 1), calc($int26 + 1), ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize(calc($int24 - 2), calc($int8 - 2), ^setsize_abs, ^setsize_abs);
     cc_setfill(false);
     cc_setcolour(0x474745);
     cc_settrans($int23);
     $int0 = calc($int0 + 1);
-    cc_create($component, ^iftype_graphic, $int0);
+    cc_create($component1, ^iftype_graphic, $int0);
     cc_setsize(calc($int24 - 4), calc($int8 - 4), ^setsize_abs, ^setsize_abs);
     cc_setposition(calc($int25 + 2), calc($int26 + 2), ^setpos_abs_left, ^setpos_abs_top);
     cc_setgraphic(tradebacking);
     cc_settiling(true);
     cc_settrans($int23);
     $int0 = calc($int0 + 1);
-    cc_create($component, ^iftype_text, $int0);
+    cc_create($component1, ^iftype_text, $int0);
     cc_setsize(calc($int24 - 8), calc($int8 - 8), ^setsize_abs, ^setsize_abs);
     cc_setposition(calc($int25 + 4), calc($int26 + 4), ^setpos_abs_left, ^setpos_abs_top);
     cc_settextfont(p12_full);
@@ -161,21 +162,21 @@ if ($int5 = 1) {
     $int26 = calc($int26 + $int8 - 1);
 }
 if (string_length($string4) > 0) {
-    cc_create($component, ^iftype_rectangle, $int0);
+    cc_create($component1, ^iftype_rectangle, $int0);
     cc_setposition($int25, $int26, ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize($int24, calc($int19 + $int22), ^setsize_abs, ^setsize_abs);
     cc_setfill(false);
     cc_setcolour(0x0e0e0c);
     cc_settrans($int23);
     $int0 = calc($int0 + 1);
-    cc_create($component, ^iftype_rectangle, $int0);
+    cc_create($component1, ^iftype_rectangle, $int0);
     cc_setposition(calc($int25 + 1), calc($int26 + 1), ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize(calc($int24 - 2), calc($int19 - 2 + $int22), ^setsize_abs, ^setsize_abs);
     cc_setfill(false);
     cc_setcolour(0x474745);
     cc_settrans($int23);
     $int0 = calc($int0 + 1);
-    cc_create($component, ^iftype_graphic, $int0);
+    cc_create($component1, ^iftype_graphic, $int0);
     cc_setsize(calc($int24 - 4), calc($int19 - 4 + $int22), ^setsize_abs, ^setsize_abs);
     cc_setposition(calc($int25 + 2), calc($int26 + 2), ^setpos_abs_left, ^setpos_abs_top);
     cc_setgraphic(tradebacking);
@@ -183,7 +184,7 @@ if (string_length($string4) > 0) {
     cc_settrans($int23);
     $int0 = calc($int0 + 1);
     if (string_length($string5) > 0) {
-        cc_create($component, ^iftype_text, $int0);
+        cc_create($component1, ^iftype_text, $int0);
         cc_setsize(calc($int24 - 6), calc($int19 - 6), ^setsize_abs, ^setsize_abs);
         cc_setposition(calc($int25 + 3), calc($int26 + 3), ^setpos_abs_left, ^setpos_abs_top);
         cc_settextfont(p12_full);
@@ -192,7 +193,7 @@ if (string_length($string4) > 0) {
         cc_settext($string4);
         cc_setcolour(^white);
         $int0 = calc($int0 + 1);
-        cc_create($component, ^iftype_text, $int0);
+        cc_create($component1, ^iftype_text, $int0);
         cc_setsize(calc($int24 - 6), calc($int19 - 6), ^setsize_abs, ^setsize_abs);
         cc_setposition(calc($int25 + 3), calc($int26 + 3), ^setpos_abs_left, ^setpos_abs_top);
         cc_settextfont(p12_full);
@@ -202,7 +203,7 @@ if (string_length($string4) > 0) {
         cc_setcolour(^white);
         $int0 = calc($int0 + 1);
     } else {
-        cc_create($component, ^iftype_text, $int0);
+        cc_create($component1, ^iftype_text, $int0);
         cc_setsize(calc($int24 - 6), calc($int19 - 6), ^setsize_abs, ^setsize_abs);
         cc_setposition(calc($int25 + 3), calc($int26 + 3), ^setpos_abs_left, ^setpos_abs_top);
         cc_settextfont(p12_full);
@@ -213,13 +214,13 @@ if (string_length($string4) > 0) {
         $int0 = calc($int0 + 1);
     }
     if (%mouseover_tooltip_progress_bar_max > 0) {
-        cc_create($component, ^iftype_rectangle, $int0);
+        cc_create($component1, ^iftype_rectangle, $int0);
         cc_setposition(calc($int25 + 5), calc($int26 + $int19), ^setpos_abs_left, ^setpos_abs_top);
         cc_setsize(calc($int24 - 10), 15, ^setsize_abs, ^setsize_abs);
         cc_setfill(true);
         cc_setcolour(0x002200);
         $int0 = calc($int0 + 1);
-        cc_create($component, ^iftype_rectangle, $int0);
+        cc_create($component1, ^iftype_rectangle, $int0);
         cc_setposition(calc($int25 + 5), calc($int26 + $int19), ^setpos_abs_left, ^setpos_abs_top);
         cc_setsize(scale(%mouseover_tooltip_progress_bar_value, %mouseover_tooltip_progress_bar_max, calc($int24 - 12)), 15, ^setsize_abs, ^setsize_abs);
         cc_setfill(true);
@@ -230,28 +231,28 @@ if (string_length($string4) > 0) {
 }
 if (%mouseover_tooltips_hide_opcount = 0 & $int3 > 1 & $int5 = 1) {
     $int11 = calc($int25 + ($int24 - $int9));
-    cc_create($component, ^iftype_rectangle, $int0);
+    cc_create($component1, ^iftype_rectangle, $int0);
     cc_setposition($int11, $int26, ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize($int9, $int10, ^setsize_abs, ^setsize_abs);
     cc_setfill(false);
     cc_setcolour(0x0e0e0c);
     cc_settrans($int23);
     $int0 = calc($int0 + 1);
-    cc_create($component, ^iftype_rectangle, $int0);
+    cc_create($component1, ^iftype_rectangle, $int0);
     cc_setposition(calc($int11 + 1), calc($int26 + 1), ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize(calc($int9 - 2), calc($int10 - 2), ^setsize_abs, ^setsize_abs);
     cc_setfill(false);
     cc_setcolour(0x474745);
     cc_settrans($int23);
     $int0 = calc($int0 + 1);
-    cc_create($component, ^iftype_graphic, $int0);
+    cc_create($component1, ^iftype_graphic, $int0);
     cc_setposition(calc($int11 + 2), calc($int26 + 2), ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize(calc($int9 - 4), calc($int10 - 4), ^setsize_abs, ^setsize_abs);
     cc_setgraphic(tradebacking);
     cc_settiling(true);
     cc_settrans($int23);
     $int0 = calc($int0 + 1);
-    cc_create($component, ^iftype_text, $int0);
+    cc_create($component1, ^iftype_text, $int0);
     cc_setposition(calc($int11 + 3), calc($int26 + 4), ^setpos_abs_left, ^setpos_abs_top);
     cc_setsize(calc($int9 - 6), calc($int10 - 6), ^setsize_abs, ^setsize_abs);
     cc_settextfont(p11_full);

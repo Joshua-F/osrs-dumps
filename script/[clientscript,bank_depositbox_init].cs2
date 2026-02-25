@@ -1,26 +1,28 @@
 // 144
-[clientscript,bank_depositbox_init](component $universe, component $inventory, component $item_background, component $deposit_inv, component $deposit_worn, component $deposit_lootingbag, component $menu, component $1, component $5, component $10, component $x, component $all)
+[clientscript,bank_depositbox_init](component $universe, component $frame, component $contents, component $popup, component $inventory, component $item_background, component $deposit_inv, component $deposit_worn, component $deposit_lootingbag, component $lock_menu, component $menu_button, component $menu_container, component $1, component $5, component $10, component $x, component $all)
 cc_deleteall($inventory);
-def_int $int12 = 0;
-def_int $int13 = inv_size(inv);
-while ($int12 < $int13) {
-    cc_create($inventory, ^iftype_graphic, $int12);
+def_int $int17 = 0;
+def_int $int18 = inv_size(inv);
+while ($int17 < $int18) {
+    cc_create($inventory, ^iftype_graphic, $int17);
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
     cc_setgraphicshadow(0x333333);
     cc_setoutline(1);
     cc_setdragdeadzone(5);
     cc_setdragdeadtime(5);
     cc_sethide(false);
-    $int12 = calc($int12 + 1);
+    $int17 = calc($int17 + 1);
 }
+~script9326($menu_button, $menu_container, $frame, $contents, $popup);
 ~bank_depositbox_update($inventory, $item_background);
 if_setoninvtransmit("bank_depositbox_update($inventory, $item_background){inv}", $inventory);
 if_setonvartransmit("bank_depositbox_update($inventory, $item_background){if1, if2, if3, if4, prayer23, depositbox_requestedquantity, item_redemption, bank_locked_slots}", $inventory);
 ~script2133($deposit_inv, "Deposit inventory", "bankbuttons,0", "", null, null, null, null);
 ~script2133($deposit_worn, "Deposit worn items", "bankbuttons,1", "", null, null, null, null);
 ~script2133($deposit_lootingbag, "Empty containers", "bankbuttons,3", "", null, null, null, null);
-~bank_depositbox_menubutton($menu, 0);
-if_setop(1, "Deposit Lock Settings", $menu);
-~script4081(2, $menu);
-if_setonvartransmit("script4080(2, event_com){bank_locked_slots}", $menu);
+~script9334;
+~script6478($lock_menu, 0);
+if_setop(1, "Deposit Lock Settings", $lock_menu);
+~script4081(2, $lock_menu);
+if_setonvartransmit("script4080(2, event_com){bank_locked_slots}", $lock_menu);
 ~script1648(enum_2737, $1, $5, $10, $all, $x);

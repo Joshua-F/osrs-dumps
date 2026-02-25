@@ -1,11 +1,15 @@
 // 7614
-[clientscript,osm_expand_tabs_op]
+[clientscript,osm_expand_tabs_op](enum $enum)
 if (%osm_tab_expansion_disabled = 1) {
     %osm_tab_expansion_disabled = 0;
 } else {
     %osm_tab_expansion_disabled = 1;
 }
-if_setgraphic("tli_button01_square_40x40,0", toplevel_osm:expand_stone);
-if_sethide(false, toplevel_osm:expand_icon);
-~osm_expand_tabs_resize;
-~toplevel_side_customise(enum_1745);
+def_component $component1 = enum(component, component, $enum, toplevel_osm:expand_stone);
+def_component $component2 = enum(component, component, $enum, toplevel_osm:expand_icon);
+if_setgraphic("tli_button01_square_40x40,0", $component1);
+if ($component2 ! null) {
+    if_sethide(false, $component2);
+}
+~osm_expand_tabs_resize($enum);
+~toplevel_side_customise($enum);

@@ -1,11 +1,16 @@
 // 4563
-[proc,script4563](component $component, int $int1, int $int2, int $int3, int $int4, int $int5)
+[proc,script4563](component $component0, int $int1, int $int2, int $int3, int $int4, int $int5)
 def_int $int6 = ~max(0, ~min(1000, scale($int2, $int3, 1000)));
-if (cc_find($component, $int1) = true & %osm_deadsides_slider ! $int6) {
+def_enum $enum = ~toplevel_getcomponents;
+def_component $component8 = null;
+if (cc_find($component0, $int1) = true & %osm_deadsides_slider ! $int6) {
     %osm_deadsides_slider = $int6;
-    %osm_deadsides = scale(~script7464, 1000, %osm_deadsides_slider);
+    %osm_deadsides = scale(~script7464($enum), 1000, %osm_deadsides_slider);
     cc_setposition(calc($int5 + ~min(scale(%osm_deadsides_slider, 1000, $int3), calc($int3 - 16))), $int4, ^setpos_abs_left, ^setpos_abs_top);
-    if (~toplevel_getcomponents = enum_1745) {
-        ~interface_dodger_init(toplevel_osm:safezone, null, setbit(0, 13), ^setpos_abs_centre, ^setpos_abs_centre, false);
+    if (~toplevel_is_mobile($enum) = true) {
+        $component8 = enum(component, component, $enum, toplevel_osm:safezone);
+        if ($component8 ! null) {
+            ~interface_dodger_init($component8, null, setbit(0, 13), ^setpos_abs_centre, ^setpos_abs_centre, false);
+        }
     }
 }

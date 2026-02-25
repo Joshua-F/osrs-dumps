@@ -1,5 +1,8 @@
 // 7612
-[proc,osm_expand_tabs_init]
-if_setonop("osm_expand_tabs_op", toplevel_osm:expand_stone);
-if_setonvartransmit("osm_expand_tabs_transmit(%flashside){toplevel_temp}", toplevel_osm:expand_stone);
-~osm_expand_tabs_resize;
+[proc,osm_expand_tabs_init](enum $enum)
+def_component $component = enum(component, component, $enum, toplevel_osm:expand_stone);
+if ($component ! null) {
+    if_setonop("osm_expand_tabs_op($enum)", $component);
+    if_setonvartransmit("osm_expand_tabs_transmit(%flashside, $enum){toplevel_temp}", $component);
+}
+~osm_expand_tabs_resize($enum);
