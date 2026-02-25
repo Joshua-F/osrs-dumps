@@ -14,8 +14,15 @@ if (~chat_alert_get($int0) > 24) {
     return;
 }
 ~chat_alert_set($int0, 249);
+def_enum $enum = ~toplevel_getcomponents;
+def_component $component = null;
 if ($int1 = 1) {
-    if_setontimer("chat_alert_flash($int0)", toplevel_osm:chat_toggle);
+    if ($enum ! null) {
+        $component = enum(component, component, $enum, toplevel_osm:chat_toggle);
+    }
+    if ($component ! null) {
+        if_setontimer("chat_alert_flash($int0)", $component);
+    }
 } else {
     if_setontimer("chat_alert_flash($int0)", enum(int, component, enum_683, $int0));
 }
