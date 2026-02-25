@@ -208,8 +208,8 @@ if ($component7 ! null) {
 }
 $component7 = enum(component, component, $enum, toplevel_osrs_stretch:multiway_icon);
 if ($component7 ! null) {
-    if ($enum = enum_1745) {
-        ~script3506($component7);
+    if (~toplevel_is_mobile($enum) = true) {
+        ~script3506($component7, $enum);
     } else if ($enum = enum_1129) {
         if (%gravestone_duration > 0) {
             if_setposition(15, 17, ^setpos_abs_right, ^setpos_abs_bottom, $component7);
@@ -251,7 +251,7 @@ if (%cutscene_status = 0) {
     if_sethide(true, $component2);
 }
 $component2 = enum(component, component, $enum, toplevel_osrs_stretch:chat_container);
-if ($enum = enum_1745) {
+if (~toplevel_is_mobile($enum) = true) {
     if (%cutscene_status = 1 & %fov_clamp = 3) {
         if_setposition(0, 5, ^setpos_abs_centre, ^setpos_abs_bottom, $component2);
     } else {
@@ -275,13 +275,13 @@ if ($enum ! enum_1129) {
         ~script4135($enum, false);
     }
 }
-if ($enum = enum_1745) {
+if (~toplevel_is_mobile($enum) = true) {
     if (%cutscene_status = 0) {
-        if_sethide(false, toplevel_osm:wifi);
-        if_sethide(false, toplevel_osm:battery);
+        if_sethide(false, enum(component, component, $enum, toplevel_osm:wifi));
+        if_sethide(false, enum(component, component, $enum, toplevel_osm:battery));
     } else {
-        if_sethide(true, toplevel_osm:wifi);
-        if_sethide(true, toplevel_osm:battery);
+        if_sethide(true, enum(component, component, $enum, toplevel_osm:wifi));
+        if_sethide(true, enum(component, component, $enum, toplevel_osm:battery));
     }
 }
 $component2 = enum(component, component, $enum, toplevel_osrs_stretch:stat_boosts_hud);

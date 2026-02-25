@@ -1,6 +1,6 @@
 // 7568
 [proc,toplevel_setup_popout_mobile_layout](enum $enum)
-if ($enum ! enum_1745) {
+if (~toplevel_is_mobile($enum) = false) {
     return;
 }
 def_int $int1 = -1;
@@ -38,7 +38,7 @@ if ($component3 ! null & $component2 ! null) {
             if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, popout:mobile_toggleicon);
             if_setgraphic("side_icons,52", popout:mobile_toggleicon);
             if_setsize(58, calc(if_getheight($component2) + 14), ^setsize_minus, ^setsize_minus, popout:osm_frame);
-            if (if_getheight(toplevel_osm:gameframe) < 503) {
+            if (if_getheight($component4) < 503) {
                 if_setposition(0, 4, ^setpos_abs_left, ^setpos_abs_bottom, popout:osm_button_frame);
             } else {
                 if_setposition(0, 87, ^setpos_abs_left, ^setpos_abs_centre, popout:osm_button_frame);
@@ -48,7 +48,7 @@ if ($component3 ! null & $component2 ! null) {
             if_setposition(6, calc(20 + if_getheight($component2)), ^setpos_abs_right, ^setpos_abs_top, popout:container);
             if_setsize(6, calc(26 + if_getheight($component2)), ^setsize_minus, ^setsize_minus, popout:container);
         case 2 :
-            if (if_getheight(toplevel_osm:gameframe) < 503) {
+            if (if_getheight($component4) < 503) {
                 if_setposition(0, 4, ^setpos_abs_left, ^setpos_abs_bottom, $component3);
             } else {
                 if_setposition(0, 184, ^setpos_abs_left, ^setpos_abs_centre, $component3);
@@ -64,7 +64,7 @@ if ($component3 ! null & $component2 ! null) {
             if_setposition(6, 6, ^setpos_abs_right, ^setpos_abs_top, popout:container);
             if_setsize(0, 12, ^setsize_minus, ^setsize_minus, popout:container);
         case 0 :
-            if (if_getheight(toplevel_osm:gameframe) < 503) {
+            if (if_getheight($component4) < 503) {
                 if_setposition(0, 4, ^setpos_abs_left, ^setpos_abs_bottom, $component3);
             } else {
                 if_setposition(0, 204, ^setpos_abs_left, ^setpos_abs_centre, $component3);
