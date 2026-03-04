@@ -1,125 +1,138 @@
 // 1904
-[proc,skill_guide_v2_rebuild]
+[proc,skill_guide_v2_rebuild](int $int0, int $int1)
 def_component $infinity = skill_guide_v2:infinity;
 def_component $universe = skill_guide_v2:universe;
 def_component $frame = skill_guide_v2:frame;
 def_component $close = skill_guide_v2:close;
 def_component $content = skill_guide_v2:content;
 def_component $resize_preview = skill_guide_v2:resize_preview;
-def_int $int6 = if_getwidth($universe);
-def_int $int7 = if_getheight($universe);
-def_int $int8 = if_getwidth($infinity);
-def_int $int9 = ~script1912;
-def_int $int10 = calc(if_getheight($infinity) - $int9);
-def_int $int11 = 0;
+def_int $int8 = if_getwidth($universe);
+def_int $int9 = if_getheight($universe);
+def_int $int10 = if_getwidth($infinity);
+def_int $int11 = ~script1912;
+def_int $int12 = calc(if_getheight($infinity) - $int11);
+def_int $int13 = 0;
 if (~script7925 = false) {
-    $int11 = 1;
+    $int13 = 1;
 }
 def_enum $enum = ~toplevel_getcomponents;
 def_component $component = enum(component, component, $enum, toplevel_osrs_stretch:mainmodal);
-def_int $int14 = 512;
-def_int $int15 = 334;
-def_int $int16 = if_getx($component);
-def_int $int17 = if_gety($component);
+def_int $int16 = 512;
+def_int $int17 = 334;
+def_int $int18 = if_getx($component);
+def_int $int19 = if_gety($component);
 if_sethide(false, $universe);
 if_sethide(true, $resize_preview);
-if ($int11 = 0) {
-    $int14 = max(512, min(%skill_guide_v2_width, $int8));
-    $int15 = max(334, min(%skill_guide_v2_height, $int10));
-    $int16 = max(0, min(%skill_guide_v2_x, calc($int8 - %skill_guide_v2_width)));
-    $int17 = max($int9, min(%skill_guide_v2_y, calc($int9 + $int10 - %skill_guide_v2_height)));
+if ($int13 = 0) {
+    $int16 = max(512, min(%skill_guide_v2_width, $int10));
+    $int17 = max(334, min(%skill_guide_v2_height, $int12));
+    $int18 = max(0, min(%skill_guide_v2_x, calc($int10 - %skill_guide_v2_width)));
+    $int19 = max($int11, min(%skill_guide_v2_y, calc($int11 + $int12 - %skill_guide_v2_height)));
 }
 if (~on_mobile = false) {
-    if_setposition($int16, $int17, ^setpos_abs_left, ^setpos_abs_top, $universe);
-    if_setsize($int14, $int15, ^setsize_abs, ^setsize_abs, $universe);
+    if_setposition($int18, $int19, ^setpos_abs_left, ^setpos_abs_top, $universe);
+    if_setsize($int16, $int17, ^setsize_abs, ^setsize_abs, $universe);
 }
+def_dbrow $dbrow = null;
 def_string $string = "";
-def_stat $stat = enum(int, stat, enum_681, %skill_guide_v2_current_skill);
 def_boolean $boolean = false;
-$string, $boolean = ~skill_guide_subsection(%skill_guide_v2_current_skill, %skill_guide_v2_current_tab);
-if (%skill_guide_v2_current_tab = 0) {
-    $string = "Overview";
+if (%skill_guide_v2_current_tab = 31) {
+    $string, $boolean = "Level-up Unlocks", enum(int, boolean, enum_5750, %skill_guide_v2_current_skill);
+} else {
+    db_find(skill_guide_subsections:skill, %skill_guide_v2_current_skill);
+    db_find_refine(skill_guide_subsections:id, %skill_guide_v2_current_tab);
+    $dbrow = db_findnext;
+    if ($dbrow ! null) {
+        $string, $boolean = db_getfield($dbrow, skill_guide_subsections:header, 0), db_getfield($dbrow, skill_guide_subsections:membersonly, 0);
+    }
 }
 if ($boolean = true) {
     $string = "<$string> (Members Only)";
 }
-def_int $int20 = 0;
-if ($int11 = 1) {
-    $int20 = ~steelborder($frame, "<enum(int, string, enum_108, %skill_guide_v2_current_skill)> - <$string> ", 1);
+def_int $int22 = 0;
+if ($int13 = 1) {
+    $int22 = ~steelborder($frame, "<enum(int, string, enum_108, %skill_guide_v2_current_skill)> - <$string> ", 1);
 } else {
-    $int20 = ~steelborder($frame, "<enum(int, string, enum_108, %skill_guide_v2_current_skill)> - <$string> ", 19);
+    $int22 = ~steelborder($frame, "<enum(int, string, enum_108, %skill_guide_v2_current_skill)> - <$string> ", 19);
     ~script1785($content);
 }
-if (.cc_find($frame, $int20) = true) {
+def_stat $stat = null;
+if (.cc_find($frame, $int22) = true) {
+    $stat = enum(int, stat, enum_681, %skill_guide_v2_current_skill);
     ~create_graphic($frame, ~script8302($frame), enum(stat, graphic, enum_1505, $stat), calc(0 - (parawidth(.cc_gettext, .cc_getwidth, .cc_param(param_2523)) + 13) / 2 - 5), calc(.cc_gety + (.cc_getheight - 13) / 2), ^setpos_abs_centre, ^setpos_abs_top, 13, 13, ^setsize_abs, ^setsize_abs, false);
 }
 ~script4215($close, "Close");
 if_setonop("opsound(event_op, 2)", $close);
 if_setopkey(1, ^key_escape, 0, $close);
-def_int $int21 = calc((if_gety($content) - if_getheight($close)) / 2);
-if_setposition($int21, $int21, ^setpos_abs_right, ^setpos_abs_top, $close);
-def_int $int22 = calc($int15 - 6 * 2);
-def_int $int23 = calc($int14 - 6 * 2);
-def_int $int24 = calc($int16 + $int14 - 6);
-def_int $int25 = calc($int17 + $int15 - 6);
-if ($int11 = 0) {
+def_int $int24 = calc((if_gety($content) - if_getheight($close)) / 2);
+if_setposition($int24, $int24, ^setpos_abs_right, ^setpos_abs_top, $close);
+def_int $int25 = calc($int17 - 6 * 2);
+def_int $int26 = calc($int16 - 6 * 2);
+def_int $int27 = calc($int18 + $int16 - 6);
+def_int $int28 = calc($int19 + $int17 - 6);
+if ($int13 = 0) {
     if (cc_find($infinity, 0) = true) {
-        cc_setsize(calc($int23 - 28), calc(if_gety($content) - 2 * 6), ^setsize_abs, ^setsize_abs);
-        cc_setposition(calc($int16 + 6), calc($int17 + 6), ^setpos_abs_left, ^setpos_abs_top);
-        ~skill_guide_v2_reset_handle($int9, $infinity, $universe, $resize_preview);
+        cc_setsize(calc($int26 - 28), calc(if_gety($content) - 2 * 6), ^setsize_abs, ^setsize_abs);
+        cc_setposition(calc($int18 + 6), calc($int19 + 6), ^setpos_abs_left, ^setpos_abs_top);
+        ~skill_guide_v2_reset_handle($int11, $infinity, $universe, $resize_preview);
     }
     if (cc_find($infinity, 1) = true) {
-        cc_setsize($int23, 6, ^setsize_abs, ^setsize_abs);
-        cc_setposition(calc($int16 + 6), $int25, ^setpos_abs_left, ^setpos_abs_top);
-        ~skill_guide_v2_reset_handle($int9, $infinity, $universe, $resize_preview);
+        cc_setsize($int26, 6, ^setsize_abs, ^setsize_abs);
+        cc_setposition(calc($int18 + 6), $int28, ^setpos_abs_left, ^setpos_abs_top);
+        ~skill_guide_v2_reset_handle($int11, $infinity, $universe, $resize_preview);
     }
     if (cc_find($infinity, 2) = true) {
-        cc_setsize(6, $int22, ^setsize_abs, ^setsize_abs);
-        cc_setposition($int16, calc($int17 + 6), ^setpos_abs_left, ^setpos_abs_top);
-        ~skill_guide_v2_reset_handle($int9, $infinity, $universe, $resize_preview);
+        cc_setsize(6, $int25, ^setsize_abs, ^setsize_abs);
+        cc_setposition($int18, calc($int19 + 6), ^setpos_abs_left, ^setpos_abs_top);
+        ~skill_guide_v2_reset_handle($int11, $infinity, $universe, $resize_preview);
     }
     if (cc_find($infinity, 3) = true) {
-        cc_setsize(6, $int22, ^setsize_abs, ^setsize_abs);
-        cc_setposition($int24, calc($int17 + 6), ^setpos_abs_left, ^setpos_abs_top);
-        ~skill_guide_v2_reset_handle($int9, $infinity, $universe, $resize_preview);
+        cc_setsize(6, $int25, ^setsize_abs, ^setsize_abs);
+        cc_setposition($int27, calc($int19 + 6), ^setpos_abs_left, ^setpos_abs_top);
+        ~skill_guide_v2_reset_handle($int11, $infinity, $universe, $resize_preview);
     }
     if (cc_find($infinity, 4) = true) {
         cc_setsize(6, 6, ^setsize_abs, ^setsize_abs);
-        cc_setposition($int16, $int17, ^setpos_abs_left, ^setpos_abs_top);
-        ~skill_guide_v2_reset_handle($int9, $infinity, $universe, $resize_preview);
+        cc_setposition($int18, $int19, ^setpos_abs_left, ^setpos_abs_top);
+        ~skill_guide_v2_reset_handle($int11, $infinity, $universe, $resize_preview);
     }
     if (cc_find($infinity, 5) = true) {
         cc_setsize(6, 6, ^setsize_abs, ^setsize_abs);
-        cc_setposition($int24, $int17, ^setpos_abs_left, ^setpos_abs_top);
-        ~skill_guide_v2_reset_handle($int9, $infinity, $universe, $resize_preview);
+        cc_setposition($int27, $int19, ^setpos_abs_left, ^setpos_abs_top);
+        ~skill_guide_v2_reset_handle($int11, $infinity, $universe, $resize_preview);
     }
     if (cc_find($infinity, 6) = true) {
         cc_setsize(6, 6, ^setsize_abs, ^setsize_abs);
-        cc_setposition($int16, $int25, ^setpos_abs_left, ^setpos_abs_top);
-        ~skill_guide_v2_reset_handle($int9, $infinity, $universe, $resize_preview);
+        cc_setposition($int18, $int28, ^setpos_abs_left, ^setpos_abs_top);
+        ~skill_guide_v2_reset_handle($int11, $infinity, $universe, $resize_preview);
     }
     if (cc_find($infinity, 7) = true) {
         cc_setsize(6, 6, ^setsize_abs, ^setsize_abs);
-        cc_setposition($int24, $int25, ^setpos_abs_left, ^setpos_abs_top);
-        ~skill_guide_v2_reset_handle($int9, $infinity, $universe, $resize_preview);
+        cc_setposition($int27, $int28, ^setpos_abs_left, ^setpos_abs_top);
+        ~skill_guide_v2_reset_handle($int11, $infinity, $universe, $resize_preview);
     }
     if (cc_find($infinity, 8) = true) {
-        cc_setsize($int23, 6, ^setsize_abs, ^setsize_abs);
-        cc_setposition(calc($int16 + 6), $int17, ^setpos_abs_left, ^setpos_abs_top);
-        ~skill_guide_v2_reset_handle($int9, $infinity, $universe, $resize_preview);
+        cc_setsize($int26, 6, ^setsize_abs, ^setsize_abs);
+        cc_setposition(calc($int18 + 6), $int19, ^setpos_abs_left, ^setpos_abs_top);
+        ~skill_guide_v2_reset_handle($int11, $infinity, $universe, $resize_preview);
     }
 }
-def_component $tabs = skill_guide_v2:tabs;
-def_component $tab_content = skill_guide_v2:tab_content;
-def_component $list = skill_guide_v2:list;
-def_component $list_scroller = skill_guide_v2:list_scroller;
-def_component $guide_data = skill_guide_v2:guide_data;
-def_component $overview = skill_guide_v2:overview;
 def_graphic $graphic = p12_full;
-def_int $int33 = 495;
+def_fontmetrics $fontmetrics = p12_full;
+def_int $int31 = 6;
+def_int $int32 = 36;
+def_int $int33 = 16;
+switch_int (%responsive_current_breakpoint) {
+    case 1 :
+        $int33 = 17;
+    case 2 :
+        $int33 = 18;
+    case 3 :
+        $int33 = 20;
+}
 def_int $int34 = 20;
 def_int $int35 = 0;
-def_int $int36 = if_getheight($tab_content);
+def_int $int36 = if_getheight(skill_guide_v2:tab_content);
 if ($int36 >= 392) {
     $int34, $int35 = 26, 2;
 } else if ($int36 >= 350) {
@@ -129,7 +142,7 @@ if ($int36 >= 392) {
 } else if ($int36 >= 294) {
     $int34 = 21;
 }
-def_int $int37 = ~script9149(%skill_guide_v2_current_skill);
+def_int $int37 = db_find(skill_guide_subsections:skill, %skill_guide_v2_current_skill);
 def_int $int38 = calc($int36 / max($int37, 1));
 while (calc($int34 + $int35) > $int38 & ($int34 > 20 | $int35 > -1)) {
     $int35 = max(calc($int35 - 1), -1);
@@ -145,31 +158,87 @@ if ($int34 >= 26) {
 } else if ($int34 >= 21) {
     $int39 = 2;
 }
-cc_deleteall($tabs);
-def_int $int40 = 0;
-$int37 = 0;
-$string, $boolean = ~skill_guide_subsection(%skill_guide_v2_current_skill, $int37);
-while (string_length($string) > 0) {
-    if ($int37 = 0) {
-        $string = "Overview";
-    }
-    $int40 = ~script5291($tabs, $int40, $int37, $int34, $int35, 0x726451, $string, $graphic, 16750623, $int39, null, 0, 0, 0, 0, ~is_equal($int37, %skill_guide_v2_current_tab));
+cc_deleteall(skill_guide_v2:tabs);
+$int22, $int37 = 0, 0;
+db_find(skill_guide_subsections:skill, %skill_guide_v2_current_skill);
+db_find_refine(skill_guide_subsections:id, $int37);
+$dbrow = db_findnext;
+while ($dbrow ! null) {
+    $string = db_getfield($dbrow, skill_guide_subsections:header, 0);
+    $int22 = ~script5291(skill_guide_v2:tabs, $int22, $int37, $int34, $int35, 0x726451, $string, $graphic, 16750623, $int39, null, 0, 0, 0, 0, ~is_equal($int37, %skill_guide_v2_current_tab));
     cc_setonop("skill_guide_v2_tab_select($int37)");
     $int37 = calc($int37 + 1);
-    $string, $boolean = ~skill_guide_subsection(%skill_guide_v2_current_skill, $int37);
+    db_find(skill_guide_subsections:skill, %skill_guide_v2_current_skill);
+    db_find_refine(skill_guide_subsections:id, $int37);
+    $dbrow = db_findnext;
 }
-~script5288($tab_content, 0, 0, 0, if_getwidth($tab_content), if_getheight($tab_content), struct_3712, 7496785);
-def_int $int41 = 0;
+~script5288(skill_guide_v2:tab_content, 0, 0, 0, if_getwidth(skill_guide_v2:tab_content), if_getheight(skill_guide_v2:tab_content), struct_3712, 7496785);
+~script8086(skill_guide_v2:list);
+$int22, $int37 = 0, 0;
+def_int $int40 = 0;
+def_int $int41 = calc(if_getwidth(skill_guide_v2:list) - 66 - $int31 * 2);
+def_int $int42 = 0;
+def_int $int43 = -1;
 if (%skill_guide_v2_current_tab = 0) {
-    if_sethide(true, $guide_data);
-    if_sethide(false, $overview);
+    if_sethide(true, skill_guide_v2:guide_data);
+    if_sethide(false, skill_guide_v2:overview);
     ~script9176(%skill_guide_v2_current_skill, %skill_guide_v2_current_tab);
 } else {
-    if_sethide(false, $guide_data);
-    if_sethide(true, $overview);
-    ~script8086($list);
-    $int41 = ~script9175(%skill_guide_v2_current_skill, %skill_guide_v2_current_tab, $list);
-    if_setscrollsize(if_getwidth($list), $int41, $list);
-    ~scrollbar_vertical($list_scroller, $list, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-    ~scrollbar_vertical_rebuild($list_scroller, $list);
+    if_sethide(false, skill_guide_v2:guide_data);
+    if_sethide(true, skill_guide_v2:overview);
+    db_find(skill_features:skill:0, %skill_guide_v2_current_skill);
+    if (%skill_guide_v2_current_tab = 31 & $int0 > 0 & $int0 <= $int1) {
+        $int43 = $int0;
+        while ($int43 <= $int1) {
+            db_find_refine(skill_features:skill:1, $int43);
+            $dbrow = ~script9351(db_findnext);
+            while ($dbrow ! null) {
+                $int42 = db_getfieldcount($dbrow, skill_features:skill);
+                while ($int42 > 0) {
+                    $int42 = calc($int42 - 1);
+                    if (~script9350($dbrow, $int42, %skill_guide_v2_current_skill, $int43, -1) = true) {
+                        $int22, $int36 = ~script9347($dbrow, $boolean, $int43, $int41, $int37, $graphic, $fontmetrics, $int31, $int32, $int33, $int40, $int22);
+                        $int37, $int42, $int40 = calc($int37 + 1), 0, calc($int40 + $int36);
+                    }
+                }
+                $dbrow = ~script9351(db_findnext);
+            }
+            $int43 = calc($int43 + 1);
+            db_find(skill_features:skill:0, %skill_guide_v2_current_skill);
+        }
+    } else {
+        db_find_refine(skill_features:skill:2, %skill_guide_v2_current_tab);
+        while ($int43 <= 100) {
+            db_find_refine(skill_features:skill:1, $int43);
+            $dbrow = ~script9351(db_findnext);
+            while ($dbrow ! null) {
+                $int42 = db_getfieldcount($dbrow, skill_features:skill);
+                while ($int42 > 0) {
+                    $int42 = calc($int42 - 1);
+                    if (~script9350($dbrow, $int42, %skill_guide_v2_current_skill, $int43, %skill_guide_v2_current_tab) = true) {
+                        $int22, $int36 = ~script9347($dbrow, $boolean, $int43, $int41, $int37, $graphic, $fontmetrics, $int31, $int32, $int33, $int40, $int22);
+                        $int37, $int42, $int40 = calc($int37 + 1), 0, calc($int40 + $int36);
+                    }
+                }
+                $dbrow = ~script9351(db_findnext);
+            }
+            $int43 = calc($int43 + 1);
+            db_find(skill_features:skill:0, %skill_guide_v2_current_skill);
+            db_find_refine(skill_features:skill:2, %skill_guide_v2_current_tab);
+        }
+    }
 }
+cc_create(skill_guide_v2:list, ^iftype_rectangle, $int22);
+cc_setposition(0, $int40, ^setpos_abs_left, ^setpos_abs_top);
+cc_setsize(0, if_getheight(skill_guide_v2:list), ^setsize_minus, ^setsize_abs);
+cc_setfill(true);
+cc_setcolour(^black);
+if (calc($int37 % 2) = 0) {
+    cc_settrans(200);
+} else {
+    cc_settrans(220);
+}
+$int22 = calc($int22 + 1);
+if_setscrollsize(0, $int40, skill_guide_v2:list);
+~scrollbar_vertical(skill_guide_v2:list_scroller, skill_guide_v2:list, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~scrollbar_vertical_rebuild(skill_guide_v2:list_scroller, skill_guide_v2:list);

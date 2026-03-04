@@ -216,6 +216,10 @@ while ($int10 ! -1 & $component ! null) {
             case ^chattype_broadcast :
                 $string21, $string22, $int13 = ~chat_broadcast_parseurl($string21);
                 $int7 = ~script203(~affixtimestamp($string24, "<$string1>Broadcast:</col>", null), "<$string18><$string21></col>", $int8, $component, chatbox:scrollarea, $int1, 3, 14, $int6, ^setpos_abs_top, 103, $int3, $boolean);
+            case 118 :
+                $string22, $string21 = ~script632($string21);
+                $int13 = ~string_to_int($string22);
+                $int7 = ~script199(~affixtimestamp($string24, $string21, null), $int8, $component, chatbox:scrollarea, $int1, 3, 14, $int6, ^setpos_abs_top, 103, $int3, $boolean);
             case ^chattype_10sectimeout :
                 if (calc(clientclock - $int12) > 500) {
                     $int7 = ~script199("", $int8, $component, chatbox:scrollarea, $int1, 3, 14, $int6, ^setpos_abs_top, 103, $int3, $boolean);
@@ -347,6 +351,18 @@ while ($int10 ! -1 & $component ! null) {
                 if_setop(9, "Clear history", $component);
                 if_setopbase("<col=ff9040>Notification</col>", $component);
                 if_setonop("chat_broadcast_op(event_op, 9, $string22, $int13)", $component);
+            case 118 :
+                if (enum(int, component, enum_5918, $int13) ! null) {
+                    if_setop(6, "Open", $component);
+                    if_setonmouseover("chat_recol(if_getlayer($component), $int8, 8355711)", $component);
+                    if_setonmouseleave("chat_recol(if_getlayer($component), $int8, $int3)", $component);
+                } else {
+                    if_setonmouseover(null, $component);
+                    if_setonmouseleave(null, $component);
+                }
+                if_setop(9, "Clear all", $component);
+                if_setopbase("<col=ff9040>Skill guide</col>", $component);
+                if_setonop("script7780(event_op, 9, $int13)", $component);
             case ^chattype_clancreationinvitation :
                 if_setopbase("<col=0xffffff><$string19></col>", $component);
                 if_setop(2, "Form clan", $component);
