@@ -1,0 +1,64 @@
+// 9347
+[proc,script9347](dbrow $dbrow, boolean $boolean, int $int2, int $int3, int $int4, graphic $graphic5, fontmetrics $fontmetrics, int $int7, int $int8, int $int9, int $int10, int $int11)(int, int)
+def_obj $obj = db_getfield($dbrow, skill_features:icon, 0);
+def_graphic $graphic13 = null;
+def_int $int14 = 0;
+def_int $int15 = 0;
+def_int $int16 = 0;
+def_int $int17 = 0;
+$graphic13, $int14, $int15, $int16, $int17 = db_getfield($dbrow, skill_features:sprite, 0);
+def_string $string = ~script9343($dbrow, %skill_guide_v2_current_skill, $boolean, "<col=9f9f9f>", "<col=ff0000>");
+def_int $int18 = $int3;
+if (($int2 < 1 | $int2 > 99) & $obj = invis_rod & $graphic13 = null) {
+    $int18 = calc($int3 + 66);
+}
+def_int $int19 = max(calc(paraheight($string, $int18, $fontmetrics) * $int9 + $int7 * 2), $int8);
+cc_create(skill_guide_v2:list, ^iftype_rectangle, $int11);
+cc_setposition(0, $int10, ^setpos_abs_left, ^setpos_abs_top);
+cc_setsize(0, $int19, ^setsize_minus, ^setsize_abs);
+cc_setfill(true);
+cc_setcolour(^black);
+if (calc($int4 % 2) = 0) {
+    cc_settrans(200);
+} else {
+    cc_settrans(220);
+}
+$int11 = calc($int11 + 1);
+cc_create(skill_guide_v2:list, ^iftype_text, $int11);
+cc_setposition($int7, $int10, ^setpos_abs_left, ^setpos_abs_top);
+cc_setsize(16, $int8, ^setsize_abs, ^setsize_abs);
+cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+cc_settextshadow(true);
+cc_settextfont($graphic5);
+cc_setcolour(0xff981f);
+if ($int2 < 1 | $int2 > 99) {
+    cc_sethide(true);
+} else {
+    cc_settext(tostring($int2));
+}
+$int11 = calc($int11 + 1);
+cc_create(skill_guide_v2:list, ^iftype_graphic, $int11);
+if ($graphic13 ! null) {
+    cc_setgraphic($graphic13);
+    cc_setsize($int14, $int15, ^setsize_abs, ^setsize_abs);
+    cc_setoutline(0);
+    cc_setgraphicshadow(^black);
+    cc_setposition(calc($int7 + 25 + max(0, calc((36 - $int14) / 2 - 3)) + $int16), calc($int10 + 3 + max(0, calc((32 - $int15) / 2 - 1)) + $int17), ^setpos_abs_left, ^setpos_abs_top);
+} else {
+    cc_setobject($obj, -1);
+    cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+    cc_setposition(calc($int7 + 25), calc($int10 + 3), ^setpos_abs_left, ^setpos_abs_top);
+}
+~script9344(%skill_guide_v2_current_skill, $dbrow);
+cc_setgraphicshadow(0x333333);
+cc_setoutline(1);
+$int11 = calc($int11 + 1);
+cc_create(skill_guide_v2:list, ^iftype_text, $int11);
+cc_setposition($int7, calc($int10 + $int7), ^setpos_abs_right, ^setpos_abs_top);
+cc_setsize($int18, calc($int19 - $int7 * 2), ^setsize_abs, ^setsize_abs);
+cc_settextalign(^settextalign_left, ^settextalign_centre, $int9);
+cc_settextshadow(true);
+cc_settextfont($graphic5);
+cc_setcolour(0xff981f);
+cc_settext($string);
+return(calc($int11 + 1), $int19);

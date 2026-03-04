@@ -1,17 +1,18 @@
 // 1902
-[clientscript,skill_guide_v2_init](int $int0, int $int1)
+[clientscript,skill_guide_v2_init](int $int0, int $int1, int $int2, int $int3)
 def_component $infinity = skill_guide_v2:infinity;
 def_component $universe = skill_guide_v2:universe;
-def_int $int4 = 56360963;
-def_int $int5 = 56360964;
-def_int $int6 = 56360965;
+def_int $int6 = 56360963;
+def_int $int7 = 56360964;
+def_int $int8 = 56360965;
 def_component $resize_preview = skill_guide_v2:resize_preview;
-def_component $list = skill_guide_v2:list;
 if (%skill_guide_v2_current_skill ! $int0 | %skill_guide_v2_current_tab ! $int1) {
-    if_setscrollpos(0, 0, $list);
+    if_setscrollpos(0, 0, skill_guide_v2:list);
 }
-%skill_guide_v2_current_skill = $int0;
-%skill_guide_v2_current_tab = $int1;
+%skill_guide_v2_current_skill, %skill_guide_v2_current_tab = $int0, $int1;
+if ($int1 ! 31) {
+    $int2, $int3 = 0, 0;
+}
 def_enum $enum = ~toplevel_getcomponents;
 def_component $component = enum(component, component, $enum, toplevel_osrs_stretch:mainmodal);
 if (~on_mobile = true) {
@@ -25,19 +26,19 @@ if (~on_mobile = true) {
     }
     if_setontimer("responsive_interface_scaler($infinity, -1)", $infinity);
 }
-if_setonresize("skill_guide_v2_rebuild", $infinity);
+if_setonresize("skill_guide_v2_rebuild($int2, $int3)", $infinity);
 if_sethide(false, $universe);
 if_sethide(true, $resize_preview);
 if ($enum = enum_1132) {
     if_setposition(6, 6, ^setpos_abs_centre, ^setpos_abs_centre, $universe);
     if_setsize(12, 12, ^setsize_minus, ^setsize_minus, $universe);
-    ~skill_guide_v2_rebuild;
+    ~skill_guide_v2_rebuild($int2, $int3);
     return;
 }
 cc_deleteall($infinity);
-def_int $int11 = 0;
-while ($int11 < 9) {
-    cc_create($infinity, ^iftype_graphic, $int11);
+def_int $int12 = 0;
+while ($int12 < 9) {
+    cc_create($infinity, ^iftype_graphic, $int12);
     cc_settiling(true);
     cc_settrans(255);
     cc_setonmouserepeat("cc_settrans(event_com, event_comsubid, 200, null)");
@@ -45,17 +46,17 @@ while ($int11 < 9) {
     cc_setdraggable($infinity, -1);
     cc_setdragdeadzone(1);
     cc_setdragdeadtime(5);
-    $int11 = calc($int11 + 1);
+    $int12 = calc($int12 + 1);
 }
 cc_deleteall($resize_preview);
-$int11 = 0;
-while ($int11 < 4) {
-    cc_create($resize_preview, ^iftype_rectangle, $int11);
-    cc_setsize(calc($int11 * 2), calc($int11 * 2), ^setsize_minus, ^setsize_minus);
+$int12 = 0;
+while ($int12 < 4) {
+    cc_create($resize_preview, ^iftype_rectangle, $int12);
+    cc_setsize(calc($int12 * 2), calc($int12 * 2), ^setsize_minus, ^setsize_minus);
     cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
     cc_setcolour(0x9f9f9f);
     cc_setfill(false);
-    cc_settrans(calc(100 + $int11 * 10));
-    $int11 = calc($int11 + 1);
+    cc_settrans(calc(100 + $int12 * 10));
+    $int12 = calc($int12 + 1);
 }
 ~skill_guide_v2_size_handler(-1, -1, $infinity, $universe);

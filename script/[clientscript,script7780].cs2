@@ -1,0 +1,30 @@
+// 7780
+[clientscript,script7780](int $int0, int $int1, int $int2)
+def_int $int3 = -1;
+if ($int0 = $int1) {
+    %bondif_convert_perbond_cs = clientclock;
+    $int3 = ~script553;
+    ~rebuildchatbox($int3);
+    ~rebuildpmbox($int3);
+    if_triggerop(chatbox:chat_miscaction_click, -1, 1);
+    return;
+}
+def_enum $enum = null;
+def_component $component5 = null;
+def_component $component6 = enum(int, component, enum_5918, $int2);
+if ($component6 ! null) {
+    $enum = ~toplevel_getcomponents;
+    if ($enum ! null) {
+        $component5 = enum(int, component, enum_1137, 1);
+        $component5 = enum(component, component, $enum, $component5);
+        if ($component5 ! null & if_hassub($component5) = true) {
+            if_triggerop($component6, -1, 2);
+        } else {
+            mes("You can't open the skill guide at the moment.");
+        }
+    } else {
+        mes("You can't open the skill guide at the moment.");
+    }
+} else {
+    mes("You can't do that at the moment.");
+}

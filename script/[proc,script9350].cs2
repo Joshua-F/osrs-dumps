@@ -1,0 +1,17 @@
+// 9350
+[proc,script9350](dbrow $dbrow, int $int1, int $int2, int $int3, int $int4)(boolean)
+def_int $int5 = 0;
+def_int $int6 = 0;
+def_int $int7 = -1;
+$int5, $int6, $int7 = db_getfield($dbrow, skill_features:skill, $int1);
+if ($int5 ! $int2 | $int6 ! $int3) {
+    return(false);
+}
+if ($int4 ! -1) {
+    if ($int7 ! $int4) {
+        return(false);
+    }
+} else if ($int7 = -1) {
+    return(false);
+}
+return(true);
