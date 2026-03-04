@@ -1,0 +1,34 @@
+// 7781
+[clientscript,script7781](int $int0, dbrowarray $dbrowarray)
+def_int $int1 = 0;
+def_int $int2 = -1;
+def_int $int3 = -1;
+def_int $int4 = 0;
+def_string $string = "";
+def_int $int5 = min(3, array_size($dbrowarray));
+def_int $int6 = 0;
+while ($int6 < $int5) {
+    if ($dbrowarray($int6) ! null & db_getrowtable($dbrowarray($int6)) = skill_features) {
+        $int4 = db_getfieldcount($dbrowarray($int6), skill_features:skill);
+        while ($int4 > 0) {
+            $int4 = calc($int4 - 1);
+            $int1, $int2, $int3 = db_getfield($dbrowarray($int6), skill_features:skill, $int4);
+            if ($int1 = $int0) {
+                $string = db_getfield($dbrowarray($int6), skill_features:text, 0);
+                if (string_length($string) > 0) {
+                    $int3 = string_indexof_string($string, "<br>", 0);
+                    if ($int3 ! -1) {
+                        $string = substring($string, 0, $int3);
+                    }
+                    if (map_members = false & db_getfield($dbrowarray($int6), skill_features:membersonly, 0) = true) {
+                        mes("Level <tostring($int2)> <enum(int, string, enum_108, $int0)>: <col=ef1020><$string></col> (members-only)");
+                    } else {
+                        mes("Level <tostring($int2)> <enum(int, string, enum_108, $int0)>: <col=ef1020><$string></col>");
+                    }
+                }
+                $int4 = 0;
+            }
+        }
+    }
+    $int6 = calc($int6 + 1);
+}

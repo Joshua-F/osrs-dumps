@@ -1,73 +1,50 @@
 // 657
-[proc,skill_guide_addentry](int $int0, obj $obj, dbrow $dbrow, string $string, component $component3, component $component4, int $int5, int $int6, int $int7, int $int8)(int)
-cc_create($component3, ^iftype_text, calc($int7 * 2));
+[proc,skill_guide_addentry](int $int0, int $int1, dbrow $dbrow, string $string, component $component3, component $component4, int $int5, int $int6, int $int7)(int)
+cc_create($component3, ^iftype_text, calc($int6 * 2));
 cc_setsize(26, 32, ^setsize_abs, ^setsize_abs);
-cc_setposition(0, $int8, ^setpos_abs_left, ^setpos_abs_top);
+cc_setposition(0, calc($int7 + 2), ^setpos_abs_left, ^setpos_abs_top);
 cc_settextalign(^settextalign_right, ^settextalign_top, 0);
 cc_setcolour(0x46320a);
 cc_settextfont(q8_full);
 cc_settextshadow(false);
-if ($int0 > 0) {
-    cc_settext(tostring($int0));
+if ($int1 >= 1 & $int1 <= 99) {
+    cc_settext(tostring($int1));
 } else {
     cc_settext("");
 }
-cc_create($component4, ^iftype_graphic, $int7);
+def_obj $obj = db_getfield($dbrow, skill_features:icon, 0);
+cc_create($component4, ^iftype_graphic, $int6);
 def_int $int9 = 36;
 def_int $int10 = 32;
 def_int $int11 = 0;
 def_int $int12 = 0;
-def_int $int13 = 1;
-def_int $rgb = 0x604e32;
 def_graphic $graphic = null;
-if ($dbrow ! null) {
-    $graphic = db_getfield($dbrow, skill_guide_v2_inline_icon:graphic, 0);
-    $int9, $int10 = db_getfield($dbrow, skill_guide_v2_inline_icon:size, 0);
-    $int11, $int12 = db_getfield($dbrow, skill_guide_v2_inline_icon:offset, 0);
-    $int11 = calc((36 - $int9) / 2 + $int11);
-    $int13, $rgb = 0, ^black;
-} else if (oc_param($obj, param_1757) ! null) {
-    $graphic, $int9, $int10, $int11, $int12, $int13, $rgb = oc_param($obj, param_1757), 30, 30, 3, 0, 0, ^black;
-} else if (%skill_guide_skill = 4) {
-    $graphic = oc_param($obj, param_597);
-    if ($graphic ! null) {
-        $int9, $int10, $int11, $int12, $int13, $rgb = 24, 24, 6, 0, 0, ^black;
-    }
+$graphic, $int9, $int10, $int11, $int12 = db_getfield($dbrow, skill_features:sprite, 0);
+if ($graphic = null) {
+    $int9, $int10, $int11, $int12 = 36, 32, 0, 0;
 }
 cc_setsize($int9, $int10, ^setsize_abs, ^setsize_abs);
-cc_setposition(calc(28 + $int11), calc($int8 + $int12), ^setpos_abs_left, ^setpos_abs_top);
-cc_setoutline($int13);
-cc_setgraphicshadow($rgb);
+cc_setposition(calc(28 + (36 - $int9) / 2 + $int11), calc($int7 + $int12), ^setpos_abs_left, ^setpos_abs_top);
 if ($graphic ! null) {
     cc_setgraphic($graphic);
+    cc_setoutline(0);
+    cc_setgraphicshadow(^black);
 } else {
     cc_setobject($obj, -1);
+    cc_setoutline(1);
+    cc_setgraphicshadow(0x604e32);
 }
-switch_int (%skill_guide_skill) {
-    case 4 :
-        if ($int6 >= 1 & $int6 <= 4 & $obj ! arceuus_tele_icon & $obj ! lunar_moonclan_liminal_staff & $obj ! staff_of_zaros) {
-            cc_setop(1, "Check runes");
-            cc_setonop("skill_guide_magic_op($obj)");
-        }
-    case 22 :
-        if ($int6 >= 1 & $int6 <= 11 | $int6 = 14) {
-            cc_setop(1, "Check materials");
-        }
-    case 24 :
-        if ($int6 = 8 | $int6 = 9) {
-            cc_setop(1, "Check materials");
-        }
-}
-cc_create($component3, ^iftype_text, calc($int7 * 2 + 1));
-if ($int0 < 0 & $obj = invis_rod & $dbrow = null) {
+~script9344($int0, $dbrow);
+cc_create($component3, ^iftype_text, calc($int6 * 2 + 1));
+if (($int1 < 1 | $int1 > 99) & $obj = invis_rod & $graphic = null) {
     $int5 = calc($int5 + 36 + 25);
 }
 $int10 = max(max(calc(paraheight($string, $int5, p12_full) * 12 + 5), $int10), 32);
 cc_setsize($int5, $int10, ^setsize_abs, ^setsize_abs);
-cc_setposition(calc(if_getwidth($component3) - $int5), $int8, ^setpos_abs_left, ^setpos_abs_top);
+cc_setposition(calc(if_getwidth($component3) - $int5), calc($int7 + 2), ^setpos_abs_left, ^setpos_abs_top);
 cc_settextalign(^settextalign_left, ^settextalign_top, 0);
 cc_setcolour(0x46320a);
 cc_settextfont(p12_full);
 cc_settextshadow(false);
 cc_settext($string);
-return(calc($int8 + $int10));
+return(calc($int7 + $int10 + 3));

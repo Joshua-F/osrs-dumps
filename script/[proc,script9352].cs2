@@ -1,0 +1,64 @@
+// 9352
+[proc,script9352](dbrow $dbrow)(boolean)
+if (db_getrowtable($dbrow) = skill_features) {
+    switch_dbrow ($dbrow) {
+        case skill_feature_ranged_bows_zogre_bow :
+            return(~int_to_bool(%thzfe_makecompozogrebow));
+        case skill_feature_sailing_crew_virginia :
+            if (%total_tempoross_kills >= 100) {
+                return(true);
+            }
+            return(false);
+        case skill_feature_slayer_master_burthorpe :
+            if (%combatlevel_transmit >= 3) {
+                return(true);
+            }
+            return(false);
+        case skill_feature_slayer_master_canifis :
+            if (%combatlevel_transmit >= 20) {
+                return(true);
+            }
+            return(false);
+        case skill_feature_slayer_master_edgeville :
+            if (%combatlevel_transmit >= 40) {
+                return(true);
+            }
+            return(false);
+        case skill_feature_slayer_master_zanaris :
+            if (%combatlevel_transmit >= 70) {
+                return(true);
+            }
+            return(false);
+        case skill_feature_slayer_master_karuulm :
+            if (%combatlevel_transmit >= 75) {
+                return(true);
+            }
+            return(false);
+        case skill_feature_slayer_master_gnomestronghold :
+            if (%combatlevel_transmit >= 85) {
+                return(true);
+            }
+            return(false);
+        case skill_feature_slayer_master_shilo :
+            if (%combatlevel_transmit >= 100) {
+                return(true);
+            }
+            return(false);
+        case skill_feature_agility_burghderottfence :
+            if (%myreque_2_quest >= 50) {
+                return(true);
+            }
+            return(false);
+        case skill_feature_agility_crystalhalberd :
+            return(~int_to_bool(%western_hard_reward));
+        case skill_feature_prayer_deadeye :
+            return(~int_to_bool(%prayer_deadeye_unlocked));
+        case skill_feature_prayer_mysticvigour :
+            return(~int_to_bool(%prayer_mystic_vigour_unlocked));
+        case skill_feature_prayer_rigour :
+            return(~int_to_bool(%prayer_rigour_unlocked));
+        case skill_feature_prayer_augury :
+            return(~int_to_bool(%prayer_augury_unlocked));
+    }
+}
+return(null);
