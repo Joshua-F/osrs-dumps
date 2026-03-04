@@ -1,0 +1,66 @@
+// 9343
+[proc,script9343](dbrow $dbrow0, int $int1, boolean $boolean, string $string0, string $string1)(string)
+def_string $string2 = db_getfield($dbrow0, skill_features:text, 0);
+if ($boolean = false & db_getfield($dbrow0, skill_features:membersonly, 0) = true) {
+    $string2 = append("Members: ", $string2);
+}
+def_int $int3 = 0;
+def_int $int4 = -1;
+def_int $int5 = -1;
+def_string $string3 = "";
+def_dbrow $dbrow6 = null;
+def_string $string4 = "";
+def_int $int7 = db_getfieldcount($dbrow0, skill_features:skill);
+while ($int7 > 0) {
+    $int7 = calc($int7 - 1);
+    $int3, $int4, $int5 = db_getfield($dbrow0, skill_features:skill, $int7);
+    if ($int3 ! 0 & $int3 ! $int1 & $int4 > 1) {
+        if (stat_base(enum(int, stat, enum_681, $int3)) >= $int4) {
+            $string4 = $string0;
+        } else {
+            $string4 = $string1;
+        }
+        if (string_length($string3) > 0) {
+            $string3 = append($string3, ", <$string4>level <tostring($int4)> <enum(int, string, enum_108, $int3)></col>");
+        } else {
+            $string3 = "Requires: <$string4>Level <tostring($int4)> <enum(int, string, enum_108, $int3)></col>";
+        }
+    }
+}
+$int7 = db_getfieldcount($dbrow0, skill_features:quest);
+while ($int7 > 0) {
+    $int7 = calc($int7 - 1);
+    $dbrow6 = db_getfield($dbrow0, skill_features:quest, $int7);
+    if ($dbrow6 ! null & db_getrowtable($dbrow6) = quest) {
+        if (~quest_is_complete($dbrow6) = true) {
+            $string4 = $string0;
+        } else {
+            $string4 = $string1;
+        }
+        if (string_length($string3) > 0) {
+            $string3 = append($string3, ", <$string4><db_getfield($dbrow6, quest:displayname, 0)></col>");
+        } else {
+            $string3 = "Requires: <$string4><db_getfield($dbrow6, quest:displayname, 0)></col>";
+        }
+    }
+}
+def_string $string5 = db_getfield($dbrow0, skill_features:otherreq, 0);
+if (string_length($string5) > 0) {
+    switch_boolean (~script9352($dbrow0)) {
+        case true :
+            $string4 = $string0;
+        case false :
+            $string4 = $string1;
+        case default :
+            $string4 = "";
+    }
+    if (string_length($string3) > 0) {
+        $string3 = append($string3, "<br>Requires: <$string4><$string5></col>");
+    } else {
+        $string3 = "Requires: <$string4><$string5></col>";
+    }
+}
+if (string_length($string3) > 0) {
+    $string2 = append($string2, "<br><$string3>");
+}
+return($string2);

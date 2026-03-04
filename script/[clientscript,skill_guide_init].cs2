@@ -1,19 +1,16 @@
 // 654
-[clientscript,skill_guide_init](component $universe, component $title, component $description, component $info, component $icons, component $scrollbar, component $categories, component $infinity)
-~skill_guide_build($title, $description, $info, $icons, $scrollbar, $categories, $infinity);
+[clientscript,skill_guide_init](component $window, component $infinity, component $move_layer, component $close)
+if_setopkey(1, ^key_escape, 0, $close);
 def_enum $enum = ~toplevel_getcomponents;
 def_component $component = enum(component, component, $enum, toplevel_osrs_stretch:mainmodal);
 if (~on_mobile = true) {
-    if_setontimer("script7923($infinity, $universe, 0)", $infinity);
+    if_setontimer("script7923($infinity, $window, 0)", $infinity);
 } else {
     if (%skill_guide_v2_x < 0 | %skill_guide_v2_y < 0 | %skill_guide_v2_width <= 0 | %skill_guide_v2_height <= 0) {
-        %skill_guide_v2_width = if_getwidth($component);
-        %skill_guide_v2_height = if_getheight($component);
-        %skill_guide_v2_x = if_getx($component);
-        %skill_guide_v2_y = if_gety($component);
+        %skill_guide_v2_width, %skill_guide_v2_height = if_getwidth($component), if_getheight($component);
+        %skill_guide_v2_x, %skill_guide_v2_y = if_getx($component), if_gety($component);
     }
     if_setontimer("responsive_interface_scaler($infinity, -1)", $infinity);
-    if_setonresize("skill_guide_rebuild(event_com)", $infinity);
+    if_setonresize("skill_guide_rebuild(event_com, $window, $move_layer)", $infinity);
 }
-if_setonvartransmit("skill_guide_build($title, $description, $info, $icons, $scrollbar, $categories, $infinity){skill_guide_v2}", $universe);
-~skill_guide_v2_size_handler(-1, -1, $infinity, $universe);
+~skill_guide_v2_size_handler(-1, -1, $infinity, $window);
