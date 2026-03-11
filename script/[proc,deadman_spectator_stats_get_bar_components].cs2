@@ -1,0 +1,10 @@
+// 445
+[proc,deadman_spectator_stats_get_bar_components](enum $enum, component $component1, component $component2)(component, component, component)
+$component1 = enum(component, component, $enum, $component1);
+$component2 = enum(component, component, $enum, $component2);
+def_component $component3 = ~if_getlayer_nullsafe($component1);
+if ($component3 = null | $component3 ! ~if_getlayer_nullsafe($component2)) {
+    return(null, null, null);
+} else {
+    return($component3, $component1, $component2);
+}
