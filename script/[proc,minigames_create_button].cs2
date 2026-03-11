@@ -1,0 +1,55 @@
+// 658
+[proc,minigames_create_button](component $component, dbrow $dbrow, int $setposh, int $int3)(int)
+cc_deleteall($component);
+def_int $int4 = 0;
+$int4 = ~script1598(db_getfield($dbrow, minigame_teleport:id, 0), 0);
+if ($int4 = 1) {
+    $int4 = ~minigames_req(db_getfield($dbrow, minigame_teleport:id, 0));
+}
+def_graphic $graphic = db_getfield($dbrow, minigame_teleport:minigame_icon, 0);
+def_int $int6 = 0;
+cc_create($component, ^iftype_graphic, 0);
+cc_settiling(true);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+if ($int4 = 1) {
+    cc_setonmouseover("cc_graphic_swapper($component, 0, tradebacking, null)");
+    cc_setonmouseleave("cc_graphic_swapper($component, 0, tradebacking_light, null)");
+    cc_setgraphic(tradebacking_light);
+    if_setonop("sound_synth(synth_2266, 1, 0)", $component);
+} else {
+    cc_setgraphic(tradebacking_dark);
+    if_setop(1, "", $component);
+}
+$int6 = calc($int6 + 1);
+$int6 = ~thinbox($component, 1);
+if ($graphic ! null) {
+    cc_create($component, ^iftype_graphic, $int6);
+    cc_setsize(64, 64, ^setsize_abs, ^setsize_abs);
+    cc_setposition(5, 0, ^setpos_abs_left, ^setpos_abs_centre);
+    cc_setgraphic($graphic);
+    $int6 = calc($int6 + 1);
+}
+cc_create($component, ^iftype_text, $int6);
+if ($graphic = null) {
+    cc_setsize(10, 0, ^setsize_minus, ^setsize_minus);
+    cc_setposition(5, 0, ^setpos_abs_left, ^setpos_abs_top);
+} else {
+    cc_setsize(71, 0, ^setsize_minus, ^setsize_minus);
+    cc_setposition(5, 0, ^setpos_abs_right, ^setpos_abs_top);
+}
+if ($int4 = 1) {
+    cc_settext(append(db_getfield($dbrow, minigame_teleport:name, 0), "<br><col=808080><~minigames_location_mes(db_getfield($dbrow, minigame_teleport:id, 0))>"));
+} else {
+    cc_settext(append(db_getfield($dbrow, minigame_teleport:name, 0), "<br><col=ff0000><~minigames_req_mes(db_getfield($dbrow, minigame_teleport:id, 0))>"));
+}
+cc_setcolour(0xff981f);
+cc_settextfont(p12_full);
+cc_settextshadow(true);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 16);
+$int6 = calc($int6 + 1);
+if_setposition(10, $int3, $setposh, ^setpos_abs_top, $component);
+if ($setposh = ^setpos_abs_right) {
+    $int3 = calc($int3 + 82);
+}
+return($int3);
