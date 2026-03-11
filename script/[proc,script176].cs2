@@ -1,0 +1,34 @@
+// 176
+[proc,script176](string $string, component $component)
+if ($component = null) {
+    return;
+}
+def_int $int1 = 3;
+def_int $int2 = calc(if_getwidth($component) - $int1);
+def_enum $enum = enum_5921;
+def_int $int4 = 0;
+def_int $int5 = enum_getoutputcount($enum);
+def_fontmetrics $fontmetrics = null;
+def_int $int7 = 1;
+while ($int4 < $int5) {
+    $fontmetrics = enum(int, fontmetrics, $enum, $int4);
+    if ($int4 = 0) {
+        $int2 = calc($int2 - parawidth("888", 765, $fontmetrics));
+    }
+    if (parawidth($string, 765, $fontmetrics) <= $int2) {
+        $int4 = $int5;
+        $int7 = 0;
+    } else {
+        $int4 = calc($int4 + 1);
+    }
+}
+def_graphic $graphic = enum(fontmetrics, graphic, enum_5922, $fontmetrics);
+if ($graphic = null | $fontmetrics = null) {
+    if_settext("", $component);
+    return;
+}
+if ($int7 = 1) {
+    $string = ~script4193($string, $int2, $fontmetrics);
+}
+if_settextfont($graphic, $component);
+if_settext($string, $component);
