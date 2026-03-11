@@ -1,7 +1,7 @@
 // 435
 [proc,grouping_rebuild]
 def_string $string0 = "";
-if (%grouping_gameid > 0 & %grouping_gameid <= 27) {
+if (%grouping_gameid > 0 & %grouping_gameid <= 30) {
     $string0 = enum(int, string, enum_848, %grouping_gameid);
     if_settext($string0, grouping:currentgame);
 } else {
@@ -9,7 +9,7 @@ if (%grouping_gameid > 0 & %grouping_gameid <= 27) {
     if_settext("Select an activity...", grouping:currentgame);
 }
 def_int $int0 = enum(int, int, enum_850, %grouping_gameid);
-if (%grouping_gameid = 4 & %playermember = 0) {
+if (%grouping_gameid = 5 & %playermember = 0) {
     $int0 = 383;
 }
 if ($int0 = -1) {
@@ -101,6 +101,7 @@ if (if_gethide(grouping:dropdown) = true) {
     if_setonclick(null, grouping:background);
     $int5 = if_getwidth(grouping:playerlist);
     if_sethide(false, grouping:playerlist_container);
+    ~debug_mes("$joined_gameID = <tostring($int2)> & %grouping_gameID = <tostring(%grouping_gameid)>");
     if ($int2 = 0 | %grouping_gameid ! $int2) {
         if_setscrollsize(0, 0, grouping:playerlist);
         ~scrollbar_resize(grouping:scrollbar, grouping:playerlist, 0);

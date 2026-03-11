@@ -1,0 +1,29 @@
+// 656
+[clientscript,minigames_init](component $minigames, component $scrollbar)
+def_component $component = null;
+def_dbrow $dbrow = null;
+def_int $int4 = 0;
+def_int $int5 = enum_getoutputcount(enum_5924);
+def_int $int6 = 10;
+while ($int4 < $int5) {
+    $component = enum(int, component, enum_5924, $int4);
+    $dbrow = enum(int, dbrow, enum_5923, $int4);
+    if ($component ! null & $dbrow ! null) {
+        if (calc(($int4 + 1) % 2) > 0) {
+            $int6 = ~minigames_create_button($component, $dbrow, ^setpos_abs_left, $int6);
+        } else {
+            $int6 = ~minigames_create_button($component, $dbrow, ^setpos_abs_right, $int6);
+        }
+    }
+    $int4 = calc($int4 + 1);
+}
+if (calc($int5 % 2) ! 0) {
+    $int6 = calc($int6 + 82);
+}
+if_setscrollpos(0, 0, $minigames);
+if ($int6 >= if_getheight($minigames)) {
+    if_setscrollsize(0, $int6, $minigames);
+} else {
+    if_setscrollsize(0, 0, $minigames);
+}
+~scrollbar_vertical($scrollbar, $minigames, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");

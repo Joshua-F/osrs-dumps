@@ -1,0 +1,36 @@
+// 539
+[proc,script539](int $int0)
+def_enum $enum = enum_140;
+if ($int0 = 1) {
+    $enum = enum_142;
+} else {
+    $int0 = 0;
+}
+def_component $component2 = enum(component, component, $enum, deadman_spectator:stats_left_name);
+def_component $component3 = enum(component, component, $enum, deadman_spectator:stats_left_level);
+def_component $component4 = ~script655(~script655($component2));
+def_component $component5 = ~script655(enum(component, component, $enum, deadman_spectator:stats_left_health_text));
+def_component $component6 = ~script655(enum(component, component, $enum, deadman_spectator:stats_left_prayer_text));
+def_component $component7 = ~script655(enum(component, component, $enum, deadman_spectator:stats_left_special_text));
+def_component $component8 = ~script655(enum(component, component, $enum, deadman_spectator:inv_left_content));
+if ($component4 = null | $component8 = null | $component5 = null | $component6 = null | $component7 = null) {
+    return;
+}
+if_setsize(if_getwidth($component8), if_getheight($component4), ^setsize_abs, ^setsize_abs, $component4);
+def_int $int9 = calc((if_getwidth($component5) - 2 - 2) / 2);
+if_setsize($int9, if_getheight($component6), ^setsize_abs, ^setsize_abs, $component6);
+if_setsize($int9, if_getheight($component7), ^setsize_abs, ^setsize_abs, $component7);
+if ($component2 = null | $component3 = null) {
+    return;
+}
+if ($int0 = 1) {
+    if_settextalign(^settextalign_right, ^settextalign_centre, 0, $component2);
+    if_settextalign(^settextalign_left, ^settextalign_centre, 0, $component3);
+} else {
+    if_settextalign(^settextalign_left, ^settextalign_centre, 0, $component2);
+    if_settextalign(^settextalign_right, ^settextalign_centre, 0, $component3);
+}
+if_setposition(0, if_gety($component2), ^setpos_abs_centre, ^setpos_abs_top, $component2);
+if_setposition(0, if_gety($component3), ^setpos_abs_centre, ^setpos_abs_top, $component3);
+if_setsize(6, if_getheight($component2), ^setsize_minus, ^setsize_abs, $component2);
+if_setsize(6, if_getheight($component3), ^setsize_minus, ^setsize_abs, $component3);
