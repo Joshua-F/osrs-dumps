@@ -40,13 +40,14 @@ def_int $int21 = 1;
 def_int $int22 = 0;
 def_obj $obj = null;
 def_boolean $boolean24 = false;
+def_int $int25 = 0;
 while ($int14 < $int15) {
     $dbrow16 = db_getfield($dbrow12, sailing_sidepanel_facility:widget, $int14);
-    $int21, $int22, $boolean24, $obj = ~script8732($dbrow12, $dbrow16, $int10, $dbrow19);
+    $int21, $int22, $boolean24, $obj, $int25 = ~script8732($dbrow12, $dbrow16, $int10, $dbrow19);
     if ($dbrow16 ! null) {
         switch_dbtable (db_getrowtable($dbrow16)) {
             case sailing_sidepanel_widget_button :
-                $int0, $int1, $int17 = ~script8738($int0, $int1, $int17, $int18, $dbrow16, $component4, $component5, $int21, $int22);
+                $int0, $int1, $int17 = ~script8738($int0, $int1, $int17, $int18, $dbrow16, $component4, $component5, $int21, $int22, $int25);
                 if ($boolean24 = true) {
                     ~script8743($int0, $component4, $dbrow16);
                 }
@@ -65,33 +66,33 @@ while ($int14 < $int15) {
     }
     $int14 = calc($int14 + 1);
 }
-def_int $int25 = calc(4 - 1 - $int1 % 4);
-while ($int25 > 0) {
+def_int $int26 = calc(4 - 1 - $int1 % 4);
+while ($int26 > 0) {
     cc_create($component5, ^iftype_rectangle, $int1);
     $int1 = calc($int1 + 1);
-    $int25 = calc($int25 - 1);
+    $int26 = calc($int26 - 1);
 }
 $int21 = 1;
-def_int $int26 = 1;
-def_int $int27 = ~sailing_sidepanel_crew_count_get;
-def_int $int28 = 0;
-if (%sailing_sidepanel_boat_type ! null) {
-    $int28 = min(5, db_getfield(%sailing_sidepanel_boat_type, sailing_boat:crew_capacity, 0));
-}
+def_int $int27 = 1;
+def_int $int28 = ~sailing_sidepanel_crew_count_get;
 def_int $int29 = 0;
-if ($int28 > 0 & $int27 > 0 & %sailing_sidepanel_player_role = 10 & db_getfield($dbrow12, sailing_sidepanel_facility:facility_can_be_assigned, 0) = true) {
+if (%sailing_sidepanel_boat_type ! null) {
+    $int29 = min(5, db_getfield(%sailing_sidepanel_boat_type, sailing_boat:crew_capacity, 0));
+}
+def_int $int30 = 0;
+if ($int29 > 0 & $int28 > 0 & %sailing_sidepanel_player_role = 10 & db_getfield($dbrow12, sailing_sidepanel_facility:facility_can_be_assigned, 0) = true) {
     $int21 = 0;
-    $int26 = 0;
+    $int27 = 0;
 }
 if ($boolean8 = true) {
-    $int0, $int1 = ~sailing_sidepanel_stonebutton($component4, $component5, $int0, $int1, 30, 30, 128, calc($int2 - 34 / 2), "", $graphic, 18, 0xff981f, 0xff981f, $int26, $int21, 1);
+    $int0, $int1 = ~sailing_sidepanel_stonebutton($component4, $component5, $int0, $int1, 30, 30, 128, calc($int2 - 34 / 2), "", $graphic, 18, 0xff981f, 0xff981f, $int27, $int21, 1);
     $boolean8 = false;
     if ($int21 ! 1) {
         cc_setop(1, "Assign");
         cc_setonop("sailing_sidepanel_crew_assign_click(cc_getlayer, calc($int1 - 1))");
     }
 } else if ($dbrow13 = null) {
-    $int0, $int1 = ~sailing_sidepanel_stonebutton($component4, $component5, $int0, $int1, 30, 30, 128, calc($int2 + 2), "", $graphic, 18, 0xff981f, 0xff981f, $int26, $int21, 1);
+    $int0, $int1 = ~sailing_sidepanel_stonebutton($component4, $component5, $int0, $int1, 30, 30, 128, calc($int2 + 2), "", $graphic, 18, 0xff981f, 0xff981f, $int27, $int21, 1);
     $boolean8 = false;
     if ($int21 ! 1) {
         cc_setop(1, "Assign");
