@@ -1,35 +1,60 @@
 // 8738
-[proc,script8738](int $int0, int $int1, int $int2, int $int3, dbrow $dbrow, component $component5, component $component6, int $int7, int $int8)(int, int, int)
-def_int $int9 = 30;
+[proc,script8738](int $int0, int $int1, int $int2, int $int3, dbrow $dbrow, component $component5, component $component6, int $int7, int $int8, int $int9)(int, int, int)
+def_int $int10 = 30;
 def_boolean $boolean = db_getfield($dbrow, sailing_sidepanel_widget_button:long_button, 0);
 if ($boolean = true) {
-    $int9 = 106;
+    $int10 = 106;
 }
 def_string $string0 = db_getfield($dbrow, sailing_sidepanel_widget_button:default_button_caption, 0);
-def_int $int11 = db_getfieldcount($dbrow, sailing_sidepanel_widget_button:toggle_graphic);
-def_int $int12 = db_getfieldcount($dbrow, sailing_sidepanel_widget_button:toggle_optext);
-def_int $int13 = db_getfieldcount($dbrow, sailing_sidepanel_widget_button:toggle_button_caption);
+def_int $int12 = db_getfieldcount($dbrow, sailing_sidepanel_widget_button:toggle_graphic);
+def_int $int13 = db_getfieldcount($dbrow, sailing_sidepanel_widget_button:toggle_optext);
+def_int $int14 = db_getfieldcount($dbrow, sailing_sidepanel_widget_button:toggle_button_caption);
 def_string $string1 = db_getfield($dbrow, sailing_sidepanel_widget_button:default_optext, 0);
-def_int $int14 = 0;
+def_string $string2 = db_getfield($dbrow, sailing_sidepanel_widget_button:op2:1, 0);
+def_string $string3 = db_getfield($dbrow, sailing_sidepanel_widget_button:op3:1, 0);
+def_string $string4 = db_getfield($dbrow, sailing_sidepanel_widget_button:op4:1, 0);
+def_int $int15 = 0;
 def_graphic $graphic = null;
-$graphic, $int14 = db_getfield($dbrow, sailing_sidepanel_widget_button:default_graphic, 0);
-if ($int8 < $int11) {
-    $graphic, $int14 = db_getfield($dbrow, sailing_sidepanel_widget_button:toggle_graphic, $int8);
-}
+$graphic, $int15 = db_getfield($dbrow, sailing_sidepanel_widget_button:default_graphic, 0);
 if ($int8 < $int12) {
-    $string1 = db_getfield($dbrow, sailing_sidepanel_widget_button:toggle_optext, $int8);
+    $graphic, $int15 = db_getfield($dbrow, sailing_sidepanel_widget_button:toggle_graphic, $int8);
 }
 if ($int8 < $int13) {
+    $string1 = db_getfield($dbrow, sailing_sidepanel_widget_button:toggle_optext, $int8);
+}
+if ($int8 < $int14) {
     $string0 = db_getfield($dbrow, sailing_sidepanel_widget_button:toggle_button_caption, $int8);
 }
 if ($int7 = 2) {
-    $int0, $int1 = ~sailing_sidepanel_stonebutton($component5, $component6, $int0, $int1, $int9, 30, $int2, $int3, $string0, $graphic, $int14, ^white, 0x9f9f9f, 1, $int7, 1);
-    cc_setop(1, $string1);
+    $int0, $int1 = ~sailing_sidepanel_stonebutton($component5, $component6, $int0, $int1, $int10, 30, $int2, $int3, $string0, $graphic, $int15, ^white, 0x9f9f9f, 1, $int7, 1);
+    if (testbit($int9, 0) = ^true) {
+        cc_setop(1, $string1);
+    }
+    if (testbit($int9, 1) = ^true) {
+        cc_setop(2, $string2);
+    }
+    if (testbit($int9, 2) = ^true) {
+        cc_setop(3, $string3);
+    }
+    if (testbit($int9, 3) = ^true) {
+        cc_setop(4, $string4);
+    }
 } else if ($int7 = 0) {
-    $int0, $int1 = ~sailing_sidepanel_stonebutton($component5, $component6, $int0, $int1, $int9, 30, $int2, $int3, $string0, $graphic, $int14, ^white, 0x9f9f9f, 0, $int7, 1);
-    cc_setop(1, $string1);
+    $int0, $int1 = ~sailing_sidepanel_stonebutton($component5, $component6, $int0, $int1, $int10, 30, $int2, $int3, $string0, $graphic, $int15, ^white, 0x9f9f9f, 0, $int7, 1);
+    if (testbit($int9, 0) = ^true) {
+        cc_setop(1, $string1);
+    }
+    if (testbit($int9, 1) = ^true) {
+        cc_setop(2, $string2);
+    }
+    if (testbit($int9, 2) = ^true) {
+        cc_setop(3, $string3);
+    }
+    if (testbit($int9, 3) = ^true) {
+        cc_setop(4, $string4);
+    }
 } else {
-    $int0, $int1 = ~sailing_sidepanel_stonebutton($component5, $component6, $int0, $int1, $int9, 30, $int2, $int3, $string0, $graphic, $int14, ^white, 0x9f9f9f, 1, $int7, 0);
+    $int0, $int1 = ~sailing_sidepanel_stonebutton($component5, $component6, $int0, $int1, $int10, 30, $int2, $int3, $string0, $graphic, $int15, ^white, 0x9f9f9f, 1, $int7, 0);
 }
-$int2 = calc($int2 + $int9 + 8);
+$int2 = calc($int2 + $int10 + 8);
 return($int0, $int1, $int2);
