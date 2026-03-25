@@ -1,0 +1,13 @@
+// 6554
+[proc,script6554]
+def_int $int0 = 120;
+def_int $int1 = 30;
+if (~on_mobile = true) {
+    $int0, $int1 = 60, 60;
+}
+if (getdeviceoption(^deviceoption_fps_limit) = 0) {
+    setdeviceoption(^deviceoption_fps_limit, $int0);
+    setdeviceoption(^deviceoption_background_fps_limit, $int1);
+} else if (getdeviceoption(^deviceoption_background_fps_limit) = 0) {
+    setdeviceoption(^deviceoption_background_fps_limit, getdeviceoption(^deviceoption_fps_limit));
+}

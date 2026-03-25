@@ -1,12 +1,11 @@
 // 527
-[proc,settings_colour_input_update](component $component0, int $int1, struct $struct, int $int3, component $component4, int $int5)
-def_int $int6 = struct_param($struct, param_1230);
+[proc,settings_colour_input_update](component $component0, int $int1, struct $struct, int $int3, component $component4, int $int5, boolean $boolean)
+def_int $int7 = struct_param($struct, param_1230);
 if (~settings_get_colour($int3) ! -1) {
-    $int6 = ~settings_get_colour($int3);
+    $int7 = ~settings_get_colour($int3);
 }
-def_boolean $boolean = ~settings_dependency_checker($struct);
 if (cc_find($component0, $int1) = true) {
-    cc_setcolour($int6);
+    cc_setcolour($int7);
     if ($boolean = true) {
         if (~on_mobile = false & .cc_find($component0, calc($int1 + 1)) = true) {
             .cc_setonmouserepeat("cc_settrans_temporarily(event_com, calc($int1 + 1), 220, 250)");

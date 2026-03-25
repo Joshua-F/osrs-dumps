@@ -1,0 +1,12 @@
+// 3054
+[proc,settings_interface_scaling_dropdown](int $int0, int $int1)
+if (~on_enhanced_any = false) {
+    return;
+}
+def_int $int2 = ~getdeviceoption(^deviceoption_ui_scaling);
+def_int $int3 = ~settings_interface_scaling_min;
+if ($int0 > -1) {
+    $int1 = calc($int3 + $int0 * 25);
+}
+def_int $int4 = max($int3, min(400, $int1));
+~setdeviceoption(^deviceoption_ui_scaling, $int4);
