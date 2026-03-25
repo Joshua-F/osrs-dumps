@@ -1,0 +1,20 @@
+// 2790
+[proc,script2790](int $int0)(int)
+if (~on_enhanced_desktop = false) {
+    return(2);
+}
+def_int $int1 = 0;
+def_int $int2 = enum_getoutputcount(enum_5926);
+def_int $int3 = 0;
+if ($int0 = 1) {
+    $int3 = deviceoption_get(^deviceoption_fps_limit);
+} else {
+    $int3 = deviceoption_get(^deviceoption_background_fps_limit);
+}
+while ($int1 < $int2) {
+    if ($int3 <= enum(int, int, enum_5926, $int1)) {
+        return($int1);
+    }
+    $int1 = calc($int1 + 1);
+}
+return(2);
