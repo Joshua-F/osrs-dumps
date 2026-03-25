@@ -1,42 +1,41 @@
 // 3846
-[proc,settings_create_toggle](int $int0, int $int1, int $int2, int $int3, int $int4, struct $struct, component $component6, component $component7, component $component8, component $component9, component $component10, component $component11, component $component12, component $component13, component $component14, component $component15, component $component16, component $component17)(int, int, int, int)
-def_boolean $boolean18 = ~on_mobile;
+[proc,settings_create_toggle](int $int0, int $int1, int $int2, int $int3, int $int4, struct $struct, component $component6, component $component7, component $component8, component $component9, component $component10, component $component11, component $component12, component $component13, component $component14, component $component15, component $component16, component $component17, boolean $boolean18)(int, int, int, int)
+def_boolean $boolean19 = ~on_mobile;
 def_string $string0 = struct_param($struct, param_1086);
-if ($boolean18 = true & string_length(struct_param($struct, param_1087)) > 0) {
+if ($boolean19 = true & string_length(struct_param($struct, param_1087)) > 0) {
     $string0 = struct_param($struct, param_1087);
 }
 def_string $string1 = struct_param($struct, param_1096);
-def_int $int19 = 0;
-def_int $int20 = %settings_disable_tooltip_in_interface;
-def_boolean $boolean21 = struct_param($struct, param_1119);
-if ($boolean18 = true & string_length(struct_param($struct, param_1097)) > 0) {
+def_int $int20 = 0;
+def_int $int21 = %settings_disable_tooltip_in_interface;
+def_boolean $boolean22 = struct_param($struct, param_1119);
+if ($boolean19 = true & string_length(struct_param($struct, param_1097)) > 0) {
     $string1 = struct_param($struct, param_1097);
 }
 if (string_length($string1) > 0) {
-    $int19 = calc(paraheight($string1, calc(if_getwidth($component7) - 45), p12_full) * 14);
+    $int20 = calc(paraheight($string1, calc(if_getwidth($component7) - 45), p12_full) * 14);
 }
-$int1 = calc($int1 + $int19);
-if ($boolean21 = true | $int20 = 1) {
-    $int19 = 0;
+$int1 = calc($int1 + $int20);
+if ($boolean22 = true | $int21 = 1) {
+    $int20 = 0;
 }
-def_int $int22 = struct_param($struct, param_1077);
-def_boolean $boolean23 = struct_param($struct, param_1085);
-def_boolean $boolean24 = ~settings_dependency_checker($struct);
+def_int $int23 = struct_param($struct, param_1077);
+def_boolean $boolean24 = struct_param($struct, param_1085);
 def_boolean $boolean25 = struct_param($struct, param_1084);
 def_int $int26 = calc(paraheight($string0, calc(if_getwidth($component7) - 45), b12_full) * 14);
-if ($boolean18 = true & $int26 < 20) {
+if ($boolean19 = true & $int26 < 20) {
     $int26 = 20;
 }
-def_int $int27 = calc($int26 + 12 + $int19);
+def_int $int27 = calc($int26 + 12 + $int20);
 cc_create($component6, ^iftype_rectangle, $int3);
 cc_setsize(10, $int27, ^setsize_minus, ^setsize_abs);
 cc_setposition(0, $int0, ^setpos_abs_centre, ^setpos_abs_top);
 cc_setfill(true);
 cc_setop(1, "Toggle");
-cc_setonop("settings_toggle_op($struct, $int22, calc($int2 + 2), $boolean25, $boolean23, $component6, $component7, $component8, $component9, $component10, $component11, $component12, $component13, $component14, $component15, $component16, $component17)");
+cc_setonop("settings_toggle_op($struct, $int23, calc($int2 + 2), $boolean25, $boolean24, $component6, $component7, $component8, $component9, $component10, $component11, $component12, $component13, $component14, $component15, $component16, $component17, $boolean18)");
 cc_setcolour(^white);
 cc_settrans(255);
-if ($boolean18 = false & $int20 = 1 & string_length($string1) > 0) {
+if ($boolean19 = false & $int21 = 1 & string_length($string1) > 0) {
     cc_setonmouserepeat("tooltip_mouserepeat($component7, $int2, $component17, $string1, 25, 190)");
     cc_setonmouseleave("deltooltip($component17)");
 }
@@ -47,10 +46,10 @@ cc_setposition(0, $int0, ^setpos_abs_centre, ^setpos_abs_top);
 cc_setfill(true);
 cc_setcolour(^black);
 cc_settrans($int4);
-if ($boolean23 = true) {
-    ~settings_toggle_choose_transmit($component7, calc($int2 + 2), $boolean25, $int22, $struct, $int4);
+if ($boolean24 = true) {
+    ~settings_toggle_choose_transmit($component7, calc($int2 + 2), $boolean25, $int23, $struct, $int4, $boolean18);
 }
-if ($boolean18 = false & $boolean24 = true) {
+if ($boolean19 = false & $boolean18 = true) {
     cc_setonmouseover("cc_settrans($component7, $int2, 240, null)");
     cc_setonmouseleave("cc_settrans($component7, $int2, $int4, null)");
 }
@@ -61,7 +60,7 @@ cc_setposition(10, calc($int0 + 6), ^setpos_abs_left, ^setpos_abs_top);
 cc_settext($string0);
 cc_settextfont(b12_full);
 cc_settextshadow(true);
-if ($boolean24 = true) {
+if ($boolean18 = true) {
     cc_setcolour(0xff981f);
 } else {
     cc_setcolour(0x9f9f9f);
@@ -71,25 +70,25 @@ $int2 = calc($int2 + 1);
 cc_create($component7, ^iftype_graphic, $int2);
 cc_setsize(18, 18, ^setsize_abs, ^setsize_abs);
 cc_setposition(10, calc($int0 + ($int27 / 2 - 9)), ^setpos_abs_right, ^setpos_abs_top);
-def_int $int28 = ~settings_get_toggle($int22);
+def_int $int28 = ~settings_get_toggle($int23);
 if ($boolean25 = true) {
     $int28 = calc(1 - $int28);
 }
 if ($int28 = 1) {
-    if ($boolean24 = true) {
+    if ($boolean18 = true) {
         cc_setgraphic("toggle_box,1");
     } else {
         cc_setgraphic("toggle_box,3");
     }
-} else if ($boolean24 = true) {
+} else if ($boolean18 = true) {
     cc_setgraphic("toggle_box,0");
 } else {
     cc_setgraphic("toggle_box,2");
 }
 $int2 = calc($int2 + 1);
-if ($boolean21 = false & $int20 = 0 & $int19 > 0) {
+if ($boolean22 = false & $int21 = 0 & $int20 > 0) {
     cc_create($component7, ^iftype_text, $int2);
-    cc_setsize(45, $int19, ^setsize_minus, ^setsize_abs);
+    cc_setsize(45, $int20, ^setsize_minus, ^setsize_abs);
     cc_setposition(10, calc($int26 + $int0 + 6), ^setpos_abs_left, ^setpos_abs_top);
     cc_settext($string1);
     cc_settextfont(p12_full);
