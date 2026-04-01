@@ -1,21 +1,7 @@
 // 3099
-[clientscript,canoe_map_init](component $where_to_go_text, component $close, component $lumbridge, component $champions, component $barbarian, component $edgeville, component $wilderness, component $sanctuary)
-cc_deleteall($where_to_go_text);
+[clientscript,canoe_map_init](component $close, component $destination_1, component $destination_2, component $destination_3, component $destination_4, component $destination_5, component $destination_6)
+~chatdefault_stopinput;
 cc_deleteall($close);
-cc_deleteall($lumbridge);
-cc_deleteall($champions);
-cc_deleteall($barbarian);
-cc_deleteall($edgeville);
-cc_deleteall($wilderness);
-cc_deleteall($sanctuary);
-cc_create($where_to_go_text, ^iftype_text, 0);
-cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
-cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
-cc_setcolour(0xc8d1db);
-cc_settextshadow(true);
-cc_settextfont(q8_full);
-cc_settext("Please Select <br>Your Destination");
-cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
 cc_create($close, ^iftype_graphic, 0);
 cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
 cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
@@ -26,40 +12,8 @@ if (~on_mobile = false) {
 }
 if_setop(1, "Close", $close);
 if_setonop("canoe_close", $close);
-def_int $int8 = 1;
-def_int $int9 = 1;
-def_int $int10 = 1;
-def_int $int11 = 1;
-def_int $int12 = 1;
-def_int $int13 = 1;
-$int8, $int9, $int10, $int11, $int12, $int13 = ~canoe_return_locations;
-if ($int8 ! 1) {
-    ~canoe_location_setup($lumbridge, "Lumbridge", false, model_12103, model_12104, "Travel to<col=ff9040> Lumbridge", 0, 15);
-}
-if ($int9 ! 1) {
-    ~canoe_location_setup($champions, "Champions <br>Guild", false, model_12103, model_12104, "Travel to<col=ff9040> Champions Guild", -20, 0);
-}
-if ($int10 ! 1) {
-    ~canoe_location_setup($barbarian, "Barbarian <br> Village", false, model_12103, model_12104, "Travel to<col=ff9040> Barbarian Village", -10, 20);
-}
-if ($int11 ! 1) {
-    ~canoe_location_setup($edgeville, "Edgeville", false, model_12103, model_12104, "Travel to<col=ff9040> Edgeville", -10, 25);
-}
-if ($int12 ! 1) {
-    ~canoe_location_setup($wilderness, "Wilderness Pond - <br>No canoe trees here.", true, null, null, "Travel to<col=ff9040> Wilderness Pond", 0, 0);
-}
-if ($int13 ! 1) {
-    ~canoe_location_setup($sanctuary, "Ferox <br> Enclave", false, model_12103, model_12104, "Travel to<col=ff9040> Ferox Enclave", -15, 35);
-}
-switch_int (%canoe_startfrom) {
-    case 3 :
-        ~canoe_location_you_are_here($barbarian);
-    case 2 :
-        ~canoe_location_you_are_here($champions);
-    case 4 :
-        ~canoe_location_you_are_here($edgeville);
-    case 1 :
-        ~canoe_location_you_are_here($lumbridge);
-    case 5 :
-        ~canoe_location_you_are_here($sanctuary);
+if (%canoe_river = 0) {
+    ~script7884($destination_1, $destination_2, $destination_3, $destination_4, $destination_5, $destination_6, null);
+} else {
+    ~script7134($destination_1, $destination_2, $destination_3, $destination_4, $destination_5, canoe_map_dougne);
 }
