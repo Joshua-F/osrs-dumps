@@ -1,0 +1,24 @@
+// 9351
+[clientscript,script9351]
+cc_deleteall(talent_tree:tooltip);
+if (%talent_tree_mobile_op_toggle = 1) {
+    %talent_tree_mobile_op_toggle = 0;
+} else {
+    %talent_tree_mobile_op_toggle = 1;
+}
+def_component $tree_node_draw_layer = talent_tree:tree_node_draw_layer;
+def_int $int1 = enum_getoutputcount(enum_5942);
+def_int $int2 = 0;
+while ($int2 < $int1) {
+    if (cc_find($tree_node_draw_layer, $int2) = true) {
+        cc_setopbase("<col=ff9040>Pact</col>");
+        if (%talent_tree_mobile_op_toggle = 1) {
+            cc_setop(1, "Select");
+            cc_setop(2, "View info");
+        } else {
+            cc_setop(1, "View info");
+            cc_setop(2, "Select");
+        }
+    }
+    $int2 = calc($int2 + 1);
+}

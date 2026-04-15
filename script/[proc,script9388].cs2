@@ -1,0 +1,10 @@
+// 9388
+[proc,script9388](dbrow $dbrow)(string)
+if (db_getfieldcount($dbrow, talent_tree:name) <= 0) {
+    return("");
+}
+def_string $string = db_getfield($dbrow, talent_tree:name, 0);
+if (db_getfieldcount($dbrow, talent_tree:effect) <= 0) {
+    return("Not Implemented: <$string>");
+}
+return(~script9389($string, tostring(db_getfield($dbrow, talent_tree:effect:1, 0))));

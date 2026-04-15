@@ -1,0 +1,39 @@
+// 9426
+[proc,script9426](int $int0, int $int1, int $int2, int $int3, int $int4, int $int5, int $int6, dbrow $dbrow)
+def_int $int8 = 0;
+def_int $int9 = 0;
+def_int $int10 = $int1;
+$int8 = min(%league_task_menu_total_count, calc($int2 + $int10));
+while ($int10 < $int8) {
+    if (cc_find(league_tasks:tasks_background, $int10) = true) {
+        $int9 = calc(cc_gety + $int0);
+        cc_setposition(0, $int9, ^setpos_abs_centre, ^setpos_abs_top);
+    }
+    if (cc_find(league_tasks:tasks_expand, $int10) = true) {
+        $int9 = calc(cc_gety + $int0);
+        cc_setposition(5, $int9, ^setpos_abs_left, ^setpos_abs_top);
+    }
+    if (cc_find(league_tasks:tasks_name, $int10) = true) {
+        $int9 = calc(cc_gety + $int0);
+        cc_setposition(51, $int9, ^setpos_abs_left, ^setpos_abs_top);
+    }
+    if (cc_find(league_tasks:tasks_points, $int10) = true) {
+        $int9 = calc(cc_gety + $int0);
+        cc_setposition(51, $int9, ^setpos_abs_left, ^setpos_abs_top);
+    }
+    if (cc_find(league_tasks:tasks_tier, $int10) = true) {
+        $int9 = calc(cc_gety + $int0);
+        cc_setposition(28, $int9, ^setpos_abs_left, ^setpos_abs_top);
+    }
+    $int10 = calc($int10 + 1);
+}
+if ($int10 < %league_task_menu_total_count) {
+    if_setontimer("script9425($int0, $int10, $int2, $int3, $int4, $int5, $int6, $dbrow)", league_tasks:tasks_list);
+} else {
+    if_setontimer(null, league_tasks:tasks_list);
+    if ($int3 = 1) {
+        ~script9423($int4, $int5, $int6, $dbrow);
+    } else {
+        ~script9421;
+    }
+}

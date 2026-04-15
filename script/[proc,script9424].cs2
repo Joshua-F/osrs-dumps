@@ -1,0 +1,12 @@
+// 9424
+[proc,script9424](int $int0, int $int1, int $int2, dbrow $dbrow, int $int4)
+def_component $tasks_background = league_tasks:tasks_background;
+def_string $string = db_getfield(%league_task_menu_selected_task, action:action_desc, 0);
+def_int $int6 = paraheight("Description: <$string>.", calc(if_getwidth($tasks_background) - 10), p11_full);
+def_int $int7 = calc(10 * $int6 + 25);
+%league_task_menu_selected_task = null;
+def_int $int8 = calc($int7 * -1);
+%league_task_menu_ypos = calc(%league_task_menu_ypos - $int7);
+%league_task_menu_selected_task = null;
+~script9422(%league_task_menu_selected_task_cc_id, %league_task_menu_selected_task_id);
+~script9426($int8, calc(%league_task_menu_selected_task_cc_id + 1), 300, $int4, $int0, $int1, $int2, $dbrow);

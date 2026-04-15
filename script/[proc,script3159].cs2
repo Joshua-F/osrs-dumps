@@ -1,15 +1,26 @@
 // 3159
 [proc,script3159](obj $obj0)(obj)
-def_struct $struct = enum(int, struct, enum_2670, %league_type);
-def_enum $enum = null;
-def_obj $obj3 = null;
-if ($struct ! null) {
-    $enum = struct_param($struct, param_867);
+def_dbrow $dbrow1 = ~script9463;
+if ($dbrow1 = null) {
+    return($obj0);
 }
-if ($enum ! null) {
-    $obj3 = enum(obj, obj, $enum, $obj0);
-}
-if ($obj3 ! null) {
-    $obj0 = $obj3;
+def_int $int2 = db_getfieldcount($dbrow1, spell_override_list:override);
+def_int $int3 = 0;
+def_dbrow $dbrow4 = null;
+def_obj $obj5 = null;
+def_struct $struct = null;
+while ($int3 < $int2) {
+    $dbrow4 = db_getfield($dbrow1, spell_override_list:override, $int3);
+    if ($dbrow4 ! null) {
+        $obj5 = db_getfield($dbrow4, spell_override:base_spell, 0);
+        if ($obj5 = $obj0) {
+            $struct = db_getfield($dbrow4, spell_override:relic_unlock, 0);
+            if ($struct ! null & ~league_relic_active($struct) = 0) {
+                return($obj0);
+            }
+            return(db_getfield($dbrow4, spell_override:override_spell, 0));
+        }
+    }
+    $int3 = calc($int3 + 1);
 }
 return($obj0);

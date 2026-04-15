@@ -1,0 +1,23 @@
+// 9368
+[proc,script9368](component $component, int $int1)(boolean)
+def_boolean $boolean = false;
+def_int $int3 = 0;
+if (cc_find(talent_tree:data_layer, %talent_tree_selected_node_amount) = true) {
+    $int3 = cc_param(param_2554);
+    cc_delete;
+    if ($int3 = -1) {
+        mes("Error, unable to use selected node ID data.");
+    }
+    if ($int3 = $int1) {
+        $boolean = true;
+    }
+    if (cc_find($component, $int3) = true) {
+        ~script9372(0);
+    } else {
+        ~error("Unable to find selected node <tostring($int3)> in the node layer to deselect");
+    }
+} else {
+    ~error("Unable to find data layer component <tostring(%talent_tree_selected_node_amount)>");
+}
+%talent_tree_selected_node_amount = calc(%talent_tree_selected_node_amount - 1);
+return($boolean);

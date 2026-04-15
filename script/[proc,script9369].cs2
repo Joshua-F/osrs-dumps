@@ -1,0 +1,117 @@
+// 9369
+[proc,script9369](int $int0, dbrow $dbrow)
+sound_synth(synth_11435, 1, 0);
+cc_deleteall(talent_tree:tooltip);
+if (%talent_tree_selected_node_amount <= 0) {
+    return;
+}
+def_component $tree_node_draw_layer = talent_tree:tree_node_draw_layer;
+if (cc_find_param(talent_tree:data_layer, param_2554, $int0) = false) {
+    ~error("Unable to find selected node <tostring($int0)> within the data layer");
+    return;
+}
+def_boolean $boolean = false;
+while (%talent_tree_selected_node_amount > 0 & $boolean = false) {
+    $boolean = ~script9368($tree_node_draw_layer, $int0);
+}
+def_dbrowarray $dbrowarray = enum_getoutputs(dbrow, enum_5942);
+if_query(1, $tree_node_draw_layer, -1);
+if_query_refine(param_2551, 3);
+while (if_query_next = true) {
+    ~script9372(0);
+}
+if_query(1, $tree_node_draw_layer, -1);
+if_query_refine(param_2551, 1);
+def_int $int4 = if_query_nextid;
+def_int $int5 = 0;
+def_int $int6 = 0;
+while ($int4 ! -1 & $int4 >= 0) {
+    $dbrow = $dbrowarray($int4);
+    $int6 = 0;
+    while ($int6 < db_getfieldcount($dbrow, talent_tree:linked_nodes)) {
+        $int5 = array_indexof($dbrowarray, db_getfield($dbrow, talent_tree:linked_nodes, $int6), 0, -1);
+        if (cc_find($tree_node_draw_layer, $int5) = true & cc_param(param_2551) = 0) {
+            ~script9372(3);
+        }
+        $int6 = calc($int6 + 1);
+    }
+    $int4 = if_query_nextid;
+}
+if_query(1, $tree_node_draw_layer, -1);
+if_query_refine(param_2551, 2);
+$int4 = if_query_nextid;
+while ($int4 ! -1 & $int4 >= 0) {
+    $dbrow = $dbrowarray($int4);
+    $int6 = 0;
+    while ($int6 < db_getfieldcount($dbrow, talent_tree:linked_nodes)) {
+        $int5 = array_indexof($dbrowarray, db_getfield($dbrow, talent_tree:linked_nodes, $int6), 0, -1);
+        if (cc_find($tree_node_draw_layer, $int5) = true & cc_param(param_2551) = 0) {
+            ~script9372(3);
+        }
+        $int6 = calc($int6 + 1);
+    }
+    $int4 = if_query_nextid;
+}
+def_component $tree_connection_draw_layer = talent_tree:tree_connection_draw_layer;
+if_query(1, $tree_connection_draw_layer, -1);
+def_int $int8 = 0;
+def_int $int9 = 0;
+def_int $int10 = 0;
+while (if_query_next = true) {
+    if (.cc_find($tree_node_draw_layer, array_indexof($dbrowarray, cc_param(param_2555), 0, -1)) = true) {
+        $int9 = .cc_param(param_2551);
+    }
+    if (.cc_find($tree_node_draw_layer, array_indexof($dbrowarray, cc_param(param_2556), 0, -1)) = true) {
+        $int10 = .cc_param(param_2551);
+    }
+    switch_int ($int9) {
+        case 0 :
+            $int8 = 0;
+        case 1 :
+            switch_int ($int10) {
+                case 0 :
+                    $int8 = 0;
+                case 2 :
+                    $int8 = 2;
+                case 3 :
+                    $int8 = 3;
+                case 1 :
+                    $int8 = 1;
+            }
+        case 2 :
+            switch_int ($int10) {
+                case 0 :
+                    $int8 = 0;
+                case 1 :
+                    $int8 = 2;
+                case 3 :
+                    $int8 = 3;
+                case 2 :
+                    $int8 = 2;
+            }
+        case 3 :
+            switch_int ($int10) {
+                case 0 :
+                    $int8 = 0;
+                case 1 :
+                    $int8 = 3;
+                case 3 :
+                    $int8 = 0;
+                case 2 :
+                    $int8 = 3;
+            }
+    }
+    cc_setcolour(~script9395($int8));
+    cc_setparam(param_2551, $int8);
+}
+def_component $floating_panel_background = talent_tree:floating_panel_background;
+def_component $floating_panel_content = talent_tree:floating_panel_content;
+if (%talent_tree_selected_node_amount > 0) {
+    if (cc_find($floating_panel_content, 0) = true) {
+        cc_settext("<tostring(%talent_tree_selected_node_amount)> pending pact changes");
+    }
+} else {
+    if_sethide(true, talent_tree:floating_panel);
+    cc_deleteall($floating_panel_content);
+    cc_deleteall($floating_panel_background);
+}
