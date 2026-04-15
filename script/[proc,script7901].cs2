@@ -1,0 +1,102 @@
+// 7901
+[proc,script7901]
+%talent_tree_showing_info_panel = 0;
+def_component $perm_floating_panel_content = talent_tree:perm_floating_panel_content;
+def_component $perm_floating_panel_background = talent_tree:perm_floating_panel_background;
+def_component $perm_floating_panel = talent_tree:perm_floating_panel;
+def_component $perm_floating_panel_scroll = talent_tree:perm_floating_panel_scroll;
+def_component $perm_floating_panel_content_2 = talent_tree:perm_floating_panel_content_2;
+cc_deleteall($perm_floating_panel_scroll);
+cc_deleteall($perm_floating_panel_content_2);
+def_int $int5 = 140;
+def_int $int6 = 124;
+def_int $int7 = 0;
+if_setsize(if_getwidth($perm_floating_panel), $int5, ^setsize_abs, ^setsize_abs, $perm_floating_panel);
+cc_deleteall($perm_floating_panel_background);
+cc_deleteall($perm_floating_panel_content);
+def_int $int8 = 0;
+$int8 = ~create_graphic($perm_floating_panel_background, $int8, tradebacking, 1, 1, ^setpos_abs_left, ^setpos_abs_top, 0, 0, ^setsize_minus, ^setsize_minus, true);
+~stonebox($perm_floating_panel_background, 1, $int8);
+$int8 = 0;
+cc_create($perm_floating_panel_content, ^iftype_text, $int8);
+cc_setsize(0, 22, ^setsize_minus, ^setsize_abs);
+cc_setposition(0, $int7, ^setpos_abs_centre, ^setpos_abs_top);
+cc_settextfont(p12_full);
+cc_settextshadow(true);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+cc_setcolour(0xff981f);
+cc_settext("<tostring(%talent_points_earned)> pacts earned");
+cc_setonvartransmit("script7896(event_com, event_comsubid){talent_points_earned}");
+$int7 = calc($int7 + 20);
+$int8 = calc($int8 + 1);
+cc_create($perm_floating_panel_content, ^iftype_text, $int8);
+cc_setsize(0, 22, ^setsize_minus, ^setsize_abs);
+cc_setposition(0, $int7, ^setpos_abs_centre, ^setpos_abs_top);
+cc_settextfont(p12_full);
+cc_settextshadow(true);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+cc_setcolour(0xff981f);
+cc_settext("<tostring(%talent_points_spent)> pacts spent");
+cc_setonvartransmit("script7897(event_com, event_comsubid){talent_points_spent}");
+$int7 = calc($int7 + 22);
+$int8 = calc($int8 + 1);
+$int8 = ~cc_add_button($perm_floating_panel_content, $int8, 10, $int7, ^setpos_abs_left, ^setpos_abs_top, 28, 28, ^setsize_abs, ^setsize_abs, struct_6265, "+");
+if (%talent_tree_zoom_scalar < 250) {
+    cc_setop(1, "Zoom In");
+    cc_setopbase("<col=ff9040>View</col>");
+    cc_setonop("script9353(calc(%talent_tree_zoom_scalar + 25))");
+} else {
+    ~cc_set_button_states(false, 1);
+}
+$int8 = ~cc_add_button($perm_floating_panel_content, $int8, 10, $int7, ^setpos_abs_right, ^setpos_abs_top, 28, 28, ^setsize_abs, ^setsize_abs, struct_6265, "-");
+if (%talent_tree_zoom_scalar > 100) {
+    cc_setop(1, "Zoom Out");
+    cc_setopbase("<col=ff9040>View</col>");
+    cc_setonop("script9353(calc(%talent_tree_zoom_scalar - 25))");
+} else {
+    ~cc_set_button_states(false, 1);
+}
+$int7 = calc($int7 + 33);
+if (%talent_resets_available > 0) {
+    cc_create($perm_floating_panel_content, ^iftype_text, $int8);
+    cc_setsize(0, 22, ^setsize_minus, ^setsize_abs);
+    cc_setposition(0, $int7, ^setpos_abs_centre, ^setpos_abs_top);
+    cc_settextfont(p12_full);
+    cc_settextshadow(true);
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    cc_setcolour(0xff981f);
+    if (%talent_resets_available = 1) {
+        cc_settext("<tostring(%talent_resets_available)> reset available");
+    } else {
+        cc_settext("<tostring(%talent_resets_available)> resets available");
+    }
+    $int8 = calc($int8 + 1);
+    $int7 = calc($int7 + 20);
+}
+$int8 = ~cc_add_button($perm_floating_panel_content, $int8, 0, $int7, ^setpos_abs_centre, ^setpos_abs_top, 20, 28, ^setsize_minus, ^setsize_abs, struct_6265, "Reset Pacts");
+cc_setop(1, "Reset");
+cc_setopbase("<col=ff9040>Pacts</col>");
+cc_setonop("script7898");
+cc_setonvartransmit("script7900{talent_perm_1}");
+if (%talent_resets_available <= 0) {
+    ~cc_set_button_states(false, 1);
+}
+$int7 = calc($int7 + 33);
+def_string $string = "Info on tap <col=229628>(On)</col>";
+if (~on_mobile = true) {
+    if (%talent_tree_mobile_op_toggle = 1) {
+        $string = "Info on tap <col=ff3045>(Off)</col>";
+    }
+    $int8 = ~cc_add_button($perm_floating_panel_content, $int8, 0, $int7, ^setpos_abs_centre, ^setpos_abs_top, 20, 38, ^setsize_minus, ^setsize_abs, struct_6265, $string);
+    cc_setop(1, "Toggle");
+    cc_setopbase("<col=ff9040>Info on tap</col>");
+    cc_setonop("script9351");
+    $int7 = calc($int7 + 45);
+}
+$int8 = ~cc_add_button($perm_floating_panel_content, $int8, 0, $int7, ^setpos_abs_centre, ^setpos_abs_top, 20, 38, ^setsize_minus, ^setsize_abs, struct_6265, "Active Pact<br>Information");
+~cc_set_button_states(false, 0);
+cc_setop(1, "Expand Active Pact Information");
+cc_setonop("script7902");
+$int7 = calc($int7 + 45);
+$int7 = calc($int7 + 20);
+if_setsize($int6, $int7, ^setsize_abs, ^setsize_abs, $perm_floating_panel);

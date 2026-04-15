@@ -1,0 +1,25 @@
+// 9385
+[proc,script9385](dbrow $dbrow, int $int1)(graphic)
+def_graphic $graphic2 = null;
+def_graphic $graphic3 = null;
+def_graphic $graphic4 = null;
+def_graphic $graphic5 = null;
+if ($dbrow = null | db_getfieldcount($dbrow, talent_tree:effect) <= 0) {
+    return(null);
+}
+def_int $int6 = db_getfield($dbrow, talent_tree:node_size, 0);
+$graphic2, $graphic3, $graphic4, $graphic5 = ~script9392(db_getfield($dbrow, talent_tree:effect, 0), $int6);
+def_int $int7 = 48;
+if ($int6 = 2) {
+    $int7 = 16;
+}
+if ($int1 = 1 | $int1 = 2) {
+    if (cc_getwidth > $int7) {
+        return($graphic2);
+    }
+    return($graphic3);
+}
+if (cc_getwidth > $int7) {
+    return($graphic4);
+}
+return($graphic5);

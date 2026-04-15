@@ -1,21 +1,27 @@
 // 3699
-[proc,league_task_display](int $int0, int $int1, int $int2, int $int3, int $int4, string $string0, string $string1, string $string2, int $int5)(boolean)
-if (%league_task_filter_tier ! 0 & %league_task_filter_tier ! $int0) {
+[proc,league_task_display](dbrow $dbrow, int $int1, int $int2, int $int3, int $int4, string $string0, string $string1, string $string2, int $int5)(boolean)
+if (%league_task_filter_tier ! 0 & %league_task_filter_tier ! $int1) {
     return(false);
 }
-if (%league_task_filter_type ! 0 & %league_task_filter_type ! $int2) {
+if (%league_task_filter_type ! 0 & %league_task_filter_type ! $int3) {
     return(false);
 }
 if (%league_task_filter_area ! 0) {
     if (enum(int, int, enum_3415, %league_task_filter_area) = 24) {
-        if ($int3 ! 0 & ~script3681($int3) = false) {
+        if ($int4 ! 0 & ~script3681($int4) = false) {
             return(false);
         }
-    } else if (enum(int, int, enum_3415, %league_task_filter_area) ! $int3) {
+    } else if (enum(int, int, enum_3415, %league_task_filter_area) ! $int4) {
         return(false);
     }
 }
-if (%league_task_filter_completed ! 0 & calc(%league_task_filter_completed - 1) ! $int1) {
+if (%league_task_filter_completed ! 0 & calc(%league_task_filter_completed - 1) ! $int2) {
+    return(false);
+}
+if (%league_task_filter_mastery_point = 1 & enum(dbrow, boolean, enum_5952, $dbrow) = false) {
+    return(false);
+}
+if (%league_task_filter_mastery_point = 2 & enum(dbrow, boolean, enum_5953, $dbrow) = false) {
     return(false);
 }
 def_int $int6 = 0;
@@ -24,11 +30,12 @@ if ($int5 > 1) {
         $int6 = 1;
     } else if (string_indexof_string(lowercase($string1), lowercase($string2), 0) ! -1) {
         $int6 = 1;
-    } else if (string_indexof_string(enum(int, string, enum_2729, $int4), lowercase($string2), 0) ! -1) {
-        $int6 = 1;
     }
     if ($int6 = 0) {
         return(false);
     }
+}
+if (~script3101($int4) = true) {
+    return(false);
 }
 return(true);

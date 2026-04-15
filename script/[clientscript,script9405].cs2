@@ -1,0 +1,13 @@
+// 9405
+[clientscript,script9405](dbrow $dbrow, string $string0, string $string1)
+if ($dbrow = null) {
+    return;
+}
+if (cc_find_param(league_tasks:task_hotfix, param_678, $dbrow) = true) {
+    ~debug_mes_warn("Hotfix", "Duplicate $task hotfix data in hotfix layer, for $task = [<db_getfield($dbrow, action:action_name, 0)>]. Ensure you arent hotfixing this task more than once.");
+    return;
+}
+cc_create(league_tasks:task_hotfix, ^iftype_layer, ~script8302(league_tasks:task_hotfix));
+cc_setparam(param_678, $dbrow);
+cc_setparam(param_2579, $string0);
+cc_setparam(param_2580, $string1);

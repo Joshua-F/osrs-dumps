@@ -1,0 +1,11 @@
+// 9402
+[proc,script9402](dbrow $dbrow)(string)
+def_string $string = db_getfield($dbrow, talent_tree:name, 0);
+def_int $int = db_getfield($dbrow, talent_tree:effect:0, 0);
+if_query(1, talent_tree:hotfix, -1);
+while (if_query_next = true) {
+    if (string_length(cc_param(param_2570)) > 0 & cc_param(param_2569) = $int) {
+        return(cc_param(param_2570));
+    }
+}
+return($string);

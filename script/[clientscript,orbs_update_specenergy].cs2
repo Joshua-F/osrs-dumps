@@ -2,7 +2,7 @@
 [clientscript,orbs_update_specenergy](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5)
 if ($component0 ! null) {
     if_setnoclickthrough(true, $component4);
-    if_setonvartransmit("orbs_update_specenergy(null, $component1, $component2, $component3, $component4, $component5){sa_attack, sa_energy, soulreaper_stacks, weapon_of_sol_stacks, duel2accept, br_temp_1, loc4}", $component0);
+    if_setonvartransmit("orbs_update_specenergy(null, $component1, $component2, $component3, $component4, $component5){sa_attack, sa_energy, soulreaper_stacks, weapon_of_sol_stacks, duel2accept, br_temp_1, loc4, league_6_temp_varp1}", $component0);
     if_setonstattransmit("orbs_update_specenergy(null, $component1, $component2, $component3, $component4, $component5){hitpoints}", $component0);
     if_setoninvtransmit("orbs_update_specenergy(null, $component1, $component2, $component3, $component4, $component5){worn}", $component0);
     if_setonsubchange("orbs_update_specenergy(null, $component1, $component2, $component3, $component4, $component5)", $component0);
@@ -18,12 +18,22 @@ if ($obj = soulreaper) {
 } else if ($obj = weapon_of_sol) {
     $int6, $int7 = %weapon_of_sol_stacks, 20;
     if_setgraphic("orb_icon,18", orbs:specenergy_icon);
-} else if (~league_relic_active(struct_4721) = 1 & $int6 < $int8 & stat(hitpoints) > 25) {
-    $int6 = calc((stat(hitpoints) - 1) / 25);
-    $int7 = calc((stat_base(hitpoints) - 1) / 25);
-    if_setgraphic("orb_icon,0", orbs:specenergy_icon);
+} else if ($obj = lithic_sceptre_charged) {
+    $int6, $int7 = %lithic_sceptre_shatter_stacks, 14;
+    if_setgraphic("orb_icon,19", orbs:specenergy_icon);
 } else {
-    $int6, $int7 = calc(%sa_energy / 10), 100;
-    if_setgraphic("orb_icon,6", orbs:specenergy_icon);
+    if (~league_relic_active(struct_4721) = 1 & $int6 < $int8 & stat(hitpoints) > 25) {
+        $int6 = calc((stat(hitpoints) - 1) / 25);
+        $int7 = calc((stat_base(hitpoints) - 1) / 25);
+        if_setgraphic("orb_icon,0", orbs:specenergy_icon);
+    } else {
+        $int6, $int7 = calc(%sa_energy / 10), 100;
+        if_setgraphic("orb_icon,6", orbs:specenergy_icon);
+    }
+    if (%league_v_helm_special_active = 1) {
+        if_setgraphic("orb_icon,20", orbs:specenergy_icon);
+    } else {
+        if_setgraphic("orb_icon,6", orbs:specenergy_icon);
+    }
 }
 ~orbs_update($component1, $component2, $int6, $int7);

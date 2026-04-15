@@ -1,0 +1,28 @@
+// 9408
+[proc,script9408](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, string $string0, string $string1, boolean $boolean)
+def_dbrow $dbrow11 = ~script9463;
+if ($dbrow11 = null) {
+    return;
+}
+def_int $int12 = db_getfieldcount($dbrow11, spell_override_list:override);
+def_int $int13 = 0;
+def_dbrow $dbrow14 = null;
+if ($int12 < 1) {
+    return;
+}
+def_obj $obj15 = null;
+def_obj $obj16 = null;
+while ($int13 < $int12) {
+    $dbrow14 = db_getfield($dbrow11, spell_override_list:override, $int13);
+    if ($dbrow14 ! null) {
+        $obj15 = db_getfield($dbrow14, spell_override:base_spell, 0);
+        $obj16 = db_getfield($dbrow14, spell_override:override_spell, 0);
+        if ($obj15 ! null) {
+            ~script9447($obj15, $component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $string0, $string1, $boolean);
+        }
+        if ($obj16 ! null) {
+            ~script9447($obj16, $component0, $component1, $component2, $component3, $component4, $component5, $component6, $component7, $component8, $component9, $string0, $string1, $boolean);
+        }
+    }
+    $int13 = calc($int13 + 1);
+}

@@ -10,11 +10,15 @@ def_obj $obj3 = inv_getobj(worn, 3);
 def_int $int4 = 0;
 def_int $int5 = enum_getoutputcount(enum_1913);
 def_obj $obj6 = null;
+def_int $int7 = ~league_relic_active(struct_6441);
 while ($int4 < $int5) {
     $obj6 = enum(int, obj, enum_1913, $int4);
-    if ((oc_members($obj6) = 0 | map_members = true) & ($int0 = 0 | $int2 >= oc_param($obj6, param_23)) & ($obj3 = $obj6 | inv_total(inv, $obj6) > 0)) {
+    if ((oc_members($obj6) = 0 | map_members = true) & ($int0 = 0 | $int2 >= oc_param($obj6, param_23)) & ($obj3 = $obj6 | $int7 = 0 & ~script9440(inv, $obj6) = true)) {
         return($obj6);
     }
     $int4 = calc($int4 + 1);
+}
+if ($int7 = 1) {
+    return(league_barbarian_arm);
 }
 return(null);

@@ -1,0 +1,25 @@
+// 9419
+[proc,script9419]
+def_component $masteries_backing = league_summary:masteries_backing;
+def_component $masteries_content = league_summary:masteries_content;
+~thinbox_light($masteries_backing, 0);
+def_int $int2 = ~league_summary_draw_header($masteries_content, $int2, "Demonic Pacts");
+def_int $int3 = calc(if_getheight($masteries_content) - 20);
+def_int $int4 = 20;
+cc_create($masteries_content, ^iftype_text, $int2);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setcolour(~league_summary_get_highlight_colour);
+cc_settextshadow(true);
+cc_settextfont(quill_oblique_large);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+cc_settext("<tostring(%talent_points_earned)>/<tostring(40)>");
+$int2 = calc($int2 + 1);
+cc_create($masteries_content, ^iftype_text, $int2);
+cc_setposition(0, calc(if_getheight($masteries_content) - 20), ^setpos_abs_left, ^setpos_abs_top);
+cc_setsize(0, 20, ^setsize_minus, ^setsize_abs);
+cc_setcolour(~league_summary_get_colour);
+cc_settextshadow(true);
+cc_settextfont(p11_full);
+cc_settextalign(^settextalign_centre, ^settextalign_top, 0);
+cc_settext("Points earned");

@@ -1,0 +1,31 @@
+// 9409
+[proc,script9409]
+if (~league_world = false) {
+    return;
+}
+def_dbrow $dbrow0 = ~script9463;
+if ($dbrow0 = null) {
+    return;
+}
+def_int $int1 = db_getfieldcount($dbrow0, spell_override_list:override);
+if ($int1 < 1) {
+    return;
+}
+def_int $int2 = 0;
+def_dbrow $dbrow3 = null;
+def_obj $obj4 = null;
+def_obj $obj5 = null;
+while ($int2 < $int1) {
+    $dbrow3 = db_getfield($dbrow0, spell_override_list:override, $int2);
+    if ($dbrow3 ! null) {
+        $obj4 = db_getfield($dbrow3, spell_override:base_spell, 0);
+        $obj5 = db_getfield($dbrow3, spell_override:override_spell, 0);
+        if ($obj4 ! null) {
+            if_sethide(true, oc_param($obj4, param_596));
+        }
+        if ($obj5 ! null) {
+            if_sethide(true, oc_param($obj5, param_596));
+        }
+    }
+    $int2 = calc($int2 + 1);
+}

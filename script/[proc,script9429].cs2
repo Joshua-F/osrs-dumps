@@ -1,0 +1,143 @@
+// 9429
+[proc,script9429](int $int0, int $int1, int $int2, int $int3, int $int4, int $int5, int $int6, int $int7, int $rgb, string $string0, string $string1, boolean $boolean, dbrow $dbrow, component $component11, component $component12, component $component13, component $component14, component $component15, component $component16, component $component17, component $component18)
+def_int $int19 = -1;
+def_int $int20 = 0;
+if (cc_find($component11, $int1) = true) {
+    cc_delete;
+}
+cc_create($component11, ^iftype_rectangle, $int1);
+cc_setposition(0, $int2, ^setpos_abs_centre, ^setpos_abs_top);
+cc_setcolour(^white);
+cc_setfill(true);
+if ($dbrow = %league_task_menu_selected_task) {
+    $int19 = paraheight("Description: <$string1>.", calc(if_getwidth($component11) - 10), p11_full);
+    $int20 = calc(10 * $int19 + 25);
+    cc_setsize(0, calc(40 + $int20), ^setsize_minus, ^setsize_abs);
+    cc_settrans(210);
+    if ($boolean = false) {
+        cc_setonmouserepeat("league_task_hover(event_comsubid, $component11, $component12, 210, \"open_buttons_small,3\")");
+        if (calc($int1 % 2) = 1) {
+            cc_setonmouseleave("league_task_hover(event_comsubid, $component11, $component12, 230, \"open_buttons_small,2\")");
+        } else {
+            cc_setonmouseleave("league_task_hover(event_comsubid, $component11, $component12, 245, \"open_buttons_small,2\")");
+        }
+    }
+    cc_setop(1, "Collapse");
+    cc_setonop("script9420($int1, $int20, $dbrow, $int0)");
+    cc_setopbase("<col=f47113><$string0></col>");
+    if (cc_find($component13, $int1) = true) {
+        cc_delete;
+    }
+    cc_create($component13, ^iftype_text, 0);
+    cc_settext("Type: <col=ffffff><enum(int, string, enum_3411, $int3)></col>");
+    cc_setsize(51, 11, ^setsize_minus, ^setsize_abs);
+    cc_setposition(5, calc($int2 + 40), ^setpos_abs_left, ^setpos_abs_top);
+    cc_settextfont(p11_full);
+    cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+    cc_settextshadow(true);
+    cc_setcolour($rgb);
+    if (cc_find($component14, $int1) = true) {
+        cc_delete;
+    }
+    cc_create($component14, ^iftype_text, 0);
+    cc_settext("Area: <col=ffffff><enum(int, string, enum_3412, $int4)></col>");
+    cc_setsize(51, 11, ^setsize_minus, ^setsize_abs);
+    cc_setposition(104, calc($int2 + 40), ^setpos_abs_left, ^setpos_abs_top);
+    cc_settextfont(p11_full);
+    cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+    cc_settextshadow(true);
+    cc_setcolour($rgb);
+    if (cc_find($component15, $int1) = true) {
+        cc_delete;
+    }
+    cc_create($component15, ^iftype_text, 0);
+    cc_settext("Description: <col=ffffff><$string1>.</col>");
+    cc_setsize(10, calc(10 * $int19), ^setsize_minus, ^setsize_abs);
+    cc_setposition(5, calc($int2 + 59), ^setpos_abs_left, ^setpos_abs_top);
+    cc_settextfont(p11_full);
+    cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+    cc_settextshadow(true);
+    cc_setcolour($rgb);
+    if (cc_find($component12, $int1) = true) {
+        cc_delete;
+    }
+    cc_create($component12, ^iftype_graphic, $int1);
+    cc_setgraphic("open_buttons_small,2");
+} else {
+    cc_setsize(0, 40, ^setsize_minus, ^setsize_abs);
+    if ($boolean = false) {
+        cc_setonmouserepeat("league_task_hover(event_comsubid, $component11, $component12, 210, \"open_buttons_small,1\")");
+        if (calc($int1 % 2) = 1) {
+            cc_setonmouseleave("league_task_hover(event_comsubid, $component11, $component12, 230, \"open_buttons_small,0\")");
+        } else {
+            cc_setonmouseleave("league_task_hover(event_comsubid, $component11, $component12, 245, \"open_buttons_small,0\")");
+        }
+    }
+    if (calc($int1 % 2) = 1) {
+        cc_settrans(230);
+    } else {
+        cc_settrans(245);
+    }
+    cc_setop(1, "Expand");
+    $int19 = paraheight("Description: <$string1>.", calc(if_getwidth($component11) - 10), p11_full);
+    $int20 = calc(10 * $int19 + 25);
+    cc_setonop("script9420($int1, $int20, $dbrow, $int0)");
+    cc_setopbase("<col=f47113><$string0></col>");
+    cc_create($component12, ^iftype_graphic, $int1);
+    cc_setgraphic("open_buttons_small,0");
+}
+cc_setsize(18, 18, ^setsize_abs, ^setsize_abs);
+cc_setposition(5, calc($int2 + 11), ^setpos_abs_left, ^setpos_abs_top);
+if (cc_find($component16, $int1) = true) {
+    cc_delete;
+}
+cc_create($component16, ^iftype_graphic, $int1);
+cc_setsize(18, 18, ^setsize_abs, ^setsize_abs);
+cc_setposition(28, calc($int2 + 11), ^setpos_abs_left, ^setpos_abs_top);
+if (%league_type = 6 & enum(dbrow, boolean, enum_5952, $dbrow) = true) {
+    cc_setgraphic(enum(int, graphic, enum_5943, $int5));
+} else {
+    cc_setgraphic(enum(int, graphic, enum_2674, $int5));
+}
+if (cc_find($component17, $int1) = true) {
+    cc_delete;
+}
+cc_create($component17, ^iftype_text, $int1);
+cc_settext($string0);
+cc_setsize(51, 16, ^setsize_minus, ^setsize_abs);
+cc_setposition(51, calc($int2 + 4), ^setpos_abs_left, ^setpos_abs_top);
+cc_settextfont(p12_full);
+cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+cc_settextshadow(true);
+if ($int7 = 1) {
+    cc_setcolour($rgb);
+    %league_task_menu_completed_count = calc(%league_task_menu_completed_count + 1);
+} else {
+    cc_setcolour(0x9f9f9f);
+}
+if (cc_find($component18, $int1) = true) {
+    cc_delete;
+}
+cc_create($component18, ^iftype_text, $int1);
+def_string $string2 = "Reward: <col=ffffff><tostring($int6)> League Points";
+if (enum(dbrow, boolean, enum_5952, $dbrow) = true) {
+    if (enum(dbrow, boolean, enum_5953, $dbrow) = true) {
+        $string2 = append($string2, ", 1 <"Demonic Pact"> & 1 <"Full Pact reset">.</col>");
+    } else {
+        $string2 = append($string2, " & 1 <"Demonic Pact">.</col>");
+    }
+} else if (enum(dbrow, boolean, enum_5953, $dbrow) = true) {
+    $string2 = append($string2, " & 1 <"Full Pact reset">.</col>");
+}
+cc_settext($string2);
+cc_setsize(51, 11, ^setsize_minus, ^setsize_abs);
+cc_setposition(51, calc($int2 + 22), ^setpos_abs_left, ^setpos_abs_top);
+cc_settextfont(p11_full);
+cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+cc_settextshadow(true);
+cc_setcolour($rgb);
+if (cc_find($component11, $int1) = true) {
+    $int2 = calc($int2 + cc_getheight);
+}
+%league_task_menu_ypos = $int2;
+%league_task_menu_component_id = calc(%league_task_menu_component_id + 1);

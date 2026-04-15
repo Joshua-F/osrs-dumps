@@ -1,0 +1,13 @@
+// 9386
+[proc,script9386](dbrow $dbrow)(int)
+def_int $int = 0;
+switch_int (db_getfield($dbrow, talent_tree:node_size, 0)) {
+    case 2 :
+        $int = 24;
+    case 1 :
+        $int = 48;
+    case 3 :
+        $int = 72;
+}
+$int = scale($int, 100, %talent_tree_zoom_scalar);
+return($int);

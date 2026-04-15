@@ -1,0 +1,26 @@
+// 9401
+[clientscript,script9401](dbrow $dbrow, int $int1, component $component, int $int3, stringarray $stringarray, intarray $intarray)
+def_string $string2 = db_getfield($dbrow, talent_tree:name, 0);
+def_int $int4 = db_getfield($dbrow, talent_tree:effect:1, 0);
+def_int $int5 = $intarray($int1);
+def_string $string3 = $stringarray($int1);
+def_int $int6 = 0;
+def_int $int7 = 0;
+$int6, $int7 = ~script9387($dbrow);
+if ($int5 > 0) {
+    $int4 = $int5;
+}
+if (string_length($string3) > 0) {
+    $string2 = ~script9389($string3, tostring($int4));
+} else {
+    $string2 = ~script9389($string2, tostring($int4));
+}
+if (%talent_debug_mode = 1) {
+    $string2 = append("ID - <tostring(calc(cc_getid + 1))> [<db_getfield($dbrow, talent_tree:debug_name, 0)>]<br>", $string2);
+    $string2 = append($string2, "<br>X: <tostring($int6)>, Y: <tostring($int7)>");
+}
+if ($int3 = 1) {
+    cc_setonop("script9358(event_op, cc_getid, $dbrow, $component, talent_tree:tooltip, $string2, 25, 512)");
+} else {
+    cc_setonmouserepeat("script9442($component, cc_getid, talent_tree:tooltip, $string2, 25, 512, 1)");
+}

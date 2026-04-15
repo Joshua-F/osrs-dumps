@@ -88,17 +88,24 @@ def_string $string14 = ~script7643(oc_param($obj, param_11));
 def_string $string15 = "<tostring(oc_param($obj, param_14))> ticks (0.6s per)";
 def_int $int15 = max(1, oc_param($obj, param_13));
 def_string $string16 = "<tostring($int15)> <~text_plural($int15, "tile", "tiles")>";
-$int8, $int9 = ~script7642($component, $int8, $int9, $int12, $int13, $rgb, $graphic, 1, "Attack Bonuses", "", "", "", "");
-$int8, $int9 = ~script7642($component, $int8, $int9, $int12, $int13, $rgb, $graphic, 5, "Stab", "Slash", "Crush", "Magic", "Range");
-$int8, $int9 = ~script7642($component, $int8, $int9, $int12, $int13, $rgb, $graphic, 5, $string1, $string2, $string3, $string4, $string5);
-$int8, $int9 = ~script7642($component, $int8, $int9, $int12, $int13, $rgb, $graphic, 1, "Defence Bonuses", "", "", "", "");
-$int8, $int9 = ~script7642($component, $int8, $int9, $int12, $int13, $rgb, $graphic, 5, "Stab", "Slash", "Crush", "Magic", "Range");
-$int8, $int9 = ~script7642($component, $int8, $int9, $int12, $int13, $rgb, $graphic, 5, $string6, $string7, $string8, $string9, $string10);
-$int8, $int9 = ~script7642($component, $int8, $int9, $int12, $int13, $rgb, $graphic, 1, "Other Stats", "", "", "", "");
-$int8, $int9 = ~script7642($component, $int8, $int9, $int12, $int13, $rgb, $graphic, 4, "Melee Str", "Range Str", "Magic Str", "Prayer", "");
-$int8, $int9 = ~script7642($component, $int8, $int9, $int12, $int13, $rgb, $graphic, 4, $string11, $string12, $string13, $string14, "0");
+$int8, $int9 = ~script7642($component, $int8, $int9, $int12, $int13, $rgb, $graphic, 1, "Attack Bonuses", "", "", "", "", 1);
+$int8, $int9 = ~script7642($component, $int8, $int9, $int12, $int13, $rgb, $graphic, 5, "Stab", "Slash", "Crush", "Magic", "Range", 0);
+$int8, $int9 = ~script7642($component, $int8, $int9, $int12, $int13, $rgb, $graphic, 5, $string1, $string2, $string3, $string4, $string5, 0);
+$int8, $int9 = ~script7642($component, $int8, $int9, $int12, $int13, $rgb, $graphic, 1, "Defence Bonuses", "", "", "", "", 1);
+$int8, $int9 = ~script7642($component, $int8, $int9, $int12, $int13, $rgb, $graphic, 5, "Stab", "Slash", "Crush", "Magic", "Range", 0);
+$int8, $int9 = ~script7642($component, $int8, $int9, $int12, $int13, $rgb, $graphic, 5, $string6, $string7, $string8, $string9, $string10, 0);
+$int8, $int9 = ~script7642($component, $int8, $int9, $int12, $int13, $rgb, $graphic, 1, "Other Stats", "", "", "", "", 1);
+$int8, $int9 = ~script7642($component, $int8, $int9, $int12, $int13, $rgb, $graphic, 4, "Melee Str", "Range Str", "Magic Str", "Prayer", "", 0);
+$int8, $int9 = ~script7642($component, $int8, $int9, $int12, $int13, $rgb, $graphic, 4, $string11, $string12, $string13, $string14, "0", 0);
 if (oc_param($obj, param_2061) = false) {
-    $int8, $int9 = ~script7642($component, $int8, $int9, $int12, $int13, $rgb, $graphic, 2, "Attack speed", "Attack range", "", "", "");
-    $int8, $int9 = ~script7642($component, $int8, $int9, $int12, $int13, $rgb, $graphic, 2, $string15, $string16, "0", "0", "0");
+    $int8, $int9 = ~script7642($component, $int8, $int9, $int12, $int13, $rgb, $graphic, 2, "Attack speed", "Attack range", "", "", "", 0);
+    $int8, $int9 = ~script7642($component, $int8, $int9, $int12, $int13, $rgb, $graphic, 2, $string15, $string16, "0", "0", "0", 0);
+}
+def_int $int16 = oc_param($obj, param_2581);
+def_string $string17 = "";
+if ($int16 ! -1) {
+    $string17 = "<tostring(calc($int16 / 1000))>.<tostring(calc($int16 % 1000))>kg";
+    $int8, $int9 = ~script7642($component, $int8, $int9, $int12, $int13, $rgb, $graphic, 1, "Weight", "0", "0", "0", "0", 1);
+    $int8, $int9 = ~script7642($component, $int8, $int9, $int12, $int13, $rgb, $graphic, 1, $string17, "0", "0", "0", "0", 0);
 }
 return($int8, $int9);

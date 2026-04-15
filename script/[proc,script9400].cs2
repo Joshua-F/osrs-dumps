@@ -1,0 +1,63 @@
+// 9400
+[proc,script9400]
+def_int $int0 = 0;
+def_intarray $intarray0 = array_create(int, 0, -1);
+def_intarray $intarray1 = array_create(int, 0, -1);
+def_stringarray $stringarray = array_create(string, 0, -1);
+def_dbrowarray $dbrowarray = array_create(dbrow, 0, -1);
+if_query(1, talent_tree:hotfix, -1);
+while (if_query_next = true) {
+    array_push($intarray0, cc_param(param_2569));
+    array_push($stringarray, cc_param(param_2570));
+    array_push($intarray1, cc_param(param_2571));
+    array_push($dbrowarray, cc_param(param_678));
+    $int0 = calc($int0 + 1);
+}
+if ($int0 < 1) {
+    return;
+}
+def_boolean $boolean = ~on_mobile;
+def_int $int2 = 0;
+def_int $int3 = 0;
+def_dbrow $dbrow = null;
+def_component $tree_node_draw_layer = talent_tree:tree_node_draw_layer;
+def_string $string4 = "";
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_string $string5 = "";
+if_query(1, $tree_node_draw_layer, -1);
+while (if_query_next = true) {
+    $int2, $int3 = -1, -1;
+    $dbrow = cc_param(param_678);
+    if ($dbrow ! null) {
+        $int3 = array_indexof($dbrowarray, $dbrow, 0, -1);
+        if (cc_param(param_2569) ! -1) {
+            $int2 = array_indexof($intarray0, cc_param(param_2569), 0, -1);
+        }
+        $string4 = db_getfield($dbrow, talent_tree:name, 0);
+        $int6 = db_getfield($dbrow, talent_tree:effect:1, 0);
+        if ($int2 ! -1) {
+            $string5 = $stringarray($int2);
+        } else {
+            $string5 = "";
+        }
+        if ($int3 ! -1) {
+            $int7 = $intarray1($int3);
+        } else {
+            $int7 = 0;
+        }
+        if ($int7 > 0) {
+            $int6 = $int7;
+        }
+        if (string_length($string5) > 0) {
+            $string4 = ~script9389($string5, tostring($int6));
+        } else {
+            $string4 = ~script9389($string4, tostring($int6));
+        }
+        if ($boolean = true) {
+            cc_setonop("script9358(event_op, cc_getid, $dbrow, $tree_node_draw_layer, talent_tree:tooltip, $string4, 25, 512)");
+        } else {
+            cc_setonmouserepeat("script9442($tree_node_draw_layer, cc_getid, talent_tree:tooltip, $string4, 25, 512, 1)");
+        }
+    }
+}
