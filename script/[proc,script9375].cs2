@@ -1,0 +1,30 @@
+// 9375
+[proc,script9375](string $string0, int $rgb, string $string1, string $string2)(int, int)
+def_component $floating_panel_background = talent_tree:floating_panel_background;
+def_component $floating_panel_content = talent_tree:floating_panel_content;
+def_int $int3 = 0;
+def_int $int4 = 0;
+if_setnoclickthrough(true, $floating_panel_background);
+cc_deleteall($floating_panel_background);
+def_int $int5 = 0;
+$int5 = ~create_graphic($floating_panel_background, $int5, tradebacking, 1, 1, ^setpos_abs_left, ^setpos_abs_top, 0, 0, ^setsize_minus, ^setsize_minus, true);
+~stonebox($floating_panel_background, 1, $int5);
+$int5 = 0;
+cc_deleteall($floating_panel_content);
+cc_create($floating_panel_content, ^iftype_text, $int5);
+cc_setsize(0, 28, ^setsize_minus, ^setsize_abs);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top);
+cc_settextfont(p12_full);
+cc_settextshadow(true);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+cc_setcolour($rgb);
+cc_settext($string0);
+$int5 = calc($int5 + 1);
+$int3 = $int5;
+$int5 = ~cc_add_button($floating_panel_content, $int5, 55, 4, ^setpos_abs_centre, ^setpos_abs_bottom, 100, 31, ^setsize_abs, ^setsize_abs, struct_6265, $string1);
+cc_setop(1, $string1);
+$int4 = $int5;
+$int5 = ~cc_add_button($floating_panel_content, $int5, -55, 4, ^setpos_abs_centre, ^setpos_abs_bottom, 100, 31, ^setsize_abs, ^setsize_abs, struct_6265, $string2);
+cc_setop(1, $string2);
+if_sethide(false, talent_tree:floating_panel);
+return($int3, $int4);

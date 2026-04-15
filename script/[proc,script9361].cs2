@@ -1,0 +1,203 @@
+// 9361
+[proc,script9361](int $int0)
+if (%talent_tree_zoom_scalar <= 0) {
+    %talent_tree_zoom_scalar = 100;
+}
+if (~on_mobile = true) {
+    %talent_tree_drag_delay = 10;
+    if_setontimer("script7893", talent_tree:frame);
+}
+if_sethide(true, talent_tree:floating_panel);
+if_setonvartransmit("script7892(0){talent_points_earned, combat_mastery_perm_0, combat_mastery_perm_1, combat_mastery_perm_2, combat_mastery_perm_3, combat_mastery_perm_4, combat_mastery_perm_5}", talent_tree:universe);
+if (~on_mobile = false) {
+    ~toplevel_floater_drag_init(3, talent_tree:universe, talent_tree:window);
+} else {
+    ~script8230(3, 16, 16, 684, 418);
+    ~script8237(3, talent_tree:universe, talent_tree:window);
+    ~toplevel_floater_size_handler(^min_32bit_int, ^min_32bit_int, 3, talent_tree:universe, talent_tree:window);
+}
+~steelborder(talent_tree:frame, "Demonic Pacts", 2);
+def_int $int1 = scale(1500, 100, %talent_tree_zoom_scalar);
+def_component $tree_draw_layers = talent_tree:tree_draw_layers;
+if_setscrollsize($int1, $int1, $tree_draw_layers);
+if ($int0 = 1) {
+    ~script9360($tree_draw_layers, $int1);
+} else {
+    if_setscrollpos(%talent_tree_horizontal_scroll_pos, %talent_tree_vertical_scroll_pos, $tree_draw_layers);
+}
+if_setscrollpos(%talent_tree_horizontal_scroll_pos, %talent_tree_vertical_scroll_pos, talent_tree:tree_draw_layers);
+if (cc_find(talent_tree:frame, 0) = true) {
+    cc_setonclickrepeat("script7894(event_mousex, event_mousey)");
+    cc_setonclick("script7895(event_mousex, event_mousey)");
+}
+if (cc_find(talent_tree:frame, 11) = true) {
+    cc_setonclick("opsound(1, -1)");
+    cc_setonop(null);
+}
+cc_create(talent_tree:tree_background, ^iftype_rectangle, 0);
+cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setfill(true);
+cc_setcolour(0x383128);
+def_component $tree_node_draw_layer = talent_tree:tree_node_draw_layer;
+def_component $tree_connection_draw_layer = talent_tree:tree_connection_draw_layer;
+cc_deleteall($tree_node_draw_layer);
+cc_deleteall($tree_connection_draw_layer);
+def_dbrowarray $dbrowarray = enum_getoutputs(dbrow, enum_5942);
+def_int $int5 = 0;
+if (%talent_points_spent < %talent_points_earned) {
+    $int5 = 1;
+}
+%talent_tree_selected_node_amount = 0;
+cc_deleteall(talent_tree:data_layer);
+def_int $int6 = 0;
+def_int $int7 = array_size($dbrowarray);
+def_int $int8 = 0;
+def_int $int9 = 0;
+def_dbrow $dbrow10 = null;
+def_string $string = "";
+def_int $int11 = 0;
+def_int $int12 = 0;
+def_int $int13 = 0;
+while ($int6 < $int7) {
+    $dbrow10 = $dbrowarray($int6);
+    cc_create($tree_node_draw_layer, ^iftype_layer, $int6);
+    $int13 = ~script9386($dbrow10);
+    cc_setsize($int13, $int13, ^setsize_abs, ^setsize_abs);
+    $int11, $int12 = ~script9387($dbrow10);
+    cc_setposition($int11, $int12, ^setpos_abs_centre, ^setpos_abs_centre);
+    $string = ~script9388($dbrow10);
+    if (%talent_debug_mode = 1) {
+        $string = append("ID - <tostring(calc($int6 + 1))> [<db_getfield($dbrow10, talent_tree:debug_name, 0)>]<br>", $string);
+        $string = append($string, "<br>X: <tostring($int11)>, Y: <tostring($int12)>");
+    }
+    if (~on_mobile = true) {
+        cc_setopbase("<col=ff9040>Pact</col>");
+        if (%talent_tree_mobile_op_toggle = 1) {
+            cc_setop(1, "Select");
+            cc_setop(2, "View info");
+        } else {
+            cc_setop(1, "View info");
+            cc_setop(2, "Select");
+        }
+        cc_setonop("script9358(event_op, $int6, $dbrow10, $tree_node_draw_layer, talent_tree:tooltip, $string, 25, 512)");
+    } else {
+        cc_setonmouserepeat("script9442($tree_node_draw_layer, $int6, talent_tree:tooltip, $string, 25, 512, 1)");
+        cc_setop(1, "Select");
+        cc_setonop("script9367(event_op, $int6, $dbrow10)");
+    }
+    if (~script9457($int6, 0) = ^true) {
+        cc_setparam(param_2551, 1);
+    }
+    $int6 = calc($int6 + 1);
+}
+$int8 = $int6;
+$int6 = 0;
+def_int $int14 = 0;
+def_dbrow $dbrow15 = null;
+def_int $int16 = 1;
+def_int $int17 = 0;
+def_int $int18 = 0;
+def_int $intbool19 = ^false;
+def_int $intbool20 = ^false;
+def_int $int21 = 0;
+def_int $int22 = 0;
+def_int $int23 = 0;
+def_int $int24 = 0;
+def_int $int25 = scale(16384, 1000, 1000);
+def_int $int26 = scale(16384, 1000, 500);
+def_int $int27 = scale(16384, 1000, 1000);
+while ($int6 < $int7) {
+    $int22 = 0;
+    $int14 = 0;
+    $dbrow10 = $dbrowarray($int6);
+    $intbool19 = ~script9457($int6, 0);
+    if ($dbrow10 ! null & cc_find($tree_node_draw_layer, $int6) = true) {
+        cc_setparam(param_677, true);
+        cc_setparam(param_2552, $int8);
+        cc_setparam(param_678, $dbrow10);
+        cc_setparam(param_2569, db_getfield($dbrow10, talent_tree:effect:0, 0));
+        $int23 = $int8;
+        cc_create_child(^iftype_graphic, $int8);
+        cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+        $int8 = calc($int8 + 1);
+        cc_create_sibling(^iftype_graphic, $int8);
+        if (.cc_find($tree_node_draw_layer, $int6) = true) {
+            .cc_setparam(param_2553, $int8);
+        }
+        $int24 = $int8;
+        if (db_getfield($dbrow10, talent_tree:node_size, 0) = 1) {
+            cc_setsize($int25, $int25, ^setsize_rel, ^setsize_rel);
+        } else if (db_getfield($dbrow10, talent_tree:node_size, 0) = 2) {
+            cc_setsize($int26, $int26, ^setsize_rel, ^setsize_rel);
+        } else {
+            cc_setsize($int27, $int27, ^setsize_rel, ^setsize_rel);
+        }
+        cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+        $int8 = calc($int8 + 1);
+        while ($int14 < db_getfieldcount($dbrow10, talent_tree:linked_nodes)) {
+            $int16 = 1;
+            $dbrow15 = db_getfield($dbrow10, talent_tree:linked_nodes, $int14);
+            $int17 = array_indexof($dbrowarray, $dbrow15, 0, -1);
+            $intbool20 = ~script9457($int17, 0);
+            if ($intbool19 = ^true) {
+                if ($intbool20 = ^true) {
+                    $int18 = 1;
+                } else if ($int5 = 1) {
+                    $int18 = 3;
+                } else {
+                    $int18 = 0;
+                }
+            } else if ($intbool20 = ^true & $int5 = 1) {
+                $int18 = 3;
+                $int22 = 1;
+            } else {
+                $int18 = 0;
+            }
+            if (.cc_find($tree_node_draw_layer, $int17) = true) {
+                if (.cc_param(param_677) = true) {
+                    $int16 = 0;
+                } else {
+                    ~script9366($int6, $int9);
+                    if (cc_find($tree_node_draw_layer, $int6) = true) {
+                        ~script9365($int17, $int9);
+                    }
+                }
+            } else {
+                $int16 = 0;
+            }
+            if ($int16 = 1) {
+                $int9 = ~script9363($dbrow10, $dbrow15, $tree_connection_draw_layer, $int9, $int18);
+            }
+            $int14 = calc($int14 + 1);
+        }
+        if ($intbool19 = ^true) {
+            $int21 = 1;
+        } else if ($int5 = 1 & ($int22 = 1 | $int6 = 0)) {
+            $int21 = 3;
+        } else {
+            $int21 = 0;
+        }
+        if (cc_find($tree_node_draw_layer, $int23) = true) {
+            cc_setgraphic(~script9384($dbrow10, $int21));
+        }
+        if (cc_find($tree_node_draw_layer, $int24) = true) {
+            cc_setgraphic(~script9385($dbrow10, $int21));
+        }
+        if ($int21 = 3 & cc_find($tree_node_draw_layer, $int6) = true) {
+            cc_setparam(param_2551, 3);
+        }
+    }
+    $int6 = calc($int6 + 1);
+}
+if (~script9457(0, 0) = ^false & %league_tutorial_completed < 14) {
+    if_setontimer("script9390($tree_node_draw_layer, 0)", talent_tree:tree_node_draw_layer);
+}
+if (%talent_tree_showing_info_panel = 1) {
+    ~script8566;
+} else {
+    ~script7901;
+}
+if (cc_find(talent_tree:hotfix, 0) = true) {
+    if_setontimer("script9362(calc(clientclock + 1))", talent_tree:hotfix);
+}

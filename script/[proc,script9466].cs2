@@ -1,0 +1,17 @@
+// 9466
+[proc,script9466](dbrow $dbrow)(boolean)
+def_int $int = -1;
+if ($dbrow = null) {
+    ~script2075("Toggle data was null when passing into valid toggle check.");
+    return(false);
+}
+if (db_getfieldcount($dbrow, league_relic_effect_toggle:toggle_bit) < 1) {
+    ~script2075("$toggle_bit was missing on the toggle <db_getfield($dbrow, league_relic_effect_toggle:toggle_debugname, 0)>.");
+    return(false);
+}
+$int = db_getfield($dbrow, league_relic_effect_toggle:toggle_bit, 0);
+if ($int >= 32 | $int < 0) {
+    ~script2075("$toggle_bit was an invalid bit (<tostring($int)>) we only support 0-31 bits, if we want more at once, make a new varp.");
+    return(false);
+}
+return(true);

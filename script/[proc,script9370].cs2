@@ -1,0 +1,136 @@
+// 9370
+[proc,script9370](int $int0, dbrow $dbrow)
+cc_deleteall(talent_tree:tooltip);
+if ($dbrow = null) {
+    return;
+}
+def_int $int2 = calc(%talent_points_spent + %talent_tree_selected_node_amount);
+if ($int2 >= %talent_points_earned) {
+    mes("<col=ff0000>You're unable to select any additional nodes.");
+    sound_synth(synth_2277, 1, 0);
+    return;
+}
+def_component $tree_node_draw_layer = talent_tree:tree_node_draw_layer;
+def_int $int4 = 0;
+def_component $tree_connection_draw_layer = talent_tree:tree_connection_draw_layer;
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_int $int8 = 0;
+def_int $int9 = 1;
+def_int $int10 = 0;
+if (calc($int2 + 1) >= %talent_points_earned) {
+    $int4 = 1;
+}
+if (cc_find($tree_node_draw_layer, $int0) = true) {
+    switch_int (cc_param(param_2551)) {
+        case 2 :
+            mes("<col=ff0000>This pact has already been selected.");
+            sound_synth(synth_2277, 1, 0);
+            return;
+        case 1 :
+            mes("<col=ff0000>This pact is already active.");
+            sound_synth(synth_2277, 1, 0);
+            return;
+        case 0 :
+            mes("<col=ff0000>This pact cannot currently be selected, you must select / activate nearby pacts first.");
+            sound_synth(synth_2277, 1, 0);
+            return;
+    }
+    if (db_getfield($dbrow, talent_tree:node_size, 0) = 3) {
+        sound_synth(synth_11413, 1, 0);
+    } else {
+        sound_synth(synth_11431, 1, 0);
+    }
+    %talent_tree_selected_node_amount = calc(%talent_tree_selected_node_amount + 1);
+    if ($int0 > 0) {
+        if (~on_mobile = true) {
+            cc_setop(3, "Deselect Node");
+        } else {
+            cc_setop(2, "Deselect Node");
+        }
+    }
+    .cc_create(talent_tree:data_layer, ^iftype_layer, %talent_tree_selected_node_amount, true);
+    .cc_setparam(param_2554, $int0);
+    ~script9372(2);
+    while ($int9 <= 6) {
+        switch_int ($int9) {
+            case 1 :
+                $int6 = cc_param(param_2557);
+                $int7 = cc_param(param_2558);
+            case 2 :
+                $int6 = cc_param(param_2559);
+                $int7 = cc_param(param_2560);
+            case 3 :
+                $int6 = cc_param(param_2561);
+                $int7 = cc_param(param_2562);
+            case 4 :
+                $int6 = cc_param(param_2563);
+                $int7 = cc_param(param_2564);
+            case 5 :
+                $int6 = cc_param(param_2565);
+                $int7 = cc_param(param_2566);
+            case 6 :
+                $int6 = cc_param(param_2567);
+                $int7 = cc_param(param_2568);
+        }
+        if ($int6 > -1 & .cc_find($tree_node_draw_layer, $int6) = true) {
+            switch_int (.cc_param(param_2551)) {
+                case 0 :
+                    if ($int4 = 0) {
+                        $int8 = 3;
+                        ~script9374(3, .cc_param(param_678), .cc_param(param_2552), .cc_param(param_2553));
+                    } else {
+                        $int8 = 0;
+                    }
+                case 1 :
+                    $int8 = 2;
+                case 2 :
+                    $int8 = 2;
+                case 3 :
+                    $int8 = 3;
+            }
+            if (.cc_find($tree_connection_draw_layer, $int7) = true) {
+                .cc_setparam(param_2551, $int8);
+                .cc_setcolour(~script9395($int8));
+            }
+        }
+        $int9 = calc($int9 + 1);
+    }
+} else {
+    ~debug_mes("Invalid node selected.");
+}
+def_int $int11 = 42401807;
+def_component $floating_panel_content = talent_tree:floating_panel_content;
+def_int $int13 = 0;
+def_int $int14 = 0;
+def_int $int15 = 0;
+def_int $int16 = -1;
+def_int $rgb = ^black;
+if ($int4 = 1) {
+    $rgb = ~script9395(0);
+    if_query(1, $tree_node_draw_layer, -1);
+    if_query_refine(param_2551, 3);
+    while (if_query_next = true) {
+        ~script9372(0);
+    }
+    if_query(1, $tree_connection_draw_layer, -1);
+    if_query_refine(param_2551, 3);
+    while (if_query_next = true) {
+        cc_setparam(param_2551, 0);
+        cc_setcolour($rgb);
+    }
+}
+if (%talent_tree_selected_node_amount > 0 & if_gethide(talent_tree:floating_panel) = true) {
+    $int13, $int14 = ~script9375("1 pending pact change", 0xff981f, "Apply Changes", "Undo Changes");
+    if (cc_find($floating_panel_content, $int13) = true) {
+        cc_setonop("script9376");
+    }
+    if (cc_find($floating_panel_content, $int14) = true) {
+        cc_setonop("script9371");
+    }
+} else if (cc_find($floating_panel_content, 0) = true) {
+    cc_settext("<tostring(%talent_tree_selected_node_amount)> pending pact changes");
+}
+if (~script9457(0, 0) = ^false & %league_tutorial_completed < 14) {
+    if_setontimer(null, talent_tree:tree_node_draw_layer);
+}

@@ -1,0 +1,18 @@
+// 9430
+[proc,script9430]
+def_component $tasks_list = league_tasks:tasks_list;
+def_component $tasks_scrollbar = league_tasks:tasks_scrollbar;
+def_int $int2 = %league_task_menu_ypos;
+def_int $int3 = %league_tasks_scroll_pos;
+if ($int3 = -1) {
+    $int3 = if_getscrolly($tasks_list);
+}
+if ($int2 > if_getheight($tasks_list)) {
+    if_setscrollsize(0, $int2, $tasks_list);
+} else {
+    if_setscrollsize(0, 0, $tasks_list);
+}
+if_setscrollpos(0, $int3, $tasks_list);
+cc_deleteall($tasks_scrollbar);
+~scrollbar_vertical($tasks_scrollbar, $tasks_list, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~scrollbar_resize($tasks_scrollbar, $tasks_list, $int3);

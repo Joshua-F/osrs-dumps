@@ -1,0 +1,16 @@
+// 9422
+[proc,script9422](int $int0, int $int1)
+cc_deleteall(league_tasks:tasks_type);
+cc_deleteall(league_tasks:tasks_area);
+cc_deleteall(league_tasks:tasks_description);
+if (cc_find(league_tasks:tasks_expand, $int0) = true) {
+    cc_delete;
+}
+def_int $int2 = %league_task_menu_ypos;
+if (cc_find(league_tasks:tasks_background, $int0) = true) {
+    %league_task_menu_ypos = cc_gety;
+}
+%league_task_menu_entry_id = $int1;
+%league_task_menu_component_id = $int0;
+~script9428(1);
+%league_task_menu_ypos = $int2;

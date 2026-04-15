@@ -1,0 +1,28 @@
+// 9439
+[proc,script9439](int $int0, int $int1, int $int2, component $component)
+def_int $int4 = 0;
+def_obj $obj = null;
+cc_deleteall($component);
+def_int $int6 = 0;
+while ($int6 < $int0) {
+    cc_create($component, ^iftype_graphic, $int6);
+    $obj = inv_getobj(butlers_bell_collection, $int6);
+    if ($obj ! null) {
+        cc_sethide(false);
+        cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+        $int4 = calc($int6 / 9 * (32 + $int1));
+        cc_setposition(calc($int2 + $int6 % 9 * (36 + $int1)), $int4, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setgraphicshadow(0x333333);
+        cc_setoutline(1);
+        cc_setobject($obj, inv_getnum(butlers_bell_collection, $int6));
+        cc_setop(10, "Examine");
+        cc_setonop("cc_settrans_temporarily(event_com, event_comsubid, 125, 0)");
+        cc_setopbase("<col=ff9040><oc_name($obj)></col>");
+    } else {
+        cc_sethide(true);
+    }
+    $int6 = calc($int6 + 1);
+}
+if ($int4 ! -1) {
+    $int4 = calc($int4 + 32);
+}

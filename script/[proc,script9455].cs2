@@ -1,0 +1,19 @@
+// 9455
+[proc,script9455](int $int0, dbrowarray $dbrowarray)(boolean)
+def_dbrow $dbrow = enum(int, dbrow, enum_5942, $int0);
+if ($dbrow = null | db_getrowtable($dbrow) ! talent_tree) {
+    return(false);
+}
+def_int $int2 = db_getfieldcount($dbrow, talent_tree:linked_nodes);
+def_int $int3 = 0;
+def_int $int4 = 0;
+while ($int3 < $int2) {
+    $int4 = array_indexof($dbrowarray, db_getfield($dbrow, talent_tree:linked_nodes, $int3), 0, -1);
+    if ($int4 = -1) {
+        ~script2075("Our linked node isn't attached to our list. Issue with neighbour <tostring($int3)>, for ID <tostring($int0)>");
+    } else if (~script9457($int4, 0) = ^true) {
+        return(true);
+    }
+    $int3 = calc($int3 + 1);
+}
+return(false);

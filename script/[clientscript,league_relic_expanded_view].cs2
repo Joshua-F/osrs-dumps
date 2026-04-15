@@ -1,31 +1,31 @@
 // 3193
-[clientscript,league_relic_expanded_view](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10, component $component11, component $component12, component $component13, component $component14, component $component15, component $component16, component $component17, int $int18, struct $struct19, struct $struct20)
+[clientscript,league_relic_expanded_view](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10, component $component11, component $component12, component $component13, component $component14, component $component15, component $component16, component $component17, int $int18, struct $struct19, int $int20, string $string0, string $string1)
 def_struct $struct21 = enum(int, struct, enum_2670, %league_type);
 if ($struct21 = null) {
     return;
 }
 def_int $int22 = struct_param($struct21, param_1027);
-def_string $string0 = ~script3739($int22, "u");
+def_int $int23 = 16513013;
+def_string $string2 = ~script3739($int22, "col");
+def_string $string3 = ~script3739($int22, "u");
+def_string $string4 = ~script3739($int23, "col");
 if_setcolour($int22, $component5);
 if_setcolour($int22, $component6);
-if_setcolour($int22, $component7);
+if_setcolour($int23, $component7);
 if_setcolour($int22, $component15);
-if_setcolour($int22, $component16);
-if_setcolour($int22, $component12);
-def_int $int23 = -1;
-def_string $string1 = "";
-def_string $string2 = "";
+if_setcolour($int23, $component16);
+if_setcolour($int23, $component12);
+def_int $int24 = -1;
+def_string $string5 = "";
+def_string $string6 = "";
 def_obj $obj = struct_param($struct19, param_2049);
+$string6 = "<$string6><$string0><br><br>";
 if ($obj ! null) {
-    $string2 = "Upon choosing this relic you will receive the <col=ffffff><oc_name($obj)></col>.<br><br>";
+    $string6 = "<$string6><$string4>The <$string2><oc_name($obj)></col> can be retrieved from the <$string2>Leagues tutor</col> in Yama's lair if lost.</col>";
 }
-$string2 = "<$string2><struct_param($struct19, param_880)><br><br>";
-if ($obj ! null) {
-    $string2 = "<$string2><col=ffffff>The <oc_name($obj)> can be retrieved from the Sage if lost.</col>";
-}
-def_string $string3 = struct_param($struct20, param_1020);
-def_int $int25 = struct_param($struct19, param_885);
-def_int $int26 = if_getwidth(league_relics:description_holder);
+def_string $string7 = $string1;
+def_int $int26 = struct_param($struct19, param_885);
+def_int $int27 = if_getwidth(league_relics:description_holder);
 if_sethide(true, $component3);
 if_sethide(true, $component0);
 if_sethide(true, $component1);
@@ -33,50 +33,57 @@ if_sethide(false, $component2);
 if_sethide(true, $component17);
 if_sethide(true, league_relics:extra_info);
 if_setgraphic(struct_param($struct19, param_884), $component4);
-if_settext("<$string0><struct_param($struct19, param_879)></u>", $component5);
-if_settext("Relic Effect:", $component6);
-def_int $int27 = calc(paraheight($string2, $int26, p12_full) * 15);
-def_int $int28 = calc(paraheight($string3, if_getwidth(league_relics:passive_description), p12_full) * 15);
-if_settext($string2, $component7);
-if_setsize(0, $int27, ^setsize_minus, ^setsize_abs, $component7);
-def_int $int29 = calc($int27 + 12 + if_getheight($component6));
-def_string $string4 = "Passive Effects";
-def_int $int30 = calc(if_getheight($component2) - 41);
-if ($int29 > calc($int30 - 53)) {
+if_settext("<$string3><struct_param($struct19, param_879)></u>", $component5);
+if_settext("Active Effects:", $component6);
+$string6 = ~string_findandreplace($string6, "<col=#>", $string2);
+def_int $int28 = calc(paraheight($string6, $int27, p12_full) * 15);
+def_int $int29 = calc(paraheight($string7, if_getwidth(league_relics:passive_description), p12_full) * 15);
+if_settext($string6, $component7);
+if_setsize(0, $int28, ^setsize_minus, ^setsize_abs, $component7);
+def_int $int30 = 0;
+$int30 = ~script9410($struct19, $int18, $int30, $int22, $int23);
+$int30 = ~script9412($struct19, $int18, $int30, $int23, $int22);
+$int28 = calc($int28 + $int30);
+if_setposition(0, calc(26 + $int30), ^setpos_abs_left, ^setpos_abs_top, $component7);
+if_setposition(0, calc(6 + $int30), ^setpos_abs_left, ^setpos_abs_top, $component6);
+def_int $int31 = calc($int28 + 12 + if_getheight($component6));
+def_string $string8 = "Passive Effects";
+def_int $int32 = calc(if_getheight($component2) - 41);
+if ($int31 > calc($int32 - 53)) {
     if_setsize(148, 96, ^setsize_minus, ^setsize_minus, league_relics:description_relic);
     if_setposition(8, 33, ^setpos_abs_left, ^setpos_abs_top, league_relics:description_relic);
     if_setsize(148, 53, ^setsize_minus, ^setsize_abs, league_relics:description_passive);
     if_setposition(8, 8, ^setpos_abs_left, ^setpos_abs_bottom, league_relics:description_passive);
 } else {
-    if_setsize(148, calc($int29 + 6), ^setsize_minus, ^setsize_abs, league_relics:description_relic);
+    if_setsize(148, calc($int31 + 6), ^setsize_minus, ^setsize_abs, league_relics:description_relic);
     if_setposition(8, 33, ^setpos_abs_left, ^setpos_abs_top, league_relics:description_relic);
-    if_setsize(148, calc($int30 - $int29 - 8), ^setsize_minus, ^setsize_abs, league_relics:description_passive);
-    if_setposition(8, calc($int29 + 41), ^setpos_abs_left, ^setpos_abs_top, league_relics:description_passive);
+    if_setsize(148, calc($int32 - $int31 - 8), ^setsize_minus, ^setsize_abs, league_relics:description_passive);
+    if_setposition(8, calc($int31 + 41), ^setpos_abs_left, ^setpos_abs_top, league_relics:description_passive);
 }
 cc_deleteall(league_relics:description_scrollbar);
-if ($int29 > if_getheight(league_relics:description_holder)) {
-    if_setscrollsize(0, $int29, league_relics:description_holder);
+if ($int31 > if_getheight(league_relics:description_holder)) {
+    if_setscrollsize(0, $int31, league_relics:description_holder);
 } else {
     if_setscrollsize(0, 0, league_relics:description_holder);
 }
 if_setscrollpos(0, 0, league_relics:description_holder);
 ~scrollbar_vertical(league_relics:description_scrollbar, league_relics:description_holder, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
 if_sethide(false, league_relics:description_scrollbar);
-if ($struct20 ! null) {
-    if ($int28 > if_getheight(league_relics:passive_description)) {
+if ($int20 ! -1) {
+    if ($int29 > if_getheight(league_relics:passive_description)) {
         if_settext("<~text_device("Click", "Tap")> to expand...", $component16);
         if_setop(1, "Expand", league_relics:passive_clickzone);
-        if_setonop("league_relics_extra_info($string4, $string3, $int22)", league_relics:passive_clickzone);
+        if_setonop("league_relics_extra_info($string8, $string7, $int22, $int23)", league_relics:passive_clickzone);
         if_sethide(false, league_relics:passive_clickzone);
         if_setsize(148, 53, ^setsize_minus, ^setsize_abs, league_relics:description_passive);
     } else {
-        if_settext($string3, $component16);
+        if_settext($string7, $component16);
         if_setop(1, "", league_relics:passive_clickzone);
         if_setonop(null, league_relics:passive_clickzone);
         if_sethide(true, league_relics:passive_clickzone);
-        if_setsize(148, calc(33 + $int28), ^setsize_minus, ^setsize_abs, league_relics:description_passive);
+        if_setsize(148, calc(33 + $int29), ^setsize_minus, ^setsize_abs, league_relics:description_passive);
     }
-    if_settext("Passive Effect:", $component15);
+    if_settext("Passive Effects:", $component15);
     if_sethide(false, $component16);
     if_sethide(false, $component15);
 } else {
@@ -85,101 +92,101 @@ if ($struct20 ! null) {
     if_sethide(true, $component16);
     if_sethide(true, $component15);
 }
-$int30 = calc(if_getheight(league_relics:description_relic) + if_getheight(league_relics:description_passive) + 2);
-if ($int30 > 192) {
-    if_setsize(if_getwidth(league_relics:universe), min(calc($int30 + 41 + 94), if_getheight(league_relics:universe)), ^setsize_abs, ^setsize_abs, league_relics:universe);
+$int32 = calc(if_getheight(league_relics:description_relic) + if_getheight(league_relics:description_passive) + 2);
+if ($int32 > 192) {
+    if_setsize(if_getwidth(league_relics:universe), min(calc($int32 + 41 + 94), if_getheight(league_relics:universe)), ^setsize_abs, ^setsize_abs, league_relics:universe);
 } else {
     if_setsize(if_getwidth(league_relics:universe), 320, ^setsize_abs, ^setsize_abs, league_relics:universe);
 }
 if ($int18 = 2 | $int18 = 5) {
-    $int23 = ~v2_stone_button($component8);
-    $string1 = "Select";
+    $int24 = ~v2_stone_button($component8);
+    $string5 = "Select";
     if_setopbase("<col=ff981f><struct_param($struct19, param_879)></col>", $component8);
 } else {
-    $int23 = ~v2_stone_button_in($component8);
+    $int24 = ~v2_stone_button_in($component8);
     if ($int18 = 1) {
-        $string1 = "Unlocked";
+        $string5 = "Unlocked";
     } else {
-        $string1 = "Locked";
+        $string5 = "Locked";
     }
     if_setopbase("", $component8);
 }
-cc_create($component8, ^iftype_text, $int23);
+cc_create($component8, ^iftype_text, $int24);
 cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
 cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
-cc_settext($string1);
+cc_settext($string5);
 cc_settextfont(p12_full);
 cc_settextshadow(true);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-if_setop(1, $string1, $component8);
+if_setop(1, $string5, $component8);
 if ($int18 = 2 | $int18 = 5) {
     cc_setcolour(0x53d93c);
     if (~on_mobile = false) {
-        if_setonmouseleave("league_interface_button_hover($component8, false, $string1, 0x53d93c)", $component8);
-        if_setonmouserepeat("league_interface_button_hover($component8, true, $string1, 0xaaaaaa)", $component8);
+        if_setonmouseleave("league_interface_button_hover($component8, false, $string5, 0x53d93c)", $component8);
+        if_setonmouserepeat("league_interface_button_hover($component8, true, $string5, 0xaaaaaa)", $component8);
     }
-    if_setonop("league_interface_confirm($component10, $component8, false, $string1, 0x53d93c)", $component8);
+    if_setonop("league_interface_confirm($component10, $component8, false, $string5, 0x53d93c)", $component8);
 } else {
     cc_setcolour(0xaaaaaa);
     if_setonmouseleave(null, $component8);
     if_setonmouserepeat(null, $component8);
     if_setonop("league_relic_not_available($int18)", $component8);
 }
-$int23 = ~v2_stone_button($component9);
-cc_create($component9, ^iftype_text, $int23);
+$int24 = ~v2_stone_button($component9);
+cc_create($component9, ^iftype_text, $int24);
 cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
 cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
-$string1 = "Back";
-cc_settext($string1);
+$string5 = "Back";
+cc_settext($string5);
 cc_settextfont(p12_full);
 cc_settextshadow(true);
 cc_setcolour(^white);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-if_setop(1, $string1, $component9);
+if_setop(1, $string5, $component9);
 if (~on_mobile = false) {
-    if_setonmouseleave("league_interface_button_hover($component9, false, $string1, ^white)", $component9);
-    if_setonmouserepeat("league_interface_button_hover($component9, true, $string1, 0xaaaaaa)", $component9);
+    if_setonmouseleave("league_interface_button_hover($component9, false, $string5, ^white)", $component9);
+    if_setonmouserepeat("league_interface_button_hover($component9, true, $string5, 0xaaaaaa)", $component9);
 }
 if_setonop("league_relic_back($component0, $component1, $component2, $component3, $component17)", $component9);
-def_int $int31 = ~steelborder($component11, struct_param($struct19, param_879), 1);
-if (cc_find($component11, $int31) = true) {
+def_int $int33 = ~steelborder($component11, struct_param($struct19, param_879), 1);
+if (cc_find($component11, $int33) = true) {
     cc_setcolour($int22);
 }
-if (~script7691($int25) = true) {
+if (~script7691($int26) = true) {
     if_settext("Are you sure that you wish to unlock the <col=ffffff><struct_param($struct19, param_879)></col> Relic?<br><br>You <col=ffffff>cannot</col> go back on this decision at any later point.", $component12);
 } else {
     if_settext("Are you sure that you wish to unlock the <col=ffffff><struct_param($struct19, param_879)></col> Relic?<br><br>You can only unlock <col=ffffff>one</col> Relic from each tier, and you <col=ffffff>cannot</col> go back on this decision at any later point.", $component12);
 }
-$int23 = ~v2_stone_button($component13);
-cc_create($component13, ^iftype_text, $int23);
+$int24 = ~v2_stone_button($component13);
+cc_create($component13, ^iftype_text, $int24);
 cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
 cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
-$string1 = "Confirm";
-cc_settext($string1);
+$string5 = "Confirm";
+cc_settext($string5);
 cc_settextfont(p12_full);
 cc_settextshadow(true);
 cc_setcolour(^white);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-if_setop(1, $string1, $component13);
+if_setop(1, $string5, $component13);
 if_setopbase("<col=ff981f>Selection</col>", $component13);
 if (~on_mobile = false) {
-    if_setonmouseleave("league_interface_button_hover($component13, false, $string1, ^white)", $component13);
-    if_setonmouserepeat("league_interface_button_hover($component13, true, $string1, 0xaaaaaa)", $component13);
+    if_setonmouseleave("league_interface_button_hover($component13, false, $string5, ^white)", $component13);
+    if_setonmouserepeat("league_interface_button_hover($component13, true, $string5, 0xaaaaaa)", $component13);
 }
 if_setonop("button_select_sound", $component13);
-$int23 = ~v2_stone_button($component14);
-cc_create($component14, ^iftype_text, $int23);
+$int24 = ~v2_stone_button($component14);
+cc_create($component14, ^iftype_text, $int24);
 cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
 cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
-$string1 = "Cancel";
-cc_settext($string1);
+$string5 = "Cancel";
+cc_settext($string5);
 cc_settextfont(p12_full);
 cc_settextshadow(true);
 cc_setcolour(^white);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-if_setop(1, $string1, $component14);
+if_setop(1, $string5, $component14);
 if (~on_mobile = false) {
-    if_setonmouseleave("league_interface_button_hover($component14, false, $string1, ^white)", $component14);
-    if_setonmouserepeat("league_interface_button_hover($component14, true, $string1, 0xaaaaaa)", $component14);
+    if_setonmouseleave("league_interface_button_hover($component14, false, $string5, ^white)", $component14);
+    if_setonmouserepeat("league_interface_button_hover($component14, true, $string5, 0xaaaaaa)", $component14);
 }
 if_setonop("league_interface_confirm_back($component10)", $component14);

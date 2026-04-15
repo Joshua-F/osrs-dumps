@@ -1,0 +1,45 @@
+// 9413
+[proc,script9413](component $component, int $int1, dbrow $dbrow, int $int3, int $int4, int $int5, struct $struct)(int)
+def_string $string = db_getfield($dbrow, league_relic_effect_toggle:toggle_desc, 0);
+def_int $int7 = -1;
+def_int $int8 = -1;
+def_graphic $graphic9 = null;
+def_graphic $graphic10 = null;
+def_boolean $boolean = ~script9464($dbrow);
+def_int $int12 = calc(paraheight($string, calc(if_getwidth($component) - 22), p12_full) * 15);
+cc_create($component, ^iftype_graphic, ~script8302($component));
+cc_setsize(18, 18, ^setsize_abs, ^setsize_abs);
+cc_setposition(0, calc($int3 + $int12 / 2 - cc_getheight / 2 + 2), ^setpos_abs_left, ^setpos_abs_top);
+if ($int4 = 1) {
+    if ($boolean = true) {
+        $graphic9, $graphic10 = "toggle_box,3", "toggle_box,1";
+    } else {
+        $graphic9, $graphic10 = "toggle_box,2", "toggle_box,0";
+    }
+} else {
+    $graphic9 = "toggle_box,4";
+}
+cc_setgraphic($graphic9);
+$int8 = cc_getid;
+cc_create($component, ^iftype_text, ~script8302($component));
+cc_setsize(24, $int12, ^setsize_minus, ^setsize_abs);
+cc_setposition(24, calc($int3 + 2), ^setpos_abs_left, ^setpos_abs_top);
+cc_settextfont(p12_full);
+cc_setcolour($int5);
+cc_settextalign(^settextalign_left, ^settextalign_top, 15);
+cc_settext($string);
+cc_settextshadow(true);
+$int7 = cc_getid;
+cc_create($component, ^iftype_rectangle, ~script8302($component));
+cc_setsize(0, $int12, ^setsize_minus, ^setsize_abs);
+cc_setposition(0, $int3, ^setpos_abs_left, ^setpos_abs_top);
+cc_setfill(true);
+cc_settrans(255);
+cc_setop(1, "Toggle");
+cc_setopbase("<col=ff9040>Effect</col>");
+cc_setonop("script9415(event_com, event_comsubid, $dbrow, $int1, $struct, $int4)");
+if ($int4 = 1 & ~on_mobile = false) {
+    cc_setonmouserepeat("script9414(event_com, $int7, $int8, 70, $graphic10)");
+    cc_setonmouseleave("script9414(event_com, $int7, $int8, 0, $graphic9)");
+}
+return(calc($int12 + 5));

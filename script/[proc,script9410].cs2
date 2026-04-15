@@ -1,0 +1,27 @@
+// 9410
+[proc,script9410](struct $struct, int $int1, int $int2, int $int3, int $int4)(int)
+def_obj $obj = struct_param($struct, param_2049);
+def_string $string = ~script3739($int3, "col");
+def_component $relic_item = league_relics:relic_item;
+def_int $int7 = calc($int2 + 5);
+cc_deleteall($relic_item);
+~script8303($relic_item, 0);
+if ($obj = null) {
+    return($int2);
+}
+cc_create($relic_item, ^iftype_graphic, ~script8302($relic_item));
+cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+cc_setobject($obj, -1);
+cc_setgraphicshadow(0x333333);
+cc_setoutline(1);
+cc_setposition(0, $int7, ^setpos_abs_left, ^setpos_abs_top);
+cc_create($relic_item, ^iftype_text, ~script8302($relic_item));
+cc_setsize(22, 30, ^setsize_minus, ^setsize_abs);
+cc_setposition(calc(36 + 5), $int7, ^setpos_abs_left, ^setpos_abs_top);
+cc_settextfont(p12_full);
+cc_setcolour($int4);
+cc_settextalign(^settextalign_left, ^settextalign_centre, 15);
+cc_settext("Upon choosing this relic you will receive the <$string><oc_name($obj)></col>.");
+cc_settextshadow(true);
+$int7 = calc($int7 + 32);
+return($int7);

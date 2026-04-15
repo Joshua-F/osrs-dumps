@@ -1,0 +1,12 @@
+// 9415
+[clientscript,script9415](component $component, int $int1, dbrow $dbrow, int $int3, struct $struct, int $int5)
+if (cc_find($component, $int1) = true) {
+    if ($int5 ! 1) {
+        sound_synth(synth_2277, 1, 0);
+        mes("<~mes_highlight_red>You need to have that relic unlocked in order to toggle its effects.");
+        return;
+    }
+    sound_synth(synth_2266, 1, 0);
+    ~script9465($dbrow);
+    if_runscript*(ifscript_1060096294, league_relics:toggles, -1)($dbrow);
+}

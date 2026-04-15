@@ -1,0 +1,29 @@
+// 9383
+[proc,script9383](int $int0)
+if (%league_initial_points_spent = 1) {
+    $int0 = 1;
+}
+def_intarray $intarray = array_create(int, 0, calc(%talent_tree_selected_node_amount - 1));
+def_dbrowarray $dbrowarray1 = null;
+if ($int0 = 0) {
+    $dbrowarray1 = array_create(dbrow, 0, calc(%talent_tree_selected_node_amount - 1));
+}
+def_int $int1 = 0;
+while ($int1 < %talent_tree_selected_node_amount) {
+    if (cc_find(talent_tree:data_layer, calc($int1 + 1)) = true) {
+        array_push($intarray, cc_param(param_2554));
+        if ($int0 = 0) {
+            array_push($dbrowarray1, enum(int, dbrow, enum_5942, cc_param(param_2554)));
+        }
+    }
+    $int1 = calc($int1 + 1);
+}
+def_dbrowarray $dbrowarray2 = null;
+if ($int0 = 0 & (array_indexof($dbrowarray1, node62, 0, -1) ! -1 | array_indexof($dbrowarray1, node92, 0, -1) ! -1 | array_indexof($dbrowarray1, node93, 0, -1) ! -1) & array_indexof($dbrowarray1, node44, 0, -1) = -1 & array_indexof($dbrowarray1, node74, 0, -1) = -1 & array_indexof($dbrowarray1, node2, 0, -1) = -1) {
+    $dbrowarray2 = enum_getoutputs(dbrow, enum_5942);
+    if (~script9454(array_indexof($dbrowarray2, node44, 0, -1)) = ^false & ~script9454(array_indexof($dbrowarray2, node74, 0, -1)) = ^false & ~script9454(array_indexof($dbrowarray2, node2, 0, -1)) = ^false) {
+        ~script9379;
+        return;
+    }
+}
+if_runscript*(ifscript_3329489539, talent_tree:data_layer, -1)($intarray);

@@ -1,0 +1,15 @@
+// 7894
+[clientscript,script7894](int $int0, int $int1)
+%talent_tree_drag_delay = max(0, calc(%talent_tree_drag_delay - 2));
+if (%talent_tree_drag_delay > 2) {
+    return;
+}
+def_int $int2 = calc(%talent_tree_drag_focus_x - $int0);
+def_int $int3 = calc(%talent_tree_drag_focus_y - $int1);
+def_int $int4 = calc(if_getscrollx(talent_tree:tree_draw_layers) + $int2);
+def_int $int5 = calc(if_getscrolly(talent_tree:tree_draw_layers) + $int3);
+if_setscrollpos($int4, $int5, talent_tree:tree_draw_layers);
+%talent_tree_vertical_scroll_pos = $int5;
+%talent_tree_horizontal_scroll_pos = $int4;
+%talent_tree_drag_focus_x = $int0;
+%talent_tree_drag_focus_y = $int1;

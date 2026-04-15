@@ -1,0 +1,10 @@
+// 9464
+[proc,script9464](dbrow $dbrow)(boolean)
+if (~script9466($dbrow) = false) {
+    return(false);
+}
+def_int $int = db_getfield($dbrow, league_relic_effect_toggle:toggle_bit, 0);
+if (db_getfield($dbrow, league_relic_effect_toggle:toggle_invert, 0) = true) {
+    return(~int_to_bool(testbit(%league_relic_effect_toggle_1, $int)));
+}
+return(~flip_bool(~int_to_bool(testbit(%league_relic_effect_toggle_1, $int))));

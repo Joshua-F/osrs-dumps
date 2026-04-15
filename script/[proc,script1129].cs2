@@ -1,35 +1,17 @@
 // 1129
 [proc,script1129](obj $obj)(boolean)
-def_int $int1 = 0;
-def_int $int2 = 999999;
-$int1 = oc_param($obj, param_916);
-$int2 = oc_param($obj, param_917);
+if ($obj = null) {
+    return(false);
+}
+def_int $int1 = oc_param($obj, param_916);
+def_int $int2 = oc_param($obj, param_917);
 if (~league_world = true) {
     if ($int2 > %league_points_completed) {
         return(false);
     }
     return(true);
 }
-switch_int ($int1) {
-    case 1 :
-        if ($int2 > %league_twisted_points) {
-            return(false);
-        }
-    case 2 :
-        if ($int2 > %league_trailblazer_points) {
-            return(false);
-        }
-    case 3 :
-        if ($int2 > %league_3_points) {
-            return(false);
-        }
-    case 4 :
-        if ($int2 > %league_trailblazer_reloaded_points) {
-            return(false);
-        }
-    case 5 :
-        if ($int2 > %league_5_points) {
-            return(false);
-        }
+if ($int2 > ~script9462($int1)) {
+    return(false);
 }
 return(true);
