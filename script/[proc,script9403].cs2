@@ -1,0 +1,15 @@
+// 9403
+[proc,script9403](dbrow $dbrow)(int)
+def_int $int1 = db_getfield($dbrow, talent_tree:effect:1, 0);
+def_int $int2 = db_getfield($dbrow, talent_tree:effect:0, 0);
+if_query(1, talent_tree:hotfix, -1);
+while (if_query_next = true) {
+    if (cc_param(param_2571) > 0) {
+        if (cc_param(param_678) = $dbrow) {
+            return(cc_param(param_2571));
+        } else if (cc_param(param_2569) = $int2) {
+            return(cc_param(param_2571));
+        }
+    }
+}
+return($int1);

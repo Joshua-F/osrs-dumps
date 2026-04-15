@@ -1,0 +1,26 @@
+// 9054
+[proc,script9054](component $component, int $int1, int $int2, int $int3, int $int4)(int, int, int)
+if (%talent_tree_selected_node_amount <= 0) {
+    return($int2, $int3, $int4);
+}
+$int2, $int3, $int4 = ~script9175("Currently selected effects", 1, $component, $int1, $int2, $int3, $int4);
+def_dbrowarray $dbrowarray = enum_getoutputs(dbrow, enum_5942);
+def_int $int5 = 1;
+def_dbrow $dbrow = null;
+def_int $int7 = 0;
+def_string $string = "";
+def_int $int8 = 0;
+while ($int5 <= %talent_tree_selected_node_amount) {
+    if (cc_find(talent_tree:data_layer, $int5) = true) {
+        $int7 = cc_param(param_2554);
+        $dbrow = $dbrowarray($int7);
+        if ($dbrow ! null) {
+            $string = ~script9402($dbrow);
+            $int8 = ~script9403($dbrow);
+            $string = ~script9389($string, tostring($int8));
+        }
+        $int2, $int3, $int4 = ~script9175($string, 0, $component, $int1, $int2, $int3, $int4);
+    }
+    $int5 = calc($int5 + 1);
+}
+return($int2, $int3, $int4);
