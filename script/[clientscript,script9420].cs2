@@ -1,0 +1,18 @@
+// 9420
+[clientscript,script9420](int $int0, int $int1, dbrow $dbrow, int $int3)
+if (%league_task_menu_build_is_active = 1) {
+    return;
+} else {
+    %league_task_menu_build_is_active = 1;
+}
+sound_synth(synth_2266, 1, 0);
+if_setontimer(null, league_tasks:tasks_list);
+if (%league_task_menu_selected_task ! null) {
+    if (%league_task_menu_selected_task = $dbrow) {
+        ~script9424($int3, $int0, $int1, $dbrow, 0);
+    } else {
+        ~script9424($int3, $int0, $int1, $dbrow, 1);
+    }
+} else {
+    ~script9423($int3, $int0, $int1, $dbrow);
+}
