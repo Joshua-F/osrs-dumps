@@ -167,6 +167,8 @@ column=region,int,REQUIRED,LIST,CLIENTSIDE
 column=allregions,boolean,CLIENTSIDE
 default=allregions,true
 column=related_content,int,CLIENTSIDE
+column=league_clue_text,string,CLIENTSIDE
+column=league_target,dbrow,CLIENTSIDE
 
 // 9
 [cluehelper_clue_emote]
@@ -885,6 +887,8 @@ column=region_id,int,REQUIRED,INDEXED,CLIENTSIDE
 column=name,string,REQUIRED,CLIENTSIDE
 column=map_graphic,graphic,CLIENTSIDE
 column=map_component,component,CLIENTSIDE
+column=name_component,component,CLIENTSIDE
+column=shield_component,component,CLIENTSIDE
 column=map_shield_sprite,graphic,CLIENTSIDE
 column=map_shield_sprite_highlighted,graphic,CLIENTSIDE
 column=map_shield_sprite_small,graphic,CLIENTSIDE
@@ -912,6 +916,8 @@ column=difficulty,int,REQUIRED,CLIENTSIDE
 column=region,int,REQUIRED,INDEXED,CLIENTSIDE
 column=name,string,REQUIRED,CLIENTSIDE
 column=requirements,string,CLIENTSIDE
+column=disabled,boolean,CLIENTSIDE
+default=disabled,false
 
 // 86
 [magic_enchant]
@@ -1263,6 +1269,7 @@ column=related_task,dbrow,LIST,CLIENTSIDE
 // 118
 [action]
 column=action_name,string,REQUIRED,CLIENTSIDE
+column=action_desc,string,CLIENTSIDE
 column=action_display_graphic,graphic,CLIENTSIDE
 column=action_display_object,obj,CLIENTSIDE
 column=action_display_desc,string,string,LIST,CLIENTSIDE
@@ -1287,14 +1294,25 @@ column=collection_specific,struct,INDEXED,CLIENTSIDE
 column=loot_drop,obj,LIST,INDEXED,CLIENTSIDE
 column=loot_drop_specific_npc,npc,INDEXED,CLIENTSIDE
 column=quest,dbrow,INDEXED,CLIENTSIDE
-column=mine_ore,obj,INDEXED,CLIENTSIDE
+column=mine_ore,obj,LIST,INDEXED,CLIENTSIDE
+column=catch_fish,obj,INDEXED,CLIENTSIDE
 column=hunter,obj,boolean,LIST,INDEXED,CLIENTSIDE
 column=poh_build,dbrow,INDEXED,CLIENTSIDE
 column=poh_set_portal,int,INDEXED,CLIENTSIDE
 column=create_item,obj,INDEXED,CLIENTSIDE
 column=chop_logs,obj,INDEXED,CLIENTSIDE
-column=leagues_task,struct,INDEXED,CLIENTSIDE
+column=leagues_task,dbrow,INDEXED,CLIENTSIDE
 column=child_action,dbrow,LIST,INDEXED,CLIENTSIDE
+column=action_difficulty,int,INDEXED,CLIENTSIDE
+default=action_difficulty,-1
+column=league_tracking_id,int,CLIENTSIDE
+default=league_tracking_id,-1
+column=in_current_league,boolean,INDEXED,CLIENTSIDE
+default=in_current_league,false
+column=category,int,INDEXED,CLIENTSIDE
+default=category,-1
+column=task_area,int,INDEXED,CLIENTSIDE
+default=task_area,-1
 
 // 119
 [bingo_events]
@@ -1356,6 +1374,10 @@ column=destination
 column=bespoke_requirements
 column=bespoke_sideeffects
 column=forced_alternate_destination
+column=quest_requirement_partial
+column=quest_requirement_full
+column=skill_requirement
+column=region
 
 // 124
 [poll_filters]
@@ -2614,4 +2636,116 @@ column=starboard_mid_closed
 column=starboard_mid_open
 column=starboard_stern_closed
 column=starboard_stern_open
+
+// 216
+[talent_tree]
+column=draw_coord,int,int,REQUIRED,CLIENTSIDE
+column=linked_nodes,dbrow,REQUIRED,LIST,CLIENTSIDE
+column=name,string,REQUIRED,CLIENTSIDE
+column=effect,int,int,REQUIRED,CLIENTSIDE
+column=node_type,int,CLIENTSIDE
+default=node_type,-2
+column=node_size,int,CLIENTSIDE
+default=node_size,1
+column=node_sprite,graphic,REQUIRED,CLIENTSIDE
+column=debug_name,string,CLIENTSIDE
+default=debug_name,node
+
+// 217
+[talent_debug]
+column=build_name
+column=points_used
+column=node
+column=build_style
+column=build_style_sub
+
+// 218
+[league_relic_teleport_item]
+column=title,string,REQUIRED,CLIENTSIDE
+column=item,obj,REQUIRED,CLIENTSIDE
+column=location,dbrow,REQUIRED,LIST,INDEXED,CLIENTSIDE
+column=respect_wildy_restrictions,boolean,CLIENTSIDE
+default=respect_wildy_restrictions,false
+
+// 219
+[league_relic_clue_direct_teleport_item]
+column=item,obj,REQUIRED,CLIENTSIDE
+column=null_clue_text,string,REQUIRED,CLIENTSIDE
+column=null_clue_coord_text,string,REQUIRED,CLIENTSIDE
+
+// 220
+[league_relic_effect_toggle_list]
+column=toggle,dbrow,REQUIRED,LIST,CLIENTSIDE
+
+// 221
+[league_relic_effect_toggle]
+column=toggle_debugname,string,REQUIRED,CLIENTSIDE
+column=toggle_relic,struct,REQUIRED,CLIENTSIDE
+column=toggle_desc,string,REQUIRED,CLIENTSIDE
+column=toggle_on_message,string,REQUIRED,CLIENTSIDE
+column=toggle_off_message,string,REQUIRED,CLIENTSIDE
+column=toggle_invert,boolean,CLIENTSIDE
+default=toggle_invert,false
+column=toggle_bit,int,CLIENTSIDE
+default=toggle_bit,-1
+
+// 222
+[league_guardian_data]
+column=name
+column=body_data
+column=anim_data
+
+// 223
+[league_guardian_body_data]
+column=hands_model
+column=feet_model
+column=legs_model
+column=jaw_model
+column=head_model
+column=hat_model
+column=body_model
+column=single_body_model
+column=single_body_model_extra
+
+// 224
+[league_guardian_anim_data]
+column=ready_anim
+column=run_anim
+column=walk_anim
+column=spawn_anim
+column=spawn_spotanim
+column=despawn_anim
+column=despawn_spotanim
+column=weapon_model
+column=attack_anim
+column=travel_spotanim
+column=launch_spotanim
+column=impact_spotanim
+column=attack_sound
+column=change_style_spotanim
+
+// 225
+[transmutation]
+column=tier_item,namedobj,obj,REQUIRED,LIST,INDEXED,CLIENTSIDE
+column=name,string,REQUIRED,CLIENTSIDE
+
+// 226
+[butlers_bell_actions]
+column=action_id,int,REQUIRED,INDEXED,CLIENTSIDE
+column=raw_noun,string,REQUIRED,CLIENTSIDE
+column=processed_noun,string,REQUIRED,CLIENTSIDE
+column=processed_xp,int,REQUIRED,CLIENTSIDE
+column=xp_skill,stat,REQUIRED,CLIENTSIDE
+column=gather_base_rate,int,REQUIRED,CLIENTSIDE
+column=resource_weighting
+
+// 227
+[spell_override_list]
+column=override,dbrow,REQUIRED,LIST,CLIENTSIDE
+
+// 228
+[spell_override]
+column=base_spell,obj,REQUIRED,INDEXED,CLIENTSIDE
+column=override_spell,obj,REQUIRED,CLIENTSIDE
+column=relic_unlock,struct,CLIENTSIDE
 

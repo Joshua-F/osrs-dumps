@@ -41,6 +41,9 @@ if ($obj2 = soulreaper) {
 } else if ($obj2 = weapon_of_sol) {
     $int5, $int6 = %weapon_of_sol_stacks, 20;
     if_settext("Special Attack: <tostring($int5)>/<tostring(20)>", combat_interface:sp_indicator);
+} else if ($obj2 = lithic_sceptre_charged) {
+    $int5, $int6 = %lithic_sceptre_shatter_stacks, 14;
+    if_settext("Special Attack: <tostring($int5)>/<tostring(14)>", combat_interface:sp_indicator);
 } else if (~league_relic_active(struct_4721) = 1 & $int5 < $int7 & stat(hitpoints) > 25) {
     $int5 = calc((stat(hitpoints) - 1) / 25);
     $int6 = calc((stat_base(hitpoints) - 1) / 25);
@@ -67,6 +70,8 @@ switch_obj ($obj2) {
         $string = "<enum(obj, string, enum_1739, $obj2)> 0-5";
     case weapon_of_sol :
         $string = "<enum(obj, string, enum_1739, $obj2)> (<tostring($int5)> / <tostring(20)>)";
+    case lithic_sceptre_charged :
+        $string = "<enum(obj, string, enum_1739, $obj2)> (<tostring($int5)> / <tostring(14)>)";
 }
 def_obj $obj9 = inv_getobj(worn, 13);
 def_obj $obj10 = inv_getobj(worn, 1);

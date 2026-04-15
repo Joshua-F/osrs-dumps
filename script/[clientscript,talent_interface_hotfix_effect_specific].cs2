@@ -1,0 +1,12 @@
+// 9399
+[clientscript,talent_interface_hotfix_effect_specific](dbrow $dbrow, int $int)
+if ($dbrow = null) {
+    return;
+}
+if (cc_find_param(talent_tree:hotfix, param_678, $dbrow) = true) {
+    ~debug_mes_warn("Hotfix", "Duplicate [<db_getfield($dbrow, talent_tree:debug_name, 0)>] value hotfix data in hotfix layer. Ensure you arent hotfixing this node more than once.");
+    return;
+}
+cc_create(talent_tree:hotfix, ^iftype_layer, ~if_use_next_id(talent_tree:hotfix));
+cc_setparam(param_678, $dbrow);
+cc_setparam(param_2571, $int);

@@ -1,0 +1,18 @@
+// 9420
+[clientscript,league_tasks_click_expand_collapse_task](int $int0, int $int1, dbrow $dbrow, int $int3)
+if (%league_task_menu_build_is_active = 1) {
+    return;
+} else {
+    %league_task_menu_build_is_active = 1;
+}
+sound_synth(synth_2266, 1, 0);
+if_setontimer(null, league_tasks:tasks_list);
+if (%league_task_menu_selected_task ! null) {
+    if (%league_task_menu_selected_task = $dbrow) {
+        ~league_tasks_click_collapse_task($int3, $int0, $int1, $dbrow, 0);
+    } else {
+        ~league_tasks_click_collapse_task($int3, $int0, $int1, $dbrow, 1);
+    }
+} else {
+    ~league_tasks_click_expand_task($int3, $int0, $int1, $dbrow);
+}

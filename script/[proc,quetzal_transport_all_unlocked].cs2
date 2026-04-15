@@ -1,0 +1,11 @@
+// 9452
+[proc,quetzal_transport_all_unlocked]()(boolean)
+db_listall(quetzal);
+def_dbrow $dbrow = db_findnext;
+while ($dbrow ! null) {
+    if (~quetzal_get_unlock_status($dbrow) = false) {
+        return(false);
+    }
+    $dbrow = db_findnext;
+}
+return(true);
