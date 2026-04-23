@@ -1,0 +1,16 @@
+// 1125
+[clientscript,script1125](component $component, int $int)
+def_obj $obj = null;
+def_string $string = "";
+if (cc_find($component, $int) = true) {
+    $obj = cc_getinvobject;
+    if ($obj ! null) {
+        $string = oc_name($obj);
+        if (string_length($string) > 0) {
+            ~wiki_lookup("Lookup", "item", "", $string, "");
+            mes("<$string> has been opened in the Old School RuneScape Wiki.");
+            return;
+        }
+    }
+}
+mes("Wiki lookup failed.");
