@@ -81,18 +81,20 @@ while ($int3 < $int4) {
     $int26 = enum(int, int, enum_2671, $int25);
     $int27 = db_getfield($dbrow, action:category, 0);
     $int28 = db_getfield($dbrow, action:task_area, 0);
-    if ($int35 = 1) {
-        $boolean36 = ~league_task_display($dbrow, $int25, $int24, $int27, $int28, $string1, $string2, $string3, $int34);
-    } else if (%league_task_filter_completed ! 0 & calc(%league_task_filter_completed - 1) ! $int24) {
-        $boolean36 = false;
-    } else {
-        $boolean36 = true;
-    }
-    if ($boolean36 = true) {
-        %league_task_menu_total_count = calc(%league_task_menu_total_count + 1);
-        $int31 = %league_task_menu_component_id;
-        $int32 = %league_task_menu_ypos;
-        ~script9429($int3, $int31, $int32, $int27, $int28, $int25, $int26, $int24, $rgb, $string1, $string2, $boolean22, $dbrow, $tasks_background, $tasks_expand, $tasks_type, $tasks_area, $tasks_description, $tasks_tier, $tasks_name, $tasks_points);
+    if (db_getfield($dbrow, action:in_current_league, 0) = true) {
+        if ($int35 = 1) {
+            $boolean36 = ~league_task_display($dbrow, $int25, $int24, $int27, $int28, $string1, $string2, $string3, $int34);
+        } else if (%league_task_filter_completed ! 0 & calc(%league_task_filter_completed - 1) ! $int24) {
+            $boolean36 = false;
+        } else {
+            $boolean36 = true;
+        }
+        if ($boolean36 = true) {
+            %league_task_menu_total_count = calc(%league_task_menu_total_count + 1);
+            $int31 = %league_task_menu_component_id;
+            $int32 = %league_task_menu_ypos;
+            ~script9429($int3, $int31, $int32, $int27, $int28, $int25, $int26, $int24, $rgb, $string1, $string2, $boolean22, $dbrow, $tasks_background, $tasks_expand, $tasks_type, $tasks_area, $tasks_description, $tasks_tier, $tasks_name, $tasks_points);
+        }
     }
     $int3 = calc($int3 + 1);
 }

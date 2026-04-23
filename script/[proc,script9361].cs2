@@ -86,7 +86,7 @@ while ($int6 < $int7) {
         cc_setop(1, "Select");
         cc_setonop("script9367(event_op, $int6, $dbrow10)");
     }
-    if (~script9457($int6, 0) = ^true) {
+    if (~talent_tree_tracking_get_set_unlocked($int6, 0) = ^true) {
         cc_setparam(param_2551, 1);
     }
     $int6 = calc($int6 + 1);
@@ -111,7 +111,7 @@ while ($int6 < $int7) {
     $int22 = 0;
     $int14 = 0;
     $dbrow10 = $dbrowarray($int6);
-    $intbool19 = ~script9457($int6, 0);
+    $intbool19 = ~talent_tree_tracking_get_set_unlocked($int6, 0);
     if ($dbrow10 ! null & cc_find($tree_node_draw_layer, $int6) = true) {
         cc_setparam(param_677, true);
         cc_setparam(param_2552, $int8);
@@ -139,7 +139,7 @@ while ($int6 < $int7) {
             $int16 = 1;
             $dbrow15 = db_getfield($dbrow10, talent_tree:linked_nodes, $int14);
             $int17 = array_indexof($dbrowarray, $dbrow15, 0, -1);
-            $intbool20 = ~script9457($int17, 0);
+            $intbool20 = ~talent_tree_tracking_get_set_unlocked($int17, 0);
             if ($intbool19 = ^true) {
                 if ($intbool20 = ^true) {
                     $int18 = 1;
@@ -190,7 +190,7 @@ while ($int6 < $int7) {
     }
     $int6 = calc($int6 + 1);
 }
-if (~script9457(0, 0) = ^false & %league_tutorial_completed < 14) {
+if (~talent_tree_tracking_get_set_unlocked(0, 0) = ^false & %league_tutorial_completed < 14) {
     if_setontimer("script9390($tree_node_draw_layer, 0)", talent_tree:tree_node_draw_layer);
 }
 if (%talent_tree_showing_info_panel = 1) {
