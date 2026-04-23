@@ -1,35 +1,48 @@
 // 9149
-[proc,script9149](component $component, int $int1, int $int2, int $int3, int $int4, int $int5)(int, int, int)
-def_int $int6 = 0;
+[proc,script9149](component $component, int $int1, int $int2, int $int3, int $int4, int $int5, int $int6)(int, int, int, int)
+def_int $int7 = 0;
 def_intarray $intarray0 = array_create(int, 0, 30);
 def_intarray $intarray1 = array_create(int, 0, 30);
 def_stringarray $stringarray = array_create(string, 0, 30);
-def_int $int7 = 0;
 def_int $int8 = 0;
+def_int $int9 = 0;
 db_listall(talent_tree);
 def_dbrow $dbrow = db_findnext;
 while ($dbrow ! null) {
     if (db_getfield($dbrow, talent_tree:node_type, 0) = $int4) {
-        $int7, $int8 = db_getfield($dbrow, talent_tree:effect, 0);
-        $int8 = ~script9458($int7);
-        if ($int8 > 0 & array_indexof($intarray0, $int7, 0, -1) = -1) {
-            array_push($intarray0, $int7);
-            array_push($intarray1, $int8);
-            array_push($stringarray, ~script9402($dbrow));
+        $int8, $int9 = db_getfield($dbrow, talent_tree:effect, 0);
+        $int9 = ~script9458($int8);
+        if ($int9 > 0 & array_indexof($intarray0, $int8, 0, -1) = -1) {
+            switch_int ($int8) {
+                case 15, 7, 14 :
+                    $int6 = calc($int6 + $int9 * 10);
+            }
+            array_push($intarray0, $int8);
+            array_push($intarray1, $int9);
+            array_push($stringarray, ~script9402($dbrow, 0));
         }
     }
     $dbrow = db_findnext;
 }
-def_int $int10 = array_size($intarray0);
-def_int $int11 = 0;
-if ($int10 > 0) {
+def_int $int11 = array_indexof($intarray0, 12, 0, -1);
+if ($int11 ! -1) {
+    $intarray1($int11) = calc($intarray1($int11) + $int6);
+}
+if ($int6 > 0 & $int4 = -2 & $int11 = -1) {
+    array_push($intarray0, 12);
+    array_push($intarray1, $int6);
+    array_push($stringarray, "+#% accuracy in all combat styles.");
+}
+def_int $int12 = array_size($intarray0);
+def_int $int13 = 0;
+if ($int12 > 0) {
     $int2, $int3, $int5 = ~script9175("Active <~script8567($int4)> effects", 1, $component, $int1, $int2, $int3, $int5);
 }
 def_string $string = "";
-while ($int11 < $int10) {
-    $string = "<col=ffffff>-</col> <$stringarray($int11)>";
-    $string = ~script9389($string, tostring($intarray1($int11)));
+while ($int13 < $int12) {
+    $string = "<col=ffffff>-</col> <$stringarray($int13)>";
+    $string = ~script9389($string, tostring($intarray1($int13)));
     $int2, $int3, $int5 = ~script9175($string, 0, $component, $int1, $int2, $int3, $int5);
-    $int11 = calc($int11 + 1);
+    $int13 = calc($int13 + 1);
 }
-return($int2, $int3, $int5);
+return($int2, $int3, $int5, $int6);

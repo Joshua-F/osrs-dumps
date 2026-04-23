@@ -1,10 +1,20 @@
 // 9402
-[proc,script9402](dbrow $dbrow)(string)
+[proc,script9402](dbrow $dbrow, int $int1)(string)
 def_string $string = db_getfield($dbrow, talent_tree:name, 0);
-def_int $int = db_getfield($dbrow, talent_tree:effect:0, 0);
+def_int $int2 = db_getfield($dbrow, talent_tree:effect:0, 0);
+if ($int1 = 0) {
+    switch_int ($int2) {
+        case 15 :
+            $string = "+#% Ranged damage.";
+        case 14 :
+            $string = "+#% Melee damage.";
+        case 7 :
+            $string = "+#% Magic damage<br><br>This bonus is multiplied by the Tumeken's Shadow special effect.";
+    }
+}
 if_query(1, talent_tree:hotfix, -1);
 while (if_query_next = true) {
-    if (string_length(cc_param(param_2570)) > 0 & cc_param(param_2569) = $int) {
+    if (string_length(cc_param(param_2570)) > 0 & cc_param(param_2569) = $int2) {
         return(cc_param(param_2570));
     }
 }
