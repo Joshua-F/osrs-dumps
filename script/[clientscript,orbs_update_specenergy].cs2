@@ -1,39 +1,47 @@
 // 2069
-[clientscript,orbs_update_specenergy](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5)
+[clientscript,orbs_update_specenergy](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6)
 if ($component0 ! null) {
     if_setnoclickthrough(true, $component4);
-    if_setonvartransmit("orbs_update_specenergy(null, $component1, $component2, $component3, $component4, $component5){sa_attack, sa_energy, soulreaper_stacks, weapon_of_sol_stacks, duel2accept, br_temp_1, loc4, league_6_temp_varp1}", $component0);
-    if_setonstattransmit("orbs_update_specenergy(null, $component1, $component2, $component3, $component4, $component5){hitpoints}", $component0);
-    if_setoninvtransmit("orbs_update_specenergy(null, $component1, $component2, $component3, $component4, $component5){worn}", $component0);
-    if_setonsubchange("orbs_update_specenergy(null, $component1, $component2, $component3, $component4, $component5)", $component0);
+    if_setonvartransmit("orbs_update_specenergy(null, $component1, $component2, $component3, $component4, $component5, $component6){sa_attack, sa_energy, soulreaper_stacks, weapon_of_sol_stacks, duel2accept, br_temp_1, loc4, league_6_temp_varp1, sailing_temp_transmit_no_protect_1, sailing_sidepanel_facility_states_0, sailing_sidepanel_facility_states_1, options_mobile}", $component0);
+    if_setonstattransmit("orbs_update_specenergy(null, $component1, $component2, $component3, $component4, $component5, $component6){hitpoints}", $component0);
+    if_setoninvtransmit("orbs_update_specenergy(null, $component1, $component2, $component3, $component4, $component5, $component6){worn}", $component0);
+    if_setonsubchange("orbs_update_specenergy(null, $component1, $component2, $component3, $component4, $component5, $component6)", $component0);
 }
 ~orbs_spec_draw_button($component0, $component1, $component2, $component3, $component4, $component5);
-def_int $int6 = %sa_energy;
-def_int $int7 = 100;
-def_int $int8 = ~script3648(inv_getobj(worn, 3));
+def_int $int7 = %sa_energy;
+def_int $int8 = 100;
+def_int $int9 = ~script3648(inv_getobj(worn, 3));
 def_obj $obj = inv_getobj(worn, 3);
-if ($obj = soulreaper) {
-    $int6, $int7 = %soulreaper_stacks, 5;
-    if_setgraphic("orb_icon,16", orbs:specenergy_icon);
-} else if ($obj = weapon_of_sol) {
-    $int6, $int7 = %weapon_of_sol_stacks, 20;
-    if_setgraphic("orb_icon,18", orbs:specenergy_icon);
-} else if ($obj = lithic_sceptre_charged) {
-    $int6, $int7 = %lithic_sceptre_shatter_stacks, 14;
-    if_setgraphic("orb_icon,19", orbs:specenergy_icon);
-} else {
-    if (~league_relic_active(struct_4721) = 1 & $int6 < $int8 & stat(hitpoints) > 25) {
-        $int6 = calc((stat(hitpoints) - 1) / 25);
-        $int7 = calc((stat_base(hitpoints) - 1) / 25);
-        if_setgraphic("orb_icon,0", orbs:specenergy_icon);
+if (~script9482 = true) {
+    $int7, $int8 = %sailing_sidepanel_boat_wind_charges, %sailing_sidepanel_boat_max_wind_charges;
+    if ($int7 > 0) {
+        if_setgraphic("orb_icon,22", $component6);
     } else {
-        $int6, $int7 = calc(%sa_energy / 10), 100;
-        if_setgraphic("orb_icon,6", orbs:specenergy_icon);
+        if_setgraphic("orb_icon,21", $component6);
     }
+} else if ($obj = soulreaper) {
+    $int7, $int8 = %soulreaper_stacks, 5;
+    if_setgraphic("orb_icon,16", $component6);
+} else if ($obj = weapon_of_sol) {
+    $int7, $int8 = %weapon_of_sol_stacks, 20;
+    if_setgraphic("orb_icon,18", $component6);
+} else if ($obj = lithic_sceptre_charged) {
+    $int7, $int8 = %lithic_sceptre_shatter_stacks, 14;
+    if_setgraphic("orb_icon,19", $component6);
+} else if (~league_relic_active(struct_4721) = 1 & $int7 < $int9 & stat(hitpoints) > 25) {
+    $int7 = calc((stat(hitpoints) - 1) / 25);
+    $int8 = calc((stat_base(hitpoints) - 1) / 25);
     if (%league_v_helm_special_active = 1) {
-        if_setgraphic("orb_icon,20", orbs:specenergy_icon);
+        if_setgraphic("orb_icon,20", $component6);
     } else {
-        if_setgraphic("orb_icon,6", orbs:specenergy_icon);
+        if_setgraphic("orb_icon,0", $component6);
+    }
+} else {
+    $int7, $int8 = calc(%sa_energy / 10), 100;
+    if (%league_v_helm_special_active = 1) {
+        if_setgraphic("orb_icon,20", $component6);
+    } else {
+        if_setgraphic("orb_icon,6", $component6);
     }
 }
-~orbs_update($component1, $component2, $int6, $int7);
+~orbs_update($component1, $component2, $int7, $int8);
