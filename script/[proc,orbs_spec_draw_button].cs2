@@ -3,7 +3,8 @@
 def_graphic $graphic6 = ~graphic_device("orb_frame,1", "tli_button01_orbinfo_65x34,1");
 def_graphic $graphic7 = ~graphic_device("orb_frame,0", "tli_button01_orbinfo_65x34,0");
 if_clearops($component5);
-if (map_members = false & %br_ingame = 0 | ~script3648(inv_getobj(worn, 3)) <= 0) {
+def_boolean $boolean = ~script9482;
+if (map_members = false & %br_ingame = 0 | $boolean = false & ~script3648(inv_getobj(worn, 3)) <= 0) {
     if_sethide(true, $component5);
     if_setonmouserepeat(null, $component5);
     if_setonmouseleave(null, $component5);
@@ -15,12 +16,20 @@ if (map_members = false & %br_ingame = 0 | ~script3648(inv_getobj(worn, 3)) <= 0
     if_sethide(false, $component5);
     if_setonmouserepeat("graphic_swapper($component4, $graphic6)", $component5);
     if_setonmouseleave("graphic_swapper($component4, $graphic7)", $component5);
-    if_setop(1, "Use", $component5);
-    if_setonop("orbs_toggle_spec_op(event_op, null, $component1, $component2, $component3, $component4, $component5)", $component5);
-    if (%sa_attack > 0) {
-        if_setgraphic("orb_filler,10", $component3);
+    if ($boolean = true) {
+        if_setop(1, "Release", $component5);
+        if_setopbase("<col=ff9040>Wind Mote</col>", $component5);
+        if_setonop("script9484(event_op, $component3)", $component5);
+        ~script9483($component3);
     } else {
-        if_setgraphic("orb_filler,9", $component3);
+        if_setop(1, "Use", $component5);
+        if_setopbase("<col=ff9040>Special Attack</col>", $component5);
+        if_setonop("orbs_toggle_spec_op(event_op, null, $component1, $component2, $component3, $component4, $component5)", $component5);
+        if (%sa_attack > 0) {
+            if_setgraphic("orb_filler,10", $component3);
+        } else {
+            if_setgraphic("orb_filler,9", $component3);
+        }
     }
     if_settrans(25, $component3);
 }
