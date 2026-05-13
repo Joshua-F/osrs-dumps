@@ -1,0 +1,62 @@
+// 9492
+[proc,script9492](int $int0)
+def_int $intarray0(13);
+array_fill($intarray0, -1, 0, -1);
+def_int $int1 = 0;
+def_int $int2 = -1;
+def_dbrow $dbrow = null;
+def_int $int4 = 0;
+while ($int4 < 13) {
+    $int1 = ~sailing_sidepanel_get_hotspot($int4);
+    if ($int1 ! 0) {
+        $dbrow = ~script9025($int1, 0, $int4);
+        if ($dbrow ! null & db_getrowtable($dbrow) = sailing_sidepanel_facility) {
+            $intarray0($int4) = ~script9489($int0, $int4);
+            if (db_getfield($dbrow, sailing_sidepanel_facility:linked_facility, 0) ! null) {
+                $int2 = calc($int4 + 1);
+                if ($int2 < 13) {
+                    $int1 = ~sailing_sidepanel_get_hotspot($int2);
+                    if ($int1 ! 0) {
+                        $dbrow = ~script9025($int1, 0, $int2);
+                        if ($dbrow ! null & db_getrowtable($dbrow) = sailing_sidepanel_facility) {
+                            $intarray0($int2) = $intarray0($int4);
+                            $int4 = $int2;
+                        }
+                    }
+                }
+            }
+        } else {
+            $intarray0($int4) = -1;
+        }
+    } else {
+        $intarray0($int4) = -1;
+    }
+    $int4 = calc($int4 + 1);
+}
+def_int $intarray1(13);
+array_fill($intarray1, -1, 0, -1);
+def_int $int5 = 0;
+$int1 = 0;
+def_int $int6 = array_max($intarray0);
+while ($int1 <= $int6) {
+    $int4 = array_indexof($intarray0, $int1, 0, -1);
+    while ($int4 ! -1) {
+        $intarray1($int4) = $int5;
+        $int5 = calc($int5 + 1);
+        if ($int4 < calc(13 - 1)) {
+            $int4 = array_indexof($intarray0, $int1, calc($int4 + 1), -1);
+        } else {
+            $int4 = -1;
+        }
+    }
+    $int1 = calc($int1 + 1);
+}
+$int4 = 0;
+while ($int4 < 13) {
+    if ($intarray1($int4) ! -1) {
+        ~script9490($int0, $int4, $intarray1($int4));
+    } else {
+        ~script9490($int0, $int4, $int5);
+    }
+    $int4 = calc($int4 + 1);
+}
