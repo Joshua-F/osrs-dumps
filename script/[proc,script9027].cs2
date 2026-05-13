@@ -22,32 +22,11 @@ switch_int ($int0) {
     case 2 :
         $dbrow = db_getfield(%sailing_sidepanel_boat_type, sailing_boat:hull_option, %sailing_sidepanel_facility_hull);
         $string = "Hull repairs";
-    case 3 :
-        $dbrow = ~preview_locked_stat_facility_boat(0, %sailing_sidepanel_facility_hotspot0);
-    case 4 :
-        $dbrow = ~preview_locked_stat_facility_boat(1, %sailing_sidepanel_facility_hotspot1);
-    case 5 :
-        $dbrow = ~preview_locked_stat_facility_boat(2, %sailing_sidepanel_facility_hotspot2);
-    case 6 :
-        $dbrow = ~preview_locked_stat_facility_boat(3, %sailing_sidepanel_facility_hotspot3);
-    case 7 :
-        $dbrow = ~preview_locked_stat_facility_boat(4, %sailing_sidepanel_facility_hotspot4);
-    case 8 :
-        $dbrow = ~preview_locked_stat_facility_boat(5, %sailing_sidepanel_facility_hotspot5);
-    case 9 :
-        $dbrow = ~preview_locked_stat_facility_boat(6, %sailing_sidepanel_facility_hotspot6);
-    case 10 :
-        $dbrow = ~preview_locked_stat_facility_boat(7, %sailing_sidepanel_facility_hotspot7);
-    case 11 :
-        $dbrow = ~preview_locked_stat_facility_boat(8, %sailing_sidepanel_facility_hotspot8);
-    case 12 :
-        $dbrow = ~preview_locked_stat_facility_boat(9, %sailing_sidepanel_facility_hotspot9);
-    case 13 :
-        $dbrow = ~preview_locked_stat_facility_boat(10, %sailing_sidepanel_facility_hotspot10);
-    case 14 :
-        $dbrow = ~preview_locked_stat_facility_boat(11, %sailing_sidepanel_facility_hotspot11);
-    case 15 :
-        $dbrow = ~preview_locked_stat_facility_boat(12, %sailing_sidepanel_facility_hotspot12);
+    case default :
+        $int0 = calc($int0 - 3);
+        if ($int0 >= 0 & $int0 < 13) {
+            $dbrow = ~preview_locked_stat_facility_boat($int0, ~sailing_sidepanel_get_hotspot($int0));
+        }
 }
 if (string_length($string) <= 0) {
     if ($dbrow ! null) {
