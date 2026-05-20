@@ -1791,8 +1791,6 @@ column=attack_spotanim_north
 column=attack_spotanim_east
 column=attack_spotanim_south
 column=attack_spotanim_west
-column=npc_impact_anim
-column=rangetravel_anims
 column=attack_sound
 
 // 163
@@ -1866,6 +1864,8 @@ column=boat_additional_recovery_cost_percentage,int,CLIENTSIDE
 default=boat_additional_recovery_cost_percentage,0
 column=boat_ammo_save_percentage,int,CLIENTSIDE
 default=boat_ammo_save_percentage,0
+column=boat_auto_repair_rate,int,CLIENTSIDE
+default=boat_auto_repair_rate,0
 
 // 165
 [sailing_combat_facility_ammunition]
@@ -1876,6 +1876,10 @@ column=ammunition_accuracy
 column=ammunition_strength
 column=ammunition_accuracy_heavy
 column=ammunition_strength_heavy
+column=ammunition_type,int,CLIENTSIDE
+default=ammunition_type,2
+column=travel_anim
+column=impact_anim
 
 // 166
 [sailing_boat]
@@ -1911,6 +1915,7 @@ column=direction16_turnspeed
 column=keel_option,dbrow,LIST,CLIENTSIDE
 column=hull_option,dbrow,REQUIRED,LIST,CLIENTSIDE
 column=sail_option,dbrow,REQUIRED,LIST,CLIENTSIDE
+column=sail_pattern_option,dbrow,REQUIRED,LIST,CLIENTSIDE
 column=steering_option,dbrow,REQUIRED,LIST,CLIENTSIDE
 column=flag_option,dbrow,LIST,CLIENTSIDE
 column=trim_option,dbrow,LIST,CLIENTSIDE
@@ -2132,14 +2137,12 @@ default=construction_coins_alternative,false
 column=other_stat_requirement,stat,int,CLIENTSIDE
 column=quest_requirement,dbrow,CLIENTSIDE
 column=material,namedobj,int,LIST,CLIENTSIDE
-column=interact_coord
-column=interact_loc
-column=interact_player_coord
 column=loc,loc,coord,int,locshape,dbrow,REQUIRED,CLIENTSIDE
 column=facility_stats,dbrow,REQUIRED,CLIENTSIDE
 column=sidepanel_layout_data,dbrow,REQUIRED,CLIENTSIDE
 column=facility_customisation_order,int,CLIENTSIDE
 default=facility_customisation_order,100
+column=pattern_default
 
 // 180
 [sailing_boat_sail_fx]
@@ -2314,6 +2317,8 @@ column=facility_type,int,REQUIRED,INDEXED,CLIENTSIDE
 column=facility_subtype,int,LIST,INDEXED,CLIENTSIDE
 default=facility_subtype,-1
 column=facility_desc,string,CLIENTSIDE
+column=offset,int,CLIENTSIDE
+default=offset,1
 
 // 190
 [sailing_shoal]
@@ -2409,12 +2414,20 @@ column=respawnrate
 column=behaviour
 column=patrol
 column=wanderrange
-column=targetspeed
-column=turnspeed
-column=acceleration
 column=sail
 column=static_spawn
 column=allow_instance
+column=sailing_npc_boat_base_stats
+column=hp_coord
+column=hp_npc
+column=weapon_data
+column=helm_data
+column=hull_data
+column=gun_port
+column=capsizing_anim
+column=drop_npc
+column=death_drop
+column=collected_drop
 
 // 196
 [sailing_boat_cargohold_whitelist_obj]
@@ -2747,4 +2760,92 @@ column=override,dbrow,REQUIRED,LIST,CLIENTSIDE
 column=base_spell,obj,REQUIRED,INDEXED,CLIENTSIDE
 column=override_spell,obj,REQUIRED,CLIENTSIDE
 column=relic_unlock,struct,CLIENTSIDE
+
+// 229
+[sailing_sidepanel_widget_objbutton]
+column=default_optext,string,REQUIRED,CLIENTSIDE
+column=toggle_enabled,boolean,CLIENTSIDE
+default=toggle_enabled,false
+column=toggle_optext,string,REQUIRED,LIST,CLIENTSIDE
+column=object,namedobj,REQUIRED,CLIENTSIDE
+column=amount,int,CLIENTSIDE
+default=amount,-1
+column=op2,boolean,string,REQUIRED,CLIENTSIDE
+column=op3,boolean,string,REQUIRED,CLIENTSIDE
+column=op4,boolean,string,REQUIRED,CLIENTSIDE
+
+// 230
+[sailing_boat_sail_pattern]
+column=name,string,REQUIRED,CLIENTSIDE
+column=description,string,REQUIRED,CLIENTSIDE
+column=customisation_hide_desc,boolean,CLIENTSIDE
+default=customisation_hide_desc,true
+column=customisation_loc_values,dbrow,REQUIRED,CLIENTSIDE
+column=customisation_loc_override,loc,CLIENTSIDE
+column=hidden_model,model,CLIENTSIDE
+column=sailing_requirement,int,REQUIRED,CLIENTSIDE
+column=construction_requirement,int,REQUIRED,CLIENTSIDE
+column=construction_coins_alternative,boolean,CLIENTSIDE
+default=construction_coins_alternative,false
+column=other_stat_requirement,stat,int,CLIENTSIDE
+column=quest_requirement,dbrow,CLIENTSIDE
+column=material,namedobj,int,CLIENTSIDE
+column=loc,loc,coord,int,locshape,dbrow,REQUIRED,CLIENTSIDE
+column=facility_stats,dbrow,CLIENTSIDE
+column=sidepanel_layout_data,dbrow,CLIENTSIDE
+column=facility_customisation_order,int,CLIENTSIDE
+default=facility_customisation_order,100
+
+// 231
+[sailing_npc_boat_base_stats]
+column=boat_hp_max
+column=boat_defence
+column=boat_stabdefence
+column=boat_slashdefence
+column=boat_crushdefence
+column=boat_heavyrangeddefence
+column=boat_standardrangeddefence
+column=boat_lightrangeddefence
+column=boat_magicdefence
+column=boat_magiclevel
+column=boat_armour
+column=boat_airmagicarmour
+column=boat_earthmagicarmour
+column=boat_firemagicarmour
+column=boat_watermagicarmour
+column=boat_lightrangedarmour
+column=boat_standardrangedarmour
+column=boat_heavyrangedarmour
+column=boat_stabarmour
+column=boat_slasharmour
+column=boat_crusharmour
+column=boat_targetspeed
+column=boat_turnspeed
+column=boat_acceleration
+
+// 232
+[sailing_npc_boat_weapon]
+column=facility_loc
+column=accuracy
+column=damage
+column=attack_rate
+column=damage_type
+column=attack_range
+column=ammunition_data
+column=human_attack_anim
+column=human_idle_anim
+column=human_engage_anim
+column=idle_anim_disengaged
+column=idle_anim_engaged
+column=engage_anim
+column=attack_anim
+column=attack_spotanim_north
+column=attack_spotanim_east
+column=attack_spotanim_south
+column=attack_spotanim_west
+
+// 233
+[sailing_npc_boat_steering]
+column=loc
+column=animation_data
 
