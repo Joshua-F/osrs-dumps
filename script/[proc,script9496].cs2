@@ -1,0 +1,49 @@
+// 9496
+[proc,script9496](int $int0, int $int1, int $int2, int $int3, dbrow $dbrow, component $component5, component $component6, int $int7, int $int8, obj $obj, int $int10, int $int11)(int, int, int)
+def_int $int12 = db_getfieldcount($dbrow, sailing_sidepanel_widget_objbutton:toggle_optext);
+def_string $string0 = db_getfield($dbrow, sailing_sidepanel_widget_objbutton:default_optext, 0);
+def_string $string1 = db_getfield($dbrow, sailing_sidepanel_widget_objbutton:op2:1, 0);
+def_string $string2 = db_getfield($dbrow, sailing_sidepanel_widget_objbutton:op3:1, 0);
+def_string $string3 = db_getfield($dbrow, sailing_sidepanel_widget_objbutton:op4:1, 0);
+if ($obj = null) {
+    $obj = db_getfield($dbrow, sailing_sidepanel_widget_objbutton:object, 0);
+}
+if ($int10 = -1) {
+    $int10 = db_getfield($dbrow, sailing_sidepanel_widget_objbutton:amount, 0);
+}
+if ($int8 < $int12) {
+    $string0 = db_getfield($dbrow, sailing_sidepanel_widget_objbutton:toggle_optext, $int8);
+}
+if ($int7 = 2) {
+    $int0, $int1 = ~script9497($component5, $component6, $int0, $int1, 30, 30, $int2, $int3, $obj, $int10, ^white, 0x9f9f9f, 1, $int7, 1);
+    if (testbit($int11, 0) = ^true) {
+        cc_setop(1, $string0);
+    }
+    if (testbit($int11, 1) = ^true) {
+        cc_setop(2, $string1);
+    }
+    if (testbit($int11, 2) = ^true) {
+        cc_setop(3, $string2);
+    }
+    if (testbit($int11, 3) = ^true) {
+        cc_setop(4, $string3);
+    }
+} else if ($int7 = 0) {
+    $int0, $int1 = ~script9497($component5, $component6, $int0, $int1, 30, 30, $int2, $int3, $obj, $int10, ^white, 0x9f9f9f, 0, $int7, 1);
+    if (testbit($int11, 0) = ^true) {
+        cc_setop(1, $string0);
+    }
+    if (testbit($int11, 1) = ^true) {
+        cc_setop(2, $string1);
+    }
+    if (testbit($int11, 2) = ^true) {
+        cc_setop(3, $string2);
+    }
+    if (testbit($int11, 3) = ^true) {
+        cc_setop(4, $string3);
+    }
+} else {
+    $int0, $int1 = ~script9497($component5, $component6, $int0, $int1, 30, 30, $int2, $int3, $obj, $int10, ^white, 0x9f9f9f, 1, $int7, 0);
+}
+$int2 = calc($int2 + 36 + 8);
+return($int0, $int1, $int2);

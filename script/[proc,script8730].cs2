@@ -23,30 +23,31 @@ if ($int11 = 1) {
 def_int $int24 = 1;
 def_int $int25 = 0;
 def_obj $obj = null;
-def_boolean $boolean27 = false;
-def_int $int28 = 0;
+def_int $int27 = 0;
+def_boolean $boolean28 = false;
 def_int $int29 = 0;
 def_int $int30 = 0;
 def_int $int31 = 0;
+def_int $int32 = 0;
 def_string $string = "";
 if (%sailing_sidepanel_shipyard_mode = 1) {
     $int0 = ~create_graphic($component8, $int0, ~script8764($dbrow5), $int20, calc($int2 + (30 - 24) / 2), ^setpos_abs_left, ^setpos_abs_top, 24, 24, ^setsize_abs, ^setsize_abs, true);
     if ($int12 = 0) {
         $int20 = calc((if_getwidth($component8) - (6 + 6 + 24 + 30 + 30 + 8)) / 2 + 6 + 24);
-        $int29 = calc((30 - 16) / 2);
         $int30 = calc((30 - 16) / 2);
+        $int31 = calc((30 - 16) / 2);
         if ($dbrow16 ! null) {
-            $int30, $int31 = calc($int30 + 34 / 2), calc($int31 + 34 / 2);
+            $int31, $int32 = calc($int31 + 34 / 2), calc($int32 + 34 / 2);
         } else {
-            $int31 = 0;
+            $int32 = 0;
         }
-        $int0 = ~create_graphic($component8, $int0, "directional_lock_arrows,0", calc($int20 + $int29), calc($int2 + $int30), ^setpos_abs_left, ^setpos_abs_top, 16, 16, ^setsize_abs, ^setsize_abs, true);
+        $int0 = ~create_graphic($component8, $int0, "directional_lock_arrows,0", calc($int20 + $int30), calc($int2 + $int31), ^setpos_abs_left, ^setpos_abs_top, 16, 16, ^setsize_abs, ^setsize_abs, true);
         .cc_create($component9, ^iftype_rectangle, $int1);
         $int1 = calc($int1 + 1);
         .cc_sethide(false);
         .cc_settrans(255);
         .cc_setsize(30, 30, ^setsize_abs, ^setsize_abs);
-        .cc_setposition($int20, calc($int2 + $int31), ^setpos_abs_left, ^setpos_abs_top);
+        .cc_setposition($int20, calc($int2 + $int32), ^setpos_abs_left, ^setpos_abs_top);
         .cc_setop(1, "Move");
         .cc_setopbase("<col=ff9040>Up</col>");
         .cc_setontimer(null);
@@ -69,13 +70,13 @@ if (%sailing_sidepanel_shipyard_mode = 1) {
             .cc_setonmouseleave(null);
         }
         $int20 = calc($int20 + 30 + 8);
-        $int0 = ~create_graphic($component8, $int0, "directional_lock_arrows,2", calc($int20 + $int29), calc($int2 + $int30), ^setpos_abs_left, ^setpos_abs_top, 16, 16, ^setsize_abs, ^setsize_abs, true);
+        $int0 = ~create_graphic($component8, $int0, "directional_lock_arrows,2", calc($int20 + $int30), calc($int2 + $int31), ^setpos_abs_left, ^setpos_abs_top, 16, 16, ^setsize_abs, ^setsize_abs, true);
         .cc_create($component9, ^iftype_rectangle, $int1);
         $int1 = calc($int1 + 1);
         .cc_sethide(false);
         .cc_settrans(255);
         .cc_setsize(30, 30, ^setsize_abs, ^setsize_abs);
-        .cc_setposition($int20, calc($int2 + $int31), ^setpos_abs_left, ^setpos_abs_top);
+        .cc_setposition($int20, calc($int2 + $int32), ^setpos_abs_left, ^setpos_abs_top);
         .cc_setop(1, "Move");
         .cc_setopbase("<col=ff9040>Down</col>");
         .cc_setontimer(null);
@@ -102,12 +103,12 @@ if (%sailing_sidepanel_shipyard_mode = 1) {
 } else {
     while ($int17 < $int18) {
         $dbrow19 = db_getfield($dbrow5, sailing_sidepanel_facility:widget, $int17);
-        $int24, $int25, $boolean27, $obj, $int28 = ~script8732($dbrow5, $dbrow19, $int14, $dbrow22);
+        $int24, $int25, $boolean28, $obj, $int27, $int29 = ~script8732($dbrow5, $dbrow19, $int14, $dbrow22);
         if ($dbrow19 ! null) {
             switch_dbtable (db_getrowtable($dbrow19)) {
                 case sailing_sidepanel_widget_button :
-                    $int0, $int1, $int20 = ~script8738($int0, $int1, $int20, $int21, $dbrow19, $component8, $component9, $int24, $int25, $int28);
-                    if ($boolean27 = true) {
+                    $int0, $int1, $int20 = ~script8738($int0, $int1, $int20, $int21, $dbrow19, $component8, $component9, $int24, $int25, $int29);
+                    if ($boolean28 = true) {
                         ~script8743($int0, $component8, $dbrow19);
                     }
                 case sailing_sidepanel_widget_button_target_npc :
@@ -115,27 +116,29 @@ if (%sailing_sidepanel_shipyard_mode = 1) {
                 case sailing_sidepanel_widget_graphic :
                     $int0, $int1, $int20 = ~script8740($int0, $int1, $component9, $int20, $int21, $dbrow19, $component8, $int24, $int25);
                 case sailing_sidepanel_widget_object :
-                    $int0, $int1, $int20 = ~script8741($int0, $int1, $component9, $int20, $int21, $dbrow19, $component8, $int24, $int25, $obj);
+                    $int0, $int1, $int20 = ~script8741($int0, $int1, $component9, $int20, $int21, $dbrow19, $component8, $int24, $int25, $obj, $int27);
                 case sailing_sidepanel_widget_text :
                     $int0, $int1, $int20 = ~script8742($int0, $int1, $component9, $int20, $int21, $dbrow19, $component8, $int24, $int25);
-                    if ($boolean27 = true) {
+                    if ($boolean28 = true) {
                         ~script8743($int0, $component8, $dbrow19);
                     }
+                case sailing_sidepanel_widget_objbutton :
+                    $int0, $int1, $int20 = ~script9496($int0, $int1, $int20, $int21, $dbrow19, $component8, $component9, $int24, $int25, $obj, $int27, $int29);
             }
         }
         $int17 = calc($int17 + 1);
     }
 }
-def_int $int32 = calc(4 - 1 - $int1 % 4);
-while ($int32 > 0) {
+def_int $int33 = calc(4 - 1 - $int1 % 4);
+while ($int33 > 0) {
     cc_create($component9, ^iftype_rectangle, $int1);
     $int1 = calc($int1 + 1);
-    $int32 = calc($int32 - 1);
+    $int33 = calc($int33 - 1);
 }
-def_int $int33 = 1;
-def_int $int34 = 0;
+def_int $int34 = 1;
 def_int $int35 = 0;
 def_int $int36 = 0;
+def_int $int37 = 0;
 if (%sailing_sidepanel_shipyard_mode = 1) {
     cc_create($component9, ^iftype_rectangle, $int1);
     $int1 = calc($int1 + 1);
@@ -144,23 +147,23 @@ if (%sailing_sidepanel_shipyard_mode = 1) {
     }
 } else {
     $int24 = 1;
-    $int34 = ~sailing_sidepanel_crew_count_get;
+    $int35 = ~sailing_sidepanel_crew_count_get;
     if (%sailing_sidepanel_boat_type ! null) {
-        $int35 = min(5, db_getfield(%sailing_sidepanel_boat_type, sailing_boat:crew_capacity, 0));
+        $int36 = min(5, db_getfield(%sailing_sidepanel_boat_type, sailing_boat:crew_capacity, 0));
     }
-    if ($int35 > 0 & $int34 > 0 & %sailing_sidepanel_player_role = 10 & db_getfield($dbrow5, sailing_sidepanel_facility:facility_can_be_assigned, 0) = true) {
+    if ($int36 > 0 & $int35 > 0 & %sailing_sidepanel_player_role = 10 & db_getfield($dbrow5, sailing_sidepanel_facility:facility_can_be_assigned, 0) = true) {
         $int24 = 0;
-        $int33 = 0;
+        $int34 = 0;
     }
     if ($int12 = 1) {
-        $int0, $int1 = ~sailing_sidepanel_stonebutton($component8, $component9, $int0, $int1, 30, 30, 128, calc($int2 - 34 / 2), "", $graphic, 18, 0xff981f, 0xff981f, $int33, $int24, 1);
+        $int0, $int1 = ~sailing_sidepanel_stonebutton($component8, $component9, $int0, $int1, 30, 30, 128, calc($int2 - 34 / 2), "", $graphic, 18, 0xff981f, 0xff981f, $int34, $int24, 1);
         if ($int24 ! 1) {
             cc_setop(1, "Assign");
             cc_setonop("sailing_sidepanel_crew_assign_click(cc_getlayer, calc($int1 - 1))");
         }
         $dbrow16 = null;
     } else if ($dbrow16 = null) {
-        $int0, $int1 = ~sailing_sidepanel_stonebutton($component8, $component9, $int0, $int1, 30, 30, 128, calc($int2 + 2), "", $graphic, 18, 0xff981f, 0xff981f, $int33, $int24, 1);
+        $int0, $int1 = ~sailing_sidepanel_stonebutton($component8, $component9, $int0, $int1, 30, 30, 128, calc($int2 + 2), "", $graphic, 18, 0xff981f, 0xff981f, $int34, $int24, 1);
         if ($int24 ! 1) {
             cc_setop(1, "Assign");
             cc_setonop("sailing_sidepanel_crew_assign_click(cc_getlayer, calc($int1 - 1))");
