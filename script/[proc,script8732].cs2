@@ -1,5 +1,5 @@
 // 8732
-[proc,script8732](dbrow $dbrow0, dbrow $dbrow1, int $int2, dbrow $dbrow3)(int, int, boolean, obj, int)
+[proc,script8732](dbrow $dbrow0, dbrow $dbrow1, int $int2, dbrow $dbrow3)(int, int, boolean, obj, int, int)
 def_int $int4 = 1;
 def_int $int5 = 0;
 def_int $int6 = 0;
@@ -36,6 +36,9 @@ def_int $int8 = 0;
 def_boolean $boolean = false;
 def_obj $obj = null;
 def_int $int11 = 0;
+def_int $int12 = 0;
+def_int $int13 = 0;
+def_int $int14 = -1;
 switch_dbrow ($dbrow0) {
     case sailing_sidepanel_facility_sails :
         if (~script9044 = true) {
@@ -70,6 +73,10 @@ switch_dbrow ($dbrow0) {
         if ($dbrow1 = sailing_sidepanel_facility_hull_text & %sailing_sidepanel_repairkits > 0) {
             $boolean, $int4 = true, 0;
         }
+    case sailing_sidepanel_facility_bosuns_workbench :
+        if ($dbrow1 = sailing_sidepanel_facility_text_bosuns_workbench & %sailing_sidepanel_repairkits > 0) {
+            $boolean, $int4 = true, 0;
+        }
     case sailing_sidepanel_facility_trawling_depth_1, sailing_sidepanel_facility_trawling_depth_2, sailing_sidepanel_facility_trawling_depth_3 :
         if ($int2 = %sailing_sidepanel_boat_trawling_net_0_hotspot_id) {
             $int8 = %sailing_sidepanel_boat_trawling_net_0_depth;
@@ -98,69 +105,69 @@ switch_dbrow ($dbrow0) {
         if ($dbrow1 = sailing_sidepanel_facility_object_cannonball) {
             switch_int ($int2) {
                 case 0 :
-                    $int8 = %sailing_sidepanel_ammunition_count_0;
-                    if (%sailing_sidepanel_ammunition_tier_0 ! 0) {
-                        $obj = ~script9036(%sailing_sidepanel_ammunition_tier_0);
+                    $int11 = %sailing_sidepanel_ammunition_count_0;
+                    if (%sailing_sidepanel_ammunition_type_0 ! 0) {
+                        $obj = ~script9036(%sailing_sidepanel_ammunition_type_0);
                     }
                 case 1 :
-                    $int8 = %sailing_sidepanel_ammunition_count_1;
-                    if (%sailing_sidepanel_ammunition_tier_1 ! 0) {
-                        $obj = ~script9036(%sailing_sidepanel_ammunition_tier_1);
+                    $int11 = %sailing_sidepanel_ammunition_count_1;
+                    if (%sailing_sidepanel_ammunition_type_1 ! 0) {
+                        $obj = ~script9036(%sailing_sidepanel_ammunition_type_1);
                     }
                 case 2 :
-                    $int8 = %sailing_sidepanel_ammunition_count_2;
-                    if (%sailing_sidepanel_ammunition_tier_2 ! 0) {
-                        $obj = ~script9036(%sailing_sidepanel_ammunition_tier_2);
+                    $int11 = %sailing_sidepanel_ammunition_count_2;
+                    if (%sailing_sidepanel_ammunition_type_2 ! 0) {
+                        $obj = ~script9036(%sailing_sidepanel_ammunition_type_2);
                     }
                 case 3 :
-                    $int8 = %sailing_sidepanel_ammunition_count_3;
-                    if (%sailing_sidepanel_ammunition_tier_3 ! 0) {
-                        $obj = ~script9036(%sailing_sidepanel_ammunition_tier_3);
+                    $int11 = %sailing_sidepanel_ammunition_count_3;
+                    if (%sailing_sidepanel_ammunition_type_3 ! 0) {
+                        $obj = ~script9036(%sailing_sidepanel_ammunition_type_3);
                     }
                 case 4 :
-                    $int8 = %sailing_sidepanel_ammunition_count_4;
-                    if (%sailing_sidepanel_ammunition_tier_4 ! 0) {
-                        $obj = ~script9036(%sailing_sidepanel_ammunition_tier_4);
+                    $int11 = %sailing_sidepanel_ammunition_count_4;
+                    if (%sailing_sidepanel_ammunition_type_4 ! 0) {
+                        $obj = ~script9036(%sailing_sidepanel_ammunition_type_4);
                     }
                 case 5 :
-                    $int8 = %sailing_sidepanel_ammunition_count_5;
-                    if (%sailing_sidepanel_ammunition_tier_5 ! 0) {
-                        $obj = ~script9036(%sailing_sidepanel_ammunition_tier_5);
+                    $int11 = %sailing_sidepanel_ammunition_count_5;
+                    if (%sailing_sidepanel_ammunition_type_5 ! 0) {
+                        $obj = ~script9036(%sailing_sidepanel_ammunition_type_5);
                     }
                 case 6 :
-                    $int8 = %sailing_sidepanel_ammunition_count_6;
-                    if (%sailing_sidepanel_ammunition_tier_6 ! 0) {
-                        $obj = ~script9036(%sailing_sidepanel_ammunition_tier_6);
+                    $int11 = %sailing_sidepanel_ammunition_count_6;
+                    if (%sailing_sidepanel_ammunition_type_6 ! 0) {
+                        $obj = ~script9036(%sailing_sidepanel_ammunition_type_6);
                     }
                 case 7 :
-                    $int8 = %sailing_sidepanel_ammunition_count_7;
-                    if (%sailing_sidepanel_ammunition_tier_7 ! 0) {
-                        $obj = ~script9036(%sailing_sidepanel_ammunition_tier_7);
+                    $int11 = %sailing_sidepanel_ammunition_count_7;
+                    if (%sailing_sidepanel_ammunition_type_7 ! 0) {
+                        $obj = ~script9036(%sailing_sidepanel_ammunition_type_7);
                     }
                 case 8 :
-                    $int8 = %sailing_sidepanel_ammunition_count_8;
-                    if (%sailing_sidepanel_ammunition_tier_8 ! 0) {
-                        $obj = ~script9036(%sailing_sidepanel_ammunition_tier_8);
+                    $int11 = %sailing_sidepanel_ammunition_count_8;
+                    if (%sailing_sidepanel_ammunition_type_8 ! 0) {
+                        $obj = ~script9036(%sailing_sidepanel_ammunition_type_8);
                     }
                 case 9 :
-                    $int8 = %sailing_sidepanel_ammunition_count_9;
-                    if (%sailing_sidepanel_ammunition_tier_9 ! 0) {
-                        $obj = ~script9036(%sailing_sidepanel_ammunition_tier_9);
+                    $int11 = %sailing_sidepanel_ammunition_count_9;
+                    if (%sailing_sidepanel_ammunition_type_9 ! 0) {
+                        $obj = ~script9036(%sailing_sidepanel_ammunition_type_9);
                     }
                 case 10 :
-                    $int8 = %sailing_sidepanel_ammunition_count_10;
-                    if (%sailing_sidepanel_ammunition_tier_10 ! 0) {
-                        $obj = ~script9036(%sailing_sidepanel_ammunition_tier_10);
+                    $int11 = %sailing_sidepanel_ammunition_count_10;
+                    if (%sailing_sidepanel_ammunition_type_10 ! 0) {
+                        $obj = ~script9036(%sailing_sidepanel_ammunition_type_10);
                     }
                 case 11 :
-                    $int8 = %sailing_sidepanel_ammunition_count_11;
-                    if (%sailing_sidepanel_ammunition_tier_11 ! 0) {
-                        $obj = ~script9036(%sailing_sidepanel_ammunition_tier_11);
+                    $int11 = %sailing_sidepanel_ammunition_count_11;
+                    if (%sailing_sidepanel_ammunition_type_11 ! 0) {
+                        $obj = ~script9036(%sailing_sidepanel_ammunition_type_11);
                     }
                 case 12 :
-                    $int8 = %sailing_sidepanel_ammunition_count_12;
-                    if (%sailing_sidepanel_ammunition_tier_12 ! 0) {
-                        $obj = ~script9036(%sailing_sidepanel_ammunition_tier_12);
+                    $int11 = %sailing_sidepanel_ammunition_count_12;
+                    if (%sailing_sidepanel_ammunition_type_12 ! 0) {
+                        $obj = ~script9036(%sailing_sidepanel_ammunition_type_12);
                     }
             }
         } else if ($dbrow1 = sailing_sidepanel_facility_button_clear) {
@@ -203,8 +210,141 @@ switch_dbrow ($dbrow0) {
                     $int7 = clearbit($int7, 3);
                     $int7 = clearbit($int7, 1);
             }
+        } else if ($dbrow1 = sailing_sidepanel_facility_objbutton_cannonball) {
+            switch_int ($int2) {
+                case 0 :
+                    $int11 = %sailing_sidepanel_ammunition_count_0;
+                    if (%sailing_sidepanel_ammunition_type_0 ! 0) {
+                        $obj = ~script9036(%sailing_sidepanel_ammunition_type_0);
+                    }
+                    $int13 = %sailing_sidepanel_ammo_flags_0;
+                case 1 :
+                    $int11 = %sailing_sidepanel_ammunition_count_1;
+                    if (%sailing_sidepanel_ammunition_type_1 ! 0) {
+                        $obj = ~script9036(%sailing_sidepanel_ammunition_type_1);
+                    }
+                    $int13 = %sailing_sidepanel_ammo_flags_1;
+                case 2 :
+                    $int11 = %sailing_sidepanel_ammunition_count_2;
+                    if (%sailing_sidepanel_ammunition_type_2 ! 0) {
+                        $obj = ~script9036(%sailing_sidepanel_ammunition_type_2);
+                    }
+                    $int13 = %sailing_sidepanel_ammo_flags_2;
+                case 3 :
+                    $int11 = %sailing_sidepanel_ammunition_count_3;
+                    if (%sailing_sidepanel_ammunition_type_3 ! 0) {
+                        $obj = ~script9036(%sailing_sidepanel_ammunition_type_3);
+                    }
+                    $int13 = %sailing_sidepanel_ammo_flags_3;
+                case 4 :
+                    $int11 = %sailing_sidepanel_ammunition_count_4;
+                    if (%sailing_sidepanel_ammunition_type_4 ! 0) {
+                        $obj = ~script9036(%sailing_sidepanel_ammunition_type_4);
+                    }
+                    $int13 = %sailing_sidepanel_ammo_flags_4;
+                case 5 :
+                    $int11 = %sailing_sidepanel_ammunition_count_5;
+                    if (%sailing_sidepanel_ammunition_type_5 ! 0) {
+                        $obj = ~script9036(%sailing_sidepanel_ammunition_type_5);
+                    }
+                    $int13 = %sailing_sidepanel_ammo_flags_5;
+                case 6 :
+                    $int11 = %sailing_sidepanel_ammunition_count_6;
+                    if (%sailing_sidepanel_ammunition_type_6 ! 0) {
+                        $obj = ~script9036(%sailing_sidepanel_ammunition_type_6);
+                    }
+                    $int13 = %sailing_sidepanel_ammo_flags_6;
+                case 7 :
+                    $int11 = %sailing_sidepanel_ammunition_count_7;
+                    if (%sailing_sidepanel_ammunition_type_7 ! 0) {
+                        $obj = ~script9036(%sailing_sidepanel_ammunition_type_7);
+                    }
+                    $int13 = %sailing_sidepanel_ammo_flags_7;
+                case 8 :
+                    $int11 = %sailing_sidepanel_ammunition_count_8;
+                    if (%sailing_sidepanel_ammunition_type_8 ! 0) {
+                        $obj = ~script9036(%sailing_sidepanel_ammunition_type_8);
+                    }
+                    $int13 = %sailing_sidepanel_ammo_flags_8;
+                case 9 :
+                    $int11 = %sailing_sidepanel_ammunition_count_9;
+                    if (%sailing_sidepanel_ammunition_type_9 ! 0) {
+                        $obj = ~script9036(%sailing_sidepanel_ammunition_type_9);
+                    }
+                    $int13 = %sailing_sidepanel_ammo_flags_9;
+                case 10 :
+                    $int11 = %sailing_sidepanel_ammunition_count_10;
+                    if (%sailing_sidepanel_ammunition_type_10 ! 0) {
+                        $obj = ~script9036(%sailing_sidepanel_ammunition_type_10);
+                    }
+                    $int13 = %sailing_sidepanel_ammo_flags_10;
+                case 11 :
+                    $int11 = %sailing_sidepanel_ammunition_count_11;
+                    if (%sailing_sidepanel_ammunition_type_11 ! 0) {
+                        $obj = ~script9036(%sailing_sidepanel_ammunition_type_11);
+                    }
+                    $int13 = %sailing_sidepanel_ammo_flags_11;
+                case 12 :
+                    $int11 = %sailing_sidepanel_ammunition_count_12;
+                    if (%sailing_sidepanel_ammunition_type_12 ! 0) {
+                        $obj = ~script9036(%sailing_sidepanel_ammunition_type_12);
+                    }
+                    $int13 = %sailing_sidepanel_ammo_flags_12;
+            }
+            if ($obj ! null) {
+                $int14 = db_getfield(oc_param($obj, param_2456), sailing_combat_facility_ammunition:ammunition_type, 0);
+            }
+            switch_int ($int14) {
+                case 0 :
+                    if (testbit($int13, 1) = ^false & testbit($int13, 2) = ^false) {
+                        $int4 = 1;
+                        $int7 = 0;
+                    } else if (testbit($int13, 1) = ^true & testbit($int13, 2) = ^false) {
+                        $int4 = 0;
+                        $int8 = 1;
+                    } else if (testbit($int13, 1) = ^false & testbit($int13, 2) = ^true) {
+                        $int4 = 0;
+                        $int8 = 2;
+                    } else {
+                        $int4 = 0;
+                        $int8 = 1;
+                        $int7 = setbit($int7, calc(2 + 1));
+                    }
+                case 1 :
+                    if (testbit($int13, 2) = ^false & testbit($int13, 0) = ^false) {
+                        $int4 = 1;
+                        $int7 = 0;
+                    } else if (testbit($int13, 2) = ^true & testbit($int13, 0) = ^false) {
+                        $int4 = 0;
+                        $int8 = 2;
+                    } else if (testbit($int13, 2) = ^false & testbit($int13, 0) = ^true) {
+                        $int4 = 0;
+                        $int8 = 0;
+                    } else {
+                        $int4 = 0;
+                        $int8 = 2;
+                        $int7 = setbit($int7, calc(0 + 1));
+                    }
+                case 2 :
+                    if (testbit($int13, 0) = ^false & testbit($int13, 1) = ^false) {
+                        $int4 = 1;
+                        $int7 = 0;
+                    } else if (testbit($int13, 0) = ^true & testbit($int13, 1) = ^false) {
+                        $int4 = 0;
+                        $int8 = 0;
+                    } else if (testbit($int13, 0) = ^false & testbit($int13, 1) = ^true) {
+                        $int4 = 0;
+                        $int8 = 1;
+                    } else {
+                        $int4 = 0;
+                        $int8 = 0;
+                        $int7 = setbit($int7, calc(1 + 1));
+                    }
+                case default :
+                    $int4 = 1;
+            }
         }
     case sailing_sidepanel_facility_chum_station :
         $int4 = 0;
 }
-return($int4, $int8, $boolean, $obj, $int7);
+return($int4, $int8, $boolean, $obj, $int11, $int7);
