@@ -1,0 +1,17 @@
+// 9522
+[clientscript,script9522](component $component0, int $int1, int $int2, component $component3)
+if (~script9529(%map_flags_cached) = 0) {
+    return;
+}
+def_int $int4 = if_getheight($component0);
+def_int $int5 = scale($int2, $int1, 16384);
+if_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top, $component0);
+if_setsize($int5, 0, ^setsize_rel, ^setsize_rel, $component0);
+def_int $int6 = if_getwidth($component0);
+def_int $int7 = calc($int6 * 9 / 16);
+if_setsize($int6, $int7, ^setsize_abs, ^setsize_abs, $component0);
+cc_create($component3, ^iftype_rectangle, 0);
+cc_setsize($int6, calc($int4 - $int7), ^setsize_abs, ^setsize_abs);
+cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_bottom);
+cc_setfill(true);
+cc_setcolour(^black);
