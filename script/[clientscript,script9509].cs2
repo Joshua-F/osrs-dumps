@@ -1,0 +1,23 @@
+// 9509
+[clientscript,script9509](int $key)
+if (~keypress_permit(allstar_oculus, null) = false) {
+    return;
+}
+switch_int ($key) {
+    case ^key_escape :
+        resume_countdialog("0");
+    case ^key_space :
+        resume_countdialog("1");
+    case ^key_page_up :
+        if (%freecam_speed < 15) {
+            %freecam_speed = ~min(15, calc(%freecam_speed + 1));
+            setfreecamspeed(%freecam_speed, 2);
+        }
+    case ^key_page_down :
+        if (%freecam_speed > 3) {
+            %freecam_speed = ~max(3, calc(%freecam_speed - 1));
+            setfreecamspeed(%freecam_speed, 2);
+        }
+    case ^key_f5 :
+        if_triggerop(allstar_tournament_sidepanel:refresh, -1, 1);
+}

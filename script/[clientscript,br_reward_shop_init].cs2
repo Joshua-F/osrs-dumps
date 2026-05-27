@@ -2,7 +2,12 @@
 [clientscript,br_reward_shop_init](component $universe, component $total, component $options, component $scrollbar, component $confirm, component $buttongfx)
 ~br_reward_shop_showpoints($total);
 if_setonvartransmit("br_reward_shop_showpoints($total){if1, if2, item_redemption}", $total);
-def_int $int = ~br_reward_shop_draw(-1, $universe, $options, $confirm, $buttongfx);
+def_int $int = 0;
+if (%if2 > 0) {
+    $int = ~br_reward_shop_draw(-1, $universe, $options, $confirm, $buttongfx);
+} else {
+    $int = ~script9524(-1, $universe, $options, $confirm, $buttongfx);
+}
 if_setscrollpos(0, 0, $options);
 if ($int >= if_getheight($options)) {
     if_setscrollsize(0, $int, $options);

@@ -1,5 +1,6 @@
-// 1584
-[clientscript,killcounts](string $string0, string $string1, string $string2, int $int0, string $string3, boolean $boolean)
+// 9525
+[clientscript,script9525](int $int0, stringarray $stringarray0, intarray $intarray1, intarray $intarray2, string $string3)
+def_int $int1 = array_size($stringarray0);
 def_component $bars = kill_log:bars;
 def_component $name = kill_log:name;
 def_component $kill = kill_log:kill;
@@ -8,36 +9,38 @@ def_component $reset = kill_log:reset;
 def_component $scrolling = kill_log:scrolling;
 def_component $scrollbar = kill_log:scrollbar;
 def_int $int9 = 0;
-def_int $int10 = string_indexof_string($string0, "|", 0);
-def_int $int11 = string_indexof_string($string1, "|", 0);
-def_int $int12 = string_indexof_string($string2, "|", 0);
 def_string $string4 = "";
 def_string $string5 = "";
 def_string $string6 = "";
-def_graphic $graphic13 = "reset,0";
-def_graphic $graphic14 = "reset,1";
-def_int $int15 = 18;
+def_graphic $graphic10 = "reset,0";
+def_graphic $graphic11 = "reset,1";
+def_int $int12 = 18;
 cc_deleteall($bars);
 cc_deleteall($name);
 cc_deleteall($kill);
 cc_deleteall($streak);
 cc_deleteall($reset);
 ~kill_log_hide_confirm;
-while ($int9 <= $int0 & $int10 ! -1 & $int11 ! -1 & $int12 ! -1) {
-    $string4 = substring($string0, 0, $int10);
-    $string5 = substring($string1, 0, $int11);
-    $string6 = substring($string2, 0, $int12);
-    if (calc($int9 % 2) = 0) {
+def_intarray $intarray7 = array_create(int, $int1, -1);
+array_generaterange($intarray7, 0, 0, -1);
+def_stringarray $stringarray8 = array_create(string, $int1, -1);
+array_copy($stringarray0, $stringarray8, 0, 0, -1);
+array_sort($stringarray8, $intarray7);
+def_int $int13 = -1;
+while ($int9 < $int1) {
+    $string4, $string5, $string6 = ~script9526($stringarray0, $intarray1, $intarray2, $int9);
+    $int13 = $intarray7($int9);
+    if (calc($int13 % 2) = 0) {
         cc_create($bars, ^iftype_rectangle, calc($int9 / 2));
         cc_setcolour(^white);
         cc_setfill(true);
         cc_settrans(245);
-        cc_setposition(0, calc($int9 * $int15), ^setpos_abs_centre, ^setpos_abs_top);
-        cc_setsize(0, $int15, ^setsize_minus, ^setsize_abs);
+        cc_setposition(0, calc($int13 * $int12), ^setpos_abs_centre, ^setpos_abs_top);
+        cc_setsize(0, $int12, ^setsize_minus, ^setsize_abs);
     }
     cc_create($name, ^iftype_text, $int9);
     cc_setsize(0, 15, ^setsize_minus, ^setsize_abs);
-    cc_setposition(0, calc($int9 * $int15), ^setpos_abs_left, ^setpos_abs_top);
+    cc_setposition(0, calc($int13 * $int12), ^setpos_abs_left, ^setpos_abs_top);
     cc_settextfont(p12_full);
     cc_setcolour(0xff981f);
     cc_settextalign(^settextalign_left, ^settextalign_bottom, 15);
@@ -45,7 +48,7 @@ while ($int9 <= $int0 & $int10 ! -1 & $int11 ! -1 & $int12 ! -1) {
     cc_settextshadow(true);
     cc_create($kill, ^iftype_text, $int9);
     cc_setsize(0, 15, ^setsize_minus, ^setsize_abs);
-    cc_setposition(0, calc($int9 * $int15), ^setpos_abs_left, ^setpos_abs_top);
+    cc_setposition(0, calc($int13 * $int12), ^setpos_abs_left, ^setpos_abs_top);
     cc_settextfont(p12_full);
     cc_setcolour(0xff981f);
     cc_settextalign(^settextalign_right, ^settextalign_bottom, 15);
@@ -53,7 +56,7 @@ while ($int9 <= $int0 & $int10 ! -1 & $int11 ! -1 & $int12 ! -1) {
     cc_settextshadow(true);
     cc_create($streak, ^iftype_text, $int9);
     cc_setsize(0, 15, ^setsize_minus, ^setsize_abs);
-    cc_setposition(0, calc($int9 * $int15), ^setpos_abs_left, ^setpos_abs_top);
+    cc_setposition(0, calc($int13 * $int12), ^setpos_abs_left, ^setpos_abs_top);
     cc_settextfont(p12_full);
     cc_setcolour(0xff981f);
     cc_settextalign(^settextalign_right, ^settextalign_bottom, 15);
@@ -61,12 +64,12 @@ while ($int9 <= $int0 & $int10 ! -1 & $int11 ! -1 & $int12 ! -1) {
     cc_settextshadow(true);
     cc_create($reset, ^iftype_graphic, $int9);
     cc_setsize(15, 14, ^setsize_abs, ^setsize_abs);
-    cc_setposition(0, calc($int9 * $int15), ^setpos_abs_left, ^setpos_abs_top);
+    cc_setposition(0, calc($int13 * $int12), ^setpos_abs_left, ^setpos_abs_top);
     cc_setgraphic("reset,0");
-    if ($boolean = true) {
-        cc_setonmouseover("cc_graphic_swapper($reset, $int9, $graphic14, null)");
-        cc_setonmouseleave("cc_graphic_swapper($reset, $int9, $graphic13, null)");
-        cc_setonop("kill_log_show_confirm($reset, $int9)");
+    if ($int0 = 1) {
+        cc_setonmouseover("cc_graphic_swapper($reset, $int9, $graphic11, null)");
+        cc_setonmouseleave("cc_graphic_swapper($reset, $int9, $graphic10, null)");
+        cc_setonop("kill_log_show_confirm($reset, $int9, $int13)");
         cc_setop(1, "Reset Streak");
         cc_setopbase("<col=ff9040><$string4></col>");
     } else {
@@ -74,15 +77,9 @@ while ($int9 <= $int0 & $int10 ! -1 & $int11 ! -1 & $int12 ! -1) {
         cc_clearops;
         cc_setonop(null);
     }
-    $string0 = substring($string0, calc($int10 + 1), string_length($string0));
-    $string1 = substring($string1, calc($int11 + 1), string_length($string1));
-    $string2 = substring($string2, calc($int12 + 1), string_length($string2));
     $int9 = calc($int9 + 1);
-    $int10 = string_indexof_string($string0, "|", 0);
-    $int11 = string_indexof_string($string1, "|", 0);
-    $int12 = string_indexof_string($string2, "|", 0);
 }
-if_setscrollsize(0, calc($int9 * $int15 + $int15), $scrolling);
+if_setscrollsize(0, calc($int9 * $int12 + $int12), $scrolling);
 if_setscrollpos(0, 0, $scrolling);
 ~scrollbar_vertical($scrollbar, $scrolling, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
 if_settext($string3, kill_log:interface_title);
