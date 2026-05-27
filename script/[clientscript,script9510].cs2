@@ -1,0 +1,62 @@
+// 9510
+[clientscript,script9510](stringarray $stringarray)
+~script9514(allstar_tournament_sidepanel:refresh);
+~script9514(allstar_tournament_sidepanel:clear_ui);
+~script9514(allstar_tournament_sidepanel:show_target);
+~script9514(allstar_tournament_sidepanel:freecam);
+~script9517(allstar_tournament_sidepanel:searchbar);
+if_setposition(0, 50, ^setpos_abs_centre, ^setpos_abs_top, allstar_tournament_sidepanel:contents);
+if_setsize(8, 104, ^setsize_minus, ^setsize_minus, allstar_tournament_sidepanel:contents);
+cc_deleteall(allstar_tournament_sidepanel:list);
+def_int $int0 = 0;
+def_int $int1 = array_size($stringarray);
+while ($int0 < $int1) {
+    cc_create(allstar_tournament_sidepanel:list, ^iftype_rectangle, $int0);
+    cc_sethide(true);
+    $int0 = calc($int0 + 1);
+}
+if (if_find(allstar_tournament_sidepanel:list) = true) {
+    cc_setparam(param_892, $int1);
+}
+def_int $intarray($int1);
+def_int $int2 = 0;
+def_string $string = "";
+if ($int1 > 0) {
+    $string = $stringarray($int2);
+}
+while ($int2 < $int1 & string_length($string) > 0) {
+    cc_create(allstar_tournament_sidepanel:list, ^iftype_text, $int0);
+    cc_setsize(0, 22, ^setsize_minus, ^setsize_abs);
+    cc_setcolour(0xff891f);
+    cc_settextfont(p12_full);
+    cc_settextshadow(true);
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    cc_settext($string);
+    if (.cc_find(allstar_tournament_sidepanel:list, calc($int0 - $int1)) = true) {
+        .cc_setopbase("<col=ff9040><$string></col>");
+        .cc_setop(1, "Teleport & Show");
+        .cc_setop(2, "Teleport");
+        .cc_setop(3, "Show Left");
+        .cc_setop(4, "Show Right");
+        .cc_sethide(false);
+        .cc_setsize(0, 22, ^setsize_minus, ^setsize_abs);
+        .cc_setfill(true);
+        .cc_setcolour(^white);
+    }
+    $int0, $int2 = calc($int0 + 1), calc($int2 + 1);
+    if ($int2 < $int1) {
+        $string = $stringarray($int2);
+    }
+}
+if ($int2 <= 0) {
+    cc_create(allstar_tournament_sidepanel:list, ^iftype_text, $int0);
+    cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top);
+    cc_setcolour(0xff891f);
+    cc_settextfont(b12_full);
+    cc_settextshadow(true);
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    cc_settext("No eligible players were found.");
+}
+%spectator_search_string = "";
+~script9511;
