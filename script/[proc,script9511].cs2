@@ -1,0 +1,71 @@
+// 9511
+[proc,script9511]
+def_int $int0 = 0;
+if (if_find(allstar_tournament_sidepanel:list) = true) {
+    $int0 = cc_param(param_892);
+}
+def_int $int1 = 0;
+def_int $int2 = 0;
+while ($int2 < $int0) {
+    if (cc_find(allstar_tournament_sidepanel:list, calc($int2 + $int0)) = true & .cc_find(allstar_tournament_sidepanel:list, $int2) = true) {
+        cc_sethide(false);
+        .cc_sethide(false);
+    }
+    $int2 = calc($int2 + 1);
+}
+def_stringarray $stringarray0 = array_create(string, $int0, -1);
+$int2 = 0;
+while ($int2 < $int0) {
+    if (cc_find(allstar_tournament_sidepanel:list, calc($int2 + $int0)) = true) {
+        $stringarray0($int2) = cc_gettext;
+    }
+    $int2 = calc($int2 + 1);
+}
+def_stringarray $stringarray1 = array_create(string, 0, $int0);
+$int2 = 0;
+while ($int2 < $int0) {
+    if (string_length(%spectator_search_string) <= 0 | string_indexof_string(lowercase($stringarray0($int2)), lowercase(%spectator_search_string), 0) ! -1) {
+        array_push($stringarray1, $stringarray0($int2));
+    }
+    $int2 = calc($int2 + 1);
+}
+array_sort($stringarray1, null);
+def_int $int3 = 0;
+$int2 = 0;
+while ($int2 < $int0) {
+    if (cc_find(allstar_tournament_sidepanel:list, calc($int2 + $int0)) = true & .cc_find(allstar_tournament_sidepanel:list, $int2) = true) {
+        $int3 = array_indexof($stringarray1, cc_gettext, 0, -1);
+        if ($int3 = -1) {
+            cc_sethide(true);
+            .cc_sethide(true);
+        } else {
+            $int1 = calc($int3 * 22);
+            cc_setposition(0, $int1, ^setpos_abs_centre, ^setpos_abs_top);
+            .cc_setposition(0, $int1, ^setpos_abs_centre, ^setpos_abs_top);
+            .cc_setonmouserepeat("cc_settrans(event_com, event_comsubid, 200, null)");
+            if (calc($int1 % 44) = 0) {
+                .cc_settrans(230);
+                .cc_setonmouseleave("cc_settrans(event_com, event_comsubid, 230, null)");
+                .cc_setonop("script9512(event_op, event_com, event_comsubid, 230)");
+            } else {
+                .cc_settrans(245);
+                .cc_setonmouseleave("cc_settrans(event_com, event_comsubid, 245, null)");
+                .cc_setonop("script9512(event_op, event_com, event_comsubid, 245)");
+            }
+        }
+    }
+    $int2 = calc($int2 + 1);
+}
+$int0 = array_size($stringarray1);
+$int1 = calc($int0 * 22);
+cc_deleteall(allstar_tournament_sidepanel:scrollbar);
+def_int $int4 = if_getheight(allstar_tournament_sidepanel:list);
+if ($int1 > $int4) {
+    if_setscrollsize(0, $int1, allstar_tournament_sidepanel:list);
+    ~scrollbar_vertical(allstar_tournament_sidepanel:scrollbar, allstar_tournament_sidepanel:list, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+    ~scrollbar_resize(allstar_tournament_sidepanel:scrollbar, allstar_tournament_sidepanel:list, ~max(0, ~min(calc($int1 - $int4), if_getscrolly(allstar_tournament_sidepanel:list))));
+} else {
+    if_setscrollpos(0, 0, allstar_tournament_sidepanel:list);
+    if_setscrollsize(0, 0, allstar_tournament_sidepanel:list);
+    ~scrollbar_vertical(allstar_tournament_sidepanel:scrollbar, allstar_tournament_sidepanel:list, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+}
