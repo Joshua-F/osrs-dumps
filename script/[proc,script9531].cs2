@@ -1,0 +1,85 @@
+// 9531
+[proc,script9531](int $int0, int $int1, int $int2, int $int3, obj $obj, component $component5, component $component6, int $int7)(int, int)
+cc_create($component5, ^iftype_graphic, $int0);
+$int0 = calc($int0 + 1);
+cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+.cc_create($component5, ^iftype_text, $int0);
+$int0 = calc($int0 + 1);
+.cc_setsize($int2, 30, ^setsize_abs, ^setsize_abs);
+cc_setop(10, "Examine");
+cc_setopbase("<col=ff9040><oc_name($obj)></col>");
+cc_setgraphicshadow(0x333333);
+cc_setoutline(1);
+if (oc_unplaceholder($obj) ! $obj) {
+    cc_setobject($obj, 0);
+    cc_settrans(120);
+    cc_setop(8, "Remove-Placeholder");
+    cc_setop(9, "Remove-All-Placeholders");
+} else {
+    cc_setobject($obj, inv_total(seed_vault, $obj));
+    if (%seed_vault_selected_qty = ^max_32bit_int) {
+        cc_setop(1, "Withdraw-All");
+    } else if (%seed_vault_selected_qty > 1) {
+        cc_setop(1, "Withdraw-<tostring(%seed_vault_selected_qty)>");
+    }
+    cc_setop(2, "Withdraw-1");
+    cc_setop(3, "Withdraw-5");
+    cc_setop(4, "Withdraw-10");
+    if (%seed_vault_requested_qty > 1) {
+        cc_setop(5, "Withdraw-<tostring(%seed_vault_requested_qty)>");
+    }
+    cc_setop(6, "Withdraw-X");
+    cc_setop(7, "Withdraw-All");
+    if (oc_stackable($obj) = false & oc_cert($obj) ! $obj) {
+        cc_setop(9, "Withdraw-Notes");
+    }
+}
+.cc_setop(10, "Examine");
+.cc_setopbase("<col=ff9040><oc_name($obj)></col>");
+.cc_settextfont(p11_full);
+.cc_settextshadow(true);
+.cc_setcolour(0xff981f);
+.cc_settextalign(^settextalign_centre, ^settextalign_top, 0);
+.cc_settext(oc_name($obj));
+if (oc_unplaceholder($obj) ! $obj) {
+    .cc_setop(8, "Remove-Placeholder");
+    .cc_setop(9, "Remove-All-Placeholders");
+} else {
+    if (%seed_vault_selected_qty = ^max_32bit_int) {
+        .cc_setop(1, "Withdraw-All");
+    } else if (%seed_vault_selected_qty > 1) {
+        .cc_setop(1, "Withdraw-<tostring(%seed_vault_selected_qty)>");
+    }
+    .cc_setop(2, "Withdraw-1");
+    .cc_setop(3, "Withdraw-5");
+    .cc_setop(4, "Withdraw-10");
+    if (%seed_vault_requested_qty > 1) {
+        .cc_setop(5, "Withdraw-<tostring(%seed_vault_requested_qty)>");
+    }
+    .cc_setop(6, "Withdraw-X");
+    .cc_setop(7, "Withdraw-All");
+    if (oc_stackable($obj) = false & oc_cert($obj) ! $obj) {
+        .cc_setop(9, "Withdraw-Notes");
+    }
+}
+if (~seed_vault_searching = false) {
+    if (~script2828($int7) ! -1) {
+        cc_setop(8, "Remove-Favourite");
+        .cc_setop(8, "Remove-Favourite");
+    } else if (oc_unplaceholder($obj) ! $obj) {
+        cc_setop(8, "Remove-Placeholder");
+        .cc_setop(8, "Remove-Placeholder");
+    } else if (~script2831 > 0) {
+        cc_setop(8, "Favourite");
+        .cc_setop(8, "Favourite");
+    } else {
+        cc_setop(8, "");
+        .cc_setop(8, "");
+    }
+}
+cc_setonop("script9532(event_op, $component6, $int7)");
+.cc_setonop("script9532(event_op, $component6, $int7)");
+cc_setposition(calc($int1 + $int3 / 2 + ($int2 - 36) / 2), 42, ^setpos_abs_left, ^setpos_abs_top);
+.cc_setposition(calc($int1 + $int3 / 2), calc(42 + 32), ^setpos_abs_left, ^setpos_abs_top);
+$int1 = calc($int1 + $int3 + $int2);
+return($int0, $int1);

@@ -1,52 +1,77 @@
 // 2814
-[clientscript,seed_vault_build_category_list](component $category_list, component $category_backgrounds, component $category_headers, component $list, component $right_scroll, component $left_list, component $left_scroll, component $frame, component $universe, component $infinity)
+[clientscript,seed_vault_build_category_list](component $category_list, component $category_backgrounds, component $category_headers, component $list, component $contract_seeds, component $right_scroll, component $left_list, component $left_scroll, component $frame, component $universe, component $infinity)
 cc_deleteall($category_list);
 cc_deleteall($category_backgrounds);
 cc_deleteall($left_scroll);
 ~seed_vault_size_check($universe, $infinity, ^min_32bit_int, ^min_32bit_int, $list, $right_scroll, $left_list, $left_scroll, $frame);
-def_int $int10 = 0;
 def_int $int11 = 0;
 def_int $int12 = 0;
 def_int $int13 = 0;
+def_int $int14 = 0;
+def_int $int15 = 0;
 if (~on_mobile = true) {
-    $int12 = 20;
+    $int13 = 20;
 }
-while ($int11 <= enum_getoutputcount(enum_2304)) {
-    $int10 = enum(int, int, enum_2304, $int11);
-    cc_create($category_list, ^iftype_text, $int11);
-    cc_setsize(5, calc(20 + $int12), ^setsize_minus, ^setsize_abs);
-    cc_setposition(5, $int13, ^setpos_abs_left, ^setpos_abs_top);
+if (%farmguild_contract_type > 0 & %farmguild_contract_complete = 0) {
+    cc_create($category_list, ^iftype_text, $int15);
+    cc_setsize(5, calc(20 + $int13), ^setsize_minus, ^setsize_abs);
+    cc_setposition(5, $int14, ^setpos_abs_left, ^setpos_abs_top);
     cc_setcolour(0xff981f);
     cc_settextfont(p12_full);
     cc_settextshadow(true);
-    cc_settext(enum(int, string, enum_2305, $int10));
+    cc_settext("Farming contract");
     cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
-    cc_setonmouseover("cc_colour_swapper($category_list, $int11, 16777215)");
-    cc_setonmouseleave("cc_colour_swapper($category_list, $int11, 16750623)");
-    cc_setonop("seed_vault_catop($category_headers, $int10, $list, $right_scroll)");
-    cc_setonvartransmit("seed_vault_catvar($category_headers, $list, $right_scroll){seed_vault_temp}");
+    cc_setonmouseover("cc_colour_swapper($category_list, $int15, 16777215)");
+    cc_setonmouseleave("cc_colour_swapper($category_list, $int15, 16750623)");
+    cc_setonop("seed_vault_catop($category_headers, 12, $list, $right_scroll, $contract_seeds)");
+    cc_setonvartransmit("seed_vault_catvar($category_headers, $list, $right_scroll, $contract_seeds){seed_vault_temp}");
     cc_setop(1, "Select");
-    .cc_create($category_backgrounds, ^iftype_rectangle, $int11);
-    .cc_setsize(0, calc(20 + $int12), ^setsize_minus, ^setsize_abs);
-    .cc_setposition(0, $int13, ^setpos_abs_left, ^setpos_abs_top);
+    .cc_create($category_backgrounds, ^iftype_rectangle, $int15);
+    .cc_setsize(0, calc(20 + $int13), ^setsize_minus, ^setsize_abs);
+    .cc_setposition(0, $int14, ^setpos_abs_left, ^setpos_abs_top);
     .cc_setfill(true);
-    if (calc($int11 % 2) = 0) {
+    .cc_setcolour(^black);
+    .cc_settrans(225);
+    $int14 = calc(cc_gety + cc_getheight);
+    $int15 = calc($int15 + 1);
+}
+while ($int12 <= enum_getoutputcount(enum_2304)) {
+    $int11 = enum(int, int, enum_2304, $int12);
+    cc_create($category_list, ^iftype_text, $int15);
+    cc_setsize(5, calc(20 + $int13), ^setsize_minus, ^setsize_abs);
+    cc_setposition(5, $int14, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setcolour(0xff981f);
+    cc_settextfont(p12_full);
+    cc_settextshadow(true);
+    cc_settext(enum(int, string, enum_2305, $int11));
+    cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+    cc_setonmouseover("cc_colour_swapper($category_list, $int15, 16777215)");
+    cc_setonmouseleave("cc_colour_swapper($category_list, $int15, 16750623)");
+    cc_setonop("seed_vault_catop($category_headers, $int11, $list, $right_scroll, $contract_seeds)");
+    cc_setonvartransmit("seed_vault_catvar($category_headers, $list, $right_scroll, $contract_seeds){seed_vault_temp}");
+    cc_setop(1, "Select");
+    .cc_create($category_backgrounds, ^iftype_rectangle, $int15);
+    .cc_setsize(0, calc(20 + $int13), ^setsize_minus, ^setsize_abs);
+    .cc_setposition(0, $int14, ^setpos_abs_left, ^setpos_abs_top);
+    .cc_setfill(true);
+    if (calc($int12 % 2) = 0) {
         .cc_setcolour(^white);
         .cc_settrans(255);
     } else {
         .cc_setcolour(^black);
         .cc_settrans(225);
     }
-    $int13 = calc(cc_gety + cc_getheight);
-    $int11 = calc($int11 + 1);
+    $int15 = calc($int15 + 1);
+    $int14 = calc(cc_gety + cc_getheight);
+    $int12 = calc($int12 + 1);
 }
-def_int $int14 = 0;
-if ($int13 > if_getheight($left_list)) {
-    $int14 = if_getscrolly($left_list);
-    if_setscrollsize(0, $int13, $left_list);
+def_int $int16 = 0;
+if ($int14 > if_getheight($left_list)) {
+    $int16 = if_getscrolly($left_list);
+    if_setscrollsize(0, $int14, $left_list);
 } else {
     if_setscrollsize(0, 0, $left_list);
-    $int14 = 0;
+    $int16 = 0;
 }
 ~scrollbar_vertical($left_scroll, $left_list, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-~scrollbar_resize($left_scroll, $left_list, $int14);
+~scrollbar_resize($left_scroll, $left_list, $int16);

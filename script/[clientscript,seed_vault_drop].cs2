@@ -1,12 +1,22 @@
 // 2827
-[clientscript,seed_vault_drop](component $component0, component $component1, int $int2, int $int3, int $int4, int $int5)
-def_int $int6 = 15;
-def_int $int7 = 20;
-def_int $int8 = 50;
-def_int $int9 = 40;
+[clientscript,seed_vault_drop](component $component0, component $component1, int $int2, int $int3, int $int4, int $int5, component $component6)
+def_int $int7 = 15;
+def_int $int8 = 20;
+def_int $int9 = 50;
+def_int $int10 = 40;
 if (~on_mobile = true) {
-    $int6 = 20;
-    $int7 = 25;
+    $int7 = 20;
+    $int8 = 25;
+}
+if (%farmguild_contract_type > 0 & %farmguild_contract_complete = 0) {
+    if (cc_find($component6, 0) = true & .cc_find($component6, 1) = true) {
+        cc_sethide(true);
+        .cc_sethide(true);
+    }
+    if (cc_find($component0, $int2) = true & .cc_find($component1, $int2) = true) {
+        cc_sethide(false);
+        .cc_sethide(false);
+    }
 }
 if (cc_find($component0, $int2) = true) {
     cc_setposition($int4, $int5, ^setpos_abs_left, ^setpos_abs_top);
@@ -14,25 +24,25 @@ if (cc_find($component0, $int2) = true) {
 if (cc_find($component1, $int2) = true) {
     cc_setposition(calc($int4 - 7), calc($int5 + 32), ^setpos_abs_left, ^setpos_abs_top);
 }
-def_int $int10 = 0;
 def_int $int11 = 0;
-def_obj $obj12 = inv_getobj(seed_vault, $int2);
-def_obj $obj13 = inv_getobj(seed_vault, $int3);
+def_int $int12 = 0;
+def_obj $obj13 = inv_getobj(seed_vault, $int2);
+def_obj $obj14 = inv_getobj(seed_vault, $int3);
 if (cc_find($component0, $int2) = true & .cc_find($component0, $int3) = true) {
     if ($int3 = 104) {
         if (~script2828($int2) ! -1) {
             cc_sethide(true);
         } else {
-            $int10 = .cc_getx;
-            $int11 = .cc_gety;
-            cc_setposition($int10, $int11, ^setpos_abs_left, ^setpos_abs_top);
-            .cc_setposition(calc($int10 + $int6 + $int8), $int11, ^setpos_abs_left, ^setpos_abs_top);
+            $int11 = .cc_getx;
+            $int12 = .cc_gety;
+            cc_setposition($int11, $int12, ^setpos_abs_left, ^setpos_abs_top);
+            .cc_setposition(calc($int11 + $int7 + $int9), $int12, ^setpos_abs_left, ^setpos_abs_top);
         }
-    } else if ($obj12 ! null & $obj13 ! null & (oc_param(oc_unplaceholder($obj12), param_709) = oc_param(oc_unplaceholder($obj13), param_709) | ~script2828($int2) ! -1 & ~script2828($int3) ! -1)) {
-        $int10 = cc_getx;
-        $int11 = cc_gety;
+    } else if ($obj13 ! null & $obj14 ! null & (oc_param(oc_unplaceholder($obj13), param_709) = oc_param(oc_unplaceholder($obj14), param_709) | ~script2828($int2) ! -1 & ~script2828($int3) ! -1)) {
+        $int11 = cc_getx;
+        $int12 = cc_gety;
         cc_setposition(.cc_getx, .cc_gety, ^setpos_abs_left, ^setpos_abs_top);
-        .cc_setposition($int10, $int11, ^setpos_abs_left, ^setpos_abs_top);
+        .cc_setposition($int11, $int12, ^setpos_abs_left, ^setpos_abs_top);
     }
 }
 if (cc_find($component1, $int2) = true & .cc_find($component1, $int3) = true) {
@@ -40,15 +50,15 @@ if (cc_find($component1, $int2) = true & .cc_find($component1, $int3) = true) {
         if (~script2828($int2) ! -1) {
             cc_sethide(true);
         } else {
-            $int10 = .cc_getx;
-            $int11 = .cc_gety;
-            cc_setposition($int10, $int11, ^setpos_abs_left, ^setpos_abs_top);
-            .cc_setposition(calc($int10 + $int6 + $int8), $int11, ^setpos_abs_left, ^setpos_abs_top);
+            $int11 = .cc_getx;
+            $int12 = .cc_gety;
+            cc_setposition($int11, $int12, ^setpos_abs_left, ^setpos_abs_top);
+            .cc_setposition(calc($int11 + $int7 + $int9), $int12, ^setpos_abs_left, ^setpos_abs_top);
         }
-    } else if ($obj12 ! null & $obj13 ! null & (oc_param(oc_unplaceholder($obj12), param_709) = oc_param(oc_unplaceholder($obj13), param_709) | ~script2828($int2) ! -1 & ~script2828($int3) ! -1)) {
-        $int10 = cc_getx;
-        $int11 = cc_gety;
+    } else if ($obj13 ! null & $obj14 ! null & (oc_param(oc_unplaceholder($obj13), param_709) = oc_param(oc_unplaceholder($obj14), param_709) | ~script2828($int2) ! -1 & ~script2828($int3) ! -1)) {
+        $int11 = cc_getx;
+        $int12 = cc_gety;
         cc_setposition(.cc_getx, .cc_gety, ^setpos_abs_left, ^setpos_abs_top);
-        .cc_setposition($int10, $int11, ^setpos_abs_left, ^setpos_abs_top);
+        .cc_setposition($int11, $int12, ^setpos_abs_left, ^setpos_abs_top);
     }
 }
