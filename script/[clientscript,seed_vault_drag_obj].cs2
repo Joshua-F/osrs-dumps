@@ -1,9 +1,18 @@
 // 2824
-[clientscript,seed_vault_drag_obj](component $component0, component $component1, int $int2, int $int3, int $int4, component $component5, component $component6, int $int7)
+[clientscript,seed_vault_drag_obj](component $component0, component $component1, int $int2, int $int3, int $int4, component $component5, component $component6, int $int7, string $string)
 if ($int7 ! %seed_vault_built) {
     return;
 }
 if (cc_find($component0, $int2) = true & .cc_find($component1, $int2) = true) {
-    .cc_setposition(calc($int3 - 7), calc($int4 + 32), ^setpos_abs_left, ^setpos_abs_top);
+    if (%farmguild_contract_type > 0 & %farmguild_contract_complete = 0) {
+        .cc_sethide(true);
+        if (cc_find($component5, 1) = true) {
+            cc_sethide(false);
+            cc_setposition(calc($int3 - 7), calc($int4 + 32), ^setpos_abs_left, ^setpos_abs_top);
+            cc_settext($string);
+        }
+    } else {
+        .cc_setposition(calc($int3 - 7), calc($int4 + 32), ^setpos_abs_left, ^setpos_abs_top);
+    }
 }
 ~seed_vault_doscroll($component5, $component6, $int4);

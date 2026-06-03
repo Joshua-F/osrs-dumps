@@ -1,5 +1,9 @@
 // 2817
-[proc,seed_vault_catselect](component $component0, component $component1, component $component2)
+[proc,seed_vault_catselect](component $component0, component $component1, component $component2, component $component3)
+if (%seed_vault_category = 12 & cc_find($component2, 1) = true) {
+    ~scrollbar_vertical_doscroll($component2, $component1, 0, true);
+    return;
+}
 if (.cc_find($component0, %seed_vault_category) = true & cc_find($component2, 1) = true) {
-    ~scrollbar_vertical_doscroll($component2, $component1, .cc_gety, true);
+    ~scrollbar_vertical_doscroll($component2, $component1, calc(.cc_gety + if_getheight($component3)), true);
 }
