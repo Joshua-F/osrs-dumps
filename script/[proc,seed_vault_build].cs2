@@ -1,23 +1,33 @@
 // 2820
-[proc,seed_vault_build](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6)
+[proc,seed_vault_build](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7)
 %seed_vault_built = clientclock;
 cc_deleteall($component0);
 cc_deleteall($component1);
 cc_deleteall($component2);
 cc_deleteall($component3);
 cc_deleteall($component6);
-def_int $int7 = enum_getoutputcount(enum_2304);
-def_int $intarray0(calc($int7 + 1));
-def_int $int8 = 0;
+cc_deleteall($component7);
+def_int $int8 = enum_getoutputcount(enum_2304);
+def_int $intarray0(calc($int8 + 1));
+def_int $int9 = 0;
 def_obj $obj = null;
-def_int $int10 = 50;
-def_int $int11 = 40;
-while ($int8 < 104) {
-    $obj = inv_getobj(seed_vault, $int8);
-    cc_create($component0, ^iftype_graphic, $int8);
+def_int $int11 = 50;
+def_int $int12 = 30;
+def_int $int13 = 0;
+def_int $int14 = 0;
+def_int $int15 = 0;
+def_int $int16 = 15;
+def_int $int17 = 20;
+if (~on_mobile = true) {
+    $int16 = 20;
+    $int17 = 25;
+}
+while ($int9 < 104) {
+    $obj = inv_getobj(seed_vault, $int9);
+    cc_create($component0, ^iftype_graphic, $int9);
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
-    .cc_create($component1, ^iftype_text, $int8);
-    .cc_setsize($int10, 30, ^setsize_abs, ^setsize_abs);
+    .cc_create($component1, ^iftype_text, $int9);
+    .cc_setsize($int11, 30, ^setsize_abs, ^setsize_abs);
     if ($obj ! null & ~seed_vault_filteritem($obj) = true) {
         cc_setop(10, "Examine");
         cc_setopbase("<col=ff9040><oc_name($obj)></col>");
@@ -76,7 +86,7 @@ while ($int8 < 104) {
             }
         }
         if (~seed_vault_searching = false) {
-            if (~script2828($int8) ! -1) {
+            if (~script2828($int9) ! -1) {
                 $intarray0(0) = calc($intarray0(0) + 1);
                 cc_setop(8, "Remove-Favourite");
                 .cc_setop(8, "Remove-Favourite");
@@ -94,94 +104,98 @@ while ($int8 < 104) {
                 }
             }
         }
+        if (%farmguild_contract_type > 0 & %farmguild_contract_complete = 0 & oc_param(oc_unplaceholder($obj), param_895) = %farmguild_contract_type & ~seed_vault_searching = false) {
+            $int13, $int15 = ~script9531($int13, $int15, $int11, $int16, $obj, $component7, $component0, $int9);
+            $int14 = calc(.cc_gety + .cc_getheight);
+        }
     } else {
         cc_sethide(true);
         .cc_sethide(true);
         cc_clearops;
         .cc_clearops;
     }
-    $int8 = calc($int8 + 1);
+    $int9 = calc($int9 + 1);
 }
 if (~seed_vault_searching = false) {
     $intarray0(0) = calc($intarray0(0) + 1);
 }
-def_int $int12 = 0;
-def_int $int13 = 0;
-def_int $int14 = 5;
-def_int $int15 = 15;
-def_int $int16 = 20;
-if (~on_mobile = true) {
-    $int15 = 20;
-    $int16 = 25;
-}
-def_int $int17 = calc(if_getwidth($component4) / ($int10 + $int15));
-def_int $intarray1(calc($int7 + 1));
+def_int $int18 = 0;
+def_int $int19 = 0;
+def_int $int20 = 5;
+def_int $int21 = calc(if_getwidth($component4) / ($int11 + $int16));
+def_int $intarray1(calc($int8 + 1));
 if (~seed_vault_searching = true) {
     cc_create($component2, ^iftype_text, 0);
     cc_setsize(5, 20, ^setsize_minus, ^setsize_abs);
-    cc_setposition(0, $int14, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setposition(0, $int20, ^setpos_abs_left, ^setpos_abs_top);
     cc_setcolour(0xff981f);
     cc_settextfont(b12_full);
     cc_settextshadow(true);
     cc_settext("Search results: <lowercase(%meslayerinput)>");
-    cc_setposition(5, $int14, ^setpos_abs_left, ^setpos_abs_top);
-    $int14 = calc(cc_gety + cc_getheight + 2);
+    cc_setposition(5, $int20, ^setpos_abs_left, ^setpos_abs_top);
+    $int20 = calc(cc_gety + cc_getheight + 2);
     .cc_create($component3, ^iftype_graphic, 0);
     .cc_setgraphic(tradebacking_dark);
     .cc_settiling(true);
     .cc_setsize(4, 2, ^setsize_minus, ^setsize_abs);
-    .cc_setposition(2, $int14, ^setpos_abs_left, ^setpos_abs_top);
-    $intarray1(0) = calc($int14 + 15);
+    .cc_setposition(2, $int20, ^setpos_abs_left, ^setpos_abs_top);
+    $intarray1(0) = calc($int20 + 15);
 } else {
-    while ($int12 <= $int7) {
-        $int13 = enum(int, int, enum_2304, $int12);
-        cc_create($component2, ^iftype_text, $int12);
+    if (%farmguild_contract_type > 0 & %farmguild_contract_complete = 0) {
+        ~script9530($component7, $int13);
+        if ($int14 <= 0) {
+            $int14 = calc(72 + 32);
+        }
+    }
+    while ($int18 <= $int8) {
+        $int19 = enum(int, int, enum_2304, $int18);
+        cc_create($component2, ^iftype_text, $int18);
         cc_setsize(5, 20, ^setsize_minus, ^setsize_abs);
-        cc_setposition(0, $int14, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setposition(0, $int20, ^setpos_abs_left, ^setpos_abs_top);
         cc_setcolour(0xff981f);
         cc_settextfont(b12_full);
         cc_settextshadow(true);
-        cc_settext(enum(int, string, enum_2305, $int13));
-        cc_setposition(5, $int14, ^setpos_abs_left, ^setpos_abs_top);
-        $int14 = calc(cc_gety + cc_getheight + 2);
-        .cc_create($component3, ^iftype_graphic, $int12);
+        cc_settext(enum(int, string, enum_2305, $int19));
+        cc_setposition(5, $int20, ^setpos_abs_left, ^setpos_abs_top);
+        $int20 = calc(cc_gety + cc_getheight + 2);
+        .cc_create($component3, ^iftype_graphic, $int18);
         .cc_setgraphic(tradebacking_dark);
         .cc_settiling(true);
         .cc_setsize(4, 2, ^setsize_minus, ^setsize_abs);
-        .cc_setposition(2, $int14, ^setpos_abs_left, ^setpos_abs_top);
-        $intarray1($int12) = calc($int14 + 15);
-        $int14 = calc($int14 + (1 + ($intarray0($int12) - 1) / $int17) * ($int16 + 32 + $int11));
-        $int12 = calc($int12 + 1);
+        .cc_setposition(2, $int20, ^setpos_abs_left, ^setpos_abs_top);
+        $intarray1($int18) = calc($int20 + 15);
+        $int20 = calc($int20 + (1 + ($intarray0($int18) - 1) / $int21) * ($int17 + 32 + $int12));
+        $int18 = calc($int18 + 1);
     }
 }
-$int8 = 0;
-def_int $intarray2(calc($int7 + 1));
-def_int $int18 = 0;
-$int14 = 0;
-def_int $int19 = -1;
-while ($int8 < 104) {
-    $obj = inv_getobj(seed_vault, $int8);
+$int9 = 0;
+def_int $intarray2(calc($int8 + 1));
+def_int $int22 = 0;
+$int20 = 0;
+def_int $int23 = -1;
+while ($int9 < 104) {
+    $obj = inv_getobj(seed_vault, $int9);
     if ($obj ! null & ~seed_vault_filteritem($obj) = true) {
-        $int19 = oc_param(oc_unplaceholder($obj), param_709);
+        $int23 = oc_param(oc_unplaceholder($obj), param_709);
         if (~seed_vault_searching = true & ~seed_vault_filteritem($obj) = true) {
-            $int19 = 0;
-        } else if (~script2828($int8) ! -1) {
-            $int19 = 0;
+            $int23 = 0;
+        } else if (~script2828($int9) ! -1) {
+            $int23 = 0;
         }
-        $int18 = $intarray2($int19);
-        $int14 = $intarray1($int19);
-        if (cc_find($component0, $int8) = true & .cc_find($component1, $int8) = true) {
-            cc_setposition(calc($int18 + $int15 / 2 + ($int10 - 36) / 2), $int14, ^setpos_abs_left, ^setpos_abs_top);
-            .cc_setposition(calc($int18 + $int15 / 2), calc($int14 + 32), ^setpos_abs_left, ^setpos_abs_top);
+        $int22 = $intarray2($int23);
+        $int20 = $intarray1($int23);
+        if (cc_find($component0, $int9) = true & .cc_find($component1, $int9) = true) {
+            cc_setposition(calc($int22 + $int16 / 2 + ($int11 - 36) / 2), $int20, ^setpos_abs_left, ^setpos_abs_top);
+            .cc_setposition(calc($int22 + $int16 / 2), calc($int20 + 32), ^setpos_abs_left, ^setpos_abs_top);
             if (~seed_vault_searching = false) {
                 cc_setdragdeadtime(5);
                 cc_setdragdeadzone(5);
-                cc_setondrag("seed_vault_drag_obj($component0, $component1, $int8, event_mousex, event_mousey, $component4, $component5, %seed_vault_built)");
-                .cc_setondrag("seed_vault_drag_text($component0, $component1, $int8, event_mousex, event_mousey, $component4, $component5, %seed_vault_built)");
+                cc_setondrag("seed_vault_drag_obj($component0, $component1, $int9, event_mousex, event_mousey, $component4, $component5, %seed_vault_built, .cc_gettext)");
+                .cc_setondrag("seed_vault_drag_text($component0, $component1, $int9, event_mousex, event_mousey, $component4, $component5, %seed_vault_built, $obj, cc_gettrans, inv_total(seed_vault, $obj))");
                 .cc_setdragdeadtime(5);
                 .cc_setdragdeadzone(5);
-                cc_setondragcomplete("seed_vault_drop($component0, $component1, event_comsubid, event_comsubid2, cc_getx, cc_gety)");
-                .cc_setondragcomplete("seed_vault_drop($component0, $component1, event_comsubid, event_comsubid2, cc_getx, cc_gety)");
+                cc_setondragcomplete("seed_vault_drop($component0, $component1, event_comsubid, event_comsubid2, cc_getx, cc_gety, $component4)");
+                .cc_setondragcomplete("seed_vault_drop($component0, $component1, event_comsubid, event_comsubid2, cc_getx, cc_gety, $component4)");
             } else {
                 cc_setdragdeadtime(10000);
                 cc_setdragdeadzone(10000);
@@ -192,23 +206,24 @@ while ($int8 < 104) {
                 cc_setondragcomplete(null);
                 .cc_setondragcomplete(null);
             }
-            $int18 = calc($int18 + $int15 + $int10);
+            $int22 = calc($int22 + $int16 + $int11);
         }
-        if (calc($int18 + $int15 + $int10) > if_getwidth($component0)) {
-            $int18 = 0;
-            $intarray1($int19) = calc($int14 + $int16 + 32 + $int11);
+        if (calc($int22 + $int16 + $int11) > if_getwidth($component0)) {
+            $int22 = 0;
+            $intarray1($int23) = calc($int20 + $int17 + 32 + $int12);
         }
-        $intarray2($int19) = $int18;
+        $intarray2($int23) = $int22;
     }
-    $int8 = calc($int8 + 1);
+    $int9 = calc($int9 + 1);
 }
+~script1584($component4, $int11);
 if (~seed_vault_searching = false) {
-    cc_create($component0, ^iftype_graphic, $int8);
+    cc_create($component0, ^iftype_graphic, $int9);
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
     cc_setobject_nonum(kelda_hop_seed_5, 0);
     cc_settrans(120);
-    .cc_create($component1, ^iftype_text, $int8);
-    .cc_setsize($int10, 30, ^setsize_abs, ^setsize_abs);
+    .cc_create($component1, ^iftype_text, $int9);
+    .cc_setsize($int11, 30, ^setsize_abs, ^setsize_abs);
     if (~script2831 > 7) {
         .cc_settext("Add Favourites");
     } else if (~script2831 > 0) {
@@ -220,22 +235,24 @@ if (~seed_vault_searching = false) {
     .cc_settextshadow(true);
     .cc_setcolour(0xff981f);
     .cc_settextalign(^settextalign_centre, ^settextalign_top, 0);
-    $int18 = $intarray2(0);
-    $int14 = $intarray1(0);
-    cc_setposition(calc($int18 + $int15 / 2 + ($int10 - 36) / 2), $int14, ^setpos_abs_left, ^setpos_abs_top);
-    .cc_setposition(calc($int18 + $int15 / 2), calc($int14 + 32), ^setpos_abs_left, ^setpos_abs_top);
+    $int22 = $intarray2(0);
+    $int20 = $intarray1(0);
+    cc_setposition(calc($int22 + $int16 / 2 + ($int11 - 36) / 2), $int20, ^setpos_abs_left, ^setpos_abs_top);
+    .cc_setposition(calc($int22 + $int16 / 2), calc($int20 + 32), ^setpos_abs_left, ^setpos_abs_top);
 } else {
-    $int7 = 0;
+    $int8 = 0;
 }
+if_setsize(0, $int14, ^setsize_minus, ^setsize_abs, $component7);
+if_setsize(0, $int14, ^setsize_minus, ^setsize_minus, seed_vault:main_vault);
 ~scrollbar_vertical_rebuild($component5, $component4);
-def_int $int20 = 0;
-def_int $int21 = calc($intarray1($int7) + $int16 + 32 + $int11);
-if ($int21 > if_getheight($component4)) {
+def_int $int24 = 0;
+def_int $int25 = calc($intarray1($int8) + $int17 + 32 + $int12 + if_getheight($component7));
+if ($int25 > if_getheight($component4)) {
     if (%seed_vault_scrollpos > 0) {
-        $int20 = %seed_vault_scrollpos;
+        $int24 = %seed_vault_scrollpos;
     }
-    if_setscrollsize(0, $int21, $component4);
-    ~scrollbar_resize($component5, $component4, $int20);
+    if_setscrollsize(0, $int25, $component4);
+    ~scrollbar_resize($component5, $component4, $int24);
 } else {
     if_setscrollsize(0, 0, $component4);
     ~scrollbar_resize($component5, $component4, 0);

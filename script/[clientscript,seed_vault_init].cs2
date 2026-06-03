@@ -1,12 +1,12 @@
 // 2818
-[clientscript,seed_vault_init](component $obj_list, component $text_list, component $category_headers, component $category_lines, component $list, component $right_scroll, component $faves, component $search)
+[clientscript,seed_vault_init](component $obj_list, component $text_list, component $category_headers, component $category_lines, component $list, component $right_scroll, component $faves, component $contract_seeds, component $search)
 def_int $int = %seed_vault_scrollpos;
 if (~seed_vault_searching = true) {
     ~meslayer_close(1, 1, 1);
 }
 ~scrollbar_vertical($right_scroll, $list, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-~seed_vault_build($obj_list, $text_list, $category_headers, $category_lines, $list, $right_scroll, $faves);
-if_setonop("seed_vault_search_toggle($obj_list, $text_list, $category_headers, $category_lines, $list, $right_scroll, $faves, $search)", $search);
-if_setoninvtransmit("seed_vault_build($obj_list, $text_list, $category_headers, $category_lines, $list, $right_scroll, $faves){seed_vault}", $list);
-if_setonvartransmit("seed_vault_build($obj_list, $text_list, $category_headers, $category_lines, $list, $right_scroll, $faves){seed_vault_selected_qty, seed_vault_favourites1, seed_vault_favourites2}", $list);
+~seed_vault_build($obj_list, $text_list, $category_headers, $category_lines, $list, $right_scroll, $faves, $contract_seeds);
+if_setonop("seed_vault_search_toggle($obj_list, $text_list, $category_headers, $category_lines, $list, $right_scroll, $faves, $contract_seeds, $search)", $search);
+if_setoninvtransmit("seed_vault_build($obj_list, $text_list, $category_headers, $category_lines, $list, $right_scroll, $faves, $contract_seeds){seed_vault}", $list);
+if_setonvartransmit("seed_vault_build($obj_list, $text_list, $category_headers, $category_lines, $list, $right_scroll, $faves, $contract_seeds){seed_vault_selected_qty, seed_vault_favourites1, seed_vault_favourites2}", $list);
 %seed_vault_scrollpos = $int;
