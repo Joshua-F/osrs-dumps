@@ -7,10 +7,13 @@ if (~bankmain_searching = true) {
 } else if (%meslayermode <= 0) {
     %meslayerinput = "";
 }
+%banktags_active_tag = -1;
 ~bankmain_search_setbutton($universe, $menu_button, $wornitems_button, $items, $scrollbar, $bottom, $title, $occupiedslots, $search, $tabs, $incinerator_target, $incinerator_confirm, $tooltip, $depositinv, $depositinv_graphic, $depositcontainers, $depositcontainers_graphic, $depositworn, $depositworn_graphic, $bank_tut);
 if_setonop("bankmain_search_toggle(event_op, $universe, $menu_button, $wornitems_button, $items, $scrollbar, $bottom, $title, $occupiedslots, $search, $tabs, $incinerator_target, $incinerator_confirm, $tooltip, $depositinv, $depositinv_graphic, $depositcontainers, $depositcontainers_graphic, $depositworn, $depositworn_graphic, $bank_tut)", $search);
 cc_deleteall($scrollbar);
 ~scrollbar_vertical($scrollbar, $items, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+cc_deleteall(bankmain:banktags_display_scrollbar);
+~scrollbar_vertical(bankmain:banktags_display_scrollbar, bankmain:banktags_display_container, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
 ~bankmain_swapinsert($swap_insert, $swap_insert_graphic);
 if_setonvartransmit("bankmain_swapinsert($swap_insert, $swap_insert_graphic){bankinsert}", $swap_insert);
 ~bankmain_toggleplaceholders($placeholder);

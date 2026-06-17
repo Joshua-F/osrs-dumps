@@ -1,0 +1,18 @@
+// 9606
+[proc,banktags_movetotag](obj $obj, int $int1)
+if ($int1 < 10) {
+    return;
+}
+if (calc(($int1 - 10) % 3) ! 0) {
+    return;
+}
+def_int $int2 = calc(($int1 - 10) / 3 + %banktags_headers_scroll_offset);
+def_int $int3 = ~banktags_headers_buttonslot_get($int2);
+def_int $int4 = -1;
+def_int $int5 = -1;
+$int4, $int5 = ~banktags_firstfreeslot($int3);
+if ($int4 = -1 | $int5 = -1) {
+    mes("There is no space in that tag for more items.");
+    return;
+}
+~banktags_addobj($int3, $obj, $int4, $int5);

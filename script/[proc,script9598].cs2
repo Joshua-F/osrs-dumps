@@ -1,0 +1,23 @@
+// 9598
+[proc,script9598]
+def_int $int = 0;
+if (%bank_tab_display = 3) {
+    if (%bank_tab_1 > 0 | %bank_tab_2 > 0 | %bank_tab_3 > 0 | %bank_tab_4 > 0 | %bank_tab_5 > 0 | %bank_tab_6 > 0 | %bank_tab_7 > 0 | %bank_tab_8 > 0 | %bank_tab_9 > 0) {
+        $int = 0;
+    } else {
+        $int = 1;
+    }
+}
+if ($int = 1) {
+    if_setsize(39, 41, ^setsize_minus, ^setsize_minus, bankmain:banktags_display_container);
+} else {
+    if_setsize(39, 81, ^setsize_minus, ^setsize_minus, bankmain:banktags_display_container);
+}
+if (%banktags_scrollheight > if_getheight(bankmain:banktags_display_container)) {
+    if_setscrollsize(0, %banktags_scrollheight, bankmain:banktags_display_container);
+    ~scrollbar_resize(bankmain:banktags_display_scrollbar, bankmain:banktags_display_container, %banktags_scrollpos);
+} else {
+    %banktags_scrollpos = 0;
+    if_setscrollsize(0, if_getheight(bankmain:banktags_display_container), bankmain:banktags_display_container);
+    ~scrollbar_resize(bankmain:banktags_display_scrollbar, bankmain:banktags_display_container, %banktags_scrollpos);
+}
