@@ -1,0 +1,57 @@
+// 9581
+[proc,script9581](int $int0, int $int1, int $int2, int $int3, int $int4)(int, int)
+def_int $int5 = ~script9569($int0);
+if (~script9555($int5) = false) {
+    return($int2, $int1);
+}
+def_string $string = "";
+def_obj $obj = null;
+def_int $int7 = 0;
+$string, $obj, $int7 = ~script9551($int5);
+def_int $int8 = calc(40 * $int1);
+def_graphic $graphic = null;
+cc_create(bankmain:banktags_headers, ^iftype_layer, $int2);
+$int2 = calc($int2 + 1);
+cc_setsize(41, 40, ^setsize_abs, ^setsize_abs);
+cc_setposition(0, $int8, ^setpos_abs_centre, ^setpos_abs_top);
+cc_setop(1, "View tag");
+cc_setop(2, "Edit tag");
+cc_setop(3, "Delete tag");
+cc_setonop("script9588(event_com, event_comsubid, event_op, $int0, $int3, $int4)");
+cc_setopbase("<col=ff9040><$string></col>");
+cc_setdraggable(bankmain:banktags_headers, -1);
+cc_setdragdeadzone(5);
+cc_setdragdeadtime(5);
+cc_setondragcomplete("script9591(event_com, event_comsubid, event_com2, event_comsubid2, $int0, $int5, $string, $int7)");
+cc_setondrag("script9592(event_com, event_comsubid)");
+cc_setdragrenderbehaviour(1);
+cc_setparam(param_896, $int5);
+cc_setparam(param_1016, $int0);
+cc_setparam(param_1017, $string);
+cc_setparam(param_1018, $obj);
+cc_setparam(param_1848, $int7);
+cc_create_child(^iftype_graphic, $int2);
+$int2 = calc($int2 + 1);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_set2dangle(16383);
+if (%banktags_active_tag = $int5) {
+    cc_setgraphic("banktabs,2");
+} else {
+    cc_setgraphic("banktabs,0");
+    if (.cc_find(bankmain:banktags_headers, calc($int2 - 2)) = true) {
+        $graphic = "banktabs,1";
+        .cc_setonmouserepeat("cc_graphic_swapper(event_com, calc($int2 - 1), $graphic, null)");
+        $graphic = "banktabs,0";
+        .cc_setonmouseleave("cc_graphic_swapper(event_com, calc($int2 - 1), $graphic, null)");
+    }
+}
+cc_create_sibling(^iftype_graphic, $int2);
+$int2 = calc($int2 + 1);
+cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_setobject_nonum($obj, 0);
+cc_setoutline(1);
+cc_setgraphicshadow(0x333333);
+$int1 = calc($int1 + 1);
+return($int2, $int1);

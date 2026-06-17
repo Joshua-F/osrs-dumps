@@ -1,0 +1,17 @@
+// 9600
+[proc,script9600]
+cc_deleteall(bankmain:banktags_display_items);
+cc_deleteall(bankmain:banktags_display_draglayer);
+if_sethide(true, bankmain:banktags_display_container);
+if_sethide(true, bankmain:banktags_display_scrollbar);
+if_sethide(false, bankmain:items);
+if_sethide(false, bankmain:scrollbar);
+%banktags_active_tag = -1;
+~bankmain_swapinsert(bankmain:swap_insert, bankmain:swap_insert_graphic);
+if_setoninvtransmit(null, bankmain:banktags_display_container);
+if_setonvartransmit(null, bankmain:banktags_display_container);
+~script9536(bankmain:title);
+~script9580;
+if (.cc_find(bankmain:tabs, %bank_currenttab) = true & cc_find(bankmain:tabs, calc(%bank_currenttab + 9 + 1)) = true) {
+    ~bankmain_tabicon_highlight(%bank_currenttab);
+}

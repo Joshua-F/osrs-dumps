@@ -1,0 +1,40 @@
+// 9595
+[proc,script9595]
+if (%banktags_needs_redraw = 0) {
+    return;
+}
+%banktags_needs_redraw = 0;
+if (~on_enhanced_any = false) {
+    return;
+}
+if (%banktags_active_tag = -1) {
+    return;
+}
+def_obj $obj0 = null;
+def_int $int1 = 0;
+def_int $int2 = -1;
+def_int $int3 = -1;
+def_int $int4 = 0;
+def_string $string = "";
+def_obj $obj5 = null;
+def_int $int6 = 0;
+def_int $int7 = 0;
+cc_deleteall(bankmain:banktags_display_items);
+while ($int4 < 80) {
+    if_setparam(param_1851, -1, bankmain:banktags_display_draglayer, $int4);
+    $int4 = calc($int4 + 1);
+}
+$string, $obj5, $int6 = ~script9551(%banktags_active_tag);
+$int4 = 0;
+while ($int4 < $int6) {
+    $obj0, $int2, $int3 = ~script9561(%banktags_active_tag, $int4);
+    if_setparam(param_1851, $int4, bankmain:banktags_display_draglayer, calc($int3 * 8 + $int2));
+    ~script9596($int4, $obj0, $int2, $int3);
+    if (cc_gety > $int7) {
+        $int7 = cc_gety;
+    }
+    $int4 = calc($int4 + 1);
+}
+%banktags_scrollheight = calc($int7 + 32);
+~script9598;
+if_settext($string, bankmain:title);

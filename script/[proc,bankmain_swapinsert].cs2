@@ -1,9 +1,19 @@
 // 287
 [proc,bankmain_swapinsert](component $component0, component $component1)
 if (%bank_insertmode = 1) {
-    if_setgraphic("bankbuttons,11", $component1);
-    if_setop(1, "Enable <col=ff9040>Swap", $component0);
-    if_setonop("bankmain_swapinsert_op(event_op, $component0, $component1, 0)", $component0);
+    if (%banktags_active_tag ! -1) {
+        if_setgraphic("bankbuttons,14", $component1);
+        if_setop(1, "Enable <col=ff9040>Swap", $component0);
+        if_setonop("bankmain_swapinsert_op(event_op, $component0, $component1, 0)", $component0);
+    } else {
+        if_setgraphic("bankbuttons,11", $component1);
+        if_setop(1, "Enable <col=ff9040>Swap", $component0);
+        if_setonop("bankmain_swapinsert_op(event_op, $component0, $component1, 0)", $component0);
+    }
+} else if (%banktags_active_tag ! -1) {
+    if_setgraphic("bankbuttons,12", $component1);
+    if_setop(1, "Enable <col=ff9040>Copy", $component0);
+    if_setonop("bankmain_swapinsert_op(event_op, $component0, $component1, 1)", $component0);
 } else {
     if_setgraphic("bankbuttons,12", $component1);
     if_setop(1, "Enable <col=ff9040>Insert", $component0);

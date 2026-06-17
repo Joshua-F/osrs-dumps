@@ -1,0 +1,25 @@
+// 9588
+[clientscript,script9588](component $component, int $int1, int $int2, int $int3, int $int4, int $int5)
+def_int $int6 = ~script9569($int3);
+switch_int ($int2) {
+    case 1 :
+        if (%banktags_active_tag ! if_param(param_896, $component, $int1)) {
+            %banktags_active_tag = if_param(param_896, $component, $int1);
+            if_runscript*(ifscript_891361452, bankmain:banktags_headers, $int1)(0, $int6, $int3, $int4, $int5);
+            if (%bank_currenttab = 15) {
+                %bank_currenttab = 0;
+                ~potionstore_button_init(bankmain:potionstore_button);
+            }
+            ~script9593;
+        } else {
+            ~script9600;
+        }
+    case 2 :
+        if_runscript*(ifscript_891361452, bankmain:banktags_headers, $int1)(1, $int6, $int3, $int4, $int5);
+    case 3 :
+        if_runscript*(ifscript_891361452, bankmain:banktags_headers, $int1)(2, $int6, $int3, $int4, $int5);
+    case 4 :
+    case 5 :
+    case default :
+        return;
+}

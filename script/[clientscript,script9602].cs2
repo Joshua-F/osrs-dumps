@@ -1,0 +1,23 @@
+// 9602
+[clientscript,script9602](component $component, int $int1, int $int2, int $int3, int $int4, int $int5)
+def_int $int6 = if_getscrolly(bankmain:banktags_display_container);
+def_int $int7 = if_getscrollheight(bankmain:banktags_display_container);
+def_int $int8 = $int6;
+def_int $int9 = $int7;
+def_int $int10 = calc(if_getheight(bankmain:banktags_display_container) + $int6 - 56);
+def_int $int11 = calc($int6 + 20);
+def_int $int12 = ~script9578;
+def_int $int13 = calc($int12 - if_getheight(bankmain:banktags_display_container));
+if ($int5 <= $int11) {
+    $int8 = max(0, calc($int6 - 2));
+    $int9 = max(%banktags_scrollheight, calc($int7 - 2));
+} else if ($int5 >= $int10) {
+    $int8 = min($int13, calc($int6 + 2));
+    if (calc($int8 + if_getheight(bankmain:banktags_display_container)) > $int7) {
+        $int9 = min($int12, calc($int7 + 2));
+    }
+}
+%banktags_scrollpos = $int8;
+if_setscrollpos(0, $int8, bankmain:banktags_display_container);
+if_setscrollsize(0, $int9, bankmain:banktags_display_container);
+~scrollbar_vertical_rebuild(bankmain:banktags_display_scrollbar, bankmain:banktags_display_container);
