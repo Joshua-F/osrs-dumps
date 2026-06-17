@@ -1,0 +1,30 @@
+// 9593
+[proc,script9593]
+~bankmain_swapinsert(bankmain:swap_insert, bankmain:swap_insert_graphic);
+def_int $int0 = -1;
+def_int $int1 = -1;
+def_int $int2 = 0;
+cc_deleteall(bankmain:banktags_display_items);
+cc_deleteall(bankmain:banktags_display_draglayer);
+if_sethide(false, bankmain:banktags_display_container);
+if_sethide(false, bankmain:banktags_display_scrollbar);
+if_sethide(true, bankmain:items);
+if_sethide(true, bankmain:scrollbar);
+if_setoninvtransmit("script9594{bank}", bankmain:banktags_display_container);
+if_setonvartransmit("script9597{prayer23}", bankmain:banktags_display_container);
+def_int $int3 = calc(if_getwidth(bankmain:items) - 51 - 35);
+def_int $int4 = calc(($int3 - 8 * 36) / (8 - 1));
+while ($int2 < 80) {
+    $int0 = calc($int2 % 8);
+    $int1 = calc($int2 / 8);
+    $int0, $int1 = ~script9577($int0, $int1);
+    ~create_layer(bankmain:banktags_display_draglayer, $int2, calc($int0 - $int4), $int1, ^setpos_abs_left, ^setpos_abs_top, calc(42 + $int4), 36, ^setsize_abs, ^setsize_abs);
+    cc_setparam(param_1851, -1);
+    $int2 = calc($int2 + 1);
+}
+%banktags_needs_redraw = 1;
+~script9595;
+~script9580;
+if (.cc_find(bankmain:tabs, %bank_currenttab) = true & cc_find(bankmain:tabs, calc(%bank_currenttab + 9 + 1)) = true) {
+    ~bankmain_tabicon_highlight(%bank_currenttab);
+}

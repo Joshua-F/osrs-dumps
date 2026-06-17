@@ -101,6 +101,7 @@ if (%bank_currenttab = 15) {
     if_sethide(false, $component2);
 }
 ~scrollbar_vertical_rebuild($component4, $component3);
+~scrollbar_vertical_rebuild(bankmain:banktags_display_scrollbar, bankmain:banktags_display_container);
 def_int $int25 = 1410;
 def_int $int26 = calc(1410 + 9 * 3);
 while ($int25 <= $int26) {
@@ -208,6 +209,8 @@ if ((%bank_currenttab <= 0 | %bank_currenttab > 9) & %bank_currenttab ! 15) {
                 if_settext("Show items whose names contain the following text:", chatbox:mes_text);
             }
         }
+    } else if (%banktags_active_tag ! -1) {
+        if_settext(~script9552(%banktags_active_tag), $component6);
     } else {
         if_settext("The Bank of Gielinor", $component6);
     }
@@ -245,7 +248,9 @@ while ($int25 < 1410) {
     $int25 = calc($int25 + 1);
 }
 $int33 = calc($int33 + 32);
-if (%bank_currenttab = 15) {
+if (%banktags_active_tag ! -1) {
+    if_settext(~script9552(%banktags_active_tag), $component6);
+} else if (%bank_currenttab = 15) {
     if_settext("Potion storage", $component6);
 } else if (%bank_tab_display = 2) {
     if_settext("Tab <enum(int, string, enum_207, %bank_currenttab)>", $component6);

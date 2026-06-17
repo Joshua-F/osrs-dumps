@@ -1,0 +1,20 @@
+// 9582
+[proc,script9582](int $int)(int)
+cc_create(bankmain:banktags_headers, ^iftype_layer, $int);
+$int = calc($int + 1);
+cc_setsize(41, 40, ^setsize_abs, ^setsize_abs);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top);
+cc_setop(1, "Add new tag");
+cc_setop(2, "Delete all tags");
+cc_setonop("script9584(event_com, event_comsubid, event_op)");
+cc_create_child(^iftype_graphic, $int);
+$int = calc($int + 1);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_setgraphic("banktabs,0");
+cc_create_sibling(^iftype_graphic, $int);
+$int = calc($int + 1);
+cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_setgraphic("banktab_icons,1");
+return($int);

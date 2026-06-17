@@ -1,0 +1,26 @@
+// 9585
+[clientscript,script9585](int $int0, int $int1, obj $obj, string $string)
+if (~string_isnullorempty($string) = true) {
+    mes("The tag name was empty.");
+    ~script9617(0);
+    return;
+}
+if (~script9613($string) = true) {
+    mes("The tag contained only spaces. It must contain at least 1 alphanumeric character.");
+    ~script9617(0);
+    return;
+}
+if ($obj = null) {
+    mes("The object icon was invalid.");
+    ~script9617(0);
+    return;
+}
+if (string_length($string) > 30) {
+    mes("The tag name was too long and has been truncated.");
+    $string = ~string_clamp_length($string, 30);
+}
+~script9550($int0, $int1, $string, $obj);
+if ($int0 = %banktags_active_tag) {
+    if_settext($string, bankmain:title);
+}
+~script9580;

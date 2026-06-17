@@ -1,0 +1,26 @@
+// 9589
+[clientscript,script9589](int $int0, int $int1, int $int2)
+def_int $int3 = 0;
+switch_int ($int0) {
+    case 0 :
+        $int3 = calc(%banktags_headers_scroll_offset - 1);
+        if ($int3 >= 0) {
+            %banktags_headers_scroll_offset = $int3;
+            ~script9617(1);
+        } else {
+            ~script9617(0);
+            return;
+        }
+    case 2 :
+        $int3 = calc(%banktags_headers_scroll_offset + 1);
+        if ($int3 <= calc($int2 - ($int1 - 2))) {
+            %banktags_headers_scroll_offset = $int3;
+            ~script9617(1);
+        } else {
+            ~script9617(0);
+            return;
+        }
+    case default :
+        return;
+}
+~script9580;
