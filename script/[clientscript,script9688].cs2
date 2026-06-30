@@ -1,0 +1,16 @@
+// 9688
+[clientscript,script9688](dbrow $dbrow, int $int1)
+if ($dbrow = null) {
+    return;
+}
+def_int $int2 = db_getfield($dbrow, castle_drakan_room:id, 0);
+def_int $int3 = calc(($int2 - 1) * 2);
+def_int $int4 = calc($int3 / 32 + 1);
+$int3 = calc($int3 % 32);
+def_int $int5 = calc($int3 + 1);
+def_int $int6 = ~script9689($int4);
+if ($int6 = -1) {
+    return;
+}
+$int6 = setbit_range_toint($int6, $int1, $int3, $int5);
+~script9690($int4, $int6);

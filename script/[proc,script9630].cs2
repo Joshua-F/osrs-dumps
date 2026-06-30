@@ -1,0 +1,45 @@
+// 9630
+[proc,script9630](dbrow $dbrow0, int $int1, int $int2, int $int3, int $int4, int $int5)
+if ($dbrow0 = null) {
+    return;
+}
+if (%musicplay ! 0 & $int1 = 0) {
+    return;
+}
+if ($dbrow0 = %music_last_track & %musicplay ! 2 & %music_enableloop = 0) {
+    return;
+}
+if (%music_override_track ! null & %musicplay = 0) {
+    $dbrow0 = %music_override_track;
+}
+if (%music_override_area > 0 & %musicplay = 0) {
+    return;
+}
+def_midi $midi6 = ~get_music_midi($dbrow0);
+if ($midi6 = null) {
+    return;
+}
+if ($int2 = -1) {
+    $int2 = 0;
+}
+if ($int3 = -1) {
+    $int3 = 60;
+}
+if ($int4 = -1) {
+    $int4 = 60;
+}
+if ($int5 = -1) {
+    $int5 = 0;
+}
+def_dbrow $dbrow7 = ~get_music_secondary_track($dbrow0);
+def_midi $midi8 = null;
+if ($dbrow7 ! null) {
+    $midi8 = ~get_music_midi($dbrow7);
+}
+if ($midi8 ! null) {
+    sound_song_withsecondary($midi6, $midi8, $int2, $int3, $int4, $int5);
+} else {
+    sound_song($midi6, $int2, $int3, $int4, $int5);
+}
+%music_current_track = $dbrow0;
+~script3936;

@@ -26,11 +26,17 @@ while ($int6 < $int12) {
     }
     $int6 = calc($int6 + 1);
 }
-if_setscrollsize(if_getwidth($list), $int11, $list);
-if ($int3 = 1) {
-    if_setscrollpos(0, 0, $list);
+if ($int11 > if_getheight($list)) {
+    if_setscrollsize(0, $int11, $list);
+    ~scrollbar_vertical($list_scroller, $list, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+    if (cc_find($list_scroller, 1) = true) {
+        ~scrollbar_vertical_doscroll($list_scroller, $list, %omnishop_scroll_pos, true);
+    }
 } else {
-    if_setscrollpos(0, %omnishop_scroll_pos, $list);
+    %omnishop_scroll_pos = 0;
+    if_setscrollsize(0, 0, $list);
+    ~scrollbar_vertical($list_scroller, $list, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+    if (cc_find($list_scroller, 1) = true) {
+        ~scrollbar_vertical_doscroll($list_scroller, $list, 0, true);
+    }
 }
-~scrollbar_vertical($list_scroller, $list, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
-~scrollbar_resize($list_scroller, $list, %omnishop_scroll_pos);
