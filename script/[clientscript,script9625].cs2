@@ -1,0 +1,16 @@
+// 9625
+[clientscript,script9625]
+if (%music_client_sync_timer_last_interval < 0) {
+    %music_client_sync_timer_last_interval = 0;
+}
+if (%music_client_sync_timer_time_per_interval < 0) {
+    %music_client_sync_timer_time_per_interval = 0;
+}
+if (%music_client_sync_timer_time_per_interval <= 0) {
+    return;
+}
+if (clientclock < calc(%music_client_sync_timer_last_interval + %music_client_sync_timer_time_per_interval)) {
+    return;
+}
+%music_client_sync_timer_last_interval = clientclock;
+~script9631;

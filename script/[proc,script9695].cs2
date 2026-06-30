@@ -1,0 +1,14 @@
+// 9695
+[proc,script9695](dbrow $dbrow)(boolean)
+if ($dbrow = null) {
+    return(true);
+}
+def_int $int1 = db_getfield($dbrow, castle_drakan_room:id, 0);
+def_int $int2 = calc($int1 - 1);
+def_int $int3 = calc($int2 / 32 + 1);
+$int2 = calc($int2 % 32);
+def_int $int4 = ~script9697($int3);
+if ($int4 = -1) {
+    return(true);
+}
+return(~int_to_bool(testbit($int4, $int2)));

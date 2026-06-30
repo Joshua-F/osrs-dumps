@@ -1,0 +1,48 @@
+// 9637
+[clientscript,warning_interface_setup](string $string0, string $string1, string $string2, string $string3)
+def_component $frame = warning_interface:frame;
+def_component $text = warning_interface:text;
+def_component $text_layer = warning_interface:text_layer;
+def_component $scrollbar = warning_interface:scrollbar;
+def_component $button_1 = warning_interface:button_1;
+def_component $button_2 = warning_interface:button_2;
+def_component $pausebutton_1 = warning_interface:pausebutton_1;
+def_component $pausebutton_2 = warning_interface:pausebutton_2;
+if (string_length($string0) <= 0) {
+    $string0 = "Warning";
+}
+~steelborder($frame, $string0, 0);
+def_int $int = calc(paraheight($string1, if_getwidth($text), p12_full) * 16 + 10);
+if ($int < 218) {
+    $int = 218;
+    if_sethide(true, $scrollbar);
+    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top, $text_layer);
+} else {
+    if_sethide(false, $scrollbar);
+    if_setposition(4, 0, ^setpos_abs_left, ^setpos_abs_top, $text_layer);
+}
+if_settext($string1, $text);
+if_setscrollsize(0, $int, $text_layer);
+if_setsize(if_getwidth($text), $int, ^setsize_abs, ^setsize_abs, $text);
+if_setscrollpos(0, 0, $text_layer);
+~scrollbar_vertical($scrollbar, $text_layer, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+if (string_length($string2) <= 0) {
+    $string2 = "Acknowledge";
+}
+~script9639($button_1, $string2, 0, 0);
+if_setop(1, removetags($string2), $button_1);
+if_setonop("script9640($button_1, $string2, 1, 1, $pausebutton_1)", $button_1);
+if_setonmouserepeat("script9638($button_1, $string2, 1, 0)", $button_1);
+if_setonmouseleave("script9638($button_1, $string2, 0, 0)", $button_1);
+if (string_length($string3) > 0) {
+    if_sethide(false, $button_2);
+    if_setposition(-104, 0, ^setpos_abs_centre, ^setpos_abs_centre, $button_1);
+    ~script9639($button_2, $string3, 0, 0);
+    if_setop(1, removetags($string3), $button_2);
+    if_setonop("script9640($button_2, $string3, 1, 1, $pausebutton_2)", $button_2);
+    if_setonmouserepeat("script9638($button_2, $string3, 1, 0)", $button_2);
+    if_setonmouseleave("script9638($button_2, $string3, 0, 0)", $button_2);
+} else {
+    if_sethide(true, $button_2);
+    if_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre, $button_1);
+}

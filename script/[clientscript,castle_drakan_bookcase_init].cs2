@@ -1,0 +1,17 @@
+// 9644
+[clientscript,castle_drakan_bookcase_init](component $universe, component $shelf)
+cc_deleteall($shelf);
+def_int $int = 0;
+while ($int < 8) {
+    cc_create($shelf, ^iftype_graphic, $int);
+    cc_setposition(calc($int * 38), 0, ^setpos_abs_left, ^setpos_abs_centre);
+    cc_setsize(38, 142, ^setsize_abs, ^setsize_abs);
+    cc_setop(1, "Drag");
+    cc_setonop(null);
+    cc_setdragdeadzone(5);
+    cc_setdragdeadtime(5);
+    cc_setondragcomplete("script9645(event_com, event_comsubid, event_com2, event_comsubid2)");
+    $int = calc($int + 1);
+}
+~script9647($shelf);
+if_setonvartransmit("script9646($shelf){castle_drakan_general_4}", $universe);
