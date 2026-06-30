@@ -1,0 +1,10 @@
+// 9699
+[proc,castle_drakan_get_consumable_status](int $int0)(boolean)
+def_int $int1 = calc($int0 - 1);
+def_int $int2 = calc($int1 / 32 + 1);
+$int1 = calc($int1 % 32);
+def_int $int3 = ~castle_drakan_get_consumable_varp_value($int2);
+if ($int3 = -1) {
+    return(true);
+}
+return(~int_to_bool(testbit($int3, $int1)));

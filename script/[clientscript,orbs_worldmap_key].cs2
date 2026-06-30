@@ -7,5 +7,9 @@ if (%settings_world_map_hotkey_disabled = 1) {
     return;
 }
 if (keyheld(^key_control_left) = true) {
-    if_triggerop($component, -1, 2);
+    if (string_length(if_getop(1, $component)) > 0) {
+        if_triggerop($component, -1, 1);
+    } else {
+        if_triggerop($component, -1, 2);
+    }
 }

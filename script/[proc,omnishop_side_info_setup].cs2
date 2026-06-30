@@ -92,33 +92,52 @@ if ($int5 ! -1) {
 }
 def_dbrow $dbrow28 = null;
 if (string_length($string0) > 0) {
-    cc_create($info, ^iftype_text, $int18);
-    cc_setposition(0, $int19, ^setpos_abs_centre, ^setpos_abs_top);
-    cc_setsize(50, 16, ^setsize_abs, ^setsize_abs);
-    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-    cc_settextshadow(true);
-    cc_settextfont($graphic11);
-    cc_setcolour(0xefefef);
-    cc_settext("Value");
-    $int18 = calc($int18 + 1);
-    $int19 = calc($int19 + 20);
-    if ($int5 ! -1) {
-        $dbrow28, $int4 = ~omnishop_cost($dbrow1, $inv, $int5, $int22, 0);
-    }
-    if ($int5 ! -1 & db_getfield($dbrow27, omnishop_stock_data:omnishop_stock_sellable, 0) = false) {
-        $int4 = 0;
-    }
-    while ($int4 > 0) {
-        $graphic24, $graphic25 = db_getfield($dbrow28, omnishop_currency_data:omnishop_currency_graphic, 0);
-        if ($graphic25 ! null) {
-            $int18 = ~omnishop_currency_draw_info($info, $graphic25, p11_full, $int4, -20, 4, $int19, $int18);
-            $int19 = calc($int19 + 24);
-        } else {
-            if ($int4 = 1) {
-                $string1 = "<tostring($int4)> <db_getfield($dbrow28, omnishop_currency_data:omnishop_currency_name_singular, 0)>";
+    if (db_getfield($dbrow1, omnishop_shop_data:omnishop_shop_show_cost_in_info, 0) = true) {
+        cc_create($info, ^iftype_text, $int18);
+        cc_setposition(0, $int19, ^setpos_abs_centre, ^setpos_abs_top);
+        cc_setsize(50, 16, ^setsize_abs, ^setsize_abs);
+        cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+        cc_settextshadow(true);
+        cc_settextfont($graphic11);
+        cc_setcolour(0xefefef);
+        cc_settext("Value");
+        $int18 = calc($int18 + 1);
+        $int19 = calc($int19 + 20);
+        if ($int5 ! -1) {
+            $dbrow28, $int4 = ~omnishop_cost($dbrow1, $inv, $int5, $int22, 0);
+        }
+        if ($int5 ! -1 & db_getfield($dbrow27, omnishop_stock_data:omnishop_stock_sellable, 0) = false) {
+            $int4 = 0;
+        }
+        while ($int4 > 0) {
+            $graphic24, $graphic25 = db_getfield($dbrow28, omnishop_currency_data:omnishop_currency_graphic, 0);
+            if ($graphic25 ! null) {
+                $int18 = ~omnishop_currency_draw_info($info, $graphic25, p11_full, $int4, -20, 4, $int19, $int18);
+                $int19 = calc($int19 + 24);
             } else {
-                $string1 = "<tostring($int4)> <db_getfield($dbrow28, omnishop_currency_data:omnishop_currency_name_plural, 0)>";
+                if ($int4 = 1) {
+                    $string1 = "<tostring($int4)> <db_getfield($dbrow28, omnishop_currency_data:omnishop_currency_name_singular, 0)>";
+                } else {
+                    $string1 = "<tostring($int4)> <db_getfield($dbrow28, omnishop_currency_data:omnishop_currency_name_plural, 0)>";
+                }
+                cc_create($info, ^iftype_text, $int18);
+                cc_setposition(0, $int19, ^setpos_abs_centre, ^setpos_abs_top);
+                cc_setsize(50, 18, ^setsize_abs, ^setsize_abs);
+                cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+                cc_settextshadow(true);
+                cc_settextfont(p11_full);
+                cc_setcolour(0xefefef);
+                if ($dbrow28 = currency_free) {
+                    $string1 = db_getfield($dbrow28, omnishop_currency_data:omnishop_currency_name_singular, 0);
+                }
+                cc_settext($string1);
+                $int18 = calc($int18 + 1);
+                $int19 = calc($int19 + 16);
             }
+            $int22 = calc($int22 + 1);
+            $dbrow28, $int4 = ~omnishop_cost($dbrow1, $inv, $int5, $int22, 0);
+        }
+        if ($int22 = 0) {
             cc_create($info, ^iftype_text, $int18);
             cc_setposition(0, $int19, ^setpos_abs_centre, ^setpos_abs_top);
             cc_setsize(50, 18, ^setsize_abs, ^setsize_abs);
@@ -126,28 +145,11 @@ if (string_length($string0) > 0) {
             cc_settextshadow(true);
             cc_settextfont(p11_full);
             cc_setcolour(0xefefef);
-            if ($dbrow28 = currency_free) {
-                $string1 = db_getfield($dbrow28, omnishop_currency_data:omnishop_currency_name_singular, 0);
-            }
-            cc_settext($string1);
+            cc_settext("No shop offer");
+            $int23 = 0;
             $int18 = calc($int18 + 1);
             $int19 = calc($int19 + 16);
         }
-        $int22 = calc($int22 + 1);
-        $dbrow28, $int4 = ~omnishop_cost($dbrow1, $inv, $int5, $int22, 0);
-    }
-    if ($int22 = 0) {
-        cc_create($info, ^iftype_text, $int18);
-        cc_setposition(0, $int19, ^setpos_abs_centre, ^setpos_abs_top);
-        cc_setsize(50, 18, ^setsize_abs, ^setsize_abs);
-        cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-        cc_settextshadow(true);
-        cc_settextfont(p11_full);
-        cc_setcolour(0xefefef);
-        cc_settext("No shop offer");
-        $int23 = 0;
-        $int18 = calc($int18 + 1);
-        $int19 = calc($int19 + 16);
     }
     $int19 = calc($int19 + 6);
 }

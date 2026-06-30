@@ -1,124 +1,130 @@
 // 6963
-[clientscript,combination_lock_setup](component $component0, component $component1, int $int2, dbrow $dbrow3, int $int4)
+[clientscript,combination_lock_setup](component $component0, component $component1, int $int2, dbrow $dbrow3, int $int4, int $int5)
 cc_deleteall($component1);
-def_int $int5 = 0;
+def_int $int6 = 0;
 def_boolean $boolean = false;
+def_int $int8 = 0;
 if ($int4 = 1) {
     $boolean = db_getfield($dbrow3, combination_lock_dataset:randomise_start, 0);
-    while ($int5 < 6) {
-        if ($boolean = true & $int5 < $int2) {
-            ~combination_lock_setvar($int5, random(~combination_lock_total_values(db_getfield($dbrow3, combination_lock_dataset:values, 0))));
-        } else {
-            ~combination_lock_setvar($int5, 0);
+    while ($int6 < 6) {
+        $int8 = 0;
+        if ($int6 < $int2) {
+            if ($int5 ! -1) {
+                $int8 = calc($int5 / pow(10, calc($int2 - 1 - $int6)));
+                $int8 = calc($int8 % 10);
+            } else if ($boolean = true) {
+                $int8 = random(~combination_lock_total_values(db_getfield($dbrow3, combination_lock_dataset:values, 0)));
+            }
         }
-        $int5 = calc($int5 + 1);
+        ~combination_lock_setvar($int6, $int8);
+        $int6 = calc($int6 + 1);
     }
 }
-def_int $int7 = calc($int2 * 56 + 10);
-if_setsize(calc($int7 + 72), if_getheight($component0), ^setsize_abs, ^setsize_abs, $component0);
-def_int $int8 = 0;
-def_int $int9 = 0;
-cc_create($component1, ^iftype_graphic, $int8);
+def_int $int9 = calc($int2 * 56 + 10);
+if_setsize(calc($int9 + 72), if_getheight($component0), ^setsize_abs, ^setsize_abs, $component0);
+def_int $int10 = 0;
+def_int $int11 = 0;
+cc_create($component1, ^iftype_graphic, $int10);
 cc_setsize(10, 112, ^setsize_abs, ^setsize_abs);
-cc_setposition($int9, 0, ^setpos_abs_left, ^setpos_abs_centre);
+cc_setposition($int11, 0, ^setpos_abs_left, ^setpos_abs_centre);
 cc_setgraphic("combination_lock_join,1");
-$int8 = calc($int8 + 1);
-$int9 = calc($int9 + 10);
-$int5 = 0;
-def_graphic $graphic10 = null;
-def_graphic $graphic11 = null;
-def_dbrow $dbrow12 = null;
-def_int $int13 = db_getfield($dbrow3, combination_lock_dataset:value_type, 0);
-while ($int5 < $int2) {
-    $dbrow12 = db_getfield($dbrow3, combination_lock_dataset:values, $int5);
-    cc_create($component1, ^iftype_graphic, $int8);
+$int10 = calc($int10 + 1);
+$int11 = calc($int11 + 10);
+$int6 = 0;
+def_graphic $graphic12 = null;
+def_graphic $graphic13 = null;
+def_dbrow $dbrow14 = null;
+def_int $int15 = db_getfield($dbrow3, combination_lock_dataset:value_type, 0);
+while ($int6 < $int2) {
+    $dbrow14 = db_getfield($dbrow3, combination_lock_dataset:values, $int6);
+    cc_create($component1, ^iftype_graphic, $int10);
     cc_setsize(46, 112, ^setsize_abs, ^setsize_abs);
-    cc_setposition($int9, 0, ^setpos_abs_left, ^setpos_abs_centre);
+    cc_setposition($int11, 0, ^setpos_abs_left, ^setpos_abs_centre);
     cc_setgraphic(combination_lock);
-    $int8 = calc($int8 + 1);
-    if ($int13 = 0) {
-        cc_create($component1, ^iftype_text, $int8);
+    $int10 = calc($int10 + 1);
+    if ($int15 = 0) {
+        cc_create($component1, ^iftype_text, $int10);
         cc_setsize(18, 18, ^setsize_abs, ^setsize_abs);
-        cc_setposition(calc($int9 + 14), 1, ^setpos_abs_left, ^setpos_abs_centre);
+        cc_setposition(calc($int11 + 14), 1, ^setpos_abs_left, ^setpos_abs_centre);
         cc_settextfont(b12_full);
         cc_setcolour(0xfcfcfc);
         cc_settextshadow(true);
         cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-        cc_settext(db_getfield($dbrow12, combination_lock_values:string_value, ~combination_lock_getvar($int5)));
-        $int8 = calc($int8 + 1);
+        cc_settext(db_getfield($dbrow14, combination_lock_values:string_value, ~combination_lock_getvar($int6)));
+        $int10 = calc($int10 + 1);
     } else {
-        cc_create($component1, ^iftype_graphic, $int8);
+        cc_create($component1, ^iftype_graphic, $int10);
         cc_setsize(10, 13, ^setsize_abs, ^setsize_abs);
-        cc_setposition(calc($int9 + 18), 1, ^setpos_abs_left, ^setpos_abs_centre);
-        cc_setgraphic(db_getfield($dbrow12, combination_lock_values:graphic_value, ~combination_lock_getvar($int5)));
-        $int8 = calc($int8 + 1);
+        cc_setposition(calc($int11 + 18), 1, ^setpos_abs_left, ^setpos_abs_centre);
+        cc_setgraphic(db_getfield($dbrow14, combination_lock_values:graphic_value, ~combination_lock_getvar($int6)));
+        $int10 = calc($int10 + 1);
     }
-    $graphic10 = "combination_lock_arrows,2";
-    $graphic11 = "combination_lock_arrows,0";
-    .cc_create($component1, ^iftype_graphic, $int8);
+    $graphic12 = "combination_lock_arrows,2";
+    $graphic13 = "combination_lock_arrows,0";
+    .cc_create($component1, ^iftype_graphic, $int10);
     .cc_setsize(30, 30, ^setsize_abs, ^setsize_abs);
-    .cc_setposition(calc($int9 + 8), 34, ^setpos_abs_left, ^setpos_abs_centre);
-    .cc_setgraphic($graphic11);
+    .cc_setposition(calc($int11 + 8), 34, ^setpos_abs_left, ^setpos_abs_centre);
+    .cc_setgraphic($graphic13);
     .cc_setop(1, "Turn Dial");
-    .cc_setonop("combination_lock_turn_dial($component1, cc_getid, $int5, $dbrow12, $int13, -1)");
+    .cc_setonop("combination_lock_turn_dial($component1, cc_getid, $int6, $dbrow14, $int15, -1)");
     if (~on_mobile = false) {
-        .cc_setonmouserepeat("cc_graphic_swapper(event_com, event_comsubid, $graphic10, null)");
-        .cc_setonmouseleave("cc_graphic_swapper(event_com, event_comsubid, $graphic11, null)");
+        .cc_setonmouserepeat("cc_graphic_swapper(event_com, event_comsubid, $graphic12, null)");
+        .cc_setonmouseleave("cc_graphic_swapper(event_com, event_comsubid, $graphic13, null)");
     }
-    $int8 = calc($int8 + 1);
-    $graphic10 = "combination_lock_arrows,3";
-    $graphic11 = "combination_lock_arrows,1";
-    .cc_create($component1, ^iftype_graphic, $int8);
+    $int10 = calc($int10 + 1);
+    $graphic12 = "combination_lock_arrows,3";
+    $graphic13 = "combination_lock_arrows,1";
+    .cc_create($component1, ^iftype_graphic, $int10);
     .cc_setsize(30, 30, ^setsize_abs, ^setsize_abs);
-    .cc_setposition(calc($int9 + 8), -34, ^setpos_abs_left, ^setpos_abs_centre);
-    .cc_setgraphic($graphic11);
+    .cc_setposition(calc($int11 + 8), -34, ^setpos_abs_left, ^setpos_abs_centre);
+    .cc_setgraphic($graphic13);
     .cc_setop(1, "Turn Dial");
-    .cc_setonop("combination_lock_turn_dial($component1, cc_getid, $int5, $dbrow12, $int13, 1)");
+    .cc_setonop("combination_lock_turn_dial($component1, cc_getid, $int6, $dbrow14, $int15, 1)");
     if (~on_mobile = false) {
-        .cc_setonmouserepeat("cc_graphic_swapper(event_com, event_comsubid, $graphic10, null)");
-        .cc_setonmouseleave("cc_graphic_swapper(event_com, event_comsubid, $graphic11, null)");
+        .cc_setonmouserepeat("cc_graphic_swapper(event_com, event_comsubid, $graphic12, null)");
+        .cc_setonmouseleave("cc_graphic_swapper(event_com, event_comsubid, $graphic13, null)");
     }
-    $int8 = calc($int8 + 1);
-    if ($int13 = 0) {
-        .cc_create($component1, ^iftype_text, $int8);
+    $int10 = calc($int10 + 1);
+    if ($int15 = 0) {
+        .cc_create($component1, ^iftype_text, $int10);
         .cc_setsize(18, 18, ^setsize_abs, ^setsize_abs);
-        .cc_setposition(calc($int9 + 14), 33, ^setpos_abs_left, ^setpos_abs_centre);
+        .cc_setposition(calc($int11 + 14), 33, ^setpos_abs_left, ^setpos_abs_centre);
         .cc_settextfont(b12_full);
         .cc_setcolour(0xfcfcfc);
         .cc_settextshadow(true);
         .cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-        .cc_settext(db_getfield($dbrow12, combination_lock_values:string_value, ~combination_lock_offset_index(~combination_lock_getvar($int5), $dbrow12, -1)));
-        $int8 = calc($int8 + 1);
-        .cc_create($component1, ^iftype_text, $int8);
+        .cc_settext(db_getfield($dbrow14, combination_lock_values:string_value, ~combination_lock_offset_index(~combination_lock_getvar($int6), $dbrow14, -1)));
+        $int10 = calc($int10 + 1);
+        .cc_create($component1, ^iftype_text, $int10);
         .cc_setsize(18, 18, ^setsize_abs, ^setsize_abs);
-        .cc_setposition(calc($int9 + 14), -31, ^setpos_abs_left, ^setpos_abs_centre);
+        .cc_setposition(calc($int11 + 14), -31, ^setpos_abs_left, ^setpos_abs_centre);
         .cc_settextfont(b12_full);
         .cc_setcolour(0xfcfcfc);
         .cc_settextshadow(true);
         .cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
-        .cc_settext(db_getfield($dbrow12, combination_lock_values:string_value, ~combination_lock_offset_index(~combination_lock_getvar($int5), $dbrow12, 1)));
-        $int8 = calc($int8 + 1);
+        .cc_settext(db_getfield($dbrow14, combination_lock_values:string_value, ~combination_lock_offset_index(~combination_lock_getvar($int6), $dbrow14, 1)));
+        $int10 = calc($int10 + 1);
     } else {
-        .cc_create($component1, ^iftype_graphic, $int8);
+        .cc_create($component1, ^iftype_graphic, $int10);
         .cc_setsize(10, 13, ^setsize_abs, ^setsize_abs);
-        .cc_setposition(calc($int9 + 18), 33, ^setpos_abs_left, ^setpos_abs_centre);
-        .cc_setgraphic(db_getfield($dbrow12, combination_lock_values:graphic_value, ~combination_lock_offset_index(~combination_lock_getvar($int5), $dbrow12, -1)));
-        $int8 = calc($int8 + 1);
-        .cc_create($component1, ^iftype_graphic, $int8);
+        .cc_setposition(calc($int11 + 18), 33, ^setpos_abs_left, ^setpos_abs_centre);
+        .cc_setgraphic(db_getfield($dbrow14, combination_lock_values:graphic_value, ~combination_lock_offset_index(~combination_lock_getvar($int6), $dbrow14, -1)));
+        $int10 = calc($int10 + 1);
+        .cc_create($component1, ^iftype_graphic, $int10);
         .cc_setsize(10, 13, ^setsize_abs, ^setsize_abs);
-        .cc_setposition(calc($int9 + 18), -31, ^setpos_abs_left, ^setpos_abs_centre);
-        .cc_setgraphic(db_getfield($dbrow12, combination_lock_values:graphic_value, ~combination_lock_offset_index(~combination_lock_getvar($int5), $dbrow12, 1)));
-        $int8 = calc($int8 + 1);
+        .cc_setposition(calc($int11 + 18), -31, ^setpos_abs_left, ^setpos_abs_centre);
+        .cc_setgraphic(db_getfield($dbrow14, combination_lock_values:graphic_value, ~combination_lock_offset_index(~combination_lock_getvar($int6), $dbrow14, 1)));
+        $int10 = calc($int10 + 1);
     }
-    cc_create($component1, ^iftype_graphic, $int8);
+    cc_create($component1, ^iftype_graphic, $int10);
     cc_setsize(10, 112, ^setsize_abs, ^setsize_abs);
-    cc_setposition(calc($int9 + 46), 0, ^setpos_abs_left, ^setpos_abs_centre);
-    if ($int5 = calc($int2 - 1)) {
+    cc_setposition(calc($int11 + 46), 0, ^setpos_abs_left, ^setpos_abs_centre);
+    if ($int6 = calc($int2 - 1)) {
         cc_setgraphic("combination_lock_join,2");
     } else {
         cc_setgraphic("combination_lock_join,0");
     }
-    $int8 = calc($int8 + 1);
-    $int9 = calc($int9 + 56);
-    $int5 = calc($int5 + 1);
+    $int10 = calc($int10 + 1);
+    $int11 = calc($int11 + 56);
+    $int6 = calc($int6 + 1);
 }

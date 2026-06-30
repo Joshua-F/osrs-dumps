@@ -1,0 +1,14 @@
+// 9653
+[proc,castle_drakan_clock_button_op_rotate](int $int0, component $component1, component $component2, int $int3)
+sound_synth(synth_4195, 1, 0);
+def_int $int4 = ~castle_drakan_puzzle_get_clock_value($int3);
+def_int $int5 = calc($int4 + $int0);
+if ($int5 >= 12) {
+    $int4 = 0;
+} else if ($int5 < 0) {
+    $int4 = 11;
+} else {
+    $int4 = $int5;
+}
+~castle_relic_reset_handle($int4, $int3);
+~castle_drakan_clock_hands_update($component1, $component2);
