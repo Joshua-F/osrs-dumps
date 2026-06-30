@@ -1,0 +1,22 @@
+// 9714
+[proc,script9714](obj $obj, dbrow $dbrow1, inv $inv, int $int3, int $int4)(boolean)
+def_dbrow $dbrow5 = null;
+if ($inv = null) {
+    if ($int3 ! -1) {
+        $dbrow5 = db_getfield($dbrow1, omnishop_shop_data:omnishop_shop_stock, $int3);
+        if (db_getfield($dbrow5, omnishop_stock_data:omnishop_stock_sellable, 0) = false) {
+            if ($int4 = 1) {
+                mes("You can't sell this item to this shop.");
+            }
+            return(true);
+        }
+        return(false);
+    } else {
+        if ($int4 = 1) {
+            mes("You can't sell this item to this shop.");
+        }
+        return(true);
+    }
+} else {
+    return(false);
+}
