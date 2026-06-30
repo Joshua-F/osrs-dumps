@@ -1,0 +1,15 @@
+// 9691
+[proc,script9691](dbrow $dbrow)(int)
+if ($dbrow = null) {
+    return(0);
+}
+def_int $int1 = db_getfield($dbrow, castle_drakan_door:id, 0);
+def_int $int2 = calc(($int1 - 1) * 2);
+def_int $int3 = calc($int2 / 32 + 1);
+$int2 = calc($int2 % 32);
+def_int $int4 = calc($int2 + 1);
+def_int $int5 = ~script9693($int3);
+if ($int5 = -1) {
+    return(0);
+}
+return(getbit_range($int5, $int2, $int4));

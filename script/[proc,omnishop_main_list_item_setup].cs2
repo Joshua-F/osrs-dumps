@@ -168,7 +168,11 @@ def_obj $obj33 = db_getfield($dbrow13, omnishop_stock_data:omnishop_stock_displa
 if ($obj33 = null) {
     $obj33 = $obj7;
 }
-cc_setobject($obj33, $int9);
+if (db_getfield($dbrow13, omnishop_stock_data:omnishop_stock_hide_count, 0) = true) {
+    cc_setobject($obj33, 1);
+} else {
+    cc_setobject($obj33, $int9);
+}
 cc_setoutline(1);
 cc_setgraphicshadow(0x333333);
 $int5 = calc($int5 + 1);
