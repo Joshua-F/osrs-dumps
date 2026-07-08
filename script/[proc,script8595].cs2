@@ -1,0 +1,17 @@
+// 8595
+[proc,script8595](component $component0, component $component1, int $int2, int $int3)
+def_int $setposh = ^setpos_abs_left;
+def_int $setposv = ^setpos_abs_top;
+def_int $int6 = calc(if_getwidth($component0) - if_getwidth($component1));
+def_int $int7 = calc(if_getheight($component0) - if_getheight($component1));
+if ($int2 = -1) {
+    $int2, $setposh = 0, ^setpos_abs_centre;
+} else {
+    $int2 = ~minmax(0, $int6, $int2);
+}
+if ($int3 = -1) {
+    $int3, $setposv = 0, ^setpos_abs_centre;
+} else {
+    $int3 = ~minmax(0, $int7, $int3);
+}
+if_setposition($int2, $int3, $setposh, $setposv, $component1);

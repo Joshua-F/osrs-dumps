@@ -18,8 +18,10 @@ if (%music_current_track = null) {
     if_setop(4, "", $now_playing_text);
     if_setop(5, "", $now_playing_text);
     if_setopbase("", $now_playing_text);
-} else {
-    if_settext(~get_music_name(%music_current_track), $now_playing_text);
+    return;
+}
+if_settext(~get_music_name(%music_current_track), $now_playing_text);
+if (~is_music_hidden(%music_current_track) = false | ~script8602(%music_current_track) ! null) {
     if_setop(2, "Unlock hint", $now_playing_text);
     if (array_count($dbrowarray0, %music_current_track, 0, -1) > 0) {
         if_setop(3, "Remove from playlist 1", $now_playing_text);
@@ -37,4 +39,10 @@ if (%music_current_track = null) {
         if_setop(5, "Add to playlist 3", $now_playing_text);
     }
     if_setopbase("<col=ff9040><~get_music_name(%music_current_track)></col>", $now_playing_text);
+} else {
+    if_setop(2, "", $now_playing_text);
+    if_setop(3, "", $now_playing_text);
+    if_setop(4, "", $now_playing_text);
+    if_setop(5, "", $now_playing_text);
+    if_setopbase("", $now_playing_text);
 }
