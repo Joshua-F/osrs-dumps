@@ -1,0 +1,38 @@
+// 6682
+[proc,script6682](dbrow $dbrow, int $int)(string)
+if ($dbrow = null) {
+    return("Door: Locked");
+}
+def_obj $obj = db_getfield($dbrow, castle_drakan_door:key, 0);
+if ($obj ! null) {
+    switch_obj ($obj) {
+        case castle_drakan_full_moon_key :
+            return("Full Moon Door: Locked");
+        case castle_drakan_half_moon_key :
+            return("Half Moon Door: Locked");
+        case castle_drakan_crescent_moon_key :
+            return("Crescent Moon Door: Locked");
+        case castle_drakan_gibbous_moon_key :
+            return("Gibbous Moon Door: Locked");
+        case castle_drakan_new_moon_key :
+            return("New Moon Door: Locked");
+        case castle_drakan_gilded_key :
+            return("Gilded Door: Locked");
+        case castle_drakan_lab_key :
+            return("Solid Door: Locked");
+    }
+}
+if (db_getfield($dbrow, castle_drakan_door:unlock_side, 0) ! null) {
+    return("Door: Locked from one side");
+}
+if ($int > 0) {
+    if (%castle_drakan_emblem_holder_used = 0) {
+        return("Door: Locked");
+    } else {
+        return("Emblem Door: Locked");
+    }
+}
+if ($dbrow = castle_drakan_entrance_hall_to_dining_room) {
+    return("Door: Blocked");
+}
+return("Door: Locked");
