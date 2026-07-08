@@ -1,0 +1,19 @@
+// 8592
+[clientscript,script8592](component $component0, component $component1, component $component2, int $int3, int $int4)
+def_int $int5 = if_getheight($component1);
+def_int $int6 = if_getheight($component1);
+def_int $int7 = if_getwidth($component0);
+def_int $int8 = if_getheight($component0);
+$int3 = max(0, min($int3, calc($int7 - $int5)));
+$int4 = max(0, min($int4, calc($int8 - $int6)));
+def_int $int9 = scale(45, 100, $int7);
+def_int $int10 = scale(55, 100, $int7);
+def_int $int11 = calc($int3 + $int5 / 2);
+def_int $int12 = scale(45, 100, $int8);
+def_int $int13 = scale(55, 100, $int8);
+def_int $int14 = calc($int4 + $int6 / 2);
+if ($int11 > $int9 & $int11 < $int10 & $int14 > $int12 & $int14 < $int13) {
+    $int3, $int4 = -1, -1;
+}
+~script8595($component0, $component1, $int3, $int4);
+if_setontimer("script8593($component0, $component1, $component2, $int3, $int4, calc(clientclock + 3))", $component2);

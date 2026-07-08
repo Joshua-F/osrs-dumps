@@ -1,0 +1,64 @@
+// 8596
+[proc,script8596](component $component0, component $component1, component $component2)
+cc_deleteall($component0);
+cc_deleteall($component1);
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_int $int5 = 0;
+def_int $int6 = 0;
+if (%sangvesti_player_last_death_pos ! null) {
+    $int5 = ~minmax(6, 422, calc((coordx(%sangvesti_player_last_death_pos) - coordx(0_39_121_48_53)) * 4 - 8));
+    $int6 = ~minmax(6, 292, calc((coordz(%sangvesti_player_last_death_pos) - coordz(0_39_121_48_53)) * 4 - 9));
+    cc_create($component1, ^iftype_graphic, $int4);
+    cc_setposition($int5, $int6, ^setpos_abs_left, ^setpos_abs_bottom);
+    cc_setsize(15, 15, ^setsize_abs, ^setsize_abs);
+    cc_setgraphic("castle_drakan_room_icons,4");
+    cc_setnoclickthrough(true);
+    ~script8600("", "Last death location", $component2);
+    $int4 = calc($int4 + 1);
+}
+if (%sangvesti_player_pos ! null) {
+    $int5 = ~minmax(6, 422, calc((coordx(%sangvesti_player_pos) - coordx(0_39_121_48_53)) * 4 - 8));
+    $int6 = ~minmax(6, 292, calc((coordz(%sangvesti_player_pos) - coordz(0_39_121_48_53)) * 4 - 9));
+    cc_create($component1, ^iftype_graphic, $int4);
+    cc_setposition($int5, $int6, ^setpos_abs_left, ^setpos_abs_bottom);
+    cc_setsize(15, 15, ^setsize_abs, ^setsize_abs);
+    cc_setgraphic("castle_drakan_room_icons,0");
+    $int4 = calc($int4 + 1);
+}
+$int4 = ~script8598($component1, $int4, %sangvesti_hint_fancy_house_3, 164, 51);
+$int4 = ~script8598($component1, $int4, %sangvesti_hint_vitur_manor, 271, 79);
+$int4 = ~script8598($component1, $int4, %sangvesti_hint_chapel, 140, 103);
+$int4 = ~script8598($component1, $int4, %sangvesti_hint_food_shop, 208, 105);
+$int4 = ~script8598($component1, $int4, %sangvesti_hint_basic_house_3, 236, 109);
+$int4 = ~script8598($component1, $int4, %sangvesti_hint_pub, 212, 169);
+$int4 = ~script8598($component1, $int4, %sangvesti_hint_clothes_shop, 177, 229);
+$int4 = ~script8598($component1, $int4, %sangvesti_hint_fancy_house_1, 284, 233);
+$int4 = ~script8598($component1, $int4, %sangvesti_hint_blacksmith, 136, 230);
+$int3, $int4 = ~script8597($component0, $int3, $component1, $int4, %sangvesti_blacksmith_door_found, %sangvesti_blacksmith_door, 140, 248, 8, 5, $component2, "Jovkai Door: Locked", sangvesti_jovkai_key);
+$int3, $int4 = ~script8597($component0, $int3, $component1, $int4, %sangvesti_basic_house_door_found, %sangvesti_basic_house_door, 192, 269, 8, 5, $component2, "Jovkai Door: Locked", sangvesti_jovkai_key);
+$int3, $int4 = ~script8597($component0, $int3, $component1, $int4, %sangvesti_pub_door_found, %sangvesti_pub_door, 216, 192, 8, 5, $component2, "Myrmel Door: Locked", sangvesti_myrmel_key);
+$int3, $int4 = ~script8597($component0, $int3, $component1, $int4, %sangvesti_pub_back_door_found, %sangvesti_pub_back_door, 196, 157, 8, 5, $component2, "Door: Locked from the inside", null);
+$int3, $int4 = ~script8597($component0, $int3, $component1, $int4, %sangvesti_myrmel_manor_door_found, %sangvesti_myrmel_manor_door, 280, 141, 5, 8, $component2, "Myrmel Door: Locked", sangvesti_myrmel_key);
+$int3, $int4 = ~script8597($component0, $int3, $component1, $int4, %sangvesti_myrmel_manor_back_door_found, %sangvesti_myrmel_manor_back_door, 340, 129, 8, 5, $component2, "Door: Locked from the inside", null);
+$int3, $int4 = ~script8597($component0, $int3, $component1, $int4, %sangvesti_bank_door_found, %sangvesti_bank_door, 140, 153, 8, 5, $component2, "Myrmel Door: Locked", sangvesti_myrmel_key);
+$int3, $int4 = ~script8597($component0, $int3, $component1, $int4, %sangvesti_shadum_manor_door_found, %sangvesti_shadum_manor_door, 228, 64, 12, 5, $component2, "Shadum Door: Locked", sangvesti_shadum_key);
+$int3, $int4 = ~script8597($component0, $int3, $component1, $int4, %sangvesti_fancy_house_1_door_found, %sangvesti_fancy_house_1_door, 276, 237, 5, 8, $component2, "Shadum Door: Locked", sangvesti_shadum_key);
+$int3, $int4 = ~script8597($component0, $int3, $component1, $int4, %sangvesti_fancy_house_1_back_door_found, %sangvesti_fancy_house_1_back_door, 296, 229, 8, 5, $component2, "Door: Locked from the inside", null);
+$int3, $int4 = ~script8597($component0, $int3, $component1, $int4, %sangvesti_vitur_manor_door_found, %sangvesti_vitur_manor_door, 268, 81, 5, 12, $component2, "Vitur Door: Locked", sangvesti_vitur_key);
+$int3, $int4 = ~script8597($component0, $int3, $component1, $int4, %sangvesti_fancy_house_2_door_found, %sangvesti_fancy_house_2_door, 235, 225, 5, 8, $component2, "Vitur Door: Locked", sangvesti_vitur_key);
+$int3, $int4 = ~script8597($component0, $int3, $component1, $int4, %sangvesti_fancy_house_2_back_door_found, %sangvesti_fancy_house_2_back_door, 224, 236, 8, 5, $component2, "Door: Locked from the inside", null);
+$int3, $int4 = ~script8597($component0, $int3, $component1, $int4, %sangvesti_food_shop_door_found, %sangvesti_food_shop_door, 212, 124, 8, 5, $component2, "Vitur Door: Locked", sangvesti_vitur_key);
+$int3, $int4 = ~script8597($component0, $int3, $component1, $int4, %sangvesti_food_shop_back_door_found, %sangvesti_food_shop_back_door, 223, 105, 5, 8, $component2, "Door: Locked from the inside", null);
+$int3, $int4 = ~script8597($component0, $int3, $component1, $int4, %sangvesti_trapdoor_found, %sangvesti_trapdoor, 136, 174, 7, 7, $component2, "Trapdoor: Locked", sangvesti_trapdoor_key);
+$int3, $int4 = ~script8597($component0, $int3, $component1, $int4, %sangvesti_trapdoor, %sangvesti_trapdoor, 149, 117, 7, 7, $component2, "Trapdoor: Locked", sangvesti_trapdoor_key);
+$int3, $int4 = ~script8597($component0, $int3, $component1, $int4, %sangvesti_clothes_shop_door_found, %sangvesti_clothes_shop_door, 180, 221, 8, 5, $component2, "Door: Chained shut", sangvesti_bolt_cutters);
+$int3, $int4 = ~script8597($component0, $int3, $component1, $int4, %sangvesti_clothes_shop_back_door_found, %sangvesti_clothes_shop_back_door, 184, 248, 8, 5, $component2, "Door: Locked from the inside", null);
+$int3, $int4 = ~script8597($component0, $int3, $component1, $int4, %sangvesti_fancy_house_3_door_found, %sangvesti_fancy_house_3_door, 168, 68, 8, 5, $component2, "Door: Locked by device", sangvesti_crank_wheel);
+$int3, $int4 = ~script8597($component0, $int3, $component1, $int4, %sangvesti_fancy_house_3_back_door_found, %sangvesti_fancy_house_3_back_door, 160, 53, 5, 8, $component2, "Door: Locked from the inside", null);
+$int3, $int4 = ~script8597($component0, $int3, $component1, $int4, %sangvesti_interior_bank_door_found, %sangvesti_interior_bank_door, 140, 168, 8, 5, $component2, "Gate: Locked by device", sangvesti_crank_wheel);
+$int3, $int4 = ~script8597($component0, $int3, $component1, $int4, %sangvesti_chapel_back_door_1_found, %sangvesti_chapel_back_door_1, 176, 93, 8, 5, $component2, "Door: Locked from the inside", null);
+$int3, $int4 = ~script8597($component0, $int3, $component1, $int4, %sangvesti_chapel_back_door_2_found, %sangvesti_chapel_back_door_2, 144, 128, 8, 5, $component2, "Door: Locked from the inside", null);
+$int3, $int4 = ~script8597($component0, $int3, $component1, $int4, %sangvesti_general_store_door_found, 1, 292, 196, 8, 5, $component2, "", null);
+$int3, $int4 = ~script8597($component0, $int3, $component1, $int4, %sangvesti_basic_house_2_door_found, 1, 159, 201, 5, 8, $component2, "", null);
+$int3, $int4 = ~script8597($component0, $int3, $component1, $int4, %sangvesti_basic_house_3_door_found, 1, 240, 124, 8, 5, $component2, "", null);
