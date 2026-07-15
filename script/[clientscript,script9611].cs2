@@ -9,40 +9,30 @@ if (string_length($string0) < 3) {
     ~script9617(0);
     return;
 }
-def_stringarray $stringarray = string_split($string0, "|");
+def_stringarray $stringarray = string_split($string0, ",");
 def_int $int4 = array_size($stringarray);
-if (array_size($stringarray) < 3) {
-    mes("|<~mes_highlight_red>Tag import must contain at least tag name, the object to use as an icon, and the objcount. Each piece of information must be separated by a | character.</col>");
-    ~script9617(0);
-    return;
-}
-def_string $string2 = $stringarray(0);
-if (string_length($string2) < 1) {
-    mes("<~mes_highlight_red>Tag name cannot be empty.</col>");
-    ~script9617(0);
-    return;
-}
-if (string_length($string2) > 30) {
-    mes("<~mes_highlight_red>Tag name too long, it can be at most <tostring(30)> characters long.</col>");
+if (array_size($stringarray) < 2) {
+    mes("|<~mes_highlight_red>Tag import must contain at least version number and the objcount. Each piece of information must be separated by a , character.</col>");
     ~script9617(0);
     return;
 }
 def_int $int5 = -1;
-def_obj $obj6 = null;
-$int5, $obj6 = ~script9614($stringarray(1), false);
-if ($int5 = 0) {
-    mes("<~mes_highlight_red>Couldn't find any results for an object '<$stringarray(1)>' when searching for the tag icon.</col>");
+def_boolean $boolean = null;
+$int5, $boolean = safeparseint($stringarray(0));
+if ($boolean = false) {
+    mes("<~mes_highlight_red>The version number must be made up of at least one numeric character, and only contain numeric characters.</col>");
     ~script9617(0);
     return;
 }
-if ($obj6 = null) {
-    mes("<~mes_highlight_red>Couldn't find an exact match for the object '<$stringarray(1)>' when searching for the tag icon. A full case-sensitive name must be used including all characters and spaces.</col>");
+if ($int5 ! 1) {
+    mes("<~mes_highlight_red>The version number doesn't match the current version <tostring(1)>.</col>");
     ~script9617(0);
     return;
 }
-def_int $int7 = ~string_to_int_limit($stringarray(2), 3, 1);
-if ($int7 = -1) {
-    mes("<~mes_highlight_red>The object count must be a number, non numeric characters were present.</col>");
+def_int $int7 = -1;
+$int7, $boolean = safeparseint($stringarray(1));
+if ($boolean = false) {
+    mes("<~mes_highlight_red>The object count must be made up of at least one numeric character, and only contain numeric characters.</col>");
     ~script9617(0);
     return;
 }
@@ -56,45 +46,46 @@ if ($int7 > 80) {
     ~script9617(0);
     return;
 }
-if (calc(($int4 - 3) % 3) ! 0) {
-    mes("|<~mes_highlight_red>Incorrect number of entries for <tostring($int7)> objects. Each object requires a name, X, and Y coordinate. These should be separated by a | character e.g. Potato|2|3|Apple|4|5|Apple|5|5.</col>");
+if (calc(($int4 - 2) % 3) ! 0) {
+    mes("|<~mes_highlight_red>Incorrect number of entries for <tostring($int7)> objects. Each object requires a name, X, and Y coordinate. These should be separated by a , character e.g. '403,2,3,537,4,5,537,5,5'</col>");
     ~script9617(0);
     return;
 }
-if ($int7 ! calc(($int4 - 3) / 3)) {
-    mes("|<~mes_highlight_red>The object count must be equal to the actual number of defined objects <tostring($int7)> was written but only <tostring(calc(($int4 - 3) / 3))> were found.</col>");
+if ($int7 ! calc(($int4 - 2) / 3)) {
+    mes("|<~mes_highlight_red>The object count must be equal to the actual number of defined objects. <tostring($int7)> was written in the string, but <tostring(calc(($int4 - 2) / 3))> objects were defined.</col>");
     ~script9617(0);
     return;
 }
-def_int $int8 = 3;
+def_int $int8 = 2;
 def_int $int9 = 0;
 def_int $int10 = -1;
-def_string $string3 = "";
+def_string $string2 = "";
 def_int $int11 = -1;
-def_string $string4 = "";
+def_string $string3 = "";
 def_coord $coord = null;
 def_int $int13 = -1;
-def_obj $obj14 = null;
-def_string $string5 = "";
-def_objarray $objarray = array_create(obj, $int7, -1);
-def_intarray $intarray7 = array_create(int, $int7, -1);
-def_intarray $intarray8 = array_create(int, $int7, -1);
-def_coordarray $coordarray = array_create(coord, $int7, -1);
+def_obj $obj = null;
+def_string $string4 = "";
 def_int $int15 = -1;
+def_objarray $objarray = array_create(obj, $int7, -1);
+def_intarray $intarray6 = array_create(int, $int7, -1);
+def_intarray $intarray7 = array_create(int, $int7, -1);
+def_coordarray $coordarray = array_create(coord, $int7, -1);
+def_int $int16 = -1;
 while ($int9 < $int7) {
-    $string3 = $stringarray(calc($int8 + 1));
-    $int15 = string_length($string3);
-    if ($int15 < 1) {
+    $string2 = $stringarray(calc($int8 + 1));
+    $int16 = string_length($string2);
+    if ($int16 < 1) {
         mes("<~mes_highlight_red>X coordinates for object #<tostring($int9)> has no digits.</col>");
         ~script9617(0);
         return;
     }
-    if ($int15 > 2) {
+    if ($int16 > 2) {
         mes("<~mes_highlight_red>X coordinates for object #<tostring($int9)> has too many digits, the maximum is 2.</col>");
         ~script9617(0);
         return;
     }
-    $int10 = ~string_to_int_limit($string3, 2, 1);
+    $int10 = ~string_to_int_limit($string2, 2, 1);
     if ($int10 = -1) {
         mes("<~mes_highlight_red>X coordinates for object #<tostring($int9)> contained non numeric characters.</col>");
         ~script9617(0);
@@ -105,19 +96,19 @@ while ($int9 < $int7) {
         ~script9617(0);
         return;
     }
-    $string4 = $stringarray(calc($int8 + 2));
-    $int15 = string_length($string4);
-    if ($int15 < 1) {
+    $string3 = $stringarray(calc($int8 + 2));
+    $int16 = string_length($string3);
+    if ($int16 < 1) {
         mes("<~mes_highlight_red>Y coordinates for object #<tostring($int9)> has no digits.</col>");
         ~script9617(0);
         return;
     }
-    if ($int15 > 2) {
+    if ($int16 > 2) {
         mes("<~mes_highlight_red>Y coordinates for object #<tostring($int9)> has too many digits, the maximum is 2.</col>");
         ~script9617(0);
         return;
     }
-    $int11 = ~string_to_int_limit($string4, 2, 1);
+    $int11 = ~string_to_int_limit($string3, 2, 1);
     if ($int11 = -1) {
         mes("<~mes_highlight_red>Y coordinates for object #<tostring($int9)> contained non numeric characters.</col>");
         ~script9617(0);
@@ -136,34 +127,23 @@ while ($int9 < $int7) {
         return;
     }
     $coordarray($int9) = $coord;
-    $string5 = $stringarray($int8);
-    if (string_length($string5) < 1) {
-        mes("<~mes_highlight_red>Empty name for object #<tostring($int9)>.</col>");
+    $int15, $boolean = safeparseint($stringarray($int8));
+    $obj = oc_byid($int15);
+    if ($boolean = false | $obj = null) {
+        mes("<~mes_highlight_red>Couldn't find an exact match for object #<tostring($int9)> '<tostring($int15)>'.</col>");
         ~script9617(0);
         return;
     }
-    $int5, $obj14 = ~script9614($string5, false);
-    if ($int5 = 0) {
-        mes("<~mes_highlight_red>No objects found when searching for object #<tostring($int9)> '<$string5>'.</col>");
-        ~script9617(0);
-        return;
-    }
-    if ($obj14 = null) {
-        mes("<~mes_highlight_red>Couldn't find an exact match for object #<tostring($int9)> '<$string5>'. A full case-sensitive name must be used including all characters and spaces.</col>");
-        ~script9617(0);
-        return;
-    }
-    $obj14 = oc_uncert($obj14);
-    $obj14 = oc_unplaceholder($obj14);
-    $objarray($int9) = $obj14;
-    $intarray7($int9) = $int10;
-    $intarray8($int9) = $int11;
+    $obj = oc_uncert($obj);
+    $obj = oc_unplaceholder($obj);
+    $objarray($int9) = $obj;
+    $intarray6($int9) = $int10;
+    $intarray7($int9) = $int11;
     $int8 = calc($int8 + 3);
     $int9 = calc($int9 + 1);
 }
 ~script9617(1);
-~script9550($int2, $int3, $string2, $obj6);
-~script9560($int2, $objarray, $intarray7, $intarray8);
+~script9560($int2, $objarray, $intarray6, $intarray7);
 ~script9609;
 ~script9580;
 %banktags_active_tag = $int2;
