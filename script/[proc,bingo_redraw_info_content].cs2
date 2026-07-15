@@ -45,30 +45,29 @@ $int1 = ~thinbox_specific($component0, $int1, calc($int2 + 6), $int10, calc($int
 $int1, $int10, $int11 = ~script8150($component0, $int1, $int2, $int10, $int4, $int11, "Bonus Effects", "", null, "");
 def_int $int16 = -1;
 def_int $int17 = -1;
-$int1, $int17, $int16 = ~script8199($component0, $int1, calc($int2 + 6), $int10, ^setpos_abs_left, ^setpos_abs_top, calc($int4 - 6 * 2), calc($int5 - ($int10 + 6)), ^setsize_abs, ^setsize_abs);
+$int1, $int16, $int17 = ~script8199($component0, $int1, calc($int2 + 6), $int10, ^setpos_abs_left, ^setpos_abs_top, calc($int4 - 6 * 2), calc($int5 - ($int10 + 6)), ^setsize_abs, ^setsize_abs);
 def_int $int18 = 0;
-def_int $int19 = cc_getheight;
 cc_create_child(^iftype_text, $int1);
 cc_setsize(0, 0, ^setsize_minus, ^setsize_abs);
 $int1 = calc($int1 + 1);
+def_int $int19 = 0;
 def_int $int20 = 0;
-def_int $int21 = 0;
 def_string $string1 = "";
-def_int $int22 = 0;
-while ($int20 <= 24) {
-    $int21 = ~script8287($int20);
-    if ($int21 > 0) {
-        $int22 = 1;
-        if ($int20 = 0) {
+def_int $int21 = 0;
+while ($int19 <= 24) {
+    $int20 = ~script8287($int19);
+    if ($int20 > 0) {
+        $int21 = 1;
+        if ($int19 = 0) {
             $string1 = "All Skills XP";
         } else {
-            $string1 = "<enum(int, string, enum_108, $int20)> XP";
+            $string1 = "<enum(int, string, enum_108, $int19)> XP";
         }
-        $int1, $int18, $int11 = ~script8151($int1, $int18, $int11, $string1, "+<tostring($int21)>%", null, "", null, "");
+        $int1, $int18, $int11 = ~script8151($int1, $int18, $int11, $string1, "+<tostring($int20)>%", null, "", null, "");
     }
-    $int20 = calc($int20 + 1);
+    $int19 = calc($int19 + 1);
 }
-if ($int22 = 0) {
+if ($int21 = 0) {
     $int1, $int18, $int11 = ~script8151($int1, $int18, $int11, "All Skills XP", "+0%", null, "", null, "");
 }
 if (calc(8 - 1) ! 0) {
@@ -106,19 +105,19 @@ if (%event_league_relics ! null) {
     $structarray2 = enum_getinputs(struct, %event_league_relics);
 }
 def_struct $struct = null;
+def_int $int23 = 0;
 def_int $int24 = 0;
-def_int $int25 = 0;
 def_boolean $boolean = false;
 def_stringarray $stringarray = null;
 def_structarray $structarray4 = null;
-def_int $int27 = 0;
-def_dbrow $dbrow28 = null;
+def_int $int26 = 0;
+def_dbrow $dbrow27 = null;
 if (array_isnull($structarray2) = false & array_size($structarray2) > 0) {
-    $int25 = array_size($structarray2);
-    $stringarray = array_create(string, 0, $int25);
-    $structarray4 = array_create(struct, 0, $int25);
-    while ($int24 < $int25) {
-        $struct = $structarray2($int24);
+    $int24 = array_size($structarray2);
+    $stringarray = array_create(string, 0, $int24);
+    $structarray4 = array_create(struct, 0, $int24);
+    while ($int23 < $int24) {
+        $struct = $structarray2($int23);
         if ($struct ! null) {
             $boolean = ~int_to_bool(~league_relic_active($struct));
             if ($boolean = true) {
@@ -126,28 +125,29 @@ if (array_isnull($structarray2) = false & array_size($structarray2) > 0) {
                 array_push($structarray4, $struct);
             }
         }
-        $int24 = calc($int24 + 1);
+        $int23 = calc($int23 + 1);
     }
-    $int25 = array_size($stringarray);
-    if ($int25 > 0) {
+    $int24 = array_size($stringarray);
+    if ($int24 > 0) {
         array_sort($stringarray, $structarray4);
-        $int24 = 0;
+        $int23 = 0;
         $string1 = "On";
-        while ($int24 < $int25) {
-            $struct = $structarray4($int24);
-            $int27 = db_find(reward:league_relic, $struct);
-            if ($int27 = 0) {
-                $dbrow28 = null;
+        while ($int23 < $int24) {
+            $struct = $structarray4($int23);
+            $int26 = db_find(reward:league_relic, $struct);
+            if ($int26 = 0) {
+                $dbrow27 = null;
             } else {
-                if ($int27 > 1) {
+                if ($int26 > 1) {
                     ~debug_mes_warning("Ambiguous relic to reward link for bonus effects");
                 }
-                $dbrow28 = db_findnext;
+                $dbrow27 = db_findnext;
             }
-            $int1, $int18, $int11 = ~script8151($int1, $int18, $int11, $stringarray($int24), $string1, $component9, struct_param($struct, param_880), $dbrow28, "");
-            $int24 = calc($int24 + 1);
+            $int1, $int18, $int11 = ~script8151($int1, $int18, $int11, $stringarray($int23), $string1, $component9, struct_param($struct, param_880), $dbrow27, "");
+            $int23 = calc($int23 + 1);
         }
     }
 }
-~script8138($component0, $int16, $int17, $int19, $int18, -1);
+cc_find_parent;
+~script9718($int18, -1);
 return($int1);
