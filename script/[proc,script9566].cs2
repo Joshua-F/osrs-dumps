@@ -10,11 +10,15 @@ def_stringarray $stringarray = string_split($string0, "|");
 $string1 = $stringarray(0);
 $string2 = $stringarray(1);
 $string3 = $stringarray(2);
-def_int $int3 = oc_find($string1, false);
-if ($int3 = 0) {
+def_boolean $boolean = true;
+def_int $int4 = -1;
+$int4, $boolean = safeparseint($string1);
+if ($boolean = true) {
+    $obj = oc_byid($int4);
+}
+if ($obj = null) {
     return(null, -1, -1);
 }
-$obj = oc_findnext;
 $int1 = ~script9619($string2);
 $int2 = ~script9619($string3);
 return($obj, $int1, $int2);

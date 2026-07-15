@@ -176,15 +176,14 @@ cc_setposition($int31, 0, ^setpos_abs_right, ^setpos_abs_centre);
 $int12 = calc($int12 + 1);
 def_int $int32 = -1;
 def_int $int33 = -1;
-$int12, $int33, $int32 = ~script8199($component8, $int12, calc($int14 + $int13), $int17, ^setpos_abs_right, ^setpos_abs_top, $int29, calc($int15 + 260 - $int17 - $int13 - 30), ^setsize_abs, ^setsize_abs);
+$int12, $int32, $int33 = ~script8199($component8, $int12, calc($int14 + $int13), $int17, ^setpos_abs_right, ^setpos_abs_top, $int29, calc($int15 + 260 - $int17 - $int13 - 30), ^setsize_abs, ^setsize_abs);
 def_int $int34 = 0;
 def_int $int35 = cc_getwidth;
-def_int $int36 = cc_getheight;
-def_int $int37 = 0;
+def_int $int36 = 0;
 if ($int5 = %bingo_selected_reward_option) {
-    $int37 = 1;
+    $int36 = 1;
 }
-def_string $string3 = ~script8165($dbrow21, $int37);
+def_string $string3 = ~script8165($dbrow21, $int36);
 cc_create_child(^iftype_text, $int12);
 cc_setsize(2, calc(paraheight($string3, calc($int35 - 2), p12_full) * 12 + 5), ^setsize_minus, ^setsize_abs);
 cc_setposition(1, $int34, ^setpos_abs_left, ^setpos_abs_top);
@@ -195,16 +194,17 @@ cc_settextalign(^settextalign_centre, ^settextalign_top, 0);
 cc_settext($string3);
 $int34 = calc($int34 + cc_getheight);
 $int12 = calc($int12 + 1);
-def_int $int38 = -1;
-def_int $int39 = 0;
+def_int $int37 = -1;
+def_int $int38 = 0;
 if (string_length(%bingo_lookup_phrase) > 0) {
-    $int38 = string_indexof_string($string3, %bingo_lookup_phrase, 0);
+    $int37 = string_indexof_string($string3, %bingo_lookup_phrase, 0);
 }
-if ($int38 > 0) {
-    $string3 = substring($string3, 0, $int38);
-    $int39 = calc(paraheight($string3, calc($int35 - 2), p12_full) * 12);
+if ($int37 > 0) {
+    $string3 = substring($string3, 0, $int37);
+    $int38 = calc(paraheight($string3, calc($int35 - 2), p12_full) * 12);
 }
-~script8138($component8, $int32, $int33, $int36, $int34, $int39);
+cc_find_parent;
+~script9718($int34, $int38);
 $int12 = ~cc_add_button($component8, $int12, 0, calc($int15 + 260 - 22 - $int13), ^setpos_abs_centre, ^setpos_abs_top, 100, 22, ^setsize_abs, ^setsize_abs, struct_6265, "");
 if ($int4 = 1) {
     $rgb = 0xff981f;
