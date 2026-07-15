@@ -1,5 +1,5 @@
 // 9610
-[clientscript,script9610](int $int0, int $int1)
+[proc,script9610](int $int0, int $int1)
 ~deltooltip_action(bankmain:tooltip);
 if_sethide(false, bankmain:banktags_popup_stringexport_container);
 def_component $banktags_popup_stringexport_window = bankmain:banktags_popup_stringexport_window;
@@ -47,6 +47,12 @@ def_int $int5 = $int3;
 $int3 = ~cc_add_button($banktags_popup_stringexport_window, $int3, 5, 5, ^setpos_abs_right, ^setpos_abs_bottom, 72, 24, ^setsize_abs, ^setsize_abs, struct_6272, "Import");
 ~cc_set_button_states(false, 0);
 cc_setop(1, "Import");
+if (~on_mobile = true) {
+    $int3 = ~cc_add_button($banktags_popup_stringexport_window, $int3, 5, 5, ^setpos_abs_left, ^setpos_abs_bottom, 72, 24, ^setsize_abs, ^setsize_abs, struct_6272, "Keyboard");
+    ~cc_set_button_states(false, 0);
+    cc_setop(1, "Open Keyboard");
+    cc_setonop("keyboard_show(0, 2500)");
+}
 def_component $banktags_popup_stringexport_inputfield = bankmain:banktags_popup_stringexport_inputfield;
 cc_deleteall($banktags_popup_stringexport_inputfield);
 $int3 = 0;
@@ -62,6 +68,7 @@ $int3 = ~script9132($banktags_popup_stringexport_inputfield, $int3, 0, 0, ^setpo
 cc_input_setfocus(true);
 cc_input_setcaret(0);
 cc_input_setlinewidthlimit(2500);
+cc_input_setonfocuschanged("script9725(event_com, event_comsubid)");
 if (cc_find($banktags_popup_stringexport_window, $int5) = true) {
     cc_setonop("script9611($banktags_popup_stringexport_inputfield, $int7, $int0, $int1)");
 }

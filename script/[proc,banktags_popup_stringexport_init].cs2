@@ -44,6 +44,12 @@ $int2 = calc($int2 + 1);
 cc_setsize(26, 23, ^setsize_abs, ^setsize_abs);
 cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
 cc_setgraphic("close_buttons,14");
+if (~on_mobile = true) {
+    $int2 = ~cc_add_button($banktags_popup_stringexport_window, $int2, 5, 5, ^setpos_abs_left, ^setpos_abs_bottom, 72, 24, ^setsize_abs, ^setsize_abs, struct_6272, "Keyboard");
+    ~cc_set_button_states(false, 0);
+    cc_setop(1, "Open Keyboard");
+    cc_setonop("keyboard_show(0, 2500)");
+}
 def_component $banktags_popup_stringexport_inputfield = bankmain:banktags_popup_stringexport_inputfield;
 cc_deleteall($banktags_popup_stringexport_inputfield);
 $int2 = 0;
@@ -57,3 +63,5 @@ cc_setcolour(0x372e22);
 $int2 = ~script9132($banktags_popup_stringexport_inputfield, $int2, 0, 0, ^setpos_abs_centre, ^setpos_abs_centre, 4, 4, ^setsize_minus, ^setsize_minus, $string1);
 cc_input_setfocus(true);
 cc_input_setselection(0, string_length($string1));
+cc_input_setlinewidthlimit(2500);
+cc_input_setonfocuschanged("script9725(event_com, event_comsubid)");
