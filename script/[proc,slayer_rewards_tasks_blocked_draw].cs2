@@ -1,8 +1,8 @@
 // 426
 [proc,slayer_rewards_tasks_blocked_draw](component $component0, int $int1, int $int2, component $component3, component $component4, component $component5, component $component6, component $component7)
-cc_deleteall($component0);
 def_int $int8 = 0;
 def_int $int9 = -1;
+def_int $int10 = if_param(param_2636, $component0, -1);
 switch_int ($int1) {
     case 1 :
         $int8, $int9 = ~script8025(%slayer_master_in_focus, 1), 3;
@@ -22,20 +22,17 @@ switch_int ($int1) {
         return;
 }
 $int9 = calc(66 + $int9);
-def_int $int10 = 0;
-cc_create($component0, ^iftype_text, $int10);
-$int10 = calc($int10 + 1);
-cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_centre);
-cc_setsize(85, 0, ^setsize_abs, ^setsize_minus);
+cc_create($component0, ^iftype_text, ~script8302($component0));
+cc_setposition(10, $int10, ^setpos_abs_left, ^setpos_abs_top);
+cc_setsize(85, 20, ^setsize_abs, ^setsize_abs);
 cc_setcolour(0xff981f);
 cc_settextfont(p12_full);
 cc_settextshadow(true);
 cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
 cc_settext("Slot <tostring($int1)>:");
-cc_create($component0, ^iftype_text, $int10);
-$int10 = calc($int10 + 1);
-cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
-cc_setsize(170, 0, ^setsize_minus, ^setsize_minus);
+cc_create($component0, ^iftype_text, ~script8302($component0));
+cc_setposition(8, $int10, ^setpos_abs_centre, ^setpos_abs_top);
+cc_setsize(170, 20, ^setsize_minus, ^setsize_abs);
 cc_settextshadow(true);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
 if ($int8 = 0) {
@@ -58,25 +55,27 @@ if ($int8 = 0) {
         cc_settextfont(p12_full);
         cc_settext("Empty");
     }
+} else if ($int8 = -1) {
+    cc_setcolour(^red);
+    cc_settextfont(p12_full);
+    cc_settext("Block slot unavailable");
 } else {
     cc_setcolour(^white);
     cc_settextfont(p12_full);
     cc_settext(~slayer_taskname($int8, -1, 1));
 }
-cc_create($component0, ^iftype_graphic, $int10);
-$int10 = calc($int10 + 1);
-.cc_create($component0, ^iftype_text, $int10);
-$int10 = calc($int10 + 1);
+cc_create($component0, ^iftype_graphic, ~script8302($component0));
+.cc_create($component0, ^iftype_text, ~script8302($component0));
 cc_setsize(85, 22, ^setsize_abs, ^setsize_abs);
 .cc_setsize(85, 22, ^setsize_abs, ^setsize_abs);
-cc_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_centre);
-.cc_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_centre);
+cc_setposition(10, $int10, ^setpos_abs_right, ^setpos_abs_top);
+.cc_setposition(10, $int10, ^setpos_abs_right, ^setpos_abs_top);
 cc_setgraphic("combatboxesmed,0");
 .cc_settextfont(p11_full);
 .cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
 .cc_settextshadow(true);
 .cc_settext("Unblock task");
-if ($int8 ! 0) {
+if ($int8 > 0) {
     .cc_setcolour(0xff981f);
     cc_setonmouseover("cc_colour_swapper(event_com, .cc_getid, 16777215)");
     cc_setonmouseleave("cc_colour_swapper(event_com, .cc_getid, 16750623)");
@@ -85,3 +84,4 @@ if ($int8 ! 0) {
 } else {
     .cc_setcolour(0x7f4c0f);
 }
+if_setparam(param_2636, calc($int10 + 25), $component0, -1);
