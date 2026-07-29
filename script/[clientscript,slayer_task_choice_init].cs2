@@ -1,0 +1,214 @@
+// 9739
+[clientscript,slayer_task_choice_init]
+def_graphic $graphic0 = "close_buttons,0";
+def_graphic $graphic1 = "close_buttons,1";
+def_component $close_button = slayer_task_choice:close_button;
+def_int $int3 = 3;
+def_int $int4 = 6;
+def_int $int5 = 26;
+def_int $int6 = 23;
+if (~on_mobile = true) {
+    $graphic0 = "steelborder_close_button,0";
+    $graphic1 = "steelborder_close_button,0";
+    $int3 = 1;
+    $int4 = 1;
+    $int5 = 33;
+    $int6 = 33;
+}
+if_setposition($int3, $int4, ^setpos_abs_right, ^setpos_abs_top, $close_button);
+if_setsize($int5, $int6, ^setsize_abs, ^setsize_abs, $close_button);
+~create_graphic($close_button, 0, $graphic0, 0, 0, ^setpos_abs_centre, ^setpos_abs_centre, $int5, $int6, ^setsize_abs, ^setsize_abs, true);
+cc_setonmouseleave("cc_graphic_swapper(event_com, event_comsubid, $graphic0, null)");
+cc_setonmouseover("cc_graphic_swapper(event_com, event_comsubid, $graphic1, null)");
+if_setop(1, "Close", $close_button);
+if (%keybinding_esc_to_close = 1) {
+    if_setopkey(1, ^key_escape, 0, $close_button);
+}
+~steelborder(slayer_task_choice:frame, "Slayer Task Choice", 1);
+def_int $int7 = 0;
+def_graphic $graphic8 = p12_full;
+def_int $rgb9 = 0xff981f;
+def_int $rgb10 = ^white;
+def_int $int11 = calc(if_getheight(slayer_task_choice:content) / 3);
+def_int $int12 = 0;
+def_int $int13 = 0;
+def_int $int14 = 245;
+def_boolean $boolean = ~on_mobile;
+def_string $string = "";
+def_int $int16 = 0;
+def_int $int17 = 0;
+def_int $int18 = 0;
+def_int $int19 = 0;
+def_int $int20 = 0;
+def_dbrow $dbrow21 = null;
+def_int $int22 = 0;
+def_int $int23 = 0;
+def_dbrow $dbrow24 = null;
+while ($int7 < 3) {
+    switch_int ($int7) {
+        case 0 :
+            $int16 = %slayer_choose_task_1;
+            $int17 = %slayer_choose_task_1_boss_id;
+            $int18 = %slayer_choose_task_1_modifier_id;
+            $int19 = %slayer_choose_task_1_modifier_value;
+            $int20 = %slayer_choose_task_1_modifier_negative;
+        case 1 :
+            $int16 = %slayer_choose_task_2;
+            $int17 = %slayer_choose_task_2_boss_id;
+            $int18 = %slayer_choose_task_2_modifier_id;
+            $int19 = %slayer_choose_task_2_modifier_value;
+            $int20 = %slayer_choose_task_2_modifier_negative;
+        case 2 :
+            $int16 = %slayer_choose_task_3;
+            $int17 = %slayer_choose_task_3_boss_id;
+            $int18 = %slayer_choose_task_3_modifier_id;
+            $int19 = %slayer_choose_task_3_modifier_value;
+            $int20 = %slayer_choose_task_3_modifier_negative;
+    }
+    if ($int16 ! 0) {
+        cc_create(slayer_task_choice:content, ^iftype_rectangle, $int13);
+        cc_setsize(0, $int11, ^setsize_minus, ^setsize_abs);
+        cc_setposition(0, $int12, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setcolour($rgb10);
+        cc_setfill(true);
+        if ($boolean = false) {
+            cc_setonmouserepeat("script9740(event_comsubid, slayer_task_choice:content, 170)");
+        }
+        if ($int14 = 245) {
+            $int14 = 230;
+            if ($boolean = false) {
+                cc_setonmouseleave("script9740(event_comsubid, slayer_task_choice:content, 230)");
+            }
+        } else {
+            $int14 = 245;
+            if ($boolean = false) {
+                cc_setonmouseleave("script9740(event_comsubid, slayer_task_choice:content, 245)");
+            }
+        }
+        cc_settrans($int14);
+        $int13 = calc(1 + $int13);
+        cc_create(slayer_task_choice:content, ^iftype_text, $int13);
+        cc_setsize(60, 30, ^setsize_abs, ^setsize_abs);
+        cc_setposition(20, calc($int12 + 5), ^setpos_abs_left, ^setpos_abs_top);
+        $string = "<u=ff981f><~slayer_taskname($int16, $int17, 1)>";
+        cc_settext($string);
+        cc_settextfont(b12_full);
+        cc_setcolour($rgb9);
+        cc_settextalign(^settextalign_centre, ^settextalign_centre, 14);
+        cc_settextshadow(true);
+        $string = "";
+        $int13 = calc(1 + $int13);
+        cc_create(slayer_task_choice:content, ^iftype_text, $int13);
+        cc_setsize(150, 25, ^setsize_abs, ^setsize_abs);
+        cc_setposition(175, calc($int12 + 15), ^setpos_abs_left, ^setpos_abs_top);
+        $dbrow24 = ~slayer_get_master_task(10, ~script8052($int16));
+        if ($dbrow24 ! null) {
+            $int22 = db_getfield($dbrow24, slayer_master_task:min_amount, 0);
+            $int23 = db_getfield($dbrow24, slayer_master_task:max_amount, 0);
+            $int22, $int23 = ~script8045(db_getfield($dbrow24, slayer_master_task:task, 0), $int22, $int23);
+            $string = "<$string>Amount: <tostring($int22)> to <tostring($int23)>";
+        }
+        cc_settext($string);
+        cc_settextfont($graphic8);
+        cc_setcolour($rgb9);
+        cc_settextalign(^settextalign_centre, ^settextalign_centre, 14);
+        cc_settextshadow(true);
+        $string = "";
+        $int13 = calc(1 + $int13);
+        cc_create(slayer_task_choice:content, ^iftype_graphic, $int13);
+        cc_setsize(35, 35, ^setsize_abs, ^setsize_abs);
+        cc_setposition(120, calc($int12 + 40), ^setpos_abs_left, ^setpos_abs_top);
+        cc_setgraphic("backing_slayer_modifiers01_35x35,0");
+        $int13 = calc(1 + $int13);
+        cc_create(slayer_task_choice:content, ^iftype_graphic, $int13);
+        cc_setsize(190, 35, ^setsize_abs, ^setsize_abs);
+        cc_setposition(155, calc($int12 + 40), ^setpos_abs_left, ^setpos_abs_top);
+        cc_setgraphic("backing_slayer_modifiers01_35x35,1");
+        $int13 = calc(1 + $int13);
+        cc_create(slayer_task_choice:content, ^iftype_graphic, $int13);
+        cc_setsize(35, 35, ^setsize_abs, ^setsize_abs);
+        cc_setposition(345, calc($int12 + 40), ^setpos_abs_left, ^setpos_abs_top);
+        cc_setgraphic("backing_slayer_modifiers01_35x35,2");
+        $int13 = calc(1 + $int13);
+        cc_create(slayer_task_choice:content, ^iftype_text, $int13);
+        cc_setsize(190, 25, ^setsize_abs, ^setsize_abs);
+        cc_setposition(155, calc($int12 + 45), ^setpos_abs_left, ^setpos_abs_top);
+        if ($int18 > 0) {
+            db_find(slayer_modifiers:id, $int18);
+            $dbrow21 = db_findnext;
+            if ($dbrow21 ! null) {
+                $string = "<$string><~slayer_modifiername($int18, $int19, $int20)>";
+                cc_setcolour(^white);
+            } else {
+                $string = "<$string><col=b2b2b2>No Modifier";
+            }
+        } else {
+            $string = "<$string><col=b2b2b2>No Modifier";
+        }
+        cc_settext(~string_findandreplace(~string_findandreplace($string, "(", ""), ")", ""));
+        cc_settextfont($graphic8);
+        cc_settextalign(^settextalign_centre, ^settextalign_centre, 14);
+        cc_settextshadow(true);
+        $int13 = calc(1 + $int13);
+        cc_create(slayer_task_choice:content, ^iftype_graphic, $int13);
+        cc_setsize(25, 25, ^setsize_abs, ^setsize_abs);
+        cc_setposition(125, calc($int12 + 45), ^setpos_abs_left, ^setpos_abs_top);
+        if ($dbrow21 ! null) {
+            cc_setgraphic(db_getfield($dbrow21, slayer_modifiers:sprite, 0));
+        } else {
+            cc_setgraphic("icon_stat_50x50,19");
+        }
+        $int13 = calc(1 + $int13);
+        cc_create(slayer_task_choice:content, ^iftype_graphic, $int13);
+        cc_setsize(25, 25, ^setsize_abs, ^setsize_abs);
+        cc_setposition(350, calc($int12 + 45), ^setpos_abs_left, ^setpos_abs_top);
+        if ($dbrow21 ! null) {
+            cc_setgraphic(db_getfield($dbrow21, slayer_modifiers:sprite, 0));
+        } else {
+            cc_setgraphic("icon_stat_50x50,19");
+        }
+        $int13 = calc(1 + $int13);
+        cc_create(slayer_task_choice:content, ^iftype_graphic, $int13);
+        cc_setsize(55, 55, ^setsize_abs, ^setsize_abs);
+        cc_setposition(25, calc(($int11 - 50) / 2 + $int11 * $int7 + 10), ^setpos_abs_left, ^setpos_abs_top);
+        cc_setobject_nonum(db_getfield($dbrow24, slayer_master_task:skill_guide_icon, 0), 0);
+        cc_setoutline(1);
+        $int12 = calc($int11 + $int12);
+        $int13 = calc(1 + $int13);
+    } else {
+        cc_create(slayer_task_choice:content, ^iftype_rectangle, $int13);
+        cc_setsize(0, $int11, ^setsize_minus, ^setsize_abs);
+        cc_setposition(0, $int12, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setcolour($rgb10);
+        cc_setfill(true);
+        if ($int14 = 245) {
+            $int14 = 230;
+        } else {
+            $int14 = 245;
+        }
+        cc_settrans($int14);
+        $int13 = calc(1 + $int13);
+        cc_create(slayer_task_choice:content, ^iftype_text, $int13);
+        cc_setsize(400, $int11, ^setsize_abs, ^setsize_abs);
+        cc_setposition(35, $int12, ^setpos_abs_left, ^setpos_abs_top);
+        if (%if1 = 1) {
+            $string = "<col=b2b2b2>You and your Slayer partner must complete <tostring(50)> tasks with Mortimer to unlock a third choice.";
+        } else {
+            $string = "<col=b2b2b2>Complete <tostring(50)> tasks with Mortimer to unlock a third choice.";
+        }
+        cc_settext($string);
+        cc_settextfont($graphic8);
+        cc_setcolour($rgb9);
+        cc_settextalign(^settextalign_left, ^settextalign_centre, 14);
+        cc_settextshadow(true);
+        $int13 = calc(1 + $int13);
+        cc_create(slayer_task_choice:content, ^iftype_graphic, $int13);
+        cc_setsize(30, 20, ^setsize_abs, ^setsize_abs);
+        cc_setposition(7, calc($int12 + 37), ^setpos_abs_left, ^setpos_abs_top);
+        cc_setgraphic("bankbuttons,7");
+        $int12 = calc($int11 + $int12);
+        $int13 = calc(1 + $int13);
+    }
+    $string = "";
+    $int7 = calc($int7 + 1);
+}

@@ -1,108 +1,52 @@
 // 2094
-[proc,lunar_contact_npc_draw]
-if (stat_base(cooking) < 40) {
-    if_setmodel(model_16803, lunar_contact_npc:honestjimmy_model);
-} else {
-    if_setmodel(model_16802, lunar_contact_npc:honestjimmy_model);
-}
-if (stat_base(fishing) < 15) {
-    if_setmodel(model_16807, lunar_contact_npc:murphy_model);
-} else {
-    if_setmodel(model_16806, lunar_contact_npc:murphy_model);
-}
-if (%handsand_quest < 160) {
-    if_setmodel(model_16809, lunar_contact_npc:sandman_model);
-} else {
-    if_setmodel(model_16808, lunar_contact_npc:sandman_model);
-}
-if (%misc_quest < 100) {
-    if_setmodel(model_16801, lunar_contact_npc:ghrim_model);
-} else {
-    if_setmodel(model_16800, lunar_contact_npc:ghrim_model);
-}
-if (%abyssal_miniquest < 4) {
-    if_setmodel(model_16281, lunar_contact_npc:darkmage_model);
-} else {
-    if_setmodel(model_16280, lunar_contact_npc:darkmage_model);
-}
-if (%dream_prog < 16 | %wgs > 660) {
-    if_setmodel(model_24990, lunar_contact_npc:cyrisus_model);
-} else {
-    if_setmodel(model_24978, lunar_contact_npc:cyrisus_model);
-}
-if (%zeah_playerhasvisited = 0) {
-    if_setmodel(model_30952, lunar_contact_npc:smoggy_model);
-} else {
-    if_setmodel(model_30953, lunar_contact_npc:smoggy_model);
-}
-if (%dream_prog < 28) {
-    if_setmodel(model_24992, lunar_contact_npc:random_model);
-} else {
-    if_setmodel(model_24991, lunar_contact_npc:random_model);
-}
-if (%mm2_slayer_master = 1) {
-    if_setop(1, "Steve", lunar_contact_npc:slayermaster6);
-    if_settext("Steve", lunar_contact_npc:slayermaster6_text);
-    if_setmodel(model_547, lunar_contact_npc:slayermaster6_model);
-} else {
-    if_setop(1, "Nieve", lunar_contact_npc:slayermaster6);
-    if_settext("Nieve", lunar_contact_npc:slayermaster6_text);
-    if_setmodel(model_16282, lunar_contact_npc:slayermaster6_model);
-}
-if (%trail_watson_spoken = 0) {
-    if_setmodel(model_32306, lunar_contact_npc:watson_model);
-} else {
-    if_setmodel(model_32305, lunar_contact_npc:watson_model);
-}
-if (%barcrawl ! 2 & %scorpcatcher < 6) {
-    if_setmodel(model_33204, lunar_contact_npc:barbguard_model);
-} else {
-    if_setmodel(model_33203, lunar_contact_npc:barbguard_model);
-}
-if (%porcine < 40) {
-    if_setmodel(model_40888, lunar_contact_npc:slayermaster9_model);
-} else {
-    if_setmodel(model_40889, lunar_contact_npc:slayermaster9_model);
-}
-if (%wgs_hero_part_1_vis ! 0) {
-    if_setop(1, "Aya", lunar_contact_npc:slayermaster1);
-    if_settext("Aya", lunar_contact_npc:slayermaster1_text);
-    if_setmodel(model_54028, lunar_contact_npc:slayermaster1_model);
-    if_setop(1, "Kuradal", lunar_contact_npc:slayermaster5);
-    if_settext("Kuradal", lunar_contact_npc:slayermaster5_text);
-    if_setmodel(model_54029, lunar_contact_npc:slayermaster5_model);
-} else {
-    if_setop(1, "Turael", lunar_contact_npc:slayermaster1);
-    if_settext("Turael", lunar_contact_npc:slayermaster1_text);
-    if_setmodel(model_16810, lunar_contact_npc:slayermaster1_model);
-    if_setop(1, "Duradel", lunar_contact_npc:slayermaster5);
-    if_settext("Duradel", lunar_contact_npc:slayermaster5_text);
-    if_setmodel(model_16817, lunar_contact_npc:slayermaster5_model);
-}
-if (%wgs_hero_part_1_vis = 1) {
-    if_setop(1, "Achtryn", lunar_contact_npc:slayermaster2);
-    if_settext("Achtryn", lunar_contact_npc:slayermaster2_text);
-    if_setmodel(model_54030, lunar_contact_npc:slayermaster2_model);
-} else {
-    if_setop(1, "Mazchna", lunar_contact_npc:slayermaster2);
-    if_settext("Mazchna", lunar_contact_npc:slayermaster2_text);
-    if_setmodel(model_16811, lunar_contact_npc:slayermaster2_model);
-}
-if (%con_contract_discussed = 0) {
-    if_setmodel(model_40851, lunar_contact_npc:con_contractor_amy_model);
-    if_setop(2, "", lunar_contact_npc:con_contractor_amy);
-} else {
-    if_setmodel(model_40852, lunar_contact_npc:con_contractor_amy_model);
-    switch_int (%if1) {
-        case default :
-            if_setop(2, "", lunar_contact_npc:con_contractor_amy);
-        case 1 :
-            if_setop(2, "Beginner Contract", lunar_contact_npc:con_contractor_amy);
-        case 2 :
-            if_setop(2, "Novice Contract", lunar_contact_npc:con_contractor_amy);
-        case 3 :
-            if_setop(2, "Adept Contract", lunar_contact_npc:con_contractor_amy);
-        case 4 :
-            if_setop(2, "Expert Contract", lunar_contact_npc:con_contractor_amy);
+[proc,lunar_contact_npc_draw](component $component)
+cc_deleteall($component);
+def_int $int1 = db_listall(npc_contact);
+def_int $int2 = 1;
+def_dbrow $dbrow = db_findnext;
+def_string $string = "";
+def_model $model = null;
+def_int $int5 = -1;
+def_int $int6 = -1;
+def_int $int7 = 65;
+def_int $int8 = 125;
+def_int $int9 = 35;
+def_int $int10 = 0;
+def_int $int11 = 0;
+def_int $int12 = 0;
+def_int $int13 = 0;
+while ($dbrow ! null) {
+    $string, $model, $int5, $int6, $int13 = ~script9733($dbrow);
+    cc_create($component, ^iftype_layer, $int12);
+    cc_setsize($int7, $int8, ^setsize_abs, ^setsize_abs);
+    cc_setposition($int10, $int11, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setonmouseover("script9730($component, $int12)");
+    cc_setonmouseleave("script9731($component, $int12)");
+    cc_setop(1, "Contact <col=ff981f><$string>");
+    cc_setonop("script9732($int13, event_op)");
+    ~script9734($int13);
+    $int12 = calc($int12 + 1);
+    cc_create_child(^iftype_model, $int12);
+    cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_setmodel($model);
+    cc_setmodelangle(0, 0, 0, $int6, 0, $int5);
+    $int12 = calc($int12 + 1);
+    cc_create_sibling(^iftype_text, $int12);
+    cc_setsize($int7, $int9, ^setsize_abs, ^setsize_abs);
+    cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_bottom);
+    cc_settext($string);
+    cc_settextfont(p12_full);
+    cc_settextshadow(true);
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    cc_setcolour(0xff981f);
+    $int12 = calc($int12 + 1);
+    if (calc($int2 % 7) = 0) {
+        $int10 = 0;
+        $int11 = calc($int11 + 125);
+    } else {
+        $int10 = calc($int10 + 67);
     }
+    $dbrow = db_findnext;
+    $int2 = calc($int2 + 1);
 }
