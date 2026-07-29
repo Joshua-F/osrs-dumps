@@ -1,0 +1,101 @@
+// 9733
+[proc,script9733](dbrow $dbrow)(string, model, int, int, int)
+def_string $string = db_getfield($dbrow, npc_contact:name, 0);
+def_int $int1 = db_getfield($dbrow, npc_contact:contact_id, 0);
+def_model $model = db_getfield($dbrow, npc_contact:head_model, 0);
+def_int $int3 = db_getfield($dbrow, npc_contact:zoom, 0);
+def_int $int4 = db_getfield($dbrow, npc_contact:y_angle, 0);
+def_int $int5 = 0;
+switch_dbrow ($dbrow) {
+    case npc_contact_honest_jimmy :
+        if (stat_base(cooking) < 40) {
+            $int5 = 1;
+        }
+    case npc_contact_bert :
+        if (%handsand_quest < 160) {
+            $int5 = 1;
+        }
+    case npc_contact_advisor_ghrim :
+        if (%misc_quest < 100) {
+            $int5 = 1;
+        }
+    case npc_contact_dark_mage :
+        if (%abyssal_miniquest < 4) {
+            $int5 = 1;
+        }
+    case npc_contact_slayer_master_draynor :
+        if (%porcine < 40) {
+            $int5 = 1;
+        }
+    case npc_contact_slayer_master_gnome_stronghold :
+        if (%mm2_slayer_master = 1) {
+            $int5 = 1;
+        }
+    case npc_contact_slayer_master_burthorpe, npc_contact_slayer_master_shilo_village :
+        if (%wgs_hero_part_1_vis ! 0) {
+            $int5 = 1;
+        }
+    case npc_contact_slayer_master_canifis :
+        if (%wgs_hero_part_1_vis = 1) {
+            $int5 = 1;
+        }
+    case npc_contact_slayer_master_wilderness :
+        if (%wilderness_master_warning = 0) {
+            $int5 = 1;
+        }
+    case npc_contact_slayer_master_mount_karuulm :
+        if (%konar_spoken = 0) {
+            $int5 = 1;
+        }
+    case npc_contact_slayer_master_wyrmscraig :
+        if (%mortimer_introduction = 0) {
+            $int5 = 1;
+        }
+    case npc_contact_murphy :
+        if (stat_base(fishing) < 15) {
+            $int5 = 1;
+        }
+    case npc_contact_cyrisus :
+        if (%dream_prog < 16 | %wgs > 660) {
+            $int5 = 1;
+        }
+    case npc_contact_smoggy :
+        if (%zeah_playerhasvisited = 0) {
+            $int5 = 1;
+        }
+    case npc_contact_captain_ginea :
+        if (%zeah_shayzien_metcrimefighter = 0) {
+            $int5 = 1;
+        }
+    case npc_contact_watson :
+        if (%trail_watson_spoken = 0) {
+            $int5 = 1;
+        }
+    case npc_contact_barbarian_guard :
+        if (%barcrawl ! 2 & %scorpcatcher < 6) {
+            $int5 = 1;
+        }
+    case npc_contact_amy :
+        if (%con_contract_discussed = 0) {
+            $int5 = 1;
+        }
+    case npc_contact_random :
+        if (%dream_prog < 28) {
+            $int5 = 1;
+        }
+}
+if ($int5 = 1) {
+    if (string_length(db_getfield($dbrow, npc_contact:alt_name, 0)) > 0) {
+        $string = db_getfield($dbrow, npc_contact:alt_name, 0);
+    }
+    if (db_getfield($dbrow, npc_contact:alt_head_model, 0) ! null) {
+        $model = db_getfield($dbrow, npc_contact:alt_head_model, 0);
+    }
+    if (db_getfield($dbrow, npc_contact:alt_zoom, 0) > 0) {
+        $int3 = db_getfield($dbrow, npc_contact:alt_zoom, 0);
+    }
+    if (db_getfield($dbrow, npc_contact:alt_y_angle, 0) ! -1) {
+        $int4 = db_getfield($dbrow, npc_contact:alt_y_angle, 0);
+    }
+}
+return($string, $model, max(400, $int3), $int4, $int1);
