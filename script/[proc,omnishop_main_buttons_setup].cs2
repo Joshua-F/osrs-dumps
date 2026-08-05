@@ -1,5 +1,5 @@
 // 7245
-[proc,omnishop_main_buttons_setup](int $int0, string $string)
+[proc,omnishop_main_buttons_setup](dbrow $dbrow, int $int1, int $int2, string $string0, boolean $boolean3)
 def_component $button_1 = omnishop_main:button_1;
 def_component $button_2 = omnishop_main:button_2;
 def_component $button_3 = omnishop_main:button_3;
@@ -17,14 +17,7 @@ switch_int (%responsive_current_breakpoint) {
         $graphic = verdana_13pt_regular;
 }
 cc_deleteall($buttons_info);
-if (%omnishop_selected_id = -1) {
-    if_sethide(true, $button_1);
-    if_sethide(true, $button_2);
-    if_sethide(true, $button_3);
-    if_sethide(true, $button_4);
-    return;
-}
-if ($int0 >= 1 | $int0 = -1) {
+if ($int2 >= 1 | $int2 = -1) {
     cc_create($buttons_info, ^iftype_text, 0);
     cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top);
     cc_setsize(0, 18, ^setsize_minus, ^setsize_abs);
@@ -32,84 +25,77 @@ if ($int0 >= 1 | $int0 = -1) {
     cc_settextshadow(true);
     cc_settextfont($graphic);
     cc_setcolour(0xff981f);
-    cc_settext($string);
+    cc_settext($string0);
 }
-def_int $int9 = calc((if_getwidth($buttons_info) - 18) / 4);
-def_int $int10 = calc(18 / 4);
-def_boolean $boolean11 = ~script2288;
-if ($boolean11 = true) {
-    $int9 = calc((if_getwidth($buttons_info) - 18) / 5);
-    $int10 = calc(18 / 5);
+def_int $int12 = calc((if_getwidth($buttons_info) - 18) / 4);
+def_int $int13 = calc(18 / 4);
+def_boolean $boolean14 = ~script2288;
+if ($boolean14 = true) {
+    $int12 = calc((if_getwidth($buttons_info) - 18) / 5);
+    $int13 = calc(18 / 5);
 }
-if_setsize($int9, 18, ^setsize_abs, ^setsize_minus, $button_1);
-if_setsize($int9, 18, ^setsize_abs, ^setsize_minus, $button_2);
-if_setsize($int9, 18, ^setsize_abs, ^setsize_minus, $button_3);
-if_setsize($int9, 18, ^setsize_abs, ^setsize_minus, $button_4);
-def_boolean $boolean12 = true;
-def_int $int13 = 0;
+if_setsize($int12, 18, ^setsize_abs, ^setsize_minus, $button_1);
+if_setsize($int12, 18, ^setsize_abs, ^setsize_minus, $button_2);
+if_setsize($int12, 18, ^setsize_abs, ^setsize_minus, $button_3);
+if_setsize($int12, 18, ^setsize_abs, ^setsize_minus, $button_4);
+def_string $string1 = "";
+def_int $int15 = 0;
 if_sethide(false, $button_1);
 if_sethide(false, $button_2);
 if_sethide(false, $button_3);
 if_sethide(false, $button_4);
-if ($int0 > 0 | $int0 = -1) {
-    if ($int0 = 1) {
-        if_setop(1, $string, $button_1);
+if ($int2 > 0 | $int2 = -1) {
+    if ($int2 = 1) {
+        $string1 = $string0;
     } else {
-        if_setop(1, "<$string>-1", $button_1);
+        $string1 = "<$string0>-1";
     }
+    ~script9774($boolean3, $dbrow, $int1, 1, $string1, "1", $button_1);
 } else {
-    if_clearops($button_1);
-    if_sethide(true, $button_1);
-    $int13 = 4;
+    ~script9773($button_1);
+    $int15 = 4;
 }
-~script7139($button_1, "1", $boolean12, false);
-if ($int0 >= 5 | $int0 = -1) {
-    if_setop(1, "<$string>-5", $button_2);
+if ($int2 >= 5 | $int2 = -1) {
+    ~script9774($boolean3, $dbrow, $int1, 2, "<$string0>-5", "5", $button_2);
 } else {
-    if_clearops($button_2);
-    if_sethide(true, $button_2);
-    if ($int13 = 0) {
-        $int13 = 1;
+    ~script9773($button_2);
+    if ($int15 = 0) {
+        $int15 = 1;
     }
 }
-~script7139($button_2, "5", $boolean12, false);
-if ($int0 >= 10 | $int0 = -1) {
-    if_setop(1, "<$string>-10", $button_3);
+if ($int2 >= 10 | $int2 = -1) {
+    ~script9774($boolean3, $dbrow, $int1, 3, "<$string0>-10", "10", $button_3);
 } else {
-    if_clearops($button_3);
-    if_sethide(true, $button_3);
-    if ($int13 = 0) {
-        $int13 = 2;
+    ~script9773($button_3);
+    if ($int15 = 0) {
+        $int15 = 2;
     }
 }
-~script7139($button_3, "10", $boolean12, false);
-if ($int0 >= 50 | $int0 = -1) {
-    if_setop(1, "<$string>-50", $button_4);
+if ($int2 >= 50 | $int2 = -1) {
+    ~script9774($boolean3, $dbrow, $int1, 4, "<$string0>-50", "50", $button_4);
 } else {
-    if_clearops($button_4);
-    if_sethide(true, $button_4);
-    if ($int13 = 0) {
-        $int13 = 3;
+    ~script9773($button_4);
+    if ($int15 = 0) {
+        $int15 = 3;
     }
 }
-~script7139($button_4, "50", $boolean12, false);
-if ($int13 = 0) {
-    $int13 = 4;
+if ($int15 = 0) {
+    $int15 = 4;
 }
-if ($boolean11 = true) {
-    $int13 = calc($int13 + 1);
-    if_setsize($int9, 18, ^setsize_abs, ^setsize_minus, $note_button_layer);
-    if_setsize(calc($int13 * $int9 + $int13 * $int10 + $int10), 0, ^setsize_abs, ^setsize_minus, $button_info_holder);
-    if_setposition($int10, 0, ^setpos_abs_left, ^setpos_abs_bottom, $button_1);
-    if_setposition(calc($int9 * 1 + $int10 * 2), 0, ^setpos_abs_left, ^setpos_abs_bottom, $button_2);
-    if_setposition(calc($int9 * 2 + $int10 * 3), 0, ^setpos_abs_left, ^setpos_abs_bottom, $button_3);
-    if_setposition(calc($int9 * 3 + $int10 * 4), 0, ^setpos_abs_left, ^setpos_abs_bottom, $button_4);
-    if_setposition(calc($int9 * 4 + $int10 * 5), 0, ^setpos_abs_left, ^setpos_abs_bottom, $note_button_layer);
+if ($boolean14 = true) {
+    $int15 = calc($int15 + 1);
+    if_setsize($int12, 18, ^setsize_abs, ^setsize_minus, $note_button_layer);
+    if_setsize(calc($int15 * $int12 + $int15 * $int13 + $int13), 0, ^setsize_abs, ^setsize_minus, $button_info_holder);
+    if_setposition($int13, 0, ^setpos_abs_left, ^setpos_abs_bottom, $button_1);
+    if_setposition(calc($int12 * 1 + $int13 * 2), 0, ^setpos_abs_left, ^setpos_abs_bottom, $button_2);
+    if_setposition(calc($int12 * 2 + $int13 * 3), 0, ^setpos_abs_left, ^setpos_abs_bottom, $button_3);
+    if_setposition(calc($int12 * 3 + $int13 * 4), 0, ^setpos_abs_left, ^setpos_abs_bottom, $button_4);
+    if_setposition(calc($int12 * 4 + $int13 * 5), 0, ^setpos_abs_left, ^setpos_abs_bottom, $note_button_layer);
     ~script2461($note_button_layer, false);
 } else {
-    if_setsize(calc($int13 * $int9 + $int13 * $int10 + $int10), 0, ^setsize_abs, ^setsize_minus, $button_info_holder);
-    if_setposition($int10, 0, ^setpos_abs_left, ^setpos_abs_bottom, $button_1);
-    if_setposition(calc($int9 * 1 + $int10 * 2), 0, ^setpos_abs_left, ^setpos_abs_bottom, $button_2);
-    if_setposition(calc($int9 * 2 + $int10 * 3), 0, ^setpos_abs_left, ^setpos_abs_bottom, $button_3);
-    if_setposition(calc($int9 * 3 + $int10 * 4), 0, ^setpos_abs_left, ^setpos_abs_bottom, $button_4);
+    if_setsize(calc($int15 * $int12 + $int15 * $int13 + $int13), 0, ^setsize_abs, ^setsize_minus, $button_info_holder);
+    if_setposition($int13, 0, ^setpos_abs_left, ^setpos_abs_bottom, $button_1);
+    if_setposition(calc($int12 * 1 + $int13 * 2), 0, ^setpos_abs_left, ^setpos_abs_bottom, $button_2);
+    if_setposition(calc($int12 * 2 + $int13 * 3), 0, ^setpos_abs_left, ^setpos_abs_bottom, $button_3);
+    if_setposition(calc($int12 * 3 + $int13 * 4), 0, ^setpos_abs_left, ^setpos_abs_bottom, $button_4);
 }
