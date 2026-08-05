@@ -16,22 +16,16 @@ switch_int ($int0) {
     case 0 :
         $string = "In Deadman mode, when you die <col=ffffff>unskulled</col> from <col=ffffff>PvM combat</col>, unprotected tradable items will drop to the floor. Your 3 most valuable items are protected.<br><br>You may lose more if you are <col=ffffff>skulled</col> at the time.";
     case default :
-        if ($int6 = 1 | $int7 = 1) {
-            $string = "In this Deadman event, dying in <col=ffffff>PvP combat</col> results in you losing <col=ffffff>all</col> of the items you're carrying and <col=ffffff>50%</col> from each of your <col=ffffff>10</col> most valuable item stacks in the bank.";
-        } else {
-            $string = "In this Deadman event, dying in <col=ffffff>PvP combat</col> results in you losing <col=ffffff>all</col> of the items you're carrying.";
+        if ($int6 ! 0) {
+            $string = "In Deadman, dying in <col=ffffff>PvP combat</col> results in you losing <col=ffffff>all</col> of the items you're carrying.";
         }
     case 2 :
-        if ($int6 = 1 | $int7 = 1) {
-            $string = "In this Deadman event, if you die whilst <col=ffffff>skulled</col>, you lose <col=ffffff>all</col> of the items you're carrying and <col=ffffff>50%</col> from each of your <col=ffffff>10</col> most valuable item stacks in the bank.";
-        } else {
-            $string = "In this Deadman event, if you die whilst <col=ffffff>skulled</col>, you lose <col=ffffff>all</col> of the items you're carrying.";
+        if ($int6 ! 0) {
+            $string = "In Deadman, if you die whilst <col=ffffff>skulled</col>, you lose <col=ffffff>all</col> of the items you're carrying.";
         }
     case 3 :
-        if ($int6 = 1 | $int7 = 1) {
-            $string = "In this Deadman event, if you die in a <col=ffffff>guarded</col> area whilst <col=ffffff>skulled</col>, you lose <col=ffffff>all</col> of the items you're carrying and <col=ffffff>50%</col> from each of your <col=ffffff>10</col> most valuable item stacks in the bank.";
-        } else {
-            $string = "In this Deadman event, if you die in a <col=ffffff>guarded</col> area whilst <col=ffffff>skulled</col>, you lose <col=ffffff>all</col> of the items you're carrying.";
+        if ($int6 ! 0) {
+            $string = "In Deadman, if you die in a <col=ffffff>guarded</col> area whilst <col=ffffff>skulled</col>, you lose <col=ffffff>all</col> of the items you're carrying.";
         }
 }
 if_settext($string, $component2);
@@ -43,7 +37,7 @@ def_int $int10 = 0;
 def_int $int11 = 0;
 def_obj $obj = null;
 def_int $int13 = 0;
-if ($int0 ! 0 & ($int6 = 1 | $int7 = 1)) {
+if ($int0 ! 0 & $int7 = 1) {
     $int9 = inv_size(deadmanlose_dummy);
     while ($int10 < $int9) {
         cc_create($component3, ^iftype_graphic, $int10);

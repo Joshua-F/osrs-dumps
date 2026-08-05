@@ -1,15 +1,15 @@
 // 7140
-[clientscript,omnishop_main_init](dbrow $dbrow, inv $inv)
-if (%omnishop_lastshop ! $dbrow) {
+[clientscript,omnishop_main_init](dbrow $dbrow0, inv $inv, dbrow $dbrow2)
+if ($dbrow2 ! $dbrow0) {
     %omnishop_selected_id = -1;
     %omnishop_selected_side_id = -1;
     %omnishop_filter = 0;
 }
 def_component $infinity = omnishop_main:infinity;
 if_setontimer("responsive_interface_scaler($infinity, -1)", $infinity);
-if_setonresize("omnishop_main_setup($dbrow, $inv, true)", $infinity);
+if_setonresize("omnishop_main_setup($dbrow0, $inv, true)", $infinity);
 if ($inv ! null) {
-    if_setoninvtransmit("omnishop_main_setup($dbrow, $inv, true){$inv}", $infinity);
+    if_setoninvtransmit("omnishop_main_setup($dbrow0, $inv, true){$inv}", $infinity);
 }
-if_setonvartransmit("omnishop_main_setup($dbrow, $inv, false){omnishop_redraw, omnishop_selected_id, omnishop_selected_side_id}", $infinity);
-~omnishop_main_info_setup($dbrow, $inv, 0, 0, 0, -1, "", true, -1);
+if_setonvartransmit("omnishop_main_setup($dbrow0, $inv, false){omnishop_redraw, omnishop_selected_id, omnishop_selected_side_id}", $infinity);
+~omnishop_main_info_setup($dbrow0, $inv, %omnishop_selected_id, "", true, false);
