@@ -1,0 +1,51 @@
+// 9761
+[proc,script9761](component $component, int $int1, enum $enum, int $int3, int $int4, int $int5, int $int6, int $int7, int $int8, int $int9, int $int10, int $int11)(int)
+def_int $int12 = enum_getoutputcount($enum);
+if ($int12 = 0) {
+    return($int1);
+}
+def_int $int13 = min(cc_getwidth, cc_getheight);
+def_int $int14 = calc($int13 / 4);
+def_int $int15 = calc(360 / $int12);
+def_int $int16 = calc(360 % $int12);
+def_int $int17 = calc((cc_getwidth - $int14) / 2 + $int10);
+def_int $int18 = calc((cc_getheight - $int14) / 2 + $int11);
+def_int $int19 = 0;
+def_int $int20 = 0;
+def_int $int21 = 0;
+def_obj $obj = null;
+def_int $int23 = 0;
+def_int $int24 = calc(($int5 - $int4) / $int12);
+def_int $int25 = 0;
+if (cc_getid < 0) {
+    cc_create($component, ^iftype_layer, $int1);
+} else {
+    cc_create_child(^iftype_layer, $int1);
+}
+cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+$int1 = calc($int1 + 1);
+while ($int21 < $int12) {
+    if ($int16 > 0) {
+        $int23 = calc($int23 + 1);
+        $int16 = calc($int16 - 1);
+    }
+    $obj = enum(int, obj, $enum, $int21);
+    $int19 = calc($int17 + scale(~cos_deg($int23), 100000, $int9));
+    $int20 = calc($int18 + scale(~sin_deg($int23), 100000, $int9));
+    $int25 = max(calc($int5 - $int21 * $int24), $int4);
+    if ($int21 = 0) {
+        cc_create_child(^iftype_model, $int1);
+    } else {
+        cc_create_sibling(^iftype_model, $int1);
+    }
+    $int1 = calc($int1 + 1);
+    cc_setsize($int14, $int14, ^setsize_abs, ^setsize_abs);
+    cc_setposition($int19, $int20, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setobject($obj, 1);
+    cc_setmodelangle(0, 0, $int6, $int7, $int8, $int25);
+    cc_setontimer("loading_icon_resize($int4, cc_getlayer, cc_getid, $int3, $int5, $int24, $int6, $int7, $int8)");
+    $int23 = calc($int23 + $int15);
+    $int21 = calc($int21 + 1);
+}
+return($int1);

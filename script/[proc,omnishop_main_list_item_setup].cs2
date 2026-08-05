@@ -32,7 +32,7 @@ if (%omnishop_filter > 0) {
 }
 def_int $int16 = 1;
 if ($dbrow13 ! null) {
-    if (db_getfield($dbrow13, omnishop_stock_data:omnishop_stock_buyable, 0) = false) {
+    if (db_getfield($dbrow13, omnishop_stock_data:omnishop_stock_buyable, 0) = false & db_getfield($dbrow13, omnishop_stock_data:omnishop_stock_view_only, 0) = false) {
         $int10 = 1;
     }
     $int16 = db_getfield($dbrow13, omnishop_stock_data:omnishop_stock_transaction_multiplier, 0);
@@ -130,6 +130,7 @@ if ($int16 > 1) {
 }
 def_int $int31 = 1;
 cc_setop(1, "Select");
+cc_setonop("script9768($dbrow2, $inv, $int0, $obj7, $int4, event_op)");
 if ($int9 > 0 | $int9 = -1) {
     if ($int9 = 1) {
         cc_setop(2, $string0);
@@ -152,11 +153,6 @@ if (~on_mobile = false & $int4 = 0) {
     cc_setonmouseover("cc_colour_swapper(event_com, event_comsubid, 12099970)");
     cc_setonmouseleave("cc_colour_swapper(event_com, event_comsubid, $int29)");
 }
-if ($int4 = 0) {
-    cc_setonop("omnishop_main_list_item_select($dbrow2, $inv, $int0, event_op)");
-} else {
-    cc_setonop("omnishop_main_list_item_select($dbrow2, $inv, -1, event_op)");
-}
 def_int $int32 = 0;
 if (%omnishop_view_expanded = 1) {
     $int32 = 2;
@@ -170,6 +166,8 @@ if ($obj33 = null) {
 }
 if (db_getfield($dbrow13, omnishop_stock_data:omnishop_stock_hide_count, 0) = true) {
     cc_setobject($obj33, 1);
+} else if (db_getfield($dbrow13, omnishop_stock_data:omnishop_stock_view_only, 0) = true & $int9 = 0) {
+    cc_setobject($obj33, -1);
 } else {
     cc_setobject($obj33, $int9);
 }

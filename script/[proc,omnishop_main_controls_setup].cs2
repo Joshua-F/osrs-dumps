@@ -7,10 +7,13 @@ def_component $dropdown = omnishop_main:dropdown;
 def_component $dropdown_content = omnishop_main:dropdown_content;
 def_component $dropdown_scroller = omnishop_main:dropdown_scroller;
 def_graphic $graphic8 = "directional_lock_arrows,1";
+def_string $string = "Compact";
 if (%omnishop_view_expanded = 1) {
     $graphic8 = "directional_lock_arrows,3";
+    $string = "Expand";
 }
 ~create_graphic($view_toggle_layer, 0, $graphic8, 2, 2, ^setpos_abs_left, ^setpos_abs_top, 16, 16, ^setsize_abs, ^setsize_abs, true);
+if_setop(1, $string, $view_toggle_layer);
 if_setonclick("omnishop_main_view_toggle($dbrow, $inv)", $view_toggle_layer);
 ~create_graphic($help_button_layer, 0, "menu_buttons_small,0", 0, 0, ^setpos_abs_left, ^setpos_abs_top, 20, 20, ^setsize_abs, ^setsize_abs, true);
 def_graphic $graphic9 = null;
@@ -24,7 +27,7 @@ if_setonop("omnishop_main_help($dbrow, $inv, event_op)", $help_button_layer);
 def_enum $enum = db_getfield($dbrow, omnishop_shop_data:omnishop_shop_filter_titles, 0);
 if ($enum ! null) {
     ~script5771($filter_layer, $enum, %omnishop_filter, 16750623);
-    if_setonop("script7156($dropdown, $dropdown_content, $dropdown_scroller, $filter_layer, $enum, 16750623)", $filter_layer);
+    if_setonop("script7156($dbrow, $inv, $dropdown, $dropdown_content, $dropdown_scroller, $filter_layer, $enum, 16750623)", $filter_layer);
 } else {
     ~script5771($filter_layer, enum_4988, 0, 10461087);
 }

@@ -1,0 +1,14 @@
+// 9771
+[proc,script9771](dbrow $dbrow, inv $inv, int $int2)
+def_component $r_col = omnishop_main:r_col;
+def_int $int4 = 53674019;
+sound_synth(synth_2266, 1, 0);
+~omnishop_main_list_setup($dbrow, $inv, $int2, 0);
+if (%omnishop_view_expanded = 0) {
+    ~omnishop_main_info_setup($dbrow, $inv, $int2, "", true, false);
+} else {
+    if ($int2 ! %omnishop_selected_id) {
+        ~omnishop_main_info_setup($dbrow, $inv, $int2, "", true, false);
+    }
+    if_sethide(false, $r_col);
+}
