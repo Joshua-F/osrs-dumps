@@ -1,18 +1,7 @@
 // 405
 [clientscript,slayer_rewards_init](component $universe, component $tabs, component $unlock, component $extend, component $buy, component $tasks, component $rewards, component $main, component $confirm)
-switch_int (%slayer_rewards_tab_last_opened) {
-    case 0 :
-        ~slayer_rewards_tabs($tabs, $unlock, $extend, $buy, $tasks, $rewards, $unlock);
-    case 1 :
-        ~slayer_rewards_tabs($tabs, $unlock, $extend, $buy, $tasks, $rewards, $extend);
-    case 2 :
-        ~slayer_rewards_tabs($tabs, $unlock, $extend, $buy, $tasks, $rewards, $buy);
-    case 3 :
-        ~slayer_rewards_tabs($tabs, $unlock, $extend, $buy, $tasks, $rewards, $tasks);
-    case 4 :
-        ~slayer_rewards_tabs($tabs, $unlock, $extend, $buy, $tasks, $rewards, $rewards);
-    case default :
-        ~slayer_rewards_tabs($tabs, $unlock, $extend, $buy, $tasks, $rewards, $unlock);
-}
-if_sethide(false, $main);
-if_sethide(true, $confirm);
+def_component $component = if_getlayer($universe);
+if_setparam(param_2278, if_getheight($universe), $universe, -1);
+if_setontimer("script9784($component)", $component);
+if_setonresize("script9787($universe, $tabs, $unlock, $extend, $buy, $tasks, $rewards, $main, $confirm)", $component);
+sound_synth(synth_73, 1, 0);

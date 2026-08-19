@@ -1,0 +1,80 @@
+// 9789
+[proc,script9789](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9)
+cc_deleteall($component2);
+cc_deleteall($component3);
+def_int $int10 = if_getwidth($component1);
+def_int $int11 = calc($int10 / 5);
+def_int $int12 = calc(32 + 35);
+def_int $int13 = calc(($int11 - 36) / 2);
+def_int $int14 = 0;
+def_int $int15 = 0;
+def_int $int16 = 0;
+def_int $int17 = 0;
+def_int $int18 = 0;
+def_obj $obj = enum(int, namedobj, enum_840, $int18);
+def_int $int20 = 0;
+if (~script9449 = 1) {
+    $int20 = 1;
+}
+while ($obj ! null) {
+    $int14, $int15 = calc($int18 % 5 * $int11), calc(5 + $int18 / 5 * $int12);
+    cc_create($component2, ^iftype_graphic, $int18);
+    .cc_create($component3, ^iftype_text, $int18);
+    cc_setposition(calc($int14 + $int13), $int15, ^setpos_abs_left, ^setpos_abs_top);
+    .cc_setposition($int14, calc($int15 + 32), ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+    .cc_setsize($int11, 15, ^setsize_abs, ^setsize_abs);
+    $int16 = calc($int15 + 32 + 15);
+    cc_setgraphicshadow(0x333333);
+    cc_setoutline(1);
+    $int17 = enum(obj, int, enum_841, $obj);
+    cc_setobject($obj, $int17);
+    cc_settrans(0);
+    .cc_setcolour(0xff981f);
+    .cc_settextfont(p12_full);
+    .cc_settextshadow(true);
+    .cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    if ($int20 = 1 & ($obj = bh_rune_pouch | $obj = looting_bag | $obj = slayer_herb_sack)) {
+        .cc_settext("Free");
+    } else {
+        .cc_settext(~tostring_spacer(enum(obj, int, enum_842, $obj), ","));
+    }
+    switch_obj ($obj) {
+        case slayer_herb_sack, bh_rune_pouch, looting_bag :
+            cc_setop(2, "Buy 1");
+        case default :
+            if ($int17 = 1) {
+                cc_setop(2, "Buy 1");
+                cc_setop(3, "Buy 5");
+                cc_setop(4, "Buy 10");
+                if (~kots_world = false) {
+                    cc_setop(5, "Buy 50");
+                }
+            } else {
+                cc_setop(2, "Buy 1 set");
+                cc_setop(3, "Buy 5 sets");
+                cc_setop(4, "Buy 10 sets");
+                if (~kots_world = false) {
+                    cc_setop(5, "Buy 50 sets");
+                }
+            }
+    }
+    cc_setop(1, "Info");
+    cc_setop(10, "Examine");
+    cc_setopbase("<col=ff9040><oc_name($obj)></col>");
+    cc_setonop("slayer_rewards_buy_op(event_op, event_com, event_comsubid, $component5, $component6, $component7, $component8, $component9)");
+    $int18 = calc($int18 + 1);
+    $obj = enum(int, namedobj, enum_840, $int18);
+}
+def_int $int21 = min(if_getheight(if_getlayer($component0)), if_param(param_2278, $component0, -1));
+if_setsize(488, $int21, ^setsize_abs, ^setsize_abs, $component0);
+cc_deleteall($component4);
+if_setscrollpos(0, 0, $component1);
+if_setsize($int10, $int16, ^setsize_abs, ^setsize_abs, $component2);
+if_setsize($int10, $int16, ^setsize_abs, ^setsize_abs, $component3);
+if ($int16 > if_getheight($component1)) {
+    if_setscrollsize(0, $int16, $component1);
+} else {
+    if_setscrollsize(0, 0, $component1);
+}
+~scrollbar_vertical($component4, $component1, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");

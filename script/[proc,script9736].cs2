@@ -1,55 +1,55 @@
 // 9736
-[proc,script9736](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8)
-~script8086($component0);
+[proc,script9736](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9)
 ~script8086($component1);
-def_int $int9 = ~script823(%slayer_master_in_focus);
-def_int $int10 = ~script9741(%slayer_master);
-def_string $string0 = "<col=ff0000>(<tostring($int9)> points)</col>";
-def_string $string1 = "<col=ff0000>(<tostring($int10)> points)</col>";
-def_int $int11 = 0;
-def_string $string2 = "Creature";
+~script8086($component2);
+def_int $int10 = ~script823(%slayer_master_in_focus);
+def_int $int11 = ~script9741(%slayer_master);
+def_string $string0 = "<col=ff0000>(<tostring($int10)> points)</col>";
+def_string $string1 = "<col=ff0000>(<tostring($int11)> points)</col>";
 def_int $int12 = 0;
+def_string $string2 = "Creature";
+def_int $int13 = 0;
 def_string $string3 = "Creature";
-if ($int9 = 0) {
+if ($int10 = 0) {
     $string0 = "<col=00ff00>(Free)</col>";
 }
-if ($int10 = 0) {
+if ($int11 = 0) {
     $string1 = "<col=00ff00>(Free)</col>";
 }
 def_string $string4 = "You may spend points to <col=ffffff>Cancel</col> or <col=ffffff>Block</col> your current task.<br>If you <col=ffffff>cancel</col> it, you may be assigned that target again in future. <$string1><br>If you <col=ffffff>block</col> it, you will not get that assignment again. <$string0><br><col=ffffff>Neither</col> option will reset your current tally of completed Slayer tasks.";
 def_string $string5 = "None";
 def_string $string6 = "";
 def_int $rgb = ^white;
-def_int $int14 = 0;
+def_int $int15 = 0;
 if (%slayer_unlock_storage = 1) {
     $string4 = "You may spend points to <col=ffffff>Cancel</col> or <col=ffffff>Block</col> your current task.<br>If you <col=ffffff>cancel</col> it, you may be assigned that target again in future. <$string1><br>If you <col=ffffff>block</col> it, you will not get that assignment again. <$string0><br>You may also <col=ffffff>store</col> your current task for later.";
 }
 if (%if2 = 98) {
     if (%if1 > 0) {
-        $int11, $string2 = 1, ~slayer_taskname(98, %if3, 1);
+        $int12, $string2 = 1, ~slayer_taskname(98, %if3, 1);
         $string5 = "<tostring(%if1)> x <$string2>";
     } else if (%if1 = -1) {
-        $int11, $string2 = 1, ~slayer_taskname(98, %if3, 1);
+        $int12, $string2 = 1, ~slayer_taskname(98, %if3, 1);
         $string5 = $string2;
     } else {
         $string5 = "None";
     }
 } else if (%if1 > 0 & %if2 ! 0) {
-    $int11, $string2 = 1, ~slayer_taskname(%if2, -1, 1);
+    $int12, $string2 = 1, ~slayer_taskname(%if2, -1, 1);
     $string5 = "<tostring(%if1)> x <$string2><br><~slayer_modifiername_rewardshop(%slayer_modifier_id, %slayer_modifier_value, %slayer_modifier_negative)>";
     if (%slayer_modifier_id > 0 & %slayer_modifier_id ! 2) {
-        $int14 = 12;
+        $int15 = 12;
     }
 } else {
     $string5 = "None";
 }
 if (%if5 = 98) {
     if (%if4 > 0) {
-        $int12, $string3 = 1, ~slayer_taskname(98, %if6, 1);
+        $int13, $string3 = 1, ~slayer_taskname(98, %if6, 1);
         $string6 = "<tostring(%if4)> x <$string3>";
         $rgb = ^white;
     } else if (%if4 = -1) {
-        $int12, $string3 = 1, "";
+        $int13, $string3 = 1, "";
         $string6 = $string3;
         $rgb = ^white;
     } else {
@@ -57,17 +57,17 @@ if (%if5 = 98) {
         $rgb = 0x9f9f9f;
     }
 } else if (%if4 > 0 & %if5 ! 0) {
-    $int12, $string3 = 1, ~slayer_taskname(%if5, -1, 1);
+    $int13, $string3 = 1, ~slayer_taskname(%if5, -1, 1);
     $string6 = "<tostring(%if4)> x <$string3><br><~slayer_modifiername_rewardshop(%slayer_modifier_id_stored, %slayer_modifier_value_stored, %slayer_modifier_negative_stored)>";
     if (%slayer_modifier_id_stored > 0 & %slayer_modifier_id_stored ! 2) {
-        $int14 = 12;
+        $int15 = 12;
     }
     $rgb = ^white;
 } else {
     $string6 = "No stored task";
     $rgb = 0x9f9f9f;
 }
-cc_create($component0, ^iftype_text, ~script8302($component0));
+cc_create($component1, ^iftype_text, ~script8302($component1));
 cc_setsize(0, 48, ^setsize_minus, ^setsize_abs);
 cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_top);
 cc_settextfont(p11_full);
@@ -75,24 +75,24 @@ cc_settext($string4);
 cc_setcolour(0xff981f);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
 cc_settextshadow(true);
-cc_create($component0, ^iftype_layer, ~script8302($component0));
-cc_setsize(220, calc(40 + $int14), ^setsize_abs, ^setsize_abs);
+cc_create($component1, ^iftype_layer, ~script8302($component1));
+cc_setsize(220, calc(40 + $int15), ^setsize_abs, ^setsize_abs);
 cc_setposition(0, 48, ^setpos_abs_left, ^setpos_abs_top);
-cc_create_child(^iftype_rectangle, ~script8302($component0));
+cc_create_child(^iftype_rectangle, ~script8302($component1));
 cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
 cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
 cc_setcolour(0x0e0e0c);
-cc_create_sibling(^iftype_rectangle, ~script8302($component0));
+cc_create_sibling(^iftype_rectangle, ~script8302($component1));
 cc_setsize(2, 2, ^setsize_minus, ^setsize_minus);
 cc_setposition(1, 1, ^setpos_abs_left, ^setpos_abs_top);
 cc_setcolour(0x474745);
-cc_create_sibling(^iftype_rectangle, ~script8302($component0));
+cc_create_sibling(^iftype_rectangle, ~script8302($component1));
 cc_setsize(2, 2, ^setsize_minus, ^setsize_minus);
 cc_setposition(1, 1, ^setpos_abs_left, ^setpos_abs_top);
 cc_setcolour(^white);
 cc_settrans(240);
 cc_setfill(true);
-cc_create_sibling(^iftype_text, ~script8302($component0));
+cc_create_sibling(^iftype_text, ~script8302($component1));
 cc_setsize(0, 20, ^setsize_minus, ^setsize_abs);
 cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
 cc_settextfont(b12_full);
@@ -100,7 +100,7 @@ cc_settext("Current Assignment:");
 cc_setcolour(0xff981f);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
 cc_settextshadow(true);
-cc_create_sibling(^iftype_text, ~script8302($component0));
+cc_create_sibling(^iftype_text, ~script8302($component1));
 cc_setsize(0, 20, ^setsize_minus, ^setsize_minus);
 cc_setposition(0, 20, ^setpos_abs_left, ^setpos_abs_top);
 cc_settextfont(p12_full);
@@ -108,24 +108,24 @@ cc_setcolour(^white);
 cc_settextalign(^settextalign_centre, ^settextalign_top, 14);
 cc_settextshadow(true);
 cc_settext($string5);
-cc_create($component0, ^iftype_layer, ~script8302($component0));
-cc_setsize(245, calc(18 + $int14), ^setsize_abs, ^setsize_abs);
+cc_create($component1, ^iftype_layer, ~script8302($component1));
+cc_setsize(245, calc(18 + $int15), ^setsize_abs, ^setsize_abs);
 cc_setposition(221, 70, ^setpos_abs_left, ^setpos_abs_top);
-cc_create_child(^iftype_rectangle, ~script8302($component0));
+cc_create_child(^iftype_rectangle, ~script8302($component1));
 cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
 cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
 cc_setcolour(0x0e0e0c);
-cc_create_sibling(^iftype_rectangle, ~script8302($component0));
+cc_create_sibling(^iftype_rectangle, ~script8302($component1));
 cc_setsize(2, 2, ^setsize_minus, ^setsize_minus);
 cc_setposition(1, 1, ^setpos_abs_left, ^setpos_abs_top);
 cc_setcolour(0x474745);
-cc_create_sibling(^iftype_rectangle, ~script8302($component0));
+cc_create_sibling(^iftype_rectangle, ~script8302($component1));
 cc_setsize(2, 2, ^setsize_minus, ^setsize_minus);
 cc_setposition(1, 1, ^setpos_abs_left, ^setpos_abs_top);
 cc_setcolour(^white);
 cc_settrans(240);
 cc_setfill(true);
-cc_create_sibling(^iftype_text, ~script8302($component0));
+cc_create_sibling(^iftype_text, ~script8302($component1));
 cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
 cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
 cc_settextfont(p11_full);
@@ -133,8 +133,8 @@ cc_settextalign(^settextalign_centre, ^settextalign_centre, 12);
 cc_settextshadow(true);
 cc_setcolour($rgb);
 cc_settext($string6);
-cc_create($component0, ^iftype_graphic, ~script8302($component0));
-.cc_create($component0, ^iftype_text, ~script8302($component0));
+cc_create($component1, ^iftype_graphic, ~script8302($component1));
+.cc_create($component1, ^iftype_text, ~script8302($component1));
 cc_setsize(57, 22, ^setsize_abs, ^setsize_abs);
 .cc_setsize(57, 22, ^setsize_abs, ^setsize_abs);
 cc_setposition(220, 47, ^setpos_abs_left, ^setpos_abs_top);
@@ -144,17 +144,17 @@ cc_setgraphic("combatboxesmed,0");
 .cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
 .cc_settextshadow(true);
 .cc_settext("Cancel");
-if ($int11 = 1) {
+if ($int12 = 1) {
     .cc_setcolour(0xff981f);
     cc_setonmouseover("cc_colour_swapper(event_com, .cc_getid, 16777215)");
     cc_setonmouseleave("cc_colour_swapper(event_com, .cc_getid, 16750623)");
     cc_setop(1, "Cancel");
-    cc_setonop("slayer_rewards_tasks_canceltask($string2, 1, $component4, $component5, $component6, $component7, $component8)");
+    cc_setonop("slayer_rewards_tasks_canceltask($string2, 1, $component5, $component6, $component7, $component8, $component9)");
 } else {
     .cc_setcolour(0x7f4c0f);
 }
-cc_create($component0, ^iftype_graphic, ~script8302($component0));
-.cc_create($component0, ^iftype_text, ~script8302($component0));
+cc_create($component1, ^iftype_graphic, ~script8302($component1));
+.cc_create($component1, ^iftype_text, ~script8302($component1));
 cc_setsize(57, 22, ^setsize_abs, ^setsize_abs);
 .cc_setsize(57, 22, ^setsize_abs, ^setsize_abs);
 cc_setposition(277, 47, ^setpos_abs_left, ^setpos_abs_top);
@@ -164,17 +164,17 @@ cc_setgraphic("combatboxesmed,0");
 .cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
 .cc_settextshadow(true);
 .cc_settext("Block");
-if ($int11 = 1 & %if2 ! 97 & %if2 ! 105 & %if2 ! 98 & ~script824(%if2, %slayer_master_in_focus) = false) {
+if ($int12 = 1 & %if2 ! 97 & %if2 ! 105 & %if2 ! 98 & ~script824(%if2, %slayer_master_in_focus) = false) {
     .cc_setcolour(0xff981f);
     cc_setonmouseover("cc_colour_swapper(event_com, .cc_getid, 16777215)");
     cc_setonmouseleave("cc_colour_swapper(event_com, .cc_getid, 16750623)");
     cc_setop(1, "Block");
-    cc_setonop("slayer_rewards_tasks_canceltask($string2, 2, $component4, $component5, $component6, $component7, $component8)");
+    cc_setonop("slayer_rewards_tasks_canceltask($string2, 2, $component5, $component6, $component7, $component8, $component9)");
 } else {
     .cc_setcolour(0x7f4c0f);
 }
-cc_create($component0, ^iftype_graphic, ~script8302($component0));
-.cc_create($component0, ^iftype_text, ~script8302($component0));
+cc_create($component1, ^iftype_graphic, ~script8302($component1));
+.cc_create($component1, ^iftype_text, ~script8302($component1));
 cc_setsize(57, 22, ^setsize_abs, ^setsize_abs);
 .cc_setsize(57, 22, ^setsize_abs, ^setsize_abs);
 cc_setposition(334, 47, ^setpos_abs_left, ^setpos_abs_top);
@@ -183,40 +183,40 @@ cc_setgraphic("combatboxesmed,0");
 .cc_settextfont(p11_full);
 .cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
 .cc_settextshadow(true);
-if ($int12 = 1 & $int11 = 1) {
+if ($int13 = 1 & $int12 = 1) {
     .cc_settext("Swap");
-} else if ($int12 = 1) {
+} else if ($int13 = 1) {
     .cc_settext("Unstore");
 } else {
     .cc_settext("Store");
 }
 if (%slayer_unlock_storage = 1) {
-    if ($int11 = 1 & $int12 = 1) {
+    if ($int12 = 1 & $int13 = 1) {
         .cc_setcolour(0xff981f);
         cc_setonmouseover("cc_colour_swapper(event_com, .cc_getid, 16777215)");
         cc_setonmouseleave("cc_colour_swapper(event_com, .cc_getid, 16750623)");
         cc_setop(1, "Swap");
-        cc_setonop("slayer_rewards_tasks_canceltask($string2, 10, $component4, $component5, $component6, $component7, $component8)");
-    } else if ($int11 = 1 & $int12 = 0) {
+        cc_setonop("slayer_rewards_tasks_canceltask($string2, 10, $component5, $component6, $component7, $component8, $component9)");
+    } else if ($int12 = 1 & $int13 = 0) {
         .cc_setcolour(0xff981f);
         cc_setonmouseover("cc_colour_swapper(event_com, .cc_getid, 16777215)");
         cc_setonmouseleave("cc_colour_swapper(event_com, .cc_getid, 16750623)");
         cc_setop(1, "Store");
-        cc_setonop("slayer_rewards_tasks_canceltask($string2, 10, $component4, $component5, $component6, $component7, $component8)");
-    } else if ($int11 = 0 & $int12 = 1) {
+        cc_setonop("slayer_rewards_tasks_canceltask($string2, 10, $component5, $component6, $component7, $component8, $component9)");
+    } else if ($int12 = 0 & $int13 = 1) {
         .cc_setcolour(0xff981f);
         cc_setonmouseover("cc_colour_swapper(event_com, .cc_getid, 16777215)");
         cc_setonmouseleave("cc_colour_swapper(event_com, .cc_getid, 16750623)");
         cc_setop(1, "Unstore");
-        cc_setonop("slayer_rewards_tasks_canceltask($string3, 11, $component4, $component5, $component6, $component7, $component8)");
+        cc_setonop("slayer_rewards_tasks_canceltask($string3, 11, $component5, $component6, $component7, $component8, $component9)");
     } else {
         .cc_setcolour(0x7f4c0f);
     }
 } else {
     .cc_setcolour(0x7f4c0f);
 }
-cc_create($component3, ^iftype_graphic, ~script8302($component3));
-.cc_create($component3, ^iftype_text, ~script8302($component3));
+cc_create($component4, ^iftype_graphic, ~script8302($component4));
+.cc_create($component4, ^iftype_text, ~script8302($component4));
 cc_setsize(75, 22, ^setsize_abs, ^setsize_abs);
 .cc_setsize(75, 22, ^setsize_abs, ^setsize_abs);
 cc_setposition(391, 25, ^setpos_abs_left, ^setpos_abs_top);
@@ -230,22 +230,25 @@ cc_setgraphic("combatboxesmed,0");
 cc_setonmouseover("cc_colour_swapper(event_com, .cc_getid, 16777215)");
 cc_setonmouseleave("cc_colour_swapper(event_com, .cc_getid, 16750623)");
 cc_setop(1, "View List");
-if_setop(1, "View List", $component3);
-cc_create($component0, ^iftype_text, ~script8302($component0));
+if_setop(1, "View List", $component4);
+cc_create($component1, ^iftype_text, ~script8302($component1));
 cc_setsize(0, 25, ^setsize_minus, ^setsize_abs);
-cc_setposition(0, calc(95 + $int14 / 2), ^setpos_abs_centre, ^setpos_abs_top);
+cc_setposition(0, calc(95 + $int15 / 2), ^setpos_abs_centre, ^setpos_abs_top);
 cc_settextfont(b12_full);
 cc_settext("Blocked Tasks:");
 cc_setcolour(0xff981f);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
 cc_settextshadow(true);
-~script9738($component1, $component4, $component5, $component6, $component7, $component8);
-cc_deleteall($component2);
-def_int $int15 = if_param(param_2636, $component1, -1);
-if ($int15 > if_getheight($component1)) {
-    if_setscrollsize(0, $int15, $component1);
+~script9738($component2, $component5, $component6, $component7, $component8, $component9);
+def_int $int16 = if_param(param_2636, $component2, -1);
+def_int $int17 = min(if_getheight(if_getlayer($component0)), calc($int16 + 78 + if_getheight($component1)));
+if_setparam(param_2278, $int17, $component0, -1);
+if_setsize(488, $int17, ^setsize_abs, ^setsize_abs, $component0);
+cc_deleteall($component3);
+if ($int16 > if_getheight($component2)) {
+    if_setscrollsize(0, $int16, $component2);
 } else {
-    if_setscrollsize(0, 0, $component1);
+    if_setscrollsize(0, 0, $component2);
 }
-if_setscrollpos(0, 0, $component1);
-~scrollbar_vertical($component2, $component1, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+if_setscrollpos(0, 0, $component2);
+~scrollbar_vertical($component3, $component2, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");

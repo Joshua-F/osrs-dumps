@@ -1,0 +1,48 @@
+// 9788
+[proc,script9788](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8)
+def_component $component9 = null;
+def_component $component10 = null;
+def_component $confirm_info = slayer_rewards:confirm_info;
+def_component $confirm_button = slayer_rewards:confirm_button;
+def_component $back_button = slayer_rewards:back_button;
+if (%slayer_rewards_tab_last_opened ! 0) {
+    $component9 = slayer_rewards:unlock_contents;
+    $component10 = slayer_rewards:unlock_scrollbar;
+    ~slayer_rewards_unlock_draw($component0, 0, $component9, $component10, $component7, $component8, $confirm_info, $confirm_button, $back_button);
+}
+if (%slayer_rewards_tab_last_opened ! 1) {
+    $component9 = slayer_rewards:extend_contents;
+    $component10 = slayer_rewards:extend_scrollbar;
+    ~slayer_rewards_unlock_draw($component0, 1, $component9, $component10, $component7, $component8, $confirm_info, $confirm_button, $back_button);
+}
+if (%slayer_rewards_tab_last_opened ! 2) {
+    $component9 = slayer_rewards:buy_contents;
+    $component10 = slayer_rewards:buy_scrollbar;
+    ~script9789($component0, $component9, slayer_rewards:buy_items, slayer_rewards:buy_prices, $component10, $component7, $component8, $confirm_info, $confirm_button, $back_button);
+}
+if (%slayer_rewards_tab_last_opened ! 3) {
+    $component9 = slayer_rewards:tasks_content_upper;
+    $component10 = slayer_rewards:tasks_scrollbar;
+    ~script9736($component0, $component9, slayer_rewards:tasks_content_scrollable, $component10, slayer_rewards:view_tasks, $component7, $component8, $confirm_info, $confirm_button, $back_button);
+}
+if (%slayer_rewards_tab_last_opened ! 4) {
+    $component9 = slayer_rewards:rewards_contents;
+    $component10 = slayer_rewards:rewards_scrollbar;
+    ~slayer_rewards_unlock_draw($component0, 2, $component9, $component10, $component7, $component8, $confirm_info, $confirm_button, $back_button);
+}
+switch_int (%slayer_rewards_tab_last_opened) {
+    case 0 :
+        ~slayer_rewards_tabs($component0, $component1, $component2, $component3, $component4, $component5, $component6, $component2);
+    case 1 :
+        ~slayer_rewards_tabs($component0, $component1, $component2, $component3, $component4, $component5, $component6, $component3);
+    case 2 :
+        ~slayer_rewards_tabs($component0, $component1, $component2, $component3, $component4, $component5, $component6, $component4);
+    case 3 :
+        ~slayer_rewards_tabs($component0, $component1, $component2, $component3, $component4, $component5, $component6, $component5);
+    case 4 :
+        ~slayer_rewards_tabs($component0, $component1, $component2, $component3, $component4, $component5, $component6, $component6);
+    case default :
+        ~slayer_rewards_tabs($component0, $component1, $component2, $component3, $component4, $component5, $component6, $component2);
+}
+if_sethide(false, $component7);
+if_sethide(true, $component8);
