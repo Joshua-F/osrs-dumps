@@ -5,14 +5,14 @@ if (cc_find($component, $int1) = true) {
     $string0 = cc_gettext;
 }
 if (string_length($string0) < 3) {
-    mes("<~mes_highlight_red>Tag import too short.</col>");
+    mes("@mes_hl_red@Tag import too short.</col>");
     ~script9617(0);
     return;
 }
 def_stringarray $stringarray = string_split($string0, ",");
 def_int $int4 = array_size($stringarray);
 if (array_size($stringarray) < 2) {
-    mes("|<~mes_highlight_red>Tag import must contain at least version number and the objcount. Each piece of information must be separated by a , character.</col>");
+    mes("|@mes_hl_red@Tag import must contain at least version number and the objcount. Each piece of information must be separated by a , character.</col>");
     ~script9617(0);
     return;
 }
@@ -20,39 +20,39 @@ def_int $int5 = -1;
 def_boolean $boolean = null;
 $int5, $boolean = safeparseint($stringarray(0));
 if ($boolean = false) {
-    mes("<~mes_highlight_red>The version number must be made up of at least one numeric character, and only contain numeric characters.</col>");
+    mes("@mes_hl_red@The version number must be made up of at least one numeric character, and only contain numeric characters.</col>");
     ~script9617(0);
     return;
 }
 if ($int5 ! 1) {
-    mes("<~mes_highlight_red>The version number doesn't match the current version <tostring(1)>.</col>");
+    mes("@mes_hl_red@The version number doesn't match the current version <tostring(1)>.</col>");
     ~script9617(0);
     return;
 }
 def_int $int7 = -1;
 $int7, $boolean = safeparseint($stringarray(1));
 if ($boolean = false) {
-    mes("<~mes_highlight_red>The object count must be made up of at least one numeric character, and only contain numeric characters.</col>");
+    mes("@mes_hl_red@The object count must be made up of at least one numeric character, and only contain numeric characters.</col>");
     ~script9617(0);
     return;
 }
 if ($int7 < 0) {
-    mes("<~mes_highlight_red>The object count cannot be negative.</col>");
+    mes("@mes_hl_red@The object count cannot be negative.</col>");
     ~script9617(0);
     return;
 }
 if ($int7 > 80) {
-    mes("<~mes_highlight_red>The object count must be less than the maximum number of allowed objects (<tostring(80)>).</col>");
+    mes("@mes_hl_red@The object count must be less than the maximum number of allowed objects (<tostring(80)>).</col>");
     ~script9617(0);
     return;
 }
 if (calc(($int4 - 2) % 3) ! 0) {
-    mes("|<~mes_highlight_red>Incorrect number of entries for <tostring($int7)> objects. Each object requires a name, X, and Y coordinate. These should be separated by a , character e.g. '403,2,3,537,4,5,537,5,5'</col>");
+    mes("|@mes_hl_red@Incorrect number of entries for <tostring($int7)> objects. Each object requires a name, X, and Y coordinate. These should be separated by a , character e.g. '403,2,3,537,4,5,537,5,5'</col>");
     ~script9617(0);
     return;
 }
 if ($int7 ! calc(($int4 - 2) / 3)) {
-    mes("|<~mes_highlight_red>The object count must be equal to the actual number of defined objects. <tostring($int7)> was written in the string, but <tostring(calc(($int4 - 2) / 3))> objects were defined.</col>");
+    mes("|@mes_hl_red@The object count must be equal to the actual number of defined objects. <tostring($int7)> was written in the string, but <tostring(calc(($int4 - 2) / 3))> objects were defined.</col>");
     ~script9617(0);
     return;
 }
@@ -76,53 +76,53 @@ while ($int9 < $int7) {
     $string2 = $stringarray(calc($int8 + 1));
     $int16 = string_length($string2);
     if ($int16 < 1) {
-        mes("<~mes_highlight_red>X coordinates for object #<tostring($int9)> has no digits.</col>");
+        mes("@mes_hl_red@X coordinates for object #<tostring($int9)> has no digits.</col>");
         ~script9617(0);
         return;
     }
     if ($int16 > 2) {
-        mes("<~mes_highlight_red>X coordinates for object #<tostring($int9)> has too many digits, the maximum is 2.</col>");
+        mes("@mes_hl_red@X coordinates for object #<tostring($int9)> has too many digits, the maximum is 2.</col>");
         ~script9617(0);
         return;
     }
     $int10 = ~string_to_int_limit($string2, 2, 1);
     if ($int10 = -1) {
-        mes("<~mes_highlight_red>X coordinates for object #<tostring($int9)> contained non numeric characters.</col>");
+        mes("@mes_hl_red@X coordinates for object #<tostring($int9)> contained non numeric characters.</col>");
         ~script9617(0);
         return;
     }
     if ($int10 < 0 | $int10 >= 8) {
-        mes("<~mes_highlight_red>X coordinates for object #<tostring($int9)> are not in the valid range between 0 and <tostring(calc(8 - 1))>.</col>");
+        mes("@mes_hl_red@X coordinates for object #<tostring($int9)> are not in the valid range between 0 and <tostring(calc(8 - 1))>.</col>");
         ~script9617(0);
         return;
     }
     $string3 = $stringarray(calc($int8 + 2));
     $int16 = string_length($string3);
     if ($int16 < 1) {
-        mes("<~mes_highlight_red>Y coordinates for object #<tostring($int9)> has no digits.</col>");
+        mes("@mes_hl_red@Y coordinates for object #<tostring($int9)> has no digits.</col>");
         ~script9617(0);
         return;
     }
     if ($int16 > 2) {
-        mes("<~mes_highlight_red>Y coordinates for object #<tostring($int9)> has too many digits, the maximum is 2.</col>");
+        mes("@mes_hl_red@Y coordinates for object #<tostring($int9)> has too many digits, the maximum is 2.</col>");
         ~script9617(0);
         return;
     }
     $int11 = ~string_to_int_limit($string3, 2, 1);
     if ($int11 = -1) {
-        mes("<~mes_highlight_red>Y coordinates for object #<tostring($int9)> contained non numeric characters.</col>");
+        mes("@mes_hl_red@Y coordinates for object #<tostring($int9)> contained non numeric characters.</col>");
         ~script9617(0);
         return;
     }
     if ($int11 < 0 | $int11 >= 10) {
-        mes("<~mes_highlight_red>Y coordinates for object #<tostring($int9)> are not in the valid range between 0 and <tostring(calc(10 - 1))>.</col>");
+        mes("@mes_hl_red@Y coordinates for object #<tostring($int9)> are not in the valid range between 0 and <tostring(calc(10 - 1))>.</col>");
         ~script9617(0);
         return;
     }
     $coord = movecoord(0_0_0_0_0, $int10, 0, $int11);
     $int13 = array_indexof($coordarray, $coord, 0, $int9);
     if ($int13 ! -1) {
-        mes("<~mes_highlight_red>Object xy coordinates must be unique. Objects #<tostring($int9)> and #<tostring($int13)> collide at (<tostring($int10)>,<tostring($int11)>).</col>");
+        mes("@mes_hl_red@Object xy coordinates must be unique. Objects #<tostring($int9)> and #<tostring($int13)> collide at (<tostring($int10)>,<tostring($int11)>).</col>");
         ~script9617(0);
         return;
     }
@@ -130,7 +130,7 @@ while ($int9 < $int7) {
     $int15, $boolean = safeparseint($stringarray($int8));
     $obj = oc_byid($int15);
     if ($boolean = false | $obj = null) {
-        mes("<~mes_highlight_red>Couldn't find an exact match for object #<tostring($int9)> '<tostring($int15)>'.</col>");
+        mes("@mes_hl_red@Couldn't find an exact match for object #<tostring($int9)> '<tostring($int15)>'.</col>");
         ~script9617(0);
         return;
     }
