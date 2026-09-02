@@ -1,31 +1,30 @@
 // 3426
-[proc,boardgames_challenge_update](int $int)
-def_graphic $graphic1 = "radio_buttons,0";
-def_graphic $graphic2 = "radio_buttons,1";
-if_setgraphic($graphic1, boardgames_challenge:draughts_radio);
-if_setgraphic($graphic1, boardgames_challenge:runelink_radio);
-if_setgraphic($graphic1, boardgames_challenge:runesquares_radio);
-if_setgraphic($graphic1, boardgames_challenge:runeversi_radio);
-if (~on_mobile = false) {
-    if_setonmouserepeat("settrans(boardgames_challenge:draughts_radio, 127)", boardgames_challenge:draughts);
-    if_setonmouseleave("settrans(boardgames_challenge:draughts_radio, 0)", boardgames_challenge:draughts);
-    if_setonmouserepeat("settrans(boardgames_challenge:runelink_radio, 127)", boardgames_challenge:runelink);
-    if_setonmouseleave("settrans(boardgames_challenge:runelink_radio, 0)", boardgames_challenge:runelink);
-    if_setonmouserepeat("settrans(boardgames_challenge:runesquares_radio, 127)", boardgames_challenge:runesquares);
-    if_setonmouseleave("settrans(boardgames_challenge:runesquares_radio, 0)", boardgames_challenge:runesquares);
-    if_setonmouserepeat("settrans(boardgames_challenge:runeversi_radio, 127)", boardgames_challenge:runeversi);
-    if_setonmouseleave("settrans(boardgames_challenge:runeversi_radio, 0)", boardgames_challenge:runeversi);
+[proc,boardgames_challenge_update](int $int, component $component1, component $component2, component $component3, component $component4)
+if (cc_find($component1, $int) = true) {
+    if (%boardgames_game = 0) {
+        cc_setgraphic("radio_buttons,1");
+    } else {
+        cc_setgraphic("radio_buttons,0");
+    }
 }
-if ($int = -1) {
-    $int = %boardgames_game;
+if (cc_find($component2, $int) = true) {
+    if (%boardgames_game = 1) {
+        cc_setgraphic("radio_buttons,1");
+    } else {
+        cc_setgraphic("radio_buttons,0");
+    }
 }
-switch_int ($int) {
-    case 0 :
-        if_setgraphic($graphic2, boardgames_challenge:draughts_radio);
-    case 1 :
-        if_setgraphic($graphic2, boardgames_challenge:runelink_radio);
-    case 2 :
-        if_setgraphic($graphic2, boardgames_challenge:runesquares_radio);
-    case 3 :
-        if_setgraphic($graphic2, boardgames_challenge:runeversi_radio);
+if (cc_find($component3, $int) = true) {
+    if (%boardgames_game = 2) {
+        cc_setgraphic("radio_buttons,1");
+    } else {
+        cc_setgraphic("radio_buttons,0");
+    }
+}
+if (cc_find($component4, $int) = true) {
+    if (%boardgames_game = 3) {
+        cc_setgraphic("radio_buttons,1");
+    } else {
+        cc_setgraphic("radio_buttons,0");
+    }
 }
