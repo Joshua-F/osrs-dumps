@@ -1,4 +1,13 @@
 // 3424
-[clientscript,boardgames_challenge_init](component $universe)
-if_setonvartransmit("boardgames_challenge_update(-1){boardgames_varbit}", $universe);
-~boardgames_challenge_update(-1);
+[clientscript,boardgames_challenge_init](component $universe, component $draughts, component $runelink, component $runesquares, component $runeversi)
+def_boolean $boolean = ~on_mobile;
+~script7820($draughts, "Draughts", 0, $boolean);
+~script7820($runelink, "Runelink", 1, $boolean);
+~script7820($runesquares, "Runesquares", 2, $boolean);
+def_int $int = ~script7820($runeversi, "Runeversi", 3, $boolean);
+if_setonop("boardgames_challenge_update(event_op, 0, $int, $draughts, $runelink, $runesquares, $runeversi)", $draughts);
+if_setonop("boardgames_challenge_update(event_op, 1, $int, $draughts, $runelink, $runesquares, $runeversi)", $runelink);
+if_setonop("boardgames_challenge_update(event_op, 2, $int, $draughts, $runelink, $runesquares, $runeversi)", $runesquares);
+if_setonop("boardgames_challenge_update(event_op, 3, $int, $draughts, $runelink, $runesquares, $runeversi)", $runeversi);
+~boardgames_challenge_update($int, $draughts, $runelink, $runesquares, $runeversi);
+if_setonvartransmit("boardgames_challenge_update(-1, -1, $int, $draughts, $runelink, $runesquares, $runeversi){boardgames_varbit}", $universe);
