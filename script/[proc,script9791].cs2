@@ -1,0 +1,48 @@
+// 9791
+[proc,script9791](component $component, enum $enum)(int)
+cc_deleteall($component);
+def_int $int2 = 28;
+def_int $int3 = 28;
+def_int $int4 = 0;
+def_int $int5 = 0;
+def_int $int6 = 0;
+def_int $int7 = 1;
+def_int $int8 = 0;
+def_dbrow $dbrow = enum(int, dbrow, $enum, calc(%dog_selection_current_selection / 5));
+def_int $int10 = min(db_getfieldcount($dbrow, puppy_colours:colour_option), 6);
+def_int $int11 = 0;
+while ($int5 < db_getfieldcount($dbrow, puppy_colours:colour_option)) {
+    if ($int8 > 5) {
+        $int7 = calc($int7 + $int3);
+        $int8 = 0;
+    }
+    $int11 = calc($int8 * 2 - ($int10 - 1));
+    $int6 = calc($int11 * $int2 / 2 - 1);
+    cc_create($component, ^iftype_rectangle, $int4);
+    cc_setsize(26, 26, ^setsize_abs, ^setsize_abs);
+    cc_setposition($int6, $int7, ^setpos_abs_centre, ^setpos_abs_top);
+    cc_setfill(true);
+    cc_setcolour(db_getfield($dbrow, puppy_colours:colour_option, $int5));
+    cc_setop(1, "Colour");
+    cc_setopbase("<col=ff9040><db_getfield($dbrow, puppy_colours:colour_names, $int5)>");
+    cc_setonop("script9798(event_com, event_comsubid)");
+    if (~on_mobile = false) {
+        cc_setonmouserepeat("script9794(event_com, event_comsubid, 1)");
+        cc_setonmouseleave("script9794(event_com, event_comsubid, 0)");
+    }
+    $int4 = calc($int4 + 1);
+    cc_create($component, ^iftype_rectangle, $int4);
+    cc_setposition($int6, $int7, ^setpos_abs_centre, ^setpos_abs_top);
+    cc_setsize(27, 27, ^setsize_abs, ^setsize_abs);
+    cc_setfill(false);
+    if (%dog_selection_colour = $int5) {
+        cc_setcolour(0xff981f);
+    } else {
+        cc_setcolour(0x0e0e0c);
+    }
+    $int4 = calc($int4 + 1);
+    $int8 = calc($int8 + 1);
+    $int5 = calc($int5 + 1);
+}
+$int7 = calc($int7 + $int3);
+return($int7);

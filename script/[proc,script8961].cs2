@@ -1,0 +1,61 @@
+// 8961
+[proc,script8961](component $component, dbrow $dbrow, int $int2, int $int3, int $int4)(int)
+def_int $int5 = 91;
+def_int $int6 = 84;
+def_string $string = db_getfield($dbrow, puppy_colours:name, 0);
+def_int $int7 = db_getfield($dbrow, puppy_colours:unlock_bit, 0);
+def_int $int8 = 0;
+if (db_getfield($dbrow, puppy_colours:free_unlock, 0) = true | testbit(%dog_unlocks, $int7) = ^true) {
+    $int8 = 1;
+}
+if (%dog_selection_current_selection = $int2) {
+    ~create_graphic($component, $int2, tradebacking_light, $int3, $int4, ^setpos_abs_centre, ^setpos_abs_top, $int5, $int6, ^setsize_abs, ^setsize_abs, true);
+} else {
+    ~create_graphic($component, $int2, tradebacking_dark, $int3, $int4, ^setpos_abs_centre, ^setpos_abs_top, $int5, $int6, ^setsize_abs, ^setsize_abs, true);
+}
+if (~on_mobile = false) {
+    cc_setonmouserepeat("script9793(event_com, event_comsubid, 1)");
+    cc_setonmouseleave("script9793(event_com, event_comsubid, 0)");
+}
+if ($int8 = 0) {
+    cc_setop(1, "Location Clue");
+    cc_setonop("script9797(event_com, event_comsubid, $int8)");
+} else {
+    cc_setop(1, "Preview");
+    cc_setopbase("<col=ff9040><$string>");
+    cc_setonop("script9796(event_com, event_comsubid, $int8)");
+}
+$int2 = calc($int2 + 1);
+cc_create($component, ^iftype_rectangle, $int2);
+cc_setsize($int5, $int6, ^setsize_abs, ^setsize_abs);
+cc_setposition($int3, $int4, ^setpos_abs_centre, ^setpos_abs_top);
+cc_setfill(false);
+if (%dog_selection_current_selection = calc($int2 - 1)) {
+    cc_setcolour(0xff981f);
+} else {
+    cc_setcolour(0x0e0e0c);
+}
+$int2 = calc($int2 + 1);
+$int2 = ~script8962($component, $int2, $int3, $int4, $dbrow);
+cc_create($component, ^iftype_text, $int2);
+$int2 = calc($int2 + 1);
+cc_setsize(calc($int5 - 10), 30, ^setsize_abs, ^setsize_abs);
+cc_setposition($int3, calc($int4 + 2), ^setpos_abs_centre, ^setpos_abs_top);
+if ($int8 = 1) {
+    cc_setcolour(0xff981f);
+} else {
+    cc_setcolour(0x9f9f9f);
+}
+cc_settextfont(p12_full);
+cc_settextshadow(true);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 12);
+cc_settext($string);
+if ($int8 = 0) {
+    cc_create($component, ^iftype_rectangle, $int2);
+    cc_setsize($int5, $int6, ^setsize_abs, ^setsize_abs);
+    cc_setposition($int3, $int4, ^setpos_abs_centre, ^setpos_abs_top);
+    cc_setfill(true);
+    cc_setcolour(0x9f9f9f);
+    cc_settrans(225);
+}
+return(calc($int2 + 1));
