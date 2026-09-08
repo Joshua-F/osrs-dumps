@@ -1,0 +1,23 @@
+// 9799
+[proc,script9799](component $component0, component $component1, enum $enum)
+cc_deleteall($component1);
+def_int $int3 = if_getheight($component0);
+def_int $int4 = -1;
+def_int $int5 = enum_getoutputcount($enum);
+def_int $int6 = 90;
+def_int $int7 = 3;
+def_int $int8 = ~max(1, calc($int5 / $int7));
+if (calc($int5 % $int7) ! 0) {
+    $int8 = calc($int8 + 1);
+}
+def_int $int9 = calc(10 + $int8 * $int6);
+def_int $int10 = if_getheight(if_getlayer($component0));
+if ($int9 > $int10) {
+    $int3 = $int9;
+} else {
+    $int3 = 0;
+}
+if_setscrollsize(0, $int3, $component0);
+if_setscrollpos(0, %dog_selection_scroll_pos, $component0);
+~scrollbar_vertical($component1, $component0, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~scrollbar_resize($component1, $component0, %dog_selection_scroll_pos);

@@ -1,0 +1,16 @@
+// 9796
+[clientscript,script9796](component $component, int $int1, int $int2)
+if (cc_find($component, $int1) = true) {
+    cc_settrans(125);
+    cc_setontimer("cc_settrans_temporarily_end($component, $int1, 0, calc(clientclock + 10))");
+    if ($int2 = 0) {
+        sound_synth(synth_2277, 1, 0);
+        mes("@mes_hl_red@You have not rescued this breed yet.");
+    } else {
+        sound_synth(synth_2266, 1, 0);
+        if (%dog_selection_current_selection ! $int1) {
+            %dog_selection_current_selection = $int1;
+            %dog_selection_current_colour = 0;
+        }
+    }
+}
