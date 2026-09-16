@@ -1,20 +1,28 @@
 // 2813
-[proc,seed_vault_side_draw](component $component)
-cc_deleteall($component);
-def_int $int1 = calc((42 - 36) * 3 - 2);
-def_int $int2 = calc((36 - 32) * 2);
-def_int $int3 = 0;
+[proc,seed_vault_side_draw](component $component0, component $component1)
+cc_deleteall($component0);
+cc_deleteall($component1);
+def_int $int2 = calc((42 - 36) * 3 - 2);
+def_int $int3 = calc((36 - 32) * 2);
+def_int $int4 = 0;
 def_obj $obj = null;
-while ($int3 < inv_size(inv)) {
-    cc_create($component, ^iftype_graphic, $int3);
+def_int $int6 = 0;
+def_boolean $boolean7 = ~script7794(93);
+def_boolean $boolean8 = false;
+def_int $int9 = 0;
+def_int $int10 = 0;
+while ($int4 < inv_size(inv)) {
+    cc_create($component0, ^iftype_graphic, $int4);
     cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
-    cc_setposition(calc($int1 + $int3 % 4 * 42), calc($int2 + $int3 / 4 * 36), ^setpos_abs_left, ^setpos_abs_top);
+    $int9 = calc($int2 + $int4 % 4 * 42);
+    $int10 = calc($int3 + $int4 / 4 * 36);
+    cc_setposition($int9, $int10, ^setpos_abs_left, ^setpos_abs_top);
     cc_setgraphicshadow(0x333333);
     cc_setoutline(1);
-    $obj = inv_getobj(inv, $int3);
+    $obj = inv_getobj(inv, $int4);
     if ($obj ! null) {
         cc_sethide(false);
-        cc_setobject($obj, inv_getnum(inv, $int3));
+        cc_setobject($obj, inv_getnum(inv, $int4));
         cc_setopbase("<col=ff9040><oc_name($obj)></col>");
         cc_setop(10, "Examine");
         if (%seed_vault_selected_qty = ^max_32bit_int) {
@@ -34,5 +42,17 @@ while ($int3 < inv_size(inv)) {
         cc_sethide(true);
         cc_setobject(blankobject, 1);
     }
-    $int3 = calc($int3 + 1);
+    $boolean8 = ~bank_side_locked_slot($int4);
+    if (~script7795 = true) {
+        if ($boolean8 = true) {
+            cc_setop(9, "Unlock-slot");
+            cc_sethide(false);
+        } else {
+            cc_setop(9, "Lock-slot");
+        }
+    }
+    if ($boolean7 = true) {
+        $int6 = ~script7783($component1, $int9, $int10, $boolean8, $int6);
+    }
+    $int4 = calc($int4 + 1);
 }
