@@ -1,0 +1,13 @@
+// 9898
+[proc,script9898](obj $obj, coord $coord)
+if (~on_enhanced_any = false | map_members = false) {
+    return;
+}
+if ($coord ! null & loc_coord ! $coord) {
+    return;
+}
+def_entityoverlay $entityoverlay = entityoverlay_create_loc(6, ^overlaytype_middle, 36, 32, 0);
+if (if_find_entityoverlay($entityoverlay) = true) {
+    ~script9901(loc_type, loc_coord, $entityoverlay, ~script9902(loc_type), $obj);
+}
+~script9899($entityoverlay, loc_type, loc_coord, $obj);
