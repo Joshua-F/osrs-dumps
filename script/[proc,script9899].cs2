@@ -1,0 +1,48 @@
+// 9899
+[proc,script9899](entityoverlay $entityoverlay, loc $loc, coord $coord, obj $obj)
+cc_deleteall_entityoverlay($entityoverlay);
+if (%farming_patch_overlay_enabled = 0) {
+    return;
+}
+def_int $int4 = ~script9902($loc);
+if ($int4 = -1) {
+    return;
+}
+cc_create_entityoverlay($entityoverlay, ^iftype_graphic, 0);
+cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+if ($int4 = 0) {
+    cc_setobject_nonum(bucket_empty, 1);
+} else if ($int4 = 1 | $int4 = 1) {
+    if ($obj = null) {
+        cc_setobject_nonum(bucket_compost, 1);
+    } else {
+        cc_setobject_nonum($obj, 1);
+    }
+} else if ($int4 = 2) {
+    cc_setobject_nonum(bucket_supercompost, 1);
+} else if ($int4 = 3) {
+    cc_setobject_nonum(bucket_ultracompost, 1);
+}
+cc_setoutline(1);
+def_int $int5 = ~settings_get_colour_or_default(504);
+cc_create_entityoverlay($entityoverlay, ^iftype_text, 1);
+cc_setsize(10, 10, ^setsize_abs, ^setsize_abs);
+cc_setposition(-3, 7, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_setcolour($int5);
+cc_settextfont(b12_full);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+cc_settextshadow(true);
+if ($int4 = 0) {
+    cc_settext("E");
+} else if ($int4 = 1 | $int4 = 1) {
+    if ($obj = null) {
+        cc_settext("C");
+    } else {
+        cc_settext("S");
+    }
+} else if ($int4 = 2) {
+    cc_settext("S");
+} else if ($int4 = 3) {
+    cc_settext("U");
+}
