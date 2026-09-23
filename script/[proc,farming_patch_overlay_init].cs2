@@ -1,0 +1,13 @@
+// 9898
+[proc,farming_patch_overlay_init](obj $obj, coord $coord)
+if (~on_enhanced_any = false | map_members = false) {
+    return;
+}
+if ($coord ! null & loc_coord ! $coord) {
+    return;
+}
+def_entityoverlay $entityoverlay = entityoverlay_create_loc(6, ^overlaytype_middle, 36, 32, 0);
+if (if_find_entityoverlay($entityoverlay) = true) {
+    ~farming_patch_overlay_set_transmit(loc_type, loc_coord, $entityoverlay, ~farming_patch_overlay_get_compost(loc_type), $obj);
+}
+~farming_patch_overlay_create($entityoverlay, loc_type, loc_coord, $obj);
