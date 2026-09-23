@@ -1,0 +1,10 @@
+// 9900
+[clientscript,farming_patch_overlay_transmit](loc $loc, coord $coord, entityoverlay $entityoverlay, int $int3, int $int4, int $int5, obj $obj)
+def_int $int7 = ~farming_patch_overlay_get_compost($loc);
+if ($int7 = $int3 & $int4 = %farming_patch_overlay_enabled & $int5 = %settings_farming_patch_overlay_colour) {
+    return;
+}
+~farming_patch_overlay_create($entityoverlay, $loc, $coord, $obj);
+if (if_find_entityoverlay($entityoverlay) = true) {
+    ~farming_patch_overlay_set_transmit($loc, $coord, $entityoverlay, $int7, $obj);
+}
