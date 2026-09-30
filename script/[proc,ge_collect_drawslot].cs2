@@ -1,38 +1,53 @@
 // 791
 [proc,ge_collect_drawslot](component $component0, int $int1, component $component2, component $component3, component $component4, int $int5, inv $inv, int $int7, int $int8, int $int9, int $int10, int $int11, int $int12, int $int13)
+def_int $int14 = 0;
+def_obj $obj15 = inv_getobj($inv, $int14);
+def_int $int16 = 0;
 if (cc_find($component0, $int9) = true) {
-    ~ge_collect_drawitem(0, $inv, $component0, $int7, $component3, $component4);
+    ~ge_collect_drawitem($int14, $inv, $component0, $int7, $component3, $component4);
+}
+if (~script9916($obj15) = true) {
+    $int16 = 1;
+}
+$int14 = 1;
+$obj15 = inv_getobj($inv, $int14);
+if ($obj15 = null | $int16 = 1 & ~script9916($obj15) = true) {
+    $int14 = 2;
+    $obj15 = inv_getobj($inv, $int14);
+}
+if ($int16 = 1 & ~script9916($obj15) = true) {
+    $obj15 = null;
 }
 if (cc_find($component0, $int10) = true) {
-    ~ge_collect_drawitem(1, $inv, $component0, $int8, $component3, $component4);
+    ~ge_collect_drawitem($int14, $inv, $component0, $int8, $component3, $component4);
 }
-def_int $int14 = 0;
-def_int $int15 = 0;
-def_obj $obj = null;
-def_int $int17 = 0;
+def_long $long0 = 0;
+def_long $long1 = 0;
+def_obj $obj17 = null;
 def_int $int18 = 0;
+def_int $int19 = 0;
 def_string $string0 = "";
 def_string $string1 = ",";
 if (stockmarket_isofferempty($int1) = true) {
-    $obj, $int14, $int15 = ~ge_itemsink_get($int1), ~script5732($int1);
-    if ($obj ! null) {
+    $obj17, $long0, $long1 = ~ge_itemsink_get($int1), ~script5732($int1);
+    if ($obj17 ! null) {
         if (cc_find($component0, $int12) = true) {
             cc_sethide(false);
             cc_setgraphic("ge_smallicons,7");
         }
-        if ($int15 < ^max_32bit_int) {
-            $string0 = "Sold: <oc_name($obj)><br>1 / 1";
+        if ($long1 < 2147483647) {
+            $string0 = "Sold: <oc_name($obj17)><br>1 / 1";
         } else {
-            $string0 = "Selling: <oc_name($obj)><br>1 / 1";
+            $string0 = "Selling: <oc_name($obj17)><br>1 / 1";
         }
         if_setonmouserepeat("tooltip_mouserepeat($component0, -1, $component2, $string0, 25, 512)", $component0);
         if (cc_find($component0, $int13) = true) {
             cc_sethide(false);
-            cc_setobject($obj, 1);
+            cc_setobject($obj17, 1);
         }
         if (cc_find($component0, $int11) = true) {
             cc_sethide(false);
-            if ($int15 < ^max_32bit_int) {
+            if ($long1 < 2147483647) {
                 ~script812($int1, 1, 1, 0x005f00, $int5);
             } else {
                 ~script812($int1, 1, 1, 0xd88020, $int5);
@@ -52,17 +67,17 @@ if (stockmarket_isofferempty($int1) = true) {
         if_setonmouserepeat(null, $component0);
     }
 } else {
-    $obj, $int17 = stockmarket_getofferitem($int1), stockmarket_getoffercount($int1);
-    $int18 = stockmarket_getoffercompletedcount($int1);
+    $obj17, $int18 = stockmarket_getofferitem($int1), stockmarket_getoffercount($int1);
+    $int19 = stockmarket_getoffercompletedcount($int1);
     if (stockmarket_getoffertype($int1) = 1) {
         if (cc_find($component0, $int12) = true) {
             cc_sethide(false);
             cc_setgraphic("ge_smallicons,7");
         }
         if (stockmarket_isofferfinished($int1) = true) {
-            $string0 = "Sold: <oc_name($obj)><br><~tostring_spacer($int18, $string1)> / <~tostring_spacer($int17, $string1)>";
+            $string0 = "Sold: <oc_name($obj17)><br><~tostring_spacer($int19, $string1)> / <~tostring_spacer($int18, $string1)>";
         } else {
-            $string0 = "Selling: <oc_name($obj)><br><~tostring_spacer($int18, $string1)> / <~tostring_spacer($int17, $string1)>";
+            $string0 = "Selling: <oc_name($obj17)><br><~tostring_spacer($int19, $string1)> / <~tostring_spacer($int18, $string1)>";
         }
     } else {
         if (cc_find($component0, $int12) = true) {
@@ -70,19 +85,19 @@ if (stockmarket_isofferempty($int1) = true) {
             cc_setgraphic("ge_smallicons,6");
         }
         if (stockmarket_isofferfinished($int1) = true) {
-            $string0 = "Bought: <oc_name($obj)><br><~tostring_spacer($int18, $string1)> / <~tostring_spacer($int17, $string1)>";
+            $string0 = "Bought: <oc_name($obj17)><br><~tostring_spacer($int19, $string1)> / <~tostring_spacer($int18, $string1)>";
         } else {
-            $string0 = "Buying: <oc_name($obj)><br><~tostring_spacer($int18, $string1)> / <~tostring_spacer($int17, $string1)>";
+            $string0 = "Buying: <oc_name($obj17)><br><~tostring_spacer($int19, $string1)> / <~tostring_spacer($int18, $string1)>";
         }
     }
     if_setonmouserepeat("tooltip_mouserepeat($component0, -1, $component2, $string0, 25, 512)", $component0);
     if (cc_find($component0, $int13) = true) {
         cc_sethide(false);
-        cc_setobject($obj, $int17);
+        cc_setobject($obj17, $int18);
     }
     if (cc_find($component0, $int11) = true) {
         cc_sethide(false);
-        ~script812($int1, $int17, $int18, null, $int5);
+        ~script812($int1, $int18, $int19, null, $int5);
     }
 }
 ~deltooltip_action($component2);

@@ -1,24 +1,24 @@
 // 1234
-[proc,trade_tooltip](int $int0, int $int1, component $component)
+[proc,trade_tooltip](int $int, long $long0, component $component)
 def_string $string0 = "";
 def_string $string1 = ",";
-def_int $int3 = 0;
-if ($int1 >= 0 & $int0 > 0) {
-    if (calc(^max_32bit_int / $int0) < $int1) {
-        $int3 = ^max_32bit_int;
+def_long $long1 = 0;
+if ($long0 >= 0 & $int > 0) {
+    if (calc(9223372036854775807 / int_to_long($int)) < $long0) {
+        $long1 = 9223372036854775807;
     } else {
-        $int3 = calc($int0 * $int1);
+        $long1 = calc(int_to_long($int) * $long0);
     }
-    if ($int0 > 1) {
-        if ($int3 >= 0 & $int3 < ^max_32bit_int) {
-            $string0 = "<~tostring_spacer($int0, $string1)> x <~tostring_spacer($int1, $string1)><br>= <~tostring_spacer($int3, $string1)>";
+    if ($int > 1) {
+        if ($long1 >= 0 & $long1 < 9223372036854775807) {
+            $string0 = "<~tostring_spacer($int, $string1)> x <tostring_spacer_long($long0, $string1)><br>= <tostring_spacer_long($long1, $string1)>";
         } else {
-            $string0 = "<~tostring_spacer($int0, $string1)> x <~tostring_spacer($int1, $string1)>";
+            $string0 = "<~tostring_spacer($int, $string1)> x <tostring_spacer_long($long0, $string1)>";
         }
         cc_setonmouserepeat("tooltip_mouserepeat(event_com, event_comsubid, $component, $string0, 25, 512)");
         cc_setonmouseleave("deltooltip($component)");
     } else {
-        $string0 = ~tostring_spacer($int1, $string1);
+        $string0 = tostring_spacer_long($long0, $string1);
         cc_setonmouserepeat("tooltip_mouserepeat(event_com, event_comsubid, $component, $string0, 25, 512)");
         cc_setonmouseleave("deltooltip($component)");
     }
