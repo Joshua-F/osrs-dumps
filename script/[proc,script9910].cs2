@@ -1,0 +1,19 @@
+// 9910
+[proc,script9910](obj $obj, inv $inv, int $int2)(obj, int)
+def_int $int3 = inv_getnum($inv, $int2);
+def_long $long = 0;
+if ($obj = coins) {
+    if (inv_total($inv, platinum) > 0) {
+        $obj, $long = coins_and_platinum, ~script9915($inv);
+    }
+} else if ($obj = platinum & inv_total($inv, coins) > 0) {
+    $obj, $long = coins_and_platinum, ~script9915($inv);
+}
+if ($long ! 0) {
+    if ($long <= 2147483647) {
+        $int3 = ~script9914($long);
+    } else {
+        $int3 = -1;
+    }
+}
+return($obj, $int3);

@@ -2,35 +2,7 @@
 [proc,wilderness_lootingbag_draw](inv $inv)
 cc_deleteall(wilderness_lootingbag:items);
 def_int $int1 = inv_size($inv);
-def_int $intarray($int1);
-$intarray(0) = %slotinfo_00;
-$intarray(1) = %slotinfo_01;
-$intarray(2) = %slotinfo_02;
-$intarray(3) = %slotinfo_03;
-$intarray(4) = %slotinfo_04;
-$intarray(5) = %slotinfo_05;
-$intarray(6) = %slotinfo_06;
-$intarray(7) = %slotinfo_07;
-$intarray(8) = %slotinfo_08;
-$intarray(9) = %slotinfo_09;
-$intarray(10) = %slotinfo_10;
-$intarray(11) = %slotinfo_11;
-$intarray(12) = %slotinfo_12;
-$intarray(13) = %slotinfo_13;
-$intarray(14) = %slotinfo_14;
-$intarray(15) = %slotinfo_15;
-$intarray(16) = %slotinfo_16;
-$intarray(17) = %slotinfo_17;
-$intarray(18) = %slotinfo_18;
-$intarray(19) = %slotinfo_19;
-$intarray(20) = %slotinfo_20;
-$intarray(21) = %slotinfo_21;
-$intarray(22) = %slotinfo_22;
-$intarray(23) = %slotinfo_23;
-$intarray(24) = %slotinfo_24;
-$intarray(25) = %slotinfo_25;
-$intarray(26) = %slotinfo_26;
-$intarray(27) = %slotinfo_27;
+def_long $long = 0;
 def_obj $obj = null;
 def_int $int3 = 0;
 def_int $int4 = 0;
@@ -40,6 +12,7 @@ while ($int5 < $int1) {
     cc_create(wilderness_lootingbag:items, ^iftype_graphic, $int5);
     $obj = inv_getobj($inv, $int5);
     if ($obj ! null) {
+        $long = ~script9913($int5, 0);
         $int3, $int4 = inv_getnum($inv, $int5), calc($int4 + 1);
         cc_sethide(false);
         cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
@@ -55,11 +28,11 @@ while ($int5 < $int1) {
             } else {
                 cc_settrans(0);
                 cc_setonop("cc_settrans_temporarily(event_com, event_comsubid, 150, 0)");
-                if ($intarray($int5) <= -1) {
+                if ($long <= -1) {
                     cc_setonmouserepeat("tooltip_mouserepeat(event_com, event_comsubid, wilderness_lootingbag:tooltip, $string, 25, 512)");
                     cc_setonmouseleave("deltooltip(wilderness_lootingbag:tooltip)");
                 } else {
-                    ~trade_tooltip($int3, $intarray($int5), wilderness_lootingbag:tooltip);
+                    ~trade_tooltip($int3, $long, wilderness_lootingbag:tooltip);
                 }
             }
             cc_setop(1, "Store-1");
@@ -70,7 +43,7 @@ while ($int5 < $int1) {
         } else {
             cc_settrans(0);
             cc_setop(10, "Examine");
-            ~trade_tooltip($int3, $intarray($int5), wilderness_lootingbag:tooltip);
+            ~trade_tooltip($int3, $long, wilderness_lootingbag:tooltip);
         }
         cc_setopbase("<col=ff9040><oc_name($obj)>");
     } else {

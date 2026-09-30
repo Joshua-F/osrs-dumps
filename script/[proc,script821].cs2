@@ -39,16 +39,16 @@ if ($inv = null) {
     return;
 }
 def_obj $obj16 = null;
-def_int $int17 = 0;
-def_int $int18 = -1;
-def_obj $obj19 = null;
+def_long $long0 = 0;
+def_int $int17 = -1;
+def_obj $obj18 = null;
+def_int $int19 = 0;
 def_int $int20 = 0;
-def_int $int21 = 0;
-def_int $int22 = 0;
-def_int $int23 = 0;
+def_long $long1 = 0;
+def_long $long2 = 0;
 def_boolean $boolean = false;
 if (stockmarket_isofferempty($int14) = true) {
-    $obj16, $int17 = ~ge_itemsink_get($int14);
+    $obj16, $long0 = ~ge_itemsink_get($int14);
     if ($obj16 = null) {
         if (cc_find($component0, $int1) = true) {
             cc_settext("No offer");
@@ -85,26 +85,26 @@ if (stockmarket_isofferempty($int14) = true) {
         }
         return;
     }
-    $int18, $obj19, $int20, $int21, $int22, $int23, $boolean = 1, $obj16, 1, 1, $int17, $int17, true;
+    $int17, $obj18, $int19, $int20, $long1, $long2, $boolean = 1, $obj16, 1, 1, $long0, $long0, true;
 } else {
-    $int18 = stockmarket_getoffertype($int14);
-    $obj19 = stockmarket_getofferitem($int14);
-    if ($obj19 = null) {
-        $obj19 = blankobject;
+    $int17 = stockmarket_getoffertype($int14);
+    $obj18 = stockmarket_getofferitem($int14);
+    if ($obj18 = null) {
+        $obj18 = blankobject;
     }
-    $int20 = stockmarket_getoffercount($int14);
-    if ($int20 <= 0) {
-        $int20 = 1;
+    $int19 = stockmarket_getoffercount($int14);
+    if ($int19 <= 0) {
+        $int19 = 1;
     }
-    $int21 = stockmarket_getoffercompletedcount($int14);
-    $int22 = stockmarket_getofferprice($int14);
-    $int23 = stockmarket_getoffercompletedgold($int14);
+    $int20 = stockmarket_getoffercompletedcount($int14);
+    $long1 = stockmarket_getofferprice($int14);
+    $long2 = stockmarket_getoffercompletedgold($int14);
     $boolean = stockmarket_isofferfinished($int14);
 }
 def_string $string = ",";
 if (cc_find($component0, $int1) = true & .cc_find($component0, $int2) = true) {
     .cc_sethide(false);
-    if ($int18 = 1) {
+    if ($int17 = 1) {
         cc_settext("Sell offer");
         .cc_setgraphic("ge_smallicons,7");
     } else {
@@ -113,91 +113,91 @@ if (cc_find($component0, $int1) = true & .cc_find($component0, $int2) = true) {
     }
 }
 if (cc_find($component0, $int3) = true) {
-    cc_setobject_nonum($obj19, $int20);
+    cc_setobject_nonum($obj18, $int19);
 }
 if (cc_find($component0, $int4) = true) {
-    cc_settext(oc_name($obj19));
+    cc_settext(oc_name($obj18));
 }
 if (cc_find($component0, $int5) = true) {
-    cc_settext(~tostring_spacer($int20, $string));
+    cc_settext(~tostring_spacer($int19, $string));
 }
 if (cc_find($component0, $int6) = true) {
-    if ($int22 = 1) {
+    if ($long1 = 1) {
         cc_settext("1 coin");
     } else {
-        cc_settext("<~tostring_spacer($int22, $string)> coins");
+        cc_settext("<tostring_spacer_long($long1, $string)> coins");
     }
 }
-def_int $int25 = 0;
-def_int $int26 = 0;
-def_int $int27 = 0;
+def_long $long3 = 0;
+def_long $long4 = 0;
+def_long $long5 = 0;
 if (cc_find($component0, $int7) = true) {
-    if (calc(^max_32bit_int / $int20) < $int22) {
+    if (calc(9223372036854775807 / int_to_long($int19)) < $long1) {
         cc_settextfont(b12_full);
         cc_settext("Lots of money");
     } else {
-        $int26 = calc($int20 * $int22);
-        if ($int18 = 1 & %ge_transmit_taxrate > 0) {
-            $int25 = ~min(5000000, scale(%ge_transmit_taxrate, 1000, $int22));
+        $long4 = calc(int_to_long($int19) * $long1);
+        if ($int17 = 1 & %ge_transmit_taxrate > 0) {
+            $long3 = long_min(5000000, long_scale(int_to_long(%ge_transmit_taxrate), 1000, $long1));
         }
-        if ($int25 > 0) {
-            $int27 = ~max(0, calc($int26 - $int20 * $int25));
-            if ($int25 < 5000000) {
+        if ($long3 > 0) {
+            $long5 = long_max(0, calc($long4 - int_to_long($int19) * $long3));
+            if ($long3 < 5000000) {
                 cc_settextfont(b12_full);
-                if ($int27 = 1) {
-                    cc_settext("1 coin <col=9f9f9f>(<~tostring_spacer($int26, $string)> - <~script5731>)</col>");
+                if ($long5 = 1) {
+                    cc_settext("1 coin <col=9f9f9f>(<tostring_spacer_long($long4, $string)> - <~script5731>)</col>");
                 } else {
-                    cc_settext("<~tostring_spacer($int27, $string)> coins <col=9f9f9f>(<~tostring_spacer($int26, $string)> - <~script5731>)</col>");
+                    cc_settext("<tostring_spacer_long($long5, $string)> coins <col=9f9f9f>(<tostring_spacer_long($long4, $string)> - <~script5731>)</col>");
                 }
             } else {
                 cc_settextfont(p12_full);
-                if ($int27 = 1) {
-                    cc_settext("1 coin <col=9f9f9f>(<~tostring_spacer($int26, $string)> - <~tostring_spacer(5000000, $string)> per item)</col>");
+                if ($long5 = 1) {
+                    cc_settext("1 coin <col=9f9f9f>(<tostring_spacer_long($long4, $string)> - <~tostring_spacer(5000000, $string)> per item)</col>");
                 } else {
-                    cc_settext("<~tostring_spacer($int27, $string)> coins <col=9f9f9f>(<~tostring_spacer($int26, $string)> - <~tostring_spacer(5000000, $string)> per item)</col>");
+                    cc_settext("<tostring_spacer_long($long5, $string)> coins <col=9f9f9f>(<tostring_spacer_long($long4, $string)> - <~tostring_spacer(5000000, $string)> per item)</col>");
                 }
             }
-        } else if ($int18 = 1) {
+        } else if ($int17 = 1) {
             cc_settextfont(b12_full);
-            if ($int26 = 1) {
+            if ($long4 = 1) {
                 cc_settext("1 coin <col=9f9f9f>(no fee expected)</col>");
             } else {
-                cc_settext("<~tostring_spacer($int26, $string)> coins <col=9f9f9f>(no fee expected)</col>");
+                cc_settext("<tostring_spacer_long($long4, $string)> coins <col=9f9f9f>(no fee expected)</col>");
             }
         } else {
             cc_settextfont(b12_full);
-            if ($int26 = 1) {
+            if ($long4 = 1) {
                 cc_settext("1 coin");
             } else {
-                cc_settext("<~tostring_spacer($int26, $string)> coins");
+                cc_settext("<tostring_spacer_long($long4, $string)> coins");
             }
         }
     }
 }
-def_graphic $graphic28 = "ge_cancel,0";
-def_graphic $graphic29 = "ge_cancel,1";
-def_graphic $graphic30 = "ge_modify,0";
-def_graphic $graphic31 = "ge_modify,1";
+def_graphic $graphic22 = "ge_cancel,0";
+def_graphic $graphic23 = "ge_cancel,1";
+def_graphic $graphic24 = "ge_modify,0";
+def_graphic $graphic25 = "ge_modify,1";
 if (cc_find($component8, $int11) = true) {
     if ($boolean = true) {
-        if ($int18 = 1) {
-            $int25 = ~script5732($int14);
-            if ($int25 > 0) {
-                $int27 = ~max(0, calc($int23 - $int25));
-                if ($int27 = 1) {
-                    cc_settext("You sold a total of <col=ffb83f><~tostring_spacer($int21, $string)></col><br>for <col=ffb83f>one</col> coin (<col=ffb83f><~tostring_spacer($int23, $string)></col> - <col=ffb83f><~tostring_spacer($int25, $string)></col>).");
+        if ($int17 = 1) {
+            $long3 = ~script5732($int14);
+            if ($long3 > 0) {
+                $long5 = long_max(0, calc($long2 - $long3));
+                if ($long5 = 1) {
+                    cc_settext("You sold a total of <col=ffb83f><~tostring_spacer($int20, $string)></col><br>for <col=ffb83f>one</col> coin (<col=ffb83f><tostring_spacer_long($long2, $string)></col> - <col=ffb83f><tostring_spacer_long($long3, $string)></col>).");
                 } else {
-                    cc_settext("You sold a total of <col=ffb83f><~tostring_spacer($int21, $string)></col><br>for <col=ffb83f><~tostring_spacer($int27, $string)></col> coins (<col=ffb83f><~tostring_spacer($int23, $string)></col> - <col=ffb83f><~tostring_spacer($int25, $string)></col></col>).");
+                    cc_settext("You sold a total of <col=ffb83f><~tostring_spacer($int20, $string)></col><br>for <col=ffb83f><tostring_spacer_long($long5, $string)></col> coins (<col=ffb83f><tostring_spacer_long($long2, $string)></col> - <col=ffb83f><tostring_spacer_long($long3, $string)></col></col>).");
                 }
-            } else if ($int23 = 1) {
-                cc_settext("You sold a total of <col=ffb83f><~tostring_spacer($int21, $string)></col><br>for <col=ffb83f>one</col> coin (no fee charged).");
+            } else if ($long2 = 1) {
+                cc_settext("You sold a total of <col=ffb83f><~tostring_spacer($int20, $string)></col><br>for <col=ffb83f>one</col> coin (no fee charged).");
             } else {
-                cc_settext("You sold a total of <col=ffb83f><~tostring_spacer($int21, $string)></col><br>for <col=ffb83f><~tostring_spacer($int23, $string)></col> coins (no fee charged).");
+                cc_settext("You sold a total of <col=ffb83f><~tostring_spacer($int20, $string)></col><br>for <col=ffb83f><tostring_spacer_long($long2, $string)></col> coins (no fee charged).");
             }
-        } else if ($int23 = 1) {
-            cc_settext("You bought a total of <col=ffb83f><~tostring_spacer($int21, $string)></col><br>for a total price of <col=ffb83f>one</col> coin.");
+        } else if ($long2 = 1) {
+            cc_settext("You bought a total of <col=ffb83f><~tostring_spacer($int20, $string)></col><br>for a total price of <col=ffb83f>one</col> coin.");
         } else {
-            cc_settext("You bought a total of <col=ffb83f><~tostring_spacer($int21, $string)></col><br>for a total price of <col=ffb83f><~tostring_spacer($int23, $string)></col> coins.");
+            cc_settext("You bought a total of <col=ffb83f><~tostring_spacer($int20, $string)></col><br>for a total price of <col=ffb83f><tostring_spacer_long($long2, $string)></col> coins.");
         }
         if (cc_find($component8, $int9) = true) {
             cc_sethide(true);
@@ -206,36 +206,36 @@ if (cc_find($component8, $int11) = true) {
             cc_sethide(true);
         }
     } else {
-        if ($int18 = 1) {
-            $int25 = ~script5732($int14);
-            if ($int25 > 0) {
-                $int27 = ~max(0, calc($int23 - $int25));
-                if ($int27 = 1) {
-                    cc_settext("You have sold a total of <col=ffb83f><~tostring_spacer($int21, $string)></col> so far<br>for <col=ffb83f>one</col> coin (<col=ffb83f><~tostring_spacer($int23, $string)></col> - <col=ffb83f><~tostring_spacer($int25, $string)></col></col>).");
+        if ($int17 = 1) {
+            $long3 = ~script5732($int14);
+            if ($long3 > 0) {
+                $long5 = long_max(0, calc($long2 - $long3));
+                if ($long5 = 1) {
+                    cc_settext("You have sold a total of <col=ffb83f><~tostring_spacer($int20, $string)></col> so far<br>for <col=ffb83f>one</col> coin (<col=ffb83f><tostring_spacer_long($long2, $string)></col> - <col=ffb83f><tostring_spacer_long($long3, $string)></col></col>).");
                 } else {
-                    cc_settext("You have sold a total of <col=ffb83f><~tostring_spacer($int21, $string)></col> so far<br>for <col=ffb83f><~tostring_spacer($int27, $string)></col> coins (<col=ffb83f><~tostring_spacer($int23, $string)></col> - <col=ffb83f><~tostring_spacer($int25, $string)></col></col>).");
+                    cc_settext("You have sold a total of <col=ffb83f><~tostring_spacer($int20, $string)></col> so far<br>for <col=ffb83f><tostring_spacer_long($long5, $string)></col> coins (<col=ffb83f><tostring_spacer_long($long2, $string)></col> - <col=ffb83f><tostring_spacer_long($long3, $string)></col></col>).");
                 }
-            } else if ($int23 = 1) {
-                cc_settext("You have sold a total of <col=ffb83f><~tostring_spacer($int21, $string)></col> so far<br>for <col=ffb83f>one</col> coin (no fee charged).");
+            } else if ($long2 = 1) {
+                cc_settext("You have sold a total of <col=ffb83f><~tostring_spacer($int20, $string)></col> so far<br>for <col=ffb83f>one</col> coin (no fee charged).");
             } else {
-                cc_settext("You have sold a total of <col=ffb83f><~tostring_spacer($int21, $string)></col> so far<br>for <col=ffb83f><~tostring_spacer($int23, $string)></col> coins (no fee charged).");
+                cc_settext("You have sold a total of <col=ffb83f><~tostring_spacer($int20, $string)></col> so far<br>for <col=ffb83f><tostring_spacer_long($long2, $string)></col> coins (no fee charged).");
             }
-        } else if ($int23 = 1) {
-            cc_settext("You have bought a total of <col=ffb83f><~tostring_spacer($int21, $string)></col> so far<br>for a total price of <col=ffb83f>one</col> coin.");
+        } else if ($long2 = 1) {
+            cc_settext("You have bought a total of <col=ffb83f><~tostring_spacer($int20, $string)></col> so far<br>for a total price of <col=ffb83f>one</col> coin.");
         } else {
-            cc_settext("You have bought a total of <col=ffb83f><~tostring_spacer($int21, $string)></col> so far<br>for a total price of <col=ffb83f><~tostring_spacer($int23, $string)></col> coins.");
+            cc_settext("You have bought a total of <col=ffb83f><~tostring_spacer($int20, $string)></col> so far<br>for a total price of <col=ffb83f><tostring_spacer_long($long2, $string)></col> coins.");
         }
         if (cc_find($component8, $int9) = true) {
             cc_sethide(false);
             if (stockmarket_isofferstable($int14) = true) {
                 cc_settrans(0);
-                cc_setgraphic($graphic28);
-                cc_setonmouserepeat("cc_graphic_swapper(event_com, event_comsubid, $graphic29, null)");
-                cc_setonmouseleave("cc_graphic_swapper(event_com, event_comsubid, $graphic28, null)");
+                cc_setgraphic($graphic22);
+                cc_setonmouserepeat("cc_graphic_swapper(event_com, event_comsubid, $graphic23, null)");
+                cc_setonmouseleave("cc_graphic_swapper(event_com, event_comsubid, $graphic22, null)");
                 cc_setonop("opsound(event_op, 2)");
             } else {
                 cc_settrans(120);
-                cc_setgraphic($graphic29);
+                cc_setgraphic($graphic23);
                 cc_setonmouserepeat(null);
                 cc_setonmouseleave(null);
                 cc_setonop(null);
@@ -245,13 +245,13 @@ if (cc_find($component8, $int11) = true) {
             cc_sethide(false);
             if (stockmarket_isofferstable($int14) = true) {
                 cc_settrans(0);
-                cc_setgraphic($graphic30);
-                cc_setonmouserepeat("cc_graphic_swapper(event_com, event_comsubid, $graphic31, null)");
-                cc_setonmouseleave("cc_graphic_swapper(event_com, event_comsubid, $graphic30, null)");
+                cc_setgraphic($graphic24);
+                cc_setonmouserepeat("cc_graphic_swapper(event_com, event_comsubid, $graphic25, null)");
+                cc_setonmouseleave("cc_graphic_swapper(event_com, event_comsubid, $graphic24, null)");
                 cc_setonop("opsound(event_op, 2)");
             } else {
                 cc_settrans(120);
-                cc_setgraphic($graphic31);
+                cc_setgraphic($graphic25);
                 cc_setonmouserepeat(null);
                 cc_setonmouseleave(null);
                 cc_setonop(null);
@@ -262,8 +262,8 @@ if (cc_find($component8, $int11) = true) {
 if (cc_find($component8, $int12) = true) {
     cc_sethide(false);
     if ($obj16 ! null) {
-        ~script812($int14, $int20, $int21, 0x005f00, $int13);
+        ~script812($int14, $int19, $int20, 0x005f00, $int13);
     } else {
-        ~script812($int14, $int20, $int21, null, $int13);
+        ~script812($int14, $int19, $int20, null, $int13);
     }
 }

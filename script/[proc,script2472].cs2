@@ -3,18 +3,24 @@
 def_int $int1 = 0;
 def_string $string2 = "";
 def_int $int2 = string_length($string0);
-if (string_length($string1) > 0 & $int0 = 1) {
+def_int $int3 = string_length("2147483647");
+def_string $string3 = "kKmMbB";
+if ($int0 = 15) {
+    $int3 = string_length("9223372036854775807");
+    $string3 = "kKmMbBtT";
+}
+if (string_length($string1) > 0 & ($int0 = 1 | $int0 = 15)) {
     if ($int2 > 0) {
         $string2 = lowercase(substring($string0, calc($int2 - 1), $int2));
-        if (compare($string2, "k") = 0 | compare($string2, "m") = 0 | compare($string2, "b") = 0) {
+        if (compare($string2, "k") = 0 | compare($string2, "m") = 0 | compare($string2, "b") = 0 | compare($string2, "t") = 0) {
             return($string0);
         }
     }
     $string1 = substring($string1, 0, 1);
-    if (string_indexof_string("kKmMbB", $string1, 0) ! -1) {
+    if (string_indexof_string($string3, $string1, 0) ! -1) {
         $int1 = 1;
     }
-    if (($int1 = 1 | string_indexof_string("0123456789", $string1, 0) ! -1) & $int2 < 10) {
+    if (($int1 = 1 | string_indexof_string("0123456789", $string1, 0) ! -1) & $int2 < $int3) {
         if ($int1 = 1 & $int2 <= 0) {
             return($string0);
         }
