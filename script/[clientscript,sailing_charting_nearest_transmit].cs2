@@ -1,0 +1,17 @@
+// 8689
+[clientscript,sailing_charting_nearest_transmit]
+if (%sailing_charting_ocean_filter ! -2 & %sailing_charting_sea_filter ! -2) {
+    return;
+}
+def_int $int0 = ~sailing_charting_ocean_filter_get;
+def_int $int1 = ~sailing_charting_sea_filter_get;
+~script8661;
+if ($int0 ! ~sailing_charting_ocean_filter_get | $int1 ! ~sailing_charting_sea_filter_get) {
+    sound_synth(synth_1413, 1, 0);
+    ~script8687;
+    ~script8693;
+    ~sailing_charting_filters_redraw;
+    ~sailing_charting_info_redraw(-1);
+    ~sailing_charting_list_redraw(1);
+    ~sailing_charting_completion_redraw;
+}

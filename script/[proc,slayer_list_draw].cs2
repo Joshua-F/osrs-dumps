@@ -18,7 +18,7 @@ $graphicarray(2) = "toggle_box,1";
 $graphicarray(3) = "toggle_box,6";
 $graphicarray(4) = "toggle_box,7";
 def_int $int10 = %slayer_master_in_focus;
-def_int $int11 = ~script8044($int10, $int1, $int2);
+def_int $int11 = ~slayer_master_total_weighting($int10, $int1, $int2);
 def_int $int12 = db_find(slayer_master_task:master_id, $int10);
 def_dbrow $dbrow13 = db_findnext;
 def_dbrow $dbrow14 = null;
@@ -61,7 +61,7 @@ while ($dbrow13 ! null) {
         if (~script824($int19, $int10) = true) {
             $int17 = 3;
         }
-        $int22, $int23 = ~script8045($dbrow14, db_getfield($dbrow13, slayer_master_task:min_amount, 0), db_getfield($dbrow13, slayer_master_task:max_amount, 0));
+        $int22, $int23 = ~slayer_task_get_extension($dbrow14, db_getfield($dbrow13, slayer_master_task:min_amount, 0), db_getfield($dbrow13, slayer_master_task:max_amount, 0));
         if ($int19 = 98) {
             $int22, $int23 = 0, 0;
         }
@@ -92,8 +92,8 @@ while ($int9 < $int25) {
     if (cc_find(slayer_rewards_task_list:drawable, calc($intarray2($int9) + 1)) = true) {
         cc_setposition(0, calc($int9 * $int18), ^setpos_abs_left, ^setpos_abs_top);
         cc_settrans($intarray0(calc($int9 % 2)));
-        cc_setonmouserepeat("script8064(calc($intarray2($int9) + 1), calc($intarray0(calc($int9 % 2)) + 30))");
-        cc_setonmouseleave("script8064(calc($intarray2($int9) + 1), $intarray0(calc($int9 % 2)))");
+        cc_setonmouserepeat("slayer_list_highlight_strip(calc($intarray2($int9) + 1), calc($intarray0(calc($int9 % 2)) + 30))");
+        cc_setonmouseleave("slayer_list_highlight_strip(calc($intarray2($int9) + 1), $intarray0(calc($int9 % 2)))");
         if (string_length(cc_getopbase) > 0) {
             cc_setonmouserepeat(null);
             cc_setonmouseleave(null);

@@ -1,0 +1,56 @@
+// 3180
+[proc,league_points_progress_bar_target_selection](boolean $boolean, int $int1)(struct)
+def_struct $struct2 = enum(int, struct, enum_2670, %league_type);
+def_enum $enum = null;
+def_struct $struct4 = null;
+def_struct $struct5 = null;
+def_int $int6 = 0;
+def_int $int7 = -1;
+def_int $int8 = 0;
+def_int $int9 = 0;
+if ($struct2 ! null) {
+    $enum = struct_param($struct2, param_870);
+    if ($enum ! null) {
+        $int6 = enum_getoutputcount($enum);
+        if ($boolean = true) {
+            return(enum(int, struct, $enum, calc($int6 - 1)));
+        }
+        while ($int8 < $int6) {
+            $struct4 = enum(int, struct, $enum, $int8);
+            $int7 = struct_param($struct4, param_877);
+            if (%league_points_claimed < $int7) {
+                if ($int1 = 0) {
+                    return($struct4);
+                } else {
+                    return($struct5);
+                }
+            }
+            $struct5 = enum(int, struct, $enum, $int8);
+            switch_int ($int8) {
+                case 0 :
+                    $int9 = %league_relic_selection_0;
+                case 1 :
+                    $int9 = %league_relic_selection_1;
+                case 2 :
+                    $int9 = %league_relic_selection_2;
+                case 3 :
+                    $int9 = %league_relic_selection_3;
+                case 4 :
+                    $int9 = %league_relic_selection_4;
+                case 5 :
+                    $int9 = %league_relic_selection_5;
+                case 6 :
+                    $int9 = %league_relic_selection_6;
+                case 7 :
+                    $int9 = %league_relic_selection_7;
+                case default :
+                    $int9 = 0;
+            }
+            if ($int9 = 0) {
+                return($struct4);
+            }
+            $int8 = calc($int8 + 1);
+        }
+    }
+}
+return(null);

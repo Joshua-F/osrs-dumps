@@ -1,14 +1,14 @@
 // 250
 [clientscript,music_init](component $universe, component $inner, component $jukebox, component $scrollable, component $scrollbar, component $count, component $single, component $area, component $shuffle, component $skip, component $playlist, component $dropdown, component $dropdown_content, component $dropdown_scrollbar, component $now_playing_text, component $overlay)
-~script9290($inner, $jukebox, $scrollable, $scrollbar, $count, $overlay);
-~script9300($inner, $jukebox, $scrollable, $scrollbar, $count, $overlay);
-~script9301($inner, $jukebox, $scrollable, $scrollbar, $count, $overlay);
+~music_list_setup($inner, $jukebox, $scrollable, $scrollbar, $count, $overlay);
+~music_list_vartransmit_setup($inner, $jukebox, $scrollable, $scrollbar, $count, $overlay);
+~musicmulti_vartransmit_setup($inner, $jukebox, $scrollable, $scrollbar, $count, $overlay);
 ~music_optionbuttons($single, $area, $shuffle, $skip);
 if_setonvartransmit("music_optionbuttons_resynch($single, $area, $shuffle, $skip){musicplay, musicloop}", $universe);
 if_setonop("music_optionbuttons_setmode(event_op, 2, $single, $area, $shuffle, $skip, $playlist, $inner, $jukebox, $scrollable, $scrollbar, $count, $overlay)", $single);
 if_setonop("music_optionbuttons_setmode(event_op, 0, $single, $area, $shuffle, $skip, $playlist, $inner, $jukebox, $scrollable, $scrollbar, $count, $overlay)", $area);
 if_setonop("music_optionbuttons_setmode(event_op, 1, $single, $area, $shuffle, $skip, $playlist, $inner, $jukebox, $scrollable, $scrollbar, $count, $overlay)", $shuffle);
-if_setonop("script9292(event_op)", $skip);
+if_setonop("music_optionbuttons_skip(event_op)", $skip);
 ~script5771($playlist, enum_2772, %music_current_playlist, 16750623);
 if_setonop("script9296($dropdown, $dropdown_content, $dropdown_scrollbar, $playlist, enum_2772, 16750623, $inner, $jukebox, $scrollable, $scrollbar, $count, $single, $area, $shuffle, $skip, $overlay)", $playlist);
 if_setonvartransmit("script9294($playlist){musicloop}", $playlist);

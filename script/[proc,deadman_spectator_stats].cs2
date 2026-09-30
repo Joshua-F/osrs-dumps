@@ -1,25 +1,25 @@
 // 2182
 [proc,deadman_spectator_stats](string $string0, string $string1, int $int0, int $int1, int $int2, int $int3, int $int4, int $int5, int $int6, int $int7, int $int8, int $int9, int $int10, int $int11)
-~script539($int10);
+~deadman_spectator_stats_update_frame($int10);
 def_enum $enum = enum_140;
 if ($int10 = 1) {
     $enum = enum_142;
 }
-~script176($string0, enum(component, component, $enum, deadman_spectator:stats_left_name));
+~deadman_spectator_stats_update_name($string0, enum(component, component, $enum, deadman_spectator:stats_left_name));
 if_settext($string1, enum(component, component, $enum, deadman_spectator:stats_left_level));
 def_string $string2 = "<tostring($int0)> / <tostring($int1)>";
 if_settext($string2, enum(component, component, $enum, deadman_spectator:stats_left_health_text));
-~script419($int0, $int1, $enum, deadman_spectator:stats_left_health_remaining, deadman_spectator:stats_left_health_gone, $int5, $int6, $int11, 1);
+~deadman_spectator_stats_update_bar($int0, $int1, $enum, deadman_spectator:stats_left_health_remaining, deadman_spectator:stats_left_health_gone, $int5, $int6, $int11, 1);
 def_string $string3 = "<tostring($int2)> / <tostring($int3)>";
 if_settext($string3, enum(component, component, $enum, deadman_spectator:stats_left_prayer_text));
-~script419($int2, $int3, $enum, deadman_spectator:stats_left_prayer_remaining, deadman_spectator:stats_left_prayer_gone, $int5, $int6, $int11, 0);
+~deadman_spectator_stats_update_bar($int2, $int3, $enum, deadman_spectator:stats_left_prayer_remaining, deadman_spectator:stats_left_prayer_gone, $int5, $int6, $int11, 0);
 $int4 = calc($int4 / 10);
 if ($int4 > 100) {
     $int4 = 100;
 }
 def_string $string4 = "<tostring($int4)>%";
 if_settext($string4, enum(component, component, $enum, deadman_spectator:stats_left_special_text));
-~script419($int4, 100, $enum, deadman_spectator:stats_left_special_remaining, deadman_spectator:stats_left_special_gone, $int5, $int6, $int11, 0);
+~deadman_spectator_stats_update_bar($int4, 100, $enum, deadman_spectator:stats_left_special_remaining, deadman_spectator:stats_left_special_gone, $int5, $int6, $int11, 0);
 def_component $component13 = enum(component, component, $enum, deadman_spectator:middle_left);
 cc_deleteall($component13);
 def_int $int14 = 0;

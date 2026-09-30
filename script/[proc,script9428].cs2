@@ -16,7 +16,7 @@ if (%league_task_menu_entry_id < 0) {
 def_int $int3 = min($int2, %league_task_menu_entry_id);
 def_int $int4 = min($int2, calc(%league_task_menu_entry_id + $int0));
 if (%league_task_menu_entry_id >= $int4) {
-    ~script9430;
+    ~league_task_menu_scrollbar;
     if (%league_task_menu_total_count = 0 & %league_tasks_is_searching = 0) {
         if_sethide(false, league_tasks:tasks_none);
     } else {
@@ -76,8 +76,8 @@ while ($int3 < $int4) {
     }
     $int24 = ~script9470($int3);
     $int25 = db_getfield($dbrow, action:action_difficulty, 0);
-    $string1 = ~script9406($dbrow);
-    $string2 = ~script9407($dbrow);
+    $string1 = ~league_task_override_name($dbrow);
+    $string2 = ~league_task_override_desc($dbrow);
     $int26 = enum(int, int, enum_2671, $int25);
     $int27 = db_getfield($dbrow, action:category, 0);
     $int28 = db_getfield($dbrow, action:task_area, 0);
@@ -93,7 +93,7 @@ while ($int3 < $int4) {
             %league_task_menu_total_count = calc(%league_task_menu_total_count + 1);
             $int31 = %league_task_menu_component_id;
             $int32 = %league_task_menu_ypos;
-            ~script9429($int3, $int31, $int32, $int27, $int28, $int25, $int26, $int24, $rgb, $string1, $string2, $boolean22, $dbrow, $tasks_background, $tasks_expand, $tasks_type, $tasks_area, $tasks_description, $tasks_tier, $tasks_name, $tasks_points);
+            ~league_task_draw_entry($int3, $int31, $int32, $int27, $int28, $int25, $int26, $int24, $rgb, $string1, $string2, $boolean22, $dbrow, $tasks_background, $tasks_expand, $tasks_type, $tasks_area, $tasks_description, $tasks_tier, $tasks_name, $tasks_points);
         }
     }
     $int3 = calc($int3 + 1);

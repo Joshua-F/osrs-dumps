@@ -1,0 +1,13 @@
+// 6649
+[proc,cluehelper_get_requirement_description](dbrow $dbrow)(string)
+switch_dbtable (db_getrowtable($dbrow)) {
+    case cluehelper_requirement_obj :
+        return(db_getfield($dbrow, cluehelper_requirement_obj:description, 0));
+    case cluehelper_requirement_stat :
+        return("<enum(stat, string, enum_680, db_getfield($dbrow, cluehelper_requirement_stat:stat, 0))> <tostring(db_getfield($dbrow, cluehelper_requirement_stat:level, 0))>");
+    case cluehelper_requirement_quest :
+        return(db_getfield($dbrow, cluehelper_requirement_quest:description, 0));
+    case cluehelper_requirement_obj_param_trail_item :
+        return(db_getfield($dbrow, cluehelper_requirement_obj_param_trail_item:description, 0));
+}
+return(null);

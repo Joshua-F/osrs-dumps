@@ -1,0 +1,20 @@
+// 9025
+[proc,sailing_sidepanel_get_facility_setup](int $int0, int $int1, int $int2)(dbrow)
+def_dbrow $dbrow3 = ~sailing_sidepanel_get_facility_data($int0, $int1, $int2);
+if ($dbrow3 = null) {
+    return(null);
+}
+def_dbrow $dbrow4 = null;
+switch_dbtable (db_getrowtable($dbrow3)) {
+    case sailing_boat_sail :
+        $dbrow4 = db_getfield($dbrow3, sailing_boat_sail:sidepanel_layout_data, 0);
+    case sailing_boat_steering :
+        $dbrow4 = db_getfield($dbrow3, sailing_boat_steering:sidepanel_layout_data, 0);
+    case sailing_boat_hull :
+        if (%sailing_sidepanel_boat_auto_repair_rate = 0) {
+            $dbrow4 = db_getfield($dbrow3, sailing_boat_hull:sidepanel_layout_data, 0);
+        }
+    case sailing_boat_facility :
+        $dbrow4 = db_getfield($dbrow3, sailing_boat_facility:sidepanel_layout_data, 0);
+}
+return($dbrow4);

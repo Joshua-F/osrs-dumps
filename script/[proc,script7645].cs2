@@ -4,7 +4,7 @@ def_component $select_button = trailblazer_areas:select_button;
 def_component $confirm_button = trailblazer_areas:confirm_button;
 def_component $echo_boss_map_button = trailblazer_areas:echo_boss_map_button;
 def_int $int5 = 0;
-def_string $string0 = ~script5484($int1);
+def_string $string0 = ~get_region_name($int1);
 def_string $string1 = "";
 cc_deleteall($echo_boss_map_button);
 if_setop(1, "", $echo_boss_map_button);
@@ -26,8 +26,8 @@ if (~in_league_tutorial = true) {
     if_setonop("script7649", $echo_boss_map_button);
 } else {
     if (~on_mobile = false) {
-        if_setonmouseleave("script7647($echo_boss_map_button, false)", $echo_boss_map_button);
-        if_setonmouserepeat("script7647($echo_boss_map_button, true)", $echo_boss_map_button);
+        if_setonmouseleave("league_area_echo_button_hover($echo_boss_map_button, false)", $echo_boss_map_button);
+        if_setonmouserepeat("league_area_echo_button_hover($echo_boss_map_button, true)", $echo_boss_map_button);
     }
-    if_setonop("script7646($confirm_button, $echo_boss_map_button, false)", $echo_boss_map_button);
+    if_setonop("league_area_echo_confirm($confirm_button, $echo_boss_map_button, false)", $echo_boss_map_button);
 }

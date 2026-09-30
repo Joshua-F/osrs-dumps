@@ -1,0 +1,39 @@
+// 6206
+[clientscript,pvpa_unrankedduel_opponent_init](component $opponent, component $component1, component $component2, component $component3, component $component4, component $component5, component $opponent_confirm, component $component7, enum $enum)
+cc_deleteall($component2);
+def_int $int = 0;
+cc_create($component2, ^iftype_graphic, $int);
+$int = calc($int + 1);
+cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_centre);
+cc_setsize(36, 36, ^setsize_abs, ^setsize_abs);
+cc_setgraphic("miscgraphics,0");
+cc_create($component2, ^iftype_graphic, $int);
+$int = calc($int + 1);
+cc_setposition(2, 0, ^setpos_abs_left, ^setpos_abs_centre);
+cc_setsize(29, 22, ^setsize_abs, ^setsize_abs);
+cc_setgraphic("bankbuttons,6");
+cc_settrans(150);
+cc_create($component2, ^iftype_text, $int);
+cc_setcolour(0x9f9f9f);
+$int = calc($int + 1);
+cc_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_centre);
+cc_setsize(38, 0, ^setsize_minus, ^setsize_minus);
+cc_settextfont(p12_full);
+cc_settextshadow(true);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+cc_settext("---");
+~pvpa_unrankedduel_opponent_drawloadout($component1, $component3, $component4, $enum);
+if_setonvartransmit("pvpa_unrankedduel_opponent_drawloadout($component1, $component3, $component4, $enum){pvpa_temp_transmit_1, pvpa_unrankedduel_transmit_opponentrunepouch}", $opponent);
+if_setoninvtransmit("pvpa_unrankedduel_opponent_drawloadout($component1, $component3, $component4, $enum){trail_puzzlehintinv}", $opponent);
+def_string $string = "";
+if ($opponent_confirm ! null) {
+    if_sethide(false, $opponent_confirm);
+    ~pvpa_unrankedduel_opponent_drawconfirm($component5, $opponent_confirm, $component7);
+    if_setonvartransmit("pvpa_unrankedduel_opponent_drawconfirm($component5, $opponent_confirm, $component7){pvpa_temp_transmit_1}", $component5);
+} else {
+    ~script6708($component5);
+    if_setonvartransmit("script6707($component5){pvpa_temp_transmit_1}", $component5);
+    $string = "<col=0dc10d>Copy Load-out</col>";
+    ~stonebutton_init($string, $component7, p12_full, 0);
+    if_setonop("pvpa_stagingarea_shareloadout_opcopy(event_op, $string, $component7, p12_full)", $component7);
+}

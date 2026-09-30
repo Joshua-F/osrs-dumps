@@ -57,14 +57,14 @@ if ($int13 = 1) {
     $int24 = ~steelborder($frame, "<enum(int, string, enum_108, %skill_guide_v2_current_skill)> - <$string> ", 1);
 } else {
     $int24 = ~steelborder($frame, "<enum(int, string, enum_108, %skill_guide_v2_current_skill)> - <$string> ", 19);
-    ~script1785($content);
+    ~responsive_interface_content_resize($content);
 }
 def_stat $stat = null;
 if (.cc_find($frame, $int24) = true) {
     $stat = enum(int, stat, enum_681, %skill_guide_v2_current_skill);
     ~create_graphic($frame, ~script8302($frame), enum(stat, graphic, enum_1505, $stat), calc(0 - (parawidth(.cc_gettext, .cc_getwidth, .cc_param(param_2523)) + 13) / 2 - 5), calc(.cc_gety + (.cc_getheight - 13) / 2), ^setpos_abs_centre, ^setpos_abs_top, 13, 13, ^setsize_abs, ^setsize_abs, false);
 }
-~script4215($close, "Close");
+~steelborder_static_closebutton($close, "Close");
 if_setonop("opsound(event_op, 2)", $close);
 if_setopkey(1, ^key_escape, 0, $close);
 def_int $int26 = calc((if_gety($content) - if_getheight($close)) / 2);
@@ -188,7 +188,7 @@ def_int $int48 = 100;
 if (%skill_guide_v2_current_tab = 0) {
     if_sethide(true, skill_guide_v2:guide_data);
     if_sethide(false, skill_guide_v2:overview);
-    ~script9176(%skill_guide_v2_current_skill, %skill_guide_v2_current_tab);
+    ~skill_guide_v2_build_overview(%skill_guide_v2_current_skill, %skill_guide_v2_current_tab);
 } else {
     if_sethide(false, skill_guide_v2:guide_data);
     if_sethide(true, skill_guide_v2:overview);

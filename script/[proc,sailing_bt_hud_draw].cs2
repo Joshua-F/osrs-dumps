@@ -31,7 +31,7 @@ if ($dbrow ! null) {
         if_setontimer(null, sailing_bt_hud:bt_current_time);
     } else {
         $int10 = calc($int10 * 30 - clientclock);
-        if_setontimer("script8608($int10)", sailing_bt_hud:bt_current_time);
+        if_setontimer("sailing_hud_bt_timer($int10)", sailing_bt_hud:bt_current_time);
         if_setcolour(^white, sailing_bt_hud:bt_current_time);
     }
     if ($int6 > 0) {
@@ -96,7 +96,7 @@ if ($dbrow ! null) {
     if_setop(1, "Reset trial", sailing_bt_hud:bt_btn_reset_click);
     if_setop(2, "Quick-reset trial", sailing_bt_hud:bt_btn_reset_click);
     if_setop(3, "Exit trial", sailing_bt_hud:bt_btn_reset_click);
-    if_setonclick("script8607", sailing_bt_hud:bt_btn_reset_click);
+    if_setonclick("sailing_hud_bt_reset_click", sailing_bt_hud:bt_btn_reset_click);
     if ($graphic21 ! null) {
         if_setgraphic($graphic21, sailing_bt_hud:bt_partial_gfx);
         if_sethide(false, sailing_bt_hud:bt_partial_gfx);
@@ -127,7 +127,7 @@ if ($dbrow ! null) {
     if_setonmouserepeat("script3440(event_com, cc_getid, $graphic23, null)", $bt_btn_expand_icon);
     if_setonmouseleave("script3440(event_com, cc_getid, $graphic22, null)", $bt_btn_expand_icon);
     if_setop(1, $string5, $bt_btn_expand_click);
-    if_setonop("script8609($dbrow, $int1, $int2, $int3, $int4, $int5, $int6, $int7, $int8, $string0, $int9)", $bt_btn_expand_click);
+    if_setonop("sailing_hud_bt_expand_click($dbrow, $int1, $int2, $int3, $int4, $int5, $int6, $int7, $int8, $string0, $int9)", $bt_btn_expand_click);
     if (%sailing_bt_hud_compact = 1) {
         if_sethide(true, sailing_bt_hud:bt_title);
         if_setposition(35, -4, ^setpos_abs_left, ^setpos_abs_top, sailing_bt_hud:bt_left);

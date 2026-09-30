@@ -6,7 +6,7 @@ if (%bank_showincinerator = 1) {
     if_sethide(true, $component10);
     ~deltooltip_action($component12);
 }
-~script9219($component10);
+~bank_storage_popuptab($component10);
 def_boolean $boolean20 = false;
 if (%bank_hidedepositcontainers = 1) {
     $boolean20 = true;
@@ -92,7 +92,7 @@ if (%bank_currenttab = 15) {
     if (cc_find(bankmain:potionstore_button, 0) = true) {
         cc_setgraphic("miscgraphics,9");
     }
-    ~script6080;
+    ~potionstore_content_draw;
 } else {
     if_sethide(true, bankmain:potionstore_container);
     if (cc_find(bankmain:potionstore_button, 0) = true) {
@@ -210,7 +210,7 @@ if ((%bank_currenttab <= 0 | %bank_currenttab > 9) & %bank_currenttab ! 15) {
             }
         }
     } else if (%banktags_active_tag ! -1) {
-        if_settext(~script9552(%banktags_active_tag), $component6);
+        if_settext(~banktags_get_title(%banktags_active_tag), $component6);
     } else {
         if_settext("The Bank of Gielinor", $component6);
     }
@@ -249,7 +249,7 @@ while ($int25 < 1410) {
 }
 $int33 = calc($int33 + 32);
 if (%banktags_active_tag ! -1) {
-    if_settext(~script9552(%banktags_active_tag), $component6);
+    if_settext(~banktags_get_title(%banktags_active_tag), $component6);
 } else if (%bank_currenttab = 15) {
     if_settext("Potion storage", $component6);
 } else if (%bank_tab_display = 2) {

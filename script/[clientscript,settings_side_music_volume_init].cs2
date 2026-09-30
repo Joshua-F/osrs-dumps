@@ -1,0 +1,20 @@
+// 3933
+[clientscript,settings_side_music_volume_init](component $music_icon, component $music_bobble_container, component $music_slider_bobble, component $tooltip, component $music_holder)
+cc_deleteall($music_bobble_container);
+if_setposition(0, 42, ^setpos_abs_centre, ^setpos_abs_top, $music_holder);
+if_setonvartransmit("settings_side_volume_bobble($music_slider_bobble){option_master_volume}", $music_bobble_container);
+~settings_side_volume_bobble($music_slider_bobble);
+def_int $int = if_getwidth($music_bobble_container);
+def_graphic $graphic = "options_icons,1";
+def_string $string0 = "Mute Music Volume";
+def_string $string1 = "Unmute Music Volume";
+~script9253(%option_music, 30, $music_slider_bobble, $music_bobble_container, -1, $graphic, $music_icon, $string0, $string1, $tooltip);
+if_setdraggable($music_bobble_container, -1, $music_slider_bobble);
+if_setdragdeadzone(0, $music_slider_bobble);
+if_setdragdeadtime(0, $music_slider_bobble);
+if_setondrag("settings_side_music_volume_drag($music_slider_bobble, event_mousex, $int)", $music_slider_bobble);
+if_setondragcomplete("settings_side_music_volume_drag_complete($music_slider_bobble, event_mousex, $int)", $music_slider_bobble);
+if_setonvartransmit("settings_side_music_volume_set($music_slider_bobble, $int){option_music}", $music_slider_bobble);
+if_setnoclickthrough(true, $music_slider_bobble);
+if_setonclick("settings_side_music_volume_op($music_slider_bobble, event_mousex, $int, $music_bobble_container)", $music_bobble_container);
+~settings_side_music_volume_set_position($music_slider_bobble, $int);

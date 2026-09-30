@@ -44,7 +44,7 @@ $int8 = ~cc_add_button($perm_floating_panel_content, $int8, 10, $int7, ^setpos_a
 if (%talent_tree_zoom_scalar < 250) {
     cc_setop(1, "Zoom In");
     cc_setopbase("<col=ff9040>View</col>");
-    cc_setonop("script9353(calc(%talent_tree_zoom_scalar + 25))");
+    cc_setonop("talent_tree_zoom(calc(%talent_tree_zoom_scalar + 25))");
 } else {
     ~cc_set_button_states(false, 1);
 }
@@ -52,7 +52,7 @@ $int8 = ~cc_add_button($perm_floating_panel_content, $int8, 10, $int7, ^setpos_a
 if (%talent_tree_zoom_scalar > 100) {
     cc_setop(1, "Zoom Out");
     cc_setopbase("<col=ff9040>View</col>");
-    cc_setonop("script9353(calc(%talent_tree_zoom_scalar - 25))");
+    cc_setonop("talent_tree_zoom(calc(%talent_tree_zoom_scalar - 25))");
 } else {
     ~cc_set_button_states(false, 1);
 }
@@ -76,7 +76,7 @@ if (%talent_resets_available > 0) {
 $int8 = ~cc_add_button($perm_floating_panel_content, $int8, 0, $int7, ^setpos_abs_centre, ^setpos_abs_top, 20, 28, ^setsize_minus, ^setsize_abs, struct_6265, "Reset Pacts");
 cc_setop(1, "Reset");
 cc_setopbase("<col=ff9040>Pacts</col>");
-cc_setonop("script7898");
+cc_setonop("talent_tree_reset");
 cc_setonvartransmit("script7900{talent_perm_1}");
 if (%talent_resets_available <= 0) {
     ~cc_set_button_states(false, 1);
@@ -90,7 +90,7 @@ if (~on_mobile = true) {
     $int8 = ~cc_add_button($perm_floating_panel_content, $int8, 0, $int7, ^setpos_abs_centre, ^setpos_abs_top, 20, 38, ^setsize_minus, ^setsize_abs, struct_6265, $string);
     cc_setop(1, "Toggle");
     cc_setopbase("<col=ff9040>Info on tap</col>");
-    cc_setonop("script9351");
+    cc_setonop("talent_tree_mobile_op_toggle");
     $int7 = calc($int7 + 45);
 }
 $int8 = ~cc_add_button($perm_floating_panel_content, $int8, 0, $int7, ^setpos_abs_centre, ^setpos_abs_top, 20, 38, ^setsize_minus, ^setsize_abs, struct_6265, "Active Pact<br>Information");

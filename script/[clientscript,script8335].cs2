@@ -6,17 +6,17 @@ if ($int1 ! -1) {
 }
 switch_int (%poll_vote_status) {
     case 0, 3 :
-        ~script8337($int0, "<$string1> You haven't voted yet.");
-        ~script8338("Vote");
+        ~ballot_overview_draw_intro($int0, "<$string1> You haven't voted yet.");
+        ~ballot_overview_draw_vote_button("Vote");
     case 1 :
         if (string_length($string0) = 0) {
-            ~script8337($int0, "<$string1> You're not eligible to vote.");
+            ~ballot_overview_draw_intro($int0, "<$string1> You're not eligible to vote.");
         } else {
-            ~script8337($int0, "<$string1> <$string0>");
+            ~ballot_overview_draw_intro($int0, "<$string1> <$string0>");
         }
     case 2 :
-        ~script8337($int0, "<$string1> Your vote has been recorded.");
+        ~ballot_overview_draw_intro($int0, "<$string1> Your vote has been recorded.");
     case 4, 5 :
-        ~script8337($int0, "<$string1> You haven't submitted your vote yet.");
-        ~script8338("Continue Voting");
+        ~ballot_overview_draw_intro($int0, "<$string1> You haven't submitted your vote yet.");
+        ~ballot_overview_draw_vote_button("Continue Voting");
 }

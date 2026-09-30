@@ -1,0 +1,32 @@
+// 9580
+[proc,banktags_headers_drawall]
+if (~on_enhanced_any = false) {
+    return;
+}
+def_int $int0 = ~script9556;
+def_int $int1 = 0;
+def_int $int2 = ~script9590;
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_int $int5 = 0;
+def_int $int6 = 0;
+def_int $int7 = 0;
+if_sethide(false, bankmain:banktags_headers);
+if_sethide(false, bankmain:banktags_header_separator);
+cc_deleteall(bankmain:banktags_headers);
+$int1 = ~banktags_headers_draw_newbutton($int1);
+$int4 = calc($int4 + 1);
+if ($int0 > $int2) {
+    $int1 = ~banktags_headers_draw_scrollbuttons($int1, $int2, $int0);
+    $int2 = calc($int2 - 2);
+    $int6 = 1;
+    $int4 = calc($int4 + 1);
+    %banktags_headers_scroll_offset = min(%banktags_headers_scroll_offset, calc($int0 - $int2));
+} else {
+    %banktags_headers_scroll_offset = 0;
+}
+$int1 = 10;
+while ($int3 < $int2 & $int3 < 20) {
+    $int1, $int4 = ~banktags_headers_draw(calc($int3 + %banktags_headers_scroll_offset), $int4, $int1, $int0, $int2);
+    $int3 = calc($int3 + 1);
+}

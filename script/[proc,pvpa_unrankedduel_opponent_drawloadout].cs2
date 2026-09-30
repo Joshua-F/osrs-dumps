@@ -1,0 +1,368 @@
+// 6208
+[proc,pvpa_unrankedduel_opponent_drawloadout](component $component0, component $component1, component $component2, enum $enum)
+def_int $int4 = -1;
+def_int $int5 = -1;
+def_int $int6 = -1;
+def_int $int7 = -1;
+def_int $int8 = -1;
+def_obj $obj = null;
+def_component $component10 = null;
+def_int $int11 = 0;
+def_int $int12 = inv_size(worn);
+while ($int11 < $int12) {
+    $component10 = enum(int, component, $enum, $int11);
+    if ($component10 ! null) {
+        cc_deleteall($component10);
+        cc_create($component10, ^iftype_graphic, 0);
+        cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+        cc_setsize(36, 36, ^setsize_abs, ^setsize_abs);
+        cc_setgraphic("miscgraphics,0");
+        cc_create($component10, ^iftype_graphic, 1);
+        cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+        cc_setposition(2, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+        $obj = inv_getobj(trail_puzzlehintinv, $int11);
+        if ($obj ! null) {
+            cc_settrans(0);
+            cc_setgraphicshadow(0x333333);
+            cc_setoutline(1);
+            cc_setobject($obj, inv_getnum(trail_puzzlehintinv, $int11));
+            cc_setopbase("<col=ff9040><oc_name($obj)></col>");
+            cc_setop(10, "Examine");
+            cc_setonop("cc_settrans_temporarily(event_com, cc_getid, 100, 0)");
+            if (oc_param($obj, param_1564) ! 13) {
+                switch_int (oc_param($obj, param_1562)) {
+                    case 3 :
+                        $int4 = max($int4, oc_param($obj, param_1563));
+                    case 5 :
+                        $int5 = max($int5, oc_param($obj, param_1563));
+                    case -6 :
+                        $int6 = max($int6, oc_param($obj, param_1563));
+                    case -7 :
+                        $int7 = max($int7, oc_param($obj, param_1563));
+                    case -8 :
+                        $int8 = max($int8, oc_param($obj, param_1563));
+                }
+            }
+        } else {
+            cc_settrans(255);
+            cc_clearops;
+            cc_create($component10, ^iftype_graphic, 2);
+            cc_setsize(32, 32, ^setsize_abs, ^setsize_abs);
+            cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+            cc_setgraphic(enum(int, graphic, enum_904, $int11));
+        }
+    }
+    $int11 = calc($int11 + 1);
+}
+cc_deleteall($component0);
+def_int $int13 = calc((if_getwidth($component0) - 6 - 4 * 36) / 3 + 36);
+def_int $int14 = calc((if_getheight($component0) - 6 - 7 * 32) / 6 + 32);
+$int11 = 0;
+def_int $int15 = $int12;
+def_int $int16 = inv_size(inv);
+while ($int11 < $int16) {
+    $obj = inv_getobj(trail_puzzlehintinv, $int15);
+    cc_create($component0, ^iftype_graphic, $int11);
+    cc_setposition(calc(4 + $int13 * ($int11 % 4)), calc(3 + $int14 * ($int11 / 4)), ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+    if ($obj ! null) {
+        cc_settrans(0);
+        cc_setgraphicshadow(0x333333);
+        cc_setoutline(1);
+        cc_setobject($obj, inv_getnum(trail_puzzlehintinv, $int15));
+        cc_setopbase("<col=ff9040><oc_name($obj)></col>");
+        if ($obj = pvpa_rune_replacement) {
+            cc_setop(1, "Check");
+        }
+        cc_setop(10, "Examine");
+        cc_setonop("cc_settrans_temporarily(event_com, cc_getid, 100, 0)");
+        if (oc_param($obj, param_1564) ! 13) {
+            switch_int (oc_param($obj, param_1562)) {
+                case 3 :
+                    $int4 = max($int4, oc_param($obj, param_1563));
+                case 5 :
+                    $int5 = max($int5, oc_param($obj, param_1563));
+                case -6 :
+                    $int6 = max($int6, oc_param($obj, param_1563));
+                case -7 :
+                    $int7 = max($int7, oc_param($obj, param_1563));
+                case -8 :
+                    $int8 = max($int8, oc_param($obj, param_1563));
+            }
+        }
+    } else {
+        cc_settrans(255);
+        cc_clearops;
+    }
+    $int11, $int15 = calc($int11 + 1), calc($int15 + 1);
+}
+def_int $int17 = $int11;
+$int17 = ~thinbox($component0, $int17);
+cc_deleteall($component2);
+def_int $int18 = 0;
+cc_create($component2, ^iftype_graphic, $int18);
+$int18 = calc($int18 + 1);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_setgraphic(tradebacking_light);
+cc_settiling(true);
+cc_create($component2, ^iftype_rectangle, $int18);
+$int18 = calc($int18 + 1);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_setfill(false);
+cc_setcolour(0x0e0e0c);
+cc_create($component2, ^iftype_rectangle, $int18);
+$int18 = calc($int18 + 1);
+cc_setsize(2, 2, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_setfill(false);
+cc_setcolour(0x474745);
+cc_create($component2, ^iftype_text, $int18);
+$int18 = calc($int18 + 1);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_settextfont(p12_full);
+cc_settextshadow(true);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+cc_setcolour(0xff981f);
+cc_settext(enum(int, string, enum_4208, %pvpa_unrankedduel_transmit_opponentspellbook));
+def_int $int19 = 0;
+def_int $int20 = 0;
+def_int $int21 = 0;
+def_int $int22 = 0;
+def_int $int23 = 0;
+def_int $int24 = 0;
+def_int $int25 = 0;
+def_int $int26 = 0;
+def_int $int27 = 0;
+def_int $int28 = 0;
+def_int $int29 = 0;
+def_int $int30 = 0;
+$int23, $int24, $int25, $int26, $int27, $int28, $int29, $int30 = ~script6335(%pvpa_transmit_build);
+def_int $intarray0(calc(24 + 1));
+def_int $int31 = 24;
+while ($int31 > 0) {
+    switch_int ($int31) {
+        case 1 :
+            $intarray0($int31) = $int23;
+        case 2 :
+            $intarray0($int31) = $int24;
+        case 3 :
+            $intarray0($int31) = $int25;
+        case 4 :
+            $intarray0($int31) = $int26;
+        case 5 :
+            $intarray0($int31) = $int27;
+        case 6 :
+            $intarray0($int31) = $int28;
+        case 7 :
+            $intarray0($int31) = $int29;
+        case default :
+            $intarray0($int31) = $int30;
+    }
+    $int31 = calc($int31 - 1);
+}
+def_int $int32 = enum_getoutputcount(enum_4390);
+$int11 = $int32;
+def_int $intarray1(calc($int32 + 1));
+def_int $int33 = enum_getoutputcount(enum_4392);
+def_obj $objarray($int33);
+def_int $intarray3($int33);
+def_int $int34 = 0;
+def_int $int35 = ^max_32bit_int;
+while ($int11 > 0) {
+    $obj = enum(int, namedobj, enum_4390, $int11);
+    if ($obj ! null) {
+        $intarray1($int11) = inv_total(trail_puzzlehintinv, $obj);
+        $int35 = enum(obj, int, enum_4392, $obj);
+        if ($int35 < ^max_32bit_int) {
+            $int34 = $int33;
+            while ($int34 > 0) {
+                $int34 = calc($int34 - 1);
+                if ($objarray($int34) = null) {
+                    $intarray3($int34) = $int35;
+                    $objarray($int34) = $obj;
+                    $int34 = -1;
+                } else if ($obj = $objarray($int34)) {
+                    $int34 = -1;
+                }
+            }
+        }
+    }
+    $int11 = calc($int11 - 1);
+}
+def_int $int36 = 0;
+def_int $int37 = 0;
+if (%pvpa_unrankedduel_transmit_opponentspellbook ! ~pvpa_stagingarea_supplies_getspellbook(%pvpa_transmit_build)) {
+    $int37 = 1;
+} else if (%pvpa_unrankedduel_transmit_opponentrunepouch ! ~pvpa_stagingarea_supplies_getrunepouch(%pvpa_transmit_build) & inv_total(trail_puzzlehintinv, pvpa_rune_replacement) > 0) {
+    $int37 = 1;
+}
+$int11 = $int12;
+while ($int11 > 0) {
+    $int11 = calc($int11 - 1);
+    $int36 = ~pvpa_stagingarea_supplies_equipment_get_worn(%pvpa_transmit_build, $int11);
+    $obj = enum(int, namedobj, enum_4390, $int36);
+    if ($obj ! null) {
+        if (oc_stackable($obj) = true) {
+            $intarray1($int36) = calc($intarray1($int36) - 5000);
+        } else {
+            $intarray1($int36) = calc($intarray1($int36) - 1);
+        }
+        if ($intarray1($int36) < 0) {
+            $int37 = 1;
+        }
+    }
+    $obj = inv_getobj(trail_puzzlehintinv, $int11);
+    if ($obj ! null) {
+        $int19 = 0;
+        $int35 = enum(obj, int, enum_4392, $obj);
+        if ($int35 < ^max_32bit_int) {
+            $int34 = $int33;
+            while ($int34 > 0) {
+                $int34 = calc($int34 - 1);
+                if ($objarray($int34) = $obj) {
+                    if ($intarray3($int34) > 0) {
+                        $intarray3($int34) = calc($intarray3($int34) - 1);
+                    } else {
+                        $int19, $int22 = 1, 1;
+                    }
+                    $int34 = -1;
+                }
+            }
+        }
+        if (oc_param($obj, param_434) ! null & oc_param($obj, param_436) > $intarray0(enum(stat, int, enum_81, oc_param($obj, param_434))) | oc_param($obj, param_435) ! null & oc_param($obj, param_437) > $intarray0(enum(stat, int, enum_81, oc_param($obj, param_435))) | oc_param($obj, param_191) ! null & oc_param($obj, param_613) > $intarray0(enum(stat, int, enum_81, oc_param($obj, param_191))) | oc_param($obj, param_579) ! null & oc_param($obj, param_614) > $intarray0(enum(stat, int, enum_81, oc_param($obj, param_579))) | oc_param($obj, param_610) ! null & oc_param($obj, param_615) > $intarray0(enum(stat, int, enum_81, oc_param($obj, param_610))) | oc_param($obj, param_611) ! null & oc_param($obj, param_616) > $intarray0(enum(stat, int, enum_81, oc_param($obj, param_611))) | oc_param($obj, param_612) ! null & oc_param($obj, param_617) > $intarray0(enum(stat, int, enum_81, oc_param($obj, param_612)))) {
+            $int19, $int20 = 1, 1;
+        }
+        if (oc_param($obj, param_1564) = 13) {
+            switch_int (oc_param($obj, param_1562)) {
+                case 3 :
+                    if ($int4 < oc_param($obj, param_1563)) {
+                        $int19, $int21 = 1, 1;
+                    }
+                case 5 :
+                    if ($int5 < oc_param($obj, param_1563)) {
+                        $int19, $int21 = 1, 1;
+                    }
+                case -6 :
+                    if ($int6 < oc_param($obj, param_1563)) {
+                        $int19, $int21 = 1, 1;
+                    }
+                case -7 :
+                    if ($int7 < oc_param($obj, param_1563)) {
+                        $int19, $int21 = 1, 1;
+                    }
+                case -8 :
+                    if ($int8 < oc_param($obj, param_1563)) {
+                        $int19, $int21 = 1, 1;
+                    }
+            }
+        }
+        if ($int19 = 1) {
+            $component10 = enum(int, component, $enum, $int11);
+            if ($component10 ! null) {
+                cc_create($component10, ^iftype_model, 2);
+                cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+                cc_setposition(1, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+                cc_setmodel(model_7669);
+                cc_setmodelangle(0, 0, 512, 512, 0, 1800);
+            }
+        }
+    }
+}
+$int11 = 0;
+while ($int11 < $int16) {
+    $int36 = ~pvpa_stagingarea_supplies_equipment_get_inv(%pvpa_transmit_build, $int11);
+    $obj = enum(int, namedobj, enum_4390, $int36);
+    if ($obj ! null) {
+        if (oc_stackable($obj) = true) {
+            $intarray1($int36) = calc($intarray1($int36) - 5000);
+        } else {
+            $intarray1($int36) = calc($intarray1($int36) - 1);
+        }
+        if ($intarray1($int36) < 0) {
+            $int37 = 1;
+        }
+    }
+    cc_create($component0, ^iftype_model, $int17);
+    $int17 = calc($int17 + 1);
+    $obj = inv_getobj(trail_puzzlehintinv, calc($int11 + $int12));
+    if ($obj ! null) {
+        $int19 = 0;
+        $int35 = enum(obj, int, enum_4392, $obj);
+        if ($int35 < ^max_32bit_int) {
+            $int34 = $int33;
+            while ($int34 > 0) {
+                $int34 = calc($int34 - 1);
+                if ($objarray($int34) = $obj) {
+                    if ($intarray3($int34) > 0) {
+                        $intarray3($int34) = calc($intarray3($int34) - 1);
+                    } else {
+                        $int19, $int22 = 1, 1;
+                    }
+                    $int34 = -1;
+                }
+            }
+        }
+        if (oc_param($obj, param_434) ! null & oc_param($obj, param_436) > $intarray0(enum(stat, int, enum_81, oc_param($obj, param_434))) | oc_param($obj, param_435) ! null & oc_param($obj, param_437) > $intarray0(enum(stat, int, enum_81, oc_param($obj, param_435))) | oc_param($obj, param_191) ! null & oc_param($obj, param_613) > $intarray0(enum(stat, int, enum_81, oc_param($obj, param_191))) | oc_param($obj, param_579) ! null & oc_param($obj, param_614) > $intarray0(enum(stat, int, enum_81, oc_param($obj, param_579))) | oc_param($obj, param_610) ! null & oc_param($obj, param_615) > $intarray0(enum(stat, int, enum_81, oc_param($obj, param_610))) | oc_param($obj, param_611) ! null & oc_param($obj, param_616) > $intarray0(enum(stat, int, enum_81, oc_param($obj, param_611))) | oc_param($obj, param_612) ! null & oc_param($obj, param_617) > $intarray0(enum(stat, int, enum_81, oc_param($obj, param_612)))) {
+            $int19, $int20 = 1, 1;
+        }
+        if (oc_param($obj, param_1564) = 13) {
+            switch_int (oc_param($obj, param_1562)) {
+                case 3 :
+                    if ($int4 < oc_param($obj, param_1563)) {
+                        $int19, $int21 = 1, 1;
+                    }
+                case 5 :
+                    if ($int5 < oc_param($obj, param_1563)) {
+                        $int19, $int21 = 1, 1;
+                    }
+                case -6 :
+                    if ($int6 < oc_param($obj, param_1563)) {
+                        $int19, $int21 = 1, 1;
+                    }
+                case -7 :
+                    if ($int7 < oc_param($obj, param_1563)) {
+                        $int19, $int21 = 1, 1;
+                    }
+                case -8 :
+                    if ($int8 < oc_param($obj, param_1563)) {
+                        $int19, $int21 = 1, 1;
+                    }
+            }
+        }
+        if ($int19 = 1) {
+            cc_sethide(false);
+            cc_setsize(36, 32, ^setsize_abs, ^setsize_abs);
+            cc_setposition(calc(4 + $int13 * ($int11 % 4)), calc(3 + $int14 * ($int11 / 4)), ^setpos_abs_left, ^setpos_abs_top);
+            cc_setmodel(model_7669);
+            cc_setmodelangle(0, 0, 512, 512, 0, 1800);
+        } else {
+            cc_sethide(true);
+        }
+    } else {
+        cc_sethide(true);
+    }
+    $int11 = calc($int11 + 1);
+}
+if ($int37 = 0) {
+    $int11 = $int32;
+    while ($int11 > 0 & $int37 = 0) {
+        if (enum(int, namedobj, enum_4390, $int11) ! null & $intarray1($int11) ! 0) {
+            $int37 = 1;
+        }
+        $int11 = calc($int11 - 1);
+    }
+}
+if ($int20 = 1) {
+    if_settext("This build's <col=ff0000>stats</col> will not permit equipping some of the items.", $component1);
+} else if ($int22 = 1) {
+    if_settext("This load-out contains <col=ff0000>too many</col> of certain items.", $component1);
+} else if ($int21 = 1) {
+    if_settext("Your opponent has ammo that <col=ff0000>cannot be fired</col> by their weaponry.", $component1);
+} else if ($int37 = 1) {
+    if_settext("Your opponent's load-out <col=ff0000>does not match</col> yours.", $component1);
+} else {
+    if_settext("You and your opponent have <col=ffb83f>the same options</col> in your load-outs.", $component1);
+}

@@ -1,6 +1,6 @@
 // 8135
 [proc,bingo_redraw_tile_details_content](component $component0, int $int1, int $int2, int $int3, int $int4, int $int5, component $component6, component $component7, component $component8)(int)
-def_int $int9 = ~script8258($int4, $int5);
+def_int $int9 = ~bingo_get_task_id($int4, $int5);
 def_dbrow $dbrow = null;
 def_int $int11 = 0;
 def_int $int12 = 0;
@@ -8,10 +8,10 @@ def_int $int13 = 0;
 def_graphic $graphic = null;
 def_obj $obj = null;
 def_string $string = "";
-$dbrow, $int11, $int12, $int13, $string, $graphic, $obj = ~script8145($int9);
-def_int $int16 = ~script8278($dbrow, $int9);
+$dbrow, $int11, $int12, $int13, $string, $graphic, $obj = ~bingo_get_task_data($int9);
+def_int $int16 = ~bingo_get_task_progress($dbrow, $int9);
 def_boolean $boolean17 = ~script8281($int9);
-def_int $int18 = ~script8267($int4, $int5);
+def_int $int18 = ~bingo_get_reward_for_tile($int4, $int5);
 def_int $int19 = 6;
 def_int $int20 = 100;
 def_int $int21 = calc(314 - 3 * $int19 - $int20);
@@ -138,6 +138,6 @@ $int24 = calc($int24 + cc_getheight);
 $int1 = calc($int1 + 1);
 def_boolean $boolean36 = false;
 if ($int18 >= 0) {
-    $int1, $boolean36 = ~script8117($component0, $int1, $int4, $int18, $int5, ~flip_bool(%bingo_info_maximised), $component6, $component7, $component8, calc($int2 + scale(20, 100, $int20)), $int24, ^setpos_abs_left, ^setpos_abs_top, scale(60, 100, $int20), max(30, scale(60, 100, $int20)), ^setsize_abs, ^setsize_abs, null);
+    $int1, $boolean36 = ~bingo_add_reward_button($component0, $int1, $int4, $int18, $int5, ~flip_bool(%bingo_info_maximised), $component6, $component7, $component8, calc($int2 + scale(20, 100, $int20)), $int24, ^setpos_abs_left, ^setpos_abs_top, scale(60, 100, $int20), max(30, scale(60, 100, $int20)), ^setsize_abs, ^setsize_abs, null);
 }
 return($int1);

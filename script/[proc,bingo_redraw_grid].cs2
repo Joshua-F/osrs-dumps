@@ -51,8 +51,8 @@ def_int $int37 = -1;
 def_int $int38 = min(calc($int14 - 6), calc($int15 - 12));
 while ($int18 < $int7) {
     $int20, $int21 = ~script8142(%bingo_selected_grid, $int18);
-    $int22 = ~script8258(%bingo_selected_grid, $int18);
-    $dbrow23, $int24, $int25, $int26, $string1, $graphic, $obj = ~script8145($int22);
+    $int22 = ~bingo_get_task_id(%bingo_selected_grid, $int18);
+    $dbrow23, $int24, $int25, $int26, $string1, $graphic, $obj = ~bingo_get_task_data($int22);
     switch_int ($int26) {
         case 1 :
             $struct = struct_6284;
@@ -72,7 +72,7 @@ while ($int18 < $int7) {
     } else {
         $int35 = 0;
     }
-    $int27 = ~script8278($dbrow23, $int22);
+    $int27 = ~bingo_get_task_progress($dbrow23, $int22);
     $boolean28 = ~script8281($int22);
     $int19 = ~cc_add_button($component0, $int19, calc($int10 + $int16 + ($int20 + 1) * ($int14 + $int10)), calc($int11 + $int17 + ($int21 + 0) * ($int15 + $int11)), ^setpos_abs_left, ^setpos_abs_top, $int14, $int15, ^setsize_abs, ^setsize_abs, $struct, "");
     $int37 = cc_getid;
@@ -84,7 +84,7 @@ while ($int18 < $int7) {
         $string0 = "<tostring($int27)> / <tostring($int24)>";
     }
     cc_setparam(param_2354, $string0);
-    ~script8131($int35, %bingo_selected_grid, $int18, $component5, $component4, $component3);
+    ~bingo_update_tile_button($int35, %bingo_selected_grid, $int18, $component5, $component4, $component3);
     cc_create_child(^iftype_graphic, $int19);
     cc_setposition(calc(3 + ($int14 - 6 - $int38) / 2), calc(3 + ($int15 - 12 - $int38) / 2), ^setpos_abs_left, ^setpos_abs_top);
     ~script8115($int38, $graphic, $obj, $int24);
@@ -133,16 +133,16 @@ while ($int18 < $int7) {
     cc_setcolour(0xff981f);
     cc_settextalign(^settextalign_right, ^settextalign_top, 0);
     $int19 = calc($int19 + 1);
-    $int31 = ~script8267(%bingo_selected_grid, $int18);
+    $int31 = ~bingo_get_reward_for_tile(%bingo_selected_grid, $int18);
     if ($int31 >= 0) {
-        $int32, $boolean36 = ~script8117($component1, $int32, %bingo_selected_grid, $int31, $int18, false, $component5, $component4, $component3, calc($int10 + $int16 + ($int20 + 1) * ($int14 + $int10)), calc($int11 + $int17 + ($int21 + 0) * ($int15 + $int11)), ^setpos_abs_left, ^setpos_abs_top, $int14, $int15, ^setsize_abs, ^setsize_abs, null);
+        $int32, $boolean36 = ~bingo_add_reward_button($component1, $int32, %bingo_selected_grid, $int31, $int18, false, $component5, $component4, $component3, calc($int10 + $int16 + ($int20 + 1) * ($int14 + $int10)), calc($int11 + $int17 + ($int21 + 0) * ($int15 + $int11)), ^setpos_abs_left, ^setpos_abs_top, $int14, $int15, ^setsize_abs, ^setsize_abs, null);
         if ($boolean36 = true & cc_find($component0, $int37) = true) {
             cc_create_child(^iftype_rectangle, $int19);
             cc_setposition(4, 2, ^setpos_abs_left, ^setpos_abs_bottom);
             cc_setsize(calc($int14 - 8), 5, ^setsize_abs, ^setsize_abs);
             cc_setfill(true);
             cc_setcolour(0x11ff11);
-            cc_setontimer("script8187(cc_getlayer, cc_getid)");
+            cc_setontimer("button_highlight_trans_update(cc_getlayer, cc_getid)");
             $int19 = calc($int19 + 1);
         }
     }
@@ -151,7 +151,7 @@ while ($int18 < $int7) {
 def_int $int39 = ~script8264(%bingo_selected_grid);
 $int31 = 0;
 while ($int31 < $int39) {
-    $int32, $boolean36 = ~script8117($component1, $int32, %bingo_selected_grid, $int31, -1, false, $component5, $component4, $component3, ~script8143(%bingo_selected_grid, $int31, $int14, $int15), ^setsize_abs, ^setsize_abs, $component0);
+    $int32, $boolean36 = ~bingo_add_reward_button($component1, $int32, %bingo_selected_grid, $int31, -1, false, $component5, $component4, $component3, ~script8143(%bingo_selected_grid, $int31, $int14, $int15), ^setsize_abs, ^setsize_abs, $component0);
     $int31 = calc($int31 + 1);
 }
 cc_deleteall($component2);
@@ -192,7 +192,7 @@ if (%bingo_info_visible = 0) {
     $string0 = "Show Event Details and Bonus Effects.";
     cc_setonmouserepeat("tooltip_mouserepeat($component2, cc_getid, $component3, $string0, 25, 512)");
     cc_setop(1, "Press");
-    cc_setonop("script8146($component4, $dbrow6, $component3, $component5)");
+    cc_setonop("bingo_redraw_info_in_overlay($component4, $dbrow6, $component3, $component5)");
     cc_create_child(^iftype_text, $int19);
     cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
     cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);

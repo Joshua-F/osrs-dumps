@@ -3,7 +3,7 @@
 def_int $int4 = inv_total(bank, $obj);
 ~create_object(bankmain:banktags_display_items, $int0, $obj, $int4, ~script9577($int2, $int3), ^setpos_abs_left, ^setpos_abs_top, 36, 32, ^setsize_abs, ^setsize_abs);
 cc_setgraphicshadow(0x333333);
-cc_setonop("script9601(event_com, event_comsubid, event_op, $obj, $int0)");
+cc_setonop("banktags_item_onop(event_com, event_comsubid, event_op, $obj, $int0)");
 cc_setopbase("<col=ff9040><oc_name($obj)></col>");
 cc_setop(1, "Withdraw-<~script2579>");
 if (%bank_quantity_type ! 0) {
@@ -20,8 +20,8 @@ cc_setop(8, "Withdraw-All-but-1");
 cc_setop(9, "Remove from tag");
 cc_setdragdeadzone(5);
 cc_setdragdeadtime(6);
-cc_setondrag("script9602(event_com, event_comsubid, cc_getx, cc_gety, event_mousex, event_mousey)");
-cc_setondragcomplete("script9603(event_com, event_comsubid, event_com2, event_comsubid2, event_mousex, event_mousey, $obj)");
-cc_setonvartransmit("script9604(bankmain:banktags_display_items, $int0){gargboss_perm_transmit}");
+cc_setondrag("banktags_item_ondrag(event_com, event_comsubid, cc_getx, cc_gety, event_mousex, event_mousey)");
+cc_setondragcomplete("banktags_item_ondragcomplete(event_com, event_comsubid, event_com2, event_comsubid2, event_mousex, event_mousey, $obj)");
+cc_setonvartransmit("banktags_item_quantity_transmit(bankmain:banktags_display_items, $int0){gargboss_perm_transmit}");
 cc_setparam(param_1849, $int2);
 cc_setparam(param_1850, $int3);

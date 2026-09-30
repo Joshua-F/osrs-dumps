@@ -34,13 +34,13 @@ if (~script9097($dbrow1) ! -1) {
 }
 if ($int10 = 1) {
     ~stonebutton_init("Back", $cancel, p12_full, 0);
-    if_setonop("script8902(port_task_info:clamp, port_task_info:fader, port_task_info:window, $popup)", $cancel);
+    if_setonop("port_task_popup_back(port_task_info:clamp, port_task_info:fader, port_task_info:window, $popup)", $cancel);
     if ($int20 = 1) {
         ~stonebutton_init("Cancel task", $select, p12_full, 0);
     } else {
         ~stonebutton_init("<col=0dc10d>Accept task</col>", $select, p12_full, 0);
     }
-    if_setonop("script8903($select)", $select);
+    if_setonop("port_task_popup_select($select)", $select);
     ~script8904(port_task_info:clamp, port_task_info:fader, port_task_info:window, 0, $popup);
     if_sethide(false, port_task_info:window);
 } else {
@@ -69,7 +69,7 @@ if ($int10 = 1) {
 if_sethide(false, $popup);
 def_int $int21 = 1800;
 if ($int10 = 1) {
-    $int21 = ~script8908;
+    $int21 = ~port_task_info_interface_info;
 }
 cc_create($component4, ^iftype_model, $int18);
 def_model $model22 = model_57848;
@@ -97,7 +97,7 @@ if ($int10 = 1) {
         cc_create($left_frame, ^iftype_model, $int19);
         cc_setmodel(model_57852);
         cc_setmodelangle(0, 0, 512, 100, 0, $int21);
-        cc_setposition(0, ~script8911, ^setpos_abs_centre, ^setpos_abs_centre);
+        cc_setposition(0, ~port_task_info_accept_height, ^setpos_abs_centre, ^setpos_abs_centre);
         cc_setsize(2, 2, ^setsize_abs, ^setsize_abs);
         cc_setmodelorthog(true);
         $int19 = calc($int19 + 1);

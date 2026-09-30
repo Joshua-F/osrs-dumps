@@ -5,15 +5,15 @@ def_component $component4 = null;
 def_int $int5 = 0;
 def_int $int6 = 0;
 def_int $int7 = 0;
-def_int $int8 = ~script7176($string);
+def_int $int8 = ~loottracker_get_source_index($string);
 def_int $int9 = ~bool_to_int(stringvector_contains(stringvector_2, oc_name($obj), true, false));
 if ($int8 >= 0) {
-    $component3 = ~script7168($int8);
-    $component4 = ~script7167($int8);
+    $component3 = ~loottracker_get_source_info_component($int8);
+    $component4 = ~loottracker_get_source_display_component($int8);
     $int6, $int7 = ~script7177($component3, $obj);
     if ($int6 >= 0) {
         ~loottracker_ui_item_increment($component3, $component4, $int6, $int7, $int9, $int1);
-        ~script7165($component3, $component4, $int8, $int6, $int7);
+        ~loottracker_ui_calc_gp($component3, $component4, $int8, $int6, $int7);
     } else {
         ~loottracker_ui_item_add($component3, $component4, $obj, $int9, $int1);
         if ($int9 = 0 & %option_loottracker_display_group_mode = 0) {
@@ -21,10 +21,10 @@ if ($int8 >= 0) {
         }
     }
 }
-def_int $int10 = ~script4453($int2);
+def_int $int10 = ~loottracker_get_drop_index($int2);
 if ($int10 >= 0) {
-    $component3 = ~script4032($int10);
-    $component4 = ~script4221($int10);
+    $component3 = ~loottracker_get_drop_info_component($int10);
+    $component4 = ~loottracker_get_drop_display_component($int10);
     $int6, $int7 = ~script7177($component3, $obj);
     if ($int6 >= 0) {
         ~loottracker_ui_item_increment($component3, $component4, $int6, $int7, $int9, $int1);

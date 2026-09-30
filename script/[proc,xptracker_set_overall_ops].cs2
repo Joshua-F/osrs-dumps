@@ -1,0 +1,12 @@
+// 5462
+[proc,xptracker_set_overall_ops](int $int)
+def_string $string = "Pause";
+if (~xptracker_get_paused(null) = 1) {
+    $string = "Unpause";
+}
+if (cc_find(xptracker:tracker_border, $int) = true) {
+    cc_setopbase("<col=ff9040>All Trackers</col>");
+    cc_setop(7, "Close");
+    cc_setop(8, $string);
+    cc_setonop("xptracker_overall_ops(event_op)");
+}

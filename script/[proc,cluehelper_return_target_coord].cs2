@@ -1,0 +1,46 @@
+// 6653
+[proc,cluehelper_return_target_coord](dbrow $dbrow)(coord)
+def_coord $coord1 = null;
+def_coord $coord2 = null;
+def_coord $coord3 = null;
+def_int $int4 = 0;
+def_int $int5 = 0;
+def_obj $obj = null;
+switch_dbtable (db_getrowtable($dbrow)) {
+    case cluehelper_target_npc :
+        return(db_getfield($dbrow, cluehelper_target_npc:coord, 0));
+    case cluehelper_target_loc :
+        return(db_getfield($dbrow, cluehelper_target_loc:coord, 0));
+    case cluehelper_target_coord :
+        return(db_getfield($dbrow, cluehelper_target_coord:coord, 0));
+    case cluehelper_target_kill :
+        return(db_getfield($dbrow, cluehelper_target_kill:coord, 0));
+    case cluehelper_target_key :
+        $obj = db_getfield($dbrow, cluehelper_target_key:key, 0);
+        if ($obj ! null & inv_total(inv, $obj) > 0) {
+            $coord3 = db_getfield($dbrow, cluehelper_target_key:loc_coord, 0);
+        } else {
+            $coord3 = db_getfield($dbrow, cluehelper_target_key:key_coord, 0);
+        }
+        return($coord3);
+    case cluehelper_target_mapzone :
+        $coord1 = db_getfield($dbrow, cluehelper_target_mapzone:coord_sw, 0);
+        $coord2 = db_getfield($dbrow, cluehelper_target_mapzone:coord_ne, 0);
+        if ($coord1 = null | $coord2 = null) {
+            return(null);
+        }
+        if (calc(coordx($coord1) / 64) = calc(coordx($coord2) / 64) & calc(coordz($coord1) / 64) = calc(coordz($coord2) / 64)) {
+            $int4 = calc((coordx($coord2) % 64 - coordx($coord1) % 64) / 2);
+            $int5 = calc((coordz($coord2) % 64 - coordz($coord1) % 64) / 2);
+        } else {
+            $int4 = calc(64 - coordx($coord1) % 64);
+            $int4 = calc($int4 + coordx($coord2) % 64);
+            $int4 = calc($int4 / 2);
+            $int5 = calc(64 - coordz($coord1) % 64);
+            $int5 = calc($int5 + coordz($coord2) % 64);
+            $int5 = calc($int5 / 2);
+        }
+        $coord1 = movecoord($coord1, $int4, 0, $int5);
+        return($coord1);
+}
+return(null);

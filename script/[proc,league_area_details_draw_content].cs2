@@ -33,14 +33,14 @@ switch_int (%responsive_current_breakpoint) {
 }
 def_int $int13 = 0;
 $int13 = ~script5293($league_tab_layer, $int13, 0, $int12, 0, 0x726451, "Overview", $graphic, $rgb, 0, null, 0, 0, 0, 0, ~is_equal(%league_area_details_current_tab, 0));
-cc_setonop("script7632(0)");
+cc_setonop("league_area_details_change_tab(0)");
 $int13 = ~script5293($league_tab_layer, $int13, 1, $int12, 0, 0x726451, "Information", $graphic, $rgb, 0, null, 0, 0, 0, 0, ~is_equal(%league_area_details_current_tab, 1));
-cc_setonop("script7632(1)");
+cc_setonop("league_area_details_change_tab(1)");
 if (~script7659 = true & $int7 ! 1 & $int7 ! 2) {
     $int13 = ~script5293($league_tab_layer, $int13, 2, $int12, 0, 0x726451, "Echoes", $graphic, $rgb, $int11, "league_tiny_relic,5", 19, 19, $int10, -1, ~is_equal(%league_area_details_current_tab, 2));
-    cc_setonop("script7632(2)");
+    cc_setonop("league_area_details_change_tab(2)");
 }
-def_struct $struct14 = ~script7625($int7);
+def_struct $struct14 = ~get_region_info($int7);
 if ($struct14 = null) {
     return;
 }
@@ -69,17 +69,17 @@ if_setscrollpos(0, 0, $league_sub_tab_info_content);
 if_setscrollpos(0, 0, $league_tab_info_content);
 switch_int (%league_area_details_current_tab) {
     case 0 :
-        $int21 = ~script7635($string0, $description, $league_tab_info_content);
+        $int21 = ~league_area_details_show_text($string0, $description, $league_tab_info_content);
         ~league_area_details_draw_scrollbar($int21, $league_tab_info_scrollbar, $league_tab_info_content);
     case 1 :
         ~league_area_details_draw_sub_tab($league_sub_tab_frame, $league_sub_tab_layer, $graphic, $rgb, "Key Info", "Unlocks", "Drops", 3);
         switch_int (%league_area_details_current_subtab) {
             case 0 :
-                $int21 = ~script7635($string1, $description_sub_tab, $league_sub_tab_info_content);
+                $int21 = ~league_area_details_show_text($string1, $description_sub_tab, $league_sub_tab_info_content);
             case 1 :
-                $int21 = ~script7635($string2, $description_sub_tab, $league_sub_tab_info_content);
+                $int21 = ~league_area_details_show_text($string2, $description_sub_tab, $league_sub_tab_info_content);
             case 2 :
-                $int21 = ~script7635($string3, $description_sub_tab, $league_sub_tab_info_content);
+                $int21 = ~league_area_details_show_text($string3, $description_sub_tab, $league_sub_tab_info_content);
         }
         ~league_area_details_draw_scrollbar($int21, $league_sub_tab_info_scrollbar, $league_sub_tab_info_content);
     case 2 :
@@ -97,5 +97,5 @@ switch_int (%league_area_details_current_tab) {
 }
 ~script7645(1, $int7);
 if (cc_find($league_area_icon, 1) = false) {
-    ~start_slideshow($league_area_icon, ~script7624($int7), 5, 4, 1);
+    ~start_slideshow($league_area_icon, ~get_region_slideshow_graphics($int7), 5, 4, 1);
 }

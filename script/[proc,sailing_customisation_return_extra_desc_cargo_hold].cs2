@@ -1,0 +1,14 @@
+// 8853
+[proc,sailing_customisation_return_extra_desc_cargo_hold](dbrow $dbrow, string $string0)(string)
+def_string $string1 = "";
+if ($dbrow = null) {
+    return("");
+}
+def_int $int = ~sailing_boat_get_cargo_size($dbrow, %ironman);
+if ($int > 0) {
+    $string1 = "Storage capacity: <$string0><tostring($int)>";
+}
+if (string_length($string1) > 0) {
+    return($string1);
+}
+return("");

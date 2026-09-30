@@ -3,14 +3,14 @@
 def_string $string0 = "";
 def_int $int4 = 0;
 def_string $string1 = null;
-def_obj $obj = ~script6650($dbrow, $int3, 0);
+def_obj $obj = ~cluehelper_get_outfit_obj($dbrow, $int3, 0);
 if ($obj = blankobject) {
     $string0 = "nothing (<enum(int, string, enum_4620, $int3)>)";
 } else {
     $string0 = oc_name($obj);
 }
 while ($int4 < $int2) {
-    $obj = ~script6650($dbrow, $int3, $int4);
+    $obj = ~cluehelper_get_outfit_obj($dbrow, $int3, $int4);
     if ($obj = blankobject) {
         $obj = null;
     }
@@ -22,9 +22,9 @@ while ($int4 < $int2) {
     $int4 = calc($int4 + 1);
 }
 $int4 = 0;
-if (~script6650($dbrow, $int3, $int4) ! blankobject) {
+if (~cluehelper_get_outfit_obj($dbrow, $int3, $int4) ! blankobject) {
     while ($int4 < $int2) {
-        $obj = ~script6650($dbrow, $int3, $int4);
+        $obj = ~cluehelper_get_outfit_obj($dbrow, $int3, $int4);
         if (inv_total(inv, $obj) > 0) {
             $string1 = ~script6626($string0, 2);
             ~helper_generic_update_text($int0, $string1);

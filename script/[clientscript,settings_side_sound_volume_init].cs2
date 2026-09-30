@@ -1,0 +1,20 @@
+// 3934
+[clientscript,settings_side_sound_volume_init](component $sound_icon, component $sound_bobble_container, component $sound_slider_bobble, component $tooltip, component $sound_holder)
+cc_deleteall($sound_bobble_container);
+if_setposition(0, 42, ^setpos_abs_centre, ^setpos_abs_bottom, $sound_holder);
+if_setonvartransmit("settings_side_volume_bobble($sound_slider_bobble){option_master_volume}", $sound_bobble_container);
+~settings_side_volume_bobble($sound_slider_bobble);
+def_int $int = if_getwidth($sound_bobble_container);
+def_graphic $graphic = "options_icons,2";
+def_string $string0 = "Mute Sound Effects Volume";
+def_string $string1 = "Unmute Sound Effects Volume";
+~script9253(%option_sounds, 31, $sound_slider_bobble, $sound_bobble_container, -1, $graphic, $sound_icon, $string0, $string1, $tooltip);
+if_setdraggable($sound_bobble_container, -1, $sound_slider_bobble);
+if_setdragdeadzone(0, $sound_slider_bobble);
+if_setdragdeadtime(0, $sound_slider_bobble);
+if_setondrag("settings_side_sound_volume_drag($sound_slider_bobble, event_mousex, $int)", $sound_slider_bobble);
+if_setondragcomplete("settings_side_sound_volume_drag_complete($sound_slider_bobble, event_mousex, $int)", $sound_slider_bobble);
+if_setonvartransmit("settings_side_sound_volume_set($sound_slider_bobble, $int){option_sounds}", $sound_slider_bobble);
+if_setnoclickthrough(true, $sound_slider_bobble);
+if_setonclick("settings_side_sound_volume_op($sound_slider_bobble, event_mousex, $int, $sound_bobble_container)", $sound_bobble_container);
+~settings_side_sound_volume_set_position($sound_slider_bobble, $int);

@@ -1,0 +1,12 @@
+// 6030
+[proc,bcs_pillar_button_op_rotate](int $int0, component $component)
+sound_synth(synth_1709, 1, 0);
+def_int $int2 = calc(%bcs_emblem_rotation + $int0);
+if ($int2 >= 32) {
+    %bcs_emblem_rotation = 0;
+} else if ($int2 < 0) {
+    %bcs_emblem_rotation = 31;
+} else {
+    %bcs_emblem_rotation = $int2;
+}
+~bcs_pillar_emblem_update($component);

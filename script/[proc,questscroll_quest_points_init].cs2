@@ -1,0 +1,9 @@
+// 6817
+[proc,questscroll_quest_points_init](component $component)
+def_string $string = ~tostring_spacer(%qp, ",");
+if (~speedrunning_world = true) {
+    $string = ~tostring_spacer(~min(%speedrun_points, 800000), ",");
+    if_settext("Speedrun Points: <$string>", $component);
+} else {
+    if_settext("Total Quest Points: <$string>", $component);
+}

@@ -2,7 +2,7 @@
 [clientscript,itemsets_init](component $itemlist, component $scrollbar, component $filter_button, component $itemlist_no_items)
 cc_deleteall($itemlist);
 cc_deleteall($scrollbar);
-def_int $int4 = ~script8020($itemlist, $scrollbar, $itemlist_no_items);
+def_int $int4 = ~itemsets_build_sets($itemlist, $scrollbar, $itemlist_no_items);
 if_setop(1, "Filter", $filter_button);
 def_int $int5 = ~v2_stone_button_filled($filter_button);
 if (~on_mobile = false) {
@@ -23,4 +23,4 @@ cc_setcolour(0xff981f);
 cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
 if_setonop("script8021($itemlist, $scrollbar, $int4, $itemlist_no_items, $filter_button, $int5)", $filter_button);
 if_setonvartransmit("script8022($itemlist, $scrollbar, $int4, $itemlist_no_items, $filter_button, $int5){divine_potion_4}", $filter_button);
-if_setoninvtransmit("script5914($itemlist, $scrollbar, $itemlist_no_items){inv}", $itemlist);
+if_setoninvtransmit("itemsets_build_sets($itemlist, $scrollbar, $itemlist_no_items){inv}", $itemlist);
