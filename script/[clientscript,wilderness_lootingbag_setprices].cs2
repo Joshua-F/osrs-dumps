@@ -1,72 +1,45 @@
 // 1235
-[clientscript,wilderness_lootingbag_setprices](inv $inv, int $int1, int $int2, int $int3, int $int4, int $int5, int $int6, int $int7, int $int8, int $int9, int $int10, int $int11, int $int12, int $int13, int $int14, int $int15, int $int16, int $int17, int $int18, int $int19, int $int20, int $int21, int $int22, int $int23, int $int24, int $int25, int $int26, int $int27, int $int28)
-%slotinfo_00 = $int1;
-%slotinfo_01 = $int2;
-%slotinfo_02 = $int3;
-%slotinfo_03 = $int4;
-%slotinfo_04 = $int5;
-%slotinfo_05 = $int6;
-%slotinfo_06 = $int7;
-%slotinfo_07 = $int8;
-%slotinfo_08 = $int9;
-%slotinfo_09 = $int10;
-%slotinfo_10 = $int11;
-%slotinfo_11 = $int12;
-%slotinfo_12 = $int13;
-%slotinfo_13 = $int14;
-%slotinfo_14 = $int15;
-%slotinfo_15 = $int16;
-%slotinfo_16 = $int17;
-%slotinfo_17 = $int18;
-%slotinfo_18 = $int19;
-%slotinfo_19 = $int20;
-%slotinfo_20 = $int21;
-%slotinfo_21 = $int22;
-%slotinfo_22 = $int23;
-%slotinfo_23 = $int24;
-%slotinfo_24 = $int25;
-%slotinfo_25 = $int26;
-%slotinfo_26 = $int27;
-%slotinfo_27 = $int28;
-def_int $int29 = inv_size($inv);
-def_int $intarray($int29);
-$intarray(0) = $int1;
-$intarray(1) = $int2;
-$intarray(2) = $int3;
-$intarray(3) = $int4;
-$intarray(4) = $int5;
-$intarray(5) = $int6;
-$intarray(6) = $int7;
-$intarray(7) = $int8;
-$intarray(8) = $int9;
-$intarray(9) = $int10;
-$intarray(10) = $int11;
-$intarray(11) = $int12;
-$intarray(12) = $int13;
-$intarray(13) = $int14;
-$intarray(14) = $int15;
-$intarray(15) = $int16;
-$intarray(16) = $int17;
-$intarray(17) = $int18;
-$intarray(18) = $int19;
-$intarray(19) = $int20;
-$intarray(20) = $int21;
-$intarray(21) = $int22;
-$intarray(22) = $int23;
-$intarray(23) = $int24;
-$intarray(24) = $int25;
-$intarray(25) = $int26;
-$intarray(26) = $int27;
-$intarray(27) = $int28;
+[clientscript,wilderness_lootingbag_setprices](inv $inv, long $long0, long $long1, long $long2, long $long3, long $long4, long $long5, long $long6, long $long7, long $long8, long $long9, long $long10, long $long11, long $long12, long $long13, long $long14, long $long15, long $long16, long $long17, long $long18, long $long19, long $long20, long $long21, long $long22, long $long23, long $long24, long $long25, long $long26, long $long27)
+%slotinfo_00_long = $long0;
+%slotinfo_01_long = $long1;
+%slotinfo_02_long = $long2;
+%slotinfo_03_long = $long3;
+%slotinfo_04_long = $long4;
+%slotinfo_05_long = $long5;
+%slotinfo_06_long = $long6;
+%slotinfo_07_long = $long7;
+%slotinfo_08_long = $long8;
+%slotinfo_09_long = $long9;
+%slotinfo_10_long = $long10;
+%slotinfo_11_long = $long11;
+%slotinfo_12_long = $long12;
+%slotinfo_13_long = $long13;
+%slotinfo_14_long = $long14;
+%slotinfo_15_long = $long15;
+%slotinfo_16_long = $long16;
+%slotinfo_17_long = $long17;
+%slotinfo_18_long = $long18;
+%slotinfo_19_long = $long19;
+%slotinfo_20_long = $long20;
+%slotinfo_21_long = $long21;
+%slotinfo_22_long = $long22;
+%slotinfo_23_long = $long23;
+%slotinfo_24_long = $long24;
+%slotinfo_25_long = $long25;
+%slotinfo_26_long = $long26;
+%slotinfo_27_long = $long27;
+def_int $int = inv_size($inv);
+def_long $long28 = 0;
 def_string $string = "Invalid item.";
-while ($int29 > 0) {
-    $int29 = calc($int29 - 1);
-    if (cc_find(wilderness_lootingbag:items, $int29) = true) {
-        if ($inv = inv & $intarray($int29) <= -1 & inv_getobj(inv, $int29) ! null) {
+while ($int > 0) {
+    $int = calc($int - 1);
+    if (cc_find(wilderness_lootingbag:items, $int) = true) {
+        $long28 = ~script9913($int, 0);
+        if ($inv = inv & $long28 <= -1 & inv_getobj(inv, $int) ! null) {
             cc_setonmouserepeat("tooltip_mouserepeat(event_com, event_comsubid, wilderness_lootingbag:tooltip, $string, 25, 512)");
             cc_setonmouseleave("deltooltip(wilderness_lootingbag:tooltip)");
         } else {
-            ~trade_tooltip(inv_getnum($inv, $int29), $intarray($int29), wilderness_lootingbag:tooltip);
+            ~trade_tooltip(inv_getnum($inv, $int), $long28, wilderness_lootingbag:tooltip);
         }
     }
 }

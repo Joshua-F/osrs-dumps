@@ -11,35 +11,64 @@ def_int $int6 = 0;
 def_int $int7 = 0;
 def_obj $obj = null;
 def_int $int9 = inv_size(tradeoffer);
-def_int $intarray($int9);
-$intarray(0) = %slotinfo_00;
-$intarray(1) = %slotinfo_01;
-$intarray(2) = %slotinfo_02;
-$intarray(3) = %slotinfo_03;
-$intarray(4) = %slotinfo_04;
-$intarray(5) = %slotinfo_05;
-$intarray(6) = %slotinfo_06;
-$intarray(7) = %slotinfo_07;
-$intarray(8) = %slotinfo_08;
-$intarray(9) = %slotinfo_09;
-$intarray(10) = %slotinfo_10;
-$intarray(11) = %slotinfo_11;
-$intarray(12) = %slotinfo_12;
-$intarray(13) = %slotinfo_13;
-$intarray(14) = %slotinfo_14;
-$intarray(15) = %slotinfo_15;
-$intarray(16) = %slotinfo_16;
-$intarray(17) = %slotinfo_17;
-$intarray(18) = %slotinfo_18;
-$intarray(19) = %slotinfo_19;
-$intarray(20) = %slotinfo_20;
-$intarray(21) = %slotinfo_21;
-$intarray(22) = %slotinfo_22;
-$intarray(23) = %slotinfo_23;
-$intarray(24) = %slotinfo_24;
-$intarray(25) = %slotinfo_25;
-$intarray(26) = %slotinfo_26;
-$intarray(27) = %slotinfo_27;
+def_int $intarray0($int9);
+def_int $intarray1($int9);
+$intarray0(0) = %slotinfo_00;
+$intarray0(1) = %slotinfo_01;
+$intarray0(2) = %slotinfo_02;
+$intarray0(3) = %slotinfo_03;
+$intarray0(4) = %slotinfo_04;
+$intarray0(5) = %slotinfo_05;
+$intarray0(6) = %slotinfo_06;
+$intarray0(7) = %slotinfo_07;
+$intarray0(8) = %slotinfo_08;
+$intarray0(9) = %slotinfo_09;
+$intarray0(10) = %slotinfo_10;
+$intarray0(11) = %slotinfo_11;
+$intarray0(12) = %slotinfo_12;
+$intarray0(13) = %slotinfo_13;
+$intarray0(14) = %slotinfo_14;
+$intarray0(15) = %slotinfo_15;
+$intarray0(16) = %slotinfo_16;
+$intarray0(17) = %slotinfo_17;
+$intarray0(18) = %slotinfo_18;
+$intarray0(19) = %slotinfo_19;
+$intarray0(20) = %slotinfo_20;
+$intarray0(21) = %slotinfo_21;
+$intarray0(22) = %slotinfo_22;
+$intarray0(23) = %slotinfo_23;
+$intarray0(24) = %slotinfo_24;
+$intarray0(25) = %slotinfo_25;
+$intarray0(26) = %slotinfo_26;
+$intarray0(27) = %slotinfo_27;
+$intarray1(0) = %slotinfo_other_00;
+$intarray1(1) = %slotinfo_other_01;
+$intarray1(2) = %slotinfo_other_02;
+$intarray1(3) = %slotinfo_other_03;
+$intarray1(4) = %slotinfo_other_04;
+$intarray1(5) = %slotinfo_other_05;
+$intarray1(6) = %slotinfo_other_06;
+$intarray1(7) = %slotinfo_other_07;
+$intarray1(8) = %slotinfo_other_08;
+$intarray1(9) = %slotinfo_other_09;
+$intarray1(10) = %slotinfo_other_10;
+$intarray1(11) = %slotinfo_other_11;
+$intarray1(12) = %slotinfo_other_12;
+$intarray1(13) = %slotinfo_other_13;
+$intarray1(14) = %slotinfo_other_14;
+$intarray1(15) = %slotinfo_other_15;
+$intarray1(16) = %slotinfo_other_16;
+$intarray1(17) = %slotinfo_other_17;
+$intarray1(18) = %slotinfo_other_18;
+$intarray1(19) = %slotinfo_other_19;
+$intarray1(20) = %slotinfo_other_20;
+$intarray1(21) = %slotinfo_other_21;
+$intarray1(22) = %slotinfo_other_22;
+$intarray1(23) = %slotinfo_other_23;
+$intarray1(24) = %slotinfo_other_24;
+$intarray1(25) = %slotinfo_other_25;
+$intarray1(26) = %slotinfo_other_26;
+$intarray1(27) = %slotinfo_other_27;
 def_int $int10 = 0;
 while ($int10 < $int9) {
     cc_create(ge_pricechecker:items, ^iftype_graphic, $int10);
@@ -67,16 +96,17 @@ while ($int10 < $int9) {
     $int10 = calc($int10 + 1);
 }
 def_int $int11 = 0;
-def_int $int12 = 0;
+def_long $long0 = 0;
+def_long $long1 = 0;
 def_string $string = ",";
-def_int $int13 = $int10;
+def_int $int12 = $int10;
 $int10 = 0;
 while ($int10 < $int9) {
     $obj, $int11 = inv_getobj(tradeoffer, $int10), inv_getnum(tradeoffer, $int10);
     if ($obj ! null & $int11 > 0) {
         $int6, $int7 = calc($int10 % 5 * $int2), calc($int10 / 5 * $int3);
-        cc_create(ge_pricechecker:items, ^iftype_text, $int13);
-        $int13 = calc($int13 + 1);
+        cc_create(ge_pricechecker:items, ^iftype_text, $int12);
+        $int12 = calc($int12 + 1);
         cc_sethide(false);
         cc_setsize($int1, 35, ^setsize_abs, ^setsize_abs);
         cc_setposition($int6, calc($int7 + 32), ^setpos_abs_left, ^setpos_abs_top);
@@ -84,34 +114,35 @@ while ($int10 < $int9) {
         cc_settextfont(p11_full);
         cc_settextshadow(true);
         cc_settextalign(^settextalign_centre, ^settextalign_top, 0);
-        if (calc(^max_32bit_int / $int11) < $intarray($int10)) {
-            $int12 = ^max_32bit_int;
-        } else {
-            $int12 = calc($int11 * $intarray($int10));
-        }
+        $long0 = long_pack($intarray0($int10), $intarray1($int10));
         if ($int11 > 1) {
-            if ($int12 >= 0 & $int12 < ^max_32bit_int) {
-                cc_settext("<~tostring_spacer($int11, $string)> x <~tostring_spacer($intarray($int10), $string)><br>= <~tostring_spacer($int12, $string)>");
+            if (calc(9223372036854775807 / int_to_long($int11)) < $long0) {
+                $long1 = 9223372036854775807;
             } else {
-                cc_settext("<~tostring_spacer($int11, $string)> x <~tostring_spacer($intarray($int10), $string)>");
+                $long1 = calc(int_to_long($int11) * $long0);
+            }
+            if ($long1 >= 0 & $long1 < 9223372036854775807) {
+                cc_settext("<~tostring_spacer($int11, $string)> x <tostring_spacer_long($long0, $string)><br>= <tostring_spacer_long($long1, $string)>");
+            } else {
+                cc_settext("<~tostring_spacer($int11, $string)> x <tostring_spacer_long($long0, $string)>");
             }
         } else {
-            cc_settext(~tostring_spacer($intarray($int10), $string));
+            cc_settext(tostring_spacer_long($long0, $string));
         }
     }
     $int10 = calc($int10 + 1);
 }
-def_int $int14 = 0;
+def_int $int13 = 0;
 if ($int5 >= 0) {
-    $int14 = calc($int5 + $int3);
+    $int13 = calc($int5 + $int3);
 }
-def_int $int15 = if_getscrolly(ge_pricechecker:items);
-if ($int15 > $int5) {
-    $int15 = $int5;
+def_int $int14 = if_getscrolly(ge_pricechecker:items);
+if ($int14 > $int5) {
+    $int14 = $int5;
 }
-if ($int14 > if_getheight(ge_pricechecker:items)) {
-    if_setscrollsize(0, $int14, ge_pricechecker:items);
+if ($int13 > if_getheight(ge_pricechecker:items)) {
+    if_setscrollsize(0, $int13, ge_pricechecker:items);
 } else {
     if_setscrollsize(0, 0, ge_pricechecker:items);
 }
-~scrollbar_resize(ge_pricechecker:scrollbar, ge_pricechecker:items, $int15);
+~scrollbar_resize(ge_pricechecker:scrollbar, ge_pricechecker:items, $int14);

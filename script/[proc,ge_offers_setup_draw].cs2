@@ -75,9 +75,9 @@ if (%ge_newoffer_type = 1) {
     }
 }
 def_string $string = ",";
-def_int $int17 = 0;
-def_int $int18 = 0;
-def_int $int19 = 0;
+def_long $long0 = 0;
+def_long $long1 = 0;
+def_long $long2 = 0;
 if (%tradingpost_search ! null) {
     if (cc_find($component1, $int8) = true) {
         cc_setobject_nonum(%tradingpost_search, %ge_newoffer_quantity);
@@ -89,58 +89,58 @@ if (%tradingpost_search ! null) {
         cc_settext(~tostring_spacer(%ge_newoffer_quantity, $string));
     }
     if (cc_find($component1, $int11) = true) {
-        if (%ge_newoffer_price = 1) {
+        if (%varplayer_5753 = 1) {
             cc_settext("1 coin");
         } else {
-            cc_settext("<~tostring_spacer(%ge_newoffer_price, $string)> coins");
+            cc_settext("<tostring_spacer_long(%varplayer_5753, $string)> coins");
         }
     }
-    if (%ge_newoffer_quantity > 0 & calc(^max_32bit_int / %ge_newoffer_quantity) < %ge_newoffer_price) {
+    if (%ge_newoffer_quantity > 0 & calc(2149631130647 / int_to_long(%ge_newoffer_quantity)) < %varplayer_5753) {
         if (cc_find($component1, $int12) = true) {
             cc_settextfont(b12_full);
             cc_settext("<col=ff0000>Too much money!</col>");
         }
         ~ge_offers_setup_draw_disableconfirm($component1, $int15, $component14);
     } else {
-        $int17 = calc(%ge_newoffer_quantity * %ge_newoffer_price);
+        $long0 = calc(int_to_long(%ge_newoffer_quantity) * %varplayer_5753);
         if (cc_find($component1, $int12) = true) {
             if (%ge_newoffer_type = 1 & %ge_transmit_taxrate > 0) {
-                $int18 = ~min(5000000, scale(%ge_transmit_taxrate, 1000, %ge_newoffer_price));
-                if ($int18 > 0) {
-                    $int19 = calc($int17 - %ge_newoffer_quantity * $int18);
-                    if ($int18 < 5000000) {
+                $long1 = long_min(5000000, long_scale(int_to_long(%ge_transmit_taxrate), 1000, %varplayer_5753));
+                if ($long1 > 0) {
+                    $long2 = calc($long0 - int_to_long(%ge_newoffer_quantity) * $long1);
+                    if ($long1 < 5000000) {
                         cc_settextfont(b12_full);
-                        if ($int19 = 1) {
-                            cc_settext("1 coin <col=9f9f9f>(<~tostring_spacer($int17, $string)> - <~script5731>)</col>");
+                        if ($long2 = 1) {
+                            cc_settext("1 coin <col=9f9f9f>(<tostring_spacer_long($long0, $string)> - <~script5731>)</col>");
                         } else {
-                            cc_settext("<~tostring_spacer($int19, $string)> coins <col=9f9f9f>(<~tostring_spacer($int17, $string)> - <~script5731>)</col>");
+                            cc_settext("<tostring_spacer_long($long2, $string)> coins <col=9f9f9f>(<tostring_spacer_long($long0, $string)> - <~script5731>)</col>");
                         }
                     } else {
                         cc_settextfont(p12_full);
-                        if ($int19 = 1) {
-                            cc_settext("1 coin <col=9f9f9f>(<~tostring_spacer($int17, $string)> - <~tostring_spacer(5000000, $string)> per item)</col>");
+                        if ($long2 = 1) {
+                            cc_settext("1 coin <col=9f9f9f>(<tostring_spacer_long($long0, $string)> - <~tostring_spacer(5000000, $string)> per item)</col>");
                         } else {
-                            cc_settext("<~tostring_spacer($int19, $string)> coins <col=9f9f9f>(<~tostring_spacer($int17, $string)> - <~tostring_spacer(5000000, $string)> per item)</col>");
+                            cc_settext("<tostring_spacer_long($long2, $string)> coins <col=9f9f9f>(<tostring_spacer_long($long0, $string)> - <~tostring_spacer(5000000, $string)> per item)</col>");
                         }
                     }
                 } else {
                     cc_settextfont(b12_full);
-                    if ($int17 = 1) {
+                    if ($long0 = 1) {
                         cc_settext("1 coin <col=9f9f9f>(no fee expected)</col>");
                     } else {
-                        cc_settext("<~tostring_spacer($int17, $string)> coins <col=9f9f9f>(no fee expected)</col>");
+                        cc_settext("<tostring_spacer_long($long0, $string)> coins <col=9f9f9f>(no fee expected)</col>");
                     }
                 }
             } else {
                 cc_settextfont(b12_full);
-                if ($int17 = 1) {
+                if ($long0 = 1) {
                     cc_settext("1 coin");
                 } else {
-                    cc_settext("<~tostring_spacer($int17, $string)> coins");
+                    cc_settext("<tostring_spacer_long($long0, $string)> coins");
                 }
             }
         }
-        if ($int17 > 0) {
+        if ($long0 > 0) {
             ~v2_stone_button_out_filled($component14);
             if_setonmouserepeat("v2_stone_button_in_filled(event_com)", $component14);
             if_setonmouseleave("v2_stone_button_out_filled(event_com)", $component14);

@@ -47,7 +47,10 @@ if ($int1 > 0) {
                 %chat_lastoutput = clientclock;
             }
         case 7, 19 :
-            resume_countdialog(~script212(%meslayerinput));
+            resume_countdialog(~script9903(%meslayerinput, 0));
+            %meslayermode = 0;
+        case 30 :
+            resume_longdialog(~script9903(%meslayerinput, 1));
             %meslayermode = 0;
         case 8 :
             %last_namedialog = removetags(%meslayerinput);
@@ -111,7 +114,7 @@ if ($int1 > 0) {
     }
 } else {
     switch_int (%meslayermode) {
-        case 7, 8, 9, 15, 20, 21, 29 :
+        case 7, 8, 9, 15, 20, 21, 29, 30 :
             return;
         case 16 :
             return;
