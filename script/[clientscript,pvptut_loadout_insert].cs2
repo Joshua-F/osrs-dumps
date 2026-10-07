@@ -1,0 +1,50 @@
+// 9946
+[clientscript,pvptut_loadout_insert](component $component0, int $int1, component $component2, int $int3, int $int4, int $int5, enum $enum6, enum $enum7, component $component8, int $int9, int $int10, component $component11, component $component12, component $component13)
+if (cc_find($component0, $int1) = true) {
+    cc_setontimer(null);
+}
+if (cc_find($component8, $int9) = true) {
+    cc_sethide(true);
+}
+if (cc_find($component8, $int10) = true) {
+    cc_sethide(true);
+}
+def_obj $obj = enum(int, namedobj, $enum6, $int4);
+if ($obj = null) {
+    return;
+}
+def_int $int15 = 0;
+def_int $int16 = -1;
+if ($component2 = $component11) {
+    if ($int3 >= 0 & $int3 < inv_size(inv)) {
+        $int16 = $int3;
+    }
+    $int15 = 1;
+}
+def_int $int17 = inv_size(worn);
+if ($int16 = -1) {
+    while ($int17 > 0) {
+        $int17 = calc($int17 - 1);
+        if ($int16 = -1 & enum(int, component, $enum7, $int17) = $component2) {
+            $int16, $int15 = $int17, 0;
+        }
+    }
+}
+if ($int16 = -1) {
+    return;
+}
+if ($int15 = 0) {
+    if (oc_param($obj, param_1564) ! $int16) {
+        return;
+    }
+} else if (enum(int, namedobj, $enum6, ~pvptut_loadout_get_inv($int5, $int16)) ! null) {
+    ~pvptut_loadout_additem($int4, $obj, $int16, $int5, $enum6, $enum7, $component8, $component11, $component12, $component13);
+    return;
+}
+sound_synth(synth_2266, 1, 0);
+if ($int15 = 1) {
+    ~pvptut_loadout_set_inv($int5, $int16, $int4);
+} else {
+    ~pvptut_loadout_set_worn($int5, $int16, $int4);
+}
+~pvptut_loadout_drawloadout($int5, $enum6, $enum7, $component8, $component11, $component12, $component13);
