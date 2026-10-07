@@ -1,0 +1,19 @@
+// 9919
+[proc,script9919](dbrow $dbrow)
+%pvptut_ui_selected_tutorial = $dbrow;
+def_int $int1 = 0;
+if (%pvptut_ui_selected_tutorial ! null) {
+    $int1 = db_getfield($dbrow, pvp_tutorial:type, 0);
+}
+def_int $int2 = 0;
+if (calc(%pvptut_prayer_complete + %pvptut_freeze_complete + %pvptut_special_attack_complete + %pvptut_gear_switch_complete + %pvptut_combo_eating_complete) >= 5) {
+    $int2 = 1;
+}
+if ($int2 = 0 & $int1 = 3) {
+    mes("You need to complete all the challenges above first!");
+    return;
+} else if (%pvptut_boss_medium_complete = 0 & $dbrow = pvptut_boss_expert) {
+    mes("You need to complete Pete's Penultimate Challenge first!");
+    return;
+}
+~script9921;

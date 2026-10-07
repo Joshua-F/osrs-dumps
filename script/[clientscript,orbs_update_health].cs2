@@ -10,6 +10,9 @@ def_int $int = stat_base(hitpoints);
 if (%br_ingame = 1) {
     $int = 99;
 }
+if (%pvptut_active_tutorial ! null & ~instance_check(coord) = true) {
+    $int = 99;
+}
 ~orbs_update($component1, $component2, stat(hitpoints), $int);
 if (%poison > 0 | %disease > 0 | %parasite > 0) {
     if_settrans(100, $component3);

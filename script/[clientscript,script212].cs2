@@ -1,0 +1,38 @@
+// 212
+[clientscript,script212]
+if_setontimer("responsive_interface_scaler(pvptut_ui:universe, -1)", pvptut_ui:universe);
+if_setonresize("script9920", pvptut_ui:universe);
+~steelborder_static_closebutton(pvptut_ui:btn_close, "Close");
+if_setonop("closebutton_click_sound", pvptut_ui:btn_close);
+def_graphic $graphic0 = "menu_buttons,4";
+def_graphic $graphic1 = "menu_buttons,5";
+if (~on_mobile = true) {
+    if_setsize(33, 33, ^setsize_abs, ^setsize_abs, pvptut_ui:btn_back);
+    if_setposition(1, 1, ^setpos_abs_left, ^setpos_abs_top, pvptut_ui:btn_back);
+    if_setgraphic($graphic0, pvptut_ui:btn_back);
+    if_setonmouseleave("graphic_swapper(event_com, $graphic0)", pvptut_ui:btn_back);
+} else {
+    if_setsize(21, 21, ^setsize_abs, ^setsize_abs, pvptut_ui:btn_back);
+    if_setposition(7, 7, ^setpos_abs_left, ^setpos_abs_top, pvptut_ui:btn_back);
+    if_setgraphic($graphic0, pvptut_ui:btn_back);
+    if_setonmouserepeat("graphic_swapper(event_com, $graphic1)", pvptut_ui:btn_back);
+    if_setonmouseleave("graphic_swapper(event_com, $graphic0)", pvptut_ui:btn_back);
+}
+if_setop(1, "Back", pvptut_ui:btn_back);
+if_setonop("script9917", pvptut_ui:btn_back);
+~scrollbar_vertical(pvptut_ui:mainmenu_content_scrollbar, pvptut_ui:mainmenu_content, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~scrollbar_vertical(pvptut_ui:tutorial_content_scrollbar, pvptut_ui:tutorial_content, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+~thinbox_light(pvptut_ui:tutorial_content_border, 0);
+def_int $int2 = enum_getoutputcount(enum_6013);
+def_int $int3 = 0;
+while ($int3 < $int2) {
+    cc_create(pvptut_ui:tutorial_btn_start, ^iftype_rectangle, $int3);
+    cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+    cc_setfill(false);
+    cc_settrans(255);
+    cc_sethide(true);
+    $int3 = calc($int3 + 1);
+}
+%pvptut_ui_selected_tutorial = null;
+~script9921;
