@@ -1,0 +1,23 @@
+// 9971
+[proc,script9971](dbrow $dbrow, stat $stat1, int $int2)(int)
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_stat $stat5 = null;
+def_int $int6 = 0;
+def_int $int7 = 0;
+$int3 = db_getfieldcount($dbrow, pvp_tutorial:modified_stats);
+while ($int4 < $int3) {
+    $stat5, $int6, $int7 = db_getfield($dbrow, pvp_tutorial:modified_stats, $int4);
+    if ($stat5 = $stat1) {
+        switch_int ($int7) {
+            case 1 :
+                return(min($int2, $int6));
+            case 0 :
+                return(max($int2, $int6));
+            case 2 :
+                return($int6);
+        }
+    }
+    $int4 = calc($int4 + 1);
+}
+return($int2);

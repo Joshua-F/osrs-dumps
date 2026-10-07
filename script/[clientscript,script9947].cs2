@@ -1,0 +1,77 @@
+// 9947
+[clientscript,script9947](component $component0, int $int1, component $component2, int $int3, int $int4, int $int5, enum $enum6, enum $enum7, component $component8, component $component9, component $component10, component $component11)
+def_obj $obj12 = enum(int, namedobj, $enum6, $int4);
+if ($obj12 = null) {
+    return;
+}
+def_int $int13 = inv_size(inv);
+def_int $int14 = inv_size(worn);
+def_int $int15 = 0;
+def_int $int16 = 0;
+def_int $int17 = -1;
+if ($component0 = $component9) {
+    if ($int1 >= 0 & $int1 < $int13) {
+        $int17 = $int1;
+    }
+    $int15 = 1;
+}
+def_int $int18 = -1;
+if ($component2 = $component9) {
+    if ($int3 >= 0 & $int3 < $int13) {
+        $int18 = $int3;
+    }
+    $int16 = 1;
+}
+def_int $int19 = $int14;
+if ($int17 = -1 | $int18 = -1) {
+    while ($int19 > 0) {
+        $int19 = calc($int19 - 1);
+        if ($int17 = -1 & enum(int, component, $enum7, $int19) = $component0) {
+            $int17, $int15 = $int19, 0;
+        }
+        if ($int18 = -1 & enum(int, component, $enum7, $int19) = $component2) {
+            $int18, $int16 = $int19, 0;
+        }
+    }
+}
+if ($int17 = -1) {
+    return;
+}
+if ($component2 = $component10) {
+    sound_synth(synth_2266, 1, 0);
+    if ($int15 = 1) {
+        ~script9954($int5, $int17, 0);
+    } else {
+        ~script9955($int5, $int17, 0);
+    }
+    ~script9944($int5, $enum6, $enum7, $component8, $component9, $component10, $component11);
+    return;
+}
+if ($int18 = -1) {
+    return;
+}
+def_int $int20 = 0;
+if ($int16 = 0) {
+    if (oc_param($obj12, param_1564) ! $int18) {
+        return;
+    }
+    $int20 = ~script9953($int5, $int18);
+} else {
+    $int20 = ~script9952($int5, $int18);
+}
+def_obj $obj21 = enum(int, namedobj, $enum6, $int20);
+if ($obj21 ! null & $int15 = 0 & oc_param($obj21, param_1564) ! $int17) {
+    return;
+}
+sound_synth(synth_2266, 1, 0);
+if ($int16 = 1) {
+    ~script9954($int5, $int18, $int4);
+} else {
+    ~script9955($int5, $int18, $int4);
+}
+if ($int15 = 1) {
+    ~script9954($int5, $int17, $int20);
+} else {
+    ~script9955($int5, $int17, $int20);
+}
+~script9944($int5, $enum6, $enum7, $component8, $component9, $component10, $component11);

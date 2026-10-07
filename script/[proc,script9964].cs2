@@ -1,0 +1,40 @@
+// 9964
+[proc,script9964](component $component)
+switch_dbrow (%pvptut_active_tutorial) {
+    case pvptut_freeze :
+        if_settext("Stage: <tostring(%pvptut_score_freeze_stage)> / 3", $component);
+    case pvptut_prayer :
+        if (%pvptut_score_prayer_extended_stage = 0) {
+            if_settext("Challenge: <tostring(%pvptut_score_prayer_challenge)> / 7", $component);
+        } else {
+            if_settext("Score: <tostring(%pvptut_score_prayer)><br>Best: <tostring(%pvptut_prayer_switching_highest_count)>", $component);
+        }
+    case pvptut_special_attack :
+        if (%pvptut_score_special_attack_stage = 1) {
+            if_settext("Stage: <tostring(%pvptut_score_special_attack_stage)> / 3", $component);
+        } else if (%pvptut_score_special_attack_stage < 4) {
+            if_settext("Challenge: <tostring(%pvptut_score_special_attack)> / <5><br>Stage: <tostring(%pvptut_score_special_attack_stage)> / 3", $component);
+        } else {
+            if_settext("Score: <tostring(%pvptut_score_special_attack)><br>Best: <tostring(%pvptut_special_attack_highest_count)>", $component);
+        }
+    case pvptut_gear_switch :
+        if (%pvptut_score_gear_switch_update = 0) {
+            if_settext("Stage: <tostring(%pvptut_score_gear_switch_stage)> / 5", $component);
+        } else if (%pvptut_score_gear_switch_update = 1) {
+            if_settext("Challenge: <tostring(%pvptut_score_gear_switch)> / 8<br>Stage: <tostring(%pvptut_score_gear_switch_stage)> / 5", $component);
+        } else {
+            if_settext("Score: <tostring(%pvptut_score_gear_switch)><br>Best: <tostring(%pvptut_gear_switch_highest_count)>", $component);
+        }
+    case pvptut_combo_eating :
+        if (%pvptut_score_combo_eating_stage < 4) {
+            if_settext("Stage: <tostring(%pvptut_score_combo_eating_stage)> / 4", $component);
+        } else if (%pvptut_score_combo_eating_stage = 4) {
+            if_settext("Challenge: <tostring(%pvptut_score_combo_eating)> / 3<br>Stage: <tostring(%pvptut_score_combo_eating_stage)> / 4", $component);
+        } else {
+            if_settext("Score: <tostring(%pvptut_score_combo_eating)><br>Best: <tostring(%pvptut_combo_eating_highest_count)>", $component);
+        }
+    case pvptut_boss_medium :
+        if_settext("Damage: <tostring(%pvptut_score_boss_total_damage)><br>Wins: <tostring(%pvptut_score_medium_boss_highscore)>", $component);
+    case pvptut_boss_expert :
+        if_settext("Damage: <tostring(%pvptut_score_boss_total_damage)><br>Wins: <tostring(%pvptut_score_expert_boss_highscore)>", $component);
+}

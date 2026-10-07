@@ -1,5 +1,9 @@
 // 4561
 [proc,prayer_isavailable_req](obj $obj, boolean $boolean1, int $int2, boolean $boolean3, int $int4, int $int5, boolean $boolean6, int $int7, int $int8)(boolean)
+def_int $int9 = 0;
+if (%pvptut_active_tutorial ! null & ~instance_check(coord) = true) {
+    $int9 = 1;
+}
 switch_obj ($obj) {
     case xmas16_blue_partyhat :
         if (%deadman_remove_prayer_def_req = 1 & %grail = 10) {
@@ -31,7 +35,7 @@ switch_obj ($obj) {
             return(false);
         }
     case placeholder_xmas16_teddy :
-        if ($boolean1 = false | %prayer_preserve_unlocked = 0 | $boolean6 = true) {
+        if ($boolean1 = false | %prayer_preserve_unlocked = 0 & $int9 = 0 | $boolean6 = true) {
             return(false);
         }
     case placeholder_masori_chestplate :

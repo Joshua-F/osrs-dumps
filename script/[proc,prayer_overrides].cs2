@@ -9,8 +9,11 @@ def_boolean $boolean5 = map_members;
 def_boolean $boolean6 = false;
 def_int $int7 = %prayer_deadeye_unlocked;
 def_int $int8 = %prayer_mystic_vigour_unlocked;
-if (%br_ingame = 1 & ~instance_check(coord) = true) {
+if ((%br_ingame = 1 | %pvptut_active_tutorial ! null) & ~instance_check(coord) = true) {
     $int0, $int2, $int3, $boolean4, $boolean5, $boolean6 = 99, 1, 1, true, true, true;
+    if (%pvptut_active_tutorial ! null & ~instance_check(coord) = true) {
+        $boolean6 = false;
+    }
     switch_int (%br_active_build_player) {
         case default :
             $int1 = 85;
@@ -22,5 +25,8 @@ if (%br_ingame = 1 & ~instance_check(coord) = true) {
 }
 if (~script6551 = true) {
     $int2, $int3, $boolean4, $int7, $int8 = 1, 1, true, 1, 1;
+}
+if (%pvptut_active_tutorial ! null & ~instance_check(coord) = true) {
+    $int0 = ~script9971(%pvptut_active_tutorial, prayer, $int0);
 }
 return($int0, $int1, $int2, $int3, $boolean4, $boolean5, $boolean6, $int7, $int8);

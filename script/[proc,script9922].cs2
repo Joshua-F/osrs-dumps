@@ -1,0 +1,24 @@
+// 9922
+[proc,script9922]
+cc_deleteall(pvptut_ui:mainmenu_content_entries);
+cc_deleteall(pvptut_ui:mainmenu_content_clickboxes);
+if_sethide(true, pvptut_ui:btn_back);
+if_sethide(true, pvptut_ui:tutorial);
+if_sethide(false, pvptut_ui:mainmenu);
+def_int $int0 = enum_getoutputcount(enum_6013);
+def_int $int1 = 0;
+def_int $int2 = 0;
+def_int $int3 = 0;
+while ($int1 < $int0) {
+    $int2, $int3 = ~script9923($int2, $int1, pvptut_ui:mainmenu_content_entries, pvptut_ui:mainmenu_content_clickboxes, $int3);
+    $int1 = calc($int1 + 1);
+}
+def_int $int4 = calc($int2 + 5);
+def_int $int5 = if_getscrolly(pvptut_ui:mainmenu_content);
+if ($int4 <= if_getheight(pvptut_ui:mainmenu_content)) {
+    $int4 = 0;
+    $int5 = 0;
+}
+if_setscrollsize(0, $int4, pvptut_ui:mainmenu_content);
+if_setscrollpos(0, $int5, pvptut_ui:mainmenu_content);
+~scrollbar_resize(pvptut_ui:mainmenu_content_scrollbar, pvptut_ui:mainmenu_content, if_getscrolly(pvptut_ui:mainmenu_content));

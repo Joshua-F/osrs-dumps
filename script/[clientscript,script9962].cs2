@@ -1,0 +1,43 @@
+// 9962
+[clientscript,script9962](component $dodger, component $contents, component $text, component $output, component $tooltip)
+~interface_dodger_init($dodger, $contents, 36582, ^setpos_abs_right, ^setpos_abs_top, false);
+~script9964($output);
+switch_dbrow (%pvptut_active_tutorial) {
+    case pvptut_freeze :
+        if_settext("Power of Freezes", $text);
+        if_setonvartransmit("script9963($text, $output){pvptut_tutorials_score_1}", $output);
+    case pvptut_prayer :
+        if_settext("Prayer Protection", $text);
+        if_setonvartransmit("script9963($text, $output){pvptut_tutorials_score_1, pvptut_tutorials_highest_score_perm}", $output);
+    case pvptut_special_attack :
+        if_settext("Special Attacks", $text);
+        if_setonvartransmit("script9963($text, $output){pvptut_tutorials_score_1, pvptut_tutorials_highest_score_perm}", $output);
+    case pvptut_combo_eating :
+        if_settext("Combo Eating", $text);
+        if_setonvartransmit("script9963($text, $output){pvptut_tutorials_score_3, pvptut_tutorials_highest_score_perm}", $output);
+    case pvptut_gear_switch :
+        if_settext("Gear Switching", $text);
+        if_setonvartransmit("script9963($text, $output){pvptut_tutorials_score_2, pvptut_tutorials_highest_score_perm_2}", $output);
+    case pvptut_boss_medium :
+        if_settext("Pete's Penultimate<br>Challenge", $text);
+        if_setonvartransmit("script9963($text, $output){pvptut_tutorials_score_2, pvptut_tutorials_highest_score_perm_boss}", $output);
+        cc_deleteall($contents);
+        cc_create($contents, ^iftype_rectangle, 0);
+        cc_setposition(0, 20, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setsize(111, 32, ^setsize_abs, ^setsize_abs);
+        cc_setfill(false);
+        cc_setcolour(^black);
+        cc_settrans(255);
+        ~script9965($tooltip, "Current Damage and Total Wins", "Info");
+    case pvptut_boss_expert :
+        if_settext("Pete's Final<br>Challenge", $text);
+        if_setonvartransmit("script9963($text, $output){pvptut_tutorials_score_2, pvptut_tutorials_highest_score_perm_boss}", $output);
+        cc_deleteall($contents);
+        cc_create($contents, ^iftype_rectangle, 0);
+        cc_setposition(0, 20, ^setpos_abs_left, ^setpos_abs_top);
+        cc_setsize(111, 32, ^setsize_abs, ^setsize_abs);
+        cc_setfill(false);
+        cc_setcolour(^black);
+        cc_settrans(255);
+        ~script9965($tooltip, "Current Damage and Total Wins", "Info");
+}
