@@ -1,52 +1,34 @@
 // 463
-[proc,prayer_updatebutton](boolean $boolean, obj $obj, component $component2, component $component3, component $component4)
-$obj = ~script7824($obj);
-switch_obj ($obj) {
-    case xmas16_blue_partyhat :
-        if_setonstattransmit("prayer_updatebutton($boolean, $obj, $component2, $component3, $component4){prayer, defence}", $component2);
-        if_setonvartransmit("prayer_updatebutton($boolean, $obj, $component2, $component3, $component4){prayer0, prayer_ruinous_0, br_temp_1, br_temp_3, kr_varp2, duel2accept, fossil_storage2}", $component2);
-        if_setopbase("<col=ff9040><oc_param($obj, param_1752)></col>", $component2);
-    case placeholder_xmas16_blue_partyhat :
-        if_setonstattransmit("prayer_updatebutton($boolean, $obj, $component2, $component3, $component4){prayer, defence}", $component2);
-        if_setonvartransmit("prayer_updatebutton($boolean, $obj, $component2, $component3, $component4){prayer0, prayer_ruinous_0, br_temp_1, br_temp_3, kr_varp2, duel2accept, fossil_storage2}", $component2);
-        if_setopbase("<col=ff9040><oc_param($obj, param_1752)></col>", $component2);
-    case placeholder_xmas16_green_partyhat, xmas16_teddy, placeholder_xmas16_teddy :
-        if_setonstattransmit("prayer_updatebutton($boolean, $obj, $component2, $component3, $component4){prayer, defence}", $component2);
-        if_setonvartransmit("prayer_updatebutton($boolean, $obj, $component2, $component3, $component4){prayer0, prayer_ruinous_0, br_temp_1, br_temp_3, raids_perm_transmit, duel2accept}", $component2);
-        if_setopbase("<col=ff9040><oc_param($obj, param_1752)></col>", $component2);
-    case cert_ca_teleport_anim_offhand_easy, placeholder_giants_foundry_tester :
-        if_setonstattransmit("prayer_updatebutton($boolean, $obj, $component2, $component3, $component4){prayer}", $component2);
-        if_setonvartransmit("prayer_updatebutton($boolean, $obj, $component2, $component3, $component4){prayer0, prayer_ruinous_0, br_temp_1, br_temp_3, prayer30, duel2accept}", $component2);
-        if_setopbase("<col=ff9040><oc_param($obj, param_1752)></col>", $component2);
-    case default :
-        if_setonstattransmit("prayer_updatebutton($boolean, $obj, $component2, $component3, $component4){prayer}", $component2);
-        if_setonvartransmit("prayer_updatebutton($boolean, $obj, $component2, $component3, $component4){prayer0, prayer_ruinous_0, br_temp_1, br_temp_3, duel2accept}", $component2);
-        if_setopbase("<col=ff9040><oc_param($obj, param_1752)></col>", $component2);
-}
-if_setonop("prayer_op(event_op, $boolean, $obj, $component2, $component3, $component4)", $component2);
+[proc,prayer_updatebutton](boolean $boolean, obj $obj1, component $component2, component $component3, component $component4)
+def_obj $obj5 = ~script10191($obj1);
+if_setonstattransmit("prayer_updatebutton($boolean, $obj5, $component2, $component3, $component4){prayer, defence, attack, strength}", $component2);
+if_setonvartransmit("prayer_updatebutton($boolean, $obj5, $component2, $component3, $component4){prayer0, prayer_ruinous_0, kr_varp2, raids_perm_transmit, fossil_storage2, duel2accept, prayer_allactive_alternate_0}", $component2);
+$obj1 = ~script10190($obj1);
+if_setopbase("<col=ff9040><oc_param($obj1, param_1752)></col>", $component2);
+if_setonop("prayer_op(event_op, $boolean, $obj1, $component2, $component3, $component4)", $component2);
 if_clearops($component2);
-def_int $int = oc_param($obj, param_630);
+def_int $int = oc_param($obj1, param_630);
 if ($boolean = true) {
     if_setop(2, "Info", $component2);
-    if (testbit(~prayer_allactive_get, $int) = ^true) {
+    if (testbit(~script10183($obj1), $int) = ^true) {
         cc_sethide(false);
     } else {
         cc_sethide(true);
     }
-} else if (testbit(~prayer_allactive_get, $int) = ^true) {
+} else if (testbit(~script10183($obj1), $int) = ^true) {
     if_setop(1, "Deactivate", $component2);
     cc_sethide(false);
 } else {
     if_setop(1, "Activate", $component2);
     cc_sethide(true);
 }
-if (~prayer_isavailable($obj) = true) {
-    .cc_setgraphic(oc_param($obj, param_1757));
+if (~script10154($obj1) = true) {
+    .cc_setgraphic(oc_param($obj1, param_1757));
 } else {
-    .cc_setgraphic(oc_param($obj, param_1756));
+    .cc_setgraphic(oc_param($obj1, param_1756));
 }
 if ($boolean = false & %option_prayertooltips = 0) {
-    if_setonmouserepeat("tooltip_mouserepeat(event_com, -1, $component4, ~prayer_gettooltiptext($obj), 25, if_getwidth($component3))", $component2);
+    if_setonmouserepeat("tooltip_mouserepeat(event_com, -1, $component4, ~prayer_gettooltiptext($obj1), 25, if_getwidth($component3))", $component2);
     if_setonmouseleave("deltooltip($component4)", $component2);
 } else {
     if_setonmouserepeat(null, $component2);

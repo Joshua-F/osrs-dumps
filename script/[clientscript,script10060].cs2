@@ -1,0 +1,84 @@
+// 10060
+[clientscript,script10060](int $int0, int $int1, int $int2, int $int3, boolean $boolean, int $int5)
+if (if_hassub(enum(component, component, ~toplevel_getcomponents, toplevel_osrs_stretch:mainmodal)) = false) {
+    return;
+}
+cc_deleteall(tfa_partydetails:main);
+if_sethide(false, tfa_partydetails:members_header);
+if_sethide(false, tfa_partydetails:applicants_header);
+~script10085;
+def_int $int6 = calc(%raids_count - 8);
+switch_int (%raids_listsort_details) {
+    case 0, 1, 2, 3, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 6, 7, 25, 24 :
+    case default :
+        %raids_listsort_details = 0;
+}
+~script10076($int0, $int6);
+if ($int6 <= 0) {
+    cc_create(tfa_partydetails:applicants_list, ^iftype_text, 0);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+    cc_setcolour(0xff981f);
+    cc_settextfont(p12_full);
+    cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+    cc_settextshadow(true);
+    cc_settext("No current applicants.");
+}
+if_sethide(false, tfa_partydetails:members_tab);
+if_sethide(false, tfa_partydetails:applicants_tab);
+def_int $int7 = 0;
+def_int $int8 = 0;
+if ($int5 = 0) {
+    $int7 = 1;
+    if_sethide(false, tfa_partydetails:members);
+} else if ($int5 = 1) {
+    $int8 = 1;
+    if_sethide(false, tfa_partydetails:applicants);
+}
+def_string $string0 = "";
+if (%raids_count_2 > 0) {
+    $string0 = " (<tostring(%raids_count_2)>)";
+}
+def_string $string1 = "";
+if ($int6 > 0) {
+    $string1 = " (<tostring($int6)>)";
+}
+~script10063(tfa_partydetails:members_tab, $int7, "Members", $string0, tfa_partydetails:pausebuttons, enum_6057, -1);
+~script10063(tfa_partydetails:applicants_tab, $int8, "Applicants", $string1, tfa_partydetails:pausebuttons, enum_6057, -1);
+~script10067(tfa_partydetails:preferred_size, "Set", "Preferred Size", $int3, $int0, 0);
+~script10067(tfa_partydetails:preferred_completions, "Set", "Preferred Completions", $int1, $int0, 0);
+~script10067(tfa_partydetails:preferred_mode, "Set", "Mode", $int2, $int0, 1);
+def_component $external_spectate_toggle = tfa_partydetails:external_spectate_toggle;
+if_sethide(false, $external_spectate_toggle);
+if_setontimer(null, $external_spectate_toggle);
+def_string $string2 = "";
+cc_deleteall($external_spectate_toggle);
+cc_create($external_spectate_toggle, ^iftype_graphic, 0);
+cc_setsize(17, 17, ^setsize_abs, ^setsize_abs);
+cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_top);
+if ($boolean = true) {
+    cc_setgraphic("ground_items_visibility,1");
+} else {
+    cc_setgraphic("ground_items_visibility,0");
+}
+if ($int0 = 2) {
+    if ($boolean = true) {
+        if_setop(1, "Enable spectating", $external_spectate_toggle);
+    } else {
+        if_setop(1, "Disable spectating", $external_spectate_toggle);
+    }
+    if_setonop("script10070(event_op, $external_spectate_toggle, -1, if_getop(1, $external_spectate_toggle), \"\", -1, $int0)", $external_spectate_toggle);
+} else {
+    if_clearops($external_spectate_toggle);
+    if (~on_mobile = false) {
+        $string2 = "Spectating <text_switch($boolean, "disabled", "enabled")>";
+        if_setonmouserepeat("tooltip_mouserepeat($external_spectate_toggle, -1, tfa_partydetails:tooltip, $string2, 25, 256)", $external_spectate_toggle);
+        if_setonmouseleave("deltooltip(tfa_partydetails:tooltip)", $external_spectate_toggle);
+    }
+}
+if_sethide(false, tfa_partydetails:back);
+~script10082(tfa_partydetails:back, "Back", tfa_partydetails:pausebuttons, enum_6057, -1);
+~script10061($int5, $int0);
+if ($int5 = 0 | $int5 = 1) {
+    if_setontimer("script10075(tfa_partydetails:universe, tfa_partydetails:pausebuttons, tfa_partydetails:refresh, clientclock)", tfa_partydetails:universe);
+}

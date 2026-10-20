@@ -1,0 +1,17 @@
+// 10168
+[proc,script10168](stringarray $stringarray, string $string1, string $string2)(string)
+if (array_isnull($stringarray) = true) {
+    return("");
+}
+def_int $int = array_size($stringarray);
+if ($int <= 0) {
+    return("");
+}
+if ($int = 1) {
+    return($stringarray(0));
+}
+def_string $string3 = $stringarray(calc($int - 1));
+array_delete($stringarray, calc($int - 1));
+def_string $string4 = "<string_join($stringarray, $string1)> <$string2> <$string3>";
+array_push($stringarray, $string3);
+return($string4);

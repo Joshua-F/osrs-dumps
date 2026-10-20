@@ -1,0 +1,16 @@
+// 10102
+[clientscript,script10102](int $int)
+if_sethide(true, tfa_stats:all_stats_loading_spinner);
+if (%tfa_stats_all_selected_category = null) {
+    %tfa_stats_all_selected_category = tfa_stats_category_overall;
+}
+%tfa_stats_in_active_raid = $int;
+if (%tfa_stats_in_active_raid = 1) {
+    %tfa_stats_tab = 1;
+} else {
+    %tfa_stats_tab = 0;
+}
+if_setontimer("responsive_interface_scaler(tfa_stats:infinity, -1)", tfa_stats:infinity);
+if_setonresize("script10103", tfa_stats:infinity);
+~script10104;
+~deltooltip_action(tfa_stats:tooltip);

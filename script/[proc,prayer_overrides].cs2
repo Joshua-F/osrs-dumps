@@ -1,32 +1,28 @@
 // 3656
-[proc,prayer_overrides]()(int, int, int, int, boolean, boolean, boolean, int, int)
-def_int $int0 = stat_base(prayer);
-def_int $int1 = stat_base(defence);
-def_int $int2 = %prayer_rigour_unlocked;
-def_int $int3 = %prayer_augury_unlocked;
-def_boolean $boolean4 = ~int_to_bool(calc(%kr_knightwaves_state - 7));
-def_boolean $boolean5 = map_members;
-def_boolean $boolean6 = false;
-def_int $int7 = %prayer_deadeye_unlocked;
-def_int $int8 = %prayer_mystic_vigour_unlocked;
-if ((%br_ingame = 1 | %pvptut_active_tutorial ! null) & ~instance_check(coord) = true) {
-    $int0, $int2, $int3, $boolean4, $boolean5, $boolean6 = 99, 1, 1, true, true, true;
-    if (%pvptut_active_tutorial ! null & ~instance_check(coord) = true) {
-        $boolean6 = false;
-    }
+[proc,prayer_overrides](obj $obj)(int, int, int, int, boolean)
+def_int $int1 = stat_base(prayer);
+def_int $int2 = stat_base(attack);
+def_int $int3 = stat_base(strength);
+def_int $int4 = stat_base(defence);
+def_int $int5 = ~script10157;
+def_boolean $boolean = map_members;
+if ($int5 = 1) {
+    $boolean = true;
+    $int1 = 99;
+    $int3 = 99;
     switch_int (%br_active_build_player) {
         case default :
-            $int1 = 85;
+            $int2, $int4 = 99, 85;
         case 1 :
-            $int1 = 50;
+            $int2, $int4 = 80, 50;
         case 2 :
-            $int1 = 1;
+            $int2, $int4 = 75, 1;
     }
+} else if ($int5 = 2) {
+    $boolean = true;
+    $int1 = ~script9971(%pvptut_active_tutorial, prayer, $int1);
+    $int2 = ~script9971(%pvptut_active_tutorial, attack, $int2);
+    $int3 = ~script9971(%pvptut_active_tutorial, strength, $int3);
+    $int4 = ~script9971(%pvptut_active_tutorial, defence, $int4);
 }
-if (~script6551 = true) {
-    $int2, $int3, $boolean4, $int7, $int8 = 1, 1, true, 1, 1;
-}
-if (%pvptut_active_tutorial ! null & ~instance_check(coord) = true) {
-    $int0 = ~script9971(%pvptut_active_tutorial, prayer, $int0);
-}
-return($int0, $int1, $int2, $int3, $boolean4, $boolean5, $boolean6, $int7, $int8);
+return($int1, $int2, $int3, $int4, $boolean);

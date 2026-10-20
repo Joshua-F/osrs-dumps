@@ -1,0 +1,31 @@
+// 10159
+[proc,script10159](obj $obj)(int, int, graphic)
+switch_obj ($obj) {
+    case soulreaper, soulreaper_axe_orn :
+        return(%soulreaper_stacks, 5, "orb_icon,16");
+    case weapon_of_sol :
+        return(%weapon_of_sol_stacks, 20, "orb_icon,18");
+    case lithic_sceptre_charged :
+        return(%lithic_sceptre_shatter_stacks, 14, "orb_icon,19");
+}
+if (~script10177($obj) = true) {
+    return(%rondache_charges, 20, "orb_icon,25");
+}
+def_int $int1 = enum(obj, int, enum_906, $obj);
+def_int $int2 = 0;
+def_int $int3 = 0;
+if ($int2 < $int1 & ~league_relic_active(struct_4721) = 1 & stat(hitpoints) > 25) {
+    $int2 = calc((stat(hitpoints) - 1) / 25);
+    $int3 = calc((stat_base(hitpoints) - 1) / 25);
+    if (%league_v_helm_special_active = 1) {
+        return($int2, $int3, "orb_icon,20");
+    } else {
+        return($int2, $int3, "orb_icon,0");
+    }
+}
+$int2, $int3 = calc(%sa_energy / 10), 100;
+if (%league_v_helm_special_active = 1) {
+    return($int2, $int3, "orb_icon,20");
+} else {
+    return($int2, $int3, "orb_icon,6");
+}

@@ -1,0 +1,26 @@
+// 10029
+[proc,script10029](int $int0)(int)
+def_int $int1 = 1;
+def_int $int2 = 0;
+def_int $int3 = 0;
+$int0 = calc($int0 & 65535);
+if ($int0 >= 32768) {
+    $int0 = calc($int0 - 32768);
+    $int1 = -1;
+}
+if ($int0 > 16384) {
+    $int0 = calc(32768 - $int0);
+}
+$int2 = calc($int0 * (32768 - $int0));
+$int2 = calc($int2 / 4096);
+$int3 = calc($int2 * (65536 - $int2));
+$int3 = calc(29 * ($int3 / 65535));
+$int3 = calc($int3 / 128);
+$int2 = calc($int2 - $int3);
+if ($int2 > 65535) {
+    $int2 = 65535;
+}
+if ($int2 < 0) {
+    $int2 = 0;
+}
+return(calc($int1 * $int2));

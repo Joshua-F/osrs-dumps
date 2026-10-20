@@ -1,0 +1,15 @@
+// 10056
+[clientscript,script10056](int $int0, int $int1, component $component, int $int3, string $string, int $int4)
+if ($int0 ! 10) {
+    return;
+}
+if (cc_find($component, $int3) = true & .cc_find(tfa_partydetails:pausebuttons, calc(enum_getoutputcount(enum_6057) + $int1)) = true) {
+    sound_synth(synth_2266, 1, 0);
+    cc_settrans(190);
+    cc_setonmouserepeat(null);
+    cc_setonmouseleave(null);
+    cc_clearops;
+    cc_setonop(null);
+    cc_setontimer("script10057(calc(clientclock + 80), $int1, event_com, event_comsubid, $string, $int4)");
+    .cc_resume_pausebutton;
+}

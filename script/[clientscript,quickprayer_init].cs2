@@ -1,26 +1,26 @@
 // 466
-[clientscript,quickprayer_init](component $universe, component $buttons, component $close)
-if_setgraphic("combatboxesmed,0", $close);
-if_setontimer(null, $close);
-cc_deleteall($buttons);
+[clientscript,quickprayer_init](component $component0, component $component1, component $component2)
+if_setgraphic("combatboxesmed,0", $component2);
+if_setontimer(null, $component2);
+cc_deleteall($component1);
 def_enum $enum = ~script7823;
 def_int $intarray(enum_getoutputcount($enum));
 def_int $int4 = 0;
 def_int $int5 = 0;
-def_component $component = null;
+def_component $component6 = null;
 def_obj $obj = null;
 while ($int5 < enum_getoutputcount($enum)) {
-    $obj = enum(int, obj, $enum, $int5);
-    $component = oc_param($obj, param_1751);
-    if ($component ! null) {
-        cc_create($buttons, ^iftype_graphic, $int5);
+    $obj = ~script10190(enum(int, obj, $enum, $int5));
+    $component6 = oc_param($obj, param_1751);
+    if ($component6 ! null) {
+        cc_create($component1, ^iftype_graphic, $int5);
         cc_sethide(false);
         cc_settrans(255);
         cc_setsize(34, 34, ^setsize_abs, ^setsize_abs);
         $intarray($int4) = $int5;
         $int4 = calc($int4 + 1);
     } else {
-        cc_create($buttons, ^iftype_graphic, $int5);
+        cc_create($component1, ^iftype_graphic, $int5);
         cc_sethide(true);
         cc_setsize(0, 0, ^setsize_abs, ^setsize_abs);
     }
@@ -35,38 +35,27 @@ def_int $int10 = 0;
 def_int $int11 = 0;
 while ($int11 < $int4) {
     $int9, $int10 = calc($int11 % 5 * 37), calc($int11 / 5 * 37);
-    if (cc_find($buttons, $intarray($int11)) = true) {
-        $obj = enum(int, obj, $enum, $intarray($int11));
+    if (cc_find($component1, $intarray($int11)) = true) {
+        $obj = ~script10190(enum(int, obj, $enum, $intarray($int11)));
         cc_setposition($int9, $int10, ^setpos_abs_left, ^setpos_abs_top);
         cc_setop(1, "Toggle");
-        .cc_create($buttons, ^iftype_graphic, $int8);
+        .cc_create($component1, ^iftype_graphic, $int8);
         $int8 = calc($int8 + 1);
         .cc_setsize(30, 30, ^setsize_abs, ^setsize_abs);
         .cc_setposition(calc($int9 + 2), calc($int10 + 2), ^setpos_abs_left, ^setpos_abs_top);
         ~quickprayer_icon_update($obj);
-        if ($obj = xmas16_blue_partyhat | $obj = placeholder_xmas16_blue_partyhat) {
-            .cc_setonstattransmit("quickprayer_icon_update($obj, event_com, event_comsubid){prayer, defence}");
-            .cc_setonvartransmit("quickprayer_icon_update($obj, event_com, event_comsubid){kr_varp2, br_temp_1, br_temp_3, fossil_storage2}");
-        } else if ($obj = placeholder_xmas16_green_partyhat | $obj = xmas16_teddy | $obj = placeholder_xmas16_teddy) {
-            .cc_setonstattransmit("quickprayer_icon_update($obj, event_com, event_comsubid){prayer, defence}");
-            .cc_setonvartransmit("quickprayer_icon_update($obj, event_com, event_comsubid){raids_perm_transmit}");
-        } else if ($obj = cert_ca_teleport_anim_offhand_easy | $obj = placeholder_giants_foundry_tester) {
-            .cc_setonstattransmit("quickprayer_icon_update($obj, event_com, event_comsubid){prayer}");
-            .cc_setonvartransmit("quickprayer_icon_update($obj, event_com, event_comsubid){prayer30}");
-        } else {
-            .cc_setonstattransmit("quickprayer_icon_update($obj, event_com, event_comsubid){prayer}");
-        }
         .cc_settrans(50);
         cc_setonmouseover("cc_settrans(event_com, .cc_getid, 0, null)");
         cc_setonmouseleave("cc_settrans(event_com, .cc_getid, 50, null)");
-        .cc_create($buttons, ^iftype_graphic, $int8);
+        .cc_create($component1, ^iftype_graphic, $int8);
         $int8 = calc($int8 + 1);
         .cc_setsize(36, 36, ^setsize_abs, ^setsize_abs);
         .cc_setposition($int9, $int10, ^setpos_abs_left, ^setpos_abs_top);
         ~quickprayer_button_update($obj);
-        cc_setonvartransmit("quickprayer_button_update($obj, event_com, event_comsubid, .cc_getid){prayer1, prayer_ruinous_1, fossil_storage2}");
-        cc_setonstattransmit("quickprayer_button_update($obj, event_com, event_comsubid, .cc_getid){prayer, defence}");
+        cc_setonvartransmit("quickprayer_button_update($obj, event_com, event_comsubid, .cc_getid){prayer1, prayer_ruinous_1}");
         cc_setonop("quickprayer_button_op(event_op, $obj, event_com, event_comsubid, .cc_getid)");
     }
     $int11 = calc($int11 + 1);
 }
+if_setonvartransmit("quickprayer_init($component0, $component1, $component2){kr_varp2, raids_perm_transmit, prayer30, fossil_storage2, br_temp_3, br_temp_1, prayer_alternate_unlock_0}", $component0);
+if_setonstattransmit("quickprayer_init($component0, $component1, $component2){prayer, defence, attack, strength}", $component0);

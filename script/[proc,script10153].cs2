@@ -1,0 +1,69 @@
+// 10153
+[proc,script10153](boolean $boolean0)
+if (%hpbar_hud_show_extra_bar = 0) {
+    return;
+}
+if (%hpbar_hud_npc = null) {
+    return;
+}
+def_string $string = "";
+def_boolean $boolean1 = nc_param(%hpbar_hud_npc, param_2765);
+def_boolean $boolean2 = nc_param(%hpbar_hud_npc, param_2766);
+def_int $int3 = 0;
+if ($boolean1 = true & $boolean2 = true) {
+    $string = "";
+} else if ($boolean1 = false & $boolean2 = false) {
+    $string = "<tostring(%hpbar_hud_extra_current)> / <tostring(%hpbar_hud_extra_base)>";
+} else if ($boolean1 = true) {
+    $string = tostring(%hpbar_hud_extra_current);
+} else if ($boolean2 = true) {
+    $string = tostring(%hpbar_hud_extra_base);
+}
+def_int $int4 = if_getwidth(hpbar_hud:health_bar_back_extra);
+%hpbar_hud_extra_base = ~max(%hpbar_hud_extra_base, 1);
+if (%hpbar_hud_boss_percentage_enabled = 1 & nc_param(%hpbar_hud_npc, param_2769) = true) {
+    if ($boolean1 = true | $boolean2 = true) {
+        ~debug_mes_warn("Extra Hp bar", "Boss is trying to hide base or current, but also wants to show % value if the players have that setting. Please review as this is not fully supported");
+    }
+    $int3 = ~minmax(1, 99, scale(%hpbar_hud_extra_current, %hpbar_hud_extra_base, 100));
+    if (%hpbar_hud_extra_current <= 0) {
+        $int3 = 0;
+    } else if (%hpbar_hud_extra_current >= %hpbar_hud_extra_base) {
+        $int3 = 100;
+    }
+    $string = "<tostring($int3)>%";
+}
+def_int $int5 = scale(%hpbar_hud_extra_current, %hpbar_hud_extra_base, $int4);
+if_settext($string, hpbar_hud:hp_bar_text_extra);
+if ($int5 = 0 & %hpbar_hud_extra_current > 0) {
+    $int5 = 1;
+}
+if ($int5 = if_getwidth(hpbar_hud:health_bar_back_extra) & %hpbar_hud_extra_current < %hpbar_hud_extra_base) {
+    $int5 = calc($int5 - 1);
+}
+if (nc_param(%hpbar_hud_npc, param_2764) = true & if_getwidth(hpbar_hud:health_bar_remaining_extra) = 0 & $int5 > 0) {
+    if_setsize(1, if_getheight(hpbar_hud:health_bar_remaining_extra), ^setsize_abs, ^setsize_abs, hpbar_hud:health_bar_remaining_extra);
+    if_setsize(1, if_getheight(hpbar_hud:health_bar_sliding_extra), ^setsize_abs, ^setsize_abs, hpbar_hud:health_bar_sliding_extra);
+}
+if ($boolean0 = true | if_getwidth(hpbar_hud:health_bar_remaining_extra) = 0 & $int5 > 0) {
+    if_setsize($int5, if_getheight(hpbar_hud:health_bar_remaining_extra), ^setsize_abs, ^setsize_abs, hpbar_hud:health_bar_remaining_extra);
+    if_setsize($int5, if_getheight(hpbar_hud:health_bar_sliding_extra), ^setsize_abs, ^setsize_abs, hpbar_hud:health_bar_sliding_extra);
+    if_setontimer(null, hpbar_hud:health_bar_sliding_extra);
+    if_setparam(param_2770, false, hpbar_hud:health_bar_sliding_extra, -1);
+    return;
+}
+def_int $int6 = if_getwidth(hpbar_hud:health_bar_remaining_extra);
+if ($int5 < $int6) {
+    if_setsize($int5, if_getheight(hpbar_hud:health_bar_remaining_extra), ^setsize_abs, ^setsize_abs, hpbar_hud:health_bar_remaining_extra);
+    if (if_getwidth(hpbar_hud:health_bar_sliding_extra) < $int6) {
+        if_setsize($int6, if_getheight(hpbar_hud:health_bar_sliding_extra), ^setsize_abs, ^setsize_abs, hpbar_hud:health_bar_sliding_extra);
+    }
+    if_setontimer(null, hpbar_hud:health_bar_remaining_extra);
+    if (if_param(param_2770, hpbar_hud:health_bar_sliding_extra, -1) = false) {
+        if_setontimer("hp_hud_update_bar(hpbar_hud:health_bar_sliding_extra, $int5, calc(clientclock + 20))", hpbar_hud:health_bar_sliding_extra);
+    } else {
+        if_setontimer("hp_hud_update_bar(hpbar_hud:health_bar_sliding_extra, $int5, clientclock)", hpbar_hud:health_bar_sliding_extra);
+    }
+} else {
+    if_setontimer("hp_hud_update_bar(hpbar_hud:health_bar_remaining_extra, $int5, -1)", hpbar_hud:health_bar_remaining_extra);
+}

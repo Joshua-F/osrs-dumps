@@ -1,0 +1,33 @@
+// 10058
+[clientscript,script10058](string $string0)
+if (if_hassub(enum(component, component, ~toplevel_getcomponents, toplevel_osrs_stretch:mainmodal)) = false) {
+    return;
+}
+def_int $int0 = ~max(0, calc(%raids_count - 8));
+def_int $int1 = calc($int0 * 22);
+def_int $int2 = 22;
+cc_create(tfa_partydetails:applicants_list, ^iftype_rectangle, $int1);
+cc_setsize(0, $int2, ^setsize_minus, ^setsize_abs);
+cc_setposition(0, calc(-1 * $int2), ^setpos_abs_centre, ^setpos_abs_top);
+cc_setfill(true);
+cc_setcolour(^black);
+def_string $string1 = "";
+def_string $string2 = "";
+$string1, $string2 = ~script632($string0);
+def_int $rgb = 0xff981f;
+if (compare(lowercase($string1), lowercase(removetags(chat_playername))) = 0) {
+    $rgb = ^white;
+}
+def_int $int4 = 0;
+$string0, $int4 = ~script10059(1, -1, tfa_partydetails:applicants_name, $string0, $int1, $int4, $rgb);
+$string0, $int4 = ~script10059(2, 3, tfa_partydetails:applicants_comlevel, $string0, $int1, $int4, $rgb);
+$string0, $int4 = ~script10059(4, 5, tfa_partydetails:applicants_attack, $string0, $int1, $int4, $rgb);
+$string0, $int4 = ~script10059(6, 7, tfa_partydetails:applicants_strength, $string0, $int1, $int4, $rgb);
+$string0, $int4 = ~script10059(8, 9, tfa_partydetails:applicants_ranged, $string0, $int1, $int4, $rgb);
+$string0, $int4 = ~script10059(10, 11, tfa_partydetails:applicants_magic, $string0, $int1, $int4, $rgb);
+$string0, $int4 = ~script10059(12, 13, tfa_partydetails:applicants_defence, $string0, $int1, $int4, $rgb);
+$string0, $int4 = ~script10059(14, 15, tfa_partydetails:applicants_hitpoints, $string0, $int1, $int4, $rgb);
+$string0, $int4 = ~script10059(16, 17, tfa_partydetails:applicants_prayer, $string0, $int1, $int4, $rgb);
+$string0, $int4 = ~script10059(18, 19, tfa_partydetails:applicants_completions, $string0, $int1, $int4, $rgb);
+$string0, $int4 = ~script10059(20, 21, tfa_partydetails:applicants_completions_practice, $string0, $int1, $int4, $rgb);
+%raids_count = calc(%raids_count + 1);

@@ -1,0 +1,17 @@
+// 10106
+[proc,script10106]
+~script8086(tfa_stats:side_tabs_container);
+if (%tfa_stats_tab ! 0) {
+    return;
+}
+def_int $int0 = ~script10116;
+def_int $int1 = enum_getoutputcount(enum_6066);
+def_dbrow $dbrow = null;
+def_int $int3 = -1;
+def_int $int4 = 0;
+def_int $int5 = 0;
+while ($int5 < $int1) {
+    $dbrow = enum(int, dbrow, enum_6066, $int5);
+    ~script10107(tfa_stats:side_tabs_container, $int0, $int5, $dbrow);
+    $int5 = calc($int5 + 1);
+}

@@ -3,12 +3,12 @@
 def_int $int6 = oc_param($obj, param_630);
 if ($int0 = 1) {
     if ($boolean = false & cc_find($component3, 0) = true & .cc_find($component3, 1) = true) {
-        if (testbit(~prayer_allactive_get, $int6) = ^true) {
-            ~prayer_allactive_set(clearbit(~prayer_allactive_get, $int6));
+        if (testbit(~script10183($obj), $int6) = ^true) {
+            ~script10184($obj, clearbit(~script10183($obj), $int6));
             ~prayer_updatebutton($boolean, $obj, $component3, $component4, $component5);
             return;
         }
-        if (~prayer_isavailable($obj) = false) {
+        if (~script10154($obj) = false) {
             sound_synth(synth_2673, 1, 0);
             return;
         }
@@ -17,7 +17,7 @@ if ($int0 = 1) {
             mes("You need to recharge your Prayer at an altar.");
             return;
         }
-        ~prayer_allactive_set(setbit(~prayer_allactive_get, $int6));
+        ~script10184($obj, setbit(~script10183($obj), $int6));
         ~prayer_updatebutton($boolean, $obj, $component3, $component4, $component5);
     }
 } else if ($int0 = 2) {

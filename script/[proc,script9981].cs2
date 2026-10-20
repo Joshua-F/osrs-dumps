@@ -1,0 +1,74 @@
+// 9981
+[proc,script9981](component $component0, int $int1, int $int2, component $component3, int $int4, graphic $graphic5, graphic $graphic6, graphic $graphic7, graphic $graphic8, graphic $graphic9, graphic $graphic10, boolean $boolean)(int)
+def_int $int12 = 0;
+def_int $int13 = 0;
+if (($int1 = -1 & if_find($component0) = true | cc_find($component0, $int1) = true) & ($int4 = -1 & .if_find($component3) = true | .cc_find($component3, $int4) = true)) {
+    $int12 = .cc_getscrollwidth;
+    if ($int12 <= 0) {
+        $int12 = .cc_getwidth;
+    }
+    if ($int12 > 0) {
+        $int13 = calc((cc_getwidth - 32) * .cc_getwidth / $int12);
+    } else {
+        $int13 = calc(cc_getwidth - 32);
+    }
+    if ($int13 < 10) {
+        $int13 = 10;
+    }
+    if ($boolean = true) {
+        .cc_setonscrollwheel("script9987($component0, $int1, $component3, $int4, event_mousey)");
+    }
+} else {
+    return($int2);
+}
+if (($int1 = -1 & if_find($component0) = true | cc_find($component0, $int1) = true) & ($int1 = -1 & .if_find($component0) = true | .cc_find($component0, $int1) = true)) {
+    cc_create_child(^iftype_graphic, $int2);
+    .cc_setparam(param_2663, $int2);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_setsize(32, 0, ^setsize_minus, ^setsize_minus);
+    cc_setgraphic($graphic5);
+    cc_settiling(false);
+    cc_setonclick("script9985($component0, $int1)");
+    cc_setonscrollwheel("script9987($component0, $int1, $component3, $int4, event_mousey)");
+    cc_setnoclickthrough(true);
+    $int2 = calc($int2 + 1);
+    .cc_create_child(^iftype_graphic, $int2);
+    .cc_setposition(16, 0, ^setpos_abs_left, ^setpos_abs_centre);
+    .cc_setsize($int13, 0, ^setsize_abs, ^setsize_minus);
+    .cc_setgraphic($graphic7);
+    .cc_settiling(false);
+    .cc_setdraggable($component0, cc_getid);
+    .cc_setondrag("script9986($component0, $int1, $component3, $int4, event_mousex, 0)");
+    .cc_setondragcomplete("script9986($component0, $int1, $component3, $int4, event_mousex, 1)");
+    .cc_setdragrenderbehaviour(1);
+    $int2 = calc($int2 + 1);
+    cc_create_sibling(^iftype_graphic, $int2);
+    cc_setposition(.cc_getx, 0, ^setpos_abs_left, ^setpos_abs_centre);
+    cc_setsize(5, 0, ^setsize_abs, ^setsize_minus);
+    cc_setgraphic($graphic6);
+    cc_settiling(false);
+    $int2 = calc($int2 + 1);
+    cc_create_sibling(^iftype_graphic, $int2);
+    cc_setposition(calc(.cc_getx + .cc_getwidth - 5), 0, ^setpos_abs_left, ^setpos_abs_centre);
+    cc_setsize(5, 0, ^setsize_abs, ^setsize_minus);
+    cc_setgraphic($graphic8);
+    cc_settiling(false);
+    $int2 = calc($int2 + 1);
+    cc_create_sibling(^iftype_graphic, $int2);
+    cc_setposition(0, 0, ^setpos_abs_left, ^setpos_abs_centre);
+    cc_setsize(16, 0, ^setsize_abs, ^setsize_minus);
+    cc_setgraphic($graphic9);
+    cc_settiling(false);
+    cc_setonhold("script9983($component0, $int1, $component3, $int4, -4)");
+    cc_setnoclickthrough(true);
+    $int2 = calc($int2 + 1);
+    cc_create_sibling(^iftype_graphic, $int2);
+    cc_setposition(0, 0, ^setpos_abs_right, ^setpos_abs_centre);
+    cc_setsize(16, 0, ^setsize_abs, ^setsize_minus);
+    cc_setgraphic($graphic10);
+    cc_settiling(false);
+    cc_setonhold("script9983($component0, $int1, $component3, $int4, 4)");
+    cc_setnoclickthrough(true);
+    $int2 = calc($int2 + 1);
+}
+return($int2);

@@ -13,15 +13,16 @@ if (%hpbar_hud_npc ! null) {
 } else {
     $string0 = if_gettext($component6);
 }
+~script10149($component3, $component4, $component2);
 def_int $int12 = 0;
 def_int $int13 = if_getwidth($component2);
 def_int $int14 = parawidth($string0, calc($int13 - 4), p11_full);
 if (compare($string0, "") = 0 | %hpbar_hud_boss_name_disabled = 1) {
-    $int12 = 27;
+    $int12 = ~script10150(0);
     if_sethide(true, $component5);
     if_setsize(if_getwidth($component0), $int12, ^setsize_abs, ^setsize_abs, $component0);
 } else {
-    $int12 = 42;
+    $int12 = ~script10150(1);
     while (paraheight($string0, calc($int13 - 4), p11_full) > 1) {
         $string0 = substring($string0, 0, calc(string_length($string0) - 4));
         $string0 = append($string0, "...");
@@ -70,6 +71,7 @@ if (%hpbar_hud_hp_2 > 0 & %hpbar_hud_hp_2 <= $int17) {
 } else {
     if_sethide(true, $component10);
 }
+~script10153($boolean);
 if ($int16 = 0 & %hpbar_hud_hp > 0) {
     $int16 = 1;
 }
@@ -93,7 +95,7 @@ if ($int16 < $int18) {
         if_setsize($int18, if_getheight($component3), ^setsize_abs, ^setsize_abs, $component3);
     }
     if_setontimer(null, $component4);
-    if (%hpbar_sliding = 0) {
+    if (if_param(param_2770, $component3, -1) = false) {
         if_setontimer("hp_hud_update_bar($component3, $int16, calc(clientclock + 20))", $component3);
     } else {
         if_setontimer("hp_hud_update_bar($component3, $int16, clientclock)", $component3);
