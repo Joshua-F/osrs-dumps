@@ -3,6 +3,18 @@
 def_string $string0 = enum(int, string, enum_3047, %worn_items_set_text);
 def_int $int3 = 1;
 def_string $string1 = "";
+if (%worn_items_flat_armour_physical ! 0) {
+    $int3 = 0;
+    $string0 = append($string0, "<col=ffffff>Flat Armour:</col> ");
+    $string0 = append_signnum($string0, %worn_items_flat_armour_physical);
+    $string0 = append($string0, "<br><br>Modifies melee and ranged damage taken.<br><br>");
+}
+if (%worn_items_flat_armour_magic ! 0) {
+    $int3 = 0;
+    $string0 = append($string0, "<col=ffffff>Magic Resistance:</col> ");
+    $string0 = append_signnum($string0, %worn_items_flat_armour_magic);
+    $string0 = append($string0, "<br><br>Modifies magic damage taken.<br><br>");
+}
 if (%worn_items_inquisitors_armour > 0 & %worn_items_inquisitors_armour <= 5) {
     $int3 = 0;
     switch_int (%worn_items_inquisitors_armour) {
@@ -400,6 +412,39 @@ if (%worn_items_rc_outfit > 0 & %worn_items_rc_outfit < 4) {
         $string0 = append($string0, "Boots of the eye: +10%<br>");
     }
     $string0 = append($string0, "<br>");
+}
+if (%worn_items_obligator = 1 | %worn_items_obligator_uncharged = 1) {
+    $int3 = 0;
+    if (~script10178(%com_mode) = true) {
+        $string0 = append($string0, "<"<col=ffffff>"><"Obligator"> (Thrust):</col><br><br>");
+        if (%worn_items_obligator = 1) {
+            $string0 = append($string0, "Rolls damage multiple times against enemies depending where its crush defence bonus is in respect to other defence bonuses.<br><br>Melee attacks can hit multiple enemies in a line, up to 3 tiles away, or deal bonus damage to larger targets.");
+        } else {
+            $string0 = append($string0, "Melee attacks can hit multiple enemies in a line, up to 3 tiles away.");
+        }
+    } else {
+        $string0 = append($string0, "<"<col=ffffff>"><"Obligator"> (Smash):</col><br><br>");
+        $string0 = append($string0, "Melee attack rate is reduced to 3");
+    }
+    $string0 = append($string0, "<br><br>");
+}
+if (%worn_items_twisted_bow = 1) {
+    $int3 = 0;
+    $string0 = append($string0, "<col=ffffff><oc_name(twisted_bow)>:</col><br><br>");
+    $string0 = append($string0, "Bow attacks scale with your target's magical strength..<br><br>The stronger the target is in that respect, the more accurate and powerful the bow becomes.");
+    $string0 = append($string0, "<br><br>");
+}
+if (%worn_items_scythe_of_vitur = 1) {
+    $int3 = 0;
+    $string0 = append($string0, "<col=ffffff><oc_name(scythe_of_vitur)>:</col><br><br>");
+    $string0 = append($string0, "Melee attacks sweep through a small area in front of you, allowing you to hit multiple nearby targets.<br><br>If the target is large enough, those additional hits are applied to that creature instead.");
+    $string0 = append($string0, "<br><br>");
+}
+if (%worn_items_tumekens_shadow = 1) {
+    $int3 = 0;
+    $string0 = append($string0, "<col=ffffff><oc_name(tumekens_shadow)>:</col><br><br>");
+    $string0 = append($string0, "Attacking with the shadow multiplies your Magic attack and strength bonus from worn equipment.");
+    $string0 = append($string0, "<br><br>");
 }
 if ($int3 = 1 & %worn_items_set_text = 0) {
     $string0 = "When wearing gear that gives a set bonus, you'll be able to view it here.<br>";

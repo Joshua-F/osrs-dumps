@@ -7,7 +7,7 @@ def_int $int2 = 45;
 def_int $int3 = 71;
 def_int $int4 = 47;
 def_int $int5 = 32;
-def_int $int6 = 26;
+def_int $int6 = 28;
 def_int $int7 = 12;
 def_int $int8 = 8;
 def_int $int9 = 4;
@@ -118,8 +118,14 @@ if (%combat_weapon_category = 18 | %combat_weapon_category = 21 | %combat_weapon
 }
 if_setsize(calc($int8 + 2 * $int3), $int15, ^setsize_abs, ^setsize_abs, combat_interface:retaliate);
 if_setposition(0, $int12, ^setpos_abs_centre, ^setpos_abs_top, combat_interface:retaliate);
-if_setsize(calc($int8 + 2 * $int3), $int6, ^setsize_abs, ^setsize_abs, combat_interface:sp_attackbar);
-if_setposition(0, calc($int12 + $int15 + $int10), ^setpos_abs_centre, ^setpos_abs_top, combat_interface:sp_attackbar);
+if (~on_mobile = true) {
+    if_setsize(calc($int8 + 2 * $int3), $int6, ^setsize_abs, ^setsize_abs, combat_interface:sp_attackbars_container);
+    if_setsize(0, 0, ^setsize_minus, ^setsize_minus, combat_interface:sp_attackbar);
+} else {
+    if_setsize(calc($int8 + 2 * $int3 + 20), $int6, ^setsize_abs, ^setsize_abs, combat_interface:sp_attackbars_container);
+    if_setsize(20, 0, ^setsize_minus, ^setsize_minus, combat_interface:sp_attackbar);
+}
+if_setposition(0, calc($int12 + $int15 + $int10), ^setpos_abs_centre, ^setpos_abs_top, combat_interface:sp_attackbars_container);
 if_setsize($int3, $int13, ^setsize_abs, ^setsize_abs, combat_interface:autocast_buttons);
 if_setposition(calc($int11 + $int3 + $int8), $int2, ^setpos_abs_left, ^setpos_abs_top, combat_interface:autocast_buttons);
 if_setsize($int3, $int14, ^setsize_abs, ^setsize_abs, combat_interface:autocast_normal);
@@ -127,8 +133,14 @@ if_setsize($int3, $int14, ^setsize_abs, ^setsize_abs, combat_interface:normal_co
 if_setsize($int3, $int14, ^setsize_abs, ^setsize_abs, combat_interface:autocast_defensive);
 if_setsize($int3, $int14, ^setsize_abs, ^setsize_abs, combat_interface:defensive_container);
 if_setsize(if_getwidth(combat_interface:sp_empty), $int7, ^setsize_abs, ^setsize_abs, combat_interface:sp_empty);
+if_setsize(if_getwidth(combat_interface:sp_empty_mainhand), $int7, ^setsize_abs, ^setsize_abs, combat_interface:sp_empty_mainhand);
+if_setsize(if_getwidth(combat_interface:sp_empty_offhand), $int7, ^setsize_abs, ^setsize_abs, combat_interface:sp_empty_offhand);
 if_setsize(if_getwidth(combat_interface:sp_border), calc($int7 + 2), ^setsize_abs, ^setsize_abs, combat_interface:sp_border);
+if_setsize(if_getwidth(combat_interface:sp_border_mainhand), calc($int7 + 2), ^setsize_abs, ^setsize_abs, combat_interface:sp_border_mainhand);
+if_setsize(if_getwidth(combat_interface:sp_border_offhand), calc($int7 + 2), ^setsize_abs, ^setsize_abs, combat_interface:sp_border_offhand);
 if_setsize(if_getwidth(combat_interface:currentenergy), $int7, ^setsize_abs, ^setsize_abs, combat_interface:currentenergy);
+if_setsize(if_getwidth(combat_interface:currentenergy_mainhand), $int7, ^setsize_abs, ^setsize_abs, combat_interface:currentenergy_mainhand);
+if_setsize(if_getwidth(combat_interface:currentenergy_offhand), $int7, ^setsize_abs, ^setsize_abs, combat_interface:currentenergy_offhand);
 def_string $string3 = "";
 def_string $string4 = "";
 def_string $string5 = "";

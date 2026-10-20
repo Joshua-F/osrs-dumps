@@ -1,5 +1,5 @@
 // 7245
-[proc,omnishop_main_buttons_setup](dbrow $dbrow, int $int1, int $int2, string $string0, boolean $boolean3)
+[proc,omnishop_main_buttons_setup](dbrow $dbrow, int $int1, int $int2, string $string0, int $int3)
 def_component $button_1 = omnishop_main:button_1;
 def_component $button_2 = omnishop_main:button_2;
 def_component $button_3 = omnishop_main:button_3;
@@ -29,8 +29,8 @@ if ($int2 >= 1 | $int2 = -1) {
 }
 def_int $int12 = calc((if_getwidth($buttons_info) - 18) / 4);
 def_int $int13 = calc(18 / 4);
-def_boolean $boolean14 = ~script2288;
-if ($boolean14 = true) {
+def_boolean $boolean = ~script2288;
+if ($boolean = true) {
     $int12 = calc((if_getwidth($buttons_info) - 18) / 5);
     $int13 = calc(18 / 5);
 }
@@ -44,45 +44,11 @@ if_sethide(false, $button_1);
 if_sethide(false, $button_2);
 if_sethide(false, $button_3);
 if_sethide(false, $button_4);
-if ($int2 > 0 | $int2 = -1) {
-    if ($int2 = 1) {
-        $string1 = $string0;
-    } else {
-        $string1 = "<$string0>-1";
-    }
-    ~omnishop_main_buttons_setup_buy($boolean3, $dbrow, $int1, 1, $string1, "1", $button_1);
-} else {
-    ~omnishop_main_buttons_setup_buy_hide($button_1);
-    $int15 = 4;
-}
-if ($int2 >= 5 | $int2 = -1) {
-    ~omnishop_main_buttons_setup_buy($boolean3, $dbrow, $int1, 2, "<$string0>-5", "5", $button_2);
-} else {
-    ~omnishop_main_buttons_setup_buy_hide($button_2);
-    if ($int15 = 0) {
-        $int15 = 1;
-    }
-}
-if ($int2 >= 10 | $int2 = -1) {
-    ~omnishop_main_buttons_setup_buy($boolean3, $dbrow, $int1, 3, "<$string0>-10", "10", $button_3);
-} else {
-    ~omnishop_main_buttons_setup_buy_hide($button_3);
-    if ($int15 = 0) {
-        $int15 = 2;
-    }
-}
-if ($int2 >= 50 | $int2 = -1) {
-    ~omnishop_main_buttons_setup_buy($boolean3, $dbrow, $int1, 4, "<$string0>-50", "50", $button_4);
-} else {
-    ~omnishop_main_buttons_setup_buy_hide($button_4);
-    if ($int15 = 0) {
-        $int15 = 3;
-    }
-}
-if ($int15 = 0) {
-    $int15 = 4;
-}
-if ($boolean14 = true) {
+$int15 = ~omnishop_main_buttons_setup_buy($dbrow, $int1, db_getfield($dbrow, omnishop_shop_data:omnishop_buy_q1, 0), $int2, $string0, $int15, $button_1);
+$int15 = ~omnishop_main_buttons_setup_buy($dbrow, $int1, db_getfield($dbrow, omnishop_shop_data:omnishop_buy_q2, 0), $int2, $string0, $int15, $button_2);
+$int15 = ~omnishop_main_buttons_setup_buy($dbrow, $int1, db_getfield($dbrow, omnishop_shop_data:omnishop_buy_q3, 0), $int2, $string0, $int15, $button_3);
+$int15 = ~omnishop_main_buttons_setup_buy($dbrow, $int1, db_getfield($dbrow, omnishop_shop_data:omnishop_buy_q4, 0), $int2, $string0, $int15, $button_4);
+if ($boolean = true) {
     $int15 = calc($int15 + 1);
     if_setsize($int12, 18, ^setsize_abs, ^setsize_minus, $note_button_layer);
     if_setsize(calc($int15 * $int12 + $int15 * $int13 + $int13), 0, ^setsize_abs, ^setsize_minus, $button_info_holder);

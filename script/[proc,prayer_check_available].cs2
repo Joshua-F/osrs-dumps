@@ -1,0 +1,18 @@
+// 10154
+[proc,prayer_check_available](obj $obj)(boolean)
+def_int $int1 = 0;
+def_int $int2 = 0;
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_boolean $boolean = false;
+$int1, $int2, $int3, $int4, $boolean = ~prayer_overrides($obj);
+if (~prayer_check_prayer_level($obj, $int1) = false) {
+    return(false);
+}
+if (~prayer_check_unlock($obj, ~prayer_context) ! 1) {
+    return(false);
+}
+if (~prayer_check_requirements($obj, $boolean, $int2, $int3, $int4) = false) {
+    return(false);
+}
+return(true);

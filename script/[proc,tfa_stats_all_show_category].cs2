@@ -1,0 +1,19 @@
+// 10121
+[proc,tfa_stats_all_show_category](dbrow $dbrow)
+def_int $int = 0;
+if_query(1, tfa_stats:all_stats_tables, -1);
+while (if_query_next = true) {
+    if (cc_param(param_2735) ! null) {
+        if (cc_param(param_2735) = $dbrow) {
+            cc_sethide(false);
+            $int = 1;
+        } else {
+            cc_sethide(true);
+        }
+    }
+}
+if ($int = 1) {
+    return;
+} else {
+    ~tfa_stats_all_init_table($dbrow);
+}

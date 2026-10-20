@@ -427,15 +427,32 @@ onvartransmit=combat_interface_set_effect{pmoon_boss_player_perm_transmit}
 onmouserepeat=addtooltip(event_com, combat_interface:tooltip, "When active your set effect will trigger automatically.", 25, 140)
 
 // 593:38
-[sp_attackbar]
+[sp_attackbars_container]
 type=layer
 y=200
-width=150
-height=26
+width=170
+height=28
 xmode=abs_centre
 layer=universe
 
 // 593:39
+[sp_attackbar_mainhand]
+type=layer
+width=8028
+widthmode=rel
+heightmode=minus
+layer=sp_attackbars_container
+
+// 593:40
+[sp_attackbar_offhand]
+type=layer
+width=8028
+widthmode=rel
+heightmode=minus
+xmode=abs_right
+layer=sp_attackbars_container
+
+// 593:41
 [special_attack]
 type=layer
 widthmode=minus
@@ -446,7 +463,7 @@ layer=sp_attackbar
 transmitop=1
 op1=Use <col=00ff00>Special Attack</col>
 
-// 593:40
+// 593:42
 [sp_empty]
 type=rectangle
 x=2
@@ -458,7 +475,7 @@ layer=sp_attackbar
 colour=0x730606
 fill=yes
 
-// 593:41
+// 593:43
 [currentenergy]
 type=layer
 x=2
@@ -468,7 +485,7 @@ widthmode=minus
 ymode=abs_centre
 layer=sp_attackbar
 
-// 593:42
+// 593:44
 [currentenergy_colour]
 type=rectangle
 widthmode=minus
@@ -479,7 +496,7 @@ layer=currentenergy
 colour=0x397d3b
 fill=yes
 
-// 593:43
+// 593:45
 [sp_indicator]
 type=text
 widthmode=minus
@@ -491,7 +508,7 @@ textalignh=centre
 textalignv=centre
 colour=0x000010
 
-// 593:44
+// 593:46
 [sp_border]
 type=rectangle
 x=2
@@ -502,14 +519,14 @@ ymode=abs_centre
 layer=sp_attackbar
 colour=0x2c2a23
 
-// 593:45
+// 593:47
 [tooltip]
 type=layer
 width=1
 height=1
 layer=universe
 
-// 593:46
+// 593:48
 [switch_button]
 type=layer
 width=26
@@ -520,7 +537,7 @@ opbase=Sailing Options
 op1=View
 onop=opsound(event_op, 2)
 
-// 593:47
+// 593:49
 [infobutton]
 type=layer
 x=2
@@ -531,7 +548,7 @@ xmode=abs_right
 ymode=abs_centre
 layer=universe
 
-// 593:48
+// 593:50
 [info_layer]
 type=layer
 widthmode=minus
@@ -540,7 +557,7 @@ xmode=abs_centre
 ymode=abs_centre
 layer=universe
 
-// 593:49
+// 593:51
 [buttons_click_overlay]
 type=layer
 widthmode=minus
@@ -549,8 +566,8 @@ xmode=abs_centre
 ymode=abs_centre
 layer=universe
 
-// 593:50
-[com_50]
+// 593:52
+[com_52]
 type=text
 width=32
 height=32
@@ -558,14 +575,14 @@ layer=set_effect
 textfont=p11_full
 textshadow=yes
 
-// 593:51
+// 593:53
 [set_effect_back]
 type=layer
 widthmode=minus
 heightmode=minus
 layer=set_effect
 
-// 593:52
+// 593:54
 [set_effect_icon]
 type=graphic
 x=7
@@ -574,7 +591,7 @@ width=26
 height=39
 layer=set_effect
 
-// 593:53
+// 593:55
 [set_effect_text]
 type=text
 x=2
@@ -590,4 +607,242 @@ textalignv=centre
 textshadow=yes
 colour=0xff981f
 onload=combat_interface_sp(event_com)
+
+// 593:56
+[sp_attackbar]
+type=layer
+width=20
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=sp_attackbars_container
+hide=yes
+
+// 593:57
+[special_attack_mainhand]
+type=layer
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=sp_attackbar_mainhand
+transmitop=1
+op1=Use <col=00ff00>Special Attack</col>
+
+// 593:58
+[special_attack_bg_mainhand]
+type=layer
+x=12
+width=12
+height=2
+widthmode=minus
+heightmode=minus
+ymode=abs_centre
+layer=sp_attackbar_mainhand
+
+// 593:59
+[sp_empty_mainhand]
+type=rectangle
+x=23
+width=25
+height=12
+widthmode=minus
+ymode=abs_centre
+layer=sp_attackbar_mainhand
+colour=0x730606
+fill=yes
+
+// 593:60
+[currentenergy_mainhand]
+type=layer
+x=23
+width=25
+height=12
+widthmode=minus
+ymode=abs_centre
+layer=sp_attackbar_mainhand
+
+// 593:61
+[currentenergy_colour_mainhand]
+type=rectangle
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=currentenergy_mainhand
+colour=0x397d3b
+fill=yes
+
+// 593:62
+[sp_indicator_mainhand]
+type=text
+x=21
+y=1
+width=25
+widthmode=minus
+heightmode=minus
+ymode=abs_centre
+layer=sp_attackbar_mainhand
+textfont=p11_full
+textalignh=centre
+textalignv=centre
+colour=0x000010
+
+// 593:63
+[sp_border_mainhand]
+type=rectangle
+x=23
+width=25
+height=14
+widthmode=minus
+ymode=abs_centre
+layer=sp_attackbar_mainhand
+colour=0x2c2a23
+
+// 593:64
+[sp_orb_border_mainhand]
+type=graphic
+width=28
+height=28
+ymode=abs_centre
+layer=sp_attackbar_mainhand
+graphic=orb_filler_border
+
+// 593:65
+[sp_orb_mainhand]
+type=graphic
+x=1
+width=26
+height=26
+ymode=abs_centre
+layer=sp_attackbar_mainhand
+graphic="orb_filler,9"
+
+// 593:66
+[sp_icon_mainhand]
+type=graphic
+x=1
+width=26
+height=26
+ymode=abs_centre
+layer=sp_attackbar_mainhand
+graphic="orb_filler,9"
+
+// 593:67
+[special_attack_offhand]
+type=layer
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=sp_attackbar_offhand
+transmitop=1
+op1=Use Offhand <col=00ff00>Special Attack</col>
+
+// 593:68
+[special_attack_bg_offhand]
+type=layer
+x=12
+width=12
+height=2
+widthmode=minus
+heightmode=minus
+xmode=abs_right
+ymode=abs_centre
+layer=sp_attackbar_offhand
+
+// 593:69
+[sp_empty_offhand]
+type=rectangle
+x=23
+width=25
+height=12
+widthmode=minus
+xmode=abs_right
+ymode=abs_centre
+layer=sp_attackbar_offhand
+colour=0x730606
+fill=yes
+
+// 593:70
+[currentenergy_offhand]
+type=layer
+x=2
+width=25
+height=12
+widthmode=minus
+ymode=abs_centre
+layer=sp_attackbar_offhand
+
+// 593:71
+[currentenergy_colour_offhand]
+type=rectangle
+widthmode=minus
+heightmode=minus
+xmode=abs_centre
+ymode=abs_centre
+layer=currentenergy_offhand
+colour=0x397d3b
+fill=yes
+
+// 593:72
+[sp_indicator_offhand]
+type=text
+x=21
+y=1
+width=25
+widthmode=minus
+heightmode=minus
+xmode=abs_right
+ymode=abs_centre
+layer=sp_attackbar_offhand
+textfont=p11_full
+textalignh=centre
+textalignv=centre
+colour=0x000010
+
+// 593:73
+[sp_border_offhand]
+type=rectangle
+x=23
+width=25
+height=14
+widthmode=minus
+xmode=abs_right
+ymode=abs_centre
+layer=sp_attackbar_offhand
+colour=0x2c2a23
+
+// 593:74
+[sp_orb_border_offhand]
+type=graphic
+width=28
+height=28
+xmode=abs_right
+ymode=abs_centre
+layer=sp_attackbar_offhand
+graphic=orb_filler_border
+
+// 593:75
+[sp_orb_offhand]
+type=graphic
+x=1
+width=26
+height=26
+xmode=abs_right
+ymode=abs_centre
+layer=sp_attackbar_offhand
+graphic="orb_filler,9"
+
+// 593:76
+[sp_icon_offhand]
+type=graphic
+x=1
+width=26
+height=26
+xmode=abs_right
+ymode=abs_centre
+layer=sp_attackbar_offhand
+graphic="orb_filler,9"
 
