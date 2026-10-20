@@ -1,0 +1,22 @@
+// 10192
+[proc,script10192](obj $obj0, obj $obj1)(boolean)
+if ($obj0 ! null & $obj1 ! null) {
+    if (oc_param($obj0, param_1751) ! oc_param($obj1, param_1751)) {
+        ~error("$base_prayer: <oc_param($obj0, param_1752)>, had a different param=prayer_button, to $new_prayer: <oc_param($obj1, param_1752)>. They should match.");
+        return(false);
+    }
+    if (oc_param($obj0, param_630) ! oc_param($obj1, param_630)) {
+        ~error("$base_prayer: <oc_param($obj0, param_1752)>, had a different param=prayer_id, to $new_prayer: <oc_param($obj1, param_1752)>. They should match.");
+        return(false);
+    }
+    if (oc_param($obj1, param_630) > 28) {
+        ~error("$new_prayer: <oc_param($obj1, param_1752)> had Prayer id = <tostring(oc_param($obj1, param_630))> but the max should be <tostring(28)>.");
+        return(false);
+    }
+    if (oc_param($obj1, param_2774) = false) {
+        ~error("$new_prayer: <oc_param($obj1, param_1752)> had no param=prayer_alternate,true on the config.");
+        return(false);
+    }
+    return(true);
+}
+return(false);

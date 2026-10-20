@@ -485,6 +485,16 @@ column=omnishop_shop_show_stock,boolean,CLIENTSIDE
 default=omnishop_shop_show_stock,true
 column=omnishop_shop_show_cost_in_info,boolean,CLIENTSIDE
 default=omnishop_shop_show_cost_in_info,true
+column=omnishop_shop_debounce_purchase_buttons,boolean,CLIENTSIDE
+default=omnishop_shop_debounce_purchase_buttons,true
+column=omnishop_buy_q1,int,CLIENTSIDE
+default=omnishop_buy_q1,1
+column=omnishop_buy_q2,int,CLIENTSIDE
+default=omnishop_buy_q2,2
+column=omnishop_buy_q3,int,CLIENTSIDE
+default=omnishop_buy_q3,3
+column=omnishop_buy_q4,int,CLIENTSIDE
+default=omnishop_buy_q4,4
 
 // 40
 [omnishop_stock_data]
@@ -946,6 +956,8 @@ column=charge_item_and_quantity
 column=charges_granted
 column=charges_type
 column=charges_quantity_bits_and_varp
+column=charges_allow_attacks_uncharged
+column=uncharging_disabled
 
 // 88
 [synth]
@@ -1405,6 +1417,8 @@ column=transparency_range,int,int,CLIENTSIDE
 default=transparency_range,220,0
 column=step_duration,int,CLIENTSIDE
 default=step_duration,30
+column=use_global_time,boolean,CLIENTSIDE
+default=use_global_time,true
 
 // 126
 [ui_highlighting_style_border]
@@ -1485,6 +1499,64 @@ column=short_description,string,REQUIRED,CLIENTSIDE
 column=modified_stats,stat,int,int,REQUIRED,LIST,CLIENTSIDE
 column=modified_items,inv,int,namedobj,int,LIST,CLIENTSIDE
 column=wipeitem_onexit,boolean,REQUIRED,CLIENTSIDE
+
+// 134
+[dynamic_table_theme]
+column=divider_colour,int,CLIENTSIDE
+default=divider_colour,7960953
+column=divider_width,int,CLIENTSIDE
+default=divider_width,1
+column=row_bg_transparency,int,int,CLIENTSIDE
+default=row_bg_transparency,245,230
+column=scrollbar_vertical_sprites,graphic,graphic,graphic,graphic,graphic,graphic,CLIENTSIDE
+default=scrollbar_vertical_sprites,"scrollbar_dragger_v2,3","scrollbar_dragger_v2,0","scrollbar_dragger_v2,1","scrollbar_dragger_v2,2","scrollbar_v2,0","scrollbar_v2,1"
+column=scrollbar_horizontal_sprites,graphic,graphic,graphic,graphic,graphic,graphic,CLIENTSIDE
+default=scrollbar_horizontal_sprites,"scrollbar_dragger_horizontal_v2,3","scrollbar_dragger_horizontal_v2,2","scrollbar_dragger_horizontal_v2,1","scrollbar_dragger_horizontal_v2,0","scrollbar_v2,2","scrollbar_v2,3"
+
+// 135
+[drop_instant_reveal]
+column=all_food
+column=all_potions
+column=whitelist_item
+column=whitelist_category
+
+// 136
+[tfa_ezekiel_sword_grid]
+column=coords
+
+// 137
+[tfa_ezekiel_star]
+column=offsets
+column=corner
+
+// 138
+[tfa_ezekiel_finale_rotation]
+column=id
+column=combo
+
+// 139
+[tfa_ezekiel_finale_combo]
+column=attack
+
+// 140
+[tfa_ezekiel_finale_attack]
+column=debug_name
+column=telegraph_direction
+column=attack_anim
+column=hit_delay_ticks
+column=telegraph_length
+column=anim_delay_ticks
+column=next_attack_delay_ticks
+column=danger_tile_line
+column=damage_type
+column=prayer_protection
+
+// 141
+[tfa_ocellus_barrage]
+column=phase
+column=speed
+column=attack_column
+column=attack_row
 
 // 142
 [fletching_blowpipe_crafting]
@@ -2993,4 +3065,129 @@ column=arrowname_plural
 column=tipname_single
 column=tipname_plural
 column=xp
+
+// 259
+[tfa_room_encounter_entry_config]
+column=entry_coord
+column=entry_facing
+column=avoid_categories
+column=avoid_locs
+column=avoid_npcs
+column=avoid_controllers
+
+// 260
+[tfa_nexus_doors]
+column=west_door_coord
+column=west_door_loc_closed
+column=west_door_loc_open
+column=west_door_loc_open_slightly
+column=west_door_loc_open_slightly_idle
+column=east_door_coord
+column=east_door_loc_closed
+column=east_door_loc_open
+column=east_door_loc_open_slightly
+column=east_door_loc_open_slightly_idle
+column=door_open_anim
+
+// 261
+[tfa_droptable]
+column=table_chance
+column=debug_guarantee_god_roll
+column=debug_name
+column=modify_droprate_id
+column=entries
+
+// 262
+[tfa_droptable_entry_table]
+column=debug_name
+column=entries
+
+// 263
+[tfa_droptable_entry_item]
+column=item
+column=quantity_range
+column=scaling_mode
+column=max_owned
+column=rare_quantity_chance
+column=rare_quantity_multiplier
+
+// 264
+[tfa_stats_category]
+column=title,string,REQUIRED,CLIENTSIDE
+column=short_title,string,REQUIRED,CLIENTSIDE
+column=sprite_25x25,graphic,REQUIRED,CLIENTSIDE
+column=associated_room,int,INDEXED,CLIENTSIDE
+default=associated_room,-1
+column=rows,dbrow,REQUIRED,LIST,CLIENTSIDE
+
+// 265
+[tfa_stats_row]
+column=title,string,REQUIRED,CLIENTSIDE
+column=global_max,int,CLIENTSIDE
+default=global_max,^max_32bit_int
+column=personal_max,int,CLIENTSIDE
+default=personal_max,65535
+column=current_max,int,CLIENTSIDE
+default=current_max,65535
+column=is_time,boolean,CLIENTSIDE
+default=is_time,false
+column=unrecorded_threshold,int,CLIENTSIDE
+default=unrecorded_threshold,0
+column=auto_persist_mode
+column=row_per_party_size,boolean,CLIENTSIDE
+default=row_per_party_size,false
+column=persistent_mode_variants_enum
+
+// 266
+[combat_dynamic_anims]
+column=com_mode_override_anim
+column=stab_anim
+column=slash_anim
+column=crush_anim
+column=ranged_anim
+column=com_mode_override_anim_b
+column=stab_anim_b
+column=slash_anim_b
+column=crush_anim_b
+column=ranged_anim_b
+
+// 267
+[combat_dynamic_anim_sequenced]
+column=timeout
+column=anims
+
+// 268
+[combat_dynamic_anim_random]
+column=pick_unique
+column=anims
+
+// 269
+[combat_anim]
+column=playeranim_pvn
+column=playeranim_pvp
+column=spotanim
+column=projanim_pvn
+column=projanim_pvp
+column=projanim_adv_pvn
+column=projanim_adv_pvp
+column=projanim_tiles_per_cycle
+column=sound_synth
+column=sound_synth_target
+column=sound_area
+
+// 270
+[alternate_prayers]
+column=default,obj,REQUIRED,INDEXED,CLIENTSIDE
+column=prayer,obj,REQUIRED,LIST,INDEXED,CLIENTSIDE
+
+// 271
+[ui_highlighting_fx_single_pulse]
+column=transparency_range,int,int,CLIENTSIDE
+default=transparency_range,220,0
+column=use_global_time,boolean,CLIENTSIDE
+default=use_global_time,true
+column=start_duration,int,CLIENTSIDE
+default=start_duration,10
+column=end_duration,int,CLIENTSIDE
+default=end_duration,10
 

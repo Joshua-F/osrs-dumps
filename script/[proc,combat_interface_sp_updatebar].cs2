@@ -1,27 +1,27 @@
 // 189
-[proc,combat_interface_sp_updatebar](component $component, int $int1, int $int2, int $int3)
-def_int $int4 = if_getwidth(combat_interface:currentenergy);
-def_int $int5 = if_getheight(combat_interface:currentenergy);
-def_int $int6 = calc(interpolate(0, $int1, 0, $int2, if_getwidth(combat_interface:sp_empty)) - $int4);
-if ($int6 > 0) {
-    if ($int3 = 0) {
-        $int6 = calc($int6 / 2);
-        if ($int6 = 0) {
-            $int6 = 1;
+[proc,combat_interface_sp_updatebar](int $int0, int $int1, int $int2, component $component3, component $component4)
+def_int $int5 = if_getwidth($component3);
+def_int $int6 = if_getheight($component3);
+def_int $int7 = calc(interpolate(0, $int0, 0, $int1, if_getwidth($component4)) - $int5);
+if ($int7 > 0) {
+    if ($int2 = 0) {
+        $int7 = calc($int7 / 2);
+        if ($int7 = 0) {
+            $int7 = 1;
         }
     }
-    $int4 = calc($int4 + $int6);
-    if_setontimer("combat_interface_sp_updatebar($component, $int1, $int2)", $component);
-} else if ($int6 < 0) {
-    if ($int3 = 0) {
-        $int6 = calc($int6 / 2);
-        if ($int6 = 0) {
-            $int6 = -1;
+    $int5 = calc($int5 + $int7);
+    if_setontimer("combat_interface_sp_updatebar($int0, $int1, $component3, $component4)", $component3);
+} else if ($int7 < 0) {
+    if ($int2 = 0) {
+        $int7 = calc($int7 / 2);
+        if ($int7 = 0) {
+            $int7 = -1;
         }
     }
-    $int4 = calc($int4 + $int6);
-    if_setontimer("combat_interface_sp_updatebar($component, $int1, $int2)", $component);
+    $int5 = calc($int5 + $int7);
+    if_setontimer("combat_interface_sp_updatebar($int0, $int1, $component3, $component4)", $component3);
 } else {
-    if_setontimer(null, $component);
+    if_setontimer(null, $component3);
 }
-if_setsize($int4, $int5, ^setsize_abs, ^setsize_abs, combat_interface:currentenergy);
+if_setsize($int5, $int6, ^setsize_abs, ^setsize_abs, $component3);

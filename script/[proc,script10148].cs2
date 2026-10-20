@@ -1,0 +1,93 @@
+// 10148
+[proc,script10148](string $string0, obj $obj0, int $int1, int $int2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10)
+if ($int1 = 1) {
+    if_setcolour(^yellow, $component4);
+    if ($component9 ! null) {
+        if_setgraphic("orb_filler,10", $component9);
+    }
+} else {
+    if_setcolour(0x000010, $component4);
+    if ($component9 ! null) {
+        if_setgraphic("orb_filler,9", $component9);
+    }
+}
+def_int $int11 = 0;
+def_int $int12 = 0;
+def_graphic $graphic = null;
+if ($component10 ! null) {
+    $int11, $int12, $graphic = ~script10159($obj0);
+    if_setgraphic($graphic, $component10);
+}
+def_int $int14 = max(0, %sa_energy);
+def_int $int15 = 1000;
+def_int $int16 = ~script3648($obj0);
+def_int $int17 = 0;
+def_int $int18 = 0;
+if ($obj0 = soulreaper | $obj0 = soulreaper_axe_orn) {
+    $int14, $int15 = %soulreaper_stacks, 5;
+    if ($int14 > 0) {
+        $int17 = 1;
+    }
+    if_settext("<$string0><tostring($int14)>/5", $component4);
+} else if ($obj0 = weapon_of_sol) {
+    $int14, $int15 = %weapon_of_sol_stacks, 20;
+    if_settext("<$string0><tostring($int14)>/<tostring(20)>", $component4);
+} else if ($obj0 = lithic_sceptre_charged) {
+    $int14, $int15 = %lithic_sceptre_shatter_stacks, 14;
+    if_settext("<$string0><tostring($int14)>/<tostring(14)>", $component4);
+} else if (~script10177($obj0) = true) {
+    $int14, $int15 = %rondache_charges, 20;
+    if_settext("<$string0><tostring($int14)>/<tostring($int15)>", $component4);
+} else if (~league_relic_active(struct_4721) = 1 & $int14 < $int16 & stat(hitpoints) > 25) {
+    $int14 = calc((stat(hitpoints) - 1) / 25);
+    $int15 = calc((stat_base(hitpoints) - 1) / 25);
+    $int18 = 1;
+    if_settext("<$string0><tostring($int14)>/<tostring($int15)>", $component4);
+} else {
+    if_settext("<$string0><tostring(calc($int14 / 10))>%", $component4);
+}
+~combat_interface_sp_updatebar($int14, $int15, $int2, $component5, $component8);
+if ($int14 >= $int16 | $int18 = 1) {
+    $int17 = 1;
+}
+if ($int17 = 1) {
+    if_setcolour(0x397d3b, $component6);
+} else {
+    if_setcolour(0x00326b, $component6);
+    if ($component9 ! null) {
+        if_setgraphic("orb_filler,16", $component9);
+    }
+}
+~options_button_off($component7, 0);
+def_string $string1 = "<enum(obj, string, enum_1739, $obj0)> (<tostring(calc($int16 / 10))>%)";
+switch_obj ($obj0) {
+    case brut_dragon_spear, brut_dragon_spear_p, "brut_dragon_spear_p+", "brut_dragon_spear_p++", brut_dragon_spear_kp :
+        $string1 = "<enum(obj, string, enum_1739, $obj0)> 5-100% ";
+    case soulreaper, soulreaper_axe_orn :
+        $string1 = "<enum(obj, string, enum_1739, $obj0)> 0-5";
+    case weapon_of_sol :
+        $string1 = "<enum(obj, string, enum_1739, $obj0)> (<tostring($int14)> / <tostring(20)>)";
+    case lithic_sceptre_charged :
+        $string1 = "<enum(obj, string, enum_1739, $obj0)> (<tostring($int14)> / <tostring(14)>)";
+}
+if (~script10177($obj0) = true) {
+    $string1 = "<enum(obj, string, enum_1739, $obj0)> (<tostring($int14)> / <tostring($int15)>)";
+}
+def_obj $obj19 = inv_getobj(worn, 13);
+def_obj $obj20 = inv_getobj(worn, 1);
+if ($obj19 = null & $obj20 ! null & oc_param($obj20, param_1910) = 1) {
+    $obj19 = inv_getobj(dizanas_quiver_ammo, 0);
+}
+if (%option_satooltips = 0) {
+    if (($obj0 = darkbow | $obj0 = br_darkbow | $obj0 = darkbow_green | $obj0 = darkbow_white | $obj0 = darkbow_yellow | $obj0 = deadman_blighted_dark_bow) & ($obj19 = dragon_arrow | $obj19 = dragon_arrow_p | $obj19 = "dragon_arrow_p+" | $obj19 = "dragon_arrow_p++")) {
+        $string1 = "Descent of Dragons: Deal a double attack with dragon arrows that inflicts up to 50% more damage (minimum damage of 8 per hit). (<tostring(calc($int16 / 10))>%)";
+    }
+    if ($obj0 = bh_darkbow_imbue & ($obj19 = dragon_arrow | $obj19 = dragon_arrow_p | $obj19 = "dragon_arrow_p+" | $obj19 = "dragon_arrow_p++")) {
+        $string1 = "Descent of Dragons: Deal a double attack with dragon arrows that inflicts up to 50% more damage (minimum damage of 10 per hit). (<tostring(calc($int16 / 10))>%)";
+    }
+    if_setonmouserepeat("tooltip_mouserepeat(event_com, -1, combat_interface:tooltip, $string1, 25, 160)", $component3);
+    if_setonmouseleave("deltooltip(combat_interface:tooltip)", $component3);
+} else {
+    if_setonmouserepeat(null, $component3);
+}
+~script7602;

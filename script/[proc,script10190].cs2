@@ -1,0 +1,37 @@
+// 10190
+[proc,script10190](obj $obj0)(obj)
+if (map_members = false) {
+    return($obj0);
+}
+def_int $int1 = db_find(alternate_prayers:prayer, $obj0);
+if ($int1 < 1) {
+    return($obj0);
+}
+if ($int1 > 1) {
+    ~error("[Alternate prayer] $prayer_obj: <oc_param($obj0, param_1752)> had more than 1 dbrow with it included.");
+}
+def_dbrow $dbrow = db_findnext;
+if ($dbrow = null) {
+    return($obj0);
+}
+def_obj $obj3 = null;
+def_int $int4 = ~script10158;
+switch_dbrow ($dbrow) {
+    case alternate_prayer_piety :
+        if (~script10194(easter18_kindling, $int4) = 1) {
+            $obj3 = easter18_kindling;
+        }
+    case alternate_prayer_eagleeye :
+        if (~script10194(cert_ca_teleport_anim_offhand_easy, $int4) = 1) {
+            $obj3 = cert_ca_teleport_anim_offhand_easy;
+        }
+    case alternate_prayer_mysticmight :
+        if (~script10194(placeholder_giants_foundry_tester, $int4) = 1) {
+            $obj3 = placeholder_giants_foundry_tester;
+        }
+}
+def_obj $obj5 = db_getfield($dbrow, alternate_prayers:default, 0);
+if ($obj3 ! null & ~script10192($obj5, $obj3) = true) {
+    return($obj3);
+}
+return($obj0);

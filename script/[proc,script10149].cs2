@@ -1,0 +1,21 @@
+// 10149
+[proc,script10149](component $component0, component $component1, component $component2)
+def_int $int3 = 3;
+def_int $int4 = 6;
+def_int $int5 = ~minmax(1, 32, nc_param(%hpbar_hud_npc, param_2768));
+def_int $int6 = ~minmax(1, 32, nc_param(%hpbar_hud_npc, param_2767));
+if (%hpbar_hud_show_extra_bar = 1) {
+    if_setsize($int4, $int6, ^setsize_minus, ^setsize_abs, hpbar_hud:hp_bar);
+    if_setposition(0, calc($int3 + $int5 + 1), ^setpos_abs_centre, ^setpos_abs_bottom, hpbar_hud:hp_bar);
+    if_setsize($int4, $int5, ^setsize_minus, ^setsize_abs, hpbar_hud:hp_bar_extra);
+    if_setposition(0, $int3, ^setpos_abs_centre, ^setpos_abs_bottom, hpbar_hud:hp_bar_extra);
+    if_setsize(0, $int5, ^setsize_minus, ^setsize_abs, hpbar_hud:health_bar_back_extra);
+    if_setsize(if_getwidth(hpbar_hud:health_bar_sliding_extra), $int5, ^setsize_abs, ^setsize_abs, hpbar_hud:health_bar_sliding_extra);
+    if_setsize(if_getwidth(hpbar_hud:health_bar_remaining_extra), $int5, ^setsize_abs, ^setsize_abs, hpbar_hud:health_bar_remaining_extra);
+} else {
+    if_setsize($int4, $int6, ^setsize_minus, ^setsize_abs, hpbar_hud:hp_bar);
+    if_setposition(0, $int3, ^setpos_abs_centre, ^setpos_abs_bottom, hpbar_hud:hp_bar);
+}
+if_setsize(0, $int6, ^setsize_minus, ^setsize_abs, $component2);
+if_setsize(if_getwidth($component0), $int6, ^setsize_abs, ^setsize_abs, $component0);
+if_setsize(if_getwidth($component1), $int6, ^setsize_abs, ^setsize_abs, $component1);

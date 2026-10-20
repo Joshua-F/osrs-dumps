@@ -1,0 +1,39 @@
+// 10087
+[clientscript,script10087](component $list, component $scrollbar)
+def_int $int = 0;
+def_component $component = enum(int, component, enum_6058, $int);
+while ($component ! null) {
+    cc_deleteall($component);
+    if_sethide(true, $component);
+    $int = calc($int + 1);
+    $component = enum(int, component, enum_6058, $int);
+}
+if_setscrollsize(0, 0, $list);
+if_setscrollpos(0, 0, $list);
+~scrollbar_vertical($scrollbar, $list, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+%raids_count, %clanwars_opponentchangetime = 0, clientclock;
+cc_deleteall($list);
+cc_create($list, ^iftype_text, 0);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setcolour(0x808080);
+cc_settextfont(p12_full);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+cc_settextshadow(true);
+cc_settext("Loading...");
+cc_deleteall(tfa_partylist:contents);
+if_sethide(true, tfa_partylist:refresh);
+cc_create(tfa_partylist:contents, ^iftype_rectangle, enum(component, int, enum_6059, tfa_partylist:refresh));
+cc_sethide(true);
+if_sethide(true, tfa_partylist:myparty);
+cc_create(tfa_partylist:contents, ^iftype_rectangle, enum(component, int, enum_6059, tfa_partylist:myparty));
+cc_sethide(true);
+if_sethide(true, tfa_partylist:filter);
+cc_create(tfa_partylist:contents, ^iftype_rectangle, enum(component, int, enum_6059, tfa_partylist:filter));
+cc_sethide(true);
+~script1558(tfa_partylist:refresh, "Refresh", tfa_partylist:contents, enum_6059, -1);
+~script10091;
+~script10093;
+if_setonvartransmit("script10090{tfa_mycontroller}", tfa_partylist:myparty);
+if_setonvartransmit("script10092{tfa_perm_transmit_1}", tfa_partylist:filter);
+~script10088(tfa_partylist:contents, ^max_32bit_int, $list, $scrollbar);

@@ -1,0 +1,19 @@
+// 9995
+[proc,script9995](component $component, int $int1, int $int2, int $int3, int $iftype)(int)
+if (cc_find($component, $int1) = true) {
+    cc_query(2);
+    if_query_refine(param_2677, $int3);
+    if_query_refine(param_2676, $int2);
+    if (if_query_next = true) {
+        cc_create_child($iftype, ~script8302($component));
+        cc_setparam(param_2676, $int2);
+        cc_setparam(param_2677, $int3);
+        cc_setparam(param_2658, $iftype);
+        cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+        cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+        return(cc_getid);
+    }
+} else {
+    ~debug_mes_warn("cc_table_init_cell", "Failed to find cell (<tostring($int3)>, <tostring($int2)>) for table <tostring($int1)>");
+}
+return(-1);

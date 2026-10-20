@@ -1,10 +1,14 @@
 // 8471
-[clientscript,ui_highlight_pulse](component $component, int $int1, int $int2, int $int3, int $int4)
-def_int $int5 = calc(clientclock % $int4);
-if (cc_find($component, $int1) = true) {
-    if (calc(clientclock / $int4 % 2) = 0) {
-        cc_settrans(interpolate($int2, $int3, 0, calc($int4 - 1), $int5));
+[clientscript,ui_highlight_pulse](component $component0, int $int1, component $component2, int $int3, int $int4, int $int5, int $int6, boolean $boolean)
+def_int $int8 = clientclock;
+if ($boolean = false) {
+    $int8 = ~script10162($component0, $int1);
+}
+def_int $int9 = calc($int8 % $int6);
+if (cc_find($component2, $int3) = true) {
+    if (calc($int8 / $int6 % 2) = 0) {
+        cc_settrans(interpolate($int4, $int5, 0, calc($int6 - 1), $int9));
     } else {
-        cc_settrans(interpolate(0, $int2, 0, calc($int4 - 1), $int5));
+        cc_settrans(interpolate(0, $int4, 0, calc($int6 - 1), $int9));
     }
 }

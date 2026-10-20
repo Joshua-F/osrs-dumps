@@ -1,32 +1,34 @@
 // 3309
 [proc,prayer_passfilter](obj $obj0)(boolean)
-def_int $int1 = 1;
-def_int $int2 = 1;
+def_int $int1 = 0;
+def_int $int2 = 0;
 def_int $int3 = 0;
 def_int $int4 = 0;
-def_boolean $boolean5 = false;
-def_boolean $boolean6 = false;
-def_boolean $boolean7 = false;
-def_obj $obj8 = oc_param($obj0, param_1760);
-def_int $int9 = 0;
-def_int $int10 = 0;
-$int1, $int2, $int3, $int4, $boolean5, $boolean6, $boolean7, $int9, $int10 = ~prayer_overrides;
-if (%prayer_filter_blocklacklevel = 1 & ~prayer_isavailable_lvl($obj0, $int1) = false) {
+def_boolean $boolean = false;
+$int1, $int2, $int3, $int4, $boolean = ~prayer_overrides($obj0);
+if (%prayer_filter_blocklacklevel = 1 & ~script10155($obj0, $int1) = false) {
     return(false);
 }
-if (%prayer_filter_blocklocked = 1 & ~prayer_isavailable_req($obj0, $boolean6, $int2, $boolean5, $int3, $int4, $boolean7, $int9, $int10) = false) {
-    return(false);
+if (%prayer_filter_blocklocked = 1) {
+    if (~script10156($obj0, $boolean, $int2, $int3, $int4) = false) {
+        return(false);
+    }
+    if (~script10194($obj0, ~script10157) ! 1) {
+        return(false);
+    }
 }
 if (%prayer_filter_blockhealing = 1 & oc_param($obj0, param_1758) = 1) {
     return(false);
 }
-if ($obj8 ! null & %prayer_filter_blocklowtier = 1 & (%prayer_filter_allowcombinedtier = 1 | oc_param($obj8, param_1759) = oc_param($obj0, param_1759)) & ~prayer_isavailable_lvl($obj8, $int1) = true & ~prayer_isavailable_req($obj8, $boolean6, $int2, $boolean5, $int3, $int4, $boolean7, $int9, $int10) = true) {
-    return(false);
-}
-if (%prayer_filter_blocklowtier = 1 & %prayer_filter_allowcombinedtier = 1 & $obj0 = xmas16_green_partyhat & $int4 = 1) {
-    return(false);
-}
-if (%prayer_filter_blocklowtier = 1 & %prayer_filter_allowcombinedtier = 1 & $obj0 = placeholder_xmas16_red_partyhat & $int3 = 1) {
-    return(false);
+def_int $int6 = 10;
+def_obj $obj7 = oc_param($obj0, param_1760);
+if (%prayer_filter_blocklowtier = 1) {
+    while ($obj7 ! null & $int6 > 0) {
+        if ((%prayer_filter_allowcombinedtier = 1 | oc_param($obj7, param_1759) = oc_param($obj0, param_1759)) & ~script10154($obj7) = true) {
+            return(false);
+        }
+        $obj7 = oc_param($obj7, param_1760);
+        $int6 = calc($int6 - 1);
+    }
 }
 return(true);

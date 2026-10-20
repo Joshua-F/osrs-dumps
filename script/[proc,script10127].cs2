@@ -1,0 +1,15 @@
+// 10127
+[proc,script10127](dbrow $dbrow0, dbrow $dbrow1, int $int2, int $int3)(string)
+if ($int2 = ^min_32bit_int) {
+    return("");
+}
+if (db_getfield($dbrow1, tfa_stats_row:is_time, 0) = true) {
+    if ($int2 <= db_getfield($dbrow1, tfa_stats_row:unrecorded_threshold, 0)) {
+        return("-");
+    }
+    return(~script10143($int2, $int3, 0));
+}
+if ($int2 >= $int3) {
+    return("> <~tostring_commas($int2)>");
+}
+return(~tostring_commas($int2));

@@ -1,0 +1,13 @@
+// 10111
+[proc,script10111]
+def_component $top_tabs_container = tfa_stats:top_tabs_container;
+cc_deleteall($top_tabs_container);
+if (%tfa_stats_in_active_raid = 0) {
+    return;
+}
+def_int $int1 = 0;
+def_int $int2 = min(140, calc(if_getwidth($top_tabs_container) / 2 - 2));
+$int1 = ~script5293($top_tabs_container, $int1, 0, $int2, 1, 0x726451, "All Stats", q8_full, 0xd0b088, 0, null, 0, 0, 0, 0, ~is_equal(%tfa_stats_tab, 0));
+cc_setonop("script10114(0)");
+$int1 = ~script5293($top_tabs_container, $int1, 1, $int2, 1, 0x726451, "Party Stats", q8_full, 0xd0b088, 0, null, 0, 0, 0, 0, ~is_equal(%tfa_stats_tab, 1));
+cc_setonop("script10114(1)");

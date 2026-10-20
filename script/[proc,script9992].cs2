@@ -1,0 +1,97 @@
+// 9992
+[proc,script9992](component $component, int $int1, int $int2, int $int3)(int, int)
+def_dbrow $dbrow = null;
+def_int $int5 = 1;
+def_int $int6 = 0;
+def_int $int7 = 0;
+def_int $int8 = 0;
+def_int $int9 = 0;
+def_int $int10 = 0;
+def_int $int11 = 0;
+def_int $int12 = 0;
+def_int $int13 = 0;
+def_int $int14 = 0;
+if (cc_find($component, $int1) = true) {
+    $dbrow = cc_param(param_2669);
+    $int5 = db_getfield($dbrow, dynamic_table_theme:divider_width, 0);
+    $int10 = cc_param(param_2670);
+    $int11 = cc_param(param_2671);
+    $int8 = cc_param(param_2674);
+    $int9 = cc_param(param_2675);
+    cc_setparam(param_2670, calc($int10 + $int2));
+    $int6 = cc_param(param_2668);
+    $int7 = calc(cc_param(param_2667) + $int8 * $int2);
+    cc_setparam(param_2667, $int7);
+    if (calc($int3 & 2) ! 0 & cc_find_parent = true) {
+        cc_setsize($int6, $int7, ^setsize_abs, ^setsize_abs);
+    }
+} else {
+    return(-1, -1);
+}
+if (cc_find_param($component, param_2666, $int1, param_2678, 8) = true & .cc_find_param($component, param_2666, $int1, param_2678, 9) = true) {
+    cc_setsize(cc_getwidth, calc(cc_getheight + $int8 * $int2), ^setsize_abs, ^setsize_abs);
+    .cc_setsize(.cc_getx, calc(.cc_getheight + $int8 * $int2), ^setsize_minus, ^setsize_abs);
+    $int13 = 0;
+    while ($int13 < $int2) {
+        $int12 = calc($int10 + $int13);
+        if ($int13 = 0) {
+            cc_create_child(^iftype_layer, ~script8302($component));
+        } else {
+            cc_create_sibling(^iftype_layer, ~script8302($component));
+        }
+        cc_setparam(param_2666, $int1);
+        cc_setparam(param_2676, $int12);
+        cc_setparam(param_2677, -1);
+        cc_setsize(0, $int8, ^setsize_minus, ^setsize_abs);
+        cc_setposition(0, calc($int12 * $int8), ^setpos_abs_left, ^setpos_abs_top);
+        $int14 = 0;
+        while ($int14 < $int11) {
+            if ($int13 = 0 & $int14 = 0) {
+                .cc_create_child(^iftype_layer, ~script8302($component));
+            } else {
+                .cc_create_sibling(^iftype_layer, ~script8302($component));
+            }
+            .cc_setparam(param_2676, $int12);
+            .cc_setparam(param_2677, $int14);
+            .cc_setparam(param_2666, $int1);
+            .cc_setsize($int9, $int8, ^setsize_abs, ^setsize_abs);
+            .cc_setposition(calc($int14 * ($int9 + $int5)), calc($int12 * $int8), ^setpos_abs_left, ^setpos_abs_top);
+            $int14 = calc($int14 + 1);
+        }
+        $int13 = calc($int13 + 1);
+    }
+}
+def_int $int15 = 0;
+def_int $int16 = 0;
+$int15, $int16 = db_getfield($dbrow, dynamic_table_theme:row_bg_transparency, 0);
+if (cc_find_param($component, param_2666, $int1, param_2678, 7) = true) {
+    cc_setsize(cc_getx, calc(cc_getheight + $int8 * $int2), ^setsize_minus, ^setsize_abs);
+    $int13 = 0;
+    while ($int13 < $int2) {
+        $int12 = calc($int10 + $int13);
+        if ($int13 = 0) {
+            cc_create_child(^iftype_rectangle, ~script8302($component));
+        } else {
+            cc_create_sibling(^iftype_rectangle, ~script8302($component));
+        }
+        cc_setparam(param_2666, $int1);
+        cc_setparam(param_2676, $int12);
+        cc_setsize(0, $int8, ^setsize_minus, ^setsize_abs);
+        cc_setposition(0, calc($int12 * $int8), ^setpos_abs_left, ^setpos_abs_top);
+        cc_setfill(true);
+        cc_setcolour(^black);
+        if (calc($int12 % 2) = 0) {
+            cc_settrans($int15);
+        } else {
+            cc_settrans($int16);
+        }
+        $int13 = calc($int13 + 1);
+    }
+}
+if (cc_find_param($component, param_2666, $int1, param_2678, 10) = true) {
+    cc_setscrollsize(0, calc(cc_getscrollheight + $int8 * $int2));
+}
+if (calc($int3 & 1) = 0) {
+    ~script9994($component, $int1);
+}
+return($int10, $int7);

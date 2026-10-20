@@ -1,0 +1,18 @@
+// 10070
+[clientscript,script10070](int $int0, component $component, int $int2, string $string0, string $string1, int $int3, int $int4)
+if ($int0 ! 1) {
+    return;
+}
+if (.cc_find(tfa_partydetails:pausebuttons, enum(component, int, enum_6057, $component)) = true) {
+    sound_synth(synth_2266, 1, 0);
+    if ($int2 ! -1 & cc_find($component, $int2) = true) {
+        cc_setcolour(0x7f7f7f);
+        cc_settext("...");
+    }
+    if_setonmouserepeat(null, $component);
+    if_setonmouseleave(null, $component);
+    if_setonop(null, $component);
+    if_clearops($component);
+    if_setontimer("script10071($component, $int2, $string0, $string1, $int3, calc(clientclock + 80), $int4)", $component);
+    .cc_resume_pausebutton;
+}

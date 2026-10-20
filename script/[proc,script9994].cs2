@@ -1,0 +1,71 @@
+// 9994
+[proc,script9994](component $component, int $int1)
+def_int $int2 = 0;
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_int $int5 = 0;
+if (cc_find($component, $int1) = true) {
+    $int2 = cc_param(param_2668);
+    $int3 = cc_param(param_2667);
+    if (cc_find_parent = true) {
+        $int4 = calc($int3 - cc_getheight);
+        $int5 = calc($int2 - cc_getwidth);
+    }
+} else {
+    return;
+}
+def_int $int6 = -1;
+def_int $int7 = -1;
+def_int $int8 = 0;
+def_int $int9 = 0;
+if (cc_find_param($component, param_2666, $int1, param_2678, 12) = true & .cc_find_param($component, param_2666, $int1, param_2678, 13) = true) {
+    $int6 = cc_getid;
+    $int7 = .cc_getid;
+    if ($int4 > 0) {
+        $int8 = cc_getwidth;
+        $int5 = calc($int5 + $int8);
+    }
+    if ($int5 > 0) {
+        $int9 = .cc_getheight;
+        $int4 = calc($int4 + $int9);
+        if ($int4 > 0 & $int8 = 0) {
+            $int8 = cc_getwidth;
+            $int5 = calc($int5 + $int8);
+        }
+    }
+}
+def_int $int10 = -1;
+def_int $int11 = -1;
+if (cc_find_param($component, param_2666, $int1, param_2678, 11) = true & .cc_find_param($component, param_2666, $int1, param_2678, 10) = true) {
+    $int11 = cc_getid;
+    $int10 = .cc_getid;
+    cc_setsize(calc(cc_getx + $int8), calc(cc_gety + $int9), ^setsize_minus, ^setsize_minus);
+    .cc_setsize(calc(.cc_getx + $int8), calc(.cc_gety + $int9), ^setsize_minus, ^setsize_minus);
+}
+if (cc_find($component, $int1) = true & .cc_find(cc_getlayer, cc_getid) = true & .cc_find_parent = true) {
+    cc_setsize(min(calc($int2 + $int8), .cc_getwidth), min(calc($int3 + $int9), .cc_getheight), ^setsize_abs, ^setsize_abs);
+}
+if (cc_find($component, $int6) = true & .cc_find(cc_getlayer, cc_parentid) = true) {
+    if ($int4 > 0) {
+        cc_sethide(false);
+    } else {
+        cc_sethide(true);
+    }
+    cc_setsize(cc_getwidth, calc(cc_gety + $int9), ^setsize_abs, ^setsize_minus);
+    if (.cc_find_param($component, param_2666, $int1, param_2678, 14) = true) {
+        .cc_sethide(cc_gethide);
+    }
+    ~scrollbar_vertical_dynamic_rebuild(cc_getlayer, cc_getid, $component, $int10);
+}
+if (cc_find($component, $int7) = true & .cc_find(cc_getlayer, cc_parentid) = true) {
+    if ($int5 > 0) {
+        cc_sethide(false);
+    } else {
+        cc_sethide(true);
+    }
+    cc_setsize(calc(cc_getx + $int8), cc_getheight, ^setsize_minus, ^setsize_abs);
+    if (.cc_find_param($component, param_2666, $int1, param_2678, 15) = true) {
+        .cc_sethide(cc_gethide);
+    }
+    ~script9982(cc_getlayer, cc_getid, $component, $int11);
+}

@@ -1,0 +1,112 @@
+// 10034
+[proc,script10034](component $component0, component $component1, component $component2, component $component3, component $component4, component $component5, component $component6, component $component7, component $component8, component $component9, component $component10, component $component11, component $component12, component $component13, component $component14, component $component15, component $component16, component $component17, component $component18, component $component19, component $component20)
+def_int $int21 = 0;
+$int21 = calc($int21 + ~script10039(0, %tfa_client_p0, %tfa_client_name0, $component2, $component3, $component18));
+$int21 = calc($int21 + ~script10039(1, %tfa_client_p1, %tfa_client_name1, $component4, $component5, $component18));
+$int21 = calc($int21 + ~script10039(2, %tfa_client_p2, %tfa_client_name2, $component6, $component7, $component18));
+$int21 = calc($int21 + ~script10039(3, %tfa_client_p3, %tfa_client_name3, $component8, $component9, $component18));
+$int21 = calc($int21 + ~script10039(4, %tfa_client_p4, %tfa_client_name4, $component10, $component11, $component18));
+$int21 = calc($int21 + ~script10039(5, %tfa_client_p5, %tfa_client_name5, $component12, $component13, $component18));
+$int21 = calc($int21 + ~script10039(6, %tfa_client_p6, %tfa_client_name6, $component14, $component15, $component18));
+$int21 = calc($int21 + ~script10039(7, %tfa_client_p7, %tfa_client_name7, $component16, $component17, $component18));
+if (%tfa_client_hideplayers = 1) {
+    if_sethide(true, $component1);
+    if_setsize(0, 0, ^setsize_abs, ^setsize_abs, $component1);
+} else {
+    if_sethide(false, $component1);
+    $int21 = ~max(calc(($int21 * 10 / 2 + 5) / 10), 1);
+    if_setsize(69, calc($int21 * 34 + ($int21 - 1)), ^setsize_abs, ^setsize_abs, $component1);
+}
+if_setsize(120, 35, ^setsize_abs, ^setsize_abs, $component19);
+if_setposition(if_getx($component1), calc(3 + if_getheight($component19)), ^setpos_abs_left, ^setpos_abs_top, $component1);
+if_setsize(calc(~max(if_getwidth($component1), if_getwidth($component19)) + 2), calc(if_getheight($component1) + if_getheight($component19) + 6), ^setsize_abs, ^setsize_abs, $component0);
+~script8086($component0);
+def_int $int22 = calc(if_getheight($component0) + 2);
+def_int $int23 = 0;
+def_int $int24 = 0;
+if (%tfa_client_spectate_mode ! 0) {
+    $int23 = 36;
+    cc_create($component0, ^iftype_layer, ~script8302($component0));
+    cc_setsize(34, 34, ^setsize_abs, ^setsize_abs);
+    cc_setposition(0, $int22, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setop(1, "Spectate");
+    cc_setopbase("<col=ff9040>Room");
+    cc_setonop("script10040(-1, 1)");
+    cc_create_child(^iftype_graphic, ~script8302($component0));
+    cc_setsize(34, 34, ^setsize_abs, ^setsize_abs);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_setgraphic(~script10044(-1));
+    cc_create_sibling(^iftype_graphic, ~script8302($component0));
+    cc_setsize(26, 26, ^setsize_abs, ^setsize_abs);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_setgraphic("orb_icon,23");
+}
+if (%tfa_client_skip_phase_mode ! 0 & %tfa_client_spectate_mode ! 2) {
+    cc_create($component0, ^iftype_layer, ~script8302($component0));
+    cc_setsize(34, 34, ^setsize_abs, ^setsize_abs);
+    cc_setposition($int23, $int22, ^setpos_abs_left, ^setpos_abs_top);
+    $int22 = calc($int22 + cc_getheight + 2);
+    cc_setop(1, "Skip");
+    cc_setopbase("<col=ff9040>Phase");
+    cc_setonop("script10035(event_com, event_comsubid, 1)");
+    cc_create_child(^iftype_graphic, ~script8302($component0));
+    cc_setsize(34, 34, ^setsize_abs, ^setsize_abs);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_setgraphic("ring_34,0");
+    cc_create_sibling(^iftype_graphic, ~script8302($component0));
+    cc_setsize(23, 18, ^setsize_abs, ^setsize_abs);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_setgraphic("music_icons,3");
+    if (%tfa_client_skip_phase_mode ! 1) {
+        cc_settrans(150);
+    }
+}
+~script10043;
+if (%tfa_client_spectate_mode = 2) {
+    cc_create($component0, ^iftype_layer, ~script8302($component0));
+    cc_setsize(34, 34, ^setsize_abs, ^setsize_abs);
+    cc_setposition($int23, $int22, ^setpos_abs_left, ^setpos_abs_top);
+    $int22 = calc($int22 + cc_getheight + 2);
+    cc_setop(1, "Leave");
+    cc_setonop("script10035(event_com, event_comsubid, 2)");
+    cc_create_child(^iftype_graphic, ~script8302($component0));
+    cc_setsize(34, 34, ^setsize_abs, ^setsize_abs);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_setgraphic("ring_34,0");
+    cc_create_sibling(^iftype_graphic, ~script8302($component0));
+    cc_setsize(26, 26, ^setsize_abs, ^setsize_abs);
+    cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+    cc_setgraphic("orb_icon,26");
+}
+if (%tfa_client_num_external_spectators > 0) {
+    $int22 = calc($int22 + 2);
+    if_sethide(false, $component20);
+    if_setsize(if_getwidth($component0), calc(if_getheight($component0) + 17), ^setsize_abs, ^setsize_abs, $component0);
+    if_setsize(0, 17, ^setsize_minus, ^setsize_abs, $component20);
+    if_setposition(0, $int22, ^setpos_abs_left, ^setpos_abs_top, $component20);
+    $int22 = calc($int22 + if_getheight($component20) + 2);
+    if (~on_mobile = false) {
+        if_setonmouserepeat("tooltip_mouserepeat($component20, -1, $component18, \"Spectators\", 25, 256)", $component20);
+        if_setonmouseleave("deltooltip($component18)", $component20);
+    }
+    ~script8086($component20);
+    cc_create($component20, ^iftype_graphic, ~script8302($component20));
+    cc_setsize(17, 17, ^setsize_abs, ^setsize_abs);
+    cc_setposition(2, 0, ^setpos_abs_left, ^setpos_abs_top);
+    cc_setgraphic("ground_items_visibility,0");
+    cc_create($component20, ^iftype_text, ~script8302($component20));
+    cc_setsize(22, 0, ^setsize_minus, ^setsize_minus);
+    cc_setposition(21, 2, ^setpos_abs_left, ^setpos_abs_top);
+    cc_settextalign(^settextalign_left, ^settextalign_centre, 0);
+    cc_settextfont(p12_full);
+    cc_settextshadow(true);
+    cc_setcolour(^white);
+    cc_settext(~tostring_commas(%tfa_client_num_external_spectators));
+    if_setsize(calc(parawidth(cc_gettext, cc_getwidth, p12_full) + cc_getx), if_getheight($component20), ^setsize_abs, ^setsize_abs, $component20);
+} else {
+    if_sethide(true, $component20);
+    if_setonmouserepeat(null, $component20);
+    if_setonmouseleave(null, $component20);
+    ~deltooltip_action($component18);
+}
+if_setsize(if_getwidth($component0), calc(if_getheight($component0) + $int22), ^setsize_abs, ^setsize_abs, $component0);

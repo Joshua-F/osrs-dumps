@@ -1,8 +1,9 @@
 // 6162
 [proc,scrollbar_horizontal_doscroll](component $component0, component $component1, int $int2, boolean $boolean)
-def_int $int4 = ~max(calc(if_getscrollwidth($component1) - if_getwidth($component1)), 1);
-$int2 = ~max(~min($int2, $int4), 0);
-if_setscrollpos($int2, if_getscrolly($component1), $component1);
+def_int $int4 = 0;
+def_int $int5 = max(calc(if_getscrollwidth($component1) - if_getwidth($component1)), 1);
+$int4 = max(min($int2, $int5), 0);
+if_setscrollpos($int4, if_getscrolly($component1), $component1);
 switch_component ($component1) {
     case league_relics:view_all :
         %league_relics_scroll_pos = if_getscrollx($component1);
@@ -11,4 +12,7 @@ switch_component ($component1) {
 }
 if ($boolean = true) {
     ~scrollbar_horizontal_setdragger($component0, $component1);
+}
+if (if_param(param_2664, $component0, -1) ! null) {
+    ~script9978($component1, -1, if_param(param_2664, $component0, -1), if_param(param_2665, $component0, -1));
 }

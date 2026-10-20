@@ -1,13 +1,13 @@
 // 187
 [proc,combat_interface_sp_redraw](component $component)
-def_int $int1 = 0;
-def_obj $obj2 = inv_getobj(worn, 3);
-def_int $int3 = 0;
-if (map_members = true | %br_ingame = 1) {
-    $int1 = ~script3648($obj2);
-}
-if ($int1 <= 0) {
-    if_sethide(true, combat_interface:sp_attackbar);
+def_obj $obj1 = inv_getobj(worn, 3);
+def_obj $obj2 = inv_getobj(worn, 5);
+def_int $int3 = ~script3648($obj1);
+def_int $int4 = ~script3648($obj2);
+def_obj $obj5 = null;
+def_int $int6 = -1;
+if (map_members = false & %br_ingame = 0 | $int3 <= 0 & $int4 <= 0) {
+    if_sethide(true, combat_interface:sp_attackbars_container);
     if_setsize(190, 28, ^setsize_abs, ^setsize_abs, combat_interface:category);
     ~script7602;
     return;
@@ -15,79 +15,41 @@ if ($int1 <= 0) {
 if (~on_mobile = true) {
     if_setsize(190, 16, ^setsize_abs, ^setsize_abs, combat_interface:category);
 }
-def_int $int4 = 0;
-if (if_gethide(combat_interface:sp_attackbar) = true) {
-    $int4 = 1;
-}
-if_sethide(false, combat_interface:sp_attackbar);
-if (%sa_attack > 0) {
-    if_setcolour(^yellow, combat_interface:sp_indicator);
-} else {
-    if_setcolour(0x000010, combat_interface:sp_indicator);
-}
-def_int $int5 = %sa_energy;
-def_int $int6 = 1000;
-def_int $int7 = $int1;
+def_int $int7 = 0;
 def_int $int8 = 0;
-if ($int5 < 0) {
-    $int5 = 0;
-}
-if ($obj2 = soulreaper | $obj2 = soulreaper_axe_orn) {
-    $int5, $int6 = %soulreaper_stacks, 5;
-    if ($int5 > 0) {
-        $int3 = 1;
-    }
-    if_settext("Special Attack: <tostring($int5)>/5", combat_interface:sp_indicator);
-} else if ($obj2 = weapon_of_sol) {
-    $int5, $int6 = %weapon_of_sol_stacks, 20;
-    if_settext("Special Attack: <tostring($int5)>/<tostring(20)>", combat_interface:sp_indicator);
-} else if ($obj2 = lithic_sceptre_charged) {
-    $int5, $int6 = %lithic_sceptre_shatter_stacks, 14;
-    if_settext("Special Attack: <tostring($int5)>/<tostring(14)>", combat_interface:sp_indicator);
-} else if (~league_relic_active(struct_4721) = 1 & $int5 < $int7 & stat(hitpoints) > 25) {
-    $int5 = calc((stat(hitpoints) - 1) / 25);
-    $int6 = calc((stat_base(hitpoints) - 1) / 25);
+if (if_gethide(combat_interface:sp_attackbars_container) = true) {
     $int8 = 1;
-    if_settext("Special Attack: <tostring($int5)>/<tostring($int6)>", combat_interface:sp_indicator);
-} else {
-    if_settext("Special Attack: <tostring(calc($int5 / 10))>%", combat_interface:sp_indicator);
 }
-~combat_interface_sp_updatebar($component, $int5, $int6, $int4);
-if ($int5 >= $int1 | $int8 = 1) {
-    $int3 = 1;
-}
-if ($int3 = 1) {
-    if_setcolour(0x397d3b, combat_interface:currentenergy_colour);
-} else {
-    if_setcolour(0x00326b, combat_interface:currentenergy_colour);
-}
-~options_button_off(combat_interface:special_attack, 0);
-def_string $string = "<enum(obj, string, enum_1739, $obj2)> (<tostring(calc($int7 / 10))>%)";
-switch_obj ($obj2) {
-    case brut_dragon_spear, brut_dragon_spear_p, "brut_dragon_spear_p+", "brut_dragon_spear_p++", brut_dragon_spear_kp :
-        $string = "<enum(obj, string, enum_1739, $obj2)> 5-100% ";
-    case soulreaper, soulreaper_axe_orn :
-        $string = "<enum(obj, string, enum_1739, $obj2)> 0-5";
-    case weapon_of_sol :
-        $string = "<enum(obj, string, enum_1739, $obj2)> (<tostring($int5)> / <tostring(20)>)";
-    case lithic_sceptre_charged :
-        $string = "<enum(obj, string, enum_1739, $obj2)> (<tostring($int5)> / <tostring(14)>)";
-}
-def_obj $obj9 = inv_getobj(worn, 13);
-def_obj $obj10 = inv_getobj(worn, 1);
-if ($obj9 = null & $obj10 ! null & oc_param($obj10, param_1910) = 1) {
-    $obj9 = inv_getobj(dizanas_quiver_ammo, 0);
-}
-if (%option_satooltips = 0) {
-    if (($obj2 = darkbow | $obj2 = br_darkbow | $obj2 = darkbow_green | $obj2 = darkbow_white | $obj2 = darkbow_yellow | $obj2 = deadman_blighted_dark_bow) & ($obj9 = dragon_arrow | $obj9 = dragon_arrow_p | $obj9 = "dragon_arrow_p+" | $obj9 = "dragon_arrow_p++")) {
-        $string = "Descent of Dragons: Deal a double attack with dragon arrows that inflicts up to 50% more damage (minimum damage of 8 per hit). (<tostring(calc(~script3648($obj2) / 10))>%)";
+if_sethide(false, combat_interface:sp_attackbars_container);
+if ($int3 > 0 & $int4 > 0) {
+    if (if_gethide(combat_interface:sp_attackbar_mainhand) = true) {
+        $int8 = 1;
     }
-    if ($obj2 = bh_darkbow_imbue & ($obj9 = dragon_arrow | $obj9 = dragon_arrow_p | $obj9 = "dragon_arrow_p+" | $obj9 = "dragon_arrow_p++")) {
-        $string = "Descent of Dragons: Deal a double attack with dragon arrows that inflicts up to 50% more damage (minimum damage of 10 per hit). (<tostring(calc(~script3648($obj2) / 10))>%)";
+    if_sethide(false, combat_interface:sp_attackbar_mainhand);
+    if_sethide(false, combat_interface:sp_attackbar_offhand);
+    if_sethide(true, combat_interface:sp_attackbar);
+    if (%sa_attack = 1) {
+        $int7 = 1;
+    } else {
+        $int7 = 0;
     }
-    if_setonmouserepeat("tooltip_mouserepeat(event_com, -1, combat_interface:tooltip, $string, 25, 160)", combat_interface:sp_attackbar);
-    if_setonmouseleave("deltooltip(combat_interface:tooltip)", combat_interface:sp_attackbar);
+    ~script10148("", $obj1, $int7, $int8, combat_interface:sp_attackbar_mainhand, combat_interface:sp_indicator_mainhand, combat_interface:currentenergy_mainhand, combat_interface:currentenergy_colour_mainhand, combat_interface:special_attack_bg_mainhand, combat_interface:sp_empty_mainhand, combat_interface:sp_orb_mainhand, combat_interface:sp_icon_mainhand);
+    if (%sa_attack = 2) {
+        $int7 = 1;
+    } else {
+        $int7 = 0;
+    }
+    ~script10148("", $obj2, $int7, $int8, combat_interface:sp_attackbar_offhand, combat_interface:sp_indicator_offhand, combat_interface:currentenergy_offhand, combat_interface:currentenergy_colour_offhand, combat_interface:special_attack_bg_offhand, combat_interface:sp_empty_offhand, combat_interface:sp_orb_offhand, combat_interface:sp_icon_offhand);
 } else {
-    if_setonmouserepeat(null, combat_interface:sp_attackbar);
+    $obj5, $int6 = ~script10180;
+    if (if_gethide(combat_interface:sp_attackbar) = true) {
+        $int8 = 1;
+    }
+    if_sethide(true, combat_interface:sp_attackbar_mainhand);
+    if_sethide(true, combat_interface:sp_attackbar_offhand);
+    if_sethide(false, combat_interface:sp_attackbar);
+    if (%sa_attack ! 0) {
+        $int7 = 1;
+    }
+    ~script10148("Special Attack: ", $obj5, $int7, $int8, combat_interface:sp_attackbar, combat_interface:sp_indicator, combat_interface:currentenergy, combat_interface:currentenergy_colour, combat_interface:special_attack, combat_interface:sp_empty, null, null);
 }
-~script7602;

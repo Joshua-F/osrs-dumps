@@ -1,0 +1,12 @@
+// 10166
+[proc,script10166](int $int)(dbrowarray)
+if ($int <= 0) {
+    return(null);
+}
+def_dbrowarray $dbrowarray = array_create(dbrow, 0, $int);
+def_dbrow $dbrow = db_findnext;
+while ($dbrow ! null) {
+    array_push($dbrowarray, $dbrow);
+    $dbrow = db_findnext;
+}
+return($dbrowarray);

@@ -1,0 +1,31 @@
+// 10067
+[proc,script10067](component $component, string $string0, string $string1, int $int1, int $int2, int $int3)
+if_sethide(false, $component);
+cc_deleteall($component);
+cc_create($component, ^iftype_text, 0);
+switch_component ($component) {
+    case tfa_partydetails:preferred_completions, tfa_partydetails:preferred_size :
+        cc_setsize(32, 17, ^setsize_minus, ^setsize_minus);
+        cc_setposition(11, 7, ^setpos_abs_left, ^setpos_abs_top);
+        cc_settextfont(p11_full);
+    case tfa_partydetails:preferred_mode :
+        cc_setsize(32, 0, ^setsize_minus, ^setsize_minus);
+        cc_setposition(0, 2, ^setpos_abs_centre, ^setpos_abs_top);
+        cc_settextfont(p12_full);
+}
+cc_setcolour(0xff981f);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 13);
+cc_settextshadow(true);
+if ($int3 = 1) {
+    cc_settext("<$string1>: <col=ffffff><enum(int, string, enum_6051, $int1)></col>");
+} else {
+    ~script10068($string1, $int1, $int2);
+}
+if ($int2 = 2 & $int3 = 0) {
+    ~script10069($component, cc_getid, $string0, $string1, $int1, $int2);
+} else {
+    if_setonmouserepeat(null, $component);
+    if_setonmouseleave(null, $component);
+    if_clearops($component);
+    if_setonop(null, $component);
+}

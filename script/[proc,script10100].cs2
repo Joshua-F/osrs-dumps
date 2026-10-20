@@ -1,0 +1,37 @@
+// 10100
+[proc,script10100](component $component, int $int1, int $int2, string $string, graphic $graphic)
+cc_deleteall($component);
+cc_create($component, ^iftype_graphic, 0);
+cc_setsize(7, 5, ^setsize_abs, ^setsize_abs);
+cc_setposition(0, 2, ^setpos_abs_centre, ^setpos_abs_bottom);
+.cc_create($component, ^iftype_graphic, 1);
+.cc_setsize(19, 18, ^setsize_abs, ^setsize_abs);
+.cc_setposition(0, 2, ^setpos_abs_centre, ^setpos_abs_top);
+.cc_setgraphic($graphic);
+.cc_settrans(0);
+if (%raids_listsort_list = $int2) {
+    cc_setgraphic("sortarrows,1");
+    cc_settrans(0);
+    if (~on_mobile = false) {
+        if_setonmouserepeat("script10079(event_com, cc_getid, .cc_getid, 120, tfa_partylist:tooltip, $string)", $component);
+        if_setonmouseleave("script10080(event_com, cc_getid, .cc_getid, 0, tfa_partylist:tooltip)", $component);
+    }
+    if_setonclick("script10101($int1)", $component);
+} else if (%raids_listsort_list = $int1) {
+    cc_setgraphic("sortarrows,0");
+    cc_settrans(0);
+    if (~on_mobile = false) {
+        if_setonmouserepeat("script10079(event_com, cc_getid, .cc_getid, 120, tfa_partylist:tooltip, $string)", $component);
+        if_setonmouseleave("script10080(event_com, cc_getid, .cc_getid, 0, tfa_partylist:tooltip)", $component);
+    }
+    if_setonclick("script10101($int2)", $component);
+} else {
+    cc_setgraphic("sortarrows,0");
+    cc_settrans(100);
+    if (~on_mobile = false) {
+        if_setonmouserepeat("script10079(event_com, cc_getid, .cc_getid, 200, tfa_partylist:tooltip, $string)", $component);
+        if_setonmouseleave("script10080(event_com, cc_getid, .cc_getid, 100, tfa_partylist:tooltip)", $component);
+    }
+    if_setonclick("script10101($int1)", $component);
+}
+if_sethide(false, $component);

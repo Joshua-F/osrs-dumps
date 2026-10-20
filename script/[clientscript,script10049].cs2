@@ -1,0 +1,71 @@
+// 10049
+[clientscript,script10049](component $universe, component $pausebuttons, component $main, component $members, component $members_header, component $members_list, component $applicants, component $applicants_header, component $applicants_list, component $back, component $refresh, component $unblock, component $preferred_completions, component $preferred_size, component $preferred_mode, component $external_spectate_toggle, component $action, component $members_tab, component $applicants_tab)
+%raids_count = 0;
+%raids_count_2 = 0;
+cc_deleteall($members_list);
+cc_deleteall($applicants_list);
+if_sethide(true, $members_header);
+if_sethide(true, $applicants_header);
+if_sethide(true, $members);
+if_sethide(true, $applicants);
+cc_deleteall($main);
+cc_create($main, ^iftype_text, 0);
+cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+cc_setsize(0, 0, ^setsize_minus, ^setsize_minus);
+cc_setcolour(0x7f7f7f);
+cc_settextfont(p12_full);
+cc_settextalign(^settextalign_centre, ^settextalign_centre, 0);
+cc_settextshadow(true);
+cc_settext("Loading...");
+cc_deleteall($pausebuttons);
+if_sethide(true, $back);
+cc_create($pausebuttons, ^iftype_rectangle, enum(component, int, enum_6057, $back));
+cc_sethide(true);
+if_sethide(true, $refresh);
+cc_create($pausebuttons, ^iftype_rectangle, enum(component, int, enum_6057, $refresh));
+cc_sethide(true);
+if_sethide(true, $unblock);
+cc_create($pausebuttons, ^iftype_rectangle, enum(component, int, enum_6057, $unblock));
+cc_sethide(true);
+if_sethide(true, $preferred_completions);
+cc_create($pausebuttons, ^iftype_rectangle, enum(component, int, enum_6057, $preferred_completions));
+cc_sethide(true);
+if_sethide(true, $preferred_size);
+cc_create($pausebuttons, ^iftype_rectangle, enum(component, int, enum_6057, $preferred_size));
+cc_sethide(true);
+if_sethide(true, $preferred_mode);
+cc_create($pausebuttons, ^iftype_rectangle, enum(component, int, enum_6057, $preferred_mode));
+cc_sethide(true);
+if_sethide(true, $external_spectate_toggle);
+cc_create($pausebuttons, ^iftype_rectangle, enum(component, int, enum_6057, $external_spectate_toggle));
+cc_sethide(true);
+if_sethide(true, $action);
+cc_create($pausebuttons, ^iftype_rectangle, enum(component, int, enum_6057, $action));
+cc_sethide(true);
+if_sethide(true, $members_tab);
+cc_create($pausebuttons, ^iftype_rectangle, enum(component, int, enum_6057, $members_tab));
+cc_sethide(true);
+if_sethide(true, $applicants_tab);
+cc_create($pausebuttons, ^iftype_rectangle, enum(component, int, enum_6057, $applicants_tab));
+cc_sethide(true);
+def_int $int19 = enum_getoutputcount(enum_6057);
+def_int $int20 = 24;
+while ($int20 > 0) {
+    cc_create($pausebuttons, ^iftype_rectangle, $int19);
+    cc_sethide(true);
+    $int20, $int19 = calc($int20 - 1), calc($int19 + 1);
+}
+$int20 = 7;
+while ($int20 > 0) {
+    cc_create($pausebuttons, ^iftype_rectangle, $int19);
+    cc_sethide(true);
+    $int20, $int19 = calc($int20 - 1), calc($int19 + 1);
+}
+$int20 = 7;
+while ($int20 > 0) {
+    cc_create($pausebuttons, ^iftype_rectangle, $int19);
+    cc_sethide(true);
+    $int20, $int19 = calc($int20 - 1), calc($int19 + 1);
+}
+if_setontimer(null, $universe);
+~script10050(tfa_partydetails:contents, ^max_32bit_int);
