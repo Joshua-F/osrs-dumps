@@ -1,0 +1,47 @@
+// 10308
+[proc,script10308](dbrow $dbrow)(string)
+def_int $int1 = calc(10000 + db_getfield($dbrow, quest:starter_order, 0));
+def_int $int2 = db_getfield($dbrow, quest:difficulty, 0);
+def_int $int3 = calc(10000 + max(db_getfield($dbrow, quest:requirement_combat, 0), db_getfield($dbrow, quest:recommended_combat, 0)));
+def_int $int4 = calc(10000 + db_getfield($dbrow, quest:requirement_questpoints, 0));
+def_int $int5 = calc(10000 + enum(int, int, enum_3342, db_getfield($dbrow, quest:location, 0)));
+if ($int5 < 10999) {
+    $int3 = max(calc($int3 - 5), 10003);
+    if ($int2 >= 1) {
+        $int5 = 10001;
+    }
+}
+def_int $int6 = calc(10000 + db_getfieldcount($dbrow, quest:requirement_stats) + db_getfieldcount($dbrow, quest:requirement_quests));
+if (db_getfield($dbrow, quest:requirement_combat, 0) > 3) {
+    $int6 = calc($int6 + 1);
+}
+if (db_getfield($dbrow, quest:requirement_questpoints, 0) > 0) {
+    $int6 = calc($int6 + 1);
+}
+if ($int6 <= 10000) {
+    $int3 = max(calc($int3 - 5), 10003);
+}
+def_int $int7 = calc(10000 + db_getfieldcount($dbrow, quest:recommended_stats));
+def_int $int8 = max(calc(11000 - db_getfield($dbrow, quest:prerequisite_direct, 0) - db_getfield($dbrow, quest:prerequisite_indirect, 0)), 10000);
+def_int $int9 = db_getfield($dbrow, quest:length, 0);
+def_string $string0 = tostring($int1);
+def_string $string1 = "";
+if ($int2 >= 0) {
+    $string1 = tostring($int2);
+}
+def_string $string2 = tostring($int3);
+def_string $string3 = tostring($int4);
+def_string $string4 = "";
+if ($int2 < 2) {
+    $string4 = tostring($int5);
+}
+def_string $string5 = tostring($int6);
+def_string $string6 = tostring($int7);
+def_string $string7 = tostring($int8);
+def_string $string8 = "";
+if ($int9 >= 0) {
+    $string8 = tostring($int9);
+}
+def_string $string9 = db_getfield($dbrow, quest:sortname, 0);
+def_string $string10 = "<$string0><$string1><$string2><$string3><$string4><$string5><$string6><$string7><$string8><$string9>";
+return($string10);

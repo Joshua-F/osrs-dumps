@@ -1,0 +1,9 @@
+// 10214
+[proc,displayname_menu_button_init](string $string, graphic $graphic, obj $obj, component $component, int $int)
+~displayname_menu_button_draw(0, $string, $graphic, $obj, $component);
+if (~on_mobile = false) {
+    if_setonmouserepeat("displayname_menu_button_hoverevent(1, $string, event_com, $graphic, $obj, $int)", $component);
+}
+if_setonmouseleave("displayname_menu_button_hoverevent(0, $string, event_com, $graphic, $obj, $int)", $component);
+if_setop(1, removetags(~string_findandreplace($string, "<br>", " ")), $component);
+if_setontimer(null, $component);
