@@ -1,0 +1,40 @@
+// 10297
+[proc,script10297](int $int0, int $int1, int $int2, component $component3, component $component4, component $component5)
+def_int $int6 = enum_getoutputcount(enum_595);
+def_intarray $intarray0 = array_create(int, $int6, $int6);
+def_stringarray $stringarray = array_create(string, $int6, $int6);
+def_int $int7 = 0;
+def_int $int8 = -1;
+def_intarray $intarray2 = array_create(int, $int6, $int6);
+array_generaterange($intarray2, 0, 0, -1);
+array_randomise($intarray2, 0, 0);
+while ($int7 < $int6) {
+    $intarray0($int7) = scale(~summary_diary_completed($intarray2($int7)), ~summary_diary_total($intarray2($int7)), 100);
+    $stringarray($int7) = enum(int, string, enum_595, $intarray2($int7));
+    $int7 = calc($int7 + 1);
+}
+array_sort($intarray0, $stringarray);
+array_reverse($intarray0);
+array_reverse($stringarray);
+~thinbox_light($component3, 0);
+def_int $int9 = 0;
+def_int $int10 = 0;
+$int10 = ~script10277($component4, $int10, "Diary Completion");
+cc_setop(1, "Randomise");
+cc_setopbase("<col=ff9040>Diary List</col>");
+cc_setonop("script10296($int0, $int1, $int2, $component3, $component4, $component5)");
+def_int $int11 = 20;
+def_int $int12 = 23;
+while ($int9 < min($int6, $int0)) {
+    $int10, $int11 = ~script10263($component4, $stringarray($int9), "<tostring($intarray0($int9))>%", $int2, 0, $int11, $int10, $int9, $int12);
+    $int9 = calc($int9 + 1);
+}
+if_setscrollpos(0, 0, $component4);
+if ($int11 > if_getheight($component4)) {
+    if_setscrollsize(0, $int11, $component4);
+} else {
+    if_setscrollsize(0, 0, $component4);
+}
+if ($component5 ! null) {
+    ~scrollbar_vertical($component5, $component4, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+}

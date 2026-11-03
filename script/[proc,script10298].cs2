@@ -1,0 +1,61 @@
+// 10298
+[proc,script10298](int $int0, int $int1, int $int2, int $int3, component $component4, component $component5)
+def_int $int6 = 6;
+def_stringarray $stringarray = array_create(string, $int6, $int6);
+def_intarray $intarray1 = array_create(int, $int6, $int6);
+def_objarray $objarray = array_create(obj, $int6, $int6);
+def_int $int7 = 0;
+def_struct $struct = null;
+while ($int7 < $int6) {
+    $struct = enum(int, struct, enum_2105, $int7);
+    $stringarray($int7) = struct_param($struct, param_689);
+    switch_struct ($struct) {
+        case struct_593 :
+            $intarray1($int7) = %completed_clues5;
+            $objarray($int7) = trail_clue_beginner;
+        case struct_508 :
+            $intarray1($int7) = %completed_clues;
+            $objarray($int7) = trail_easy_vague_exp26;
+        case struct_509 :
+            $intarray1($int7) = %completed_clues1;
+            $objarray($int7) = trail_medium_sextant_exp13;
+        case struct_510 :
+            $intarray1($int7) = %completed_clues2;
+            $objarray($int7) = trail_clue_hard_map001;
+        case struct_511 :
+            $intarray1($int7) = %completed_clues3;
+            $objarray($int7) = trail_elite_map_exp1;
+        case struct_512 :
+            $intarray1($int7) = %completed_clues4;
+            $objarray($int7) = trail_clue_master;
+    }
+    if ($intarray1($int7) = -1) {
+        $intarray1($int7) = 0;
+    }
+    $int7 = calc($int7 + 1);
+}
+def_intarray $intarray3 = array_create(int, $int6, $int6);
+array_copy($intarray1, $intarray3, 0, 0, -1);
+array_sort($intarray1, $stringarray);
+array_sort($intarray3, $objarray);
+array_reverse($intarray1);
+array_reverse($stringarray);
+array_reverse($objarray);
+def_int $int9 = 0;
+def_int $int10 = 20;
+def_int $int11 = 23;
+$int9 = ~script10277($component4, $int9, "Clues completed");
+$int7 = 0;
+while ($int7 < min($int6, $int0)) {
+    $int9, $int10 = ~script10269($component4, $stringarray($int7), $int2, $objarray($int7), 21, 21, ~abbreviate_tostring($intarray1($int7), 10000, 10000000, ","), 0, $int10, $int9, $int7, $int11);
+    $int7 = calc($int7 + 1);
+}
+if_setscrollpos(0, 0, $component4);
+if ($int10 > if_getheight($component4)) {
+    if_setscrollsize(0, $int10, $component4);
+} else {
+    if_setscrollsize(0, 0, $component4);
+}
+if ($component5 ! null) {
+    ~scrollbar_vertical($component5, $component4, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+}

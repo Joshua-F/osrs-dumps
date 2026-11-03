@@ -1,0 +1,45 @@
+// 10294
+[proc,script10294](int $int0, int $int1, int $int2, int $int3, component $component4, component $component5)
+def_int $int6 = enum_getoutputcount(enum_2102);
+def_stringarray $stringarray = array_create(string, $int6, $int6);
+def_intarray $intarray = array_create(int, $int6, $int6);
+def_int $int7 = 0;
+def_struct $struct = null;
+while ($int7 < $int6) {
+    $struct = enum(int, struct, enum_2102, $int7);
+    $stringarray($int7) = struct_param($struct, param_682);
+    switch_struct ($struct) {
+        case struct_471 :
+            $intarray($int7) = scale(%collection_count_bosses, %collection_count_bosses_max, 100);
+        case struct_472 :
+            $intarray($int7) = scale(%collection_count_raids, %collection_count_raids_max, 100);
+        case struct_473 :
+            $intarray($int7) = scale(%collection_count_clues, %collection_count_clues_max, 100);
+        case struct_474 :
+            $intarray($int7) = scale(%collection_count_minigames, %collection_count_minigames_max, 100);
+        case struct_475 :
+            $intarray($int7) = scale(%collection_count_other, %collection_count_other_max, 100);
+    }
+    $int7 = calc($int7 + 1);
+}
+array_sort($intarray, $stringarray);
+array_reverse($intarray);
+array_reverse($stringarray);
+def_int $int9 = 0;
+def_int $int10 = 20;
+def_int $int11 = 23;
+$int9 = ~script10277($component4, $int9, "Col. Log Completion");
+$int7 = 0;
+while ($int7 < min($int6, $int0)) {
+    $int9, $int10 = ~script10263($component4, $stringarray($int7), "<tostring($intarray($int7))>%", $int2, 0, $int10, $int9, $int7, $int11);
+    $int7 = calc($int7 + 1);
+}
+if_setscrollpos(0, 0, $component4);
+if ($int10 > if_getheight($component4)) {
+    if_setscrollsize(0, $int10, $component4);
+} else {
+    if_setscrollsize(0, 0, $component4);
+}
+if ($component5 ! null) {
+    ~scrollbar_vertical($component5, $component4, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+}

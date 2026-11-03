@@ -1,0 +1,78 @@
+// 10213
+[proc,script10213](component $component0, int $int1, component $component2, component $component3, component $component4, component $component5, component $component6)
+def_int $int7 = -1;
+if (%displayname_menu_changedname = 1 | ~script10235 = 1) {
+    %displayname_menu_input, %displayname_input_listening, %displayname_menu_remainingchecks, %displayname_menu_countchecks, %displayname_menu_kickouttime = "", false, -1, 0, 0;
+    if_setparam(param_2357, 0, $component6, -1);
+    if_sethide(true, $component2);
+    if_sethide(true, $component3);
+    if_sethide(true, $component4);
+    if_sethide(false, $component5);
+    if (.cc_find($component0, $int1) = true) {
+        .cc_settext("Display Names");
+        .cc_setcolour(0xff981f);
+    }
+    if_setparam(param_2357, -1337, $component0, -1);
+} else {
+    $int7 = ~script10224;
+    switch_int ($int7) {
+        case default :
+            %displayname_menu_input, %displayname_input_listening, %displayname_menu_remainingchecks, %displayname_menu_countchecks, %displayname_menu_kickouttime = "", false, -1, 0, 0;
+            if_setparam(param_2357, 0, $component6, -1);
+            if_sethide(false, $component2);
+            if_sethide(true, $component3);
+            if_sethide(true, $component4);
+            if_sethide(true, $component5);
+            if (.cc_find($component0, $int1) = true) {
+                .cc_settext("Display Names");
+                .cc_setcolour(0xff981f);
+            }
+            if (if_param(param_2357, $component0, -1) ! $int7) {
+                switch_int ($int7) {
+                    case 0, 1, 2, 200 :
+                        switch_int (if_param(param_2357, $component0, -1)) {
+                            case 1, 2 :
+                                mes("No sessions are available. Please try again later.");
+                        }
+                    case 400 :
+                        mes(~script10226("Validation failure: "));
+                    case 401 :
+                        mes(~script10226("Authentication failure: "));
+                    case 429 :
+                        mes(~script10226("Session limit: "));
+                    case default :
+                        mes(~script10226("Unable to connect: "));
+                }
+            }
+        case 1, 2 :
+            %displayname_menu_input, %displayname_input_listening, %displayname_menu_remainingchecks, %displayname_menu_countchecks, %displayname_menu_kickouttime = "", false, -1, 0, 0;
+            if_setparam(param_2357, 0, $component6, -1);
+            if_sethide(true, $component2);
+            if_sethide(false, $component3);
+            if_sethide(true, $component4);
+            if_sethide(true, $component5);
+            if (.cc_find($component0, $int1) = true) {
+                .cc_settext("Connecting...");
+                .cc_setcolour(~tob_hud_nameflasher);
+            }
+            if (if_param(param_2357, $component0, -1) = -1337) {
+                mes("Your request to cancel the session was unsuccessful.");
+            }
+            if (calc(clientclock % 50) = 0) {
+                displaynames_status;
+            }
+        case 200 :
+            if_sethide(true, $component2);
+            if_sethide(true, $component3);
+            if_sethide(false, $component4);
+            if_sethide(true, $component5);
+            if (.cc_find($component0, $int1) = true) {
+                .cc_settext("Check Names");
+                .cc_setcolour(0xff981f);
+            }
+            if (if_param(param_2357, $component0, -1) = -1337) {
+                mes("Your request to end the session was unsuccessful.");
+            }
+    }
+    if_setparam(param_2357, $int7, $component0, -1);
+}

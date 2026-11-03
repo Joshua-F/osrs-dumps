@@ -1,0 +1,46 @@
+// 10293
+[proc,script10293](int $int0, int $int1, int $int2, component $component3, component $component4, component $component5)
+def_int $int6 = db_find(quest:type, 0);
+def_intarray $intarray = array_create(int, $int6, $int6);
+def_stringarray $stringarray1 = array_create(string, $int6, $int6);
+def_int $int7 = 0;
+def_dbrow $dbrow = db_findnext;
+while ($dbrow ! null) {
+    if (~quest_is_complete($dbrow) = true & db_getfield($dbrow, quest:difficulty, 0) ! 5) {
+        $intarray($int7) = db_getfield($dbrow, quest:difficulty, 0);
+        $stringarray1($int7) = db_getfield($dbrow, quest:displayname, 0);
+        $int7 = calc($int7 + 1);
+    }
+    $dbrow = db_findnext;
+}
+array_resize($intarray, $int7);
+array_resize($stringarray1, $int7);
+array_sort($intarray, $stringarray1);
+array_reverse($intarray);
+array_reverse($stringarray1);
+~thinbox_light($component3, 0);
+cc_deleteall($component4);
+def_int $int9 = 0;
+def_int $int10 = 0;
+$int10 = ~script10277($component4, $int10, "Quests Completed");
+def_int $int11 = 20;
+def_int $int12 = 23;
+def_stringarray $stringarray2 = array_create(string, 5, 5);
+$stringarray2(0) = "Nov.";
+$stringarray2(1) = "Inter.";
+$stringarray2(2) = "Exp.";
+$stringarray2(3) = "Master";
+$stringarray2(4) = "G.M.";
+while ($int9 < min($int7, $int0)) {
+    $int10, $int11 = ~script10263($component4, $stringarray1($int9), $stringarray2($intarray($int9)), $int2, 0, $int11, $int10, $int9, $int12);
+    $int9 = calc($int9 + 1);
+}
+if_setscrollpos(0, 0, $component4);
+if ($int11 > if_getheight($component4)) {
+    if_setscrollsize(0, $int11, $component4);
+} else {
+    if_setscrollsize(0, 0, $component4);
+}
+if ($component5 ! null) {
+    ~scrollbar_vertical($component5, $component4, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+}

@@ -1,0 +1,47 @@
+// 10289
+[proc,script10289](int $int0, int $int1, int $int2, component $component3, component $component4, component $component5)
+def_int $int6 = enum_getoutputcount(enum_681);
+def_intarray $intarray0 = array_create(int, $int6, $int6);
+def_graphicarray $graphicarray = array_create(graphic, $int6, $int6);
+def_stringarray $stringarray = array_create(string, $int6, $int6);
+def_int $int7 = 0;
+def_stat $stat = null;
+def_intarray $intarray3 = array_create(int, $int6, $int6);
+array_generaterange($intarray3, 1, 0, -1);
+array_randomise($intarray3, 0, 0);
+while ($int7 < $int6) {
+    $stat = enum(int, stat, enum_681, $intarray3($int7));
+    $intarray0($int7) = stat_base($stat);
+    $graphicarray($int7) = enum(stat, graphic, enum_1505, $stat);
+    $stringarray($int7) = enum(stat, string, enum_680, $stat);
+    $int7 = calc($int7 + 1);
+}
+def_intarray $intarray4 = array_create(int, $int6, $int6);
+array_copy($intarray0, $intarray4, 0, 0, -1);
+array_sort($intarray0, $graphicarray);
+array_sort($intarray4, $stringarray);
+array_reverse($intarray0);
+array_reverse($stringarray);
+array_reverse($graphicarray);
+~thinbox_light($component3, 0);
+def_int $int9 = 0;
+def_int $int10 = 0;
+$int10 = ~script10277($component4, $int10, "Skill Levels");
+cc_setop(1, "Randomise");
+cc_setopbase("<col=ff9040>Skill List</col>");
+cc_setonop("script10288($int0, $int1, $int2, $component3, $component4, $component5)");
+def_int $int11 = 20;
+def_int $int12 = 23;
+while ($int9 < min($int6, $int0)) {
+    $int10, $int11 = ~script10266($component4, $stringarray($int9), $int2, $graphicarray($int9), 13, 13, ~abbreviate_tostring($intarray0($int9), $int1, 1000000, ","), 0, $int11, $int10, $int9, $int12);
+    $int9 = calc($int9 + 1);
+}
+if_setscrollpos(0, 0, $component4);
+if ($int11 > if_getheight($component4)) {
+    if_setscrollsize(0, $int11, $component4);
+} else {
+    if_setscrollsize(0, 0, $component4);
+}
+if ($component5 ! null) {
+    ~scrollbar_vertical($component5, $component4, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");
+}

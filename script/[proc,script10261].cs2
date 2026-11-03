@@ -1,0 +1,16 @@
+// 10261
+[proc,script10261]
+def_component $primary_backing = hc_summary:primary_backing;
+def_component $primary_content = hc_summary:primary_content;
+~thinbox_light($primary_backing, 0);
+def_int $int2 = 0;
+def_int $int3 = 0;
+$int3 = ~script10277($primary_content, $int3, ~text_device("Click stat to expand", "Tap stat to expand"));
+def_int $int4 = 20;
+if_setscrollpos(0, 0, $primary_content);
+if ($int4 > if_getheight($primary_content)) {
+    if_setscrollsize(0, $int4, $primary_content);
+} else {
+    if_setscrollsize(0, 0, $primary_content);
+}
+~scrollbar_vertical(hc_summary:primary_scroll, $primary_content, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");

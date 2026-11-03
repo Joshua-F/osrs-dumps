@@ -1,0 +1,26 @@
+// 10200
+[proc,script10200](component $component, int $int1, int $int2)
+if (cc_find($component, $int1) = true) {
+    ~script10227;
+    ~script10224;
+    if (%displayname_menu_remainingchecks > 0) {
+        cc_settext("Name checks:<" "><col=ffffff><tostring(%displayname_menu_remainingchecks)></col>");
+    } else {
+        cc_settext("Name checks:<" "><"<col=9f9f9f>">-</col>");
+    }
+}
+def_int $int3 = 0;
+def_int $int4 = 0;
+if (cc_find($component, $int2) = true) {
+    $int3 = ~script10225;
+    if ($int3 > 0) {
+        $int4, $int3 = calc($int3 / 60), calc($int3 % 60);
+        if ($int3 >= 10) {
+            cc_settext("<tostring($int4)>:<tostring($int3)>");
+        } else {
+            cc_settext("<tostring($int4)>:0<tostring($int3)>");
+        }
+    } else {
+        cc_settext("<"<col=9f9f9f>">---</col>");
+    }
+}

@@ -1,0 +1,22 @@
+// 10208
+[clientscript,script10208](int $key, char $char, component $component2, int $int3, int $int4, component $component5)
+def_string $string = "";
+if (%displayname_menu_remainingchecks > 0 & enum(int, boolean, enum_2730, if_param(param_2357, $component5, -1)) = true & %displayname_input_listening = true & ~keypress_permit(null, displayname_menu) = true) {
+    if ($key = ^key_return) {
+        if (%displayname_menu_edittime > %displayname_menu_lookuptime) {
+            sound_synth(synth_2266, 1, 0);
+            ~keyboard_hide;
+            ~script10221($component2, $int4);
+        }
+    } else if ($key = ^key_escape) {
+        ~script10210;
+    } else {
+        $string = ~add_to_inputstring(%displayname_menu_input, 2, $key, $char);
+        if (compare($string, %displayname_menu_input) ! 0) {
+            %displayname_menu_input, %displayname_menu_edittime = $string, clientclock;
+        }
+        if (cc_find($component2, $int4) = true) {
+            ~script10205;
+        }
+    }
+}

@@ -1,0 +1,21 @@
+// 7053
+[clientscript,script7053](int $int0, stringarray $stringarray)
+if (array_isnull($stringarray) = true) {
+    $stringarray = array_create(string, 0, 1);
+}
+array_insert($stringarray, chat_playername, 0);
+$int0 = calc($int0 + 1);
+if (array_size($stringarray) <= 1) {
+    if_clearops(bond_main:name_selection_holder);
+    if_setop(1, "Select", bond_main:name_selection_holder);
+    if_setonop("script4547", bond_main:name_selection_holder);
+    return;
+}
+def_int $int1 = 56426507;
+~script8321(bond_main:dropdown, bond_main:name_selection_holder, $int0, $stringarray, 16777215, "[No name set]");
+if_clearops(bond_main:name_selection_holder);
+if_setop(1, "Select", bond_main:name_selection_holder);
+if (~script7054 = false) {
+    return;
+}
+if_setonop("script4561(bond_main:dropdown, bond_main:dropdown_content, bond_main:dropdown_scroller, bond_main:name_selection_holder, $stringarray, 16777215)", bond_main:name_selection_holder);

@@ -1,0 +1,109 @@
+// 10255
+[proc,script10255]
+def_component $stats_backing = hc_summary:stats_backing;
+def_component $stats_content = hc_summary:stats_content;
+~thinbox_light($stats_backing, 0);
+def_int $int2 = 0;
+def_int $int3 = 0;
+def_int $int4 = 0;
+def_int $int5 = 23;
+def_int $int6 = -1;
+def_graphic $graphic = null;
+def_string $string = null;
+def_int $int8 = -1;
+def_int $int9 = 25;
+if (~on_mobile = true) {
+    $int5 = 27;
+}
+while ($int2 <= 19) {
+    switch_int ($int2) {
+        case 0 :
+            $int6 = $int3;
+            $string = "-";
+            if (%account_summary_display_playtime = 1) {
+                $string = ~tostring_minutes(~script10252, 1);
+            }
+            $int3, $int4 = ~script10263($stats_content, "Time Played", $string, $int9, 0, $int4, $int3, $int2, $int5);
+            ~script10259;
+        case 1 :
+            $int6 = $int3;
+            $int3, $int4 = ~script10266($stats_content, "Total level", $int9, "account_icons,1", 18, 18, tostring(%hc_tracking_totallevel), 0, $int4, $int3, $int2, $int5);
+            ~script10256("<col=ff9040>Skill Levels</col>", $int2, $int6);
+        case 2 :
+            $int3, $int4 = ~script10263($stats_content, "Total XP", ~stats_tostring_totalxp(%hc_tracking_totalxp_billions, %hc_tracking_totalxp_remainder), $int9, 0, $int4, $int3, $int2, $int5);
+        case 3 :
+            $int6 = $int3;
+            $int3, $int4 = ~script10266($stats_content, "Quest points", $int9, "achievement_diary_icons,0", 18, 18, ~tostring_spacer(%qp, ","), 0, $int4, $int3, $int2, $int5);
+            ~script10256("<col=ff9040>Quests Completed</col>", $int2, $int6);
+        case 4 :
+            $int6 = $int3;
+            $int3, $int4 = ~script10266($stats_content, "Achievements completed", $int9, "achievement_diary_icons,1", 18, 18, ~tostring_spacer(%hc_tracking_diary_tasks, ","), 0, $int4, $int3, $int2, $int5);
+            ~script10256("<col=ff9040>Diary Completion</col>", $int2, $int6);
+        case 5 :
+            $int6 = 1;
+            if (%ca_tier_status_medium > 0) {
+                $int6 = 2;
+            }
+            if (%ca_tier_status_hard > 0) {
+                $int6 = 3;
+            }
+            if (%ca_tier_status_elite > 0) {
+                $int6 = 4;
+            }
+            if (%ca_tier_status_master > 0) {
+                $int6 = 5;
+            }
+            if (%ca_tier_status_grandmaster > 0) {
+                $int6 = 6;
+            }
+            $graphic = "account_icons,3";
+            if ($int6 = 6) {
+                $graphic = "account_icons,9";
+            }
+            $int6 = $int3;
+            $int3, $int4 = ~script10266($stats_content, "Combat Achievement pts.", $int9, $graphic, 18, 18, ~tostring_spacer(%ca_points, ","), 0, $int4, $int3, $int2, $int5);
+            ~script10256("<col=ff9040>Combat Achievements</col>", $int2, $int6);
+        case 6 :
+            $int6 = $int3;
+            $int3, $int4 = ~script10266($stats_content, "Collections logged", $int9, "account_icons,4", 18, 18, ~tostring_spacer(%hc_tracking_collection_log, ","), 0, $int4, $int3, $int2, $int5);
+            ~script10256("<col=ff9040>Collection Log Completion</col>", $int2, $int6);
+        case 7 :
+            $int6 = $int3;
+            $int3, $int4 = ~script10266($stats_content, "Clues completed", $int9, "account_icons,6", 18, 18, ~abbreviate_tostring(%tracking_clues_completed, 10000, 10000000, ","), 0, $int4, $int3, $int2, $int5);
+            ~script10256("<col=ff9040>Clues completed</col>", $int2, $int6);
+        case 8 :
+            $int6 = $int3;
+            $int3, $int4 = ~script10266($stats_content, "Bosses killed", $int9, "account_icons,0", 18, 18, ~tostring_spacer(%tracking_bosses_killed, ","), 0, $int4, $int3, $int2, $int5);
+            ~script10256("<col=ff9040>Bosses Killed</col>", $int2, $int6);
+        case 9 :
+            $int3, $int4 = ~script10263($stats_content, "Players killed", ~tostring_spacer(%tracking_players_killed, ","), $int9, 0, $int4, $int3, $int2, $int5);
+        case 10 :
+            $int3, $int4 = ~script10263($stats_content, "Highest value player kill", ~script9908(%hc_highest_value_kill, 100000, 10000000, 1000000000, ","), $int9, 0, $int4, $int3, $int2, $int5);
+        case 11 :
+            $int6 = $int3;
+            $int3, $int4 = ~script10271($stats_content, "Highest value item", $int9, coins, %hc_stockmarket_price_rank1, 21, 21, ~script9908(%hc_stockmarket_price_rank1, 100000, 10000000, 1000000000, ","), 0, $int4, $int3, $int2, $int5);
+            ~script10256("<col=ff9040>Highest Value Items</col>", $int2, $int6);
+        case 12 :
+            $int3, $int4 = ~script10263($stats_content, "Highest hit (PvM)", ~tostring_spacer(%tracking_highest_hit, ","), $int9, 0, $int4, $int3, $int2, $int5);
+        case 13 :
+            $int3, $int4 = ~script10263($stats_content, "Damage dealt (PvM)", ~tostring_spacer(%tracking_damage_dealt_to_npcs, ","), $int9, 0, $int4, $int3, $int2, $int5);
+        case 14 :
+            $int3, $int4 = ~script10263($stats_content, "Damage taken (PvM)", ~tostring_spacer(%tracking_damage_taken_from_npcs, ","), $int9, 0, $int4, $int3, $int2, $int5);
+        case 15 :
+            $int3, $int4 = ~script10263($stats_content, "Most damage survived (4t)", ~tostring_spacer(%tracking_max_damage_taken_in_4_ticks, ","), $int9, 0, $int4, $int3, $int2, $int5);
+        case 16 :
+            $int3, $int4 = ~script10263($stats_content, "NPCs killed", ~tostring_spacer(%tracking_monsters_killed, ","), $int9, 0, $int4, $int3, $int2, $int5);
+        case 17 :
+            $int3, $int4 = ~script10263($stats_content, "Potions sipped", ~tostring_spacer(%tracking_potions_sipped, ","), $int9, 0, $int4, $int3, $int2, $int5);
+        case 18 :
+            $int3, $int4 = ~script10263($stats_content, "Food eaten", ~tostring_spacer(%tracking_food_eaten, ","), $int9, 0, $int4, $int3, $int2, $int5);
+    }
+    $int2 = calc($int2 + 1);
+}
+if_setscrollpos(0, 0, $stats_content);
+if ($int4 > if_getheight($stats_content)) {
+    if_setscrollsize(0, $int4, $stats_content);
+} else {
+    if_setscrollsize(0, 0, $stats_content);
+}
+~scrollbar_vertical(hc_summary:stats_scroll, $stats_content, "scrollbar_dragger_v2,3", "scrollbar_dragger_v2,0", "scrollbar_dragger_v2,1", "scrollbar_dragger_v2,2", "scrollbar_v2,0", "scrollbar_v2,1");

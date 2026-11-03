@@ -1,0 +1,12 @@
+// 10315
+[proc,script10315]()(int)
+db_find(quest:type, 0);
+def_int $int = 0;
+def_dbrow $dbrow = db_findnext;
+while ($dbrow ! null) {
+    if (~quest_is_complete($dbrow) = true) {
+        $int = calc($int + 1);
+    }
+    $dbrow = db_findnext;
+}
+return($int);

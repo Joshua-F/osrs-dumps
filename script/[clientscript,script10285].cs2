@@ -1,0 +1,15 @@
+// 10285
+[clientscript,script10285](int $int)
+sound_synth(synth_2266, 1, 0);
+if ($int = %hc_primary_highlight) {
+    return;
+}
+%hc_secondary_highlight = %hc_primary_highlight;
+%hc_primary_highlight = $int;
+if (%hc_primary_highlight ! 0) {
+    cc_deleteall(hc_summary:primary_content);
+}
+if (%hc_secondary_highlight ! 0) {
+    cc_deleteall(hc_summary:secondary_content);
+}
+~script10286(%hc_primary_highlight, %hc_secondary_highlight);

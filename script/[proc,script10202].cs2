@@ -1,0 +1,252 @@
+// 10202
+[proc,script10202](int $int0, component $component1, int $int2, int $int3, component $component4, int $int5, component $component6)
+def_string $string0 = "";
+def_int $int7 = 0;
+def_int $int8 = 1;
+if (~script10224 = 200) {
+    if (%displayname_menu_changetime > %displayname_menu_lookuptime) {
+        $int7 = ~script10232;
+    }
+    switch_int ($int7) {
+        case 1 :
+            $int8 = 7;
+        case 200 :
+            if (~script10233 = 0) {
+                $int8 = 9;
+            } else if (%displayname_menu_edittime > %displayname_menu_lookuptime) {
+                $int8 = 2;
+            } else {
+                $int8, $string0 = 8, "";
+            }
+        case 400 :
+            if (%displayname_menu_edittime > %displayname_menu_lookuptime) {
+                $int8 = 2;
+            } else {
+                $int8, $string0 = 8, ~script10234("Validation failure: ");
+            }
+        case default :
+            if (%displayname_menu_edittime > %displayname_menu_lookuptime) {
+                $int8 = 2;
+            } else {
+                $int8, $string0 = 8, ~script10234("Session failure: ");
+            }
+        case 403 :
+            if (%displayname_menu_edittime > %displayname_menu_lookuptime) {
+                $int8 = 2;
+            } else {
+                $int8, $string0 = 8, ~script10234("Access denied: ");
+            }
+        case 409 :
+            if (%displayname_menu_edittime > %displayname_menu_lookuptime) {
+                $int8 = 2;
+            } else {
+                $int8, $string0 = 8, ~script10234("Permission denied: ");
+            }
+        case 429 :
+            $int8, $string0 = 10, ~script10234("Session ended: ");
+        case 0 :
+            switch_int (~script10227) {
+                case 1 :
+                    $int8 = 3;
+                case 200 :
+                    if (%displayname_menu_edittime > %displayname_menu_lookuptime) {
+                        $int8 = 2;
+                    } else if (string_length(%displayname_menu_input) > 0) {
+                        switch_int (~script10228) {
+                            case 0 :
+                                $int8 = 6;
+                            case 1 :
+                                $int8, $string0 = 4, "That name is taken or reserved.";
+                            case 2 :
+                                $int8, $string0 = 4, "That name is invalid.";
+                            case 3 :
+                                $int8, $string0 = 4, "That name is unavailable.";
+                            case 4 :
+                                $int8, $string0 = 4, "That name is taken or reserved.";
+                            case default :
+                                $int8, $string0 = 4, "The system was unable to check that name.";
+                        }
+                    } else {
+                        $int8 = 2;
+                    }
+                case 400 :
+                    if (%displayname_menu_edittime > %displayname_menu_lookuptime) {
+                        $int8 = 2;
+                    } else {
+                        $int8, $string0 = 4, ~script10229("Validation failure: ");
+                    }
+                case default :
+                    if (%displayname_menu_edittime > %displayname_menu_lookuptime) {
+                        $int8 = 2;
+                    } else {
+                        $int8, $string0 = 4, ~script10229("Session failure: ");
+                    }
+                case 403 :
+                    if (%displayname_menu_edittime > %displayname_menu_lookuptime) {
+                        $int8 = 2;
+                    } else if (~script10228 = 0) {
+                        $int8, $string0 = 5, ~script10230;
+                    } else {
+                        $int8, $string0 = 4, ~script10229("Access denied: ");
+                    }
+                case 429 :
+                    $int8, $string0 = 10, ~script10229("Session ended: ");
+                case 0 :
+                    $int8 = 1;
+            }
+    }
+    if (~script10225 = 0) {
+        ~script10211;
+    }
+} else {
+    $int8 = 10;
+}
+def_string $string1 = "";
+def_synth $synth = null;
+if (if_param(param_2357, $component6, -1) ! $int8 | if_param(param_2357, $component6, -1) <= 0) {
+    if_setparam(param_2357, $int8, $component6, -1);
+    if (%displayname_menu_remainingchecks > 0 & enum(int, boolean, enum_2730, $int8) = true) {
+        if ($int8 = 1 | $int8 = 6) {
+            ~script10204(0, $component1, $int2, $int3, $component6);
+        } else {
+            ~script10204(1, $component1, $int2, $int3, $component6);
+        }
+    } else {
+        ~script10203($component1, $int2, $int3);
+    }
+    switch_int ($int8) {
+        case 1, 2 :
+            if (%displayname_menu_remainingchecks > 0) {
+                if (.cc_find($component4, $int5) = true) {
+                    if ($int8 = 2) {
+                        .cc_settext("Enter another name");
+                    } else {
+                        .cc_settext("Enter a name");
+                    }
+                }
+                $string1 = "<"<col=0dc10d>">Check availability</col>";
+                ~script10214($string1, b12_full, pattern_airune_dummy, $component6, $int8);
+                if_setonop("script10220(event_op, event_com, $string1, b12_full, pattern_airune_dummy, $int8, $component1, $int3)", $component6);
+            } else {
+                if (.cc_find($component4, $int5) = true) {
+                    .cc_settext("Session expired");
+                }
+                if_setonmouserepeat(null, $component6);
+                if_setonmouseleave(null, $component6);
+                if_setontimer(null, $component6);
+                if_setonop(null, $component6);
+                ~script10215(1, "<"<col=ff0000>">Session expired</col>", p12_full, pattern_lime_dummy, $component6);
+                ~script10211;
+            }
+        case 3, 7 :
+            if (.cc_find($component4, $int5) = true) {
+                if ($int8 = 7) {
+                    .cc_settext("Requesting...");
+                } else {
+                    .cc_settext("Checking...");
+                }
+            }
+            if_setonmouserepeat(null, $component6);
+            if_setonmouseleave(null, $component6);
+            if_setontimer(null, $component6);
+            if_setonop(null, $component6);
+            cc_deleteall($component6);
+            if (if_find($component6) = true) {
+                ~loading_icon_init_dynamic_inner($component6, 0, enum_3789, 4, 1200, 3500, 512, 1024, 0, 2, 0, 0);
+            }
+        case 4, 8 :
+            if (.cc_find($component4, $int5) = true) {
+                if (%displayname_menu_remainingchecks > 0) {
+                    .cc_settext("Enter another name");
+                } else {
+                    .cc_settext("---");
+                }
+            }
+            if_setonmouserepeat(null, $component6);
+            if_setonmouseleave(null, $component6);
+            if_setontimer(null, $component6);
+            if_setonop(null, $component6);
+            if ($int8 = 8) {
+                ~script10215(1, "<"<col=ff0000>">Unable to change name</col>", p12_full, pattern_lime_dummy, $component6);
+            } else {
+                ~script10215(1, "<"<col=ff0000>">Name unavailable</col>", p12_full, pattern_lime_dummy, $component6);
+            }
+            $synth = synth_2277;
+            if (%displayname_menu_remainingchecks = 0) {
+                ~script10211;
+            }
+        case 5 :
+            if (.cc_find($component4, $int5) = true) {
+                .cc_settext("Available!");
+            }
+            if_setonmouserepeat(null, $component6);
+            if_setonmouseleave(null, $component6);
+            if_setontimer(null, $component6);
+            if_setonop(null, $component6);
+            ~script10215(1, "<"<col=ff0000>">Ineligible to take name</col>", p12_full, pattern_lime_dummy, $component6);
+            $synth = synth_2655;
+            if (%displayname_menu_remainingchecks = 0) {
+                ~script10211;
+            }
+        case 6 :
+            if (.cc_find($component4, $int5) = true) {
+                .cc_settext("Available!");
+            }
+            $string1 = "<"<col=0dc10d>">Change name:</col><br><"<col=0dc10d>"><%displayname_menu_input></col>";
+            ~script10214($string1, b12_full, pattern_trowel_dummy, $component6, $int8);
+            if_setonop("script10220(event_op, event_com, $string1, b12_full, pattern_trowel_dummy, $int8, $component1, $int3)", $component6);
+            $synth = synth_2655;
+        case 9 :
+            if (.cc_find($component4, $int5) = true) {
+                .cc_settext("Finished!");
+            }
+            if_setonmouserepeat(null, $component6);
+            if_setonmouseleave(null, $component6);
+            if_setontimer(null, $component6);
+            if_setonop(null, $component6);
+            ~script10215(1, "<"<col=0dc10d>">Name changed!</col>", b12_full, pattern_trowel_dummy, $component6);
+            $synth, %displayname_menu_changedname = synth_2655, 1;
+            if (~script10235 ! 1) {
+                ~script10236;
+                %displayname_menu_kickouttime = 0;
+            }
+        case default :
+            if (cc_find($component1, $int3) = true) {
+                cc_settext("---");
+            }
+            if (.cc_find($component4, $int5) = true) {
+                .cc_settext("Session expired");
+            }
+            if_setonmouserepeat(null, $component6);
+            if_setonmouseleave(null, $component6);
+            if_setontimer(null, $component6);
+            if_setonop(null, $component6);
+            cc_deleteall($component6);
+            cc_create($component6, ^iftype_model, 0);
+            cc_setsize(if_getheight($component6), 0, ^setsize_abs, ^setsize_minus);
+            cc_setposition(0, 0, ^setpos_abs_centre, ^setpos_abs_centre);
+            cc_setobject_nonum(pattern_lime_dummy, 1);
+            if ($int0 = 0 & ~script10235 ! 1) {
+                ~script10236;
+                %displayname_menu_kickouttime = 0;
+            }
+    }
+    if ($int0 = 0) {
+        if ($synth ! null) {
+            sound_synth($synth, 1, 0);
+        }
+        if (string_length($string0) > 0) {
+            mes($string0);
+        }
+    }
+}
+if ($int0 = 0 & %displayname_menu_kickouttime > 0) {
+    if (clientclock >= %displayname_menu_kickouttime) {
+        if (~script10235 ! 1) {
+            ~script10236;
+            %displayname_menu_kickouttime = 0;
+        }
+    } else if (clientclock = calc(%displayname_menu_kickouttime - 50 / 2)) {
+        mes("Your session is ending...");
+    }
+}
