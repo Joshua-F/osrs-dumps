@@ -7,10 +7,9 @@ if (cc_find($component0, $int2) = true) {
     cc_setobject_alwaysnum(osrs_bond_untradeable, %if2);
 }
 def_int $int9 = 0;
-def_string $string0 = "";
+def_string $string = "";
 def_int $int10 = 0;
 %if1, %if2 = max(%if1, 0), max(%if2, 0);
-def_string $string1 = "";
 if (cc_find($component0, $int3) = true) {
     if (calc(^max_32bit_int - %if1) < %if2) {
         $int9 = ^max_32bit_int;
@@ -18,16 +17,14 @@ if (cc_find($component0, $int3) = true) {
         $int9 = calc(%if1 + %if2);
     }
     if ($int9 > 1) {
-        $string1 = ~tostring_spacer($int9, ",");
-        $string0 = "<str0=<$string1>>You have <col=ffffff><str0>@or4@ bonds in your <col=ffffff>inventory@or4@, <col=ffffff>bank@or4@ & <col=ffffff>bond pouch@or4@.<br>You can <col=ffffff>redeem@or4@ them here.";
+        $string = "<int_0=<tostring($int9)>>You have <col=ffffff><int_0:spacer>@or4@ bonds in your <col=ffffff>inventory@or4@, <col=ffffff>bank@or4@ & <col=ffffff>bond pouch@or4@.<br>You can <col=ffffff>redeem@or4@ them here.";
     } else if ($int9 = 1) {
-        $string0 = "You have <col=ffffff>one@or4@ bond in your <col=ffffff>inventory@or4@, <col=ffffff>bank@or4@ & <col=ffffff>bond pouch@or4@.<br>You can <col=ffffff>redeem@or4@ it here.";
+        $string = "You have <col=ffffff>one@or4@ bond in your <col=ffffff>inventory@or4@, <col=ffffff>bank@or4@ & <col=ffffff>bond pouch@or4@.<br>You can <col=ffffff>redeem@or4@ it here.";
     } else {
-        $string1 = ~tostring_spacer(0, ",");
-        $string0 = "<str0=<$string1>>You have <col=ffffff><$string1>@or4@ bonds in your <col=ffffff>inventory@or4@, <col=ffffff>bank@or4@ & <col=ffffff>bond pouch@or4@. Visit the <col=ffffff>store@or4@ or buy bonds from <col=ffffff>other players@or4@.";
+        $string = "<int_0=<tostring(0)>>You have <col=ffffff><int_0:spacer>@or4@ bonds in your <col=ffffff>inventory@or4@, <col=ffffff>bank@or4@ & <col=ffffff>bond pouch@or4@. Visit the <col=ffffff>store@or4@ or buy bonds from <col=ffffff>other players@or4@.";
     }
-    cc_settext($string0);
-    $int10 = calc(paraheight($string0, $int5, p12_full) * 14 + 12);
+    cc_settext($string);
+    $int10 = calc(paraheight($string, $int5, p12_full) * 14 + 12);
     if_setsize($int4, $int10, ^setsize_minus, ^setsize_abs, $component0);
     if_setsize($int4, calc($int10 - 1), ^setsize_minus, ^setsize_minus, $component6);
     ~scrollbar_resize($component8, $component7, %poll_scroll);

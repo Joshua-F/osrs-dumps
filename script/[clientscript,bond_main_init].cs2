@@ -4,7 +4,7 @@
 ~ge_offers_bigbutton($bond_pouch_top, "View Your Bonds", 0);
 def_int $int10 = if_getwidth($info_container);
 cc_deleteall($info_container);
-def_string $string0 = "<col=ffffff>Old School bonds@or4@ can be redeemed for <col=ffffff>membership@or4@ on any character linked to your Jagex Account, or some character specific packages.";
+def_string $string = "<col=ffffff>Old School bonds@or4@ can be redeemed for <col=ffffff>membership@or4@ on any character linked to your Jagex Account, or some character specific packages.";
 %if1, %if2 = max(%if1, 0), max(%if2, 0);
 def_int $int11 = 0;
 if (calc(^max_32bit_int - %if1) < %if2) {
@@ -12,19 +12,16 @@ if (calc(^max_32bit_int - %if1) < %if2) {
 } else {
     $int11 = calc(%if1 + %if2);
 }
-def_string $string1 = "";
 if ($int11 > 1) {
-    $string1 = ~tostring_spacer($int11, ",");
-    $string0 = append($string0, "<str0=<$string1>><br><br>You have <col=ffffff><str0>@or4@ bonds in your <col=ffffff>inventory@or4@, <col=ffffff>bank@or4@ & <col=ffffff>bond pouch@or4@.<br>You can <col=ffffff>redeem@or4@ them below.");
+    $string = append($string, "<int_0=<tostring($int11)>><br><br>You have <col=ffffff><int_0:spacer>@or4@ bonds in your <col=ffffff>inventory@or4@, <col=ffffff>bank@or4@ & <col=ffffff>bond pouch@or4@.<br>You can <col=ffffff>redeem@or4@ them below.");
 } else if ($int11 = 1) {
-    $string0 = append($string0, "<br><br>You have <col=ffffff>one@or4@ bond in your <col=ffffff>inventory@or4@, <col=ffffff>bank@or4@ & <col=ffffff>bond pouch@or4@.<br>You can <col=ffffff>redeem@or4@ it below.");
+    $string = append($string, "<br><br>You have <col=ffffff>one@or4@ bond in your <col=ffffff>inventory@or4@, <col=ffffff>bank@or4@ & <col=ffffff>bond pouch@or4@.<br>You can <col=ffffff>redeem@or4@ it below.");
 } else {
-    $string1 = ~tostring_spacer(0, ",");
-    $string0 = append($string0, "<str0=<$string1>><br><br>You have <col=ffffff><str0>@or4@ bonds in your <col=ffffff>inventory@or4@, <col=ffffff>bank@or4@ & <col=ffffff>bond pouch@or4@. Visit the <col=ffffff>store@or4@ or buy bonds from <col=ffffff>other players@or4@.");
+    $string = append($string, "<int_0=<tostring(0)>><br><br>You have <col=ffffff><int_0:spacer>@or4@ bonds in your <col=ffffff>inventory@or4@, <col=ffffff>bank@or4@ & <col=ffffff>bond pouch@or4@. Visit the <col=ffffff>store@or4@ or buy bonds from <col=ffffff>other players@or4@.");
 }
 def_int $int12 = 0;
 def_int $int13 = 0;
-$int12, $int13 = ~bond_main_infotext($string0, $info_container, $int10, $int12, $int13);
+$int12, $int13 = ~bond_main_infotext($string, $info_container, $int10, $int12, $int13);
 ~stonebutton_init("Buy Bonds", $bond_store, b12_full, 1);
 if_setonop("opsound(event_op, 2)", $bond_store);
 if_setposition(0, $int13, ^setpos_abs_centre, ^setpos_abs_top, $bond_store);

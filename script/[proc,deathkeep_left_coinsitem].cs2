@@ -12,14 +12,14 @@ cc_setopbase("<col=ff9040><oc_name($obj)></col>");
 def_string $string = "";
 if ($int1 > 1) {
     if (%ironman = 2) {
-        $string = "<~tostring_spacer($int1, ",")> x <oc_name($obj)>: These items will be dropped as coins (<~tostring_spacer($int2, ",")>).";
+        $string = "<int_0=<tostring($int1)>><int_1=<tostring($int2)>><int_0:spacer> x <oc_name($obj)>: These items will be dropped as coins (<int_1:spacer>).";
     } else {
-        $string = "<~tostring_spacer($int1, ",")> x <oc_name($obj)>: These items will be sent to your gravestone as coins (<~tostring_spacer($int2, ",")>).";
+        $string = "<int_0=<tostring($int1)>><int_1=<tostring($int2)>><int_0:spacer> x <oc_name($obj)>: These items will be sent to your gravestone as coins (<int_1:spacer>).";
     }
 } else if (%ironman = 2) {
-    $string = "<oc_name($obj)>: This item will be dropped as coins (<~tostring_spacer($int2, ",")>).";
+    $string = "<int_0=<tostring($int2)>><oc_name($obj)>: This item will be dropped as coins (<int_0:spacer>).";
 } else {
-    $string = "<oc_name($obj)>: This item will be sent to your gravestone as coins (<~tostring_spacer($int2, ",")>).";
+    $string = "<int_0=<tostring($int2)>><oc_name($obj)>: This item will be sent to your gravestone as coins (<int_0:spacer>).";
 }
 cc_setonop("deathkeep_opitem(event_com, event_comsubid, $string)");
 return(calc($int6 + 1), $int7);

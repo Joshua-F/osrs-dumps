@@ -2,10 +2,12 @@
 [proc,welcome_screen_credit](component $component0, component $component1, component $component2)
 def_string $string = "";
 def_int $int = 0;
-if (%account_credit > 1) {
-    $string = "You have <col=00ff00><~tostring_spacer(%account_credit, ",")></col> days of membership left.";
+if (%recurring_membership = true) {
+    $string = "<bool_m=<tostring(~on_mobile)>>Your membership is <col=00ff00>active</col>.<br><cond,bool_m,Tap,Click> <col=00ff00>here</col> for more detail and to manage your membership.";
+} else if (%account_credit > 1) {
+    $string = "<int_0=<tostring(%account_credit)>>You have <col=00ff00><int_0:spacer></col> days of membership left.";
 } else if (%account_credit = 1) {
-    $string = "You have <col=00ff00><~tostring_spacer(%account_credit, ",")></col> day of membership left.";
+    $string = "<int_0=<tostring(%account_credit)>>You have <col=00ff00><int_0:spacer></col> day of membership left.";
 } else if (%playermember = 1) {
     $string = "You have no membership credit left.<br><br><col=ff9040>Subscribe to retain your membership status!</col>";
 } else if (%playermember = 0) {
