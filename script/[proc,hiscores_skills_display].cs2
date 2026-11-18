@@ -52,9 +52,9 @@ while ($int3 < $int1) {
         }
         $int20, $int19 = ~hiscores_xp_progress($int5);
         if ($int20 = 0 & $int19 = 0) {
-            $string0 = "Skill: <db_getfield($dbrow, hiscores_skill_info:skillname, 0)><br>Rank: <~tostring_spacer($int8, ",")><br>Experience: <~tostring_spacer($int5, ",")>";
+            $string0 = "<int_0=<tostring($int8)>><int_1=<tostring($int5)>>Skill: <db_getfield($dbrow, hiscores_skill_info:skillname, 0)><br>Rank: <int_0:spacer><br>Experience: <int_1:spacer>";
         } else {
-            $string0 = "Skill: <db_getfield($dbrow, hiscores_skill_info:skillname, 0)><br>Rank: <~tostring_spacer($int8, ",")><br>Experience: <~tostring_spacer($int5, ",")><br>Remaining XP: <~tostring_spacer(calc($int19 - $int20), ",")>";
+            $string0 = "<int_0=<tostring($int8)>><int_1=<tostring($int5)>><int_2=<tostring(calc($int19 - $int20))>>Skill: <db_getfield($dbrow, hiscores_skill_info:skillname, 0)><br>Rank: <int_0:spacer><br>Experience: <int_1:spacer><br>Remaining XP: <int_2:spacer>";
         }
         if (cc_find(hiscores:hiscores_skills, $int3) = true) {
             ~hiscores_set_tooltip($string0, $int20, $int19);
@@ -70,7 +70,7 @@ if (cc_find(hiscores:hiscores_skills, $int0) = true) {
     cc_settext($string1);
 }
 if (cc_find(hiscores:hiscores_skills, $int1) = true) {
-    ~hiscores_set_tooltip("Combat<br>Exact Combat Level: <$string1>.<$string2><br>Experience: <~tostring_spacer($int7, ",")>", 0, 0);
+    ~hiscores_set_tooltip("<int_0=<tostring($int7)>>Combat<br>Exact Combat Level: <$string1>.<$string2><br>Experience: <int_0:spacer>", 0, 0);
 }
 $int0 = calc($int0 + 2);
 if (cc_find(hiscores:hiscores_skills, $int0) = true) {
@@ -78,5 +78,5 @@ if (cc_find(hiscores:hiscores_skills, $int0) = true) {
 }
 $int9 = calc(hiscore_getoverallrank + 1);
 if (cc_find(hiscores:hiscores_skills, calc($int1 + 1)) = true) {
-    ~hiscores_set_tooltip("Overall<br>Rank: <~tostring_spacer($int9, ",")><br>Experience: <~tostring_spacer($int6, ",")>", 0, 0);
+    ~hiscores_set_tooltip("<int_0=<tostring($int9)>><int_1=<tostring($int6)>>Overall<br>Rank: <int_0:spacer><br>Experience: <int_1:spacer>", 0, 0);
 }

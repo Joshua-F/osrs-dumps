@@ -7,21 +7,21 @@ def_int $int4 = stat_base($stat);
 def_int $int5 = stat_visible_xp($stat);
 def_string $string1 = ",";
 def_string $string2 = "<$string0> XP:";
-def_string $string3 = ~tostring_spacer($int5, $string1);
+def_string $string3 = "<int_0=<tostring($int5)>><int_0:spacer>";
 def_int $int6 = 0;
 if (%option_hidexptolevel = 0) {
     if ($int4 < 99) {
         $int6 = enum(int, int, enum_256, calc($int4 + 1));
         $string2 = append($string2, "|Next level at:|Remaining XP:");
-        $string3 = append($string3, "|<~tostring_spacer($int6, $string1)>|<~tostring_spacer(calc($int6 - $int5), $string1)>");
+        $string3 = append($string3, "|<int_0=<tostring($int6)>><int_0:spacer>|<int_1=<tostring(calc($int6 - $int5))>><int_1:spacer>");
     }
 } else {
     $string2 = append($string2, "|Next level at:");
-    $string3 = append($string3, "|<~tostring_spacer(enum(int, int, enum_256, calc($int4 + 1)), $string1)>");
+    $string3 = append($string3, "|<int_0=<tostring(enum(int, int, enum_256, calc($int4 + 1)))>><int_0:spacer>");
 }
 if (~league_relic_active(struct_1736) = 1) {
     $string2 = append($string2, "|<~script7699>");
-    $string3 = append($string3, "|<~tostring_spacer(~equilibrium_get_extra_xp($stat), $string1)>");
+    $string3 = append($string3, "|<int_0=<tostring(~equilibrium_get_extra_xp($stat))>><int_0:spacer>");
 }
 def_int $int7 = 0;
 def_int $int8 = 0;
@@ -33,7 +33,7 @@ if (~deadman_world ! 0) {
         $int7 = calc($int7 / 10);
         if ($int7 > $int5) {
             $string2 = append($string2, "|@ttip_emph_red@XP to regain:</col>");
-            $string3 = append($string3, "|@ttip_emph_red@<~tostring_spacer(calc($int7 - $int5), $string1)></col>");
+            $string3 = append($string3, "|<int_0=<tostring(calc($int7 - $int5))>>@ttip_emph_red@<int_0:spacer></col>");
             $int8 = 1;
         }
     }
@@ -43,7 +43,7 @@ if (~deadman_world ! 0) {
                 $int10 = ~script2031(20);
                 if ($int10 > 0) {
                     $string2 = append($string2, "|@ttip_emph_red@XP permitted:</col>");
-                    $string3 = append($string3, "|@ttip_emph_red@<~tostring_spacer($int10, $string1)></col>");
+                    $string3 = append($string3, "|<int_0=<tostring($int10)>>@ttip_emph_red@<int_0:spacer></col>");
                 } else {
                     $int9 = 1;
                     $string2 = append($string2, "|@ttip_emph_red@XP permitted:</col>");
@@ -53,7 +53,7 @@ if (~deadman_world ! 0) {
                 $int10 = ~script2031(30);
                 if ($int10 > 0) {
                     $string2 = append($string2, "|@ttip_emph_red@XP permitted:</col>");
-                    $string3 = append($string3, "|@ttip_emph_red@<~tostring_spacer($int10, $string1)></col>");
+                    $string3 = append($string3, "|<int_0=<tostring($int10)>>@ttip_emph_red@<int_0:spacer></col>");
                 } else {
                     $int9 = 1;
                     $string2 = append($string2, "|@ttip_emph_red@XP permitted:</col>");
@@ -63,7 +63,7 @@ if (~deadman_world ! 0) {
                 $int10 = ~script2031(40);
                 if ($int10 > 0) {
                     $string2 = append($string2, "|@ttip_emph_red@XP permitted:</col>");
-                    $string3 = append($string3, "|@ttip_emph_red@<~tostring_spacer($int10, $string1)></col>");
+                    $string3 = append($string3, "|<int_0=<tostring($int10)>>@ttip_emph_red@<int_0:spacer></col>");
                 } else {
                     $int9 = 1;
                     $string2 = append($string2, "|@ttip_emph_red@XP permitted:</col>");

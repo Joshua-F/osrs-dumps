@@ -9,13 +9,12 @@ if (%kd_toggle = 0 | %inside_wilderness = 0 & ~script2871 = false) {
 } else if (~deadman_world ! 0 & %deadman_protection_left > 0) {
     cc_settext("");
 } else if (%kdr_transmit_deaths = 0) {
-    cc_settext("Kills: <~tostring_spacer(%kdr_transmit_kills, $string)><br>Deaths: 0<br>K/D Ratio: 0.0");
+    cc_settext("<int_0=<tostring(%kdr_transmit_kills)>><int_kd=<tostring(0)>>Kills: <int_0:spacer><br>Deaths: 0<br>K/D Ratio: <int_kd:spacer_1_z>");
 } else {
-    if (%kdr_transmit_kills < calc(^max_32bit_int / 10)) {
+    if (calc(%kdr_transmit_kills / %kdr_transmit_deaths) < calc(^max_32bit_int / 10)) {
         $int0 = scale(%kdr_transmit_kills, %kdr_transmit_deaths, 10);
-        $int1, $int2 = calc($int0 / 10), calc($int0 % 10);
     } else {
-        $int1, $int2 = calc(%kdr_transmit_kills / %kdr_transmit_deaths), 0;
+        $int0 = ~script9914(long_scale(int_to_long(%kdr_transmit_kills), int_to_long(%kdr_transmit_deaths), 10));
     }
-    cc_settext("Kills: <~tostring_spacer(%kdr_transmit_kills, $string)><br>Deaths: <~tostring_spacer(%kdr_transmit_deaths, $string)><br>K/D Ratio: <~tostring_spacer($int1, $string)>.<tostring($int2)>");
+    cc_settext("<int_0=<tostring(%kdr_transmit_kills)>><int_1=<tostring(%kdr_transmit_deaths)>><int_kd=<tostring($int0)>>Kills: <int_0:spacer><br>Deaths: <int_1:spacer><br>K/D Ratio: <int_kd:spacer_1_z>");
 }
