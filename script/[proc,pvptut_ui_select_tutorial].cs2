@@ -6,7 +6,11 @@ if (%pvptut_ui_selected_tutorial ! null) {
     $int1 = db_getfield($dbrow, pvp_tutorial:type, 0);
 }
 def_int $int2 = 0;
-if (calc(%pvptut_prayer_complete + %pvptut_freeze_complete + %pvptut_special_attack_complete + %pvptut_gear_switch_complete + %pvptut_combo_eating_complete) >= 5) {
+def_int $int3 = 6;
+if (%pvptut_boss_medium_complete > 0) {
+    $int3 = calc($int3 - 1);
+}
+if (calc(%pvptut_prayer_complete + %pvptut_freeze_complete + %pvptut_special_attack_complete + %pvptut_gear_switch_complete + %pvptut_combo_eating_complete + %pvptut_vengeance_complete) >= $int3) {
     $int2 = 1;
 }
 if ($int2 = 0 & $int1 = 3) {

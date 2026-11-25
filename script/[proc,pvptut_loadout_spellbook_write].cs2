@@ -1,3 +1,18 @@
 // 9936
 [proc,pvptut_loadout_spellbook_write](int $int)
-cc_settext(enum(int, string, enum_4208, 1));
+switch_int ($int) {
+    case 2 :
+        cc_settext(enum(int, string, enum_4208, 1));
+    case 1 :
+        if (%pvptut_loadout_b_spellbook = 0) {
+            cc_settext(enum(int, string, enum_4208, 1));
+        } else {
+            cc_settext(enum(int, string, enum_4208, %pvptut_loadout_b_spellbook));
+        }
+    case 0 :
+        if (%pvptut_loadout_c_spellbook = 0) {
+            cc_settext(enum(int, string, enum_4208, 1));
+        } else {
+            cc_settext(enum(int, string, enum_4208, %pvptut_loadout_c_spellbook));
+        }
+}
